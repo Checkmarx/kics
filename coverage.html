@@ -75,7 +75,7 @@
 				
 				<option value="file9">github.com/Checkmarx/kics/internal/console/printer/printer.go (55.6%)</option>
 				
-				<option value="file10">github.com/Checkmarx/kics/internal/console/scan.go (75.7%)</option>
+				<option value="file10">github.com/Checkmarx/kics/internal/console/scan.go (75.6%)</option>
 				
 				<option value="file11">github.com/Checkmarx/kics/internal/console/version.go (100.0%)</option>
 				
@@ -141,7 +141,7 @@
 				
 				<option value="file42">github.com/Checkmarx/kics/pkg/model/model_yaml.go (95.0%)</option>
 				
-				<option value="file43">github.com/Checkmarx/kics/pkg/model/summary.go (87.0%)</option>
+				<option value="file43">github.com/Checkmarx/kics/pkg/model/summary.go (89.8%)</option>
 				
 				<option value="file44">github.com/Checkmarx/kics/pkg/parser/docker/parser.go (90.9%)</option>
 				
@@ -165,7 +165,7 @@
 				
 				<option value="file54">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (84.0%)</option>
 				
-				<option value="file55">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (90.5%)</option>
+				<option value="file55">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (71.4%)</option>
 				
 				<option value="file56">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
@@ -1595,8 +1595,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="343">{
-                if val == true </span><span class="cov9" title="342">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="352">{
+                if val == true </span><span class="cov9" title="351">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -1930,7 +1930,6 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end 
                 Start: start,
                 End:   end,
         }
-        summary.ScannedPaths = pathParameters.ScannedPaths
 
         if flags.GetBoolFlag(flags.DisableCISDescFlag) || flags.GetBoolFlag(flags.DisableFullDescFlag) </span><span class="cov0" title="0">{
                 log.Warn().Msg("Skipping CIS descriptions because provided disable flag is set")
@@ -2407,13 +2406,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="32">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2438,14 +2437,14 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
                         formatter = u
                         mesure = k
                 }</span>
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov3" title="3">{
+        if math.IsNaN(metric) </span><span class="cov2" title="2">{
                 metric = 0
         }</span>
 
@@ -2786,7 +2785,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="10">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov7" title="17">{
-        for _, a := range s </span><span class="cov8" title="39">{
+        for _, a := range s </span><span class="cov8" title="38">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -4307,7 +4306,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -4488,7 +4487,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5710,7 +5709,7 @@ func GetPathToLibrary(platform, libraryPathFlag string) (string, error) <span cl
                 } else<span class="cov0" title="0"> {
                         relativeBasePath = kicsDirPath
                 }</span>
-                <span class="cov5" title="7">for _, supPlatform := range constants.AvailablePlatforms </span><span class="cov9" title="37">{
+                <span class="cov5" title="7">for _, supPlatform := range constants.AvailablePlatforms </span><span class="cov8" title="30">{
                         if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                                 libraryFilePath = filepath.FromSlash(relativeBasePath + "/assets/libraries/" + strings.ToLower(supPlatform) + ".rego")
                                 break</span>
@@ -7286,38 +7285,66 @@ type PathParameters struct {
 }
 
 var (
-        queryRegex = regexp.MustCompile(`\?([\w-]+(=[\w-]*)?(&amp;[\w-]+(=[\w-]*)?)*)?`)
+        queryRegex   = regexp.MustCompile(`\?([\w-]+(=[\w-]*)?(&amp;[\w-]+(=[\w-]*)?)*)?`)
+        urlAuthRegex = regexp.MustCompile(`((ssh|https?)://)(\S+(:\S*)?@).*`)
 )
 
-func getRelativePath(basePath, filePath string) string <span class="cov10" title="4">{
+const authGroupPosition = 3
+
+func getRelativePath(basePath, filePath string) string <span class="cov7" title="4">{
         var returnPath string
         relativePath, err := filepath.Rel(basePath, filePath)
-        if err != nil </span><span class="cov8" title="3">{
+        if err != nil </span><span class="cov5" title="3">{
                 returnPath = filePath
         }</span> else<span class="cov1" title="1"> {
                 returnPath = relativePath
         }</span>
-        <span class="cov10" title="4">return returnPath</span>
+        <span class="cov7" title="4">return returnPath</span>
 }
 
-func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]ExtractedPathObject) string <span class="cov10" title="4">{
+func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]ExtractedPathObject) string <span class="cov7" title="4">{
         prettyPath := filePath
-        for key, val := range pathExtractionMap </span><span class="cov8" title="3">{
-                if strings.Contains(filePath, key) </span><span class="cov5" title="2">{
+        for key, val := range pathExtractionMap </span><span class="cov5" title="3">{
+                if strings.Contains(filePath, key) </span><span class="cov4" title="2">{
                         splittedPath := strings.Split(filePath, key)
-                        if !val.LocalPath </span><span class="cov5" title="2">{
+                        if !val.LocalPath </span><span class="cov4" title="2">{
+                                // remove authentication information from the URL
+                                sanitizedURL := removeURLCredentials(val.Path)
                                 // remove query parameters '?key=value&amp;key2=value'
-                                return filepath.FromSlash(queryRegex.ReplaceAllString(val.Path, "") + splittedPath[1])
+                                return filepath.FromSlash(queryRegex.ReplaceAllString(sanitizedURL, "") + splittedPath[1])
                         }</span>
                         <span class="cov0" title="0">prettyPath = filepath.FromSlash(filepath.Base(val.Path) + splittedPath[1])</span>
                 } else<span class="cov1" title="1"> {
                         prettyPath = filePath
                 }</span>
         }
-        <span class="cov5" title="2">return prettyPath</span>
+        <span class="cov4" title="2">return prettyPath</span>
 }
 
-func resolvePath(filePath string, pathExtractionMap map[string]ExtractedPathObject) string <span class="cov10" title="4">{
+func removeAllURLCredentials(pathExtractionMap map[string]ExtractedPathObject) []string <span class="cov7" title="4">{
+        sanitizedScannedPaths := make([]string, 0)
+        for _, val := range pathExtractionMap </span><span class="cov5" title="3">{
+                if !val.LocalPath </span><span class="cov4" title="2">{
+                        sanitizedURL := removeURLCredentials(val.Path)
+                        sanitizedScannedPaths = append(sanitizedScannedPaths, sanitizedURL)
+                }</span> else<span class="cov1" title="1"> {
+                        sanitizedScannedPaths = append(sanitizedScannedPaths, val.Path)
+                }</span>
+        }
+        <span class="cov7" title="4">return sanitizedScannedPaths</span>
+}
+
+func removeURLCredentials(url string) string <span class="cov10" title="8">{
+        authGroup := ""
+        groups := urlAuthRegex.FindStringSubmatch(url)
+        // credentials are present in the URL
+        if len(groups) &gt; authGroupPosition </span><span class="cov7" title="5">{
+                authGroup = groups[authGroupPosition]
+        }</span>
+        <span class="cov10" title="8">return strings.Replace(url, authGroup, "", 1)</span>
+}
+
+func resolvePath(filePath string, pathExtractionMap map[string]ExtractedPathObject) string <span class="cov7" title="4">{
         var returnPath string
         returnPath = replaceIfTemporaryPath(filepath.FromSlash(filePath), pathExtractionMap)
         pwd, err := os.Getwd()
@@ -7325,13 +7352,13 @@ func resolvePath(filePath string, pathExtractionMap map[string]ExtractedPathObje
                 log.Error().Msgf("Unable to get current working dir %s", err)
                 return returnPath
         }</span>
-        <span class="cov10" title="4">returnPath = getRelativePath(pwd, returnPath)
+        <span class="cov7" title="4">returnPath = getRelativePath(pwd, returnPath)
         return returnPath</span>
 }
 
 // CreateSummary creates a report for a single scan, based on its scanID
 func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
-        scanID string, pathExtractionMap map[string]ExtractedPathObject) Summary <span class="cov5" title="2">{
+        scanID string, pathExtractionMap map[string]ExtractedPathObject) Summary <span class="cov4" title="2">{
         log.Debug().Msg("model.CreateSummary()")
         q := make(map[string]VulnerableQuery, len(vulnerabilities))
         severitySummary := SeveritySummary{
@@ -7369,7 +7396,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
                 q[item.QueryID] = qItem</span>
         }
 
-        <span class="cov5" title="2">queries := make([]VulnerableQuery, 0, len(q))
+        <span class="cov4" title="2">queries := make([]VulnerableQuery, 0, len(q))
         sevs := map[Severity]int{SeverityInfo: 0, SeverityLow: 0, SeverityMedium: 0, SeverityHigh: 0}
         for idx := range q </span><span class="cov1" title="1">{
                 queries = append(queries, q[idx])
@@ -7377,7 +7404,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
                 severitySummary.TotalCounter += len(q[idx].Files)
         }</span>
 
-        <span class="cov5" title="2">severityOrder := map[Severity]int{SeverityInfo: 3, SeverityLow: 2, SeverityMedium: 1, SeverityHigh: 0}
+        <span class="cov4" title="2">severityOrder := map[Severity]int{SeverityInfo: 3, SeverityLow: 2, SeverityMedium: 1, SeverityHigh: 0}
         sort.Slice(queries, func(i, j int) bool </span><span class="cov0" title="0">{
                 if severityOrder[queries[i].Severity] == severityOrder[queries[j].Severity] </span><span class="cov0" title="0">{
                         return queries[i].QueryName &lt; queries[j].QueryName
@@ -7385,12 +7412,13 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
                 <span class="cov0" title="0">return severityOrder[queries[i].Severity] &lt; severityOrder[queries[j].Severity]</span>
         })
 
-        <span class="cov5" title="2">severitySummary.SeverityCounters = sevs
+        <span class="cov4" title="2">severitySummary.SeverityCounters = sevs
 
         return Summary{
                 Counters:        counters,
                 Queries:         queries,
                 SeveritySummary: severitySummary,
+                ScannedPaths:    removeAllURLCredentials(pathExtractionMap),
         }</span>
 }
 </pre>
@@ -9035,7 +9063,7 @@ type ProgressBar struct {
 }
 
 // NewProgressBar creates a new instance of a Circle Progress Bar
-func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" title="3">{
+func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" title="3">{
         newPb := pb.New64(constants.MaxInteger)
         tmp := fmt.Sprintf(`{{ "%s" }} {{(cycle . "\\" "-" "|" "/" "-" "|" )}}`, label)
         newPb.SetWidth(barWidth)
@@ -9043,7 +9071,7 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" ti
         if silent </span><span class="cov1" title="1">{
                 newPb.SetWriter(io.Discard)
         }</span>
-        <span class="cov2" title="3">newPb.Start()
+        <span class="cov10" title="3">newPb.Start()
 
         return ProgressBar{
                 label: label,
@@ -9067,10 +9095,10 @@ func (p ProgressBar) Start() <span class="cov1" title="1">{
         }()
 }
 
-func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov1" title="1">{
+func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov0" title="0">{
         wg.Add(1)
         defer wg.Done()
-        for </span><span class="cov10" title="7520">{ // increment until the Close func is called
+        for </span><span class="cov0" title="0">{ // increment until the Close func is called
                 p.pBar.Increment()
         }</span>
 }
