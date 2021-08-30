@@ -61,7 +61,7 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 }
 
 // TestFilesystemSource_GetQueriesWithExclude test the function GetQuery with QuerySelectionFilter set for Exclude queries
-func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) {
+func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 	if err := test.ChangeCurrentDir("kics"); err != nil {
 		t.Fatal(err)
 	}
@@ -74,12 +74,13 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) {
 		Library        string
 	}
 	tests := []struct {
-		name            string
-		fields          fields
-		excludeIDs      []string
-		excludeCategory []string
-		want            []model.QueryMetadata
-		wantErr         bool
+		name              string
+		fields            fields
+		excludeIDs        []string
+		excludeCategory   []string
+		excludeSeverities []string
+		want              []model.QueryMetadata
+		wantErr           bool
 	}{
 		{
 			name: "get_queries_with_exclude_result_1",
@@ -87,8 +88,9 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) {
 				Source: source, Types: []string{""},
 				CloudProviders: []string{""}, Library: "./assets/libraries",
 			},
-			excludeCategory: []string{},
-			excludeIDs:      []string{"57b9893d-33b1-4419-bcea-a717ea87e4449"},
+			excludeCategory:   []string{},
+			excludeSeverities: []string{},
+			excludeIDs:        []string{"57b9893d-33b1-4419-bcea-a717ea87e4449"},
 			want: []model.QueryMetadata{
 				{
 					Query:     "all_auth_users_get_read_access",
@@ -115,10 +117,11 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) {
 				Source: source, Types: []string{""},
 				CloudProviders: []string{""}, Library: "./assets/libraries",
 			},
-			excludeCategory: []string{},
-			excludeIDs:      []string{"57b9893d-33b1-4419-bcea-b828fb87e318"},
-			want:            []model.QueryMetadata{},
-			wantErr:         false,
+			excludeCategory:   []string{},
+			excludeIDs:        []string{"57b9893d-33b1-4419-bcea-b828fb87e318"},
+			excludeSeverities: []string{},
+			want:              []model.QueryMetadata{},
+			wantErr:           false,
 		},
 		{
 			name:            "get_queries_with_exclude_error",
@@ -136,10 +139,23 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) {
 				Source: source, Types: []string{""},
 				CloudProviders: []string{""}, Library: "./assets/libraries",
 			},
-			excludeCategory: []string{"Access Control"},
-			excludeIDs:      []string{},
-			want:            []model.QueryMetadata{},
-			wantErr:         false,
+			excludeCategory:   []string{"Access Control"},
+			excludeIDs:        []string{},
+			excludeSeverities: []string{},
+			want:              []model.QueryMetadata{},
+			wantErr:           false,
+		},
+		{
+			name: "get_queries_with_exclude_severity_no_result",
+			fields: fields{
+				Source: source, Types: []string{""},
+				CloudProviders: []string{""}, Library: "./assets/libraries",
+			},
+			excludeCategory:   []string{},
+			excludeIDs:        []string{},
+			excludeSeverities: []string{"high"},
+			want:              []model.QueryMetadata{},
+			wantErr:           false,
 		},
 	}
 	for _, tt := range tests {
@@ -147,7 +163,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) {
 			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, tt.fields.Library)
 			filter := QueryInspectorParameters{
 				IncludeQueries: IncludeQueries{ByIDs: []string{}},
-				ExcludeQueries: ExcludeQueries{ByIDs: tt.excludeIDs, ByCategories: tt.excludeCategory},
+				ExcludeQueries: ExcludeQueries{ByIDs: tt.excludeIDs, ByCategories: tt.excludeCategory, BySeverities: tt.excludeSeverities},
 				InputDataPath:  "",
 			}
 			got, err := s.GetQueries(&filter)

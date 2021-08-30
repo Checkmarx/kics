@@ -5,7 +5,7 @@ import data.generic.common as common_lib
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ECS::TaskDefinition"
-	contDef := resource.Properties.ContainerDefinitions[_]
+	contDef := resource.Properties.ContainerDefinitions[idx]
 	not common_lib.valid_key(contDef, "HealthCheck")
 
 	result := {
@@ -14,5 +14,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.ContainerDefinitions' contains 'HealthCheck' property", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property", [name]),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "ContainerDefinitions"], [idx]),
 	}
 }

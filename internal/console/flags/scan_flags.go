@@ -10,6 +10,7 @@ const (
 	ExcludePathsFlag      = "exclude-paths"
 	ExcludeQueriesFlag    = "exclude-queries"
 	ExcludeResultsFlag    = "exclude-results"
+	ExcludeSeveritiesFlag = "exclude-severities"
 	IncludeQueriesFlag    = "include-queries"
 	InputDataFlag         = "input-data"
 	FailOnFlag            = "fail-on"
@@ -26,4 +27,5 @@ const (
 	ReportFormatsFlag     = "report-formats"
 	TypeFlag              = "type"
 	QueryExecTimeoutFlag  = "timeout"
+	LineInfoPayloadFlag   = "payload-lines"
 )

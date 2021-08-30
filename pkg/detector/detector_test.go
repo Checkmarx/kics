@@ -2,6 +2,7 @@ package detector
 
 import (
 	"reflect"
+	"strings"
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -27,6 +28,19 @@ func (m mockDefaultDetector) DetectLine(file *model.FileMetadata, searchKey stri
 	return model.VulnerabilityLines{
 		Line: 5,
 	}
+}
+
+func (m mockkindDetectLine) SplitLines(content string) []string {
+	return splitLines(content)
+}
+
+func (m mockDefaultDetector) SplitLines(content string) []string {
+	return splitLines(content)
+}
+
+func splitLines(content string) []string {
+	text := strings.ReplaceAll(content, "\r", "")
+	return strings.Split(text, "\n")
 }
 
 func TestDetector_Add(t *testing.T) {

@@ -185,7 +185,7 @@ func checkQueryInclude(id interface{}, includedQueries []string) bool {
 	return false
 }
 
-func checkQueryExclude(id interface{}, excludeQueries []string) bool {
+func checkQueryExcludeField(id interface{}, excludeQueries []string) bool {
 	queryMetadataKey, ok := id.(string)
 	if !ok {
 		log.Warn().
@@ -198,6 +198,12 @@ func checkQueryExclude(id interface{}, excludeQueries []string) bool {
 		}
 	}
 	return false
+}
+
+func checkQueryExclude(metadata map[string]interface{}, queryParameters *QueryInspectorParameters) bool {
+	return checkQueryExcludeField(metadata["id"], queryParameters.ExcludeQueries.ByIDs) ||
+		checkQueryExcludeField(metadata["category"], queryParameters.ExcludeQueries.ByCategories) ||
+		checkQueryExcludeField(metadata["severity"], queryParameters.ExcludeQueries.BySeverities)
 }
 
 // GetQueries walks a given filesource path returns all queries found in an array of
@@ -259,10 +265,9 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 				queries = append(queries, query)
 			}
 		} else {
-			if checkQueryExclude(query.Metadata["id"], queryParameters.ExcludeQueries.ByIDs) ||
-				checkQueryExclude(query.Metadata["category"], queryParameters.ExcludeQueries.ByCategories) {
+			if checkQueryExclude(query.Metadata, queryParameters) {
 				log.Debug().
-					Msgf("Excluding query ID: %s category: %s", query.Metadata["id"], query.Metadata["category"])
+					Msgf("Excluding query ID: %s category: %s severity: %s", query.Metadata["id"], query.Metadata["category"], query.Metadata["severity"])
 				continue
 			}
 

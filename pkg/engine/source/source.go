@@ -20,6 +20,7 @@ type QueryInspectorParameters struct {
 type ExcludeQueries struct {
 	ByIDs        []string
 	ByCategories []string
+	BySeverities []string
 }
 
 // IncludeQueries is a struct that represents the option to include queries by ID taking precedence over exclusion

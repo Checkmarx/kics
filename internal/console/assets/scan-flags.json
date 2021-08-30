@@ -55,6 +55,13 @@
     "usage": "exclude results by providing the similarity ID of a result\n${sliceInstructions}\nexample: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'",
     "validation": "sliceFlagsShouldNotStartWithFlags"
   },
+  "exclude-severities": {
+    "flagType": "multiStr",
+    "shorthandFlag": "",
+    "defaultValue": null,
+    "usage": "exclude results by providing the severity of a result\n${sliceInstructions}\nexample: 'info,low'",
+    "validation": "sliceFlagsShouldNotStartWithFlags,validateMultiStrEnum"
+  },
   "fail-on": {
     "flagType": "multiStr",
     "shorthandFlag": "",
@@ -116,6 +123,12 @@
     "shorthandFlag": "p",
     "defaultValue": null,
     "usage": "paths or directories to scan\nexample: \"./somepath,somefile.txt\""
+  },
+  "payload-lines": {
+    "flagType": "bool",
+    "shorthandFlag": "",
+    "defaultValue": "false",
+    "usage": "adds line information inside the payload when printing the payload file"
   },
   "payload-path": {
     "flagType": "str",

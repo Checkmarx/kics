@@ -1,5 +1,28 @@
 package generic.common
 
+# build_search_line will convert all values to string, and build path with given values
+# values need to be in the correct order
+# obj case is for the walk function although it can be used as needed
+# if you already have the complete path and have no need for the obj just pass the obj empty []
+# Examples:
+# build_search_line(["father", "son", "grandson"], [])
+# build_search_line(["father", "son"], ["grandson"])
+# [path, value] := walk(doc)
+# build_search_line(path, ["grandson"])
+
+build_search_line(path, obj) = resolvedPath {
+	resolveArray := [x | pathItem := path[n]; x := convert_path_item(pathItem)]
+	resolvedObj := [x | objItem := obj[n]; x := convert_path_item(objItem)]
+	resolvedPath = array.concat(resolveArray, resolvedObj)
+}
+
+convert_path_item(pathItem) = convertedPath {
+	is_number(pathItem)
+	convertedPath := sprintf("%d", [pathItem])
+} else = convertedPath {
+	convertedPath := sprintf("%s", [pathItem])
+}
+
 concat_path(path) = concatenated {
 	concatenated := concat(".", [x | x := resolve_path(path[_]); x != ""])
 }

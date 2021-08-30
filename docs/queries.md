@@ -29,7 +29,7 @@ The **result** defines the specific data used to present the *vulnerability* in 
 
 #### Metadata
 
-Each query has a metadata.json companion file with all the relevant information about the *vulnerability*, including 
+Each query has a metadata.json companion file with all the relevant information about the *vulnerability*, including
 the severity, category and its description.
 
 For example, the JSON code above is the metadata corresponding to the query in the beginning of this document.
