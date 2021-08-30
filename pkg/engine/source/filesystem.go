@@ -8,6 +8,7 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/getsentry/sentry-go"
@@ -36,6 +37,8 @@ const (
 	emptyInputData = "{}"
 
 	common = "Common"
+
+	kicsDefault = "default"
 )
 
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
@@ -96,80 +99,46 @@ func isDefaultLibrary(libraryPath string) bool {
 	return filepath.FromSlash(libraryPath) == filepath.FromSlash(LibrariesDefaultBasePath)
 }
 
-func getKicsDirPath() string {
-	kicsPath, err := os.Executable()
-	if err != nil {
-		log.Err(err)
-		return ""
-	}
+// GetPathToCustomLibrary - returns the libraries path for a given platform
+func GetPathToCustomLibrary(platform, libraryPathFlag string) string {
+	var libraryFilePath string
 
-	return filepath.Dir(kicsPath)
-}
-
-// GetPathToLibrary returns the libraries path for a given platform
-func GetPathToLibrary(platform, libraryPathFlag string) (string, error) {
-	var libraryFilePath, relativeBasePath string
-	// user uses the library path flag
 	if !isDefaultLibrary(libraryPathFlag) {
 		library := getLibraryInDir(platform, libraryPathFlag)
 		// found a library named according to the platform
 		if library != "" {
 			libraryFilePath = library
-		} else if library == "" && strings.EqualFold(common, platform) {
-			libraryFilePath = ""
-		}
-		// user did not use the library path flag
-	} else {
-		kicsDirPath := getKicsDirPath()
-		libraryFilePath = filepath.FromSlash(kicsDirPath + "/assets/libraries/common.rego")
-		// the system does not have kics binary accessible
-		_, err := os.Stat(libraryFilePath)
-		if err != nil && os.IsNotExist(err) {
-			currentDir, err := os.Getwd()
-			if err != nil {
-				log.Error().Msgf("Error getting wd: %s", err)
-				return "", err
-			}
-			if strings.LastIndex(currentDir, "kics") > -1 {
-				currentDir = currentDir[:strings.LastIndex(currentDir, "kics")] + "kics"
-			} else {
-				currentDir = filepath.Join(currentDir, "kics")
-			}
-			libraryFilePath = filepath.FromSlash(currentDir + "/assets/libraries/common.rego")
-			_, err = os.Stat(libraryFilePath)
-			if os.IsNotExist(err) {
-				log.Error().Msgf("Error getting wd: %s", err)
-				return "", err
-			}
-			relativeBasePath = currentDir
-			// the system has kics binary accessible
 		} else {
-			relativeBasePath = kicsDirPath
+			libraryFilePath = kicsDefault
 		}
-		for _, supPlatform := range constants.AvailablePlatforms {
-			if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) {
-				libraryFilePath = filepath.FromSlash(relativeBasePath + "/assets/libraries/" + strings.ToLower(supPlatform) + ".rego")
-				break
-			}
-		}
+	} else {
+		libraryFilePath = kicsDefault
 	}
-	return libraryFilePath, nil
+
+	return libraryFilePath
 }
 
 // GetQueryLibrary returns the library.rego for the platform passed in the argument
 func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) {
-	pathToLib, err := GetPathToLibrary(platform, s.Library)
-	if err != nil {
-		return "", err
+	library := GetPathToCustomLibrary(platform, s.Library)
+	content := ""
+
+	if library != kicsDefault {
+		byteContent, err := os.ReadFile(library)
+		if err != nil {
+			return "", err
+		}
+		content = string(byteContent)
+	} else {
+		log.Warn().Msgf("Custom library not provided. Loading embedded library instead")
+	}
+	// getting embedded library
+	embeddedLibrary, errGettingEmbeddedLibrary := assets.GetEmbeddedLibrary(strings.ToLower(platform))
+	if errGettingEmbeddedLibrary != nil {
+		return "", errGettingEmbeddedLibrary
 	}
 
-	content, err := os.ReadFile(filepath.Clean(pathToLib))
-	if err != nil {
-		log.Err(err).
-			Msgf("Failed to get filesystem source rego library %s", pathToLib)
-	}
-
-	return string(content), err
+	return mergeLibraries(content, embeddedLibrary)
 }
 
 // CheckType checks if the queries have the type passed as an argument in '--type' flag to be loaded

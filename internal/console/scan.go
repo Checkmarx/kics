@@ -493,7 +493,7 @@ func scan(changedDefaultQueryPath bool) error {
 		flags.GetStrFlag(flags.QueriesPath),
 		flags.GetMultiStrFlag(flags.TypeFlag),
 		flags.GetMultiStrFlag(flags.CloudProviderFlag),
-		flags.GetStrFlag(flags.LibraryPath))
+		flags.GetStrFlag(flags.LibrariesPath))
 	store := storage.NewMemoryStorage()
 
 	inspector, err := createServiceAndStartScan(&startServiceParameters{

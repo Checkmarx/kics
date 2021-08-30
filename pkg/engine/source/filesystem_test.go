@@ -376,8 +376,8 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { // nolint
 			args: args{
 				platform: "unknown",
 			},
-			contains: "generic.common",
-			wantErr:  false,
+			contains: "",
+			wantErr:  true,
 		},
 	}
 	for _, tt := range tests {

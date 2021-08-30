@@ -57,6 +57,7 @@ KICS is able to infer the format without the need of file extension.
   "exclude-queries": "exclude queries by providing the query ID",
   "exclude-results": "exclude results by providing a list of similarity IDs of a result",
   "exclude-severities": "exclude results by providing the severity of a result",
+  "libraries-path": "path to directory with libraries (default \"./assets/libraries\")",
   "log-file": true,
   "log-level": "INFO",
   "log-path": "path to the log file",
@@ -87,6 +88,7 @@ exclude-paths: "exclude paths or files from scan"
 exclude-queries: "exclude queries by providing the query ID"
 exclude-results: "exclude results by providing a list of similarity IDs of a result"
 exclude-severities: "exclude results by providing the severity of a result"
+libraries-path: "path to directory with libraries (default "./assets/libraries")"
 log-file: true
 log-level: INFO
 log-path: path to the log file
@@ -116,6 +118,7 @@ exclude-paths = "exclude paths or files from scan"
 exclude-queries = "exclude queries by providing the query ID"
 exclude-results = "exclude results by providing a list of similarity IDs of a result"
 exclude-severities = "exclude results by providing the severity of a result"
+libraries-path = "path to directory with libraries (default \"./assets/libraries\")"
 log-file = true
 log-level = "INFO"
 log-path = "path to the log file"
@@ -145,6 +148,7 @@ disable-full-descriptions = "disable request for full descriptions and use defau
 "exclude-queries" = "exclude queries by providing the query ID"
 "exclude-results" = "exclude results by providing a list of similarity IDs of a result"
 "exclude-severities" = "exclude results by providing the severity of a result"
+"libraries-path" = "path to directory with libraries (default \"./assets/libraries\")"
 "log-file" = true
 "log-level" = "INFO"
 "log-path" = "path to the log file"
