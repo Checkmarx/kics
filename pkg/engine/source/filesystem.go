@@ -12,7 +12,6 @@ import (
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/getsentry/sentry-go"
-	"github.com/open-policy-agent/opa/ast"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -138,41 +137,8 @@ func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) {
 	if errGettingEmbeddedLibrary != nil {
 		return "", errGettingEmbeddedLibrary
 	}
-	if content != "" {
-		statements, _, err := ast.NewParser().WithReader(strings.NewReader(content)).Parse()
-		if err != nil {
-			log.Err(err).Msgf("Could not parse custom library: %s", library)
-			return embeddedLibrary, err
-		}
-		headers := make(map[string]string)
-		for _, st := range statements {
-			if rule, ok := st.(*ast.Rule); ok {
-				headers[string(rule.Head.Name)] = ""
-			}
-		}
-		statements, _, err = ast.NewParser().WithReader(strings.NewReader(embeddedLibrary)).Parse()
-		if err != nil {
-			log.Err(err).Msgf("Could not parse default library: %s", platform)
-			return content, err
-		}
-		for _, st := range statements {
-			if rule, ok := st.(*ast.Rule); ok {
-				if _, remove := headers[string(rule.Head.Name)]; remove {
-					embeddedLibrary = strings.Replace(embeddedLibrary, string(rule.Location.Text), "", 1)
-				}
-			}
-			if regoPackage, ok := st.(*ast.Package); ok {
-				firstHalf := strings.Join(strings.Split(embeddedLibrary, "\n")[:regoPackage.Location.Row-1], "\n")
-				secondHalf := strings.Join(strings.Split(embeddedLibrary, "\n")[regoPackage.Location.Row+1:], "\n")
-				embeddedLibrary = firstHalf + "\n" + secondHalf
-			}
-		}
-		content += embeddedLibrary
-	} else {
-		content = embeddedLibrary
-	}
 
-	return content, nil
+	return mergeLibraries(content, embeddedLibrary)
 }
 
 // CheckType checks if the queries have the type passed as an argument in '--type' flag to be loaded

@@ -1,7 +1,13 @@
 // Package source (go:generate go run -mod=mod github.com/golang/mock/mockgen -package mock -source=./$GOFILE -destination=../mock/$GOFILE)
 package source
 
-import "github.com/Checkmarx/kics/pkg/model"
+import (
+	"strings"
+
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/open-policy-agent/opa/ast"
+	"github.com/rs/zerolog/log"
+)
 
 // QueryInspectorParameters is a struct that represents the optionn to select queries to be executed
 type QueryInspectorParameters struct {
@@ -27,4 +33,42 @@ type IncludeQueries struct {
 type QueriesSource interface {
 	GetQueries(querySelection *QueryInspectorParameters) ([]model.QueryMetadata, error)
 	GetQueryLibrary(platform string) (string, error)
+}
+
+// mergeLibraries return custom library and embedded library merged, overwriting embedded library functions, if necessary
+func mergeLibraries(customLib, embeddedLib string) (string, error) {
+	if customLib != "" {
+		statements, _, err := ast.NewParser().WithReader(strings.NewReader(customLib)).Parse()
+		if err != nil {
+			log.Err(err).Msg("Could not parse custom library")
+			return embeddedLib, err
+		}
+		headers := make(map[string]string)
+		for _, st := range statements {
+			if rule, ok := st.(*ast.Rule); ok {
+				headers[string(rule.Head.Name)] = ""
+			}
+		}
+		statements, _, err = ast.NewParser().WithReader(strings.NewReader(embeddedLib)).Parse()
+		if err != nil {
+			log.Err(err).Msg("Could not parse default library")
+			return customLib, err
+		}
+		for _, st := range statements {
+			if rule, ok := st.(*ast.Rule); ok {
+				if _, remove := headers[string(rule.Head.Name)]; remove {
+					embeddedLib = strings.Replace(embeddedLib, string(rule.Location.Text), "", 1)
+				}
+			}
+			if regoPackage, ok := st.(*ast.Package); ok {
+				firstHalf := strings.Join(strings.Split(embeddedLib, "\n")[:regoPackage.Location.Row-1], "\n")
+				secondHalf := strings.Join(strings.Split(embeddedLib, "\n")[regoPackage.Location.Row+1:], "\n")
+				embeddedLib = firstHalf + "\n" + secondHalf
+			}
+		}
+		customLib += embeddedLib
+	} else {
+		customLib = embeddedLib
+	}
+	return customLib, nil
 }
