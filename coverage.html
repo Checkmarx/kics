@@ -167,7 +167,7 @@
 				
 				<option value="file55">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (90.5%)</option>
 				
-				<option value="file56">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (90.9%)</option>
+				<option value="file56">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
 				<option value="file57">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -1595,8 +1595,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="329">{
-                if val == true </span><span class="cov9" title="328">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="343">{
+                if val == true </span><span class="cov9" title="342">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2407,13 +2407,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="35">total += v
+                <span class="cov8" title="32">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2438,14 +2438,14 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov2" title="2">{
+        if math.IsNaN(metric) </span><span class="cov3" title="3">{
                 metric = 0
         }</span>
 
@@ -2786,7 +2786,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="10">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov7" title="17">{
-        for _, a := range s </span><span class="cov8" title="38">{
+        for _, a := range s </span><span class="cov8" title="39">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -3853,7 +3853,8 @@ func RequestAndOverrideDescriptions(summary *model.Summary) error <span class="c
         }</span>
 
         <span class="cov8" title="1">for idx := range summary.Queries </span><span class="cov8" title="1">{
-                if descriptionMap[summary.Queries[idx].DescriptionID].DescriptionID == "" </span><span class="cov0" title="0">{
+                if descriptionMap[summary.Queries[idx].DescriptionID].DescriptionID == "" &amp;&amp;
+                        descriptionMap[summary.Queries[idx].DescriptionID].RationaleText == "" </span><span class="cov0" title="0">{
                         continue</span>
                 }
                 <span class="cov8" title="1">descriptionID := summary.Queries[idx].DescriptionID
@@ -5709,7 +5710,7 @@ func GetPathToLibrary(platform, libraryPathFlag string) (string, error) <span cl
                 } else<span class="cov0" title="0"> {
                         relativeBasePath = kicsDirPath
                 }</span>
-                <span class="cov5" title="7">for _, supPlatform := range constants.AvailablePlatforms </span><span class="cov9" title="34">{
+                <span class="cov5" title="7">for _, supPlatform := range constants.AvailablePlatforms </span><span class="cov9" title="37">{
                         if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                                 libraryFilePath = filepath.FromSlash(relativeBasePath + "/assets/libraries/" + strings.ToLower(supPlatform) + ".rego")
                                 break</span>
@@ -9069,7 +9070,7 @@ func (p ProgressBar) Start() <span class="cov1" title="1">{
 func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov1" title="1">{
         wg.Add(1)
         defer wg.Done()
-        for </span><span class="cov10" title="6995">{ // increment until the Close func is called
+        for </span><span class="cov10" title="7520">{ // increment until the Close func is called
                 p.pBar.Increment()
         }</span>
 }
@@ -9125,7 +9126,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov1" title="1">{
+                close: func() error </span><span class="cov0" title="0">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -9134,7 +9135,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov1" title="1">{
+        defer func() </span><span class="cov0" title="0">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
@@ -9146,14 +9147,14 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov1" title="1">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov1" title="1">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file57" style="display: none">package progress
