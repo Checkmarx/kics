@@ -92,7 +92,7 @@ type PathParameters struct {
 
 var (
 	queryRegex   = regexp.MustCompile(`\?([\w-]+(=[\w-]*)?(&[\w-]+(=[\w-]*)?)*)?`)
-	urlAuthRegex = regexp.MustCompile(`((ftp|tcp|udp|wss?|https?)://)(\S+(:\S*)?@).*`)
+	urlAuthRegex = regexp.MustCompile(`((ssh|https?)://)(\S+(:\S*)?@).*`)
 )
 
 const authGroupPosition = 3
