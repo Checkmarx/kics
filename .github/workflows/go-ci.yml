@@ -93,8 +93,14 @@ jobs:
         if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
         run: |
           echo "::group::Unit Tests"
-          go test -mod=vendor -v $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out
+          go test -mod=vendor -v $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
           echo "::endgroup::"
+      - name: Archive test logs
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: unit-test-${{ github.event.pull_request.head.sha }}.log
+          path: unit-test.log
   security-scan:
     name: security-scan
     needs: pre_job
