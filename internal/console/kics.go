@@ -2,10 +2,11 @@ package console
 
 import (
 	"context"
-	"fmt"
+	_ "embed" // Embed kics flags
 	"os"
 	"time"
 
+	"github.com/Checkmarx/kics/internal/console/flags"
 	"github.com/Checkmarx/kics/internal/console/printer"
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/getsentry/sentry-go"
@@ -20,20 +21,13 @@ const (
 )
 
 var (
+	//go:embed assets/kics-flags.json
+	kicsFlagsListContent string
+
 	// warnings - a buffer to accumulate warnings before the printer gets initialized
 	warnings = make([]string, 0)
 
 	ctx = context.Background()
-
-	ci        bool
-	logFile   bool
-	logFormat string
-	logLevel  string
-	logPath   string
-	noColor   bool
-	silent    bool
-	profiling string
-	verbose   bool
 )
 
 // NewKICSCmd creates a new instance of the kics Command
@@ -50,48 +44,8 @@ func initialize(rootCmd *cobra.Command) error {
 	rootCmd.AddCommand(NewGenerateIDCmd())
 	rootCmd.AddCommand(scanCmd)
 	rootCmd.AddCommand(NewListPlatformsCmd())
-	rootCmd.PersistentFlags().BoolVarP(&logFile,
-		printer.LogFileFlag,
-		printer.LogFileShorthand,
-		false,
-		"writes log messages to log file")
-	rootCmd.PersistentFlags().StringVar(&logPath,
-		printer.LogPathFlag,
-		"",
-		fmt.Sprintf("path to generate log file (%s)", constants.DefaultLogFile))
-	rootCmd.PersistentFlags().StringVar(&logLevel,
-		printer.LogLevelFlag,
-		"INFO",
-		"determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL)")
-	rootCmd.PersistentFlags().StringVarP(&logFormat,
-		printer.LogFormatFlag,
-		printer.LogFormatShorthand,
-		printer.LogFormatPretty,
-		fmt.Sprintf("determines log format (%s,%s)", printer.LogFormatPretty, printer.LogFormatJSON))
-	rootCmd.PersistentFlags().BoolVarP(&verbose,
-		printer.VerboseFlag,
-		printer.VerboseShorthand,
-		false,
-		"write logs to stdout too (mutually exclusive with silent)")
-	rootCmd.PersistentFlags().BoolVarP(&silent,
-		printer.SilentFlag,
-		printer.SilentShorthand,
-		false,
-		"silence stdout messages (mutually exclusive with verbose and ci)")
-	rootCmd.PersistentFlags().BoolVar(&noColor,
-		printer.NoColorFlag,
-		false,
-		"disable CLI color output")
-	rootCmd.PersistentFlags().BoolVar(&ci,
-		printer.CIFlag,
-		false,
-		"display only log messages to CLI output (mutually exclusive with silent)")
-	rootCmd.PersistentFlags().StringVar(&profiling,
-		"profiling",
-		"",
-		"enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)")
 
-	if err := rootCmd.PersistentFlags().MarkDeprecated(printer.LogFileFlag, "please use --log-path instead"); err != nil {
+	if err := flags.InitJSONFlags(rootCmd, kicsFlagsListContent, true); err != nil {
 		return err
 	}
 
@@ -99,8 +53,7 @@ func initialize(rootCmd *cobra.Command) error {
 		return err
 	}
 
-	initScanCmd(scanCmd)
-	return nil
+	return initScanCmd(scanCmd)
 }
 
 // Execute starts kics execution

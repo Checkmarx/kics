@@ -1,12 +1,13 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "3.0"
 	params := doc.paths[name].parameters[n]
-	object.get(params, "$ref", "undefined") == "undefined"
+	not common_lib.valid_key(params, "$ref")
 
 	check_parameters(params)
 
@@ -23,7 +24,7 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "3.0"
 	params := doc.components.parameters[n]
-	object.get(params, "$ref", "undefined") == "undefined"
+	not common_lib.valid_key(params, "$ref")
 
 	check_parameters(params)
 
@@ -40,7 +41,7 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "3.0"
 	params := doc.paths[name][oper].parameters[n]
-	object.get(params, "$ref", "undefined") == "undefined"
+	not common_lib.valid_key(params, "$ref")
 
 	check_parameters(params)
 
@@ -54,6 +55,6 @@ CxPolicy[result] {
 }
 
 check_parameters(param) {
-	object.get(param, "schema", "undefined") == "undefined"
-	object.get(param, "content", "undefined") == "undefined"
+	not common_lib.valid_key(param, "schema")
+	not common_lib.valid_key(param, "content")
 }

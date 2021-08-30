@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -8,7 +9,7 @@ CxPolicy[result] {
 
 	sec_scheme := doc.components.securitySchemes[key]
 	sec_scheme.type == "oauth2"
-	object.get(sec_scheme.flows, "implicit", "undefined") != "undefined"
+	common_lib.valid_key(sec_scheme.flows, "implicit")
 
 	result := {
 		"documentId": doc.id,

@@ -1,29 +1,29 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_sqs_queue[name]
-	object.get(resource, "kms_master_key_id", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "kms_master_key_id")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_sqs_queue[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_sqs_queue.kms_master_key_id is defined",
-		"keyActualValue": "aws_sqs_queue.kms_master_key_id is undefined",
+		"keyExpectedValue": "aws_sqs_queue.kms_master_key_id is defined and not null",
+		"keyActualValue": "aws_sqs_queue.kms_master_key_id is undefined or null",
 	}
 }
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_sqs_queue[name]
-	commonLib.emptyOrNull(resource.kms_master_key_id)
+	resource.kms_master_key_id == ""
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_sqs_queue[%s].kms_master_key_id", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_sqs_queue.kms_master_key_id not null or ''",
-		"keyActualValue": "aws_sqs_queue.kms_master_key_id null or ''",
+		"keyExpectedValue": "aws_sqs_queue.kms_master_key_id is not ''",
+		"keyActualValue": "aws_sqs_queue.kms_master_key_id is ''",
 	}
 }

@@ -1,6 +1,8 @@
 package json
 
 import (
+	"encoding/json"
+	"fmt"
 	"path/filepath"
 	"testing"
 
@@ -27,7 +29,7 @@ func TestParser_SupportedTypes(t *testing.T) {
 }
 
 // TestParser_Parse tests the functions [Parse()] and all the methods called by them
-func TestParser_Parse(t *testing.T) {
+func TestParser_Parse(t *testing.T) { //nolint
 	p := &Parser{}
 	have := []string{`
 martin:
@@ -42,7 +44,8 @@ martin2:
     bucket: mybucket
     mode: create
     permission: authenticated-read
-`, `
+`,
+		`
 test:
   - &test_anchor
     group:
@@ -68,26 +71,179 @@ downscaler_enabled: "false"
 `,
 	}
 
-	doc, err := p.Parse("test.yaml", []byte(have[0]))
-	require.NoError(t, err)
-	require.Len(t, doc, 2)
-	require.Contains(t, doc[0], "martin")
-	require.Contains(t, doc[1], "martin2")
+	want := []string{
+		`[
+			{
+			  "_kics_lines": {
+				"_kics__default": {
+				  "_kics_line": 0
+				},
+				"_kics_martin": {
+				  "_kics_line": 2
+				}
+			  },
+			  "martin": {
+				"_kics_lines": {
+				  "_kics__default": {
+					"_kics_line": 2
+				  },
+				  "_kics_name": {
+					"_kics_line": 3
+				  }
+				},
+				"name": "test"
+			  }
+			},
+			{
+			  "_kics_lines": {
+				"_kics__default": {
+				  "_kics_line": 0
+				},
+				"_kics_martin2": {
+				  "_kics_line": 5
+				}
+			  },
+			  "martin2": {
+				"_kics_lines": {
+				  "_kics__default": {
+					"_kics_line": 5
+				  },
+				  "_kics_name": {
+					"_kics_line": 6
+				  }
+				},
+				"name": "test2"
+			  }
+			}
+		  ]
+		  `,
+		`[
+			{
+			  "_kics_lines": {
+				"_kics__default": {
+				  "_kics_arr": [
+					{
+					  "_kics__default": {
+						"_kics_line": 3
+					  },
+					  "_kics_amazon.aws.aws_s3": {
+						"_kics_line": 4
+					  },
+					  "_kics_name": {
+						"_kics_line": 3
+					  }
+					}
+				  ],
+				  "_kics_line": 0
+				}
+			  },
+			  "playbooks": [
+				{
+				  "amazon.aws.aws_s3": {
+					"_kics_lines": {
+					  "_kics__default": {
+						"_kics_line": 4
+					  },
+					  "_kics_bucket": {
+						"_kics_line": 5
+					  },
+					  "_kics_mode": {
+						"_kics_line": 6
+					  },
+					  "_kics_permission": {
+						"_kics_line": 7
+					  }
+					},
+					"bucket": "mybucket",
+					"mode": "create",
+					"permission": "authenticated-read"
+				  },
+				  "name": "Create an empty bucket2"
+				}
+			  ]
+			}
+		  ]
+		  `,
+		`[
+			{
+			  "_kics_lines": {
+				"_kics__default": {
+				  "_kics_line": 0
+				},
+				"_kics_test": {
+				  "_kics_arr": [
+					{
+					  "_kics__default": {
+						"_kics_line": 4
+					  },
+					  "_kics_group": {
+						"_kics_line": 4
+					  }
+					}
+				  ],
+				  "_kics_line": 2
+				},
+				"_kics_test_2": {
+				  "_kics_line": 6
+				}
+			  },
+			  "test": [
+				{
+				  "group": {
+					"_kics_lines": {
+					  "_kics__default": {
+						"_kics_line": 4
+					  },
+					  "_kics_name": {
+						"_kics_line": 5
+					  }
+					},
+					"name": "cx"
+				  }
+				}
+			  ],
+			  "test_2": {
+				"_kics_lines": {
+				  "_kics__default": {
+					"_kics_line": 6
+				  },
+				  "_kics_perm": {
+					"_kics_arr": [
+					  {
+						"_kics_<<": {
+						  "_kics_line": 8
+						},
+						"_kics__default": {
+						  "_kics_line": 8
+						}
+					  }
+					],
+					"_kics_line": 7
+				  }
+				},
+				"perm": [
+				  {}
+				]
+			  }
+			}
+		  ]
+		  `,
+		`[]`,
+	}
 
-	playbook, err := p.Parse("test.yaml", []byte(have[1]))
-	require.NoError(t, err)
-	require.Len(t, playbook, 1)
-	require.Contains(t, playbook[0]["playbooks"].([]interface{})[0].(map[string]interface{})["name"], "bucket2")
+	for idx, tt := range have {
+		t.Run(fmt.Sprintf("test_parse_case_%d", idx), func(t *testing.T) {
+			doc, err := p.Parse("test.yaml", []byte(tt))
+			require.NoError(t, err)
+			compareJSONLine(t, doc, want[idx])
+		})
+	}
+}
 
-	nestedMap, err := p.Parse("test.yaml", []byte(have[2]))
+func compareJSONLine(t *testing.T, test1 interface{}, test2 string) {
+	stringefiedJSON, err := json.Marshal(&test1)
 	require.NoError(t, err)
-	require.Len(t, nestedMap, 1)
-	require.Contains(t, nestedMap[0], "test_2")
-	require.Contains(t,
-		nestedMap[0]["test_2"].(model.Document)["perm"].([]interface{})[0].(map[string]interface{})["group"].(model.Document)["name"], "cx")
-
-	_, err = p.Parse("test.yaml", []byte(have[3]))
-	require.Error(t, err)
+	require.JSONEq(t, test2, string(stringefiedJSON))
 }
 
 // Test_Resolve tests the functions [Resolve()] and all the methods called by them
@@ -140,6 +296,39 @@ func TestYaml_processElements(t *testing.T) {
 			processElements(tt.args.elements, tt.args.filePath)
 			require.Equal(t, tt.wantCert, tt.args.elements["certificate"])
 			require.Equal(t, tt.wantSwag, tt.args.elements["swagger_file"])
+		})
+	}
+}
+
+func TestModel_TestYamlParser(t *testing.T) {
+	tests := []struct {
+		name   string
+		sample string
+		want   string
+	}{
+		{
+			name: "test_ansible_yaml",
+			sample: `
+- name: Setup AWS API Gateway setup on AWS and deploy API definition
+  community.aws.aws_api_gateway:
+	swagger_file: my_api.yml
+	stage: production
+	cache_enabled: true
+	cache_size: '1.6'
+	tracing_enabled: true
+	endpoint_type: PRIVATE
+	state: present
+`,
+			want: `[]`,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			parser := Parser{}
+			got, err := parser.Parse("", []byte(tt.sample))
+			require.NoError(t, err)
+			compareJSONLine(t, got, tt.want)
 		})
 	}
 }

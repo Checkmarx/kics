@@ -49,6 +49,6 @@ paths:
             type: integer
             minimum: 1
           content:
-          application/json:
-            schema:
-              type: integer
+            application/json:
+              schema:
+                type: integer

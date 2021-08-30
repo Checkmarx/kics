@@ -26,6 +26,7 @@ type VulnerableFile struct {
 	VulnLines        []CodeLine `json:"-"`
 	IssueType        IssueType  `json:"issue_type"`
 	SearchKey        string     `json:"search_key"`
+	SearchLine       int        `json:"search_line"`
 	SearchValue      string     `json:"search_value"`
 	KeyExpectedValue string     `json:"expected_value"`
 	KeyActualValue   string     `json:"actual_value"`
@@ -75,11 +76,12 @@ type Times struct {
 
 // Summary is a report of a single scan
 type Summary struct {
+	Version string `json:"kics_version,omitempty"`
 	Counters
-	Queries VulnerableQuerySlice `json:"queries"`
 	SeveritySummary
 	Times
-	ScannedPaths []string `json:"paths"`
+	ScannedPaths []string             `json:"paths"`
+	Queries      VulnerableQuerySlice `json:"queries"`
 }
 
 // PathParameters - structure wraps the required fields for temporary path translation
@@ -89,8 +91,11 @@ type PathParameters struct {
 }
 
 var (
-	queryRegex = regexp.MustCompile(`\?([\w-]+(=[\w-]*)?(&[\w-]+(=[\w-]*)?)*)?`)
+	queryRegex   = regexp.MustCompile(`\?([\w-]+(=[\w-]*)?(&[\w-]+(=[\w-]*)?)*)?`)
+	urlAuthRegex = regexp.MustCompile(`((ssh|https?)://)(\S+(:\S*)?@).*`)
 )
+
+const authGroupPosition = 3
 
 func getRelativePath(basePath, filePath string) string {
 	var returnPath string
@@ -109,8 +114,10 @@ func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]Extrac
 		if strings.Contains(filePath, key) {
 			splittedPath := strings.Split(filePath, key)
 			if !val.LocalPath {
+				// remove authentication information from the URL
+				sanitizedURL := removeURLCredentials(val.Path)
 				// remove query parameters '?key=value&key2=value'
-				return filepath.FromSlash(queryRegex.ReplaceAllString(val.Path, "") + splittedPath[1])
+				return filepath.FromSlash(queryRegex.ReplaceAllString(sanitizedURL, "") + splittedPath[1])
 			}
 			prettyPath = filepath.FromSlash(filepath.Base(val.Path) + splittedPath[1])
 		} else {
@@ -118,6 +125,29 @@ func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]Extrac
 		}
 	}
 	return prettyPath
+}
+
+func removeAllURLCredentials(pathExtractionMap map[string]ExtractedPathObject) []string {
+	sanitizedScannedPaths := make([]string, 0)
+	for _, val := range pathExtractionMap {
+		if !val.LocalPath {
+			sanitizedURL := removeURLCredentials(val.Path)
+			sanitizedScannedPaths = append(sanitizedScannedPaths, sanitizedURL)
+		} else {
+			sanitizedScannedPaths = append(sanitizedScannedPaths, val.Path)
+		}
+	}
+	return sanitizedScannedPaths
+}
+
+func removeURLCredentials(url string) string {
+	authGroup := ""
+	groups := urlAuthRegex.FindStringSubmatch(url)
+	// credentials are present in the URL
+	if len(groups) > authGroupPosition {
+		authGroup = groups[authGroupPosition]
+	}
+	return strings.Replace(url, authGroup, "", 1)
 }
 
 func resolvePath(filePath string, pathExtractionMap map[string]ExtractedPathObject) string {
@@ -194,5 +224,6 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 		Counters:        counters,
 		Queries:         queries,
 		SeveritySummary: severitySummary,
+		ScannedPaths:    removeAllURLCredentials(pathExtractionMap),
 	}
 }

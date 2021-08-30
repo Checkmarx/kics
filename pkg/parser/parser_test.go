@@ -108,62 +108,6 @@ func initilizeBuilder() []*Parser {
 	return bd
 }
 
-// TestParser_SupportedExtensions tests the functions [validateArguments()] and all the methods called by them
-func TestValidateArguments(t *testing.T) {
-	type args struct {
-		types               []string
-		validArgsTypes      []string
-		cloudProviders      []string
-		validCloudProviders []string
-	}
-	tests := []struct {
-		name    string
-		args    args
-		wantErr bool
-	}{
-		{
-			name: "validate_args_error",
-			args: args{
-				types:               []string{"dockerfiles"},
-				validArgsTypes:      []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
-				cloudProviders:      []string{"awss"},
-				validCloudProviders: []string{"aws", "azure", "gcp"},
-			},
-			wantErr: true,
-		},
-		{
-			name: "validate_args",
-			args: args{
-				types:               []string{"Dockerfile"},
-				validArgsTypes:      []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
-				cloudProviders:      []string{"aws"},
-				validCloudProviders: []string{"aws", "azure", "gcp"},
-			},
-			wantErr: false,
-		},
-		{
-			name: "validate_args_case_sensetive",
-			args: args{
-				types:               []string{"kubernetes"},
-				validArgsTypes:      []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
-				cloudProviders:      []string{"Aws"},
-				validCloudProviders: []string{"aws", "azure", "gcp"},
-			},
-			wantErr: false,
-		},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			err := validateArguments(tt.args.types, tt.args.validArgsTypes, tt.args.cloudProviders, tt.args.validCloudProviders)
-			if (err != nil) != tt.wantErr {
-				t.Errorf("validateArguments() error = %v, wantErr %v", err, tt.wantErr)
-				return
-			}
-		})
-	}
-}
-
 func TestRemoveDuplicateValues(t *testing.T) {
 	type args struct {
 		stringSlice []string

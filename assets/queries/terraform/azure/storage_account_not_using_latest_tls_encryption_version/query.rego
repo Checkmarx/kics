@@ -1,15 +1,17 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	storage := input.document[i].resource.azurerm_storage_account[name]
-	object.get(storage, "min_tls_version", "undefined") == "undefined"
+	not common_lib.valid_key(storage, "min_tls_version")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("azurerm_storage_account[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_storage_account[%s].min_tls_version' is defined", [name]),
-		"keyActualValue": sprintf("'azurerm_storage_account[%s].min_tls_version' is undefined", [name]),
+		"keyExpectedValue": sprintf("'azurerm_storage_account[%s].min_tls_version' is defined and not null", [name]),
+		"keyActualValue": sprintf("'azurerm_storage_account[%s].min_tls_version' is undefined or null", [name]),
 	}
 }
 

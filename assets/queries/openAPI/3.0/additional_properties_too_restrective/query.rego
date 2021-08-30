@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 #This rules verifies anyOf and oneOf
 CxPolicy[result] {
@@ -46,9 +47,9 @@ check_schema_type(type) {
 }
 
 get_schema_list(value) = result {
-	object.get(value, "anyOf", "undefined") != "undefined"
+	common_lib.valid_key(value, "anyOf")
 	result := {"schemas": value.anyOf, "kind": "anyOf"}
 } else = result {
-	object.get(value, "oneOf", "undefined") != "undefined"
+	common_lib.valid_key(value, "oneOf")
 	result := {"schemas": value.oneOf, "kind": "oneOf"}
 }

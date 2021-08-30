@@ -1,0 +1,31 @@
+Resources:
+  SSHAccessToNodeSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      VpcId: !Ref VpcId
+      GroupName: !Sub "${Project}-${Environment}-${EKSClusterName}-ssh-access-to-workers-source-sg"
+      GroupDescription: attach this sg to an instance to let it access via ssh to the eks node
+      Tags:
+      - Key: Environment
+        Value: !Ref Environment
+      - Key: Project
+        Value: !Ref Project
+  EKSNodegroup:
+    Type: 'AWS::EKS::Nodegroup'
+    Properties:
+      ClusterName: prod
+      NodeRole: 'arn:aws:iam::012345678910:role/eksInstanceRole'
+      ScalingConfig:
+        MinSize: 3
+        DesiredSize: 5
+        MaxSize: 7
+      Labels:
+        Key1: Value1
+        Key2: Value2
+      Subnets:
+        - subnet-6782e71e
+        - subnet-e7e761ac
+      RemoteAccess:
+        Ec2SshKey: ED25519
+        SourceSecurityGroups: 
+          - !Ref SSHAccessToNodeSG                            

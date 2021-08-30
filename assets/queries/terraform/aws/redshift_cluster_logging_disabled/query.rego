@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_redshift_cluster[name]
 	resource.logging.enable == false
@@ -15,7 +17,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_redshift_cluster[name]
-	object.get(resource, "logging", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "logging")
 
 	result := {
 		"documentId": input.document[i].id,

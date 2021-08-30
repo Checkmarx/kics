@@ -120,6 +120,7 @@ func NewInspector(
 		sentry.CaptureException(err)
 		log.Err(err).
 			Msgf("Inspector failed to get general query, query=%s", "common")
+		return nil, errors.Wrap(err, "failed to get library")
 	}
 	opaQueries := make([]*preparedQuery, 0, len(queries))
 	for _, metadata := range queries {
@@ -138,14 +139,25 @@ func NewInspector(
 		default:
 			var opaQuery rego.PreparedEvalQuery
 			store := inmem.NewFromReader(bytes.NewBufferString(metadata.InputData))
-			opaQuery, err = rego.New(
-				rego.Query(regoQuery),
-				rego.Module("Common", commonGeneralQuery),
-				rego.Module("Generic", platformGeneralQuery),
-				rego.Module(metadata.Query, metadata.Content),
-				rego.Store(store),
-				rego.UnsafeBuiltins(unsafeRegoFunctions),
-			).PrepareForEval(ctx)
+
+			if commonGeneralQuery != "" && platformGeneralQuery != "" {
+				opaQuery, err = rego.New(
+					rego.Query(regoQuery),
+					rego.Module("Common", commonGeneralQuery),
+					rego.Module("Generic", platformGeneralQuery),
+					rego.Module(metadata.Query, metadata.Content),
+					rego.Store(store),
+					rego.UnsafeBuiltins(unsafeRegoFunctions),
+				).PrepareForEval(ctx)
+			} else if platformGeneralQuery != "" {
+				opaQuery, err = rego.New(
+					rego.Query(regoQuery),
+					rego.Module("Generic", platformGeneralQuery),
+					rego.Module(metadata.Query, metadata.Content),
+					rego.Store(store),
+					rego.UnsafeBuiltins(unsafeRegoFunctions),
+				).PrepareForEval(ctx)
+			}
 			if err != nil {
 				sentry.CaptureException(err)
 				log.Err(err).
@@ -207,7 +219,7 @@ func (c *Inspector) Inspect(
 	platforms []string,
 	currentQuery chan<- int64) ([]model.Vulnerability, error) {
 	log.Debug().Msg("engine.Inspect()")
-	combinedFiles := files.Combine()
+	combinedFiles := files.Combine(false)
 
 	_, err := json.Marshal(combinedFiles)
 	if err != nil {
@@ -286,7 +298,6 @@ func (c *Inspector) GetFailedQueries() map[string]error {
 func (c *Inspector) doRun(ctx *QueryContext) ([]model.Vulnerability, error) {
 	timeoutCtx, cancel := context.WithTimeout(ctx.ctx, c.queryExecTimeout)
 	defer cancel()
-
 	options := []rego.EvalOption{rego.EvalInput(ctx.payload)}
 
 	var cov *cover.Cover

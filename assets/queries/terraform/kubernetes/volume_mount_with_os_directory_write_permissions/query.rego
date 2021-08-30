@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.terraform as terraLib
+import data.generic.common as common_lib
 
 types := {"init_container", "container"}
 
@@ -104,7 +105,7 @@ CxPolicy[result] {
 	is_object(volumeMounts) == true
 	is_os_dir(volumeMounts)
 
-	object.get(volumeMounts, "read_only", "undefined") == "undefined"
+	not common_lib.valid_key(volumeMounts, "read_only")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -126,15 +127,16 @@ CxPolicy[result] {
 	volumeMounts := containers[y].volume_mount
 	is_array(volumeMounts) == true
 	is_os_dir(volumeMounts[j])
+	volumeMountTypes := volumeMounts[_]
 
-	object.get(volumeMounts[j], "read_only", "undefined") == "undefined"
+	not common_lib.valid_key(volumeMountTypes, "read_only")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].volume_mount[%d].read_only is set", [resourceType, name, specInfo.path, types[x], y, j]),
-		"keyActualValue": sprintf("%s[%s].%s.%s[%d].volume_mount[%d].read_only is undefined", [resourceType, name, specInfo.path, types[x], y, j]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].volume_mount[%d].read_only is set", [resourceType, name, specInfo.path, types[x], y, volumeMountTypes]),
+		"keyActualValue": sprintf("%s[%s].%s.%s[%d].volume_mount[%d].read_only is undefined", [resourceType, name, specInfo.path, types[x], y, volumeMountTypes]),
 	}
 }
 
@@ -150,7 +152,7 @@ CxPolicy[result] {
 	is_object(volumeMounts) == true
 	is_os_dir(volumeMounts)
 
-	object.get(volumeMounts, "read_only", "undefined") == "undefined"
+	not common_lib.valid_key(volumeMounts, "read_only")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -172,15 +174,16 @@ CxPolicy[result] {
 	volumeMounts := containers.volume_mount
 	is_array(volumeMounts) == true
 	is_os_dir(volumeMounts[j])
+	volumeMountTypes := volumeMounts[_]
 
-	object.get(volumeMounts[j], "read_only", "undefined") == "undefined"
+	not common_lib.valid_key(volumeMountTypes, "read_only")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].%s.%s.volume_mount", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s.volume_mount[%d].read_only is set", [resourceType, name, specInfo.path, types[x], j]),
-		"keyActualValue": sprintf("%s[%s].%s.%s.volume_mount[%d].read_only is undefined", [resourceType, name, specInfo.path, types[x], j]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s.volume_mount[%d].read_only is set", [resourceType, name, specInfo.path, types[x], volumeMountTypes]),
+		"keyActualValue": sprintf("%s[%s].%s.%s.volume_mount[%d].read_only is undefined", [resourceType, name, specInfo.path, types[x], volumeMountTypes]),
 	}
 }
 

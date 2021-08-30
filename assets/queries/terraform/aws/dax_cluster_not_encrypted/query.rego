@@ -1,10 +1,10 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_dax_cluster[name]
-	object.get(resource, "server_side_encryption", "undefined") != "undefined"
-	object.get(resource.server_side_encryption, "enabled", "undefined") != "undefined"
-	not resource.server_side_encryption.enabled
+	resource.server_side_encryption.enabled == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -17,7 +17,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_dax_cluster[name]
-	object.get(resource, "server_side_encryption", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "server_side_encryption")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -30,7 +30,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_dax_cluster[name]
-	object.get(resource.server_side_encryption, "enabled", "undefined") == "undefined"
+	not common_lib.valid_key(resource.server_side_encryption, "enabled")
 
 	result := {
 		"documentId": input.document[i].id,

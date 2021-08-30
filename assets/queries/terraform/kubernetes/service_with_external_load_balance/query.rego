@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_service[name]
 	resource.spec.type == "LoadBalancer"
-	object.get(resource.metadata, "annotations", "undefined") == "undefined"
+	not common_lib.valid_key(resource.metadata, "annotations")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -16,7 +18,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_service[name]
-	object.get(resource.metadata, "annotations", "undefined") != "undefined"
+	common_lib.valid_key(resource.metadata, "annotations")
 	not checkLoadBalancer(resource.metadata.annotations)
 
 	result := {

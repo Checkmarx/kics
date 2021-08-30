@@ -53,10 +53,10 @@ CxPolicy[result] {
 
 check_cont(response, version) = content {
 	version == "3.0"
-	object.get(response, "content", "undefined") != "undefined"
+	common_lib.valid_key(response, "content")
 	content := "content"
 } else = content {
 	version == "2.0"
-	object.get(response, "schema", "undefined") != "undefined"
+	common_lib.valid_key(response, "schema")
 	content := "schema"
 }

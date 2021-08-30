@@ -56,6 +56,7 @@ KICS is able to infer the format without the need of file extension.
   "exclude-paths": "exclude paths or files from scan",
   "exclude-queries": "exclude queries by providing the query ID",
   "exclude-results": "exclude results by providing a list of similarity IDs of a result",
+  "exclude-severities": "exclude results by providing the severity of a result",
   "log-file": true,
   "log-level": "INFO",
   "log-path": "path to the log file",
@@ -74,7 +75,7 @@ KICS is able to infer the format without the need of file extension.
   "timeout": "number of seconds the query has to execute before being canceled",
   "verbose": true,
   "profiling": "enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)",
-  "disable-cis-descriptions": "disable request for CIS descriptions and use default vulnerability descriptions"
+  "disable-full-descriptions": "disable request for full descriptions and use default vulnerability descriptions"
 }
 ```
 
@@ -85,6 +86,7 @@ exclude-categories: "exclude categories by providing its name"
 exclude-paths: "exclude paths or files from scan"
 exclude-queries: "exclude queries by providing the query ID"
 exclude-results: "exclude results by providing a list of similarity IDs of a result"
+exclude-severities: "exclude results by providing the severity of a result"
 log-file: true
 log-level: INFO
 log-path: path to the log file
@@ -103,7 +105,7 @@ silent: false
 type: "type of queries to use in the scan"
 timeout: "number of seconds the query has to execute before being canceled"
 verbose: true
-disable-cis-descriptions: "disable request for CIS descriptions and use default vulnerability descriptions"
+disable-full-descriptions: "disable request for full descriptions and use default vulnerability descriptions"
 ```
 
 #### TOML Format
@@ -113,6 +115,7 @@ exclude-categories = "exclude categories by providing its name"
 exclude-paths = "exclude paths or files from scan"
 exclude-queries = "exclude queries by providing the query ID"
 exclude-results = "exclude results by providing a list of similarity IDs of a result"
+exclude-severities = "exclude results by providing the severity of a result"
 log-file = true
 log-level = "INFO"
 log-path = "path to the log file"
@@ -131,7 +134,7 @@ silent = false
 type = "type of queries to use in the scan"
 timeout = "number of seconds the query has to execute before being canceled"
 verbose = true
-disable-cis-descriptions = "disable request for CIS descriptions and use default vulnerability descriptions"
+disable-full-descriptions = "disable request for full descriptions and use default vulnerability descriptions"
 ```
 
 #### HCL Format
@@ -141,6 +144,7 @@ disable-cis-descriptions = "disable request for CIS descriptions and use default
 "exclude-paths" = "exclude paths or files from scan"
 "exclude-queries" = "exclude queries by providing the query ID"
 "exclude-results" = "exclude results by providing a list of similarity IDs of a result"
+"exclude-severities" = "exclude results by providing the severity of a result"
 "log-file" = true
 "log-level" = "INFO"
 "log-path" = "path to the log file"
@@ -159,7 +163,7 @@ disable-cis-descriptions = "disable request for CIS descriptions and use default
 "type" = "type of queries to use in the scan"
 "timeout" = "number of seconds the query has to execute before being canceled"
 "verbose" = true
-"disable-cis-descriptions" = "disable request for CIS descriptions and use default vulnerability descriptions"
+"disable-full-descriptions" = "disable request for full descriptions and use default vulnerability descriptions"
 ```
 
 ---

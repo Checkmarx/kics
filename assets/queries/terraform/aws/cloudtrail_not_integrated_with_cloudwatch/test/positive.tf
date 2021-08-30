@@ -5,21 +5,7 @@ resource "aws_cloudtrail" "positive1" {
   include_global_service_events = false
 }
 
-resource "aws_cloudtrail" "positive2" {
-  name                          = "tf-trail-foobar"
-  s3_bucket_name                = aws_s3_bucket.foo.id
-  s3_key_prefix                 = "prefix"
-  include_global_service_events = false
-  cloud_watch_logs_group_arn    = "some arn"
-}
-
-resource "aws_cloudtrail" "positive3" {
-  name                          = "tf-trail-foobar"
-  s3_bucket_name                = aws_s3_bucket.foo.id
-  s3_key_prefix                 = "prefix"
-  include_global_service_events = false
-  cloud_watch_logs_role_arn     = "some arn"
-}
+data "aws_caller_identity" "current" {}
 
 resource "aws_s3_bucket" "positive4" {
   bucket        = "tf-test-trail"

@@ -1,9 +1,10 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_launch_configuration[name]
-	object.get(resource[block], "encrypted", "undefined") != "undefined"
-	not resource[block].encrypted
+	resource[block].encrypted == false
 
 	not contains(block, "ephemeral")
 	contains(block, "block_device")
@@ -19,7 +20,8 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_launch_configuration[name]
-	object.get(resource[block], "encrypted", "undefined") == "undefined"
+	resourceBlock := resource[block]
+	not common_lib.valid_key(resourceBlock, "encrypted")
 
 	not contains(block, "ephemeral")
 	contains(block, "block_device")

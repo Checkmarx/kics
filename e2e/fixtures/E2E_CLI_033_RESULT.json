@@ -1,4 +1,5 @@
 {
+  "kics_version": "development",
   "files_scanned": 1,
   "files_parsed": 1,
   "files_failed_to_scan": 0,
@@ -25,6 +26,7 @@
           "line": 1,
           "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[default1]",
+          "search_line": 0,
           "search_value": "",
           "expected_value": "'aws_redshift_cluster.logging' is true",
           "actual_value": "'aws_redshift_cluster.logging' is undefined",
@@ -51,6 +53,7 @@
           "line": 1,
           "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[default1]",
+          "search_line": 0,
           "search_value": "",
           "expected_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is set",
           "actual_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is undefined",
@@ -62,6 +65,7 @@
           "line": 1,
           "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[default1]",
+          "search_line": 0,
           "search_value": "",
           "expected_value": "aws_redshift_cluster[default1].vpc_security_group_ids is set",
           "actual_value": "aws_redshift_cluster[default1].vpc_security_group_ids is undefined",
@@ -88,9 +92,10 @@
           "line": 1,
           "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[{{default1}}]",
+          "search_line": 0,
           "search_value": "",
-          "expected_value": "aws_redshift_cluster[{{default1}}].tags is defined",
-          "actual_value": "aws_redshift_cluster[{{default1}}].tags is missing",
+          "expected_value": "aws_redshift_cluster[{{default1}}].tags is defined and not null",
+          "actual_value": "aws_redshift_cluster[{{default1}}].tags is undefined or null",
           "value": null
         }
       ]

@@ -1,32 +1,32 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_compute_disk[name]
-	object.get(resource, "disk_encryption_key", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "disk_encryption_key")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("google_compute_disk[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'google_compute_disk[%s].disk_encryption_key' is defined", [name]),
-		"keyActualValue": sprintf("'google_compute_disk[%s].disk_encryption_key' is undefined", [name]),
+		"keyExpectedValue": sprintf("'google_compute_disk[%s].disk_encryption_key' is defined and not null", [name]),
+		"keyActualValue": sprintf("'google_compute_disk[%s].disk_encryption_key' is undefined or null", [name]),
 	}
 }
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_compute_disk[name]
 
-	object.get(resource.disk_encryption_key, "raw_key", "undefined") == "undefined"
-	object.get(resource.disk_encryption_key, "kms_key_self_link", "undefined") == "undefined"
+	not common_lib.valid_key(resource.disk_encryption_key, "raw_key")
+	not common_lib.valid_key(resource.disk_encryption_key, "kms_key_self_link")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("google_compute_disk[%s].disk_encryption_key", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'google_compute_disk[%s].disk_encryption_key.raw_key' or 'google_compute_disk[%s].disk_encryption_key.kms_key_self_link' is defined", [name]),
-		"keyActualValue": sprintf("'google_compute_disk[%s].disk_encryption_key.raw_key' and 'google_compute_disk[%s].disk_encryption_key.kms_key_self_link' are undefined", [name]),
+		"keyExpectedValue": sprintf("'google_compute_disk[%s].disk_encryption_key.raw_key' or 'google_compute_disk[%s].disk_encryption_key.kms_key_self_link' is defined and not null", [name]),
+		"keyActualValue": sprintf("'google_compute_disk[%s].disk_encryption_key.raw_key' and 'google_compute_disk[%s].disk_encryption_key.kms_key_self_link' are undefined or null", [name]),
 	}
 }
 
@@ -44,11 +44,11 @@ CxPolicy[result] {
 }
 
 check_key_empty(disk_encryption_key) = key {
-	object.get(disk_encryption_key, "raw_key", "undefined") != "undefined"
-	commonLib.emptyOrNull(disk_encryption_key.raw_key)
+	common_lib.valid_key(disk_encryption_key, "raw_key")
+	common_lib.emptyOrNull(disk_encryption_key.raw_key)
 	key := "raw_key"
 } else = key {
-	object.get(disk_encryption_key, "kms_key_self_link", "undefined") != "undefined"
-	commonLib.emptyOrNull(disk_encryption_key.kms_key_self_link)
+	common_lib.valid_key(disk_encryption_key, "kms_key_self_link")
+	common_lib.emptyOrNull(disk_encryption_key.kms_key_self_link)
 	key := "kms_key_self_link"
 }

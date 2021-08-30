@@ -1,26 +1,28 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	settings := input.document[i].resource.google_sql_database_instance[name].settings
-	object.get(settings, "backup_configuration", "undefined") == "undefined"
+	not common_lib.valid_key(settings, "backup_configuration")
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("google_sql_database_instance[%s].settings", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "settings.backup_configuration is defined",
-		"keyActualValue": "settings.backup_configuration is undefined",
+		"keyExpectedValue": "settings.backup_configuration is defined and not null",
+		"keyActualValue": "settings.backup_configuration is undefined or null",
 	}
 }
 
 CxPolicy[result] {
 	settings := input.document[i].resource.google_sql_database_instance[name].settings.backup_configuration
-	object.get(settings, "enabled", "undefined") == "undefined"
+	not common_lib.valid_key(settings, "enabled")
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("google_sql_database_instance[%s].settings.backup_configuration", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "settings.backup_configuration.enabled is defined",
-		"keyActualValue": "settings.backup_configuration.enabled is undefined",
+		"keyExpectedValue": "settings.backup_configuration.enabled is defined and not null",
+		"keyActualValue": "settings.backup_configuration.enabled is undefined or null",
 	}
 }
 

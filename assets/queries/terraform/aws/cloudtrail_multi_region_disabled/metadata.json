@@ -3,7 +3,7 @@
   "queryName": "CloudTrail Multi Region Disabled",
   "severity": "MEDIUM",
   "category": "Observability",
-  "descriptionText": "Check if MultiRegion is Enabled",
+  "descriptionText": "CloudTrail should have 'is_multi_region_trail' and 'include_global_service_events' enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#is_multi_region_trail",
   "platform": "Terraform",
   "descriptionID": "feb82a62",

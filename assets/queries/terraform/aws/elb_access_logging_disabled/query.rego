@@ -1,15 +1,17 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_elb[name]
-	object.get(resource, "access_logs", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "access_logs")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_elb[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'aws_elb[{{%s}}].access_logs' is defined", [name]),
-		"keyActualValue": sprintf("'aws_elb[{{%s}}].access_logs' is not defined", [name]),
+		"keyExpectedValue": sprintf("'aws_elb[{{%s}}].access_logs' is defined and not null", [name]),
+		"keyActualValue": sprintf("'aws_elb[{{%s}}].access_logs' is undefined or null", [name]),
 	}
 }
 

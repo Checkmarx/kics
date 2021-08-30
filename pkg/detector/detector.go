@@ -8,6 +8,7 @@ import (
 type kindDetectLine interface {
 	DetectLine(file *model.FileMetadata, searchKey string,
 		logWithFields *zerolog.Logger, outputLines int) model.VulnerabilityLines
+	SplitLines(content string) []string
 }
 
 // DetectLine is a struct that associates a kindDetectLine to its FileKind
@@ -46,4 +47,26 @@ func (d *DetectLine) DetectLine(file *model.FileMetadata, searchKey string) mode
 		return det.DetectLine(file, searchKey, d.logWithFields, d.outputLines)
 	}
 	return d.defaultDetector.DetectLine(file, searchKey, d.logWithFields, d.outputLines)
+}
+
+// GetAdjecent finds and returns the lines adjecent to the line containing the vulnerability
+func (d *DetectLine) GetAdjecent(file *model.FileMetadata, line int) model.VulnerabilityLines {
+	if det, ok := d.detectors[file.Kind]; ok {
+		return model.VulnerabilityLines{
+			Line:      line,
+			VulnLines: GetAdjacentVulnLines(line-1, d.outputLines, det.SplitLines(file.OriginalData)),
+		}
+	}
+	return model.VulnerabilityLines{
+		Line:      line,
+		VulnLines: GetAdjacentVulnLines(line-1, d.outputLines, d.defaultDetector.SplitLines(file.OriginalData)),
+	}
+}
+
+// SplitLines splits lines splits the file by lines based on the type of file
+func (d *DetectLine) SplitLines(file *model.FileMetadata) []string {
+	if det, ok := d.detectors[file.Kind]; ok {
+		return det.SplitLines(file.OriginalData)
+	}
+	return d.defaultDetector.SplitLines(file.OriginalData)
 }

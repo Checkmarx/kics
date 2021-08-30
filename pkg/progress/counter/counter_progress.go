@@ -29,6 +29,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 	newPb := pb.New64(total)
 	newPb.SetMaxWidth(barWidth)
 	newPb.Set("prefix", label)
+	newPb.SetTemplateString(`{{string . "prefix"}}{{bar . }} {{percent . }}`)
 	if silent {
 		newPb.SetWriter(io.Discard)
 	}

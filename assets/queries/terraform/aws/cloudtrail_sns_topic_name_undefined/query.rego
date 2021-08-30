@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	cloudtrail := input.document[i].resource.aws_cloudtrail[name]
 
@@ -15,9 +17,5 @@ CxPolicy[result] {
 }
 
 isUndefined(resource) {
-	object.get(resource, "sns_topic_name", "undefined") == "undefined"
-}
-
-isUndefined(resource) {
-	resource.sns_topic_name == null
+	not common_lib.valid_key(resource, "sns_topic_name")
 }

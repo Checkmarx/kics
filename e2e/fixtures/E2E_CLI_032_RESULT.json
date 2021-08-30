@@ -1,4 +1,5 @@
 {
+  "kics_version": "development",
   "files_scanned": 1,
   "files_parsed": 1,
   "files_failed_to_scan": 0,
@@ -25,6 +26,7 @@
           "line": 14,
           "issue_type": "RedundantAttribute",
           "search_key": "resource.aws_redshift_cluster.default1.master_password",
+          "search_line": 0,
           "search_value": "",
           "expected_value": "Hardcoded secret key should not appear in source",
           "actual_value": "Mustbe8characters",
@@ -36,6 +38,7 @@
           "line": 5,
           "issue_type": "RedundantAttribute",
           "search_key": "resource.aws_redshift_cluster.default.master_password",
+          "search_line": 0,
           "search_value": "",
           "expected_value": "Hardcoded secret key should not appear in source",
           "actual_value": "Mustbe8characters",
@@ -62,9 +65,10 @@
           "line": 1,
           "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[default]",
+          "search_line": 0,
           "search_value": "",
-          "expected_value": "aws_redshift_cluster.encrypted is defined",
-          "actual_value": "aws_redshift_cluster.encrypted is undefined",
+          "expected_value": "aws_redshift_cluster.encrypted is defined and not null",
+          "actual_value": "aws_redshift_cluster.encrypted is undefined or null",
           "value": null
         },
         {
@@ -73,9 +77,10 @@
           "line": 10,
           "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[default1]",
+          "search_line": 0,
           "search_value": "",
-          "expected_value": "aws_redshift_cluster.encrypted is defined",
-          "actual_value": "aws_redshift_cluster.encrypted is undefined",
+          "expected_value": "aws_redshift_cluster.encrypted is defined and not null",
+          "actual_value": "aws_redshift_cluster.encrypted is undefined or null",
           "value": null
         }
       ]
@@ -99,9 +104,10 @@
           "line": 1,
           "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[default]",
+          "search_line": 0,
           "search_value": "",
-          "expected_value": "aws_redshift_cluster.publicly_accessible is defined",
-          "actual_value": "aws_redshift_cluster.publicly_accessible is undefined",
+          "expected_value": "aws_redshift_cluster.publicly_accessible is defined and not null",
+          "actual_value": "aws_redshift_cluster.publicly_accessible is undefined or null",
           "value": null
         },
         {
@@ -110,6 +116,7 @@
           "line": 17,
           "issue_type": "IncorrectValue",
           "search_key": "aws_redshift_cluster[default1].publicly_accessible",
+          "search_line": 0,
           "search_value": "",
           "expected_value": "aws_redshift_cluster.publicly_accessible is false",
           "actual_value": "aws_redshift_cluster.publicly_accessible is true",
@@ -136,6 +143,7 @@
           "line": 10,
           "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[default1]",
+          "search_line": 0,
           "search_value": "",
           "expected_value": "'aws_redshift_cluster.logging' is true",
           "actual_value": "'aws_redshift_cluster.logging' is undefined",
@@ -147,6 +155,7 @@
           "line": 1,
           "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[default]",
+          "search_line": 0,
           "search_value": "",
           "expected_value": "'aws_redshift_cluster.logging' is true",
           "actual_value": "'aws_redshift_cluster.logging' is undefined",
@@ -173,6 +182,7 @@
           "line": 1,
           "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[default]",
+          "search_line": 0,
           "search_value": "",
           "expected_value": "aws_redshift_cluster[default].cluster_subnet_group_name is set",
           "actual_value": "aws_redshift_cluster[default].cluster_subnet_group_name is undefined",
@@ -184,6 +194,7 @@
           "line": 1,
           "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[default]",
+          "search_line": 0,
           "search_value": "",
           "expected_value": "aws_redshift_cluster[default].vpc_security_group_ids is set",
           "actual_value": "aws_redshift_cluster[default].vpc_security_group_ids is undefined",
@@ -195,6 +206,7 @@
           "line": 10,
           "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[default1]",
+          "search_line": 0,
           "search_value": "",
           "expected_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is set",
           "actual_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is undefined",
@@ -206,6 +218,7 @@
           "line": 10,
           "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[default1]",
+          "search_line": 0,
           "search_value": "",
           "expected_value": "aws_redshift_cluster[default1].vpc_security_group_ids is set",
           "actual_value": "aws_redshift_cluster[default1].vpc_security_group_ids is undefined",
@@ -232,9 +245,10 @@
           "line": 10,
           "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[{{default1}}]",
+          "search_line": 0,
           "search_value": "",
-          "expected_value": "aws_redshift_cluster[{{default1}}].tags is defined",
-          "actual_value": "aws_redshift_cluster[{{default1}}].tags is missing",
+          "expected_value": "aws_redshift_cluster[{{default1}}].tags is defined and not null",
+          "actual_value": "aws_redshift_cluster[{{default1}}].tags is undefined or null",
           "value": null
         },
         {
@@ -243,9 +257,10 @@
           "line": 1,
           "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[{{default}}]",
+          "search_line": 0,
           "search_value": "",
-          "expected_value": "aws_redshift_cluster[{{default}}].tags is defined",
-          "actual_value": "aws_redshift_cluster[{{default}}].tags is missing",
+          "expected_value": "aws_redshift_cluster[{{default}}].tags is defined and not null",
+          "actual_value": "aws_redshift_cluster[{{default}}].tags is undefined or null",
           "value": null
         }
       ]

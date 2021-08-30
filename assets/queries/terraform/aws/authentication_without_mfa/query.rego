@@ -1,14 +1,13 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_iam_user_policy[name]
+	doc := input.document[i]
+	resource := doc.resource.aws_iam_user_policy[name]
 
-	policy := commonLib.json_unmarshal(resource.policy)
+	policy := common_lib.json_unmarshal(resource.policy)
 	statement := policy.Statement
-
-	checkShortTermCredentials(input.document)
 
 	mfa := existsMFA(statement)
 	mfa == "undefined"
@@ -23,12 +22,11 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_iam_user_policy[name]
+	doc := input.document[i]
+	resource := doc.resource.aws_iam_user_policy[name]
 
-	policy := commonLib.json_unmarshal(resource.policy)
+	policy := common_lib.json_unmarshal(resource.policy)
 	statement := policy.Statement
-
-	checkShortTermCredentials(input.document)
 
 	mfa := existsMFA(statement)
 	mfa == "false"
@@ -44,24 +42,27 @@ CxPolicy[result] {
 
 existsMFA(statement) = mfa {
 	isArray := is_array(statement)
+	b := statement[index].Condition.BoolIfExists
 
-	object.get(statement[index].Condition.BoolIfExists, "aws:MultiFactorAuthPresent", "undefined") == "undefined"
-
-	mfa := "undefined"
-}
-
-existsMFA(statement) = mfa {
-	isArray := is_array(statement)
-
-	object.get(statement[index].Condition, "BoolIfExists", "undefined") == "undefined"
+	not common_lib.valid_key(b, "aws:MultiFactorAuthPresent")
 
 	mfa := "undefined"
 }
 
 existsMFA(statement) = mfa {
 	isArray := is_array(statement)
+	c := statement[index].Condition
 
-	object.get(statement[index], "Condition", "undefined") == "undefined"
+	not common_lib.valid_key(c, "BoolIfExists")
+
+	mfa := "undefined"
+}
+
+existsMFA(statement) = mfa {
+	isArray := is_array(statement)
+	s := statement[index]
+
+	not common_lib.valid_key(s, "Condition")
 
 	mfa := "undefined"
 }
@@ -69,7 +70,7 @@ existsMFA(statement) = mfa {
 existsMFA(statement) = mfa {
 	isObject := is_object(statement)
 
-	object.get(statement.Condition.BoolIfExists, "aws:MultiFactorAuthPresent", "undefined") == "undefined"
+	not common_lib.valid_key(statement.Condition.BoolIfExists, "aws:MultiFactorAuthPresent")
 
 	mfa := "undefined"
 }
@@ -77,7 +78,7 @@ existsMFA(statement) = mfa {
 existsMFA(statement) = mfa {
 	isObject := is_object(statement)
 
-	object.get(statement.Condition, "BoolIfExists", "undefined") == "undefined"
+	not common_lib.valid_key(statement.Condition, "BoolIfExists")
 
 	mfa := "undefined"
 }
@@ -85,7 +86,7 @@ existsMFA(statement) = mfa {
 existsMFA(statement) = mfa {
 	isObject := is_object(statement)
 
-	object.get(statement, "Condition", "undefined") == "undefined"
+	not common_lib.valid_key(statement, "Condition")
 
 	mfa := "undefined"
 }
@@ -93,7 +94,7 @@ existsMFA(statement) = mfa {
 existsMFA(statement) = mfa {
 	isObject := is_object(statement)
 
-	object.get(statement.Condition.BoolIfExists, "aws:MultiFactorAuthPresent", "undefined") != "undefined"
+	common_lib.valid_key(statement.Condition.BoolIfExists, "aws:MultiFactorAuthPresent")
 
 	mfa := statement.Condition.BoolIfExists["aws:MultiFactorAuthPresent"]
 }
@@ -101,15 +102,7 @@ existsMFA(statement) = mfa {
 existsMFA(statement) = mfa {
 	isArray := is_array(statement)
 
-	object.get(statement[index].Condition.BoolIfExists, "aws:MultiFactorAuthPresent", "undefined") != "undefined"
+	common_lib.valid_key(statement[index].Condition.BoolIfExists, "aws:MultiFactorAuthPresent")
 
 	mfa := statement[index].Condition.BoolIfExists["aws:MultiFactorAuthPresent"]
-}
-
-checkShortTermCredentials(documents) = allow {
-	resource := documents[x].provider.aws
-
-	resource.token
-
-	allow = true
 }

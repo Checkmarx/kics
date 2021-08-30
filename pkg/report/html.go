@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/tdewolff/minify/v2"
 	minifyCSS "github.com/tdewolff/minify/v2/css"
 	minifyHtml "github.com/tdewolff/minify/v2/html"
@@ -70,6 +71,10 @@ func getPaths(paths []string) string {
 	return strings.Join(paths, ", ")
 }
 
+func getVersion() string {
+	return constants.Version
+}
+
 // PrintHTMLReport creates a report file on HTML format
 func PrintHTMLReport(path, filename string, body interface{}) error {
 	if !strings.HasSuffix(filename, ".html") {
@@ -81,6 +86,7 @@ func PrintHTMLReport(path, filename string, body interface{}) error {
 	templateFuncs["includeJS"] = includeJS
 	templateFuncs["getPaths"] = getPaths
 	templateFuncs["getPlatforms"] = getPlatforms
+	templateFuncs["getVersion"] = getVersion
 
 	fullPath := filepath.Join(path, filename)
 	t := template.Must(template.New("report.tmpl").Funcs(templateFuncs).Parse(htmlTemplate))

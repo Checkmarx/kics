@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_ecs_task_definition[name]
 	resource.volume.efs_volume_configuration.transit_encryption == "DISABLED"
@@ -16,7 +18,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_ecs_task_definition[name]
 	enc := resource.volume.efs_volume_configuration
-	object.get(enc, "transit_encryption", "undefined") == "undefined"
+	not common_lib.valid_key(enc, "transit_encryption")
 
 	result := {
 		"documentId": input.document[i].id,

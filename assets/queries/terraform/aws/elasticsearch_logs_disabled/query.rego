@@ -1,17 +1,17 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	awsElasticsearchDomain := input.document[i].resource.aws_elasticsearch_domain[name]
-	object.get(awsElasticsearchDomain, "log_publishing_options", "undefined") == "undefined"
+	not common_lib.valid_key(awsElasticsearchDomain, "log_publishing_options")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_elasticsearch_domain[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'aws_elasticsearch_domain' has log_publishing_options defined",
-		"keyActualValue": "'log_publishing_options.enabled' has not log_publishing_options defined",
+		"keyExpectedValue": "'log_publishing_options' is defined and not null",
+		"keyActualValue": "'log_publishing_options' is undefined or null",
 	}
 }
 

@@ -25,10 +25,10 @@ CxPolicy[result] {
 }
 
 get_produces(op, doc) = result {
-	object.get(op, "produces", "undefined") != "undefined"
+	common_lib.valid_key(op, "produces")
 	result := op.produces
 } else = result {
-	object.get(doc, "produces", "undefined") != "undefined"
+	common_lib.valid_key(doc, "produces")
 	result := doc.produces
 } else = result {
 	result := []

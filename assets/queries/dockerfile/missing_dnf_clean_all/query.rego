@@ -6,7 +6,7 @@ CxPolicy[result] {
 	command := resource.Value[0]
 
 	containsInstallCommand(command)
-	not containsDnfClean(input.document[i].command[name], resource.StartLine)
+	not containsDnfClean(input.document[i].command[name], resource._kics_line)
 	not containsCleanAfterInstall(command)
 
 	result := {
@@ -22,7 +22,7 @@ containsDnfClean(inputs, startLine) {
 	commands := inputs[_]
 	commands.Cmd == "run"
 	contains(commands.Value[_], "dnf clean")
-	commands.StartLine > startLine
+	commands._kics_line > startLine
 }
 
 containsInstallCommand(command) {

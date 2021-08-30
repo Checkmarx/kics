@@ -39,8 +39,7 @@ const (
 func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	logWithFields *zerolog.Logger, outputLines int) model.VulnerabilityLines {
 	searchKey = fmt.Sprintf("%s.%s", strings.TrimRight(strings.TrimLeft(file.HelmID, "# "), ":"), searchKey)
-	text := strings.ReplaceAll(file.OriginalData, "\r", "")
-	lines := strings.Split(text, "\n")
+	lines := d.SplitLines(file.OriginalData)
 	curLineRes := detectCurlLine{
 		foundRes: false,
 		lineRes:  0,
@@ -99,6 +98,12 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 		Line:      undetectedVulnerabilityLine,
 		VulnLines: []model.CodeLine{},
 	}
+}
+
+// SplitLines splits the Helm document by line
+func (d DetectKindLine) SplitLines(content string) []string {
+	text := strings.ReplaceAll(content, "\r", "")
+	return strings.Split(text, "\n")
 }
 
 // removeLines is used to update the vulnerability line after removing the "# KICS_HELM_ID_"

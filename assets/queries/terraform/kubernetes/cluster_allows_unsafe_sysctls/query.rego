@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod_security_policy[name]
 
-	object.get(resource.spec, "allowed_unsafe_sysctls", "undefined") != "undefined"
+	common_lib.valid_key(resource.spec, "allowed_unsafe_sysctls")
 
 	result := {
 		"documentId": input.document[i].id,

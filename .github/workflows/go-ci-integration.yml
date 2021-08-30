@@ -32,7 +32,7 @@ jobs:
         run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-8)" >> $GITHUB_ENV
       - name: Build
         id: docker_build
-        uses: docker/build-push-action@v2.6.1
+        uses: docker/build-push-action@v2.7.0
         with:
           load: true
           context: ./
@@ -52,7 +52,7 @@ jobs:
           docker run -v ${PWD}/assets/queries:/path \
             kics:${{ github.sha }} scan \
             --silent \
-            --disable-cis-descriptions \
+            --disable-full-descriptions \
             --ignore-on-exit "results" \
             --log-level DEBUG \
             --log-path "/path/info.log" \

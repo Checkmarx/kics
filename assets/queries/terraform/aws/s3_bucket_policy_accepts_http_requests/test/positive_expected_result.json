@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "S3 Bucket Policy Accepts HTTP Requests",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "S3 Bucket Policy Accepts HTTP Requests",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive2.tf"
+  }
+]

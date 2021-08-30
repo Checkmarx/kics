@@ -29,7 +29,7 @@ The **result** defines the specific data used to present the *vulnerability* in 
 
 #### Metadata
 
-Each query has a metadata.json companion file with all the relevant information about the *vulnerability*, including 
+Each query has a metadata.json companion file with all the relevant information about the *vulnerability*, including
 the severity, category and its description.
 
 For example, the JSON code above is the metadata corresponding to the query in the beginning of this document.
@@ -109,3 +109,8 @@ And the file tree should be as follows:
     |   |   |- metadata.json
     |   |   |- query.rego
 ```
+
+
+#### Query Dependencies
+
+If you want to use the functions defined in your own library, you should use the flag `-b` to indicate the directory where the libraries are placed. The functions need to be grouped by platform and the library name should follow the following format: `<platform>.rego`. It doesn't matter your directory structure. In other words, for example, if you want to indicate a directory that contains a library for your terraform queries, you should group your functions (used in your terraform queries) in a file named `terraform.rego` wherever you want.

@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_ecs_service[name]
 
@@ -15,9 +17,9 @@ CxPolicy[result] {
 }
 
 checkContent(deploymentConfiguration) {
-	object.get(deploymentConfiguration, "deployment_maximum_percent", "undefined") != "undefined"
+	common_lib.valid_key(deploymentConfiguration, "deployment_maximum_percent")
 }
 
 checkContent(deploymentConfiguration) {
-	object.get(deploymentConfiguration, "deployment_minimum_healthy_percent", "undefined") != "undefined"
+	common_lib.valid_key(deploymentConfiguration, "deployment_minimum_healthy_percent")
 }

@@ -13,6 +13,7 @@ import (
 	"sync"
 	"testing"
 
+	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/detector"
 	"github.com/Checkmarx/kics/pkg/engine"
@@ -50,24 +51,6 @@ var (
 		"../assets/queries/dockerfile/apt_get_install_pin_version_not_defined",
 	}
 
-	// query category -> TODO categories ID
-	AvailableCategories = map[string]string{
-		"Access Control":          "CAT001",
-		"Availability":            "CAT002",
-		"Backup":                  "CAT003",
-		"Best Practices":          "CAT004",
-		"Build Process":           "CAT005",
-		"Encryption":              "CAT006",
-		"Insecure Configurations": "CAT007",
-		"Insecure Defaults":       "CAT008",
-		"Networking and Firewall": "CAT009",
-		"Observability":           "CAT010",
-		"Resource Management":     "CAT011",
-		"Secret Management":       "CAT012",
-		"Supply-Chain":            "CAT013",
-		"Structure and Semantics": "CAT014",
-	}
-
 	// TODO uncomment this test once all metadata are fixed
 	availablePlatforms = map[string]string{
 		"Ansible":              "ansible",
@@ -81,7 +64,7 @@ var (
 	}
 	platformKeys = MapToStringSlice(availablePlatforms)
 
-	CategoriesKeys = MapToStringSlice(AvailableCategories)
+	CategoriesKeys = MapToStringSlice(constants.AvailableCategories)
 
 	searchValueProperty = "searchValue"
 
@@ -101,7 +84,7 @@ var (
 		"category": func(tb testing.TB, value interface{}, metadataPath string) {
 			categoryValue := testMetadataFieldStringType(tb, value, "category", metadataPath)
 			require.NotEmpty(tb, categoryValue, "empty category in query metadata file %s", metadataPath)
-			_, ok := AvailableCategories[categoryValue]
+			_, ok := constants.AvailableCategories[categoryValue]
 			require.True(tb, ok,
 				"%s in metadata: %s\nis not a valid category must be one of:\n%v",
 				categoryValue, metadataPath, strings.Join(CategoriesKeys, "\n"))

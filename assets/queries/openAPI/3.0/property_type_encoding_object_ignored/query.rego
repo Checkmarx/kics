@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -36,5 +37,5 @@ CxPolicy[result] {
 
 improperly_defined(content, x) {
 	x != "application/x-www-form-urlencoded"
-	object.get(content.encoding[e], "style", "undefined") != "undefined"
+	common_lib.valid_key(content.encoding[_], "style")
 }

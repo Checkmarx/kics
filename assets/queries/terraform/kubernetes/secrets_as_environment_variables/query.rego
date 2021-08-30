@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.terraform as terraLib
+import data.generic.common as common_lib
 
 types := {"init_container", "container"}
 
@@ -87,23 +88,23 @@ CxPolicy[result] {
 has_secret_key_ref(container) {
 	is_array(container.env) == true
 
-	object.get(container.env[x].value_from, "secret_key_ref", "undefined") != "undefined"
+	common_lib.valid_key(container.env[x].value_from, "secret_key_ref")
 }
 
 has_secret_key_ref(container) {
 	is_object(container.env) == true
 
-	object.get(container.env.value_from, "secret_key_ref", "undefined") != "undefined"
+	common_lib.valid_key(container.env.value_from, "secret_key_ref")
 }
 
 has_secret_key_ref(container) {
 	is_array(container.env) == true
 
-	object.get(container.env_from, "secret_ref", "undefined") != "undefined"
+	common_lib.valid_key(container.env_from, "secret_ref")
 }
 
 has_secret_key_ref(container) {
 	is_object(container.env) == true
 
-	object.get(container.env_from, "secret_ref", "undefined") != "undefined"
+	common_lib.valid_key(container.env_from, "secret_ref")
 }

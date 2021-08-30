@@ -1,0 +1,11 @@
+{
+  "id": "98a8f708-121b-455b-ae2f-da3fb59d17e1",
+  "queryName": "S3 Bucket with Unsecured CORS Rule",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "If the CORS (Cross-Origin Resource Sharing) rule is defined in an S3 bucket, it should be secure",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#cors_rule",
+  "platform": "Terraform",
+  "descriptionID": "28051a7f",
+  "cloudProvider": "aws"
+}
