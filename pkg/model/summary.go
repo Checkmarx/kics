@@ -91,8 +91,11 @@ type PathParameters struct {
 }
 
 var (
-	queryRegex = regexp.MustCompile(`\?([\w-]+(=[\w-]*)?(&[\w-]+(=[\w-]*)?)*)?`)
+	queryRegex   = regexp.MustCompile(`\?([\w-]+(=[\w-]*)?(&[\w-]+(=[\w-]*)?)*)?`)
+	urlAuthRegex = regexp.MustCompile(`((ftp|tcp|udp|wss?|https?)://)(\S+(:\S*)?@).*`)
 )
+
+const authGroupPosition = 3
 
 func getRelativePath(basePath, filePath string) string {
 	var returnPath string
@@ -111,8 +114,10 @@ func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]Extrac
 		if strings.Contains(filePath, key) {
 			splittedPath := strings.Split(filePath, key)
 			if !val.LocalPath {
+				// remove authentication information from the URL
+				sanitizedURL := removeURLCredentials(val.Path)
 				// remove query parameters '?key=value&key2=value'
-				return filepath.FromSlash(queryRegex.ReplaceAllString(val.Path, "") + splittedPath[1])
+				return filepath.FromSlash(queryRegex.ReplaceAllString(sanitizedURL, "") + splittedPath[1])
 			}
 			prettyPath = filepath.FromSlash(filepath.Base(val.Path) + splittedPath[1])
 		} else {
@@ -120,6 +125,29 @@ func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]Extrac
 		}
 	}
 	return prettyPath
+}
+
+func removeAllURLCredentials(pathExtractionMap map[string]ExtractedPathObject) []string {
+	sanitizedScannedPaths := make([]string, 0)
+	for _, val := range pathExtractionMap {
+		if !val.LocalPath {
+			sanitizedURL := removeURLCredentials(val.Path)
+			sanitizedScannedPaths = append(sanitizedScannedPaths, sanitizedURL)
+		} else {
+			sanitizedScannedPaths = append(sanitizedScannedPaths, val.Path)
+		}
+	}
+	return sanitizedScannedPaths
+}
+
+func removeURLCredentials(url string) string {
+	authGroup := ""
+	groups := urlAuthRegex.FindStringSubmatch(url)
+	// authentication is present in URL
+	if len(groups) > authGroupPosition {
+		authGroup = groups[authGroupPosition]
+	}
+	return strings.Replace(url, authGroup, "", 1)
 }
 
 func resolvePath(filePath string, pathExtractionMap map[string]ExtractedPathObject) string {
@@ -196,5 +224,6 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 		Counters:        counters,
 		Queries:         queries,
 		SeveritySummary: severitySummary,
+		ScannedPaths:    removeAllURLCredentials(pathExtractionMap),
 	}
 }
