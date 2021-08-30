@@ -69,7 +69,7 @@ Flags:
                                      can be provided multiple times or as a comma separated string
                                      example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'
       --input-data string            path to query input data files
-  -b, --library string               path to directory with libraries (default "./assets/libraries")
+  -b, --libraries-path string        path to directory with libraries (default "./assets/libraries")
       --minimal-ui                   simplified version of CLI output
       --no-progress                  hides the progress bar
       --disable-full-descriptions    disable request for full descriptions and use default vulnerability descriptions
