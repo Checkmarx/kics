@@ -107,7 +107,7 @@ The other commands have no further options.
 
 As mentioned above, the library flag (`-b` or `--libraries-path`) refers to the directory with libraries. The functions need to be grouped by platform and the library file name should follow the format: `<platform>.rego` to be loaded by KICS. It doesn't matter your directory structure. In other words, for example, if you want to indicate a directory that contains a library for your terraform queries, you should group your functions (used in your terraform queries) in a file named `terraform.rego` wherever you want.
 
-This will merge the custom libraries found on flags path with KICS's default libraries. Note that any functions with the same name on custom library file that is declared **will overwrite** the same function on default library.
+This will merge the custom libraries found on the flag's path with KICS's default libraries. Note that any functions declared in a custom library with the same signature as an existing function in the [default libraries](https://github.com/Checkmarx/kics/tree/master/assets/libraries) will cause **the default library function to be overwritten by the custom definition provided**.
 
 ---
 

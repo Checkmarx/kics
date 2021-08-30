@@ -38,38 +38,38 @@ type QueriesSource interface {
 
 // mergeLibraries return custom library and embedded library merged, overwriting embedded library functions, if necessary
 func mergeLibraries(customLib, embeddedLib string) (string, error) {
-	if customLib != "" {
-		statements, _, err := ast.NewParser().WithReader(strings.NewReader(customLib)).Parse()
-		if err != nil {
-			log.Err(err).Msg("Could not parse custom library")
-			return "", err
-		}
-		headers := make(map[string]string)
-		for _, st := range statements {
-			if rule, ok := st.(*ast.Rule); ok {
-				headers[string(rule.Head.Name)] = ""
-			}
-		}
-		statements, _, err = ast.NewParser().WithReader(strings.NewReader(embeddedLib)).Parse()
-		if err != nil {
-			log.Err(err).Msg("Could not parse default library")
-			return "", err
-		}
-		for _, st := range statements {
-			if rule, ok := st.(*ast.Rule); ok {
-				if _, remove := headers[string(rule.Head.Name)]; remove {
-					embeddedLib = strings.Replace(embeddedLib, string(rule.Location.Text), "", 1)
-				}
-			}
-			if regoPackage, ok := st.(*ast.Package); ok {
-				firstHalf := strings.Join(strings.Split(embeddedLib, "\n")[:regoPackage.Location.Row-1], "\n")
-				secondHalf := strings.Join(strings.Split(embeddedLib, "\n")[regoPackage.Location.Row+1:], "\n")
-				embeddedLib = firstHalf + "\n" + secondHalf
-			}
-		}
-		customLib += "\n" + embeddedLib
-	} else {
-		customLib = embeddedLib
+	if customLib == "" {
+		return embeddedLib, nil
 	}
+	statements, _, err := ast.NewParser().WithReader(strings.NewReader(customLib)).Parse()
+	if err != nil {
+		log.Err(err).Msg("Could not parse custom library")
+		return "", err
+	}
+	headers := make(map[string]string)
+	for _, st := range statements {
+		if rule, ok := st.(*ast.Rule); ok {
+			headers[string(rule.Head.Name)] = ""
+		}
+	}
+	statements, _, err = ast.NewParser().WithReader(strings.NewReader(embeddedLib)).Parse()
+	if err != nil {
+		log.Err(err).Msg("Could not parse default library")
+		return "", err
+	}
+	for _, st := range statements {
+		if rule, ok := st.(*ast.Rule); ok {
+			if _, remove := headers[string(rule.Head.Name)]; remove {
+				embeddedLib = strings.Replace(embeddedLib, string(rule.Location.Text), "", 1)
+			}
+		}
+		if regoPackage, ok := st.(*ast.Package); ok {
+			firstHalf := strings.Join(strings.Split(embeddedLib, "\n")[:regoPackage.Location.Row-1], "\n")
+			secondHalf := strings.Join(strings.Split(embeddedLib, "\n")[regoPackage.Location.Row+1:], "\n")
+			embeddedLib = firstHalf + "\n" + secondHalf
+		}
+	}
+	customLib += "\n" + embeddedLib
+
 	return customLib, nil
 }
