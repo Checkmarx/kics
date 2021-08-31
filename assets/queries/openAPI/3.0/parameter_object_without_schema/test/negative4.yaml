@@ -7,6 +7,21 @@ paths:
     get:
       operationId: listVersionsv2
       summary: List API versions
+      parameters:
+        - name: id
+          in: path
+          description: ID of the API version
+          required: true
+          schema:
+            type: integer
+          content:
+            "application/json":
+              schema:
+                $ref: "#/components/schemas/User"
+              examples:
+                user:
+                  summary: User Example
+                  externalValue: "http://foo.bar/examples/user-example.json"
       responses:
         "200":
           description: 200 response
@@ -22,20 +37,19 @@ paths:
                         links:
                           - href: http://127.0.0.1:8774/v2/
                             rel: self
-components:
-  parameters:
-    idParam:
-      name: id
-      in: path
-      description: ID of the API version
-      required: true
-      schema:
-        type: int
-      content:
-        "application/json":
-          schema:
-            $ref: "#/components/schemas/User"
-          examples:
-            user:
-              summary: User Example
-              externalValue: "http://foo.bar/examples/user-example.json"
+  /user/{id}:
+    parameters:
+      - name: id
+        in: path
+        description: ID of the API version
+        required: true
+        schema:
+          type: integer
+        content:
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/User"
+            examples:
+              user:
+                summary: User Example
+                externalValue: "http://foo.bar/examples/user-example.json"

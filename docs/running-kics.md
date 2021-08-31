@@ -37,7 +37,7 @@ Available archive formats:
 kics scan -p path/local.zip
 ```
 
-More informatition can be seen [here](https://github.com/hashicorp/go-getter#unarchiving)
+More information can be seen [here](https://github.com/hashicorp/go-getter#unarchiving)
 
 
 ### S3
@@ -60,7 +60,7 @@ s3::{S3 Bucket URL}?{query parameters}
 kics scan -p s3::https://s3.amazonaws.com/bucket/foo?aws_profile=~/.aws/profile
 ```
 
-More informatition can be seen [here](https://github.com/hashicorp/go-getter#s3-s3)
+More information can be seen [here](https://github.com/hashicorp/go-getter#s3-s3)
 
 ### Git
 
@@ -76,7 +76,7 @@ kics scan -p git::git@github.com:Checkmarx/kics.git
 
 Please make sure you have SSH private key configured with your github account
 
-More informatition can be seen [here](https://github.com/hashicorp/go-getter#git-git)
+More information can be seen [here](https://github.com/hashicorp/go-getter#git-git)
 
 ### GSC
 
@@ -86,7 +86,7 @@ kics scan -p gcs::https://www.googleapis.com/storage/v1/bucket
 
 Please make sure you have set GSC authentication credentials to your application code by environment variables
 
-More informatition can be seen [here](https://github.com/hashicorp/go-getter#gcs-gcs)
+More information can be seen [here](https://github.com/hashicorp/go-getter#gcs-gcs)
 
 ## Using custom input data
 Since from v1.3.5, KICS supports using custom input data to replace data on queries that have this feature supported. To see if a query supports overwriting, check if the query's folder contains a `data.json` file, this file will contain all keys that can be overwritten.
