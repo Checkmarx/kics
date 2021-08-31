@@ -51,7 +51,8 @@ func TestCreateSummary(t *testing.T) {
 					SeverityHigh:   0,
 				},
 			},
-			Queries: []VulnerableQuery{},
+			Queries:      []VulnerableQuery{},
+			ScannedPaths: []string{},
 		})
 	})
 
@@ -87,6 +88,7 @@ func TestCreateSummary(t *testing.T) {
 					},
 				},
 			},
+			ScannedPaths: []string{},
 		})
 	})
 }
@@ -152,5 +154,89 @@ func TestModel_resolvePath(t *testing.T) {
 			got := resolvePath(tt.args.filePath, tt.args.pathExtractionMap)
 			require.Equal(t, tt.want, got)
 		})
+	}
+}
+
+func TestRemoveURLCredentials(t *testing.T) {
+	type args struct {
+		url string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			name: "test_with_url_credentials",
+			args: args{
+				url: "https://user:password@test.git.com/test.git",
+			},
+			want: "https://test.git.com/test.git",
+		},
+		{
+			name: "test_with_url_no_credentials",
+			args: args{
+				url: "https://test.git.com/test.git",
+			},
+			want: "https://test.git.com/test.git",
+		},
+		{
+			name: "test_http_with_url_credentials",
+			args: args{
+				url: "http://test:password@test.git.com/test",
+			},
+			want: "http://test.git.com/test",
+		},
+		{
+			name: "test_https_with_url_token",
+			args: args{
+				url: "https://myTOken123a12e@test.git.com:8080/test",
+			},
+			want: "https://test.git.com:8080/test",
+		},
+	}
+	for _, tt := range tests {
+		require.Equal(t, tt.want, removeURLCredentials(tt.args.url))
+	}
+}
+
+func TestRemoveAllURLCredentials(t *testing.T) {
+	input := []struct {
+		pathExtractionMap map[string]ExtractedPathObject
+		want              map[string]string
+	}{
+		{
+			pathExtractionMap: map[string]ExtractedPathObject{
+				"/tmp/file/vuln": {
+					Path:      "https://user:password@git1.url.com/test.git",
+					LocalPath: false,
+				},
+				"/tmp/file/vuln2": {
+					Path:      "https://myToken123@my2.domain/test.git",
+					LocalPath: false,
+				},
+			},
+			want: map[string]string{
+				"/tmp/file/vuln":  "https://git1.url.com/test.git",
+				"/tmp/file/vuln2": "https://my2.domain/test.git",
+			},
+		},
+		{
+			pathExtractionMap: map[string]ExtractedPathObject{
+				"/tmp/file/vuln": {
+					Path:      "/user/archive.zip",
+					LocalPath: true,
+				},
+			},
+			want: map[string]string{
+				"/tmp/file/vuln": "/user/archive.zip",
+			},
+		},
+	}
+	for _, tt := range input {
+		got := removeAllURLCredentials(tt.pathExtractionMap)
+		for key := range tt.pathExtractionMap {
+			require.Contains(t, got, tt.want[key])
+		}
 	}
 }

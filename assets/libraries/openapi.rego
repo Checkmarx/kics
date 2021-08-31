@@ -306,3 +306,13 @@ is_valid_mime(mime) {
 
 	regex.match(mimeRegex, mime) == true
 }
+
+valid_key(obj, key) {
+	_ = obj[key]
+	not is_null(obj[key])
+}
+
+is_missing_attribute_and_ref(obj, attr) {
+	not valid_key(obj, attr)
+	not valid_key(obj, "$ref")
+}

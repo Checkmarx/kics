@@ -7,10 +7,12 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"strings"
 	"sync"
 	"testing"
 	"time"
 
+	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/detector"
 	"github.com/Checkmarx/kics/pkg/detector/docker"
@@ -676,11 +678,18 @@ func (m *mockSource) GetQueries(queryFilter *source.QueryInspectorParameters) ([
 }
 
 func (m *mockSource) GetQueryLibrary(platform string) (string, error) {
-	pathToLib, err := source.GetPathToLibrary(platform, filepath.FromSlash("./assets/libraries"))
-	if err != nil {
-		return "", err
-	}
-	content, err := os.ReadFile(filepath.Clean(pathToLib))
+	library := source.GetPathToCustomLibrary(platform, "./assets/libraries")
 
-	return string(content), err
+	if library != "default" {
+		content, err := os.ReadFile(library)
+
+		return string(content), err
+	}
+
+	log.Warn().Msgf("Custom library not provided. Loading embedded library instead")
+
+	// getting embedded library
+	embeddedLibrary, errGettingEmbeddedLibrary := assets.GetEmbeddedLibrary(strings.ToLower(platform))
+
+	return embeddedLibrary, errGettingEmbeddedLibrary
 }

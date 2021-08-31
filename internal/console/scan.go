@@ -521,7 +521,7 @@ func scan(changedDefaultQueryPath bool) error {
 		flags.GetStrFlag(flags.QueriesPath),
 		flags.GetMultiStrFlag(flags.TypeFlag),
 		flags.GetMultiStrFlag(flags.CloudProviderFlag),
-		flags.GetStrFlag(flags.LibraryPath))
+		flags.GetStrFlag(flags.LibrariesPath))
 	store := storage.NewMemoryStorage()
 
 	excludeResultsMap := getExcludeResultsMap(flags.GetMultiStrFlag(flags.ExcludeResultsFlag))
@@ -601,7 +601,6 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end 
 		Start: start,
 		End:   end,
 	}
-	summary.ScannedPaths = pathParameters.ScannedPaths
 
 	if flags.GetBoolFlag(flags.DisableCISDescFlag) || flags.GetBoolFlag(flags.DisableFullDescFlag) {
 		log.Warn().Msg("Skipping CIS descriptions because provided disable flag is set")
