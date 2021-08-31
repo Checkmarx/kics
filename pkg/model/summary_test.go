@@ -203,7 +203,7 @@ func TestRemoveURLCredentials(t *testing.T) {
 func TestRemoveAllURLCredentials(t *testing.T) {
 	input := []struct {
 		pathExtractionMap map[string]ExtractedPathObject
-		want              []string
+		want              map[string]string
 	}{
 		{
 			pathExtractionMap: map[string]ExtractedPathObject{
@@ -216,9 +216,9 @@ func TestRemoveAllURLCredentials(t *testing.T) {
 					LocalPath: false,
 				},
 			},
-			want: []string{
-				"https://git1.url.com/test.git",
-				"https://my2.domain/test.git",
+			want: map[string]string{
+				"/tmp/file/vuln":  "https://git1.url.com/test.git",
+				"/tmp/file/vuln2": "https://my2.domain/test.git",
 			},
 		},
 		{
@@ -228,13 +228,15 @@ func TestRemoveAllURLCredentials(t *testing.T) {
 					LocalPath: true,
 				},
 			},
-			want: []string{
-				"/user/archive.zip",
+			want: map[string]string{
+				"/tmp/file/vuln": "/user/archive.zip",
 			},
 		},
 	}
 	for _, tt := range input {
 		got := removeAllURLCredentials(tt.pathExtractionMap)
-		require.Equal(t, tt.want, got)
+		for key := range tt.pathExtractionMap {
+			require.Contains(t, got, tt.want[key])
+		}
 	}
 }
