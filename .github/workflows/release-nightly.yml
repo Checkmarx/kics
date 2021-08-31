@@ -146,8 +146,6 @@ jobs:
               value: https://github.com/Checkmarx/kics/actions/runs/${{ github.run_id }}"
             - name: View HEAD Commit
               value: https://github.com/Checkmarx/kics/commit/${{ github.sha }}
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub
@@ -174,7 +172,6 @@ jobs:
           file: ./Dockerfile.debian
           push: true
           tags: checkmarx/kics:nightly-debian
-          platforms: ${{ steps.qemu.outputs.platforms }}
           build-args: |
             VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
             COMMIT=${{ github.sha }}
