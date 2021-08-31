@@ -105,7 +105,11 @@ func (c *converter) getArrLines(expr hclsyntax.Expression) []map[string]model.Li
 				}
 				// set lines for array elements
 				for _, item := range valType.Items {
-					key, _ := c.convertKey(item.KeyExpr)
+					key, err := c.convertKey(item.KeyExpr)
+					if err != nil {
+						sentry.CaptureException(err)
+						return nil
+					}
 					arrEx["_kics_"+key] = model.LineObject{
 						Line: item.KeyExpr.Range().Start.Line,
 					}
