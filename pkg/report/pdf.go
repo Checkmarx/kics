@@ -212,6 +212,7 @@ func createResultsTable(m pdf.Maroto, query *model.VulnerableQuery) {
 			})
 		})
 	}
+	m.SetBackgroundColor(color.NewWhite())
 	m.Line(1.0)
 }
 
