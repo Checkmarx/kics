@@ -1,0 +1,73 @@
+openapi: 3.0.0
+info:
+  title: Simple API Overview
+  version: 1.0.0
+paths:
+  "/":
+    get:
+      summary: List API versions
+      parameters:
+      - content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/User"
+            examples:
+              user:
+                summary: User Example
+                externalValue: http://foo.bar/examples/user-example.json
+        name: id
+        in: path
+        description: ID of the API version
+        required: true
+        schema:
+          type: integer
+      - "$ref": "#/components/parameters/idParam"
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                foo:
+                  value:
+                    versions:
+                    - updated: '2011-01-21T11:33:21Z'
+                      id: v2.0
+                      links:
+                      - rel: self
+                        href: http://127.0.0.1:8774/v2/
+                      status: CURRENT
+          description: 200 response
+      operationId: listVersionsv2
+  "/user/{id}":
+    parameters:
+    - description: ID of the API version
+      required: true
+      schema:
+        type: integer
+      content:
+        application/json:
+          schema:
+            "$ref": "#/components/schemas/User"
+          examples:
+            user:
+              summary: User Example
+              externalValue: http://foo.bar/examples/user-example.json
+      name: id
+      in: path
+components:
+  parameters:
+    idParam:
+      name: id
+      in: path
+      description: ID of the API version
+      required: true
+      schema:
+        type: int
+      content:
+        application/xml:
+          examples:
+            user:
+              externalValue: http://foo.bar/examples/user-example.xml
+              summary: User Example in XML
+          schema:
+            "$ref": "#/components/schemas/User"
