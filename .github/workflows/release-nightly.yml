@@ -163,7 +163,7 @@ jobs:
           context: .
           push: true
           tags: checkmarx/kics:nightly,checkmarx/kics:nightly-alpine
-          platforms: ${{ steps.qemu.outputs.platforms }}
+          platforms: linux/amd64,linux/arm64/v8
           build-args: |
             VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
             COMMIT=${{ github.sha }}
@@ -176,7 +176,7 @@ jobs:
           file: ./Dockerfile.debian
           push: true
           tags: checkmarx/kics:nightly-debian
-          platforms: ${{ steps.qemu.outputs.platforms }}
+          platforms: linux/amd64,linux/arm64/v8
           build-args: |
             VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
             COMMIT=${{ github.sha }}
