@@ -15,6 +15,7 @@ ARG COMMIT="NOCOMMIT"
 ARG SENTRY_DSN=""
 ARG DESCRIPTIONS_URL=""
 ARG APISCANNER="true"
+ARG GOARCH="amd64"
 
 #Copy go mod and sum files
 COPY --chown=checkmarx:checkmarx go.mod .
@@ -26,7 +27,7 @@ COPY . .
 USER root
 # Build the Go app
 RUN apt-get install -y ca-certificates
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=${GOARCH} go build \
   -ldflags "-s -w -X github.com/Checkmarx/kics/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/internal/constants.BaseURL=${DESCRIPTIONS_URL} -X github.com/Checkmarx/kics/internal/constants.APIScanner=${APISCANNER}" \
   -a -installsuffix cgo \
   -o bin/kics cmd/console/main.go

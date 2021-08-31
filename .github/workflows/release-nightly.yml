@@ -126,6 +126,8 @@ jobs:
     needs: pre_release_job
     if: ${{ needs.pre_release_job.outputs.changes == 'yes' }}
     runs-on: ubuntu-latest
+    env:
+      DOCKER_CLI_EXPERIMENTAL: "enabled"
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2.3.4
@@ -156,40 +158,69 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Push alpine to Docker Hub
-        id: build_alpine
+      - name: Push alpine amd64 to Docker Hub
+        id: build_alpine_amd64
         uses: docker/build-push-action@v2.7.0
         with:
           context: .
           push: true
           tags: checkmarx/kics:nightly,checkmarx/kics:nightly-alpine
-          platforms: linux/amd64,linux/arm64/v8
+          platforms: linux/amd64
           build-args: |
             VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
             COMMIT=${{ github.sha }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
-      - name: Build and push debian to Docker Hub
-        id: build_debian
+            GOARCH=amd64
+      - name: Push alpine arm64 to Docker Hub
+        id: build_alpine_arm64
+        uses: docker/build-push-action@v2.7.0
+        with:
+          context: .
+          push: true
+          tags: checkmarx/kics:nightly,checkmarx/kics:nightly-alpine
+          platforms: linux/arm64/v8
+          build-args: |
+            VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
+            COMMIT=${{ github.sha }}
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+            GOARCH=arm64
+      - name: Build and push amd64 debian to Docker Hub
+        id: build_debian_amd64
         uses: docker/build-push-action@v2.7.0
         with:
           context: .
           file: ./Dockerfile.debian
           push: true
           tags: checkmarx/kics:nightly-debian
-          platforms: linux/amd64,linux/arm64/v8
+          platforms: linux/amd64
           build-args: |
             VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
             COMMIT=${{ github.sha }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+            GOARCH=amd64
+      - name: Build and push arm64 debian to Docker Hub
+        id: build_debian_arm64
+        uses: docker/build-push-action@v2.7.0
+        with:
+          context: .
+          file: ./Dockerfile.debian
+          push: true
+          tags: checkmarx/kics:nightly-debian
+          platforms: linux/arm64/v8
+          build-args: |
+            VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
+            COMMIT=${{ github.sha }}
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+            GOARCH=arm64
       - name: Export Image Digests
         run: |
           VERSION=nightly
 
           COMMIT_SHA8=${{ needs.pre_release_job.outputs.sha8 }}
           DATE=$(date +'%Y-%m-%d')
-          DIGEST=${{ steps.build_alpine.outputs.digest }}
-          ALPINE_DIGEST=${{ steps.build_alpine.outputs.digest }}
-          DEBIAN_DIGEST=${{ steps.build_debian.outputs.digest }}
+          DIGEST=${{ steps.build_alpine_amd64.outputs.digest }}
+          ALPINE_DIGEST=${{ steps.build_alpine_amd64.outputs.digest }}
+          DEBIAN_DIGEST=${{ steps.build_debian_amd64.outputs.digest }}
 
           echo "scratch,${COMMIT_SHA8},${DATE},${DIGEST}" >> docs/docker/nightly.csv
           echo "alpine,${COMMIT_SHA8},${DATE},${ALPINE_DIGEST}" >> docs/docker/nightly.csv
