@@ -65,8 +65,13 @@ func (d *searchLineDetector) preparePath(pathItems []string) int {
 		ArrPath = "_kics_lines._kics_" + arrayObject + "._kics_arr"
 	}
 
+	var treatedPathItems []string
+	if len(pathItems) > 1 {
+		treatedPathItems = pathItems[1 : len(pathItems)-1]
+	}
+
 	// Create a string based on the path components so it can be later transformed in a gjson path
-	for _, pathItem := range pathItems[1 : len(pathItems)-1] {
+	for _, pathItem := range treatedPathItems {
 		// In case of an array present
 		if pathItem == arrayObject {
 			ArrPath += "._kics_lines._kics_" + strings.ReplaceAll(pathItem, ".", "\\.") + "._kics_arr"
