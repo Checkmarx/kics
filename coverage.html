@@ -187,7 +187,7 @@
 				
 				<option value="file65">github.com/Checkmarx/kics/pkg/report/model/sarif_categories.go (100.0%)</option>
 				
-				<option value="file66">github.com/Checkmarx/kics/pkg/report/pdf.go (83.2%)</option>
+				<option value="file66">github.com/Checkmarx/kics/pkg/report/pdf.go (83.3%)</option>
 				
 				<option value="file67">github.com/Checkmarx/kics/pkg/report/sarif.go (90.9%)</option>
 				
@@ -1597,8 +1597,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="332">{
-                if val == true </span><span class="cov9" title="331">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="340">{
+                if val == true </span><span class="cov9" title="339">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2408,13 +2408,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="42">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="38">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="42">total += v
+                <span class="cov9" title="38">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -4308,7 +4308,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -10331,7 +10331,8 @@ func createResultsTable(m pdf.Maroto, query *model.VulnerableQuery) <span class=
                         }</span>)
                 })
         }
-        <span class="cov4" title="2">m.Line(1.0)</span>
+        <span class="cov4" title="2">m.SetBackgroundColor(color.NewWhite())
+        m.Line(1.0)</span>
 }
 
 func createHeaderArea(m pdf.Maroto) <span class="cov4" title="2">{
