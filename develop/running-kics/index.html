@@ -1055,7 +1055,7 @@
 </ul>
 <pre><code>kics scan -p path/local.zip
 </code></pre>
-<p>More informatition can be seen <a href="https://github.com/hashicorp/go-getter#unarchiving">here</a></p>
+<p>More information can be seen <a href="https://github.com/hashicorp/go-getter#unarchiving">here</a></p>
 <h3 id="s3">S3<a class="headerlink" href="#s3" title="Permanent link">&para;</a></h3>
 <p>S3 Bucket path syntax:</p>
 <pre><code>s3::{S3 Bucket URL}?{query parameters}
@@ -1069,7 +1069,7 @@
 </ul>
 <pre><code>kics scan -p s3::https://s3.amazonaws.com/bucket/foo?aws_profile=~/.aws/profile
 </code></pre>
-<p>More informatition can be seen <a href="https://github.com/hashicorp/go-getter#s3-s3">here</a></p>
+<p>More information can be seen <a href="https://github.com/hashicorp/go-getter#s3-s3">here</a></p>
 <h3 id="git">Git<a class="headerlink" href="#git" title="Permanent link">&para;</a></h3>
 <pre><code>kics scan -p git::https://github.com/Checkmarx/kics
 </code></pre>
@@ -1077,12 +1077,12 @@
 <pre><code>kics scan -p git::git@github.com:Checkmarx/kics.git
 </code></pre>
 <p>Please make sure you have SSH private key configured with your github account</p>
-<p>More informatition can be seen <a href="https://github.com/hashicorp/go-getter#git-git">here</a></p>
+<p>More information can be seen <a href="https://github.com/hashicorp/go-getter#git-git">here</a></p>
 <h3 id="gsc">GSC<a class="headerlink" href="#gsc" title="Permanent link">&para;</a></h3>
 <pre><code>kics scan -p gcs::https://www.googleapis.com/storage/v1/bucket
 </code></pre>
 <p>Please make sure you have set GSC authentication credentials to your application code by environment variables</p>
-<p>More informatition can be seen <a href="https://github.com/hashicorp/go-getter#gcs-gcs">here</a></p>
+<p>More information can be seen <a href="https://github.com/hashicorp/go-getter#gcs-gcs">here</a></p>
 <h2 id="using_custom_input_data">Using custom input data<a class="headerlink" href="#using_custom_input_data" title="Permanent link">&para;</a></h2>
 <p>Since from v1.3.5, KICS supports using custom input data to replace data on queries that have this feature supported. To see if a query supports overwriting, check if the query's folder contains a <code>data.json</code> file, this file will contain all keys that can be overwritten.
 To overwrite the key, you need to create files following the pattern <code>&lt;query_id&gt;.json</code>, each file representing <strong>one</strong> query and passing folder path containing these files to the flag <code>input-data</code>, this will get all files from this folder and replace all keys on queries found.</p>
