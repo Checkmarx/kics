@@ -127,7 +127,7 @@
 				
 				<option value="file35">github.com/Checkmarx/kics/pkg/engine/source/filesystem.go (67.4%)</option>
 				
-				<option value="file36">github.com/Checkmarx/kics/pkg/engine/source/source.go (87.5%)</option>
+				<option value="file36">github.com/Checkmarx/kics/pkg/engine/source/source.go (62.2%)</option>
 				
 				<option value="file37">github.com/Checkmarx/kics/pkg/engine/vulnerability_builder.go (84.6%)</option>
 				
@@ -1597,8 +1597,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="348">{
-                if val == true </span><span class="cov9" title="347">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="325">{
+                if val == true </span><span class="cov9" title="324">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2408,13 +2408,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="33">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2439,7 +2439,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -6024,10 +6024,17 @@ func mergeLibraries(customLib, embeddedLib string) (string, error) <span class="
                 return "", err
         }</span>
         <span class="cov6" title="4">headers := make(map[string]string)
+        variables := make(map[string]string)
         for _, st := range statements </span><span class="cov6" title="4">{
                 if rule, ok := st.(*ast.Rule); ok </span><span class="cov6" title="4">{
                         headers[string(rule.Head.Name)] = ""
                 }</span>
+                <span class="cov6" title="4">if regoPackage, ok := st.(ast.Body); ok </span><span class="cov0" title="0">{
+                        variableSet := regoPackage.Vars(ast.SafetyCheckVisitorParams)
+                        for variable := range variableSet </span><span class="cov0" title="0">{
+                                variables[variable.String()] = ""
+                        }</span>
+                }
         }
         <span class="cov6" title="4">statements, _, err = ast.NewParser().WithReader(strings.NewReader(embeddedLib)).Parse()
         if err != nil </span><span class="cov1" title="1">{
@@ -6039,12 +6046,23 @@ func mergeLibraries(customLib, embeddedLib string) (string, error) <span class="
                         if _, remove := headers[string(rule.Head.Name)]; remove </span><span class="cov3" title="2">{
                                 embeddedLib = strings.Replace(embeddedLib, string(rule.Location.Text), "", 1)
                         }</span>
+                        <span class="cov6" title="4">continue</span>
                 }
-                <span class="cov6" title="4">if regoPackage, ok := st.(*ast.Package); ok </span><span class="cov0" title="0">{
+                <span class="cov0" title="0">if regoPackage, ok := st.(*ast.Package); ok </span><span class="cov0" title="0">{
                         firstHalf := strings.Join(strings.Split(embeddedLib, "\n")[:regoPackage.Location.Row-1], "\n")
                         secondHalf := strings.Join(strings.Split(embeddedLib, "\n")[regoPackage.Location.Row+1:], "\n")
                         embeddedLib = firstHalf + "\n" + secondHalf
-                }</span>
+                        continue</span>
+                }
+                <span class="cov0" title="0">if body, ok := st.(ast.Body); ok </span><span class="cov0" title="0">{
+                        variableSet := body.Vars(ast.SafetyCheckVisitorParams)
+                        for variable := range variableSet </span><span class="cov0" title="0">{
+                                if _, remove := variables[variable.String()]; remove </span><span class="cov0" title="0">{
+                                        embeddedLib = strings.Replace(embeddedLib, string(body.Loc().Text), "", 1)
+                                        break</span>
+                                }
+                        }
+                }
         }
         <span class="cov4" title="3">customLib += "\n" + embeddedLib
 
