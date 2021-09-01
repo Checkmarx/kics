@@ -127,7 +127,7 @@
 				
 				<option value="file35">github.com/Checkmarx/kics/pkg/engine/source/filesystem.go (67.4%)</option>
 				
-				<option value="file36">github.com/Checkmarx/kics/pkg/engine/source/source.go (87.5%)</option>
+				<option value="file36">github.com/Checkmarx/kics/pkg/engine/source/source.go (62.2%)</option>
 				
 				<option value="file37">github.com/Checkmarx/kics/pkg/engine/vulnerability_builder.go (84.6%)</option>
 				
@@ -169,7 +169,7 @@
 				
 				<option value="file56">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (71.4%)</option>
 				
-				<option value="file57">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (90.9%)</option>
+				<option value="file57">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
 				<option value="file58">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -1597,8 +1597,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="328">{
-                if val == true </span><span class="cov9" title="327">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="336">{
+                if val == true </span><span class="cov9" title="335">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2408,13 +2408,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="38">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="38">total += v
+                <span class="cov9" title="37">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2787,7 +2787,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="10">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov7" title="17">{
-        for _, a := range s </span><span class="cov8" title="38">{
+        for _, a := range s </span><span class="cov8" title="39">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -6024,10 +6024,17 @@ func mergeLibraries(customLib, embeddedLib string) (string, error) <span class="
                 return "", err
         }</span>
         <span class="cov6" title="4">headers := make(map[string]string)
+        variables := make(map[string]string)
         for _, st := range statements </span><span class="cov6" title="4">{
                 if rule, ok := st.(*ast.Rule); ok </span><span class="cov6" title="4">{
                         headers[string(rule.Head.Name)] = ""
                 }</span>
+                <span class="cov6" title="4">if regoPackage, ok := st.(ast.Body); ok </span><span class="cov0" title="0">{
+                        variableSet := regoPackage.Vars(ast.SafetyCheckVisitorParams)
+                        for variable := range variableSet </span><span class="cov0" title="0">{
+                                variables[variable.String()] = ""
+                        }</span>
+                }
         }
         <span class="cov6" title="4">statements, _, err = ast.NewParser().WithReader(strings.NewReader(embeddedLib)).Parse()
         if err != nil </span><span class="cov1" title="1">{
@@ -6039,12 +6046,23 @@ func mergeLibraries(customLib, embeddedLib string) (string, error) <span class="
                         if _, remove := headers[string(rule.Head.Name)]; remove </span><span class="cov3" title="2">{
                                 embeddedLib = strings.Replace(embeddedLib, string(rule.Location.Text), "", 1)
                         }</span>
+                        <span class="cov6" title="4">continue</span>
                 }
-                <span class="cov6" title="4">if regoPackage, ok := st.(*ast.Package); ok </span><span class="cov0" title="0">{
+                <span class="cov0" title="0">if regoPackage, ok := st.(*ast.Package); ok </span><span class="cov0" title="0">{
                         firstHalf := strings.Join(strings.Split(embeddedLib, "\n")[:regoPackage.Location.Row-1], "\n")
                         secondHalf := strings.Join(strings.Split(embeddedLib, "\n")[regoPackage.Location.Row+1:], "\n")
                         embeddedLib = firstHalf + "\n" + secondHalf
-                }</span>
+                        continue</span>
+                }
+                <span class="cov0" title="0">if body, ok := st.(ast.Body); ok </span><span class="cov0" title="0">{
+                        variableSet := body.Vars(ast.SafetyCheckVisitorParams)
+                        for variable := range variableSet </span><span class="cov0" title="0">{
+                                if _, remove := variables[variable.String()]; remove </span><span class="cov0" title="0">{
+                                        embeddedLib = strings.Replace(embeddedLib, string(body.Loc().Text), "", 1)
+                                        break</span>
+                                }
+                        }
+                }
         }
         <span class="cov4" title="3">customLib += "\n" + embeddedLib
 
@@ -9211,7 +9229,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov1" title="1">{
+                close: func() error </span><span class="cov0" title="0">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -9220,7 +9238,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov1" title="1">{
+        defer func() </span><span class="cov0" title="0">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
@@ -9232,14 +9250,14 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov1" title="1">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov1" title="1">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file58" style="display: none">package progress
