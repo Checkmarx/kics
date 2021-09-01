@@ -12,7 +12,7 @@
     "defaultValue": "",
     "usage": "path to configuration file"
   },
-  "disable-cis-descriptions": {
+  "disable-cis-description": {
     "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",
