@@ -20,10 +20,9 @@ import (
 
 const (
 	defaultLineNumber         = 0
-	EntropyRuleName           = "High Entropy Token"
 	Base64EntropyThreashold   = 4.7
 	HexCharsEntropyThreashold = 2.7
-	MinStringLen              = 20
+	MinStringLen              = 5
 	Base64Type                = "base64"
 	Base64Chars               = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
 	HexType                   = "hex"
@@ -38,6 +37,7 @@ var (
 		"descriptionText": "Query to find passwords and secrets in infrastructure code.",
 		"descriptionUrl":  "https://kics.io/",
 		"platform":        "Common",
+		"descriptionID":   "d69d8a89",
 		"cloudProvider":   "common",
 	}
 )
@@ -53,12 +53,18 @@ type Inspector struct {
 	regexQueries   []RegexQuery
 }
 
+type Entropy struct {
+	Group int     `json:"group"`
+	Min   float64 `json:"min"`
+	Max   float64 `json:"max"`
+}
+
 type RegexQuery struct {
-	ID            string `json:"id"`
-	DescriptionID string `json:"descriptionID"`
-	Name          string `json:"name"`
-	RegexStr      string `json:"regex"`
-	Regex         *regexp.Regexp
+	ID        string    `json:"id"`
+	Name      string    `json:"name"`
+	RegexStr  string    `json:"regex"`
+	Entropies []Entropy `json:"entropies"`
+	Regex     *regexp.Regexp
 }
 
 type RuleMatch struct {
@@ -84,10 +90,12 @@ func NewInspector(
 	if err != nil {
 		return nil, err
 	}
+	log.Debug().Msg("Loaded regex queries")
 
 	for idx := range regexQueries {
 		regexQueries[idx].Regex = regexp.MustCompile(regexQueries[idx].RegexStr)
 	}
+	log.Debug().Msg("Compiled regex queries")
 
 	return &Inspector{
 		ctx:            ctx,
@@ -107,36 +115,54 @@ func (c *Inspector) Inspect(ctx context.Context, basePaths []string, files model
 
 			for lineNumber, line := range lines {
 				matches := query.Regex.FindAllString(line, -1)
-				if len(matches) > 0 {
-					simID, err := similarity.ComputeSimilarityID(basePaths, files[idx].FilePath, defaultSecretMetadata["id"], fmt.Sprintf("%d", lineNumber), "")
-					if err != nil {
-						log.Error().Msg("unable to compute similarity ID")
+				if len(matches) == 0 {
+					continue
+				}
+
+				// TODO: add entropy calculation for other types
+				for i := range query.Entropies {
+					entropy := query.Entropies[i]
+					groups := query.Regex.FindStringSubmatch(line)
+					// if matched group does not exist continue
+					if len(groups) <= entropy.Group {
+						continue
 					}
 
-					if _, ok := c.excludeResults[ptrStringToString(simID)]; !ok {
-						linesVuln := model.VulnerabilityLines{
-							Line:      -1,
-							VulnLines: []model.CodeLine{},
-						}
-						linesVuln = c.detector.GetAdjecent(&files[idx], lineNumber+1)
-						vuln := model.Vulnerability{
-							QueryID:       query.ID,
-							QueryName:     defaultSecretMetadata["queryName"] + " - " + query.Name,
-							SimilarityID:  ptrStringToString(simID),
-							FileID:        files[idx].ID,
-							FileName:      files[idx].FilePath,
-							Line:          linesVuln.Line,
-							VulnLines:     linesVuln.VulnLines,
-							IssueType:     "RedundantAttribute",
-							Platform:      string(model.KindCOMMON),
-							Severity:      model.SeverityHigh,
-							QueryURI:      defaultSecretMetadata["descriptionUrl"],
-							Category:      defaultSecretMetadata["category"],
-							Description:   defaultSecretMetadata["descriptionText"],
-							DescriptionID: query.DescriptionID,
-						}
-						vulnerabilities = append(vulnerabilities, vuln)
+					isMatch, entropyFloat := CheckEntropyInterval(entropy, groups[entropy.Group])
+					log.Debug().Msg(fmt.Sprint(entropyFloat))
+
+					if !isMatch {
+						continue
 					}
+				}
+				simID, err := similarity.ComputeSimilarityID(basePaths, files[idx].FilePath, query.ID, fmt.Sprintf("%d", lineNumber), "")
+				if err != nil {
+					log.Error().Msg("unable to compute similarity ID")
+				}
+
+				if _, ok := c.excludeResults[ptrStringToString(simID)]; !ok {
+					linesVuln := model.VulnerabilityLines{
+						Line:      -1,
+						VulnLines: []model.CodeLine{},
+					}
+					linesVuln = c.detector.GetAdjecent(&files[idx], lineNumber+1)
+					vuln := model.Vulnerability{
+						QueryID:       query.ID,
+						QueryName:     defaultSecretMetadata["queryName"] + " - " + query.Name,
+						SimilarityID:  ptrStringToString(simID),
+						FileID:        files[idx].ID,
+						FileName:      files[idx].FilePath,
+						Line:          linesVuln.Line,
+						VulnLines:     linesVuln.VulnLines,
+						IssueType:     "RedundantAttribute",
+						Platform:      string(model.KindCOMMON),
+						Severity:      model.SeverityHigh,
+						QueryURI:      defaultSecretMetadata["descriptionUrl"],
+						Category:      defaultSecretMetadata["category"],
+						Description:   defaultSecretMetadata["descriptionText"],
+						DescriptionID: defaultSecretMetadata["descriptionID"],
+					}
+					vulnerabilities = append(vulnerabilities, vuln)
 				}
 			}
 		}
@@ -144,11 +170,21 @@ func (c *Inspector) Inspect(ctx context.Context, basePaths []string, files model
 	return vulnerabilities, nil
 }
 
-func ptrStringToString(v *string) string {
-	if v == nil {
-		return ""
+// CheckEntropyInterval - verifies if a given token's entropy is within expected bounds
+func CheckEntropyInterval(entropy Entropy, token string) (bool, float64) {
+	if len(token) > MinStringLen {
+		base64Entropy := calculateEntropy(token, Base64Chars)
+		hexEntropy := calculateEntropy(token, HexChars)
+		if insideInterval(entropy, base64Entropy) || insideInterval(entropy, hexEntropy) {
+			highestEntropy := math.Max(base64Entropy, hexEntropy)
+			return true, highestEntropy
+		}
 	}
-	return *v
+	return false, 0
+}
+
+func insideInterval(entropy Entropy, floatEntropy float64) bool {
+	return floatEntropy >= entropy.Min && floatEntropy <= entropy.Max
 }
 
 // calculateEntropy - calculates the entropy of a string based on the Shannon formula
@@ -172,29 +208,9 @@ func calculateEntropy(token, charSet string) float64 {
 	return math.Log2(length) - freq/length
 }
 
-// getHighEntropyTokens - returns a list of tokens that have a high entropy
-func GetHighEntropyTokens(s string) []RuleMatch {
-	tokens := tokenizeString(s)
-	ruleMatches := make([]RuleMatch, 0)
-	for _, token := range tokens {
-		if len(token) > MinStringLen {
-			base64Entropy := calculateEntropy(token, Base64Chars)
-			hexEntropy := calculateEntropy(token, HexChars)
-			if base64Entropy > Base64EntropyThreashold || hexEntropy > HexCharsEntropyThreashold {
-				highestEntropy := math.Max(base64Entropy, hexEntropy)
-
-				ruleMatches = append(ruleMatches, RuleMatch{
-					RuleName: EntropyRuleName,
-					Matches:  []string{token},
-					Entropy:  highestEntropy,
-				})
-			}
-		}
+func ptrStringToString(v *string) string {
+	if v == nil {
+		return ""
 	}
-	return ruleMatches
-}
-
-// TokenizeString - returns a list of tokens from a string
-func tokenizeString(s string) []string {
-	return strings.Fields(s)
+	return *v
 }
