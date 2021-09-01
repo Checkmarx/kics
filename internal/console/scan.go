@@ -41,6 +41,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
+	"golang.org/x/crypto/ssh/terminal"
 )
 
 var (
@@ -419,8 +420,8 @@ func createServiceAndStartScan(params *startServiceParameters) (failedQueries ma
 
 	secretsInspector, err := secrets.NewInspector(
 		ctx,
-		params.t,
 		params.excludeResults,
+		params.t,
 	)
 	if err != nil {
 		log.Err(err)
@@ -484,8 +485,13 @@ func scan(changedDefaultQueryPath bool) error {
 	fmt.Println(versionMsg)
 	log.Info().Msgf(strings.ReplaceAll(versionMsg, "\n", ""))
 
+	noProgress := flags.GetBoolFlag(flags.NoProgressFlag)
+	if !terminal.IsTerminal(int(os.Stdin.Fd())) {
+		noProgress = true
+	}
+
 	proBarBuilder := progress.InitializePbBuilder(
-		flags.GetBoolFlag(flags.NoProgressFlag),
+		noProgress,
 		flags.GetBoolFlag(flags.CIFlag),
 		flags.GetBoolFlag(flags.SilentFlag))
 

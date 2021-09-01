@@ -83,7 +83,6 @@ Ym9va0BSb2dlcmlvUC1NYWNCb29rcy1NYWNCb29rLVByby5sb2NhbAECAwQ=
 			high:        true,
 		},
 	}
-
 	testGetHighEntropyTokensTestCases = []struct {
 		name     string
 		input    string
@@ -209,7 +208,7 @@ func TestCalculateEntropy(t *testing.T) {
 				charSet = Base64Chars
 				threshold = Base64EntropyThreashold
 			}
-			entropy := CalculateEntropy(tc.input, charSet)
+			entropy := calculateEntropy(tc.input, charSet)
 			if tc.high {
 				require.Greater(t, entropy, threshold,
 					fmt.Sprintf("test[%s] Entropy should be greater than %f, actual: %v, input: %v", tc.name, threshold, entropy, tc.input))

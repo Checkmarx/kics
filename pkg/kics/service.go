@@ -76,7 +76,7 @@ func (s *Service) StartScan(
 		errCh <- errors.Wrap(err, "failed to read sources")
 	}
 
-	_, err := s.SecretsInspector.Inspect(
+	secretsVulnerabilities, err := s.SecretsInspector.Inspect(
 		ctx,
 		s.SourceProvider.GetBasePaths(),
 		s.files,
@@ -96,6 +96,8 @@ func (s *Service) StartScan(
 	if err != nil {
 		errCh <- errors.Wrap(err, "failed to inspect files")
 	}
+	vulnerabilities = append(vulnerabilities, secretsVulnerabilities...)
+
 	err = s.Storage.SaveVulnerabilities(ctx, vulnerabilities)
 	if err != nil {
 		errCh <- errors.Wrap(err, "failed to save vulnerabilities")

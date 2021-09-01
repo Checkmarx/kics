@@ -3,6 +3,7 @@ package similarity
 import (
 	"crypto/sha256"
 	"encoding/hex"
+	"os"
 	"path/filepath"
 	"strings"
 )
@@ -32,6 +33,13 @@ func ComputeSimilarityID(basePaths []string, filePath, queryID, searchKey, searc
 func standardizeToRelativePath(basePath, path string) (string, error) {
 	cleanPath := filepath.Clean(path)
 	standardPath := filepath.ToSlash(cleanPath)
+	if basePath == "" {
+		cwd, err := os.Getwd()
+		if err != nil {
+			return "", err
+		}
+		basePath = cwd
+	}
 	basePath = filepath.ToSlash(basePath)
 	relativeStandardPath, err := filepath.Rel(basePath, standardPath)
 	if err != nil {
