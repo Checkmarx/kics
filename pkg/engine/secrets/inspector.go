@@ -14,6 +14,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/detector/helm"
 	engine "github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/similarity"
+	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/rs/zerolog/log"
 )
@@ -46,11 +47,12 @@ var (
 var regexQueriesJSON string
 
 type Inspector struct {
-	ctx            context.Context
-	tracker        engine.Tracker
-	detector       *detector.DetectLine
-	excludeResults map[string]bool
-	regexQueries   []RegexQuery
+	ctx             context.Context
+	tracker         engine.Tracker
+	detector        *detector.DetectLine
+	excludeResults  map[string]bool
+	regexQueries    []RegexQuery
+	vulnerabilities []model.Vulnerability
 }
 
 type Entropy struct {
@@ -60,11 +62,12 @@ type Entropy struct {
 }
 
 type RegexQuery struct {
-	ID        string    `json:"id"`
-	Name      string    `json:"name"`
-	RegexStr  string    `json:"regex"`
-	Entropies []Entropy `json:"entropies"`
-	Regex     *regexp.Regexp
+	ID             string    `json:"id"`
+	Name           string    `json:"name"`
+	MultilineRegex bool      `json:"multiline"`
+	RegexStr       string    `json:"regex"`
+	Entropies      []Entropy `json:"entropies"`
+	Regex          *regexp.Regexp
 }
 
 type RuleMatch struct {
@@ -79,89 +82,185 @@ func NewInspector(
 	ctx context.Context,
 	excludeResults map[string]bool,
 	tracker engine.Tracker,
+	queryFilter *source.QueryInspectorParameters,
 ) (*Inspector, error) {
 	lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
 		Add(helm.DetectKindLine{}, model.KindHELM).
 		Add(docker.DetectKindLine{}, model.KindDOCKER)
 
-	var regexQueries []RegexQuery
-
-	err := json.Unmarshal([]byte(regexQueriesJSON), &regexQueries)
+	regexQueries, err := compileRegexQueries(queryFilter)
 	if err != nil {
 		return nil, err
 	}
-	log.Debug().Msg("Loaded regex queries")
-
-	for idx := range regexQueries {
-		regexQueries[idx].Regex = regexp.MustCompile(regexQueries[idx].RegexStr)
-	}
-	log.Debug().Msg("Compiled regex queries")
 
 	return &Inspector{
-		ctx:            ctx,
-		detector:       lineDetector,
-		excludeResults: excludeResults,
-		tracker:        tracker,
-		regexQueries:   regexQueries,
+		ctx:             ctx,
+		detector:        lineDetector,
+		excludeResults:  excludeResults,
+		tracker:         tracker,
+		regexQueries:    regexQueries,
+		vulnerabilities: make([]model.Vulnerability, 0),
 	}, nil
 }
 
+func compileRegexQueries(queryFilter *source.QueryInspectorParameters) ([]RegexQuery, error) {
+	var allRegexQueries []RegexQuery
+	var regexQueries []RegexQuery
+
+	err := json.Unmarshal([]byte(regexQueriesJSON), &allRegexQueries)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, query := range allRegexQueries {
+		if len(queryFilter.IncludeQueries.ByIDs) > 0 {
+			if isValueInArray(query.ID, queryFilter.IncludeQueries.ByIDs) {
+				regexQueries = append(regexQueries, query)
+			}
+		} else {
+			if isValueInArray(query.ID, queryFilter.ExcludeQueries.ByIDs) {
+				log.Debug().
+					Msgf("Excluding query ID: %s category: %s severity: %s", query.ID, defaultSecretMetadata["category"], defaultSecretMetadata["severity"])
+				continue
+			}
+			regexQueries = append(regexQueries, query)
+		}
+	}
+	for idx := range regexQueries {
+		regexQueries[idx].Regex = regexp.MustCompile(regexQueries[idx].RegexStr)
+	}
+	return regexQueries, nil
+}
+
+func isValueInArray(value string, array []string) bool {
+	for i := range array {
+		if value == array[i] {
+			return true
+		}
+	}
+	return false
+}
+
 func (c *Inspector) Inspect(ctx context.Context, basePaths []string, files model.FileMetadatas) ([]model.Vulnerability, error) {
-	vulnerabilities := make([]model.Vulnerability, 0)
 	for _, query := range c.regexQueries {
 		for idx := range files {
 			// check file content line by line
-			lines := c.detector.SplitLines(&files[idx])
+			if !query.MultilineRegex {
+				lines := c.detector.SplitLines(&files[idx])
 
-			for lineNumber, line := range lines {
-				groups := query.Regex.FindStringSubmatch(line)
-				if len(groups) == 0 {
-					continue
+				for lineNumber, currentLine := range lines {
+					c.checkLineByLine(query, basePaths, files[idx], lineNumber, currentLine)
 				}
+				continue
+			}
 
-				if len(query.Entropies) > 0 {
-					for i := range query.Entropies {
-						entropy := query.Entropies[i]
+			// check file content as a whole
+			c.checkFileContent(query, basePaths, files[idx])
+		}
+	}
+	return c.vulnerabilities, nil
+}
 
-						// if matched group does not exist continue
-						if len(groups) <= entropy.Group {
-							continue
-						}
+func (c *Inspector) secretsDetectLine(query RegexQuery, file model.FileMetadata) int {
+	detectedLineNumber := -1
+	contentMatchRemoved := query.Regex.ReplaceAllString(file.OriginalData, "")
+	lines := c.detector.SplitLines(&file)
 
-						isMatch, entropyFloat := CheckEntropyInterval(
-							entropy,
-							groups[entropy.Group],
-						)
-						log.Debug().Msgf("match: %v :: %v", isMatch, fmt.Sprint(entropyFloat))
+	text := strings.ReplaceAll(contentMatchRemoved, "\r", "")
+	contentMatchRemovedLines := strings.Split(text, "\n")
+	for i := 0; i < len(lines); i++ {
+		if lines[i] != contentMatchRemovedLines[i] {
+			detectedLineNumber = i + 1
+			break
+		}
+	}
 
-						if isMatch {
-							vulnerabilities = c.addVulnerabilityAndReturn(
-								vulnerabilities,
-								basePaths,
-								files[idx],
-								query,
-								lineNumber,
-								groups[entropy.Group],
-							)
-						}
-					}
-				} else {
-					vulnerabilities = c.addVulnerabilityAndReturn(
-						vulnerabilities,
-						basePaths,
-						files[idx],
-						query,
-						lineNumber,
-						line,
-					)
-				}
+	return detectedLineNumber
+}
+
+func (c *Inspector) checkFileContent(query RegexQuery, basePaths []string, file model.FileMetadata) {
+	groups := query.Regex.FindStringSubmatch(file.OriginalData)
+
+	lineNumber := c.secretsDetectLine(query, file)
+
+	if len(query.Entropies) == 0 {
+		c.addVulnerability(
+			basePaths,
+			file,
+			query,
+			lineNumber,
+			groups[0],
+		)
+	}
+
+	if len(groups) > 0 {
+		for _, entropy := range query.Entropies {
+			// if matched group does not exist continue
+			if len(groups) <= entropy.Group {
+				return
+			}
+			isMatch, entropyFloat := CheckEntropyInterval(
+				entropy,
+				groups[entropy.Group],
+			)
+			log.Debug().Msgf("match: %v :: %v", isMatch, fmt.Sprint(entropyFloat))
+
+			if isMatch {
+				c.addVulnerability(
+					basePaths,
+					file,
+					query,
+					lineNumber,
+					groups[entropy.Group],
+				)
 			}
 		}
 	}
-	return vulnerabilities, nil
 }
 
-func (c *Inspector) addVulnerabilityAndReturn(vulnerabilities []model.Vulnerability, basePaths []string, file model.FileMetadata, query RegexQuery, lineNumber int, line string) []model.Vulnerability {
+func (c *Inspector) checkLineByLine(query RegexQuery, basePaths []string, file model.FileMetadata, lineNumber int, currentLine string) {
+	groups := query.Regex.FindStringSubmatch(currentLine)
+	if len(groups) == 0 {
+		return
+	}
+
+	if len(query.Entropies) == 0 {
+		c.addVulnerability(
+			basePaths,
+			file,
+			query,
+			lineNumber,
+			currentLine,
+		)
+	}
+
+	for i := range query.Entropies {
+		entropy := query.Entropies[i]
+
+		// if matched group does not exist continue
+		if len(groups) <= entropy.Group {
+			return
+		}
+
+		isMatch, entropyFloat := CheckEntropyInterval(
+			entropy,
+			groups[entropy.Group],
+		)
+		log.Debug().Msgf("match: %v :: %v", isMatch, fmt.Sprint(entropyFloat))
+
+		if isMatch {
+			c.addVulnerability(
+				basePaths,
+				file,
+				query,
+				lineNumber,
+				groups[entropy.Group],
+			)
+		}
+	}
+}
+
+func (c *Inspector) addVulnerability(basePaths []string, file model.FileMetadata, query RegexQuery, lineNumber int, line string) {
 	simID, err := similarity.ComputeSimilarityID(
 		basePaths,
 		file.FilePath,
@@ -195,9 +294,8 @@ func (c *Inspector) addVulnerabilityAndReturn(vulnerabilities []model.Vulnerabil
 			Description:   defaultSecretMetadata["descriptionText"],
 			DescriptionID: defaultSecretMetadata["descriptionID"],
 		}
-		vulnerabilities = append(vulnerabilities, vuln)
+		c.vulnerabilities = append(c.vulnerabilities, vuln)
 	}
-	return vulnerabilities
 }
 
 // CheckEntropyInterval - verifies if a given token's entropy is within expected bounds

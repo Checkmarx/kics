@@ -299,28 +299,13 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 	return excludeResultsMap
 }
 
-func createInspector(t engine.Tracker, querySource source.QueriesSource, excludeResults map[string]bool) (*engine.Inspector, error) {
-	excludeQueries := source.ExcludeQueries{
-		ByIDs:        flags.GetMultiStrFlag(flags.ExcludeQueriesFlag),
-		ByCategories: flags.GetMultiStrFlag(flags.ExcludeCategoriesFlag),
-		BySeverities: flags.GetMultiStrFlag(flags.ExcludeSeveritiesFlag),
-	}
-
-	includeQueries := source.IncludeQueries{
-		ByIDs: flags.GetMultiStrFlag(flags.IncludeQueriesFlag),
-	}
-
-	queryFilter := source.QueryInspectorParameters{
-		IncludeQueries: includeQueries,
-		ExcludeQueries: excludeQueries,
-		InputDataPath:  flags.GetStrFlag(flags.InputDataFlag),
-	}
-
+func createInspector(t engine.Tracker, querySource source.QueriesSource,
+	excludeResults map[string]bool, queryFilter *source.QueryInspectorParameters) (*engine.Inspector, error) {
 	inspector, err := engine.NewInspector(ctx,
 		querySource,
 		engine.DefaultVulnerabilityBuilder,
 		t,
-		&queryFilter,
+		queryFilter,
 		excludeResults,
 		flags.GetIntFlag(flags.QueryExecTimeoutFlag),
 	)
@@ -407,11 +392,33 @@ type startServiceParameters struct {
 	excludeResults map[string]bool
 }
 
+func createQueryFilter() *source.QueryInspectorParameters {
+	excludeQueries := source.ExcludeQueries{
+		ByIDs:        flags.GetMultiStrFlag(flags.ExcludeQueriesFlag),
+		ByCategories: flags.GetMultiStrFlag(flags.ExcludeCategoriesFlag),
+		BySeverities: flags.GetMultiStrFlag(flags.ExcludeSeveritiesFlag),
+	}
+
+	includeQueries := source.IncludeQueries{
+		ByIDs: flags.GetMultiStrFlag(flags.IncludeQueriesFlag),
+	}
+
+	queryFilter := source.QueryInspectorParameters{
+		IncludeQueries: includeQueries,
+		ExcludeQueries: excludeQueries,
+		InputDataPath:  flags.GetStrFlag(flags.InputDataFlag),
+	}
+
+	return &queryFilter
+}
+
 func createServiceAndStartScan(params *startServiceParameters) (failedQueries map[string]error, err error) {
+	queryFilter := createQueryFilter()
 	inspector, err := createInspector(
 		params.t,
 		params.querySource,
 		params.excludeResults,
+		queryFilter,
 	)
 	if err != nil {
 		log.Err(err)
@@ -422,6 +429,7 @@ func createServiceAndStartScan(params *startServiceParameters) (failedQueries ma
 		ctx,
 		params.excludeResults,
 		params.t,
+		queryFilter,
 	)
 	if err != nil {
 		log.Err(err)
