@@ -114,60 +114,90 @@ func (c *Inspector) Inspect(ctx context.Context, basePaths []string, files model
 			lines := c.detector.SplitLines(&files[idx])
 
 			for lineNumber, line := range lines {
-				matches := query.Regex.FindAllString(line, -1)
-				if len(matches) == 0 {
+				groups := query.Regex.FindStringSubmatch(line)
+				if len(groups) == 0 {
 					continue
 				}
 
-				// TODO: add entropy calculation for other types
-				for i := range query.Entropies {
-					entropy := query.Entropies[i]
-					groups := query.Regex.FindStringSubmatch(line)
-					// if matched group does not exist continue
-					if len(groups) <= entropy.Group {
-						continue
-					}
+				if len(query.Entropies) > 0 {
+					for i := range query.Entropies {
+						entropy := query.Entropies[i]
 
-					isMatch, entropyFloat := CheckEntropyInterval(entropy, groups[entropy.Group])
-					log.Debug().Msg(fmt.Sprint(entropyFloat))
+						// if matched group does not exist continue
+						if len(groups) <= entropy.Group {
+							continue
+						}
 
-					if !isMatch {
-						continue
-					}
-				}
-				simID, err := similarity.ComputeSimilarityID(basePaths, files[idx].FilePath, query.ID, fmt.Sprintf("%d", lineNumber), "")
-				if err != nil {
-					log.Error().Msg("unable to compute similarity ID")
-				}
+						isMatch, entropyFloat := CheckEntropyInterval(
+							entropy,
+							groups[entropy.Group],
+						)
+						log.Debug().Msgf("match: %v :: %v", isMatch, fmt.Sprint(entropyFloat))
 
-				if _, ok := c.excludeResults[ptrStringToString(simID)]; !ok {
-					linesVuln := model.VulnerabilityLines{
-						Line:      -1,
-						VulnLines: []model.CodeLine{},
+						if isMatch {
+							vulnerabilities = c.addVulnerabilityAndReturn(
+								vulnerabilities,
+								basePaths,
+								files[idx],
+								query,
+								lineNumber,
+								groups[entropy.Group],
+							)
+						}
 					}
-					linesVuln = c.detector.GetAdjecent(&files[idx], lineNumber+1)
-					vuln := model.Vulnerability{
-						QueryID:       query.ID,
-						QueryName:     defaultSecretMetadata["queryName"] + " - " + query.Name,
-						SimilarityID:  ptrStringToString(simID),
-						FileID:        files[idx].ID,
-						FileName:      files[idx].FilePath,
-						Line:          linesVuln.Line,
-						VulnLines:     linesVuln.VulnLines,
-						IssueType:     "RedundantAttribute",
-						Platform:      string(model.KindCOMMON),
-						Severity:      model.SeverityHigh,
-						QueryURI:      defaultSecretMetadata["descriptionUrl"],
-						Category:      defaultSecretMetadata["category"],
-						Description:   defaultSecretMetadata["descriptionText"],
-						DescriptionID: defaultSecretMetadata["descriptionID"],
-					}
-					vulnerabilities = append(vulnerabilities, vuln)
+				} else {
+					vulnerabilities = c.addVulnerabilityAndReturn(
+						vulnerabilities,
+						basePaths,
+						files[idx],
+						query,
+						lineNumber,
+						line,
+					)
 				}
 			}
 		}
 	}
 	return vulnerabilities, nil
+}
+
+func (c *Inspector) addVulnerabilityAndReturn(vulnerabilities []model.Vulnerability, basePaths []string, file model.FileMetadata, query RegexQuery, lineNumber int, line string) []model.Vulnerability {
+	simID, err := similarity.ComputeSimilarityID(
+		basePaths,
+		file.FilePath,
+		query.ID,
+		fmt.Sprintf("%d", lineNumber),
+		"",
+	)
+	if err != nil {
+		log.Error().Msg("unable to compute similarity ID")
+	}
+
+	if _, ok := c.excludeResults[ptrStringToString(simID)]; !ok {
+		linesVuln := model.VulnerabilityLines{
+			Line:      -1,
+			VulnLines: []model.CodeLine{},
+		}
+		linesVuln = c.detector.GetAdjecent(&file, lineNumber+1)
+		vuln := model.Vulnerability{
+			QueryID:       query.ID,
+			QueryName:     defaultSecretMetadata["queryName"] + " - " + query.Name,
+			SimilarityID:  ptrStringToString(simID),
+			FileID:        file.ID,
+			FileName:      file.FilePath,
+			Line:          linesVuln.Line,
+			VulnLines:     linesVuln.VulnLines,
+			IssueType:     "RedundantAttribute",
+			Platform:      string(model.KindCOMMON),
+			Severity:      model.SeverityHigh,
+			QueryURI:      defaultSecretMetadata["descriptionUrl"],
+			Category:      defaultSecretMetadata["category"],
+			Description:   defaultSecretMetadata["descriptionText"],
+			DescriptionID: defaultSecretMetadata["descriptionID"],
+		}
+		vulnerabilities = append(vulnerabilities, vuln)
+	}
+	return vulnerabilities
 }
 
 // CheckEntropyInterval - verifies if a given token's entropy is within expected bounds
