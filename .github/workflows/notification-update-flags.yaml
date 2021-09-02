@@ -23,5 +23,6 @@ jobs:
           for item in internal/console/assets/*-flags.json; do cat $item > $item-old; done;
           printf -v curr "'%s'," internal/console/assets/*-flags.json-curr
           printf -v old "'%s'," internal/console/assets/*-flags.json-old
+          pip3 install -r .github/scripts/watchers/requirements.txt
           python3 -u .github/scripts/watchers/change-flags-email.py \
             -n $(echo "${curr%,}") -o $(echo "${old%,}")
