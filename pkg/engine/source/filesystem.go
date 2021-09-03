@@ -10,6 +10,7 @@ import (
 
 	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/getsentry/sentry-go"
 	"github.com/pkg/errors"
@@ -104,6 +105,18 @@ func GetPathToCustomLibrary(platform, libraryPathFlag string) string {
 	var libraryFilePath string
 
 	if !isDefaultLibrary(libraryPathFlag) {
+		extractedLibrariesPath, errExtractLibraries := provider.GetSources([]string{libraryPathFlag})
+		if errExtractLibraries != nil {
+			log.Error().Msgf("Failed to analize path %s: %s", libraryPathFlag, errExtractLibraries)
+			return ""
+		}
+		if len(extractedLibrariesPath.Path) != 1 {
+			log.Error().Msgf("KICS can not find valid custom libraries on %s", libraryPathFlag)
+			return ""
+		}
+		libraryPathFlag = extractedLibrariesPath.Path[0]
+		log.Debug().Msgf("Trying to load custom libraries from %s", libraryPathFlag)
+
 		library := getLibraryInDir(platform, libraryPathFlag)
 		// found a library named according to the platform
 		if library != "" {
@@ -114,7 +127,6 @@ func GetPathToCustomLibrary(platform, libraryPathFlag string) string {
 	} else {
 		libraryFilePath = kicsDefault
 	}
-
 	return libraryFilePath
 }
 
@@ -122,6 +134,10 @@ func GetPathToCustomLibrary(platform, libraryPathFlag string) string {
 func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) {
 	library := GetPathToCustomLibrary(platform, s.Library)
 	content := ""
+
+	if library == "" {
+		return "", errors.New("unable to get libraries path")
+	}
 
 	if library != kicsDefault {
 		byteContent, err := os.ReadFile(library)
