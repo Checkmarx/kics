@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "EFS Volumes Not Encrypted",
+    "severity": "",
+    "line": 5,
+    "fileName": "positive.tf"
+  }
+]

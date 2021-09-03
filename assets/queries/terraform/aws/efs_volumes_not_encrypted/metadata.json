@@ -1,0 +1,11 @@
+{
+  "id": "69df0628-1686-4ad9-87e5-00a5b45f4c71",
+  "queryName": "EFS Volumes Not Encrypted",
+  "severity": "",
+  "category": "",
+  "descriptionText": "EFS volumes should have encryption in transit enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#transit_encryption",
+  "platform": "Terraform",
+  "descriptionID": "ef15de4e",
+  "cloudProvider": "aws"
+}
