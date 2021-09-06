@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_db_cluster_snapshot.storage_encrypted' is defined and not null",
 		"keyActualValue": "aws_db_cluster_snapshot.storage_encrypted' is undefined or null",
-		"searchLine": ["storage_encrypted"],
+		"searchLine": common_lib.build_search_line(["resource", "aws_db_cluster_snapshot", name], []),
 	}
 }
 
@@ -24,9 +24,9 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_db_cluster_snapshot[%s].storage_encrypted", [name]),
-		"issueType": "MissingAttribute",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": "aws_db_cluster_snapshot.storage_encrypted' is defined and not null",
 		"keyActualValue": "aws_db_cluster_snapshot.storage_encrypted' is undefined or null",
-		"searchLine": ["storage_encrypted"],
+		"searchLine": common_lib.build_search_line(["resource", "aws_db_cluster_snapshot", name, "storage_encrypted"], []),
 	}
 }
