@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "EBS default not encrypted",
+    "severity": "",
+    "line": 2,
+    "fileName": "positive.tf"
+  }
+]

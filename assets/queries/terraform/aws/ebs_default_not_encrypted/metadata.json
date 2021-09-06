@@ -1,0 +1,11 @@
+{
+  "id": "2be0d716-1ed5-4258-a934-fab37bd9848f",
+  "queryName": "EBS default not encrypted",
+  "severity": "",
+  "category": "",
+  "descriptionText": "EBS default encryption should be enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ebs_encryption_by_default#enabled",
+  "platform": "Terraform",
+  "descriptionID": "36f5943e",
+  "cloudProvider": "aws"
+}
