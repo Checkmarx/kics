@@ -9,6 +9,7 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/pkg/detector"
 	"github.com/Checkmarx/kics/pkg/detector/docker"
 	"github.com/Checkmarx/kics/pkg/detector/helm"
@@ -31,20 +32,10 @@ const (
 )
 
 var (
-	defaultSecretMetadata = map[string]string{
-		"queryName":       "Passwords And Secrets",
-		"severity":        "HIGH",
-		"category":        "Secret Management",
-		"descriptionText": "Query to find passwords and secrets in infrastructure code.",
-		"descriptionUrl":  "https://kics.io/",
-		"platform":        "Common",
-		"descriptionID":   "d69d8a89",
-		"cloudProvider":   "common",
-	}
+	SecretsQueryMetadata map[string]string
+	//go:embed regex_queries.json
+	regexQueriesJSON string
 )
-
-//go:embed regex_queries.json
-var regexQueriesJSON string
 
 type Inspector struct {
 	ctx             context.Context
@@ -88,6 +79,8 @@ func NewInspector(
 		Add(helm.DetectKindLine{}, model.KindHELM).
 		Add(docker.DetectKindLine{}, model.KindDOCKER)
 
+	loadQueryMetadata()
+
 	regexQueries, err := compileRegexQueries(queryFilter)
 	if err != nil {
 		return nil, err
@@ -101,6 +94,13 @@ func NewInspector(
 		regexQueries:    regexQueries,
 		vulnerabilities: make([]model.Vulnerability, 0),
 	}, nil
+}
+
+func loadQueryMetadata() {
+	err := json.Unmarshal([]byte(assets.EmbeddedSecretsQueryMetadataJSON), &SecretsQueryMetadata)
+	if err != nil {
+		log.Fatal().Err(err).Msg("Failed to unmarshal default secret metadata")
+	}
 }
 
 func compileRegexQueries(queryFilter *source.QueryInspectorParameters) ([]RegexQuery, error) {
@@ -120,7 +120,7 @@ func compileRegexQueries(queryFilter *source.QueryInspectorParameters) ([]RegexQ
 		} else {
 			if isValueInArray(query.ID, queryFilter.ExcludeQueries.ByIDs) {
 				log.Debug().
-					Msgf("Excluding query ID: %s category: %s severity: %s", query.ID, defaultSecretMetadata["category"], defaultSecretMetadata["severity"])
+					Msgf("Excluding query ID: %s category: %s severity: %s", query.ID, SecretsQueryMetadata["category"], SecretsQueryMetadata["severity"])
 				continue
 			}
 			regexQueries = append(regexQueries, query)
@@ -161,10 +161,15 @@ func (c *Inspector) Inspect(ctx context.Context, basePaths []string, files model
 	return c.vulnerabilities, nil
 }
 
-func (c *Inspector) secretsDetectLine(query RegexQuery, file model.FileMetadata) int {
+func (c *Inspector) secretsDetectLine(query RegexQuery, file model.FileMetadata, groups []string) int {
 	detectedLineNumber := -1
-	contentMatchRemoved := query.Regex.ReplaceAllString(file.OriginalData, "")
 	lines := c.detector.SplitLines(&file)
+
+	contentMatchRemoved := query.Regex.ReplaceAllString(file.OriginalData, "")
+
+	if len(query.Entropies) > 0 {
+		contentMatchRemoved = strings.ReplaceAll(groups[query.Entropies[0].Group], file.OriginalData, "")
+	}
 
 	text := strings.ReplaceAll(contentMatchRemoved, "\r", "")
 	contentMatchRemovedLines := strings.Split(text, "\n")
@@ -180,8 +185,11 @@ func (c *Inspector) secretsDetectLine(query RegexQuery, file model.FileMetadata)
 
 func (c *Inspector) checkFileContent(query RegexQuery, basePaths []string, file model.FileMetadata) {
 	groups := query.Regex.FindStringSubmatch(file.OriginalData)
+	if len(groups) == 0 {
+		return
+	}
 
-	lineNumber := c.secretsDetectLine(query, file)
+	lineNumber := c.secretsDetectLine(query, file, groups)
 
 	if len(query.Entropies) == 0 {
 		c.addVulnerability(
@@ -280,7 +288,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file model.FileMetadata
 		linesVuln = c.detector.GetAdjecent(&file, lineNumber+1)
 		vuln := model.Vulnerability{
 			QueryID:       query.ID,
-			QueryName:     defaultSecretMetadata["queryName"] + " - " + query.Name,
+			QueryName:     SecretsQueryMetadata["queryName"] + " - " + query.Name,
 			SimilarityID:  ptrStringToString(simID),
 			FileID:        file.ID,
 			FileName:      file.FilePath,
@@ -289,10 +297,10 @@ func (c *Inspector) addVulnerability(basePaths []string, file model.FileMetadata
 			IssueType:     "RedundantAttribute",
 			Platform:      string(model.KindCOMMON),
 			Severity:      model.SeverityHigh,
-			QueryURI:      defaultSecretMetadata["descriptionUrl"],
-			Category:      defaultSecretMetadata["category"],
-			Description:   defaultSecretMetadata["descriptionText"],
-			DescriptionID: defaultSecretMetadata["descriptionID"],
+			QueryURI:      SecretsQueryMetadata["descriptionUrl"],
+			Category:      SecretsQueryMetadata["category"],
+			Description:   SecretsQueryMetadata["descriptionText"],
+			DescriptionID: SecretsQueryMetadata["descriptionID"],
 		}
 		c.vulnerabilities = append(c.vulnerabilities, vuln)
 	}
