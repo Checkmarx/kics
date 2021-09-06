@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "RDS Database Cluster not Encrypted",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive.tf"
+  }
+]
