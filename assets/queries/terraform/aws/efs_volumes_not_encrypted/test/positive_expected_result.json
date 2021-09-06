@@ -4,5 +4,11 @@
     "severity": "",
     "line": 5,
     "fileName": "positive.tf"
+  },
+  {
+    "queryName": "EFS Volumes Not Encrypted",
+    "severity": "",
+    "line": 8,
+    "fileName": "positive2.tf"
   }
 ]

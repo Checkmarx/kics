@@ -12,6 +12,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration' is defined and not null",
 		"keyActualValue": "aws_ecs_task_definition.volume.efs_volume_configuration' is undefined or null",
+		"searchLine": ["efs_volume_configuration"],
 	}
 }
 
@@ -26,5 +27,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption' is defined and not null",
 		"keyActualValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption' is undefined or null",
+		"searchLine": ["efs_volume_configuration"],
 	}
 }
