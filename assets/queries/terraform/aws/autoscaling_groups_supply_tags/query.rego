@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_autoscaling_group[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'tags' or 'tag' are defined and not null",
-		"keyActualValue": "'tags' or 'tag' are undefined or null",
+		"keyActualValue": "'tags' and 'tag' are undefined or null",
 		"searchLine": common_lib.build_search_line(["resource", "aws_autoscaling_group", name], []),
 	}
 }
