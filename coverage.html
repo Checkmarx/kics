@@ -75,7 +75,7 @@
 				
 				<option value="file9">github.com/Checkmarx/kics/internal/console/printer/printer.go (55.6%)</option>
 				
-				<option value="file10">github.com/Checkmarx/kics/internal/console/scan.go (75.6%)</option>
+				<option value="file10">github.com/Checkmarx/kics/internal/console/scan.go (74.8%)</option>
 				
 				<option value="file11">github.com/Checkmarx/kics/internal/console/version.go (100.0%)</option>
 				
@@ -125,7 +125,7 @@
 				
 				<option value="file34">github.com/Checkmarx/kics/pkg/engine/similarity_id.go (94.4%)</option>
 				
-				<option value="file35">github.com/Checkmarx/kics/pkg/engine/source/filesystem.go (67.4%)</option>
+				<option value="file35">github.com/Checkmarx/kics/pkg/engine/source/filesystem.go (67.1%)</option>
 				
 				<option value="file36">github.com/Checkmarx/kics/pkg/engine/source/source.go (62.2%)</option>
 				
@@ -1436,6 +1436,7 @@ func NewScanCmd() *cobra.Command <span class="cov4" title="12">{
 
 func run(cmd *cobra.Command) error <span class="cov3" title="7">{
         changedDefaultQueryPath := cmd.Flags().Lookup(flags.QueriesPath).Changed
+        changedDefaultLibrariesPath := cmd.Flags().Lookup(flags.LibrariesPath).Changed
         if err := consoleHelpers.InitShouldIgnoreArg(flags.GetStrFlag(flags.IgnoreOnExitFlag)); err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
@@ -1458,7 +1459,7 @@ func run(cmd *cobra.Command) error <span class="cov3" title="7">{
                 }</span>
         }
         <span class="cov3" title="7">gracefulShutdown()
-        return scan(changedDefaultQueryPath)</span>
+        return scan(changedDefaultQueryPath, changedDefaultLibrariesPath)</span>
 }
 
 func preRun(cmd *cobra.Command) error <span class="cov4" title="8">{
@@ -1597,8 +1598,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="349">{
-                if val == true </span><span class="cov9" title="348">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="354">{
+                if val == true </span><span class="cov9" title="353">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -1786,17 +1787,25 @@ func createServiceAndStartScan(params *startServiceParameters) (*engine.Inspecto
         <span class="cov3" title="7">return inspector, nil</span>
 }
 
+func resolvePath(flagName string) (string, error) <span class="cov3" title="7">{
+        extractedPath, errExtractPath := provider.GetSources([]string{flags.GetStrFlag(flagName)})
+        if errExtractPath != nil </span><span class="cov0" title="0">{
+                return "", errExtractPath
+        }</span>
+        <span class="cov3" title="7">if len(extractedPath.Path) != 1 </span><span class="cov0" title="0">{
+                return "", fmt.Errorf("could not find a valid path (--%s) on %s", flagName, flags.GetStrFlag(flagName))
+        }</span>
+        <span class="cov3" title="7">log.Debug().Msgf("Trying to load path (--%s) from %s", flagName, flags.GetStrFlag(flagName))
+        return extractedPath.Path[0], nil</span>
+}
+
 func getQueryPath(changedDefaultQueryPath bool) error <span class="cov3" title="7">{
         if changedDefaultQueryPath </span><span class="cov3" title="7">{
-                extractedQueriesPath, errExtractQueries := provider.GetSources([]string{flags.GetStrFlag(flags.QueriesPath)})
+                extractedQueriesPath, errExtractQueries := resolvePath(flags.QueriesPath)
                 if errExtractQueries != nil </span><span class="cov0" title="0">{
                         return errExtractQueries
                 }</span>
-                <span class="cov3" title="7">if len(extractedQueriesPath.Path) != 1 </span><span class="cov0" title="0">{
-                        return fmt.Errorf("could not find a valid queries on %s", flags.GetStrFlag(flags.QueriesPath))
-                }</span>
-                <span class="cov3" title="7">log.Debug().Msgf("Trying to load queries from %s", flags.GetStrFlag(flags.QueriesPath))
-                flags.SetStrFlag(flags.QueriesPath, extractedQueriesPath.Path[0])</span>
+                <span class="cov3" title="7">flags.SetStrFlag(flags.QueriesPath, extractedQueriesPath)</span>
         } else<span class="cov0" title="0"> {
                 log.Debug().Msgf("Looking for queries in executable path and in current work directory")
                 defaultQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(flags.GetStrFlag(flags.QueriesPath))
@@ -1808,7 +1817,31 @@ func getQueryPath(changedDefaultQueryPath bool) error <span class="cov3" title="
         <span class="cov3" title="7">return nil</span>
 }
 
-func scan(changedDefaultQueryPath bool) error <span class="cov3" title="7">{
+func getLibraryPath(changedDefaultLibrariesPath bool) error <span class="cov3" title="7">{
+        if changedDefaultLibrariesPath </span><span class="cov0" title="0">{
+                extractedLibrariesPath, errExtractLibraries := resolvePath(flags.LibrariesPath)
+                if errExtractLibraries != nil </span><span class="cov0" title="0">{
+                        return errExtractLibraries
+                }</span>
+                <span class="cov0" title="0">flags.SetStrFlag(flags.LibrariesPath, extractedLibrariesPath)</span>
+        }
+        <span class="cov3" title="7">return nil</span>
+}
+
+func preparePaths(changedDefaultQueryPath, changedDefaultLibrariesPath bool) error <span class="cov3" title="7">{
+        var err error
+        err = getQueryPath(changedDefaultQueryPath)
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov3" title="7">err = getLibraryPath(changedDefaultLibrariesPath)
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov3" title="7">return nil</span>
+}
+
+func scan(changedDefaultQueryPath, changedDefaultLibrariesPath bool) error <span class="cov3" title="7">{
         log.Debug().Msg("console.scan()")
         for _, warn := range warnings </span><span class="cov6" title="30">{
                 log.Warn().Msgf(warn)
@@ -1836,7 +1869,7 @@ func scan(changedDefaultQueryPath bool) error <span class="cov3" title="7">{
                 return err
         }</span>
 
-        <span class="cov3" title="7">err = getQueryPath(changedDefaultQueryPath)
+        <span class="cov3" title="7">err = preparePaths(changedDefaultQueryPath, changedDefaultLibrariesPath)
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
@@ -2408,13 +2441,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="42">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="35">total += v
+                <span class="cov9" title="42">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2439,7 +2472,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2787,7 +2820,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="10">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov7" title="17">{
-        for _, a := range s </span><span class="cov8" title="29">{
+        for _, a := range s </span><span class="cov8" title="39">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -4489,7 +4522,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5689,19 +5722,17 @@ func isDefaultLibrary(libraryPath string) bool <span class="cov5" title="7">{
 
 // GetPathToCustomLibrary - returns the libraries path for a given platform
 func GetPathToCustomLibrary(platform, libraryPathFlag string) string <span class="cov5" title="7">{
-        var libraryFilePath string
+        libraryFilePath := kicsDefault
 
         if !isDefaultLibrary(libraryPathFlag) </span><span class="cov0" title="0">{
+                log.Debug().Msgf("Trying to load custom libraries from %s", libraryPathFlag)
+
                 library := getLibraryInDir(platform, libraryPathFlag)
                 // found a library named according to the platform
                 if library != "" </span><span class="cov0" title="0">{
                         libraryFilePath = library
-                }</span> else<span class="cov0" title="0"> {
-                        libraryFilePath = kicsDefault
                 }</span>
-        } else<span class="cov5" title="7"> {
-                libraryFilePath = kicsDefault
-        }</span>
+        }
 
         <span class="cov5" title="7">return libraryFilePath</span>
 }
@@ -5711,7 +5742,11 @@ func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) <spa
         library := GetPathToCustomLibrary(platform, s.Library)
         content := ""
 
-        if library != kicsDefault </span><span class="cov0" title="0">{
+        if library == "" </span><span class="cov0" title="0">{
+                return "", errors.New("unable to get libraries path")
+        }</span>
+
+        <span class="cov5" title="7">if library != kicsDefault </span><span class="cov0" title="0">{
                 byteContent, err := os.ReadFile(library)
                 if err != nil </span><span class="cov0" title="0">{
                         return "", err
