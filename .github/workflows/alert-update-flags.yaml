@@ -1,27 +1,33 @@
-name: notification-update-flags
+name: alert-update-flags
 
 on:
   workflow_dispatch:
-  # push:
-  #   branches: [master]
-  #   paths:
-  #     - "internal/console/assets/*-flags.json"
+  push:
+    branches: [master]
+    paths:
+      - "internal/console/assets/*-flags.json"
 
 jobs:
   notification-update-flags:
     name: Send email with flag changes
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout project
         uses: actions/checkout@v2
         with:
           fetch-depth: 2
       - name: Execute diff and send email
+        env:
+          AWS_REGION: ${{ secrets.EMAIL_AWS_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.EMAIL_AWS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.EMAIL_AWS_SECRET_KEY }}
         run: |
           for item in internal/console/assets/*-flags.json; do cat $item > $item-curr; done;
           git checkout HEAD~1
           for item in internal/console/assets/*-flags.json; do cat $item > $item-old; done;
           printf -v curr "'%s'," internal/console/assets/*-flags.json-curr
           printf -v old "'%s'," internal/console/assets/*-flags.json-old
+          pip3 install -r .github/scripts/watchers/requirements.txt
           python3 -u .github/scripts/watchers/change-flags-email.py \
             -n $(echo "${curr%,}") -o $(echo "${old%,}")
