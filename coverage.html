@@ -117,7 +117,7 @@
 				
 				<option value="file30">github.com/Checkmarx/kics/pkg/detector/search_line_detector.go (97.4%)</option>
 				
-				<option value="file31">github.com/Checkmarx/kics/pkg/engine/inspector.go (77.6%)</option>
+				<option value="file31">github.com/Checkmarx/kics/pkg/engine/inspector.go (78.1%)</option>
 				
 				<option value="file32">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (89.0%)</option>
 				
@@ -169,7 +169,7 @@
 				
 				<option value="file56">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (71.4%)</option>
 				
-				<option value="file57">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (90.9%)</option>
+				<option value="file57">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
 				<option value="file58">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -1597,8 +1597,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="350">{
-                if val == true </span><span class="cov9" title="349">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="331">{
+                if val == true </span><span class="cov9" title="330">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2408,13 +2408,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="42">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="42">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2439,7 +2439,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4803,17 +4803,16 @@ func NewInspector(
         if err != nil </span><span class="cov0" title="0">{
                 sentry.CaptureException(err)
                 log.Err(err).
-                        Msgf("Inspector failed to get general query, query=%s", "common")
+                        Msgf("Inspector failed to get library for %s platform", "common")
                 return nil, errors.Wrap(err, "failed to get library")
         }</span>
-        <span class="cov2" title="4">opaQueries := make([]*preparedQuery, 0, len(queries))
+        <span class="cov2" title="4">platformLibraries := getPlatformLibraries(queriesSource, queries)
+        opaQueries := make([]*preparedQuery, 0, len(queries))
         for _, metadata := range queries </span><span class="cov10" title="3658">{
-                platformGeneralQuery, err := queriesSource.GetQueryLibrary(metadata.Platform)
-                if err != nil </span><span class="cov0" title="0">{
-                        sentry.CaptureException(err)
+                platformGeneralQuery, ok := platformLibraries[metadata.Platform]
+                if !ok </span><span class="cov0" title="0">{
                         log.Err(err).
                                 Msgf("Inspector failed to get generic query, query=%s", metadata.Query)
-
                         continue</span>
                 }
 
@@ -4884,6 +4883,25 @@ func NewInspector(
                 detector:         lineDetctor,
                 queryExecTimeout: queryExecTimeout,
         }, nil</span>
+}
+
+func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.QueryMetadata) map[string]string <span class="cov2" title="4">{
+        supportedPlatforms := make(map[string]string)
+        for _, query := range queries </span><span class="cov10" title="3658">{
+                supportedPlatforms[query.Platform] = ""
+        }</span>
+        <span class="cov2" title="4">platformLibraries := make(map[string]string)
+        for platform := range supportedPlatforms </span><span class="cov4" title="25">{
+                platformLibrary, errLoadingPlatformLib := queriesSource.GetQueryLibrary(platform)
+                if errLoadingPlatformLib != nil </span><span class="cov0" title="0">{
+                        sentry.CaptureException(errLoadingPlatformLib)
+                        log.Err(errLoadingPlatformLib).
+                                Msgf("Inspector failed to get library for %s platform", platform)
+                        continue</span>
+                }
+                <span class="cov4" title="25">platformLibraries[platform] = platformLibrary</span>
+        }
+        <span class="cov2" title="4">return platformLibraries</span>
 }
 
 func sumAllAggregatedQueries(opaQueries []*preparedQuery) int <span class="cov2" title="4">{
@@ -9229,7 +9247,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov1" title="1">{
+                close: func() error </span><span class="cov0" title="0">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -9238,7 +9256,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov1" title="1">{
+        defer func() </span><span class="cov0" title="0">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
@@ -9250,14 +9268,14 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov1" title="1">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov1" title="1">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file58" style="display: none">package progress
