@@ -2,6 +2,7 @@
   {
     "queryName": "EBS Default Encryption Disabled",
     "severity": "HIGH",
-    "line": 2
+    "line": 2,
+    "fileName": "positive1.tf"
   }
 ]
