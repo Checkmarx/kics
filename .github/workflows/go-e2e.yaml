@@ -62,7 +62,7 @@ jobs:
       - name: Generate E2E Report
         run: |
           CWD=$(pwd)
-          cd .github\scripts\report
+          cd .github/scripts/report
           go mod tidy
           go build
           ./e2e-report -test-path $CWD -test-name results.json -report-path $CWD -report-name e2e-report.html
