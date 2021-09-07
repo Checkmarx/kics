@@ -15,3 +15,9 @@ resource "google_container_cluster" "primary" {
     update = "40m"
   }
 }
+
+resource "google_secret_manager_secret_version" "secret-version-basic" {
+  secret = var.my_google_secret
+
+  secret_data = "secret-data"
+}

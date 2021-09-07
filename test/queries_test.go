@@ -30,7 +30,7 @@ func BenchmarkQueries(b *testing.B) {
 	for _, entry := range queries {
 		b.ResetTimer()
 		for n := 0; n < b.N; n++ {
-			benchmarkPositiveandNegativeQueries(b, entry)
+			benchmarkPositiveAndNegativeQueries(b, entry)
 		}
 	}
 }
@@ -44,7 +44,7 @@ func TestQueries(t *testing.T) {
 
 	queries := loadQueries(t)
 	for _, entry := range queries {
-		testPositiveandNegativeQueries(t, entry)
+		testPositiveAndNegativeQueries(t, entry)
 	}
 }
 
@@ -95,7 +95,7 @@ func TestUniqueQueryIDs(t *testing.T) {
 	}
 }
 
-func testPositiveandNegativeQueries(t *testing.T, entry queryEntry) {
+func testPositiveAndNegativeQueries(t *testing.T, entry queryEntry) {
 	name := strings.TrimPrefix(entry.dir, BaseTestsScanPath)
 	t.Run(name+"_positive", func(t *testing.T) {
 		testQuery(t, entry, entry.PositiveFiles(t), getExpectedVulnerabilities(t, entry))
@@ -105,7 +105,7 @@ func testPositiveandNegativeQueries(t *testing.T, entry queryEntry) {
 	})
 }
 
-func benchmarkPositiveandNegativeQueries(b *testing.B, entry queryEntry) {
+func benchmarkPositiveAndNegativeQueries(b *testing.B, entry queryEntry) {
 	name := strings.TrimPrefix(entry.dir, BaseTestsScanPath)
 	b.Run(name+"_positive", func(b *testing.B) {
 		testQuery(b, entry, entry.PositiveFiles(b), getExpectedVulnerabilities(b, entry))
@@ -195,7 +195,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 
 	require.Nil(tb, err)
 	validateIssueTypes(tb, vulnerabilities)
-	requireEqualVulnerabilities(tb, expectedVulnerabilities, vulnerabilities, entry)
+	requireEqualVulnerabilities(tb, expectedVulnerabilities, vulnerabilities, entry.dir)
 }
 
 func vulnerabilityCompare(vulnerabilitySlice []model.Vulnerability, i, j int) bool {
@@ -219,7 +219,7 @@ func validateIssueTypes(tb testing.TB, vulnerabilies []model.Vulnerability) {
 	}
 }
 
-func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnerability, entry queryEntry) {
+func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnerability, dir string) {
 	sort.Slice(expected, func(i, j int) bool {
 		return vulnerabilityCompare(expected, i, j)
 	})
@@ -237,13 +237,12 @@ func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnera
 		expectedItem := expected[i]
 		actualItem := actual[i]
 		if expectedItem.FileName != "" {
-			require.Equal(tb, expectedItem.FileName, filepath.Base(actualItem.FileName), "Incorrect file name for query %s", entry.dir)
+			require.Equal(tb, expectedItem.FileName, filepath.Base(actualItem.FileName), "Incorrect file name for query %s", dir)
 		}
-		require.Equal(tb, scanID, actualItem.ScanID)
 		require.Equal(tb, expectedItem.Line, actualItem.Line, "Not corrected detected line for query %s \n%v\n---\n%v",
-			entry.dir, filterFileNameAndLine(expected), filterFileNameAndLine(actual))
-		require.Equal(tb, expectedItem.Severity, actualItem.Severity, "Invalid severity for query %s", entry.dir)
-		require.Equal(tb, expectedItem.QueryName, actualItem.QueryName, "Invalid query name for query %s", entry.dir)
+			dir, filterFileNameAndLine(expected), filterFileNameAndLine(actual))
+		require.Equal(tb, expectedItem.Severity, actualItem.Severity, "Invalid severity for query %s", dir)
+		require.Equal(tb, expectedItem.QueryName, actualItem.QueryName, "Invalid query name for query %s :: %s", dir, actualItem.FileName)
 		if expectedItem.Value != nil {
 			require.NotNil(tb, actualItem.Value)
 			require.Equal(tb, *expectedItem.Value, *actualItem.Value)

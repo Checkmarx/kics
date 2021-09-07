@@ -1,25 +1,18 @@
 [
   {
-    "id": "047261f4-7a7e-4374-a76f-192070f7e85e",
+    "id": "487f4be7-3fd9-4506-a07a-eae252180c08",
     "name": "Generic Password",
-    "regex": "['|\"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\\s*[:|=]\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{8,})['|\"]?",
-    "entropies": [
-      {
-        "group": 1,
-        "min": 3.0,
-        "max": 4.9
-      }
-    ]
+    "regex": "['|\"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\\s*[:|=]\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|\"]?"
   },
   {
     "id": "3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99",
     "name": "Generic Secret",
-    "regex": "['|\"]?[s|S][e|E][c|C][r|R][e|E][t|T]['|\"]?\\s*(:|=)\\s*['|\"]?(.{10,})['|\"]?",
+    "regex": "['|\"]?[s|S][e|E][c|C][r|R][e|E][t|T]['|\"]?\\s*(:|=)\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{10,})['|\"]?",
     "entropies": [
       {
-        "group": 1,
-        "min": 3.0,
-        "max": 4.9
+        "group": 2,
+        "min": 2.8,
+        "max": 8
       }
     ]
   },
@@ -27,7 +20,9 @@
     "id": "51b5b840-cd0c-4556-98a7-fe5f4def80cf",
     "name": "Asymmetric private key",
     "regex": "-----BEGIN ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----(\\s*([A-Za-z0-9+\\/=\\n\\r]+))+-----END ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----",
-    "multiline": true,
+    "multiline": {
+      "detectLineGroup": 5
+    },
     "entropies": [
       {
         "group": 5,
@@ -35,6 +30,36 @@
         "max": 12
       }
     ]
+  },
+  {
+    "id": "c4d3b58a-e6d4-450f-9340-04f1e702eaae",
+    "name": "Password in URL",
+    "regex": "[a-zA-Z]{3,10}://[^/\\s:@]*?:[^/\\s:@]*?@[^/\\s:@]*"
+  },
+  {
+    "id": "76c0bcde-903d-456e-ac13-e58c34987852",
+    "name": "AWS Access Key",
+    "regex": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}"
+  },
+  {
+    "id": "83ab47ff-381d-48cd-bac5-fb32222f54af",
+    "name": "AWS Secret Key",
+    "regex": "(?i)AWS_SECRET(_ACCESS)?(_KEY)?\\s*[:|=]\\s*['\"]?([a-zA-Z0-9/]{40})[\"']?",
+    "entropies": [
+      {
+        "group": 3,
+        "min": 4.8,
+        "max": 7
+      }
+    ]
+  },
+  {
+    "id": "4b2b5fd3-364d-4093-bac2-17391b2a5297",
+    "name": "K8s Environment Variable Password",
+    "regex": "apiVersion((.*)\\s*)*env:((.*)\\s*)*name:\\s*\\w+[P|p][A|a][S|s][S|s]([W|w][O|o][R|r][D|d])?\\w*\\s*(value):\\s*([\"|'].*[\"|'])",
+    "multiline": {
+      "detectLineGroup": 7
+    }
   },
   {
     "id": "d651cca2-2156-4d17-8e76-423e68de5c8b",
@@ -47,11 +72,6 @@
     "regex": "[f|F][a|A][c|C][e|E][b|B][o|O][o|O][k|K][^\\s]*['|\"][0-9a-f]{32}['|\"]"
   },
   {
-    "id": "83ab47ff-381d-48cd-bac5-fb32222f54af",
-    "name": "AWS Secret Key",
-    "regex": "(?i)aws(.{0,20})?(?-i)['\"][0-9a-zA-Z\\/+]{40}['\"]"
-  },
-  {
     "id": "73cb4fde-fd6d-40e3-8787-11d2a7ac9581",
     "name": "GitHub",
     "regex": "[g|G][i|I][t|T][h|H][u|U][b|B][^\\s]*['|\"][0-9a-zA-Z]{35,40}['|\"]"
@@ -60,6 +80,11 @@
     "id": "ccde326f-ebc7-4772-8ad5-de66e90a8cc3",
     "name": "Slack Webhook",
     "regex": "https://hooks.slack.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}"
+  },
+  {
+    "id": "d6214dca-a31b-425f-bcf7-f4faa772a1c0",
+    "name": "MSTeams Webhook",
+    "regex": "https://team_name.webhook.office.com/webhook(b2)?/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}@[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/IncomingWebhook/[a-z0-9]+/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
   },
   {
     "id": "7908a9e3-5cac-41b1-b514-5f6d82ce02d5",
@@ -110,11 +135,6 @@
     "id": "bb51eb1e-0357-44a2-86d7-dd5350cffd43",
     "name": "Square OAuth Secret",
     "regex": "sq0csp-[0-9A-Za-z\\-_]{43}"
-  },
-  {
-    "id": "76c0bcde-903d-456e-ac13-e58c34987852",
-    "name": "AWS Access Key",
-    "regex": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}"
   },
   {
     "id": "0c2afb93-0967-46bc-b69b-1a8de75dcb1e",
@@ -187,16 +207,6 @@
     "regex": "key-[0-9a-zA-Z]{32}"
   },
   {
-    "id": "c4d3b58a-e6d4-450f-9340-04f1e702eaae",
-    "name": "Password in URL",
-    "regex": "[a-zA-Z]{3,10}://[^/\\s:@]{3,20}:[^/\\s:@]{3,20}@.{1,100}[\"'\\s]"
-  },
-  {
-    "id": "9597ce06-5455-4890-8aac-9ceabee50708",
-    "name": "Password in URL - fixed",
-    "regex": "[a-zA-Z]{3,10}://[^/\\s:@]*?:[^/\\s:@]*?@[^/\\s:@]*"
-  },
-  {
     "id": "50cc5f03-e686-4183-97e9-12f9b55d0f97",
     "name": "Picatic API Key",
     "regex": "sk_live_[0-9a-z]{32}"
@@ -205,11 +215,5 @@
     "id": "e0f01838-b1c2-4669-b84b-981949ebe5ed",
     "name": "Twilio API Key",
     "regex": "SK[0-9a-fA-F]{32}"
-  },
-  {
-    "id": "4b2b5fd3-364d-4093-bac2-17391b2a5297",
-    "name": "Kubernetes Environment Variable Password",
-    "regex": "apiVersion((.*)\\s*)*env:((.*)\\s*)*name:\\s*\\w+[P|p][A|a][S|s][S|s]([W|w][O|o][R|r][D|d])?\\w*\\s*(value):\\s*([\"|'].*[\"|'])",
-    "multiline": true
   }
 ]

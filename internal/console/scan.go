@@ -41,7 +41,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
-	"golang.org/x/crypto/ssh/terminal"
+	"golang.org/x/term"
 )
 
 var (
@@ -299,22 +299,6 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 	return excludeResultsMap
 }
 
-func createInspector(t engine.Tracker, querySource source.QueriesSource,
-	excludeResults map[string]bool, queryFilter *source.QueryInspectorParameters) (*engine.Inspector, error) {
-	inspector, err := engine.NewInspector(ctx,
-		querySource,
-		engine.DefaultVulnerabilityBuilder,
-		t,
-		queryFilter,
-		excludeResults,
-		flags.GetIntFlag(flags.QueryExecTimeoutFlag),
-	)
-	if err != nil {
-		return nil, err
-	}
-	return inspector, nil
-}
-
 // analyzePaths will analyze the paths to scan to determine which type of queries to load
 // and which files should be ignored, it then updates the types and exclude flags variables
 // with the results found
@@ -412,9 +396,44 @@ func createQueryFilter() *source.QueryInspectorParameters {
 	return &queryFilter
 }
 
+type allInspectors struct {
+	inspector        *engine.Inspector
+	secretsInspector *secrets.Inspector
+}
+
+func createInspector(t engine.Tracker, querySource source.QueriesSource,
+	excludeResults map[string]bool, queryFilter *source.QueryInspectorParameters) (allInspectors, error) {
+	inspector, err := engine.NewInspector(ctx,
+		querySource,
+		engine.DefaultVulnerabilityBuilder,
+		t,
+		queryFilter,
+		excludeResults,
+		flags.GetIntFlag(flags.QueryExecTimeoutFlag),
+	)
+	if err != nil {
+		return allInspectors{}, err
+	}
+	secretsInspector, err := secrets.NewInspector(
+		ctx,
+		excludeResults,
+		t,
+		queryFilter,
+		flags.GetIntFlag(flags.QueryExecTimeoutFlag),
+	)
+	if err != nil {
+		log.Err(err)
+		return allInspectors{}, err
+	}
+	return allInspectors{
+		inspector:        inspector,
+		secretsInspector: secretsInspector,
+	}, nil
+}
+
 func createServiceAndStartScan(params *startServiceParameters) (failedQueries map[string]error, err error) {
 	queryFilter := createQueryFilter()
-	inspector, err := createInspector(
+	inspectors, err := createInspector(
 		params.t,
 		params.querySource,
 		params.excludeResults,
@@ -425,20 +444,9 @@ func createServiceAndStartScan(params *startServiceParameters) (failedQueries ma
 		return failedQueries, err
 	}
 
-	secretsInspector, err := secrets.NewInspector(
-		ctx,
-		params.excludeResults,
-		params.t,
-		queryFilter,
-	)
-	if err != nil {
-		log.Err(err)
-		return failedQueries, err
-	}
-
 	services, err := createService(
-		inspector,
-		secretsInspector,
+		inspectors.inspector,
+		inspectors.secretsInspector,
 		params.extractedPaths,
 		params.t,
 		params.store,
@@ -454,7 +462,7 @@ func createServiceAndStartScan(params *startServiceParameters) (failedQueries ma
 		log.Err(err)
 		return failedQueries, err
 	}
-	failedQueries = inspector.GetFailedQueries()
+	failedQueries = inspectors.inspector.GetFailedQueries()
 	return failedQueries, nil
 }
 
@@ -480,7 +488,15 @@ func getQueryPath(changedDefaultQueryPath bool) error {
 	return nil
 }
 
-func scan(changedDefaultQueryPath bool) error {
+type preScanOutput struct {
+	progressBar progress.PBar
+	tracker     *tracker.CITracker
+	startTime   time.Time
+	pbBuilder   *progress.PbBuilder
+	printer     *consoleHelpers.Printer
+}
+
+func preScan() (preScanOutput, error) {
 	log.Debug().Msg("console.scan()")
 	for _, warn := range warnings {
 		log.Warn().Msgf(warn)
@@ -494,7 +510,7 @@ func scan(changedDefaultQueryPath bool) error {
 	log.Info().Msgf(strings.ReplaceAll(versionMsg, "\n", ""))
 
 	noProgress := flags.GetBoolFlag(flags.NoProgressFlag)
-	if !terminal.IsTerminal(int(os.Stdin.Fd())) {
+	if !term.IsTerminal(int(os.Stdin.Fd())) {
 		noProgress = true
 	}
 
@@ -510,6 +526,20 @@ func scan(changedDefaultQueryPath bool) error {
 	t, err := tracker.NewTracker(flags.GetIntFlag(flags.PreviewLinesFlag))
 	if err != nil {
 		log.Err(err)
+		return preScanOutput{}, err
+	}
+
+	return preScanOutput{
+		printer:     printer,
+		progressBar: progressBar,
+		tracker:     t,
+		startTime:   scanStartTime,
+	}, nil
+}
+
+func scan(changedDefaultQueryPath bool) error {
+	preScanOut, err := preScan()
+	if err != nil {
 		return err
 	}
 
@@ -540,12 +570,12 @@ func scan(changedDefaultQueryPath bool) error {
 
 	excludeResultsMap := getExcludeResultsMap(flags.GetMultiStrFlag(flags.ExcludeResultsFlag))
 	failedQueries, err := createServiceAndStartScan(&startServiceParameters{
-		t:              t,
+		t:              preScanOut.tracker,
 		store:          store,
 		querySource:    querySource,
-		progressBar:    progressBar,
+		progressBar:    preScanOut.progressBar,
 		extractedPaths: extractedPaths.Path,
-		pbBuilder:      proBarBuilder,
+		pbBuilder:      preScanOut.pbBuilder,
 		excludeResults: excludeResultsMap,
 	})
 	if err != nil {
@@ -564,7 +594,7 @@ func scan(changedDefaultQueryPath bool) error {
 		return err
 	}
 
-	summary := getSummary(t, results, scanStartTime, time.Now(), model.PathParameters{
+	summary := getSummary(preScanOut.tracker, results, preScanOut.startTime, time.Now(), model.PathParameters{
 		ScannedPaths:      flags.GetMultiStrFlag(flags.PathFlag),
 		PathExtractionMap: extractedPaths.ExtractionMap,
 	})
@@ -573,13 +603,13 @@ func scan(changedDefaultQueryPath bool) error {
 		&summary,
 		files.Combine(flags.GetBoolFlag(flags.LineInfoPayloadFlag)),
 		failedQueries,
-		printer,
-		*proBarBuilder); err != nil {
+		preScanOut.printer,
+		*preScanOut.pbBuilder); err != nil {
 		log.Err(err)
 		return err
 	}
 
-	printScanDuration(time.Since(scanStartTime))
+	printScanDuration(time.Since(preScanOut.startTime))
 
 	exitCode := consoleHelpers.ResultsExitCode(&summary)
 	if consoleHelpers.ShowError("results") && exitCode != 0 {

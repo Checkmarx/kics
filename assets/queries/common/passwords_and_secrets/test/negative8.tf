@@ -1,12 +1,11 @@
-#this is a problematic code where the query should report a result(s)
-resource "google_container_cluster" "primary1" {
-  name               = "marcellus-wallace"
+resource "google_container_cluster" "primary5" {
+  name               = "marcellus-wallace-credential"
   location           = "us-central1-a"
   initial_node_count = 3
 
   master_auth {
-    username = ""
-    password = "root"
+    username = "PRIVATE KEY_key"
+    password = ""
 
     client_certificate_config {
       issue_client_certificate = true

@@ -529,12 +529,12 @@ func TestEngine_LenQueriesByPlat(t *testing.T) {
 			min: 100,
 		},
 		{
-			name: "test_len_queries_plat_common",
+			name: "test_len_queries_plat_dockerfile",
 			args: args{
 				queriesPath: filepath.FromSlash("./assets/queries"),
-				platform:    []string{"common"},
+				platform:    []string{"dockerfile"},
 			},
-			min: 0,
+			min: 50,
 		},
 	}
 

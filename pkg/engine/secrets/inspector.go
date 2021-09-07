@@ -2,12 +2,13 @@ package secrets
 
 import (
 	"context"
-	_ "embed"
+	_ "embed" // Embed KICS regex rules
 	"encoding/json"
 	"fmt"
 	"math"
 	"regexp"
 	"strings"
+	"time"
 
 	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/pkg/detector"
@@ -21,29 +22,22 @@ import (
 )
 
 const (
-	defaultLineNumber         = 0
-	Base64EntropyThreashold   = 4.7
-	HexCharsEntropyThreashold = 2.7
-	MinStringLen              = 5
-	Base64Type                = "base64"
-	Base64Chars               = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
-	HexType                   = "hex"
-	HexChars                  = "1234567890abcdefABCDEF"
+	Base64Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
+	HexChars    = "1234567890abcdefABCDEF"
 )
 
 var (
 	SecretsQueryMetadata map[string]string
-	//go:embed regex_queries.json
-	regexQueriesJSON string
 )
 
 type Inspector struct {
-	ctx             context.Context
-	tracker         engine.Tracker
-	detector        *detector.DetectLine
-	excludeResults  map[string]bool
-	regexQueries    []RegexQuery
-	vulnerabilities []model.Vulnerability
+	ctx                   context.Context
+	tracker               engine.Tracker
+	detector              *detector.DetectLine
+	excludeResults        map[string]bool
+	regexQueries          []RegexQuery
+	vulnerabilities       []model.Vulnerability
+	queryExecutionTimeout time.Duration
 }
 
 type Entropy struct {
@@ -52,13 +46,17 @@ type Entropy struct {
 	Max   float64 `json:"max"`
 }
 
+type MultilineResult struct {
+	DetectLineGroup int `json:"detectLineGroup"`
+}
+
 type RegexQuery struct {
-	ID             string    `json:"id"`
-	Name           string    `json:"name"`
-	MultilineRegex bool      `json:"multiline"`
-	RegexStr       string    `json:"regex"`
-	Entropies      []Entropy `json:"entropies"`
-	Regex          *regexp.Regexp
+	ID        string          `json:"id"`
+	Name      string          `json:"name"`
+	Multiline MultilineResult `json:"multiline"`
+	RegexStr  string          `json:"regex"`
+	Entropies []Entropy       `json:"entropies"`
+	Regex     *regexp.Regexp
 }
 
 type RuleMatch struct {
@@ -74,62 +72,60 @@ func NewInspector(
 	excludeResults map[string]bool,
 	tracker engine.Tracker,
 	queryFilter *source.QueryInspectorParameters,
+	executionTimeout int,
 ) (*Inspector, error) {
 	lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
 		Add(helm.DetectKindLine{}, model.KindHELM).
 		Add(docker.DetectKindLine{}, model.KindDOCKER)
 
-	loadQueryMetadata()
-
-	regexQueries, err := compileRegexQueries(queryFilter)
+	err := json.Unmarshal([]byte(assets.SecretsQueryMetadataJSON), &SecretsQueryMetadata)
 	if err != nil {
 		return nil, err
 	}
 
+	var allRegexQueries []RegexQuery
+	err = json.Unmarshal([]byte(assets.SecretsQueryRegexRulesJSON), &allRegexQueries)
+	if err != nil {
+		return nil, err
+	}
+
+	queryExecutionTimeout := time.Duration(executionTimeout) * time.Second
+
 	return &Inspector{
-		ctx:             ctx,
-		detector:        lineDetector,
-		excludeResults:  excludeResults,
-		tracker:         tracker,
-		regexQueries:    regexQueries,
-		vulnerabilities: make([]model.Vulnerability, 0),
+		ctx:                   ctx,
+		detector:              lineDetector,
+		excludeResults:        excludeResults,
+		tracker:               tracker,
+		regexQueries:          compileRegexQueries(queryFilter, allRegexQueries),
+		vulnerabilities:       make([]model.Vulnerability, 0),
+		queryExecutionTimeout: queryExecutionTimeout,
 	}, nil
 }
 
-func loadQueryMetadata() {
-	err := json.Unmarshal([]byte(assets.EmbeddedSecretsQueryMetadataJSON), &SecretsQueryMetadata)
-	if err != nil {
-		log.Fatal().Err(err).Msg("Failed to unmarshal default secret metadata")
-	}
-}
-
-func compileRegexQueries(queryFilter *source.QueryInspectorParameters) ([]RegexQuery, error) {
-	var allRegexQueries []RegexQuery
+func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQueries []RegexQuery) []RegexQuery {
 	var regexQueries []RegexQuery
 
-	err := json.Unmarshal([]byte(regexQueriesJSON), &allRegexQueries)
-	if err != nil {
-		return nil, err
-	}
-
-	for _, query := range allRegexQueries {
+	for i := range allRegexQueries {
 		if len(queryFilter.IncludeQueries.ByIDs) > 0 {
-			if isValueInArray(query.ID, queryFilter.IncludeQueries.ByIDs) {
-				regexQueries = append(regexQueries, query)
+			if isValueInArray(allRegexQueries[i].ID, queryFilter.IncludeQueries.ByIDs) {
+				regexQueries = append(regexQueries, allRegexQueries[i])
 			}
 		} else {
-			if isValueInArray(query.ID, queryFilter.ExcludeQueries.ByIDs) {
+			if isValueInArray(allRegexQueries[i].ID, queryFilter.ExcludeQueries.ByIDs) {
 				log.Debug().
-					Msgf("Excluding query ID: %s category: %s severity: %s", query.ID, SecretsQueryMetadata["category"], SecretsQueryMetadata["severity"])
+					Msgf("Excluding query ID: %s category: %s severity: %s",
+						allRegexQueries[i].ID,
+						SecretsQueryMetadata["category"],
+						SecretsQueryMetadata["severity"])
 				continue
 			}
-			regexQueries = append(regexQueries, query)
+			regexQueries = append(regexQueries, allRegexQueries[i])
 		}
 	}
 	for idx := range regexQueries {
 		regexQueries[idx].Regex = regexp.MustCompile(regexQueries[idx].RegexStr)
 	}
-	return regexQueries, nil
+	return regexQueries
 }
 
 func isValueInArray(value string, array []string) bool {
@@ -142,48 +138,33 @@ func isValueInArray(value string, array []string) bool {
 }
 
 func (c *Inspector) Inspect(ctx context.Context, basePaths []string, files model.FileMetadatas) ([]model.Vulnerability, error) {
-	for _, query := range c.regexQueries {
+	for i := range c.regexQueries {
+		timeoutCtx, cancel := context.WithTimeout(ctx, c.queryExecutionTimeout*time.Second)
+		defer cancel()
 		for idx := range files {
-			// check file content line by line
-			if !query.MultilineRegex {
-				lines := c.detector.SplitLines(&files[idx])
+			select {
+			case <-timeoutCtx.Done():
+				return c.vulnerabilities, timeoutCtx.Err()
+			default:
+				// check file content line by line
+				if c.regexQueries[i].Multiline == (MultilineResult{}) {
+					lines := c.detector.SplitLines(&files[idx])
 
-				for lineNumber, currentLine := range lines {
-					c.checkLineByLine(query, basePaths, files[idx], lineNumber, currentLine)
+					for lineNumber, currentLine := range lines {
+						c.checkLineByLine(&c.regexQueries[i], basePaths, &files[idx], lineNumber, currentLine)
+					}
+					continue
 				}
-				continue
-			}
 
-			// check file content as a whole
-			c.checkFileContent(query, basePaths, files[idx])
+				// check file content as a whole
+				c.checkFileContent(&c.regexQueries[i], basePaths, &files[idx])
+			}
 		}
 	}
 	return c.vulnerabilities, nil
 }
 
-func (c *Inspector) secretsDetectLine(query RegexQuery, file model.FileMetadata, groups []string) int {
-	detectedLineNumber := -1
-	lines := c.detector.SplitLines(&file)
-
-	contentMatchRemoved := query.Regex.ReplaceAllString(file.OriginalData, "")
-
-	if len(query.Entropies) > 0 {
-		contentMatchRemoved = strings.ReplaceAll(groups[query.Entropies[0].Group], file.OriginalData, "")
-	}
-
-	text := strings.ReplaceAll(contentMatchRemoved, "\r", "")
-	contentMatchRemovedLines := strings.Split(text, "\n")
-	for i := 0; i < len(lines); i++ {
-		if lines[i] != contentMatchRemovedLines[i] {
-			detectedLineNumber = i + 1
-			break
-		}
-	}
-
-	return detectedLineNumber
-}
-
-func (c *Inspector) checkFileContent(query RegexQuery, basePaths []string, file model.FileMetadata) {
+func (c *Inspector) checkFileContent(query *RegexQuery, basePaths []string, file *model.FileMetadata) {
 	groups := query.Regex.FindStringSubmatch(file.OriginalData)
 	if len(groups) == 0 {
 		return
@@ -197,7 +178,6 @@ func (c *Inspector) checkFileContent(query RegexQuery, basePaths []string, file 
 			file,
 			query,
 			lineNumber,
-			groups[0],
 		)
 	}
 
@@ -219,14 +199,36 @@ func (c *Inspector) checkFileContent(query RegexQuery, basePaths []string, file 
 					file,
 					query,
 					lineNumber,
-					groups[entropy.Group],
 				)
 			}
 		}
 	}
 }
 
-func (c *Inspector) checkLineByLine(query RegexQuery, basePaths []string, file model.FileMetadata, lineNumber int, currentLine string) {
+func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadata, groups []string) int {
+	detectedLineNumber := -1
+
+	if len(groups) <= query.Multiline.DetectLineGroup {
+		log.Warn().Msgf("Unable to detect line in file %v Multiline group not found: %v", file.FilePath, query.Multiline.DetectLineGroup)
+		return detectedLineNumber
+	}
+
+	lines := c.detector.SplitLines(file)
+	contentMatchRemoved := strings.ReplaceAll(file.OriginalData, groups[query.Multiline.DetectLineGroup], "")
+
+	text := strings.ReplaceAll(contentMatchRemoved, "\r", "")
+	contentMatchRemovedLines := strings.Split(text, "\n")
+	for i := 0; i < len(lines); i++ {
+		if lines[i] != contentMatchRemovedLines[i] {
+			detectedLineNumber = i
+			break
+		}
+	}
+
+	return detectedLineNumber
+}
+
+func (c *Inspector) checkLineByLine(query *RegexQuery, basePaths []string, file *model.FileMetadata, lineNumber int, currentLine string) {
 	groups := query.Regex.FindStringSubmatch(currentLine)
 	if len(groups) == 0 {
 		return
@@ -238,7 +240,6 @@ func (c *Inspector) checkLineByLine(query RegexQuery, basePaths []string, file m
 			file,
 			query,
 			lineNumber,
-			currentLine,
 		)
 	}
 
@@ -262,13 +263,12 @@ func (c *Inspector) checkLineByLine(query RegexQuery, basePaths []string, file m
 				file,
 				query,
 				lineNumber,
-				groups[entropy.Group],
 			)
 		}
 	}
 }
 
-func (c *Inspector) addVulnerability(basePaths []string, file model.FileMetadata, query RegexQuery, lineNumber int, line string) {
+func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadata, query *RegexQuery, lineNumber int) {
 	simID, err := similarity.ComputeSimilarityID(
 		basePaths,
 		file.FilePath,
@@ -280,16 +280,16 @@ func (c *Inspector) addVulnerability(basePaths []string, file model.FileMetadata
 		log.Error().Msg("unable to compute similarity ID")
 	}
 
-	if _, ok := c.excludeResults[ptrStringToString(simID)]; !ok {
+	if _, ok := c.excludeResults[engine.PtrStringToString(simID)]; !ok {
 		linesVuln := model.VulnerabilityLines{
 			Line:      -1,
 			VulnLines: []model.CodeLine{},
 		}
-		linesVuln = c.detector.GetAdjecent(&file, lineNumber+1)
+		linesVuln = c.detector.GetAdjecent(file, lineNumber+1)
 		vuln := model.Vulnerability{
 			QueryID:       query.ID,
 			QueryName:     SecretsQueryMetadata["queryName"] + " - " + query.Name,
-			SimilarityID:  ptrStringToString(simID),
+			SimilarityID:  engine.PtrStringToString(simID),
 			FileID:        file.ID,
 			FileName:      file.FilePath,
 			Line:          linesVuln.Line,
@@ -307,16 +307,14 @@ func (c *Inspector) addVulnerability(basePaths []string, file model.FileMetadata
 }
 
 // CheckEntropyInterval - verifies if a given token's entropy is within expected bounds
-func CheckEntropyInterval(entropy Entropy, token string) (bool, float64) {
-	if len(token) > MinStringLen {
-		base64Entropy := calculateEntropy(token, Base64Chars)
-		hexEntropy := calculateEntropy(token, HexChars)
-		if insideInterval(entropy, base64Entropy) || insideInterval(entropy, hexEntropy) {
-			highestEntropy := math.Max(base64Entropy, hexEntropy)
-			return true, highestEntropy
-		}
+func CheckEntropyInterval(entropy Entropy, token string) (isEntropyInInterval bool, entropyLevel float64) {
+	base64Entropy := calculateEntropy(token, Base64Chars)
+	hexEntropy := calculateEntropy(token, HexChars)
+	highestEntropy := math.Max(base64Entropy, hexEntropy)
+	if insideInterval(entropy, base64Entropy) || insideInterval(entropy, hexEntropy) {
+		return true, highestEntropy
 	}
-	return false, 0
+	return false, highestEntropy
 }
 
 func insideInterval(entropy Entropy, floatEntropy float64) bool {
@@ -342,11 +340,4 @@ func calculateEntropy(token, charSet string) float64 {
 	}
 
 	return math.Log2(length) - freq/length
-}
-
-func ptrStringToString(v *string) string {
-	if v == nil {
-		return ""
-	}
-	return *v
 }

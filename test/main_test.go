@@ -51,8 +51,9 @@ var (
 )
 
 const (
-	scanID            = "test_scan"
-	BaseTestsScanPath = "../assets/queries/"
+	scanID                  = "test_scan"
+	BaseTestsScanPath       = "../assets/queries/"
+	ExpectedResultsFilename = "positive_expected_result.json"
 )
 
 func TestMain(m *testing.M) {
@@ -69,9 +70,9 @@ func (q queryEntry) getSampleFiles(tb testing.TB, filePattern string) []string {
 	var files []string
 	for _, kinds := range q.kind {
 		kindFiles, err := filepath.Glob(path.Join(q.dir, fmt.Sprintf(filePattern, strings.ToLower(string(kinds)))))
-		x0 := filepath.FromSlash(path.Join(q.dir, "test/positive_expected_result.json"))
+		positiveExpectedResultsFilepath := filepath.FromSlash(path.Join(q.dir, "test", ExpectedResultsFilename))
 		for i, check := range kindFiles {
-			if check == x0 {
+			if check == positiveExpectedResultsFilepath {
 				kindFiles = append(kindFiles[:i], kindFiles[i+1:]...)
 			}
 		}
@@ -90,7 +91,7 @@ func (q queryEntry) NegativeFiles(tb testing.TB) []string {
 }
 
 func (q queryEntry) ExpectedPositiveResultFile() string {
-	return filepath.FromSlash(path.Join(q.dir, "test/positive_expected_result.json"))
+	return filepath.FromSlash(path.Join(q.dir, "test", ExpectedResultsFilename))
 }
 
 func appendQueries(queriesDir []queryEntry, dirName string, kind []model.FileKind, platform string) []queryEntry {

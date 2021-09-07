@@ -1,92 +1,170 @@
 [
   {
-    "queryName": "Passwords And Secrets",
+    "queryName": "Passwords And Secrets - Generic Password",
     "severity": "HIGH",
     "line": 8,
     "fileName": "positive1.yaml"
   },
   {
-    "queryName": "Passwords And Secrets",
+    "queryName": "Passwords And Secrets - Generic Password",
     "severity": "HIGH",
     "line": 6,
     "fileName": "positive2.yaml"
   },
   {
-    "queryName": "Passwords And Secrets",
+    "queryName": "Passwords And Secrets - Generic Password",
     "severity": "HIGH",
     "line": 7,
     "fileName": "positive3.yaml"
   },
   {
-    "queryName": "Passwords And Secrets",
+    "queryName": "Passwords And Secrets - Generic Password",
     "severity": "HIGH",
     "line": 9,
     "fileName": "positive4.tf"
   },
   {
-    "queryName": "Passwords And Secrets",
+    "queryName": "Passwords And Secrets - Generic Secret",
     "severity": "HIGH",
-    "line": 29,
-    "fileName": "positive4.tf"
+    "line": 2,
+    "fileName": "positive5.tf"
   },
   {
-    "queryName": "Passwords And Secrets",
-    "severity": "HIGH",
-    "line": 49,
-    "fileName": "positive4.tf"
-  },
-  {
-    "queryName": "Passwords And Secrets",
-    "severity": "HIGH",
-    "line": 69,
-    "fileName": "positive4.tf"
-  },
-  {
-    "queryName": "Passwords And Secrets",
-    "severity": "HIGH",
-    "line": 89,
-    "fileName": "positive4.tf"
-  },
-  {
-    "queryName": "Passwords And Secrets",
-    "severity": "HIGH",
-    "line": 116,
-    "fileName": "positive4.tf"
-  },
-  {
-    "queryName": "Passwords And Secrets",
-    "severity": "HIGH",
-    "line": 118,
-    "fileName": "positive4.tf"
-  },
-  {
-    "queryName": "Passwords And Secrets",
+    "queryName": "Passwords And Secrets - Generic Password",
     "severity": "HIGH",
     "line": 3,
-    "fileName": "positive5.dockerfile"
+    "fileName": "positive6.dockerfile"
   },
   {
-    "queryName": "Passwords And Secrets",
+    "queryName": "Passwords And Secrets - Generic Password",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive5.dockerfile"
+    "fileName": "positive6.dockerfile"
   },
   {
-    "queryName": "Passwords And Secrets",
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive7.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
     "severity": "HIGH",
     "line": 3,
-    "fileName": "positive6.json"
+    "fileName": "positive8.json"
   },
   {
-    "queryName": "Passwords And Secrets",
+    "queryName": "Passwords And Secrets - Generic Password",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive6.json"
+    "fileName": "positive8.json"
   },
   {
-    "queryName": "Passwords And Secrets",
+    "queryName": "Passwords And Secrets - Generic Password",
     "severity": "HIGH",
-    "line": 33,
-    "fileName": "positive7.yaml"
+    "line": 8,
+    "fileName": "positive9.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Password in URL",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive10.json"
+  },
+  {
+    "queryName": "Passwords And Secrets - Slack Webhook",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive10.json"
+  },
+  {
+    "queryName": "Passwords And Secrets - MSTeams Webhook",
+    "severity": "HIGH",
+    "line": 27,
+    "fileName": "positive10.json"
+  },
+  {
+    "queryName": "Passwords And Secrets - Password in URL",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive11.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Slack Webhook",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive11.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - MSTeams Webhook",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive11.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive12.json"
+  },
+  {
+    "queryName": "Passwords And Secrets - Password in URL",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive12.json"
+  },
+  {
+    "queryName": "Passwords And Secrets - Slack Webhook",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive12.json"
+  },
+  {
+    "queryName": "Passwords And Secrets - MSTeams Webhook",
+    "severity": "HIGH",
+    "line": 19,
+    "fileName": "positive12.json"
+  },
+  {
+    "queryName": "Passwords And Secrets - Asymmetric private key",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive13.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - AWS Access Key",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive14.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - AWS Secret Key",
+    "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive14.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - AWS Access Key",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive15.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - AWS Secret Key",
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive15.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - K8s Environment Variable Password",
+    "severity": "HIGH",
+    "line": 34,
+    "fileName": "positive16.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive17.tf"
   }
 ]
