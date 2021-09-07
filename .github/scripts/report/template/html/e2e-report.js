@@ -5,7 +5,7 @@ function filter(filt) {
   const severitiesCaptions = document.querySelectorAll(".counters > .counter-btn");
   const selectedElement = document.getElementsByClassName(`counter test-status ${filt}`)[0]
 
-  severitiesCaptions.forEach((counter) => {   
+  severitiesCaptions.forEach((counter) => {
     filt && selectedElement === counter.getElementsByClassName('counter test-status')[0] ? counter.classList.add("selected") : counter.classList.remove("selected")
   });
 }

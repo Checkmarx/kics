@@ -60,15 +60,16 @@ jobs:
         run: |
           go test "github.com/Checkmarx/kics/e2e" -json > results.json
       - name: Generate E2E Report
+        if: always()
         run: |
           CWD=$(pwd)
-          cd .github\scripts\report
+          cd .github/scripts/report
           go mod tidy
           go build
-          ./e2e-report -test-path $CWD -test-name results.json -report-path $CWD -report-name e2e-report.html
+          ./e2e-report -test-path ${CWD} -test-name results.json -report-path ${CWD} -report-name e2e-report.html
       - name: Archive test report
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: e2e-tests-${{ runner.os }}-${{ github.event.pull_request.head.sha }}.log
+          name: e2e-tests-${{ runner.os }}-${{ github.event.pull_request.head.sha }}
           path: e2e-report.html

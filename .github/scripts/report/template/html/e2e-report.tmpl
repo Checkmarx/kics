@@ -10,7 +10,7 @@
 <body>
   <div class="container">
     <div class="report-header-footer"><span class="title">KICS <span>E2E REPORT</span></span><span class="timestamp">{{ getCurrentTime }}</span><a href="https://www.kics.io/" rel="noopener" target="_blank">KICS.IO</a></div>
-    
+
     <div class="results">
       <h2>E2E Tests Result: <span class="test-status {{ if eq .Result.Action "pass" }}pass{{else}}fail{{end}}">{{.Result.Action}}<span></h2>
       <h3>Time Elapsed: {{.Result.Elapsed}}s</h3>
@@ -18,7 +18,7 @@
     <hr class="separator"/>
     <h4>Filters</h4>
     <div class="counters">
-    
+
       <div class="counter-btn" onclick="filter('pass')">
         <span class="counter test-status pass">PASSED</span>
         <span class="counter-count">{{.Counters.CountPass}}</span>
