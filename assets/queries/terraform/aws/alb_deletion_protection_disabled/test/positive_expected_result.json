@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "ALB Deletion Protection Disabled",
+    "severity": "LOW",
+    "line": 7,
+    "fileName": "positive.tf"
+  },
+  {
+    "queryName": "ALB Deletion Protection Disabled",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive2.tf"
+  }
+]
