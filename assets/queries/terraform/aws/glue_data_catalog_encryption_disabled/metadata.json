@@ -1,7 +1,7 @@
 {
   "id": "01d50b14-e933-4c99-b314-6d08cd37ad35",
   "queryName": "Glue Data Catalog Encryption Disabled",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Encryption",
   "descriptionText": "Glue Data Catalog Encryption Settings should have 'connection_password_encryption' and 'encryption_at_rest' enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/glue_data_catalog_encryption_settings#data_catalog_encryption_settings",

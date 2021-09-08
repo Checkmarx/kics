@@ -9,10 +9,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_glue_data_catalog_encryption_settings[%s].data_catalog_encryption_settings.encryption_at_rest.catalog_encryption_mode", [name]),
+		"searchKey": sprintf("aws_glue_data_catalog_encryption_settings[%s].data_catalog_encryption_settings.data_catalog_encryption_settings.encryption_at_rest.catalog_encryption_mode", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'catalog_encryption_mode' is set to 'SSE-KMS'",
 		"keyActualValue": "'catalog_encryption_mode' is not set to 'SSE-KMS'",
+		"searchLine": common_lib.build_search_line(["resource", "aws_glue_data_catalog_encryption_settings", name, "data_catalog_encryption_settings","encryption_at_rest", "catalog_encryption_mode"], []),
 	}
 }
 
@@ -27,6 +28,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'sse_aws_kms_key_id' is defined and not null",
 		"keyActualValue": "'sse_aws_kms_key_id' is undefined or null",
+		"searchLine": common_lib.build_search_line(["resource", "aws_glue_data_catalog_encryption_settings", name, "data_catalog_encryption_settings","encryption_at_rest"], []),
 	}
 }
 
@@ -41,6 +43,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'return_connection_password_encrypted' is set to true",
 		"keyActualValue": "'return_connection_password_encrypted' is not set to true",
+		"searchLine": common_lib.build_search_line(["resource", "aws_glue_data_catalog_encryption_settings", name, "data_catalog_encryption_settings","connection_password_encryption", "return_connection_password_encrypted"], []),
 	}
 }
 
@@ -55,5 +58,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'aws_kms_key_id' is defined and not null",
 		"keyActualValue": "'aws_kms_key_id' is undefined or null",
+		"searchLine": common_lib.build_search_line(["resource", "aws_glue_data_catalog_encryption_settings", name, "data_catalog_encryption_settings","connection_password_encryption"], []),
+
 	}
 }
