@@ -9,7 +9,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_glue_data_catalog_encryption_settings[%s].data_catalog_encryption_settings.data_catalog_encryption_settings.encryption_at_rest.catalog_encryption_mode", [name]),
+		"searchKey": sprintf("aws_glue_data_catalog_encryption_settings[%s].data_catalog_encryption_settings.encryption_at_rest.catalog_encryption_mode", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'catalog_encryption_mode' is set to 'SSE-KMS'",
 		"keyActualValue": "'catalog_encryption_mode' is not set to 'SSE-KMS'",
