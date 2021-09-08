@@ -14,7 +14,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/integrations_bitbucketpipelines/">
       
       <link rel="icon" href="../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.5">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.6">
     
     
       
@@ -22,7 +22,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.be71726b.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.802231af.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -999,20 +999,18 @@
 <p>You can integrate KICS into Bitbucket Pipelines CI/CD.</p>
 <p>This provides you the ability to run KICS scans in your Bitbucket repositories and streamline vulnerabilities and misconfiguration checks to your infrastructure as code (IaC).</p>
 <h3 id="example_configuration">Example configuration<a class="headerlink" href="#example_configuration" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml">image: atlassian/default-image:2
+<pre><code class="language-yaml">image: checkmarx/kics:latest-alpine
 
 pipelines:
   default:
     - step:
         name: &quot;Cx KICS&quot;
         script:
-          - LATEST_KICS_TAG=$(curl --silent &quot;https://api.github.com/repos/Checkmarx/kics/releases/latest&quot; | grep '&quot;tag_name&quot;:' | sed -E 's/.*&quot;([^&quot;]+)&quot;.*/\1/')
-          - LATEST_KICS_VERSION=${LATEST_KICS_TAG#v}
-          - wget -q -c &quot;https://github.com/Checkmarx/kics/releases/download/${LATEST_KICS_TAG}/kics_${LATEST_KICS_VERSION}_linux_x64.tar.gz&quot; -O - | tar -xz --directory /usr/bin &amp;&gt;/dev/null
-          - kics -q /usr/bin/assets/queries -p ${PWD} -o ${PWD}
+          - kics scan -q /app/bin/assets/queries --ignore-on-exit results -p ${PWD} -o ${PWD}
         artifacts:
           - results.json
 </code></pre>
+<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics-scan-bitbucket-pipelines.png" width="850"></p>
                 
               
               
@@ -1090,7 +1088,7 @@ pipelines:
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.409db549.min.js", "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.56a63758.min.js"></script>
+      <script src="../assets/javascripts/bundle.756773cc.min.js"></script>
       
         <script src="../js/version-mike.js"></script>
       
