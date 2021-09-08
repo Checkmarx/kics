@@ -378,7 +378,10 @@ func createEntryInputVar(path []string, defaultValue string) (cty.Value, error) 
 		}
 	}
 	mapJSON += closeMap
-	jsonType, _ := ctyjson.ImpliedType([]byte(mapJSON))
+	jsonType, err := ctyjson.ImpliedType([]byte(mapJSON))
+	if err != nil {
+		return cty.NilVal, err
+	}
 	value, err := ctyjson.Unmarshal([]byte(mapJSON), jsonType)
 	if err != nil {
 		return cty.NilVal, err

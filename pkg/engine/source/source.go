@@ -47,9 +47,16 @@ func mergeLibraries(customLib, embeddedLib string) (string, error) {
 		return "", err
 	}
 	headers := make(map[string]string)
+	variables := make(map[string]string)
 	for _, st := range statements {
 		if rule, ok := st.(*ast.Rule); ok {
 			headers[string(rule.Head.Name)] = ""
+		}
+		if regoPackage, ok := st.(ast.Body); ok {
+			variableSet := regoPackage.Vars(ast.SafetyCheckVisitorParams)
+			for variable := range variableSet {
+				variables[variable.String()] = ""
+			}
 		}
 	}
 	statements, _, err = ast.NewParser().WithReader(strings.NewReader(embeddedLib)).Parse()
@@ -62,11 +69,22 @@ func mergeLibraries(customLib, embeddedLib string) (string, error) {
 			if _, remove := headers[string(rule.Head.Name)]; remove {
 				embeddedLib = strings.Replace(embeddedLib, string(rule.Location.Text), "", 1)
 			}
+			continue
 		}
 		if regoPackage, ok := st.(*ast.Package); ok {
 			firstHalf := strings.Join(strings.Split(embeddedLib, "\n")[:regoPackage.Location.Row-1], "\n")
 			secondHalf := strings.Join(strings.Split(embeddedLib, "\n")[regoPackage.Location.Row+1:], "\n")
 			embeddedLib = firstHalf + "\n" + secondHalf
+			continue
+		}
+		if body, ok := st.(ast.Body); ok {
+			variableSet := body.Vars(ast.SafetyCheckVisitorParams)
+			for variable := range variableSet {
+				if _, remove := variables[variable.String()]; remove {
+					embeddedLib = strings.Replace(embeddedLib, string(body.Loc().Text), "", 1)
+					break
+				}
+			}
 		}
 	}
 	customLib += "\n" + embeddedLib

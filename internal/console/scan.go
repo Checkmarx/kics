@@ -74,6 +74,7 @@ func NewScanCmd() *cobra.Command {
 
 func run(cmd *cobra.Command) error {
 	changedDefaultQueryPath := cmd.Flags().Lookup(flags.QueriesPath).Changed
+	changedDefaultLibrariesPath := cmd.Flags().Lookup(flags.LibrariesPath).Changed
 	if err := consoleHelpers.InitShouldIgnoreArg(flags.GetStrFlag(flags.IgnoreOnExitFlag)); err != nil {
 		return err
 	}
@@ -96,7 +97,7 @@ func run(cmd *cobra.Command) error {
 		}
 	}
 	gracefulShutdown()
-	return scan(changedDefaultQueryPath)
+	return scan(changedDefaultQueryPath, changedDefaultLibrariesPath)
 }
 
 func preRun(cmd *cobra.Command) error {
@@ -466,17 +467,25 @@ func createServiceAndStartScan(params *startServiceParameters) (failedQueries ma
 	return failedQueries, nil
 }
 
+func resolvePath(flagName string) (string, error) {
+	extractedPath, errExtractPath := provider.GetSources([]string{flags.GetStrFlag(flagName)})
+	if errExtractPath != nil {
+		return "", errExtractPath
+	}
+	if len(extractedPath.Path) != 1 {
+		return "", fmt.Errorf("could not find a valid path (--%s) on %s", flagName, flags.GetStrFlag(flagName))
+	}
+	log.Debug().Msgf("Trying to load path (--%s) from %s", flagName, flags.GetStrFlag(flagName))
+	return extractedPath.Path[0], nil
+}
+
 func getQueryPath(changedDefaultQueryPath bool) error {
 	if changedDefaultQueryPath {
-		extractedQueriesPath, errExtractQueries := provider.GetSources([]string{flags.GetStrFlag(flags.QueriesPath)})
+		extractedQueriesPath, errExtractQueries := resolvePath(flags.QueriesPath)
 		if errExtractQueries != nil {
 			return errExtractQueries
 		}
-		if len(extractedQueriesPath.Path) != 1 {
-			return fmt.Errorf("could not find a valid queries on %s", flags.GetStrFlag(flags.QueriesPath))
-		}
-		log.Debug().Msgf("Trying to load queries from %s", flags.GetStrFlag(flags.QueriesPath))
-		flags.SetStrFlag(flags.QueriesPath, extractedQueriesPath.Path[0])
+		flags.SetStrFlag(flags.QueriesPath, extractedQueriesPath)
 	} else {
 		log.Debug().Msgf("Looking for queries in executable path and in current work directory")
 		defaultQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(flags.GetStrFlag(flags.QueriesPath))
@@ -488,7 +497,31 @@ func getQueryPath(changedDefaultQueryPath bool) error {
 	return nil
 }
 
-func scan(changedDefaultQueryPath bool) error {
+func getLibraryPath(changedDefaultLibrariesPath bool) error {
+	if changedDefaultLibrariesPath {
+		extractedLibrariesPath, errExtractLibraries := resolvePath(flags.LibrariesPath)
+		if errExtractLibraries != nil {
+			return errExtractLibraries
+		}
+		flags.SetStrFlag(flags.LibrariesPath, extractedLibrariesPath)
+	}
+	return nil
+}
+
+func preparePaths(changedDefaultQueryPath, changedDefaultLibrariesPath bool) error {
+	var err error
+	err = getQueryPath(changedDefaultQueryPath)
+	if err != nil {
+		return err
+	}
+	err = getLibraryPath(changedDefaultLibrariesPath)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func scan(changedDefaultQueryPath, changedDefaultLibrariesPath bool) error {
 	log.Debug().Msg("console.scan()")
 	for _, warn := range warnings {
 		log.Warn().Msgf(warn)
@@ -521,7 +554,7 @@ func scan(changedDefaultQueryPath bool) error {
 		return err
 	}
 
-	err = getQueryPath(changedDefaultQueryPath)
+	err = preparePaths(changedDefaultQueryPath, changedDefaultLibrariesPath)
 	if err != nil {
 		return err
 	}

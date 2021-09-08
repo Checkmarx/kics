@@ -26,9 +26,7 @@ resource "aws_iam_user_policy" "negative1" {
    "Statement": [
      {
        "Effect": "Allow",
-       "Principal": {
-         "AWS": "arn:aws:iam::111122223333:${aws_iam_user.positive1.name}"
-       },
+       "Resource": ${aws_iam_user.negative1.arn},
        "Action": "sts:AssumeRole",
        "Condition": {
          "BoolIfExists": {

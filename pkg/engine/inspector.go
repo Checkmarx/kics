@@ -105,17 +105,16 @@ func NewInspector(
 	if err != nil {
 		sentry.CaptureException(err)
 		log.Err(err).
-			Msgf("Inspector failed to get general query, query=%s", "common")
+			Msgf("Inspector failed to get library for %s platform", "common")
 		return nil, errors.Wrap(err, "failed to get library")
 	}
+	platformLibraries := getPlatformLibraries(queriesSource, queries)
 	opaQueries := make([]*preparedQuery, 0, len(queries))
 	for _, metadata := range queries {
-		platformGeneralQuery, err := queriesSource.GetQueryLibrary(metadata.Platform)
-		if err != nil {
-			sentry.CaptureException(err)
+		platformGeneralQuery, ok := platformLibraries[metadata.Platform]
+		if !ok {
 			log.Err(err).
 				Msgf("Inspector failed to get generic query, query=%s", metadata.Query)
-
 			continue
 		}
 
@@ -186,6 +185,25 @@ func NewInspector(
 		detector:         lineDetctor,
 		queryExecTimeout: queryExecTimeout,
 	}, nil
+}
+
+func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.QueryMetadata) map[string]string {
+	supportedPlatforms := make(map[string]string)
+	for _, query := range queries {
+		supportedPlatforms[query.Platform] = ""
+	}
+	platformLibraries := make(map[string]string)
+	for platform := range supportedPlatforms {
+		platformLibrary, errLoadingPlatformLib := queriesSource.GetQueryLibrary(platform)
+		if errLoadingPlatformLib != nil {
+			sentry.CaptureException(errLoadingPlatformLib)
+			log.Err(errLoadingPlatformLib).
+				Msgf("Inspector failed to get library for %s platform", platform)
+			continue
+		}
+		platformLibraries[platform] = platformLibrary
+	}
+	return platformLibraries
 }
 
 func sumAllAggregatedQueries(opaQueries []*preparedQuery) int {
