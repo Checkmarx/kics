@@ -73,6 +73,7 @@ func NewInspector(
 	tracker engine.Tracker,
 	queryFilter *source.QueryInspectorParameters,
 	executionTimeout int,
+	regexRulesContent string,
 ) (*Inspector, error) {
 	lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
 		Add(helm.DetectKindLine{}, model.KindHELM).
@@ -82,14 +83,13 @@ func NewInspector(
 	if err != nil {
 		return nil, err
 	}
+	queryExecutionTimeout := time.Duration(executionTimeout) * time.Second
 
 	var allRegexQueries []RegexQuery
-	err = json.Unmarshal([]byte(assets.SecretsQueryRegexRulesJSON), &allRegexQueries)
+	err = json.Unmarshal([]byte(regexRulesContent), &allRegexQueries)
 	if err != nil {
 		return nil, err
 	}
-
-	queryExecutionTimeout := time.Duration(executionTimeout) * time.Second
 
 	return &Inspector{
 		ctx:                   ctx,

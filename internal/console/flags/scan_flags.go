@@ -28,4 +28,5 @@ const (
 	TypeFlag              = "type"
 	QueryExecTimeoutFlag  = "timeout"
 	LineInfoPayloadFlag   = "payload-lines"
+	SecretsRegexRulesFlag = "secrets-regex-rules"
 )

@@ -11,6 +11,7 @@ import (
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
+	"github.com/Checkmarx/kics/pkg/engine/secrets"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
@@ -25,12 +26,13 @@ import (
 func TestService(t *testing.T) { //nolint
 	mockParser, mockFilesSource, mockResolver := createParserSourceProvider("../../test/fixtures/test_helm")
 	type fields struct {
-		SourceProvider provider.SourceProvider
-		Storage        Storage
-		Parser         []*parser.Parser
-		Inspector      *engine.Inspector
-		Tracker        Tracker
-		Resolver       *resolver.Resolver
+		SourceProvider   provider.SourceProvider
+		Storage          Storage
+		Parser           []*parser.Parser
+		Inspector        *engine.Inspector
+		SecretsInspector *secrets.Inspector
+		Tracker          Tracker
+		Resolver         *resolver.Resolver
 	}
 	type args struct {
 		ctx     context.Context
@@ -51,12 +53,13 @@ func TestService(t *testing.T) { //nolint
 		{
 			name: "service",
 			fields: fields{
-				Inspector:      &engine.Inspector{},
-				Parser:         mockParser,
-				Tracker:        &tracker.CITracker{},
-				Storage:        storage.NewMemoryStorage(),
-				SourceProvider: mockFilesSource,
-				Resolver:       mockResolver,
+				Inspector:        &engine.Inspector{},
+				SecretsInspector: &secrets.Inspector{},
+				Parser:           mockParser,
+				Tracker:          &tracker.CITracker{},
+				Storage:          storage.NewMemoryStorage(),
+				SourceProvider:   mockFilesSource,
+				Resolver:         mockResolver,
 			},
 			args: args{
 				ctx:     nil,
@@ -74,12 +77,13 @@ func TestService(t *testing.T) { //nolint
 		s := make([]*Service, 0, len(tt.fields.Parser))
 		for _, parser := range tt.fields.Parser {
 			s = append(s, &Service{
-				SourceProvider: tt.fields.SourceProvider,
-				Storage:        tt.fields.Storage,
-				Parser:         parser,
-				Inspector:      tt.fields.Inspector,
-				Tracker:        tt.fields.Tracker,
-				Resolver:       tt.fields.Resolver,
+				SourceProvider:   tt.fields.SourceProvider,
+				Storage:          tt.fields.Storage,
+				Parser:           parser,
+				Inspector:        tt.fields.Inspector,
+				SecretsInspector: tt.fields.SecretsInspector,
+				Tracker:          tt.fields.Tracker,
+				Resolver:         tt.fields.Resolver,
 			})
 		}
 		t.Run(fmt.Sprintf(tt.name+"_get_vulnerabilities"), func(t *testing.T) {

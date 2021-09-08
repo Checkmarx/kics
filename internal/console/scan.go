@@ -10,6 +10,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/internal/console/flags"
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	internalPrinter "github.com/Checkmarx/kics/internal/console/printer"
@@ -396,6 +397,20 @@ func createQueryFilter() *source.QueryInspectorParameters {
 	return &queryFilter
 }
 
+func getSecretsRegexRules(regexRulesPath string) (regexRulesContent string, err error) {
+	if len(regexRulesPath) > 0 {
+		b, err := os.ReadFile(regexRulesPath)
+		if err != nil {
+			return regexRulesContent, err
+		}
+		regexRulesContent = string(b)
+	} else {
+		regexRulesContent = assets.SecretsQueryRegexRulesJSON
+	}
+
+	return regexRulesContent, nil
+}
+
 func createServiceAndStartScan(params *startServiceParameters) (failedQueries map[string]error, err error) {
 	queryFilter := createQueryFilter()
 	inspector, err := engine.NewInspector(ctx,
@@ -410,12 +425,18 @@ func createServiceAndStartScan(params *startServiceParameters) (failedQueries ma
 		return failedQueries, err
 	}
 
+	secretsRegexRulesContent, err := getSecretsRegexRules(flags.GetStrFlag(flags.SecretsRegexRulesFlag))
+	if err != nil {
+		return failedQueries, err
+	}
+
 	secretsInspector, err := secrets.NewInspector(
 		ctx,
 		params.excludeResults,
 		params.t,
 		queryFilter,
 		flags.GetIntFlag(flags.QueryExecTimeoutFlag),
+		secretsRegexRulesContent,
 	)
 	if err != nil {
 		log.Err(err)

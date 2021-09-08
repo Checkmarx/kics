@@ -353,7 +353,6 @@ func TestCompileRegexQueries(t *testing.T) {
 
 func TestNewInspector(t *testing.T) {
 	tmpQueryMetadataJSON := assets.SecretsQueryMetadataJSON
-	tmpRegexRulesJSON := assets.SecretsQueryRegexRulesJSON
 
 	inputs := []struct {
 		name                             string
@@ -413,13 +412,13 @@ func TestNewInspector(t *testing.T) {
 	for _, in := range inputs {
 		ctx := context.Background()
 		assets.SecretsQueryMetadataJSON = in.assetsSecretsQueryMetadataJSON
-		assets.SecretsQueryRegexRulesJSON = in.assetsSecretsQueryRegexRulesJSON
 		secretsInspector, err := NewInspector(
 			ctx,
 			map[string]bool{},
 			&tracker.CITracker{},
 			in.inspectorParams,
 			30,
+			in.assetsSecretsQueryRegexRulesJSON,
 		)
 		if in.wantErr {
 			require.Error(t,
@@ -441,7 +440,6 @@ func TestNewInspector(t *testing.T) {
 	}
 	t.Cleanup(func() {
 		assets.SecretsQueryMetadataJSON = tmpQueryMetadataJSON
-		assets.SecretsQueryRegexRulesJSON = tmpRegexRulesJSON
 	})
 }
 
@@ -458,6 +456,7 @@ func TestInspect(t *testing.T) {
 				InputDataPath:  "",
 			},
 			60,
+			assets.SecretsQueryRegexRulesJSON,
 		)
 		require.NoError(t, err, "NewInspector() should not return error")
 		basePaths := []string{filepath.FromSlash("assets/queries/")}
