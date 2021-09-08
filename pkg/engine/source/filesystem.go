@@ -101,18 +101,16 @@ func isDefaultLibrary(libraryPath string) bool {
 
 // GetPathToCustomLibrary - returns the libraries path for a given platform
 func GetPathToCustomLibrary(platform, libraryPathFlag string) string {
-	var libraryFilePath string
+	libraryFilePath := kicsDefault
 
 	if !isDefaultLibrary(libraryPathFlag) {
+		log.Debug().Msgf("Trying to load custom libraries from %s", libraryPathFlag)
+
 		library := getLibraryInDir(platform, libraryPathFlag)
 		// found a library named according to the platform
 		if library != "" {
 			libraryFilePath = library
-		} else {
-			libraryFilePath = kicsDefault
 		}
-	} else {
-		libraryFilePath = kicsDefault
 	}
 
 	return libraryFilePath
@@ -122,6 +120,10 @@ func GetPathToCustomLibrary(platform, libraryPathFlag string) string {
 func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) {
 	library := GetPathToCustomLibrary(platform, s.Library)
 	content := ""
+
+	if library == "" {
+		return "", errors.New("unable to get libraries path")
+	}
 
 	if library != kicsDefault {
 		byteContent, err := os.ReadFile(library)

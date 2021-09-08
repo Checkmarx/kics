@@ -5,10 +5,12 @@ import (
 	"path/filepath"
 	"testing"
 
+	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
+	"github.com/Checkmarx/kics/pkg/engine/secrets"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/parser"
@@ -81,6 +83,19 @@ func createServices(types, cloudProviders []string) (serviceSlice, *storage.Memo
 		return nil, nil, err
 	}
 
+	secretsInspector, err := secrets.NewInspector(
+		context.Background(),
+		map[string]bool{},
+		t,
+		&source.QueryInspectorParameters{},
+		"assets/queries/common/password_and_secrets",
+		60,
+		assets.SecretsQueryRegexRulesJSON,
+	)
+	if err != nil {
+		return nil, nil, err
+	}
+
 	combinedParser, err := parser.NewBuilder().
 		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
@@ -104,12 +119,13 @@ func createServices(types, cloudProviders []string) (serviceSlice, *storage.Memo
 
 	for _, parser := range combinedParser {
 		services = append(services, &kics.Service{
-			SourceProvider: filesSource,
-			Storage:        store,
-			Parser:         parser,
-			Inspector:      inspector,
-			Tracker:        t,
-			Resolver:       combinedResolver,
+			SourceProvider:   filesSource,
+			Storage:          store,
+			Parser:           parser,
+			Inspector:        inspector,
+			SecretsInspector: secretsInspector,
+			Tracker:          t,
+			Resolver:         combinedResolver,
 		})
 	}
 	return services, store, nil

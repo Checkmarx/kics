@@ -3,9 +3,10 @@ package similarity
 import (
 	"crypto/sha256"
 	"encoding/hex"
-	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/rs/zerolog/log"
 )
 
 // ComputeSimilarityID This function receives four string parameters and computes a sha256 hash
@@ -18,9 +19,7 @@ func ComputeSimilarityID(basePaths []string, filePath, queryID, searchKey, searc
 		}
 	}
 	standardizedPath, err := standardizeToRelativePath(basePath, filePath)
-	if err != nil {
-		return nil, err
-	}
+	log.Error().Err(err).Msgf("Error while standardizing path: %s", filePath)
 
 	var stringNode = standardizedPath + queryID + searchKey + searchValue
 
@@ -33,13 +32,6 @@ func ComputeSimilarityID(basePaths []string, filePath, queryID, searchKey, searc
 func standardizeToRelativePath(basePath, path string) (string, error) {
 	cleanPath := filepath.Clean(path)
 	standardPath := filepath.ToSlash(cleanPath)
-	if basePath == "" {
-		cwd, err := os.Getwd()
-		if err != nil {
-			return "", err
-		}
-		basePath = cwd
-	}
 	basePath = filepath.ToSlash(basePath)
 	relativeStandardPath, err := filepath.Rel(basePath, standardPath)
 	if err != nil {

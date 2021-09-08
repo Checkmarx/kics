@@ -9,6 +9,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine/secrets"
 	"github.com/Checkmarx/kics/pkg/engine/source"
@@ -50,7 +51,9 @@ func testSecretsInspector(t *testing.T, samplePaths []string, expectedVulnerabil
 			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
 			InputDataPath:  "",
 		},
+		"../assets/queries",
 		60,
+		assets.SecretsQueryRegexRulesJSON,
 	)
 	require.NoError(t, err, "unable to create secrets inspector")
 

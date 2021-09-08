@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"math"
+	"path"
+	"path/filepath"
 	"regexp"
 	"strings"
 	"time"
@@ -22,8 +24,9 @@ import (
 )
 
 const (
-	Base64Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
-	HexChars    = "1234567890abcdefABCDEF"
+	Base64Chars        = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
+	HexChars           = "1234567890abcdefABCDEF"
+	SecretsPasswordDir = "passwords_and_secrets"
 )
 
 var (
@@ -72,8 +75,22 @@ func NewInspector(
 	excludeResults map[string]bool,
 	tracker engine.Tracker,
 	queryFilter *source.QueryInspectorParameters,
+	queriesPath string,
 	executionTimeout int,
+	regexRulesContent string,
 ) (*Inspector, error) {
+
+	if !isSecretsQueryInQueryPath(queriesPath) {
+		return &Inspector{
+			ctx:                   ctx,
+			tracker:               tracker,
+			excludeResults:        excludeResults,
+			regexQueries:          make([]RegexQuery, 0),
+			vulnerabilities:       make([]model.Vulnerability, 0),
+			queryExecutionTimeout: time.Duration(executionTimeout) * time.Second,
+		}, nil
+	}
+
 	lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
 		Add(helm.DetectKindLine{}, model.KindHELM).
 		Add(docker.DetectKindLine{}, model.KindDOCKER)
@@ -82,14 +99,13 @@ func NewInspector(
 	if err != nil {
 		return nil, err
 	}
+	queryExecutionTimeout := time.Duration(executionTimeout) * time.Second
 
 	var allRegexQueries []RegexQuery
-	err = json.Unmarshal([]byte(assets.SecretsQueryRegexRulesJSON), &allRegexQueries)
+	err = json.Unmarshal([]byte(regexRulesContent), &allRegexQueries)
 	if err != nil {
 		return nil, err
 	}
-
-	queryExecutionTimeout := time.Duration(executionTimeout) * time.Second
 
 	return &Inspector{
 		ctx:                   ctx,
@@ -100,6 +116,25 @@ func NewInspector(
 		vulnerabilities:       make([]model.Vulnerability, 0),
 		queryExecutionTimeout: queryExecutionTimeout,
 	}, nil
+}
+
+func isSecretsQueryInQueryPath(queriesPath string) bool {
+	return strings.Contains(queriesPath, filepath.Join("common", SecretsPasswordDir)) ||
+		expandPathAndFindQuery(queriesPath)
+}
+
+func expandPathAndFindQuery(queriesPath string) bool {
+	matches, err := filepath.Glob(path.Join(queriesPath, "**", SecretsPasswordDir))
+	log.Err(err).Msg("Failed to expand path and find query")
+	if err != nil {
+		return false
+	}
+	for _, match := range matches {
+		if strings.Contains(match, SecretsPasswordDir) {
+			return true
+		}
+	}
+	return false
 }
 
 func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQueries []RegexQuery) []RegexQuery {

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KICS Scan Result</title>
+  {{ includeCSS "report.css" }}
+  {{ includeJS "report.js" }}
+</head>
+<body>
+  <div class="container">
+    <div class="report-header-footer"><span class="title">KICS <span>E2E REPORT</span></span><span class="timestamp">{{ getCurrentTime }}</span><a href="https://www.kics.io/" rel="noopener" target="_blank">KICS.IO</a></div>
+
+    <div class="results">
+      <h2>E2E Tests Result: <span class="test-status {{ if eq .Result.Action "pass" }}pass{{else}}fail{{end}}">{{.Result.Action}}<span></h2>
+      <h3>Time Elapsed: {{.Result.Elapsed}}s</h3>
+    </div>
+    <hr class="separator"/>
+    <h4>Filters</h4>
+    <div class="counters">
+
+      <div class="counter-btn" onclick="filter('pass')">
+        <span class="counter test-status pass">PASSED</span>
+        <span class="counter-count">{{.Counters.CountPass}}</span>
+      </div>
+
+      <div class="counter-btn" onclick="filter('fail')">
+        <span class="counter test-status fail">FAILED</span>
+        <span class="counter-count">{{.Counters.CountFail}}</span>
+      </div>
+
+      <div class="counter-btn selected" onclick="filter('all')">
+        <span class="counter test-status all">ALL</span>
+        <span class="counter-count">{{.Counters.CountTotal}}</span>
+      </div>
+
+    </div>
+    {{- range $val := .TestsData}}
+    <div data-type="testInfo" data-name="{{$val.TestLog.Action}}">
+      <hr class="separator"/>
+      <div class="testBlock">
+        <span><b>Test:</b> {{$val.TestLog.Test}}</span>
+        <span><b>Elapsed:</b> {{$val.TestLog.Elapsed}}s</span>
+        <span><b>Status:</b> <span class="test-status {{ if eq $val.TestLog.Action "pass" }}pass{{else}}fail{{end}}"> {{$val.TestLog.Action}}</span></span>
+        {{ if eq $val.TestLog.Action "fail" }}
+          <details>
+            <summary>View Details</summary>
+            <div class="code-box">
+              {{ range $failLine := $val.FailLog }}
+                <span class="code">{{ $failLine }}</span>
+              {{ end }}
+            </div>
+          </details>
+        {{ end }}
+      </div>
+    </div>
+    {{- end -}}
+
+  </div>
+</body>
+</html>

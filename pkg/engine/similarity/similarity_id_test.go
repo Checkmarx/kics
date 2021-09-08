@@ -18,9 +18,9 @@ type computeSimilarityIDParams struct {
 
 var (
 	similarityIDTests = []struct {
-		name             string
-		calls            []computeSimilarityIDParams
-		expectedFunction func(t *testing.T, firstHash, secondHash *string)
+		name       string
+		calls      []computeSimilarityIDParams
+		wantEquals bool
 	}{
 		{
 			name: "Changed file name",
@@ -40,9 +40,7 @@ var (
 					searchValue: "TCP,22",
 				},
 			},
-			expectedFunction: func(t *testing.T, firstHash, secondHash *string) {
-				require.NotEqual(t, *firstHash, *secondHash)
-			},
+			wantEquals: false,
 		},
 		{
 			name: "Changed file name with multiple paths",
@@ -62,9 +60,7 @@ var (
 					searchValue: "TCP,22",
 				},
 			},
-			expectedFunction: func(t *testing.T, firstHash, secondHash *string) {
-				require.NotEqual(t, *firstHash, *secondHash)
-			},
+			wantEquals: false,
 		},
 		{
 			name: "Changed queryID",
@@ -84,9 +80,7 @@ var (
 					searchValue: "",
 				},
 			},
-			expectedFunction: func(t *testing.T, firstHash, secondHash *string) {
-				require.NotEqual(t, *firstHash, *secondHash)
-			},
+			wantEquals: false,
 		},
 		{
 			name: "Changed searchKey",
@@ -106,9 +100,7 @@ var (
 					searchValue: "",
 				},
 			},
-			expectedFunction: func(t *testing.T, firstHash, secondHash *string) {
-				require.NotEqual(t, *firstHash, *secondHash)
-			},
+			wantEquals: false,
 		},
 		{
 			name: "Changed filepath dir",
@@ -128,9 +120,7 @@ var (
 					searchValue: "",
 				},
 			},
-			expectedFunction: func(t *testing.T, firstHash, secondHash *string) {
-				require.NotEqual(t, *firstHash, *secondHash)
-			},
+			wantEquals: false,
 		},
 		{
 			name: "No changes",
@@ -150,9 +140,7 @@ var (
 					searchValue: "TCP,22",
 				},
 			},
-			expectedFunction: func(t *testing.T, firstHash, secondHash *string) {
-				require.Equal(t, *firstHash, *secondHash)
-			},
+			wantEquals: true,
 		},
 		{
 			name: "Windows path to file",
@@ -172,9 +160,7 @@ var (
 					searchValue: "TCP,22",
 				},
 			},
-			expectedFunction: func(t *testing.T, firstHash, secondHash *string) {
-				require.Equal(t, *firstHash, *secondHash)
-			},
+			wantEquals: true,
 		},
 		{
 			name: "Relative directory resolution",
@@ -194,9 +180,7 @@ var (
 					searchValue: "",
 				},
 			},
-			expectedFunction: func(t *testing.T, firstHash, secondHash *string) {
-				require.Equal(t, *firstHash, *secondHash)
-			},
+			wantEquals: true,
 		},
 		{
 			name: "No changes, empty searchValue",
@@ -216,9 +200,7 @@ var (
 					searchValue: "",
 				},
 			},
-			expectedFunction: func(t *testing.T, firstHash, secondHash *string) {
-				require.Equal(t, *firstHash, *secondHash)
-			},
+			wantEquals: true,
 		},
 	}
 )
@@ -229,14 +211,18 @@ func TestComputeSimilarityID(t *testing.T) {
 		t.Run(tc.name, func(tt *testing.T) {
 			firstHash, err := ComputeSimilarityID(tc.calls[0].basePaths, tc.calls[0].filePath, tc.calls[0].queryID, tc.calls[0].searchKey,
 				tc.calls[0].searchValue)
-			require.NoError(tt, err)
-			require.NotEmpty(tt, *firstHash)
+			require.NoError(tt, err, "test[%s] expects no error", tc.name)
+			require.NotEmpty(tt, *firstHash, "test[%s] expects firstHash not empty", tc.name)
 			secondHash, err := ComputeSimilarityID(tc.calls[1].basePaths, tc.calls[1].filePath, tc.calls[1].queryID, tc.calls[1].searchKey,
 				tc.calls[1].searchValue)
-			require.NoError(tt, err)
-			require.NotEmpty(tt, *secondHash)
+			require.NoError(tt, err, "test[%s] expects no error", tc.name)
+			require.NotEmpty(tt, *secondHash, "test[%s] expects secondHash not empty", tc.name)
 
-			tc.expectedFunction(tt, firstHash, secondHash)
+			if tc.wantEquals {
+				require.Equal(t, *firstHash, *secondHash, "test[%s] hashes should be equal first %s second %s", tc.name, *firstHash, *secondHash)
+			} else {
+				require.NotEqual(t, *firstHash, *secondHash, "test[%s] hashes should not be equal first %s second %s", tc.name, *firstHash, *secondHash)
+			}
 		})
 	}
 }
