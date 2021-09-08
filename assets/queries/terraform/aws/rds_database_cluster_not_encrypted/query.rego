@@ -4,29 +4,22 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	rds := input.document[i].resource.aws_db_cluster_snapshot[name]
-	not common_lib.valid_key(rds, "storage_encrypted")
+	db := rds.db_cluster_identifier
+	dbName := split(db, ".")[1]
+
+	not rds_cluster_encrypted(dbName)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_db_cluster_snapshot[%s].storage_encrypted", [name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_db_cluster_snapshot.storage_encrypted' is defined and not null",
-		"keyActualValue": "aws_db_cluster_snapshot.storage_encrypted' is undefined or null",
-		"searchLine": common_lib.build_search_line(["resource", "aws_db_cluster_snapshot", name], []),
+		"searchKey": sprintf("aws_db_cluster_snapshot[%s].db_cluster_identifier", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "aws_db_cluster_snapshot.db_cluster_identifier' is encrypted",
+		"keyActualValue": "aws_db_cluster_snapshot.db_cluster_identifier' is not encrypted",
+		"searchLine": common_lib.build_search_line(["resource", "aws_db_cluster_snapshot", name, "db_cluster_identifier"], []),
 	}
 }
 
-CxPolicy[result] {
-	rds := input.document[i].resource.aws_db_cluster_snapshot[name]
-	common_lib.valid_key(rds, "storage_encrypted")
-	rds.storage_encrypted == false
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_db_cluster_snapshot[%s].storage_encrypted", [name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_db_cluster_snapshot.storage_encrypted' is defined and not null",
-		"keyActualValue": "aws_db_cluster_snapshot.storage_encrypted' is undefined or null",
-		"searchLine": common_lib.build_search_line(["resource", "aws_db_cluster_snapshot", name, "storage_encrypted"], []),
-	}
+rds_cluster_encrypted(rdsName) {
+	rds := input.document[i].resource.aws_rds_cluster[rdsName]
+	rds.storage_encrypted == true
 }
