@@ -19,4 +19,4 @@ pipelines:
           - results.json
 ```
 
-![bitbucket pipelines](img/kics-scan-bitbucket-pipelines.png)
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics-scan-bitbucket-pipelines.png" width="850">
