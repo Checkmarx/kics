@@ -18,7 +18,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	lb := input.document[i].resource.aws_lb[name]
-	common_lib.valid_key(lb, "enable_deletion_protection")
+
 	lb.enable_deletion_protection == false
 
 	result := {
