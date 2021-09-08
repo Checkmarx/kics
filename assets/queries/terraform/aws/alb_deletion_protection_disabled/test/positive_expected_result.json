@@ -3,7 +3,7 @@
     "queryName": "ALB Deletion Protection Disabled",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive.tf"
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "ALB Deletion Protection Disabled",

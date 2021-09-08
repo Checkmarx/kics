@@ -1,11 +1,11 @@
 {
-  "id": "8bbb242f-6e38-4127-86d4-d8f0b2687ae2",
+  "id": "afecd1f1-6378-4f7e-bb3b-60c35801fdd4",
   "queryName": "ALB Deletion Protection Disabled",
   "severity": "LOW",
   "category": "Insecure Configurations",
   "descriptionText": "Application Load Balancer should have deletion protection enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb#enable_deletion_protection",
   "platform": "Terraform",
-  "descriptionID": "248fe368",
+  "descriptionID": "224b3c6f",
   "cloudProvider": "aws"
 }

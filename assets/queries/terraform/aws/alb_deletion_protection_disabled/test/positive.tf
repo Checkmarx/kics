@@ -1,4 +1,4 @@
-resource "aws_lb" "positive" {
+resource "aws_lb" "positive1" {
   name               = "test-lb-tf"
   internal           = false
   load_balancer_type = "network"
