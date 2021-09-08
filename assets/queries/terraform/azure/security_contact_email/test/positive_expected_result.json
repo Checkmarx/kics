@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Security Contact Email",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive.tf"
+  }
+]
