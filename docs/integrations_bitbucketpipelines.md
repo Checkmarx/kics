@@ -7,17 +7,16 @@ This provides you the ability to run KICS scans in your Bitbucket repositories a
 ### Example configuration
 
 ```yaml
-image: atlassian/default-image:2
+image: checkmarx/kics:latest-alpine
 
 pipelines:
   default:
     - step:
         name: "Cx KICS"
         script:
-          - LATEST_KICS_TAG=$(curl --silent "https://api.github.com/repos/Checkmarx/kics/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-          - LATEST_KICS_VERSION=${LATEST_KICS_TAG#v}
-          - wget -q -c "https://github.com/Checkmarx/kics/releases/download/${LATEST_KICS_TAG}/kics_${LATEST_KICS_VERSION}_linux_x64.tar.gz" -O - | tar -xz --directory /usr/bin &>/dev/null
-          - kics -q /usr/bin/assets/queries -p ${PWD} -o ${PWD}
+          - kics scan -q /app/bin/assets/queries --ignore-on-exit results -p ${PWD} -o ${PWD}
         artifacts:
           - results.json
 ```
+
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics-scan-bitbucket-pipelines.png" width="850">
