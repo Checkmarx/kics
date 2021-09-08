@@ -63,7 +63,7 @@
   },
   {
     "id": "d651cca2-2156-4d17-8e76-423e68de5c8b",
-    "name": "Google Cloud Platform OAuth",
+    "name": "Google OAuth",
     "regex": "[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com"
   },
   {
@@ -74,7 +74,10 @@
   {
     "id": "73cb4fde-fd6d-40e3-8787-11d2a7ac9581",
     "name": "GitHub",
-    "regex": "[g|G][i|I][t|T][h|H][u|U][b|B][^\\s]*['|\"][0-9a-zA-Z]{35,40}['|\"]"
+    "regex": "(?i)github((.|\\n)*)\\b([0-9a-zA-Z]{35,40})\\b",
+    "multiline": {
+      "detectLineGroup": 3
+    }
   },
   {
     "id": "ccde326f-ebc7-4772-8ad5-de66e90a8cc3",
@@ -94,17 +97,12 @@
   {
     "id": "6abcae17-b175-4698-a9a5-b07661974749",
     "name": "Stripe API Key",
-    "regex": "sk_live_[0-9a-zA-Z]{24}"
+    "regex": "sk_live_[0-9a-zA-Z]{24}$"
   },
   {
     "id": "0b1b2482-51e7-49d1-893d-522afa4a6bd0",
     "name": "Square Access Token",
     "regex": "sq0atp-[0-9A-Za-z\\-_]{22}"
-  },
-  {
-    "id": "0f594d4c-cbc2-4082-8c80-6dcd872b7b85",
-    "name": "Google Drive API Key",
-    "regex": "AIza[0-9A-Za-z\\-_]{35}"
   },
   {
     "id": "6c54f9da-1a11-445a-8568-0d327e6af8be",
@@ -113,13 +111,8 @@
   },
   {
     "id": "e9856348-4069-4ac0-bd91-415f6a7b84a4",
-    "name": "Google Cloud Platform API Key",
+    "name": "Google API Key",
     "regex": "AIza[0-9A-Za-z\\-_]{35}"
-  },
-  {
-    "id": "54a5acdb-c01d-4a84-bd9d-48ca7d5330f3",
-    "name": "Google Drive OAuth",
-    "regex": "[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com"
   },
   {
     "id": "13f0dca2-deb6-4279-a1ec-3a5f9e43d456",
@@ -129,17 +122,15 @@
   {
     "id": "9a3650af-5b88-48cd-ab89-cd77fd0b633f",
     "name": "Heroku API Key",
-    "regex": "[h|H][e|E][r|R][o|O][k|K][u|U][^\\s]*[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}"
+    "regex": "(?i)heroku((.|\\n)*)\\b([0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12})\\b",
+    "multiline": {
+      "detectLineGroup": 3
+    }
   },
   {
     "id": "bb51eb1e-0357-44a2-86d7-dd5350cffd43",
     "name": "Square OAuth Secret",
     "regex": "sq0csp-[0-9A-Za-z\\-_]{43}"
-  },
-  {
-    "id": "0c2afb93-0967-46bc-b69b-1a8de75dcb1e",
-    "name": "Google API Key",
-    "regex": "AIza[0-9A-Za-z\\-_]{35}"
   },
   {
     "id": "3aa56c25-3fcb-4bd9-848b-fe4a7cb9189a",
@@ -155,16 +146,6 @@
     "id": "ac8c8075-6ec0-4367-9e26-30ec8161d258",
     "name": "Amazon MWS Auth Token",
     "regex": "amzn\\.mws\\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
-  },
-  {
-    "id": "acac5cff-5ed8-4f42-ab1f-fba3c16714c6",
-    "name": "Google Gmail API Key",
-    "regex": "AIza[0-9A-Za-z\\-_]{35}"
-  },
-  {
-    "id": "2b5830f5-d265-48b5-abc0-9bccb3abb21a",
-    "name": "Google Gmail OAuth",
-    "regex": "[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com"
   },
   {
     "id": "41a1ca8d-f466-4084-a8c9-50f8b22200d5",
@@ -189,17 +170,10 @@
   {
     "id": "74736dd1-dd11-4139-beb6-41cd43a50317",
     "name": "Generic API Key",
-    "regex": "[a|A][p|P][i|I][_]?[k|K][e|E][y|Y][^\\s]*['|\"][0-9a-zA-Z]{32,45}['|\"]"
-  },
-  {
-    "id": "adc7cf27-dcb1-44cf-b0d4-d8bb0220fa45",
-    "name": "Google YouTube API Key",
-    "regex": "AIza[0-9A-Za-z\\-_]{35}"
-  },
-  {
-    "id": "06a08bef-f2fa-4fd1-8f40-22e404edb7a6",
-    "name": "Google YouTube OAuth",
-    "regex": "[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com"
+    "regex": "(?:)api[_]?key((.|\\n)*)\\b([0-9a-zA-Z]{32,45})\\b",
+    "multiline": {
+      "detectLineGroup": 3
+    }
   },
   {
     "id": "62d0025d-9575-4eff-b60b-d3b4fcec0d04",
