@@ -19,4 +19,4 @@ pipelines:
           - results.json
 ```
 
-![bitbucket pipelines](docs/img/kics-scan-bitbucket-pipelines.png)
+![bitbucket pipelines](img/kics-scan-bitbucket-pipelines.png)
