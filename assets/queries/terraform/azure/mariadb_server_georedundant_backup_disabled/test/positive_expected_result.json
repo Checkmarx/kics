@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "MariaDB Server Geo-redundant Backup Disabled",
+    "severity": "LOW",
+    "line": 15,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "MariaDB Server Geo-redundant Backup Disabled",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive2.tf"
+  }
+]
