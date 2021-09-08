@@ -435,6 +435,7 @@ func createServiceAndStartScan(params *startServiceParameters) (failedQueries ma
 		params.excludeResults,
 		params.t,
 		queryFilter,
+		flags.GetStrFlag(flags.QueriesPath),
 		flags.GetIntFlag(flags.QueryExecTimeoutFlag),
 		secretsRegexRulesContent,
 	)
