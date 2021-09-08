@@ -22,6 +22,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_glue_security_configuration[%s].%s has '%s' defined and not null", [name, configKey, configValue]),
 		"keyActualValue": sprintf("aws_glue_security_configKeyiguration[%s].%s has '%s' undefined or null", [name, configKey, configValue]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_glue_security_configuration", name, configKey], []),
 	}
 }
 
@@ -38,10 +39,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_glue_security_configuration[%s].%s", [name, config]),
+		"searchKey": sprintf("aws_glue_security_configuration[%s].encryption_configuration.%s", [name, config]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_glue_security_configuration[%s].%s has 'kms_key_arn' defined and not null", [name, config]),
-		"keyActualValue": sprintf("aws_glue_security_configuration[%s].%s has 'kms_key_arn' undefined or null", [name, config]),
+		"keyExpectedValue": sprintf("aws_glue_security_configuration[%s].encryption_configuration.%s has 'kms_key_arn' defined and not null", [name, config]),
+		"keyActualValue": sprintf("aws_glue_security_configuration[%s].encryption_configuration.%s has 'kms_key_arn' undefined or null", [name, config]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_glue_security_configuration", name, "encryption_configuration", config], []),
 	}
 }
 
@@ -56,27 +58,28 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": searchKeyInfo.keyExpectedValue,
 		"keyActualValue": searchKeyInfo.keyActualValue,
+		"searchLine": common_lib.build_search_line(["resource", "aws_glue_security_configuration", name, searchKeyInfo.path], []),
 	}
 }
 
 wrong_config(config) = searchKeyInfo {
 	config.cloudwatch_encryption.cloudwatch_encryption_mode != "SSE-KMS"
 	searchKeyInfo := {
-		"path": "cloudwatch_encryption.cloudwatch_encryption_mode",
+		"path": "encryption_configuration.cloudwatch_encryption.cloudwatch_encryption_mode",
 		"keyExpectedValue": "'cloudwatch_encryption_mode' is set to 'SSE-KMS'",
 		"keyActualValue": "'cloudwatch_encryption_mode' is not set to 'SSE-KMS'",
 	}
 } else = searchKeyInfo {
 	config.job_bookmarks_encryption.job_bookmarks_encryption_mode != "CSE-KMS"
 	searchKeyInfo := {
-		"path": "job_bookmarks_encryption.job_bookmarks_encryption_mode",
+		"path": "encryption_configuration.job_bookmarks_encryption.job_bookmarks_encryption_mode",
 		"keyExpectedValue": "'job_bookmarks_encryption_mode' is set to 'CSE-KMS'",
 		"keyActualValue": "'job_bookmarks_encryption_mode' is not set to 'CSE-KMS'",
 	}
 } else = searchKeyInfo {
 	config.s3_encryption.s3_encryption_mode == "DISABLED"
 	searchKeyInfo := {
-		"path": "s3_encryption.s3_encryption_mode",
+		"path": "encryption_configuration.s3_encryption.s3_encryption_mode",
 		"keyExpectedValue": "'s3_encryption_mode' is not set to 'DISABLED'",
 		"keyActualValue": "'s3_encryption_mode' is set to 'DISABLED'",
 	}
