@@ -223,12 +223,12 @@ func validateIssueTypes(tb testing.TB, vulnerabilies []model.Vulnerability) {
 func diffActualExpectedVulnerabilities(actual, expected []model.Vulnerability) []string {
 	m := make(map[string]bool)
 	diff := make([]string, 0)
-	for _, expectedVuln := range expected {
-		m[expectedVuln.QueryName+":"+expectedVuln.FileName+":"+strconv.Itoa(expectedVuln.Line)] = true
+	for i := range expected {
+		m[expected[i].QueryName+":"+expected[i].FileName+":"+strconv.Itoa(expected[i].Line)] = true
 	}
-	for _, actualVuln := range actual {
-		if _, ok := m[actualVuln.QueryName+":"+filepath.Base(actualVuln.FileName)+":"+strconv.Itoa(actualVuln.Line)]; !ok {
-			diff = append(diff, actualVuln.FileName+":"+strconv.Itoa(actualVuln.Line))
+	for i := range actual {
+		if _, ok := m[actual[i].QueryName+":"+filepath.Base(actual[i].FileName)+":"+strconv.Itoa(actual[i].Line)]; !ok {
+			diff = append(diff, actual[i].FileName+":"+strconv.Itoa(actual[i].Line))
 		}
 	}
 
