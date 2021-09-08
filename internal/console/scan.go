@@ -396,48 +396,26 @@ func createQueryFilter() *source.QueryInspectorParameters {
 	return &queryFilter
 }
 
-type allInspectors struct {
-	inspector        *engine.Inspector
-	secretsInspector *secrets.Inspector
-}
-
-func createInspector(t engine.Tracker, querySource source.QueriesSource,
-	excludeResults map[string]bool, queryFilter *source.QueryInspectorParameters) (allInspectors, error) {
-	inspector, err := engine.NewInspector(ctx,
-		querySource,
-		engine.DefaultVulnerabilityBuilder,
-		t,
-		queryFilter,
-		excludeResults,
-		flags.GetIntFlag(flags.QueryExecTimeoutFlag),
-	)
-	if err != nil {
-		return allInspectors{}, err
-	}
-	secretsInspector, err := secrets.NewInspector(
-		ctx,
-		excludeResults,
-		t,
-		queryFilter,
-		flags.GetIntFlag(flags.QueryExecTimeoutFlag),
-	)
-	if err != nil {
-		log.Err(err)
-		return allInspectors{}, err
-	}
-	return allInspectors{
-		inspector:        inspector,
-		secretsInspector: secretsInspector,
-	}, nil
-}
-
 func createServiceAndStartScan(params *startServiceParameters) (failedQueries map[string]error, err error) {
 	queryFilter := createQueryFilter()
-	inspectors, err := createInspector(
-		params.t,
+	inspector, err := engine.NewInspector(ctx,
 		params.querySource,
-		params.excludeResults,
+		engine.DefaultVulnerabilityBuilder,
+		params.t,
 		queryFilter,
+		params.excludeResults,
+		flags.GetIntFlag(flags.QueryExecTimeoutFlag),
+	)
+	if err != nil {
+		return failedQueries, err
+	}
+
+	secretsInspector, err := secrets.NewInspector(
+		ctx,
+		params.excludeResults,
+		params.t,
+		queryFilter,
+		flags.GetIntFlag(flags.QueryExecTimeoutFlag),
 	)
 	if err != nil {
 		log.Err(err)
@@ -445,8 +423,8 @@ func createServiceAndStartScan(params *startServiceParameters) (failedQueries ma
 	}
 
 	services, err := createService(
-		inspectors.inspector,
-		inspectors.secretsInspector,
+		inspector,
+		secretsInspector,
 		params.extractedPaths,
 		params.t,
 		params.store,
@@ -462,7 +440,7 @@ func createServiceAndStartScan(params *startServiceParameters) (failedQueries ma
 		log.Err(err)
 		return failedQueries, err
 	}
-	failedQueries = inspectors.inspector.GetFailedQueries()
+	failedQueries = inspector.GetFailedQueries()
 	return failedQueries, nil
 }
 
@@ -488,15 +466,7 @@ func getQueryPath(changedDefaultQueryPath bool) error {
 	return nil
 }
 
-type preScanOutput struct {
-	progressBar progress.PBar
-	tracker     *tracker.CITracker
-	startTime   time.Time
-	pbBuilder   *progress.PbBuilder
-	printer     *consoleHelpers.Printer
-}
-
-func preScan() (preScanOutput, error) {
+func scan(changedDefaultQueryPath bool) error {
 	log.Debug().Msg("console.scan()")
 	for _, warn := range warnings {
 		log.Warn().Msgf(warn)
@@ -526,20 +496,6 @@ func preScan() (preScanOutput, error) {
 	t, err := tracker.NewTracker(flags.GetIntFlag(flags.PreviewLinesFlag))
 	if err != nil {
 		log.Err(err)
-		return preScanOutput{}, err
-	}
-
-	return preScanOutput{
-		printer:     printer,
-		progressBar: progressBar,
-		tracker:     t,
-		startTime:   scanStartTime,
-	}, nil
-}
-
-func scan(changedDefaultQueryPath bool) error {
-	preScanOut, err := preScan()
-	if err != nil {
 		return err
 	}
 
@@ -570,12 +526,12 @@ func scan(changedDefaultQueryPath bool) error {
 
 	excludeResultsMap := getExcludeResultsMap(flags.GetMultiStrFlag(flags.ExcludeResultsFlag))
 	failedQueries, err := createServiceAndStartScan(&startServiceParameters{
-		t:              preScanOut.tracker,
+		t:              t,
 		store:          store,
 		querySource:    querySource,
-		progressBar:    preScanOut.progressBar,
+		progressBar:    progressBar,
 		extractedPaths: extractedPaths.Path,
-		pbBuilder:      preScanOut.pbBuilder,
+		pbBuilder:      proBarBuilder,
 		excludeResults: excludeResultsMap,
 	})
 	if err != nil {
@@ -594,7 +550,7 @@ func scan(changedDefaultQueryPath bool) error {
 		return err
 	}
 
-	summary := getSummary(preScanOut.tracker, results, preScanOut.startTime, time.Now(), model.PathParameters{
+	summary := getSummary(t, results, scanStartTime, time.Now(), model.PathParameters{
 		ScannedPaths:      flags.GetMultiStrFlag(flags.PathFlag),
 		PathExtractionMap: extractedPaths.ExtractionMap,
 	})
@@ -603,13 +559,13 @@ func scan(changedDefaultQueryPath bool) error {
 		&summary,
 		files.Combine(flags.GetBoolFlag(flags.LineInfoPayloadFlag)),
 		failedQueries,
-		preScanOut.printer,
-		*preScanOut.pbBuilder); err != nil {
+		printer,
+		*proBarBuilder); err != nil {
 		log.Err(err)
 		return err
 	}
 
-	printScanDuration(time.Since(preScanOut.startTime))
+	printScanDuration(time.Since(scanStartTime))
 
 	exitCode := consoleHelpers.ResultsExitCode(&summary)
 	if consoleHelpers.ShowError("results") && exitCode != 0 {
