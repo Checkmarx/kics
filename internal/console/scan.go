@@ -371,7 +371,6 @@ func createService(
 type startServiceParameters struct {
 	t              *tracker.CITracker
 	store          kics.Storage
-	querySource    *source.FilesystemSource
 	extractedPaths []string
 	progressBar    progress.PBar
 	pbBuilder      *progress.PbBuilder
@@ -413,9 +412,15 @@ func getSecretsRegexRules(regexRulesPath string) (regexRulesContent string, err 
 }
 
 func createServiceAndStartScan(params *startServiceParameters) (failedQueries map[string]error, err error) {
+	querySource := source.NewFilesystemSource(
+		flags.GetStrFlag(flags.QueriesPath),
+		flags.GetMultiStrFlag(flags.TypeFlag),
+		flags.GetMultiStrFlag(flags.CloudProviderFlag),
+		flags.GetStrFlag(flags.LibrariesPath))
+
 	queryFilter := createQueryFilter()
 	inspector, err := engine.NewInspector(ctx,
-		params.querySource,
+		querySource,
 		engine.DefaultVulnerabilityBuilder,
 		params.t,
 		queryFilter,
@@ -451,7 +456,7 @@ func createServiceAndStartScan(params *startServiceParameters) (failedQueries ma
 		params.extractedPaths,
 		params.t,
 		params.store,
-		params.querySource,
+		querySource,
 	)
 	if err != nil {
 		log.Err(err)
@@ -521,6 +526,31 @@ func preparePaths(changedDefaultQueryPath, changedDefaultLibrariesPath bool) err
 	return nil
 }
 
+func prepareAndAnalyzePaths(changedDefaultQueryPath, changedDefaultLibrariesPath bool) (extractedPaths provider.ExtractedPath, err error) {
+	err = preparePaths(changedDefaultQueryPath, changedDefaultLibrariesPath)
+	if err != nil {
+		return extractedPaths, err
+	}
+
+	extractedPaths, err = provider.GetSources(flags.GetMultiStrFlag(flags.PathFlag))
+	if err != nil {
+		return extractedPaths, err
+	}
+
+	newTypeFlagValue, newExcludePathsFlagValue, errAnalyze :=
+		analyzePaths(
+			extractedPaths.Path,
+			flags.GetMultiStrFlag(flags.TypeFlag),
+			flags.GetMultiStrFlag(flags.ExcludePathsFlag),
+		)
+	if errAnalyze != nil {
+		return extractedPaths, errAnalyze
+	}
+	flags.SetMultiStrFlag(flags.TypeFlag, newTypeFlagValue)
+	flags.SetMultiStrFlag(flags.ExcludePathsFlag, newExcludePathsFlagValue)
+	return extractedPaths, nil
+}
+
 func scan(changedDefaultQueryPath, changedDefaultLibrariesPath bool) error {
 	log.Debug().Msg("console.scan()")
 	for _, warn := range warnings {
@@ -554,36 +584,17 @@ func scan(changedDefaultQueryPath, changedDefaultLibrariesPath bool) error {
 		return err
 	}
 
-	err = preparePaths(changedDefaultQueryPath, changedDefaultLibrariesPath)
-	if err != nil {
-		return err
-	}
-
-	extractedPaths, err := provider.GetSources(flags.GetMultiStrFlag(flags.PathFlag))
-	if err != nil {
-		return err
-	}
-
-	newTypeFlagValue, newExcludePathsFlagValue, errAnalyze :=
-		analyzePaths(extractedPaths.Path, flags.GetMultiStrFlag(flags.TypeFlag), flags.GetMultiStrFlag(flags.ExcludePathsFlag))
-	if errAnalyze != nil {
-		return errAnalyze
-	}
-	flags.SetMultiStrFlag(flags.TypeFlag, newTypeFlagValue)
-	flags.SetMultiStrFlag(flags.ExcludePathsFlag, newExcludePathsFlagValue)
-
-	querySource := source.NewFilesystemSource(
-		flags.GetStrFlag(flags.QueriesPath),
-		flags.GetMultiStrFlag(flags.TypeFlag),
-		flags.GetMultiStrFlag(flags.CloudProviderFlag),
-		flags.GetStrFlag(flags.LibrariesPath))
 	store := storage.NewMemoryStorage()
+	extractedPaths, err := prepareAndAnalyzePaths(changedDefaultQueryPath, changedDefaultLibrariesPath)
+	if err != nil {
+		log.Err(err)
+		return err
+	}
 
 	excludeResultsMap := getExcludeResultsMap(flags.GetMultiStrFlag(flags.ExcludeResultsFlag))
 	failedQueries, err := createServiceAndStartScan(&startServiceParameters{
 		t:              t,
 		store:          store,
-		querySource:    querySource,
 		progressBar:    progressBar,
 		extractedPaths: extractedPaths.Path,
 		pbBuilder:      proBarBuilder,

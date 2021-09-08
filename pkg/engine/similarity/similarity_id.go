@@ -19,7 +19,9 @@ func ComputeSimilarityID(basePaths []string, filePath, queryID, searchKey, searc
 		}
 	}
 	standardizedPath, err := standardizeToRelativePath(basePath, filePath)
-	log.Error().Err(err).Msgf("Error while standardizing path: %s", filePath)
+	if err != nil {
+		log.Debug().Msgf("Error while standardizing path: %s", err)
+	}
 
 	var stringNode = standardizedPath + queryID + searchKey + searchValue
 

@@ -79,7 +79,6 @@ func NewInspector(
 	executionTimeout int,
 	regexRulesContent string,
 ) (*Inspector, error) {
-
 	if !isSecretsQueryInQueryPath(queriesPath) {
 		return &Inspector{
 			ctx:                   ctx,

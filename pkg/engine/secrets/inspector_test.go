@@ -235,6 +235,121 @@ EOT
 	},
 }
 
+var testNewInspectorInputs = []struct {
+	name                             string
+	inspectorParams                  *source.QueryInspectorParameters
+	assetsSecretsQueryMetadataJSON   string
+	assetsSecretsQueryRegexRulesJSON string
+	queriesPath                      string
+	wantRegLen                       int
+	wantErr                          bool
+}{
+	{
+		name: "invalid_regex_rules",
+		inspectorParams: &source.QueryInspectorParameters{
+			IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
+			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}},
+			InputDataPath:  "",
+		},
+		assetsSecretsQueryMetadataJSON:   `{}`,
+		assetsSecretsQueryRegexRulesJSON: `{}`,
+		queriesPath:                      "assets/queries/common/passwords_and_secrets",
+		wantRegLen:                       0,
+		wantErr:                          true,
+	},
+	{
+		name: "invalid_metadata",
+		inspectorParams: &source.QueryInspectorParameters{
+			IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
+			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}},
+			InputDataPath:  "",
+		},
+		assetsSecretsQueryMetadataJSON:   `{`,
+		assetsSecretsQueryRegexRulesJSON: `{}`,
+		queriesPath:                      "assets/queries/common/passwords_and_secrets",
+		wantRegLen:                       0,
+		wantErr:                          true,
+	},
+	{
+		name: "valid_one_regex_rule_full_path",
+		inspectorParams: &source.QueryInspectorParameters{
+			IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
+			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}},
+			InputDataPath:  "",
+		},
+		assetsSecretsQueryRegexRulesJSON: `[{
+			"id": "487f4be7-3fd9-4506-a07a-eae252180c08",
+			"name": "Generic Password",
+			"regex": "['|\"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\\s*[:|=]\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|\"]?"
+		}]`,
+		assetsSecretsQueryMetadataJSON: `{
+			"queryName": "Passwords And Secrets",
+			"severity": "HIGH",
+			"category": "Secret Management",
+			"descriptionText": "Query to find passwords and secrets in infrastructure code.",
+			"descriptionUrl": "https://kics.io/",
+			"platform": "Common",
+			"descriptionID": "d69d8a89",
+			"cloudProvider": "common"
+		  }`,
+		queriesPath: "assets/queries/common/passwords_and_secrets",
+		wantRegLen:  1,
+		wantErr:     false,
+	},
+	{
+		name: "valid_one_regex_rule",
+		inspectorParams: &source.QueryInspectorParameters{
+			IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
+			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}},
+			InputDataPath:  "",
+		},
+		assetsSecretsQueryRegexRulesJSON: `[{
+			"id": "487f4be7-3fd9-4506-a07a-eae252180c08",
+			"name": "Generic Password",
+			"regex": "['|\"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\\s*[:|=]\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|\"]?"
+		}]`,
+		assetsSecretsQueryMetadataJSON: `{
+			"queryName": "Passwords And Secrets",
+			"severity": "HIGH",
+			"category": "Secret Management",
+			"descriptionText": "Query to find passwords and secrets in infrastructure code.",
+			"descriptionUrl": "https://kics.io/",
+			"platform": "Common",
+			"descriptionID": "d69d8a89",
+			"cloudProvider": "common"
+		  }`,
+		queriesPath: "../../../assets/queries/dockerfile",
+		wantRegLen:  0,
+		wantErr:     false,
+	},
+	{
+		name: "valid_one_regex_rules_test_glob",
+		inspectorParams: &source.QueryInspectorParameters{
+			IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
+			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}},
+			InputDataPath:  "",
+		},
+		assetsSecretsQueryRegexRulesJSON: `[{
+			"id": "487f4be7-3fd9-4506-a07a-eae252180c08",
+			"name": "Generic Password",
+			"regex": "['|\"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\\s*[:|=]\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|\"]?"
+		}]`,
+		assetsSecretsQueryMetadataJSON: `{
+			"queryName": "Passwords And Secrets",
+			"severity": "HIGH",
+			"category": "Secret Management",
+			"descriptionText": "Query to find passwords and secrets in infrastructure code.",
+			"descriptionUrl": "https://kics.io/",
+			"platform": "Common",
+			"descriptionID": "d69d8a89",
+			"cloudProvider": "common"
+		  }`,
+		queriesPath: "../../../assets/queries",
+		wantRegLen:  1,
+		wantErr:     false,
+	},
+}
+
 func TestEntropyInterval(t *testing.T) {
 	inputs := []struct {
 		name    string
@@ -354,122 +469,7 @@ func TestCompileRegexQueries(t *testing.T) {
 func TestNewInspector(t *testing.T) {
 	tmpQueryMetadataJSON := assets.SecretsQueryMetadataJSON
 
-	inputs := []struct {
-		name                             string
-		inspectorParams                  *source.QueryInspectorParameters
-		assetsSecretsQueryMetadataJSON   string
-		assetsSecretsQueryRegexRulesJSON string
-		queriesPath                      string
-		wantRegLen                       int
-		wantErr                          bool
-	}{
-		{
-			name: "invalid_regex_rules",
-			inspectorParams: &source.QueryInspectorParameters{
-				IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
-				ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}},
-				InputDataPath:  "",
-			},
-			assetsSecretsQueryMetadataJSON:   `{}`,
-			assetsSecretsQueryRegexRulesJSON: `{}`,
-			queriesPath:                      "assets/queries/common/passwords_and_secrets",
-			wantRegLen:                       0,
-			wantErr:                          true,
-		},
-		{
-			name: "invalid_metadata",
-			inspectorParams: &source.QueryInspectorParameters{
-				IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
-				ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}},
-				InputDataPath:  "",
-			},
-			assetsSecretsQueryMetadataJSON:   `{`,
-			assetsSecretsQueryRegexRulesJSON: `{}`,
-			queriesPath:                      "assets/queries/common/passwords_and_secrets",
-			wantRegLen:                       0,
-			wantErr:                          true,
-		},
-		{
-			name: "valid_one_regex_rule_full_path",
-			inspectorParams: &source.QueryInspectorParameters{
-				IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
-				ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}},
-				InputDataPath:  "",
-			},
-			assetsSecretsQueryRegexRulesJSON: `[{
-				"id": "487f4be7-3fd9-4506-a07a-eae252180c08",
-				"name": "Generic Password",
-				"regex": "['|\"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\\s*[:|=]\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|\"]?"
-			}]`,
-			assetsSecretsQueryMetadataJSON: `{
-				"queryName": "Passwords And Secrets",
-				"severity": "HIGH",
-				"category": "Secret Management",
-				"descriptionText": "Query to find passwords and secrets in infrastructure code.",
-				"descriptionUrl": "https://kics.io/",
-				"platform": "Common",
-				"descriptionID": "d69d8a89",
-				"cloudProvider": "common"
-			  }`,
-			queriesPath: "assets/queries/common/passwords_and_secrets",
-			wantRegLen:  1,
-			wantErr:     false,
-		},
-		{
-			name: "valid_one_regex_rule",
-			inspectorParams: &source.QueryInspectorParameters{
-				IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
-				ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}},
-				InputDataPath:  "",
-			},
-			assetsSecretsQueryRegexRulesJSON: `[{
-				"id": "487f4be7-3fd9-4506-a07a-eae252180c08",
-				"name": "Generic Password",
-				"regex": "['|\"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\\s*[:|=]\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|\"]?"
-			}]`,
-			assetsSecretsQueryMetadataJSON: `{
-				"queryName": "Passwords And Secrets",
-				"severity": "HIGH",
-				"category": "Secret Management",
-				"descriptionText": "Query to find passwords and secrets in infrastructure code.",
-				"descriptionUrl": "https://kics.io/",
-				"platform": "Common",
-				"descriptionID": "d69d8a89",
-				"cloudProvider": "common"
-			  }`,
-			queriesPath: "../../../assets/queries/dockerfile",
-			wantRegLen:  0,
-			wantErr:     false,
-		},
-		{
-			name: "valid_one_regex_rules_test_glob",
-			inspectorParams: &source.QueryInspectorParameters{
-				IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
-				ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}},
-				InputDataPath:  "",
-			},
-			assetsSecretsQueryRegexRulesJSON: `[{
-				"id": "487f4be7-3fd9-4506-a07a-eae252180c08",
-				"name": "Generic Password",
-				"regex": "['|\"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\\s*[:|=]\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|\"]?"
-			}]`,
-			assetsSecretsQueryMetadataJSON: `{
-				"queryName": "Passwords And Secrets",
-				"severity": "HIGH",
-				"category": "Secret Management",
-				"descriptionText": "Query to find passwords and secrets in infrastructure code.",
-				"descriptionUrl": "https://kics.io/",
-				"platform": "Common",
-				"descriptionID": "d69d8a89",
-				"cloudProvider": "common"
-			  }`,
-			queriesPath: "../../../assets/queries",
-			wantRegLen:  1,
-			wantErr:     false,
-		},
-	}
-
-	for _, in := range inputs {
+	for _, in := range testNewInspectorInputs {
 		ctx := context.Background()
 		assets.SecretsQueryMetadataJSON = in.assetsSecretsQueryMetadataJSON
 		secretsInspector, err := NewInspector(
@@ -498,7 +498,13 @@ func TestNewInspector(t *testing.T) {
 		require.NoError(t, err, "test[%s] NewInspector() should not return error", in.name)
 		require.NotNil(t, secretsInspector, "test[%s] NewInspector() should not return nil", in.name)
 		require.NotNil(t, secretsInspector.regexQueries, "test[%s] NewInspector() should not return nil", in.name)
-		require.Len(t, secretsInspector.regexQueries, in.wantRegLen, "test[%s] NewInspector() should return %d regex queries", in.name, in.wantRegLen)
+		require.Len(t,
+			secretsInspector.regexQueries,
+			in.wantRegLen,
+			"test[%s] NewInspector() should return %d regex queries",
+			in.name,
+			in.wantRegLen,
+		)
 	}
 	t.Cleanup(func() {
 		assets.SecretsQueryMetadataJSON = tmpQueryMetadataJSON
