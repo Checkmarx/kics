@@ -8,8 +8,8 @@
   "queries_failed_to_compute_similarity_id": 0,
   "queries": [
     {
-      "query_name": "Passwords And Secrets In Infrastructure Code",
-      "query_id": "f996f3cb-00fc-480c-8973-8ab04d44a8cc",
+      "query_name": "Passwords And Secrets - Generic Password",
+      "query_id": "487f4be7-3fd9-4506-a07a-eae252180c08",
       "query_url": "https://kics.io/",
       "severity": "HIGH",
       "platform": "Common",
@@ -21,27 +21,27 @@
       "cis_description_text": "",
       "files": [
         {
-          "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "ad5ddbe84fe54d121c8ef856217e0184958db4bf4c4e472f99c31718427b9053",
-          "line": 14,
+          "file_name": "e2e/fixtures/samples/terraform.tf",
+          "similarity_id": "9e26d1ce4d2e0f7fa9b77195bd329f18c135b946ba74a13bc05a289dfc3455f1",
+          "line": 5,
           "issue_type": "RedundantAttribute",
-          "search_key": "resource.aws_redshift_cluster.default1.master_password",
+          "search_key": "",
           "search_line": 0,
           "search_value": "",
           "expected_value": "Hardcoded secret key should not appear in source",
-          "actual_value": "Mustbe8characters",
+          "actual_value": "'  master_password    = \"Mustbe8characters\"' contains a secret",
           "value": null
         },
         {
-          "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "5f3789ae5dac05a64bba584fe201f769786cdaa5a8b7a32aaa057476c65535e2",
-          "line": 5,
+          "file_name": "e2e/fixtures/samples/terraform.tf",
+          "similarity_id": "d6a018d85a93d338ed89c82b791f30c1913eff5e743f67cfa52176f5135aea2b",
+          "line": 14,
           "issue_type": "RedundantAttribute",
-          "search_key": "resource.aws_redshift_cluster.default.master_password",
+          "search_key": "",
           "search_line": 0,
           "search_value": "",
           "expected_value": "Hardcoded secret key should not appear in source",
-          "actual_value": "Mustbe8characters",
+          "actual_value": "'  master_password    = \"Mustbe8characters\"' contains a secret",
           "value": null
         }
       ]
@@ -60,11 +60,11 @@
       "cis_description_text": "",
       "files": [
         {
-          "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "e413b091a0cfff9b692ce5d9fa075e3f69e037a58030e9ef592d5f58ae446fbc",
-          "line": 1,
+          "file_name": "e2e/fixtures/samples/terraform.tf",
+          "similarity_id": "a09d6aefe0fec02ce6b1b30afb3186c7fa4454165a4a1754ed104d22d6156af7",
+          "line": 10,
           "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[default]",
+          "search_key": "aws_redshift_cluster[default1]",
           "search_line": 0,
           "search_value": "",
           "expected_value": "aws_redshift_cluster.encrypted is defined and not null",
@@ -72,11 +72,11 @@
           "value": null
         },
         {
-          "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "a09d6aefe0fec02ce6b1b30afb3186c7fa4454165a4a1754ed104d22d6156af7",
-          "line": 10,
+          "file_name": "e2e/fixtures/samples/terraform.tf",
+          "similarity_id": "e413b091a0cfff9b692ce5d9fa075e3f69e037a58030e9ef592d5f58ae446fbc",
+          "line": 1,
           "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[default1]",
+          "search_key": "aws_redshift_cluster[default]",
           "search_line": 0,
           "search_value": "",
           "expected_value": "aws_redshift_cluster.encrypted is defined and not null",
@@ -99,7 +99,7 @@
       "cis_description_text": "",
       "files": [
         {
-          "file_name": "fixtures/samples/terraform.tf",
+          "file_name": "e2e/fixtures/samples/terraform.tf",
           "similarity_id": "4234052fbe1fed19a465cec7fbed9eb156c22eeae7d97c3ac8096bcc7b39a2fe",
           "line": 1,
           "issue_type": "MissingAttribute",
@@ -111,7 +111,7 @@
           "value": null
         },
         {
-          "file_name": "fixtures/samples/terraform.tf",
+          "file_name": "e2e/fixtures/samples/terraform.tf",
           "similarity_id": "7ae2741fb3c480c38776368fbe21412672c6458d490e4648eb1ad1aadc24a741",
           "line": 17,
           "issue_type": "IncorrectValue",
@@ -138,11 +138,11 @@
       "cis_description_text": "",
       "files": [
         {
-          "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "2abf26c3014fc445da69d8d5bb862c1c511e8e16ad3a6c6f6e14c28aa0adac1d",
-          "line": 10,
+          "file_name": "e2e/fixtures/samples/terraform.tf",
+          "similarity_id": "0455ad9d92fa1dc1cbf20dd5042ee21d9ae176388662b5982501aa01724e50d9",
+          "line": 1,
           "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[default1]",
+          "search_key": "aws_redshift_cluster[default]",
           "search_line": 0,
           "search_value": "",
           "expected_value": "'aws_redshift_cluster.logging' is true",
@@ -150,11 +150,11 @@
           "value": null
         },
         {
-          "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "0455ad9d92fa1dc1cbf20dd5042ee21d9ae176388662b5982501aa01724e50d9",
-          "line": 1,
+          "file_name": "e2e/fixtures/samples/terraform.tf",
+          "similarity_id": "2abf26c3014fc445da69d8d5bb862c1c511e8e16ad3a6c6f6e14c28aa0adac1d",
+          "line": 10,
           "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[default]",
+          "search_key": "aws_redshift_cluster[default1]",
           "search_line": 0,
           "search_value": "",
           "expected_value": "'aws_redshift_cluster.logging' is true",
@@ -177,7 +177,7 @@
       "cis_description_text": "",
       "files": [
         {
-          "file_name": "fixtures/samples/terraform.tf",
+          "file_name": "e2e/fixtures/samples/terraform.tf",
           "similarity_id": "e4d7e3bd4992042d27482311989d6224a553385eb5bcc0988c90c1c10bd99e8c",
           "line": 1,
           "issue_type": "MissingAttribute",
@@ -189,7 +189,7 @@
           "value": null
         },
         {
-          "file_name": "fixtures/samples/terraform.tf",
+          "file_name": "e2e/fixtures/samples/terraform.tf",
           "similarity_id": "e4d7e3bd4992042d27482311989d6224a553385eb5bcc0988c90c1c10bd99e8c",
           "line": 1,
           "issue_type": "MissingAttribute",
@@ -201,7 +201,7 @@
           "value": null
         },
         {
-          "file_name": "fixtures/samples/terraform.tf",
+          "file_name": "e2e/fixtures/samples/terraform.tf",
           "similarity_id": "d1c5f6aec84fd91ed24f5f06ccb8b6662e26c0202bcb5d4a58a1458c16456d20",
           "line": 10,
           "issue_type": "MissingAttribute",
@@ -213,7 +213,7 @@
           "value": null
         },
         {
-          "file_name": "fixtures/samples/terraform.tf",
+          "file_name": "e2e/fixtures/samples/terraform.tf",
           "similarity_id": "d1c5f6aec84fd91ed24f5f06ccb8b6662e26c0202bcb5d4a58a1458c16456d20",
           "line": 10,
           "issue_type": "MissingAttribute",
@@ -240,7 +240,7 @@
       "cis_description_text": "",
       "files": [
         {
-          "file_name": "fixtures/samples/terraform.tf",
+          "file_name": "e2e/fixtures/samples/terraform.tf",
           "similarity_id": "406b71d9fd0edb656a4735df30dde77c5f8a6c4ec3caa3442f986a92832c653b",
           "line": 10,
           "issue_type": "MissingAttribute",
@@ -252,7 +252,7 @@
           "value": null
         },
         {
-          "file_name": "fixtures/samples/terraform.tf",
+          "file_name": "e2e/fixtures/samples/terraform.tf",
           "similarity_id": "b44463ffd0f5c1eadc04ce6649982da68658349ad880daef470250661d3d1512",
           "line": 1,
           "issue_type": "MissingAttribute",

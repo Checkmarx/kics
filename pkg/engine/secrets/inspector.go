@@ -204,7 +204,7 @@ func (c *Inspector) checkFileContent(query *RegexQuery, basePaths []string, file
 		return
 	}
 
-	lineNumber := c.secretsDetectLine(query, file, groups)
+	lineContent, lineNumber := c.secretsDetectLine(query, file, groups)
 
 	if len(query.Entropies) == 0 {
 		c.addVulnerability(
@@ -212,6 +212,7 @@ func (c *Inspector) checkFileContent(query *RegexQuery, basePaths []string, file
 			file,
 			query,
 			lineNumber,
+			lineContent,
 		)
 	}
 
@@ -233,18 +234,20 @@ func (c *Inspector) checkFileContent(query *RegexQuery, basePaths []string, file
 					file,
 					query,
 					lineNumber,
+					lineContent,
 				)
 			}
 		}
 	}
 }
 
-func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadata, groups []string) int {
-	detectedLineNumber := -1
+func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadata, groups []string) (lineContent string, lineNumber int) {
+	lineNumber = -1
+	lineContent = "-"
 
 	if len(groups) <= query.Multiline.DetectLineGroup {
 		log.Warn().Msgf("Unable to detect line in file %v Multiline group not found: %v", file.FilePath, query.Multiline.DetectLineGroup)
-		return detectedLineNumber
+		return lineContent, lineNumber
 	}
 
 	lines := c.detector.SplitLines(file)
@@ -254,12 +257,13 @@ func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadat
 	contentMatchRemovedLines := strings.Split(text, "\n")
 	for i := 0; i < len(lines); i++ {
 		if lines[i] != contentMatchRemovedLines[i] {
-			detectedLineNumber = i
+			lineNumber = i
+			lineContent = lines[i]
 			break
 		}
 	}
 
-	return detectedLineNumber
+	return lineContent, lineNumber
 }
 
 func (c *Inspector) checkLineByLine(query *RegexQuery, basePaths []string, file *model.FileMetadata, lineNumber int, currentLine string) {
@@ -274,6 +278,7 @@ func (c *Inspector) checkLineByLine(query *RegexQuery, basePaths []string, file 
 			file,
 			query,
 			lineNumber,
+			currentLine,
 		)
 	}
 
@@ -297,12 +302,13 @@ func (c *Inspector) checkLineByLine(query *RegexQuery, basePaths []string, file 
 				file,
 				query,
 				lineNumber,
+				currentLine,
 			)
 		}
 	}
 }
 
-func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadata, query *RegexQuery, lineNumber int) {
+func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadata, query *RegexQuery, lineNumber int, issueLine string) {
 	simID, err := similarity.ComputeSimilarityID(
 		basePaths,
 		file.FilePath,
@@ -321,20 +327,22 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 		}
 		linesVuln = c.detector.GetAdjecent(file, lineNumber+1)
 		vuln := model.Vulnerability{
-			QueryID:       query.ID,
-			QueryName:     SecretsQueryMetadata["queryName"] + " - " + query.Name,
-			SimilarityID:  engine.PtrStringToString(simID),
-			FileID:        file.ID,
-			FileName:      file.FilePath,
-			Line:          linesVuln.Line,
-			VulnLines:     linesVuln.VulnLines,
-			IssueType:     "RedundantAttribute",
-			Platform:      string(model.KindCOMMON),
-			Severity:      model.SeverityHigh,
-			QueryURI:      SecretsQueryMetadata["descriptionUrl"],
-			Category:      SecretsQueryMetadata["category"],
-			Description:   SecretsQueryMetadata["descriptionText"],
-			DescriptionID: SecretsQueryMetadata["descriptionID"],
+			QueryID:          query.ID,
+			QueryName:        SecretsQueryMetadata["queryName"] + " - " + query.Name,
+			SimilarityID:     engine.PtrStringToString(simID),
+			FileID:           file.ID,
+			FileName:         file.FilePath,
+			Line:             linesVuln.Line,
+			VulnLines:        linesVuln.VulnLines,
+			IssueType:        "RedundantAttribute",
+			Platform:         SecretsQueryMetadata["platform"],
+			Severity:         model.SeverityHigh,
+			QueryURI:         SecretsQueryMetadata["descriptionUrl"],
+			Category:         SecretsQueryMetadata["category"],
+			Description:      SecretsQueryMetadata["descriptionText"],
+			DescriptionID:    SecretsQueryMetadata["descriptionID"],
+			KeyExpectedValue: "Hardcoded secret key should not appear in source",
+			KeyActualValue:   fmt.Sprintf("'%s' contains a secret", issueLine),
 		}
 		c.vulnerabilities = append(c.vulnerabilities, vuln)
 	}
