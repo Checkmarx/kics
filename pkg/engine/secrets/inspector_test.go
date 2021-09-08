@@ -253,7 +253,7 @@ var testNewInspectorInputs = []struct {
 		},
 		assetsSecretsQueryMetadataJSON:   `{}`,
 		assetsSecretsQueryRegexRulesJSON: `{}`,
-		queriesPath:                      "assets/queries/common/passwords_and_secrets",
+		queriesPath:                      filepath.FromSlash("assets/queries/common/passwords_and_secrets"),
 		wantRegLen:                       0,
 		wantErr:                          true,
 	},
@@ -266,7 +266,7 @@ var testNewInspectorInputs = []struct {
 		},
 		assetsSecretsQueryMetadataJSON:   `{`,
 		assetsSecretsQueryRegexRulesJSON: `{}`,
-		queriesPath:                      "assets/queries/common/passwords_and_secrets",
+		queriesPath:                      filepath.FromSlash("assets/queries/common/passwords_and_secrets"),
 		wantRegLen:                       0,
 		wantErr:                          true,
 	},
@@ -292,7 +292,7 @@ var testNewInspectorInputs = []struct {
 			"descriptionID": "d69d8a89",
 			"cloudProvider": "common"
 		  }`,
-		queriesPath: "assets/queries/common/passwords_and_secrets",
+		queriesPath: filepath.FromSlash("assets/queries/common/passwords_and_secrets"),
 		wantRegLen:  1,
 		wantErr:     false,
 	},
@@ -318,7 +318,7 @@ var testNewInspectorInputs = []struct {
 			"descriptionID": "d69d8a89",
 			"cloudProvider": "common"
 		  }`,
-		queriesPath: "../../../assets/queries/dockerfile",
+		queriesPath: filepath.FromSlash("../../../assets/queries/dockerfile"),
 		wantRegLen:  0,
 		wantErr:     false,
 	},
@@ -344,7 +344,7 @@ var testNewInspectorInputs = []struct {
 			"descriptionID": "d69d8a89",
 			"cloudProvider": "common"
 		  }`,
-		queriesPath: "../../../assets/queries",
+		queriesPath: filepath.FromSlash("../../../assets/queries"),
 		wantRegLen:  1,
 		wantErr:     false,
 	},
@@ -523,7 +523,7 @@ func TestInspect(t *testing.T) {
 				ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}},
 				InputDataPath:  "",
 			},
-			"assets/queries/common/passwords_and_secrets",
+			filepath.FromSlash("assets/queries/common/passwords_and_secrets"),
 			60,
 			assets.SecretsQueryRegexRulesJSON,
 		)

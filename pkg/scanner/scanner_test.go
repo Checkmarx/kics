@@ -88,7 +88,7 @@ func createServices(types, cloudProviders []string) (serviceSlice, *storage.Memo
 		map[string]bool{},
 		t,
 		&source.QueryInspectorParameters{},
-		"assets/queries/common/password_and_secrets",
+		filepath.FromSlash("assets/queries/common/passwords_and_secrets"),
 		60,
 		assets.SecretsQueryRegexRulesJSON,
 	)

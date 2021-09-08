@@ -7,6 +7,7 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"strconv"
 	"strings"
 	"sync"
 	"testing"
@@ -219,6 +220,21 @@ func validateIssueTypes(tb testing.TB, vulnerabilies []model.Vulnerability) {
 	}
 }
 
+func diffActualExpectedVulnerabilities(actual, expected []model.Vulnerability) []string {
+	m := make(map[string]bool)
+	diff := make([]string, 0)
+	for _, expectedVuln := range expected {
+		m[expectedVuln.QueryName+":"+expectedVuln.FileName+":"+strconv.Itoa(expectedVuln.Line)] = true
+	}
+	for _, actualVuln := range actual {
+		if _, ok := m[actualVuln.QueryName+":"+filepath.Base(actualVuln.FileName)+":"+strconv.Itoa(actualVuln.Line)]; !ok {
+			diff = append(diff, actualVuln.FileName+":"+strconv.Itoa(actualVuln.Line))
+		}
+	}
+
+	return diff
+}
+
 func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnerability, dir string) {
 	sort.Slice(expected, func(i, j int) bool {
 		return vulnerabilityCompare(expected, i, j)
@@ -227,11 +243,15 @@ func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnera
 		return vulnerabilityCompare(actual, i, j)
 	})
 
-	require.Len(tb, actual, len(expected), "Count of actual issues and expected vulnerabilities doesn't match")
+	require.Len(tb, actual, len(expected),
+		"Count of actual issues and expected vulnerabilities doesn't match\n -- \n%+v",
+		strings.Join(diffActualExpectedVulnerabilities(actual, expected), ",\n"))
 
 	for i := range expected {
 		if i > len(actual)-1 {
-			tb.Fatalf("Not enough results detected, expected %d, found %d", len(expected), len(actual))
+			tb.Fatalf("Not enough results detected, expected %d, found %d ",
+				len(expected),
+				len(actual))
 		}
 
 		expectedItem := expected[i]

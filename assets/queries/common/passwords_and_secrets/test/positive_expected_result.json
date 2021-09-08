@@ -166,5 +166,41 @@
     "severity": "HIGH",
     "line": 7,
     "fileName": "positive17.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Google OAuth",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive18.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Slack Token",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive19.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Google API Key",
+    "severity": "HIGH",
+    "line": 50,
+    "fileName": "positive21.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Heroku API Key",
+    "severity": "HIGH",
+    "line": 3,
+    "fileName": "positive22.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - GitHub",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive23.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic API Key",
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive24.tf"
   }
 ]
