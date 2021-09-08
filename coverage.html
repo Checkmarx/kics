@@ -153,7 +153,7 @@
 				
 				<option value="file48">github.com/Checkmarx/kics/pkg/parser/parser.go (76.1%)</option>
 				
-				<option value="file49">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (79.8%)</option>
+				<option value="file49">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (79.5%)</option>
 				
 				<option value="file50">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (82.9%)</option>
 				
@@ -1598,8 +1598,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="355">{
-                if val == true </span><span class="cov9" title="354">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="334">{
+                if val == true </span><span class="cov9" title="333">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2472,7 +2472,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2820,7 +2820,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="10">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov7" title="17">{
-        for _, a := range s </span><span class="cov8" title="38">{
+        for _, a := range s </span><span class="cov8" title="39">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -4522,7 +4522,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -8570,8 +8570,11 @@ func createEntryInputVar(path []string, defaultValue string) (cty.Value, error) 
                 }</span>
         }
         <span class="cov1" title="1">mapJSON += closeMap
-        jsonType, _ := ctyjson.ImpliedType([]byte(mapJSON))
-        value, err := ctyjson.Unmarshal([]byte(mapJSON), jsonType)
+        jsonType, err := ctyjson.ImpliedType([]byte(mapJSON))
+        if err != nil </span><span class="cov0" title="0">{
+                return cty.NilVal, err
+        }</span>
+        <span class="cov1" title="1">value, err := ctyjson.Unmarshal([]byte(mapJSON), jsonType)
         if err != nil </span><span class="cov0" title="0">{
                 return cty.NilVal, err
         }</span>
