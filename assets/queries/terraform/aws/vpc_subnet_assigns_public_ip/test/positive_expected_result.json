@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "VPC Subnet Assigns Public IP",
+    "severity": "MEDIUM",
+    "line": 13
+  }
+]
