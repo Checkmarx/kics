@@ -220,5 +220,35 @@
     "severity": "HIGH",
     "line": 5,
     "fileName": "positive25.dockerfile"
+  },
+  {
+    "queryName": "Passwords And Secrets - Amazon MWS Auth Token",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive25.dockerfile"
+  },
+  {
+    "queryName": "Passwords And Secrets - MailChimp API Key",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive25.dockerfile"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Private Key",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive26.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Mailgun API Key",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive29.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Stripe Restricted API Key",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive30.tf"
   }
 ]

@@ -2,12 +2,12 @@
   {
     "id": "487f4be7-3fd9-4506-a07a-eae252180c08",
     "name": "Generic Password",
-    "regex": "['|\"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\\s*[:|=]\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|\"]?"
+    "regex": "(?i)['|\"]?password['|\"]?\\s*[:|=]\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|\"]?"
   },
   {
     "id": "3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99",
     "name": "Generic Secret",
-    "regex": "['|\"]?[s|S][e|E][c|C][r|R][e|E][t|T]['|\"]?\\s*(:|=)\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{10,})['|\"]?",
+    "regex": "(?i)['|\"]?secret['|\"]?\\s*(:|=)\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{10,})['|\"]?",
     "entropies": [
       {
         "group": 2,
@@ -69,7 +69,7 @@
   {
     "id": "d1d37420-1ef0-4a34-8b2f-5cfb66200d89",
     "name": "Facebook OAuth",
-    "regex": "[f|F][a|A][c|C][e|E][b|B][o|O][o|O][k|K][^\\s]*['|\"][0-9a-f]{32}['|\"]"
+    "regex": "(?i)facebook[^\\s]*['|\"][0-9a-f]{32}['|\"]"
   },
   {
     "id": "73cb4fde-fd6d-40e3-8787-11d2a7ac9581",
@@ -135,12 +135,12 @@
   {
     "id": "3aa56c25-3fcb-4bd9-848b-fe4a7cb9189a",
     "name": "Twitter Access Token",
-    "regex": "[t|T][w|W][i|I][t|T][t|T][e|E][r|R][^\\s]*[1-9][0-9]+-[0-9a-zA-Z]{40}"
+    "regex": "(?i)twitter[^\\s]*[1-9][0-9]+-[0-9a-zA-Z]{40}"
   },
   {
     "id": "3418c915-f5c1-4143-a9d5-ab6ed409bb30",
     "name": "Twitter OAuth",
-    "regex": "[t|T][w|W][i|I][t|T][t|T][e|E][r|R][^\\s]*['|\"][0-9a-zA-Z]{35,44}['|\"]"
+    "regex": "(?i)twitter[^\\s]*['|\"][0-9a-zA-Z]{35,44}['|\"]"
   },
   {
     "id": "ac8c8075-6ec0-4367-9e26-30ec8161d258",
@@ -170,10 +170,7 @@
   {
     "id": "74736dd1-dd11-4139-beb6-41cd43a50317",
     "name": "Generic API Key",
-    "regex": "(?:)api[_]?key((.|\\n)*)\\b([0-9a-zA-Z]{32,45})\\b",
-    "multiline": {
-      "detectLineGroup": 3
-    }
+    "regex": "(?i)['|\"]?api[_]?key['|\"]?\\s*[:|=]\\s*['|\"]?([0-9a-zA-Z]{32,45})['|\"]?"
   },
   {
     "id": "62d0025d-9575-4eff-b60b-d3b4fcec0d04",
@@ -189,5 +186,17 @@
     "id": "e0f01838-b1c2-4669-b84b-981949ebe5ed",
     "name": "Twilio API Key",
     "regex": "SK[0-9a-fA-F]{32}"
+  },
+  {
+    "id": "2f665079-c383-4b33-896e-88268c1fa258",
+    "name": "Generic Private Key",
+    "regex": "(?i)['|\"]?private[_]?key['|\"]?\\s*[:|=]\\s*['|\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['|\"]?",
+    "entropies": [
+        {
+          "group": 1,
+          "min": 3,
+          "max": 6
+        }
+    ]
   }
 ]
