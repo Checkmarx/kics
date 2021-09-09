@@ -2,31 +2,36 @@ package Cx
 
 import data.generic.common as common_lib
 
+lbs := {"aws_lb", "aws_alb"}
+
 CxPolicy[result] {
-	lb := input.document[i].resource.aws_lb[name]
+	loadBalancer := lbs[l]
+	lb := input.document[i].resource[loadBalancer][name]
+
 	not common_lib.valid_key(lb, "enable_deletion_protection")
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_lb[%s]", [name]),
+		"searchKey": sprintf("%s[%s]", [loadBalancer, name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_lb.enable_deletion_protection is defined and not null",
-		"keyActualValue": "aws_lb.enable_deletion_protection is undefined or null",
-		"searchLine": common_lib.build_search_line(["resource", "aws_lb", name], []),
+		"keyExpectedValue": "'enable_deletion_protection' is defined and not null",
+		"keyActualValue": "'enable_deletion_protection' is undefined or null",
+		"searchLine": common_lib.build_search_line(["resource", loadBalancer, name], []),
 	}
 }
 
 CxPolicy[result] {
-	lb := input.document[i].resource.aws_lb[name]
+	loadBalancer := lbs[l]
+	lb := input.document[i].resource[loadBalancer][name]
 
 	lb.enable_deletion_protection == false
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_lb[%s].enable_deletion_protection", [name]),
+		"searchKey": sprintf("%s[%s].enable_deletion_protection", [loadBalancer, name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_lb.enable_deletion_protection is set to true",
-		"keyActualValue": "aws_lb.enable_deletion_protection is set to false",
-		"searchLine": common_lib.build_search_line(["resource", "aws_lb", "enable_deletion_protection", name], []),
+		"keyExpectedValue": "'enable_deletion_protection' is set to true",
+		"keyActualValue": "'enable_deletion_protection' is set to false",
+		"searchLine": common_lib.build_search_line(["resource", "aws_lb", loadBalancer, name], []),
 	}
 }
