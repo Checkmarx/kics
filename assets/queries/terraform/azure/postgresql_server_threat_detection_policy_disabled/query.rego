@@ -20,14 +20,14 @@ CxPolicy[result] {
 CxPolicy[result] {
 	pg := input.document[i].resource.azurerm_postgresql_server[name]
 
-	pg.threat_detection_policy == false
+	pg.threat_detection_policy.enabled == false
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("azurerm_postgresql_server[%s].threat_detection_policy", [name]),
+		"searchKey": sprintf("azurerm_postgresql_server[%s].threat_detection_policy.enabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_postgresql_server[%s].threat_detection_policy' is set to true", [name]),
-		"keyActualValue": sprintf("'azurerm_postgresql_server[%s].threat_detection_policy' is set to false", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "azurerm_postgresql_server", name, "threat_detection_policy"], []),
+		"keyExpectedValue": sprintf("'azurerm_postgresql_server[%s].threat_detection_policy.enabled' is set to true", [name]),
+		"keyActualValue": sprintf("'azurerm_postgresql_server[%s].threat_detection_policy.enabled' is set to false", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_postgresql_server", name, "threat_detection_policy", "enabled"], []),
 	}
 }
