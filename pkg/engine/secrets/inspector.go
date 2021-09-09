@@ -6,8 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"math"
-	"path"
-	"path/filepath"
 	"regexp"
 	"strings"
 	"time"
@@ -75,11 +73,11 @@ func NewInspector(
 	excludeResults map[string]bool,
 	tracker engine.Tracker,
 	queryFilter *source.QueryInspectorParameters,
-	queriesPath string,
+	disableSecretsQuery bool,
 	executionTimeout int,
 	regexRulesContent string,
 ) (*Inspector, error) {
-	if !isSecretsQueryInQueryPath(queriesPath) {
+	if disableSecretsQuery {
 		return &Inspector{
 			ctx:                   ctx,
 			tracker:               tracker,
@@ -115,25 +113,6 @@ func NewInspector(
 		vulnerabilities:       make([]model.Vulnerability, 0),
 		queryExecutionTimeout: queryExecutionTimeout,
 	}, nil
-}
-
-func isSecretsQueryInQueryPath(queriesPath string) bool {
-	return strings.Contains(queriesPath, filepath.Join("common", SecretsPasswordDir)) ||
-		expandPathAndFindQuery(queriesPath)
-}
-
-func expandPathAndFindQuery(queriesPath string) bool {
-	matches, err := filepath.Glob(path.Join(queriesPath, "**", SecretsPasswordDir))
-	log.Err(err).Msg("Failed to expand path and find query")
-	if err != nil {
-		return false
-	}
-	for _, match := range matches {
-		if strings.Contains(match, SecretsPasswordDir) {
-			return true
-		}
-	}
-	return false
 }
 
 func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQueries []RegexQuery) []RegexQuery {

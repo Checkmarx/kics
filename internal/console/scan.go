@@ -431,7 +431,7 @@ func createServiceAndStartScan(params *startServiceParameters) (failedQueries ma
 		return failedQueries, err
 	}
 
-	secretsRegexRulesContent, err := getSecretsRegexRules(flags.GetStrFlag(flags.SecretsRegexRulesFlag))
+	secretsRegexRulesContent, err := getSecretsRegexRules(flags.GetStrFlag(flags.SecretsRegexesPathFlag))
 	if err != nil {
 		return failedQueries, err
 	}
@@ -441,7 +441,7 @@ func createServiceAndStartScan(params *startServiceParameters) (failedQueries ma
 		params.excludeResults,
 		params.t,
 		queryFilter,
-		flags.GetStrFlag(flags.QueriesPath),
+		flags.GetBoolFlag(flags.DisableSecretsFlag),
 		flags.GetIntFlag(flags.QueryExecTimeoutFlag),
 		secretsRegexRulesContent,
 	)

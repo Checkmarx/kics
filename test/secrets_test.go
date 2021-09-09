@@ -51,7 +51,7 @@ func testSecretsInspector(t *testing.T, samplePaths []string, expectedVulnerabil
 			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
 			InputDataPath:  "",
 		},
-		"../assets/queries",
+		false,
 		60,
 		assets.SecretsQueryRegexRulesJSON,
 	)

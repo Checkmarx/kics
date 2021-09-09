@@ -155,11 +155,17 @@
     "usage": "formats in which the results will be exported (${supportedReports})",
     "validation": "validateMultiStrEnum"
   },
-  "secrets-regex-rules": {
+  "secrets-regexes-path": {
     "flagType": "str",
     "shorthandFlag": "r",
     "defaultValue": "",
     "usage": "path to secrets regex rules configuration file"
+  },
+  "disable-secrets": {
+    "flagType": "bool",
+    "shorthandFlag": "",
+    "defaultValue": "false",
+    "usage": "disable secrets scanning"
   },
   "timeout": {
     "flagType": "int",
