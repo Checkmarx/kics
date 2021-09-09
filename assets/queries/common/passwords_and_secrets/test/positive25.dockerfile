@@ -1,0 +1,5 @@
+FROM baseImage
+
+ARG token=sq0atp-5512345678901SquareToken
+
+ARG picaticKey=sk_live_123as6789o1234567890123a123a5678

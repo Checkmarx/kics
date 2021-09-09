@@ -97,7 +97,7 @@
   {
     "id": "6abcae17-b175-4698-a9a5-b07661974749",
     "name": "Stripe API Key",
-    "regex": "sk_live_[0-9a-zA-Z]{24}$"
+    "regex": "sk_live_[0-9a-zA-Z]{24}[^0-9a-zA-Z]"
   },
   {
     "id": "0b1b2482-51e7-49d1-893d-522afa4a6bd0",
