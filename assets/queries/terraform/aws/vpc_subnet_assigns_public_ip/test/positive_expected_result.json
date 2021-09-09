@@ -2,6 +2,7 @@
   {
     "queryName": "VPC Subnet Assigns Public IP",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.tf"
   }
 ]
