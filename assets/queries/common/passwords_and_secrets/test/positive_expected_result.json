@@ -180,6 +180,12 @@
     "fileName": "positive19.tf"
   },
   {
+    "queryName": "Passwords And Secrets - Stripe API Key",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive20.tf"
+  },
+  {
     "queryName": "Passwords And Secrets - Google API Key",
     "severity": "HIGH",
     "line": 50,
@@ -202,5 +208,17 @@
     "severity": "HIGH",
     "line": 4,
     "fileName": "positive24.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Square Access Token",
+    "severity": "HIGH",
+    "line": 3,
+    "fileName": "positive25.dockerfile"
+  },
+  {
+    "queryName": "Passwords And Secrets - Picatic API Key",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive25.dockerfile"
   }
 ]
