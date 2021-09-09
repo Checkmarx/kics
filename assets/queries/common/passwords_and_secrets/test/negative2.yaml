@@ -3,6 +3,7 @@ Resources:
   RDSCluster:
     Type: "AWS::RDS::DBCluster"
     Properties:
+      MasterUserPassword: !Ref PasswordMaster
       DBClusterIdentifier: my-serverless-cluster
       Engine: aurora
       EngineVersion: 5.6.10a
