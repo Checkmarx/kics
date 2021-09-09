@@ -241,6 +241,7 @@ var testNewInspectorInputs = []struct {
 	assetsSecretsQueryMetadataJSON   string
 	assetsSecretsQueryRegexRulesJSON string
 	queriesPath                      string
+	disableSecrets                   bool
 	wantRegLen                       int
 	wantErr                          bool
 }{
@@ -253,7 +254,7 @@ var testNewInspectorInputs = []struct {
 		},
 		assetsSecretsQueryMetadataJSON:   `{}`,
 		assetsSecretsQueryRegexRulesJSON: `{}`,
-		queriesPath:                      filepath.FromSlash("assets/queries/common/passwords_and_secrets"),
+		disableSecrets:                   false,
 		wantRegLen:                       0,
 		wantErr:                          true,
 	},
@@ -266,7 +267,7 @@ var testNewInspectorInputs = []struct {
 		},
 		assetsSecretsQueryMetadataJSON:   `{`,
 		assetsSecretsQueryRegexRulesJSON: `{}`,
-		queriesPath:                      filepath.FromSlash("assets/queries/common/passwords_and_secrets"),
+		disableSecrets:                   false,
 		wantRegLen:                       0,
 		wantErr:                          true,
 	},
@@ -292,9 +293,9 @@ var testNewInspectorInputs = []struct {
 			"descriptionID": "d69d8a89",
 			"cloudProvider": "common"
 		  }`,
-		queriesPath: filepath.FromSlash("assets/queries/common/passwords_and_secrets"),
-		wantRegLen:  1,
-		wantErr:     false,
+		disableSecrets: false,
+		wantRegLen:     1,
+		wantErr:        false,
 	},
 	{
 		name: "valid_one_regex_rule",
@@ -318,9 +319,9 @@ var testNewInspectorInputs = []struct {
 			"descriptionID": "d69d8a89",
 			"cloudProvider": "common"
 		  }`,
-		queriesPath: filepath.FromSlash("../../../assets/queries/dockerfile"),
-		wantRegLen:  0,
-		wantErr:     false,
+		disableSecrets: true,
+		wantRegLen:     0,
+		wantErr:        false,
 	},
 	{
 		name: "valid_one_regex_rules_test_glob",
@@ -344,9 +345,9 @@ var testNewInspectorInputs = []struct {
 			"descriptionID": "d69d8a89",
 			"cloudProvider": "common"
 		  }`,
-		queriesPath: filepath.FromSlash("../../../assets/queries"),
-		wantRegLen:  1,
-		wantErr:     false,
+		disableSecrets: false,
+		wantRegLen:     1,
+		wantErr:        false,
 	},
 }
 
@@ -477,8 +478,8 @@ func TestNewInspector(t *testing.T) {
 			map[string]bool{},
 			&tracker.CITracker{},
 			in.inspectorParams,
-			in.queriesPath,
-			30,
+			in.disableSecrets,
+			60,
 			in.assetsSecretsQueryRegexRulesJSON,
 		)
 		if in.wantErr {
@@ -523,7 +524,7 @@ func TestInspect(t *testing.T) {
 				ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}},
 				InputDataPath:  "",
 			},
-			filepath.FromSlash("assets/queries/common/passwords_and_secrets"),
+			false,
 			60,
 			assets.SecretsQueryRegexRulesJSON,
 		)
