@@ -11,7 +11,7 @@ require (
 	github.com/google/pprof v0.0.0-20210413054141-7c2eacd09c8d
 	github.com/google/uuid v1.3.0
 	github.com/gookit/color v1.4.2
-	github.com/hashicorp/go-getter v1.5.7
+	github.com/hashicorp/go-getter v1.5.8
 	github.com/hashicorp/hcl v1.0.0
 	github.com/hashicorp/hcl/v2 v2.10.1
 	github.com/johnfercher/maroto v0.33.0
