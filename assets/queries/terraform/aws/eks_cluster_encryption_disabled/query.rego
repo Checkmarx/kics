@@ -28,8 +28,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_eks_cluster[%s].encryption_config.resources", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'secrets' is defined and not null",
-		"keyActualValue": "'secrets' is undefined or null",
+		"keyExpectedValue": "'secrets' is defined",
+		"keyActualValue": "'secrets' is undefined",
 		"searchLine": common_lib.build_search_line(["resource", "aws_eks_cluster", name, "resources"], []),
 	}
 }
