@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Azure Active Directory Authentication",
+    "severity": "LOW",
+    "line": 19,
+    "fileName": "positive.tf"
+  }
+]
