@@ -22,9 +22,8 @@ import (
 )
 
 const (
-	Base64Chars        = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
-	HexChars           = "1234567890abcdefABCDEF"
-	SecretsPasswordDir = "passwords_and_secrets"
+	Base64Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
+	HexChars    = "1234567890abcdefABCDEF"
 )
 
 var (
@@ -51,13 +50,20 @@ type MultilineResult struct {
 	DetectLineGroup int `json:"detectLineGroup"`
 }
 
+type AllowRule struct {
+	Description string `json:"description"`
+	RegexStr    string `json:"regex"`
+	Regex       *regexp.Regexp
+}
+
 type RegexQuery struct {
-	ID        string          `json:"id"`
-	Name      string          `json:"name"`
-	Multiline MultilineResult `json:"multiline"`
-	RegexStr  string          `json:"regex"`
-	Entropies []Entropy       `json:"entropies"`
-	Regex     *regexp.Regexp
+	ID         string          `json:"id"`
+	Name       string          `json:"name"`
+	Multiline  MultilineResult `json:"multiline"`
+	RegexStr   string          `json:"regex"`
+	Entropies  []Entropy       `json:"entropies"`
+	AllowRules []AllowRule     `json:"allowRules"`
+	Regex      *regexp.Regexp
 }
 
 type RuleMatch struct {
@@ -135,8 +141,11 @@ func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQ
 			regexQueries = append(regexQueries, allRegexQueries[i])
 		}
 	}
-	for idx := range regexQueries {
-		regexQueries[idx].Regex = regexp.MustCompile(regexQueries[idx].RegexStr)
+	for i := range regexQueries {
+		regexQueries[i].Regex = regexp.MustCompile(regexQueries[i].RegexStr)
+		for j := range regexQueries[i].AllowRules {
+			regexQueries[i].AllowRules[j].Regex = regexp.MustCompile(regexQueries[i].AllowRules[j].RegexStr)
+		}
 	}
 	return regexQueries
 }
@@ -177,9 +186,30 @@ func (c *Inspector) Inspect(ctx context.Context, basePaths []string, files model
 	return c.vulnerabilities, nil
 }
 
+func isSecret(s string, query *RegexQuery) (isSecret bool, groups []string) {
+	if isAllowRule(s, query.AllowRules) {
+		return false, []string{}
+	}
+
+	groups = query.Regex.FindStringSubmatch(s)
+	if len(groups) > 0 {
+		return true, groups
+	}
+	return false, []string{}
+}
+
+func isAllowRule(s string, allowRules []AllowRule) bool {
+	for i := range allowRules {
+		if allowRules[i].Regex.MatchString(s) {
+			return true
+		}
+	}
+	return false
+}
+
 func (c *Inspector) checkFileContent(query *RegexQuery, basePaths []string, file *model.FileMetadata) {
-	groups := query.Regex.FindStringSubmatch(file.OriginalData)
-	if len(groups) == 0 {
+	isSecret, groups := isSecret(file.OriginalData, query)
+	if !isSecret {
 		return
 	}
 
@@ -246,8 +276,8 @@ func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadat
 }
 
 func (c *Inspector) checkLineByLine(query *RegexQuery, basePaths []string, file *model.FileMetadata, lineNumber int, currentLine string) {
-	groups := query.Regex.FindStringSubmatch(currentLine)
-	if len(groups) == 0 {
+	isSecret, groups := isSecret(currentLine, query)
+	if !isSecret {
 		return
 	}
 
