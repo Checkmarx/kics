@@ -1,0 +1,11 @@
+{
+  "id": "ad5b4e97-2850-4adf-be17-1d293e0b85ee",
+  "queryName": "Glue Security Configuration Encryption Disabled",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Glue Security Configuration Encryption should have 'cloudwatch_encryption', 'job_bookmarks_encryption' and 's3_encryption' enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/glue_security_configuration#encryption_configuration",
+  "platform": "Terraform",
+  "descriptionID": "839261d5",
+  "cloudProvider": "aws"
+}
