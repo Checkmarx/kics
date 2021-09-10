@@ -169,7 +169,7 @@ func NewInspector(
 	log.Info().
 		Msgf("Inspector initialized, number of queries=%d", queriesNumber)
 
-	lineDetctor := detector.NewDetectLine(tracker.GetOutputLines()).
+	lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
 		Add(helm.DetectKindLine{}, model.KindHELM).
 		Add(docker.DetectKindLine{}, model.KindDOCKER)
 
@@ -182,7 +182,7 @@ func NewInspector(
 		tracker:          tracker,
 		failedQueries:    failedQueries,
 		excludeResults:   excludeResults,
-		detector:         lineDetctor,
+		detector:         lineDetector,
 		queryExecTimeout: queryExecTimeout,
 	}, nil
 }

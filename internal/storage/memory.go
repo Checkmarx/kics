@@ -2,6 +2,7 @@ package storage
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/rs/zerolog/log"
@@ -32,7 +33,27 @@ func (m *MemoryStorage) SaveVulnerabilities(_ context.Context, vulnerabilities [
 
 // GetVulnerabilities returns a collection of vulnerabilities saved on MemoryStorage
 func (m *MemoryStorage) GetVulnerabilities(_ context.Context, _ string) ([]model.Vulnerability, error) {
-	return m.vulnerabilities, nil
+	return m.getUniqueVulnerabilities(), nil
+}
+
+func (m *MemoryStorage) getUniqueVulnerabilities() []model.Vulnerability {
+	vulnDictionary := make(map[string]model.Vulnerability)
+	for i := range m.vulnerabilities {
+		if m.vulnerabilities[i].SimilarityID != "" {
+			vulnDictionary[m.vulnerabilities[i].SimilarityID] = m.vulnerabilities[i]
+			continue
+		}
+		vulnDictionary[fmt.Sprintf("%s:%s:%d", m.vulnerabilities[i].QueryID, m.vulnerabilities[i].FileName, m.vulnerabilities[i].Line)] = m.vulnerabilities[i]
+	}
+
+	var uniqueVulnerabilities []model.Vulnerability
+	for _, v := range vulnDictionary {
+		uniqueVulnerabilities = append(uniqueVulnerabilities, v)
+	}
+	if len(uniqueVulnerabilities) == 0 {
+		return m.vulnerabilities
+	}
+	return uniqueVulnerabilities
 }
 
 // GetScanSummary is not supported by MemoryStorage
