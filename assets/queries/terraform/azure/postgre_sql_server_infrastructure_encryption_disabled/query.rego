@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("azurerm_postgresql_server[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_postgresql_server[%s].infrastructure_encryption_enabled' is defined and set to true", [name]),
-		"keyActualValue": sprintf("'azurerm_postgresql_server[%s].infrastructure_encryption_enabled' is undefined or set to false", [name]),
+		"keyActualValue": sprintf("'azurerm_postgresql_server[%s].infrastructure_encryption_enabled' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_postgresql_server", name], []),
 	}
 }
