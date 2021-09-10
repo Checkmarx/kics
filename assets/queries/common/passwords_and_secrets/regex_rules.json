@@ -233,6 +233,10 @@
         {
           "description": "Avoiding TF variables",
           "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(var.)['|\"]?"
+        },
+        {
+          "description": "Avoiding Boolean's",
+          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(true|false)['|\"]?"
         }
       ]
   }
