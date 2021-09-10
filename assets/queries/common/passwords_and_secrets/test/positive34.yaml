@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: envar-demo
+  labels:
+    purpose: demonstrate-envars
+spec:
+  containers:
+  - name: envar-demo-container
+    image: gcr.io/google-samples/node-hello:1.0
+    env:
+    - name: Square_OAuth_Secret
+      value: "sq0csp-0p9h7g6f4s3s3s3-4a3ardgwa6ADRDJDDKUFYDYDYDY"
+

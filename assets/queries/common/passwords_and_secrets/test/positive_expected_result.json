@@ -198,9 +198,9 @@
     "fileName": "positive22.tf"
   },
   {
-    "queryName": "Passwords And Secrets - GitHub",
+    "queryName": "Passwords And Secrets - Generic Token",
     "severity": "HIGH",
-    "line": 2,
+    "line": 3,
     "fileName": "positive23.tf"
   },
   {
@@ -240,6 +240,24 @@
     "fileName": "positive26.yaml"
   },
   {
+    "queryName": "Passwords And Secrets - Generic Token",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive27.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Token",
+    "severity": "HIGH",
+    "line": 22,
+    "fileName": "positive27.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Token",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive28.yaml"
+  },
+  {
     "queryName": "Passwords And Secrets - Mailgun API Key",
     "severity": "HIGH",
     "line": 2,
@@ -250,5 +268,41 @@
     "severity": "HIGH",
     "line": 2,
     "fileName": "positive30.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Twilio API Key",
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive31.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - PayPal Braintree Access Token",
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive32.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Facebook Access Token",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive33.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Square OAuth Secret",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive34.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Google OAuth Access Token",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive35.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Putty Private Key",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive36.tf"
   }
 ]
