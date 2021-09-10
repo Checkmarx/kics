@@ -35,7 +35,10 @@ func PrepareAndScan(ctx context.Context, scanID string, proBarBuilder progress.P
 
 	select {
 	case <-wgDone:
-		StartScan(ctx, scanID, proBarBuilder, services)
+		err := StartScan(ctx, scanID, proBarBuilder, services)
+		if err != nil {
+			return err
+		}
 		break
 	case err := <-errCh:
 		close(errCh)

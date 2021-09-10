@@ -121,7 +121,8 @@ func NewInspector(
 	}, nil
 }
 
-func (c *Inspector) Inspect(ctx context.Context, basePaths []string, files model.FileMetadatas, currentQuery chan<- int64) ([]model.Vulnerability, error) {
+func (c *Inspector) Inspect(ctx context.Context, basePaths []string,
+	files model.FileMetadatas, currentQuery chan<- int64) ([]model.Vulnerability, error) {
 	for i := range c.regexQueries {
 		currentQuery <- 1
 
