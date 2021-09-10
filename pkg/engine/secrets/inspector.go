@@ -121,6 +121,35 @@ func NewInspector(
 	}, nil
 }
 
+func (c *Inspector) Inspect(ctx context.Context, basePaths []string, files model.FileMetadatas, currentQuery chan<- int64) ([]model.Vulnerability, error) {
+	for i := range c.regexQueries {
+		currentQuery <- 1
+
+		timeoutCtx, cancel := context.WithTimeout(ctx, c.queryExecutionTimeout*time.Second)
+		defer cancel()
+		for idx := range files {
+			select {
+			case <-timeoutCtx.Done():
+				return c.vulnerabilities, timeoutCtx.Err()
+			default:
+				// check file content line by line
+				if c.regexQueries[i].Multiline == (MultilineResult{}) {
+					lines := c.detector.SplitLines(&files[idx])
+
+					for lineNumber, currentLine := range lines {
+						c.checkLineByLine(&c.regexQueries[i], basePaths, &files[idx], lineNumber, currentLine)
+					}
+					continue
+				}
+
+				// check file content as a whole
+				c.checkFileContent(&c.regexQueries[i], basePaths, &files[idx])
+			}
+		}
+	}
+	return c.vulnerabilities, nil
+}
+
 func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQueries []RegexQuery) []RegexQuery {
 	var regexQueries []RegexQuery
 
@@ -150,6 +179,10 @@ func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQ
 	return regexQueries
 }
 
+func (c *Inspector) GetQueriesLength() int {
+	return len(c.regexQueries)
+}
+
 func isValueInArray(value string, array []string) bool {
 	for i := range array {
 		if value == array[i] {
@@ -157,33 +190,6 @@ func isValueInArray(value string, array []string) bool {
 		}
 	}
 	return false
-}
-
-func (c *Inspector) Inspect(ctx context.Context, basePaths []string, files model.FileMetadatas) ([]model.Vulnerability, error) {
-	for i := range c.regexQueries {
-		timeoutCtx, cancel := context.WithTimeout(ctx, c.queryExecutionTimeout*time.Second)
-		defer cancel()
-		for idx := range files {
-			select {
-			case <-timeoutCtx.Done():
-				return c.vulnerabilities, timeoutCtx.Err()
-			default:
-				// check file content line by line
-				if c.regexQueries[i].Multiline == (MultilineResult{}) {
-					lines := c.detector.SplitLines(&files[idx])
-
-					for lineNumber, currentLine := range lines {
-						c.checkLineByLine(&c.regexQueries[i], basePaths, &files[idx], lineNumber, currentLine)
-					}
-					continue
-				}
-
-				// check file content as a whole
-				c.checkFileContent(&c.regexQueries[i], basePaths, &files[idx])
-			}
-		}
-	}
-	return c.vulnerabilities, nil
 }
 
 func isSecret(s string, query *RegexQuery) (isSecret bool, groups []string) {

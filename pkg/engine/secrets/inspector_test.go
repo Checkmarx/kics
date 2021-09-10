@@ -3,12 +3,14 @@ package secrets
 import (
 	"context"
 	"path/filepath"
+	"sync"
 	"testing"
 
 	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/stretchr/testify/require"
 )
 
@@ -513,7 +515,11 @@ func TestNewInspector(t *testing.T) {
 }
 
 func TestInspect(t *testing.T) {
+	wg := &sync.WaitGroup{}
 	for _, in := range testInspectInput {
+		currentQuery := make(chan int64)
+		wg.Add(1)
+
 		ctx := context.Background()
 		secretsInspector, err := NewInspector(
 			ctx,
@@ -529,8 +535,14 @@ func TestInspect(t *testing.T) {
 			assets.SecretsQueryRegexRulesJSON,
 		)
 		require.NoError(t, err, "NewInspector() should not return error")
+
+		proBarBuilder := progress.InitializePbBuilder(true, true, true)
+		progressBar := proBarBuilder.BuildCounter("Executing queries: ", secretsInspector.GetQueriesLength(), wg, currentQuery)
+
+		go progressBar.Start()
+
 		basePaths := []string{filepath.FromSlash("assets/queries/")}
-		gotVulns, err := secretsInspector.Inspect(ctx, basePaths, in.files)
+		gotVulns, err := secretsInspector.Inspect(ctx, basePaths, in.files, currentQuery)
 		if in.wantErr {
 			require.Error(t, err, "test[%s] Inspect(%+v, %+v) = %+v, want %+v", in.name, basePaths, in.files, err, in.wantErr)
 			continue
@@ -548,5 +560,11 @@ func TestInspect(t *testing.T) {
 				gotVuln.QueryName,
 				"test[%s] Inspect() should return vulnerabilities with QueryName %s", in.name, in.wantVuln[i].QueryName)
 		}
+
+		go func() {
+			defer func() {
+				close(currentQuery)
+			}()
+		}()
 	}
 }

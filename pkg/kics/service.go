@@ -53,14 +53,7 @@ type Service struct {
 	files            model.FileMetadatas
 }
 
-// StartScan executes scan over the context, using the scanID as reference
-func (s *Service) StartScan(
-	ctx context.Context,
-	scanID string,
-	errCh chan<- error,
-	wg *sync.WaitGroup,
-	currentQuery chan<- int64) {
-	log.Debug().Msg("service.StartScan()")
+func (s *Service) PrepareSources(ctx context.Context, scanID string, wg *sync.WaitGroup, errCh chan<- error) {
 	defer wg.Done()
 	// CxSAST query under review
 	if err := s.SourceProvider.GetSources(
@@ -75,11 +68,23 @@ func (s *Service) StartScan(
 	); err != nil {
 		errCh <- errors.Wrap(err, "failed to read sources")
 	}
+}
+
+// StartScan executes scan over the context, using the scanID as reference
+func (s *Service) StartScan(
+	ctx context.Context,
+	scanID string,
+	errCh chan<- error,
+	wg *sync.WaitGroup,
+	currentQuery chan<- int64) {
+	log.Debug().Msg("service.StartScan()")
+	defer wg.Done()
 
 	secretsVulnerabilities, err := s.SecretsInspector.Inspect(
 		ctx,
 		s.SourceProvider.GetBasePaths(),
 		s.files,
+		currentQuery,
 	)
 	if err != nil {
 		errCh <- errors.Wrap(err, "failed to inspect secrets")

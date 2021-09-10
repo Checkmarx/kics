@@ -12,6 +12,38 @@ import (
 
 type serviceSlice []*kics.Service
 
+func PrepareAndScan(ctx context.Context, scanID string, proBarBuilder progress.PbBuilder, services serviceSlice) error {
+	defer metrics.Metric.Stop()
+	metrics.Metric.Start("prepare_sources")
+	var wg sync.WaitGroup
+	wgDone := make(chan bool)
+	errCh := make(chan error)
+	var wgProg sync.WaitGroup
+
+	for _, service := range services {
+		wg.Add(1)
+		go service.PrepareSources(ctx, scanID, &wg, errCh)
+	}
+
+	go func() {
+		defer func() {
+			close(wgDone)
+		}()
+		wg.Wait()
+		wgProg.Wait()
+	}()
+
+	select {
+	case <-wgDone:
+		StartScan(ctx, scanID, proBarBuilder, services)
+		break
+	case err := <-errCh:
+		close(errCh)
+		return err
+	}
+	return nil
+}
+
 // StartScan will run concurrent scans by parser
 func StartScan(ctx context.Context, scanID string, proBarBuilder progress.PbBuilder, services serviceSlice) error {
 	defer metrics.Metric.Stop()
@@ -21,10 +53,12 @@ func StartScan(ctx context.Context, scanID string, proBarBuilder progress.PbBuil
 	errCh := make(chan error)
 	currentQuery := make(chan int64, 1)
 	var wgProg sync.WaitGroup
+
 	total := services.GetQueriesLength()
 	if total != 0 {
 		startProgressBar(total, &wgProg, currentQuery, proBarBuilder)
 	}
+
 	for _, service := range services {
 		wg.Add(1)
 		go service.StartScan(ctx, scanID, errCh, &wg, currentQuery)
@@ -55,6 +89,7 @@ func (s serviceSlice) GetQueriesLength() int {
 	count := 0
 	for _, service := range s {
 		count += service.Inspector.LenQueriesByPlat(service.Parser.Platform)
+		count += service.SecretsInspector.GetQueriesLength()
 	}
 	return count
 }

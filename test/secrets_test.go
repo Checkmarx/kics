@@ -7,6 +7,7 @@ import (
 	"path"
 	"path/filepath"
 	"strings"
+	"sync"
 	"testing"
 
 	"github.com/Checkmarx/kics/assets"
@@ -14,6 +15,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/engine/secrets"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/stretchr/testify/require"
 )
 
@@ -57,12 +59,28 @@ func testSecretsInspector(t *testing.T, samplePaths []string, expectedVulnerabil
 	)
 	require.NoError(t, err, "unable to create secrets inspector")
 
+	wg := &sync.WaitGroup{}
+	currentQuery := make(chan int64)
+	wg.Add(1)
+
+	proBarBuilder := progress.InitializePbBuilder(true, true, true)
+	progressBar := proBarBuilder.BuildCounter("Executing queries: ", secretsInspector.GetQueriesLength(), wg, currentQuery)
+
+	go progressBar.Start()
+
 	vulnerabilities, err := secretsInspector.Inspect(
 		ctx,
 		[]string{BaseTestsScanPath},
 		getFileMetadatas(t, samplePaths),
+		currentQuery,
 	)
 	require.NoError(t, err, "unable to inspect secrets")
+
+	go func() {
+		defer func() {
+			close(currentQuery)
+		}()
+	}()
 
 	requireEqualVulnerabilities(t, expectedVulnerabilities, vulnerabilities, secretsQueryDir)
 }

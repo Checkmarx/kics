@@ -464,7 +464,7 @@ func createServiceAndStartScan(params *startServiceParameters) (failedQueries ma
 	}
 	params.progressBar.Close()
 
-	if err = scanner.StartScan(ctx, scanID, *params.pbBuilder, services); err != nil {
+	if err = scanner.PrepareAndScan(ctx, scanID, *params.pbBuilder, services); err != nil {
 		log.Err(err)
 		return failedQueries, err
 	}
