@@ -16,5 +16,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_redshift_cluster[%s].%s is set", [name, attr]),
 		"keyActualValue": sprintf("aws_redshift_cluster[%s].%s is undefined", [name, attr]),
+		"searchValue": sprintf("%s", [attr]),
 	}
 }
