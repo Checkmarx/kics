@@ -1,39 +1,47 @@
 {
   "Resources": {
-    "LambdaInvocationsAnomalyDetector2": {
-      "Type": "AWS::CloudWatch::AnomalyDetector",
+    "Prod": {
+      "Type": "AWS::ApiGateway::Stage",
       "Properties": {
-        "MetricName": "Invocations",
-        "Namespace": "AWS/Lambda",
-        "Statistic": "Sum"
-      }
-    },
-    "LambdaInvocationsAlarm2": {
-      "Type": "AWS::CloudWatch::Alarm",
-      "Properties": {
-        "AlarmDescription": "Lambda invocations",
-        "AlarmName": "LambdaInvocationsAlarm",
-        "ComparisonOperator": "LessThanLowerOrGreaterThanUpperThreshold",
-        "EvaluationPeriods": 1,
-        "Metrics": [
+        "StageName": "Prod",
+        "Description": "Prod Stage",
+        "RestApiId": {
+          "Ref": "MyRestApi"
+        },
+        "DeploymentId": {
+          "Ref": "TestDeployment"
+        },
+        "DocumentationVersion": {
+          "Ref": "MyDocumentationVersion"
+        },
+        "ClientCertificateId": {
+          "Ref": "ClientCertificate"
+        },
+        "Variables": {
+          "Stack": "Prod"
+        },
+        "MethodSettings": [
           {
-            "Expression": "ANOMALY_DETECTION_BAND(m1, 2)",
-            "Id": "ad1"
+            "ResourcePath": "/",
+            "HttpMethod": "GET",
+            "MetricsEnabled": "true",
+            "DataTraceEnabled": "false"
           },
           {
-            "Id": "m1",
-            "MetricStat": {
-              "Metric": {
-                "MetricName": "Invocations",
-                "Namespace": "AWS/Lambda"
-              },
-              "Period": 86400,
-              "Stat": "Sum"
-            }
+            "ResourcePath": "/stack",
+            "HttpMethod": "POST",
+            "MetricsEnabled": "true",
+            "DataTraceEnabled": "false",
+            "ThrottlingBurstLimit": "999"
+          },
+          {
+            "ResourcePath": "/stack",
+            "HttpMethod": "GET",
+            "MetricsEnabled": "true",
+            "DataTraceEnabled": "false",
+            "ThrottlingBurstLimit": "555"
           }
-        ],
-        "ThresholdMetricId": "ad1",
-        "TreatMissingData": "breaching"
+        ]
       }
     }
   }
