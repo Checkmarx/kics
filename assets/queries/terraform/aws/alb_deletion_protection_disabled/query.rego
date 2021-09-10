@@ -32,6 +32,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'enable_deletion_protection' is set to true",
 		"keyActualValue": "'enable_deletion_protection' is set to false",
-		"searchLine": common_lib.build_search_line(["resource", "aws_lb", loadBalancer, name, "enable_deletion_protection"], []),
+		"searchLine": common_lib.build_search_line(["resource", loadBalancer, name, "enable_deletion_protection"], []),
 	}
 }
