@@ -310,5 +310,17 @@
     "severity": "HIGH",
     "line": 14,
     "fileName": "positive37.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - CloudFormation Secret Template",
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive38.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Encryption Key",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive39.yaml"
   }
 ]
