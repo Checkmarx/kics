@@ -13,7 +13,6 @@ import (
 type serviceSlice []*kics.Service
 
 func PrepareAndScan(ctx context.Context, scanID string, proBarBuilder progress.PbBuilder, services serviceSlice) error {
-	defer metrics.Metric.Stop()
 	metrics.Metric.Start("prepare_sources")
 	var wg sync.WaitGroup
 	wgDone := make(chan bool)
@@ -35,6 +34,7 @@ func PrepareAndScan(ctx context.Context, scanID string, proBarBuilder progress.P
 
 	select {
 	case <-wgDone:
+		metrics.Metric.Stop()
 		err := StartScan(ctx, scanID, proBarBuilder, services)
 		if err != nil {
 			return err

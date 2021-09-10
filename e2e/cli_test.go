@@ -383,8 +383,17 @@ var tests = []testCase{
 		name: "E2E-CLI-022",
 		args: args{
 			args: []cmdArgs{
-				[]string{"scan", "--profiling", "CPU", "-v",
-					"--no-progress", "--no-color", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
+				[]string{"scan",
+					"--profiling",
+					"CPU",
+					"-v",
+					"--no-progress",
+					"--no-color",
+					"-q",
+					"../assets/queries",
+					"-p",
+					"fixtures/samples/terraform.tf",
+				},
 			},
 		},
 		validation: func(outputText string) bool {
