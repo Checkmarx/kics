@@ -14,7 +14,15 @@
       },
       {
         "description": "Avoiding TF variables",
-        "regex": "(?i)['|\"]?password['|\"]?\\s*[:|=]\\s*['|\"]?(var.)['|\"]?"
+        "regex": "(?i)['|\"]?password['|\"]?\\s*=\\s*['|\"]?(var.)['|\"]?"
+      },
+      {
+        "description": "Avoiding TF resource access",
+        "regex": "(?i)['|\"]?password['|\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
+      },
+      {
+        "description": "Avoiding Boolean's",
+        "regex": "(?i)['|\"]?password['|\"]?\\s*[=:]\\s*['|\"]?(true|false)['|\"]?"
       }
     ]
   },
@@ -244,11 +252,15 @@
         },
         {
           "description": "Avoiding TF variables",
-          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(var.)['|\"]?"
+          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*=\\s*['|\"]?(var.)['|\"]?"
         },
         {
           "description": "Avoiding Boolean's",
           "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(true|false)['|\"]?"
+        },
+        {
+          "description": "Avoiding TF resource access",
+          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
         }
       ]
   },
@@ -272,7 +284,11 @@
         },
         {
           "description": "Avoiding TF variables",
-          "regex": "(?i)['|\"]?encryption[_]?key['|\"]?\\s*[:|=]\\s*['|\"]?(var.)['|\"]?"
+          "regex": "(?i)['|\"]?encryption[_]?key['|\"]?\\s*=\\s*['|\"]?(var.)['|\"]?"
+        },
+        {
+          "description": "Avoiding TF resource access",
+          "regex": "(?i)['|\"]?encryption[_]?key['|\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
         }
       ]
   }
