@@ -261,6 +261,10 @@
         {
           "description": "Avoiding TF resource access",
           "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
+        },
+        {
+          "description": "Avoiding TF creation token",
+          "regex": "(?i)['|\"]?creation_token['|\"]?\\s*[:|=]\\s*['|\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['|\"]?"
         }
       ]
   },
