@@ -304,5 +304,11 @@
     "severity": "HIGH",
     "line": 5,
     "fileName": "positive36.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Secret",
+    "severity": "HIGH",
+    "line": 14,
+    "fileName": "positive37.tf"
   }
 ]
