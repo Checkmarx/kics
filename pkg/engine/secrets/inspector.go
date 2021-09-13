@@ -38,6 +38,7 @@ type Inspector struct {
 	regexQueries          []RegexQuery
 	vulnerabilities       []model.Vulnerability
 	queryExecutionTimeout time.Duration
+	foundLines            []int
 }
 
 type Entropy struct {
@@ -72,6 +73,12 @@ type RuleMatch struct {
 	Matches  []string
 	Line     int
 	Entropy  float64
+}
+
+type lineVulneInfo struct {
+	lineContent string
+	lineNumber  int
+	groups      []string
 }
 
 func NewInspector(
@@ -118,6 +125,7 @@ func NewInspector(
 		regexQueries:          compileRegexQueries(queryFilter, allRegexQueries),
 		vulnerabilities:       make([]model.Vulnerability, 0),
 		queryExecutionTimeout: queryExecutionTimeout,
+		foundLines:            make([]int, 0),
 	}, nil
 }
 
@@ -193,16 +201,16 @@ func isValueInArray(value string, array []string) bool {
 	return false
 }
 
-func isSecret(s string, query *RegexQuery) (isSecret bool, groups []string) {
+func isSecret(s string, query *RegexQuery) (isSecret bool, groups [][]string) {
 	if isAllowRule(s, query.AllowRules) {
-		return false, []string{}
+		return false, [][]string{}
 	}
 
-	groups = query.Regex.FindStringSubmatch(s)
+	groups = query.Regex.FindAllStringSubmatch(s, -1)
 	if len(groups) > 0 {
 		return true, groups
 	}
-	return false, []string{}
+	return false, [][]string{}
 }
 
 func isAllowRule(s string, allowRules []AllowRule) bool {
@@ -220,66 +228,83 @@ func (c *Inspector) checkFileContent(query *RegexQuery, basePaths []string, file
 		return
 	}
 
-	lineContent, lineNumber := c.secretsDetectLine(query, file, groups)
+	lineVulns := c.secretsDetectLine(query, file, groups)
 
-	if len(query.Entropies) == 0 {
-		c.addVulnerability(
-			basePaths,
-			file,
-			query,
-			lineNumber,
-			lineContent,
-		)
-	}
-
-	if len(groups) > 0 {
-		for _, entropy := range query.Entropies {
-			// if matched group does not exist continue
-			if len(groups) <= entropy.Group {
-				return
-			}
-			isMatch, entropyFloat := CheckEntropyInterval(
-				entropy,
-				groups[entropy.Group],
+	for _, lineVuln := range lineVulns {
+		if len(query.Entropies) == 0 {
+			c.addVulnerability(
+				basePaths,
+				file,
+				query,
+				lineVuln.lineNumber,
+				lineVuln.lineContent,
 			)
-			log.Debug().Msgf("match: %v :: %v", isMatch, fmt.Sprint(entropyFloat))
+		}
 
-			if isMatch {
-				c.addVulnerability(
-					basePaths,
-					file,
-					query,
-					lineNumber,
-					lineContent,
+		if len(lineVuln.groups) > 0 {
+			for _, entropy := range query.Entropies {
+				// if matched group does not exist continue
+				if len(lineVuln.groups) <= entropy.Group {
+					return
+				}
+				isMatch, entropyFloat := CheckEntropyInterval(
+					entropy,
+					lineVuln.groups[entropy.Group],
 				)
+				log.Debug().Msgf("match: %v :: %v", isMatch, fmt.Sprint(entropyFloat))
+
+				if isMatch {
+					c.addVulnerability(
+						basePaths,
+						file,
+						query,
+						lineVuln.lineNumber,
+						lineVuln.lineContent,
+					)
+				}
 			}
 		}
 	}
 }
 
-func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadata, groups []string) (lineContent string, lineNumber int) {
-	lineNumber = -1
-	lineContent = "-"
-
-	if len(groups) <= query.Multiline.DetectLineGroup {
-		log.Warn().Msgf("Unable to detect line in file %v Multiline group not found: %v", file.FilePath, query.Multiline.DetectLineGroup)
-		return lineContent, lineNumber
-	}
-
+func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadata, vulnGroups [][]string) []lineVulneInfo {
+	content := file.OriginalData
 	lines := c.detector.SplitLines(file)
-	contentMatchRemoved := strings.ReplaceAll(file.OriginalData, groups[query.Multiline.DetectLineGroup], "")
-
-	text := strings.ReplaceAll(contentMatchRemoved, "\r", "")
-	contentMatchRemovedLines := strings.Split(text, "\n")
-	for i := 0; i < len(lines); i++ {
-		if lines[i] != contentMatchRemovedLines[i] {
-			lineNumber = i
-			lineContent = lines[i]
-			break
+	lineVulneInfoSlice := make([]lineVulneInfo, 0)
+	realLineUpdater := 0
+	for _, groups := range vulnGroups {
+		lineVulneInfoObject := lineVulneInfo{
+			lineNumber:  -1,
+			lineContent: "-",
+			groups:      groups,
 		}
+
+		if len(groups) <= query.Multiline.DetectLineGroup {
+			log.Warn().Msgf("Unable to detect line in file %v Multiline group not found: %v", file.FilePath, query.Multiline.DetectLineGroup)
+			lineVulneInfoSlice = append(lineVulneInfoSlice, lineVulneInfoObject)
+			continue
+		}
+
+		contentMatchRemoved := strings.Replace(content, groups[query.Multiline.DetectLineGroup], "", 1)
+
+		text := strings.ReplaceAll(contentMatchRemoved, "\r", "")
+		contentMatchRemovedLines := strings.Split(text, "\n")
+		for i := 0; i < len(lines); i++ {
+			if lines[i] != contentMatchRemovedLines[i] {
+				lineVulneInfoObject.lineNumber = i + realLineUpdater
+				lineVulneInfoObject.lineContent = lines[i]
+				break
+			}
+		}
+
+		realLineUpdater += len(lines) - len(contentMatchRemovedLines)
+		content = contentMatchRemoved
+		lines = contentMatchRemovedLines
+
+		lineVulneInfoSlice = append(lineVulneInfoSlice, lineVulneInfoObject)
 	}
 
-	return lineContent, lineNumber
+	return lineVulneInfoSlice
 }
 
 func (c *Inspector) checkLineByLine(query *RegexQuery, basePaths []string, file *model.FileMetadata, lineNumber int, currentLine string) {
@@ -308,7 +333,7 @@ func (c *Inspector) checkLineByLine(query *RegexQuery, basePaths []string, file 
 
 		isMatch, entropyFloat := CheckEntropyInterval(
 			entropy,
-			groups[entropy.Group],
+			groups[0][entropy.Group],
 		)
 		log.Debug().Msgf("match: %v :: %v", isMatch, fmt.Sprint(entropyFloat))
 
@@ -337,11 +362,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 	}
 
 	if _, ok := c.excludeResults[engine.PtrStringToString(simID)]; !ok {
-		linesVuln := model.VulnerabilityLines{
-			Line:      -1,
-			VulnLines: []model.CodeLine{},
-		}
-		linesVuln = c.detector.GetAdjecent(file, lineNumber+1)
+		linesVuln := c.detector.GetAdjecent(file, lineNumber+1)
 		vuln := model.Vulnerability{
 			QueryID:          query.ID,
 			QueryName:        SecretsQueryMetadata["queryName"] + " - " + query.Name,
