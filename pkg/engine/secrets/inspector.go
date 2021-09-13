@@ -201,12 +201,31 @@ func isValueInArray(value string, array []string) bool {
 	return false
 }
 
-func isSecret(s string, query *RegexQuery) (isSecret bool, groups [][]string) {
+func isSecret(s string, query *RegexQuery) (isSecretRet bool, groups [][]string) {
 	if isAllowRule(s, query.AllowRules) {
 		return false, [][]string{}
 	}
 
 	groups = query.Regex.FindAllStringSubmatch(s, -1)
+
+	for _, group := range groups {
+		splitedText := strings.Split(s, "\n")
+		max := -1
+		for i, splited := range splitedText {
+			if strings.Contains(splited, group[query.Multiline.DetectLineGroup]) && i > max {
+				max = i
+			}
+		}
+		if max == -1 {
+			continue
+		}
+		secret, newGroups := isSecret(strings.Join(append(splitedText[:max], splitedText[max+1:]...), "\n"), query)
+		if !secret {
+			continue
+		}
+		groups = append(groups, newGroups...)
+	}
+
 	if len(groups) > 0 {
 		return true, groups
 	}

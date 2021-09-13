@@ -162,6 +162,12 @@
     "fileName": "positive16.yaml"
   },
   {
+    "queryName": "Passwords And Secrets - K8s Environment Variable Password",
+    "severity": "HIGH",
+    "line": 36,
+    "fileName": "positive16.yaml"
+  },
+  {
     "queryName": "Passwords And Secrets - Generic Password",
     "severity": "HIGH",
     "line": 7,

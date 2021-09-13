@@ -32,5 +32,7 @@ spec:
               value: "dbx"
             - name: DB_PASS_BD
               value: "passx"
+            - name: DB_PASS_BD_2
+              value: "passx"
             - name: DB_USER_BD
               value: "userx"
