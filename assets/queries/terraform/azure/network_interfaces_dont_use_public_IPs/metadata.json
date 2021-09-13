@@ -1,6 +1,6 @@
 {
   "id": "c1573577-e494-4417-8854-7e119368dc8b",
-  "queryName": "Network Interfaces don't use public IPs",
+  "queryName": "Network Interfaces Don't Use Public IPs",
   "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "Network Interfaces must not use public IPs",
