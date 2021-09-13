@@ -11,7 +11,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("azurerm_postgresql_server[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_postgresql_server[%s].threat_detection_policy' is defined and set to true", [name]),
+		"keyExpectedValue": sprintf("'azurerm_postgresql_server[%s].threat_detection_policy' is a defined object", [name]),
 		"keyActualValue": sprintf("'azurerm_postgresql_server[%s].threat_detection_policy' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_postgresql_server", name], []),
 	}
