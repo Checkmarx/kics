@@ -327,7 +327,7 @@ func (c *Inspector) checkLineByLine(query *RegexQuery, basePaths []string, file 
 		entropy := query.Entropies[i]
 
 		// if matched group does not exist continue
-		if len(groups) <= entropy.Group {
+		if len(groups[0]) <= entropy.Group {
 			return
 		}
 

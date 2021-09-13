@@ -57,7 +57,7 @@
         "min": 3.7,
         "max": 12
       }
-    ]  
+    ]
   },
   {
     "id": "a007a85e-a2a7-4a81-803a-7a2ca0c65abb",
@@ -89,7 +89,7 @@
   {
     "id": "4b2b5fd3-364d-4093-bac2-17391b2a5297",
     "name": "K8s Environment Variable Password",
-    "regex": "apiVersion((.*)\\s*)*env:((.*)\\s*)*name:\\s*\\w+[P|p][A|a][S|s][S|s]([W|w][O|o][R|r][D|d])?\\w*\\s*(value):\\s*([\"|'].*[\"|'])",
+    "regex": "apiVersion((.*)\\s*)*env:((.*)\\s*)*name:\\s*\\w+(?i)pass((?i)word)?\\w*\\s*(value):\\s*([\"|'].*[\"|'])",
     "multiline": {
       "detectLineGroup": 7
     }
@@ -203,70 +203,70 @@
     "name": "Generic Private Key",
     "regex": "(?i)['|\"]?private[_]?key['|\"]?\\s*[:|=]\\s*['|\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['|\"]?",
     "allowRules": [
-        {
-          "description": "!Ref is a cloudFormation reference",
-          "regex": "(?i)['|\"]?private[_]?key['|\"]?\\s*:\\s+!Ref\\s+\\.*"
-        },
-        {
-          "description": "Avoiding cloudFormation intrinsic functions",
-          "regex": "(?i)['|\"]?private[_]?key['|\"]?\\s*:\\s+(!GetAtt|!Sub|!FindInMap|!If|!GetAZs|!ImportValue|!Join|!Select|!Split|Fn::Transform(:)?)\\s+\\.*"
-        }
-      ]
+      {
+        "description": "!Ref is a cloudFormation reference",
+        "regex": "(?i)['|\"]?private[_]?key['|\"]?\\s*:\\s+!Ref\\s+\\.*"
+      },
+      {
+        "description": "Avoiding cloudFormation intrinsic functions",
+        "regex": "(?i)['|\"]?private[_]?key['|\"]?\\s*:\\s+(!GetAtt|!Sub|!FindInMap|!If|!GetAZs|!ImportValue|!Join|!Select|!Split|Fn::Transform(:)?)\\s+\\.*"
+      }
+    ]
   },
   {
     "id": "baee238e-1921-4801-9c3f-79ae1d7b2cbc",
     "name": "Generic Token",
     "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[:|=]\\s*['|\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['|\"]?",
-      "allowRules": [
-        {
-          "description": "!Ref is a cloudFormation reference",
-          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*:\\s+!Ref\\s+\\.*"
-        },
-        {
-          "description": "Avoiding cloudFormation short form intrinsic functions",
-          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*:\\s+(!GetAtt|!Sub|!FindInMap|!If|!GetAZs|!ImportValue|!Join|!Select|!Split|Fn::Transform(:)?)\\s+\\.*"
-        },
-        {
-          "description": "Avoiding Amazon MWS Auth Token",
-          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(amzn\\.mws\\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})['|\"]?"
-        },
-        {
-          "description": "Avoiding Slack Token",
-          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(xox[p|b|o|a]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32})['|\"]?"
-        },
-        {
-          "description": "Avoiding Square Access Token",
-          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(sq0atp-[0-9A-Za-z\\-_]{22})['|\"]?"
-        },
-        {
-          "description": "Avoiding Google OAuth Access Token",
-          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(ya29\\.[0-9A-Za-z\\-_]+)['|\"]?"
-        },
-        {
-          "description": "Avoiding PayPal Braintree Access Token",
-          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(access_token\\$production\\$[0-9a-z]{16}\\$[0-9a-f]{32})['|\"]?"
-        },
-        {
-          "description": "Avoiding Facebook Access Token",
-          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(EAACEdEose0cBA[0-9A-Za-z]+)['|\"]?"
-        },
-        {
-          "description": "Avoiding TF variables",
-          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*=\\s*['|\"]?(var.)['|\"]?"
-        },
-        {
-          "description": "Avoiding Boolean's",
-          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(true|false)['|\"]?"
-        },
-        {
-          "description": "Avoiding TF resource access",
-          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
-        },
-        {
-          "description": "Avoiding TF creation token",
-          "regex": "(?i)['|\"]?creation_token['|\"]?\\s*[:|=]\\s*['|\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['|\"]?"
-        }
-      ]
+    "allowRules": [
+      {
+        "description": "!Ref is a cloudFormation reference",
+        "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*:\\s+!Ref\\s+\\.*"
+      },
+      {
+        "description": "Avoiding cloudFormation short form intrinsic functions",
+        "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*:\\s+(!GetAtt|!Sub|!FindInMap|!If|!GetAZs|!ImportValue|!Join|!Select|!Split|Fn::Transform(:)?)\\s+\\.*"
+      },
+      {
+        "description": "Avoiding Amazon MWS Auth Token",
+        "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(amzn\\.mws\\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})['|\"]?"
+      },
+      {
+        "description": "Avoiding Slack Token",
+        "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(xox[p|b|o|a]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32})['|\"]?"
+      },
+      {
+        "description": "Avoiding Square Access Token",
+        "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(sq0atp-[0-9A-Za-z\\-_]{22})['|\"]?"
+      },
+      {
+        "description": "Avoiding Google OAuth Access Token",
+        "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(ya29\\.[0-9A-Za-z\\-_]+)['|\"]?"
+      },
+      {
+        "description": "Avoiding PayPal Braintree Access Token",
+        "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(access_token\\$production\\$[0-9a-z]{16}\\$[0-9a-f]{32})['|\"]?"
+      },
+      {
+        "description": "Avoiding Facebook Access Token",
+        "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(EAACEdEose0cBA[0-9A-Za-z]+)['|\"]?"
+      },
+      {
+        "description": "Avoiding TF variables",
+        "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*=\\s*['|\"]?(var.)['|\"]?"
+      },
+      {
+        "description": "Avoiding Boolean's",
+        "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(true|false)['|\"]?"
+      },
+      {
+        "description": "Avoiding TF resource access",
+        "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
+      },
+      {
+        "description": "Avoiding TF creation token",
+        "regex": "(?i)['|\"]?creation_token['|\"]?\\s*[:|=]\\s*['|\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['|\"]?"
+      }
+    ]
   },
   {
     "id": "e0f01838-b1c2-4669-b84b-981949ebe5ed",
@@ -277,23 +277,23 @@
     "id": "9fb1cd65-7a07-4531-9bcf-47589d0f82d6",
     "name": "Encryption Key",
     "regex": "(?i)['|\"]?encryption[_]?key['|\"]?\\s*[:|=]\\s*['|\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['|\"]?",
-      "allowRules": [
-        {
-          "description": "!Ref is a cloudFormation reference",
-          "regex": "(?i)['|\"]?encryption[_]?key['|\"]?\\s*:\\s+!Ref\\s+\\.*"
-        },
-        {
-          "description": "Avoiding cloudFormation intrinsic functions",
-          "regex": "(?i)['|\"]?encryption[_]?key['|\"]?\\s*:\\s+(!GetAtt|!Sub|!FindInMap|!If|!GetAZs|!ImportValue|!Join|!Select|!Split|Fn::Transform(:)?)\\s+\\.*"
-        },
-        {
-          "description": "Avoiding TF variables",
-          "regex": "(?i)['|\"]?encryption[_]?key['|\"]?\\s*=\\s*['|\"]?(var.)['|\"]?"
-        },
-        {
-          "description": "Avoiding TF resource access",
-          "regex": "(?i)['|\"]?encryption[_]?key['|\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
-        }
-      ]
+    "allowRules": [
+      {
+        "description": "!Ref is a cloudFormation reference",
+        "regex": "(?i)['|\"]?encryption[_]?key['|\"]?\\s*:\\s+!Ref\\s+\\.*"
+      },
+      {
+        "description": "Avoiding cloudFormation intrinsic functions",
+        "regex": "(?i)['|\"]?encryption[_]?key['|\"]?\\s*:\\s+(!GetAtt|!Sub|!FindInMap|!If|!GetAZs|!ImportValue|!Join|!Select|!Split|Fn::Transform(:)?)\\s+\\.*"
+      },
+      {
+        "description": "Avoiding TF variables",
+        "regex": "(?i)['|\"]?encryption[_]?key['|\"]?\\s*=\\s*['|\"]?(var.)['|\"]?"
+      },
+      {
+        "description": "Avoiding TF resource access",
+        "regex": "(?i)['|\"]?encryption[_]?key['|\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
+      }
+    ]
   }
 ]
