@@ -3,31 +3,31 @@ package Cx
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	cluster := input.document[i].resource.azurerm_kubernetes_cluster[name]
+	ip := input.document[i].resource.azurerm_network_interface[name]
 
-	not common_lib.valid_key(cluster, "role_based_access_control")
+	not common_lib.valid_key(ip, "enable_ip_forwarding")
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("azurerm_kubernetes_cluster[%s]", [name]),
+		"searchKey": sprintf("azurerm_network_interface[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].role_based_access_control' is defined and not null", [name]),
-		"keyActualValue": sprintf("'azurerm_kubernetes_cluster[%s].role_based_access_control' is undefined or null", [name]),
+		"keyExpectedValue": sprintf("'azurerm_network_interface[%s].enable_ip_forwarding' is defined and set to false", [name]),
+		"keyActualValue": sprintf("'azurerm_network_interface[%s].enable_ip_forwarding' is undefined or null", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_network_interface", name], []),
 	}
 }
 
 CxPolicy[result] {
-	cluster := input.document[i].resource.azurerm_kubernetes_cluster[name]
+	ip := input.document[i].resource.azurerm_network_interface[name]
 
-	rbac := cluster.role_based_access_control
-
-	rbac.enabled != true
+	ip.enable_ip_forwarding == true
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("azurerm_kubernetes_cluster[%s].role_based_access_control.enabled", [name]),
+		"searchKey": sprintf("azurerm_network_interface[%s].enable_ip_forwarding", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].role_based_access_control.enabled' is set to true", [name]),
-		"keyActualValue": sprintf("'azurerm_kubernetes_cluster[%s].role_based_access_control.enabled' is not set to true", [name]),
+		"keyExpectedValue": sprintf("'azurerm_network_interface[%s].enable_ip_forwarding' is set to false", [name]),
+		"keyActualValue": sprintf("'azurerm_network_interface[%s].enable_ip_forwarding' is set to true", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_network_interface", name, "enable_ip_forwarding"], []),
 	}
 }
