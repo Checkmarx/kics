@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "AKS Private Clusters Disabled",
+    "severity": "LOW",
+    "line": 7,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "AKS Private Clusters Disabled",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive2.tf"
+  }
+]
