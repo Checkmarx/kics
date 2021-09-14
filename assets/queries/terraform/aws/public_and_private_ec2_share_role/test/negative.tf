@@ -29,6 +29,7 @@ module "vpc" {
       cidr_blocks = "0.0.0.0/0"
     }]
   default_security_group_egress =[]
+  version = "3.7.0"
 }
 
 data "aws_ami" "ubuntu" {
