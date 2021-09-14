@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "PostgreSQL Server Infrastructure Encryption Disabled",
+    "severity": "LOW",
+    "line": 21,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "PostgreSQL Server Infrastructure Encryption Disabled",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive2.tf"
+  }
+]

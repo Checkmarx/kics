@@ -11,7 +11,7 @@ require (
 	github.com/google/pprof v0.0.0-20210413054141-7c2eacd09c8d
 	github.com/google/uuid v1.3.0
 	github.com/gookit/color v1.4.2
-	github.com/hashicorp/go-getter v1.5.7
+	github.com/hashicorp/go-getter v1.5.8
 	github.com/hashicorp/hcl v1.0.0
 	github.com/hashicorp/hcl/v2 v2.10.1
 	github.com/johnfercher/maroto v0.33.0
@@ -20,7 +20,7 @@ require (
 	github.com/moby/buildkit v0.8.3
 	github.com/open-policy-agent/opa v0.28.0
 	github.com/pkg/errors v0.9.1
-	github.com/rs/zerolog v1.24.0
+	github.com/rs/zerolog v1.25.0
 	github.com/spf13/cobra v1.1.3
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.8.1
