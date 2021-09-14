@@ -9,3 +9,4 @@ resource "azurerm_kubernetes_cluster" "positive" {
     node_count = 1
     vm_size    = "Standard_D2_v2"
   }
+}
