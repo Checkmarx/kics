@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Azure Cognitive Search Public Network Access Enabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Azure Cognitive Search Public Network Access Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive2.tf"
+  }
+]
