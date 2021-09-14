@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "RDS Database Cluster not Encrypted",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "RDS Database Cluster not Encrypted",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive2.tf"
+  }
+]
