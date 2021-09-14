@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "Network Interfaces don't use public IPs",
+    "queryName": "Network Interfaces With Public IP",
     "severity": "MEDIUM",
     "line": 10,
     "fileName": "positive.tf"
