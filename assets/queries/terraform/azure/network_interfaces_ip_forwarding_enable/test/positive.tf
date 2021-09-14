@@ -1,4 +1,4 @@
-resource "azurerm_network_interface" "positive2" {
+resource "azurerm_network_interface" "positive" {
   name                = "example-nic"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
@@ -8,4 +8,6 @@ resource "azurerm_network_interface" "positive2" {
     subnet_id                     = azurerm_subnet.example.id
     private_ip_address_allocation = "Dynamic"
   }
+
+  enable_ip_forwarding = true
 }

@@ -3,12 +3,6 @@
     "queryName": "Network Interfaces IP Forwarding Enabled",
     "severity": "LOW",
     "line": 12,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "Network Interfaces IP Forwarding Enabled",
-    "severity": "LOW",
-    "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive.tf"
   }
 ]
