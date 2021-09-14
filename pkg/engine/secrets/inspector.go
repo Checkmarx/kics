@@ -212,8 +212,10 @@ func isSecret(s string, query *RegexQuery) (isSecretRet bool, groups [][]string)
 		splitedText := strings.Split(s, "\n")
 		max := -1
 		for i, splited := range splitedText {
-			if strings.Contains(splited, group[query.Multiline.DetectLineGroup]) && i > max {
-				max = i
+			if len(groups) < query.Multiline.DetectLineGroup {
+				if strings.Contains(splited, group[query.Multiline.DetectLineGroup]) && i > max {
+					max = i
+				}
 			}
 		}
 		if max == -1 {
