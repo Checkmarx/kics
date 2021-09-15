@@ -11,8 +11,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("azurerm_network_interface[%s].ip_configuration.public_ip_address_id", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_network_interface[%s].ip_configuration.public_ip_address_id' is defined and not null", [name]),
-		"keyActualValue": sprintf("'azurerm_network_interface[%s].ip_configuration.public_ip_address_id' is undefined or null", [name]),
+		"keyExpectedValue": sprintf("'azurerm_network_interface[%s].ip_configuration.public_ip_address_id' is undefined", [name]),
+		"keyActualValue": sprintf("'azurerm_network_interface[%s].ip_configuration.public_ip_address_id' is defined", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_network_interface", name, "ip_configuration", "public_ip_address_id"], []),
 	}
 }
