@@ -151,6 +151,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/secrets/</loc>
+         <lastmod>2021-09-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/docker/digests/</loc>
          <lastmod>2021-09-15</lastmod>
          <changefreq>daily</changefreq>
