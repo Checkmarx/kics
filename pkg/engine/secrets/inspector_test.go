@@ -255,7 +255,7 @@ var testNewInspectorInputs = []struct {
 			InputDataPath:  "",
 		},
 		assetsSecretsQueryMetadataJSON:   `{}`,
-		assetsSecretsQueryRegexRulesJSON: `{}`,
+		assetsSecretsQueryRegexRulesJSON: `[]`,
 		disableSecrets:                   false,
 		wantRegLen:                       0,
 		wantErr:                          true,
@@ -280,11 +280,16 @@ var testNewInspectorInputs = []struct {
 			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}},
 			InputDataPath:  "",
 		},
-		assetsSecretsQueryRegexRulesJSON: `[{
-			"id": "487f4be7-3fd9-4506-a07a-eae252180c08",
-			"name": "Generic Password",
-			"regex": "['|\"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\\s*[:|=]\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|\"]?"
-		}]`,
+		assetsSecretsQueryRegexRulesJSON: `
+		{
+			"rules":[
+				{
+					"id": "487f4be7-3fd9-4506-a07a-eae252180c08",
+					"name": "Generic Password",
+					"regex": "['|\"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\\s*[:|=]\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|\"]?"
+				}
+			]
+		}`,
 		assetsSecretsQueryMetadataJSON: `{
 			"queryName": "Passwords And Secrets",
 			"severity": "HIGH",
@@ -306,11 +311,15 @@ var testNewInspectorInputs = []struct {
 			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}},
 			InputDataPath:  "",
 		},
-		assetsSecretsQueryRegexRulesJSON: `[{
-			"id": "487f4be7-3fd9-4506-a07a-eae252180c08",
-			"name": "Generic Password",
-			"regex": "['|\"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\\s*[:|=]\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|\"]?"
-		}]`,
+		assetsSecretsQueryRegexRulesJSON: `{
+			"rules":[
+				{
+					"id": "487f4be7-3fd9-4506-a07a-eae252180c08",
+					"name": "Generic Password",
+					"regex": "['|\"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\\s*[:|=]\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|\"]?"
+				}
+			]
+		}`,
 		assetsSecretsQueryMetadataJSON: `{
 			"queryName": "Passwords And Secrets",
 			"severity": "HIGH",
@@ -332,11 +341,15 @@ var testNewInspectorInputs = []struct {
 			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}},
 			InputDataPath:  "",
 		},
-		assetsSecretsQueryRegexRulesJSON: `[{
-			"id": "487f4be7-3fd9-4506-a07a-eae252180c08",
-			"name": "Generic Password",
-			"regex": "['|\"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\\s*[:|=]\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|\"]?"
-		}]`,
+		assetsSecretsQueryRegexRulesJSON: `{
+			"rules":[
+				{
+					"id": "487f4be7-3fd9-4506-a07a-eae252180c08",
+					"name": "Generic Password",
+					"regex": "['|\"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\\s*[:|=]\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|\"]?"
+				}
+			]
+		}`,
 		assetsSecretsQueryMetadataJSON: `{
 			"queryName": "Passwords And Secrets",
 			"severity": "HIGH",
