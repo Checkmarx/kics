@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].private_cluster_enabled' is defined and set to true", [name]),
-		"keyActualValue": sprintf("'azurerm_kubernetes_cluster[%s].private_cluster_enabled' is undefined or null", [name]),
+		"keyActualValue": sprintf("'azurerm_kubernetes_cluster[%s].private_cluster_enabled' is undefined", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_kubernetes_cluster", name], []),
 	}
 }
