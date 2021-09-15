@@ -1,0 +1,11 @@
+{
+  "id": "c407c3cf-c409-4b29-b590-db5f4138d332",
+  "queryName": "PostgreSQL Server Threat Detection Policy Disabled",
+  "severity": "HIGH",
+  "category": "Resource Management",
+  "descriptionText": "PostgreSQL Server Threat Detection Policy should be enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server#threat_detection_policy",
+  "platform": "Terraform",
+  "descriptionID": "ed803b39",
+  "cloudProvider": "azure"
+}
