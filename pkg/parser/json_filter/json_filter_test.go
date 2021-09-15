@@ -95,9 +95,73 @@ var inputs = []struct {
 		name:  "selector_unary_op_is_null",
 		input: `{ $.SomeObject IS NULL }`,
 		expected: parser.FilterNode{
-			"_selector": "$.objectList[1].id",
-			"_op":       "IS NULL",
-			"_value":    "",
+			"_selector": "$.SomeObject",
+			"_op":       "IS",
+			"_value":    "NULL",
+		},
+		wantErr: false,
+	},
+	{
+		name:  "selector_unary_op_not_exists",
+		input: `{ $.SomeOtherObject NOT EXISTS }`,
+		expected: parser.FilterNode{
+			"_selector": "$.SomeOtherObject",
+			"_op":       "NOT",
+			"_value":    "EXISTS",
+		},
+		wantErr: false,
+	},
+	{
+		name:  "selector_unary_op_is_true",
+		input: `{ $.ThisFlag IS TRUE }`,
+		expected: parser.FilterNode{
+			"_selector": "$.ThisFlag",
+			"_op":       "IS",
+			"_value":    "TRUE",
+		},
+		wantErr: false,
+	},
+	{
+		name:  "expr_and_parenthesis_and",
+		input: `{ ($.user.id = 1) && ($.users[0].email = "John.Doe@example.com") }`,
+		expected: parser.FilterNode{
+			"_op": "&&",
+			"_left": parser.FilterNode{
+				"_selector": "$.user.id",
+				"_op":       "=",
+				"_value":    "1",
+			},
+			"_right": parser.FilterNode{
+				"_selector": "$.users[0].email",
+				"_op":       "=",
+				"_value":    "\"John.Doe@example.com\"",
+			},
+		},
+		wantErr: false,
+	},
+	{
+		name:  "expr_and_sub_parenthesis",
+		input: `{ ($.user.id = 2 && $.users[0].email = "nonmatch") || $.actions[2] = "GET" }`,
+		expected: parser.FilterNode{
+			"_op": "||",
+			"_left": parser.FilterNode{
+				"_op": "&&",
+				"_left": parser.FilterNode{
+					"_selector": "$.user.id",
+					"_op":       "=",
+					"_value":    "2",
+				},
+				"_right": parser.FilterNode{
+					"_selector": "$.users[0].email",
+					"_op":       "=",
+					"_value":    "\"nonmatch\"",
+				},
+			},
+			"_right": parser.FilterNode{
+				"_selector": "$.actions[2]",
+				"_op":       "=",
+				"_value":    "\"GET\"",
+			},
 		},
 		wantErr: false,
 	},
