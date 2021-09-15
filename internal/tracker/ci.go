@@ -9,12 +9,14 @@ import (
 // CITracker contains information of how many queries were loaded and executed
 // and how many files were found and executed
 type CITracker struct {
-	LoadedQueries      int
 	ExecutingQueries   int
 	ExecutedQueries    int
 	FoundFiles         int
-	ParsedFiles        int
 	FailedSimilarityID int
+	LoadedQueries      int
+	ParsedFiles        int
+	ScanSecrets        int
+	ScanPaths          int
 	lines              int
 }
 
@@ -68,4 +70,12 @@ func (c *CITracker) FailedDetectLine() {
 // FailedComputeSimilarityID - queries that failed to compute similarity ID
 func (c *CITracker) FailedComputeSimilarityID() {
 	c.FailedSimilarityID++
+}
+
+func (c *CITracker) TrackScanSecret() {
+	c.ScanSecrets++
+}
+
+func (c *CITracker) TrackScanPath() {
+	c.ScanPaths++
 }

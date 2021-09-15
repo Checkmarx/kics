@@ -1,0 +1,4 @@
+- hosts: all
+  remote_user: root
+  vars:
+    twilio_api_key: '{{ TWILIO_API_KEY }}'
