@@ -3,18 +3,18 @@
     {
       "id": "487f4be7-3fd9-4506-a07a-eae252180c08",
       "name": "Generic Password",
-      "regex": "(?i)['|\"]?password['|\"]?\\s*[:|=]\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]{4,})['|\"]?",
+      "regex": "(?i)['\"]?password['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]{4,})['\"]?",
       "allowRules": [
         {
           "description": "Avoiding TF resource access",
-          "regex": "(?i)['|\"]?password['|\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
+          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
         }
       ]
     },
     {
       "id": "3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99",
       "name": "Generic Secret",
-      "regex": "(?i)['|\"]?secret[_]?(key)?['|\"]?\\s*(:|=)\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{10,})['|\"]?",
+      "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{10,})['\"]?",
       "entropies": [
         {
           "group": 3,
@@ -25,7 +25,7 @@
       "allowRules": [
         {
           "description": "Avoiding Square OAuth Secret",
-          "regex": "(?i)['|\"]?secret[_]?(key)?['|\"]?\\s*(:|=)\\s*['|\"]?(sq0csp-[0-9A-Za-z\\-_]{43})['|\"]?"
+          "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*['\"]?(sq0csp-[0-9A-Za-z\\-_]{43})['\"]?"
         }
       ]
     },
@@ -62,7 +62,7 @@
     {
       "id": "83ab47ff-381d-48cd-bac5-fb32222f54af",
       "name": "AWS Secret Key",
-      "regex": "(?i)AWS_SECRET(_ACCESS)?(_KEY)?\\s*[:|=]\\s*['\"]?([a-zA-Z0-9/]{40})[\"']?",
+      "regex": "(?i)AWS_SECRET(_ACCESS)?(_KEY)?\\s*[:=]\\s*['\"]?([a-zA-Z0-9/]{40})[\"']?",
       "entropies": [
         {
           "group": 3,
@@ -160,11 +160,11 @@
     {
       "id": "74736dd1-dd11-4139-beb6-41cd43a50317",
       "name": "Generic API Key",
-      "regex": "(?i)['|\"]?api[_]?key['|\"]?\\s*[:|=]\\s*['|\"]?([0-9a-zA-Z]{32,45})['|\"]?",
+      "regex": "(?i)['\"]?api[_]?key['\"]?\\s*[:=]\\s*['\"]?([0-9a-zA-Z]{32,45})['\"]?",
       "allowRules": [
         {
           "description": "Avoiding Twilio API Key",
-          "regex": "(?i)['|\"]?api[_]?key['|\"]?\\s*[:|=]\\s*['|\"]?(SK[0-9a-fA-F]{32})['|\"]?"
+          "regex": "(?i)['\"]?api[_]?key['\"]?\\s*[:=]\\s*['\"]?(SK[0-9a-fA-F]{32})['\"]?"
         }
       ]
     },
@@ -186,60 +186,60 @@
     {
       "id": "2f665079-c383-4b33-896e-88268c1fa258",
       "name": "Generic Private Key",
-      "regex": "(?i)['|\"]?private[_]?key['|\"]?\\s*[:|=]\\s*['|\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['|\"]?"
+      "regex": "(?i)['\"]?private[_]?key['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
     },
     {
       "id": "baee238e-1921-4801-9c3f-79ae1d7b2cbc",
       "name": "Generic Token",
-      "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[:|=]\\s*['|\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['|\"]?",
+      "regex": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?",
       "allowRules": [
         {
           "description": "Avoiding Amazon MWS Auth Token",
-          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(amzn\\.mws\\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})['|\"]?"
+          "regex": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[=:]\\s*['\"]?(amzn\\.mws\\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})['\"]?"
         },
         {
           "description": "Avoiding Slack Token",
-          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(xox[p|b|o|a]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32})['|\"]?"
+          "regex": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[=:]\\s*['\"]?(xox[p|b|o|a]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32})['\"]?"
         },
         {
           "description": "Avoiding Square Access Token",
-          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(sq0atp-[0-9A-Za-z\\-_]{22})['|\"]?"
+          "regex": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[=:]\\s*['\"]?(sq0atp-[0-9A-Za-z\\-_]{22})['\"]?"
         },
         {
           "description": "Avoiding Google OAuth Access Token",
-          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(ya29\\.[0-9A-Za-z\\-_]+)['|\"]?"
+          "regex": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[=:]\\s*['\"]?(ya29\\.[0-9A-Za-z\\-_]+)['\"]?"
         },
         {
           "description": "Avoiding PayPal Braintree Access Token",
-          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(access_token\\$production\\$[0-9a-z]{16}\\$[0-9a-f]{32})['|\"]?"
+          "regex": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[=:]\\s*['\"]?(access_token\\$production\\$[0-9a-z]{16}\\$[0-9a-f]{32})['\"]?"
         },
         {
           "description": "Avoiding Facebook Access Token",
-          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(EAACEdEose0cBA[0-9A-Za-z]+)['|\"]?"
+          "regex": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[=:]\\s*['\"]?(EAACEdEose0cBA[0-9A-Za-z]+)['\"]?"
         },
         {
           "description": "Avoiding TF resource access",
-          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
+          "regex": "(?i)['\"]?token(_)?(key)?['\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
         },
         {
           "description": "Avoiding TF creation token",
-          "regex": "(?i)['|\"]?creation_token['|\"]?\\s*[:|=]\\s*['|\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['|\"]?"
+          "regex": "(?i)['\"]?creation_token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
         }
       ]
     },
     {
       "id": "e0f01838-b1c2-4669-b84b-981949ebe5ed",
       "name": "CloudFormation Secret Template",
-      "regex": "(?i)['|\"]?SecretStringTemplate['|\"]?\\s*:\\s*['|\"]?{([\\\":A-Za-z0-9/~^_!@&%()=?*+-]{10,})}"
+      "regex": "(?i)['\"]?SecretStringTemplate['\"]?\\s*:\\s*['\"]?{([\\\":A-Za-z0-9/~^_!@&%()=?*+-]{10,})}"
     },
     {
       "id": "9fb1cd65-7a07-4531-9bcf-47589d0f82d6",
       "name": "Encryption Key",
-      "regex": "(?i)['|\"]?encryption[_]?key['|\"]?\\s*[:|=]\\s*['|\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['|\"]?",
+      "regex": "(?i)['\"]?encryption[_]?key['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?",
       "allowRules": [
         {
           "description": "Avoiding TF resource access",
-          "regex": "(?i)['|\"]?encryption[_]?key['|\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
+          "regex": "(?i)['\"]?encryption[_]?key['\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
         }
       ]
     }
@@ -247,23 +247,23 @@
   "allowRules": [
     {
       "description": "Avoiding TF variables",
-      "regex": "(?i)['|\"]?[a-zA-Z_]+['|\"]?\\s*=\\s*['|\"]?(var.)['|\"]?"
+      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*=\\s*['\"]?(var.)['\"]?"
     },
     {
       "description": "!Ref is a cloudFormation reference",
-      "regex": "(?i)['|\"]?[a-zA-Z_]+['|\"]?\\s*:\\s+!Ref\\s+\\.*"
+      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*:\\s+!Ref\\s+\\.*"
     },
     {
       "description": "Avoiding cloudFormation intrinsic functions",
-      "regex": "(?i)['|\"]?[a-zA-Z_]+['|\"]?\\s*:\\s+(!GetAtt|!Sub|!FindInMap|!If|!GetAZs|!ImportValue|!Join|!Select|!Split|Fn::Transform(:)?)\\s+\\.*"
+      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*:\\s+(!GetAtt|!Sub|!FindInMap|!If|!GetAZs|!ImportValue|!Join|!Select|!Split|Fn::Transform(:)?)\\s+\\.*"
     },
     {
       "description": "Avoiding CF resolve",
-      "regex": "(?i)['|\"]?[a-zA-Z_]+['|\"]?\\s*[=:]\\s*['|\"]?({{resolve:)['|\"]?"
+      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[=:]\\s*['\"]?({{resolve:)['\"]?"
     },
     {
       "description": "Avoiding Boolean's",
-      "regex": "(?i)['|\"]?[a-zA-Z_]+['|\"]?\\s*[=:]\\s*['|\"]?(true|false)['|\"]?"
+      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[=:]\\s*['\"]?(true|false)['\"]?"
     }
   ]
 }
