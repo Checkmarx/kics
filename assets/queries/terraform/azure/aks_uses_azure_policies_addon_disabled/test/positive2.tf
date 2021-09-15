@@ -6,9 +6,6 @@ resource "azurerm_kubernetes_cluster" "positive2" {
 
   addon_profile {
 
-   azure_policy {
-
-   }
  }
 }
 
