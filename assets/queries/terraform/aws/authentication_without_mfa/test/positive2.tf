@@ -22,9 +22,7 @@ resource "aws_iam_user_policy" "positive2" {
    "Statement": [
      {
        "Effect": "Allow",
-       "Principal": {
-         "AWS": "arn:aws:iam::111122223333:${aws_iam_user.positive2.name}"
-       },
+       "Resource": "${aws_iam_user.positive2.arn}",
        "Action": "sts:AssumeRole"
      }
    ]

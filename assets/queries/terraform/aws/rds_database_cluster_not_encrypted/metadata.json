@@ -1,0 +1,11 @@
+{
+  "id": "656880aa-1388-488f-a6d4-8f73c23149b2",
+  "queryName": "RDS Database Cluster not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "RDS Database Cluster Encryption should be enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_cluster_snapshot",
+  "platform": "Terraform",
+  "descriptionID": "c88d0255",
+  "cloudProvider": "aws"
+}

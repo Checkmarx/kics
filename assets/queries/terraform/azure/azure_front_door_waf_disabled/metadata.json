@@ -1,0 +1,11 @@
+{
+  "id": "835a4f2f-df43-437d-9943-545ccfc55961",
+  "queryName": "Azure Front Door WAF Disabled",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "Azure Front Door WAF should be enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/frontdoor#web_application_firewall_policy_link_id",
+  "platform": "Terraform",
+  "descriptionID": "a84ac10d",
+  "cloudProvider": "azure"
+}

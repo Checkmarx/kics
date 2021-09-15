@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "Glue Security Configuration Encryption Disabled",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Glue Security Configuration Encryption Disabled",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Glue Security Configuration Encryption Disabled",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive3.tf"
+  }
+]
