@@ -32,7 +32,7 @@
     {
       "id": "51b5b840-cd0c-4556-98a7-fe5f4def80cf",
       "name": "Asymmetric private key",
-      "regex": "-----BEGIN ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----(\\s*([A-Za-z0-9+\\/=\\n\\r]+))+-----END ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----",
+      "regex": "-----BEGIN ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----(\\s*([A-Za-z0-9+\\/=\\n\\r]+))+\\s*-----END ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----",
       "multiline": {
         "detectLineGroup": 5
       },
