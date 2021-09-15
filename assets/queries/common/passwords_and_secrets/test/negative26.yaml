@@ -9,4 +9,4 @@ Resources:
   PinpointAPNSChannel:
     Type: AWS::Pinpoint::APNSChannel
     Properties:
-      PrivateKey: !Ref PrivateKey1
+      PrivateKey: !GetAtt PrivateKey1
