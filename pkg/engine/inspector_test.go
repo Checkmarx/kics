@@ -673,13 +673,15 @@ func (m *mockSource) GetQueries(queryFilter *source.QueryInspectorParameters) ([
 	return sources.GetQueries(queryFilter)
 }
 
-func (m *mockSource) GetQueryLibrary(platform string) (string, error) {
+func (m *mockSource) GetQueryLibrary(platform string) (source.RegoLibraries, error) {
 	library := source.GetPathToCustomLibrary(platform, "./assets/libraries")
 
 	if library != "default" {
 		content, err := os.ReadFile(library)
-
-		return string(content), err
+		return source.RegoLibraries{
+			LibraryCode:      string(content),
+			LibraryInputData: "{}",
+		}, err
 	}
 
 	log.Debug().Msgf("Custom library not provided. Loading embedded library instead")
@@ -687,5 +689,8 @@ func (m *mockSource) GetQueryLibrary(platform string) (string, error) {
 	// getting embedded library
 	embeddedLibrary, errGettingEmbeddedLibrary := assets.GetEmbeddedLibrary(strings.ToLower(platform))
 
-	return embeddedLibrary, errGettingEmbeddedLibrary
+	return source.RegoLibraries{
+		LibraryCode:      embeddedLibrary,
+		LibraryInputData: "{}",
+	}, errGettingEmbeddedLibrary
 }

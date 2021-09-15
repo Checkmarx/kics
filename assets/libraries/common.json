@@ -1,0 +1,50 @@
+{
+  "common_lib": {
+    "modules": {
+      "terraform-aws-modules/s3-bucket/aws": {
+        "inputs": {
+          "attach_elb_log_delivery_policy": "attach_elb_log_delivery_policy",
+          "bucket": "bucket",
+          "object_lock_configuration": "object_lock_configuration",
+          "acceleration_status": "acceleration_status",
+          "versioning": "versioning",
+          "acl": "acl",
+          "lifecycle_rule": "lifecycle_rule",
+          "server_side_encryption_configuration": "server_side_encryption_configuration",
+          "ignore_public_acls": "ignore_public_acls",
+          "object_ownership": "object_ownership",
+          "request_payer": "request_payer",
+          "website": "website",
+          "cors_rule": "cors_rule",
+          "restrict_public_buckets": "restrict_public_buckets",
+          "grant": "grant",
+          "replication_configuration": "replication_configuration",
+          "block_public_policy": "block_public_policy",
+          "control_object_ownership": "control_object_ownership",
+          "create_bucket": "create_bucket",
+          "attach_lb_log_delivery_policy": "attach_lb_log_delivery_policy",
+          "bucket_prefix": "bucket_prefix",
+          "tags": "tags",
+          "logging": "logging",
+          "policy": "policy",
+          "force_destroy": "force_destroy",
+          "attach_deny_insecure_transport_policy": "attach_deny_insecure_transport_policy",
+          "attach_policy": "attach_policy",
+          "attach_public_policy": "attach_public_policy",
+          "block_public_acls": "block_public_acls"
+        },
+        "resources": [
+          "aws_s3_bucket",
+          "aws_s3_bucket_policy",
+          "aws_s3_bucket_public_access_block",
+          "aws_s3_bucket_ownership_controls",
+          "aws_s3_bucket_object",
+          "aws_lambda_permission",
+          "aws_sqs_queue_policy",
+          "aws_sns_topic_policy",
+          "aws_s3_bucket_notification"
+        ]
+      }
+    }
+  }
+}

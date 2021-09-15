@@ -304,3 +304,10 @@ unsecured_cors_rule(methods, headers, origins) {
 	# allows several origins
 	contains(origins[_], "*")
 }
+
+get_module_equivalent_key(moduleName, resource, key) = keyInResource {
+	module := data.common_lib.modules[moduleName]
+	inArray(module.resources, resource)
+	valid_key(module.inputs, key)
+	keyInResource := module.inputs[key]
+}
