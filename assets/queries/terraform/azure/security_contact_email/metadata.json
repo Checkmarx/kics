@@ -1,0 +1,11 @@
+{
+  "id": "34664094-59e0-4524-b69f-deaa1a68cce3",
+  "queryName": "Security Contact Email",
+  "severity": "MEDIUM",
+  "category": "Best Practices",
+  "descriptionText": "Security Contact Email should be defined",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/security_center_contact#email",
+  "platform": "Terraform",
+  "descriptionID": "8632da7c",
+  "cloudProvider": "azure"
+}

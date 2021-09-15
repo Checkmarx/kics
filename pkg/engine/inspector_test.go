@@ -686,7 +686,7 @@ func (m *mockSource) GetQueryLibrary(platform string) (string, error) {
 		return string(content), err
 	}
 
-	log.Warn().Msgf("Custom library not provided. Loading embedded library instead")
+	log.Debug().Msgf("Custom library not provided. Loading embedded library instead")
 
 	// getting embedded library
 	embeddedLibrary, errGettingEmbeddedLibrary := assets.GetEmbeddedLibrary(strings.ToLower(platform))

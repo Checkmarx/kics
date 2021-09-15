@@ -1,0 +1,11 @@
+{
+  "id": "0a70d5f3-1ecd-4c8e-9292-928fc9a8c4f1",
+  "queryName": "MariaDB Server Geo-redundant Backup Disabled",
+  "severity": "LOW",
+  "category": "Backup",
+  "descriptionText": "MariaDB Server Geo-redundant Backup should be enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mariadb_server#geo_redundant_backup_enabled",
+  "platform": "Terraform",
+  "descriptionID": "f9f97af4",
+  "cloudProvider": "azure"
+}
