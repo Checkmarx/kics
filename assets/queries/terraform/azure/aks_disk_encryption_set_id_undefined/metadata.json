@@ -1,6 +1,6 @@
 {
   "id": "b17d8bb8-4c08-4785-867e-cb9e62a622aa",
-  "queryName": "AKS Uses Disk Encryption Set",
+  "queryName": "AKS Disk Encryption Set ID Undefined",
   "severity": "MEDIUM",
   "category": "Encryption",
   "descriptionText": "Azure Container Service (AKS) should use Disk Encryption Set ID",
