@@ -6,7 +6,6 @@ resource "google_container_cluster" "primary3" {
   master_auth {
     username = "1234567890qwertyuiopasdfghjklçzxcvbnm"
     password = ""
-    allow_users_to_change_password = true
 
     client_certificate_config {
       issue_client_certificate = true
