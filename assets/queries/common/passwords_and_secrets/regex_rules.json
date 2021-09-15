@@ -3,17 +3,7 @@
     {
       "id": "487f4be7-3fd9-4506-a07a-eae252180c08",
       "name": "Generic Password",
-      "regex": "(?i)['|\"]?password['|\"]?\\s*[:|=]\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]{4,})['|\"]?",
-      "allowRules": [
-        {
-          "description": "Avoiding TF resource access",
-          "regex": "(?i)['|\"]?password['|\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
-        },
-        {
-          "description": "Avoiding Boolean's",
-          "regex": "(?i)['|\"]?password['|\"]?\\s*[=:]\\s*['|\"]?(true|false)['|\"]?"
-        }
-      ]
+      "regex": "(?i)['|\"]?password['|\"]?\\s*[:|=]\\s*['|\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]{4,})['|\"]?"
     },
     {
       "id": "3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99",
@@ -222,14 +212,6 @@
           "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(EAACEdEose0cBA[0-9A-Za-z]+)['|\"]?"
         },
         {
-          "description": "Avoiding Boolean's",
-          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*[=:]\\s*['|\"]?(true|false)['|\"]?"
-        },
-        {
-          "description": "Avoiding TF resource access",
-          "regex": "(?i)['|\"]?token(_)?(key)?['|\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
-        },
-        {
           "description": "Avoiding TF creation token",
           "regex": "(?i)['|\"]?creation_token['|\"]?\\s*[:|=]\\s*['|\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['|\"]?"
         }
@@ -243,13 +225,7 @@
     {
       "id": "9fb1cd65-7a07-4531-9bcf-47589d0f82d6",
       "name": "Encryption Key",
-      "regex": "(?i)['|\"]?encryption[_]?key['|\"]?\\s*[:|=]\\s*['|\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['|\"]?",
-      "allowRules": [
-        {
-          "description": "Avoiding TF resource access",
-          "regex": "(?i)['|\"]?encryption[_]?key['|\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
-        }
-      ]
+      "regex": "(?i)['|\"]?encryption[_]?key['|\"]?\\s*[:|=]\\s*['|\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['|\"]?"
     }
   ],
   "allowRules": [
@@ -264,6 +240,18 @@
     {
       "description": "Avoiding cloudFormation intrinsic functions",
       "regex": "(?i)['|\"]?[a-zA-Z_]+['|\"]?\\s*:\\s+(!GetAtt|!Sub|!FindInMap|!If|!GetAZs|!ImportValue|!Join|!Select|!Split|Fn::Transform(:)?)\\s+\\.*"
+    },
+    {
+      "description": "Avoiding CF resolve",
+      "regex": "(?i)['|\"]?[a-zA-Z_]+['|\"]?\\s*[=:]\\s*['|\"]?({{resolve:)['|\"]?"
+    },
+    {
+      "description": "Avoiding TF resource access",
+      "regex": "(?i)['|\"]?[a-zA-Z_]+['|\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
+    },
+    {
+      "description": "Avoiding Boolean's",
+      "regex": "(?i)['|\"]?[a-zA-Z_]+['|\"]?\\s*[=:]\\s*['|\"]?(true|false)['|\"]?"
     }
   ]
 }
