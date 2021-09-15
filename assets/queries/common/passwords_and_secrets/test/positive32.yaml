@@ -1,0 +1,5 @@
+- hosts: all
+  remote_user: root
+  vars:
+    paypal_access_token: access_token$production$1s2d3f4g5h6j7k8k$1b2b3c4a3a1b2b3c4a3a1b2b3c4a3a1b
+

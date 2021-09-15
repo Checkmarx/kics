@@ -31,6 +31,7 @@ require (
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/zclconf/go-cty v1.9.1
 	golang.org/x/net v0.0.0-20210405180319-a5a99cb37ef4
+	golang.org/x/term v0.0.0-20210220032956-6a3ed077a48d
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
 	helm.sh/helm/v3 v3.6.3
 )

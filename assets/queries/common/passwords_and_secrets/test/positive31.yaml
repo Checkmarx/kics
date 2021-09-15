@@ -1,0 +1,5 @@
+- hosts: all
+  remote_user: root
+  vars:
+    twilio_api_key: SKa7CF7acdcaf92Be4CCC52F4a2923BBB3
+

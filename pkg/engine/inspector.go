@@ -46,20 +46,6 @@ var ErrInvalidResult = errors.New("query: invalid result format")
 type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{},
 	detector *detector.DetectLine) (model.Vulnerability, error)
 
-// Tracker wraps an interface that contain basic methods: TrackQueryLoad, TrackQueryExecution and FailedDetectLine
-// TrackQueryLoad increments the number of loaded queries
-// TrackQueryExecution increments the number of queries executed
-// FailedDetectLine decrements the number of queries executed
-// GetOutputLines returns the number of lines to be displayed in results outputs
-type Tracker interface {
-	TrackQueryLoad(queryAggregation int)
-	TrackQueryExecuting(queryAggregation int)
-	TrackQueryExecution(queryAggregation int)
-	FailedDetectLine()
-	FailedComputeSimilarityID()
-	GetOutputLines() int
-}
-
 type preparedQuery struct {
 	opaQuery rego.PreparedEvalQuery
 	metadata model.QueryMetadata
@@ -115,7 +101,7 @@ func NewInspector(
 		return nil, errors.Wrap(err, "failed to get queries")
 	}
 
-	commonGeneralQuery, err := queriesSource.GetQueryLibrary("common")
+	commonLibrary, err := queriesSource.GetQueryLibrary("common")
 	if err != nil {
 		sentry.CaptureException(err)
 		log.Err(err).
@@ -141,14 +127,14 @@ func NewInspector(
 			if err != nil {
 				log.Debug().Msg("Could not merge platform library input data")
 			}
-			mergedInputData, err = source.MergeInputData(commonGeneralQuery.LibraryInputData, mergedInputData)
+			mergedInputData, err = source.MergeInputData(commonLibrary.LibraryInputData, mergedInputData)
 			if err != nil {
 				log.Debug().Msg("Could not merge common library input data")
 			}
 			store := inmem.NewFromReader(bytes.NewBufferString(mergedInputData))
 			opaQuery, err = rego.New(
 				rego.Query(regoQuery),
-				rego.Module("Common", commonGeneralQuery.LibraryCode),
+				rego.Module("Common", commonLibrary.LibraryCode),
 				rego.Module("Generic", platformGeneralQuery.LibraryCode),
 				rego.Module(metadata.Query, metadata.Content),
 				rego.Store(store),
@@ -181,7 +167,7 @@ func NewInspector(
 	log.Info().
 		Msgf("Inspector initialized, number of queries=%d", queriesNumber)
 
-	lineDetctor := detector.NewDetectLine(tracker.GetOutputLines()).
+	lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
 		Add(helm.DetectKindLine{}, model.KindHELM).
 		Add(docker.DetectKindLine{}, model.KindDOCKER)
 
@@ -194,7 +180,7 @@ func NewInspector(
 		tracker:          tracker,
 		failedQueries:    failedQueries,
 		excludeResults:   excludeResults,
-		detector:         lineDetctor,
+		detector:         lineDetector,
 		queryExecTimeout: queryExecTimeout,
 	}, nil
 }
@@ -382,7 +368,7 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 		}
 		file := ctx.files[vulnerability.FileID]
 		if shouldSkipFile(file.Commands, vulnerability.QueryID) {
-			log.Debug().Msgf("Skipping file %s for query %s", file.FileName, ctx.query.metadata.Query)
+			log.Debug().Msgf("Skipping file %s for query %s", file.FilePath, ctx.query.metadata.Query)
 			continue
 		}
 

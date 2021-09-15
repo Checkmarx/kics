@@ -37,7 +37,6 @@ var (
 		"../assets/queries/ansible/gcp":          {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
 		"../assets/queries/ansible/azure":        {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
 		"../assets/queries/dockerfile":           {FileKind: []model.FileKind{model.KindDOCKER}, Platform: "dockerfile"},
-		"../assets/queries/common":               {FileKind: []model.FileKind{model.KindCOMMON}, Platform: "common"},
 		"../assets/queries/openAPI/general":      {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
 		"../assets/queries/openAPI/3.0":          {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
 		"../assets/queries/openAPI/2.0":          {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
@@ -52,8 +51,9 @@ var (
 )
 
 const (
-	scanID            = "test_scan"
-	BaseTestsScanPath = "../assets/queries/"
+	scanID                  = "test_scan"
+	BaseTestsScanPath       = "../assets/queries/"
+	ExpectedResultsFilename = "positive_expected_result.json"
 )
 
 func TestMain(m *testing.M) {
@@ -70,9 +70,9 @@ func (q queryEntry) getSampleFiles(tb testing.TB, filePattern string) []string {
 	var files []string
 	for _, kinds := range q.kind {
 		kindFiles, err := filepath.Glob(path.Join(q.dir, fmt.Sprintf(filePattern, strings.ToLower(string(kinds)))))
-		x0 := filepath.FromSlash(path.Join(q.dir, "test/positive_expected_result.json"))
+		positiveExpectedResultsFilepath := filepath.FromSlash(path.Join(q.dir, "test", ExpectedResultsFilename))
 		for i, check := range kindFiles {
-			if check == x0 {
+			if check == positiveExpectedResultsFilepath {
 				kindFiles = append(kindFiles[:i], kindFiles[i+1:]...)
 			}
 		}
@@ -91,7 +91,7 @@ func (q queryEntry) NegativeFiles(tb testing.TB) []string {
 }
 
 func (q queryEntry) ExpectedPositiveResultFile() string {
-	return filepath.FromSlash(path.Join(q.dir, "test/positive_expected_result.json"))
+	return filepath.FromSlash(path.Join(q.dir, "test", ExpectedResultsFilename))
 }
 
 func appendQueries(queriesDir []queryEntry, dirName string, kind []model.FileKind, platform string) []queryEntry {
@@ -149,7 +149,7 @@ func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte)
 				LineInfoDocument: document,
 				OriginalData:     string(content),
 				Kind:             kind,
-				FileName:         filePath,
+				FilePath:         filePath,
 			})
 		}
 	}

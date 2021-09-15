@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: x
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: x
+  template:
+    metadata:
+      labels:
+        app: x
+    spec:
+      containers:
+        - name: x
+          image: x
+          ports:
+            - containerPort: 5432
+          env:
+            - name: PORT
+              value: "1234"
+            - name: DB_HOST
+              value: "127.0.0.1"
+            - name: DB_PORT
+              value: "23"
+            - name: DB_PORT_BD
+              value: "5432"
+            - name: DB_HOST_BD
+              value: "127.0.0.1"
+            - name: DB_NAME_BD
+              value: "dbx"
+            - name: DB_PASS_BD
+              value: "passx"
+            - name: DB_PASS_BD_2
+              value: "passx"
+            - name: DB_USER_BD
+              value: "userx"

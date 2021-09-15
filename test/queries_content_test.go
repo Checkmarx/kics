@@ -49,6 +49,7 @@ var (
 		"../assets/queries/terraform/azure/sensitive_port_is_exposed_to_entire_network",
 		"../assets/queries/terraform/azure/sensitive_port_is_exposed_to_small_public_network",
 		"../assets/queries/dockerfile/apt_get_install_pin_version_not_defined",
+		"../assets/queries/terraform/aws/redshift_cluster_without_vpc",
 	}
 
 	// TODO uncomment this test once all metadata are fixed

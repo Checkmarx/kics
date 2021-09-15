@@ -1,0 +1,9 @@
+Resources:
+  PinpointApp:
+    Type: AWS::Pinpoint::App
+    Properties:
+      Name: foobar
+  PinpointAPNSChannel:
+    Type: AWS::Pinpoint::APNSChannel
+    Properties:
+      PrivateKey: b@d0@u7H70K3n

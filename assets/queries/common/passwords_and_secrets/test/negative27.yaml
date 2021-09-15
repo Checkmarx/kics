@@ -1,0 +1,26 @@
+Parameters:
+  PinpointAPNSVoipChannelTokenKey:
+    Type: String
+Resources:
+  ElastiCacheReplicationGroup:
+    Type: AWS::ElastiCache::ReplicationGroup
+    Properties:
+      AuthToken: !Ref PinpointAPNSVoipChannelTokenKey
+      CacheNodeType: cache.m5.large
+      CacheSubnetGroupName: subnet-foobar
+      Engine: redis
+      EngineVersion: '5.0.0'
+      NumCacheClusters: 2
+      ReplicationGroupDescription: foobar
+      SecurityGroupIds:
+        - sg-foobar
+      TransitEncryptionEnabled: True
+  PinpointApp:
+    Type: AWS::Pinpoint::App
+    Properties:
+      Name: foobar
+  PinpointAPNSChannel:
+    Type: AWS::Pinpoint::APNSChannel
+    Properties:
+      TokenKey: !Ref PinpointAPNSVoipChannelTokenKey
+      ApplicationId: !Ref PinpointApp
