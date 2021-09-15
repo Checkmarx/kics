@@ -8,19 +8,13 @@
   {
     "queryName": "AKS Azure Policies Add-On Disabled",
     "severity": "LOW",
-    "line": 9,
+    "line": 7,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "AKS Azure Policies Add-On Disabled",
     "severity": "LOW",
-    "line": 7,
-    "fileName": "positive3.tf"
-  },
-  {
-    "queryName": "AKS Azure Policies Add-On Disabled",
-    "severity": "LOW",
     "line": 1,
-    "fileName": "positive4.tf"
+    "fileName": "positive3.tf"
   }
 ]
