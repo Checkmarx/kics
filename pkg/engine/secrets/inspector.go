@@ -36,6 +36,7 @@ type Inspector struct {
 	detector              *detector.DetectLine
 	excludeResults        map[string]bool
 	regexQueries          []RegexQuery
+	allowRules            []AllowRule
 	vulnerabilities       []model.Vulnerability
 	queryExecutionTimeout time.Duration
 	foundLines            []int
@@ -67,6 +68,11 @@ type RegexQuery struct {
 	Regex      *regexp.Regexp
 }
 
+type RegexRuleStruct struct {
+	Rules      []RegexQuery `json:"rules"`
+	AllowRules []AllowRule  `json:"allowRules"`
+}
+
 type RuleMatch struct {
 	File     string
 	RuleName string
@@ -96,6 +102,7 @@ func NewInspector(
 			tracker:               tracker,
 			excludeResults:        excludeResults,
 			regexQueries:          make([]RegexQuery, 0),
+			allowRules:            make([]AllowRule, 0),
 			vulnerabilities:       make([]model.Vulnerability, 0),
 			queryExecutionTimeout: time.Duration(executionTimeout) * time.Second,
 		}, nil
@@ -111,7 +118,7 @@ func NewInspector(
 	}
 	queryExecutionTimeout := time.Duration(executionTimeout) * time.Second
 
-	var allRegexQueries []RegexQuery
+	var allRegexQueries RegexRuleStruct
 	err = json.Unmarshal([]byte(regexRulesContent), &allRegexQueries)
 	if err != nil {
 		return nil, err
@@ -122,7 +129,8 @@ func NewInspector(
 		detector:              lineDetector,
 		excludeResults:        excludeResults,
 		tracker:               tracker,
-		regexQueries:          compileRegexQueries(queryFilter, allRegexQueries),
+		regexQueries:          compileRegexQueries(queryFilter, allRegexQueries.Rules),
+		allowRules:            compileRegex(allRegexQueries.AllowRules),
 		vulnerabilities:       make([]model.Vulnerability, 0),
 		queryExecutionTimeout: queryExecutionTimeout,
 		foundLines:            make([]int, 0),
@@ -188,6 +196,13 @@ func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQ
 	return regexQueries
 }
 
+func compileRegex(allowRules []AllowRule) []AllowRule {
+	for j := range allowRules {
+		allowRules[j].Regex = regexp.MustCompile(allowRules[j].RegexStr)
+	}
+	return allowRules
+}
+
 func (c *Inspector) GetQueriesLength() int {
 	return len(c.regexQueries)
 }
@@ -201,8 +216,8 @@ func isValueInArray(value string, array []string) bool {
 	return false
 }
 
-func isSecret(s string, query *RegexQuery) (isSecretRet bool, groups [][]string) {
-	if isAllowRule(s, query.AllowRules) {
+func (c *Inspector) isSecret(s string, query *RegexQuery) (isSecretRet bool, groups [][]string) {
+	if isAllowRule(s, query.AllowRules) || isAllowRule(s, c.allowRules) {
 		return false, [][]string{}
 	}
 
@@ -221,7 +236,7 @@ func isSecret(s string, query *RegexQuery) (isSecretRet bool, groups [][]string)
 		if max == -1 {
 			continue
 		}
-		secret, newGroups := isSecret(strings.Join(append(splitedText[:max], splitedText[max+1:]...), "\n"), query)
+		secret, newGroups := c.isSecret(strings.Join(append(splitedText[:max], splitedText[max+1:]...), "\n"), query)
 		if !secret {
 			continue
 		}
@@ -244,7 +259,7 @@ func isAllowRule(s string, allowRules []AllowRule) bool {
 }
 
 func (c *Inspector) checkFileContent(query *RegexQuery, basePaths []string, file *model.FileMetadata) {
-	isSecret, groups := isSecret(file.OriginalData, query)
+	isSecret, groups := c.isSecret(file.OriginalData, query)
 	if !isSecret {
 		return
 	}
@@ -329,7 +344,7 @@ func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadat
 }
 
 func (c *Inspector) checkLineByLine(query *RegexQuery, basePaths []string, file *model.FileMetadata, lineNumber int, currentLine string) {
-	isSecret, groups := isSecret(currentLine, query)
+	isSecret, groups := c.isSecret(currentLine, query)
 	if !isSecret {
 		return
 	}
