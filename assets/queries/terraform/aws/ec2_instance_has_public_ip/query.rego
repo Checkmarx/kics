@@ -13,6 +13,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'associate_public_ip_address' is defined and not null",
 		"keyActualValue": "'associate_public_ip_address' is undefined or null",
+		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name], []),
 	}
 }
 
@@ -28,6 +29,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'associate_public_ip_address' is defined and not null",
 		"keyActualValue": "'associate_public_ip_address' is undefined or null",
+		"searchLine": common_lib.build_search_line(["module", name], []),
 	}
 }
 
@@ -40,8 +42,9 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_instance.%s.associate_public_ip_address", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'associate_public_ip_address' is false", [name]),
-		"keyActualValue": sprintf("'associate_public_ip_address' is true", [name]),
+		"keyExpectedValue": "'associate_public_ip_address' is false",
+		"keyActualValue": "'associate_public_ip_address' is true",
+		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name, "associate_public_ip_address"], []),
 	}
 }
 
@@ -55,8 +58,9 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("module[%s].associate_public_ip_address", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'associate_public_ip_address' is false", [name]),
-		"keyActualValue": sprintf("'associate_public_ip_address' is true", [name]),
+		"keyExpectedValue": "'associate_public_ip_address' is false",
+		"keyActualValue": "'associate_public_ip_address' is true",
+		"searchLine": common_lib.build_search_line(["module", name, "associate_public_ip_address"], []),
 	}
 }
 
