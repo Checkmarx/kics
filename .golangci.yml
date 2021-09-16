@@ -111,6 +111,7 @@ run:
     - docs
     - vendor
     - tools
+    - pkg/parser/jsonfilter/parser
 
 # golangci.com configuration
 # https://github.com/golangci/golangci/wiki/Configuration

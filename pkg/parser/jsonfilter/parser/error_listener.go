@@ -25,7 +25,6 @@ func (c *CustomErrorListener) HasErrors() bool {
 
 func (c *CustomErrorListener) SyntaxError(recognizer antlr.Recognizer,
 	offendingSymbol interface{}, line, column int, msg string, e antlr.RecognitionException) {
-
 	c.Errors = append(c.Errors, &CustomSyntaxError{
 		line:   line,
 		column: column,

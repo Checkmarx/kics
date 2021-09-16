@@ -1,10 +1,10 @@
-package json_filter
+package jsonfilter
 
 import (
 	"reflect"
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/parser/json_filter/parser"
+	"github.com/Checkmarx/kics/pkg/parser/jsonfilter/parser"
 	"github.com/antlr/antlr4/runtime/Go/antlr"
 	"github.com/stretchr/testify/require"
 )
@@ -280,6 +280,216 @@ var inputs = []struct {
 			},
 		},
 		wantErr: false,
+	},
+	// TODO: check logical operation priority
+	{
+		name:  "expr_three_selectors_and_without_parenthesis",
+		input: `{ $.userIdentity.type = "Root" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != "AwsServiceEvent" }`,
+		expected: parser.AWSJSONFilter{
+			FilterExpression: parser.FilterExp{
+				Op: "&&",
+				Left: parser.FilterExp{
+					Op: "&&",
+					Left: parser.FilterSelector{
+						Selector: "$.userIdentity.type",
+						Op:       "=",
+						Value:    "\"Root\"",
+					},
+					Right: parser.FilterSelector{
+						Selector: "$.userIdentity.invokedBy",
+						Op:       "NOT",
+						Value:    "EXISTS",
+					},
+				},
+				Right: parser.FilterSelector{
+					Selector: "$.eventType",
+					Op:       "!=",
+					Value:    "\"AwsServiceEvent\"",
+				},
+			},
+		},
+		wantErr: false,
+	},
+	{
+		name:  "expr_two_selectors_and_with_parenthesis_unquoted_quoted_strings",
+		input: `{ ($.eventName = ConsoleLogin) && ($.errorMessage = "Failed authentication") }`,
+		expected: parser.AWSJSONFilter{
+			FilterExpression: parser.FilterExp{
+				Op: "&&",
+				Left: parser.FilterSelector{
+					Selector: "$.eventName",
+					Op:       "=",
+					Value:    "ConsoleLogin",
+				},
+				Right: parser.FilterSelector{
+					Selector: "$.errorMessage",
+					Op:       "=",
+					Value:    "\"Failed authentication\"",
+				},
+			},
+		},
+	},
+	{
+		name:  "expr_two_selectors_and_with_parenthesis_unquoted_unquoted_strings",
+		input: `{ ($.eventSource = "kms.amazonaws.com") && (($.eventName = DisableKey) || ($.eventName = ScheduleKeyDeletion)) }`,
+		expected: parser.AWSJSONFilter{
+			FilterExpression: parser.FilterExp{
+				Op: "&&",
+				Left: parser.FilterSelector{
+					Selector: "$.eventSource",
+					Op:       "=",
+					Value:    "\"kms.amazonaws.com\"",
+				},
+				Right: parser.FilterExp{
+					Op: "||",
+					Left: parser.FilterSelector{
+						Selector: "$.eventName",
+						Op:       "=",
+						Value:    "DisableKey",
+					},
+					Right: parser.FilterSelector{
+						Selector: "$.eventName",
+						Op:       "=",
+						Value:    "ScheduleKeyDeletion",
+					},
+				},
+			},
+		},
+	},
+	{
+		name: "expr_multiple_or_parenthesis",
+		input: `{($.eventName=DeleteGroupPolicy)||($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||` +
+			`($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||` +
+			`($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||` +
+			`($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||` +
+			`($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)}`,
+		expected: parser.AWSJSONFilter{
+			FilterExpression: parser.FilterExp{
+				Op: "||",
+				Left: parser.FilterExp{
+					Op: "||",
+					Left: parser.FilterExp{
+						Op: "||",
+						Left: parser.FilterExp{
+							Op: "||",
+							Left: parser.FilterExp{
+								Op: "||",
+								Left: parser.FilterExp{
+									Op: "||",
+									Left: parser.FilterExp{
+										Op: "||",
+										Left: parser.FilterExp{
+											Op: "||",
+											Left: parser.FilterExp{
+												Op: "||",
+												Left: parser.FilterExp{
+													Op: "||",
+													Left: parser.FilterExp{
+														Op: "||",
+														Left: parser.FilterExp{
+															Op: "||",
+															Left: parser.FilterExp{
+																Op: "||",
+																Left: parser.FilterExp{
+																	Op: "||",
+																	Left: parser.FilterExp{
+																		Op: "||",
+																		Left: parser.FilterSelector{
+																			Selector: "$.eventName",
+																			Op:       "=",
+																			Value:    "DeleteGroupPolicy",
+																		},
+																		Right: parser.FilterSelector{
+																			Selector: "$.eventName",
+																			Op:       "=",
+																			Value:    "DeleteRolePolicy",
+																		},
+																	},
+																	Right: parser.FilterSelector{
+																		Selector: "$.eventName",
+																		Op:       "=",
+																		Value:    "DeleteUserPolicy",
+																	},
+																},
+																Right: parser.FilterSelector{
+																	Selector: "$.eventName",
+																	Op:       "=",
+																	Value:    "PutGroupPolicy",
+																},
+															},
+															Right: parser.FilterSelector{
+																Selector: "$.eventName",
+																Op:       "=",
+																Value:    "PutRolePolicy",
+															},
+														},
+														Right: parser.FilterSelector{
+															Selector: "$.eventName",
+															Op:       "=",
+															Value:    "PutUserPolicy",
+														},
+													},
+													Right: parser.FilterSelector{
+														Selector: "$.eventName",
+														Op:       "=",
+														Value:    "CreatePolicy",
+													},
+												},
+												Right: parser.FilterSelector{
+													Selector: "$.eventName",
+													Op:       "=",
+													Value:    "DeletePolicy",
+												},
+											},
+											Right: parser.FilterSelector{
+												Selector: "$.eventName",
+												Op:       "=",
+												Value:    "CreatePolicyVersion",
+											},
+										},
+										Right: parser.FilterSelector{
+											Selector: "$.eventName",
+											Op:       "=",
+											Value:    "DeletePolicyVersion",
+										},
+									},
+									Right: parser.FilterSelector{
+										Selector: "$.eventName",
+										Op:       "=",
+										Value:    "AttachRolePolicy",
+									},
+								},
+								Right: parser.FilterSelector{
+									Selector: "$.eventName",
+									Op:       "=",
+									Value:    "DetachRolePolicy",
+								},
+							},
+							Right: parser.FilterSelector{
+								Selector: "$.eventName",
+								Op:       "=",
+								Value:    "AttachUserPolicy",
+							},
+						},
+						Right: parser.FilterSelector{
+							Selector: "$.eventName",
+							Op:       "=",
+							Value:    "DetachUserPolicy",
+						},
+					},
+					Right: parser.FilterSelector{
+						Selector: "$.eventName",
+						Op:       "=",
+						Value:    "AttachGroupPolicy",
+					},
+				},
+				Right: parser.FilterSelector{
+					Selector: "$.eventName",
+					Op:       "=",
+					Value:    "DetachGroupPolicy",
+				},
+			},
+		},
 	},
 }
 
