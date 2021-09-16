@@ -15,24 +15,24 @@ var inputs = []struct {
 	expected parser.AWSJSONFilter
 	wantErr  bool
 }{
-	// {
-	// 	name:     "empty",
-	// 	input:    "",
-	// 	expected: parser.AWSJSONFilter{},
-	// 	wantErr:  true,
-	// },
-	// {
-	// 	name:     "empty_curly_braces",
-	// 	input:    "{}",
-	// 	expected: parser.AWSJSONFilter{},
-	// 	wantErr:  true,
-	// },
-	// {
-	// 	name:     "invalid_operator",
-	// 	input:    `{$.eventType % "ConsoleLogin"}`,
-	// 	expected: parser.AWSJSONFilter{},
-	// 	wantErr:  true,
-	// },
+	{
+		name:     "empty",
+		input:    "",
+		expected: parser.AWSJSONFilter{},
+		wantErr:  true,
+	},
+	{
+		name:     "empty_curly_braces",
+		input:    "{}",
+		expected: parser.AWSJSONFilter{},
+		wantErr:  true,
+	},
+	{
+		name:     "invalid_operator",
+		input:    `{$.eventType % "ConsoleLogin"}`,
+		expected: parser.AWSJSONFilter{},
+		wantErr:  true,
+	},
 	{
 		name:  "simple_selector_equal_string",
 		input: `{ $.eventType = "UpdateTrail" }`,
@@ -89,116 +89,198 @@ var inputs = []struct {
 		},
 		wantErr: false,
 	},
-	// {
-	// 	name:  "selector_array_idx_prop_match_int",
-	// 	input: `{ $.objectList[1].id = 2 }`,
-	// 	expected: parser.FilterNode{
-	// 		"_selector": "$.objectList[1].id",
-	// 		"_op":       "=",
-	// 		"_value":    "2",
-	// 	},
-	// 	wantErr: false,
-	// },
-	// {
-	// 	name:  "selector_unary_op_is_null",
-	// 	input: `{ $.SomeObject IS NULL }`,
-	// 	expected: parser.FilterNode{
-	// 		"_selector": "$.SomeObject",
-	// 		"_op":       "IS",
-	// 		"_value":    "NULL",
-	// 	},
-	// 	wantErr: false,
-	// },
-	// {
-	// 	name:  "selector_unary_op_not_exists",
-	// 	input: `{ $.SomeOtherObject NOT EXISTS }`,
-	// 	expected: parser.FilterNode{
-	// 		"_selector": "$.SomeOtherObject",
-	// 		"_op":       "NOT",
-	// 		"_value":    "EXISTS",
-	// 	},
-	// 	wantErr: false,
-	// },
-	// {
-	// 	name:  "selector_unary_op_is_true",
-	// 	input: `{ $.ThisFlag IS TRUE }`,
-	// 	expected: parser.FilterNode{
-	// 		"_selector": "$.ThisFlag",
-	// 		"_op":       "IS",
-	// 		"_value":    "TRUE",
-	// 	},
-	// 	wantErr: false,
-	// },
-	// {
-	// 	name:  "expr_and_parenthesis_and",
-	// 	input: `{ ($.user.id = 1) && ($.users[0].email = "John.Doe@example.com") }`,
-	// 	expected: parser.FilterNode{
-	// 		"_op": "&&",
-	// 		"_left": parser.FilterNode{
-	// 			"_selector": "$.user.id",
-	// 			"_op":       "=",
-	// 			"_value":    "1",
-	// 		},
-	// 		"_right": parser.FilterNode{
-	// 			"_selector": "$.users[0].email",
-	// 			"_op":       "=",
-	// 			"_value":    "\"John.Doe@example.com\"",
-	// 		},
-	// 	},
-	// 	wantErr: false,
-	// },
-	// {
-	// 	name:  "expr_and_sub_parenthesis",
-	// 	input: `{ ($.user.id = 2 && $.users[0].email = "nonmatch") || $.actions[2] = "GET" }`,
-	// 	expected: parser.FilterNode{
-	// 		"_op": "||",
-	// 		"_left": parser.FilterNode{
-	// 			"_op": "&&",
-	// 			"_left": parser.FilterNode{
-	// 				"_selector": "$.user.id",
-	// 				"_op":       "=",
-	// 				"_value":    "2",
-	// 			},
-	// 			"_right": parser.FilterNode{
-	// 				"_selector": "$.users[0].email",
-	// 				"_op":       "=",
-	// 				"_value":    "\"nonmatch\"",
-	// 			},
-	// 		},
-	// 		"_right": parser.FilterNode{
-	// 			"_selector": "$.actions[2]",
-	// 			"_op":       "=",
-	// 			"_value":    "\"GET\"",
-	// 		},
-	// 	},
-	// 	wantErr: false,
-	// },
-	// {
-	// 	name:  "expr_or",
-	// 	input: `{ $.user.email = "John.Stiles@example.com" || $.coordinates[0][1] = nonmatch && $.actions[2] = nomatch }`,
-	// 	expected: parser.FilterNode{
-	// 		"_op": "||",
-	// 		"_left": parser.FilterNode{
-	// 			"_op": "&&",
-	// 			"_left": parser.FilterNode{
-	// 				"_selector": "$.user.id",
-	// 				"_op":       "=",
-	// 				"_value":    "2",
-	// 			},
-	// 			"_right": parser.FilterNode{
-	// 				"_selector": "$.users[0].email",
-	// 				"_op":       "=",
-	// 				"_value":    "\"nonmatch\"",
-	// 			},
-	// 		},
-	// 		"_right": parser.FilterNode{
-	// 			"_selector": "$.actions[2]",
-	// 			"_op":       "=",
-	// 			"_value":    "\"GET\"",
-	// 		},
-	// 	},
-	// 	wantErr: false,
-	// },
+	{
+		name:  "selector_array_idx_prop_match_int",
+		input: `{ $.objectList[1].id = 2 }`,
+		expected: parser.AWSJSONFilter{
+			FilterExpression: parser.FilterSelector{
+				Selector: "$.objectList[1].id",
+				Op:       "=",
+				Value:    "2",
+			},
+		},
+		wantErr: false,
+	},
+	{
+		name:  "selector_unary_op_is_null",
+		input: `{ $.SomeObject IS NULL }`,
+		expected: parser.AWSJSONFilter{
+			FilterExpression: parser.FilterSelector{
+				Selector: "$.SomeObject",
+				Op:       "IS",
+				Value:    "NULL",
+			},
+		},
+		wantErr: false,
+	},
+	{
+		name:  "selector_unary_op_not_exists",
+		input: `{ $.SomeOtherObject NOT EXISTS }`,
+		expected: parser.AWSJSONFilter{
+			FilterExpression: parser.FilterSelector{
+				Selector: "$.SomeOtherObject",
+				Op:       "NOT",
+				Value:    "EXISTS",
+			},
+		},
+		wantErr: false,
+	},
+	{
+		name:  "selector_unary_op_is_true",
+		input: `{ $.ThisFlag IS TRUE }`,
+		expected: parser.AWSJSONFilter{
+			FilterExpression: parser.FilterSelector{
+				Selector: "$.ThisFlag",
+				Op:       "IS",
+				Value:    "TRUE",
+			},
+		},
+		wantErr: false,
+	},
+	{
+		name:  "expr_and_parenthesis_and",
+		input: `{ ($.user.id = 1) && ($.users[0].email = "John.Doe@example.com") }`,
+		expected: parser.AWSJSONFilter{
+			FilterExpression: parser.FilterExp{
+				Op: "&&",
+				Left: parser.FilterSelector{
+					Selector: "$.user.id",
+					Op:       "=",
+					Value:    "1",
+				},
+				Right: parser.FilterSelector{
+					Selector: "$.users[0].email",
+					Op:       "=",
+					Value:    "\"John.Doe@example.com\"",
+				},
+			},
+		},
+		wantErr: false,
+	},
+	{
+		name:  "expr_and_sub_parenthesis",
+		input: `{ ($.user.id = 2 && $.users[0].email = "nonmatch") || $.actions[2] = "GET" }`,
+		expected: parser.AWSJSONFilter{
+			FilterExpression: parser.FilterExp{
+				Op: "||",
+				Left: parser.FilterExp{
+					Op: "&&",
+					Left: parser.FilterSelector{
+						Selector: "$.user.id",
+						Op:       "=",
+						Value:    "2",
+					},
+					Right: parser.FilterSelector{
+						Selector: "$.users[0].email",
+						Op:       "=",
+						Value:    "\"nonmatch\"",
+					},
+				},
+				Right: parser.FilterSelector{
+					Selector: "$.actions[2]",
+					Op:       "=",
+					Value:    "\"GET\"",
+				},
+			},
+		},
+		wantErr: false,
+	},
+	{
+		name:  "expr_or",
+		input: `{ $.user.email = "John.Stiles@example.com" || $.coordinates[0][1] = nonmatch && $.actions[2] = nomatch }`,
+		expected: parser.AWSJSONFilter{
+			FilterExpression: parser.FilterExp{
+				Op: "||",
+				Left: parser.FilterSelector{
+					Selector: "$.user.email",
+					Op:       "=",
+					Value:    "\"John.Stiles@example.com\"",
+				},
+				Right: parser.FilterExp{
+					Op: "&&",
+					Left: parser.FilterSelector{
+						Selector: "$.coordinates[0][1]",
+						Op:       "=",
+						Value:    "nonmatch",
+					},
+					Right: parser.FilterSelector{
+						Selector: "$.actions[2]",
+						Op:       "=",
+						Value:    "nomatch",
+					},
+				},
+			},
+		},
+		wantErr: false,
+	},
+	{
+		name:  "expr_or_and_parenthesis",
+		input: `{ ($.user.email = "John.Stiles@example.com" || $.coordinates[0][1] = nonmatch) && $.actions[2] = nomatch }`,
+		expected: parser.AWSJSONFilter{
+			FilterExpression: parser.FilterExp{
+				Op: "&&",
+				Left: parser.FilterExp{
+					Op: "||",
+					Left: parser.FilterSelector{
+						Selector: "$.user.email",
+						Op:       "=",
+						Value:    "\"John.Stiles@example.com\"",
+					},
+					Right: parser.FilterSelector{
+						Selector: "$.coordinates[0][1]",
+						Op:       "=",
+						Value:    "nonmatch",
+					},
+				},
+				Right: parser.FilterSelector{
+					Selector: "$.actions[2]",
+					Op:       "=",
+					Value:    "nomatch",
+				},
+			},
+		},
+		wantErr: false,
+	},
+	{
+		name:  "expr_or_simple_parenthesis",
+		input: `{ ($.errorCode = "*UnauthorizedOperation") || ($.errorCode = "AccessDenied*") }`,
+		expected: parser.AWSJSONFilter{
+			FilterExpression: parser.FilterExp{
+				Op: "||",
+				Left: parser.FilterSelector{
+					Selector: "$.errorCode",
+					Op:       "=",
+					Value:    "\"*UnauthorizedOperation\"",
+				},
+				Right: parser.FilterSelector{
+					Selector: "$.errorCode",
+					Op:       "=",
+					Value:    "\"AccessDenied*\"",
+				},
+			},
+		},
+		wantErr: false,
+	},
+	{
+		name:  "expr_and_simple_parenthesis",
+		input: `{ ($.eventName = "ConsoleLogin") && ($.additionalEventData.MFAUsed != "Yes") }`,
+		expected: parser.AWSJSONFilter{
+			FilterExpression: parser.FilterExp{
+				Op: "&&",
+				Left: parser.FilterSelector{
+					Selector: "$.eventName",
+					Op:       "=",
+					Value:    "\"ConsoleLogin\"",
+				},
+				Right: parser.FilterSelector{
+					Selector: "$.additionalEventData.MFAUsed",
+					Op:       "!=",
+					Value:    "\"Yes\"",
+				},
+			},
+		},
+		wantErr: false,
+	},
 }
 
 func TestJSONFilterExpressions(t *testing.T) {
@@ -223,7 +305,7 @@ func TestJSONFilterExpressions(t *testing.T) {
 			got := visitor.VisitAll(tree)
 
 			if !reflect.DeepEqual(tc.expected, got) {
-				t.Errorf("test[%s]:\nexpected %v\ngot %v", tc.name, tc.expected, got)
+				t.Errorf("test[%s]:\ninput    %v\nexpected %v\ngot      %v", tc.name, tc.input, tc.expected, got)
 			}
 			continue
 		}

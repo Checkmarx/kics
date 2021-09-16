@@ -1,40 +1,3 @@
-# ANTLR builder
-FROM adoptopenjdk/openjdk11:alpine AS antlr_builder
-
-WORKDIR /opt/antlr4
-
-ARG ANTLR_VERSION="4.9.2"
-ARG MAVEN_OPTS="-Xmx1G"
-
-RUN apk add --no-cache maven git \
-    && git clone https://github.com/antlr/antlr4.git \
-    && cd antlr4 \
-    && git checkout $ANTLR_VERSION \
-    && mvn clean --projects tool --also-make \
-    && mvn -DskipTests install --projects tool --also-make \
-    && mv ./tool/target/antlr4-*-complete.jar antlr4-tool.jar
-
-# Parser generator
-FROM adoptopenjdk/openjdk11:alpine-jre AS antlr_generator
-
-ARG user=appuser
-ARG group=appuser
-ARG uid=1000
-ARG gid=1000
-
-RUN adduser \
-    --disabled-password \
-    --gecos "" \
-    --home "$(pwd)" \
-    --no-create-home \
-    --uid "${uid}" \
-    "${user}"
-
-COPY --from=builder /opt/antlr4/antlr4/antlr4-tool.jar /usr/local/lib/
-WORKDIR /app
-COPY pkg/parser/json_filter .
-RUN ["java", "-Xmx500M", "-cp", "/usr/local/lib/antlr4-tool.jar", "org.antlr.v4.Tool", "-Dlanguage=Go", "-visitor", "-no-listener", "-o /app/json_filter/parser", "/app/json_filter/JSONFilter.g4"]
-
 FROM golang:1.17.0-alpine as build_env
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
@@ -52,8 +15,6 @@ COPY --chown=Checkmarx:Checkmarx go.sum .
 RUN go mod download -x
 # COPY the source code as the last step
 COPY . .
-# COPY generated
-COPY --from=antlr_generator /app/json_filter/parser pkg/parser/json_filter/parser
 # Build the Go app
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
     -ldflags "-s -w -X github.com/Checkmarx/kics/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/internal/constants.BaseURL=${DESCRIPTIONS_URL}" \
