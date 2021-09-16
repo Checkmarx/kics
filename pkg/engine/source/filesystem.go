@@ -152,12 +152,12 @@ func (s *FilesystemSource) GetQueryLibrary(platform string) (RegoLibraries, erro
 
 	embeddedLibraryData, errGettingEmbeddedLibraryCode := assets.GetEmbeddedLibraryData(strings.ToLower(platform))
 	if errGettingEmbeddedLibraryCode != nil {
-		log.Debug().Msgf("Could not open embedded library data for %s plarform", platform)
+		log.Debug().Msgf("Could not open embedded library data for %s platform", platform)
 		embeddedLibraryData = emptyInputData
 	}
 	mergedLibraryData, errMergingLibraryData := MergeInputData(embeddedLibraryData, customLibraryData)
 	if errMergingLibraryData != nil {
-		log.Debug().Msgf("Could not merge library data for %s plarform", platform)
+		log.Debug().Msgf("Could not merge library data for %s platform", platform)
 	}
 
 	regoLibrary := RegoLibraries{
