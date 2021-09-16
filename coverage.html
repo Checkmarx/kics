@@ -1605,8 +1605,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="364">{
-                if val == true </span><span class="cov9" title="363">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="353">{
+                if val == true </span><span class="cov9" title="352">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2512,13 +2512,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="40">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="39">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="40">total += v
+                <span class="cov9" title="39">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2543,7 +2543,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="16">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2926,7 +2926,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="10">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov7" title="17">{
-        for _, a := range s </span><span class="cov8" title="39">{
+        for _, a := range s </span><span class="cov8" title="38">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -4628,7 +4628,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5571,12 +5571,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="21797">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="21803">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="21797">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="21568">{
+                <span class="cov9" title="21803">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="21574">{
                         return skipFolder
                 }</span>
 
@@ -5634,7 +5634,7 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="228">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="21800">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="21806">{
         if info.IsDir() </span><span class="cov8" title="5006">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
@@ -5647,11 +5647,11 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="16794">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="16800">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="16794">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="16566">{
+        <span class="cov9" title="16800">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="16572">{
                 return true, nil
         }</span>
         <span class="cov5" title="228">return false, nil</span>
@@ -5777,7 +5777,7 @@ func NewInspector(
                 }, nil
         }</span>
 
-        <span class="cov3" title="7">lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
+        <span class="cov2" title="7">lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
                 Add(helm.DetectKindLine{}, model.KindHELM).
                 Add(docker.DetectKindLine{}, model.KindDOCKER)
 
@@ -5858,7 +5858,7 @@ func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQ
         }
         <span class="cov3" title="10">for i := range regexQueries </span><span class="cov5" title="102">{
                 regexQueries[i].Regex = regexp.MustCompile(regexQueries[i].RegexStr)
-                for j := range regexQueries[i].AllowRules </span><span class="cov4" title="36">{
+                for j := range regexQueries[i].AllowRules </span><span class="cov4" title="39">{
                         regexQueries[i].AllowRules[j].Regex = regexp.MustCompile(regexQueries[i].AllowRules[j].RegexStr)
                 }</span>
         }
@@ -5866,7 +5866,7 @@ func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQ
 }
 
 func compileRegex(allowRules []AllowRule) []AllowRule <span class="cov2" title="5">{
-        for j := range allowRules </span><span class="cov3" title="15">{
+        for j := range allowRules </span><span class="cov3" title="18">{
                 allowRules[j].Regex = regexp.MustCompile(allowRules[j].RegexStr)
         }</span>
         <span class="cov2" title="5">return allowRules</span>
@@ -5919,7 +5919,7 @@ func (c *Inspector) isSecret(s string, query *RegexQuery) (isSecretRet bool, gro
 }
 
 func isAllowRule(s string, allowRules []AllowRule) bool <span class="cov8" title="2202">{
-        for i := range allowRules </span><span class="cov10" title="5973">{
+        for i := range allowRules </span><span class="cov10" title="7082">{
                 if allowRules[i].Regex.MatchString(s) </span><span class="cov4" title="31">{
                         return true
                 }</span>
@@ -5994,7 +5994,7 @@ func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadat
 
                 text := strings.ReplaceAll(contentMatchRemoved, "\r", "")
                 contentMatchRemovedLines := strings.Split(text, "\n")
-                for i := 0; i &lt; len(lines); i++ </span><span class="cov3" title="7">{
+                for i := 0; i &lt; len(lines); i++ </span><span class="cov2" title="7">{
                         if lines[i] != contentMatchRemovedLines[i] </span><span class="cov1" title="1">{
                                 lineVulneInfoObject.lineNumber = i + realLineUpdater
                                 lineVulneInfoObject.lineContent = lines[i]
@@ -6091,7 +6091,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 }
 
 // CheckEntropyInterval - verifies if a given token's entropy is within expected bounds
-func CheckEntropyInterval(entropy Entropy, token string) (isEntropyInInterval bool, entropyLevel float64) <span class="cov3" title="7">{
+func CheckEntropyInterval(entropy Entropy, token string) (isEntropyInInterval bool, entropyLevel float64) <span class="cov2" title="7">{
         base64Entropy := calculateEntropy(token, Base64Chars)
         hexEntropy := calculateEntropy(token, HexChars)
         highestEntropy := math.Max(base64Entropy, hexEntropy)
