@@ -117,7 +117,7 @@
 				
 				<option value="file30">github.com/Checkmarx/kics/pkg/detector/search_line_detector.go (97.4%)</option>
 				
-				<option value="file31">github.com/Checkmarx/kics/pkg/engine/inspector.go (78.1%)</option>
+				<option value="file31">github.com/Checkmarx/kics/pkg/engine/inspector.go (78.5%)</option>
 				
 				<option value="file32">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (89.0%)</option>
 				
@@ -127,9 +127,9 @@
 				
 				<option value="file35">github.com/Checkmarx/kics/pkg/engine/similarity/similarity_id.go (94.7%)</option>
 				
-				<option value="file36">github.com/Checkmarx/kics/pkg/engine/source/filesystem.go (67.1%)</option>
+				<option value="file36">github.com/Checkmarx/kics/pkg/engine/source/filesystem.go (66.1%)</option>
 				
-				<option value="file37">github.com/Checkmarx/kics/pkg/engine/source/source.go (62.2%)</option>
+				<option value="file37">github.com/Checkmarx/kics/pkg/engine/source/source.go (67.9%)</option>
 				
 				<option value="file38">github.com/Checkmarx/kics/pkg/engine/vulnerability_builder.go (85.0%)</option>
 				
@@ -1605,8 +1605,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="374">{
-                if val == true </span><span class="cov9" title="373">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="369">{
+                if val == true </span><span class="cov9" title="368">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2512,13 +2512,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="39">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="37">total += v
+                <span class="cov9" title="39">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2543,7 +2543,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2926,7 +2926,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="10">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov7" title="17">{
-        for _, a := range s </span><span class="cov8" title="38">{
+        for _, a := range s </span><span class="cov8" title="39">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -4628,7 +4628,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -4946,27 +4946,25 @@ func NewInspector(
                         return nil, nil</span>
                 default:<span class="cov10" title="3712">
                         var opaQuery rego.PreparedEvalQuery
-                        store := inmem.NewFromReader(bytes.NewBufferString(metadata.InputData))
-
-                        if commonLibrary != "" &amp;&amp; platformGeneralQuery != "" </span><span class="cov10" title="3712">{
-                                opaQuery, err = rego.New(
-                                        rego.Query(regoQuery),
-                                        rego.Module("Common", commonLibrary),
-                                        rego.Module("Generic", platformGeneralQuery),
-                                        rego.Module(metadata.Query, metadata.Content),
-                                        rego.Store(store),
-                                        rego.UnsafeBuiltins(unsafeRegoFunctions),
-                                ).PrepareForEval(ctx)
-                        }</span> else<span class="cov0" title="0"> if platformGeneralQuery != "" </span><span class="cov0" title="0">{
-                                opaQuery, err = rego.New(
-                                        rego.Query(regoQuery),
-                                        rego.Module("Generic", platformGeneralQuery),
-                                        rego.Module(metadata.Query, metadata.Content),
-                                        rego.Store(store),
-                                        rego.UnsafeBuiltins(unsafeRegoFunctions),
-                                ).PrepareForEval(ctx)
+                        mergedInputData, err := source.MergeInputData(platformGeneralQuery.LibraryInputData, metadata.InputData)
+                        if err != nil </span><span class="cov0" title="0">{
+                                log.Debug().Msg("Could not merge platform library input data")
                         }</span>
-                        <span class="cov10" title="3712">if err != nil </span><span class="cov0" title="0">{
+                        <span class="cov10" title="3712">mergedInputData, err = source.MergeInputData(commonLibrary.LibraryInputData, mergedInputData)
+                        if err != nil </span><span class="cov0" title="0">{
+                                log.Debug().Msg("Could not merge common library input data")
+                        }</span>
+                        <span class="cov10" title="3712">store := inmem.NewFromReader(bytes.NewBufferString(mergedInputData))
+                        opaQuery, err = rego.New(
+                                rego.Query(regoQuery),
+                                rego.Module("Common", commonLibrary.LibraryCode),
+                                rego.Module("Generic", platformGeneralQuery.LibraryCode),
+                                rego.Module(metadata.Query, metadata.Content),
+                                rego.Store(store),
+                                rego.UnsafeBuiltins(unsafeRegoFunctions),
+                        ).PrepareForEval(ctx)
+
+                        if err != nil </span><span class="cov0" title="0">{
                                 sentry.CaptureException(err)
                                 log.Err(err).
                                         Msgf("Inspector failed to prepare query for evaluation, query=%s", metadata.Query)
@@ -5010,12 +5008,12 @@ func NewInspector(
         }, nil</span>
 }
 
-func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.QueryMetadata) map[string]string <span class="cov2" title="4">{
+func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.QueryMetadata) map[string]source.RegoLibraries <span class="cov2" title="4">{
         supportedPlatforms := make(map[string]string)
         for _, query := range queries </span><span class="cov10" title="3712">{
                 supportedPlatforms[query.Platform] = ""
         }</span>
-        <span class="cov2" title="4">platformLibraries := make(map[string]string)
+        <span class="cov2" title="4">platformLibraries := make(map[string]source.RegoLibraries)
         for platform := range supportedPlatforms </span><span class="cov4" title="22">{
                 platformLibrary, errLoadingPlatformLib := queriesSource.GetQueryLibrary(platform)
                 if errLoadingPlatformLib != nil </span><span class="cov0" title="0">{
@@ -5573,12 +5571,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="21781">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="21783">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="21781">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="21552">{
+                <span class="cov9" title="21783">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="21554">{
                         return skipFolder
                 }</span>
 
@@ -5636,7 +5634,7 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="228">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="21784">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="21786">{
         if info.IsDir() </span><span class="cov8" title="5002">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
@@ -5649,11 +5647,11 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="16782">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="16784">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="16782">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="16554">{
+        <span class="cov9" title="16784">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="16556">{
                 return true, nil
         }</span>
         <span class="cov5" title="228">return false, nil</span>
@@ -6293,30 +6291,54 @@ func GetPathToCustomLibrary(platform, libraryPathFlag string) string <span class
 }
 
 // GetQueryLibrary returns the library.rego for the platform passed in the argument
-func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) <span class="cov5" title="7">{
+func (s *FilesystemSource) GetQueryLibrary(platform string) (RegoLibraries, error) <span class="cov5" title="7">{
         library := GetPathToCustomLibrary(platform, s.Library)
-        content := ""
+        customLibraryCode := ""
+        customLibraryData := emptyInputData
 
         if library == "" </span><span class="cov0" title="0">{
-                return "", errors.New("unable to get libraries path")
+                return RegoLibraries{}, errors.New("unable to get libraries path")
         }</span>
 
         <span class="cov5" title="7">if library != kicsDefault </span><span class="cov0" title="0">{
                 byteContent, err := os.ReadFile(library)
                 if err != nil </span><span class="cov0" title="0">{
-                        return "", err
+                        return RegoLibraries{}, err
                 }</span>
-                <span class="cov0" title="0">content = string(byteContent)</span>
+                <span class="cov0" title="0">customLibraryCode = string(byteContent)
+                customLibraryData, err = readInputData(strings.TrimSuffix(library, filepath.Ext(library)) + ".json")
+                if err != nil </span><span class="cov0" title="0">{
+                        log.Debug().Msg(err.Error())
+                }</span>
         } else<span class="cov5" title="7"> {
                 log.Debug().Msgf("Custom library not provided. Loading embedded library instead")
         }</span>
         // getting embedded library
-        <span class="cov5" title="7">embeddedLibrary, errGettingEmbeddedLibrary := assets.GetEmbeddedLibrary(strings.ToLower(platform))
+        <span class="cov5" title="7">embeddedLibraryCode, errGettingEmbeddedLibrary := assets.GetEmbeddedLibrary(strings.ToLower(platform))
         if errGettingEmbeddedLibrary != nil </span><span class="cov1" title="1">{
-                return "", errGettingEmbeddedLibrary
+                return RegoLibraries{}, errGettingEmbeddedLibrary
         }</span>
 
-        <span class="cov5" title="6">return mergeLibraries(content, embeddedLibrary)</span>
+        <span class="cov5" title="6">mergedLibraryCode, errMergeLibs := mergeLibraries(customLibraryCode, embeddedLibraryCode)
+        if errMergeLibs != nil </span><span class="cov0" title="0">{
+                return RegoLibraries{}, errMergeLibs
+        }</span>
+
+        <span class="cov5" title="6">embeddedLibraryData, errGettingEmbeddedLibraryCode := assets.GetEmbeddedLibraryData(strings.ToLower(platform))
+        if errGettingEmbeddedLibraryCode != nil </span><span class="cov4" title="5">{
+                log.Debug().Msgf("Could not open embedded library data for %s platform", platform)
+                embeddedLibraryData = emptyInputData
+        }</span>
+        <span class="cov5" title="6">mergedLibraryData, errMergingLibraryData := MergeInputData(embeddedLibraryData, customLibraryData)
+        if errMergingLibraryData != nil </span><span class="cov0" title="0">{
+                log.Debug().Msgf("Could not merge library data for %s platform", platform)
+        }</span>
+
+        <span class="cov5" title="6">regoLibrary := RegoLibraries{
+                LibraryCode:      mergedLibraryCode,
+                LibraryInputData: mergedLibraryData,
+        }
+        return regoLibrary, nil</span>
 }
 
 // CheckType checks if the queries have the type passed as an argument in '--type' flag to be loaded
@@ -6430,7 +6452,7 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
                         continue</span>
                 }
 
-                <span class="cov5" title="7">inputData, mergeError := mergeInputData(query.InputData, customInputData)
+                <span class="cov5" title="7">inputData, mergeError := MergeInputData(query.InputData, customInputData)
                 if mergeError != nil </span><span class="cov0" title="0">{
                         log.Err(mergeError).
                                 Msgf("failed to merge input data, query=%s", path.Base(queryDir))
@@ -6548,7 +6570,7 @@ func getPlatform(metadataPlatform string) string <span class="cov7" title="14">{
         }
 }
 
-func readInputData(inputDataPath string) (string, error) <span class="cov7" title="17">{
+func readInputData(inputDataPath string) (string, error) <span class="cov7" title="15">{
         inputData, err := os.ReadFile(filepath.Clean(inputDataPath))
         if err != nil </span><span class="cov7" title="14">{
                 if os.IsNotExist(err) </span><span class="cov7" title="14">{
@@ -6556,30 +6578,7 @@ func readInputData(inputDataPath string) (string, error) <span class="cov7" titl
                 }</span>
                 <span class="cov0" title="0">return emptyInputData, errors.Wrapf(err, "failed to read query input data %s", path.Base(inputDataPath))</span>
         }
-        <span class="cov3" title="3">return string(inputData), nil</span>
-}
-
-func mergeInputData(queryInputData, customInputData string) (string, error) <span class="cov5" title="8">{
-        if customInputData == emptyInputData || customInputData == "" </span><span class="cov5" title="7">{
-                return queryInputData, nil
-        }</span>
-        <span class="cov1" title="1">dataJSON := map[string]interface{}{}
-        customDataJSON := map[string]interface{}{}
-        if unmarshalError := json.Unmarshal([]byte(queryInputData), &amp;dataJSON); unmarshalError != nil </span><span class="cov0" title="0">{
-                return "", errors.Wrapf(unmarshalError, "failed to merge query input data")
-        }</span>
-        <span class="cov1" title="1">if unmarshalError := json.Unmarshal([]byte(customInputData), &amp;customDataJSON); unmarshalError != nil </span><span class="cov0" title="0">{
-                return "", errors.Wrapf(unmarshalError, "failed to merge query input data")
-        }</span>
-
-        <span class="cov1" title="1">for key, value := range customDataJSON </span><span class="cov2" title="2">{
-                dataJSON[key] = value
-        }</span>
-        <span class="cov1" title="1">mergedJSON, mergeErr := json.Marshal(dataJSON)
-        if mergeErr != nil </span><span class="cov0" title="0">{
-                return "", errors.Wrapf(mergeErr, "failed to merge query input data")
-        }</span>
-        <span class="cov1" title="1">return string(mergedJSON), nil</span>
+        <span class="cov1" title="1">return string(inputData), nil</span>
 }
 </pre>
 		
@@ -6587,10 +6586,12 @@ func mergeInputData(queryInputData, customInputData string) (string, error) <spa
 package source
 
 import (
+        "encoding/json"
         "strings"
 
         "github.com/Checkmarx/kics/pkg/model"
         "github.com/open-policy-agent/opa/ast"
+        "github.com/pkg/errors"
         "github.com/rs/zerolog/log"
 )
 
@@ -6613,48 +6614,54 @@ type IncludeQueries struct {
         ByIDs []string
 }
 
+// RegoLibraries is a struct that contains the library code and its input data
+type RegoLibraries struct {
+        LibraryCode      string
+        LibraryInputData string
+}
+
 // QueriesSource wraps an interface that contains basic methods: GetQueries and GetQueryLibrary
 // GetQueries gets all queries from a QueryMetadata list
 // GetQueryLibrary gets a library of rego functions given a plataform's name
 type QueriesSource interface {
         GetQueries(querySelection *QueryInspectorParameters) ([]model.QueryMetadata, error)
-        GetQueryLibrary(platform string) (string, error)
+        GetQueryLibrary(platform string) (RegoLibraries, error)
 }
 
 // mergeLibraries return custom library and embedded library merged, overwriting embedded library functions, if necessary
-func mergeLibraries(customLib, embeddedLib string) (string, error) <span class="cov10" title="12">{
-        if customLib == "" </span><span class="cov8" title="7">{
+func mergeLibraries(customLib, embeddedLib string) (string, error) <span class="cov7" title="12">{
+        if customLib == "" </span><span class="cov6" title="7">{
                 return embeddedLib, nil
         }</span>
-        <span class="cov6" title="5">statements, _, err := ast.NewParser().WithReader(strings.NewReader(customLib)).Parse()
+        <span class="cov5" title="5">statements, _, err := ast.NewParser().WithReader(strings.NewReader(customLib)).Parse()
         if err != nil </span><span class="cov1" title="1">{
                 log.Err(err).Msg("Could not parse custom library")
                 return "", err
         }</span>
-        <span class="cov6" title="4">headers := make(map[string]string)
+        <span class="cov4" title="4">headers := make(map[string]string)
         variables := make(map[string]string)
-        for _, st := range statements </span><span class="cov6" title="4">{
-                if rule, ok := st.(*ast.Rule); ok </span><span class="cov6" title="4">{
+        for _, st := range statements </span><span class="cov4" title="4">{
+                if rule, ok := st.(*ast.Rule); ok </span><span class="cov4" title="4">{
                         headers[string(rule.Head.Name)] = ""
                 }</span>
-                <span class="cov6" title="4">if regoPackage, ok := st.(ast.Body); ok </span><span class="cov0" title="0">{
+                <span class="cov4" title="4">if regoPackage, ok := st.(ast.Body); ok </span><span class="cov0" title="0">{
                         variableSet := regoPackage.Vars(ast.SafetyCheckVisitorParams)
                         for variable := range variableSet </span><span class="cov0" title="0">{
                                 variables[variable.String()] = ""
                         }</span>
                 }
         }
-        <span class="cov6" title="4">statements, _, err = ast.NewParser().WithReader(strings.NewReader(embeddedLib)).Parse()
+        <span class="cov4" title="4">statements, _, err = ast.NewParser().WithReader(strings.NewReader(embeddedLib)).Parse()
         if err != nil </span><span class="cov1" title="1">{
                 log.Err(err).Msg("Could not parse default library")
                 return "", err
         }</span>
-        <span class="cov4" title="3">for _, st := range statements </span><span class="cov6" title="4">{
-                if rule, ok := st.(*ast.Rule); ok </span><span class="cov6" title="4">{
-                        if _, remove := headers[string(rule.Head.Name)]; remove </span><span class="cov3" title="2">{
+        <span class="cov3" title="3">for _, st := range statements </span><span class="cov4" title="4">{
+                if rule, ok := st.(*ast.Rule); ok </span><span class="cov4" title="4">{
+                        if _, remove := headers[string(rule.Head.Name)]; remove </span><span class="cov2" title="2">{
                                 embeddedLib = strings.Replace(embeddedLib, string(rule.Location.Text), "", 1)
                         }</span>
-                        <span class="cov6" title="4">continue</span>
+                        <span class="cov4" title="4">continue</span>
                 }
                 <span class="cov0" title="0">if regoPackage, ok := st.(*ast.Package); ok </span><span class="cov0" title="0">{
                         firstHalf := strings.Join(strings.Split(embeddedLib, "\n")[:regoPackage.Location.Row-1], "\n")
@@ -6672,10 +6679,45 @@ func mergeLibraries(customLib, embeddedLib string) (string, error) <span class="
                         }
                 }
         }
-        <span class="cov4" title="3">customLib += "\n" + embeddedLib
+        <span class="cov3" title="3">customLib += "\n" + embeddedLib
 
         return customLib, nil</span>
 }
+
+// MergeInputData merges KICS input data with custom input data user defined
+func MergeInputData(defaultInputData, customInputData string) (string, error) <span class="cov7" title="14">{
+        if checkEmptyInputdata(customInputData) &amp;&amp; checkEmptyInputdata(defaultInputData) </span><span class="cov7" title="12">{
+                return emptyInputData, nil
+        }</span>
+        <span class="cov2" title="2">if checkEmptyInputdata(defaultInputData) </span><span class="cov0" title="0">{
+                return customInputData, nil
+        }</span>
+        <span class="cov2" title="2">if checkEmptyInputdata(customInputData) </span><span class="cov1" title="1">{
+                return defaultInputData, nil
+        }</span>
+
+        <span class="cov1" title="1">dataJSON := map[string]interface{}{}
+        customDataJSON := map[string]interface{}{}
+        if unmarshalError := json.Unmarshal([]byte(defaultInputData), &amp;dataJSON); unmarshalError != nil </span><span class="cov0" title="0">{
+                return "", errors.Wrapf(unmarshalError, "failed to merge query input data")
+        }</span>
+        <span class="cov1" title="1">if unmarshalError := json.Unmarshal([]byte(customInputData), &amp;customDataJSON); unmarshalError != nil </span><span class="cov0" title="0">{
+                return "", errors.Wrapf(unmarshalError, "failed to merge query input data")
+        }</span>
+
+        <span class="cov1" title="1">for key, value := range customDataJSON </span><span class="cov2" title="2">{
+                dataJSON[key] = value
+        }</span>
+        <span class="cov1" title="1">mergedJSON, mergeErr := json.Marshal(dataJSON)
+        if mergeErr != nil </span><span class="cov0" title="0">{
+                return "", errors.Wrapf(mergeErr, "failed to merge query input data")
+        }</span>
+        <span class="cov1" title="1">return string(mergedJSON), nil</span>
+}
+
+func checkEmptyInputdata(inputData string) bool <span class="cov10" title="31">{
+        return inputData == emptyInputData || inputData == ""
+}</span>
 </pre>
 		
 		<pre class="file" id="file38" style="display: none">package engine
