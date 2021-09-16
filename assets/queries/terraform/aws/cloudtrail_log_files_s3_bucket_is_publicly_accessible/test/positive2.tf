@@ -13,6 +13,9 @@ provider "aws" {
 
 module "s3_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
+  versioning = {
+    enabled = true
+  }
 
   bucket = "my_bucket"
   acl    = "public-read"
