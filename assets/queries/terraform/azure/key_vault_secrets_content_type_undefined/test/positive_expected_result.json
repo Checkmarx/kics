@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Key Vault Secrets Content Type Undefined",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive.tf"
+  }
+]
