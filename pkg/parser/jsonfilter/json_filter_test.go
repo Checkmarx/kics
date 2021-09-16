@@ -62,7 +62,7 @@ var inputs = []struct {
 		input: `{ $.eventType = "*" && $.sourceIPAddress != 123.123.*}`,
 		expected: parser.AWSJSONFilter{
 			FilterExpression: parser.FilterExp{
-				Op: "&&",
+				Op: parser.AND,
 				Left: parser.FilterSelector{
 					Selector: "$.eventType",
 					Op:       "=",
@@ -142,7 +142,7 @@ var inputs = []struct {
 		input: `{ ($.user.id = 1) && ($.users[0].email = "John.Doe@example.com") }`,
 		expected: parser.AWSJSONFilter{
 			FilterExpression: parser.FilterExp{
-				Op: "&&",
+				Op: parser.AND,
 				Left: parser.FilterSelector{
 					Selector: "$.user.id",
 					Op:       "=",
@@ -162,9 +162,9 @@ var inputs = []struct {
 		input: `{ ($.user.id = 2 && $.users[0].email = "nonmatch") || $.actions[2] = "GET" }`,
 		expected: parser.AWSJSONFilter{
 			FilterExpression: parser.FilterExp{
-				Op: "||",
+				Op: parser.OR,
 				Left: parser.FilterExp{
-					Op: "&&",
+					Op: parser.AND,
 					Left: parser.FilterSelector{
 						Selector: "$.user.id",
 						Op:       "=",
@@ -190,14 +190,14 @@ var inputs = []struct {
 		input: `{ $.user.email = "John.Stiles@example.com" || $.coordinates[0][1] = nonmatch && $.actions[2] = nomatch }`,
 		expected: parser.AWSJSONFilter{
 			FilterExpression: parser.FilterExp{
-				Op: "||",
+				Op: parser.OR,
 				Left: parser.FilterSelector{
 					Selector: "$.user.email",
 					Op:       "=",
 					Value:    "\"John.Stiles@example.com\"",
 				},
 				Right: parser.FilterExp{
-					Op: "&&",
+					Op: parser.AND,
 					Left: parser.FilterSelector{
 						Selector: "$.coordinates[0][1]",
 						Op:       "=",
@@ -218,9 +218,9 @@ var inputs = []struct {
 		input: `{ ($.user.email = "John.Stiles@example.com" || $.coordinates[0][1] = nonmatch) && $.actions[2] = nomatch }`,
 		expected: parser.AWSJSONFilter{
 			FilterExpression: parser.FilterExp{
-				Op: "&&",
+				Op: parser.AND,
 				Left: parser.FilterExp{
-					Op: "||",
+					Op: parser.OR,
 					Left: parser.FilterSelector{
 						Selector: "$.user.email",
 						Op:       "=",
@@ -246,7 +246,7 @@ var inputs = []struct {
 		input: `{ ($.errorCode = "*UnauthorizedOperation") || ($.errorCode = "AccessDenied*") }`,
 		expected: parser.AWSJSONFilter{
 			FilterExpression: parser.FilterExp{
-				Op: "||",
+				Op: parser.OR,
 				Left: parser.FilterSelector{
 					Selector: "$.errorCode",
 					Op:       "=",
@@ -266,7 +266,7 @@ var inputs = []struct {
 		input: `{ ($.eventName = "ConsoleLogin") && ($.additionalEventData.MFAUsed != "Yes") }`,
 		expected: parser.AWSJSONFilter{
 			FilterExpression: parser.FilterExp{
-				Op: "&&",
+				Op: parser.AND,
 				Left: parser.FilterSelector{
 					Selector: "$.eventName",
 					Op:       "=",
@@ -287,9 +287,9 @@ var inputs = []struct {
 		input: `{ $.userIdentity.type = "Root" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != "AwsServiceEvent" }`,
 		expected: parser.AWSJSONFilter{
 			FilterExpression: parser.FilterExp{
-				Op: "&&",
+				Op: parser.AND,
 				Left: parser.FilterExp{
-					Op: "&&",
+					Op: parser.AND,
 					Left: parser.FilterSelector{
 						Selector: "$.userIdentity.type",
 						Op:       "=",
@@ -315,7 +315,7 @@ var inputs = []struct {
 		input: `{ ($.eventName = ConsoleLogin) && ($.errorMessage = "Failed authentication") }`,
 		expected: parser.AWSJSONFilter{
 			FilterExpression: parser.FilterExp{
-				Op: "&&",
+				Op: parser.AND,
 				Left: parser.FilterSelector{
 					Selector: "$.eventName",
 					Op:       "=",
@@ -334,14 +334,14 @@ var inputs = []struct {
 		input: `{ ($.eventSource = "kms.amazonaws.com") && (($.eventName = DisableKey) || ($.eventName = ScheduleKeyDeletion)) }`,
 		expected: parser.AWSJSONFilter{
 			FilterExpression: parser.FilterExp{
-				Op: "&&",
+				Op: parser.AND,
 				Left: parser.FilterSelector{
 					Selector: "$.eventSource",
 					Op:       "=",
 					Value:    "\"kms.amazonaws.com\"",
 				},
 				Right: parser.FilterExp{
-					Op: "||",
+					Op: parser.OR,
 					Left: parser.FilterSelector{
 						Selector: "$.eventName",
 						Op:       "=",
@@ -365,35 +365,35 @@ var inputs = []struct {
 			`($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)}`,
 		expected: parser.AWSJSONFilter{
 			FilterExpression: parser.FilterExp{
-				Op: "||",
+				Op: parser.OR,
 				Left: parser.FilterExp{
-					Op: "||",
+					Op: parser.OR,
 					Left: parser.FilterExp{
-						Op: "||",
+						Op: parser.OR,
 						Left: parser.FilterExp{
-							Op: "||",
+							Op: parser.OR,
 							Left: parser.FilterExp{
-								Op: "||",
+								Op: parser.OR,
 								Left: parser.FilterExp{
-									Op: "||",
+									Op: parser.OR,
 									Left: parser.FilterExp{
-										Op: "||",
+										Op: parser.OR,
 										Left: parser.FilterExp{
-											Op: "||",
+											Op: parser.OR,
 											Left: parser.FilterExp{
-												Op: "||",
+												Op: parser.OR,
 												Left: parser.FilterExp{
-													Op: "||",
+													Op: parser.OR,
 													Left: parser.FilterExp{
-														Op: "||",
+														Op: parser.OR,
 														Left: parser.FilterExp{
-															Op: "||",
+															Op: parser.OR,
 															Left: parser.FilterExp{
-																Op: "||",
+																Op: parser.OR,
 																Left: parser.FilterExp{
-																	Op: "||",
+																	Op: parser.OR,
 																	Left: parser.FilterExp{
-																		Op: "||",
+																		Op: parser.OR,
 																		Left: parser.FilterSelector{
 																			Selector: "$.eventName",
 																			Op:       "=",
@@ -501,28 +501,28 @@ var inputs = []struct {
 			`($.eventName = DeleteBucketReplication)) }`,
 		expected: parser.AWSJSONFilter{
 			FilterExpression: parser.FilterExp{
-				Op: "&&",
+				Op: parser.AND,
 				Left: parser.FilterSelector{
 					Selector: "$.eventSource",
 					Op:       "=",
 					Value:    "\"s3.amazonaws.com\"",
 				},
 				Right: parser.FilterExp{
-					Op: "||",
+					Op: parser.OR,
 					Left: parser.FilterExp{
-						Op: "||",
+						Op: parser.OR,
 						Left: parser.FilterExp{
-							Op: "||",
+							Op: parser.OR,
 							Left: parser.FilterExp{
-								Op: "||",
+								Op: parser.OR,
 								Left: parser.FilterExp{
-									Op: "||",
+									Op: parser.OR,
 									Left: parser.FilterExp{
-										Op: "||",
+										Op: parser.OR,
 										Left: parser.FilterExp{
-											Op: "||",
+											Op: parser.OR,
 											Left: parser.FilterExp{
-												Op: "||",
+												Op: parser.OR,
 												Left: parser.FilterSelector{
 													Selector: "$.eventName",
 													Op:       "=",
@@ -585,18 +585,18 @@ var inputs = []struct {
 			`($.eventName=DeleteDeliveryChannel)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) }`,
 		expected: parser.AWSJSONFilter{
 			FilterExpression: parser.FilterExp{
-				Op: "&&",
+				Op: parser.AND,
 				Left: parser.FilterSelector{
 					Selector: "$.eventSource",
 					Op:       "=",
 					Value:    "\"config.amazonaws.com\"",
 				},
 				Right: parser.FilterExp{
-					Op: "||",
+					Op: parser.OR,
 					Left: parser.FilterExp{
-						Op: "||",
+						Op: parser.OR,
 						Left: parser.FilterExp{
-							Op: "||",
+							Op: parser.OR,
 							Left: parser.FilterSelector{
 								Selector: "$.eventName",
 								Op:       "=",
@@ -630,15 +630,15 @@ var inputs = []struct {
 			`($.eventName = CreateSecurityGroup) || ($.eventName = DeleteSecurityGroup)}`,
 		expected: parser.AWSJSONFilter{
 			FilterExpression: parser.FilterExp{
-				Op: "||",
+				Op: parser.OR,
 				Left: parser.FilterExp{
-					Op: "||",
+					Op: parser.OR,
 					Left: parser.FilterExp{
-						Op: "||",
+						Op: parser.OR,
 						Left: parser.FilterExp{
-							Op: "||",
+							Op: parser.OR,
 							Left: parser.FilterExp{
-								Op: "||",
+								Op: parser.OR,
 								Left: parser.FilterSelector{
 									Selector: "$.eventName",
 									Op:       "=",

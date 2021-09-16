@@ -4,6 +4,11 @@ import (
 	"github.com/antlr/antlr4/runtime/Go/antlr"
 )
 
+const (
+	AND = "&&"
+	OR  = "||"
+)
+
 type AWSJSONFilter struct {
 	FilterExpression interface{} `json:"_kics_filter_expr"`
 }
@@ -62,7 +67,7 @@ func (v *JSONFilterTreeVisitor) VisitFilter_expr_parenthesized(ctx *Filter_expr_
 
 func (v *JSONFilterTreeVisitor) VisitFilter_expr_and(ctx *Filter_expr_andContext) interface{} {
 	return FilterExp{
-		Op:    "&&",
+		Op:    AND,
 		Left:  v.Visit(ctx.GetLhs()),
 		Right: v.Visit(ctx.GetRhs()),
 	}
@@ -74,7 +79,7 @@ func (v *JSONFilterTreeVisitor) VisitFilter_expr_exp(ctx *Filter_expr_expContext
 
 func (v *JSONFilterTreeVisitor) VisitFilter_expr_or(ctx *Filter_expr_orContext) interface{} {
 	return FilterExp{
-		Op:    "||",
+		Op:    OR,
 		Left:  v.Visit(ctx.GetLhs()),
 		Right: v.Visit(ctx.GetRhs()),
 	}

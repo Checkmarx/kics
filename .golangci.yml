@@ -50,6 +50,7 @@ linters-settings:
 linters:
   # please, do not use `enable-all`: it's deprecated and will be removed soon.
   # inverted configuration with `enable-all` and `disable` is not scalable during updates of golangci-lint
+  tests: false
   disable-all: true
   enable:
     - bodyclose
@@ -106,13 +107,13 @@ issues:
 
 run:
   timeout: 5m
+  tests: false
   skip-dirs:
     - assets
     - docs
     - vendor
     - tools
     - pkg/parser/jsonfilter/parser
-    - pkg/parser/jsonfilter/json_filter_test.go
 
 # golangci.com configuration
 # https://github.com/golangci/golangci/wiki/Configuration
