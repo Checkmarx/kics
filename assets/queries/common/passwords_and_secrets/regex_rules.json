@@ -3,7 +3,7 @@
     {
       "id": "487f4be7-3fd9-4506-a07a-eae252180c08",
       "name": "Generic Password",
-      "regex": "(?i)['\"]?password['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]{4,})['\"]?",
+      "regex": "(?i)['\"]?password['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9\/~^_!@&%()=?*+-.]{4,})['\"]?",
       "allowRules": [
         {
           "description": "Avoiding TF resource access",
@@ -14,7 +14,7 @@
     {
       "id": "3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99",
       "name": "Generic Secret",
-      "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{10,})['\"]?",
+      "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*['\"]?([A-Za-z0-9\/~^_!@&%()=?*+-]{10,})['\"]?",
       "entropies": [
         {
           "group": 3,
@@ -186,12 +186,12 @@
     {
       "id": "2f665079-c383-4b33-896e-88268c1fa258",
       "name": "Generic Private Key",
-      "regex": "(?i)['\"]?private[_]?key['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
+      "regex": "(?i)['\"]?private[_]?key['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9\/~^_!@&%()=?*+-]+)['\"]?"
     },
     {
       "id": "baee238e-1921-4801-9c3f-79ae1d7b2cbc",
       "name": "Generic Token",
-      "regex": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?",
+      "regex": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9\/~^_!@&%()=?*+-]+)['\"]?",
       "allowRules": [
         {
           "description": "Avoiding Amazon MWS Auth Token",
@@ -223,7 +223,7 @@
         },
         {
           "description": "Avoiding TF creation token",
-          "regex": "(?i)['\"]?creation_token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
+          "regex": "(?i)['\"]?creation_token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9\/~^_!@&%()=?*+-]+)['\"]?"
         }
       ]
     },
