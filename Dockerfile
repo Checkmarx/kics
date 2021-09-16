@@ -10,8 +10,8 @@ ARG SENTRY_DSN=""
 ARG DESCRIPTIONS_URL=""
 
 # Copy go mod and sum files
-COPY --chown=Checkmarx:Checkmarx go.mod .
-COPY --chown=Checkmarx:Checkmarx go.sum .
+COPY go.mod .
+COPY go.sum .
 
 # Get dependancies - will also be cached if we won't change mod/sum
 RUN go mod download -x
