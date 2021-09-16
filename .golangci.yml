@@ -112,6 +112,7 @@ run:
     - vendor
     - tools
     - pkg/parser/jsonfilter/parser
+    - pkg/parser/jsonfilter/json_filter_test.go
 
 # golangci.com configuration
 # https://github.com/golangci/golangci/wiki/Configuration

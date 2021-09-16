@@ -24,8 +24,6 @@ type JSONFilterTreeVisitor struct {
 	*antlr.BaseParseTreeVisitor
 }
 
-type FilterNode map[string]interface{}
-
 func NewJSONFilterPrinterVisitor() *JSONFilterTreeVisitor {
 	return &JSONFilterTreeVisitor{
 		&antlr.BaseParseTreeVisitor{},

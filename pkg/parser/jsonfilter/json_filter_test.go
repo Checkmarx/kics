@@ -491,6 +491,191 @@ var inputs = []struct {
 			},
 		},
 	},
+	{
+		name: "expr_multiple_and_or_parenthesis",
+		input: `{ ($.eventSource = "s3.amazonaws.com") &&` +
+			`(($.eventName = PutBucketAcl) || ($.eventName = PutBucketPolicy) ||` +
+			`($.eventName = PutBucketCors) || ($.eventName = PutBucketLifecycle) ||` +
+			`($.eventName = PutBucketReplication) || ($.eventName = DeleteBucketPolicy) ||` +
+			`($.eventName = DeleteBucketCors) || ($.eventName = DeleteBucketLifecycle) ||` +
+			`($.eventName = DeleteBucketReplication)) }`,
+		expected: parser.AWSJSONFilter{
+			FilterExpression: parser.FilterExp{
+				Op: "&&",
+				Left: parser.FilterSelector{
+					Selector: "$.eventSource",
+					Op:       "=",
+					Value:    "\"s3.amazonaws.com\"",
+				},
+				Right: parser.FilterExp{
+					Op: "||",
+					Left: parser.FilterExp{
+						Op: "||",
+						Left: parser.FilterExp{
+							Op: "||",
+							Left: parser.FilterExp{
+								Op: "||",
+								Left: parser.FilterExp{
+									Op: "||",
+									Left: parser.FilterExp{
+										Op: "||",
+										Left: parser.FilterExp{
+											Op: "||",
+											Left: parser.FilterExp{
+												Op: "||",
+												Left: parser.FilterSelector{
+													Selector: "$.eventName",
+													Op:       "=",
+													Value:    "PutBucketAcl",
+												},
+												Right: parser.FilterSelector{
+													Selector: "$.eventName",
+													Op:       "=",
+													Value:    "PutBucketPolicy",
+												},
+											},
+											Right: parser.FilterSelector{
+												Selector: "$.eventName",
+												Op:       "=",
+												Value:    "PutBucketCors",
+											},
+										},
+										Right: parser.FilterSelector{
+											Selector: "$.eventName",
+											Op:       "=",
+											Value:    "PutBucketLifecycle",
+										},
+									},
+									Right: parser.FilterSelector{
+										Selector: "$.eventName",
+										Op:       "=",
+										Value:    "PutBucketReplication",
+									},
+								},
+								Right: parser.FilterSelector{
+									Selector: "$.eventName",
+									Op:       "=",
+									Value:    "DeleteBucketPolicy",
+								},
+							},
+							Right: parser.FilterSelector{
+								Selector: "$.eventName",
+								Op:       "=",
+								Value:    "DeleteBucketCors",
+							},
+						},
+						Right: parser.FilterSelector{
+							Selector: "$.eventName",
+							Op:       "=",
+							Value:    "DeleteBucketLifecycle",
+						},
+					},
+					Right: parser.FilterSelector{
+						Selector: "$.eventName",
+						Op:       "=",
+						Value:    "DeleteBucketReplication",
+					},
+				},
+			},
+		},
+	},
+	{
+		name: "expr_multiple_and_or_parenthesis_2",
+		input: `{ ($.eventSource = "config.amazonaws.com") && (($.eventName=StopConfigurationRecorder)||` +
+			`($.eventName=DeleteDeliveryChannel)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) }`,
+		expected: parser.AWSJSONFilter{
+			FilterExpression: parser.FilterExp{
+				Op: "&&",
+				Left: parser.FilterSelector{
+					Selector: "$.eventSource",
+					Op:       "=",
+					Value:    "\"config.amazonaws.com\"",
+				},
+				Right: parser.FilterExp{
+					Op: "||",
+					Left: parser.FilterExp{
+						Op: "||",
+						Left: parser.FilterExp{
+							Op: "||",
+							Left: parser.FilterSelector{
+								Selector: "$.eventName",
+								Op:       "=",
+								Value:    "StopConfigurationRecorder",
+							},
+							Right: parser.FilterSelector{
+								Selector: "$.eventName",
+								Op:       "=",
+								Value:    "DeleteDeliveryChannel",
+							},
+						},
+						Right: parser.FilterSelector{
+							Selector: "$.eventName",
+							Op:       "=",
+							Value:    "PutDeliveryChannel",
+						},
+					},
+					Right: parser.FilterSelector{
+						Selector: "$.eventName",
+						Op:       "=",
+						Value:    "PutConfigurationRecorder",
+					},
+				},
+			},
+		},
+	},
+	{
+		name: "expr_multiple_or_parenthesis_3",
+		input: `{ ($.eventName = AuthorizeSecurityGroupIngress) || ($.eventName = AuthorizeSecurityGroupEgress) ||` +
+			`($.eventName = RevokeSecurityGroupIngress) || ($.eventName = RevokeSecurityGroupEgress) ||` +
+			`($.eventName = CreateSecurityGroup) || ($.eventName = DeleteSecurityGroup)}`,
+		expected: parser.AWSJSONFilter{
+			FilterExpression: parser.FilterExp{
+				Op: "||",
+				Left: parser.FilterExp{
+					Op: "||",
+					Left: parser.FilterExp{
+						Op: "||",
+						Left: parser.FilterExp{
+							Op: "||",
+							Left: parser.FilterExp{
+								Op: "||",
+								Left: parser.FilterSelector{
+									Selector: "$.eventName",
+									Op:       "=",
+									Value:    "AuthorizeSecurityGroupIngress",
+								},
+								Right: parser.FilterSelector{
+									Selector: "$.eventName",
+									Op:       "=",
+									Value:    "AuthorizeSecurityGroupEgress",
+								},
+							},
+							Right: parser.FilterSelector{
+								Selector: "$.eventName",
+								Op:       "=",
+								Value:    "RevokeSecurityGroupIngress",
+							},
+						},
+						Right: parser.FilterSelector{
+							Selector: "$.eventName",
+							Op:       "=",
+							Value:    "RevokeSecurityGroupEgress",
+						},
+					},
+					Right: parser.FilterSelector{
+						Selector: "$.eventName",
+						Op:       "=",
+						Value:    "CreateSecurityGroup",
+					},
+				},
+				Right: parser.FilterSelector{
+					Selector: "$.eventName",
+					Op:       "=",
+					Value:    "DeleteSecurityGroup",
+				},
+			},
+		},
+	},
 }
 
 func TestJSONFilterExpressions(t *testing.T) {
