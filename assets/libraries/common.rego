@@ -309,6 +309,5 @@ get_module_equivalent_key(provider, moduleName, resource, key) = keyInResource {
 	providers := data.common_lib.modules[provider]
 	module := providers[moduleName]
 	inArray(module.resources, resource)
-	valid_key(module.inputs, key)
 	keyInResource := module.inputs[key]
 }

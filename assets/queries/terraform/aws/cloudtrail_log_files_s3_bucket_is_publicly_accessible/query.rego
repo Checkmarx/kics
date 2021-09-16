@@ -2,6 +2,8 @@ package Cx
 
 import data.generic.common as common_lib
 
+publicAcl := {"public-read", "public-read-write"}
+
 CxPolicy[result] {
 	cloudtrail := input.document[i].resource.aws_cloudtrail[name]
 
@@ -9,7 +11,6 @@ CxPolicy[result] {
 
 	bucket := input.document[_].resource.aws_s3_bucket[s3BucketName]
 
-	publicAcl := {"public-read", "public-read-write"}
 	bucket.acl == publicAcl[_]
 
 	result := {
@@ -24,7 +25,6 @@ CxPolicy[result] {
 CxPolicy[result] {
 	module := input.document[i].module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "acl")
-	publicAcl := {"public-read", "public-read-write"}
 
 	module[keyToCheck] == publicAcl[_]
 	result := {
