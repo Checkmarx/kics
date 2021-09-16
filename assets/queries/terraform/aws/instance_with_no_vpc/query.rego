@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'vpc_security_group_ids' is defined and not null",
 		"keyActualValue": "Attribute 'vpc_security_group_ids' is undefined or null",
-		"searchLine": common_lib.build_search_line(["resource", "aws_vpc_endpoint", name], []),
+		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name], []),
 	}
 }
 
