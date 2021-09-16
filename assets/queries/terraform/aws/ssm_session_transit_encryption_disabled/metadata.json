@@ -1,0 +1,11 @@
+{
+  "id": "ce60cc6b-6831-4bd7-84a2-cc7f8ee71433",
+  "queryName": "SSM Session Transit Encryption Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "SSM Session should be encrypted in transit",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssm_document#content",
+  "platform": "Terraform",
+  "descriptionID": "8b30849b",
+  "cloudProvider": "aws"
+}

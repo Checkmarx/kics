@@ -90,7 +90,7 @@ type FileMetadata struct {
 	LineInfoDocument map[string]interface{}
 	OriginalData     string   `db:"orig_data"`
 	Kind             FileKind `db:"kind"`
-	FileName         string   `db:"file_name"`
+	FilePath         string   `db:"file_path"`
 	Content          string
 	HelmID           string
 	IDInfo           map[int]interface{}
@@ -219,16 +219,16 @@ func (m FileMetadatas) Combine(lineInfo bool) Documents {
 			continue
 		}
 		if ignore {
-			log.Debug().Msgf("Ignoring file %s", m[i].FileName)
+			log.Debug().Msgf("Ignoring file %s", m[i].FilePath)
 			continue
 		}
 		if lineInfo {
 			m[i].LineInfoDocument["id"] = m[i].ID
-			m[i].LineInfoDocument["file"] = m[i].FileName
+			m[i].LineInfoDocument["file"] = m[i].FilePath
 			documents.Documents = append(documents.Documents, m[i].LineInfoDocument)
 		} else {
 			m[i].Document["id"] = m[i].ID
-			m[i].Document["file"] = m[i].FileName
+			m[i].Document["file"] = m[i].FilePath
 			documents.Documents = append(documents.Documents, m[i].Document)
 		}
 	}

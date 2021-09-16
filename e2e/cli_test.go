@@ -383,8 +383,17 @@ var tests = []testCase{
 		name: "E2E-CLI-022",
 		args: args{
 			args: []cmdArgs{
-				[]string{"scan", "--profiling", "CPU", "-v",
-					"--no-progress", "--no-color", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
+				[]string{"scan",
+					"--profiling",
+					"CPU",
+					"-v",
+					"--no-progress",
+					"--no-color",
+					"-q",
+					"../assets/queries",
+					"-p",
+					"fixtures/samples/terraform.tf",
+				},
 			},
 		},
 		validation: func(outputText string) bool {
@@ -616,8 +625,11 @@ var tests = []testCase{
 		args: args{
 			args: []cmdArgs{
 
-				[]string{"scan", "--exclude-results", "2abf26c3014fc445da69d8d5bb862c1c511e8e16ad3a6c6f6e14c28aa0adac1d," +
-					"d1c5f6aec84fd91ed24f5f06ccb8b6662e26c0202bcb5d4a58a1458c16456d20",
+				[]string{"scan",
+					"--exclude-results",
+					"2abf26c3014fc445da69d8d5bb862c1c511e8e16ad3a6c6f6e14c28aa0adac1d," +
+						"4aa3f159f39767de53b49ed871977b8b499bf19b3b0865b1631042aa830598aa," +
+						"83461a5eac8fed2264fac68a6d352d1ed752867a9b0a131afa9ba7e366159b59",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 
 				[]string{"scan", "--exclude-results", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},

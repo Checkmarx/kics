@@ -18,6 +18,7 @@ bin
 
 /.idea/
 /.vscode/
+file:/
 /resources
 /vendor
 /site

@@ -1,0 +1,11 @@
+{
+  "id": "ba48df05-eaa1-4d64-905e-4a4b051e7587",
+  "queryName": "Autoscaling Groups Supply Tags",
+  "severity": "LOW",
+  "category": "Availability",
+  "descriptionText": "Autoscaling groups should supply tags to configurate",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group#tag-and-tags",
+  "platform": "Terraform",
+  "descriptionID": "83cb6386",
+  "cloudProvider": "aws"
+}

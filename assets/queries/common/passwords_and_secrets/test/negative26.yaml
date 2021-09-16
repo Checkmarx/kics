@@ -1,0 +1,12 @@
+Parameters:
+  PrivateKey1:
+    Type: String
+Resources:
+  PinpointApp:
+    Type: AWS::Pinpoint::App
+    Properties:
+      Name: foobar
+  PinpointAPNSChannel:
+    Type: AWS::Pinpoint::APNSChannel
+    Properties:
+      PrivateKey: !GetAtt PrivateKey1

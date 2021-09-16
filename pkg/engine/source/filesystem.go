@@ -132,7 +132,7 @@ func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) {
 		}
 		content = string(byteContent)
 	} else {
-		log.Warn().Msgf("Custom library not provided. Loading embedded library instead")
+		log.Debug().Msgf("Custom library not provided. Loading embedded library instead")
 	}
 	// getting embedded library
 	embeddedLibrary, errGettingEmbeddedLibrary := assets.GetEmbeddedLibrary(strings.ToLower(platform))

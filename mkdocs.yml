@@ -45,12 +45,12 @@ nav:
   - Queries:
       - General Info: queries.md
       - Creating Queries: creating-queries.md
+      - Passwords And Secrets: secrets.md
       - Queries List:
           - All: queries/all-queries.md
           - Ansible: queries/ansible-queries.md
           - Azure Resource Manager: queries/azureresourcemanager-queries.md
           - CloudFormation: queries/cloudformation-queries.md
-          - Common: queries/common-queries.md
           - Dockerfile: queries/dockerfile-queries.md
           - Kubernetes: queries/kubernetes-queries.md
           - Terraform: queries/terraform-queries.md
@@ -63,6 +63,7 @@ nav:
       - Github Actions: integrations_ghactions.md
       - Gitlab CI: integrations_gitlabci.md
       - Jenkins: integrations_jenkins.md
+      - Travis CI: integrations_travisci.md
       - AWS CDK: cdk.md
       - Badge: BADGE.md
   - Project:
