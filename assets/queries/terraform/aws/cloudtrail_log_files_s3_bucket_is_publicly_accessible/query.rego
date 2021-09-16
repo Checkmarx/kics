@@ -23,7 +23,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	module := input.document[i].module[name]
-	keyToCheck := common_lib.get_module_equivalent_key(module.source, "aws_s3_bucket", "acl")
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "acl")
 	publicAcl := {"public-read", "public-read-write"}
 
 	module[keyToCheck] == publicAcl[_]
