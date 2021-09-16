@@ -4,6 +4,22 @@ import (
 	"github.com/antlr/antlr4/runtime/Go/antlr"
 )
 
+type AWSJSONFilter struct {
+	FilterExpression interface{} `json:"_kics_filter_expr"`
+}
+
+type FilterExp struct {
+	Op    interface{} `json:"_op"`
+	Left  interface{} `json:"_left"`
+	Right interface{} `json:"_right"`
+}
+
+type FilterSelector struct {
+	Selector interface{} `json:"_selector"`
+	Op       interface{} `json:"_op"`
+	Value    interface{} `json:"_value"`
+}
+
 type JSONFilterTreeVisitor struct {
 	*antlr.BaseParseTreeVisitor
 }
@@ -13,6 +29,12 @@ type FilterNode map[string]interface{}
 func NewJSONFilterPrinterVisitor() *JSONFilterTreeVisitor {
 	return &JSONFilterTreeVisitor{
 		&antlr.BaseParseTreeVisitor{},
+	}
+}
+
+func (v *JSONFilterTreeVisitor) VisitAll(tree antlr.ParseTree) AWSJSONFilter {
+	return AWSJSONFilter{
+		FilterExpression: v.Visit(tree),
 	}
 }
 
@@ -41,10 +63,10 @@ func (v *JSONFilterTreeVisitor) VisitFilter_expr_parenthesized(ctx *Filter_expr_
 }
 
 func (v *JSONFilterTreeVisitor) VisitFilter_expr_and(ctx *Filter_expr_andContext) interface{} {
-	return FilterNode{
-		"_op":    "&&",
-		"_left":  v.Visit(ctx.GetLhs()),
-		"_right": v.Visit(ctx.GetRhs()),
+	return FilterExp{
+		Op:    "&&",
+		Left:  v.Visit(ctx.GetLhs()),
+		Right: v.Visit(ctx.GetRhs()),
 	}
 }
 
@@ -53,10 +75,10 @@ func (v *JSONFilterTreeVisitor) VisitFilter_expr_exp(ctx *Filter_expr_expContext
 }
 
 func (v *JSONFilterTreeVisitor) VisitFilter_expr_or(ctx *Filter_expr_orContext) interface{} {
-	return FilterNode{
-		"_op":    "||",
-		"_left":  v.Visit(ctx.GetLhs()),
-		"_right": v.Visit(ctx.GetRhs()),
+	return FilterExp{
+		Op:    "||",
+		Left:  v.Visit(ctx.GetLhs()),
+		Right: v.Visit(ctx.GetRhs()),
 	}
 }
 
@@ -71,12 +93,13 @@ func (v *JSONFilterTreeVisitor) VisitExp(ctx *ExpContext) interface{} {
 	} else {
 		value = v.Visit(ctx.Qualifiedidentifier())
 	}
-
-	return FilterNode{
-		"_selector": v.Visit(ctx.Selector()),
-		"_op":       v.Visit(ctx.Operator()),
-		"_value":    value,
+	selector := FilterSelector{
+		Selector: v.Visit(ctx.Selector()),
+		Op:       v.Visit(ctx.Operator()),
+		Value:    value,
 	}
+
+	return selector
 }
 
 func (v *JSONFilterTreeVisitor) VisitSelector(ctx *SelectorContext) interface{} {
