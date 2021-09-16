@@ -18,6 +18,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'enable_dns_support' is set to true or undefined",
 		"keyActualValue": "'enable_dns_support' is set to false",
+		"searchLine": common_lib.build_search_line(["resource", "aws_vpc_endpoint", name, "vpc_id"], []),
 	}
 }
 
@@ -34,5 +35,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'enable_dns_support' is set to true or undefined",
 		"keyActualValue": "'enable_dns_support' is set to false",
+		"searchLine": common_lib.build_search_line(["module", name, "vpc_id"], []),
 	}
 }
