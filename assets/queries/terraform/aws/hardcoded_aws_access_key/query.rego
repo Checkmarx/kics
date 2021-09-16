@@ -12,6 +12,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'user_data' doesn't contain hardcoded access key",
 		"keyActualValue": "'user_data' contains hardcoded access key",
+		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name, "user_data"], []),
 	}
 }
 
@@ -27,6 +28,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'user_data' doesn't contain hardcoded access key",
 		"keyActualValue": "'user_data' contains hardcoded access key",
+		"searchLine": common_lib.build_search_line(["module", name, "user_data"], []),
 	}
 }
 
