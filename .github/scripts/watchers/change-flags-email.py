@@ -11,6 +11,8 @@ from jinja2 import Environment
 
 def get_json(filename_list, command_dict):
     for filename in filename_list:
+        filename = filename.strip("'")
+        print('Opening file {}'.format(filename))
         with open(filename) as json_file:
             data = json.load(json_file)
             extract_command = re.search(
