@@ -166,7 +166,7 @@ func testQueryHasAllRequiredFiles(t *testing.T, entry queryEntry) {
 	require.FileExists(t, entry.ExpectedPositiveResultFile())
 }
 
-func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
+func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 	ctx := context.Background()
@@ -178,13 +178,13 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 			return []model.QueryMetadata{q}, err
 		})
 	queriesSource.EXPECT().GetQueryLibrary("common").
-		DoAndReturn(func(string) (string, error) {
+		DoAndReturn(func(string) (source.RegoLibraries, error) {
 			q, err := readLibrary("common")
 			require.NoError(t, err)
 			return q, nil
 		})
 	queriesSource.EXPECT().GetQueryLibrary(entry.platform).
-		DoAndReturn(func(string) (string, error) {
+		DoAndReturn(func(string) (source.RegoLibraries, error) {
 			q, err := readLibrary(entry.platform)
 			require.NoError(t, err)
 			return q, nil

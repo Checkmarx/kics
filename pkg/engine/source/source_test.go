@@ -1,6 +1,7 @@
 package source
 
 import (
+	"encoding/json"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -109,6 +110,36 @@ dummy_test(a) {
 				require.NoError(t, err)
 			}
 			require.Equal(t, tt.expected, got)
+		})
+	}
+}
+
+// TestMergeInputData tests mergeInputData function
+func TestMergeInputData(t *testing.T) {
+	tests := []struct {
+		name        string
+		customData  string
+		defaultData string
+		want        string
+	}{
+		{
+			name:        "Should merge input data strings",
+			defaultData: `{"test": "success"}`,
+			customData:  `{"test": "merge", "merge": "success"}`,
+			want:        `{"test": "merge","merge": "success"}`,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := MergeInputData(tt.defaultData, tt.customData)
+			require.NoError(t, err)
+			wantJSON := map[string]interface{}{}
+			gotJSON := map[string]interface{}{}
+			err = json.Unmarshal([]byte(tt.want), &wantJSON)
+			require.NoError(t, err)
+			err = json.Unmarshal([]byte(got), &gotJSON)
+			require.NoError(t, err)
+			require.Equal(t, wantJSON, gotJSON)
 		})
 	}
 }
