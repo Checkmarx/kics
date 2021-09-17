@@ -4,12 +4,14 @@ import (
 	json "encoding/json"
 	"strconv"
 
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"
 )
 
 // UnmarshalYAML is a custom yaml parser that places line information in the payload
 func (m *Document) UnmarshalYAML(value *yaml.Node) error {
+	defer utils.PanicHandler()
 	dpc := unmarshal(value).(map[string]interface{})
 	// set line information for root level objects
 	dpc["_kics_lines"] = getLines(value, 0)
