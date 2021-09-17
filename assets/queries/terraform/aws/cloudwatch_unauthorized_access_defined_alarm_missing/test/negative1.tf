@@ -3,7 +3,7 @@ resource "aws_cloudwatch_metric_alarm" "cis_unauthorized_api_calls_cw_alarm" {
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
   metric_name               = "${aws_cloudwatch_log_metric_filter.cis_unauthorized_api_calls_metric_filter.id}"
-  namespace                 = "${var.CIS_Metric_Alarm_Namespace}"
+  namespace                 = "CIS_Metric_Alarm_Namespace"
   period                    = "300"
   statistic                 = "Sum"
   threshold                 = "1"
@@ -19,7 +19,7 @@ resource "aws_cloudwatch_log_metric_filter" "cis_unauthorized_api_calls_metric_f
 
   metric_transformation {
     name      = "CIS-UnauthorizedAPICalls"
-    namespace = "${var.CIS_Metric_Alarm_Namespace}"
+    namespace = "CIS_Metric_Alarm_Namespace"
     value     = "1"
   }
 }
@@ -31,7 +31,7 @@ resource "aws_cloudwatch_log_metric_filter" "cis_no_mfa_console_signin_metric_fi
 
   metric_transformation {
     name      = "CIS-ConsoleSigninWithoutMFA"
-    namespace = "${var.CIS_Metric_Alarm_Namespace}"
+    namespace = "CIS_Metric_Alarm_Namespace"
     value     = "1"
   }
 }
@@ -41,7 +41,7 @@ resource "aws_cloudwatch_metric_alarm" "cis_no_mfa_console_signin_cw_alarm" {
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
   metric_name               = "${aws_cloudwatch_log_metric_filter.cis_no_mfa_console_signin_metric_filter.id}"
-  namespace                 = "${var.CIS_Metric_Alarm_Namespace}"
+  namespace                 = "CIS_Metric_Alarm_Namespace"
   period                    = "300"
   statistic                 = "Sum"
   threshold                 = "1"
