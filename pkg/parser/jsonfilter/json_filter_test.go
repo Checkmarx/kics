@@ -736,6 +736,14 @@ func TestMarshallJSONFilterExpressions(t *testing.T) {
 			want: `{"_kics_filter_expr":{"_op":"&&","_left":{"_op":"&&","_left":{"_selector":"$.userIdentity.type","_op":"=","_value":"\"Root\""},"_right":{"_selector":"$.userIdentity.invokedBy","_op":"NOT","_value":"EXISTS"}},"_right":{"_selector":"$.eventType","_op":"!=","_value":"\"AwsServiceEvent\""}}}
 `,
 		},
+		{
+			name: "expr_multiple_or",
+			input: `{ ($.eventName = AuthorizeSecurityGroupIngress) || ($.eventName = AuthorizeSecurityGroupEgress) ||` +
+				`($.eventName = RevokeSecurityGroupIngress) || ($.eventName = RevokeSecurityGroupEgress) ||` +
+				`($.eventName = CreateSecurityGroup) || ($.eventName = DeleteSecurityGroup)}`,
+			want: `{"_kics_filter_expr":{"_op":"||","_left":{"_op":"||","_left":{"_op":"||","_left":{"_op":"||","_left":{"_op":"||","_left":{"_selector":"$.eventName","_op":"=","_value":"AuthorizeSecurityGroupIngress"},"_right":{"_selector":"$.eventName","_op":"=","_value":"AuthorizeSecurityGroupEgress"}},"_right":{"_selector":"$.eventName","_op":"=","_value":"RevokeSecurityGroupIngress"}},"_right":{"_selector":"$.eventName","_op":"=","_value":"RevokeSecurityGroupEgress"}},"_right":{"_selector":"$.eventName","_op":"=","_value":"CreateSecurityGroup"}},"_right":{"_selector":"$.eventName","_op":"=","_value":"DeleteSecurityGroup"}}}
+`,
+		},
 	}
 	for _, tc := range inputs {
 		is := antlr.NewInputStream(tc.input)

@@ -6,7 +6,7 @@ import (
 	"io"
 
 	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/parser/json_filter/parser"
+	"github.com/Checkmarx/kics/pkg/parser/jsonfilter/parser"
 	"github.com/antlr/antlr4/runtime/Go/antlr"
 	"github.com/getsentry/sentry-go"
 	"github.com/google/uuid"
