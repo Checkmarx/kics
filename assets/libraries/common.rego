@@ -304,3 +304,9 @@ unsecured_cors_rule(methods, headers, origins) {
 	# allows several origins
 	contains(origins[_], "*")
 }
+
+find_selector_by_value(filter, str) = rtn {
+	[fpath, fvalue] := walk(filter)
+	contains(fvalue._value, str)
+	rtn := fvalue
+}
