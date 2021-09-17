@@ -2,11 +2,13 @@
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
     "severity": "HIGH",
-    "line": 4
+    "line": 4,
+    "fileName": "positive.tf"
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
     "severity": "HIGH",
-    "line": 16
+    "line": 16,
+    "fileName": "positive.tf"
   }
 ]
