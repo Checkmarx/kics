@@ -71,8 +71,14 @@ downscaler_enabled: "false"
 `,
 	}
 
-	want := []string{
-		`[
+	type wantExpect struct {
+		want    string
+		wantErr bool
+	}
+
+	want := []wantExpect{
+		{
+			want: `[
 			{
 			  "_kics_lines": {
 				"_kics__default": {
@@ -117,7 +123,10 @@ downscaler_enabled: "false"
 			}
 		  ]
 		  `,
-		`[
+			wantErr: false,
+		},
+		{
+			want: `[
 			{
 			  "_kics_lines": {
 				"_kics__default": {
@@ -164,7 +173,10 @@ downscaler_enabled: "false"
 			}
 		  ]
 		  `,
-		`[
+			wantErr: false,
+		},
+		{
+			want: `[
 			{
 			  "_kics_lines": {
 				"_kics__default": {
@@ -228,14 +240,23 @@ downscaler_enabled: "false"
 			}
 		  ]
 		  `,
-		`[]`,
+			wantErr: false,
+		},
+		{
+			want:    "{}",
+			wantErr: true,
+		},
 	}
 
 	for idx, tt := range have {
 		t.Run(fmt.Sprintf("test_parse_case_%d", idx), func(t *testing.T) {
 			doc, err := p.Parse("test.yaml", []byte(tt))
-			require.NoError(t, err)
-			compareJSONLine(t, doc, want[idx])
+			if want[idx].wantErr {
+				require.Error(t, err)
+			} else {
+				require.NoError(t, err)
+				compareJSONLine(t, doc, want[idx].want)
+			}
 		})
 	}
 }
@@ -302,9 +323,10 @@ func TestYaml_processElements(t *testing.T) {
 
 func TestModel_TestYamlParser(t *testing.T) {
 	tests := []struct {
-		name   string
-		sample string
-		want   string
+		name    string
+		sample  string
+		want    string
+		wantErr bool
 	}{
 		{
 			name: "test_ansible_yaml",
@@ -319,7 +341,8 @@ func TestModel_TestYamlParser(t *testing.T) {
 	endpoint_type: PRIVATE
 	state: present
 `,
-			want: `[]`,
+			want:    `[]`,
+			wantErr: true,
 		},
 	}
 
@@ -327,8 +350,12 @@ func TestModel_TestYamlParser(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			parser := Parser{}
 			got, err := parser.Parse("", []byte(tt.sample))
-			require.NoError(t, err)
-			compareJSONLine(t, got, tt.want)
+			if tt.wantErr {
+				require.Error(t, err)
+			} else {
+				require.NoError(t, err)
+				compareJSONLine(t, got, tt.want)
+			}
 		})
 	}
 }
