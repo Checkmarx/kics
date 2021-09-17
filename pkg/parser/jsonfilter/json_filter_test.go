@@ -1,6 +1,8 @@
 package jsonfilter
 
 import (
+	"bytes"
+	"encoding/json"
 	"reflect"
 	"testing"
 
@@ -281,7 +283,6 @@ var inputs = []struct {
 		},
 		wantErr: false,
 	},
-	// TODO: check logical operation priority
 	{
 		name:  "expr_three_selectors_and_without_parenthesis",
 		input: `{ $.userIdentity.type = "Root" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != "AwsServiceEvent" }`,
@@ -680,6 +681,62 @@ var inputs = []struct {
 
 func TestJSONFilterExpressions(t *testing.T) {
 	for _, tc := range inputs {
+		t.Run(tc.name, func(t *testing.T) {
+			is := antlr.NewInputStream(tc.input)
+			lexer := parser.NewJSONFilterLexer(is)
+			lexer.RemoveErrorListeners()
+
+			stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
+			errorListener := parser.NewCustomErrorListener()
+			lexer.AddErrorListener(errorListener)
+
+			p := parser.NewJSONFilterParser(stream)
+			p.AddErrorListener(errorListener)
+			p.BuildParseTrees = true
+			tree := p.Awsjsonfilter()
+
+			if !tc.wantErr {
+				require.False(t, errorListener.HasErrors(), "test[%s] Expected no error but got one", tc.name)
+
+				visitor := parser.NewJSONFilterPrinterVisitor()
+				got := visitor.VisitAll(tree)
+
+				if !reflect.DeepEqual(tc.expected, got) {
+					t.Errorf("test[%s]:\ninput    %v\nexpected %v\ngot      %v", tc.name, tc.input, tc.expected, got)
+				}
+			} else {
+				require.True(t, errorListener.HasErrors(), "test[%s] Expected error but got none", tc.name)
+			}
+		})
+	}
+}
+
+func TestMarshallJSONFilterExpressions(t *testing.T) {
+	inputs := []struct {
+		name  string
+		input string
+		want  string
+	}{
+		{
+			name:  "expr_single_selector",
+			input: `{$.eventName = CreateDeliveryChannel}`,
+			want: `{"_kics_filter_expr":{"_selector":"$.eventName","_op":"=","_value":"CreateDeliveryChannel"}}
+`,
+		},
+		{
+			name:  "expr_two_selectors_and_with_parenthesis_unquoted_quoted_strings",
+			input: `{ ($.eventName = ConsoleLogin) && ($.errorMessage = "Failed authentication") }`,
+			want: `{"_kics_filter_expr":{"_op":"&&","_left":{"_selector":"$.eventName","_op":"=","_value":"ConsoleLogin"},"_right":{"_selector":"$.errorMessage","_op":"=","_value":"\"Failed authentication\""}}}
+`,
+		},
+		{
+			name:  "expr_three_selectors_and_without_parenthesis",
+			input: `{ $.userIdentity.type = "Root" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != "AwsServiceEvent" }`,
+			want: `{"_kics_filter_expr":{"_op":"&&","_left":{"_op":"&&","_left":{"_selector":"$.userIdentity.type","_op":"=","_value":"\"Root\""},"_right":{"_selector":"$.userIdentity.invokedBy","_op":"NOT","_value":"EXISTS"}},"_right":{"_selector":"$.eventType","_op":"!=","_value":"\"AwsServiceEvent\""}}}
+`,
+		},
+	}
+	for _, tc := range inputs {
 		is := antlr.NewInputStream(tc.input)
 		lexer := parser.NewJSONFilterLexer(is)
 		lexer.RemoveErrorListeners()
@@ -693,18 +750,16 @@ func TestJSONFilterExpressions(t *testing.T) {
 		p.BuildParseTrees = true
 		tree := p.Awsjsonfilter()
 
-		if !tc.wantErr {
-			require.False(t, errorListener.HasErrors(), "test[%s] Expected no error but got one", tc.name)
+		visitor := parser.NewJSONFilterPrinterVisitor()
+		expTree := visitor.VisitAll(tree)
 
-			visitor := parser.NewJSONFilterPrinterVisitor()
-			got := visitor.VisitAll(tree)
+		buf := new(bytes.Buffer)
+		encoder := json.NewEncoder(buf)
+		encoder.SetEscapeHTML(false)
+		err := encoder.Encode(expTree)
+		require.NoError(t, err)
 
-			if !reflect.DeepEqual(tc.expected, got) {
-				t.Errorf("test[%s]:\ninput    %v\nexpected %v\ngot      %v", tc.name, tc.input, tc.expected, got)
-			}
-			continue
-		}
-
-		require.True(t, errorListener.HasErrors(), "test[%s] Expected error but got none", tc.name)
+		got := buf.String()
+		require.Equal(t, tc.want, got, "test[%s] JSON encoded expression tree is not as expected", tc.name)
 	}
 }
