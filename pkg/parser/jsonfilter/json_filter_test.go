@@ -691,6 +691,7 @@ func TestJSONFilterExpressions(t *testing.T) {
 			lexer.AddErrorListener(errorListener)
 
 			p := parser.NewJSONFilterParser(stream)
+			p.RemoveErrorListeners()
 			p.AddErrorListener(errorListener)
 			p.BuildParseTrees = true
 			tree := p.Awsjsonfilter()
