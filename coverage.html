@@ -169,7 +169,7 @@
 				
 				<option value="file56">github.com/Checkmarx/kics/pkg/parser/utils/swagger_utils.go (84.6%)</option>
 				
-				<option value="file57">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (84.0%)</option>
+				<option value="file57">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (84.6%)</option>
 				
 				<option value="file58">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (71.4%)</option>
 				
@@ -1605,8 +1605,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="357">{
-                if val == true </span><span class="cov9" title="356">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="364">{
+                if val == true </span><span class="cov9" title="363">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2512,13 +2512,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="35">total += v
+                <span class="cov8" title="33">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2543,7 +2543,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4634,7 +4634,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -9680,6 +9680,7 @@ import (
 
         "github.com/Checkmarx/kics/pkg/model"
         "github.com/Checkmarx/kics/pkg/parser/utils"
+        "github.com/pkg/errors"
         "gopkg.in/yaml.v3"
 )
 
@@ -9705,12 +9706,16 @@ func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, e
                 <span class="cov6" title="4">doc = &amp;model.Document{}</span>
         }
 
-        <span class="cov7" title="5">return convertKeysToString(addExtraInfo(documents, filePath)), nil</span>
+        <span class="cov7" title="5">if len(documents) == 0 </span><span class="cov3" title="2">{
+                return nil, errors.Wrap(errors.New("invalid yaml"), "failed to parse yaml")
+        }</span>
+
+        <span class="cov5" title="3">return convertKeysToString(addExtraInfo(documents, filePath)), nil</span>
 }
 
 // convertKeysToString goes through every document to convert map[interface{}]interface{}
 // to map[string]interface{}
-func convertKeysToString(docs []model.Document) []model.Document <span class="cov7" title="5">{
+func convertKeysToString(docs []model.Document) []model.Document <span class="cov5" title="3">{
         documents := make([]model.Document, 0, len(docs))
         for _, doc := range docs </span><span class="cov6" title="4">{
                 for key, value := range doc </span><span class="cov9" title="9">{
@@ -9718,7 +9723,7 @@ func convertKeysToString(docs []model.Document) []model.Document <span class="co
                 }</span>
                 <span class="cov6" title="4">documents = append(documents, doc)</span>
         }
-        <span class="cov7" title="5">return documents</span>
+        <span class="cov5" title="3">return documents</span>
 }
 
 // convert goes recursively through the keys in the given value and converts nested maps type of map[interface{}]interface{}
@@ -9786,7 +9791,7 @@ func processElements(elements map[string]interface{}, filePath string) <span cla
         }</span>
 }
 
-func addExtraInfo(documents []model.Document, filePath string) []model.Document <span class="cov7" title="5">{
+func addExtraInfo(documents []model.Document, filePath string) []model.Document <span class="cov5" title="3">{
         for _, documentPlaybooks := range documents </span><span class="cov6" title="4">{ // iterate over documents
                 if playbooks, ok := documentPlaybooks["playbooks"]; ok </span><span class="cov1" title="1">{
                         for _, resources := range playbooks.([]interface{}) </span><span class="cov1" title="1">{ // iterate over playbooks
@@ -9800,7 +9805,7 @@ func addExtraInfo(documents []model.Document, filePath string) []model.Document 
                 }
         }
 
-        <span class="cov7" title="5">return documents</span>
+        <span class="cov5" title="3">return documents</span>
 }
 
 // GetCommentToken return the comment token of YAML - #
