@@ -5,6 +5,7 @@ import (
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser/utils"
+	"github.com/pkg/errors"
 	"gopkg.in/yaml.v3"
 )
 
@@ -28,6 +29,10 @@ func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, e
 			documents = append(documents, *doc)
 		}
 		doc = &model.Document{}
+	}
+
+	if len(documents) == 0 {
+		return nil, errors.Wrap(errors.New("invalid yaml"), "failed to parse yaml")
 	}
 
 	return convertKeysToString(addExtraInfo(documents, filePath)), nil
