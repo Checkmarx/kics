@@ -16,5 +16,11 @@
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "CloudWatch Unauthorized Access Alarm Missing",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive4.tf"
   }
 ]

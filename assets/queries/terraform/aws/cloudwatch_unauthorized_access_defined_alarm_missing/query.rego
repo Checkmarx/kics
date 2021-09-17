@@ -6,6 +6,7 @@ import data.generic.common as commonLib
 check_expression_missing(resName, filter, doc) {
 	alarm := doc.resource.aws_cloudwatch_metric_alarm[name]
 	contains(alarm.metric_name, resName)
+	filter._kics_filter_expr._op == "||"
 	selector1 := commonLib.find_selector_by_value(filter, "*UnauthorizedOperation")
 	selector1._op == "="
 	selector1._selector == "$.errorCode"
