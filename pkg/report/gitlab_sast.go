@@ -4,10 +4,12 @@ import (
 	"strings"
 
 	reportModel "github.com/Checkmarx/kics/pkg/report/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 )
 
 // PrintGitlabSASTReport creates a report file on sarif format
 func PrintGitlabSASTReport(path, filename string, body interface{}) error {
+	defer utils.PanicHandler()
 	filename = strings.ReplaceAll(filename, ".glsast", "")
 	if !strings.HasSuffix(filename, jsonExtension) {
 		filename += jsonExtension

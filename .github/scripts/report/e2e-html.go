@@ -10,6 +10,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/tdewolff/minify/v2"
 	minifyCSS "github.com/tdewolff/minify/v2/css"
 	minifyHtml "github.com/tdewolff/minify/v2/html"
@@ -61,6 +62,7 @@ func includeJS(name string) template.HTML {
 }
 
 func generateE2EReport(path, filename string, body interface{}) error {
+	defer utils.PanicHandler()
 	if !strings.HasSuffix(filename, ".html") {
 		filename += ".html"
 	}

@@ -13,6 +13,7 @@ var validStrEnums = map[string]map[string]string{
 }
 
 func validateStrEnum(flagName string) error {
+	defer utils.PanicHandler()
 	value := GetStrFlag(flagName)
 	caseInsensitiveMap := make(map[string]string)
 	for key, value := range validStrEnums[flagName] {

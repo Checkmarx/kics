@@ -20,6 +20,7 @@ var validMultiStrEnums = map[string]map[string]string{
 }
 
 func sliceFlagsShouldNotStartWithFlags(flagName string) error {
+	defer utils.PanicHandler()
 	values := GetMultiStrFlag(flagName)
 	re := regexp.MustCompile(`^--[a-z-]+$`)
 	if len(values) > 0 {
@@ -32,6 +33,7 @@ func sliceFlagsShouldNotStartWithFlags(flagName string) error {
 }
 
 func allQueriesID(flagName string) error {
+	defer utils.PanicHandler()
 	queriesID := GetMultiStrFlag(flagName)
 	for _, queryID := range queriesID {
 		if !isQueryID(queryID) {
@@ -42,6 +44,7 @@ func allQueriesID(flagName string) error {
 }
 
 func validateMultiStrEnum(flagName string) error {
+	defer utils.PanicHandler()
 	enums := GetMultiStrFlag(flagName)
 	invalidEnum := make([]string, 0)
 	caseInsensitiveMap := make(map[string]string)

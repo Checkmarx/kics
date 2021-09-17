@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/spf13/cobra"
 )
 
@@ -59,6 +60,7 @@ func CaptureCommandOutput(cmd *cobra.Command, args []string) (string, error) {
 // ChangeCurrentDir gets current working directory and changes to its parent until finds the desired directory
 // or fail
 func ChangeCurrentDir(desiredDir string) error {
+	defer utils.PanicHandler()
 	for currentDir, err := os.Getwd(); GetCurrentDirName(currentDir) != desiredDir; currentDir, err = os.Getwd() {
 		if err == nil {
 			if err = os.Chdir(".."); err != nil {

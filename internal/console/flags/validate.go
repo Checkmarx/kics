@@ -1,6 +1,10 @@
 package flags
 
-import "regexp"
+import (
+	"regexp"
+
+	"github.com/Checkmarx/kics/pkg/utils"
+)
 
 type flagValidationFuncsMap map[string]func(flagName string) error
 
@@ -26,6 +30,7 @@ func convertSliceToDummyMap(slice []string) map[string]string {
 
 // Validate validate if flag values are ok, if not, returns an error
 func Validate() error {
+	defer utils.PanicHandler()
 	for validation, validationFuncs := range validations {
 		for _, validationFunc := range validationFuncs {
 			if function, ok := flagValidationFuncs[validationFunc]; ok {

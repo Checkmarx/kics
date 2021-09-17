@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/rs/zerolog/log"
 )
 
@@ -84,6 +85,7 @@ func getPlatforms(queries model.VulnerableQuerySlice) string {
 
 // ExportJSONReport - encodes a given body to a JSON file in a given filepath
 func ExportJSONReport(path, filename string, body interface{}) error {
+	defer utils.PanicHandler()
 	if !strings.Contains(filename, ".") {
 		filename += jsonExtension
 	}

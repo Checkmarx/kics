@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/spf13/cobra"
 )
 
@@ -13,6 +14,7 @@ func NewVersionCmd() *cobra.Command {
 		Use:   "version",
 		Short: "Displays the current version",
 		RunE: func(cmd *cobra.Command, args []string) error {
+			defer utils.PanicHandler()
 			fmt.Fprintf(cmd.OutOrStdout(), "%s\n", constants.GetVersion())
 			return nil
 		},

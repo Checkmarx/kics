@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 
 	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/rs/zerolog/log"
@@ -62,6 +63,7 @@ func setInputVariablesDefaultValues(filename string) (converter.InputVariableMap
 }
 
 func checkTfvarsValid(f *hcl.File, filename string) error {
+	defer utils.PanicHandler()
 	content, _, _ := f.Body.PartialContent(&hcl.BodySchema{
 		Blocks: []hcl.BlockHeaderSchema{
 			{

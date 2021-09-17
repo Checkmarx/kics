@@ -6,6 +6,7 @@ import (
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser/terraform/functions"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/getsentry/sentry-go"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
@@ -128,6 +129,7 @@ func (c *converter) getArrLines(expr hclsyntax.Expression) []map[string]model.Li
 }
 
 func (c *converter) convertBlock(block *hclsyntax.Block, out model.Document, defLine int) error {
+	defer utils.PanicHandler()
 	var key = block.Type
 	value, err := c.convertBody(block.Body, defLine)
 

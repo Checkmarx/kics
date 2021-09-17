@@ -15,6 +15,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/pkg/report"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/gookit/color"
 	"github.com/hashicorp/hcl"
 	"github.com/rs/zerolog"
@@ -74,6 +75,7 @@ func WordWrap(s, identation string, limit int) string {
 
 // PrintResult prints on output the summary results
 func PrintResult(summary *model.Summary, failedQueries map[string]error, printer *Printer) error {
+	defer utils.PanicHandler()
 	log.Debug().Msg("helpers.PrintResult()")
 	fmt.Printf("Files scanned: %d\n", summary.ScannedFiles)
 	fmt.Printf("Parsed files: %d\n", summary.ParsedFiles)
@@ -203,6 +205,7 @@ func FileAnalyzer(path string) (string, error) {
 
 // GenerateReport execute each report function to generate report
 func GenerateReport(path, filename string, body interface{}, formats []string, proBarBuilder progress.PbBuilder) error {
+	defer utils.PanicHandler()
 	log.Debug().Msgf("helpers.GenerateReport()")
 	metrics.Metric.Start("generate_report")
 

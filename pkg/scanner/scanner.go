@@ -8,11 +8,13 @@ import (
 	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/progress"
+	"github.com/Checkmarx/kics/pkg/utils"
 )
 
 type serviceSlice []*kics.Service
 
 func PrepareAndScan(ctx context.Context, scanID string, proBarBuilder progress.PbBuilder, services serviceSlice) error {
+	defer utils.PanicHandler()
 	metrics.Metric.Start("prepare_sources")
 	var wg sync.WaitGroup
 	wgDone := make(chan bool)
@@ -49,6 +51,7 @@ func PrepareAndScan(ctx context.Context, scanID string, proBarBuilder progress.P
 
 // StartScan will run concurrent scans by parser
 func StartScan(ctx context.Context, scanID string, proBarBuilder progress.PbBuilder, services serviceSlice) error {
+	defer utils.PanicHandler()
 	defer metrics.Metric.Stop()
 	metrics.Metric.Start("start_scan")
 	var wg sync.WaitGroup

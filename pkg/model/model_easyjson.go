@@ -4,6 +4,7 @@ package model
 
 import (
 	json "encoding/json"
+	"github.com/Checkmarx/kics/pkg/utils"
 	easyjson "github.com/mailru/easyjson"
 	jlexer "github.com/mailru/easyjson/jlexer"
 	jwriter "github.com/mailru/easyjson/jwriter"
@@ -106,6 +107,7 @@ func (v Documents) MarshalEasyJSON(w *jwriter.Writer) {
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *Documents) UnmarshalJSON(data []byte) error {
+	defer utils.PanicHandler()
 	r := jlexer.Lexer{Data: data}
 	easyjsonC80ae7adDecodeGithubComCheckmarxKicsPkgModel(&r, v)
 	return r.Error()
@@ -182,6 +184,7 @@ func (v Document) MarshalEasyJSON(w *jwriter.Writer) {
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *Document) UnmarshalJSON(data []byte) error {
+	defer utils.PanicHandler()
 	r := jlexer.Lexer{Data: data}
 	easyjsonC80ae7adDecodeGithubComCheckmarxKicsPkgModel1(&r, v)
 	return r.Error()

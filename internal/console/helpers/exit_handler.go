@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 )
 
 var shouldIgnore string
@@ -29,6 +30,7 @@ func ResultsExitCode(summary *model.Summary) int {
 
 // InitShouldIgnoreArg initializes what kind of errors should be used on exit codes
 func InitShouldIgnoreArg(arg string) error {
+	defer utils.PanicHandler()
 	validArgs := []string{"none", "all", "results", "errors"}
 	for _, validArg := range validArgs {
 		if strings.EqualFold(validArg, arg) {
@@ -41,6 +43,7 @@ func InitShouldIgnoreArg(arg string) error {
 
 // InitShouldFailArg initializes which kind of vulnerability severity should changes exit code
 func InitShouldFailArg(args []string) error {
+	defer utils.PanicHandler()
 	possibleArgs := map[string]struct{}{
 		"high":   {},
 		"medium": {},

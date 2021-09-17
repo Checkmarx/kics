@@ -8,6 +8,7 @@ import (
 
 	"github.com/Checkmarx/kics/pkg/builder/engine"
 	"github.com/Checkmarx/kics/pkg/builder/writer"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
@@ -27,6 +28,7 @@ func main() {
 		Use:   "inspect",
 		Short: "Tool to build new query from example file",
 		RunE: func(cmd *cobra.Command, args []string) error {
+			defer utils.PanicHandler()
 			content, err := os.ReadFile(filepath.Clean(inPath))
 			if err != nil {
 				return err
@@ -67,6 +69,7 @@ func main() {
 }
 
 func saveFile(filePath string, content []byte) error {
+	defer utils.PanicHandler()
 	f, err := os.OpenFile(filepath.Clean(filePath), os.O_CREATE|os.O_WRONLY|os.O_TRUNC, os.ModePerm)
 	if err != nil {
 		return err

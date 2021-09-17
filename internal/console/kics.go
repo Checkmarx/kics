@@ -9,6 +9,7 @@ import (
 	"github.com/Checkmarx/kics/internal/console/flags"
 	"github.com/Checkmarx/kics/internal/console/printer"
 	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/getsentry/sentry-go"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -39,6 +40,7 @@ func NewKICSCmd() *cobra.Command {
 }
 
 func initialize(rootCmd *cobra.Command) error {
+	defer utils.PanicHandler()
 	scanCmd := NewScanCmd()
 	rootCmd.AddCommand(NewVersionCmd())
 	rootCmd.AddCommand(NewGenerateIDCmd())
@@ -58,6 +60,7 @@ func initialize(rootCmd *cobra.Command) error {
 
 // Execute starts kics execution
 func Execute() error {
+	defer utils.PanicHandler()
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
 
 	enableCrashReport()

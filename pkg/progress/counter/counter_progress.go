@@ -4,6 +4,7 @@ import (
 	"io"
 	"sync"
 
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/cheggaaa/pb/v3"
 	"github.com/rs/zerolog/log"
 )
@@ -42,6 +43,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 		pBar:     newPb,
 		wg:       wg,
 		close: func() error {
+			defer utils.PanicHandler()
 			newPb.Finish()
 			return nil
 		},
@@ -69,4 +71,7 @@ func (p ProgressBar) Start() {
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error { return p.close() }
+func (p ProgressBar) Close() error {
+	defer utils.PanicHandler()
+	return p.close()
+}

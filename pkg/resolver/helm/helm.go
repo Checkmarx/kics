@@ -7,6 +7,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/pkg/errors"
 	"helm.sh/helm/v3/pkg/action"
 	"helm.sh/helm/v3/pkg/chart"
@@ -69,6 +70,7 @@ func runInstall(args []string, client *action.Install,
 //
 // Application chart type is only installable
 func checkIfInstallable(ch *chart.Chart) error {
+	defer utils.PanicHandler()
 	switch ch.Metadata.Type {
 	case "", "application":
 		return nil

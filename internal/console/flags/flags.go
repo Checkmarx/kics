@@ -9,6 +9,7 @@ import (
 	"github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/engine/source"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -73,6 +74,7 @@ func checkHiddenAndDeprecated(flagSet *pflag.FlagSet, flagName string, flagProps
 
 // InitJSONFlags initialize cobra flags
 func InitJSONFlags(cmd *cobra.Command, flagsListContent string, persistentFlag bool) error {
+	defer utils.PanicHandler()
 	var flagsList map[string]flagJSON
 	err := json.Unmarshal([]byte(flagsListContent), &flagsList)
 	if err != nil {

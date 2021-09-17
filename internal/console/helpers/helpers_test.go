@@ -9,6 +9,7 @@ import (
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/progress"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/Checkmarx/kics/test"
 	"github.com/gookit/color"
 	"github.com/stretchr/testify/require"
@@ -65,7 +66,10 @@ func TestPrintResult(t *testing.T) {
 	color.Disable()
 	for idx, testCase := range printTests {
 		t.Run(fmt.Sprintf("Print test case %d", idx), func(t *testing.T) {
-			out, err := test.CaptureOutput(func() error { return PrintResult(&testCase.caseTest, failedQueries, NewPrinter(true)) })
+			out, err := test.CaptureOutput(func() error {
+				defer utils.PanicHandler()
+				return PrintResult(&testCase.caseTest, failedQueries, NewPrinter(true))
+			})
 			require.NoError(t, err)
 			require.Equal(t, testCase.expectedResult, out)
 		})
@@ -73,7 +77,10 @@ func TestPrintResult(t *testing.T) {
 
 	for idx, testCase := range printTests {
 		t.Run(fmt.Sprintf("Print test case %d no minimal", idx), func(t *testing.T) {
-			out, err := test.CaptureOutput(func() error { return PrintResult(&testCase.caseTest, failedQueries, NewPrinter(false)) })
+			out, err := test.CaptureOutput(func() error {
+				defer utils.PanicHandler()
+				return PrintResult(&testCase.caseTest, failedQueries, NewPrinter(false))
+			})
 			require.NoError(t, err)
 			require.Equal(t, testCase.expectedResultFull, out)
 		})

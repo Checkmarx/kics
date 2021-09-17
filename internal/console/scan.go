@@ -36,6 +36,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/Checkmarx/kics/pkg/resolver/helm"
 	"github.com/Checkmarx/kics/pkg/scanner"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/getsentry/sentry-go"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
@@ -64,15 +65,18 @@ func NewScanCmd() *cobra.Command {
 		Use:   scanCommandStr,
 		Short: "Executes a scan analysis",
 		PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
+			defer utils.PanicHandler()
 			return preRun(cmd)
 		},
 		RunE: func(cmd *cobra.Command, args []string) error {
+			defer utils.PanicHandler()
 			return run(cmd)
 		},
 	}
 }
 
 func run(cmd *cobra.Command) error {
+	defer utils.PanicHandler()
 	changedDefaultQueryPath := cmd.Flags().Lookup(flags.QueriesPath).Changed
 	changedDefaultLibrariesPath := cmd.Flags().Lookup(flags.LibrariesPath).Changed
 	if err := consoleHelpers.InitShouldIgnoreArg(flags.GetStrFlag(flags.IgnoreOnExitFlag)); err != nil {
@@ -101,6 +105,7 @@ func run(cmd *cobra.Command) error {
 }
 
 func preRun(cmd *cobra.Command) error {
+	defer utils.PanicHandler()
 	err := initializeConfig(cmd)
 	if err != nil {
 		return errors.New(initError + err.Error())
@@ -127,6 +132,7 @@ func preRun(cmd *cobra.Command) error {
 }
 
 func formatNewError(flag1, flag2 string) error {
+	defer utils.PanicHandler()
 	return errors.Errorf("can't provide '%s' and '%s' flags simultaneously",
 		flag1,
 		flag2)
@@ -142,6 +148,7 @@ func updateReportFormats() {
 }
 
 func validateQuerySelectionFlags() error {
+	defer utils.PanicHandler()
 	if len(flags.GetMultiStrFlag(flags.IncludeQueriesFlag)) > 0 && len(flags.GetMultiStrFlag(flags.ExcludeQueriesFlag)) > 0 {
 		return formatNewError(flags.IncludeQueriesFlag, flags.ExcludeQueriesFlag)
 	}
@@ -152,6 +159,7 @@ func validateQuerySelectionFlags() error {
 }
 
 func initializeConfig(cmd *cobra.Command) error {
+	defer utils.PanicHandler()
 	log.Debug().Msg("console.initializeConfig()")
 
 	v := viper.New()
@@ -220,6 +228,7 @@ func setupCfgFile() (bool, error) {
 }
 
 func bindFlags(cmd *cobra.Command, v *viper.Viper) error {
+	defer utils.PanicHandler()
 	log.Debug().Msg("console.bindFlags()")
 	settingsMap := v.AllSettings()
 	cmd.Flags().VisitAll(func(f *pflag.Flag) {
@@ -265,6 +274,7 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
 }
 
 func initScanCmd(scanCmd *cobra.Command) error {
+	defer utils.PanicHandler()
 	if err := flags.InitJSONFlags(scanCmd, scanFlagsListContent, false); err != nil {
 		return err
 	}
@@ -485,6 +495,7 @@ func resolvePath(flagName string) (string, error) {
 }
 
 func getQueryPath(changedDefaultQueryPath bool) error {
+	defer utils.PanicHandler()
 	if changedDefaultQueryPath {
 		extractedQueriesPath, errExtractQueries := resolvePath(flags.QueriesPath)
 		if errExtractQueries != nil {
@@ -503,6 +514,7 @@ func getQueryPath(changedDefaultQueryPath bool) error {
 }
 
 func getLibraryPath(changedDefaultLibrariesPath bool) error {
+	defer utils.PanicHandler()
 	if changedDefaultLibrariesPath {
 		extractedLibrariesPath, errExtractLibraries := resolvePath(flags.LibrariesPath)
 		if errExtractLibraries != nil {
@@ -514,6 +526,7 @@ func getLibraryPath(changedDefaultLibrariesPath bool) error {
 }
 
 func preparePaths(changedDefaultQueryPath, changedDefaultLibrariesPath bool) error {
+	defer utils.PanicHandler()
 	var err error
 	err = getQueryPath(changedDefaultQueryPath)
 	if err != nil {
@@ -637,6 +650,7 @@ func scan(changedDefaultQueryPath, changedDefaultLibrariesPath bool) error {
 	if consoleHelpers.ShowError("results") && exitCode != 0 {
 		os.Exit(exitCode)
 	}
+	defer utils.PanicHandler()
 	return nil
 }
 
@@ -688,6 +702,7 @@ func resolveOutputs(
 	printer *consoleHelpers.Printer,
 	proBarBuilder progress.PbBuilder,
 ) error {
+	defer utils.PanicHandler()
 	log.Debug().Msg("console.resolveOutputs()")
 
 	if err := consoleHelpers.PrintResult(summary, failedQueries, printer); err != nil {
@@ -712,6 +727,7 @@ func resolveOutputs(
 }
 
 func printOutput(outputPath, filename string, body interface{}, formats []string, proBarBuilder progress.PbBuilder) error {
+	defer utils.PanicHandler()
 	log.Debug().Msg("console.printOutput()")
 	if outputPath == "" {
 		return nil

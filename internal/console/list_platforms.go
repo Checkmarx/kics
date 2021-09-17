@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/Checkmarx/kics/pkg/engine/source"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/spf13/cobra"
 )
 
@@ -13,6 +14,7 @@ func NewListPlatformsCmd() *cobra.Command {
 		Use:   "list-platforms",
 		Short: "List supported platforms",
 		RunE: func(cmd *cobra.Command, args []string) error {
+			defer utils.PanicHandler()
 			for _, v := range source.ListSupportedPlatforms() {
 				fmt.Fprintf(cmd.OutOrStdout(), "%s\n", v)
 			}
