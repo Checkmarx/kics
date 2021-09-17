@@ -91,7 +91,7 @@
 				
 				<option value="file17">github.com/Checkmarx/kics/internal/tracker/ci.go (84.6%)</option>
 				
-				<option value="file18">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (95.3%)</option>
+				<option value="file18">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (93.9%)</option>
 				
 				<option value="file19">github.com/Checkmarx/kics/pkg/builder/engine/engine.go (71.8%)</option>
 				
@@ -145,7 +145,7 @@
 				
 				<option value="file44">github.com/Checkmarx/kics/pkg/model/model_easyjson.go (34.7%)</option>
 				
-				<option value="file45">github.com/Checkmarx/kics/pkg/model/model_yaml.go (95.0%)</option>
+				<option value="file45">github.com/Checkmarx/kics/pkg/model/model_yaml.go (93.5%)</option>
 				
 				<option value="file46">github.com/Checkmarx/kics/pkg/model/summary.go (89.8%)</option>
 				
@@ -171,7 +171,7 @@
 				
 				<option value="file57">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (84.0%)</option>
 				
-				<option value="file58">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (71.4%)</option>
+				<option value="file58">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (90.5%)</option>
 				
 				<option value="file59">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
@@ -1605,8 +1605,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="353">{
-                if val == true </span><span class="cov9" title="352">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="378">{
+                if val == true </span><span class="cov9" title="377">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2543,7 +2543,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2750,6 +2750,7 @@ var (
         k8sRegex               = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
         k8sRegexKind           = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
         k8sRegexMetadata       = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
+        ansibleVaultRegex      = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
 )
 
 const (
@@ -2903,10 +2904,15 @@ func checkContent(path string, results, unwanted chan&lt;- string, ext string) <
                 // write to channel type of file
                 results &lt;- returnType
         }</span> else<span class="cov4" title="5"> if ext == yaml || ext == yml </span><span class="cov3" title="4">{
-                // Since Ansible has no defining property
-                // and no other type matched for YAML file extension, assume the file type is Ansible
-                results &lt;- "ansible"
-        }</span> else<span class="cov1" title="1"> {
+                // check if it is an ansible vault
+                if res := ansibleVaultRegex.Match(content); res </span><span class="cov0" title="0">{
+                        unwanted &lt;- path
+                }</span> else<span class="cov3" title="4"> {
+                        // Since Ansible has no defining property
+                        // and no other type matched for YAML file extension, assume the file type is Ansible
+                        results &lt;- "ansible"
+                }</span>
+        } else<span class="cov1" title="1"> {
                 // No type was determined (ignore on parser)
                 unwanted &lt;- path
         }</span>
@@ -2926,7 +2932,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="10">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov7" title="17">{
-        for _, a := range s </span><span class="cov8" title="38">{
+        for _, a := range s </span><span class="cov8" title="39">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -7783,6 +7789,7 @@ func (v *Document) UnmarshalEasyJSON(l *jlexer.Lexer) <span class="cov0" title="
 
 import (
         json "encoding/json"
+        "errors"
         "strconv"
 
         "github.com/rs/zerolog/log"
@@ -7791,15 +7798,18 @@ import (
 
 // UnmarshalYAML is a custom yaml parser that places line information in the payload
 func (m *Document) UnmarshalYAML(value *yaml.Node) error <span class="cov4" title="3">{
-        dpc := unmarshal(value).(map[string]interface{})
-        // set line information for root level objects
-        dpc["_kics_lines"] = getLines(value, 0)
+        dpc := unmarshal(value)
+        if mapDcp, ok := dpc.(map[string]interface{}); ok </span><span class="cov4" title="3">{
+                // set line information for root level objects
+                mapDcp["_kics_lines"] = getLines(value, 0)
 
-        // place the payload in the Document struct
-        tmp, _ := json.Marshal(dpc)
-        _ = json.Unmarshal(tmp, m)
-        return nil
-}</span>
+                // place the payload in the Document struct
+                tmp, _ := json.Marshal(mapDcp)
+                _ = json.Unmarshal(tmp, m)
+                return nil
+        }</span>
+        <span class="cov0" title="0">return errors.New("failed to parse yaml content")</span>
+}
 
 /*
         YAML Node TYPES
@@ -9823,7 +9833,7 @@ type ProgressBar struct {
 }
 
 // NewProgressBar creates a new instance of a Circle Progress Bar
-func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" title="3">{
+func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" title="3">{
         newPb := pb.New64(constants.MaxInteger)
         tmp := fmt.Sprintf(`{{ "%s" }} {{(cycle . "\\" "-" "|" "/" "-" "|" )}}`, label)
         newPb.SetWidth(barWidth)
@@ -9831,7 +9841,7 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
         if silent </span><span class="cov1" title="1">{
                 newPb.SetWriter(io.Discard)
         }</span>
-        <span class="cov10" title="3">newPb.Start()
+        <span class="cov2" title="3">newPb.Start()
 
         return ProgressBar{
                 label: label,
@@ -9855,10 +9865,10 @@ func (p ProgressBar) Start() <span class="cov1" title="1">{
         }()
 }
 
-func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov0" title="0">{
+func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov1" title="1">{
         wg.Add(1)
         defer wg.Done()
-        for </span><span class="cov0" title="0">{ // increment until the Close func is called
+        for </span><span class="cov10" title="9070">{ // increment until the Close func is called
                 p.pBar.Increment()
         }</span>
 }
