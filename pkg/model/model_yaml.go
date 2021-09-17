@@ -2,6 +2,7 @@ package model
 
 import (
 	json "encoding/json"
+	"errors"
 	"strconv"
 
 	"github.com/rs/zerolog/log"
@@ -10,14 +11,17 @@ import (
 
 // UnmarshalYAML is a custom yaml parser that places line information in the payload
 func (m *Document) UnmarshalYAML(value *yaml.Node) error {
-	dpc := unmarshal(value).(map[string]interface{})
-	// set line information for root level objects
-	dpc["_kics_lines"] = getLines(value, 0)
+	dpc := unmarshal(value)
+	if mapDcp, ok := dpc.(map[string]interface{}); ok {
+		// set line information for root level objects
+		mapDcp["_kics_lines"] = getLines(value, 0)
 
-	// place the payload in the Document struct
-	tmp, _ := json.Marshal(dpc)
-	_ = json.Unmarshal(tmp, m)
-	return nil
+		// place the payload in the Document struct
+		tmp, _ := json.Marshal(mapDcp)
+		_ = json.Unmarshal(tmp, m)
+		return nil
+	}
+	return errors.New("failed to parse yaml content")
 }
 
 /*
