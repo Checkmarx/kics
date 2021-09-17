@@ -10,8 +10,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_db_instance[%s].iam_database_authentication_enabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'iam_database_authentication_enabled' is true",
-		"keyActualValue": "'iam_database_authentication_enabled' is false",
+		"keyExpectedValue": "'iam_database_authentication_enabled' is set to true",
+		"keyActualValue": "'iam_database_authentication_enabled' is set to false",
 		"searchLine": common_lib.build_search_line(["resource", "aws_db_instance", name, "iam_database_authentication_enabled"], []),
 	}
 }
@@ -26,8 +26,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("module[%s].iam_database_authentication_enabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'iam_database_authentication_enabled' is set to true", [name]),
-		"keyActualValue": sprintf("'iam_database_authentication_enabled' is set to false", [name]),
+		"keyExpectedValue": "'iam_database_authentication_enabled' is set to true",
+		"keyActualValue": "'iam_database_authentication_enabled' is set to false",
 		"searchLine": common_lib.build_search_line(["module", name, "iam_database_authentication_enabled"], []),
 	}
 }
@@ -40,8 +40,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_db_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'iam_database_authentication_enabled' is set to true", [name]),
-		"keyActualValue": sprintf("'iam_database_authentication_enabled' is undefined or null", [name]),
+		"keyExpectedValue": "'iam_database_authentication_enabled' is set to true",
+		"keyActualValue": "'iam_database_authentication_enabled' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resource", "aws_db_instance", name], []),
 	}
 }
@@ -56,8 +56,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'iam_database_authentication_enabled' is set to true", [name]),
-		"keyActualValue": sprintf("'iam_database_authentication_enabled' is undefined or null", [name]),
+		"keyExpectedValue": "'iam_database_authentication_enabled' is set to true",
+		"keyActualValue": "'iam_database_authentication_enabled' is undefined or null",
 		"searchLine": common_lib.build_search_line(["module", name], []),
 	}
 }
