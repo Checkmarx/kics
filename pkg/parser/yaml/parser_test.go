@@ -323,9 +323,10 @@ func TestYaml_processElements(t *testing.T) {
 
 func TestModel_TestYamlParser(t *testing.T) {
 	tests := []struct {
-		name   string
-		sample string
-		want   string
+		name    string
+		sample  string
+		want    string
+		wantErr bool
 	}{
 		{
 			name: "test_ansible_yaml",
@@ -340,7 +341,8 @@ func TestModel_TestYamlParser(t *testing.T) {
 	endpoint_type: PRIVATE
 	state: present
 `,
-			want: `[]`,
+			want:    `[]`,
+			wantErr: true,
 		},
 	}
 
@@ -348,8 +350,12 @@ func TestModel_TestYamlParser(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			parser := Parser{}
 			got, err := parser.Parse("", []byte(tt.sample))
-			require.NoError(t, err)
-			compareJSONLine(t, got, tt.want)
+			if tt.wantErr {
+				require.Error(t, err)
+			} else {
+				require.NoError(t, err)
+				compareJSONLine(t, got, tt.want)
+			}
 		})
 	}
 }
