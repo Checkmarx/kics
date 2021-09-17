@@ -219,13 +219,21 @@ func sliceContains(s []string, str string) bool {
 	return false
 }
 
-func readLibrary(platform string) (string, error) {
+func readLibrary(platform string) (source.RegoLibraries, error) {
 	library := source.GetPathToCustomLibrary(platform, "./assets/libraries")
+
+	libraryData, err := assets.GetEmbeddedLibraryData(strings.ToLower(platform))
+	if err != nil {
+		log.Debug().Msgf("Couldn't load input data for library of %s platform.", platform)
+		libraryData = "{}"
+	}
 
 	if library != "default" {
 		content, err := os.ReadFile(library)
-
-		return string(content), err
+		return source.RegoLibraries{
+			LibraryCode:      string(content),
+			LibraryInputData: libraryData,
+		}, err
 	}
 
 	log.Debug().Msgf("Custom library not provided. Loading embedded library instead")
@@ -233,7 +241,10 @@ func readLibrary(platform string) (string, error) {
 	// getting embedded library
 	embeddedLibrary, errGettingEmbeddedLibrary := assets.GetEmbeddedLibrary(strings.ToLower(platform))
 
-	return embeddedLibrary, errGettingEmbeddedLibrary
+	return source.RegoLibraries{
+		LibraryCode:      embeddedLibrary,
+		LibraryInputData: libraryData,
+	}, errGettingEmbeddedLibrary
 }
 
 func isValidURL(toTest string) bool {

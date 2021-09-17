@@ -305,6 +305,13 @@ unsecured_cors_rule(methods, headers, origins) {
 	contains(origins[_], "*")
 }
 
+get_module_equivalent_key(provider, moduleName, resource, key) = keyInResource {
+	providers := data.common_lib.modules[provider]
+	module := providers[moduleName]
+	inArray(module.resources, resource)
+	keyInResource := module.inputs[key]
+}
+
 find_selector_by_value(filter, str) = rtn {
 	[fpath, fvalue] := walk(filter)
 	contains(fvalue._value, str)

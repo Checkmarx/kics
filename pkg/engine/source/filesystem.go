@@ -117,30 +117,54 @@ func GetPathToCustomLibrary(platform, libraryPathFlag string) string {
 }
 
 // GetQueryLibrary returns the library.rego for the platform passed in the argument
-func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) {
+func (s *FilesystemSource) GetQueryLibrary(platform string) (RegoLibraries, error) {
 	library := GetPathToCustomLibrary(platform, s.Library)
-	content := ""
+	customLibraryCode := ""
+	customLibraryData := emptyInputData
 
 	if library == "" {
-		return "", errors.New("unable to get libraries path")
+		return RegoLibraries{}, errors.New("unable to get libraries path")
 	}
 
 	if library != kicsDefault {
 		byteContent, err := os.ReadFile(library)
 		if err != nil {
-			return "", err
+			return RegoLibraries{}, err
 		}
-		content = string(byteContent)
+		customLibraryCode = string(byteContent)
+		customLibraryData, err = readInputData(strings.TrimSuffix(library, filepath.Ext(library)) + ".json")
+		if err != nil {
+			log.Debug().Msg(err.Error())
+		}
 	} else {
 		log.Debug().Msgf("Custom library not provided. Loading embedded library instead")
 	}
 	// getting embedded library
-	embeddedLibrary, errGettingEmbeddedLibrary := assets.GetEmbeddedLibrary(strings.ToLower(platform))
+	embeddedLibraryCode, errGettingEmbeddedLibrary := assets.GetEmbeddedLibrary(strings.ToLower(platform))
 	if errGettingEmbeddedLibrary != nil {
-		return "", errGettingEmbeddedLibrary
+		return RegoLibraries{}, errGettingEmbeddedLibrary
 	}
 
-	return mergeLibraries(content, embeddedLibrary)
+	mergedLibraryCode, errMergeLibs := mergeLibraries(customLibraryCode, embeddedLibraryCode)
+	if errMergeLibs != nil {
+		return RegoLibraries{}, errMergeLibs
+	}
+
+	embeddedLibraryData, errGettingEmbeddedLibraryCode := assets.GetEmbeddedLibraryData(strings.ToLower(platform))
+	if errGettingEmbeddedLibraryCode != nil {
+		log.Debug().Msgf("Could not open embedded library data for %s platform", platform)
+		embeddedLibraryData = emptyInputData
+	}
+	mergedLibraryData, errMergingLibraryData := MergeInputData(embeddedLibraryData, customLibraryData)
+	if errMergingLibraryData != nil {
+		log.Debug().Msgf("Could not merge library data for %s platform", platform)
+	}
+
+	regoLibrary := RegoLibraries{
+		LibraryCode:      mergedLibraryCode,
+		LibraryInputData: mergedLibraryData,
+	}
+	return regoLibrary, nil
 }
 
 // CheckType checks if the queries have the type passed as an argument in '--type' flag to be loaded
@@ -254,7 +278,7 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 			continue
 		}
 
-		inputData, mergeError := mergeInputData(query.InputData, customInputData)
+		inputData, mergeError := MergeInputData(query.InputData, customInputData)
 		if mergeError != nil {
 			log.Err(mergeError).
 				Msgf("failed to merge input data, query=%s", path.Base(queryDir))
@@ -381,27 +405,4 @@ func readInputData(inputDataPath string) (string, error) {
 		return emptyInputData, errors.Wrapf(err, "failed to read query input data %s", path.Base(inputDataPath))
 	}
 	return string(inputData), nil
-}
-
-func mergeInputData(queryInputData, customInputData string) (string, error) {
-	if customInputData == emptyInputData || customInputData == "" {
-		return queryInputData, nil
-	}
-	dataJSON := map[string]interface{}{}
-	customDataJSON := map[string]interface{}{}
-	if unmarshalError := json.Unmarshal([]byte(queryInputData), &dataJSON); unmarshalError != nil {
-		return "", errors.Wrapf(unmarshalError, "failed to merge query input data")
-	}
-	if unmarshalError := json.Unmarshal([]byte(customInputData), &customDataJSON); unmarshalError != nil {
-		return "", errors.Wrapf(unmarshalError, "failed to merge query input data")
-	}
-
-	for key, value := range customDataJSON {
-		dataJSON[key] = value
-	}
-	mergedJSON, mergeErr := json.Marshal(dataJSON)
-	if mergeErr != nil {
-		return "", errors.Wrapf(mergeErr, "failed to merge query input data")
-	}
-	return string(mergedJSON), nil
 }

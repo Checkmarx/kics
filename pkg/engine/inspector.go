@@ -123,26 +123,24 @@ func NewInspector(
 			return nil, nil
 		default:
 			var opaQuery rego.PreparedEvalQuery
-			store := inmem.NewFromReader(bytes.NewBufferString(metadata.InputData))
-
-			if commonLibrary != "" && platformGeneralQuery != "" {
-				opaQuery, err = rego.New(
-					rego.Query(regoQuery),
-					rego.Module("Common", commonLibrary),
-					rego.Module("Generic", platformGeneralQuery),
-					rego.Module(metadata.Query, metadata.Content),
-					rego.Store(store),
-					rego.UnsafeBuiltins(unsafeRegoFunctions),
-				).PrepareForEval(ctx)
-			} else if platformGeneralQuery != "" {
-				opaQuery, err = rego.New(
-					rego.Query(regoQuery),
-					rego.Module("Generic", platformGeneralQuery),
-					rego.Module(metadata.Query, metadata.Content),
-					rego.Store(store),
-					rego.UnsafeBuiltins(unsafeRegoFunctions),
-				).PrepareForEval(ctx)
+			mergedInputData, err := source.MergeInputData(platformGeneralQuery.LibraryInputData, metadata.InputData)
+			if err != nil {
+				log.Debug().Msg("Could not merge platform library input data")
 			}
+			mergedInputData, err = source.MergeInputData(commonLibrary.LibraryInputData, mergedInputData)
+			if err != nil {
+				log.Debug().Msg("Could not merge common library input data")
+			}
+			store := inmem.NewFromReader(bytes.NewBufferString(mergedInputData))
+			opaQuery, err = rego.New(
+				rego.Query(regoQuery),
+				rego.Module("Common", commonLibrary.LibraryCode),
+				rego.Module("Generic", platformGeneralQuery.LibraryCode),
+				rego.Module(metadata.Query, metadata.Content),
+				rego.Store(store),
+				rego.UnsafeBuiltins(unsafeRegoFunctions),
+			).PrepareForEval(ctx)
+
 			if err != nil {
 				sentry.CaptureException(err)
 				log.Err(err).
@@ -187,12 +185,12 @@ func NewInspector(
 	}, nil
 }
 
-func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.QueryMetadata) map[string]string {
+func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.QueryMetadata) map[string]source.RegoLibraries {
 	supportedPlatforms := make(map[string]string)
 	for _, query := range queries {
 		supportedPlatforms[query.Platform] = ""
 	}
-	platformLibraries := make(map[string]string)
+	platformLibraries := make(map[string]source.RegoLibraries)
 	for platform := range supportedPlatforms {
 		platformLibrary, errLoadingPlatformLib := queriesSource.GetQueryLibrary(platform)
 		if errLoadingPlatformLib != nil {

@@ -51,10 +51,10 @@ func (mr *MockQueriesSourceMockRecorder) GetQueries(querySelection interface{}) 
 }
 
 // GetQueryLibrary mocks base method.
-func (m *MockQueriesSource) GetQueryLibrary(platform string) (string, error) {
+func (m *MockQueriesSource) GetQueryLibrary(platform string) (source.RegoLibraries, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetQueryLibrary", platform)
-	ret0, _ := ret[0].(string)
+	ret0, _ := ret[0].(source.RegoLibraries)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }

@@ -143,14 +143,14 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 		})
 
 	queriesSource.EXPECT().GetQueryLibrary("common").
-		DoAndReturn(func(string) (string, error) {
+		DoAndReturn(func(string) (source.RegoLibraries, error) {
 			q, err := readLibrary("common")
 			require.NoError(tb, err)
 			return q, nil
 		})
 
 	queriesSource.EXPECT().GetQueryLibrary(entry.platform).
-		DoAndReturn(func(string) (string, error) {
+		DoAndReturn(func(string) (source.RegoLibraries, error) {
 			q, err := readLibrary(entry.platform)
 			require.NoError(tb, err)
 			return q, nil
