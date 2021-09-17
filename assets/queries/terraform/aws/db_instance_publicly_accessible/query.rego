@@ -10,8 +10,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_db_instance[%s].publicly_accessible", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'publicly_accessible' is set to false or undefined", [name]),
-		"keyActualValue": sprintf("'publicly_accessible' is set to true", [name]),
+		"keyExpectedValue": "'publicly_accessible' is set to false or undefined",
+		"keyActualValue": "'publicly_accessible' is set to true",
 		"searchLine": common_lib.build_search_line(["resource", "aws_db_instance", name, "publicly_accessibled"], []),
 	}
 }
@@ -26,8 +26,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("module[%s].publicly_accessible", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'publicly_accessible' is set to false or undefined", [name]),
-		"keyActualValue": sprintf("'publicly_accessible' is set to true", [name]),
+		"keyExpectedValue": "'publicly_accessible' is set to false or undefined",
+		"keyActualValue": "'publicly_accessible' is set to true",
 		"searchLine": common_lib.build_search_line(["module", name, "publicly_accessible"], []),
 	}
 }
