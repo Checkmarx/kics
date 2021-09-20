@@ -2,17 +2,25 @@ package Cx
 
 import data.generic.common as commonLib
 
+expressionArr := [
+	{
+		"op": "=",
+		"value": "\"*UnauthorizedOperation\"",
+		"name": "$.errorCode",
+	},
+	{
+		"op": "=",
+		"value": "\"AccessDenied*\"",
+		"name": "$.errorCode",
+	},
+]
+
 # { $.errorCode = "*UnauthorizedOperation" || ($.errorCode = "AccessDenied*" }
 check_expression_missing(resName, filter, doc) {
 	alarm := doc.resource.aws_cloudwatch_metric_alarm[name]
 	contains(alarm.metric_name, resName)
 	filter._kics_filter_expr._op == "||"
-	selector1 := commonLib.find_selector_by_value(filter, "*UnauthorizedOperation")
-	selector1._op == "="
-	selector1._selector == "$.errorCode"
-	selector2 := commonLib.find_selector_by_value(filter, "AccessDenied*")
-	selector2._op == "="
-	selector2._selector == "$.errorCode"
+	count({x | exp := expressionArr[n]; commonLib.check_selector(filter, exp.value, exp.op, exp.name) == false; x := exp}) == 0
 }
 
 CxPolicy[result] {

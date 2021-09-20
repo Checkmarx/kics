@@ -322,6 +322,6 @@ check_selector(filter, value, op, name) {
 
 find_selector_by_value(filter, str) = rtn {
 	[fpath, fvalue] := walk(filter)
-	contains(fvalue._value, str)
+	fvalue._value == str
 	rtn := fvalue
 }

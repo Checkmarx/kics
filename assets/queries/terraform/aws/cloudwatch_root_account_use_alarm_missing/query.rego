@@ -2,19 +2,29 @@ package Cx
 
 import data.generic.common as commonLib
 
+expressionArr := [
+	{
+		"op": "=",
+		"value": "\"Root\"",
+		"name": "$.userIdentity.type",
+	},
+	{
+		"op": "NOT",
+		"value": "EXISTS",
+		"name": "$.userIdentity.invokedBy",
+	},
+	{
+		"op": "!=",
+		"value": "\"AwsServiceEvent\"",
+		"name": "$.eventType",
+	},
+]
+
 # { $.userIdentity.type = \"Root\" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != \"AwsServiceEvent\" }
 check_expression_missing(resName, filter, doc) {
 	alarm := doc.resource.aws_cloudwatch_metric_alarm[name]
 	contains(alarm.metric_name, resName)
-	selector1 := commonLib.find_selector_by_value(filter, "Root")
-	selector1._op == "="
-	selector1._selector == "$.userIdentity.type"
-	selector2 := commonLib.find_selector_by_value(filter, "EXISTS")
-	selector2._op == "NOT"
-	selector2._selector == "$.userIdentity.invokedBy"
-	selector3 := commonLib.find_selector_by_value(filter, "\"AwsServiceEvent\"")
-	selector3._op == "!="
-	selector3._selector == "$.eventType"
+	count({x | exp := expressionArr[n]; commonLib.check_selector(filter, exp.value, exp.op, exp.name) == false; x := exp}) == 0
 }
 
 CxPolicy[result] {
