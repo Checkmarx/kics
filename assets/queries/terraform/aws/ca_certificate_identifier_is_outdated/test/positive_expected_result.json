@@ -2,6 +2,13 @@
 	{
 		"queryName": "CA certificate Identifier is outdated",
 		"severity": "HIGH",
-		"line": 12
+		"line": 12,
+		"fileName": "positive.tf"
+	},
+	{
+		"queryName": "CA certificate Identifier is outdated",
+		"severity": "HIGH",
+		"line": 11,
+		"fileName": "positive2.tf"
 	}
 ]
