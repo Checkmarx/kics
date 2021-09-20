@@ -38,7 +38,7 @@ resource "aws_cloudwatch_log_metric_filter" "cis_missing_ima" {
 
 resource "aws_cloudwatch_log_metric_filter" "cis_no_mfa_console_signin_metric_filter" {
   name           = "CIS-ConsoleSigninWithoutMFA"
-  pattern        = "{ ($.eventSource = kms.amazonaws.com) && (($.eventName = DisableKey) || ($.eventName = ScheduleKeyDeletion)) }"
+  pattern        = "{ ($.eventName = \"ConsoleLogin\") && ($.additionalEventData.MFAUsed != \"Yes\") }"
   log_group_name = aws_cloudwatch_log_group.cis_cloudwatch_logsgroup.name
 
   metric_transformation {
