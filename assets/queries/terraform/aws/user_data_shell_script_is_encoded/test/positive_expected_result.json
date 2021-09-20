@@ -2,6 +2,13 @@
   {
     "queryName": "User Data Shell Script Is Encoded",
     "severity": "HIGH",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf"
+  },
+  {
+    "queryName": "User Data Shell Script Is Encoded",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive2.tf"
   }
 ]
