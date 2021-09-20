@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Missing Log Metric Filter Or Alarm For Disabling Or Scheduled Deletion Of Customer Created CMK",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  }
+]
