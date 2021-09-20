@@ -5,82 +5,32 @@ import data.generic.common as common_lib
 expressionArr := [
 	{
 		"op": "=",
-		"value": "\"DeleteGroupPolicy\"",
+		"value": "CreateNetworkAcl",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"DeleteRolePolicy\"",
+		"value": "CreateNetworkAclEntry",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"DeleteUserPolicy\"",
+		"value": "DeleteNetworkAcl",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"PutGroupPolicy\"",
+		"value": "DeleteNetworkAclEntry",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"PutRolePolicy\"",
+		"value": "ReplaceNetworkAclEntry",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"PutUserPolicy\"",
-		"name": "$.eventName",
-	},
-	{
-		"op": "=",
-		"value": "\"CreatePolicy\"",
-		"name": "$.eventName",
-	},
-	{
-		"op": "=",
-		"value": "\"DeletePolicy\"",
-		"name": "$.eventName",
-	},
-	{
-		"op": "=",
-		"value": "\"CreatePolicyVersion\"",
-		"name": "$.eventName",
-	},
-	{
-		"op": "=",
-		"value": "\"DeletePolicyVersion\"",
-		"name": "$.eventName",
-	},
-	{
-		"op": "=",
-		"value": "\"AttachRolePolicy\"",
-		"name": "$.eventName",
-	},
-	{
-		"op": "=",
-		"value": "\"DetachRolePolicy\"",
-		"name": "$.eventName",
-	},
-	{
-		"op": "=",
-		"value": "\"AttachUserPolicy\"",
-		"name": "$.eventName",
-	},
-	{
-		"op": "=",
-		"value": "\"DetachUserPolicy\"",
-		"name": "$.eventName",
-	},
-	{
-		"op": "=",
-		"value": "\"AttachGroupPolicy\"",
-		"name": "$.eventName",
-	},
-	{
-		"op": "=",
-		"value": "\"DetachGroupPolicy\"",
+		"value": "ReplaceNetworkAclAssociation",
 		"name": "$.eventName",
 	},
 ]
@@ -91,7 +41,7 @@ check_selector(filter, value, op, name) {
 	selector._selector == name
 }
 
-# {($.eventName=DeleteGroupPolicy)||($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)}
+# { ($.eventName = CreateNetworkAcl) || ($.eventName = CreateNetworkAclEntry) || ($.eventName = DeleteNetworkAcl) || ($.eventName = DeleteNetworkAclEntry) || ($.eventName = ReplaceNetworkAclEntry) || ($.eventName = ReplaceNetworkAclAssociation) }
 check_expression_missing(resName, filter, doc) {
 	alarm := doc.resource.aws_cloudwatch_metric_alarm[name]
 	contains(alarm.metric_name, resName)
@@ -110,8 +60,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": "resource",
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_cloudwatch_log_metric_filter should have pattern {($.eventName=DeleteGroupPolicy)||($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)} and be associated an aws_cloudwatch_metric_alarm",
-		"keyActualValue": "aws_cloudwatch_log_metric_filter not filtering pattern {($.eventName=DeleteGroupPolicy)||($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)} or not associated with any aws_cloudwatch_metric_alarm",
+		"keyExpectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventName = CreateNetworkAcl) || ($.eventName = CreateNetworkAclEntry) || ($.eventName = DeleteNetworkAcl) || ($.eventName = DeleteNetworkAclEntry) || ($.eventName = ReplaceNetworkAclEntry) || ($.eventName = ReplaceNetworkAclAssociation) } and be associated an aws_cloudwatch_metric_alarm",
+		"keyActualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventName = CreateNetworkAcl) || ($.eventName = CreateNetworkAclEntry) || ($.eventName = DeleteNetworkAcl) || ($.eventName = DeleteNetworkAclEntry) || ($.eventName = ReplaceNetworkAclEntry) || ($.eventName = ReplaceNetworkAclAssociation) } or not associated with any aws_cloudwatch_metric_alarm",
 		"searchLine": common_lib.build_search_line([], []),
 	}
 }
