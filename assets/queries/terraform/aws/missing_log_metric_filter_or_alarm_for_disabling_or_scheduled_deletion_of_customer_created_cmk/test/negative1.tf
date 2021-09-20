@@ -10,11 +10,11 @@ resource "aws_cloudwatch_log_metric_filter" "cis_unauthorized_api_calls_metric_f
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "cis_deletion_cmk" {
+resource "aws_cloudwatch_metric_alarm" "cis_acl" {
   alarm_name                = "CIS-3.1-UnauthorizedAPICalls"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
-  metric_name               = aws_cloudwatch_log_metric_filter.cis_deletion_cmk.id
+  metric_name               = aws_cloudwatch_log_metric_filter.cis_acl.id
   namespace                 = "CIS_Metric_Alarm_Namespace"
   period                    = "300"
   statistic                 = "Sum"
@@ -36,9 +36,9 @@ resource "aws_cloudwatch_log_metric_filter" "cis_missing_ima" {
   }
 }
 
-resource "aws_cloudwatch_log_metric_filter" "cis_deletion_cmk" {
+resource "aws_cloudwatch_log_metric_filter" "cis_acl" {
   name           = "CIS-ConsoleDeletionCMK"
-  pattern        = "{ ($.eventName = ConsoleLogin) && ($.errorMessage = \"Failed authentication\") }"
+  pattern        = "{ ($.eventName = CreateNetworkAcl) || ($.eventName = CreateNetworkAclEntry) || ($.eventName = DeleteNetworkAcl) || ($.eventName = DeleteNetworkAclEntry) || ($.eventName = ReplaceNetworkAclEntry) || ($.eventName = ReplaceNetworkAclAssociation) }"
   log_group_name = aws_cloudwatch_log_group.cis_cloudwatch_logsgroup.name
 
   metric_transformation {

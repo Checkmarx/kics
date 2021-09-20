@@ -5,13 +5,33 @@ import data.generic.common as common_lib
 expressionArr := [
 	{
 		"op": "=",
-		"value": "ConsoleLogin",
+		"value": "CreateNetworkAcl",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"Failed authentication\"",
-		"name": "$.errorMessage",
+		"value": "CreateNetworkAclEntry",
+		"name": "$.eventName",
+	},
+	{
+		"op": "=",
+		"value": "DeleteNetworkAcl",
+		"name": "$.eventName",
+	},
+	{
+		"op": "=",
+		"value": "DeleteNetworkAclEntry",
+		"name": "$.eventName",
+	},
+	{
+		"op": "=",
+		"value": "ReplaceNetworkAclEntry",
+		"name": "$.eventName",
+	},
+	{
+		"op": "=",
+		"value": "ReplaceNetworkAclAssociation",
+		"name": "$.eventName",
 	},
 ]
 
@@ -21,11 +41,10 @@ check_selector(filter, value, op, name) {
 	selector._selector == name
 }
 
-# { ($.eventName = ConsoleLogin) && ($.errorMessage = \"Failed authentication\") }
+#  "{ ($.eventName = CreateNetworkAcl) || ($.eventName = CreateNetworkAclEntry) || ($.eventName = DeleteNetworkAcl) || ($.eventName = DeleteNetworkAclEntry) || ($.eventName = ReplaceNetworkAclEntry) || ($.eventName = ReplaceNetworkAclAssociation) }"
 check_expression_missing(resName, filter, doc) {
 	alarm := doc.resource.aws_cloudwatch_metric_alarm[name]
 	contains(alarm.metric_name, resName)
-	filter._kics_filter_expr._op == "&&"
 
 	count({x | exp := expressionArr[n]; common_lib.check_selector(filter, exp.value, exp.op, exp.name) == false; x := exp}) == 0
 }
@@ -41,8 +60,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": "resource",
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventName = ConsoleLogin) && ($.errorMessage = \"Failed authentication\") } and be associated an aws_cloudwatch_metric_alarm",
-		"keyActualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventName = ConsoleLogin) && ($.errorMessage = \"Failed authentication\") } or not associated with any aws_cloudwatch_metric_alarm",
+		"keyExpectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventName = CreateNetworkAcl) || ($.eventName = CreateNetworkAclEntry) || ($.eventName = DeleteNetworkAcl) || ($.eventName = DeleteNetworkAclEntry) || ($.eventName = ReplaceNetworkAclEntry) || ($.eventName = ReplaceNetworkAclAssociation) } and be associated an aws_cloudwatch_metric_alarm",
+		"keyActualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventName = CreateNetworkAcl) || ($.eventName = CreateNetworkAclEntry) || ($.eventName = DeleteNetworkAcl) || ($.eventName = DeleteNetworkAclEntry) || ($.eventName = ReplaceNetworkAclEntry) || ($.eventName = ReplaceNetworkAclAssociation) } or not associated with any aws_cloudwatch_metric_alarm",
 		"searchLine": common_lib.build_search_line([], []),
 	}
 }
