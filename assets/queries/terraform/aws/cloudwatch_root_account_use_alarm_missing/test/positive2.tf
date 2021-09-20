@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_log_metric_filter" "cis_root_account_use_metric_filter" {
   name           = "CIS-RootAccountUsage"
   pattern        = "{ $.userIdentity.type = \"Root\" && $.eventType != \"AwsServiceEvent\" }"
-  log_group_name = "${aws_cloudwatch_log_group.CIS_CloudWatch_LogsGroup.name}"
+  log_group_name = aws_cloudwatch_log_group.CIS_CloudWatch_LogsGroup.name
 
   metric_transformation {
     name      = "CIS-RootAccountUsage"
@@ -20,6 +20,6 @@ resource "aws_cloudwatch_metric_alarm" "cis_root_account_use_cw_alarm" {
   statistic                 = "Sum"
   threshold                 = "1"
   alarm_description         = "Monitoring for root account logins will provide visibility into the use of a fully privileged account and an opportunity to reduce the use of it."
-  alarm_actions             = ["${aws_sns_topic.CIS_Alerts_SNS_Topic.arn}"]
+  alarm_actions             = [aws_sns_topic.CIS_Alerts_SNS_Topic.arn]
   insufficient_data_actions = []
 }

@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_log_metric_filter" "cis_s3_bucket_policy_change_metric_filter" {
   name           = "CIS-S3BucketPolicyChanges"
   pattern        = "{ $.eventSource = \"s3.amazonaws.com\" }"
-  log_group_name = "${aws_cloudwatch_log_group.CIS_CloudWatch_LogsGroup.name}"
+  log_group_name = aws_cloudwatch_log_group.CIS_CloudWatch_LogsGroup.name
 
   metric_transformation {
     name      = "CIS-S3BucketPolicyChanges"
