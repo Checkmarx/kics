@@ -5,21 +5,35 @@ import data.generic.common as commonLib
 expressionArr := [
 	{
 		"op": "=",
-		"value": "ConsoleLogin",
+		"value": "\"config.amazonaws.com\"",
+		"name": "$.eventSource",
+	},
+	{
+		"op": "=",
+		"value": "StopConfigurationRecorder",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"Failed authentication\"",
-		"name": "$.errorMessage",
+		"value": "DeleteDeliveryChannel",
+		"name": "$.eventName",
+	},
+	{
+		"op": "=",
+		"value": "PutDeliveryChannel",
+		"name": "$.eventName",
+	},
+	{
+		"op": "=",
+		"value": "PutConfigurationRecorder",
+		"name": "$.eventName",
 	},
 ]
 
-# { ($.eventName = ConsoleLogin) && ($.errorMessage = \"Failed authentication\") }
+# { ($.eventSource = config.amazonaws.com) && (($.eventName=StopConfigurationRecorder)||($.eventName=DeleteDeliveryChannel)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) }
 check_expression_missing(resName, filter, doc) {
 	alarm := doc.resource.aws_cloudwatch_metric_alarm[name]
 	contains(alarm.metric_name, resName)
-	filter._kics_filter_expr._op == "&&"
 	count({x | exp := expressionArr[n]; commonLib.check_selector(filter, exp.value, exp.op, exp.name) == false; x := exp}) == 0
 }
 
@@ -34,8 +48,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": "resource",
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventName = ConsoleLogin) && ($.errorMessage = \"Failed authentication\") } and be associated an aws_cloudwatch_metric_alarm",
-		"keyActualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventName = ConsoleLogin) && ($.errorMessage = \"Failed authentication\") } or not associated with any aws_cloudwatch_metric_alarm",
+		"keyExpectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventSource = config.amazonaws.com) && (($.eventName=StopConfigurationRecorder)||($.eventName=DeleteDeliveryChannel)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) } and be associated an aws_cloudwatch_metric_alarm",
+		"keyActualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventSource = config.amazonaws.com) && (($.eventName=StopConfigurationRecorder)||($.eventName=DeleteDeliveryChannel)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) } or not associated with any aws_cloudwatch_metric_alarm",
 		"searchLine": commonLib.build_search_line([], []),
 	}
 }

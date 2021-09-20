@@ -1,24 +1,24 @@
-resource "aws_cloudwatch_log_metric_filter" "CIS_Console_AuthN_Failure_Metric_Filter" {
-  name           = "CIS-ConsoleAuthenticationFailure"
-  pattern        = "{ $.errorMessage = \"Failed authentication\" }"
+resource "aws_cloudwatch_log_metric_filter" "CIS_AWS_Config_Change_Metric_Filter" {
+  name           = "CIS-AWSConfigChanges"
+  pattern        = "{ ($.eventSource = \"config.amazonaws.com\") && (($.eventName=StopConfigurationRecorder)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) }"
   log_group_name = aws_cloudwatch_log_group.CIS_CloudWatch_LogsGroup.name
 
   metric_transformation {
-    name      = "CIS-ConsoleAuthenticationFailure"
+    name      = "CIS-AWSConfigChanges"
     namespace = "CIS_Metric_Alarm_Namespace"
     value     = "1"
   }
 }
-resource "aws_cloudwatch_metric_alarm" "CIS_Console_AuthN_Failure_CW_Alarm" {
-  alarm_name                = "CIS-3.6-ConsoleAuthenticationFailure"
+resource "aws_cloudwatch_metric_alarm" "CIS_AWS_Config_Change_CW_Alarm" {
+  alarm_name                = "CIS-3.9-AWSConfigChanges"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
-  metric_name               = aws_cloudwatch_log_metric_filter.CIS_Console_AuthN_Failure_Metric_Filter.id
+  metric_name               = "XXXX NOT YOUR FILTER XXXX"
   namespace                 = "CIS_Metric_Alarm_Namespace"
   period                    = "300"
   statistic                 = "Sum"
   threshold                 = "1"
-  alarm_description         = "Monitoring failed console logins may decrease lead time to detect an attempt to brute force a credential, which may provide an indicator, such as source IP, that can be used in other event correlation."
+  alarm_description         = "Monitoring changes to AWS Config configuration will help ensure sustained visibility of configuration items within the AWS account."
   alarm_actions             = [aws_sns_topic.CIS_Alerts_SNS_Topic.arn]
   insufficient_data_actions = []
 }
