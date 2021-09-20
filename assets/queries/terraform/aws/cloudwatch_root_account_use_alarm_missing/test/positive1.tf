@@ -5,7 +5,7 @@ resource "aws_cloudwatch_log_metric_filter" "cis_root_account_use_metric_filter"
 
   metric_transformation {
     name      = "CIS-RootAccountUsage"
-    namespace = "${var.CIS_Metric_Alarm_Namespace}"
+    namespace = "CIS_Metric_Alarm_Namespace"
     value     = "1"
   }
 }
