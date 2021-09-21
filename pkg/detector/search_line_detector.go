@@ -39,6 +39,9 @@ func GetLineBySearchLine(pathComponents []string, file *model.FileMetadata) (int
 // preparePath resolves the path components and retrives important information
 // for the creation of the paths to search
 func (d *searchLineDetector) preparePath(pathItems []string) int {
+	if len(pathItems) == 0 {
+		return 1
+	}
 	// Escaping '.' in path components so it doesn't conflict with gjson pkg
 	objPath := strings.ReplaceAll(pathItems[0], ".", "\\.")
 	ArrPath := strings.ReplaceAll(pathItems[0], ".", "\\.")

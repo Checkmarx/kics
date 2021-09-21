@@ -145,20 +145,6 @@ func contains(types, supportedTypes []string) (invalidArgsRes []string, contRes,
 	return invalidArgs, cont, supported
 }
 
-// function to remove duplicate values in array
-func removeDuplicateValues(stringSlice []string) []string {
-	keys := make(map[string]bool)
-	list := []string{}
-
-	for _, entry := range stringSlice {
-		if _, value := keys[entry]; !value {
-			keys[entry] = true
-			list = append(list, entry)
-		}
-	}
-	return list
-}
-
 func (c *Parser) isValidExtension(filePath string) bool {
 	ext := filepath.Ext(filePath)
 	if ext == "" {
