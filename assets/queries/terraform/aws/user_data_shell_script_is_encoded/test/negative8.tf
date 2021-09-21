@@ -1,5 +1,6 @@
 module "asg" {
   source = "terraform-aws-modules/autoscaling/aws"
+  version = "1.0.4"
 
   # Launch configuration
   lc_name = "example-lc"
