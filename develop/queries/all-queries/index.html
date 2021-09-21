@@ -14,7 +14,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/queries/all-queries/">
       
       <link rel="icon" href="../../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.6">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.8">
     
     
       
@@ -22,7 +22,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.802231af.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.92558b1b.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -4040,19 +4040,11 @@
 <td><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Passwords And Secrets In Infrastructure Code<br/><sup><sub>f996f3cb-00fc-480c-8973-8ab04d44a8cc</sub></sup></td>
+<td>Passwords And Secrets<br/><sup><sub>a88baa34-e2ad-44ea-ad6f-8cac87bc7c71</sub></sup></td>
 <td>Common</td>
 <td><span style="color:#C00">High</span></td>
 <td>Secret Management</td>
 <td>Query to find passwords and secrets in infrastructure code.</td>
-<td><a href="https://kics.io/">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Passwords And Secrets In URL<br/><sup><sub>c09239d5-29d3-4dca-b829-f5553e6c0578</sub></sup></td>
-<td>Common</td>
-<td><span style="color:#C00">High</span></td>
-<td>Secret Management</td>
-<td>Query to find passwords and secrets in URL</td>
 <td><a href="https://kics.io/">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -9296,6 +9288,22 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>CloudWatch Unauthorized Access Alarm Missing<br/><sup><sub>4c18a45b-4ab1-4790-9f83-399ac695f1e5</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C00">High</span></td>
+<td>Observability</td>
+<td>Ensure a log metric filter and alarm exist for unauthorized API calls</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudWatch IAM Policy Changes Alarm Missing<br/><sup><sub>eaaba502-2f94-411a-a3c2-83d63cc1776d</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C00">High</span></td>
+<td>Observability</td>
+<td>Ensure a log metric filter and alarm exist for IAM policy changes</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>CloudTrail Log Files S3 Bucket with Logging Disabled<br/><sup><sub>ee9e50e8-b2ed-4176-ad42-8fc0cf7593f4</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
@@ -9328,6 +9336,14 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>CloudWatch Root Account Use Missing<br/><sup><sub>8b1b1e67-6248-4dca-bbad-93486bb181c0</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C00">High</span></td>
+<td>Observability</td>
+<td>Ensure a log metric filter and alarm exist for root acount usage</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>CloudTrail Log Files S3 Bucket is Publicly Accessible<br/><sup><sub>bd0088a5-c133-4b20-b129-ec9968b16ef3</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
@@ -9350,6 +9366,14 @@
 <td>Observability</td>
 <td>Logs delivered by CloudTrail should be encrypted using KMS</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#kms_key_id">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudWatch Console Sign-in Without MFA Alarm Missing<br/><sup><sub>44ceb4fa-0897-4fd2-b676-30e7a58f2933</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C00">High</span></td>
+<td>Observability</td>
+<td>Ensure a log metric filter and alarm exist for management console sign-in without MFA</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>API Gateway Method Does Not Contains An API Key<br/><sup><sub>671211c5-5d2a-4e97-8867-30fc28b02216</sub></sup></td>
@@ -10024,12 +10048,28 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#versioning">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>CloudWatch S3 policy Change Alarm Missing<br/><sup><sub>27c6a499-895a-4dc7-9617-5c485218db13</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Ensure a log metric filter and alarm exist for S3 bucket policy changes</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>CloudTrail Multi Region Disabled<br/><sup><sub>8173d5eb-96b5-4aa6-a71b-ecfa153c123d</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
 <td>CloudTrail should have 'is_multi_region_trail' and 'include_global_service_events' enabled</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#is_multi_region_trail">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Cloudwatch Cloudtrail Configuration Changes Alarm Missing<br/><sup><sub>0f6cbf69-41bb-47dc-93f3-3844640bf480</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Ensure a log metric filter and alarm exist for CloudTrail configuration changes</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Default VPC Exists<br/><sup><sub>96ed3526-0179-4c73-b1b2-372fde2e0d13</sub></sup></td>
@@ -10046,6 +10086,14 @@
 <td>Observability</td>
 <td>Ensure MSK Cluster Logging is enabled</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/msk_cluster#broker_logs">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudWatch AWS Organizations Changes Missing Alarm<br/><sup><sub>38b85c45-e772-4de8-a247-69619ca137b3</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Ensure a log metric filter and alarm exist for AWS organizations changes</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>API Gateway X-Ray Disabled<br/><sup><sub>5813ef56-fa94-406a-b35d-977d4a56ff2b</sub></sup></td>
@@ -10086,6 +10134,14 @@
 <td>Observability</td>
 <td>AWS Cloudfront distributions must be have logging enabled, which means the attribute 'logging_config' must be defined</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudWatch Disabling Or Scheduled Deletion Of Customer Created CMK Alarm Missing<br/><sup><sub>56a585f5-555c-48b2-8395-e64e4740a9cf</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Ensure a log metric filter and alarm exist for disabling or scheduled deletion of customer created CMK</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Elasticsearch Log is disabled<br/><sup><sub>acb6b4e2-a086-4f35-aefd-4db6ea51ada2</sub></sup></td>
@@ -10152,12 +10208,28 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_stage#access_log_settings">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>CloudWatch Management Console Auth Failed Alarm Missing<br/><sup><sub>5864d189-ee9a-4009-ac0c-8a582e6b7919</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Ensure a log metric filter and alarm exist for AWS Management Console authentication failures</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>MQ Broker Logging Disabled<br/><sup><sub>31245f98-a6a9-4182-9fc1-45482b9d030a</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
 <td>Check if MQ Brokers don't have logging enabled in any of the two options possible (audit and general).</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/mq_broker">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Cloudwatch Security Group Changes Alarm Missing<br/><sup><sub>4beaf898-9f8b-4237-89e2-5ffdc7ee6006</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Ensure a log metric filter and alarm exist for security group changes</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>API Gateway Deployment Without Access Log Setting<br/><sup><sub>625abc0e-f980-4ac9-a775-f7519ee34296</sub></sup></td>
@@ -10312,6 +10384,30 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>CloudWatch Network Gateways Changes Alarm Missing<br/><sup><sub>6b6874fe-4c2f-4eea-8b90-7cceaa4a125e</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Observability</td>
+<td>Ensure a log metric filter and alarm exist for network gateways changes</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudWatch AWS Config Configuration Changes Alarm Missing<br/><sup><sub>5b8d7527-de8e-4114-b9dd-9d988f1f418f</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Observability</td>
+<td>Ensure a log metric filter and alarm exist for AWS Config configuration changes</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudWatch VPC Changes Alarm Missing<br/><sup><sub>9d0d4512-1959-43a2-a17f-72360ff06d1b</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Observability</td>
+<td>Ensure a log metric filter and alarm exist for VPC changes</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Global Accelerator Flow Logs Disabled<br/><sup><sub>96e8183b-e985-457b-90cd-61c0503a3369</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#CC0">Low</span></td>
@@ -10344,12 +10440,28 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#enable_log_file_validation">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>CloudWatch Changes To NACL Alarm Missing<br/><sup><sub>0a8e8dc5-b6fc-44fc-b5a1-969ec950f9b0</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Observability</td>
+<td>Ensure a log metric filter and alarm exist for changes to NACL</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>DocDB Logging Is Disabled<br/><sup><sub>56f6a008-1b14-4af4-b9b2-ab7cf7e27641</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Observability</td>
 <td>DocDB logging should be enabled</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/docdb_cluster#enabled_cloudwatch_logs_exports">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudWatch Route Table Changes Alarm Missing<br/><sup><sub>2285e608-ddbc-47f3-ba54-ce7121e31216</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Observability</td>
+<td>Ensure a log metric filter and alarm exist for route table changes</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Missing Cluster Log Types<br/><sup><sub>66f130d9-b81d-4e8e-9b08-da74b9c891df</sub></sup></td>
@@ -11072,6 +11184,14 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mariadb_server#geo_redundant_backup_enabled">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Key Vault Secrets Content Type Undefined<br/><sup><sub>f8e08a38-fc6e-4915-abbe-a7aadf1d59ef</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Best Practices</td>
+<td>Key Vault Secrets should have set Content Type</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_secret#content_type">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>AKS Uses Azure Policies Add-On Disabled<br/><sup><sub>43789711-161b-4708-b5bb-9d1c626f7492</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#CC0">Low</span></td>
@@ -11595,10 +11715,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.409db549.min.js", "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.94ec81fe.min.js", "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.756773cc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.48dfec6c.min.js"></script>
       
         <script src="../../js/version-mike.js"></script>
       
