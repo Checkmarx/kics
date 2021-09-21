@@ -5,82 +5,82 @@ import data.generic.common as common_lib
 expressionArr := [
 	{
 		"op": "=",
-		"value": "\"DeleteGroupPolicy\"",
+		"value": "DeleteGroupPolicy",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"DeleteRolePolicy\"",
+		"value": "DeleteRolePolicy",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"DeleteUserPolicy\"",
+		"value": "DeleteUserPolicy",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"PutGroupPolicy\"",
+		"value": "PutGroupPolicy",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"PutRolePolicy\"",
+		"value": "PutRolePolicy",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"PutUserPolicy\"",
+		"value": "PutUserPolicy",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"CreatePolicy\"",
+		"value": "CreatePolicy",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"DeletePolicy\"",
+		"value": "DeletePolicy",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"CreatePolicyVersion\"",
+		"value": "CreatePolicyVersion",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"DeletePolicyVersion\"",
+		"value": "DeletePolicyVersion",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"AttachRolePolicy\"",
+		"value": "AttachRolePolicy",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"DetachRolePolicy\"",
+		"value": "DetachRolePolicy",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"AttachUserPolicy\"",
+		"value": "AttachUserPolicy",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"DetachUserPolicy\"",
+		"value": "DetachUserPolicy",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"AttachGroupPolicy\"",
+		"value": "AttachGroupPolicy",
 		"name": "$.eventName",
 	},
 	{
 		"op": "=",
-		"value": "\"DetachGroupPolicy\"",
+		"value": "DetachGroupPolicy",
 		"name": "$.eventName",
 	},
 ]

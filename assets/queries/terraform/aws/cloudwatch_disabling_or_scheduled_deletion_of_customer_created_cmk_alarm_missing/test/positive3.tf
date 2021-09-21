@@ -25,7 +25,7 @@ resource "aws_cloudwatch_metric_alarm" "cis_disable_delete_cmk" {
 
 resource "aws_cloudwatch_log_metric_filter" "cis_disable_delete_cmk" {
   name           = "CIS-4.7-Disable-Scheduled-Delete-CMK"
-  pattern        = "{ ($.eventSource = \"kms.amazonaws.com\") && (($.eventName = DisableKey) || ($.eventName = ScheduleKeyDeletion)) }"
+  pattern        = "{ ($.eventSource = \"kms.amazonaws.com\") && (($.eventName = ScheduleKeyDeletion)) }"
   log_group_name = aws_cloudwatch_log_group.CIS_CloudWatch_LogsGroup.name
 
   metric_transformation {

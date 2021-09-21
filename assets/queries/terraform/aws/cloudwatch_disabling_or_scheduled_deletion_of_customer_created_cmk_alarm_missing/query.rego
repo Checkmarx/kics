@@ -30,6 +30,7 @@ check_selector(filter, value, op, name) {
 check_expression_missing(resName, filter, doc) {
 	alarm := doc.resource.aws_cloudwatch_metric_alarm[name]
 	contains(alarm.metric_name, resName)
+	filter._kics_filter_expr._op == "&&"
 
 	count({x | exp := expressionArr[n]; common_lib.check_selector(filter, exp.value, exp.op, exp.name) == false; x := exp}) == 0
 }
