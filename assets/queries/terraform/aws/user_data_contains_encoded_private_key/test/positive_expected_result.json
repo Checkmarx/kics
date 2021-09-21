@@ -2,6 +2,13 @@
 	{
 		"queryName": "User Data Contains Encoded Private Key",
 		"severity": "HIGH",
-		"line": 5
+		"line": 5,
+		"fileName": "positive.tf"
+	},
+	{
+		"queryName": "User Data Contains Encoded Private Key",
+		"severity": "HIGH",
+		"line": 10,
+		"fileName": "positive2.tf"
 	}
 ]
