@@ -2,16 +2,37 @@
   {
     "queryName": "Launch Configuration Is Not Encrypted",
     "severity": "HIGH",
-    "line": 11
+    "line": 11,
+    "fileName": "positive.tf"
   },
   {
     "queryName": "Launch Configuration Is Not Encrypted",
     "severity": "HIGH",
-    "line": 28
+    "line": 28,
+    "fileName": "positive.tf"
   },
   {
     "queryName": "Launch Configuration Is Not Encrypted",
     "severity": "HIGH",
-    "line": 36
+    "line": 36,
+    "fileName": "positive.tf"
+  },
+  {
+    "queryName": "Launch Configuration Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Launch Configuration Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "Launch Configuration Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 24,
+    "fileName": "positive6.tf"
   }
 ]
