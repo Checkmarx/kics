@@ -145,7 +145,7 @@ func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte)
 			files = append(files, model.FileMetadata{
 				ID:               uuid.NewString(),
 				ScanID:           scanID,
-				Document:         kics.RemoveLineInfoConverter(document),
+				Document:         kics.PrepareScanDocument(document, kind),
 				LineInfoDocument: document,
 				OriginalData:     string(content),
 				Kind:             kind,

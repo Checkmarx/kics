@@ -311,3 +311,21 @@ get_module_equivalent_key(provider, moduleName, resource, key) = keyInResource {
 	inArray(module.resources, resource)
 	keyInResource := module.inputs[key]
 }
+
+check_selector(filter, value, op, name) {
+	selector := find_selector_by_value(filter, value)
+	selector._op == op
+	selector._selector == name
+} else = false {
+	true
+}
+
+find_selector_by_value(filter, str) = rtn {
+	[fpath, fvalue] := walk(filter)
+	trim(fvalue._value, "\"") == str
+	rtn := fvalue
+} else {
+	[fpath, fvalue] := walk(filter)
+	trim(fvalue._value, "'") == str
+	rtn := fvalue
+}

@@ -1,0 +1,11 @@
+{
+  "id": "4c18a45b-4ab1-4790-9f83-399ac695f1e5",
+  "queryName": "CloudWatch Unauthorized Access Alarm Missing",
+  "severity": "HIGH",
+  "category": "Observability",
+  "descriptionText": "Ensure a log metric filter and alarm exist for unauthorized API calls",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern",
+  "platform": "Terraform",
+  "descriptionID": "244b5c19",
+  "cloudProvider": "aws"
+}
