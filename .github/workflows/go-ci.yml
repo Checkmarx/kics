@@ -92,6 +92,7 @@ jobs:
       - name: Test and Generate Report
         if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
         run: |
+          which $0
           echo "::group::Unit Tests"
           go test -mod=vendor -v $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
           echo "::endgroup::"
