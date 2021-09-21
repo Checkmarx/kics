@@ -322,6 +322,10 @@ check_selector(filter, value, op, name) {
 
 find_selector_by_value(filter, str) = rtn {
 	[fpath, fvalue] := walk(filter)
-	fvalue._value == str
+	trim(fvalue._value, "\"") == str
+	rtn := fvalue
+} else {
+	[fpath, fvalue] := walk(filter)
+	trim(fvalue._value, "'") == str
 	rtn := fvalue
 }

@@ -5,7 +5,7 @@ import data.generic.common as commonLib
 expressionArr := [
 	{
 		"op": "=",
-		"value": "\"Root\"",
+		"value": "Root",
 		"name": "$.userIdentity.type",
 	},
 	{
@@ -15,7 +15,7 @@ expressionArr := [
 	},
 	{
 		"op": "!=",
-		"value": "\"AwsServiceEvent\"",
+		"value": "AwsServiceEvent",
 		"name": "$.eventType",
 	},
 ]

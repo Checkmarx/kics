@@ -5,12 +5,12 @@ import data.generic.common as commonLib
 expressionArr := [
 	{
 		"op": "=",
-		"value": "\"*UnauthorizedOperation\"",
+		"value": "*UnauthorizedOperation",
 		"name": "$.errorCode",
 	},
 	{
 		"op": "=",
-		"value": "\"AccessDenied*\"",
+		"value": "AccessDenied*",
 		"name": "$.errorCode",
 	},
 ]

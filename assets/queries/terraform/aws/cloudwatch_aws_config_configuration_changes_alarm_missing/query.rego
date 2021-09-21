@@ -5,7 +5,7 @@ import data.generic.common as commonLib
 expressionArr := [
 	{
 		"op": "=",
-		"value": "\"config.amazonaws.com\"",
+		"value": "config.amazonaws.com",
 		"name": "$.eventSource",
 	},
 	{

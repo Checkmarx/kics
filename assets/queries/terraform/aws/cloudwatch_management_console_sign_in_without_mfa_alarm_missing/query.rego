@@ -5,12 +5,12 @@ import data.generic.common as commonLib
 expressionArr := [
 	{
 		"op": "=",
-		"value": "\"ConsoleLogin\"",
+		"value": "ConsoleLogin",
 		"name": "$.eventName",
 	},
 	{
 		"op": "!=",
-		"value": "\"Yes\"",
+		"value": "Yes",
 		"name": "$.additionalEventData.MFAUsed",
 	},
 ]
