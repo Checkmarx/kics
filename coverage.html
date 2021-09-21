@@ -115,7 +115,7 @@
 				
 				<option value="file29">github.com/Checkmarx/kics/pkg/detector/helper.go (93.9%)</option>
 				
-				<option value="file30">github.com/Checkmarx/kics/pkg/detector/search_line_detector.go (97.4%)</option>
+				<option value="file30">github.com/Checkmarx/kics/pkg/detector/search_line_detector.go (95.0%)</option>
 				
 				<option value="file31">github.com/Checkmarx/kics/pkg/engine/inspector.go (78.5%)</option>
 				
@@ -155,7 +155,7 @@
 				
 				<option value="file49">github.com/Checkmarx/kics/pkg/parser/json/parser.go (78.6%)</option>
 				
-				<option value="file50">github.com/Checkmarx/kics/pkg/parser/parser.go (76.1%)</option>
+				<option value="file50">github.com/Checkmarx/kics/pkg/parser/parser.go (73.4%)</option>
 				
 				<option value="file51">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (79.5%)</option>
 				
@@ -1591,7 +1591,7 @@ func setupCfgFile() (bool, error) <span class="cov4" title="8">{
 func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" title="10">{
         log.Debug().Msg("console.bindFlags()")
         settingsMap := v.AllSettings()
-        cmd.Flags().VisitAll(func(f *pflag.Flag) </span><span class="cov10" title="380">{
+        cmd.Flags().VisitAll(func(f *pflag.Flag) </span><span class="cov9" title="380">{
                 settingsMap[f.Name] = true
                 if strings.Contains(f.Name, "-") </span><span class="cov9" title="290">{
                         envVarSuffix := strings.ToUpper(strings.ReplaceAll(f.Name, "-", "_"))
@@ -1600,13 +1600,13 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                                 log.Err(err).Msg("Failed to bind Viper flags")
                         }</span>
                 }
-                <span class="cov10" title="380">if !f.Changed &amp;&amp; v.IsSet(f.Name) </span><span class="cov3" title="6">{
+                <span class="cov9" title="380">if !f.Changed &amp;&amp; v.IsSet(f.Name) </span><span class="cov3" title="6">{
                         val := v.Get(f.Name)
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="364">{
-                if val == true </span><span class="cov9" title="363">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov10" title="381">{
+                if val == true </span><span class="cov9" title="380">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2512,13 +2512,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="39">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="33">total += v
+                <span class="cov9" title="39">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2543,7 +2543,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4757,8 +4757,11 @@ func GetLineBySearchLine(pathComponents []string, file *model.FileMetadata) (int
 // preparePath resolves the path components and retrives important information
 // for the creation of the paths to search
 func (d *searchLineDetector) preparePath(pathItems []string) int <span class="cov6" title="5">{
+        if len(pathItems) == 0 </span><span class="cov0" title="0">{
+                return 1
+        }</span>
         // Escaping '.' in path components so it doesn't conflict with gjson pkg
-        objPath := strings.ReplaceAll(pathItems[0], ".", "\\.")
+        <span class="cov6" title="5">objPath := strings.ReplaceAll(pathItems[0], ".", "\\.")
         ArrPath := strings.ReplaceAll(pathItems[0], ".", "\\.")
 
         obj := pathItems[len(pathItems)-1]
@@ -4939,7 +4942,7 @@ func NewInspector(
         }</span>
         <span class="cov2" title="4">platformLibraries := getPlatformLibraries(queriesSource, queries)
         opaQueries := make([]*preparedQuery, 0, len(queries))
-        for _, metadata := range queries </span><span class="cov10" title="3715">{
+        for _, metadata := range queries </span><span class="cov10" title="3760">{
                 platformGeneralQuery, ok := platformLibraries[metadata.Platform]
                 if !ok </span><span class="cov0" title="0">{
                         log.Err(err).
@@ -4947,20 +4950,20 @@ func NewInspector(
                         continue</span>
                 }
 
-                <span class="cov10" title="3715">select </span>{
+                <span class="cov10" title="3760">select </span>{
                 case &lt;-ctx.Done():<span class="cov0" title="0">
                         return nil, nil</span>
-                default:<span class="cov10" title="3715">
+                default:<span class="cov10" title="3760">
                         var opaQuery rego.PreparedEvalQuery
                         mergedInputData, err := source.MergeInputData(platformGeneralQuery.LibraryInputData, metadata.InputData)
                         if err != nil </span><span class="cov0" title="0">{
                                 log.Debug().Msg("Could not merge platform library input data")
                         }</span>
-                        <span class="cov10" title="3715">mergedInputData, err = source.MergeInputData(commonLibrary.LibraryInputData, mergedInputData)
+                        <span class="cov10" title="3760">mergedInputData, err = source.MergeInputData(commonLibrary.LibraryInputData, mergedInputData)
                         if err != nil </span><span class="cov0" title="0">{
                                 log.Debug().Msg("Could not merge common library input data")
                         }</span>
-                        <span class="cov10" title="3715">store := inmem.NewFromReader(bytes.NewBufferString(mergedInputData))
+                        <span class="cov10" title="3760">store := inmem.NewFromReader(bytes.NewBufferString(mergedInputData))
                         opaQuery, err = rego.New(
                                 rego.Query(regoQuery),
                                 rego.Module("Common", commonLibrary.LibraryCode),
@@ -4978,7 +4981,7 @@ func NewInspector(
                                 continue</span>
                         }
 
-                        <span class="cov10" title="3715">tracker.TrackQueryLoad(metadata.Aggregation)
+                        <span class="cov10" title="3760">tracker.TrackQueryLoad(metadata.Aggregation)
 
                         opaQueries = append(opaQueries, &amp;preparedQuery{
                                 opaQuery: opaQuery,
@@ -5016,7 +5019,7 @@ func NewInspector(
 
 func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.QueryMetadata) map[string]source.RegoLibraries <span class="cov2" title="4">{
         supportedPlatforms := make(map[string]string)
-        for _, query := range queries </span><span class="cov10" title="3715">{
+        for _, query := range queries </span><span class="cov10" title="3760">{
                 supportedPlatforms[query.Platform] = ""
         }</span>
         <span class="cov2" title="4">platformLibraries := make(map[string]source.RegoLibraries)
@@ -5035,7 +5038,7 @@ func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.Qu
 
 func sumAllAggregatedQueries(opaQueries []*preparedQuery) int <span class="cov2" title="4">{
         sum := 0
-        for _, query := range opaQueries </span><span class="cov10" title="3715">{
+        for _, query := range opaQueries </span><span class="cov10" title="3760">{
                 sum += query.metadata.Aggregation
         }</span>
         <span class="cov2" title="4">return sum</span>
@@ -5092,8 +5095,8 @@ func (c *Inspector) Inspect(
 // LenQueriesByPlat returns the number of queries by platforms
 func (c *Inspector) LenQueriesByPlat(platforms []string) int <span class="cov1" title="2">{
         count := 0
-        for _, query := range c.queries </span><span class="cov9" title="2476">{
-                if contains(platforms, query.metadata.Platform) </span><span class="cov7" title="492">{
+        for _, query := range c.queries </span><span class="cov9" title="2506">{
+                if contains(platforms, query.metadata.Platform) </span><span class="cov7" title="507">{
                         c.tracker.TrackQueryExecuting(query.metadata.Aggregation)
                         count++
                 }</span>
@@ -5222,19 +5225,19 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 
 // contains is a simple method to check if a slice
 // contains an entry
-func contains(s []string, e string) bool <span class="cov9" title="2482">{
+func contains(s []string, e string) bool <span class="cov9" title="2512">{
         if e == "common" </span><span class="cov1" title="1">{
                 return true
         }</span>
-        <span class="cov9" title="2481">if e == "k8s" </span><span class="cov6" title="161">{
+        <span class="cov9" title="2511">if e == "k8s" </span><span class="cov6" title="161">{
                 e = "kubernetes"
         }</span>
-        <span class="cov9" title="2481">for _, a := range s </span><span class="cov9" title="2482">{
-                if strings.EqualFold(a, e) </span><span class="cov7" title="496">{
+        <span class="cov9" title="2511">for _, a := range s </span><span class="cov9" title="2512">{
+                if strings.EqualFold(a, e) </span><span class="cov7" title="511">{
                         return true
                 }</span>
         }
-        <span class="cov9" title="1985">return false</span>
+        <span class="cov9" title="2000">return false</span>
 }
 
 func shouldSkipFile(command model.CommentsCommands, queryID string) bool <span class="cov3" title="7">{
@@ -5577,12 +5580,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="21803">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="22079">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="21803">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="21574">{
+                <span class="cov9" title="22079">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="21850">{
                         return skipFolder
                 }</span>
 
@@ -5640,24 +5643,24 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="228">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="21806">{
-        if info.IsDir() </span><span class="cov8" title="5006">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="22082">{
+        if info.IsDir() </span><span class="cov8" title="5066">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
                         return true, filepath.SkipDir
                 }</span>
-                <span class="cov8" title="5005">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
-                if err != nil || resolved </span><span class="cov8" title="5003">{
+                <span class="cov8" title="5065">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
+                if err != nil || resolved </span><span class="cov8" title="5063">{
                         return true, nil
                 }</span>
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="16800">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="17016">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="16800">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="16572">{
+        <span class="cov9" title="17016">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="16788">{
                 return true, nil
         }</span>
         <span class="cov5" title="228">return false, nil</span>
@@ -7263,10 +7266,20 @@ import (
         "io"
 
         "github.com/Checkmarx/kics/pkg/model"
+        "github.com/Checkmarx/kics/pkg/parser/jsonfilter/parser"
+        "github.com/antlr/antlr4/runtime/Go/antlr"
         "github.com/getsentry/sentry-go"
         "github.com/google/uuid"
         "github.com/pkg/errors"
         "github.com/rs/zerolog/log"
+)
+
+var (
+        lines = map[model.FileKind][]string{
+                "TF":   {"pattern"},
+                "JSON": {"FilterPattern"},
+                "YAML": {"filter_pattern", "FilterPattern"},
+        }
 )
 
 func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reader) error <span class="cov0" title="0">{
@@ -7296,7 +7309,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
                 <span class="cov0" title="0">file := model.FileMetadata{
                         ID:               uuid.New().String(),
                         ScanID:           scanID,
-                        Document:         RemoveLineInfoConverter(document),
+                        Document:         PrepareScanDocument(document, kind),
                         LineInfoDocument: document,
                         OriginalData:     string(*content),
                         Kind:             kind,
@@ -7310,8 +7323,8 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
         return errors.Wrap(err, "failed to save file content")</span>
 }
 
-// RemoveLineInfoConverter removes _kics_lines from payload
-func RemoveLineInfoConverter(body map[string]interface{}) map[string]interface{} <span class="cov0" title="0">{
+// PrepareScanDocument removes _kics_lines from payload and parses json filters
+func PrepareScanDocument(body map[string]interface{}, kind model.FileKind) map[string]interface{} <span class="cov0" title="0">{
         bodyMap := make(map[string]interface{})
         j, err := json.Marshal(body)
         if err != nil </span><span class="cov0" title="0">{
@@ -7322,33 +7335,80 @@ func RemoveLineInfoConverter(body map[string]interface{}) map[string]interface{}
                 log.Error().Msgf("failed to remove kics line information")
                 return body
         }</span>
-        <span class="cov0" title="0">removeLineInfo(bodyMap)
+        <span class="cov0" title="0">prepareScanDocumentRoot(bodyMap, kind)
         return bodyMap</span>
 }
 
-func removeLineInfo(body interface{}) <span class="cov0" title="0">{
+func prepareScanDocumentRoot(body interface{}, kind model.FileKind) <span class="cov0" title="0">{
         switch bodyType := body.(type) </span>{
         case map[string]interface{}:<span class="cov0" title="0">
-                removeMapLineInfo(bodyType)</span>
+                prepareScanDocumentValue(bodyType, kind)</span>
         case []interface{}:<span class="cov0" title="0">
                 for _, indx := range bodyType </span><span class="cov0" title="0">{
-                        removeLineInfo(indx)
+                        prepareScanDocumentRoot(indx, kind)
                 }</span>
         }
 }
 
-func removeMapLineInfo(bodyType map[string]interface{}) <span class="cov0" title="0">{
+func prepareScanDocumentValue(bodyType map[string]interface{}, kind model.FileKind) <span class="cov0" title="0">{
         delete(bodyType, "_kics_lines")
-        for _, v := range bodyType </span><span class="cov0" title="0">{
+        for key, v := range bodyType </span><span class="cov0" title="0">{
                 switch value := v.(type) </span>{
                 case map[string]interface{}:<span class="cov0" title="0">
-                        removeLineInfo(value)</span>
+                        prepareScanDocumentRoot(value, kind)</span>
                 case []interface{}:<span class="cov0" title="0">
                         for _, indx := range value </span><span class="cov0" title="0">{
-                                removeLineInfo(indx)
+                                prepareScanDocumentRoot(indx, kind)
+                        }</span>
+                case string:<span class="cov0" title="0">
+                        if field, ok := lines[kind]; ok &amp;&amp; contains(field, key) </span><span class="cov0" title="0">{
+                                bodyType[key] = resolveJSONFilter(value)
                         }</span>
                 }
         }
+}
+
+func contains(strSlice []string, key string) bool <span class="cov0" title="0">{
+        for _, v := range strSlice </span><span class="cov0" title="0">{
+                if v == key </span><span class="cov0" title="0">{
+                        return true
+                }</span>
+        }
+        <span class="cov0" title="0">return false</span>
+}
+
+func resolveJSONFilter(jsonFilter string) string <span class="cov0" title="0">{
+        is := antlr.NewInputStream(jsonFilter)
+
+        // lexer build
+        lexer := parser.NewJSONFilterLexer(is)
+        lexer.RemoveErrorListeners()
+        stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
+        errorListener := parser.NewCustomErrorListener()
+        lexer.RemoveErrorListeners()
+        lexer.AddErrorListener(errorListener)
+
+        // parser build
+        p := parser.NewJSONFilterParser(stream)
+        p.RemoveErrorListeners()
+        p.AddErrorListener(errorListener)
+        p.BuildParseTrees = true
+        tree := p.Awsjsonfilter()
+
+        // parse
+        visitor := parser.NewJSONFilterPrinterVisitor()
+        if errorListener.HasErrors() </span><span class="cov0" title="0">{
+                return jsonFilter
+        }</span>
+
+        <span class="cov0" title="0">parsed := visitor.VisitAll(tree)
+
+        parsedByte, err := json.Marshal(parsed)
+        if err != nil </span><span class="cov0" title="0">{
+                return jsonFilter
+        }</span>
+
+        <span class="cov0" title="0">return string(parsedByte)</span>
 }
 </pre>
 		
@@ -8803,20 +8863,6 @@ func contains(types, supportedTypes []string) (invalidArgsRes []string, contRes,
                 }</span>
         }
         <span class="cov0" title="0">return invalidArgs, cont, supported</span>
-}
-
-// function to remove duplicate values in array
-func removeDuplicateValues(stringSlice []string) []string <span class="cov3" title="2">{
-        keys := make(map[string]bool)
-        list := []string{}
-
-        for _, entry := range stringSlice </span><span class="cov7" title="7">{
-                if _, value := keys[entry]; !value </span><span class="cov6" title="6">{
-                        keys[entry] = true
-                        list = append(list, entry)
-                }</span>
-        }
-        <span class="cov3" title="2">return list</span>
 }
 
 func (c *Parser) isValidExtension(filePath string) bool <span class="cov7" title="7">{
