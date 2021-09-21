@@ -1,19 +1,19 @@
 [
   {
-    "queryName": "Cloudwatch Network Gateways Changes Alarm Missing",
-    "severity": "MEDIUM",
+    "queryName": "CloudWatch Network Gateways Changes Alarm Missing",
+    "severity": "LOW",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "Cloudwatch Network Gateways Changes Alarm Missing",
-    "severity": "MEDIUM",
+    "queryName": "CloudWatch Network Gateways Changes Alarm Missing",
+    "severity": "LOW",
     "line": 1,
     "fileName": "positive2.tf"
   },
   {
-    "queryName": "Cloudwatch Network Gateways Changes Alarm Missing",
-    "severity": "MEDIUM",
+    "queryName": "CloudWatch Network Gateways Changes Alarm Missing",
+    "severity": "LOW",
     "line": 1,
     "fileName": "positive3.tf"
   }

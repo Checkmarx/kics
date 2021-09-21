@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "Missing Log Metric Filter Or Alarm For IAM Policy Changes",
+    "queryName": "CloudWatch AWS Organizations Changes Missing Alarm",
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive1.tf"

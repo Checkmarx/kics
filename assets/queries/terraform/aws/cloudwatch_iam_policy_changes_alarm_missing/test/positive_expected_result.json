@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "CloudWatch IAM Policy Changes Alarm Missing",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive1.tf"
+  }
+]

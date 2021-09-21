@@ -1,8 +1,0 @@
-[
-  {
-    "queryName": "Missing Log Metric Filter Or Alarm For AWS Organizations Changes",
-    "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive1.tf"
-  }
-]

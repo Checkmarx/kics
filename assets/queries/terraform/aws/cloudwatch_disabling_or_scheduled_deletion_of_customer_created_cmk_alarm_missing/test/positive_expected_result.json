@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "CloudWatch Disabling Or Scheduled Deletion Of Customer Created CMK Alarm Missing",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  }
+]

@@ -1,25 +1,25 @@
 [
   {
-    "queryName": "Cloudwatch AWS Config Configuration Changes Alarm Missing",
-    "severity": "MEDIUM",
+    "queryName": "CloudWatch AWS Config Configuration Changes Alarm Missing",
+    "severity": "HIGH",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "Cloudwatch AWS Config Configuration Changes Alarm Missing",
-    "severity": "MEDIUM",
+    "queryName": "CloudWatch AWS Config Configuration Changes Alarm Missing",
+    "severity": "HIGH",
     "line": 1,
     "fileName": "positive2.tf"
   },
   {
-    "queryName": "Cloudwatch AWS Config Configuration Changes Alarm Missing",
-    "severity": "MEDIUM",
+    "queryName": "CloudWatch AWS Config Configuration Changes Alarm Missing",
+    "severity": "HIGH",
     "line": 1,
     "fileName": "positive3.tf"
   },
   {
-    "queryName": "Cloudwatch AWS Config Configuration Changes Alarm Missing",
-    "severity": "MEDIUM",
+    "queryName": "CloudWatch AWS Config Configuration Changes Alarm Missing",
+    "severity": "HIGH",
     "line": 1,
     "fileName": "positive4.tf"
   }
