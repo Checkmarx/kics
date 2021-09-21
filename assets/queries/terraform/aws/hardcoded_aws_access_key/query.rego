@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	instance := input.document[i].resource.aws_instance[name]
 	containsAccessKey(instance.user_data)
@@ -8,8 +10,25 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_instance[%s].user_data", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'user_data' doesn't contain access key",
-		"keyActualValue": "'user_data' contains access key",
+		"keyExpectedValue": "'user_data' doesn't contain hardcoded access key",
+		"keyActualValue": "'user_data' contains hardcoded access key",
+		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name, "user_data"], []),
+	}
+}
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_instance", "user_data")
+
+	containsAccessKey(module[keyToCheck])
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("module[%s].user_data", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "'user_data' doesn't contain hardcoded access key",
+		"keyActualValue": "'user_data' contains hardcoded access key",
+		"searchLine": common_lib.build_search_line(["module", name, "user_data"], []),
 	}
 }
 
