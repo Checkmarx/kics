@@ -69,13 +69,13 @@ jobs:
         run: |
           go mod vendor
       - name: Test and Generate Report
-        if: ${{ runner.os }} != 'Windows'
+        if: matrix.os != 'windows-latest'
         run: |
           go test -mod=vendor -v $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
           result_code=${PIPESTATUS[0]}
           exit $result_code
       - name: Test and Generate Report Windows
-        if: ${{ runner.os }} == 'Windows'
+        if: matrix.os == 'windows-latest'
         run: |
           go test -mod=vendor -v $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
       - name: Archive test logs
