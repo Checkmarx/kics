@@ -16,3 +16,20 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_autoscaling_group", name], []),
 	}
 }
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_autoscaling_group", "tags")
+
+	not common_lib.valid_key(module, "tags")
+	not common_lib.valid_key(module, "tag")
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("module[%s]", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'tags' or 'tag' are defined and not null",
+		"keyActualValue": "'tags' or 'tag' are undefined or null",
+		"searchLine": common_lib.build_search_line(["module", name], []),
+	}
+}

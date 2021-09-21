@@ -4,5 +4,11 @@
     "severity": "LOW",
     "line": 1,
     "fileName": "positive.tf"
+  },
+  {
+    "queryName": "Autoscaling Groups Supply Tags",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive2.tf"
   }
 ]
