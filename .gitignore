@@ -50,3 +50,6 @@ dist
 
 # debug payload
 payload.json
+
+# ANTLR files
+.antlr

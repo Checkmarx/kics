@@ -1,7 +1,6 @@
 package parser
 
 import (
-	"reflect"
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -106,58 +105,6 @@ func initilizeBuilder() []*Parser {
 		Add(&dockerParser.Parser{}).
 		Build([]string{""}, []string{""})
 	return bd
-}
-
-func TestRemoveDuplicateValues(t *testing.T) {
-	type args struct {
-		stringSlice []string
-	}
-	tests := []struct {
-		name string
-		args args
-		want []string
-	}{
-		{
-			name: "remove_duplications",
-			args: args{
-				stringSlice: []string{
-					"test",
-					"test1",
-					"test",
-					"test2",
-				},
-			},
-			want: []string{
-				"test",
-				"test1",
-				"test2",
-			},
-		},
-		{
-			name: "no_duplicates",
-			args: args{
-				stringSlice: []string{
-					"test",
-					"test1",
-					"test2",
-				},
-			},
-			want: []string{
-				"test",
-				"test1",
-				"test2",
-			},
-		},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			got := removeDuplicateValues(tt.args.stringSlice)
-			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("removeDuplicateValues() = %v, want %v", got, tt.want)
-			}
-		})
-	}
 }
 
 func TestIsValidExtension(t *testing.T) {

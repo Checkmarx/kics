@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "Cloudwatch Security Group Changes Alarm Missing",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Cloudwatch Security Group Changes Alarm Missing",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Cloudwatch Security Group Changes Alarm Missing",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive3.tf"
+  }
+]
