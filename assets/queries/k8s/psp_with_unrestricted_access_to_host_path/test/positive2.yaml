@@ -6,3 +6,11 @@ spec:
   hostIPC: false
   allowedHostPaths:
   - pathPrefix: /dev
+  runAsUser:
+    rule: 'RunAsAny'
+  seLinux:
+    rule: 'RunAsAny'
+  supplementalGroups:
+    rule: 'RunAsAny'
+  fsGroup:
+    rule: 'RunAsAny'

@@ -7,3 +7,11 @@ spec:
   allowedHostPaths:
   - pathPrefix: /dev
     readOnly: false
+  runAsUser:
+    rule: 'RunAsAny'
+  seLinux:
+    rule: 'RunAsAny'
+  supplementalGroups:
+    rule: 'RunAsAny'
+  fsGroup:
+    rule: 'RunAsAny'
