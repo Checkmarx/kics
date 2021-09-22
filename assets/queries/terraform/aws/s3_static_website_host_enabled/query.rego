@@ -26,8 +26,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("module[%s].website", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'website' doesn't have static websites inside", [name]),
-		"keyActualValue": sprintf("'website' does have static websites inside", [name]),
+		"keyExpectedValue": "'website' doesn't have static websites inside",
+		"keyActualValue": "'website' does have static websites inside",
 		"searchLine": common_lib.build_search_line(["module", name, "website"], []),
 	}
 }
