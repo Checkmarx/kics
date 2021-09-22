@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_s3_bucket[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy.Statement.Action' doesn't contain '*'",
-		"keyActualValue": "'policy.Statement.Action' contain '*'",
+		"keyActualValue": "'policy.Statement.Action' contains '*'",
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name, "policy"], []),
 	}
 }
@@ -28,7 +28,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("module[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy.Statement.Action' doesn't contain '*'",
-		"keyActualValue": "'policy.Statement.Action' contain '*'",
+		"keyActualValue": "'policy.Statement.Action' contains '*'",
 		"searchLine": common_lib.build_search_line(["module", name, "policy"], []),
 	}
 }
