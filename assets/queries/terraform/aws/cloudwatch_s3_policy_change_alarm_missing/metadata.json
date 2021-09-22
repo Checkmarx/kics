@@ -1,0 +1,11 @@
+{
+  "id": "27c6a499-895a-4dc7-9617-5c485218db13",
+  "queryName": "CloudWatch S3 policy Change Alarm Missing",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensure a log metric filter and alarm exist for S3 bucket policy changes",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern",
+  "platform": "Terraform",
+  "descriptionID": "cf5226f8",
+  "cloudProvider": "aws"
+}

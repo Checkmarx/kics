@@ -11,8 +11,25 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_instance.%s", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_instance.%s.associate_public_ip_address is defined and not null", [name]),
-		"keyActualValue": sprintf("aws_instance.%s.associate_public_ip_address is undefined or null", [name]),
+		"keyExpectedValue": "'associate_public_ip_address' is defined and not null",
+		"keyActualValue": "'associate_public_ip_address' is undefined or null",
+		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name], []),
+	}
+}
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_instance", "associate_public_ip_address")
+
+	not common_lib.valid_key(module, keyToCheck)
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("module[%s]", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'associate_public_ip_address' is defined and not null",
+		"keyActualValue": "'associate_public_ip_address' is undefined or null",
+		"searchLine": common_lib.build_search_line(["module", name], []),
 	}
 }
 
@@ -25,8 +42,25 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_instance.%s.associate_public_ip_address", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_instance.%s.associate_public_ip_address is false", [name]),
-		"keyActualValue": sprintf("aws_instance.%s.associate_public_ip_address is true", [name]),
+		"keyExpectedValue": "'associate_public_ip_address' is false",
+		"keyActualValue": "'associate_public_ip_address' is true",
+		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name, "associate_public_ip_address"], []),
+	}
+}
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_instance", "associate_public_ip_address")
+
+	isTrue(module[keyToCheck])
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("module[%s].associate_public_ip_address", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "'associate_public_ip_address' is false",
+		"keyActualValue": "'associate_public_ip_address' is true",
+		"searchLine": common_lib.build_search_line(["module", name, "associate_public_ip_address"], []),
 	}
 }
 

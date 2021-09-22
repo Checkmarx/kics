@@ -1,0 +1,11 @@
+{
+  "id": "5864d189-ee9a-4009-ac0c-8a582e6b7919",
+  "queryName": "CloudWatch Management Console Auth Failed Alarm Missing",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensure a log metric filter and alarm exist for AWS Management Console authentication failures",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern",
+  "platform": "Terraform",
+  "descriptionID": "9166fdbf",
+  "cloudProvider": "aws"
+}

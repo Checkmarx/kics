@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "CloudWatch Route Table Changes Alarm Missing",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "CloudWatch Route Table Changes Alarm Missing",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "CloudWatch Route Table Changes Alarm Missing",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive3.tf"
+  }
+]

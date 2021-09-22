@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_vpc_endpoint[name]
 
@@ -13,8 +15,26 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_vpc_endpoint[%s].vpc_id", [name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "SQS VPC Endpoint has DNS resolution enabled",
-		"keyActualValue": "SQS VPC Endpoint has DNS resolution disabled ('enable_dns_support' set to false)",
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "'enable_dns_support' is set to true or undefined",
+		"keyActualValue": "'enable_dns_support' is set to false",
+		"searchLine": common_lib.build_search_line(["resource", "aws_vpc_endpoint", name, "vpc_id"], []),
+	}
+}
+
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_vpc", "enable_dns_support")
+
+	module[keyToCheck] == false
+	
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("module[%s].enable_dns_support", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "'enable_dns_support' is set to true or undefined",
+		"keyActualValue": "'enable_dns_support' is set to false",
+		"searchLine": common_lib.build_search_line(["module", name, "vpc_id"], []),
 	}
 }
