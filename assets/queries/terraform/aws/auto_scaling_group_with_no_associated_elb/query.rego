@@ -6,7 +6,6 @@ CxPolicy[result] {
 	document = input.document[i]
 	resource = document.resource.aws_autoscaling_group[name]
 
-	# not common_lib.valid_key(resource, "load_balancers")
 	count(resource.load_balancers) == 0
 
 	result := {
