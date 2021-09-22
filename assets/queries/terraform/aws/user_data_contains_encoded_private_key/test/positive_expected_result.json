@@ -8,7 +8,7 @@
 	{
 		"queryName": "User Data Contains Encoded Private Key",
 		"severity": "HIGH",
-		"line": 10,
+		"line": 11,
 		"fileName": "positive2.tf"
 	}
 ]

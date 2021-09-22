@@ -14,6 +14,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_launch_configuration[%s].user_data_base64 doesn't contain RSA Private Key", [name]),
 		"keyActualValue": sprintf("aws_launch_configuration[%s].user_data_base64 contains RSA Private Key", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_launch_configuration", name, "user_data_base64"], []),
 	}
 }
 
