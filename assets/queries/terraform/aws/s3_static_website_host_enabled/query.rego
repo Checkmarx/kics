@@ -12,6 +12,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource.aws_s3_bucket[%s].website doesn't have static websites inside", [name]),
 		"keyActualValue": sprintf("resource.aws_s3_bucket[%s].website does have static websites inside", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name, "website"], []),
 	}
 }
 

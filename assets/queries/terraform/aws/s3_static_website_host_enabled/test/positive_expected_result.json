@@ -8,7 +8,7 @@
   {
     "queryName": "S3 Static Website Host Enabled",
     "severity": "HIGH",
-    "line": 11,
+    "line": 12,
     "fileName": "positive2.tf"
   }
 ]
