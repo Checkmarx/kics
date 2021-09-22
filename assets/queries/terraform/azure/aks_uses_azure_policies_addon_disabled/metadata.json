@@ -1,0 +1,11 @@
+{
+  "id": "43789711-161b-4708-b5bb-9d1c626f7492",
+  "queryName": "AKS Uses Azure Policies Add-On Disabled",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "Azure Container Service (AKS) should use Azure Policies Add-On",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster#azure_policy",
+  "platform": "Terraform",
+  "descriptionID": "df6d2dcb",
+  "cloudProvider": "azure"
+}

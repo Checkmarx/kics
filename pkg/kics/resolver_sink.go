@@ -48,7 +48,7 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 				Document:     document,
 				OriginalData: string(rfile.OriginalData),
 				Kind:         kind,
-				FileName:     rfile.FileName,
+				FilePath:     rfile.FileName,
 				Content:      string(rfile.Content),
 				HelmID:       rfile.SplitID,
 				IDInfo:       rfile.IDInfo,

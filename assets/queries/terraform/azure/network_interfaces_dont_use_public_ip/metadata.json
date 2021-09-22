@@ -1,0 +1,11 @@
+{
+  "id": "c1573577-e494-4417-8854-7e119368dc8b",
+  "queryName": "Network Interfaces With Public IP",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Network Interfaces must not be exposed with a public IP address",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface#public_ip_address_id",
+  "platform": "Terraform",
+  "descriptionID": "49907665",
+  "cloudProvider": "azure"
+}

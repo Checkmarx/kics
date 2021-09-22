@@ -1,0 +1,11 @@
+{
+  "id": "4216ebac-d74c-4423-b437-35025cb88af5",
+  "queryName": "Network Interfaces IP Forwarding Enabled",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "Network Interfaces IP Forwarding should be disabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface#enable_ip_forwarding",
+  "platform": "Terraform",
+  "descriptionID": "890cf9a4",
+  "cloudProvider": "azure"
+}

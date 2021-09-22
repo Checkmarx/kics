@@ -6,6 +6,7 @@
 GOLINT := golangci-lint
 COMMIT := $(shell git rev-parse HEAD)
 VERSION := snapshot-$(shell echo ${COMMIT} | cut -c1-8)
+LIB = $(shell pwd)/lib
 IMAGE_TAG := dev
 TARGET_BIN ?= bin/kics
 CONSTANTS_PATH = github.com/Checkmarx/kics/internal/constants
@@ -70,6 +71,10 @@ generate: mod-tidy ## go generate
 	$(call print-target)
 	@go generate ./...
 
+.PHONY: generate-antlr
+generate-antlr: ## generate parser with ANTLRv4, needs JRE (Java Runtime Environment) on the system
+	@cd pkg/parser/jsonfilter/ && java -jar $(LIB)/antlr-4.9.2-tool.jar -Dlanguage=Go -visitor -no-listener -o parser JSONFilter.g4
+
 .PHONY: test
 test-short: # Run sanity unit tests
 test-short: generate
@@ -128,6 +133,11 @@ dkr-compose: ## build docker image and runs docker-compose up
 	$(call print-target)
 	VERSION=${VERSION} COMMIT=${COMMIT} IMAGE_TAG=${IMAGE_TAG} docker-compose up --build
 
+.PHONY: dkr-build-antlr
+dkr-build-antlr: ## build ANTLRv4 docker image and generate parser based on given grammar
+	@docker build -t antlr4-generator:dev -f Dockerfile.antlr .
+	@docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v $(pwd)/pkg/parser/jsonfilter:/work -it antlr4-generator:dev
+
 .PHONY: release
 release: ## goreleaser --rm-dist
 release: install
@@ -154,7 +164,7 @@ generate-queries-docs: ## generate queries catalog md files
 .PHONY: integration
 integration: ## run kics against all its samples
 	$(call print-target)
-	@go run cmd/console/main.go -p assets/queries --log-level DEBUG --log-file
+	@go run cmd/console/main.go scan -p assets/queries --log-level DEBUG --log-file
 
 .PHONY: help
 help:

@@ -18,6 +18,7 @@ bin
 
 /.idea/
 /.vscode/
+file:/
 /resources
 /vendor
 /site
@@ -49,3 +50,6 @@ dist
 
 # debug payload
 payload.json
+
+# ANTLR files
+.antlr

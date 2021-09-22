@@ -1,0 +1,332 @@
+[
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Secret",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 3,
+    "fileName": "positive6.dockerfile"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive6.dockerfile"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive7.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 3,
+    "fileName": "positive8.json"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive8.json"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive9.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Password in URL",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive10.json"
+  },
+  {
+    "queryName": "Passwords And Secrets - Slack Webhook",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive10.json"
+  },
+  {
+    "queryName": "Passwords And Secrets - MSTeams Webhook",
+    "severity": "HIGH",
+    "line": 27,
+    "fileName": "positive10.json"
+  },
+  {
+    "queryName": "Passwords And Secrets - Password in URL",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive11.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Slack Webhook",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive11.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - MSTeams Webhook",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive11.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive12.json"
+  },
+  {
+    "queryName": "Passwords And Secrets - Password in URL",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive12.json"
+  },
+  {
+    "queryName": "Passwords And Secrets - Slack Webhook",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive12.json"
+  },
+  {
+    "queryName": "Passwords And Secrets - MSTeams Webhook",
+    "severity": "HIGH",
+    "line": 19,
+    "fileName": "positive12.json"
+  },
+  {
+    "queryName": "Passwords And Secrets - Asymmetric private key",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive13.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - AWS Access Key",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive14.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - AWS Secret Key",
+    "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive14.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - AWS Access Key",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive15.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - AWS Secret Key",
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive15.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - K8s Environment Variable Password",
+    "severity": "HIGH",
+    "line": 34,
+    "fileName": "positive16.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - K8s Environment Variable Password",
+    "severity": "HIGH",
+    "line": 36,
+    "fileName": "positive16.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive17.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Google OAuth",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive18.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Slack Token",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive19.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Stripe API Key",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive20.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Google API Key",
+    "severity": "HIGH",
+    "line": 50,
+    "fileName": "positive21.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Heroku API Key",
+    "severity": "HIGH",
+    "line": 3,
+    "fileName": "positive22.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Token",
+    "severity": "HIGH",
+    "line": 3,
+    "fileName": "positive23.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic API Key",
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive24.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Square Access Token",
+    "severity": "HIGH",
+    "line": 3,
+    "fileName": "positive25.dockerfile"
+  },
+  {
+    "queryName": "Passwords And Secrets - Picatic API Key",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive25.dockerfile"
+  },
+  {
+    "queryName": "Passwords And Secrets - Amazon MWS Auth Token",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive25.dockerfile"
+  },
+  {
+    "queryName": "Passwords And Secrets - MailChimp API Key",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive25.dockerfile"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Private Key",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive26.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Token",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive27.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Token",
+    "severity": "HIGH",
+    "line": 22,
+    "fileName": "positive27.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Token",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive28.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Mailgun API Key",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive29.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Stripe Restricted API Key",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive30.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Twilio API Key",
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive31.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - PayPal Braintree Access Token",
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive32.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Facebook Access Token",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive33.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Square OAuth Secret",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive34.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Google OAuth Access Token",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive35.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Putty Private Key",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive36.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Secret",
+    "severity": "HIGH",
+    "line": 14,
+    "fileName": "positive37.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - CloudFormation Secret Template",
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive38.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Encryption Key",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive39.yaml"
+  }
+]
