@@ -1605,8 +1605,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="350">{
-                if val == true </span><span class="cov9" title="349">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="372">{
+                if val == true </span><span class="cov9" title="371">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2512,13 +2512,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="40">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="43">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="40">total += v
+                <span class="cov9" title="43">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -4453,7 +4453,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -4634,7 +4634,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5580,12 +5580,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="22091">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="22097">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="22091">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="21862">{
+                <span class="cov9" title="22097">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="21868">{
                         return skipFolder
                 }</span>
 
@@ -5643,7 +5643,7 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="228">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="22094">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="22100">{
         if info.IsDir() </span><span class="cov8" title="5066">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
@@ -5656,11 +5656,11 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="17028">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="17034">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="17028">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="16800">{
+        <span class="cov9" title="17034">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="16806">{
                 return true, nil
         }</span>
         <span class="cov5" title="228">return false, nil</span>
