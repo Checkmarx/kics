@@ -2,6 +2,13 @@
   {
     "queryName": "S3 Bucket With Ignore Public ACL",
     "severity": "LOW",
-    "line": 10
+    "line": 10,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "S3 Bucket With Ignore Public ACL",
+    "severity": "LOW",
+    "line": 7,
+    "filename": "positive2.tf"
   }
 ]
