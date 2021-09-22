@@ -21,7 +21,7 @@ is_used(securityGroupName, doc) {
 	contains(securityGroupUsed, sprintf("aws_security_group.%s", [securityGroupName]))
 }
 
-# check in modules
+# check in modules for module terraform-aws-modules/security-group/aws
 is_used(securityGroupName, doc) {
 	[path, value] := walk(doc)
 	securityGroupUsed := value.security_group_id
