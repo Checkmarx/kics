@@ -2,6 +2,13 @@
   {
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
     "severity": "HIGH",
-    "line": 3
+    "line": 3,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive2.tf"
   }
 ]
