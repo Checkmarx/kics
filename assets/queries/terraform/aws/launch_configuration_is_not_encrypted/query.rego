@@ -6,8 +6,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_launch_configuration[name]
 	resource[block].encrypted == false
 
-	not contains(block, "ephemeral")
-	contains(block, "block_device")
+	valid_block(block)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -24,8 +23,7 @@ CxPolicy[result] {
 	resourceBlock := resource[block]
 	not common_lib.valid_key(resourceBlock, "encrypted")
 
-	not contains(block, "ephemeral")
-	contains(block, "block_device")
+	valid_block(block)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -39,11 +37,13 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	module := input.document[i].module[name]
-	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_launch_configuration", "root_block_device")
-	module[block].encrypted == false
 
-	not contains(block, "ephemeral")
-	contains(block, "block_device")
+	[path, value] := walk(module)
+    value[block][idx].encrypted == false
+
+	common_lib.get_module_equivalent_key("aws", module.source, "aws_launch_configuration", block)
+
+	valid_block(block)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -51,18 +51,21 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'encrypted' is true",
 		"keyActualValue": "'encrypted' is false",
-		"searchLine": common_lib.build_search_line(["module", name, block, "encrypted"], []),
+		"searchLine": common_lib.build_search_line(["module", name, block, idx], ["encrypted"]),
 	}
 }
 
 CxPolicy[result] {
 	module := input.document[i].module[name]
-	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_launch_configuration", "root_block_device")
-	moduleBlock := module[block]
-	not common_lib.valid_key(moduleBlock, "encrypted")
 
-	not contains(block, "ephemeral")
-	contains(block, "block_device")
+	[path, value] := walk(module)
+
+	v := value[block][idx]
+	not common_lib.valid_key(v, "encrypted")
+	
+	common_lib.get_module_equivalent_key("aws", module.source, "aws_launch_configuration", block)
+
+	valid_block(block)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -70,6 +73,12 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'encrypted' is set",
 		"keyActualValue": "'encrypted' is undefined",
-		"searchLine": common_lib.build_search_line(["module", name, block], []),
+		"searchLine": common_lib.build_search_line(["module", name, block], [idx]),
 	}
+}
+
+
+valid_block(block) {
+	not contains(block, "ephemeral")
+	contains(block, "block_device")
 }

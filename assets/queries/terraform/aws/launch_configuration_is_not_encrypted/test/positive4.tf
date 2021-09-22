@@ -9,17 +9,22 @@ module "asg" {
   instance_type   = "t2.micro"
   security_groups = ["sg-12345678"]
 
-  ebs_block_device {
+  ebs_block_device = [
+     {
       device_name           = "/dev/xvdz"
       volume_type           = "gp2"
       volume_size           = "50"
       delete_on_termination = true
-  },
+     }
+  ]
 
-  root_block_device {
+  root_block_device = [
+    {
       volume_size = "50"
       volume_type = "gp2"
-  },
+      encrypted   = false
+    }
+  ]
 
   # Auto scaling group
   asg_name                  = "example-asg"
