@@ -17,7 +17,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	db := input.document[i].resource.aws_db_instance[name]
 
-	db.enabled_cloudwatch_logs_exports == null
+	count(db.enabled_cloudwatch_logs_exports) == 0
 
 	result := {
 		"documentId": input.document[i].id,

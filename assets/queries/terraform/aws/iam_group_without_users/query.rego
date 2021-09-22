@@ -24,5 +24,5 @@ has_membership_associated(resource, name) {
 }
 
 empty(resource) {
-	resource[_].users == null
+	count(resource[_].users) == 0
 }
