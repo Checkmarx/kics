@@ -39,7 +39,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"issueType": "IncorrectValue",
-		"searchKey": "",
+		"searchKey": sprintf("kind={{%s}}.namespace", [kind]),
 		"keyExpectedValue": "'metadata.namespace' is not set to default, kube-system or kube-public",
 		"keyActualValue": sprintf("'metadata.namespace' is set to %s", [options[x]]),
 		"searchLine": common_lib.build_search_line(["metadata", "namespace"], [])
