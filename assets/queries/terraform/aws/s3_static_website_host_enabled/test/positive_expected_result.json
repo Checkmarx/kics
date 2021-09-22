@@ -2,6 +2,13 @@
   {
     "queryName": "S3 Static Website Host Enabled",
     "severity": "HIGH",
-    "line": 6
+    "line": 6,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "S3 Static Website Host Enabled",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive2.tf"
   }
 ]
