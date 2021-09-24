@@ -37,7 +37,23 @@ CxPolicy[result] {
 	module := input.document[i].module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_autoscaling_group", "load_balancers")
 
-	not common_lib.valid_key(module, "load_balancers")
+	not common_lib.valid_key(module, keyToCheck)
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("module[%s].load_balancers", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'load_balancers' is set and not empty",
+		"keyActualValue": "'loas_balancers' is undefined",
+		"searchLine": common_lib.build_search_line(["module", name, "load_balancers"], []),
+	}
+}
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_autoscaling_group", "load_balancers")
+
+	count(module[keyToCheck]) == 0
 
 	result := {
 		"documentId": input.document[i].id,
