@@ -44,6 +44,7 @@ func initialize(rootCmd *cobra.Command) error {
 	rootCmd.AddCommand(NewGenerateIDCmd())
 	rootCmd.AddCommand(scanCmd)
 	rootCmd.AddCommand(NewListPlatformsCmd())
+	rootCmd.CompletionOptions.DisableDefaultCmd = true
 
 	if err := flags.InitJSONFlags(rootCmd, kicsFlagsListContent, true); err != nil {
 		return err
