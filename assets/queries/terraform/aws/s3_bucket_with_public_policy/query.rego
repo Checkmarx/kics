@@ -13,6 +13,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'block_public_policy' is equal 'true'",
 		"keyActualValue": "'block_public_policy' is missing",
+		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_public_access_block", name], []),
 	}
 }
 
@@ -26,5 +27,36 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'block_public_policy' is equal 'true'",
 		"keyActualValue": "'block_public_policy' is equal 'false'",
+		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_public_access_block", name, "block_public_policy"], []),
+	}
+}
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "block_public_policy")
+	not common_lib.valid_key(module, keyToCheck)
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("module[%s]", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'block_public_policy' is equal 'true'",
+		"keyActualValue": "'block_public_policy' is missing",
+		"searchLine": common_lib.build_search_line(["module", name], []),
+	}
+}
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "block_public_policy")
+	module[keyToCheck] == false
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("module[%s].%s", [name, keyToCheck]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "'block_public_policy' is equal 'true'",
+		"keyActualValue": "'block_public_policy' is equal 'false'",
+		"searchLine": common_lib.build_search_line(["module", name, keyToCheck], []),
 	}
 }
