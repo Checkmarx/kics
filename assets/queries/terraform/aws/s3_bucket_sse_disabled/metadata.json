@@ -1,9 +1,9 @@
 {
   "id": "6726dcc0-5ff5-459d-b473-a780bef7665c",
-  "queryName": "S3 Bucket Without Server-side-encryption",
+  "queryName": "S3 Bucket SSE disabled",
   "severity": "HIGH",
   "category": "Encryption",
-  "descriptionText": "S3 bucket should have encryption defined",
+  "descriptionText": "If algorithm is AES256 then the master key is null, empty or undefined, otherwise the master key is required",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#server_side_encryption_configuration",
   "platform": "Terraform",
   "descriptionID": "b386c506",
