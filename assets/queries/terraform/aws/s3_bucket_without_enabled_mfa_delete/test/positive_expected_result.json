@@ -28,5 +28,36 @@
     "severity": "HIGH",
     "line": 12,
     "fileName": "positive4.tf"
+  },
+  
+  {
+    "queryName": "S3 Bucket Without Enabled MFA Delete",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "S3 Bucket Without Enabled MFA Delete",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive6.tf"
+  },
+  {
+    "queryName": "S3 Bucket Without Enabled MFA Delete",
+    "severity": "HIGH",
+    "line": 12,
+    "fileName": "positive7.tf"
+  },
+  {
+    "queryName": "S3 Bucket Without Enabled MFA Delete",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive8.tf"
+  },
+  {
+    "queryName": "S3 Bucket Without Enabled MFA Delete",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive8.tf"
   }
 ]

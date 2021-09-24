@@ -10,8 +10,9 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_s3_bucket[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_s3_bucket[%s].versioning is defined", [name]),
-		"keyActualValue": sprintf("aws_s3_bucket[%s].versioning is undefined", [name]),
+		"keyExpectedValue": sprintf("aws_s3_bucket[%s].versioning is defined and not null", [name]),
+		"keyActualValue": sprintf("aws_s3_bucket[%s].versioning is undefined or null", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name], []),
 	}
 }
 
@@ -26,10 +27,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_s3_bucket[%s].versioning.%s", [name, checkedFields[j]]),
+		"searchKey": sprintf("aws_s3_bucket[%s].versioning", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'%s' is equal 'true'", [checkedFields[j]]),
-		"keyActualValue": sprintf("'%s' is missing", [checkedFields[j]]),
+		"keyExpectedValue": sprintf("'%s' is set to true", [checkedFields[j]]),
+		"keyActualValue": sprintf("'%s' is undefined or null", [checkedFields[j]]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name, "versioning"], []),
 	}
 }
 
@@ -41,7 +43,56 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_s3_bucket[%s].versioning.%s", [name, checkedFields[j]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s' is equal 'true'", [checkedFields[j]]),
-		"keyActualValue": sprintf("'%s' is equal to 'false'", [checkedFields[j]]),
+		"keyExpectedValue": sprintf("'%s' is set to true", [checkedFields[j]]),
+		"keyActualValue": sprintf("'%s' is set to false", [checkedFields[j]]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name, "versioning", checkedFields[j]], []),
+	}
+}
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "versioning")
+
+	not common_lib.valid_key(module, keyToCheck)
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("module[%s]", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'versioning' is defined and not null",
+		"keyActualValue": "'versioning' is undefined or null",
+		"searchLine": common_lib.build_search_line(["module", name], []),
+	}
+}
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "versioning")
+
+	not common_lib.valid_key(module[keyToCheck],  checkedFields[c])
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("module[%s].versioning", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("'%s' is set to true", [checkedFields[c]]),
+		"keyActualValue": sprintf("'%s' is undefined or null", [checkedFields[c]]),
+		"searchLine": common_lib.build_search_line(["module", name, "versioning"], []),
+	}
+}
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "versioning")
+
+	module[keyToCheck][checkedFields[c]] != true
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("module[%s].versioning.%s", [name, checkedFields[c]]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'%s' is set to true", [checkedFields[c]]),
+		"keyExpectedValue": sprintf("'%s' is set to false", [checkedFields[c]]),
+		"searchLine": common_lib.build_search_line(["module", name, "versioning", checkedFields[c]], []),
 	}
 }
