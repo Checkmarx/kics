@@ -24,9 +24,6 @@ CxPolicy[result] {
 	}
 }
 
-import data.generic.k8s as k8s_lib
-import data.generic.common as common_lib
-
 CxPolicy[result] {
 	document := input.document[i]
 	specInfo := k8s_lib.getSpecInfo(document)
