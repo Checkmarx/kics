@@ -11,6 +11,8 @@ Integrate KICS with:
 - [Github Actions](integrations_ghactions.md)
 - [GitLab CI](integrations_gitlabci.md)
 - [Jenkins](integrations_jenkins.md)
+- [TeamCity](integrations_teamcity.md)
+- [Travis](integrations_travisci.md)
 - More soon...
 
 The pipelines examples can be found in our [GitHub Repository](https://github.com/Checkmarx/kics/tree/master/examples)

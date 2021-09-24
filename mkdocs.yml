@@ -63,6 +63,7 @@ nav:
       - Github Actions: integrations_ghactions.md
       - Gitlab CI: integrations_gitlabci.md
       - Jenkins: integrations_jenkins.md
+      - TeamCity: integrations_teamcity.md
       - Travis CI: integrations_travisci.md
       - AWS CDK: cdk.md
       - Badge: BADGE.md
