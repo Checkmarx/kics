@@ -1,6 +1,6 @@
 {
   "id": "6726dcc0-5ff5-459d-b473-a780bef7665c",
-  "queryName": "S3 Bucket SSE disabled",
+  "queryName": "S3 Bucket SSE Disabled",
   "severity": "HIGH",
   "category": "Encryption",
   "descriptionText": "If algorithm is AES256 then the master key is null, empty or undefined, otherwise the master key is required",
