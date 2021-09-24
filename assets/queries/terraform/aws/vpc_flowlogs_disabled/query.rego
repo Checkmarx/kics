@@ -16,6 +16,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_vpc[%s] is the same as Flow Logs VPC id", [name_vpc]),
 		"keyActualValue": sprintf("aws_vpc[%s] is not the same as Flow Logs VPC id", [name_vpc]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_vpc", name_vpc], []),
 	}
 }
 
@@ -29,5 +30,38 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_flow_log[%s].vpc_id is defined and not null", [name_logs]),
 		"keyActualValue": sprintf("aws_flow_log[%s].vpc_id is undefined or null", [name_logs]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_flow_log", name_logs], []),
+	}
+}
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_flow_log", "enable_flow_log")
+
+	module[keyToCheck] == false
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("%s.%s", [name, keyToCheck]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("%s.%s is set to true", [name, keyToCheck]),
+		"keyActualValue": sprintf("%s.%s is set to false", [name, keyToCheck]),
+		"searchLine": common_lib.build_search_line(["module", name, keyToCheck], []),
+	}
+}
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_flow_log", "enable_flow_log")
+
+	not common_lib.valid_key(module, keyToCheck)
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("%s", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("%s.%s is set to true", [name, keyToCheck]),
+		"keyActualValue": sprintf("%s.%s is undefined", [name, keyToCheck]),
+		"searchLine": common_lib.build_search_line(["module", name], []),
 	}
 }
