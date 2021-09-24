@@ -50,7 +50,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	module := input.document[i].module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_db_instance", "enabled_cloudwatch_logs_exports")
-	module[keyToCheck] == null
+	count(module[keyToCheck]) == 0
 
 	result := {
 		"documentId": input.document[i].id,
