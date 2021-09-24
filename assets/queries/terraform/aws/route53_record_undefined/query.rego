@@ -4,7 +4,7 @@ import data.generic.common as commonLib
 
 CxPolicy[result] {
 	route := input.document[i].resource.aws_route53_record[name]
-	commonLib.emptyOrNull(route.records)
+	count(route.records) == 0
 
 	result := {
 		"documentId": input.document[i].id,
