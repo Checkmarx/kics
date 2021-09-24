@@ -29,7 +29,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s.%s is set to false", [name, keyToCheck]),
 		"keyActualValue": sprintf("%s.%s is set to true", [name, keyToCheck]),
-		"searchLine": common_lib.build_search_line(["module", "aws_subnet", name, keyToCheck], []),
+		"searchLine": common_lib.build_search_line(["module", name, keyToCheck], []),
 	}
 }
 
@@ -45,6 +45,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s.map_public_ip_on_launch is set to false", [name]),
 		"keyActualValue": sprintf("%s.map_public_ip_on_launch is set undefined", [name]),
-		"searchLine": common_lib.build_search_line(["module", "aws_subnet", name], []),
+		"searchLine": common_lib.build_search_line(["module", name], []),
 	}
 }
