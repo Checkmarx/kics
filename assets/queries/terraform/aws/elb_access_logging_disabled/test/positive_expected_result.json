@@ -10,5 +10,17 @@
     "severity": "INFO",
     "line": 1,
     "filename": "positive2.tf"
+  },
+  {
+    "queryName": "ELB Access Logging Disabled",
+    "severity": "INFO",
+    "line": 39,
+    "filename": "positive4.tf"
+  },
+  {
+    "queryName": "ELB Access Logging Disabled",
+    "severity": "INFO",
+    "line": 1,
+    "filename": "positive3.tf"
   }
 ]
