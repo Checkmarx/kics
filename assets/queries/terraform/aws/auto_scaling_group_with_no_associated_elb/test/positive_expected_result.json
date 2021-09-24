@@ -10,17 +10,5 @@
     "severity": "MEDIUM",
     "line": 12,
     "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "Auto Scaling Group With No Associated ELB",
-    "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive3.tf"
-  },
-  {
-    "queryName": "Auto Scaling Group With No Associated ELB",
-    "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive4.tf"
   }
 ]
