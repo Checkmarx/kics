@@ -151,7 +151,7 @@ var tests = []testCase{
 			match3, _ := regexp.MatchString(`Queries loaded: \d+`, outputText)
 			match4, _ := regexp.MatchString(`Queries failed to execute: \d+`, outputText)
 			match5, _ := regexp.MatchString(`Results Summary:`, outputText)
-			match6, _ := regexp.MatchString(`Scan duration: \d+(.\d+)?s`, outputText)
+			match6, _ := regexp.MatchString(`Scan duration: \d+(m\d+)?(.\d+)?s`, outputText)
 			return match1 && match2 && match3 && match4 && match5 && match6
 		},
 	},
