@@ -3,13 +3,13 @@
     "queryName": "RDS Without Logging",
     "severity": "INFO",
     "line": 1,
-    "fileName": "positive.tf"
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "RDS Without Logging",
     "severity": "INFO",
-    "line": 15,
-    "fileName": "positive.tf"
+    "line": 7,
+    "fileName": "positive2.tf"
   },
   {
     "queryName": "RDS Without Logging",
