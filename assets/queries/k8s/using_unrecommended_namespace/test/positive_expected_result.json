@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Using Unrecommended Namespace",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Using Unrecommended Namespace",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Using Unrecommended Namespace",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Using Unrecommended Namespace",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive4.yaml"
+  }
+]
