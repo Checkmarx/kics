@@ -35,7 +35,7 @@ object Build: BuildType({
 })
 ```
 
-With [Versioned Settings](https://www.jetbrains.com/help/teamcity/2021.2/storing-project-settings-in-version-control.html#SynchronizingSettingswithVCS) enabled, after pushing the changes to the repository you'll be able to see the build progress, logs and success status.
+With [versioned Settings](https://www.jetbrains.com/help/teamcity/2021.2/storing-project-settings-in-version-control.html#SynchronizingSettingswithVCS) enabled, after pushing the changes to the repository you'll be able to see the build progress, logs and success status.
 
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/teamcity-scan-logs.png" width="850">
 
