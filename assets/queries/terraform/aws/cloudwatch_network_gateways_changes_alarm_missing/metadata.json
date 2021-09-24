@@ -1,0 +1,11 @@
+{
+  "id": "6b6874fe-4c2f-4eea-8b90-7cceaa4a125e",
+  "queryName": "CloudWatch Network Gateways Changes Alarm Missing",
+  "severity": "LOW",
+  "category": "Observability",
+  "descriptionText": "Ensure a log metric filter and alarm exist for network gateways changes",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern",
+  "platform": "Terraform",
+  "descriptionID": "aa3e331d",
+  "cloudProvider": "aws"
+}

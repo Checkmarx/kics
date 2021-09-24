@@ -1,7 +1,6 @@
 package parser
 
 import (
-	"reflect"
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -108,58 +107,6 @@ func initilizeBuilder() []*Parser {
 	return bd
 }
 
-func TestRemoveDuplicateValues(t *testing.T) {
-	type args struct {
-		stringSlice []string
-	}
-	tests := []struct {
-		name string
-		args args
-		want []string
-	}{
-		{
-			name: "remove_duplications",
-			args: args{
-				stringSlice: []string{
-					"test",
-					"test1",
-					"test",
-					"test2",
-				},
-			},
-			want: []string{
-				"test",
-				"test1",
-				"test2",
-			},
-		},
-		{
-			name: "no_duplicates",
-			args: args{
-				stringSlice: []string{
-					"test",
-					"test1",
-					"test2",
-				},
-			},
-			want: []string{
-				"test",
-				"test1",
-				"test2",
-			},
-		},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			got := removeDuplicateValues(tt.args.stringSlice)
-			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("removeDuplicateValues() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
 func TestIsValidExtension(t *testing.T) {
 	parser, _ := NewBuilder().
 		Add(&jsonParser.Parser{}).
@@ -184,4 +131,62 @@ func TestCommentsCommands(t *testing.T) {
 		"disable": "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09",
 	}
 	require.Equal(t, expectedCommands, commands)
+}
+
+func TestParser_Contains(t *testing.T) {
+	type args struct {
+		types          []string
+		supportedTypes []string
+	}
+	tests := []struct {
+		name               string
+		args               args
+		wantInvalidArgsRes []string
+		wantContRes        bool
+		wantSupportedRes   bool
+	}{
+		{
+			name: "test contains",
+			args: args{
+				types: []string{
+					"cloudformation",
+				},
+				supportedTypes: []string{
+					"cloudformation",
+					"terraform",
+					"ansible",
+				},
+			},
+			wantInvalidArgsRes: nil,
+			wantContRes:        true,
+			wantSupportedRes:   true,
+		},
+		{
+			name: "test contains invalid",
+			args: args{
+				types: []string{
+					"dockerfile",
+				},
+				supportedTypes: []string{
+					"cloudformation",
+					"terraform",
+					"ansible",
+				},
+			},
+			wantInvalidArgsRes: []string{
+				"dockerfile",
+			},
+			wantContRes:      false,
+			wantSupportedRes: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			gotInv, gotCont, gotSup := contains(tt.args.types, tt.args.supportedTypes)
+			require.Equal(t, tt.wantInvalidArgsRes, gotInv)
+			require.Equal(t, tt.wantContRes, gotCont)
+			require.Equal(t, tt.wantSupportedRes, gotSup)
+		})
+	}
 }

@@ -3,7 +3,7 @@ package Cx
 CxPolicy[result] {
 	vm := input.document[i].resource.azurerm_virtual_machine[name]
 
-	vm.network_interface_ids == null
+	count(vm.network_interface_ids) == 0
 
 	result := {
 		"documentId": input.document[i].id,

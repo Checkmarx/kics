@@ -2,11 +2,25 @@
 	{
 		"queryName": "DB Instance Storage Not Encrypted",
 		"severity": "HIGH",
-		"line": 11
+		"line": 11,
+		"fileName": "positive1.tf"
 	},
 	{
 		"queryName": "DB Instance Storage Not Encrypted",
 		"severity": "HIGH",
-		"line": 14
+		"line": 14,
+		"fileName": "positive1.tf"
+	},
+	{
+		"queryName": "DB Instance Storage Not Encrypted",
+		"severity": "HIGH",
+		"line": 1,
+		"fileName": "positive2.tf"
+	},
+	{
+		"queryName": "DB Instance Storage Not Encrypted",
+		"severity": "HIGH",
+		"line": 11,
+		"fileName": "positive3.tf"
 	}
 ]
