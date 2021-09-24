@@ -173,7 +173,7 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
 	case *hclsyntax.TemplateWrapExpr:
 		return c.convertExpression(value.Wrapped)
 	case *hclsyntax.TupleConsExpr:
-		var list []interface{}
+		list := make([]interface{}, 0)
 		for _, ex := range value.Exprs {
 			elem, err := c.convertExpression(ex)
 			if err != nil {

@@ -565,7 +565,7 @@ func scan(changedDefaultQueryPath, changedDefaultLibrariesPath bool) error {
 	log.Info().Msgf(strings.ReplaceAll(versionMsg, "\n", ""))
 
 	noProgress := flags.GetBoolFlag(flags.NoProgressFlag)
-	if !term.IsTerminal(int(os.Stdin.Fd())) {
+	if !term.IsTerminal(int(os.Stdin.Fd())) || strings.EqualFold(flags.GetStrFlag(flags.LogLevelFlag), "debug") {
 		noProgress = true
 	}
 
