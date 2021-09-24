@@ -3,12 +3,14 @@ package Cx
 import data.generic.k8s as k8s_lib
 import data.generic.common as common_lib
 
+types := {"initContainers", "containers"}
+
 CxPolicy[result] {
 	document := input.document[i]
 	specInfo := k8s_lib.getSpecInfo(document)
 	metadata := document.metadata
-	spec := specInfo.spec
-	document.kind == "Pod"
+
+	pod_or_container(specInfo, document)
 
 	namespace := document.metadata.namespace
 
@@ -28,8 +30,8 @@ CxPolicy[result] {
 	document := input.document[i]
 	specInfo := k8s_lib.getSpecInfo(document)
 	metadata := document.metadata
-	spec := specInfo.spec
-	document.kind == "Pod"
+	
+	pod_or_container(specInfo, document)
 
 	is_default(document)
 
@@ -49,4 +51,11 @@ is_default(document) {
 	document.metadata.namespace == "default"
 } else {
 	not common_lib.valid_key(document.metadata, "namespace")
+}
+
+pod_or_container(specInfo, document) {
+	specInfo.spec[types[x]]
+	document.kind != "Pod"
+} else {
+	document.kind == "Pod"
 }
