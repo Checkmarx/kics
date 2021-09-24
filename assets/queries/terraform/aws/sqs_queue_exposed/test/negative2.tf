@@ -1,6 +1,13 @@
-#this code is a correct code for which the query should not find any result
-resource "aws_sqs_queue" "negative1" {
-  name = "examplequeue"
+module "user_queue" {
+  source  = "terraform-aws-modules/sqs/aws"
+  version = "~> 2.0"
+
+  name = "user"
+
+  tags = {
+    Service     = "user"
+    Environment = "dev"
+  }
 
   policy = <<POLICY
 {

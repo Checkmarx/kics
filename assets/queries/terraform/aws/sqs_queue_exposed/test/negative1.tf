@@ -1,5 +1,4 @@
-#this is a problematic code where the query should report a result(s)
-resource "aws_sqs_queue" "positive1" {
+resource "aws_sqs_queue" "negative1" {
   name = "examplequeue"
 
   policy = <<POLICY
@@ -10,7 +9,6 @@ resource "aws_sqs_queue" "positive1" {
     {
       "Sid": "First",
       "Effect": "Allow",
-      "Principal": "*",
       "Action": "sqs:SendMessage",
       "Resource": "${aws_sqs_queue.q.arn}",
       "Condition": {
@@ -22,4 +20,5 @@ resource "aws_sqs_queue" "positive1" {
   ]
 }
 POLICY
+
 }
