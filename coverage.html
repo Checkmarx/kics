@@ -181,7 +181,7 @@
 				
 				<option value="file62">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (84.6%)</option>
 				
-				<option value="file63">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (90.5%)</option>
+				<option value="file63">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (71.4%)</option>
 				
 				<option value="file64">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
@@ -1615,8 +1615,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="357">{
-                if val == true </span><span class="cov9" title="356">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="347">{
+                if val == true </span><span class="cov9" title="346">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2522,13 +2522,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="39">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="38">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="39">total += v
+                <span class="cov9" title="38">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2553,14 +2553,14 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
                         formatter = u
                         mesure = k
                 }</span>
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov2" title="2">{
+        if math.IsNaN(metric) </span><span class="cov3" title="3">{
                 metric = 0
         }</span>
 
@@ -4644,7 +4644,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -4952,7 +4952,7 @@ func NewInspector(
         }</span>
         <span class="cov2" title="4">platformLibraries := getPlatformLibraries(queriesSource, queries)
         opaQueries := make([]*preparedQuery, 0, len(queries))
-        for _, metadata := range queries </span><span class="cov10" title="3760">{
+        for _, metadata := range queries </span><span class="cov10" title="3763">{
                 platformGeneralQuery, ok := platformLibraries[metadata.Platform]
                 if !ok </span><span class="cov0" title="0">{
                         log.Err(err).
@@ -4960,20 +4960,20 @@ func NewInspector(
                         continue</span>
                 }
 
-                <span class="cov10" title="3760">select </span>{
+                <span class="cov10" title="3763">select </span>{
                 case &lt;-ctx.Done():<span class="cov0" title="0">
                         return nil, nil</span>
-                default:<span class="cov10" title="3760">
+                default:<span class="cov10" title="3763">
                         var opaQuery rego.PreparedEvalQuery
                         mergedInputData, err := source.MergeInputData(platformGeneralQuery.LibraryInputData, metadata.InputData)
                         if err != nil </span><span class="cov0" title="0">{
                                 log.Debug().Msg("Could not merge platform library input data")
                         }</span>
-                        <span class="cov10" title="3760">mergedInputData, err = source.MergeInputData(commonLibrary.LibraryInputData, mergedInputData)
+                        <span class="cov10" title="3763">mergedInputData, err = source.MergeInputData(commonLibrary.LibraryInputData, mergedInputData)
                         if err != nil </span><span class="cov0" title="0">{
                                 log.Debug().Msg("Could not merge common library input data")
                         }</span>
-                        <span class="cov10" title="3760">store := inmem.NewFromReader(bytes.NewBufferString(mergedInputData))
+                        <span class="cov10" title="3763">store := inmem.NewFromReader(bytes.NewBufferString(mergedInputData))
                         opaQuery, err = rego.New(
                                 rego.Query(regoQuery),
                                 rego.Module("Common", commonLibrary.LibraryCode),
@@ -4991,7 +4991,7 @@ func NewInspector(
                                 continue</span>
                         }
 
-                        <span class="cov10" title="3760">tracker.TrackQueryLoad(metadata.Aggregation)
+                        <span class="cov10" title="3763">tracker.TrackQueryLoad(metadata.Aggregation)
 
                         opaQueries = append(opaQueries, &amp;preparedQuery{
                                 opaQuery: opaQuery,
@@ -5029,7 +5029,7 @@ func NewInspector(
 
 func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.QueryMetadata) map[string]source.RegoLibraries <span class="cov2" title="4">{
         supportedPlatforms := make(map[string]string)
-        for _, query := range queries </span><span class="cov10" title="3760">{
+        for _, query := range queries </span><span class="cov10" title="3763">{
                 supportedPlatforms[query.Platform] = ""
         }</span>
         <span class="cov2" title="4">platformLibraries := make(map[string]source.RegoLibraries)
@@ -5048,7 +5048,7 @@ func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.Qu
 
 func sumAllAggregatedQueries(opaQueries []*preparedQuery) int <span class="cov2" title="4">{
         sum := 0
-        for _, query := range opaQueries </span><span class="cov10" title="3760">{
+        for _, query := range opaQueries </span><span class="cov10" title="3763">{
                 sum += query.metadata.Aggregation
         }</span>
         <span class="cov2" title="4">return sum</span>
@@ -5105,7 +5105,7 @@ func (c *Inspector) Inspect(
 // LenQueriesByPlat returns the number of queries by platforms
 func (c *Inspector) LenQueriesByPlat(platforms []string) int <span class="cov1" title="2">{
         count := 0
-        for _, query := range c.queries </span><span class="cov9" title="2506">{
+        for _, query := range c.queries </span><span class="cov9" title="2508">{
                 if contains(platforms, query.metadata.Platform) </span><span class="cov7" title="507">{
                         c.tracker.TrackQueryExecuting(query.metadata.Aggregation)
                         count++
@@ -5235,19 +5235,19 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 
 // contains is a simple method to check if a slice
 // contains an entry
-func contains(s []string, e string) bool <span class="cov9" title="2512">{
+func contains(s []string, e string) bool <span class="cov9" title="2514">{
         if e == "common" </span><span class="cov1" title="1">{
                 return true
         }</span>
-        <span class="cov9" title="2511">if e == "k8s" </span><span class="cov6" title="161">{
+        <span class="cov9" title="2513">if e == "k8s" </span><span class="cov6" title="163">{
                 e = "kubernetes"
         }</span>
-        <span class="cov9" title="2511">for _, a := range s </span><span class="cov9" title="2512">{
+        <span class="cov9" title="2513">for _, a := range s </span><span class="cov9" title="2514">{
                 if strings.EqualFold(a, e) </span><span class="cov7" title="511">{
                         return true
                 }</span>
         }
-        <span class="cov9" title="2000">return false</span>
+        <span class="cov9" title="2002">return false</span>
 }
 
 func shouldSkipFile(command model.CommentsCommands, queryID string) bool <span class="cov3" title="7">{
@@ -5590,12 +5590,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="22175">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="22193">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="22175">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="21946">{
+                <span class="cov9" title="22193">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="21964">{
                         return skipFolder
                 }</span>
 
@@ -5653,24 +5653,24 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="228">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="22178">{
-        if info.IsDir() </span><span class="cov8" title="5066">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="22196">{
+        if info.IsDir() </span><span class="cov8" title="5070">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
                         return true, filepath.SkipDir
                 }</span>
-                <span class="cov8" title="5065">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
-                if err != nil || resolved </span><span class="cov8" title="5063">{
+                <span class="cov8" title="5069">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
+                if err != nil || resolved </span><span class="cov8" title="5067">{
                         return true, nil
                 }</span>
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="17112">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="17126">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="17112">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="16884">{
+        <span class="cov9" title="17126">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="16898">{
                 return true, nil
         }</span>
         <span class="cov5" title="228">return false, nil</span>
@@ -11987,7 +11987,7 @@ type ProgressBar struct {
 }
 
 // NewProgressBar creates a new instance of a Circle Progress Bar
-func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" title="3">{
+func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" title="3">{
         newPb := pb.New64(constants.MaxInteger)
         tmp := fmt.Sprintf(`{{ "%s" }} {{(cycle . "\\" "-" "|" "/" "-" "|" )}}`, label)
         newPb.SetWidth(barWidth)
@@ -11995,7 +11995,7 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" ti
         if silent </span><span class="cov1" title="1">{
                 newPb.SetWriter(io.Discard)
         }</span>
-        <span class="cov2" title="3">newPb.Start()
+        <span class="cov10" title="3">newPb.Start()
 
         return ProgressBar{
                 label: label,
@@ -12019,10 +12019,10 @@ func (p ProgressBar) Start() <span class="cov1" title="1">{
         }()
 }
 
-func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov1" title="1">{
+func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov0" title="0">{
         wg.Add(1)
         defer wg.Done()
-        for </span><span class="cov10" title="6381">{ // increment until the Close func is called
+        for </span><span class="cov0" title="0">{ // increment until the Close func is called
                 p.pBar.Increment()
         }</span>
 }
