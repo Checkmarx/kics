@@ -1,0 +1,10 @@
+{
+  "id": "48a5beba-e4c0-4584-a2aa-e6894e4cf424",
+  "queryName": "Pod or Container Without ResourceQuota",
+  "severity": "LOW",
+  "category": "Insecure Configurations",
+  "descriptionText": "Pod or Container should have a ResourceQuota associated",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/resource-quotas/",
+  "platform": "Kubernetes",
+  "descriptionID": "86499ed5"
+}
