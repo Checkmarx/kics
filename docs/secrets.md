@@ -1,9 +1,11 @@
 ## Password and Secrets
-Being the only query written in Golang, it involves several rules to cover the maximum possible cases. These rules bases on regexes. 
+Being the only query written in Golang, it involves several rules to cover the maximum possible cases. These rules bases on regexes.
 Each one is mainly composed of id, name and regex.
 
-Since there are cases where it is necessary to filter the results of these rules (i.e. cases to exclude), you can use **allowRules**. 
+Since there are cases where it is necessary to filter the results of these rules (i.e. cases to exclude), you can use **allowRules**.
 Basically, there are two types: **specific allowRules**, which is just applied to a specific rule and **generic allowRules**, which is applied to all rules.
+
+**NOTE:** Terraform variables will not be resolved. Password and Secrets query will scan and point directly to tfvars file.
 
 ```json
 {
@@ -25,13 +27,13 @@ Basically, there are two types: **specific allowRules**, which is just applied t
             "description": "brief description about the cases to exclude",
             "regex": "golang flavor regex"
           }
-    ]  
+    ]
 }
 ```
 
 #### Example
 
-The present rule defines a pattern that finds generic tokens. 
+The present rule defines a pattern that finds generic tokens.
 Since, in Terraform, we can come across cases like `token_key = data.terraform_remote_state.rancher.outputs.token_key`, we can use a **specific allowRules** (Avoiding TF resource access) to exclude these cases.
 
 Moreover, to exclude scenarios like `automountServiceAccountToken: false`, we can use a **generic allowRules** (Avoiding Boolean's) to be applied not only in this rule but also in the remaining ones.
@@ -56,7 +58,7 @@ Moreover, to exclude scenarios like `automountServiceAccountToken: false`, we ca
             "description": "Avoiding Boolean's",
             "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[=:]\\s*['\"]?(true|false)['\"]?"
           }
-   ] 
+   ]
 }
 ```
 

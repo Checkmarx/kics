@@ -34,19 +34,6 @@
       ]
     },
     {
-      "id": "4c8bedf3-3818-4781-94bc-b8402143dae1",
-      "name": "Generic Access",
-      "regex": "^(?i)['\"]?\\s*(\\w*_)?access[_]?(key)?['\"]?\\s*(:|=)\\s*['\"]?([A-Za-z0-9\/~^_!@&%()=?*+-]{10,})['\"]?",
-      "entropies": [
-        {
-          "group": 4,
-          "min": 2.8,
-          "max": 8
-        }
-      ],
-      "allowRules": []
-    },
-    {
       "id": "51b5b840-cd0c-4556-98a7-fe5f4def80cf",
       "name": "Asymmetric private key",
       "regex": "-----BEGIN ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----(\\s*([A-Za-z0-9+\\/=\\n\\r]+))+\\s*-----END ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----",
