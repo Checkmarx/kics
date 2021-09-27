@@ -34,5 +34,17 @@
     "severity": "MEDIUM",
     "line": 12,
     "filename": "positive3.tf"
+  },
+  {
+    "queryName": "ALB Not Dropping Invalid Headers",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive4.tf"
+  },
+  {
+    "queryName": "ALB Not Dropping Invalid Headers",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive5.tf"
   }
 ]
