@@ -131,7 +131,7 @@
 				
 				<option value="file37">github.com/Checkmarx/kics/pkg/engine/source/source.go (67.9%)</option>
 				
-				<option value="file38">github.com/Checkmarx/kics/pkg/engine/vulnerability_builder.go (85.0%)</option>
+				<option value="file38">github.com/Checkmarx/kics/pkg/engine/vulnerability_builder.go (85.5%)</option>
 				
 				<option value="file39">github.com/Checkmarx/kics/pkg/engine/vulnerability_utils.go (84.1%)</option>
 				
@@ -1616,8 +1616,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="349">{
-                if val == true </span><span class="cov9" title="348">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="357">{
+                if val == true </span><span class="cov9" title="356">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2523,13 +2523,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="39">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="35">total += v
+                <span class="cov9" title="39">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2554,7 +2554,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4088,9 +4088,7 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
                 }
         }</span>
 
-        <span class="cov1" title="1">logWithFields.Warn().Msgf("Failed to detect line, query response %s", searchKey)
-
-        return model.VulnerabilityLines{
+        <span class="cov1" title="1">return model.VulnerabilityLines{
                 Line:      undetectedVulnerabilityLine,
                 VulnLines: []model.CodeLine{},
         }</span>
@@ -6825,7 +6823,11 @@ var DefaultVulnerabilityBuilder = func(ctx *QueryContext, tracker Tracker,
         similarityIDLineInfo = searchLineCalc.similarityIDLineInfo
         linesVulne = searchLineCalc.linesVulne
 
-        searchValue := ""
+        if linesVulne.Line == -1 </span><span class="cov10" title="5">{
+                logWithFields.Warn().Msgf("Failed to detect line, query response %s", searchKey)
+        }</span>
+
+        <span class="cov10" title="5">searchValue := ""
         if s, ok := vObj["searchValue"]; ok </span><span class="cov0" title="0">{
                 searchValue = s.(string)
         }</span>
