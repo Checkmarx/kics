@@ -104,7 +104,7 @@ func worker(path string, results, unwanted chan<- string, wg *sync.WaitGroup) {
 	case ".dockerfile", "Dockerfile":
 		results <- "dockerfile"
 	// Terraform
-	case ".tf":
+	case ".tf", "tfvars":
 		results <- "terraform"
 	// Cloud Formation, Ansible, OpenAPI
 	case yaml, yml, ".json":

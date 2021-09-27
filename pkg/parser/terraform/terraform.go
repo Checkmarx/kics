@@ -108,7 +108,7 @@ func (p *Parser) Parse(path string, content []byte) ([]model.Document, error) {
 
 // SupportedExtensions returns Terraform extensions
 func (p *Parser) SupportedExtensions() []string {
-	return []string{".tf"}
+	return []string{".tf", ".tfvars"}
 }
 
 // SupportedTypes returns types supported by this parser, which are terraform
