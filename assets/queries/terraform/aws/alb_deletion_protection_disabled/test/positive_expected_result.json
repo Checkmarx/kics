@@ -22,5 +22,17 @@
     "severity": "LOW",
     "line": 1,
     "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "ALB Deletion Protection Disabled",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "ALB Deletion Protection Disabled",
+    "severity": "LOW",
+    "line": 9,
+    "fileName": "positive6.tf"
   }
 ]

@@ -35,3 +35,35 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", loadBalancer, name, "enable_deletion_protection"], []),
 	}
 }
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_lb", "enable_deletion_protection")
+
+	not common_lib.valid_key(module, keyToCheck)
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("module[%s]", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'enable_deletion_protection' is defined and not null",
+		"keyActualValue": "'enable_deletion_protection' is undefined or null",
+		"searchLine": common_lib.build_search_line(["module", name], []),
+	}
+}
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_lb", "enable_deletion_protection")
+
+	module[keyToCheck] == false
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("module[%s].enable_deletion_protection", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "'enable_deletion_protection' is set to true",
+		"keyActualValue": "'enable_deletion_protection' is set to false",
+		"searchLine": common_lib.build_search_line(["module", name, "enable_deletion_protection"], []),
+	}
+}
