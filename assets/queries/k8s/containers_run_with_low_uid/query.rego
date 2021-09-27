@@ -16,6 +16,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s.securityContext.runAsUser should not be a low UID", [common_lib.concat_path(path)]),
 		"keyActualValue": sprintf("%s.securityContext.runAsUser is a low UID", [common_lib.concat_path(path)]),
+		"searchLine": common_lib.build_search_line(path, ["securityContext", "runAsUser"]),
 	}
 }
 
@@ -33,5 +34,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s.securityContext.runAsUser should be defined", [common_lib.concat_path(path)]),
 		"keyActualValue": sprintf("%s.securityContext.runAsUser is undefined", [common_lib.concat_path(path)]),
+		"searchLine": common_lib.build_search_line(path, ["securityContext"]),
 	}
 }
