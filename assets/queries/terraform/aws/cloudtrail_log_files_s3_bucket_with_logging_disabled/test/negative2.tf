@@ -7,7 +7,6 @@ module "s3_bucket" {
     target_bucket = aws_s3_bucket.log_bucket.id
     target_prefix = "log/"
   }
-  s3_bucket_name = aws_s3_bucket.foo2.id
 
   versioning_inputs = [
     {

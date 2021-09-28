@@ -2,8 +2,7 @@ module "foo" {
   source = "terraform-aws-modules/s3-bucket/aws"
   version = "0.0.1"
   acl    = "private"
-  s3_bucket_name = aws_s3_bucket.foo.id
-  bucket        = "tf-test-trail"
+  bucket        = "foo"
   force_destroy = true
 
   policy = <<POLICY
@@ -43,4 +42,11 @@ POLICY
       mfa_delete = null
     },
   ]
+}
+
+resource "aws_cloudtrail" "foobar" {
+  name                          = "tf-trail-foobar"
+  s3_bucket_name                = aws_s3_bucket.foo.id
+  s3_key_prefix                 = "prefix"
+  include_global_service_events = false
 }

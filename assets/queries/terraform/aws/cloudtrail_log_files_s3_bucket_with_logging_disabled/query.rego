@@ -21,19 +21,19 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
-	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "logging")
-	s3BucketName := split(module.s3_bucket_name, ".")[1]
+	logs := input.document[i].resource.aws_cloudtrail[name]
+	s3BucketName := split(logs.s3_bucket_name, ".")[1]
+	doc := input.document[i].module[moduleName]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", doc.source, "aws_s3_bucket", "logging")
 
-	bucket := input.document[_].module[s3BucketName]
-	not common_lib.valid_key(bucket, "logging")
-
+	doc.bucket == s3BucketName
+	not common_lib.valid_key(doc, keyToCheck)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("module[%s]", [s3BucketName]),
+		"searchKey": sprintf("module[%s]", [moduleName]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'logging' is defined",
 		"keyActualValue": "'logging' is undefined",
-		"searchLine": common_lib.build_search_line(["module", s3BucketName], []),
+		"searchLine": common_lib.build_search_line(["module", moduleName], []),
 	}
 }
