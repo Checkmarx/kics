@@ -7,7 +7,7 @@ CxPolicy[result] {
 	sse := bucket.server_side_encryption_configuration.rule.apply_server_side_encryption_by_default
 
 	check_master_key(sse)
-	sse.sse_algorithm != "AE256"
+	sse.sse_algorithm != "AES256"
 
 	result := {
 		"documentId": input.document[i].id,
