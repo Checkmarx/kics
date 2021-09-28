@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 aws_cli_config_files = {"/etc/awscli.conf", "/etc/aws/config", "/etc/aws/credentials", "~/.aws/credentials", "~/.aws/config", "$HOME/.aws/credentials", "$HOME/.aws/config"}
 
 check_aws_api_keys(mdata) {
@@ -22,8 +24,8 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("aws_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
-        "keyExpectedValue": sprintf("aws_instance[%s] should be using iam_instance_profile to assign a role with permissions", [name]),
-        "keyActualValue": sprintf("aws_instance[%s].user_data is being used to configure AWS API keys", [name]),
+		"keyExpectedValue": sprintf("aws_instance[%s] should be using iam_instance_profile to assign a role with permissions", [name]),
+		"keyActualValue": sprintf("aws_instance[%s].user_data is being used to configure AWS API keys", [name]),
 	}
 }
 
@@ -38,8 +40,8 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("aws_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
-        "keyExpectedValue": sprintf("aws_instance[%s] should be using iam_instance_profile to assign a role with permissions", [name]),
-        "keyActualValue": sprintf("aws_instance[%s].user_data is being used to configure AWS API keys", [name]),
+		"keyExpectedValue": sprintf("aws_instance[%s] should be using iam_instance_profile to assign a role with permissions", [name]),
+		"keyActualValue": sprintf("aws_instance[%s].user_data is being used to configure AWS API keys", [name]),
 	}
 }
 
@@ -72,5 +74,40 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_instance[%s].provisioner.file is being used to configure AWS API keys", [name]),
 		"keyActualValue": sprintf("aws_instance[%s] should be using iam_instance_profile to assign a role with permissions", [name]),
+	}
+}
+
+#######################################################################################################
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_instance", "user_data")
+
+	check_aws_api_keys(module[keyToCheck])
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("module[%s]", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("module[%s] should be using iam_instance_profile to assign a role with permissions", [name]),
+		"keyActualValue": sprintf("module[%s].user_data is being used to configure AWS API keys", [name]),
+		"searchLine": common_lib.build_search_line(["module", name], []),
+	}
+}
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_instance", "user_data_base64")
+
+	decoded := base64.decode(module[keyToCheck])
+	check_aws_api_keys(decoded)
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("module[%s]", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("module[%s] should be using iam_instance_profile to assign a role with permissions", [name]),
+		"keyActualValue": sprintf("module[%s].user_data is being used to configure AWS API keys", [name]),
+		"searchLine": common_lib.build_search_line(["module", name], []),
 	}
 }
