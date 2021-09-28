@@ -8,7 +8,7 @@ CxPolicy[result] {
 
 	instanceProfileName := split(resource.iam_instance_profile, ".")[1]
 
-	check_private_instance(instanceProfileName)
+	check_private_instance(instanceProfileName, i)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -29,7 +29,7 @@ CxPolicy[result] {
 	iamInstanceProfile := common_lib.get_module_equivalent_key("aws", module.source, "aws_instance", "iam_instance_profile")
 	instanceProfileName := split(module[iamInstanceProfile], ".")[1]
 
-	check_private_instance(instanceProfileName)
+	check_private_instance(instanceProfileName, i)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -41,14 +41,14 @@ CxPolicy[result] {
 	}
 }
 
-check_private_instance(instanceProfileName) {
-	instance := input.document[z].resource.aws_instance[name]
+check_private_instance(instanceProfileName, i) {
+	instance := input.document[i].resource.aws_instance[name]
 
 	contains(instance.subnet_id, "private_subnets")
 
 	split(instance.iam_instance_profile, ".")[1] == instanceProfileName
 } else {
-	instance := input.document[z].module[name]
+	instance := input.document[i].module[name]
 	subnetId := common_lib.get_module_equivalent_key("aws", instance.source, "aws_instance", "subnet_id")
 
 	contains(instance[subnetId], "private_subnets")
