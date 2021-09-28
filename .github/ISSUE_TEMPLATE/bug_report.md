@@ -7,18 +7,21 @@ assignees: ''
 
 ---
 
-- **PLEASE describe in details what the problem is**
-- **PLEASE attach a log with relevant data preferably in DEBUG log level**
-- **PLEASE attach samples, anonymize the data if the original file cannot be provided**
-- **PLEASE when attaching files to the issue make sure they are properly formatted**
+- **Please make sure to:**
+  - Describe in details what the problem is
+  - Attach a log file with relevant data preferably in DEBUG level (`--log-level=DEBUG`)
+  - Attach the scanned sample files, anonymize the data if the original file cannot be provided
+  - When attaching files to the issue make sure they are properly formatted
 
 ### Expected Behavior
+
 (Which results are expected from KICS?)
 
 
 
 
 ### Actual Behavior
+
 (Formatted logs and samples helps us to better understand the issue)
 
 
