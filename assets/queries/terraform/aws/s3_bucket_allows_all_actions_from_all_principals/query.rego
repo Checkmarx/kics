@@ -1,24 +1,49 @@
 package Cx
 
-import data.generic.common as commonLib
-import data.generic.terraform as terraLib
+import data.generic.common as common_lib
+import data.generic.terraform as terra_lib
+
+pl := {"aws_s3_bucket_policy", "aws_s3_bucket"}
 
 CxPolicy[result] {
-	pl := {"aws_s3_bucket_policy", "aws_s3_bucket"}
-	resource := input.document[i].resource[pl[r]][name]
+	resourceValue := pl[r]
+	resource := input.document[i].resource[resourceValue][name]
 
-	policy := commonLib.json_unmarshal(resource.policy)
-	statement := policy.Statement[_]
-
-	statement.Effect == "Allow"
-	terraLib.anyPrincipal(statement)
-	commonLib.containsOrInArrayContains(statement.Action, "*")
+	all_actions_from_all_principals(resource.policy)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].policy.Action", [pl[r], name]),
+		"searchKey": sprintf("%s[%s].policy.Action", [resourceValue, name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].policy.Action is not a '*' action", [pl[r], name]),
-		"keyActualValue": sprintf("%s[%s].policy.Action is a '*' action", [pl[r], name]),
+		"keyExpectedValue": "'policy.Statement.Action' doesn't contain '*' when 'policy.Statement.Principal' contains '*'",
+		"keyActualValue": "'policy.Statement.Action' contains '*' when 'policy.Statement.Principal' contains '*'",
+		"searchLine": common_lib.build_search_line(["resource", resourceValue, name, "policy"], []),
 	}
+}
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	resourceValue := pl[r]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, resourceValue, "policy")
+
+	all_actions_from_all_principals(module[keyToCheck])
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("module[%s].policy", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "'policy.Statement.Action' doesn't contain '*' when 'policy.Statement.Principal' contains '*'",
+		"keyActualValue": "'policy.Statement.Action' contains '*' when 'policy.Statement.Principal' contains '*'",
+		"searchLine": common_lib.build_search_line(["module", name, "policy"], []),
+	}
+}
+
+
+all_actions_from_all_principals(policyValue) {
+	policy := common_lib.json_unmarshal(policyValue)
+	statement := policy.Statement[_]
+
+	statement.Effect == "Allow"
+	terra_lib.anyPrincipal(statement)
+	common_lib.containsOrInArrayContains(statement.Action, "*")
 }
