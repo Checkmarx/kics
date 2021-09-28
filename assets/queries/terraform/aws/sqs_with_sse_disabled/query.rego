@@ -56,8 +56,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'kms_master_key_id' is defined and not null",
-		"keyActualValue": "'kms_master_key_id' is undefined or null",
+		"keyExpectedValue": "'kms_master_key_id' is not empty",
+		"keyActualValue": "'kms_master_key_id' is not empty",
 		"searchLine": common_lib.build_search_line(["module", name, "kms_master_key_id"], []),
 	}
 }
