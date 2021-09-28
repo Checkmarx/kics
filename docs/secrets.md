@@ -1,5 +1,5 @@
 ## Password and Secrets
-Being the only query written in Golang, it involves several rules to cover the maximum possible cases. These rules bases on regexes.
+Being the only query written in Golang, it involves several rules to cover the maximum possible cases. These rules are based on regexes. The default rules can be found [here](https://github.com/Checkmarx/kics/blob/master/assets/queries/common/passwords_and_secrets/regex_rules.json).
 Each one is mainly composed of id, name and regex.
 
 Since there are cases where it is necessary to filter the results of these rules (i.e. cases to exclude), you can use **allowRules**.
