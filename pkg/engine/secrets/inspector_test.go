@@ -235,6 +235,46 @@ EOT
 		},
 		wantErr: false,
 	},
+	{
+		name: "valid_generic_secret",
+		files: model.FileMetadatas{
+			{
+				ID:       "",
+				Document: model.Document{},
+				OriginalData: `
+resource "aws_lambda_function" "analysis_lambda2" {
+  # lambda have plain text secrets in environment variables
+  filename      = "resources/lambda_function_payload.zip"
+  function_name = "${local.resource_prefix.value}-analysis"
+  role          = "${aws_iam_role.iam_for_lambda.arn}"
+  handler       = "exports.test"
+
+  source_code_hash = "${filebase64sha256("resources/lambda_function_payload.zip")}"
+
+  runtime = "nodejs12.x"
+
+  environment {
+    variables = {
+      secret_key = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+    }
+  }
+}
+`,
+				Kind:     "TF",
+				FilePath: "assets/queries/common/passwords_and_secrets/test/positive37.tf",
+			},
+		},
+		wantVuln: []model.Vulnerability{
+			{
+				QueryID:     "3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99",
+				QueryName:   "Passwords And Secrets - Generic Secret",
+				Severity:    model.SeverityHigh,
+				Category:    "Secret Management",
+				Description: "Query to find passwords and secrets in infrastructure code.",
+			},
+		},
+		wantErr: false,
+	},
 }
 
 var testNewInspectorInputs = []struct {
