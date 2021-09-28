@@ -4,7 +4,7 @@ module "s3_bucket" {
 
   bucket = "my-s3-bucket"
   acl    = "private"
-  ignore_public_acls = true
+  ignore_public_acls = false
 
   versioning = {
     enabled = true
