@@ -1,11 +1,15 @@
-resource "aws_s3_bucket" "negative1" {
-  bucket = "my_tf_test_bucket"
-}
+module "s3_bucket" {
+  source = "terraform-aws-modules/s3-bucket/aws"
+  version = "3.7.0"
 
-resource "aws_s3_bucket_policy" "negative2" {
-  bucket = aws_s3_bucket.b.id
+  bucket = "my-s3-bucket"
+  acl    = "private"
 
-  policy = <<POLICY
+  versioning = {
+    enabled = true
+  }
+
+   policy = <<POLICY
 {
   "Version": "2012-10-17",
   "Id": "MYBUCKETPOLICY",
