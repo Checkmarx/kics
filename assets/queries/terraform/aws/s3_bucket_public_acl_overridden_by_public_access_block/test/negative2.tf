@@ -9,6 +9,7 @@ module "s3_bucket" {
   version = "3.7.0"
 
   bucket = aws_s3_bucket.public-bucket3.id
+  create_bucket=false
 
   block_public_acls = false
   block_public_policy = true
