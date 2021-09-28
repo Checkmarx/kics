@@ -14,6 +14,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_autoscaling_group[%s].load_balancers is set and not empty", [name]),
 		"keyActualValue": sprintf("aws_autoscaling_group[%s].load_balancers is empty", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_autoscaling_group", name, "load_balancers"], []),
 	}
 }
 
@@ -29,23 +30,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_autoscaling_group[%s].load_balancers is set and not empty", [name]),
 		"keyActualValue": sprintf("aws_autoscaling_group[%s].load_balancers is undefined", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "aws_autoscaling_group", name, "load_balancers"], []),
-	}
-}
-
-CxPolicy[result] {
-	document = input.document[i]
-	resource = document.resource.aws_autoscaling_group[name]
-
-	count(resource.load_balancers) > 0
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_autoscaling_group[%s].load_balancers", [name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_autoscaling_group[%s].load_balancers is set and not empty", [name]),
-		"keyActualValue": sprintf("aws_autoscaling_group[%s].load_balancers is undefined", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "aws_autoscaling_group", name, "load_balancers"], []),
+		"searchLine": common_lib.build_search_line(["resource", "aws_autoscaling_group", name], []),
 	}
 }
 
@@ -57,11 +42,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("module[%s].load_balancers", [name]),
+		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'load_balancers' is set and not empty",
-		"keyActualValue": "'loas_balancers' is undefined",
-		"searchLine": common_lib.build_search_line(["module", name, "load_balancers"], []),
+		"keyActualValue": "'load_balancers' is undefined",
+		"searchLine": common_lib.build_search_line(["module", name], []),
 	}
 }
 
@@ -74,9 +59,9 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("module[%s].load_balancers", [name]),
-		"issueType": "MissingAttribute",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'load_balancers' is set and not empty",
-		"keyActualValue": "'loas_balancers' is undefined",
+		"keyActualValue": "'load_balancers' is undefined",
 		"searchLine": common_lib.build_search_line(["module", name, "load_balancers"], []),
 	}
 }

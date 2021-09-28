@@ -1,4 +1,4 @@
-module "asg" {
+module "positive3" {
   source  = "terraform-aws-modules/autoscaling/aws"
   version = "~> 4.0"
 
