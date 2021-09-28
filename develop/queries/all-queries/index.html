@@ -2879,6 +2879,14 @@
 <td><a href="https://kubernetes.io/docs/concepts/containers/images/">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>PSP With Unrestricted Access to Host Path<br/><sup><sub>de4421f1-4e35-43b4-9783-737dd4e4a47e</sub></sup></td>
+<td>Kubernetes</td>
+<td><span style="color:#C00">High</span></td>
+<td>Resource Management</td>
+<td>PodSecurityPolicy should set 'readOnly' to true in every host path allowed</td>
+<td><a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/#volumes-and-file-systems">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Non Kube System Pod With Host Mount<br/><sup><sub>aa8f7a35-9923-4cad-bd61-a19b7f6aac91</sub></sup></td>
 <td>Kubernetes</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -2959,6 +2967,14 @@
 <td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Using Unrecommended Namespace<br/><sup><sub>611ab018-c4aa-4ba2-b0f6-a448337509a6</sub></sup></td>
+<td>Kubernetes</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Namespaces like 'default', 'kube-system' or 'kube-public' should not be used</td>
+<td><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Containers With Sys Admin Capabilities<br/><sup><sub>235236ee-ad78-4065-bd29-61b061f28ce0</sub></sup></td>
 <td>Kubernetes</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -3029,14 +3045,6 @@
 <td>Insecure Configurations</td>
 <td>Limit the capabilities for a Container.</td>
 <td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Using Default Namespace<br/><sup><sub>611ab018-c4aa-4ba2-b0f6-a448337509a6</sub></sup></td>
-<td>Kubernetes</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Insecure Configurations</td>
-<td>The default namespace should not be used</td>
-<td><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Seccomp Profile Is Not Configured<br/><sup><sub>f377b83e-bd07-4f48-a591-60c82b14a78b</sub></sup></td>
@@ -3311,12 +3319,28 @@
 <td><a href="https://kubernetes.io/docs/concepts/containers/images/#updating-images">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Pod or Container Without ResourceQuota<br/><sup><sub>48a5beba-e4c0-4584-a2aa-e6894e4cf424</sub></sup></td>
+<td>Kubernetes</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Insecure Configurations</td>
+<td>Pod or Container should have a ResourceQuota associated</td>
+<td><a href="https://kubernetes.io/docs/concepts/policy/resource-quotas/">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Dashboard Is Enabled<br/><sup><sub>d2ad057f-0928-41ef-a83c-f59203bb855b</sub></sup></td>
 <td>Kubernetes</td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Insecure Configurations</td>
 <td>If not needed, disabling the dashboard can prevent from being used as an attack vector</td>
 <td><a href="https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Pod or Container Without LimitRange<br/><sup><sub>4a20ebac-1060-4c81-95d1-1f7f620e983b</sub></sup></td>
+<td>Kubernetes</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Insecure Configurations</td>
+<td>Pod or Container should have a LimitRange associated</td>
+<td><a href="https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/cpu-constraint-namespace/#create-a-limitrange-and-a-pod">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Workload Host Port Not Specified<br/><sup><sub>2b1836f1-dcce-416e-8e16-da8c71920633</sub></sup></td>
@@ -10455,11 +10479,11 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>S3 Bucket With Ignore Public ACL<br/><sup><sub>4fa66806-0dd9-4f8d-9480-3174d39c7c91</sub></sup></td>
+<td>S3 Bucket Without Ignore Public ACL<br/><sup><sub>4fa66806-0dd9-4f8d-9480-3174d39c7c91</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Insecure Configurations</td>
-<td>S3 bucket with ignore public ACL</td>
+<td>S3 bucket without ignore public ACL</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block">Documentation</a><br/></td>
 </tr>
 <tr>
