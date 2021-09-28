@@ -1,9 +1,13 @@
-resource "aws_s3_bucket" "positive1" {
-  bucket = "my_tf_test_bucket"
-}
+module "s3_bucket" {
+  source = "terraform-aws-modules/s3-bucket/aws"
+  version = "3.7.0"
 
-resource "aws_s3_bucket_policy" "positive2" {
-  bucket = aws_s3_bucket.b.id
+  bucket = "my-s3-bucket"
+  acl    = "private"
+
+  versioning = {
+    enabled = true
+  }
 
   policy = <<POLICY
 {
@@ -12,10 +16,7 @@ resource "aws_s3_bucket_policy" "positive2" {
   "Statement": [
     {
       "Sid": "IPAllow",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "*"
-      },
+      "Effect": "Deny",
       "Action": "s3:*",
       "Resource": "arn:aws:s3:::my_tf_test_bucket/*",
       "Condition": {

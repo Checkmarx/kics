@@ -1,8 +1,4 @@
-resource "aws_s3_bucket" "negative1" {
-  bucket = "my_tf_test_bucket"
-}
-
-resource "aws_s3_bucket_policy" "negative2" {
+resource "aws_s3_bucket_policy" "negative1" {
   bucket = aws_s3_bucket.b.id
 
   policy = <<POLICY
