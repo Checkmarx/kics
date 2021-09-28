@@ -4,14 +4,14 @@ module "s3_bucket" {
   acl    = "private"
   version = "0.0.1"
 
-  versioning_inputs = [
+  versioning = [
     {
       enabled = true
       mfa_delete = null
     },
   ]
 
-   cors_rule {
+  cors_rule {
     allowed_headers = ["*"]
     allowed_methods = ["GET", "PUT", "POST", "DELETE", "HEAD"]
     allowed_origins = ["*"]

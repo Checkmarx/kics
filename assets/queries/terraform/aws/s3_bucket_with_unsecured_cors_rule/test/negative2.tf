@@ -4,14 +4,14 @@ module "s3_bucket" {
   acl    = "private"
   version = "0.0.1"
 
-  versioning_inputs = [
+  versioning = [
     {
       enabled = true
       mfa_delete = null
     },
   ]
 
-   cors_rule {
+  cors_rule {
     allowed_methods = ["PUT", "POST"]
     allowed_origins = ["https://s3-website-test.hashicorp.com"]
     expose_headers  = ["ETag"]

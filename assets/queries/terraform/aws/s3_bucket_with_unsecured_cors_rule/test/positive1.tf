@@ -11,7 +11,7 @@ resource "aws_s3_bucket" "positive1" {
     enabled = false
   }
 
-   cors_rule {
+  cors_rule {
     allowed_headers = ["*"]
     allowed_methods = ["PUT", "POST"]
     allowed_origins = ["https://s3-website-test.hashicorp.com"]
