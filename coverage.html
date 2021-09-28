@@ -1616,8 +1616,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="351">{
-                if val == true </span><span class="cov9" title="350">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="363">{
+                if val == true </span><span class="cov9" title="362">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2523,13 +2523,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="39">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="39">total += v
+                <span class="cov8" title="32">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2554,7 +2554,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="16">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov6" title="13">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2835,7 +2835,7 @@ func worker(path string, results, unwanted chan&lt;- string, wg *sync.WaitGroup)
         case ".dockerfile", "Dockerfile":<span class="cov2" title="2">
                 results &lt;- "dockerfile"</span>
         // Terraform
-        case ".tf":<span class="cov2" title="2">
+        case ".tf", "tfvars":<span class="cov2" title="2">
                 results &lt;- "terraform"</span>
         // Cloud Formation, Ansible, OpenAPI
         case yaml, yml, ".json":<span class="cov6" title="13">
@@ -10851,7 +10851,7 @@ type Builder struct {
 }
 
 // NewBuilder creates a new Builder's reference
-func NewBuilder() *Builder <span class="cov6" title="5">{
+func NewBuilder() *Builder <span class="cov5" title="5">{
         log.Debug().Msg("parser.NewBuilder()")
         return &amp;Builder{}
 }</span>
@@ -10863,7 +10863,7 @@ func (b *Builder) Add(p kindParser) *Builder <span class="cov8" title="11">{
 }</span>
 
 // Build prepares parsers and associates a parser to its extension and returns it
-func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) <span class="cov6" title="5">{
+func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) <span class="cov5" title="5">{
         parserSlice := make([]*Parser, 0, len(b.parsers))
         for _, parser := range b.parsers </span><span class="cov8" title="11">{
                 var parsers kindParser
@@ -10871,7 +10871,7 @@ func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) <span
                 platforms := parser.SupportedTypes()
                 if _, _, ok := contains(types, parser.SupportedTypes()); ok </span><span class="cov8" title="11">{
                         parsers = parser
-                        for _, ext := range parser.SupportedExtensions() </span><span class="cov10" title="17">{
+                        for _, ext := range parser.SupportedExtensions() </span><span class="cov10" title="19">{
                                 extensions[ext] = struct{}{}
                         }</span>
                         <span class="cov8" title="11">parserSlice = append(parserSlice, &amp;Parser{
@@ -10882,7 +10882,7 @@ func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) <span
                 }
         }
 
-        <span class="cov6" title="5">return parserSlice, nil</span>
+        <span class="cov5" title="5">return parserSlice, nil</span>
 }
 
 // ErrNotSupportedFile represents an error when a file is not supported by KICS
@@ -10949,7 +10949,7 @@ func (c *Parser) SupportedExtensions() model.Extensions <span class="cov5" title
         return c.extensions
 }</span>
 
-func contains(types, supportedTypes []string) (invalidArgsRes []string, contRes, supportedRes bool) <span class="cov9" title="13">{
+func contains(types, supportedTypes []string) (invalidArgsRes []string, contRes, supportedRes bool) <span class="cov8" title="13">{
         if types[0] == "" </span><span class="cov8" title="11">{
                 return []string{}, true, true
         }</span>
@@ -10972,12 +10972,12 @@ func contains(types, supportedTypes []string) (invalidArgsRes []string, contRes,
         <span class="cov3" title="2">return invalidArgs, cont, supported</span>
 }
 
-func (c *Parser) isValidExtension(filePath string) bool <span class="cov7" title="7">{
+func (c *Parser) isValidExtension(filePath string) bool <span class="cov6" title="7">{
         ext := filepath.Ext(filePath)
         if ext == "" </span><span class="cov4" title="3">{
                 ext = filepath.Base(filePath)
         }</span>
-        <span class="cov7" title="7">_, ok := c.extensions[ext]
+        <span class="cov6" title="7">_, ok := c.extensions[ext]
         return ok</span>
 }
 </pre>
@@ -11484,7 +11484,7 @@ func (p *Parser) Parse(path string, content []byte) ([]model.Document, error) <s
 
 // SupportedExtensions returns Terraform extensions
 func (p *Parser) SupportedExtensions() []string <span class="cov1" title="1">{
-        return []string{".tf"}
+        return []string{".tf", ".tfvars"}
 }</span>
 
 // SupportedTypes returns types supported by this parser, which are terraform
