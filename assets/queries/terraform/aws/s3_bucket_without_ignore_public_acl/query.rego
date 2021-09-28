@@ -4,7 +4,7 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	pubACL := input.document[i].resource.aws_s3_bucket_public_access_block[name]
-	pubACL.ignore_public_acls == true
+	pubACL.ignore_public_acls == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -20,7 +20,7 @@ CxPolicy[result] {
 	module := input.document[i].module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket_public_access_block", "ignore_public_acls")
 
-	module[keyToCheck] == true
+	module[keyToCheck] == false
 
 	result := {
 		"documentId": input.document[i].id,
