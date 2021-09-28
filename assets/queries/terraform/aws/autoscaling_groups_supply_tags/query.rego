@@ -22,7 +22,6 @@ CxPolicy[result] {
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_autoscaling_group", "tags")
 
 	not common_lib.valid_key(module, "tags")
-	not common_lib.valid_key(module, "tag")
 
 	result := {
 		"documentId": input.document[i].id,
