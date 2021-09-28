@@ -176,12 +176,31 @@ func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQ
 				regexQueries = append(regexQueries, allRegexQueries[i])
 			}
 		} else {
-			if isValueInArray(allRegexQueries[i].ID, queryFilter.ExcludeQueries.ByIDs) {
-				log.Debug().
-					Msgf("Excluding query ID: %s category: %s severity: %s",
-						allRegexQueries[i].ID,
-						SecretsQueryMetadata["category"],
-						SecretsQueryMetadata["severity"])
+			if !shouldExecuteQuery(
+				allRegexQueries[i].ID,
+				allRegexQueries[i].ID,
+				SecretsQueryMetadata["category"],
+				SecretsQueryMetadata["severity"],
+				queryFilter.ExcludeQueries.ByIDs,
+			) {
+				continue
+			}
+			if !shouldExecuteQuery(
+				SecretsQueryMetadata["category"],
+				allRegexQueries[i].ID,
+				SecretsQueryMetadata["category"],
+				SecretsQueryMetadata["severity"],
+				queryFilter.ExcludeQueries.ByCategories,
+			) {
+				continue
+			}
+			if !shouldExecuteQuery(
+				SecretsQueryMetadata["severity"],
+				allRegexQueries[i].ID,
+				SecretsQueryMetadata["category"],
+				SecretsQueryMetadata["severity"],
+				queryFilter.ExcludeQueries.BySeverities,
+			) {
 				continue
 			}
 			regexQueries = append(regexQueries, allRegexQueries[i])
@@ -209,7 +228,7 @@ func (c *Inspector) GetQueriesLength() int {
 
 func isValueInArray(value string, array []string) bool {
 	for i := range array {
-		if value == array[i] {
+		if strings.EqualFold(value, array[i]) {
 			return true
 		}
 	}
@@ -455,4 +474,16 @@ func calculateEntropy(token, charSet string) float64 {
 	}
 
 	return math.Log2(length) - freq/length
+}
+
+func shouldExecuteQuery(filterTarget, id, category, severity string, filter []string) bool {
+	if isValueInArray(filterTarget, filter) {
+		log.Debug().
+			Msgf("Excluding query ID: %s category: %s severity: %s",
+				id,
+				category,
+				severity)
+		return false
+	}
+	return true
 }
