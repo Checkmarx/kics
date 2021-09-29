@@ -1,0 +1,86 @@
+{
+	"document": [
+		{
+			"id": "0",
+			"file": "file",
+			"resource": {
+				"aws_redshift_cluster": {
+					"default": {
+						"cluster_identifier": "tf-redshift-cluster",
+						"database_name": "mydb",
+						"master_username": "foo",
+						"master_password": "Mustbe8characters",
+						"node_type": "dc1.large",
+						"cluster_type": "single-node",
+						"_kics_lines": {
+							"_kics__default": {
+								"_kics_line": 1
+							},
+							"_kics_cluster_identifier": {
+								"_kics_line": 2
+							},
+							"_kics_cluster_type": {
+								"_kics_line": 7
+							},
+							"_kics_database_name": {
+								"_kics_line": 3
+							},
+							"_kics_master_password": {
+								"_kics_line": 5
+							},
+							"_kics_master_username": {
+								"_kics_line": 4
+							},
+							"_kics_node_type": {
+								"_kics_line": 6
+							}
+						}
+					},
+					"default1": {
+						"master_username": "foo",
+						"master_password": "Mustbe8characters",
+						"_kics_lines": {
+							"_kics__default": {
+								"_kics_line": 10
+							},
+							"_kics_cluster_identifier": {
+								"_kics_line": 11
+							},
+							"_kics_cluster_type": {
+								"_kics_line": 16
+							},
+							"_kics_database_name": {
+								"_kics_line": 12
+							},
+							"_kics_master_password": {
+								"_kics_line": 14
+							},
+							"_kics_master_username": {
+								"_kics_line": 13
+							},
+							"_kics_node_type": {
+								"_kics_line": 15
+							},
+							"_kics_publicly_accessible": {
+								"_kics_line": 17
+							}
+						},
+						"node_type": "dc1.large",
+						"cluster_type": "single-node",
+						"publicly_accessible": true,
+						"cluster_identifier": "tf-redshift-cluster",
+						"database_name": "mydb"
+					}
+				}
+			},
+			"_kics_lines": {
+				"_kics__default": {
+					"_kics_line": 0
+				},
+				"_kics_resource": {
+					"_kics_line": 10
+				}
+			}
+		}
+	]
+}
