@@ -92,7 +92,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("module[%s].versioning.%s", [name, checkedFields[c]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' is set to true", [checkedFields[c]]),
-		"keyExpectedValue": sprintf("'%s' is set to false", [checkedFields[c]]),
+		"keyActualValue": sprintf("'%s' is set to false", [checkedFields[c]]),
 		"searchLine": common_lib.build_search_line(["module", name, "versioning", checkedFields[c]], []),
 	}
 }
