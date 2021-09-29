@@ -1,12 +1,14 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resources := document.Resources
-	some resource
-	resources[resource].Type == "AWS::S3::Bucket"
 
-	bucketName := resource
+	resources[resourceName].Type == "AWS::S3::Bucket"
+
+	bucketName := resourceName
 
 	not bucketHasPolicy(bucketName, resources)
 
@@ -16,16 +18,17 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s bucket has a policy that enforces SSL", [bucketName]),
 		"keyActualValue": sprintf("Resources.%s bucket doesn't have a policy", [bucketName]),
+		"searchLine": common_lib.build_search_line(["Resources", bucketName], []),
 	}
 }
 
 CxPolicy[result] {
 	document := input.document[i]
 	resources := document.Resources
-	some resource
-	resources[resource].Type == "AWS::S3::Bucket"
 
-	bucketName := resource
+	resources[resourceName].Type == "AWS::S3::Bucket"
+
+	bucketName := resourceName
 
 	bucketHasPolicy(bucketName, resources)
 	not bucketHasPolicyWithValidSslVerification(bucketName, resources)
@@ -36,26 +39,20 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s bucket has a policy that enforces SSL", [bucketName]),
 		"keyActualValue": sprintf("Resources.%s bucket doesn't have a policy or has a policy that doesn't enforce SSL", [bucketName]),
+		"searchLine": common_lib.build_search_line(["Resources", bucketName], []),
 	}
 }
 
 bucketHasPolicy(bucketName, resources) {
-	some resource
-	resources[resource].Type == "AWS::S3::BucketPolicy"
-
-	policy = resources[resource2]
-
-	policy.Properties.Bucket == bucketName
+	resources[_].Type == "AWS::S3::BucketPolicy"
+	resources[_].Properties.Bucket == bucketName
 }
 
 bucketHasPolicyWithValidSslVerification(bucketName, resources) {
-	some resource
-	resources[resource].Type == "AWS::S3::BucketPolicy"
+	resources[_].Type == "AWS::S3::BucketPolicy"
+	resources[_].Properties.Bucket == bucketName
 
-	policy = resources[resource2]
-
-	policy.Properties.Bucket == bucketName
-	count({stmt | isValidSslPolicyStatement(policy.Properties.PolicyDocument.Statement[stmt])}) > 0
+	isValidSslPolicyStatement(resources[_].Properties.PolicyDocument.Statement)
 }
 
 isUnsafeAction("s3:*") = true
@@ -67,7 +64,14 @@ equalsFalse("false") = true
 equalsFalse(false) = true
 
 isValidSslPolicyStatement(stmt) {
-	stmt.Effect == "Deny"
+	is_array(stmt)
+    st := stmt[s]
+	st.Effect == "Deny"
+	isUnsafeAction(st.Action)
+	equalsFalse(st.Condition.Bool["aws:SecureTransport"])
+} else {
+	is_object(stmt)
+    stmt.Effect == "Deny"
 	isUnsafeAction(stmt.Action)
 	equalsFalse(stmt.Condition.Bool["aws:SecureTransport"])
 }
