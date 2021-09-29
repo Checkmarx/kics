@@ -2,6 +2,13 @@
   {
     "queryName": "SQS Policy Allows All Actions",
     "severity": "MEDIUM",
-    "line": 17
+    "line": 17,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "SQS Policy Allows All Actions",
+    "severity": "MEDIUM",
+    "line": 21,
+    "filename": "positive2.tf"
   }
 ]

@@ -2,11 +2,25 @@
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "HIGH",
-    "line": 11
+    "line": 11,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "HIGH",
-    "line": 37
+    "line": 11,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive4.tf"
   }
 ]

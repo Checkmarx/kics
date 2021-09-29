@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend
+  namespace: myPod2
+spec:
+  containers:
+  - name: app
+    image: images.my-company.example/app:v4
+    securityContext:
+      allowPrivilegeEscalation: false
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+---
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: cpu-min-max-demo-lr
+  namespace: myPod2
+spec:
+  limits:
+  - max:
+      cpu: "800m"
+    min:
+      cpu: "200m"
+    type: Container

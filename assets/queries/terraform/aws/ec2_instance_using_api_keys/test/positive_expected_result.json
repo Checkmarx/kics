@@ -52,5 +52,23 @@
     "severity": "LOW",
     "line": 13,
     "fileName": "positive9.tf"
+  },
+  {
+    "queryName": "EC2 Instance Using API Keys",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive10.tf"
+  },
+  {
+    "queryName": "EC2 Instance Using API Keys",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive11.tf"
+  },
+  {
+    "queryName": "EC2 Instance Using API Keys",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive12.tf"
   }
 ]

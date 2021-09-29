@@ -77,8 +77,8 @@ func processResources(doc model.Document, path string) error {
 
 func addExtraInfo(json []model.Document, path string) ([]model.Document, error) {
 	for _, documents := range json { // iterate over documents
-		if documents["resource"] != nil {
-			err := processResources(documents["resource"].(model.Document), path)
+		if resources, ok := documents["resource"].(model.Document); ok {
+			err := processResources(resources, path)
 			if err != nil {
 				return []model.Document{}, err
 			}
@@ -108,7 +108,7 @@ func (p *Parser) Parse(path string, content []byte) ([]model.Document, error) {
 
 // SupportedExtensions returns Terraform extensions
 func (p *Parser) SupportedExtensions() []string {
-	return []string{".tf"}
+	return []string{".tf", ".tfvars"}
 }
 
 // SupportedTypes returns types supported by this parser, which are terraform

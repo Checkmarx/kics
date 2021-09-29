@@ -1,13 +1,12 @@
 package Cx
 
-import data.generic.common as commonLib
-import data.generic.terraform as terraLib
+import data.generic.common as common_lib
+import data.generic.terraform as terra_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_sqs_queue[name]
-	policy := commonLib.json_unmarshal(resource.policy)
-	statement := policy.Statement[_]
-	terraLib.anyPrincipal(statement)
+
+	exposed(resource.policy)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -15,5 +14,28 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource.aws_sqs_queue[%s].policy.Principal doesn't get the queue publicly accessible", [name]),
 		"keyActualValue": sprintf("resource.aws_sqs_queue[%s].policy.Principal does get the queue publicly accessible", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_sqs_queue", name, "policy"], []),
 	}
+}
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_sqs_queue", "policy")
+
+	exposed(module[keyToCheck])
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("module[%s]", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "'policy.Principal' doesn't get the queue publicly accessible",
+		"keyActualValue": "'policy.Principal' does get the queue publicly accessible",
+		"searchLine": common_lib.build_search_line(["module", name, "policy"], []),
+	}
+}
+
+exposed(policyValue) {
+	policy := common_lib.json_unmarshal(policyValue)
+	statement := policy.Statement[_]
+	terra_lib.anyPrincipal(statement)
 }

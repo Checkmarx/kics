@@ -2,16 +2,37 @@
   {
     "queryName": "SQS With SSE Disabled",
     "severity": "HIGH",
-    "line": 1
+    "line": 1,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "SQS With SSE Disabled",
     "severity": "HIGH",
-    "line": 8
+    "line": 3,
+    "fileName": "positive2.tf"
   },
   {
     "queryName": "SQS With SSE Disabled",
     "severity": "HIGH",
-    "line": 12
+    "line": 1,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "SQS With SSE Disabled",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "SQS With SSE Disabled",
+    "severity": "HIGH",
+    "line": 12,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "SQS With SSE Disabled",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive6.tf"
   }
 ]

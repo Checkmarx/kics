@@ -4,7 +4,6 @@ metadata:
   name: containers-runs-as-root
 spec:
   securityContext:
-    runAsUser: 222
     runAsNonRoot: false
   containers:
     - name: sec-ctx-demo-100

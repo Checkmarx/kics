@@ -1,0 +1,20 @@
+[
+	{
+		"queryName": "Pod or Container Without LimitRange",
+		"severity": "LOW",
+		"line": 5,
+		"fileName": "positive1.yaml"
+	},
+	{
+		"queryName": "Pod or Container Without LimitRange",
+		"severity": "LOW",
+		"line": 4,
+		"fileName": "positive2.yaml"
+	},
+	{
+		"queryName": "Pod or Container Without LimitRange",
+		"severity": "LOW",
+		"line": 5,
+		"fileName": "positive3.yaml"
+	}
+]

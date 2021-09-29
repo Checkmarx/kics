@@ -2,11 +2,37 @@
   {
     "queryName": "S3 Bucket SSE Disabled",
     "severity": "HIGH",
-    "line": 7
+    "line": 1,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "S3 Bucket SSE Disabled",
     "severity": "HIGH",
-    "line": 20
+    "line": 13,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "S3 Bucket SSE Disabled",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "S3 Bucket SSE Disabled",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "S3 Bucket SSE Disabled",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "S3 Bucket SSE Disabled",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive6.tf"
   }
 ]

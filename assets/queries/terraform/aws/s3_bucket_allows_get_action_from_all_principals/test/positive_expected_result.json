@@ -2,11 +2,19 @@
   {
     "queryName": "S3 Bucket Allows Get Action From All Principals",
     "severity": "HIGH",
-    "line": 17
+    "line": 17,
+    "filename": "positive1.tf"
   },
   {
     "queryName": "S3 Bucket Allows Get Action From All Principals",
     "severity": "HIGH",
-    "line": 42
+    "line": 42,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "S3 Bucket Allows Get Action From All Principals",
+    "severity": "HIGH",
+    "line": 23,
+    "filename": "positive2.tf"
   }
 ]
