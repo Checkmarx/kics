@@ -1,4 +1,4 @@
-resource "aws_autoscaling_group" "negative" {
+resource "aws_autoscaling_group" "negative1" {
   name                 = "foobar3-terraform-test"
   max_size             = 5
   min_size             = 2
