@@ -2,7 +2,7 @@
   {
     "queryName": "Network ACL With Unrestricted Access To RDP",
     "severity": "HIGH",
-    "line": 28,
+    "line": 30,
     "fileName": "positive1.tf"
   },
   {
@@ -16,5 +16,11 @@
     "severity": "HIGH",
     "line": 26,
     "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Network ACL With Unrestricted Access To RDP",
+    "severity": "HIGH",
+    "line": 14,
+    "fileName": "positive4.tf"
   }
 ]

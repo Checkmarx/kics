@@ -3,31 +3,6 @@
     {
       "AWSTemplateFormatVersion": "2010-09-09",
       "Description": "ElasticsearchDomain resource",
-      "Parameters": {
-        "GroupDescription": {
-          "Type": "String"
-        },
-        "SGName": {
-          "Type": "String"
-        },
-        "DomainName": {
-          "Description": "User defined Elasticsearch Domain name",
-          "Type": "String"
-        },
-        "ElasticsearchVersion": {
-          "Description": "User defined Elasticsearch Version",
-          "Type": "String"
-        },
-        "InstanceType": {
-          "Type": "String"
-        },
-        "AvailabilityZone": {
-          "Type": "String"
-        },
-        "CidrBlock": {
-          "Type": "String"
-        }
-      },
       "Resources": {
         "ElasticsearchDomain": {
           "Type": "AWS::Elasticsearch::Domain",

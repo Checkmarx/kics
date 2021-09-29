@@ -35,6 +35,7 @@ var (
 		95, 67, 111, 110, 116, 101, 110, 116, 95, 99, 105, 115, 101, 99, 117, 114, 105, 116, 121, 46, 111, 114, 103}
 
 	tr = &http.Transport{
+		Proxy:              http.ProxyFromEnvironment,
 		MaxIdleConns:       10,
 		IdleConnTimeout:    30 * time.Second,
 		DisableCompression: true,

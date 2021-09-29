@@ -1,0 +1,10 @@
+{
+  "id": "4a20ebac-1060-4c81-95d1-1f7f620e983b",
+  "queryName": "Pod or Container Without LimitRange",
+  "severity": "LOW",
+  "category": "Insecure Configurations",
+  "descriptionText": "Pod or Container should have a LimitRange associated",
+  "descriptionUrl": "https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/cpu-constraint-namespace/#create-a-limitrange-and-a-pod",
+  "platform": "Kubernetes",
+  "descriptionID": "142ed21f"
+}

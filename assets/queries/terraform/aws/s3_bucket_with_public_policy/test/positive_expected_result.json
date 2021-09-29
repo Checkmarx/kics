@@ -2,11 +2,25 @@
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "HIGH",
-    "line": 18
+    "line": 18,
+    "filename": "positive1.tf"
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "HIGH",
-    "line": 9
+    "line": 9,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "HIGH",
+    "line": 1,
+    "filename": "positive3.tf"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "HIGH",
+    "line": 9,
+    "filename": "positive2.tf"
   }
 ]

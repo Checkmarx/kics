@@ -1,0 +1,46 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Resources": {
+    "BucketPolicy": {
+      "Properties": {
+        "Bucket": "S3Bucket33",
+        "PolicyDocument": {
+          "Id": "MyPolicy",
+          "Statement": {
+            "Action": "s3:*",
+            "Condition": {
+              "Bool": {
+                "aws:SecureTransport": false
+              }
+            },
+            "Effect": "Allow",
+            "Principal": "*",
+            "Resource": [
+              "",
+              {
+                "playbooks": [
+                  "arn:aws:s3:::",
+                  "S3Bucket3",
+                  "/*"
+                ]
+              }
+            ]
+          },
+          "Version": "2012-10-17"
+        }
+      },
+      "Type": "AWS::S3::BucketPolicy"
+    },
+    "S3Bucket33": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "AccessControl": "PublicRead",
+        "WebsiteConfiguration": {
+          "ErrorDocument": "error.html",
+          "IndexDocument": "index.html"
+        }
+      },
+      "Type": "AWS::S3::Bucket"
+    }
+  }
+}
