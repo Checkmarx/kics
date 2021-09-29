@@ -5,53 +5,32 @@ import data.generic.common as common_lib
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::S3::Bucket"
-	bucket := resource.Properties.BucketName
-	not bucketName(bucket)
-    not bucketName(name)
+
+	not has_bucket_policy(resource, name)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.BucketName", [name]),
+		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.BucketName' or 'Resources.[%s]' is the same as an 'AWS::S3::BucketPolicy' Bucket Ref", [name, name]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.BucketName' or 'Resources.[%s]' is not the same as an 'AWS::S3::BucketPolicy' Bucket Ref", [name, name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.BucketName' or 'Resources.[%s]' is the same as an 'AWS::S3::BucketPolicy' Bucket", [name, name]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.BucketName' or 'Resources.[%s]' is not the same as an 'AWS::S3::BucketPolicy' Bucket", [name, name]),
+		"searchLine": common_lib.build_search_line(["Resources", name], []),
 	}
 }
 
-CxPolicy[result] {
-	resource := input.document[i].Resources[name]
-	resource.Type == "AWS::S3::Bucket"
-	not common_lib.valid_key(resource.Properties, "BucketName")
 
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties", [name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.BucketName' is defined", [name]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.BucketName' is not defined", [name]),
-	}
+match(bucketResource, resourceName, bucketAssociated) {
+	bucketAssociated == resourceName
+} else {
+	bucketAssociated == bucketResource.Properties.BucketName
 }
 
-bucketName(bucketName) {
-	resource := input.document[i].Resources[name]
-	resource.Type == "AWS::S3::BucketPolicy"
-	bucket := resource.Properties.Bucket
-    not contains(bucket, "!Ref")
-	bucket == bucketName
-}
 
-bucketName(bucketName) {
+has_bucket_policy(bucketResource, resourceName) {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::S3::BucketPolicy"
-	bucket := resource.Properties.Bucket
-    contains(bucket, "!Ref")
-    bucketN := replace(bucket, "!Ref ", "")
-	bucket == bucketName
-}
+	bucketAssociated := resource.Properties.Bucket
 
-bucketName(bucketName) {
-	resource := input.document[i].Resources[name]
-	resource.Type == "AWS::S3::BucketPolicy"
-	bucket := resource.Properties.Bucket.Ref
-	bucket == bucketName
+	match(bucketResource, resourceName, bucketAssociated)
+
 }
