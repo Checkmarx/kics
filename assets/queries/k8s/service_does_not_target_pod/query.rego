@@ -9,8 +9,9 @@ CxPolicy[result] {
 	ports := service.spec.ports
 	servicePorts := ports[j]
 	label := service.spec.selector[_]
-	match_label(label)
-	not confirmPorts(label, servicePorts)
+	ret := match_label(service.spec.selector)
+	count(ret) != 0
+	not confirmPorts(ret, servicePorts)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -25,8 +26,9 @@ CxPolicy[result] {
 	service := input.document[i]
 	service.kind == "Service"
 	metadata := service.metadata
-	label := service.spec.selector[_]
-	not match_label(label)
+	label := service.spec.selector
+	ret := match_label(label)
+	count(ret) == 0
 
 	result := {
 		"documentId": input.document[i].id,
@@ -40,17 +42,15 @@ CxPolicy[result] {
 listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob"]
 
 confirmPorts(label, servicePorts) {
+	types := {"initContainers", "containers"}
 	resource := input.document[_]
 	resource.kind == listKinds[x]
-	resource.metadata.labels[_] == label
-	specInfo := k8sLib.getSpecInfo(resource)
-	types := {"initContainers", "containers"}
-	containers := specInfo.spec[types[j]]
-	containers[_].ports[_].containerPort == servicePorts.targetPort
+	resource.metadata.labels[_] == label[_]
+	[path, value] := walk(resource.spec)
+	cont := value[types[j]]
+	cont[_].ports[_].containerPort == servicePorts.port
 }
 
-match_label(string) {
-	resource := input.document[_]
-	resource.kind == listKinds[x]
-	resource.metadata.labels[_] == string
+match_label(string) = ret {
+	ret := {x | resource := input.document[_]; resource.kind == listKinds[_]; n := string[_]; n == resource.metadata.labels[_]; x := n}
 }
