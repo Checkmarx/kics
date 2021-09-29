@@ -5,7 +5,7 @@ import data.generic.common as common_lib
 CxPolicy[result] {
 	bucket := input.document[i].resource.aws_s3_bucket[name]
 
-	rule := bucket.cors_rule
+	rule := bucket.cors_rule[ruleIdx]
 	common_lib.unsecured_cors_rule(rule.allowed_methods, rule.allowed_headers, rule.allowed_origins)
 
 	result := {
@@ -21,7 +21,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	module := input.document[i].module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "cors_rule")
-	rule := module.cors_rule
+	rule := module.cors_rule[ruleIdx]
 	common_lib.unsecured_cors_rule(rule.allowed_methods, rule.allowed_headers, rule.allowed_origins)
 
 	result := {
