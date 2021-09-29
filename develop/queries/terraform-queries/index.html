@@ -1765,13 +1765,6 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ebs_snapshot#encrypted">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>S3 Bucket Without Server-side-encryption<br/><sup><sub>6726dcc0-5ff5-459d-b473-a780bef7665c</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Encryption</td>
-<td>S3 bucket should have encryption defined</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>AMI Not Encrypted<br/><sup><sub>8bbb242f-6e38-4127-86d4-d8f0b2687ae2</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
@@ -1919,11 +1912,11 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sagemaker_notebook_instance#kms_key_id">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>S3 Bucket SSE Disabled<br/><sup><sub>ad03cb46-f174-4674-bf8e-2880a7000edd</sub></sup></td>
+<td>S3 Bucket SSE Disabled<br/><sup><sub>6726dcc0-5ff5-459d-b473-a780bef7665c</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
 <td>If algorithm is AES256 then the master key is null, empty or undefined, otherwise the master key is required</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#sse_algorithm">Documentation</a><br/></td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#server_side_encryption_configuration">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>ELB Using Insecure Protocols<br/><sup><sub>126c1788-23c2-4a10-906c-ef179f4f96ec</sub></sup></td>
