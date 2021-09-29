@@ -30,6 +30,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'cors_rule' does not allows all methods, all headers or several origins",
 		"keyActualValue": "'cors_rule' allows all methods, all headers or several origins",
-		"searchLine": common_lib.build_search_line(["module", name, "cors_rule"], []),
+		"searchLine": common_lib.build_search_line(["module", name, keyToCheck, ruleIdx], []),
 	}
 }
