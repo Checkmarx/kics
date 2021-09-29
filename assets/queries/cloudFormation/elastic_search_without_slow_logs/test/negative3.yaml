@@ -1,0 +1,28 @@
+Resources:
+  ProductionElasticsearch:
+    Type: AWS::Elasticsearch::Domain
+    Properties:
+      EBSOptions:
+        EBSEnabled: true
+        VolumeSize: 70
+        VolumeType: gp2
+      ElasticsearchClusterConfig:
+        DedicatedMasterCount: 3
+        DedicatedMasterEnabled: true
+        DedicatedMasterType: omitted
+        InstanceCount: 3
+        InstanceType: omitted
+        ZoneAwarenessConfig:
+          AvailabilityZoneCount: 3
+        ZoneAwarenessEnabled: true
+      ElasticsearchVersion: omitted
+      LogPublishingOptions:
+        "INDEX_SLOW_LOGS":
+          CloudWatchLogsLogGroupArn: !GetAtt ProductionElasticsearchIndexSlowLogs.Arn
+          Enabled: true
+        "SEARCH_SLOW_LOGS":
+          CloudWatchLogsLogGroupArn: !GetAtt ProductionElasticsearchSearchSlowLogs.Arn
+          Enabled: true
+        "ES_APPLICATION_LOGS":
+          CloudWatchLogsLogGroupArn: !GetAtt ProductionElasticsearchApplicationLogs.Arn
+          Enabled: true
