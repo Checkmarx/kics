@@ -149,7 +149,7 @@
 				
 				<option value="file46">github.com/Checkmarx/kics/pkg/model/summary.go (89.8%)</option>
 				
-				<option value="file47">github.com/Checkmarx/kics/pkg/parser/docker/parser.go (90.9%)</option>
+				<option value="file47">github.com/Checkmarx/kics/pkg/parser/docker/parser.go (91.2%)</option>
 				
 				<option value="file48">github.com/Checkmarx/kics/pkg/parser/json/json_line.go (91.5%)</option>
 				
@@ -1602,7 +1602,7 @@ func setupCfgFile() (bool, error) <span class="cov4" title="8">{
 func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" title="10">{
         log.Debug().Msg("console.bindFlags()")
         settingsMap := v.AllSettings()
-        cmd.Flags().VisitAll(func(f *pflag.Flag) </span><span class="cov10" title="380">{
+        cmd.Flags().VisitAll(func(f *pflag.Flag) </span><span class="cov9" title="380">{
                 settingsMap[f.Name] = true
                 if strings.Contains(f.Name, "-") </span><span class="cov9" title="290">{
                         envVarSuffix := strings.ToUpper(strings.ReplaceAll(f.Name, "-", "_"))
@@ -1611,13 +1611,13 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                                 log.Err(err).Msg("Failed to bind Viper flags")
                         }</span>
                 }
-                <span class="cov10" title="380">if !f.Changed &amp;&amp; v.IsSet(f.Name) </span><span class="cov3" title="6">{
+                <span class="cov9" title="380">if !f.Changed &amp;&amp; v.IsSet(f.Name) </span><span class="cov3" title="6">{
                         val := v.Get(f.Name)
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="353">{
-                if val == true </span><span class="cov9" title="352">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov10" title="381">{
+                if val == true </span><span class="cov9" title="380">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2523,13 +2523,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="37">total += v
+                <span class="cov8" title="34">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2554,7 +2554,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov6" title="14">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2943,7 +2943,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="10">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov7" title="17">{
-        for _, a := range s </span><span class="cov8" title="39">{
+        for _, a := range s </span><span class="cov8" title="38">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -8343,6 +8343,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) <
         from := make(map[string][]Command)
 
         for _, child := range parsed.AST.Children </span><span class="cov8" title="21">{
+                child.Value = strings.ToLower(child.Value)
                 if child.Value == "from" </span><span class="cov4" title="4">{
                         fromValue = strings.TrimPrefix(child.Original, "FROM ")
                 }</span>
@@ -8356,7 +8357,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) <
                 }
 
                 if child.Next != nil &amp;&amp; len(child.Next.Children) &gt; 0 </span><span class="cov2" title="2">{
-                        cmd.SubCmd = child.Next.Children[0].Value
+                        cmd.SubCmd = strings.ToLower(child.Next.Children[0].Value)
                         child = child.Next.Children[0]
                 }</span>
 
