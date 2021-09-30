@@ -9,6 +9,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/model"
@@ -36,7 +37,6 @@ var (
 		"../assets/queries/ansible/gcp":          {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
 		"../assets/queries/ansible/azure":        {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
 		"../assets/queries/dockerfile":           {FileKind: []model.FileKind{model.KindDOCKER}, Platform: "dockerfile"},
-		"../assets/queries/common":               {FileKind: []model.FileKind{model.KindCOMMON}, Platform: "common"},
 		"../assets/queries/openAPI/general":      {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
 		"../assets/queries/openAPI/3.0":          {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
 		"../assets/queries/openAPI/2.0":          {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
@@ -51,8 +51,9 @@ var (
 )
 
 const (
-	scanID            = "test_scan"
-	BaseTestsScanPath = "../assets/queries/"
+	scanID                  = "test_scan"
+	BaseTestsScanPath       = "../assets/queries/"
+	ExpectedResultsFilename = "positive_expected_result.json"
 )
 
 func TestMain(m *testing.M) {
@@ -69,9 +70,9 @@ func (q queryEntry) getSampleFiles(tb testing.TB, filePattern string) []string {
 	var files []string
 	for _, kinds := range q.kind {
 		kindFiles, err := filepath.Glob(path.Join(q.dir, fmt.Sprintf(filePattern, strings.ToLower(string(kinds)))))
-		x0 := filepath.FromSlash(path.Join(q.dir, "test/positive_expected_result.json"))
+		positiveExpectedResultsFilepath := filepath.FromSlash(path.Join(q.dir, "test", ExpectedResultsFilename))
 		for i, check := range kindFiles {
-			if check == x0 {
+			if check == positiveExpectedResultsFilepath {
 				kindFiles = append(kindFiles[:i], kindFiles[i+1:]...)
 			}
 		}
@@ -90,7 +91,7 @@ func (q queryEntry) NegativeFiles(tb testing.TB) []string {
 }
 
 func (q queryEntry) ExpectedPositiveResultFile() string {
-	return filepath.FromSlash(path.Join(q.dir, "test/positive_expected_result.json"))
+	return filepath.FromSlash(path.Join(q.dir, "test", ExpectedResultsFilename))
 }
 
 func appendQueries(queriesDir []queryEntry, dirName string, kind []model.FileKind, platform string) []queryEntry {
@@ -144,11 +145,11 @@ func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte)
 			files = append(files, model.FileMetadata{
 				ID:               uuid.NewString(),
 				ScanID:           scanID,
-				Document:         kics.RemoveLineInfoConverter(document),
+				Document:         kics.PrepareScanDocument(document, kind),
 				LineInfoDocument: document,
 				OriginalData:     string(content),
 				Kind:             kind,
-				FileName:         filePath,
+				FilePath:         filePath,
 			})
 		}
 	}
@@ -218,17 +219,32 @@ func sliceContains(s []string, str string) bool {
 	return false
 }
 
-func readLibrary(platform string) (string, error) {
-	pathToLib, err := source.GetPathToLibrary(platform, filepath.FromSlash("./assets/libraries"))
+func readLibrary(platform string) (source.RegoLibraries, error) {
+	library := source.GetPathToCustomLibrary(platform, "./assets/libraries")
+
+	libraryData, err := assets.GetEmbeddedLibraryData(strings.ToLower(platform))
 	if err != nil {
-		return "", err
-	}
-	content, err := os.ReadFile(pathToLib)
-	if err != nil {
-		log.Err(err)
+		log.Debug().Msgf("Couldn't load input data for library of %s platform.", platform)
+		libraryData = "{}"
 	}
 
-	return string(content), err
+	if library != "default" {
+		content, err := os.ReadFile(library)
+		return source.RegoLibraries{
+			LibraryCode:      string(content),
+			LibraryInputData: libraryData,
+		}, err
+	}
+
+	log.Debug().Msgf("Custom library not provided. Loading embedded library instead")
+
+	// getting embedded library
+	embeddedLibrary, errGettingEmbeddedLibrary := assets.GetEmbeddedLibrary(strings.ToLower(platform))
+
+	return source.RegoLibraries{
+		LibraryCode:      embeddedLibrary,
+		LibraryInputData: libraryData,
+	}, errGettingEmbeddedLibrary
 }
 
 func isValidURL(toTest string) bool {

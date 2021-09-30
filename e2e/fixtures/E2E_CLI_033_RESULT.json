@@ -3,9 +3,22 @@
   "files_scanned": 1,
   "files_parsed": 1,
   "files_failed_to_scan": 0,
-  "queries_total": 588,
+  "queries_total": 785,
   "queries_failed_to_execute": 0,
   "queries_failed_to_compute_similarity_id": 0,
+  "scan_id": "console",
+  "severity_counters": {
+    "HIGH": 0,
+    "INFO": 1,
+    "LOW": 0,
+    "MEDIUM": 3
+  },
+  "total_counter": 4,
+  "start": "2021-09-10T13:55:18.709293+01:00",
+  "end": "2021-09-10T13:55:22.21519+01:00",
+  "paths": [
+    "fixtures/samples/terraform-single.tf"
+  ],
   "queries": [
     {
       "query_name": "Redshift Cluster Logging Disabled",
@@ -49,24 +62,24 @@
       "files": [
         {
           "file_name": "fixtures/samples/terraform-single.tf",
-          "similarity_id": "d1c5f6aec84fd91ed24f5f06ccb8b6662e26c0202bcb5d4a58a1458c16456d20",
+          "similarity_id": "4aa3f159f39767de53b49ed871977b8b499bf19b3b0865b1631042aa830598aa",
           "line": 1,
           "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[default1]",
           "search_line": 0,
-          "search_value": "",
+          "search_value": "cluster_subnet_group_name",
           "expected_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is set",
           "actual_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is undefined",
           "value": null
         },
         {
           "file_name": "fixtures/samples/terraform-single.tf",
-          "similarity_id": "d1c5f6aec84fd91ed24f5f06ccb8b6662e26c0202bcb5d4a58a1458c16456d20",
+          "similarity_id": "83461a5eac8fed2264fac68a6d352d1ed752867a9b0a131afa9ba7e366159b59",
           "line": 1,
           "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[default1]",
           "search_line": 0,
-          "search_value": "",
+          "search_value": "vpc_security_group_ids",
           "expected_value": "aws_redshift_cluster[default1].vpc_security_group_ids is set",
           "actual_value": "aws_redshift_cluster[default1].vpc_security_group_ids is undefined",
           "value": null
@@ -100,18 +113,5 @@
         }
       ]
     }
-  ],
-  "scan_id": "console",
-  "severity_counters": {
-    "HIGH": 0,
-    "INFO": 1,
-    "LOW": 0,
-    "MEDIUM": 3
-  },
-  "total_counter": 4,
-  "start": "2021-07-23T17:40:14.888483+01:00",
-  "end": "2021-07-23T17:41:02.3078595+01:00",
-  "paths": [
-    "fixtures/samples/terraform-single.tf"
   ]
 }

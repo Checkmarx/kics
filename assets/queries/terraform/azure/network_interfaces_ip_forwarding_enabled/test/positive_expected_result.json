@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Network Interfaces IP Forwarding Enabled",
+    "severity": "LOW",
+    "line": 12,
+    "fileName": "positive.tf"
+  }
+]

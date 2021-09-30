@@ -74,7 +74,7 @@ Flags:
                                      can be provided multiple times or as a comma separated string
                                      example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'
       --input-data string            path to query input data files
-  -b, --library string               path to directory with libraries (default "./assets/libraries")
+  -b, --libraries-path string        path to directory with libraries (default "./assets/libraries")
       --minimal-ui                   simplified version of CLI output
       --no-progress                  hides the progress bar
       --output-name string           name used on report creations (default "results")
@@ -105,8 +105,9 @@ The other commands have no further options.
 
 ## Library Flag Usage
 
-As mentioned above, the library flag (`-b`) refers to the directory with libraries. The functions need to be grouped by platform and the library file name should follow the format: `<platform>.rego` to be loaded by KICS. It doesn't matter your directory structure. In other words, for example, if you want to indicate a directory that contains a library for your terraform queries, you should group your functions (used in your terraform queries) in a file named `terraform.rego` wherever you want.
+As mentioned above, the library flag (`-b` or `--libraries-path`) refers to the directory with libraries. The functions need to be grouped by platform and the library file name should follow the format: `<platform>.rego` to be loaded by KICS. It doesn't matter your directory structure. In other words, for example, if you want to indicate a directory that contains a library for your terraform queries, you should group your functions (used in your terraform queries) in a file named `terraform.rego` wherever you want.
 
+This will merge the custom libraries found on the flag's path with KICS's default libraries. Note that any functions declared in a custom library with the same signature as an existing function in the [default libraries](https://github.com/Checkmarx/kics/tree/master/assets/libraries) will cause **the default library function to be overwritten by the custom definition provided**.
 
 ---
 

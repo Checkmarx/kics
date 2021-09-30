@@ -2,11 +2,25 @@
   {
     "queryName": "S3 Bucket Allows Public ACL",
     "severity": "MEDIUM",
-    "line": 18
+    "line": 18,
+    "filename": "positive1.tf"
   },
   {
     "queryName": "S3 Bucket Allows Public ACL",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public ACL",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive3.tf"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public ACL",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive2.tf"
   }
 ]

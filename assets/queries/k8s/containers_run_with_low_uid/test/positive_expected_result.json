@@ -32,13 +32,13 @@
   {
     "queryName": "Container Running With Low UID",
     "severity": "MEDIUM",
-    "line": 7,
+    "line": 6,
     "fileName": "positive3.yaml"
   },
   {
     "queryName": "Container Running With Low UID",
     "severity": "MEDIUM",
-    "line": 13,
+    "line": 12,
     "fileName": "positive3.yaml"
   }
 ]

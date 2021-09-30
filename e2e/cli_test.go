@@ -151,7 +151,7 @@ var tests = []testCase{
 			match3, _ := regexp.MatchString(`Queries loaded: \d+`, outputText)
 			match4, _ := regexp.MatchString(`Queries failed to execute: \d+`, outputText)
 			match5, _ := regexp.MatchString(`Results Summary:`, outputText)
-			match6, _ := regexp.MatchString(`Scan duration: \d+(.\d+)?s`, outputText)
+			match6, _ := regexp.MatchString(`Scan duration: \d+(m\d+)?(.\d+)?s`, outputText)
 			return match1 && match2 && match3 && match4 && match5 && match6
 		},
 	},
@@ -616,8 +616,11 @@ var tests = []testCase{
 		args: args{
 			args: []cmdArgs{
 
-				[]string{"scan", "--exclude-results", "2abf26c3014fc445da69d8d5bb862c1c511e8e16ad3a6c6f6e14c28aa0adac1d," +
-					"d1c5f6aec84fd91ed24f5f06ccb8b6662e26c0202bcb5d4a58a1458c16456d20",
+				[]string{"scan",
+					"--exclude-results",
+					"2abf26c3014fc445da69d8d5bb862c1c511e8e16ad3a6c6f6e14c28aa0adac1d," +
+						"4aa3f159f39767de53b49ed871977b8b499bf19b3b0865b1631042aa830598aa," +
+						"83461a5eac8fed2264fac68a6d352d1ed752867a9b0a131afa9ba7e366159b59",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 
 				[]string{"scan", "--exclude-results", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
@@ -633,6 +636,24 @@ var tests = []testCase{
 		args: args{
 			args: []cmdArgs{
 
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml",
+					"--output-path", "output", "--output-name", "E2E_CLI_036_RESULT",
+					"--include-queries", "275a3217-ca37-40c1-a6cf-bb57d245ab32,027a4b7a-8a59-4938-a04f-ed532512cf45," +
+						"e415f8d3-fc2b-4f52-88ab-1129e8c8d3f5,105ba098-1e34-48cd-b0f2-a8a43a51bf9b,ad21e616-5026-4b9d-990d-5b007bfe679c," +
+						"79d745f0-d5f3-46db-9504-bef73e9fd528,e200a6f3-c589-49ec-9143-7421d4a2c845,01d5a458-a6c4-452a-ac50-054d59275b7c," +
+						"7f384a5f-b5a2-4d84-8ca3-ee0a5247becb,87482183-a8e7-4e42-a566-7a23ec231c16,4a1e6b34-1008-4e61-a5f2-1f7c276f8d14," +
+						"d24389b4-b209-4ff0-8345-dc7a4569dcdd,5e6c9c68-8a82-408e-8749-ddad78cbb9c5"}, // Load Many Queries (13)
+
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml",
+					"--output-path", "output", "--output-name", "E2E_CLI_036_RESULT_2",
+					"--include-queries", "87482183-a8e7-4e42-a566-7a23ec231c16"}, // Load 1 query
+
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml",
+					"--include-queries", "87482183-a8e7-4e42-a566-7a23ec231c17"}, // Load 0 queries (valid, but doesn't exists)
+
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml",
+					"--include-queries", "87482183-a8e7-4e42-a566-7a23ec23KICS"}, // Invalid query ID
+
 				[]string{"scan", "--include-queries", "cfdcabb0-fc06-427c-865b-c59f13e898ce",
 					"-s", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
 
@@ -647,9 +668,19 @@ var tests = []testCase{
 				[]string{"scan", "--include-queries",
 					"--queries-path", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 			},
+			expectedResult: []ResultsValidation{
+				{
+					resultsFile:    "E2E_CLI_036_RESULT",
+					resultsFormats: []string{"json"},
+				},
+				{
+					resultsFile:    "E2E_CLI_036_RESULT_2",
+					resultsFormats: []string{"json"},
+				},
+			},
 		},
 
-		wantStatus: []int{50, 40, 20, 126, 126},
+		wantStatus: []int{50, 40, 0, 126, 50, 40, 20, 126, 126},
 	},
 	// E2E-CLI-037 - KICS scan command with --exclude-results and --include-queries
 	// should run only provided queries and does not run results (similarityID) provided by this flag
@@ -778,6 +809,102 @@ var tests = []testCase{
 		},
 		wantStatus: []int{50},
 	},
+	// E2E-CLI-043 - Kics scan command with --cloud-provider
+	// should execute only queries that have the same provider as given in the flag.
+	{
+		name: "E2E-CLI-043",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "-q", "../assets/queries", "", "fixtures/samples/positive.yaml",
+					"--cloud-provider", "none"},
+
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml",
+					"--cloud-provider"},
+
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml",
+					"--cloud-provider", "aws"},
+			},
+		},
+		wantStatus: []int{126, 126, 50},
+	},
+	// E2E-CLI-044 - Kics scan command with --exclude-severities
+	// should only execute query-ids provided in the flag.
+	{
+		name: "E2E-CLI-044",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml",
+					"--output-path", "output", "--output-name", "E2E_CLI_044_RESULT",
+					"--exclude-severities", "HIGH"},
+
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml",
+					"--output-path", "output", "--output-name", "E2E_CLI_044_RESULT",
+					"--exclude-severities", "HIGH,MEDIUM,LOW,INFO"},
+
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
+					"--output-path", "output", "--output-name", "E2E_CLI_044_RESULT",
+					"--exclude-severities"},
+
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
+					"--output-path", "output", "--output-name", "E2E_CLI_044_RESULT",
+					"--exclude-severities", "HIGH,MEDIUM,LOW"},
+			},
+		},
+		wantStatus: []int{40, 0, 126, 20},
+	},
+	// E2E-CLI-045 - Kics scan command with --disable-secrets
+	// should not execute secret based queries.
+	{
+		name: "E2E-CLI-045",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
+					"--include-queries", "487f4be7-3fd9-4506-a07a-eae252180c08"},
+
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
+					"--include-queries", "487f4be7-3fd9-4506-a07a-eae252180c08",
+					"--disable-secrets"},
+
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
+					"--include-queries", "487f4be7-3fd9-4506-a07a-eae252180c08,e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
+					"--disable-secrets"},
+			},
+		},
+		wantStatus: []int{50, 0, 20},
+	},
+	// E2E-CLI-046 - Kics scan command with --disable-full-descriptions
+	// should fetch CIS descriptions from enviroment URL KICS_DESCRIPTIONS_ENDPOINT.
+	{
+		name: "E2E-CLI-046",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
+					"--no-color", "-v",
+					"--disable-full-descriptions"},
+			},
+		},
+		validation: func(outputText string) bool {
+			uuidRegex := "Skipping CIS descriptions because provided disable flag is set"
+			match, _ := regexp.MatchString(uuidRegex, outputText)
+			return match
+		},
+		wantStatus: []int{50},
+	},
+	// E2E-CLI-047 - Kics scan command with --payload-lines
+	// should display additional information lines in the payload file.
+	{
+		name: "E2E-CLI-047",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
+					"--payload-path", "output/E2E_CLI_047_PAYLOAD.json", "--payload-lines"},
+			},
+			expectedPayload: []string{
+				"E2E_CLI_047_PAYLOAD.json",
+			},
+		},
+		wantStatus: []int{50},
+	},
 }
 
 func Test_E2E_CLI(t *testing.T) {
@@ -810,7 +937,7 @@ func Test_E2E_CLI(t *testing.T) {
 					require.True(t, validation, "KICS CLI output doesn't match the regex validation.")
 				}
 
-				if tt.args.expectedResult != nil {
+				if tt.args.expectedResult != nil && arg < len(tt.args.expectedResult) {
 					checkExpectedOutput(t, &tt, arg)
 				}
 

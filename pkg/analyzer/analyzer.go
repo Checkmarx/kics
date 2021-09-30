@@ -30,6 +30,7 @@ var (
 	k8sRegex               = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
 	k8sRegexKind           = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
 	k8sRegexMetadata       = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
+	ansibleVaultRegex      = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
 )
 
 const (
@@ -103,7 +104,7 @@ func worker(path string, results, unwanted chan<- string, wg *sync.WaitGroup) {
 	case ".dockerfile", "Dockerfile":
 		results <- "dockerfile"
 	// Terraform
-	case ".tf":
+	case ".tf", "tfvars":
 		results <- "terraform"
 	// Cloud Formation, Ansible, OpenAPI
 	case yaml, yml, ".json":
@@ -183,9 +184,14 @@ func checkContent(path string, results, unwanted chan<- string, ext string) {
 		// write to channel type of file
 		results <- returnType
 	} else if ext == yaml || ext == yml {
-		// Since Ansible has no defining property
-		// and no other type matched for YAML file extension, assume the file type is Ansible
-		results <- "ansible"
+		// check if it is an ansible vault
+		if res := ansibleVaultRegex.Match(content); res {
+			unwanted <- path
+		} else {
+			// Since Ansible has no defining property
+			// and no other type matched for YAML file extension, assume the file type is Ansible
+			results <- "ansible"
+		}
 	} else {
 		// No type was determined (ignore on parser)
 		unwanted <- path

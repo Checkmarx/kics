@@ -2,7 +2,7 @@ package Cx
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_storage_bucket_iam_binding[name]
-	resource.members == null
+	count(resource.members) == 0
 
 	result := {
 		"documentId": input.document[i].id,

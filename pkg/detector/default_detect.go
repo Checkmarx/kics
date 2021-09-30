@@ -46,8 +46,6 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 		}
 	}
 
-	logWithFields.Warn().Msgf("Failed to detect line, query response %s", searchKey)
-
 	return model.VulnerabilityLines{
 		Line:      undetectedVulnerabilityLine,
 		VulnLines: []model.CodeLine{},

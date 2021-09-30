@@ -2,6 +2,13 @@
   {
     "queryName": "S3 Bucket Public ACL Overridden By Public Access Block",
     "severity": "LOW",
-    "line": 7
+    "line": 7,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "S3 Bucket Public ACL Overridden By Public Access Block",
+    "severity": "LOW",
+    "line": 7,
+    "filename": "positive2.tf"
   }
 ]

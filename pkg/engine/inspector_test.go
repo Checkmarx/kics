@@ -3,13 +3,16 @@ package engine
 import (
 	"context"
 	"fmt"
+	"io"
 	"os"
 	"path/filepath"
 	"reflect"
+	"strings"
 	"sync"
 	"testing"
 	"time"
 
+	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/detector"
 	"github.com/Checkmarx/kics/pkg/detector/docker"
@@ -18,6 +21,8 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/test"
+	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
 
 	"github.com/open-policy-agent/opa/cover"
@@ -26,6 +31,8 @@ import (
 
 // TestInspector_EnableCoverageReport tests the functions [EnableCoverageReport()] and all the methods called by them
 func TestInspector_EnableCoverageReport(t *testing.T) {
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: io.Discard})
+
 	type fields struct {
 		queries              []*preparedQuery
 		vb                   VulnerabilityBuilder
@@ -234,7 +241,7 @@ func TestInspect(t *testing.T) { //nolint
 						Document:     mockedFileMetadataDocument,
 						OriginalData: "orig_data",
 						Kind:         "DOCKERFILE",
-						FileName:     "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
+						FilePath:     "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
 					},
 				},
 			},
@@ -284,7 +291,7 @@ func TestInspect(t *testing.T) { //nolint
 						Document:     mockedFileMetadataDocument,
 						OriginalData: "orig_data",
 						Kind:         "DOCKERFILE",
-						FileName:     "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
+						FilePath:     "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
 					},
 				},
 			},
@@ -522,12 +529,12 @@ func TestEngine_LenQueriesByPlat(t *testing.T) {
 			min: 100,
 		},
 		{
-			name: "test_len_queries_plat_common",
+			name: "test_len_queries_plat_dockerfile",
 			args: args{
 				queriesPath: filepath.FromSlash("./assets/queries"),
-				platform:    []string{"common"},
+				platform:    []string{"dockerfile"},
 			},
-			min: 0,
+			min: 50,
 		},
 	}
 
@@ -670,12 +677,24 @@ func (m *mockSource) GetQueries(queryFilter *source.QueryInspectorParameters) ([
 	return sources.GetQueries(queryFilter)
 }
 
-func (m *mockSource) GetQueryLibrary(platform string) (string, error) {
-	pathToLib, err := source.GetPathToLibrary(platform, filepath.FromSlash("./assets/libraries"))
-	if err != nil {
-		return "", err
-	}
-	content, err := os.ReadFile(filepath.Clean(pathToLib))
+func (m *mockSource) GetQueryLibrary(platform string) (source.RegoLibraries, error) {
+	library := source.GetPathToCustomLibrary(platform, "./assets/libraries")
 
-	return string(content), err
+	if library != "default" {
+		content, err := os.ReadFile(library)
+		return source.RegoLibraries{
+			LibraryCode:      string(content),
+			LibraryInputData: "{}",
+		}, err
+	}
+
+	log.Debug().Msgf("Custom library not provided. Loading embedded library instead")
+
+	// getting embedded library
+	embeddedLibrary, errGettingEmbeddedLibrary := assets.GetEmbeddedLibrary(strings.ToLower(platform))
+
+	return source.RegoLibraries{
+		LibraryCode:      embeddedLibrary,
+		LibraryInputData: "{}",
+	}, errGettingEmbeddedLibrary
 }

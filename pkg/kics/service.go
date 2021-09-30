@@ -7,6 +7,7 @@ import (
 
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
+	"github.com/Checkmarx/kics/pkg/engine/secrets"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	"github.com/Checkmarx/kics/pkg/resolver"
@@ -42,23 +43,17 @@ type Tracker interface {
 // a parser to parse and provide files in format that KICS understand, a inspector that runs the scanning and a tracker to
 // update scanning numbers
 type Service struct {
-	SourceProvider provider.SourceProvider
-	Storage        Storage
-	Parser         *parser.Parser
-	Inspector      *engine.Inspector
-	Tracker        Tracker
-	Resolver       *resolver.Resolver
-	files          model.FileMetadatas
+	SourceProvider   provider.SourceProvider
+	Storage          Storage
+	Parser           *parser.Parser
+	Inspector        *engine.Inspector
+	SecretsInspector *secrets.Inspector
+	Tracker          Tracker
+	Resolver         *resolver.Resolver
+	files            model.FileMetadatas
 }
 
-// StartScan executes scan over the context, using the scanID as reference
-func (s *Service) StartScan(
-	ctx context.Context,
-	scanID string,
-	errCh chan<- error,
-	wg *sync.WaitGroup,
-	currentQuery chan<- int64) {
-	log.Debug().Msg("service.StartScan()")
+func (s *Service) PrepareSources(ctx context.Context, scanID string, wg *sync.WaitGroup, errCh chan<- error) {
 	defer wg.Done()
 	// CxSAST query under review
 	if err := s.SourceProvider.GetSources(
@@ -73,6 +68,28 @@ func (s *Service) StartScan(
 	); err != nil {
 		errCh <- errors.Wrap(err, "failed to read sources")
 	}
+}
+
+// StartScan executes scan over the context, using the scanID as reference
+func (s *Service) StartScan(
+	ctx context.Context,
+	scanID string,
+	errCh chan<- error,
+	wg *sync.WaitGroup,
+	currentQuery chan<- int64) {
+	log.Debug().Msg("service.StartScan()")
+	defer wg.Done()
+
+	secretsVulnerabilities, err := s.SecretsInspector.Inspect(
+		ctx,
+		s.SourceProvider.GetBasePaths(),
+		s.files,
+		currentQuery,
+	)
+	if err != nil {
+		errCh <- errors.Wrap(err, "failed to inspect secrets")
+	}
+
 	vulnerabilities, err := s.Inspector.Inspect(
 		ctx,
 		scanID,
@@ -84,6 +101,8 @@ func (s *Service) StartScan(
 	if err != nil {
 		errCh <- errors.Wrap(err, "failed to inspect files")
 	}
+	vulnerabilities = append(vulnerabilities, secretsVulnerabilities...)
+
 	err = s.Storage.SaveVulnerabilities(ctx, vulnerabilities)
 	if err != nil {
 		errCh <- errors.Wrap(err, "failed to save vulnerabilities")

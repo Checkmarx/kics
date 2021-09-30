@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Glue Data Catalog Encryption Disabled",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Glue Data Catalog Encryption Disabled",
+    "severity": "HIGH",
+    "line": 3,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Glue Data Catalog Encryption Disabled",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Glue Data Catalog Encryption Disabled",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive4.tf"
+  }
+]

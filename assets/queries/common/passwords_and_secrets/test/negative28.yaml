@@ -1,0 +1,8 @@
+- name: Start a workflow in the Itential Automation Platform
+  community.network.iap_start_workflow:
+    iap_port: 3000
+    iap_fqdn: localhost
+    workflow_name: "RouterUpgradeWorkflow"
+    description: "OS-Router-Upgrade"
+    variables: {"deviceName":"ASR9K"}
+  register: result

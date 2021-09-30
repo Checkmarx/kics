@@ -2,6 +2,13 @@
 	{
 		"queryName": "Instance With No VPC",
 		"severity": "MEDIUM",
-		"line": 1
+		"line": 1,
+		"fileName": "positive1.tf"
+	},
+	{
+		"queryName": "Instance With No VPC",
+		"severity": "MEDIUM",
+		"line": 1,
+		"fileName": "positive2.tf"
 	}
 ]

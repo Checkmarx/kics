@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "VPC Subnet Assigns Public IP",
+    "severity": "MEDIUM",
+    "line": 13,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "VPC Subnet Assigns Public IP",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "VPC Subnet Assigns Public IP",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive3.tf"
+  }
+]

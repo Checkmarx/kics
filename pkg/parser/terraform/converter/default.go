@@ -105,7 +105,11 @@ func (c *converter) getArrLines(expr hclsyntax.Expression) []map[string]model.Li
 				}
 				// set lines for array elements
 				for _, item := range valType.Items {
-					key, _ := c.convertKey(item.KeyExpr)
+					key, err := c.convertKey(item.KeyExpr)
+					if err != nil {
+						sentry.CaptureException(err)
+						return nil
+					}
 					arrEx["_kics_"+key] = model.LineObject{
 						Line: item.KeyExpr.Range().Start.Line,
 					}
@@ -169,7 +173,7 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
 	case *hclsyntax.TemplateWrapExpr:
 		return c.convertExpression(value.Wrapped)
 	case *hclsyntax.TupleConsExpr:
-		var list []interface{}
+		list := make([]interface{}, 0)
 		for _, ex := range value.Exprs {
 			elem, err := c.convertExpression(ex)
 			if err != nil {
@@ -374,7 +378,10 @@ func createEntryInputVar(path []string, defaultValue string) (cty.Value, error) 
 		}
 	}
 	mapJSON += closeMap
-	jsonType, _ := ctyjson.ImpliedType([]byte(mapJSON))
+	jsonType, err := ctyjson.ImpliedType([]byte(mapJSON))
+	if err != nil {
+		return cty.NilVal, err
+	}
 	value, err := ctyjson.Unmarshal([]byte(mapJSON), jsonType)
 	if err != nil {
 		return cty.NilVal, err

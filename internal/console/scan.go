@@ -10,6 +10,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/internal/console/flags"
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	internalPrinter "github.com/Checkmarx/kics/internal/console/printer"
@@ -21,6 +22,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/descriptions"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
+	"github.com/Checkmarx/kics/pkg/engine/secrets"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/model"
@@ -40,6 +42,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
+	"golang.org/x/term"
 )
 
 var (
@@ -71,6 +74,7 @@ func NewScanCmd() *cobra.Command {
 
 func run(cmd *cobra.Command) error {
 	changedDefaultQueryPath := cmd.Flags().Lookup(flags.QueriesPath).Changed
+	changedDefaultLibrariesPath := cmd.Flags().Lookup(flags.LibrariesPath).Changed
 	if err := consoleHelpers.InitShouldIgnoreArg(flags.GetStrFlag(flags.IgnoreOnExitFlag)); err != nil {
 		return err
 	}
@@ -93,7 +97,7 @@ func run(cmd *cobra.Command) error {
 		}
 	}
 	gracefulShutdown()
-	return scan(changedDefaultQueryPath)
+	return scan(changedDefaultQueryPath, changedDefaultLibrariesPath)
 }
 
 func preRun(cmd *cobra.Command) error {
@@ -297,39 +301,6 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 	return excludeResultsMap
 }
 
-func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engine.Inspector, error) {
-	excludeResultsMap := getExcludeResultsMap(flags.GetMultiStrFlag(flags.ExcludeResultsFlag))
-
-	excludeQueries := source.ExcludeQueries{
-		ByIDs:        flags.GetMultiStrFlag(flags.ExcludeQueriesFlag),
-		ByCategories: flags.GetMultiStrFlag(flags.ExcludeCategoriesFlag),
-		BySeverities: flags.GetMultiStrFlag(flags.ExcludeSeveritiesFlag),
-	}
-
-	includeQueries := source.IncludeQueries{
-		ByIDs: flags.GetMultiStrFlag(flags.IncludeQueriesFlag),
-	}
-
-	queryFilter := source.QueryInspectorParameters{
-		IncludeQueries: includeQueries,
-		ExcludeQueries: excludeQueries,
-		InputDataPath:  flags.GetStrFlag(flags.InputDataFlag),
-	}
-
-	inspector, err := engine.NewInspector(ctx,
-		querySource,
-		engine.DefaultVulnerabilityBuilder,
-		t,
-		&queryFilter,
-		excludeResultsMap,
-		flags.GetIntFlag(flags.QueryExecTimeoutFlag),
-	)
-	if err != nil {
-		return nil, err
-	}
-	return inspector, nil
-}
-
 // analyzePaths will analyze the paths to scan to determine which type of queries to load
 // and which files should be ignored, it then updates the types and exclude flags variables
 // with the results found
@@ -348,7 +319,9 @@ func analyzePaths(paths, types, exclude []string) (typesRes, excludeRes []string
 	return types, exclude, nil
 }
 
-func createService(inspector *engine.Inspector,
+func createService(
+	inspector *engine.Inspector,
+	secretsInspector *secrets.Inspector,
 	paths []string,
 	t kics.Tracker,
 	store kics.Storage,
@@ -379,14 +352,18 @@ func createService(inspector *engine.Inspector,
 	services := make([]*kics.Service, 0, len(combinedParser))
 
 	for _, parser := range combinedParser {
-		services = append(services, &kics.Service{
-			SourceProvider: filesSource,
-			Storage:        store,
-			Parser:         parser,
-			Inspector:      inspector,
-			Tracker:        t,
-			Resolver:       combinedResolver,
-		})
+		services = append(
+			services,
+			&kics.Service{
+				SourceProvider:   filesSource,
+				Storage:          store,
+				Parser:           parser,
+				Inspector:        inspector,
+				SecretsInspector: secretsInspector,
+				Tracker:          t,
+				Resolver:         combinedResolver,
+			},
+		)
 	}
 	return services, nil
 }
@@ -394,44 +371,126 @@ func createService(inspector *engine.Inspector,
 type startServiceParameters struct {
 	t              *tracker.CITracker
 	store          kics.Storage
-	querySource    *source.FilesystemSource
 	extractedPaths []string
 	progressBar    progress.PBar
 	pbBuilder      *progress.PbBuilder
+	excludeResults map[string]bool
 }
 
-func createServiceAndStartScan(params *startServiceParameters) (*engine.Inspector, error) {
-	inspector, err := createInspector(params.t, params.querySource)
-	if err != nil {
-		log.Err(err)
-		return &engine.Inspector{}, err
+func createQueryFilter() *source.QueryInspectorParameters {
+	excludeQueries := source.ExcludeQueries{
+		ByIDs:        flags.GetMultiStrFlag(flags.ExcludeQueriesFlag),
+		ByCategories: flags.GetMultiStrFlag(flags.ExcludeCategoriesFlag),
+		BySeverities: flags.GetMultiStrFlag(flags.ExcludeSeveritiesFlag),
 	}
 
-	services, err := createService(inspector, params.extractedPaths, params.t, params.store, params.querySource)
+	includeQueries := source.IncludeQueries{
+		ByIDs: flags.GetMultiStrFlag(flags.IncludeQueriesFlag),
+	}
+
+	queryFilter := source.QueryInspectorParameters{
+		IncludeQueries: includeQueries,
+		ExcludeQueries: excludeQueries,
+		InputDataPath:  flags.GetStrFlag(flags.InputDataFlag),
+	}
+
+	return &queryFilter
+}
+
+func getSecretsRegexRules(regexRulesPath string) (regexRulesContent string, err error) {
+	if len(regexRulesPath) > 0 {
+		b, err := os.ReadFile(regexRulesPath)
+		if err != nil {
+			return regexRulesContent, err
+		}
+		regexRulesContent = string(b)
+	} else {
+		regexRulesContent = assets.SecretsQueryRegexRulesJSON
+	}
+
+	return regexRulesContent, nil
+}
+
+func createServiceAndStartScan(params *startServiceParameters) (failedQueries map[string]error, err error) {
+	querySource := source.NewFilesystemSource(
+		flags.GetStrFlag(flags.QueriesPath),
+		flags.GetMultiStrFlag(flags.TypeFlag),
+		flags.GetMultiStrFlag(flags.CloudProviderFlag),
+		flags.GetStrFlag(flags.LibrariesPath))
+
+	queryFilter := createQueryFilter()
+	inspector, err := engine.NewInspector(ctx,
+		querySource,
+		engine.DefaultVulnerabilityBuilder,
+		params.t,
+		queryFilter,
+		params.excludeResults,
+		flags.GetIntFlag(flags.QueryExecTimeoutFlag),
+	)
+	if err != nil {
+		return failedQueries, err
+	}
+
+	secretsRegexRulesContent, err := getSecretsRegexRules(flags.GetStrFlag(flags.SecretsRegexesPathFlag))
+	if err != nil {
+		return failedQueries, err
+	}
+
+	secretsInspector, err := secrets.NewInspector(
+		ctx,
+		params.excludeResults,
+		params.t,
+		queryFilter,
+		flags.GetBoolFlag(flags.DisableSecretsFlag),
+		flags.GetIntFlag(flags.QueryExecTimeoutFlag),
+		secretsRegexRulesContent,
+	)
 	if err != nil {
 		log.Err(err)
-		return &engine.Inspector{}, err
+		return failedQueries, err
+	}
+
+	services, err := createService(
+		inspector,
+		secretsInspector,
+		params.extractedPaths,
+		params.t,
+		params.store,
+		querySource,
+	)
+	if err != nil {
+		log.Err(err)
+		return failedQueries, err
 	}
 	params.progressBar.Close()
 
-	if err = scanner.StartScan(ctx, scanID, *params.pbBuilder, services); err != nil {
+	if err = scanner.PrepareAndScan(ctx, scanID, *params.pbBuilder, services); err != nil {
 		log.Err(err)
-		return &engine.Inspector{}, err
+		return failedQueries, err
 	}
-	return inspector, nil
+	failedQueries = inspector.GetFailedQueries()
+	return failedQueries, nil
+}
+
+func resolvePath(flagName string) (string, error) {
+	extractedPath, errExtractPath := provider.GetSources([]string{flags.GetStrFlag(flagName)})
+	if errExtractPath != nil {
+		return "", errExtractPath
+	}
+	if len(extractedPath.Path) != 1 {
+		return "", fmt.Errorf("could not find a valid path (--%s) on %s", flagName, flags.GetStrFlag(flagName))
+	}
+	log.Debug().Msgf("Trying to load path (--%s) from %s", flagName, flags.GetStrFlag(flagName))
+	return extractedPath.Path[0], nil
 }
 
 func getQueryPath(changedDefaultQueryPath bool) error {
 	if changedDefaultQueryPath {
-		extractedQueriesPath, errExtractQueries := provider.GetSources([]string{flags.GetStrFlag(flags.QueriesPath)})
+		extractedQueriesPath, errExtractQueries := resolvePath(flags.QueriesPath)
 		if errExtractQueries != nil {
 			return errExtractQueries
 		}
-		if len(extractedQueriesPath.Path) != 1 {
-			return fmt.Errorf("could not find a valid queries on %s", flags.GetStrFlag(flags.QueriesPath))
-		}
-		log.Debug().Msgf("Trying to load queries from %s", flags.GetStrFlag(flags.QueriesPath))
-		flags.SetStrFlag(flags.QueriesPath, extractedQueriesPath.Path[0])
+		flags.SetStrFlag(flags.QueriesPath, extractedQueriesPath)
 	} else {
 		log.Debug().Msgf("Looking for queries in executable path and in current work directory")
 		defaultQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(flags.GetStrFlag(flags.QueriesPath))
@@ -443,7 +502,56 @@ func getQueryPath(changedDefaultQueryPath bool) error {
 	return nil
 }
 
-func scan(changedDefaultQueryPath bool) error {
+func getLibraryPath(changedDefaultLibrariesPath bool) error {
+	if changedDefaultLibrariesPath {
+		extractedLibrariesPath, errExtractLibraries := resolvePath(flags.LibrariesPath)
+		if errExtractLibraries != nil {
+			return errExtractLibraries
+		}
+		flags.SetStrFlag(flags.LibrariesPath, extractedLibrariesPath)
+	}
+	return nil
+}
+
+func preparePaths(changedDefaultQueryPath, changedDefaultLibrariesPath bool) error {
+	var err error
+	err = getQueryPath(changedDefaultQueryPath)
+	if err != nil {
+		return err
+	}
+	err = getLibraryPath(changedDefaultLibrariesPath)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func prepareAndAnalyzePaths(changedDefaultQueryPath, changedDefaultLibrariesPath bool) (extractedPaths provider.ExtractedPath, err error) {
+	err = preparePaths(changedDefaultQueryPath, changedDefaultLibrariesPath)
+	if err != nil {
+		return extractedPaths, err
+	}
+
+	extractedPaths, err = provider.GetSources(flags.GetMultiStrFlag(flags.PathFlag))
+	if err != nil {
+		return extractedPaths, err
+	}
+
+	newTypeFlagValue, newExcludePathsFlagValue, errAnalyze :=
+		analyzePaths(
+			extractedPaths.Path,
+			flags.GetMultiStrFlag(flags.TypeFlag),
+			flags.GetMultiStrFlag(flags.ExcludePathsFlag),
+		)
+	if errAnalyze != nil {
+		return extractedPaths, errAnalyze
+	}
+	flags.SetMultiStrFlag(flags.TypeFlag, newTypeFlagValue)
+	flags.SetMultiStrFlag(flags.ExcludePathsFlag, newExcludePathsFlagValue)
+	return extractedPaths, nil
+}
+
+func scan(changedDefaultQueryPath, changedDefaultLibrariesPath bool) error {
 	log.Debug().Msg("console.scan()")
 	for _, warn := range warnings {
 		log.Warn().Msgf(warn)
@@ -456,8 +564,13 @@ func scan(changedDefaultQueryPath bool) error {
 	fmt.Println(versionMsg)
 	log.Info().Msgf(strings.ReplaceAll(versionMsg, "\n", ""))
 
+	noProgress := flags.GetBoolFlag(flags.NoProgressFlag)
+	if !term.IsTerminal(int(os.Stdin.Fd())) || strings.EqualFold(flags.GetStrFlag(flags.LogLevelFlag), "debug") {
+		noProgress = true
+	}
+
 	proBarBuilder := progress.InitializePbBuilder(
-		flags.GetBoolFlag(flags.NoProgressFlag),
+		noProgress,
 		flags.GetBoolFlag(flags.CIFlag),
 		flags.GetBoolFlag(flags.SilentFlag))
 
@@ -471,38 +584,21 @@ func scan(changedDefaultQueryPath bool) error {
 		return err
 	}
 
-	err = getQueryPath(changedDefaultQueryPath)
-	if err != nil {
-		return err
-	}
-
-	extractedPaths, err := provider.GetSources(flags.GetMultiStrFlag(flags.PathFlag))
-	if err != nil {
-		return err
-	}
-
-	newTypeFlagValue, newExcludePathsFlagValue, errAnalyze :=
-		analyzePaths(extractedPaths.Path, flags.GetMultiStrFlag(flags.TypeFlag), flags.GetMultiStrFlag(flags.ExcludePathsFlag))
-	if errAnalyze != nil {
-		return errAnalyze
-	}
-	flags.SetMultiStrFlag(flags.TypeFlag, newTypeFlagValue)
-	flags.SetMultiStrFlag(flags.ExcludePathsFlag, newExcludePathsFlagValue)
-
-	querySource := source.NewFilesystemSource(
-		flags.GetStrFlag(flags.QueriesPath),
-		flags.GetMultiStrFlag(flags.TypeFlag),
-		flags.GetMultiStrFlag(flags.CloudProviderFlag),
-		flags.GetStrFlag(flags.LibraryPath))
 	store := storage.NewMemoryStorage()
+	extractedPaths, err := prepareAndAnalyzePaths(changedDefaultQueryPath, changedDefaultLibrariesPath)
+	if err != nil {
+		log.Err(err)
+		return err
+	}
 
-	inspector, err := createServiceAndStartScan(&startServiceParameters{
+	excludeResultsMap := getExcludeResultsMap(flags.GetMultiStrFlag(flags.ExcludeResultsFlag))
+	failedQueries, err := createServiceAndStartScan(&startServiceParameters{
 		t:              t,
 		store:          store,
-		querySource:    querySource,
 		progressBar:    progressBar,
 		extractedPaths: extractedPaths.Path,
 		pbBuilder:      proBarBuilder,
+		excludeResults: excludeResultsMap,
 	})
 	if err != nil {
 		return err
@@ -525,8 +621,12 @@ func scan(changedDefaultQueryPath bool) error {
 		PathExtractionMap: extractedPaths.ExtractionMap,
 	})
 
-	if err := resolveOutputs(&summary, files.Combine(flags.GetBoolFlag(flags.LineInfoPayloadFlag)),
-		inspector.GetFailedQueries(), printer, *proBarBuilder); err != nil {
+	if err := resolveOutputs(
+		&summary,
+		files.Combine(flags.GetBoolFlag(flags.LineInfoPayloadFlag)),
+		failedQueries,
+		printer,
+		*proBarBuilder); err != nil {
 		log.Err(err)
 		return err
 	}

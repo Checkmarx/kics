@@ -1,0 +1,4 @@
+Conditions:
+  HasKmsKey: !Not [!Equals [!Ref ParentKmsKeyStack, '']]
+  HasSecretName: !Not [!Equals [!Ref ParentKmsKeyStack, '']]
+  HasPassword: !Not [!Equals [!Ref DBPassword, '']]

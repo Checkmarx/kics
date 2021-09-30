@@ -2,6 +2,13 @@
   {
     "queryName": "S3 Bucket Logging Disabled",
     "severity": "LOW",
-    "line": 2
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "S3 Bucket Logging Disabled",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive2.tf"
   }
 ]

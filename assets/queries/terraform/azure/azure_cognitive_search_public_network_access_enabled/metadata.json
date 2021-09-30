@@ -1,0 +1,11 @@
+{
+  "id": "4a9e0f00-0765-4f72-a0d4-d31110b78279",
+  "queryName": "Azure Cognitive Search Public Network Access Enabled",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Public Network Access should be disabled for Azure Cognitive Search",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/search_service#public_network_access_enabled",
+  "platform": "Terraform",
+  "descriptionID": "d4766039",
+  "cloudProvider": "azure"
+}

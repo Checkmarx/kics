@@ -10,8 +10,9 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_config_configuration_aggregator[%s].%s.all_regions", [name, type]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'aws_db_instance[%s].%s.all_regions' is set to true", [name, type]),
-		"keyActualValue": sprintf("'aws_db_instance[%s].%s.all_regions' is set to false", [name, type]),
+		"keyExpectedValue": sprintf("'aws_config_configuration_aggregator[%s].%s.all_regions' is set to true", [name, type]),
+		"keyActualValue": sprintf("'aws_config_configuration_aggregator[%s].%s.all_regions' is set to false", [name, type]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_config_configuration_aggregator", name, type, "all_regions"], []),
 	}
 }
 
@@ -27,7 +28,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_config_configuration_aggregator[%s].%s", [name, type]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'aws_db_instance[%s].%s.all_regions' is set to true", [name, type]),
-		"keyActualValue": sprintf("'aws_db_instance[%s].%s.all_regions' is undefined", [name, type]),
+		"keyExpectedValue": sprintf("'aws_config_configuration_aggregator[%s].%s.all_regions' is set to true", [name, type]),
+		"keyActualValue": sprintf("'aws_config_configuration_aggregator[%s].%s.all_regions' is undefined", [name, type]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_config_configuration_aggregator", name, type], []),
 	}
 }

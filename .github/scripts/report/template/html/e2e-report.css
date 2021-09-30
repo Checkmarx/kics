@@ -1,0 +1,142 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 5px;
+  border: 1px solid #bebebe;
+}
+
+.report-header-footer {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-bottom: 1px solid #bebebe;
+  width: 100%;
+  padding: 15px 21px;
+  background-color: #503e9e;
+  height: 50px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #fff;
+  cursor: default;
+  user-select: none;
+}
+
+.report-header-footer > a {
+  color: inherit;
+  text-decoration: inherit;
+  text-align: right;
+}
+
+.report-header-footer > .title {
+  font-size: 18px;
+}
+
+.report-header-footer > .title > span {
+  color: #000;
+}
+
+.report-header-footer > .timestamp {
+  font-weight: normal;
+  font-style: italic;
+  opacity: 0.5;
+  text-align: center;
+}
+
+.separator {
+  border-top: 1px solid #979797;
+  opacity: 0.5;
+  width: 95%;
+  margin: 22px 0;
+}
+
+.hide {
+  display: none;
+}
+
+summary {
+  cursor: pointer;
+  user-select: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.testBlock {
+  width: 95vw;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.test-status {
+  font-weight: bold;
+}
+
+.test-status.fail {
+  color: #d60000;
+}
+
+.test-status.pass {
+  color: #248e01;
+}
+
+.test-status.all {
+  color: blue;
+}
+
+.counters {
+  display: flex;
+  flex-direction: row;
+  margin: 22px 0;
+  gap: 15px;
+}
+
+.counter-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  min-width: 100px;
+  gap: 5px;
+  -webkit-box-shadow: 0 0 10px 0px rgb(0 0 0 / 10%);
+  box-shadow: 0 0 10px 0px rgb(0 0 0 / 10%);
+}
+
+.counter-btn.selected {
+  border-color: #c000ff;
+}
+
+.counter-count {
+  font-style: italic;
+  color: gray;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.code-box {
+  display: flex;
+  flex-direction: column;
+  background-color: #503e9e10;
+  gap: 5px;
+}

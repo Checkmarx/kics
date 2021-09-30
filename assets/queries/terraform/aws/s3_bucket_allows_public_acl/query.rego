@@ -13,6 +13,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'block_public_acls' is equal 'true'",
 		"keyActualValue": "'block_public_acls' is missing",
+		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_public_access_block", name], []),
 	}
 }
 
@@ -23,8 +24,39 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_s3_bucket_public_access_block[%s].block_public_acls", [name]),
-		"issueType": "MissingAttribute",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'block_public_acls' is equal 'true'",
 		"keyActualValue": "'block_public_acls' is equal 'false'",
+		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_public_access_block", name, "block_public_acls"], []),
+	}
+}
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "block_public_acls")
+	not common_lib.valid_key(module, keyToCheck)
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("module[%s]", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'block_public_acls' is equal 'true'",
+		"keyActualValue": "'block_public_acls' is missing",
+		"searchLine": common_lib.build_search_line(["module", name], []),
+	}
+}
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "block_public_acls")
+	module[keyToCheck] == false
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("module[%s].%s", [name, keyToCheck]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "'block_public_acls' is equal 'true'",
+		"keyActualValue": "'block_public_acls' is equal 'false'",
+		"searchLine": common_lib.build_search_line(["module", name, keyToCheck], []),
 	}
 }

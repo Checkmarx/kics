@@ -1,0 +1,11 @@
+{
+  "id": "f8e08a38-fc6e-4915-abbe-a7aadf1d59ef",
+  "queryName": "Key Vault Secrets Content Type Undefined",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "Key Vault Secrets should have set Content Type",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_secret#content_type",
+  "platform": "Terraform",
+  "descriptionID": "4aacc07b",
+  "cloudProvider": "azure"
+}

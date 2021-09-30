@@ -46,20 +46,6 @@ var ErrInvalidResult = errors.New("query: invalid result format")
 type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{},
 	detector *detector.DetectLine) (model.Vulnerability, error)
 
-// Tracker wraps an interface that contain basic methods: TrackQueryLoad, TrackQueryExecution and FailedDetectLine
-// TrackQueryLoad increments the number of loaded queries
-// TrackQueryExecution increments the number of queries executed
-// FailedDetectLine decrements the number of queries executed
-// GetOutputLines returns the number of lines to be displayed in results outputs
-type Tracker interface {
-	TrackQueryLoad(queryAggregation int)
-	TrackQueryExecuting(queryAggregation int)
-	TrackQueryExecution(queryAggregation int)
-	FailedDetectLine()
-	FailedComputeSimilarityID()
-	GetOutputLines() int
-}
-
 type preparedQuery struct {
 	opaQuery rego.PreparedEvalQuery
 	metadata model.QueryMetadata
@@ -115,21 +101,20 @@ func NewInspector(
 		return nil, errors.Wrap(err, "failed to get queries")
 	}
 
-	commonGeneralQuery, err := queriesSource.GetQueryLibrary("common")
+	commonLibrary, err := queriesSource.GetQueryLibrary("common")
 	if err != nil {
 		sentry.CaptureException(err)
 		log.Err(err).
-			Msgf("Inspector failed to get general query, query=%s", "common")
+			Msgf("Inspector failed to get library for %s platform", "common")
 		return nil, errors.Wrap(err, "failed to get library")
 	}
+	platformLibraries := getPlatformLibraries(queriesSource, queries)
 	opaQueries := make([]*preparedQuery, 0, len(queries))
 	for _, metadata := range queries {
-		platformGeneralQuery, err := queriesSource.GetQueryLibrary(metadata.Platform)
-		if err != nil {
-			sentry.CaptureException(err)
+		platformGeneralQuery, ok := platformLibraries[metadata.Platform]
+		if !ok {
 			log.Err(err).
 				Msgf("Inspector failed to get generic query, query=%s", metadata.Query)
-
 			continue
 		}
 
@@ -138,26 +123,24 @@ func NewInspector(
 			return nil, nil
 		default:
 			var opaQuery rego.PreparedEvalQuery
-			store := inmem.NewFromReader(bytes.NewBufferString(metadata.InputData))
-
-			if commonGeneralQuery != "" && platformGeneralQuery != "" {
-				opaQuery, err = rego.New(
-					rego.Query(regoQuery),
-					rego.Module("Common", commonGeneralQuery),
-					rego.Module("Generic", platformGeneralQuery),
-					rego.Module(metadata.Query, metadata.Content),
-					rego.Store(store),
-					rego.UnsafeBuiltins(unsafeRegoFunctions),
-				).PrepareForEval(ctx)
-			} else if platformGeneralQuery != "" {
-				opaQuery, err = rego.New(
-					rego.Query(regoQuery),
-					rego.Module("Generic", platformGeneralQuery),
-					rego.Module(metadata.Query, metadata.Content),
-					rego.Store(store),
-					rego.UnsafeBuiltins(unsafeRegoFunctions),
-				).PrepareForEval(ctx)
+			mergedInputData, err := source.MergeInputData(platformGeneralQuery.LibraryInputData, metadata.InputData)
+			if err != nil {
+				log.Debug().Msg("Could not merge platform library input data")
 			}
+			mergedInputData, err = source.MergeInputData(commonLibrary.LibraryInputData, mergedInputData)
+			if err != nil {
+				log.Debug().Msg("Could not merge common library input data")
+			}
+			store := inmem.NewFromReader(bytes.NewBufferString(mergedInputData))
+			opaQuery, err = rego.New(
+				rego.Query(regoQuery),
+				rego.Module("Common", commonLibrary.LibraryCode),
+				rego.Module("Generic", platformGeneralQuery.LibraryCode),
+				rego.Module(metadata.Query, metadata.Content),
+				rego.Store(store),
+				rego.UnsafeBuiltins(unsafeRegoFunctions),
+			).PrepareForEval(ctx)
+
 			if err != nil {
 				sentry.CaptureException(err)
 				log.Err(err).
@@ -184,7 +167,7 @@ func NewInspector(
 	log.Info().
 		Msgf("Inspector initialized, number of queries=%d", queriesNumber)
 
-	lineDetctor := detector.NewDetectLine(tracker.GetOutputLines()).
+	lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
 		Add(helm.DetectKindLine{}, model.KindHELM).
 		Add(docker.DetectKindLine{}, model.KindDOCKER)
 
@@ -197,9 +180,28 @@ func NewInspector(
 		tracker:          tracker,
 		failedQueries:    failedQueries,
 		excludeResults:   excludeResults,
-		detector:         lineDetctor,
+		detector:         lineDetector,
 		queryExecTimeout: queryExecTimeout,
 	}, nil
+}
+
+func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.QueryMetadata) map[string]source.RegoLibraries {
+	supportedPlatforms := make(map[string]string)
+	for _, query := range queries {
+		supportedPlatforms[query.Platform] = ""
+	}
+	platformLibraries := make(map[string]source.RegoLibraries)
+	for platform := range supportedPlatforms {
+		platformLibrary, errLoadingPlatformLib := queriesSource.GetQueryLibrary(platform)
+		if errLoadingPlatformLib != nil {
+			sentry.CaptureException(errLoadingPlatformLib)
+			log.Err(errLoadingPlatformLib).
+				Msgf("Inspector failed to get library for %s platform", platform)
+			continue
+		}
+		platformLibraries[platform] = platformLibrary
+	}
+	return platformLibraries
 }
 
 func sumAllAggregatedQueries(opaQueries []*preparedQuery) int {
@@ -366,7 +368,7 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 		}
 		file := ctx.files[vulnerability.FileID]
 		if shouldSkipFile(file.Commands, vulnerability.QueryID) {
-			log.Debug().Msgf("Skipping file %s for query %s", file.FileName, ctx.query.metadata.Query)
+			log.Debug().Msgf("Skipping file %s for query %s", file.FilePath, ctx.query.metadata.Query)
 			continue
 		}
 

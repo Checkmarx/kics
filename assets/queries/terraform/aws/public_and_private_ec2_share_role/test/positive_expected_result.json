@@ -2,6 +2,13 @@
   {
     "queryName": "Public and Private EC2 Share Role",
     "severity": "MEDIUM",
-    "line": 102
+    "line": 103,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Public and Private EC2 Share Role",
+    "severity": "MEDIUM",
+    "line": 38,
+    "filename": "positive2.tf"
   }
 ]

@@ -304,3 +304,28 @@ unsecured_cors_rule(methods, headers, origins) {
 	# allows several origins
 	contains(origins[_], "*")
 }
+
+get_module_equivalent_key(provider, moduleName, resource, key) = keyInResource {
+	providers := data.common_lib.modules[provider]
+	module := providers[moduleName]
+	inArray(module.resources, resource)
+	keyInResource := module.inputs[key]
+}
+
+check_selector(filter, value, op, name) {
+	selector := find_selector_by_value(filter, value)
+	selector._op == op
+	selector._selector == name
+} else = false {
+	true
+}
+
+find_selector_by_value(filter, str) = rtn {
+	[fpath, fvalue] := walk(filter)
+	trim(fvalue._value, "\"") == str
+	rtn := fvalue
+} else {
+	[fpath, fvalue] := walk(filter)
+	trim(fvalue._value, "'") == str
+	rtn := fvalue
+}
