@@ -54,6 +54,11 @@ jobs:
           echo ::set-output name=alpine_tags::${ALPINE_TAGS}
           echo ::set-output name=debian_tags::${DEBIAN_TAGS}
           echo ::set-output name=ubi7_tags::${UBI7_TAGS}
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+        with:
+          image: tonistiigi/binfmt:latest
+          platforms: linux/amd64,linux/arm64,linux/386
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub
@@ -65,38 +70,39 @@ jobs:
         uses: docker/build-push-action@v2.7.0
         with:
           context: .
-          push: true
+          push: false
+          platforms: linux/amd64,linux/arm64,linux/386
           tags: ${{ steps.prep.outputs.tags }},${{ steps.prep.outputs.alpine_tags }}
           build-args: |
             VERSION=${{ github.event.inputs.tag }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
-      - name: Push debian to Docker Hub
-        if: ${{ hashFiles('Dockerfile.debian') }} != ""
-        id: build_debian
-        uses: docker/build-push-action@v2.7.0
-        with:
-          context: .
-          file: ./Dockerfile.debian
-          push: true
-          tags: ${{ steps.prep.outputs.debian_tags }}
-          build-args: |
-            VERSION=${{ github.event.inputs.tag }}
-            COMMIT=${{ github.sha }}
-            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
-            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
-      - name: Push ubi7 to Docker Hub
-        if: ${{ hashFiles('Dockerfile.debian') }} != ""
-        id: build_ubi7
-        uses: docker/build-push-action@v2.7.0
-        with:
-          context: .
-          file: ./Dockerfile.ubi7
-          push: true
-          tags: ${{ steps.prep.outputs.ubi7_tags }}
-          build-args: |
-            VERSION=${{ github.event.inputs.tag }}
-            COMMIT=${{ github.sha }}
-            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
-            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+      # - name: Push debian to Docker Hub
+      #   if: ${{ hashFiles('Dockerfile.debian') }} != ""
+      #   id: build_debian
+      #   uses: docker/build-push-action@v2.7.0
+      #   with:
+      #     context: .
+      #     file: ./Dockerfile.debian
+      #     push: false
+      #     tags: ${{ steps.prep.outputs.debian_tags }}
+      #     build-args: |
+      #       VERSION=${{ github.event.inputs.tag }}
+      #       COMMIT=${{ github.sha }}
+      #       SENTRY_DSN=${{ secrets.SENTRY_DSN }}
+      #       DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+      # - name: Push ubi7 to Docker Hub
+      #   if: ${{ hashFiles('Dockerfile.debian') }} != ""
+      #   id: build_ubi7
+      #   uses: docker/build-push-action@v2.7.0
+      #   with:
+      #     context: .
+      #     file: ./Dockerfile.ubi7
+      #     push: false
+      #     tags: ${{ steps.prep.outputs.ubi7_tags }}
+      #     build-args: |
+      #       VERSION=${{ github.event.inputs.tag }}
+      #       COMMIT=${{ github.sha }}
+      #       SENTRY_DSN=${{ secrets.SENTRY_DSN }}
+      #       DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
