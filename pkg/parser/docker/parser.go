@@ -50,6 +50,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 	from := make(map[string][]Command)
 
 	for _, child := range parsed.AST.Children {
+		child.Value = strings.ToLower(child.Value)
 		if child.Value == "from" {
 			fromValue = strings.TrimPrefix(child.Original, "FROM ")
 		}
@@ -63,7 +64,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 		}
 
 		if child.Next != nil && len(child.Next.Children) > 0 {
-			cmd.SubCmd = child.Next.Children[0].Value
+			cmd.SubCmd = strings.ToLower(child.Next.Children[0].Value)
 			child = child.Next.Children[0]
 		}
 

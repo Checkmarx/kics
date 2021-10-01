@@ -6,7 +6,7 @@ CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "add"
 
-    not dockerLib.arrayContains(resource.Value, {".tar", ".tar."})
+	not dockerLib.arrayContains(resource.Value, {".tar", ".tar."})
 
 	result := {
 		"documentId": input.document[i].id,
