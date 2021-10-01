@@ -151,7 +151,7 @@
 				
 				<option value="file47">github.com/Checkmarx/kics/pkg/parser/docker/parser.go (91.2%)</option>
 				
-				<option value="file48">github.com/Checkmarx/kics/pkg/parser/json/json_line.go (91.5%)</option>
+				<option value="file48">github.com/Checkmarx/kics/pkg/parser/json/json_line.go (91.6%)</option>
 				
 				<option value="file49">github.com/Checkmarx/kics/pkg/parser/json/parser.go (78.6%)</option>
 				
@@ -1616,8 +1616,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="375">{
-                if val == true </span><span class="cov9" title="374">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="343">{
+                if val == true </span><span class="cov9" title="342">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2554,7 +2554,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -8434,7 +8434,7 @@ type jsonLineStruct struct {
         tmpParent   string
         pathArr     []string
         lastWasRune bool
-        noremoveidx []string
+        noremoveidx map[int]string
         parent      string
 }
 
@@ -8452,7 +8452,7 @@ func initializeJSONLine(doc []byte) *jsonLine <span class="cov4" title="17">{
                 tmpParent:   "",
                 pathArr:     make([]string, 0),
                 lastWasRune: false,
-                noremoveidx: make([]string, 0),
+                noremoveidx: make(map[int]string),
                 parent:      "",
         }
 
@@ -8528,6 +8528,7 @@ func initializeJSONLine(doc []byte) *jsonLine <span class="cov4" title="17">{
 
 // delimSetup updates the jsonLineStruct when a json delimeter (ex: { [ ...) is found
 func (j *jsonLineStruct) delimSetup(v json.Delim) <span class="cov6" title="80">{
+        lenPathArr := len(j.pathArr) - 1
         switch rune(v) </span>{
         case '{', '[':<span class="cov5" title="40">
                 // check if last element was a json delimeter
@@ -8537,46 +8538,44 @@ func (j *jsonLineStruct) delimSetup(v json.Delim) <span class="cov6" title="80">
                         // check if temporary parent is in path array, if not last element must be the tempParent
                         // and added to noremoveidx
                         // the next close delimeter should not remove the last element from the pathArr
-                        if j.tmpParent != j.pathArr[len(j.pathArr)-1] </span><span class="cov0" title="0">{
-                                j.tmpParent = j.pathArr[len(j.pathArr)-1]
-                                j.noremoveidx = append(j.noremoveidx, j.tmpParent)
+                        if j.tmpParent != j.pathArr[lenPathArr] </span><span class="cov0" title="0">{
+                                j.tmpParent = j.pathArr[lenPathArr]
+                                j.noremoveidx[lenPathArr] = j.tmpParent
                         }</span> else<span class="cov1" title="2"> {
                                 // the next close delimeter should not remove the last element from the pathArr
-                                j.noremoveidx = append(j.noremoveidx, j.tmpParent)
+                                j.noremoveidx[lenPathArr] = j.tmpParent
                         }</span>
                 }
                 // update parent path string
                 <span class="cov5" title="40">j.parent = strings.Join(j.pathArr, ".")</span>
         case '}', ']':<span class="cov5" title="40">
-                j.closeBrackets()</span>
+                j.closeBrackets(lenPathArr)</span>
         }
         <span class="cov6" title="80">j.lastWasRune = true</span>
 }
 
 // closeBrackets is what based on the jsonLineStruct information
 // will update the parent path and make necessary updates on its structure
-func (j *jsonLineStruct) closeBrackets() <span class="cov5" title="40">{
-        lenPathArr := len(j.pathArr)
-        lenNoRemove := len(j.noremoveidx)
+func (j *jsonLineStruct) closeBrackets(lenPathArr int) <span class="cov5" title="40">{
         // check if there are elements in the pathArr
-        if lenPathArr &gt; 0 </span><span class="cov5" title="40">{
+        if lenPathArr &gt; 0 </span><span class="cov4" title="23">{
                 // check if there are elements in the no noremoveidx
-                if lenNoRemove &gt; 0 </span><span class="cov1" title="2">{
+                if v, ok := j.noremoveidx[lenPathArr]; ok </span><span class="cov1" title="2">{
                         // if the last elements in pathArr and noremoveidx differ,
                         // than the last element on pathArr was already closed and can
                         // be removed
-                        if j.pathArr[lenPathArr-1] != j.noremoveidx[lenNoRemove-1] </span><span class="cov0" title="0">{
-                                j.pathArr = j.pathArr[:lenPathArr-1]
+                        if j.pathArr[lenPathArr] != v </span><span class="cov0" title="0">{
+                                j.pathArr = j.pathArr[:lenPathArr]
                         }</span> else<span class="cov1" title="2"> {
                                 // the last element was not closed but should be closed
                                 // on the next closing delim
                                 // remove from noremoveidx
-                                j.noremoveidx = j.noremoveidx[:lenNoRemove-1]
+                                delete(j.noremoveidx, lenPathArr)
                         }</span>
-                } else<span class="cov5" title="38"> {
+                } else<span class="cov4" title="21"> {
                         // this last element in the pathArr was closed
                         // it can now be removed from the pathArr
-                        j.pathArr = j.pathArr[:lenPathArr-1]
+                        j.pathArr = j.pathArr[:lenPathArr]
                 }</span>
         }
         // update parent string path
@@ -8586,7 +8585,7 @@ func (j *jsonLineStruct) closeBrackets() <span class="cov5" title="40">{
 // setLineInfo will set the line information of keys in json based on the line Information map
 func (j *jsonLine) setLineInfo(doc map[string]interface{}) map[string]interface{} <span class="cov3" title="9">{
         // set the line info for keys in root level
-        doc["_kics_lines"] = j.setLine(doc, 0, "")
+        doc["_kics_lines"] = j.setLine(doc, 0, "", false)
         return doc
 }</span>
 
@@ -8594,7 +8593,7 @@ func (j *jsonLine) setLineInfo(doc map[string]interface{}) map[string]interface{
 // def is the line of the key
 // index is used in case of an array, otherwhise should be 0
 // father is the path to the key
-func (j *jsonLine) setLine(val map[string]interface{}, def int, father string) map[string]model.LineObject <span class="cov4" title="16">{
+func (j *jsonLine) setLine(val map[string]interface{}, def int, father string, pop bool) map[string]model.LineObject <span class="cov4" title="16">{
         lineMap := make(map[string]model.LineObject)
         // set the line information of val
         lineMap["_kics__default"] = model.LineObject{
@@ -8612,14 +8611,17 @@ func (j *jsonLine) setLine(val map[string]interface{}, def int, father string) m
                 <span class="cov4" title="17">line := j.LineInfo[key][father]
                 lineArr := make([]map[string]model.LineObject, 0)
                 lineNr := line.(*fifo).head()
+                if pop </span><span class="cov1" title="1">{
+                        lineNr = line.(*fifo).pop()
+                }</span>
 
-                switch v := val.(type) </span>{
+                <span class="cov4" title="17">switch v := val.(type) </span>{
                 // value is an array and must call func setSeqLines to set element lines
                 case []interface{}:<span class="cov2" title="5">
                         lineArr = j.setSeqLines(v, lineNr, father, key, lineArr)</span>
                 // value is an object and must setLines for each element of the object
                 case map[string]interface{}:<span class="cov3" title="6">
-                        v["_kics_lines"] = j.setLine(v, lineNr, father+"."+key)</span>
+                        v["_kics_lines"] = j.setLine(v, lineNr, father+"."+key, false)</span>
                 default:<span class="cov3" title="6">
                         // value as no childs
                         lineMap["_kics_"+key] = model.LineObject{
@@ -8654,8 +8656,7 @@ func (j *jsonLine) setSeqLines(v []interface{}, def int, father, key string,
                 switch con := contentEntry.(type) </span>{
                 // case element is a map/object call func setLine
                 case map[string]interface{}:<span class="cov1" title="1">
-
-                        lineArr = append(lineArr, j.setLine(con, defaultLineArr, fatherKey))</span>
+                        lineArr = append(lineArr, j.setLine(con, defaultLineArr, fatherKey, true))</span>
                 // case element is a string
                 default:<span class="cov3" title="9">
                         stringedCon := fmt.Sprint(con)
@@ -8699,7 +8700,7 @@ func (f *fifo) add(elements ...int) <span class="cov5" title="64">{
         f.Value = append(f.Value, elements...)
 }</span>
 
-func (f *fifo) pop() int <span class="cov3" title="10">{
+func (f *fifo) pop() int <span class="cov3" title="11">{
         firstElement := f.Value[0]
         f.Value = f.Value[1:]
         return firstElement
