@@ -30,6 +30,14 @@ docker run -v {path_to_host_folder}/{filename}.{extention}:/path/{filename}.{ext
 
 This will generate a `results.json` file, for both examples, under `path`.
 
+When using [UBI7](https://catalog.redhat.com) based image, the KICS process will run under the `kics` user and `kics` group with default UID=1000 and GID=1000, those can be overriden by [rebuilding the dockerfile](https://github.com/Checkmarx/kics/blob/master/Dockerfile.ubi7) providing build arguments e.g: `--build-arg UID=999 --build-arg GID=999 --build-arg KUSER=myuser --build-arg KUSER=mygroup`
+
+Another way to solve this is providing the `-u` flag the overrides the username:group or UID:GID. e.g:
+
+```sh
+docker run -it -u $UID:$GID -v $PWD:/path kics:ubi7 scan -p /path/assets/queries/dockerfile -o /path -v
+```
+
 ## CLI Options
 
 Usage:
