@@ -1,4 +1,4 @@
-FROM golang:1.17.1-alpine as build_env
+FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.17.1-alpine as build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
@@ -8,6 +8,8 @@ ARG VERSION="development"
 ARG COMMIT="NOCOMMIT"
 ARG SENTRY_DSN=""
 ARG DESCRIPTIONS_URL=""
+ARG TARGETOS
+ARG TARGETARCH
 
 # Copy go mod and sum files
 COPY go.mod .
@@ -20,7 +22,7 @@ RUN go mod download -x
 COPY . .
 
 # Build the Go app
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
+RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
     -ldflags "-s -w -X github.com/Checkmarx/kics/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/internal/constants.BaseURL=${DESCRIPTIONS_URL}" \
     -a -installsuffix cgo \
     -o bin/kics cmd/console/main.go

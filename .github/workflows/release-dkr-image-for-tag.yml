@@ -3,22 +3,27 @@ name: release-manual-docker-tag-latest
 on:
   workflow_dispatch:
     inputs:
-      tag:
-        description: "Git Tag"
-        required: true
+      # tag:
+      #   description: "Git Tag"
+      #   required: true
       latest:
         description: "true if image is latest"
         default: "false"
+
+permissions:
+  contents: write
 
 jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
+    env:
+      DOCKER_CLI_EXPERIMENTAL: "enabled"
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2.3.4
-        with:
-          ref: ${{ github.event.inputs.tag }}
+        # with:
+        #   ref: ${{ github.event.inputs.tag }}
       - uses: toko-bifrost/ms-teams-deploy-card@master
         if: always()
         with:
@@ -37,7 +42,8 @@ jobs:
         id: prep
         run: |
           DOCKER_IMAGE=Checkmarx/kics
-          VERSION=${{ github.event.inputs.tag }}
+          #VERSION=${{ github.event.inputs.tag }}
+          VERSION=test-multiplatform
           TAGS="${DOCKER_IMAGE}:${VERSION}"
           ALPINE_TAGS="${TAGS}-alpine"
           DEBIAN_TAGS="${TAGS}-debian"
@@ -45,9 +51,9 @@ jobs:
 
           if [ "${{ github.event.inputs.latest }}" = "true" ]; then
             TAGS=${TAGS},${DOCKER_IMAGE}:latest
-            ALPINE_TAGS="{TAGS},${DOCKER_IMAGE}:latest-alpine"
-            DEBIAN_TAGS="{TAGS},${DOCKER_IMAGE}:latest-debian"
-            UBI7_TAGS="{TAGS},${DOCKER_IMAGE}:latest-ubi7"
+            ALPINE_TAGS="{ALPINE_TAGS},${DOCKER_IMAGE}:latest-alpine"
+            DEBIAN_TAGS="{DEBIAN_TAGS},${DOCKER_IMAGE}:latest-debian"
+            UBI7_TAGS="{UBI7_TAGS},${DOCKER_IMAGE}:latest-ubi7"
           fi
 
           echo ::set-output name=tags::${TAGS}
@@ -58,7 +64,7 @@ jobs:
         uses: docker/setup-qemu-action@v1
         with:
           image: tonistiigi/binfmt:latest
-          platforms: linux/amd64,linux/arm64,linux/386
+          platforms: linux/amd64,linux/arm64
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub
@@ -71,13 +77,17 @@ jobs:
         with:
           context: .
           push: false
-          platforms: linux/amd64,linux/arm64,linux/386
-          tags: ${{ steps.prep.outputs.tags }},${{ steps.prep.outputs.alpine_tags }}
+          platforms: linux/amd64,linux/arm64
+          tags: ${{ steps.prep.outputs.alpine_tags }}
+          #VERSION=${{ github.event.inputs.tag }}
           build-args: |
-            VERSION=${{ github.event.inputs.tag }}
+            VERSION=alpine
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+      - name: Test KICS
+        run: |
+          docker run --rm -v $PWD:/path checkmarx/kics:latest-alpine scan -p /path/assets/queries/dockerfile -v -o /path --no-progress
       # - name: Push debian to Docker Hub
       #   if: ${{ hashFiles('Dockerfile.debian') }} != ""
       #   id: build_debian
