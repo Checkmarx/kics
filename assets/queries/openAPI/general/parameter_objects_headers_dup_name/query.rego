@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
@@ -12,8 +13,7 @@ CxPolicy[result] {
 	param.in == "header"
 
 	dup := check_dup(value.parameters)
-	duplicate = cast_set(dup)
-	duplicate[_] == lower(param.name)
+	lower(param.name) == dup[m]
 
 	p := openapi_lib.concat_path(path)
 	parcialSk := openapi_lib.concat_default_value(p, "parameters")
@@ -25,15 +25,14 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sk,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Parameter Object with location 'header' doesn't have duplicate names",
-		"keyActualValue": sprintf("Parameter Object with location 'header' has duplicate names (name=%s)", [duplicate[_]]),
+		"keyExpectedValue": dup,
+		"keyActualValue": sprintf("Parameter Object with location 'header' has duplicate names (name=%s)", [param.name]),
 		"overrideKey": version,
 	}
 }
 
 check_dup(params) = dup {
-	nameArr := [x | p := params[_]; p.in == "header"; x := lower(p.name)]
-	arr := cast_set(nameArr)
-	count(arr) != count(params)
-	dup := [y | y := nameArr[i]]
+	nameArr := [x | p := params[n]; p.in == "header"; x := lower(p.name)]
+	arr := {x | idx := nameArr[s]; idx == nameArr[d]; s != d; x := idx}
+	dup := arr
 }
