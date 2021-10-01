@@ -93,7 +93,6 @@ func (c *Client) printScanDuration(elapsed time.Duration) {
 	elapsedStrFormat := "Scan duration: %vms\n"
 	fmt.Printf(elapsedStrFormat, elapsed.Milliseconds())
 	log.Info().Msgf(elapsedStrFormat, elapsed.Milliseconds())
-
 }
 
 // postScan is responsible for the output results
