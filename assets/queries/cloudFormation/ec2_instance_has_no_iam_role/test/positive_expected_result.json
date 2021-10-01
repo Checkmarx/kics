@@ -24,7 +24,7 @@
     "fileName": "positive2.json"
   },
   {
-    "line": 47,
+    "line": 53,
     "fileName": "positive2.json",
     "queryName": "EC2 Instance Has No IAM Role",
     "severity": "MEDIUM"
