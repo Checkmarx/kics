@@ -176,8 +176,18 @@ func formatNewError(flag1, flag2 string) error {
 		flag2)
 }
 
+type Console struct {
+	Printer       *consoleHelpers.Printer
+	ProBarBuilder *progress.PbBuilder
+	ProgressBar   progress.PBar
+}
+
+func newConsole() *Console {
+	return &Console{}
+}
+
 // preScan is responsible for scan preparation
-func preScan() (*consoleHelpers.Printer, *progress.PbBuilder, progress.PBar) {
+func (console *Console) preScan() {
 	log.Debug().Msg("console.scan()")
 	for _, warn := range warnings {
 		log.Warn().Msgf(warn)
@@ -200,8 +210,6 @@ func preScan() (*consoleHelpers.Printer, *progress.PbBuilder, progress.PBar) {
 		flags.GetBoolFlag(flags.CIFlag),
 		flags.GetBoolFlag(flags.SilentFlag))
 
-	progressBar := proBarBuilder.BuildCircle("Preparing Scan Assets: ")
-	progressBar.Start()
-
-	return printer, proBarBuilder, progressBar
+	console.Printer = printer
+	console.ProBarBuilder = proBarBuilder
 }

@@ -16,7 +16,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-func (c *Client) getSummary(end time.Time, pathParameters model.PathParameters) model.Summary {
+func (c *Client) getSummary(results []model.Vulnerability, end time.Time, pathParameters model.PathParameters) model.Summary {
 	counters := model.Counters{
 		ScannedFiles:           c.Tracker.FoundFiles,
 		ParsedFiles:            c.Tracker.ParsedFiles,
@@ -25,13 +25,13 @@ func (c *Client) getSummary(end time.Time, pathParameters model.PathParameters) 
 		FailedSimilarityID:     c.Tracker.FailedSimilarityID,
 	}
 
-	summary := model.CreateSummary(counters, c.Results, c.ScanParams.ScanID, pathParameters.PathExtractionMap)
+	summary := model.CreateSummary(counters, results, c.ScanParams.ScanID, pathParameters.PathExtractionMap)
 	summary.Times = model.Times{
 		Start: c.ScanStartTime,
 		End:   end,
 	}
 
-	if c.ScanParams.DisableCISDescFlag || c.ScanParams.DisableFullDescFlag {
+	if c.ScanParams.DisableCISDesc || c.ScanParams.DisableFullDesc {
 		log.Warn().Msg("Skipping CIS descriptions because provided disable flag is set")
 	} else {
 		err := descriptions.RequestAndOverrideDescriptions(&summary)
@@ -56,10 +56,10 @@ func (c *Client) resolveOutputs(
 	if err := consoleHelpers.PrintResult(summary, failedQueries, printer); err != nil {
 		return err
 	}
-	if c.ScanParams.PayloadPathFlag != "" {
+	if c.ScanParams.PayloadPath != "" {
 		if err := report.ExportJSONReport(
-			filepath.Dir(c.ScanParams.PayloadPathFlag),
-			filepath.Base(c.ScanParams.PayloadPathFlag),
+			filepath.Dir(c.ScanParams.PayloadPath),
+			filepath.Base(c.ScanParams.PayloadPath),
 			documents,
 		); err != nil {
 			return err
@@ -67,9 +67,9 @@ func (c *Client) resolveOutputs(
 	}
 
 	return printOutput(
-		c.ScanParams.OutputPathFlag,
-		c.ScanParams.OutputNameFlag,
-		summary, c.ScanParams.ReportFormatsFlag,
+		c.ScanParams.OutputPath,
+		c.ScanParams.OutputName,
+		summary, c.ScanParams.ReportFormats,
 		proBarBuilder,
 	)
 }
@@ -90,28 +90,23 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 }
 
 func (c *Client) printScanDuration(elapsed time.Duration) {
-	if c.ScanParams.CIFlag {
-		elapsedStrFormat := "Scan duration: %vms\n"
-		fmt.Printf(elapsedStrFormat, elapsed.Milliseconds())
-		log.Info().Msgf(elapsedStrFormat, elapsed.Milliseconds())
-	} else {
-		elapsedStrFormat := "Scan duration: %v\n"
-		fmt.Printf(elapsedStrFormat, elapsed)
-		log.Info().Msgf(elapsedStrFormat, elapsed)
-	}
+	elapsedStrFormat := "Scan duration: %vms\n"
+	fmt.Printf(elapsedStrFormat, elapsed.Milliseconds())
+	log.Info().Msgf(elapsedStrFormat, elapsed.Milliseconds())
+
 }
 
 // postScan is responsible for the output results
-func (c *Client) postScan() error {
-	summary := c.getSummary(time.Now(), model.PathParameters{
-		ScannedPaths:      c.ScanParams.PathFlag,
-		PathExtractionMap: c.ExtractedPaths.ExtractionMap,
+func (c *Client) postScan(scanResults *Results) error {
+	summary := c.getSummary(scanResults.Results, time.Now(), model.PathParameters{
+		ScannedPaths:      c.ScanParams.Path,
+		PathExtractionMap: scanResults.ExtractedPaths.ExtractionMap,
 	})
 
 	if err := c.resolveOutputs(
 		&summary,
-		c.Files.Combine(c.ScanParams.LineInfoPayloadFlag),
-		c.FailedQueries,
+		scanResults.Files.Combine(c.ScanParams.LineInfoPayload),
+		scanResults.FailedQueries,
 		c.Printer,
 		*c.ProBarBuilder); err != nil {
 		log.Err(err)
