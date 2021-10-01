@@ -165,7 +165,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
 			InputDataPath:  "",
 		},
-		map[string]bool{}, 600)
+		map[string]bool{}, 1000)
 
 	require.Nil(tb, err)
 	require.NotNil(tb, inspector)
