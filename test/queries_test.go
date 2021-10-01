@@ -131,7 +131,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 	ctrl := gomock.NewController(tb)
 	defer ctrl.Finish()
 
-	ctx := context.Background()
+	ctx := context.TODO()
 
 	queriesSource := mock.NewMockQueriesSource(ctrl)
 	queriesSource.EXPECT().GetQueries(getQueryFilter()).
@@ -165,7 +165,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
 			InputDataPath:  "",
 		},
-		map[string]bool{}, 1000)
+		map[string]bool{}, 60)
 
 	require.Nil(tb, err)
 	require.NotNil(tb, inspector)

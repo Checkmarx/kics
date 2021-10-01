@@ -267,8 +267,6 @@ compareArrays(arrayOne, arrayTwo) {
 valid_key(obj, key) {
 	_ = obj[key]
 	not is_null(obj[key])
-} else = false {
-	true
 }
 
 getDays(date, daysInMonth) = days {
