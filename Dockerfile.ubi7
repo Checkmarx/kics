@@ -53,7 +53,7 @@ RUN yum install git -y \
   && adduser \
   --home-dir /app/bin \
   --no-create-home \
-  --uiddock ${UID} \
+  --uid ${UID} \
   -g ${KGROUP} \
   -s /bin/bash \
   ${KUSER}
