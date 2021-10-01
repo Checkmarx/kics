@@ -6,22 +6,17 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-	"time"
 
 	"github.com/Checkmarx/kics/internal/console/flags"
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	internalPrinter "github.com/Checkmarx/kics/internal/console/printer"
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/internal/metrics"
-	"github.com/Checkmarx/kics/pkg/analyzer"
-	"github.com/Checkmarx/kics/pkg/engine/provider"
-	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
-	"golang.org/x/term"
 )
 
 func preRun(cmd *cobra.Command) error {
@@ -128,103 +123,6 @@ func validateQuerySelectionFlags() error {
 	return nil
 }
 
-func resolvePath(flagName string) (string, error) {
-	extractedPath, errExtractPath := provider.GetSources([]string{flags.GetStrFlag(flagName)})
-	if errExtractPath != nil {
-		return "", errExtractPath
-	}
-	if len(extractedPath.Path) != 1 {
-		return "", fmt.Errorf("could not find a valid path (--%s) on %s", flagName, flags.GetStrFlag(flagName))
-	}
-	log.Debug().Msgf("Trying to load path (--%s) from %s", flagName, flags.GetStrFlag(flagName))
-	return extractedPath.Path[0], nil
-}
-
-func getQueryPath(changedDefaultQueryPath bool) error {
-	if changedDefaultQueryPath {
-		extractedQueriesPath, errExtractQueries := resolvePath(flags.QueriesPath)
-		if errExtractQueries != nil {
-			return errExtractQueries
-		}
-		flags.SetStrFlag(flags.QueriesPath, extractedQueriesPath)
-	} else {
-		log.Debug().Msgf("Looking for queries in executable path and in current work directory")
-		defaultQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(flags.GetStrFlag(flags.QueriesPath))
-		if errDefaultQueryPath != nil {
-			return errors.Wrap(errDefaultQueryPath, "unable to find queries")
-		}
-		flags.SetStrFlag(flags.QueriesPath, defaultQueryPath)
-	}
-	return nil
-}
-
-func getLibraryPath(changedDefaultLibrariesPath bool) error {
-	if changedDefaultLibrariesPath {
-		extractedLibrariesPath, errExtractLibraries := resolvePath(flags.LibrariesPath)
-		if errExtractLibraries != nil {
-			return errExtractLibraries
-		}
-		flags.SetStrFlag(flags.LibrariesPath, extractedLibrariesPath)
-	}
-	return nil
-}
-
-func preparePaths(changedDefaultQueryPath, changedDefaultLibrariesPath bool) error {
-	var err error
-	err = getQueryPath(changedDefaultQueryPath)
-	if err != nil {
-		return err
-	}
-	err = getLibraryPath(changedDefaultLibrariesPath)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-// analyzePaths will analyze the paths to scan to determine which type of queries to load
-// and which files should be ignored, it then updates the types and exclude flags variables
-// with the results found
-func analyzePaths(paths, types, exclude []string) (typesRes, excludeRes []string, errRes error) {
-	var err error
-	exc := make([]string, 0)
-	if types[0] == "" { // if '--type' flag was given skip file analyzing
-		types, exc, err = analyzer.Analyze(paths)
-		if err != nil {
-			log.Err(err)
-			return []string{}, []string{}, err
-		}
-		log.Info().Msgf("Loading queries of type: %s", strings.Join(types, ", "))
-	}
-	exclude = append(exclude, exc...)
-	return types, exclude, nil
-}
-
-func prepareAndAnalyzePaths(changedDefaultQueryPath, changedDefaultLibrariesPath bool) (extractedPaths provider.ExtractedPath, err error) {
-	err = preparePaths(changedDefaultQueryPath, changedDefaultLibrariesPath)
-	if err != nil {
-		return extractedPaths, err
-	}
-
-	extractedPaths, err = provider.GetSources(flags.GetMultiStrFlag(flags.PathFlag))
-	if err != nil {
-		return extractedPaths, err
-	}
-
-	newTypeFlagValue, newExcludePathsFlagValue, errAnalyze :=
-		analyzePaths(
-			extractedPaths.Path,
-			flags.GetMultiStrFlag(flags.TypeFlag),
-			flags.GetMultiStrFlag(flags.ExcludePathsFlag),
-		)
-	if errAnalyze != nil {
-		return extractedPaths, errAnalyze
-	}
-	flags.SetMultiStrFlag(flags.TypeFlag, newTypeFlagValue)
-	flags.SetMultiStrFlag(flags.ExcludePathsFlag, newExcludePathsFlagValue)
-	return extractedPaths, nil
-}
-
 func bindFlags(cmd *cobra.Command, v *viper.Viper) error {
 	log.Debug().Msg("console.bindFlags()")
 	settingsMap := v.AllSettings()
@@ -274,35 +172,4 @@ func formatNewError(flag1, flag2 string) error {
 	return errors.Errorf("can't provide '%s' and '%s' flags simultaneously",
 		flag1,
 		flag2)
-}
-
-// preScan is responsible for scan preparation
-func preScan() (*consoleHelpers.Printer, *progress.PbBuilder, progress.PBar, time.Time) {
-	log.Debug().Msg("console.scan()")
-	for _, warn := range warnings {
-		log.Warn().Msgf(warn)
-	}
-
-	printer := consoleHelpers.NewPrinter(flags.GetBoolFlag(flags.MinimalUIFlag))
-	printer.Success.Printf("\n%s\n", banner)
-
-	versionMsg := fmt.Sprintf("\nScanning with %s\n\n", constants.GetVersion())
-	fmt.Println(versionMsg)
-	log.Info().Msgf(strings.ReplaceAll(versionMsg, "\n", ""))
-
-	noProgress := flags.GetBoolFlag(flags.NoProgressFlag)
-	if !term.IsTerminal(int(os.Stdin.Fd())) || strings.EqualFold(flags.GetStrFlag(flags.LogLevelFlag), "debug") {
-		noProgress = true
-	}
-
-	proBarBuilder := progress.InitializePbBuilder(
-		noProgress,
-		flags.GetBoolFlag(flags.CIFlag),
-		flags.GetBoolFlag(flags.SilentFlag))
-
-	scanStartTime := time.Now()
-	progressBar := proBarBuilder.BuildCircle("Preparing Scan Assets: ")
-	progressBar.Start()
-
-	return printer, proBarBuilder, progressBar, scanStartTime
 }

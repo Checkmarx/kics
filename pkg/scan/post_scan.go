@@ -1,18 +1,14 @@
-package console
+package scan
 
 import (
 	_ "embed" // Embed kics CLI img and scan-flags
 	"fmt"
 	"os"
-	"os/signal"
 	"path/filepath"
 	"strings"
-	"syscall"
 	"time"
 
-	"github.com/Checkmarx/kics/internal/console/flags"
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
-	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/descriptions"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
@@ -32,13 +28,13 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end 
 		FailedSimilarityID:     t.FailedSimilarityID,
 	}
 
-	summary := model.CreateSummary(counters, results, scanID, pathParameters.PathExtractionMap)
+	summary := model.CreateSummary(counters, results, ScanParams.ScanID, pathParameters.PathExtractionMap)
 	summary.Times = model.Times{
 		Start: start,
 		End:   end,
 	}
 
-	if flags.GetBoolFlag(flags.DisableCISDescFlag) || flags.GetBoolFlag(flags.DisableFullDescFlag) {
+	if ScanParams.DisableCISDescFlag || ScanParams.DisableFullDescFlag {
 		log.Warn().Msg("Skipping CIS descriptions because provided disable flag is set")
 	} else {
 		err := descriptions.RequestAndOverrideDescriptions(&summary)
@@ -63,10 +59,10 @@ func resolveOutputs(
 	if err := consoleHelpers.PrintResult(summary, failedQueries, printer); err != nil {
 		return err
 	}
-	if flags.GetStrFlag(flags.PayloadPathFlag) != "" {
+	if ScanParams.PayloadPathFlag != "" {
 		if err := report.ExportJSONReport(
-			filepath.Dir(flags.GetStrFlag(flags.PayloadPathFlag)),
-			filepath.Base(flags.GetStrFlag(flags.PayloadPathFlag)),
+			filepath.Dir(ScanParams.PayloadPathFlag),
+			filepath.Base(ScanParams.PayloadPathFlag),
 			documents,
 		); err != nil {
 			return err
@@ -74,9 +70,9 @@ func resolveOutputs(
 	}
 
 	return printOutput(
-		flags.GetStrFlag(flags.OutputPathFlag),
-		flags.GetStrFlag(flags.OutputNameFlag),
-		summary, flags.GetMultiStrFlag(flags.ReportFormatsFlag),
+		ScanParams.OutputPathFlag,
+		ScanParams.OutputNameFlag,
+		summary, ScanParams.ReportFormatsFlag,
 		proBarBuilder,
 	)
 }
@@ -97,7 +93,7 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 }
 
 func printScanDuration(elapsed time.Duration) {
-	if flags.GetBoolFlag(flags.CIFlag) {
+	if ScanParams.CIFlag {
 		elapsedStrFormat := "Scan duration: %vms\n"
 		fmt.Printf(elapsedStrFormat, elapsed.Milliseconds())
 		log.Info().Msgf(elapsedStrFormat, elapsed.Milliseconds())
@@ -112,13 +108,13 @@ func printScanDuration(elapsed time.Duration) {
 func posScan(t *tracker.CITracker, results []model.Vulnerability, scanStartTime time.Time, extractedPaths provider.ExtractedPath,
 	files model.FileMetadatas, failedQueries map[string]error, printer *consoleHelpers.Printer, proBarBuilder *progress.PbBuilder) error {
 	summary := getSummary(t, results, scanStartTime, time.Now(), model.PathParameters{
-		ScannedPaths:      flags.GetMultiStrFlag(flags.PathFlag),
+		ScannedPaths:      ScanParams.PathFlag,
 		PathExtractionMap: extractedPaths.ExtractionMap,
 	})
 
 	if err := resolveOutputs(
 		&summary,
-		files.Combine(flags.GetBoolFlag(flags.LineInfoPayloadFlag)),
+		files.Combine(ScanParams.LineInfoPayloadFlag),
 		failedQueries,
 		printer,
 		*proBarBuilder); err != nil {
@@ -134,19 +130,4 @@ func posScan(t *tracker.CITracker, results []model.Vulnerability, scanStartTime 
 	}
 
 	return nil
-}
-
-// gracefulShutdown catches signal interrupt and returns the appropriate exit code
-func gracefulShutdown() {
-	c := make(chan os.Signal)
-	// This line should not be lint, since golangci-lint has an issue about it (https://github.com/golang/go/issues/45043)
-	signal.Notify(c, os.Interrupt, syscall.SIGTERM) // nolint
-	showErrors := consoleHelpers.ShowError("errors")
-	interruptCode := constants.SignalInterruptCode
-	go func(showErrors bool, interruptCode int) {
-		<-c
-		if showErrors {
-			os.Exit(interruptCode)
-		}
-	}(showErrors, interruptCode)
 }
