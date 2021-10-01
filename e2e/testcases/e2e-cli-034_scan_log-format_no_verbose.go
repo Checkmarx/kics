@@ -1,0 +1,28 @@
+package testcases
+
+import "regexp"
+
+// E2E-CLI-034 - KICS scan command with --log-format without --verbose
+// should not output log messages in the CLI (json)
+func init() {
+	testSample := TestCase{
+		Name: "should not display messages in the CLI [E2E-CLI-034]",
+		Args: args{
+			Args: []cmdArgs{
+
+				[]string{"scan", "--log-format", "json",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+			},
+		},
+
+		Validation: func(outputText string) bool {
+			match1, _ := regexp.MatchString(`{"level":"info"`, outputText)
+			match2, _ := regexp.MatchString(`"message":"Inspector initialized, number of queries=\d+"`, outputText)
+			return !match1 && !match2
+		},
+
+		WantStatus: []int{40},
+	}
+
+	Tests = append(Tests, testSample)
+}
