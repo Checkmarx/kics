@@ -24,7 +24,7 @@ type jsonLineStruct struct {
 	tmpParent   string
 	pathArr     []string
 	lastWasRune bool
-	noremoveidx []string
+	noremoveidx map[int]string
 	parent      string
 }
 
@@ -42,7 +42,7 @@ func initializeJSONLine(doc []byte) *jsonLine {
 		tmpParent:   "",
 		pathArr:     make([]string, 0),
 		lastWasRune: false,
-		noremoveidx: make([]string, 0),
+		noremoveidx: make(map[int]string),
 		parent:      "",
 	}
 
@@ -118,6 +118,7 @@ func initializeJSONLine(doc []byte) *jsonLine {
 
 // delimSetup updates the jsonLineStruct when a json delimeter (ex: { [ ...) is found
 func (j *jsonLineStruct) delimSetup(v json.Delim) {
+	lenPathArr := len(j.pathArr) - 1
 	switch rune(v) {
 	case '{', '[':
 		// check if last element was a json delimeter
@@ -127,46 +128,44 @@ func (j *jsonLineStruct) delimSetup(v json.Delim) {
 			// check if temporary parent is in path array, if not last element must be the tempParent
 			// and added to noremoveidx
 			// the next close delimeter should not remove the last element from the pathArr
-			if j.tmpParent != j.pathArr[len(j.pathArr)-1] {
-				j.tmpParent = j.pathArr[len(j.pathArr)-1]
-				j.noremoveidx = append(j.noremoveidx, j.tmpParent)
+			if j.tmpParent != j.pathArr[lenPathArr] {
+				j.tmpParent = j.pathArr[lenPathArr]
+				j.noremoveidx[lenPathArr] = j.tmpParent
 			} else {
 				// the next close delimeter should not remove the last element from the pathArr
-				j.noremoveidx = append(j.noremoveidx, j.tmpParent)
+				j.noremoveidx[lenPathArr] = j.tmpParent
 			}
 		}
 		// update parent path string
 		j.parent = strings.Join(j.pathArr, ".")
 	case '}', ']':
-		j.closeBrackets()
+		j.closeBrackets(lenPathArr)
 	}
 	j.lastWasRune = true
 }
 
 // closeBrackets is what based on the jsonLineStruct information
 // will update the parent path and make necessary updates on its structure
-func (j *jsonLineStruct) closeBrackets() {
-	lenPathArr := len(j.pathArr)
-	lenNoRemove := len(j.noremoveidx)
+func (j *jsonLineStruct) closeBrackets(lenPathArr int) {
 	// check if there are elements in the pathArr
 	if lenPathArr > 0 {
 		// check if there are elements in the no noremoveidx
-		if lenNoRemove > 0 {
+		if v, ok := j.noremoveidx[lenPathArr]; ok {
 			// if the last elements in pathArr and noremoveidx differ,
 			// than the last element on pathArr was already closed and can
 			// be removed
-			if j.pathArr[lenPathArr-1] != j.noremoveidx[lenNoRemove-1] {
-				j.pathArr = j.pathArr[:lenPathArr-1]
+			if j.pathArr[lenPathArr] != v {
+				j.pathArr = j.pathArr[:lenPathArr]
 			} else {
 				// the last element was not closed but should be closed
 				// on the next closing delim
 				// remove from noremoveidx
-				j.noremoveidx = j.noremoveidx[:lenNoRemove-1]
+				delete(j.noremoveidx, lenPathArr)
 			}
 		} else {
 			// this last element in the pathArr was closed
 			// it can now be removed from the pathArr
-			j.pathArr = j.pathArr[:lenPathArr-1]
+			j.pathArr = j.pathArr[:lenPathArr]
 		}
 	}
 	// update parent string path
@@ -176,7 +175,7 @@ func (j *jsonLineStruct) closeBrackets() {
 // setLineInfo will set the line information of keys in json based on the line Information map
 func (j *jsonLine) setLineInfo(doc map[string]interface{}) map[string]interface{} {
 	// set the line info for keys in root level
-	doc["_kics_lines"] = j.setLine(doc, 0, "")
+	doc["_kics_lines"] = j.setLine(doc, 0, "", false)
 	return doc
 }
 
@@ -184,7 +183,7 @@ func (j *jsonLine) setLineInfo(doc map[string]interface{}) map[string]interface{
 // def is the line of the key
 // index is used in case of an array, otherwhise should be 0
 // father is the path to the key
-func (j *jsonLine) setLine(val map[string]interface{}, def int, father string) map[string]model.LineObject {
+func (j *jsonLine) setLine(val map[string]interface{}, def int, father string, pop bool) map[string]model.LineObject {
 	lineMap := make(map[string]model.LineObject)
 	// set the line information of val
 	lineMap["_kics__default"] = model.LineObject{
@@ -202,6 +201,9 @@ func (j *jsonLine) setLine(val map[string]interface{}, def int, father string) m
 		line := j.LineInfo[key][father]
 		lineArr := make([]map[string]model.LineObject, 0)
 		lineNr := line.(*fifo).head()
+		if pop {
+			lineNr = line.(*fifo).pop()
+		}
 
 		switch v := val.(type) {
 		// value is an array and must call func setSeqLines to set element lines
@@ -209,7 +211,7 @@ func (j *jsonLine) setLine(val map[string]interface{}, def int, father string) m
 			lineArr = j.setSeqLines(v, lineNr, father, key, lineArr)
 		// value is an object and must setLines for each element of the object
 		case map[string]interface{}:
-			v["_kics_lines"] = j.setLine(v, lineNr, father+"."+key)
+			v["_kics_lines"] = j.setLine(v, lineNr, father+"."+key, false)
 		default:
 			// value as no childs
 			lineMap["_kics_"+key] = model.LineObject{
@@ -244,8 +246,7 @@ func (j *jsonLine) setSeqLines(v []interface{}, def int, father, key string,
 		switch con := contentEntry.(type) {
 		// case element is a map/object call func setLine
 		case map[string]interface{}:
-
-			lineArr = append(lineArr, j.setLine(con, defaultLineArr, fatherKey))
+			lineArr = append(lineArr, j.setLine(con, defaultLineArr, fatherKey, true))
 		// case element is a string
 		default:
 			stringedCon := fmt.Sprint(con)
