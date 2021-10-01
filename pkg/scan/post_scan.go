@@ -9,32 +9,29 @@ import (
 	"time"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
-	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/descriptions"
-	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/pkg/report"
 	"github.com/rs/zerolog/log"
 )
 
-func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end time.Time,
-	pathParameters model.PathParameters) model.Summary {
+func (c *Client) getSummary(end time.Time, pathParameters model.PathParameters) model.Summary {
 	counters := model.Counters{
-		ScannedFiles:           t.FoundFiles,
-		ParsedFiles:            t.ParsedFiles,
-		TotalQueries:           t.LoadedQueries,
-		FailedToExecuteQueries: t.ExecutingQueries - t.ExecutedQueries,
-		FailedSimilarityID:     t.FailedSimilarityID,
+		ScannedFiles:           c.Tracker.FoundFiles,
+		ParsedFiles:            c.Tracker.ParsedFiles,
+		TotalQueries:           c.Tracker.LoadedQueries,
+		FailedToExecuteQueries: c.Tracker.ExecutingQueries - c.Tracker.ExecutedQueries,
+		FailedSimilarityID:     c.Tracker.FailedSimilarityID,
 	}
 
-	summary := model.CreateSummary(counters, results, ScanParams.ScanID, pathParameters.PathExtractionMap)
+	summary := model.CreateSummary(counters, c.Results, c.ScanParams.ScanID, pathParameters.PathExtractionMap)
 	summary.Times = model.Times{
-		Start: start,
+		Start: c.ScanStartTime,
 		End:   end,
 	}
 
-	if ScanParams.DisableCISDescFlag || ScanParams.DisableFullDescFlag {
+	if c.ScanParams.DisableCISDescFlag || c.ScanParams.DisableFullDescFlag {
 		log.Warn().Msg("Skipping CIS descriptions because provided disable flag is set")
 	} else {
 		err := descriptions.RequestAndOverrideDescriptions(&summary)
@@ -47,7 +44,7 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end 
 	return summary
 }
 
-func resolveOutputs(
+func (c *Client) resolveOutputs(
 	summary *model.Summary,
 	documents model.Documents,
 	failedQueries map[string]error,
@@ -59,10 +56,10 @@ func resolveOutputs(
 	if err := consoleHelpers.PrintResult(summary, failedQueries, printer); err != nil {
 		return err
 	}
-	if ScanParams.PayloadPathFlag != "" {
+	if c.ScanParams.PayloadPathFlag != "" {
 		if err := report.ExportJSONReport(
-			filepath.Dir(ScanParams.PayloadPathFlag),
-			filepath.Base(ScanParams.PayloadPathFlag),
+			filepath.Dir(c.ScanParams.PayloadPathFlag),
+			filepath.Base(c.ScanParams.PayloadPathFlag),
 			documents,
 		); err != nil {
 			return err
@@ -70,9 +67,9 @@ func resolveOutputs(
 	}
 
 	return printOutput(
-		ScanParams.OutputPathFlag,
-		ScanParams.OutputNameFlag,
-		summary, ScanParams.ReportFormatsFlag,
+		c.ScanParams.OutputPathFlag,
+		c.ScanParams.OutputNameFlag,
+		summary, c.ScanParams.ReportFormatsFlag,
 		proBarBuilder,
 	)
 }
@@ -92,8 +89,8 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 	return err
 }
 
-func printScanDuration(elapsed time.Duration) {
-	if ScanParams.CIFlag {
+func (c *Client) printScanDuration(elapsed time.Duration) {
+	if c.ScanParams.CIFlag {
 		elapsedStrFormat := "Scan duration: %vms\n"
 		fmt.Printf(elapsedStrFormat, elapsed.Milliseconds())
 		log.Info().Msgf(elapsedStrFormat, elapsed.Milliseconds())
@@ -104,25 +101,24 @@ func printScanDuration(elapsed time.Duration) {
 	}
 }
 
-// posScan is responsible for the output results
-func posScan(t *tracker.CITracker, results []model.Vulnerability, scanStartTime time.Time, extractedPaths provider.ExtractedPath,
-	files model.FileMetadatas, failedQueries map[string]error, printer *consoleHelpers.Printer, proBarBuilder *progress.PbBuilder) error {
-	summary := getSummary(t, results, scanStartTime, time.Now(), model.PathParameters{
-		ScannedPaths:      ScanParams.PathFlag,
-		PathExtractionMap: extractedPaths.ExtractionMap,
+// postScan is responsible for the output results
+func (c *Client) postScan() error {
+	summary := c.getSummary(time.Now(), model.PathParameters{
+		ScannedPaths:      c.ScanParams.PathFlag,
+		PathExtractionMap: c.ExtractedPaths.ExtractionMap,
 	})
 
-	if err := resolveOutputs(
+	if err := c.resolveOutputs(
 		&summary,
-		files.Combine(ScanParams.LineInfoPayloadFlag),
-		failedQueries,
-		printer,
-		*proBarBuilder); err != nil {
+		c.Files.Combine(c.ScanParams.LineInfoPayloadFlag),
+		c.FailedQueries,
+		c.Printer,
+		*c.ProBarBuilder); err != nil {
 		log.Err(err)
 		return err
 	}
 
-	printScanDuration(time.Since(scanStartTime))
+	c.printScanDuration(time.Since(c.ScanStartTime))
 
 	exitCode := consoleHelpers.ResultsExitCode(&summary)
 	if consoleHelpers.ShowError("results") && exitCode != 0 {

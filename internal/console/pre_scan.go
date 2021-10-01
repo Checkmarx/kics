@@ -12,11 +12,13 @@ import (
 	internalPrinter "github.com/Checkmarx/kics/internal/console/printer"
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/internal/metrics"
+	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
+	"golang.org/x/term"
 )
 
 func preRun(cmd *cobra.Command) error {
@@ -172,4 +174,34 @@ func formatNewError(flag1, flag2 string) error {
 	return errors.Errorf("can't provide '%s' and '%s' flags simultaneously",
 		flag1,
 		flag2)
+}
+
+// preScan is responsible for scan preparation
+func preScan() (*consoleHelpers.Printer, *progress.PbBuilder, progress.PBar) {
+	log.Debug().Msg("console.scan()")
+	for _, warn := range warnings {
+		log.Warn().Msgf(warn)
+	}
+
+	printer := consoleHelpers.NewPrinter(flags.GetBoolFlag(flags.MinimalUIFlag))
+	printer.Success.Printf("\n%s\n", banner)
+
+	versionMsg := fmt.Sprintf("\nScanning with %s\n\n", constants.GetVersion())
+	fmt.Println(versionMsg)
+	log.Info().Msgf(strings.ReplaceAll(versionMsg, "\n", ""))
+
+	noProgress := flags.GetBoolFlag(flags.NoProgressFlag)
+	if !term.IsTerminal(int(os.Stdin.Fd())) || strings.EqualFold(flags.GetStrFlag(flags.LogLevelFlag), "debug") {
+		noProgress = true
+	}
+
+	proBarBuilder := progress.InitializePbBuilder(
+		noProgress,
+		flags.GetBoolFlag(flags.CIFlag),
+		flags.GetBoolFlag(flags.SilentFlag))
+
+	progressBar := proBarBuilder.BuildCircle("Preparing Scan Assets: ")
+	progressBar.Start()
+
+	return printer, proBarBuilder, progressBar
 }

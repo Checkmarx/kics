@@ -81,10 +81,10 @@ func run(cmd *cobra.Command) error {
 	}
 	gracefulShutdown()
 
-	scan.ScanParams.ChangedDefaultQueryPath = changedDefaultQueryPath
-	scan.ScanParams.ChangedDefaultLibrariesPath = changedDefaultLibrariesPath
+	// save the scan parameters into the ScanParameters struct
+	scanParams := getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath)
 
-	return executeScan()
+	return executeScan(*scanParams)
 }
 
 func updateReportFormats() {
@@ -96,58 +96,69 @@ func updateReportFormats() {
 	}
 }
 
-func getScanParameters() {
-	scan.ScanParams.CloudProviderFlag = flags.GetMultiStrFlag(flags.CloudProviderFlag)
-	scan.ScanParams.ConfigFlag = flags.GetStrFlag(flags.ConfigFlag)
-	scan.ScanParams.DisableCISDescFlag = flags.GetBoolFlag(flags.DisableCISDescFlag)
-	scan.ScanParams.DisableFullDescFlag = flags.GetBoolFlag(flags.DisableFullDescFlag)
-	scan.ScanParams.ExcludeCategoriesFlag = flags.GetMultiStrFlag(flags.ExcludeCategoriesFlag)
-	scan.ScanParams.ExcludePathsFlag = flags.GetMultiStrFlag(flags.ExcludePathsFlag)
-	scan.ScanParams.ExcludeQueriesFlag = flags.GetMultiStrFlag(flags.ExcludeQueriesFlag)
-	scan.ScanParams.ExcludeResultsFlag = flags.GetMultiStrFlag(flags.ExcludeResultsFlag)
-	scan.ScanParams.ExcludeSeveritiesFlag = flags.GetMultiStrFlag(flags.ExcludeSeveritiesFlag)
-	scan.ScanParams.IncludeQueriesFlag = flags.GetMultiStrFlag(flags.IncludeQueriesFlag)
-	scan.ScanParams.InputDataFlag = flags.GetStrFlag(flags.InputDataFlag)
-	scan.ScanParams.FailOnFlag = flags.GetMultiStrFlag(flags.FailOnFlag)
-	scan.ScanParams.IgnoreOnExitFlag = flags.GetStrFlag(flags.IgnoreOnExitFlag)
-	scan.ScanParams.MinimalUIFlag = flags.GetBoolFlag(flags.MinimalUIFlag)
-	scan.ScanParams.NoProgressFlag = flags.GetBoolFlag(flags.NoProgressFlag)
-	scan.ScanParams.InputDataFlag = flags.GetStrFlag(flags.InputDataFlag)
-	scan.ScanParams.OutputNameFlag = flags.GetStrFlag(flags.OutputNameFlag)
-	scan.ScanParams.OutputPathFlag = flags.GetStrFlag(flags.OutputPathFlag)
-	scan.ScanParams.PathFlag = flags.GetMultiStrFlag(flags.PathFlag)
-	scan.ScanParams.PayloadPathFlag = flags.GetStrFlag(flags.PayloadPathFlag)
-	scan.ScanParams.PreviewLinesFlag = flags.GetIntFlag(flags.PreviewLinesFlag)
-	scan.ScanParams.QueriesPath = flags.GetStrFlag(flags.QueriesPath)
-	scan.ScanParams.LibrariesPath = flags.GetStrFlag(flags.LibrariesPath)
-	scan.ScanParams.ReportFormatsFlag = flags.GetMultiStrFlag(flags.ReportFormatsFlag)
-	scan.ScanParams.TypeFlag = flags.GetMultiStrFlag(flags.TypeFlag)
-	scan.ScanParams.QueryExecTimeoutFlag = flags.GetIntFlag(flags.QueryExecTimeoutFlag)
-	scan.ScanParams.LineInfoPayloadFlag = flags.GetBoolFlag(flags.LineInfoPayloadFlag)
-	scan.ScanParams.DisableSecretsFlag = flags.GetBoolFlag(flags.DisableSecretsFlag)
-	scan.ScanParams.SecretsRegexesPathFlag = flags.GetStrFlag(flags.SecretsRegexesPathFlag)
-	scan.ScanParams.CIFlag = flags.GetBoolFlag(flags.CIFlag)
-	scan.ScanParams.LogFormatFlag = flags.GetStrFlag(flags.LogFormatFlag)
-	scan.ScanParams.LogLevelFlag = flags.GetStrFlag(flags.LogLevelFlag)
-	scan.ScanParams.LogPathFlag = flags.GetStrFlag(flags.LogPathFlag)
-	scan.ScanParams.NoColorFlag = flags.GetBoolFlag(flags.NoColorFlag)
-	scan.ScanParams.ProfilingFlag = flags.GetStrFlag(flags.ProfilingFlag)
-	scan.ScanParams.SilentFlag = flags.GetBoolFlag(flags.SilentFlag)
-	scan.ScanParams.VerboseFlag = flags.GetBoolFlag(flags.VerboseFlag)
-	scan.ScanParams.ScanID = scanID
+func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool) *scan.Parameters {
+	var scanParams scan.Parameters
+
+	scanParams.CloudProviderFlag = flags.GetMultiStrFlag(flags.CloudProviderFlag)
+	scanParams.ConfigFlag = flags.GetStrFlag(flags.ConfigFlag)
+	scanParams.DisableCISDescFlag = flags.GetBoolFlag(flags.DisableCISDescFlag)
+	scanParams.DisableFullDescFlag = flags.GetBoolFlag(flags.DisableFullDescFlag)
+	scanParams.ExcludeCategoriesFlag = flags.GetMultiStrFlag(flags.ExcludeCategoriesFlag)
+	scanParams.ExcludePathsFlag = flags.GetMultiStrFlag(flags.ExcludePathsFlag)
+	scanParams.ExcludeQueriesFlag = flags.GetMultiStrFlag(flags.ExcludeQueriesFlag)
+	scanParams.ExcludeResultsFlag = flags.GetMultiStrFlag(flags.ExcludeResultsFlag)
+	scanParams.ExcludeSeveritiesFlag = flags.GetMultiStrFlag(flags.ExcludeSeveritiesFlag)
+	scanParams.IncludeQueriesFlag = flags.GetMultiStrFlag(flags.IncludeQueriesFlag)
+	scanParams.InputDataFlag = flags.GetStrFlag(flags.InputDataFlag)
+	scanParams.FailOnFlag = flags.GetMultiStrFlag(flags.FailOnFlag)
+	scanParams.IgnoreOnExitFlag = flags.GetStrFlag(flags.IgnoreOnExitFlag)
+	scanParams.MinimalUIFlag = flags.GetBoolFlag(flags.MinimalUIFlag)
+	scanParams.NoProgressFlag = flags.GetBoolFlag(flags.NoProgressFlag)
+	scanParams.InputDataFlag = flags.GetStrFlag(flags.InputDataFlag)
+	scanParams.OutputNameFlag = flags.GetStrFlag(flags.OutputNameFlag)
+	scanParams.OutputPathFlag = flags.GetStrFlag(flags.OutputPathFlag)
+	scanParams.PathFlag = flags.GetMultiStrFlag(flags.PathFlag)
+	scanParams.PayloadPathFlag = flags.GetStrFlag(flags.PayloadPathFlag)
+	scanParams.PreviewLinesFlag = flags.GetIntFlag(flags.PreviewLinesFlag)
+	scanParams.QueriesPath = flags.GetStrFlag(flags.QueriesPath)
+	scanParams.LibrariesPath = flags.GetStrFlag(flags.LibrariesPath)
+	scanParams.ReportFormatsFlag = flags.GetMultiStrFlag(flags.ReportFormatsFlag)
+	scanParams.TypeFlag = flags.GetMultiStrFlag(flags.TypeFlag)
+	scanParams.QueryExecTimeoutFlag = flags.GetIntFlag(flags.QueryExecTimeoutFlag)
+	scanParams.LineInfoPayloadFlag = flags.GetBoolFlag(flags.LineInfoPayloadFlag)
+	scanParams.DisableSecretsFlag = flags.GetBoolFlag(flags.DisableSecretsFlag)
+	scanParams.SecretsRegexesPathFlag = flags.GetStrFlag(flags.SecretsRegexesPathFlag)
+	scanParams.CIFlag = flags.GetBoolFlag(flags.CIFlag)
+	scanParams.LogFormatFlag = flags.GetStrFlag(flags.LogFormatFlag)
+	scanParams.LogLevelFlag = flags.GetStrFlag(flags.LogLevelFlag)
+	scanParams.LogPathFlag = flags.GetStrFlag(flags.LogPathFlag)
+	scanParams.NoColorFlag = flags.GetBoolFlag(flags.NoColorFlag)
+	scanParams.ProfilingFlag = flags.GetStrFlag(flags.ProfilingFlag)
+	scanParams.SilentFlag = flags.GetBoolFlag(flags.SilentFlag)
+	scanParams.VerboseFlag = flags.GetBoolFlag(flags.VerboseFlag)
+	scanParams.ScanID = scanID
+	scanParams.ChangedDefaultLibrariesPath = changedDefaultLibrariesPath
+	scanParams.ChangedDefaultQueryPath = changedDefaultQueryPath
+
+	return &scanParams
 }
 
-func executeScan() error {
+func executeScan(scanParams scan.Parameters) error {
 	log.Debug().Msg("console.scan()")
 	for _, warn := range warnings {
 		log.Warn().Msgf(warn)
 	}
 
-	// save the scan parameters into the ScanParameters struct
-	getScanParameters()
+	c := scan.NewClient(&scanParams)
+
+	printer, proBarBuilder, progressBar := preScan()
+
+	c.Printer = printer
+	c.ProBarBuilder = proBarBuilder
+	c.ProgressBar = progressBar
 
 	// perform pre_scan, scan and pos_scan
-	err := scan.PerformScan(ctx, banner)
+	err := c.PerformScan(ctx)
 
 	if err != nil {
 		log.Err(err)

@@ -16,7 +16,6 @@ import (
 	"github.com/Checkmarx/kics/pkg/engine/secrets"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/kics"
-	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
@@ -40,72 +39,62 @@ type startServiceParameters struct {
 	excludeResults map[string]bool
 }
 
-type returnScanParameters struct {
-	t              *tracker.CITracker
-	results        []model.Vulnerability
-	extractedPaths provider.ExtractedPath
-	files          model.FileMetadatas
-	failedQueries  map[string]error
-}
-
-func scan(ctx context.Context, proBarBuilder *progress.PbBuilder, progressBar progress.PBar) (returnScanParameters, error) {
-	var params returnScanParameters
-
-	t, err := tracker.NewTracker(ScanParams.PreviewLinesFlag)
+func (c *Client) scan(ctx context.Context) error {
+	t, err := tracker.NewTracker(c.ScanParams.PreviewLinesFlag)
 	if err != nil {
 		log.Err(err)
-		return params, err
+		return err
 	}
 
 	store := storage.NewMemoryStorage()
-	extractedPaths, err := prepareAndAnalyzePaths()
+	extractedPaths, err := c.prepareAndAnalyzePaths()
 	if err != nil {
 		log.Err(err)
-		return params, err
+		return err
 	}
 
-	excludeResultsMap := getExcludeResultsMap(ScanParams.ExcludeResultsFlag)
+	excludeResultsMap := getExcludeResultsMap(c.ScanParams.ExcludeResultsFlag)
 
-	failedQueries, err := createServiceAndStartScan(ctx, &startServiceParameters{
+	failedQueries, err := c.createServiceAndStartScan(ctx, &startServiceParameters{
 		t:              t,
 		store:          store,
-		progressBar:    progressBar,
+		progressBar:    c.ProgressBar,
 		extractedPaths: extractedPaths.Path,
-		pbBuilder:      proBarBuilder,
+		pbBuilder:      c.ProBarBuilder,
 		excludeResults: excludeResultsMap,
 	})
 	if err != nil {
-		return params, err
+		return err
 	}
 
-	results, err := store.GetVulnerabilities(ctx, ScanParams.ScanID)
+	results, err := store.GetVulnerabilities(ctx, c.ScanParams.ScanID)
 	if err != nil {
 		log.Err(err)
-		return params, err
+		return err
 	}
 
-	files, err := store.GetFiles(ctx, ScanParams.ScanID)
+	files, err := store.GetFiles(ctx, c.ScanParams.ScanID)
 	if err != nil {
 		log.Err(err)
-		return params, err
+		return err
 	}
 
-	params.t = t
-	params.results = results
-	params.extractedPaths = extractedPaths
-	params.files = files
-	params.failedQueries = failedQueries
+	c.Tracker = t
+	c.Results = results
+	c.ExtractedPaths = extractedPaths
+	c.Files = files
+	c.FailedQueries = failedQueries
 
-	return params, nil
+	return nil
 }
 
-func prepareAndAnalyzePaths() (extractedPaths provider.ExtractedPath, err error) {
-	err = preparePaths()
+func (c *Client) prepareAndAnalyzePaths() (extractedPaths provider.ExtractedPath, err error) {
+	err = c.preparePaths()
 	if err != nil {
 		return extractedPaths, err
 	}
 
-	extractedPaths, err = provider.GetSources(ScanParams.PathFlag)
+	extractedPaths, err = provider.GetSources(c.ScanParams.PathFlag)
 	if err != nil {
 		return extractedPaths, err
 	}
@@ -113,59 +102,59 @@ func prepareAndAnalyzePaths() (extractedPaths provider.ExtractedPath, err error)
 	newTypeFlagValue, newExcludePathsFlagValue, errAnalyze :=
 		analyzePaths(
 			extractedPaths.Path,
-			ScanParams.TypeFlag,
-			ScanParams.ExcludePathsFlag,
+			c.ScanParams.TypeFlag,
+			c.ScanParams.ExcludePathsFlag,
 		)
 	if errAnalyze != nil {
 		return extractedPaths, errAnalyze
 	}
 
-	ScanParams.TypeFlag = newTypeFlagValue
-	ScanParams.ExcludePathsFlag = newExcludePathsFlagValue
+	c.ScanParams.TypeFlag = newTypeFlagValue
+	c.ScanParams.ExcludePathsFlag = newExcludePathsFlagValue
 
 	return extractedPaths, nil
 }
 
-func preparePaths() error {
+func (c *Client) preparePaths() error {
 	var err error
-	err = getQueryPath()
+	err = c.getQueryPath()
 	if err != nil {
 		return err
 	}
-	err = getLibraryPath()
+	err = c.getLibraryPath()
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func getQueryPath() error {
-	if ScanParams.ChangedDefaultQueryPath {
-		extractedQueriesPath, errExtractQueries := resolvePath(ScanParams.QueriesPath, "queries-path")
+func (c *Client) getQueryPath() error {
+	if c.ScanParams.ChangedDefaultQueryPath {
+		extractedQueriesPath, errExtractQueries := resolvePath(c.ScanParams.QueriesPath, "queries-path")
 		if errExtractQueries != nil {
 			return errExtractQueries
 		}
-		ScanParams.QueriesPath = extractedQueriesPath
+		c.ScanParams.QueriesPath = extractedQueriesPath
 	} else {
 		log.Debug().Msgf("Looking for queries in executable path and in current work directory")
-		defaultQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(ScanParams.QueriesPath)
+		defaultQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(c.ScanParams.QueriesPath)
 		if errDefaultQueryPath != nil {
 			return errors.Wrap(errDefaultQueryPath, "unable to find queries")
 		}
 
-		ScanParams.QueriesPath = defaultQueryPath
+		c.ScanParams.QueriesPath = defaultQueryPath
 	}
 	return nil
 }
 
-func getLibraryPath() error {
-	if ScanParams.ChangedDefaultLibrariesPath {
-		extractedLibrariesPath, errExtractLibraries := resolvePath(ScanParams.LibrariesPath, "libraries-path")
+func (c *Client) getLibraryPath() error {
+	if c.ScanParams.ChangedDefaultLibrariesPath {
+		extractedLibrariesPath, errExtractLibraries := resolvePath(c.ScanParams.LibrariesPath, "libraries-path")
 		if errExtractLibraries != nil {
 			return errExtractLibraries
 		}
 
-		ScanParams.LibrariesPath = extractedLibrariesPath
+		c.ScanParams.LibrariesPath = extractedLibrariesPath
 	}
 	return nil
 }
@@ -208,27 +197,28 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 	return excludeResultsMap
 }
 
-func createServiceAndStartScan(ctx context.Context, params *startServiceParameters) (failedQueries map[string]error, err error) {
+func (c *Client) createServiceAndStartScan(ctx context.Context,
+	params *startServiceParameters) (failedQueries map[string]error, err error) {
 	querySource := source.NewFilesystemSource(
-		ScanParams.QueriesPath,
-		ScanParams.TypeFlag,
-		ScanParams.CloudProviderFlag,
-		ScanParams.LibrariesPath)
+		c.ScanParams.QueriesPath,
+		c.ScanParams.TypeFlag,
+		c.ScanParams.CloudProviderFlag,
+		c.ScanParams.LibrariesPath)
 
-	queryFilter := createQueryFilter()
+	queryFilter := c.createQueryFilter()
 	inspector, err := engine.NewInspector(ctx,
 		querySource,
 		engine.DefaultVulnerabilityBuilder,
 		params.t,
 		queryFilter,
 		params.excludeResults,
-		ScanParams.QueryExecTimeoutFlag,
+		c.ScanParams.QueryExecTimeoutFlag,
 	)
 	if err != nil {
 		return failedQueries, err
 	}
 
-	secretsRegexRulesContent, err := getSecretsRegexRules(ScanParams.SecretsRegexesPathFlag)
+	secretsRegexRulesContent, err := getSecretsRegexRules(c.ScanParams.SecretsRegexesPathFlag)
 	if err != nil {
 		return failedQueries, err
 	}
@@ -238,8 +228,8 @@ func createServiceAndStartScan(ctx context.Context, params *startServiceParamete
 		params.excludeResults,
 		params.t,
 		queryFilter,
-		ScanParams.DisableSecretsFlag,
-		ScanParams.QueryExecTimeoutFlag,
+		c.ScanParams.DisableSecretsFlag,
+		c.ScanParams.QueryExecTimeoutFlag,
 		secretsRegexRulesContent,
 	)
 	if err != nil {
@@ -247,7 +237,7 @@ func createServiceAndStartScan(ctx context.Context, params *startServiceParamete
 		return failedQueries, err
 	}
 
-	services, err := createService(
+	services, err := c.createService(
 		inspector,
 		secretsInspector,
 		params.extractedPaths,
@@ -261,7 +251,7 @@ func createServiceAndStartScan(ctx context.Context, params *startServiceParamete
 	}
 	params.progressBar.Close()
 
-	if err = scanner.PrepareAndScan(ctx, ScanParams.ScanID, *params.pbBuilder, services); err != nil {
+	if err = scanner.PrepareAndScan(ctx, c.ScanParams.ScanID, *params.pbBuilder, services); err != nil {
 		log.Err(err)
 		return failedQueries, err
 	}
@@ -283,34 +273,34 @@ func getSecretsRegexRules(regexRulesPath string) (regexRulesContent string, err 
 	return regexRulesContent, nil
 }
 
-func createQueryFilter() *source.QueryInspectorParameters {
+func (c *Client) createQueryFilter() *source.QueryInspectorParameters {
 	excludeQueries := source.ExcludeQueries{
-		ByIDs:        ScanParams.ExcludeQueriesFlag,
-		ByCategories: ScanParams.ExcludeCategoriesFlag,
-		BySeverities: ScanParams.ExcludeSeveritiesFlag,
+		ByIDs:        c.ScanParams.ExcludeQueriesFlag,
+		ByCategories: c.ScanParams.ExcludeCategoriesFlag,
+		BySeverities: c.ScanParams.ExcludeSeveritiesFlag,
 	}
 
 	includeQueries := source.IncludeQueries{
-		ByIDs: ScanParams.IncludeQueriesFlag,
+		ByIDs: c.ScanParams.IncludeQueriesFlag,
 	}
 
 	queryFilter := source.QueryInspectorParameters{
 		IncludeQueries: includeQueries,
 		ExcludeQueries: excludeQueries,
-		InputDataPath:  ScanParams.InputDataFlag,
+		InputDataPath:  c.ScanParams.InputDataFlag,
 	}
 
 	return &queryFilter
 }
 
-func createService(
+func (c *Client) createService(
 	inspector *engine.Inspector,
 	secretsInspector *secrets.Inspector,
 	paths []string,
 	t kics.Tracker,
 	store kics.Storage,
 	querySource *source.FilesystemSource) ([]*kics.Service, error) {
-	filesSource, err := getFileSystemSourceProvider(paths)
+	filesSource, err := c.getFileSystemSourceProvider(paths)
 	if err != nil {
 		return nil, err
 	}
@@ -352,14 +342,14 @@ func createService(
 	return services, nil
 }
 
-func getFileSystemSourceProvider(paths []string) (*provider.FileSystemSourceProvider, error) {
+func (c *Client) getFileSystemSourceProvider(paths []string) (*provider.FileSystemSourceProvider, error) {
 	var excludePaths []string
-	if ScanParams.PayloadPathFlag != "" {
-		excludePaths = append(excludePaths, ScanParams.PayloadPathFlag)
+	if c.ScanParams.PayloadPathFlag != "" {
+		excludePaths = append(excludePaths, c.ScanParams.PayloadPathFlag)
 	}
 
-	if len(ScanParams.ExcludePathsFlag) > 0 {
-		excludePaths = append(excludePaths, ScanParams.ExcludePathsFlag...)
+	if len(c.ScanParams.ExcludePathsFlag) > 0 {
+		excludePaths = append(excludePaths, c.ScanParams.ExcludePathsFlag...)
 	}
 
 	filesSource, err := provider.NewFileSystemSourceProvider(paths, excludePaths)

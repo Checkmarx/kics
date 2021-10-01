@@ -2,7 +2,13 @@ package scan
 
 import (
 	"context"
+	"time"
 
+	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
+	"github.com/Checkmarx/kics/internal/tracker"
+	"github.com/Checkmarx/kics/pkg/engine/provider"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/rs/zerolog/log"
 )
 
@@ -48,29 +54,41 @@ type Parameters struct {
 	ScanID                      string
 }
 
-var ScanParams Parameters
+type Client struct {
+	ScanParams     *Parameters
+	ScanStartTime  time.Time
+	Tracker        *tracker.CITracker
+	Results        []model.Vulnerability
+	ExtractedPaths provider.ExtractedPath
+	Files          model.FileMetadatas
+	FailedQueries  map[string]error
+	Printer        *consoleHelpers.Printer
+	ProBarBuilder  *progress.PbBuilder
+	ProgressBar    progress.PBar
+}
+
+// NewClient
+func NewClient(params *Parameters) *Client {
+	return &Client{ScanParams: params}
+}
 
 // PerformScan executes pre_scan, scan, and post_scan
-func PerformScan(ctx context.Context, banner string) error {
-	printer, proBarBuilder, progressBar, scanStartTime := preScan(banner)
+func (c *Client) PerformScan(ctx context.Context) error {
+	c.ScanStartTime = time.Now()
 
-	// meter start time
-	returnScanParams, err := scan(ctx, proBarBuilder, progressBar)
+	err := c.scan(ctx)
 
 	if err != nil {
 		log.Err(err)
 		return err
 	}
 
-	postScanError := posScan(returnScanParams.t, returnScanParams.results, scanStartTime,
-		returnScanParams.extractedPaths, returnScanParams.files, returnScanParams.failedQueries, printer, proBarBuilder)
+	postScanError := c.postScan()
 
 	if postScanError != nil {
 		log.Err(postScanError)
 		return postScanError
 	}
-
-	// tempo q decorreu
 
 	return nil
 }
