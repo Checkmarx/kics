@@ -172,6 +172,25 @@ disable-full-descriptions = "disable request for full descriptions and use defau
 
 ---
 
+## Query Categories
+
+You can find a list of queries, and their associated categories here: [https://docs.kics.io/latest/queries/all-queries/](https://docs.kics.io/latest/queries/all-queries/)
+
+The category list is: 
+- Access Control
+- Availability
+- Backup
+- Best Practices
+- Build Process
+- Encryption
+- Insecure Configurations
+- Insecure Defaults
+- Networking and Firewall
+- Observability
+- Resource Management
+- Secret Management
+- Structure and Semantics
+- Supply-Chain
 
 ## How to Use
 You can enclose all your configurations in a file and use it in two different ways.
