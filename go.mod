@@ -18,7 +18,7 @@ require (
 	github.com/johnfercher/maroto v0.33.0
 	github.com/mailru/easyjson v0.7.7
 	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
-	github.com/moby/buildkit v0.9.0
+	github.com/moby/buildkit v0.9.1
 	github.com/open-policy-agent/opa v0.28.0
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.25.0
