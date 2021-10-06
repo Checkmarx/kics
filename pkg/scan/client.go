@@ -7,7 +7,6 @@ import (
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
-	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/rs/zerolog/log"
 )
@@ -47,7 +46,6 @@ type Client struct {
 	Tracker           *tracker.CITracker
 	Storage           *storage.MemoryStorage
 	ExcludeResultsMap map[string]bool
-	QuerySource       *source.FilesystemSource
 	Printer           *consoleHelpers.Printer
 	ProBarBuilder     *progress.PbBuilder
 }
@@ -64,19 +62,12 @@ func NewClient(params *Parameters, proBarBuilder *progress.PbBuilder, printer *c
 
 	excludeResultsMap := getExcludeResultsMap(params.ExcludeResults)
 
-	querySource := source.NewFilesystemSource(
-		params.QueriesPath,
-		params.Type,
-		params.CloudProvider,
-		params.LibrariesPath)
-
 	return &Client{
 		ScanParams:        params,
 		Tracker:           t,
 		ProBarBuilder:     proBarBuilder,
 		Storage:           store,
 		ExcludeResultsMap: excludeResultsMap,
-		QuerySource:       querySource,
 		Printer:           printer,
 	}, err
 }

@@ -2,13 +2,13 @@ package scan
 
 import (
 	_ "embed" // Embed kics CLI img and scan-flags
-	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
 	"time"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
+	consolePrinter "github.com/Checkmarx/kics/internal/console/printer"
 	"github.com/Checkmarx/kics/pkg/descriptions"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/progress"
@@ -89,12 +89,6 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 	return err
 }
 
-func (c *Client) printScanDuration(elapsed time.Duration) {
-	elapsedStrFormat := "Scan duration: %vms\n"
-	fmt.Printf(elapsedStrFormat, elapsed.Milliseconds())
-	log.Info().Msgf(elapsedStrFormat, elapsed.Milliseconds())
-}
-
 // postScan is responsible for the output results
 func (c *Client) postScan(scanResults *Results) error {
 	summary := c.getSummary(scanResults.Results, time.Now(), model.PathParameters{
@@ -112,7 +106,7 @@ func (c *Client) postScan(scanResults *Results) error {
 		return err
 	}
 
-	c.printScanDuration(time.Since(c.ScanStartTime))
+	consolePrinter.PrintScanDuration(time.Since(c.ScanStartTime))
 
 	exitCode := consoleHelpers.ResultsExitCode(&summary)
 	if consoleHelpers.ShowError("results") && exitCode != 0 {

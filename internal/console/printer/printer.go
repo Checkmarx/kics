@@ -1,12 +1,14 @@
 package printer
 
 import (
+	"fmt"
 	"io"
 	"os"
 	"path/filepath"
 	"sort"
 	"strconv"
 	"strings"
+	"time"
 
 	consoleFlags "github.com/Checkmarx/kics/internal/console/flags"
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
@@ -263,4 +265,17 @@ func getDefaultLogPath() (string, error) {
 		return "", err
 	}
 	return filepath.Join(currentWorkDir, constants.DefaultLogFile), nil
+}
+
+// PrintScanDuration prints the scan duration
+func PrintScanDuration(elapsed time.Duration) {
+	if consoleFlags.GetBoolFlag(consoleFlags.SilentFlag) {
+		elapsedStrFormat := "Scan duration: %vms\n"
+		fmt.Printf(elapsedStrFormat, elapsed.Milliseconds())
+		log.Info().Msgf(elapsedStrFormat, elapsed.Milliseconds())
+	} else {
+		elapsedStrFormat := "Scan duration: %v\n"
+		fmt.Printf(elapsedStrFormat, elapsed)
+		log.Info().Msgf(elapsedStrFormat, elapsed)
+	}
 }

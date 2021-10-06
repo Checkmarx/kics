@@ -38,9 +38,16 @@ func (c *Client) scan(ctx context.Context) (*Results, error) {
 		return nil, err
 	}
 
+	querySource := source.NewFilesystemSource(
+		c.ScanParams.QueriesPath,
+		c.ScanParams.Type,
+		c.ScanParams.CloudProvider,
+		c.ScanParams.LibrariesPath)
+
 	queryFilter := c.createQueryFilter()
+
 	inspector, err := engine.NewInspector(ctx,
-		c.QuerySource,
+		querySource,
 		engine.DefaultVulnerabilityBuilder,
 		c.Tracker,
 		queryFilter,
@@ -76,7 +83,7 @@ func (c *Client) scan(ctx context.Context) (*Results, error) {
 		extractedPaths.Path,
 		c.Tracker,
 		c.Storage,
-		c.QuerySource,
+		querySource,
 	)
 	if err != nil {
 		log.Err(err)
