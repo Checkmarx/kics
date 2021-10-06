@@ -54,7 +54,7 @@ jobs:
           context: .
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: checkmarx/kics:latest,checkmarx/kics:${{ steps.get-version.outputs.version }},checkmarx/kics:latest-alpine,checkmarx/kics:${{ steps.get-version.outputs.version }}-alpine
+          tags: checkmarx/kics:latest,checkmarx/kics:${{ steps.get-version.outputs.version }},checkmarx/kics:alpine,checkmarx/kics:${{ steps.get-version.outputs.version }}-alpine
           build-args: |
             VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
@@ -68,27 +68,17 @@ jobs:
           file: ./Dockerfile.debian
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: checkmarx/kics:latest-debian,checkmarx/kics:${{ steps.get-version.outputs.version }}-debian
+          tags: checkmarx/kics:debian,checkmarx/kics:${{ steps.get-version.outputs.version }}-debian
           build-args: |
             VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
-      - name: Build and push ubi7 to Docker Hub
-        id: build_ubi7
-        uses: docker/build-push-action@v2.7.0
-        with:
-          context: .
-          file: ./Dockerfile.ubi7
-          push: true
-          platforms: linux/amd64,linux/arm64
-          tags: checkmarx/kics:latest-ubi7,checkmarx/kics:${{ steps.get-version.outputs.version }}-ubi7
-          build-args: |
-            VERSION=${{ steps.get-version.outputs.version }}
-            COMMIT=${{ github.sha }}
-            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
-            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
-      # TODO: investigate why this is not working
+      # TODO: dockerhub api does not support PAT yet
+      # https://github.com/docker/roadmap/issues/115#issuecomment-891694974
+      # https://github.com/docker/roadmap/issues/115
+      # https://github.com/docker/hub-feedback/issues/2127
+      #
       #- name: Update repo description
       #  uses: peter-evans/dockerhub-description@v2
       #  with:
@@ -103,12 +93,10 @@ jobs:
           DIGEST=${{ steps.build_alpine.outputs.digest }}
           ALPINE_DIGEST=${{ steps.build_alpine.outputs.digest }}
           DEBIAN_DIGEST=${{ steps.build_debian.outputs.digest }}
-          UBI7_DIGEST=${{ steps.build_ubi7.outputs.digest }}
 
           echo "${VERSION},${DIGEST}" >> docs/docker/digests.csv
           echo "${VERSION}-alpine,${ALPINE_DIGEST}" >> docs/docker/digests.csv
           echo "${VERSION}-debian,${DEBIAN_DIGEST}" >> docs/docker/digests.csv
-          echo "${VERSION}-ubi7,${UBI7_DIGEST}" >> docs/docker/digests.csv
       - uses: actions/setup-python@v2.2.2
         with:
           python-version: 3.x
