@@ -269,7 +269,7 @@ func getDefaultLogPath() (string, error) {
 
 // PrintScanDuration prints the scan duration
 func PrintScanDuration(elapsed time.Duration) {
-	if consoleFlags.GetBoolFlag(consoleFlags.SilentFlag) {
+	if consoleFlags.GetBoolFlag(consoleFlags.CIFlag) {
 		elapsedStrFormat := "Scan duration: %vms\n"
 		fmt.Printf(elapsedStrFormat, elapsed.Milliseconds())
 		log.Info().Msgf(elapsedStrFormat, elapsed.Milliseconds())
