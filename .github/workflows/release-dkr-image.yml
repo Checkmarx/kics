@@ -78,6 +78,7 @@ jobs:
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+            RELEASE=${{ github.run_number }}
       # TODO: investigate why this is not working
       #- name: Update repo description
       #  uses: peter-evans/dockerhub-description@v2
