@@ -33,6 +33,11 @@ jobs:
               value: https://github.com/Checkmarx/kics/actions/runs/${{ github.run_id }}
             - name: View HEAD Commit
               value: https://github.com/Checkmarx/kics/commit/${{ github.sha }}
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+        with:
+          image: tonistiigi/binfmt:latest
+          platforms: linux/amd64,linux/arm64
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub
@@ -46,6 +51,7 @@ jobs:
         with:
           context: .
           push: true
+          platforms: linux/amd64,linux/arm64
           tags: checkmarx/kics:latest,checkmarx/kics:${{ steps.get-version.outputs.version }},checkmarx/kics:latest-alpine,checkmarx/kics:${{ steps.get-version.outputs.version }}-alpine
           build-args: |
             VERSION=${{ steps.get-version.outputs.version }}
@@ -59,6 +65,7 @@ jobs:
           context: .
           file: ./Dockerfile.debian
           push: true
+          platforms: linux/amd64,linux/arm64
           tags: checkmarx/kics:latest-debian,checkmarx/kics:${{ steps.get-version.outputs.version }}-debian
           build-args: |
             VERSION=${{ steps.get-version.outputs.version }}
@@ -72,6 +79,7 @@ jobs:
           context: .
           file: ./Dockerfile.ubi7
           push: true
+          platforms: linux/amd64,linux/arm64
           tags: checkmarx/kics:latest-ubi7,checkmarx/kics:${{ steps.get-version.outputs.version }}-ubi7
           build-args: |
             VERSION=${{ steps.get-version.outputs.version }}
