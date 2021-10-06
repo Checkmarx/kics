@@ -38,6 +38,6 @@ require (
 
 replace github.com/docker/docker => github.com/docker/docker v1.4.2-0.20200227233006-38f52c9fec82
 
-replace github.com/nats-io/nats-server/v2 => github.com/nats-io/nats-server/v2 v2.2.5
-
 replace github.com/docker/distribution => github.com/docker/distribution v0.0.0-20191216044856-a8371794149d
+
+replace github.com/containerd/containerd => github.com/containerd/containerd v1.5.7
