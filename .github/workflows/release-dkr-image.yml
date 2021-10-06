@@ -10,6 +10,8 @@ jobs:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     if: "!github.event.release.prerelease"
+    env:
+      DOCKER_CLI_EXPERIMENTAL: "enabled"
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2.3.4

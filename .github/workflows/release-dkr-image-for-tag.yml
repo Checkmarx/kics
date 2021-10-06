@@ -3,15 +3,12 @@ name: release-manual-docker-tag-latest
 on:
   workflow_dispatch:
     inputs:
-      # tag:
-      #   description: "Git Tag"
-      #   required: true
+      tag:
+        description: "Git Tag"
+        required: true
       latest:
         description: "true if image is latest"
         default: "false"
-
-permissions:
-  contents: write
 
 jobs:
   push_to_registry:
@@ -22,8 +19,8 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2.3.4
-        # with:
-        #   ref: ${{ github.event.inputs.tag }}
+        with:
+          ref: ${{ github.event.inputs.tag }}
       - uses: toko-bifrost/ms-teams-deploy-card@master
         if: always()
         with:
@@ -42,8 +39,7 @@ jobs:
         id: prep
         run: |
           DOCKER_IMAGE=Checkmarx/kics
-          #VERSION=${{ github.event.inputs.tag }}
-          VERSION=test-multiplatform
+          VERSION=${{ github.event.inputs.tag }}
           TAGS="${DOCKER_IMAGE}:${VERSION}"
           ALPINE_TAGS="${TAGS}-alpine"
           DEBIAN_TAGS="${TAGS}-debian"
@@ -51,9 +47,9 @@ jobs:
 
           if [ "${{ github.event.inputs.latest }}" = "true" ]; then
             TAGS=${TAGS},${DOCKER_IMAGE}:latest
-            ALPINE_TAGS="{ALPINE_TAGS},${DOCKER_IMAGE}:latest-alpine"
-            DEBIAN_TAGS="{DEBIAN_TAGS},${DOCKER_IMAGE}:latest-debian"
-            UBI7_TAGS="{UBI7_TAGS},${DOCKER_IMAGE}:latest-ubi7"
+            ALPINE_TAGS="${DOCKER_IMAGE}:latest-alpine"
+            DEBIAN_TAGS="${DOCKER_IMAGE}:latest-debian"
+            UBI7_TAGS="${DOCKER_IMAGE}:latest-ubi7"
           fi
 
           echo ::set-output name=tags::${TAGS}
@@ -76,43 +72,40 @@ jobs:
         uses: docker/build-push-action@v2.7.0
         with:
           context: .
-          push: false
+          push: true
           platforms: linux/amd64,linux/arm64
-          tags: ${{ steps.prep.outputs.alpine_tags }}
-          #VERSION=${{ github.event.inputs.tag }}
+          tags: ${{ steps.prep.outputs.tags }},${{ steps.prep.outputs.alpine_tags }}
           build-args: |
-            VERSION=alpine
+            VERSION=${{ github.event.inputs.tag }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
-      - name: Test KICS
-        run: |
-          docker run --rm -v $PWD:/path checkmarx/kics:latest-alpine scan -p /path/assets/queries/dockerfile -v -o /path --no-progress
-      # - name: Push debian to Docker Hub
-      #   if: ${{ hashFiles('Dockerfile.debian') }} != ""
-      #   id: build_debian
-      #   uses: docker/build-push-action@v2.7.0
-      #   with:
-      #     context: .
-      #     file: ./Dockerfile.debian
-      #     push: false
-      #     tags: ${{ steps.prep.outputs.debian_tags }}
-      #     build-args: |
-      #       VERSION=${{ github.event.inputs.tag }}
-      #       COMMIT=${{ github.sha }}
-      #       SENTRY_DSN=${{ secrets.SENTRY_DSN }}
-      #       DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
-      # - name: Push ubi7 to Docker Hub
-      #   if: ${{ hashFiles('Dockerfile.debian') }} != ""
-      #   id: build_ubi7
-      #   uses: docker/build-push-action@v2.7.0
-      #   with:
-      #     context: .
-      #     file: ./Dockerfile.ubi7
-      #     push: false
-      #     tags: ${{ steps.prep.outputs.ubi7_tags }}
-      #     build-args: |
-      #       VERSION=${{ github.event.inputs.tag }}
-      #       COMMIT=${{ github.sha }}
-      #       SENTRY_DSN=${{ secrets.SENTRY_DSN }}
-      #       DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+      - name: Push debian to Docker Hub
+        if: ${{ hashFiles('Dockerfile.debian') }} != ""
+        id: build_debian
+        uses: docker/build-push-action@v2.7.0
+        with:
+          context: .
+          file: ./Dockerfile.debian
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: ${{ steps.prep.outputs.debian_tags }}
+          build-args: |
+            VERSION=${{ github.event.inputs.tag }}
+            COMMIT=${{ github.sha }}
+            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+      - name: Build and push ubi7 to Docker Hub
+        id: build_ubi7
+        uses: docker/build-push-action@v2.7.0
+        with:
+          context: .
+          file: ./Dockerfile.ubi7
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: ${{ steps.prep.outputs.ubi7_tags }}
+          build-args: |
+            VERSION=${{ github.event.inputs.tag }}
+            COMMIT=${{ github.sha }}
+            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
