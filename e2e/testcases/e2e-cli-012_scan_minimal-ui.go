@@ -4,7 +4,7 @@ import "regexp"
 
 // E2E-CLI-012 - kics scan with minimal-ui flag should perform a scan
 // without showing detailed results on each line of code
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should display minimal-ui [E2E-CLI-012]",
 		Args: args{

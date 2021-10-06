@@ -2,7 +2,7 @@ package testcases
 
 // E2E-CLI-047 - Kics scan command with --payload-lines
 // should display additional information lines in the payload file.
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should display additional information lines in the payload file [E2E-CLI-047]",
 		Args: args{

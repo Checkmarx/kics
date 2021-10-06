@@ -2,7 +2,7 @@ package testcases
 
 // E2E-CLI-032 - KICS scan command with --output-path flag
 // should set the output path and check the results.json report format
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should set the results output path [E2E-CLI-032]",
 		Args: args{

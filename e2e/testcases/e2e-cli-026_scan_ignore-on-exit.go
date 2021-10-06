@@ -3,7 +3,7 @@ package testcases
 // E2E-CLI-026 - KICS scan command with --ignore-on-exit flag
 // should return status code 0 if the provided flag occurs.
 // Example: '--ignore-on-exit errors' -> Returns 0 if an error was found, instead of 126/130...
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should ignore on exit provided flags [E2E-CLI-026]",
 		Args: args{

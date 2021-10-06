@@ -2,7 +2,7 @@ package testcases
 
 // E2E-CLI-033 - KICS scan command with --output-path and --payload-path flags
 // should perform a scan and create result file(s) and payload file
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: " should perform a scan and create a result and payload file [E2E-CLI-033]",
 		Args: args{

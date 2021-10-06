@@ -4,7 +4,7 @@ import "regexp"
 
 // E2E-CLI-022 - Kics  scan command with --profiling CPU and -v flags
 // should display CPU usage in the CLI
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should display CPU usage in the CLI [E2E-CLI-022]",
 		Args: args{

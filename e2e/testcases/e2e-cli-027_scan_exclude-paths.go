@@ -4,7 +4,7 @@ import "regexp"
 
 // E2E-CLI-027 - KICS scan command with --exclude-paths
 // should not perform the scan on the files/folders provided by this flag
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: " should exclude provided paths [E2E-CLI-027]",
 		Args: args{

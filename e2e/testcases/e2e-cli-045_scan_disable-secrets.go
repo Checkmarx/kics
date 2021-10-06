@@ -2,7 +2,7 @@ package testcases
 
 // E2E-CLI-045 - Kics scan command with --disable-secrets
 // should not execute secret based queries.
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should not execute secret based queries [E2E-CLI-045]",
 		Args: args{

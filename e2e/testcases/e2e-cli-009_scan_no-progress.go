@@ -4,7 +4,7 @@ import "regexp"
 
 // E2E-CLI-009 - kics scan with no-progress flag
 // should perform a scan without showing progress bar in the CLI
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should hide the progress bar in the CLI [E2E-CLI-009]",
 		Args: args{

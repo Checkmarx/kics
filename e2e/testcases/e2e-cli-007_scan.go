@@ -4,7 +4,7 @@ import "regexp"
 
 // E2E-CLI-007 - the default kics scan must show informations such as 'Files scanned',
 // 'Queries loaded', 'Scan Duration', '...' in the CLI
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should perform a simple scan [E2E-CLI-007]",
 		Args: args{

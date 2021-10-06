@@ -2,7 +2,7 @@ package testcases
 
 // E2E-CLI-036 - KICS scan command with --include-queries
 // should perform a scan running only the provided queries
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should perform a scan including only specific queries [E2E-CLI-036]",
 		Args: args{

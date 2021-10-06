@@ -2,7 +2,7 @@ package testcases
 
 // E2E-CLI-016 - KICS has an invalid flag or invalid command
 // an error message and return exit code 1
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should validate kics error messages [E2E-CLI-016]",
 		Args: args{

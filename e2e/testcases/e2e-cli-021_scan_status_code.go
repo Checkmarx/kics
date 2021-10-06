@@ -2,7 +2,7 @@ package testcases
 
 // E2E-CLI-021 - KICS can return different status code based in the scan results (High/Medium/Low..)
 // when excluding categories/queries and losing results we can get a different status code.
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should validate the kics status code [E2E-CLI-021]",
 		Args: args{

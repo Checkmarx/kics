@@ -4,7 +4,7 @@ import "regexp"
 
 // E2E-CLI-038 - KICS scan command with --log-path
 // should generate and save a log file for the scan
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should generate and save a log file [E2E-CLI-038]",
 		Args: args{

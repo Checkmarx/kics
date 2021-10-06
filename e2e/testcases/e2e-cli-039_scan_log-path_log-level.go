@@ -4,7 +4,7 @@ import "regexp"
 
 // E2E-CLI-039 - KICS scan command with --log-path and --log-level
 // should generate and save a log file based in the provided log-level
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: " should generate and save a log file with log level [E2E-CLI-039]",
 		Args: args{

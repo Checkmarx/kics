@@ -2,7 +2,7 @@ package testcases
 
 // E2E-CLI-002 - KICS scan command should display a help text in the CLI when provided with the
 // --help flag and it should describe the options related with scan plus the global options
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should display the kics scan help text [E2E-CLI-002]",
 		Args: args{

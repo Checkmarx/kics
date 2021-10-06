@@ -4,7 +4,7 @@ import "regexp"
 
 // E2E-CLI-034 - KICS scan command with --log-format without --verbose
 // should not output log messages in the CLI (json)
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should not display messages in the CLI [E2E-CLI-034]",
 		Args: args{

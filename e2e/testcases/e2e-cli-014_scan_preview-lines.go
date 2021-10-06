@@ -4,7 +4,7 @@ import "regexp"
 
 // E2E-CLI-014 - KICS preview-lines command must delimit the number of
 // code lines that are displayed in each scan results code block.
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should modify the default preview-lines value [E2E-CLI-014]",
 		Args: args{

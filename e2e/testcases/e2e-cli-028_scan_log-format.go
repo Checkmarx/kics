@@ -4,7 +4,7 @@ import "regexp"
 
 // E2E-CLI-028 - KICS scan command with --log-format
 // should modify the view structure of output messages in the CLI (json/pretty)
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should modify log format messages in the CLI [E2E-CLI-028]",
 		Args: args{

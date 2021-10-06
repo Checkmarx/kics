@@ -2,7 +2,7 @@ package testcases
 
 // E2E-CLI-042 - Kics scan command with -p targeting remote path (http/https)
 // should download and scan the provided path/file.
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should download and scan the provided http path/file [E2E-CLI-042]",
 		Args: args{

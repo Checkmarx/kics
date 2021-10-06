@@ -3,7 +3,7 @@ package testcases
 // E2E-CLI-008 - KICS  scan with --silent global flag
 // should hide all the output text in the CLI (empty output)
 
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should hide all output text in CLI [E2E-CLI-008]",
 		Args: args{

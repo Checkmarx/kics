@@ -2,7 +2,7 @@ package testcases
 
 // E2E-CLI-041 - Kics scan command with -p targeting remote path (git)
 // should download and scan the provided path.
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should download and scan the provided git path [E2E-CLI-041]",
 		Args: args{

@@ -2,7 +2,7 @@ package testcases
 
 // E2E-CLI-043 - Kics scan command with --cloud-provider
 // should execute only queries that have the same provider as given in the flag.
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should execute only queries of specific cloud provider [E2E-CLI-043]",
 		Args: args{

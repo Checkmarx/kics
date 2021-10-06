@@ -3,7 +3,7 @@ package testcases
 // E2E-CLI-005 - KICS scan with -- payload-path flag should create a file with the
 // passed name containing the payload of the files scanned
 
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should create a payload file [E2E-CLI-005]",
 		Args: args{

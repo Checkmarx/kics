@@ -2,7 +2,7 @@ package testcases
 
 // E2E-CLI-035 - KICS scan command with --exclude-results
 // should not run/found results (similarityID) provided by this flag
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should exclude provided results [E2E-CLI-035]",
 		Args: args{

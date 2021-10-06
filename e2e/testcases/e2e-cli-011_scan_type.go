@@ -2,7 +2,7 @@ package testcases
 
 // E2E-CLI-011 - KICS  scan with a valid case insensitive --type flag
 // should perform the scan successfully and return exit code 50
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should perform a valid scan [E2E-CLI-011]",
 		Args: args{

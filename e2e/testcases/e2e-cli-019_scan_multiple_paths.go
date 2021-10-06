@@ -2,7 +2,7 @@ package testcases
 
 // E2E-CLI-019 - KICS scan with multiple paths
 // should run a scan for all provided paths/files
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should run a scan in multiple paths [E2E-CLI-019]",
 		Args: args{

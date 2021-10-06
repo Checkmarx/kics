@@ -2,7 +2,7 @@ package testcases
 
 // E2E-CLI-037 - KICS scan command with --exclude-results and --include-queries
 // should run only provided queries and does not run results (similarityID) provided by this flag
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should run only provided queries and exclude provided results [E2E-CLI-037]",
 		Args: args{

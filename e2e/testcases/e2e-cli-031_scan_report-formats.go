@@ -2,7 +2,7 @@ package testcases
 
 // E2E-CLI-031 - Kics  scan command with --report-formats and --output-path flags
 // should export the results based on the formats provided by this flag.
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "E2E-CLI-031",
 		Args: args{

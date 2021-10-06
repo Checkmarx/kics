@@ -4,7 +4,7 @@ import "regexp"
 
 // E2E-CLI-024  - KICS version command
 // should display the version of the kics in the CLI.
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should display the kics version [E2E-CLI-024]",
 		Args: args{

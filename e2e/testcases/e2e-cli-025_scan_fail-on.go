@@ -2,7 +2,7 @@ package testcases
 
 // E2E-CLI-025 - KICS scan command with --fail-on flag should
 // return status code different from 0 only when results match the severity provided in this flag
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should fail-on provided values [E2E-CLI-025]",
 		Args: args{

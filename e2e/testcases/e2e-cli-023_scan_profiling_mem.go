@@ -4,7 +4,7 @@ import "regexp"
 
 // E2E-CLI-023 - Kics  scan command with --profiling MEM and -v flags
 // should display MEM usage in the CLI
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should display memory usage in the CLI [E2E-CLI-023]",
 		Args: args{

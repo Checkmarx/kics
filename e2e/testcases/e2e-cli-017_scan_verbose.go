@@ -5,7 +5,7 @@ import "regexp"
 // E2E-CLI-017 - KICS scan command with the -v (--verbose) flag
 // should display additional information in the CLI, such as 'Inspector initialized'...
 
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should display verbose information in the CLI [E2E-CLI-017]",
 		Args: args{

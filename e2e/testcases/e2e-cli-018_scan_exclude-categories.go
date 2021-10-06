@@ -2,7 +2,7 @@ package testcases
 
 // E2E-CLI-018  - KICS scan command with --exclude-categories flag
 // should not run queries that are part of the provided categories.
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should exclude provided categories [E2E-CLI-018]",
 		Args: args{

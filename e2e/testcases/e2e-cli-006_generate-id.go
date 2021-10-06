@@ -4,7 +4,7 @@ import "regexp"
 
 // E2E-CLI-006 - KICS generate-id should exhibit
 // a valid UUID in the CLI and return exit code 0
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should generate a valid ID [E2E-CLI-006]",
 		Args: args{

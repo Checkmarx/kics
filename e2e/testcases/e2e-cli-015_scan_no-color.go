@@ -4,7 +4,7 @@ import "regexp"
 
 // E2E-CLI-015 KICS scan with --no-color flag
 // should disable the colored outputs of kics in the CLI
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should disable colored output in the CLI [E2E-CLI-015]",
 		Args: args{

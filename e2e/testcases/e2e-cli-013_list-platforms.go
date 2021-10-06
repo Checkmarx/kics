@@ -2,7 +2,7 @@ package testcases
 
 // E2E-CLI-013 - KICS root command list-platforms
 // should return all the supported platforms in the CLI
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should list all supported platforms [E2E-CLI-013]",
 		Args: args{

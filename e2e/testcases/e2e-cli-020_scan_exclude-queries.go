@@ -2,7 +2,7 @@ package testcases
 
 // E2E-CLI-020 - KICS scan with --exclude-queries flag
 // should not run queries that was provided in this flag.
-func init() {
+func init() { //nolint
 	testSample := TestCase{
 		Name: "should exclude provided queries [E2E-CLI-020]",
 		Args: args{
