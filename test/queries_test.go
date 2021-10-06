@@ -131,7 +131,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 	ctrl := gomock.NewController(tb)
 	defer ctrl.Finish()
 
-	ctx := context.TODO()
+	ctx := context.Background()
 
 	queriesSource := mock.NewMockQueriesSource(ctrl)
 	queriesSource.EXPECT().GetQueries(getQueryFilter()).

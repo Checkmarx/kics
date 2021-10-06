@@ -1,0 +1,52 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Simple API Overview",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        },
+        "operationId": "listVersionsv2",
+        "summary": "List API versions"
+      },
+      "parameters": [
+        {
+          "name": "Token",
+          "in": "header",
+          "description": "Token",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "in": "header",
+          "description": "id",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "parameters": {
+    "oneParam": {
+      "type": "string",
+      "name": "Token",
+      "in": "header",
+      "description": "Token",
+      "required": true
+    },
+    "anotherParam": {
+      "required": true,
+      "type": "string",
+      "name": "id",
+      "in": "header",
+      "description": "token"
+    }
+  }
+}
