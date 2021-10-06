@@ -1,0 +1,22 @@
+name: alert-update-terraform-modules
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+
+jobs:
+  notification-update-flags:
+    name: Send email with terraform modules updates
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Execute diff and send email
+        env:
+          AWS_REGION: ${{ secrets.EMAIL_AWS_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.EMAIL_AWS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.EMAIL_AWS_SECRET_KEY }}
+        run: |
+          pip3 install -r .github/scripts/watchers/requirements.txt
+          python3 -u .github/scripts/watchers/terraform-modules-update.py \
+            -c internal/console/assets/libraries/common.json
