@@ -14,6 +14,7 @@ ARG VERSION="development"
 ARG COMMIT="NOCOMMIT"
 ARG SENTRY_DSN=""
 ARG DESCRIPTIONS_URL=""
+ARG RELEASE=""
 
 # Copy go mod and sum files
 COPY go.mod .
@@ -39,7 +40,7 @@ LABEL name="KICS" \
   maintainer="kics@checkmarx.com" \
   vendor="Checkmarx" \
   version=${VERSION} \
-  release=${COMMIT} \
+  release=${RELEASE} \
   io.k8s.display-name="KICS by Checkmarx" \
   io.openshift.tags="kics checkmarx"
 
@@ -60,7 +61,7 @@ RUN yum install git -y \
 
 USER ${KUSER}
 
-COPY LICENSE /licenses
+COPY LICENSE /licenses/LICENSE
 
 WORKDIR /app/bin
 
