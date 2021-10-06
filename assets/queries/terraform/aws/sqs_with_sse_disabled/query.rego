@@ -57,7 +57,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'kms_master_key_id' is not empty",
-		"keyActualValue": "'kms_master_key_id' is not empty",
+		"keyActualValue": "'kms_master_key_id' is empty",
 		"searchLine": common_lib.build_search_line(["module", name, "kms_master_key_id"], []),
 	}
 }

@@ -1,0 +1,72 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Description": "A sample template",
+  "Resources": {
+    "MyS3Bucket22": {
+      "Properties": {
+        "AccessControl": "PublicRead",
+        "MetricsConfigurations": [
+          {
+            "Id": "EntireBucket"
+          }
+        ],
+        "WebsiteConfiguration": {
+          "ErrorDocument": "error.html",
+          "IndexDocument": "index.html",
+          "RoutingRules": [
+            {
+              "RedirectRule": {
+                "HostName": "ec2-11-22-333-44.compute-1.amazonaws.com",
+                "ReplaceKeyPrefixWith": "report-404/"
+              },
+              "RoutingRuleCondition": {
+                "HttpErrorCodeReturnedEquals": "404",
+                "KeyPrefixEquals": "out1/"
+              }
+            }
+          ]
+        }
+      },
+      "Type": "AWS::S3::Bucket"
+    },
+    "SampleBucketPolicy2": {
+      "Properties": {
+        "Bucket": "MyS3Bucket22",
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject"
+              ],
+              "Condition": {
+                "StringLike": {
+                  "aws:Referer": [
+                    "http://www.example.com/*",
+                    "http://example.net/*"
+                  ]
+                }
+              },
+              "Effect": "Allow",
+              "Principal": "*",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  {
+                    "playbooks": [
+                      "arn:aws:s3:::",
+                      {
+                        "Ref": "docexamplebucket"
+                      },
+                      "/*"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "Type": "AWS::S3::BucketPolicy"
+    }
+  }
+}

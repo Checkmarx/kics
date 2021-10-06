@@ -3,15 +3,6 @@
     "NoIAM": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
-        "KeyName": {
-          "Ref": "KeyName"
-        },
-        "Tags": [
-          {
-            "Key": "Name",
-            "Value": "Test"
-          }
-        ],
         "InstanceType": {
           "Ref": "InstanceType"
         },
@@ -23,18 +14,21 @@
             },
             "Name"
           ]
-        }
-      }
-    },
-    "IAM_Missing": {
-      "Type": "AWS::EC2::Instance",
-      "Properties": {
+        },
+        "KeyName": {
+          "Ref": "KeyName"
+        },
         "Tags": [
           {
             "Key": "Name",
             "Value": "Test"
           }
-        ],
+        ]
+      }
+    },
+    "IAM_Missing": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
         "InstanceType": {
           "Ref": "InstanceType"
         },
@@ -51,11 +45,17 @@
           "Ref": "KeyName"
         },
         "IamInstanceProfile": {
-          "Ref": "NonExistantProfile"
+          "Ref": "NoProfile"
         },
         "SecurityGroupIds": [
           {
             "Ref": "SSHAccessSG"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "Test"
           }
         ]
       }

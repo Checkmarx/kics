@@ -7,7 +7,7 @@ CxPolicy[result] {
 	resource := doc[name]
 	resource.Type == "AWS::EC2::Instance"
 
-	not common_lib.valid_key(resource.Properties, "IamInstanceProfile")
+	common_lib.valid_key(resource.Properties, "IamInstanceProfile") == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -26,7 +26,7 @@ CxPolicy[result] {
 	common_lib.valid_key(resource.Properties, "IamInstanceProfile")
 
 	iamProfile := get_iam_instance_profile(resource.Properties.IamInstanceProfile)
-	not common_lib.valid_key(doc, iamProfile)
+	common_lib.valid_key(doc, iamProfile) == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -46,7 +46,7 @@ CxPolicy[result] {
 
 	iamProfile := get_iam_instance_profile(resource.Properties.IamInstanceProfile)
 	common_lib.valid_key(doc, iamProfile)
-	not common_lib.valid_key(doc[iamProfile].Properties, "Roles")
+	common_lib.valid_key(doc[iamProfile].Properties, "Roles") == false
 
 	result := {
 		"documentId": input.document[i].id,
