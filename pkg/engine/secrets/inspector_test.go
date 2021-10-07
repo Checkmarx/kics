@@ -489,7 +489,8 @@ func TestEntropyInterval(t *testing.T) {
 
 func TestCompileRegexQueries(t *testing.T) {
 	for _, in := range testCompileRegexesInput {
-		got := compileRegexQueries(in.inspectorParams, in.allRegexQueries)
+		got, err := compileRegexQueries(in.inspectorParams, in.allRegexQueries)
+		require.NoError(t, err, "test[%s] compileRegexQueries(%+v, %+v) error", in.name, in.inspectorParams, in.allRegexQueries)
 		require.Len(t,
 			got,
 			len(in.wantIDs),
