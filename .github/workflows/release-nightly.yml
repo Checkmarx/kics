@@ -18,7 +18,8 @@ jobs:
           fetch-depth: 0
       - name: Check if there are new commits since last nightly
         id: lasttag
-        run: echo "::set-output name=newchanges::$(bash ./.github/scripts/is-changed-since-last-nightly.sh)"
+        #run: echo "::set-output name=newchanges::$(bash ./.github/scripts/is-changed-since-last-nightly.sh)"
+        run: echo "::set-output name=newchanges::yes"
       - name: Set short hash
         id: shorthash
         run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
