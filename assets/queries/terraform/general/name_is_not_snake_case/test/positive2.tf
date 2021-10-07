@@ -4,14 +4,14 @@ variable "cluster_name" {
   type        = string
 }
 
-resource "aws_eks_cluster" "positiveExample" {
+resource "aws_eks_cluster" "positive2" {
   depends_on                = [aws_cloudwatch_log_group.example]
 
   enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
   name                      = var.cluster_name
 }
 
-module "acm" {
+module "ACMPositive2" {
   source      = "git::https://example.com/vpc.git?ref=v1.2.0"
   version     = "~> v2.0"
   domain_name = var.site_domain

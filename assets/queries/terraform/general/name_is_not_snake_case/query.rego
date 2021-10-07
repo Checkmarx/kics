@@ -2,17 +2,30 @@ package Cx
 
 CxPolicy[result] {
 	doc := input.document[i]
-	[path, value] := walk(doc)
-	not is_object(value)
-	not is_snake_case(path[idx])
-	wrongPath := array.slice(path, 0, idx + 1)
+	res_type := doc.resource[type]
+	_ := res_type[name]
+	not is_snake_case(name)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s", [concat(".", wrongPath)]),
+		"searchKey": sprintf("resource.%s.%s", [type, name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "All names should be on snake case pattern",
-		"keyActualValue": sprintf("'%s' is not in snake case", [path[idx]]),
+		"keyActualValue": sprintf("'%s' is not in snake case", [name]),
+	}
+}
+
+CxPolicy[result] {
+	doc := input.document[i]
+	module := doc.module[name]
+	not is_snake_case(name)
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("module.%s", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "All names should be on snake case pattern",
+		"keyActualValue": sprintf("'%s' is not in snake case", [name]),
 	}
 }
 
