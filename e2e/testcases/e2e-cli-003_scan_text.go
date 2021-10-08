@@ -5,7 +5,7 @@ package testcases
 
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should display an error [E2E-CLI-003]",
+		Name: "should display an error regarding missing -p flag [E2E-CLI-003]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan"},

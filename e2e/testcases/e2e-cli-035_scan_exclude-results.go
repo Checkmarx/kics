@@ -4,7 +4,7 @@ package testcases
 // should not run/found results (similarityID) provided by this flag
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should exclude provided results [E2E-CLI-035]",
+		Name: "should exclude provided similarity ID results [E2E-CLI-035]",
 		Args: args{
 			Args: []cmdArgs{
 

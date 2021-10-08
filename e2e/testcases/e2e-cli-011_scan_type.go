@@ -4,7 +4,7 @@ package testcases
 // should perform the scan successfully and return exit code 50
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should perform a valid scan [E2E-CLI-011]",
+		Name: "should perform a valid scan with -t flag [E2E-CLI-011]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",

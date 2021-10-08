@@ -4,7 +4,7 @@ package testcases
 // an error message and return exit code 1
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should validate kics error messages [E2E-CLI-016]",
+		Name: "should throw error messages for kics' flags [E2E-CLI-016]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "--invalid-flag"},

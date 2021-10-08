@@ -4,7 +4,7 @@ package testcases
 // should export the results based on the formats provided by this flag.
 func init() { //nolint
 	testSample := TestCase{
-		Name: "E2E-CLI-031",
+		Name: "should export the results based on different formats [E2E-CLI-031]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "--output-path", "output", "--output-name", "E2E_CLI_031_RESULT",

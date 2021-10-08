@@ -4,7 +4,7 @@ package testcases
 // when excluding categories/queries and losing results we can get a different status code.
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should validate the kics status code [E2E-CLI-021]",
+		Name: "should validate the kics result status code [E2E-CLI-021]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan",

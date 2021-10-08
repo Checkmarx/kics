@@ -4,7 +4,7 @@ package testcases
 // should not execute secret based queries.
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should not execute secret based queries [E2E-CLI-045]",
+		Name: "should not execute secret queries [E2E-CLI-045]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
