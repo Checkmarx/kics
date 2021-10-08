@@ -39,8 +39,12 @@ def send_email(email, subject, body):
 
 arg_parser = argparse.ArgumentParser(description='Check updates on terrarform verified modules')
 arg_parser.add_argument('-c', type=str, dest='current', help='Current modules json file')
+arg_parser.add_argument('-u', type=str, dest='url', help='Url for terraform registry')
 
 parsed_args = vars(arg_parser.parse_args())
+
+terraform_url = parsed_args['url']
+commons_json = parsed_args['current']
 
 offset = 0
 next = True
@@ -52,7 +56,7 @@ separator = '='*10
 print('{separator} Getting Modules {separator}'.format(separator=separator))
 while next:
   print('- Retrieving offset = {}'.format(offset))
-  response = requests.get('https://registry.terraform.io/v1/modules?limit=100&provider={}&offset={}&verified=true'.format(provider, str(offset)))
+  response = requests.get('{}?limit=100&provider={}&offset={}&verified=true'.format(terraform_url, provider, str(offset)))
   res_json = response.json()
   next = 'next_offset' in res_json['meta']
   offset += 100
@@ -64,7 +68,7 @@ print('\n{separator} Getting Modules Infos {separator}'.format(separator=separat
 module_info_dict = {}
 for module in modules_list:
   print('- Retrieving module = {}'.format(module['id']))
-  response = requests.get('https://registry.terraform.io/v1/modules/{}'.format(module['id']))
+  response = requests.get('{}/{}'.format(terraform_url, module['id']))
   module_info = {'inputs': [], 'resources': []}
   res_json = response.json()
 
@@ -98,7 +102,7 @@ for module_key_name, module_values in module_info_dict.items():
 print('\n{separator} Converting to JSON {separator}'.format(separator=separator))
 json_dict = {"common_lib": {"modules": {provider: new_modules_json}}}
 current_modules_json = {}
-with open(parsed_args['current']) as json_file:
+with open(commons_json) as json_file:
   data = json.load(json_file)
   current_modules_json = data['common_lib']['modules']['aws']
 changes = {'Added': [], 'Updated': []}
@@ -106,6 +110,7 @@ changes = {'Added': [], 'Updated': []}
 for new_module in new_modules_json:
   if new_module not in current_modules_json:
     changes['Added'].append('Module {} added'.format(new_module))
+    current_modules_json[new_module] = new_modules_json[new_module]
     continue
   if current_modules_json[new_module] == new_modules_json[new_module]:
     for new_resource in new_modules_json[new_module]['resources']:
@@ -137,33 +142,38 @@ aws_secret_access_key = os.getenv('AWS_SECRET_ACCESS_KEY')
 aws_session_token = os.getenv('AWS_SESSION_TOKEN')
 
 client = boto3.client(
-    'ses',
-    aws_access_key_id=aws_access_key_id,
-    aws_secret_access_key=aws_secret_access_key,
-    region_name=aws_region,
-    aws_session_token=aws_session_token
+  'ses',
+  aws_access_key_id=aws_access_key_id,
+  aws_secret_access_key=aws_secret_access_key,
+  region_name=aws_region,
+  aws_session_token=aws_session_token
 )
 
 email_distribution_list = [
-    'felipe.avelar@checkmarx.com',
-    'rogerio.peixoto@checkmarx.com',
-    'joao.reigota@checkmarx.com',
-    'rafaela.soares@checkmarx.com',
+  'felipe.avelar@checkmarx.com',
+  'rogerio.peixoto@checkmarx.com',
+  'joao.reigota@checkmarx.com',
+  'rafaela.soares@checkmarx.com',
 ]
 
 error_sending = []
 for email in email_distribution_list:
-    try:
-        print(f"sending email to {email}")
-        response = send_email(
-            email, 'Terraform modules changes', email_body)
-        print(f"email sent {response}")
-    except Exception as e:
-        print(f"error sending email to {email}")
-        print(e)
-        error_sending.append(f"error sending email to {email} \n error :: {e}")
+  try:
+    print(f"sending email to {email}")
+    response = send_email(
+      email, 'Terraform modules changes', email_body)
+    print(f"email sent {response}")
+  except Exception as e:
+    print(f"error sending email to {email}")
+    print(e)
+    error_sending.append(f"error sending email to {email} \n error :: {e}")
 
 if len(error_sending) > 0:
-    print("### ERRORS SENDING EMAILS ###")
-    send_email('rogerio.peixoto@checkmarx.com',
-               'Terraform Module Update', '</br>'.join(error_sending))
+  print("### ERRORS SENDING EMAILS ###")
+  send_email('rogerio.peixoto@checkmarx.com',
+              'Terraform Module Update', '</br>'.join(error_sending))
+
+json_dict = {"common_lib": {"modules": {provider: current_modules_json}}}
+json_object = json.dumps(json_dict, indent=2)
+with open(commons_json, 'w') as output:
+  print(json_object, file=output)
