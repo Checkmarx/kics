@@ -178,6 +178,11 @@ func checkContent(path string, results, unwanted chan<- string, ext string) {
 		if check && returnType == "" {
 			returnType = key
 		}
+
+		// overrides k8s match when all regexs passes for azureresourcemanager key
+		if check && returnType == "kubernetes" && key == "azureresourcemanager" {
+			returnType = key
+		}
 	}
 
 	if returnType != "" {
