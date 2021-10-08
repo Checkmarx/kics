@@ -36,6 +36,7 @@ var (
 const (
 	yml  = ".yml"
 	yaml = ".yaml"
+	json = ".json"
 )
 
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
@@ -107,7 +108,7 @@ func worker(path string, results, unwanted chan<- string, wg *sync.WaitGroup) {
 	case ".tf", "tfvars":
 		results <- "terraform"
 	// Cloud Formation, Ansible, OpenAPI
-	case yaml, yml, ".json":
+	case yaml, yml, json:
 		checkContent(path, results, unwanted, ext)
 	}
 }
@@ -146,6 +147,14 @@ var types = map[string]regexSlice{
 	},
 }
 
+// overrides k8s match when all regexs passes for azureresourcemanager key and extension is set to json
+func needsOverride(check bool, returnType, key, ext string) bool {
+	if check && returnType == "kubernetes" && key == "azureresourcemanager" && ext == ".json" {
+		return true
+	}
+	return false
+}
+
 // checkContent will determine the file type by content when worker was unable to
 // determine by ext, if no type was determined checkContent adds it to unwanted channel
 func checkContent(path string, results, unwanted chan<- string, ext string) {
@@ -176,6 +185,8 @@ func checkContent(path string, results, unwanted chan<- string, ext string) {
 		}
 		// If all regexs passed and there wasn't a type already assigned
 		if check && returnType == "" {
+			returnType = key
+		} else if needsOverride(check, returnType, key, ext) {
 			returnType = key
 		}
 	}
