@@ -85,7 +85,7 @@ func LogPath(opt interface{}, changed bool) error {
 		return nil
 	}
 	if logPath == "" {
-		logPath, err = getDefaultLogPath()
+		logPath, err = constants.GetDefaultLogPath()
 		if err != nil {
 			return err
 		}
@@ -106,7 +106,7 @@ func LogPath(opt interface{}, changed bool) error {
 func LogFile(opt interface{}, changed bool) error {
 	logFile := opt.(bool)
 	if logFile {
-		logPath, err := getDefaultLogPath()
+		logPath, err := constants.GetDefaultLogPath()
 		if err != nil {
 			return err
 		}

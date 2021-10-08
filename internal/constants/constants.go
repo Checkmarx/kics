@@ -3,6 +3,8 @@ package constants
 import (
 	"fmt"
 	"math"
+	"os"
+	"path/filepath"
 )
 
 var (
@@ -118,4 +120,13 @@ func GetRelease() string {
 // GetVersion - returns the current version in the format 'Keeping Infrastructure as Code Secure <version>'
 func GetVersion() string {
 	return fmt.Sprintf("%s %s", Fullname, Version)
+}
+
+// GetDefaultLogPath - returns the path where the default log file is located
+func GetDefaultLogPath() (string, error) {
+	currentWorkDir, err := os.Getwd()
+	if err != nil {
+		return "", err
+	}
+	return filepath.Join(currentWorkDir, DefaultLogFile), nil
 }

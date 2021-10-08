@@ -109,7 +109,6 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 	scanParams.ExcludeSeverities = flags.GetMultiStrFlag(flags.ExcludeSeveritiesFlag)
 	scanParams.IncludeQueries = flags.GetMultiStrFlag(flags.IncludeQueriesFlag)
 	scanParams.InputData = flags.GetStrFlag(flags.InputDataFlag)
-	scanParams.InputData = flags.GetStrFlag(flags.InputDataFlag)
 	scanParams.OutputName = flags.GetStrFlag(flags.OutputNameFlag)
 	scanParams.OutputPath = flags.GetStrFlag(flags.OutputPathFlag)
 	scanParams.Path = flags.GetMultiStrFlag(flags.PathFlag)
@@ -118,7 +117,7 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 	scanParams.QueriesPath = flags.GetStrFlag(flags.QueriesPath)
 	scanParams.LibrariesPath = flags.GetStrFlag(flags.LibrariesPath)
 	scanParams.ReportFormats = flags.GetMultiStrFlag(flags.ReportFormatsFlag)
-	scanParams.Type = flags.GetMultiStrFlag(flags.TypeFlag)
+	scanParams.Platform = flags.GetMultiStrFlag(flags.TypeFlag)
 	scanParams.QueryExecTimeout = flags.GetIntFlag(flags.QueryExecTimeoutFlag)
 	scanParams.LineInfoPayload = flags.GetBoolFlag(flags.LineInfoPayloadFlag)
 	scanParams.DisableSecrets = flags.GetBoolFlag(flags.DisableSecretsFlag)
@@ -128,11 +127,6 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 	scanParams.ChangedDefaultQueryPath = changedDefaultQueryPath
 
 	return &scanParams
-}
-
-// NewClient
-func NewClient(params *scan.Parameters) *scan.Client {
-	return &scan.Client{ScanParams: params}
 }
 
 func executeScan(scanParams *scan.Parameters) error {
@@ -152,7 +146,6 @@ func executeScan(scanParams *scan.Parameters) error {
 		return err
 	}
 
-	// perform pre_scan, scan and pos_scan
 	err = client.PerformScan(ctx)
 
 	if err != nil {

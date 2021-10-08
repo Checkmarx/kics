@@ -30,7 +30,7 @@ type Parameters struct {
 	QueriesPath                 string
 	LibrariesPath               string
 	ReportFormats               []string
-	Type                        []string
+	Platform                    []string
 	QueryExecTimeout            int
 	LineInfoPayload             bool
 	DisableSecrets              bool
@@ -72,11 +72,11 @@ func NewClient(params *Parameters, proBarBuilder *progress.PbBuilder, printer *c
 	}, err
 }
 
-// PerformScan executes pre_scan, scan, and post_scan
+// PerformScan executes executeScan and postScan
 func (c *Client) PerformScan(ctx context.Context) error {
 	c.ScanStartTime = time.Now()
 
-	scanResults, err := c.scan(ctx)
+	scanResults, err := c.executeScan(ctx)
 
 	if err != nil {
 		log.Err(err)

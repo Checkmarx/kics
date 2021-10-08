@@ -2,12 +2,9 @@ package printer
 
 import (
 	"fmt"
-	"os"
-	"path/filepath"
 	"time"
 
 	consoleFlags "github.com/Checkmarx/kics/internal/console/flags"
-	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -25,14 +22,6 @@ func validateFlags() error {
 		return errors.New("can't provide 'silent' and 'ci' flags simultaneously")
 	}
 	return nil
-}
-
-func getDefaultLogPath() (string, error) {
-	currentWorkDir, err := os.Getwd()
-	if err != nil {
-		return "", err
-	}
-	return filepath.Join(currentWorkDir, constants.DefaultLogFile), nil
 }
 
 // PrintScanDuration prints the scan duration
