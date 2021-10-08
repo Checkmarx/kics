@@ -30,6 +30,10 @@
         {
           "description": "Avoiding Square OAuth Secret",
           "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*['\"]?(sq0csp-[0-9A-Za-z\\-_]{43})['\"]?"
+        },
+        {
+          "description": "Avoiding TF resource access",
+          "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
         }
       ]
     },
