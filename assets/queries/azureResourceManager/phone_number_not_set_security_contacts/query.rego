@@ -15,5 +15,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "resource with type 'Microsoft.Security/securityContacts' has 'phone' property defined",
 		"keyActualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'phone' property defined",
+		"searchLine": common_lib.build_search_line([common_lib.concat_path(path), value.name, "properties"], []),
 	}
 }

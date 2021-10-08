@@ -15,6 +15,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' has 'sslEnforcement' property defined",
 		"keyActualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property defined",
+		"searchLine": common_lib.build_search_line([common_lib.concat_path(path), value.name, "properties"], []),
 	}
 }
 
@@ -31,5 +32,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' has 'sslEnforcement' property set to 'Enabled'",
 		"keyActualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property set to 'Enabled'",
+		"searchLine": common_lib.build_search_line([common_lib.concat_path(path), value.name, "properties", "sslEnforcement"], []),
 	}
 }
