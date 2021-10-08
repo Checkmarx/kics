@@ -123,7 +123,7 @@
 				
 				<option value="file33">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (78.0%)</option>
 				
-				<option value="file34">github.com/Checkmarx/kics/pkg/engine/secrets/inspector.go (90.3%)</option>
+				<option value="file34">github.com/Checkmarx/kics/pkg/engine/secrets/inspector.go (88.6%)</option>
 				
 				<option value="file35">github.com/Checkmarx/kics/pkg/engine/similarity/similarity_id.go (94.7%)</option>
 				
@@ -1616,8 +1616,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="357">{
-                if val == true </span><span class="cov9" title="356">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="376">{
+                if val == true </span><span class="cov9" title="375">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2523,13 +2523,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2943,7 +2943,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="10">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov7" title="17">{
-        for _, a := range s </span><span class="cov8" title="39">{
+        for _, a := range s </span><span class="cov8" title="38">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -5812,13 +5812,23 @@ func NewInspector(
                 return nil, err
         }</span>
 
+        <span class="cov2" title="6">regexQueries, err := compileRegexQueries(queryFilter, allRegexQueries.Rules)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov2" title="6">allowRules, err := compileRegex(allRegexQueries.AllowRules)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
         <span class="cov2" title="6">return &amp;Inspector{
                 ctx:                   ctx,
                 detector:              lineDetector,
                 excludeResults:        excludeResults,
                 tracker:               tracker,
-                regexQueries:          compileRegexQueries(queryFilter, allRegexQueries.Rules),
-                allowRules:            compileRegex(allRegexQueries.AllowRules),
+                regexQueries:          regexQueries,
+                allowRules:            allowRules,
                 vulnerabilities:       make([]model.Vulnerability, 0),
                 queryExecutionTimeout: queryExecutionTimeout,
                 foundLines:            make([]int, 0),
@@ -5855,7 +5865,7 @@ func (c *Inspector) Inspect(ctx context.Context, basePaths []string,
         <span class="cov2" title="4">return c.vulnerabilities, nil</span>
 }
 
-func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQueries []RegexQuery) []RegexQuery <span class="cov3" title="11">{
+func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQueries []RegexQuery) ([]RegexQuery, error) <span class="cov3" title="11">{
         var regexQueries []RegexQuery
 
         for i := range allRegexQueries </span><span class="cov5" title="136">{
@@ -5895,19 +5905,27 @@ func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQ
                 }
         }
         <span class="cov3" title="11">for i := range regexQueries </span><span class="cov5" title="133">{
-                regexQueries[i].Regex = regexp.MustCompile(regexQueries[i].RegexStr)
+                compiledRegexp, err := regexp.Compile(regexQueries[i].RegexStr)
+                if err != nil </span><span class="cov0" title="0">{
+                        return regexQueries, err
+                }</span>
+                <span class="cov5" title="133">regexQueries[i].Regex = compiledRegexp
                 for j := range regexQueries[i].AllowRules </span><span class="cov4" title="52">{
                         regexQueries[i].AllowRules[j].Regex = regexp.MustCompile(regexQueries[i].AllowRules[j].RegexStr)
                 }</span>
         }
-        <span class="cov3" title="11">return regexQueries</span>
+        <span class="cov3" title="11">return regexQueries, nil</span>
 }
 
-func compileRegex(allowRules []AllowRule) []AllowRule <span class="cov2" title="6">{
+func compileRegex(allowRules []AllowRule) ([]AllowRule, error) <span class="cov2" title="6">{
         for j := range allowRules </span><span class="cov4" title="24">{
-                allowRules[j].Regex = regexp.MustCompile(allowRules[j].RegexStr)
-        }</span>
-        <span class="cov2" title="6">return allowRules</span>
+                compiledRegex, err := regexp.Compile(allowRules[j].RegexStr)
+                if err != nil </span><span class="cov0" title="0">{
+                        return nil, err
+                }</span>
+                <span class="cov4" title="24">allowRules[j].Regex = compiledRegex</span>
+        }
+        <span class="cov2" title="6">return allowRules, nil</span>
 }
 
 func (c *Inspector) GetQueriesLength() int <span class="cov2" title="4">{
