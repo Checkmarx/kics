@@ -18,10 +18,10 @@
     {
       "id": "3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99",
       "name": "Generic Secret",
-      "regex": "^(?i)['\"]?\\s*(\\w*_)?secret[_]?(key)?['\"]?\\s*(:|=)\\s*['\"]?([A-Za-z0-9\/~^_!@&%()=?*+-]{10,})['\"]?",
+      "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*['\"]?([A-Za-z0-9\/~^_!@&%()=?*+-]{10,})['\"]?",
       "entropies": [
         {
-          "group": 4,
+          "group": 3,
           "min": 2.8,
           "max": 8
         }
@@ -29,7 +29,7 @@
       "allowRules": [
         {
           "description": "Avoiding Square OAuth Secret",
-          "regex": "(?i)['\"]?\\s*(\\w*_)?secret[_]?(key)?['\"]?\\s*(:|=)\\s*['\"]?(sq0csp-[0-9A-Za-z\\-_]{43})['\"]?"
+          "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*['\"]?(sq0csp-[0-9A-Za-z\\-_]{43})['\"]?"
         }
       ]
     },
