@@ -21,22 +21,25 @@ import (
 // k8sRegexMetadata - Regex that finds Kubernetes defining property "metadata"
 // k8sRegexSpec - Regex that finds Kubernetes defining property "spec"
 var (
-	openAPIRegex           = regexp.MustCompile("(\\s*\"openapi\":)|(\\s*openapi:)|(\\s*\"swagger\":)|(\\s*swagger:)")
-	openAPIRegexInfo       = regexp.MustCompile("(\\s*\"info\":)|(\\s*info:)")
-	openAPIRegexPath       = regexp.MustCompile("(\\s*\"paths\":)|(\\s*paths:)")
-	armRegexContentVersion = regexp.MustCompile("\\s*\"contentVersion\":")
-	armRegexResources      = regexp.MustCompile("\\s*\"resources\":")
-	cloudRegex             = regexp.MustCompile("(\\s*\"Resources\":)|(\\s*Resources:)")
-	k8sRegex               = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
-	k8sRegexKind           = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
-	k8sRegexMetadata       = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
-	ansibleVaultRegex      = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
+	openAPIRegex              = regexp.MustCompile("(\\s*\"openapi\":)|(\\s*openapi:)|(\\s*\"swagger\":)|(\\s*swagger:)")
+	openAPIRegexInfo          = regexp.MustCompile("(\\s*\"info\":)|(\\s*info:)")
+	openAPIRegexPath          = regexp.MustCompile("(\\s*\"paths\":)|(\\s*paths:)")
+	armRegexContentVersion    = regexp.MustCompile("\\s*\"contentVersion\":")
+	armRegexResources         = regexp.MustCompile("\\s*\"resources\":")
+	cloudRegex                = regexp.MustCompile("(\\s*\"Resources\":)|(\\s*Resources:)")
+	k8sRegex                  = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
+	k8sRegexKind              = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
+	k8sRegexMetadata          = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
+	ansibleVaultRegex         = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
+	blueprintsRegexKind       = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
+	blueprintsRegexProperties = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
 )
 
 const (
 	yml  = ".yml"
 	yaml = ".yaml"
 	json = ".json"
+	arm  = "azureresourcemanager"
 )
 
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
@@ -145,11 +148,17 @@ var types = map[string]regexSlice{
 			armRegexResources,
 		},
 	},
+	"blueprintsartifacts": {
+		[]*regexp.Regexp{
+			blueprintsRegexKind,
+			blueprintsRegexProperties,
+		},
+	},
 }
 
 // overrides k8s match when all regexs passes for azureresourcemanager key and extension is set to json
 func needsOverride(check bool, returnType, key, ext string) bool {
-	if check && returnType == "kubernetes" && key == "azureresourcemanager" && ext == ".json" {
+	if check && returnType == "kubernetes" && key == "azureresourcemanager" && ext == json {
 		return true
 	}
 	return false
@@ -192,6 +201,9 @@ func checkContent(path string, results, unwanted chan<- string, ext string) {
 	}
 
 	if returnType != "" {
+		if returnType == "blueprints" {
+			returnType = arm
+		}
 		// write to channel type of file
 		results <- returnType
 	} else if ext == yaml || ext == yml {
