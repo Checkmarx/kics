@@ -1,16 +1,17 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
-	resource := input.document[i].resources[_]
-	resource.type == "Microsoft.DBforPostgreSQL/servers"
-	name := resource.name
-	not commonLib.valid_key(resource.properties, "sslEnforcement")
+	doc := input.document[i]
+	[path, value] = walk(doc)
+	value.type == "Microsoft.DBforPostgreSQL/servers"
+
+	not common_lib.valid_key(value.properties, "sslEnforcement")
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name[%s].properties", [name]),
+		"documentId": doc.id,
+		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' has 'sslEnforcement' property defined",
 		"keyActualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property defined",
@@ -18,14 +19,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resources[_]
-	resource.type == "Microsoft.DBforPostgreSQL/servers"
-	name := resource.name
-	lower(resource.properties.sslEnforcement) == "disabled"
+	doc := input.document[i]
+	[path, value] = walk(doc)
+	value.type == "Microsoft.DBforPostgreSQL/servers"
+	
+	lower(value.properties.sslEnforcement) == "disabled"
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name[%s].properties.sslEnforcement", [name]),
+		"documentId": doc.id,
+		"searchKey": sprintf("%s.name={{%s}}.properties.sslEnforcement", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' has 'sslEnforcement' property set to 'Enabled'",
 		"keyActualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property set to 'Enabled'",
