@@ -201,7 +201,7 @@
 				
 				<option value="file72">github.com/Checkmarx/kics/pkg/report/model/sarif_categories.go (100.0%)</option>
 				
-				<option value="file73">github.com/Checkmarx/kics/pkg/report/pdf.go (83.3%)</option>
+				<option value="file73">github.com/Checkmarx/kics/pkg/report/pdf.go (88.3%)</option>
 				
 				<option value="file74">github.com/Checkmarx/kics/pkg/report/sarif.go (90.9%)</option>
 				
@@ -1616,8 +1616,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="345">{
-                if val == true </span><span class="cov9" title="344">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="375">{
+                if val == true </span><span class="cov9" title="374">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2523,13 +2523,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="36">total += v
+                <span class="cov8" title="33">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2554,7 +2554,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4655,7 +4655,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -13092,7 +13092,7 @@ const (
         colNine         = 9
         colTen          = 10
         colFullPage     = 12
-        colRuneSlitter  = 38
+        colRuneSlitter  = 20
 )
 
 var (
@@ -13130,6 +13130,7 @@ func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery) error <sp
                 severity := string(queries[i].Severity)
                 platform := queries[i].Platform
                 category := queries[i].Category
+                description := queries[i].Description
                 var err error
                 m.Row(rowLarge, func() </span><span class="cov4" title="2">{
                         m.Col(colOne, func() </span><span class="cov4" title="2">{
@@ -13178,10 +13179,34 @@ func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery) error <sp
                 }</span>)
                 <span class="cov4" title="2">if queries[i].CISDescriptionID != "" </span><span class="cov0" title="0">{
                         createCISRows(m, &amp;queries[i])
+                }</span> else<span class="cov4" title="2"> {
+                        createDescription(m, description)
                 }</span>
                 <span class="cov4" title="2">createResultsTable(m, &amp;queries[i])</span>
         }
         <span class="cov4" title="2">return nil</span>
+}
+
+func createDescription(m pdf.Maroto, description string) <span class="cov4" title="2">{
+        m.Row(colFive, func() </span><span class="cov4" title="2">{
+                m.Col(colTwo, func() </span><span class="cov4" title="2">{
+                        m.Text("Description", props.Text{
+                                Size:        float64(textSize),
+                                Align:       consts.Left,
+                                Style:       consts.Bold,
+                                Extrapolate: false,
+                        })
+                }</span>)
+        })
+        <span class="cov4" title="2">m.Row(getRowLength(description), func() </span><span class="cov4" title="2">{
+                m.Col(colFullPage, func() </span><span class="cov4" title="2">{
+                        m.Text(description, props.Text{
+                                Size:        float64(defaultTextSize),
+                                Align:       consts.Left,
+                                Extrapolate: false,
+                        })
+                }</span>)
+        })
 }
 
 func createCISRows(m pdf.Maroto, query *model.VulnerableQuery) <span class="cov0" title="0">{
@@ -13223,30 +13248,13 @@ func createCISRows(m pdf.Maroto, query *model.VulnerableQuery) <span class="cov0
                         })
                 }</span>)
         })
-        <span class="cov0" title="0">m.Row(colFive, func() </span><span class="cov0" title="0">{
-                m.Col(colTwo, func() </span><span class="cov0" title="0">{
-                        m.Text("Description", props.Text{
-                                Size:        float64(textSize),
-                                Align:       consts.Left,
-                                Style:       consts.Bold,
-                                Extrapolate: false,
-                        })
-                }</span>)
-        })
-        <span class="cov0" title="0">m.Row(getRowLength(description), func() </span><span class="cov0" title="0">{
-                m.Col(colFullPage, func() </span><span class="cov0" title="0">{
-                        m.Text(description, props.Text{
-                                Size:        float64(defaultTextSize),
-                                Align:       consts.Left,
-                                Extrapolate: false,
-                        })
-                }</span>)
-        })
+        <span class="cov0" title="0">createDescription(m, description)</span>
 }
 
-func getRowLength(value string) float64 <span class="cov0" title="0">{
+func getRowLength(value string) float64 <span class="cov4" title="2">{
         length := len(value)
-        return float64(length / colRuneSlitter)
+        result := length/colRuneSlitter + 1
+        return float64(result)
 }</span>
 
 func createResultsTable(m pdf.Maroto, query *model.VulnerableQuery) <span class="cov4" title="2">{
