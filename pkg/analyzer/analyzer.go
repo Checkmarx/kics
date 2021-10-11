@@ -31,6 +31,10 @@ var (
 	k8sRegexKind           = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
 	k8sRegexMetadata       = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
 	ansibleVaultRegex      = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
+	tfPlanRegexpv          = regexp.MustCompile("\\s*\"planned_values\":")
+	tfPlanRegexrc          = regexp.MustCompile("\\s*\"resource_changes\":")
+	tfPlanRegexconf        = regexp.MustCompile("\\s*\"configuration\":")
+	tfPlanRegextv          = regexp.MustCompile("\\s*\"terraform_version\":")
 )
 
 const (
@@ -142,6 +146,14 @@ var types = map[string]regexSlice{
 		[]*regexp.Regexp{
 			armRegexContentVersion,
 			armRegexResources,
+		},
+	},
+	"terraform": {
+		[]*regexp.Regexp{
+			tfPlanRegexconf,
+			tfPlanRegexpv,
+			tfPlanRegexrc,
+			tfPlanRegextv,
 		},
 	},
 }

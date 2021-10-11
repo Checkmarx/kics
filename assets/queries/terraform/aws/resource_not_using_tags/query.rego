@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as terraform_lib
 import data.generic.common as common_lib
+import data.generic.terraform as terraform_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource[res][name]
@@ -14,6 +14,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[{{%s}}].tags is defined and not null", [res, name]),
 		"keyActualValue": sprintf("%s[{{%s}}].tags is undefined or null", [res, name]),
+		"searchLine": common_lib.build_search_line(["resource", res, name], []),
 	}
 }
 
@@ -29,6 +30,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[{{%s}}].tags has tags defined other than 'Name'", [res, name]),
 		"keyActualValue": sprintf("%s[{{%s}}].tags has no tags defined", [res, name]),
+		"searchLine": common_lib.build_search_line(["resource", res, name, "tags"], []),
 	}
 }
 

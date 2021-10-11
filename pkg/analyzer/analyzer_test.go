@@ -65,6 +65,15 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			wantExclude: []string{filepath.FromSlash("../../test/fixtures/type-test01/template01/metadata.json")},
 			wantErr:     false,
 		},
+		{
+			name: "analyze_test_tfplan",
+			paths: []string{
+				filepath.FromSlash("../../test/fixtures/tfplan"),
+			},
+			wantTypes:   []string{"terraform"},
+			wantExclude: []string{},
+			wantErr:     false,
+		},
 	}
 
 	for _, tt := range tests {
