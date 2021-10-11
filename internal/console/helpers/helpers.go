@@ -87,23 +87,25 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 	fmt.Printf("------------------------------------\n\n")
 	for index := range summary.Queries {
 		idx := len(summary.Queries) - index - 1
-		fmt.Printf(
-			"%s, Severity: %s, Results: %d\n",
-			printer.PrintBySev(summary.Queries[idx].QueryName, string(summary.Queries[idx].Severity)),
-			printer.PrintBySev(string(summary.Queries[idx].Severity), string(summary.Queries[idx].Severity)),
-			len(summary.Queries[idx].Files),
-		)
-		if !printer.minimal {
-			if summary.Queries[idx].CISDescriptionID != "" {
-				fmt.Printf("%s %s\n", printer.Bold("CIS ID:"), summary.Queries[idx].CISDescriptionIDFormatted)
-				fmt.Printf("%s %s\n", printer.Bold("Title:"), summary.Queries[idx].CISDescriptionTitle)
-				fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].CISDescriptionTextFormatted)
-			} else {
-				fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].Description)
+		if summary.Queries[idx].Severity != model.SeverityTrace {
+			fmt.Printf(
+				"%s, Severity: %s, Results: %d\n",
+				printer.PrintBySev(summary.Queries[idx].QueryName, string(summary.Queries[idx].Severity)),
+				printer.PrintBySev(string(summary.Queries[idx].Severity), string(summary.Queries[idx].Severity)),
+				len(summary.Queries[idx].Files),
+			)
+			if !printer.minimal {
+				if summary.Queries[idx].CISDescriptionID != "" {
+					fmt.Printf("%s %s\n", printer.Bold("CIS ID:"), summary.Queries[idx].CISDescriptionIDFormatted)
+					fmt.Printf("%s %s\n", printer.Bold("Title:"), summary.Queries[idx].CISDescriptionTitle)
+					fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].CISDescriptionTextFormatted)
+				} else {
+					fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].Description)
+				}
+				fmt.Printf("%s %s\n\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
 			}
-			fmt.Printf("%s %s\n\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
+			printFiles(&summary.Queries[idx], printer)
 		}
-		printFiles(&summary.Queries[idx], printer)
 	}
 	fmt.Printf("\nResults Summary:\n")
 	printSeverityCounter(model.SeverityHigh, summary.SeveritySummary.SeverityCounters[model.SeverityHigh], printer.High)
@@ -111,6 +113,7 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 	printSeverityCounter(model.SeverityLow, summary.SeveritySummary.SeverityCounters[model.SeverityLow], printer.Low)
 	printSeverityCounter(model.SeverityInfo, summary.SeveritySummary.SeverityCounters[model.SeverityInfo], printer.Info)
 	fmt.Printf("TOTAL: %d\n\n", summary.SeveritySummary.TotalCounter)
+	fmt.Printf("BoM Resources: %d\n", summary.SeveritySummary.TotalBOMResources)
 
 	log.Info().Msgf("Files scanned: %d", summary.ScannedFiles)
 	log.Info().Msgf("Parsed files: %d", summary.ParsedFiles)

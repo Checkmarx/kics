@@ -33,6 +33,7 @@ var (
 		"Secret Management":       "CAT012",
 		"Supply-Chain":            "CAT013",
 		"Structure and Semantics": "CAT014",
+		"Bill Of Materials":       "CAT015",
 	}
 
 	// AvailablePlatforms - All platforms available
@@ -52,6 +53,7 @@ var (
 		"medium",
 		"low",
 		"info",
+		"trace",
 	}
 
 	// AvailableLogLevels - All log levels available

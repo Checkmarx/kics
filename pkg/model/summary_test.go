@@ -45,6 +45,7 @@ func TestCreateSummary(t *testing.T) {
 			SeveritySummary: SeveritySummary{
 				ScanID: "scanID",
 				SeverityCounters: map[Severity]int{
+					SeverityTrace:  0,
 					SeverityInfo:   0,
 					SeverityLow:    0,
 					SeverityMedium: 0,
@@ -63,6 +64,7 @@ func TestCreateSummary(t *testing.T) {
 			SeveritySummary: SeveritySummary{
 				ScanID: "scanID",
 				SeverityCounters: map[Severity]int{
+					SeverityTrace:  0,
 					SeverityInfo:   0,
 					SeverityLow:    0,
 					SeverityMedium: 0,

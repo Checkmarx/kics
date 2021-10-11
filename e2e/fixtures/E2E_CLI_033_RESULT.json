@@ -11,9 +11,11 @@
     "HIGH": 0,
     "INFO": 1,
     "LOW": 0,
-    "MEDIUM": 3
+    "MEDIUM": 3,
+    "TRACE": 0
   },
   "total_counter": 4,
+  "total_bom_resources": 0,
   "start": "2021-09-10T13:55:18.709293+01:00",
   "end": "2021-09-10T13:55:22.21519+01:00",
   "paths": [
