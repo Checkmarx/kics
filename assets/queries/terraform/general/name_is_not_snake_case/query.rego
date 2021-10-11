@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	doc := input.document[i]
 	res_type := doc.resource[type]
-	_ := res_type[name]
+	res_type[name]
 	not is_snake_case(name)
 
 	result := {
@@ -12,6 +14,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "All names should be on snake case pattern",
 		"keyActualValue": sprintf("'%s' is not in snake case", [name]),
+		"searchLine": common_lib.build_search_line(["resources", type, name], []),
 	}
 }
 
@@ -26,6 +29,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "All names should be on snake case pattern",
 		"keyActualValue": sprintf("'%s' is not in snake case", [name]),
+		"searchLine": common_lib.build_search_line(["module", name], []),
 	}
 }
 
