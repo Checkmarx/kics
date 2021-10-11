@@ -52,7 +52,7 @@ func TestCreateSummary(t *testing.T) {
 					SeverityHigh:   0,
 				},
 			},
-			Queries:      []VulnerableQuery{},
+			Queries:      []QueryResult{},
 			ScannedPaths: []string{},
 		})
 	})
@@ -72,7 +72,7 @@ func TestCreateSummary(t *testing.T) {
 				},
 				TotalCounter: 1,
 			},
-			Queries: []VulnerableQuery{
+			Queries: []QueryResult{
 				{
 					QueryName: "query_name",
 					QueryID:   "QueryID",

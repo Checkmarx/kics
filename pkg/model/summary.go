@@ -34,8 +34,8 @@ type VulnerableFile struct {
 	Value            *string    `json:"value"`
 }
 
-// VulnerableQuery contains a query that tested positive ID, name, severity and a list of files that tested vulnerable
-type VulnerableQuery struct {
+// QueryResult contains a query that tested positive ID, name, severity and a list of files that tested vulnerable
+type QueryResult struct {
 	QueryName                   string           `json:"query_name"`
 	QueryID                     string           `json:"query_id"`
 	QueryURI                    string           `json:"query_url"`
@@ -55,8 +55,22 @@ type VulnerableQuery struct {
 	Files                       []VulnerableFile `json:"files"`
 }
 
-// VulnerableQuerySlice is a slice of VulnerableQuery
-type VulnerableQuerySlice []VulnerableQuery
+// QueryResultSlice is a slice of VulnerableQuery
+type QueryResultSlice []QueryResult
+
+type BillOfMaterialResult struct {
+	QueryName     string           `json:"query_name"`
+	QueryID       string           `json:"query_id"`
+	QueryURI      string           `json:"query_url"`
+	Severity      Severity         `json:"severity"`
+	Platform      string           `json:"platform"`
+	Category      string           `json:"category"`
+	Description   string           `json:"description"`
+	DescriptionID string           `json:"description_id"`
+	Files         []VulnerableFile `json:"files"`
+}
+
+type BillOfMaterials []BillOfMaterialResult
 
 // Counters hold information about how many files were scanned, parsed, failed to be scaned, the total of queries
 // and how many queries failed to execute
@@ -81,8 +95,9 @@ type Summary struct {
 	Counters
 	SeveritySummary
 	Times
-	ScannedPaths []string             `json:"paths"`
-	Queries      VulnerableQuerySlice `json:"queries"`
+	ScannedPaths []string         `json:"paths"`
+	Queries      QueryResultSlice `json:"queries"`
+	Bom          BillOfMaterials  `json:"bill_of_materials"`
 }
 
 // PathParameters - structure wraps the required fields for temporary path translation
@@ -167,53 +182,81 @@ func resolvePath(filePath string, pathExtractionMap map[string]ExtractedPathObje
 func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 	scanID string, pathExtractionMap map[string]ExtractedPathObject) Summary {
 	log.Debug().Msg("model.CreateSummary()")
-	q := make(map[string]VulnerableQuery, len(vulnerabilities))
+	q := make(map[string]QueryResult, len(vulnerabilities))
+	bom := make(map[string]BillOfMaterialResult, len(vulnerabilities))
 	severitySummary := SeveritySummary{
 		ScanID: scanID,
 	}
 	for i := range vulnerabilities {
 		item := vulnerabilities[i]
-		if _, ok := q[item.QueryID]; !ok {
-			q[item.QueryID] = VulnerableQuery{
-				QueryName:     item.QueryName,
-				QueryID:       item.QueryID,
-				Severity:      item.Severity,
-				QueryURI:      item.QueryURI,
-				Platform:      item.Platform,
-				Category:      item.Category,
-				Description:   item.Description,
-				DescriptionID: item.DescriptionID,
+		if item.Severity == SeverityTrace {
+			if _, ok := bom[item.QueryID]; !ok {
+				bom[item.QueryID] = BillOfMaterialResult{
+					QueryName:     item.QueryName,
+					QueryID:       item.QueryID,
+					QueryURI:      item.QueryURI,
+					Severity:      item.Severity,
+					Platform:      item.Platform,
+					Category:      item.Category,
+					Description:   item.Description,
+					DescriptionID: item.DescriptionID,
+				}
 			}
+
+			bItem := bom[item.QueryID]
+			bItem.Files = append(bItem.Files, VulnerableFile{
+				FileName:         resolvePath(item.FileName, pathExtractionMap),
+				SimilarityID:     item.SimilarityID,
+				Line:             item.Line,
+				VulnLines:        item.VulnLines,
+				IssueType:        item.IssueType,
+				SearchKey:        item.SearchKey,
+				SearchValue:      item.SearchValue,
+				KeyExpectedValue: item.KeyExpectedValue,
+				KeyActualValue:   item.KeyActualValue,
+				Value:            item.Value,
+			})
+
+			bom[item.QueryID] = bItem
+		} else {
+			if _, ok := q[item.QueryID]; !ok {
+				q[item.QueryID] = QueryResult{
+					QueryName:     item.QueryName,
+					QueryID:       item.QueryID,
+					Severity:      item.Severity,
+					QueryURI:      item.QueryURI,
+					Platform:      item.Platform,
+					Category:      item.Category,
+					Description:   item.Description,
+					DescriptionID: item.DescriptionID,
+				}
+			}
+
+			qItem := q[item.QueryID]
+			qItem.Files = append(qItem.Files, VulnerableFile{
+				FileName:         resolvePath(item.FileName, pathExtractionMap),
+				SimilarityID:     item.SimilarityID,
+				Line:             item.Line,
+				VulnLines:        item.VulnLines,
+				IssueType:        item.IssueType,
+				SearchKey:        item.SearchKey,
+				SearchValue:      item.SearchValue,
+				KeyExpectedValue: item.KeyExpectedValue,
+				KeyActualValue:   item.KeyActualValue,
+				Value:            item.Value,
+			})
+
+			q[item.QueryID] = qItem
 		}
-
-		qItem := q[item.QueryID]
-		qItem.Files = append(qItem.Files, VulnerableFile{
-			FileName:         resolvePath(item.FileName, pathExtractionMap),
-			SimilarityID:     item.SimilarityID,
-			Line:             item.Line,
-			VulnLines:        item.VulnLines,
-			IssueType:        item.IssueType,
-			SearchKey:        item.SearchKey,
-			SearchValue:      item.SearchValue,
-			KeyExpectedValue: item.KeyExpectedValue,
-			KeyActualValue:   item.KeyActualValue,
-			Value:            item.Value,
-		})
-
-		q[item.QueryID] = qItem
 	}
 
-	queries := make([]VulnerableQuery, 0, len(q))
+	queries := make([]QueryResult, 0, len(q))
 	sevs := map[Severity]int{SeverityTrace: 0, SeverityInfo: 0, SeverityLow: 0, SeverityMedium: 0, SeverityHigh: 0}
 	for idx := range q {
 		queries = append(queries, q[idx])
 		sevs[q[idx].Severity] += len(q[idx].Files)
 
-		if q[idx].Severity == SeverityTrace {
-			severitySummary.TotalBOMResources += len(q[idx].Files)
-		} else {
-			severitySummary.TotalCounter += len(q[idx].Files)
-		}
+		severitySummary.TotalCounter += len(q[idx].Files)
 	}
 
 	severityOrder := map[Severity]int{SeverityTrace: 4, SeverityInfo: 3, SeverityLow: 2, SeverityMedium: 1, SeverityHigh: 0}
@@ -224,9 +267,16 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 		return severityOrder[queries[i].Severity] < severityOrder[queries[j].Severity]
 	})
 
+	materials := make([]BillOfMaterialResult, 0, len(bom))
+	for idx := range bom {
+		materials = append(materials, bom[idx])
+		severitySummary.TotalBOMResources += len(bom[idx].Files)
+	}
+
 	severitySummary.SeverityCounters = sevs
 
 	return Summary{
+		Bom:             materials,
 		Counters:        counters,
 		Queries:         queries,
 		SeveritySummary: severitySummary,
