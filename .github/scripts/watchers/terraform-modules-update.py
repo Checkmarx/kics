@@ -9,10 +9,10 @@ from jinja2 import Environment
 
 def get_module_info(mod_obj):
   mod_info = {'inputs': [], 'resources': []}
-  for input in mod_obj['inputs']:
-    mod_info['inputs'].append(input['name'])
-  for input in mod_obj['resources']:
-    mod_info['resources'].append(input['type'])
+  for input_value in mod_obj['inputs']:
+    mod_info['inputs'].append(input_value['name'])
+  for input_value in mod_obj['resources']:
+    mod_info['resources'].append(input_value['type'])
   return mod_info
 
 def send_email(email, subject, body):
@@ -47,18 +47,18 @@ terraform_url = parsed_args['url']
 commons_json = parsed_args['current']
 
 offset = 0
-next = True
+next_value = True
 provider = 'aws'
 
 modules_list = []
 separator = '='*10
 
 print('{separator} Getting Modules {separator}'.format(separator=separator))
-while next:
+while next_value:
   print('- Retrieving offset = {}'.format(offset))
   response = requests.get('{}?limit=100&provider={}&offset={}&verified=true'.format(terraform_url, provider, str(offset)))
   res_json = response.json()
-  next = 'next_offset' in res_json['meta']
+  next_value = 'next_offset' in res_json['meta']
   offset += 100
   for module in res_json['modules']:
     modules_list.append({'id': module['id'], 'name': module['name']})
@@ -94,8 +94,8 @@ for module_key_name, module_values in module_info_dict.items():
   new_modules_json[module_key_name] = {'resources': [], 'inputs': {}}
   for key, value in module_values.items():
     if key == 'inputs':
-      for input in value:
-        new_modules_json[module_key_name][key][input] = input
+      for input_value in value:
+        new_modules_json[module_key_name][key][input_value] = input_value
     else:
       new_modules_json[module_key_name][key] = value
 
