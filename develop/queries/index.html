@@ -14,7 +14,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/queries/">
       
       <link rel="icon" href="../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.1">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.2">
     
     
       
@@ -22,7 +22,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.1c75ef36.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.24c991ad.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#queries" class="md-skip">
+        <a href="#query_categories" class="md-skip">
           Skip to content
         </a>
       
@@ -551,6 +551,13 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#query_categories" class="md-nav__link">
+    Query Categories
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#queries" class="md-nav__link">
@@ -1093,6 +1100,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#query_categories" class="md-nav__link">
+    Query Categories
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#queries" class="md-nav__link">
     Queries
   </a>
@@ -1118,7 +1132,24 @@
                 
                   <h1>General Info</h1>
                 
-                <h2 id="queries">Queries<a class="headerlink" href="#queries" title="Permanent link">&para;</a></h2>
+                <h2 id="query_categories">Query Categories<a class="headerlink" href="#query_categories" title="Permanent link">&para;</a></h2>
+<p>You can find a list of queries, and their associated categories here: <a href="https://docs.kics.io/latest/queries/all-queries/">https://docs.kics.io/latest/queries/all-queries/</a></p>
+<p>The category list is: 
+- Access Control
+- Availability
+- Backup
+- Best Practices
+- Build Process
+- Encryption
+- Insecure Configurations
+- Insecure Defaults
+- Networking and Firewall
+- Observability
+- Resource Management
+- Secret Management
+- Structure and Semantics
+- Supply-Chain</p>
+<h2 id="queries">Queries<a class="headerlink" href="#queries" title="Permanent link">&para;</a></h2>
 <p>KICS queries are written in OPA (Rego).</p>
 <pre><code class="language-rego">CxPolicy [ result ] {
    resource := input.document[i].resource.aws_s3_bucket[name]
@@ -1287,7 +1318,7 @@ each positive file must be referencered on <code>positive_expected_result.json</
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.e99e714c.min.js", "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.c7d1b464.min.js"></script>
+      <script src="../assets/javascripts/bundle.bc35569b.min.js"></script>
       
         <script src="../js/version-mike.js"></script>
       
