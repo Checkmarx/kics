@@ -187,10 +187,21 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
 		return c.objectConsExpr(value)
 	case *hclsyntax.FunctionCallExpr:
 		return c.evalFunction(expr)
+	case *hclsyntax.ConditionalExpr:
+		expressionEvaluated, err := expr.Value(&hcl.EvalContext{
+			Variables: inputVarMap,
+			Functions: functions.TerraformFuncs,
+		})
+		if err != nil {
+			sentry.CaptureException(err)
+			return c.wrapExpr(expr)
+		}
+		return ctyjson.SimpleJSONValue{Value: expressionEvaluated}, nil
 	default:
-		// try to evaluate with variables
+		// try to evaluate with variables and functions
 		valueConverted, _ := expr.Value(&hcl.EvalContext{
 			Variables: inputVarMap,
+			Functions: functions.TerraformFuncs,
 		})
 		if !valueConverted.Type().HasDynamicTypes() && valueConverted.IsKnown() {
 			return ctyjson.SimpleJSONValue{Value: valueConverted}, nil
