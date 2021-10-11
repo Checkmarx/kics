@@ -11,6 +11,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+// Parameters represents all available scan parameters
 type Parameters struct {
 	CloudProvider               []string
 	DisableCISDesc              bool
@@ -40,6 +41,7 @@ type Parameters struct {
 	ScanID                      string
 }
 
+// Client represents a scan client
 type Client struct {
 	ScanParams        *Parameters
 	ScanStartTime     time.Time

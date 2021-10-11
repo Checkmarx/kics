@@ -114,17 +114,17 @@ func initializeConfig(cmd *cobra.Command) error {
 	return nil
 }
 
-type Console struct {
+type console struct {
 	Printer       *consoleHelpers.Printer
 	ProBarBuilder *progress.PbBuilder
 }
 
-func newConsole() *Console {
-	return &Console{}
+func newConsole() *console {
+	return &console{}
 }
 
 // preScan is responsible for scan preparation
-func (console *Console) preScan() {
+func (console *console) preScan() {
 	log.Debug().Msg("console.scan()")
 	for _, warn := range warnings {
 		log.Warn().Msgf(warn)
