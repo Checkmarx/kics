@@ -35,7 +35,7 @@ const (
 	colNine         = 9
 	colTen          = 10
 	colFullPage     = 12
-	colRuneSlitter  = 38
+	colRuneSlitter  = 20
 )
 
 var (
@@ -73,6 +73,7 @@ func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery) error {
 		severity := string(queries[i].Severity)
 		platform := queries[i].Platform
 		category := queries[i].Category
+		description := queries[i].Description
 		var err error
 		m.Row(rowLarge, func() {
 			m.Col(colOne, func() {
@@ -121,10 +122,34 @@ func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery) error {
 		})
 		if queries[i].CISDescriptionID != "" {
 			createCISRows(m, &queries[i])
+		} else {
+			createDescription(m, description)
 		}
 		createResultsTable(m, &queries[i])
 	}
 	return nil
+}
+
+func createDescription(m pdf.Maroto, description string) {
+	m.Row(colFive, func() {
+		m.Col(colTwo, func() {
+			m.Text("Description", props.Text{
+				Size:        float64(textSize),
+				Align:       consts.Left,
+				Style:       consts.Bold,
+				Extrapolate: false,
+			})
+		})
+	})
+	m.Row(getRowLength(description), func() {
+		m.Col(colFullPage, func() {
+			m.Text(description, props.Text{
+				Size:        float64(defaultTextSize),
+				Align:       consts.Left,
+				Extrapolate: false,
+			})
+		})
+	})
 }
 
 func createCISRows(m pdf.Maroto, query *model.VulnerableQuery) {
@@ -166,30 +191,13 @@ func createCISRows(m pdf.Maroto, query *model.VulnerableQuery) {
 			})
 		})
 	})
-	m.Row(colFive, func() {
-		m.Col(colTwo, func() {
-			m.Text("Description", props.Text{
-				Size:        float64(textSize),
-				Align:       consts.Left,
-				Style:       consts.Bold,
-				Extrapolate: false,
-			})
-		})
-	})
-	m.Row(getRowLength(description), func() {
-		m.Col(colFullPage, func() {
-			m.Text(description, props.Text{
-				Size:        float64(defaultTextSize),
-				Align:       consts.Left,
-				Extrapolate: false,
-			})
-		})
-	})
+	createDescription(m, description)
 }
 
 func getRowLength(value string) float64 {
 	length := len(value)
-	return float64(length / colRuneSlitter)
+	result := length/colRuneSlitter + 1
+	return float64(result)
 }
 
 func createResultsTable(m pdf.Maroto, query *model.VulnerableQuery) {

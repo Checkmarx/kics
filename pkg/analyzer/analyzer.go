@@ -21,25 +21,29 @@ import (
 // k8sRegexMetadata - Regex that finds Kubernetes defining property "metadata"
 // k8sRegexSpec - Regex that finds Kubernetes defining property "spec"
 var (
-	openAPIRegex           = regexp.MustCompile("(\\s*\"openapi\":)|(\\s*openapi:)|(\\s*\"swagger\":)|(\\s*swagger:)")
-	openAPIRegexInfo       = regexp.MustCompile("(\\s*\"info\":)|(\\s*info:)")
-	openAPIRegexPath       = regexp.MustCompile("(\\s*\"paths\":)|(\\s*paths:)")
-	armRegexContentVersion = regexp.MustCompile("\\s*\"contentVersion\":")
-	armRegexResources      = regexp.MustCompile("\\s*\"resources\":")
-	cloudRegex             = regexp.MustCompile("(\\s*\"Resources\":)|(\\s*Resources:)")
-	k8sRegex               = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
-	k8sRegexKind           = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
-	k8sRegexMetadata       = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
-	ansibleVaultRegex      = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
-	tfPlanRegexPV          = regexp.MustCompile("\\s*\"planned_values\":")
-	tfPlanRegexRC          = regexp.MustCompile("\\s*\"resource_changes\":")
-	tfPlanRegexConf        = regexp.MustCompile("\\s*\"configuration\":")
-	tfPlanRegexTV          = regexp.MustCompile("\\s*\"terraform_version\":")
+	openAPIRegex              = regexp.MustCompile("(\\s*\"openapi\":)|(\\s*openapi:)|(\\s*\"swagger\":)|(\\s*swagger:)")
+	openAPIRegexInfo          = regexp.MustCompile("(\\s*\"info\":)|(\\s*info:)")
+	openAPIRegexPath          = regexp.MustCompile("(\\s*\"paths\":)|(\\s*paths:)")
+	armRegexContentVersion    = regexp.MustCompile("\\s*\"contentVersion\":")
+	armRegexResources         = regexp.MustCompile("\\s*\"resources\":")
+	cloudRegex                = regexp.MustCompile("(\\s*\"Resources\":)|(\\s*Resources:)")
+	k8sRegex                  = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
+	k8sRegexKind              = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
+	k8sRegexMetadata          = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
+	ansibleVaultRegex         = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
+	tfPlanRegexPV             = regexp.MustCompile("\\s*\"planned_values\":")
+	tfPlanRegexRC             = regexp.MustCompile("\\s*\"resource_changes\":")
+	tfPlanRegexConf           = regexp.MustCompile("\\s*\"configuration\":")
+	tfPlanRegexTV             = regexp.MustCompile("\\s*\"terraform_version\":")
+	blueprintsRegexKind       = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
+	blueprintsRegexProperties = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
 )
 
 const (
 	yml  = ".yml"
 	yaml = ".yaml"
+	json = ".json"
+	arm  = "azureresourcemanager"
 )
 
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
@@ -111,7 +115,7 @@ func worker(path string, results, unwanted chan<- string, wg *sync.WaitGroup) {
 	case ".tf", "tfvars":
 		results <- "terraform"
 	// Cloud Formation, Ansible, OpenAPI
-	case yaml, yml, ".json":
+	case yaml, yml, json:
 		checkContent(path, results, unwanted, ext)
 	}
 }
@@ -156,6 +160,20 @@ var types = map[string]regexSlice{
 			tfPlanRegexTV,
 		},
 	},
+	"blueprintsartifacts": {
+		[]*regexp.Regexp{
+			blueprintsRegexKind,
+			blueprintsRegexProperties,
+		},
+	},
+}
+
+// overrides k8s match when all regexs passes for azureresourcemanager key and extension is set to json
+func needsOverride(check bool, returnType, key, ext string) bool {
+	if check && returnType == "kubernetes" && key == "azureresourcemanager" && ext == json {
+		return true
+	}
+	return false
 }
 
 // checkContent will determine the file type by content when worker was unable to
@@ -189,10 +207,15 @@ func checkContent(path string, results, unwanted chan<- string, ext string) {
 		// If all regexs passed and there wasn't a type already assigned
 		if check && returnType == "" {
 			returnType = key
+		} else if needsOverride(check, returnType, key, ext) {
+			returnType = key
 		}
 	}
 
 	if returnType != "" {
+		if returnType == "blueprints" {
+			returnType = arm
+		}
 		// write to channel type of file
 		results <- returnType
 	} else if ext == yaml || ext == yml {

@@ -2,7 +2,13 @@
   {
     "queryName": "Name Is Not Snake Case",
     "severity": "INFO",
-    "line": 19,
+    "line": 7,
     "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Name Is Not Snake Case",
+    "severity": "INFO",
+    "line": 14,
+    "filename": "positive2.tf"
   }
 ]
