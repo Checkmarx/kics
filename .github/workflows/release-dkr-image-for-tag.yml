@@ -100,4 +100,3 @@ jobs:
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
-            RELEASE=${{ github.run_number }}
