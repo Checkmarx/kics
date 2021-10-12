@@ -10,6 +10,8 @@ jobs:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     if: "!github.event.release.prerelease"
+    env:
+      DOCKER_CLI_EXPERIMENTAL: "enabled"
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2.3.4
@@ -33,6 +35,11 @@ jobs:
               value: https://github.com/Checkmarx/kics/actions/runs/${{ github.run_id }}
             - name: View HEAD Commit
               value: https://github.com/Checkmarx/kics/commit/${{ github.sha }}
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+        with:
+          image: tonistiigi/binfmt:latest
+          platforms: linux/amd64,linux/arm64
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub
@@ -46,7 +53,8 @@ jobs:
         with:
           context: .
           push: true
-          tags: checkmarx/kics:latest,checkmarx/kics:${{ steps.get-version.outputs.version }},checkmarx/kics:latest-alpine,checkmarx/kics:${{ steps.get-version.outputs.version }}-alpine
+          platforms: linux/amd64,linux/arm64
+          tags: checkmarx/kics:latest,checkmarx/kics:${{ steps.get-version.outputs.version }},checkmarx/kics:alpine,checkmarx/kics:${{ steps.get-version.outputs.version }}-alpine
           build-args: |
             VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
@@ -59,13 +67,18 @@ jobs:
           context: .
           file: ./Dockerfile.debian
           push: true
-          tags: checkmarx/kics:latest-debian,checkmarx/kics:${{ steps.get-version.outputs.version }}-debian
+          platforms: linux/amd64,linux/arm64
+          tags: checkmarx/kics:debian,checkmarx/kics:${{ steps.get-version.outputs.version }}-debian
           build-args: |
             VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
-      # TODO: investigate why this is not working
+      # TODO: dockerhub api does not support PAT yet
+      # https://github.com/docker/roadmap/issues/115#issuecomment-891694974
+      # https://github.com/docker/roadmap/issues/115
+      # https://github.com/docker/hub-feedback/issues/2127
+      #
       #- name: Update repo description
       #  uses: peter-evans/dockerhub-description@v2
       #  with:
