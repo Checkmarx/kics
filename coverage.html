@@ -91,7 +91,7 @@
 				
 				<option value="file17">github.com/Checkmarx/kics/internal/tracker/ci.go (84.6%)</option>
 				
-				<option value="file18">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (91.5%)</option>
+				<option value="file18">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (90.4%)</option>
 				
 				<option value="file19">github.com/Checkmarx/kics/pkg/builder/engine/engine.go (71.8%)</option>
 				
@@ -1616,8 +1616,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="361">{
-                if val == true </span><span class="cov9" title="360">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="351">{
+                if val == true </span><span class="cov9" title="350">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2554,7 +2554,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="16">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2752,22 +2752,25 @@ import (
 // k8sRegexMetadata - Regex that finds Kubernetes defining property "metadata"
 // k8sRegexSpec - Regex that finds Kubernetes defining property "spec"
 var (
-        openAPIRegex           = regexp.MustCompile("(\\s*\"openapi\":)|(\\s*openapi:)|(\\s*\"swagger\":)|(\\s*swagger:)")
-        openAPIRegexInfo       = regexp.MustCompile("(\\s*\"info\":)|(\\s*info:)")
-        openAPIRegexPath       = regexp.MustCompile("(\\s*\"paths\":)|(\\s*paths:)")
-        armRegexContentVersion = regexp.MustCompile("\\s*\"contentVersion\":")
-        armRegexResources      = regexp.MustCompile("\\s*\"resources\":")
-        cloudRegex             = regexp.MustCompile("(\\s*\"Resources\":)|(\\s*Resources:)")
-        k8sRegex               = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
-        k8sRegexKind           = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
-        k8sRegexMetadata       = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
-        ansibleVaultRegex      = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
+        openAPIRegex              = regexp.MustCompile("(\\s*\"openapi\":)|(\\s*openapi:)|(\\s*\"swagger\":)|(\\s*swagger:)")
+        openAPIRegexInfo          = regexp.MustCompile("(\\s*\"info\":)|(\\s*info:)")
+        openAPIRegexPath          = regexp.MustCompile("(\\s*\"paths\":)|(\\s*paths:)")
+        armRegexContentVersion    = regexp.MustCompile("\\s*\"contentVersion\":")
+        armRegexResources         = regexp.MustCompile("\\s*\"resources\":")
+        cloudRegex                = regexp.MustCompile("(\\s*\"Resources\":)|(\\s*Resources:)")
+        k8sRegex                  = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
+        k8sRegexKind              = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
+        k8sRegexMetadata          = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
+        ansibleVaultRegex         = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
+        blueprintsRegexKind       = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
+        blueprintsRegexProperties = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
 )
 
 const (
         yml  = ".yml"
         yaml = ".yaml"
         json = ".json"
+        arm  = "azureresourcemanager"
 )
 
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
@@ -2782,15 +2785,15 @@ func Analyze(paths []string) (typesRes, excludeRes []string, errRes error) <span
         results := make(chan string)
 
         // get all the files inside the given paths
-        for _, path := range paths </span><span class="cov5" title="7">{
+        for _, path := range paths </span><span class="cov4" title="7">{
                 if _, err := os.Stat(path); err != nil </span><span class="cov1" title="1">{
                         return []string{}, []string{}, errors.Wrap(err, "failed to analyze path")
                 }</span>
-                <span class="cov4" title="6">if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov8" title="30">{
+                <span class="cov4" title="6">if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov7" title="30">{
                         if !info.IsDir() </span><span class="cov7" title="23">{
                                 files = append(files, path)
                         }</span>
-                        <span class="cov8" title="30">return nil</span>
+                        <span class="cov7" title="30">return nil</span>
                 }); err != nil <span class="cov0" title="0">{
                         log.Error().Msgf("failed to analize path %s: %s", path, err)
                 }</span>
@@ -2876,14 +2879,20 @@ var types = map[string]regexSlice{
                         armRegexResources,
                 },
         },
+        "blueprintsartifacts": {
+                []*regexp.Regexp{
+                        blueprintsRegexKind,
+                        blueprintsRegexProperties,
+                },
+        },
 }
 
 // overrides k8s match when all regexs passes for azureresourcemanager key and extension is set to json
-func needsOverride(check bool, returnType, key, ext string) bool <span class="cov9" title="44">{
-        if check &amp;&amp; returnType == "kubernetes" &amp;&amp; key == "azureresourcemanager" &amp;&amp; ext == ".json" </span><span class="cov0" title="0">{
+func needsOverride(check bool, returnType, key, ext string) bool <span class="cov9" title="57">{
+        if check &amp;&amp; returnType == "kubernetes" &amp;&amp; key == "azureresourcemanager" &amp;&amp; ext == json </span><span class="cov0" title="0">{
                 return true
         }</span>
-        <span class="cov9" title="44">return false</span>
+        <span class="cov9" title="57">return false</span>
 }
 
 // checkContent will determine the file type by content when worker was unable to
@@ -2900,32 +2909,35 @@ func checkContent(path string, results, unwanted chan&lt;- string, ext string) <
 
         // Sort map so that CloudFormation (type that as less requireds) goes last
         keys := make([]string, 0, len(types))
-        for k := range types </span><span class="cov9" title="52">{
+        for k := range types </span><span class="cov9" title="65">{
                 keys = append(keys, k)
         }</span>
 
         <span class="cov6" title="13">sort.Sort(sort.Reverse(sort.StringSlice(keys)))
 
-        for _, key := range keys </span><span class="cov9" title="52">{
+        for _, key := range keys </span><span class="cov9" title="65">{
                 check := true
-                for _, typeRegex := range types[key].regex </span><span class="cov10" title="67">{
-                        if res := typeRegex.Match(content); !res </span><span class="cov9" title="42">{
+                for _, typeRegex := range types[key].regex </span><span class="cov10" title="85">{
+                        if res := typeRegex.Match(content); !res </span><span class="cov9" title="55">{
                                 check = false
                                 break</span>
                         }
                 }
                 // If all regexs passed and there wasn't a type already assigned
-                <span class="cov9" title="52">if check &amp;&amp; returnType == "" </span><span class="cov5" title="8">{
+                <span class="cov9" title="65">if check &amp;&amp; returnType == "" </span><span class="cov5" title="8">{
                         returnType = key
-                }</span> else<span class="cov9" title="44"> if needsOverride(check, returnType, key, ext) </span><span class="cov0" title="0">{
+                }</span> else<span class="cov9" title="57"> if needsOverride(check, returnType, key, ext) </span><span class="cov0" title="0">{
                         returnType = key
                 }</span>
         }
 
         <span class="cov6" title="13">if returnType != "" </span><span class="cov5" title="8">{
+                if returnType == "blueprints" </span><span class="cov0" title="0">{
+                        returnType = arm
+                }</span>
                 // write to channel type of file
-                results &lt;- returnType
-        }</span> else<span class="cov4" title="5"> if ext == yaml || ext == yml </span><span class="cov3" title="4">{
+                <span class="cov5" title="8">results &lt;- returnType</span>
+        } else<span class="cov4" title="5"> if ext == yaml || ext == yml </span><span class="cov3" title="4">{
                 // check if it is an ansible vault
                 if res := ansibleVaultRegex.Match(content); res </span><span class="cov0" title="0">{
                         unwanted &lt;- path
@@ -2943,7 +2955,7 @@ func checkContent(path string, results, unwanted chan&lt;- string, ext string) <
 // createSlice creates a slice from the channel given removing any duplicates
 func createSlice(chanel chan string) []string <span class="cov5" title="10">{
         slice := make([]string, 0)
-        for i := range chanel </span><span class="cov7" title="17">{
+        for i := range chanel </span><span class="cov6" title="17">{
                 if !contains(slice, i) </span><span class="cov6" title="13">{
                         slice = append(slice, i)
                 }</span>
@@ -2953,8 +2965,8 @@ func createSlice(chanel chan string) []string <span class="cov5" title="10">{
 
 // contains is a simple method to check if a slice
 // contains an entry
-func contains(s []string, e string) bool <span class="cov7" title="17">{
-        for _, a := range s </span><span class="cov8" title="38">{
+func contains(s []string, e string) bool <span class="cov6" title="17">{
+        for _, a := range s </span><span class="cov8" title="39">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -4474,7 +4486,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -4655,7 +4667,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
