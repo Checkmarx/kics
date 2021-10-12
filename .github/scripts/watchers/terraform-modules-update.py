@@ -129,7 +129,7 @@ if len(changes['Updated']) == 0 and len(changes['Added']) == 0:
   sys.exit()
 
 email_body = ''
-with open(os.path.join(os.path.dirname(sys.argv[0]), 'modules_email_template.txt')) as template:
+with open(os.path.join(os.path.dirname(sys.argv[0]), 'modules_email_template.tmpl')) as template:
     template_string = template.read()
     env = Environment(trim_blocks=True, lstrip_blocks=True)
     template_jinja = env.from_string(template_string)
