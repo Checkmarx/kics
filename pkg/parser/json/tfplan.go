@@ -39,19 +39,19 @@ func parseTFPlan(doc model.Document) (model.Document, error) {
 }
 
 // readPlan will get the information needed and parse it in a way KICS understands it
-func readPlan(p *hcl_plan.Plan) model.Document {
-	modRes := readModule(p.PlannedValues.RootModule.Resources)
+func readPlan(plan *hcl_plan.Plan) model.Document {
+	modRes := readModule(plan.PlannedValues.RootModule.Resources)
 
 	doc := model.Document{}
 
 	kp := KicsPlan{
 		Resource: modRes,
 	}
-	b, err := json.Marshal(kp)
+	tmpDocBytes, err := json.Marshal(kp)
 	if err != nil {
 		return model.Document{}
 	}
-	err = json.Unmarshal(b, &doc)
+	err = json.Unmarshal(tmpDocBytes, &doc)
 	if err != nil {
 		return model.Document{}
 	}
@@ -60,15 +60,15 @@ func readPlan(p *hcl_plan.Plan) model.Document {
 }
 
 // readModule will iterate over all planned_value getting the information required
-func readModule(r []*hcl_plan.StateResource) map[string]KicsPlanResource {
+func readModule(resources []*hcl_plan.StateResource) map[string]KicsPlanResource {
 	convRes := make(map[string]KicsPlanResource)
 	// initialize all the types interfaces
-	for _, resource := range r {
+	for _, resource := range resources {
 		convNamedRes := make(map[string]KicsPlanNamedResource)
 		convRes[resource.Type] = convNamedRes
 	}
 	// fill in all the types interfaces
-	for _, resource := range r {
+	for _, resource := range resources {
 		convRes[resource.Type][resource.Name] = resource.AttributeValues
 	}
 	return convRes
