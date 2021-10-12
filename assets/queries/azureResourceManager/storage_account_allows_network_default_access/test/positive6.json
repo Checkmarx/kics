@@ -1,0 +1,36 @@
+{
+  "properties": {
+    "template": {
+      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "resources": [
+        {
+          "name": "storageaccount1Positive3",
+          "type": "Microsoft.Storage/storageAccounts",
+          "apiVersion": "2016-12-01",
+          "tags": {
+            "displayName": "storageaccount1"
+          },
+          "location": "[resourceGroup().location]",
+          "kind": "Storage",
+          "sku": {
+            "name": "Premium_LRS",
+            "tier": "Premium"
+          },
+          "properties": {}
+        }
+      ],
+      "outputs": {}
+  },
+    "resourceGroup": "storageRG",
+    "parameters": {
+      "storageAccountType": {
+        "value": "[parameters('storageAccountType')]"
+      }
+    }
+  },
+  "kind": "template",
+  "id": "/providers/Microsoft.Management/managementGroups/ContosoOnlineGroup/providers/Microsoft.Blueprint/blueprints/simpleBlueprint/artifacts/storageTemplate",
+  "type": "Microsoft.Blueprint/blueprints/artifacts",
+  "name": "storageTemplate"
+}
