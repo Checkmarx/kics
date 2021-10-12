@@ -53,7 +53,7 @@ KICS supports scanning Terraform's HCL files with `.tf` extension and input vari
 
 ### Terraform Plan
 
-KICS supports scanning terraform plans given in JSON. The `planned_values` will be extracted, built in a way KICS can understand, and scanned as a normal terraform file.
+KICS supports scanning terraform plans given in JSON. The `planned_values` will be extracted, built in a way that KICS can understand, and scanned as a normal terraform file.
 
 Results will point to the plan file.
 
