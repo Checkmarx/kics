@@ -1,10 +1,11 @@
 package Cx
 
-import data.generic.terraform as terraform_lib
 import data.generic.common as common_lib
+import data.generic.terraform as terraform_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource[res][name]
+	check_default_tags == false
 	terraform_lib.check_resource_tags(res)
 	not common_lib.valid_key(resource, "tags")
 
@@ -19,6 +20,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource[res][name]
+	check_default_tags == false
 	terraform_lib.check_resource_tags(res)
 	tags := remove_name_tag(resource.tags)
 	count(tags) == 0
@@ -37,4 +39,11 @@ remove_name_tag(tags) = res_tags {
 	res_tags := tags
 } else = res_tags {
 	res_tags := object.remove(tags, {"Name"})
+}
+
+check_default_tags {
+	def_tags := input.document[_].provider[_].default_tags.tags
+	def_tags != {}
+} else = false {
+	true
 }
