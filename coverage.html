@@ -1616,8 +1616,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="365">{
-                if val == true </span><span class="cov9" title="364">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="379">{
+                if val == true </span><span class="cov9" title="378">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -5613,17 +5613,17 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="22611">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="22617">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="22611">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="22382">{
+                <span class="cov9" title="22617">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="22382">{
                         return skipFolder
                 }</span>
 
                 // ------------------ Helm resolver --------------------------------
-                <span class="cov5" title="229">if info.IsDir() </span><span class="cov1" title="1">{
+                <span class="cov5" title="235">if info.IsDir() </span><span class="cov1" title="1">{
                         excluded, errRes := resolverSink(ctx, strings.ReplaceAll(path, "\\", "/"))
                         if errRes != nil </span><span class="cov0" title="0">{
                                 sentry.CaptureException(errRes)
@@ -5639,19 +5639,19 @@ func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string,
                 }
                 // -----------------------------------------------------------------
 
-                <span class="cov5" title="228">c, err := os.Open(filepath.Clean(path))
+                <span class="cov5" title="234">c, err := os.Open(filepath.Clean(path))
                 if err != nil </span><span class="cov0" title="0">{
                         return errors.Wrap(err, "failed to open file")
                 }</span>
-                <span class="cov5" title="228">defer closeFile(c, info)
+                <span class="cov5" title="234">defer closeFile(c, info)
 
                 err = sink(ctx, strings.ReplaceAll(path, "\\", "/"), c)
-                if err != nil </span><span class="cov5" title="114">{
+                if err != nil </span><span class="cov5" title="117">{
                         sentry.CaptureException(err)
                         log.Err(err).
                                 Msgf("Filesystem files provider couldn't parse file, file=%s", info.Name())
                 }</span>
-                <span class="cov5" title="228">return nil</span>
+                <span class="cov5" title="234">return nil</span>
         })
 }
 
@@ -5667,7 +5667,7 @@ func openScanFile(scanPath string, extensions model.Extensions) (*os.File, error
         <span class="cov1" title="1">return c, nil</span>
 }
 
-func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="228">{
+func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="234">{
         if err := file.Close(); err != nil </span><span class="cov0" title="0">{
                 sentry.CaptureException(err)
                 log.Err(err).
@@ -5676,7 +5676,7 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="228">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="22614">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="22620">{
         if info.IsDir() </span><span class="cov8" title="5078">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
@@ -5689,14 +5689,14 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="17536">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="17542">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="17536">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="17308">{
+        <span class="cov9" title="17542">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="17308">{
                 return true, nil
         }</span>
-        <span class="cov5" title="228">return false, nil</span>
+        <span class="cov5" title="234">return false, nil</span>
 }
 
 func containsFile(fileList []os.FileInfo, target os.FileInfo) bool <span class="cov1" title="1">{
