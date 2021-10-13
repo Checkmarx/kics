@@ -14,7 +14,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/platforms/">
       
       <link rel="icon" href="../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.3">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.3">
     
     
       
@@ -1251,6 +1251,12 @@ Platform: Kubernetes
 <p>KICS supports scanning OpenAPI 3.0 specs with <code>.json</code> and <code>.yaml</code> extension.</p>
 <h2 id="terraform">Terraform<a class="headerlink" href="#terraform" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning Terraform's HCL files with <code>.tf</code> extension and input variables using <code>terraform.tfvars</code> or files with <code>.auto.tfvars</code> extension that are in same directory of <code>.tf</code> files.</p>
+<h3 id="terraform_plan">Terraform Plan<a class="headerlink" href="#terraform_plan" title="Permanent link">&para;</a></h3>
+<p>KICS supports scanning terraform plans given in JSON. The <code>planned_values</code> will be extracted, built in a way that KICS can understand, and scanned as a normal terraform file.</p>
+<p>Results will point to the plan file.</p>
+<p>To get terraform plan in JSON format simply run the command:</p>
+<pre><code>terraform show -json plan-sample.tfplan &gt; plan-sample.tfplan.json
+</code></pre>
 <h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
 <p>Although KICS support variables and interpolations, KICS does not support functions and enviroment variables. In case of variables used as function parameters, it will parse as wrapped expression, so the following function call:</p>
 <pre><code class="language-hcl">resource &quot;aws_launch_configuration&quot; &quot;example&quot; {
