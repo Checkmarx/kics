@@ -52,6 +52,7 @@ func TestCreateSummary(t *testing.T) {
 					SeverityHigh:   0,
 				},
 			},
+			Bom:          []QueryResult{},
 			Queries:      []QueryResult{},
 			ScannedPaths: []string{},
 		})
@@ -72,6 +73,7 @@ func TestCreateSummary(t *testing.T) {
 				},
 				TotalCounter: 1,
 			},
+			Bom: []QueryResult{},
 			Queries: []QueryResult{
 				{
 					QueryName: "query_name",
