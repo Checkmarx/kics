@@ -36,8 +36,7 @@ var printTests = []struct {
 			"MEDIUM: 1\n" +
 			"LOW: 0\n" +
 			"INFO: 0\n" +
-			"TOTAL: 3\n\n" +
-			"BoM Resources: 0\n",
+			"TOTAL: 3\n\n",
 		expectedResultFull: "Files scanned: 2\n" +
 			"Parsed files: 2\n" +
 			"Queries loaded: 2\n" +
@@ -55,8 +54,7 @@ var printTests = []struct {
 			"MEDIUM: 1\n" +
 			"LOW: 0\n" +
 			"INFO: 0\n" +
-			"TOTAL: 3\n\n" +
-			"BoM Resources: 0\n",
+			"TOTAL: 3\n\n",
 	},
 }
 
