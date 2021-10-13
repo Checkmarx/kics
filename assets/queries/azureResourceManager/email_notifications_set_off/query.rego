@@ -34,7 +34,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("resource with type 'Microsoft.Security/securityContacts' has '%s.state' property set to 'On'", [emailType[x]]),
 		"keyActualValue": sprintf("resource with type 'Microsoft.Security/securityContacts' doesn't have '%s.state' property defined", [emailType[x]]),
-		"searchLine": common_lib.build_search_line([common_lib.concat_path(path), value.name, "properties", emailType[x]], []),
+		"searchLine": common_lib.build_search_line(path, ["properties", emailType[x]]),
 	}
 }
 
