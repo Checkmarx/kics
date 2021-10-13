@@ -1,0 +1,11 @@
+{
+  "id": "fcb1b388-f558-4b7f-9b6e-f4e98abb7380",
+  "queryName": "BOM - MQ",
+  "severity": "TRACE",
+  "category": "Bill Of Materials",
+  "descriptionText": "A list of MQ resources specified",
+  "descriptionUrl": "https://kics.io",
+  "platform": "Terraform",
+  "descriptionID": "5f5ba9bc",
+  "cloudProvider": "aws"
+}

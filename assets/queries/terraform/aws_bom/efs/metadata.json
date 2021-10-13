@@ -1,0 +1,11 @@
+{
+  "id": "f53f16d6-46a9-4277-9fbe-617b1e24cdca",
+  "queryName": "BOM - EFS",
+  "severity": "TRACE",
+  "category": "Bill Of Materials",
+  "descriptionText": "A list of EFS resources specified",
+  "descriptionUrl": "https://kics.io",
+  "platform": "Terraform",
+  "descriptionID": "5522243f",
+  "cloudProvider": "aws"
+}
