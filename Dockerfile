@@ -40,7 +40,8 @@ RUN apk add --no-cache \
 
 # Copy built binary to the runtime container
 COPY --from=build_env /app/bin/kics /app/bin/kics
-COPY --from=build_env /app/assets/ /app/bin/assets/
+COPY --from=build_env /app/assets/queries /app/bin/assets/queries
+COPY --from=build_env /app/assets/libraries/* /app/bin/assets/libraries/
 
 WORKDIR /app/bin
 

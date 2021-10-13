@@ -18,3 +18,5 @@ sonar-project.properties
 *.zip
 Dockerfile
 Dockerfile.*
+assets/queries/**/test
+assets/template
