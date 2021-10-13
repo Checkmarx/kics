@@ -14,6 +14,8 @@ ARG VERSION="development"
 ARG COMMIT="NOCOMMIT"
 ARG SENTRY_DSN=""
 ARG DESCRIPTIONS_URL=""
+ARG RELEASE=""
+
 ARG TARGETOS
 ARG TARGETARCH
 
@@ -35,13 +37,16 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
 
 FROM registry.access.redhat.com/ubi7:latest
 
+ENV RELEASE=$RELEASE \
+  VERSION=$VERSION
+
 LABEL name="KICS" \
   summary="Provides the latest release of the KICS (Keeping Infrastructure as Code Secure) scanner" \
   description="Checkmarx/kics is an opensource project that enable you to find security vulnerabilities, compliance issues, and infrastructure misconfigurations early in the development cycle of your infrastructure-as-code find more in https://kics.io" \
   maintainer="kics@checkmarx.com" \
   vendor="Checkmarx" \
-  version="v1.4.4" \
-  release="1" \
+  version=$VERSION \
+  release=$RELEASE \
   io.k8s.display-name="KICS by Checkmarx" \
   io.openshift.tags="kics checkmarx"
 
