@@ -1616,8 +1616,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="358">{
-                if val == true </span><span class="cov9" title="357">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="361">{
+                if val == true </span><span class="cov9" title="360">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2523,13 +2523,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="33">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2554,7 +2554,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -5613,17 +5613,17 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="22635">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="22637">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="22635">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="22400">{
+                <span class="cov9" title="22637">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="22400">{
                         return skipFolder
                 }</span>
 
                 // ------------------ Helm resolver --------------------------------
-                <span class="cov5" title="235">if info.IsDir() </span><span class="cov1" title="1">{
+                <span class="cov5" title="237">if info.IsDir() </span><span class="cov1" title="1">{
                         excluded, errRes := resolverSink(ctx, strings.ReplaceAll(path, "\\", "/"))
                         if errRes != nil </span><span class="cov0" title="0">{
                                 sentry.CaptureException(errRes)
@@ -5639,19 +5639,19 @@ func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string,
                 }
                 // -----------------------------------------------------------------
 
-                <span class="cov5" title="234">c, err := os.Open(filepath.Clean(path))
+                <span class="cov5" title="236">c, err := os.Open(filepath.Clean(path))
                 if err != nil </span><span class="cov0" title="0">{
                         return errors.Wrap(err, "failed to open file")
                 }</span>
-                <span class="cov5" title="234">defer closeFile(c, info)
+                <span class="cov5" title="236">defer closeFile(c, info)
 
                 err = sink(ctx, strings.ReplaceAll(path, "\\", "/"), c)
-                if err != nil </span><span class="cov5" title="117">{
+                if err != nil </span><span class="cov5" title="118">{
                         sentry.CaptureException(err)
                         log.Err(err).
                                 Msgf("Filesystem files provider couldn't parse file, file=%s", info.Name())
                 }</span>
-                <span class="cov5" title="234">return nil</span>
+                <span class="cov5" title="236">return nil</span>
         })
 }
 
@@ -5667,7 +5667,7 @@ func openScanFile(scanPath string, extensions model.Extensions) (*os.File, error
         <span class="cov1" title="1">return c, nil</span>
 }
 
-func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="234">{
+func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="236">{
         if err := file.Close(); err != nil </span><span class="cov0" title="0">{
                 sentry.CaptureException(err)
                 log.Err(err).
@@ -5676,7 +5676,7 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="234">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="22638">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="22640">{
         if info.IsDir() </span><span class="cov8" title="5082">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
@@ -5689,14 +5689,14 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="17556">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="17558">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="17556">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="17322">{
+        <span class="cov9" title="17558">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="17322">{
                 return true, nil
         }</span>
-        <span class="cov5" title="234">return false, nil</span>
+        <span class="cov5" title="236">return false, nil</span>
 }
 
 func containsFile(fileList []os.FileInfo, target os.FileInfo) bool <span class="cov1" title="1">{
@@ -11245,15 +11245,26 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
                 return c.objectConsExpr(value)</span>
         case *hclsyntax.FunctionCallExpr:<span class="cov4" title="6">
                 return c.evalFunction(expr)</span>
-        default:<span class="cov6" title="12">
-                // try to evaluate with variables
+        case *hclsyntax.ConditionalExpr:<span class="cov1" title="1">
+                expressionEvaluated, err := expr.Value(&amp;hcl.EvalContext{
+                        Variables: inputVarMap,
+                        Functions: functions.TerraformFuncs,
+                })
+                if err != nil </span><span class="cov1" title="1">{
+                        sentry.CaptureException(err)
+                        return c.wrapExpr(expr)
+                }</span>
+                <span class="cov0" title="0">return ctyjson.SimpleJSONValue{Value: expressionEvaluated}, nil</span>
+        default:<span class="cov6" title="11">
+                // try to evaluate with variables and functions
                 valueConverted, _ := expr.Value(&amp;hcl.EvalContext{
                         Variables: inputVarMap,
+                        Functions: functions.TerraformFuncs,
                 })
                 if !valueConverted.Type().HasDynamicTypes() &amp;&amp; valueConverted.IsKnown() </span><span class="cov4" title="6">{
                         return ctyjson.SimpleJSONValue{Value: valueConverted}, nil
                 }</span>
-                <span class="cov4" title="6">return c.wrapExpr(expr)</span>
+                <span class="cov4" title="5">return c.wrapExpr(expr)</span>
         }
 }
 
