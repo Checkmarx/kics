@@ -15,6 +15,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[{{%s}}].tags is defined and not null", [res, name]),
 		"keyActualValue": sprintf("%s[{{%s}}].tags is undefined or null", [res, name]),
+		"searchLine": common_lib.build_search_line(["resource", res, name], []),
 	}
 }
 
@@ -31,6 +32,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[{{%s}}].tags has tags defined other than 'Name'", [res, name]),
 		"keyActualValue": sprintf("%s[{{%s}}].tags has no tags defined", [res, name]),
+		"searchLine": common_lib.build_search_line(["resource", res, name, "tags"], []),
 	}
 }
 

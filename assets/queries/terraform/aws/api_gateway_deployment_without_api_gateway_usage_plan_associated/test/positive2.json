@@ -1,0 +1,247 @@
+{
+  "format_version": "0.2",
+  "terraform_version": "1.0.5",
+  "planned_values": {
+    "root_module": {
+      "resources": [
+        {
+          "address": "aws_api_gateway_deployment.positive1",
+          "mode": "managed",
+          "type": "aws_api_gateway_deployment",
+          "name": "positive1",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 0,
+          "values": {
+            "description": null,
+            "rest_api_id": "some rest api id",
+            "stage_description": null,
+            "stage_name": "some name",
+            "triggers": null,
+            "variables": null
+          },
+          "sensitive_values": {}
+        },
+        {
+          "address": "aws_api_gateway_deployment.positive2",
+          "mode": "managed",
+          "type": "aws_api_gateway_deployment",
+          "name": "positive2",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 0,
+          "values": {
+            "description": null,
+            "rest_api_id": "some rest api id",
+            "stage_description": null,
+            "stage_name": "development",
+            "triggers": null,
+            "variables": null
+          },
+          "sensitive_values": {}
+        },
+        {
+          "address": "aws_api_gateway_usage_plan.positive3",
+          "mode": "managed",
+          "type": "aws_api_gateway_usage_plan",
+          "name": "positive3",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 0,
+          "values": {
+            "api_stages": [
+              {
+                "api_id": "another id",
+                "stage": "development"
+              }
+            ],
+            "description": "my description",
+            "name": "my-usage-plan",
+            "product_code": "MYCODE",
+            "quota_settings": [],
+            "tags": null,
+            "throttle_settings": []
+          },
+          "sensitive_values": {
+            "api_stages": [
+              {}
+            ],
+            "quota_settings": [],
+            "tags_all": {},
+            "throttle_settings": []
+          }
+        }
+      ]
+    }
+  },
+  "resource_changes": [
+    {
+      "address": "aws_api_gateway_deployment.positive1",
+      "mode": "managed",
+      "type": "aws_api_gateway_deployment",
+      "name": "positive1",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "description": null,
+          "rest_api_id": "some rest api id",
+          "stage_description": null,
+          "stage_name": "some name",
+          "triggers": null,
+          "variables": null
+        },
+        "after_unknown": {
+          "created_date": true,
+          "execution_arn": true,
+          "id": true,
+          "invoke_url": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "aws_api_gateway_deployment.positive2",
+      "mode": "managed",
+      "type": "aws_api_gateway_deployment",
+      "name": "positive2",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "description": null,
+          "rest_api_id": "some rest api id",
+          "stage_description": null,
+          "stage_name": "development",
+          "triggers": null,
+          "variables": null
+        },
+        "after_unknown": {
+          "created_date": true,
+          "execution_arn": true,
+          "id": true,
+          "invoke_url": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "aws_api_gateway_usage_plan.positive3",
+      "mode": "managed",
+      "type": "aws_api_gateway_usage_plan",
+      "name": "positive3",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "api_stages": [
+            {
+              "api_id": "another id",
+              "stage": "development"
+            }
+          ],
+          "description": "my description",
+          "name": "my-usage-plan",
+          "product_code": "MYCODE",
+          "quota_settings": [],
+          "tags": null,
+          "throttle_settings": []
+        },
+        "after_unknown": {
+          "api_stages": [
+            {}
+          ],
+          "arn": true,
+          "id": true,
+          "quota_settings": [],
+          "tags_all": true,
+          "throttle_settings": []
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "api_stages": [
+            {}
+          ],
+          "quota_settings": [],
+          "tags_all": {},
+          "throttle_settings": []
+        }
+      }
+    }
+  ],
+  "configuration": {
+    "root_module": {
+      "resources": [
+        {
+          "address": "aws_api_gateway_deployment.positive1",
+          "mode": "managed",
+          "type": "aws_api_gateway_deployment",
+          "name": "positive1",
+          "provider_config_key": "aws",
+          "expressions": {
+            "rest_api_id": {
+              "constant_value": "some rest api id"
+            },
+            "stage_name": {
+              "constant_value": "some name"
+            }
+          },
+          "schema_version": 0
+        },
+        {
+          "address": "aws_api_gateway_deployment.positive2",
+          "mode": "managed",
+          "type": "aws_api_gateway_deployment",
+          "name": "positive2",
+          "provider_config_key": "aws",
+          "expressions": {
+            "rest_api_id": {
+              "constant_value": "some rest api id"
+            },
+            "stage_name": {
+              "constant_value": "development"
+            }
+          },
+          "schema_version": 0
+        },
+        {
+          "address": "aws_api_gateway_usage_plan.positive3",
+          "mode": "managed",
+          "type": "aws_api_gateway_usage_plan",
+          "name": "positive3",
+          "provider_config_key": "aws",
+          "expressions": {
+            "api_stages": [
+              {
+                "api_id": {
+                  "constant_value": "another id"
+                },
+                "stage": {
+                  "constant_value": "development"
+                }
+              }
+            ],
+            "description": {
+              "constant_value": "my description"
+            },
+            "name": {
+              "constant_value": "my-usage-plan"
+            },
+            "product_code": {
+              "constant_value": "MYCODE"
+            }
+          },
+          "schema_version": 0
+        }
+      ]
+    }
+  }
+}
