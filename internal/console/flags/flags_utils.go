@@ -29,6 +29,7 @@ func ValidateQuerySelectionFlags() error {
 	return nil
 }
 
+// BindFlags fill flags values with config file or environment variables data
 func BindFlags(cmd *cobra.Command, v *viper.Viper) error {
 	log.Debug().Msg("console.bindFlags()")
 	settingsMap := v.AllSettings()
