@@ -25,6 +25,7 @@ import (
 
 var (
 	queriesPaths = map[string]model.QueryConfig{
+		"../assets/queries/terraform/aws_bom":    {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/aws":        {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/azure":      {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/gcp":        {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
@@ -47,6 +48,7 @@ var (
 		"MissingAttribute":   "",
 		"IncorrectValue":     "",
 		"RedundantAttribute": "",
+		"BillOfMaterials":    "",
 	}
 )
 

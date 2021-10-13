@@ -21,14 +21,14 @@ func TestNewSarifReport(t *testing.T) {
 
 type sarifTest struct {
 	name string
-	vq   []model.VulnerableQuery
+	vq   []model.QueryResult
 	want sarifReport
 }
 
 var sarifTests = []sarifTest{
 	{
 		name: "Should not create any rule",
-		vq: []model.VulnerableQuery{
+		vq: []model.QueryResult{
 			{
 				QueryName:   "test",
 				QueryID:     "1",
@@ -44,7 +44,7 @@ var sarifTests = []sarifTest{
 	},
 	{
 		name: "Should create one occurrence",
-		vq: []model.VulnerableQuery{
+		vq: []model.QueryResult{
 			{
 				QueryName:   "test",
 				QueryID:     "1",
@@ -106,7 +106,7 @@ var sarifTests = []sarifTest{
 	},
 	{
 		name: "Should create multiple occurrence",
-		vq: []model.VulnerableQuery{
+		vq: []model.QueryResult{
 			{
 				QueryName:   "test",
 				QueryID:     "1",

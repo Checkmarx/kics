@@ -65,7 +65,7 @@ func createQueryEntryMetadataField(m pdf.Maroto, label, value string, textSize i
 	})
 }
 
-func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery) error {
+func createQueriesTable(m pdf.Maroto, queries []model.QueryResult) error {
 	for i := range queries {
 		m.SetBackgroundColor(color.NewWhite())
 		queryName := queries[i].QueryName
@@ -152,7 +152,7 @@ func createDescription(m pdf.Maroto, description string) {
 	})
 }
 
-func createCISRows(m pdf.Maroto, query *model.VulnerableQuery) {
+func createCISRows(m pdf.Maroto, query *model.QueryResult) {
 	cisID := query.CISDescriptionIDFormatted
 	description := query.CISDescriptionTextFormatted
 	title := query.CISDescriptionTitle
@@ -200,7 +200,7 @@ func getRowLength(value string) float64 {
 	return float64(result)
 }
 
-func createResultsTable(m pdf.Maroto, query *model.VulnerableQuery) {
+func createResultsTable(m pdf.Maroto, query *model.QueryResult) {
 	for idx := range query.Files {
 		if idx%2 == 0 {
 			m.SetBackgroundColor(grayColor)

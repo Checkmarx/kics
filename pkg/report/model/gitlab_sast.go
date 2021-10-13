@@ -78,7 +78,7 @@ type gitlabSASTVulnerabilityIdentifier struct {
 
 // GitlabSASTReport represents a usable gitlab sast report reference
 type GitlabSASTReport interface {
-	BuildGitlabSASTVulnerability(issue *model.VulnerableQuery, file *model.VulnerableFile)
+	BuildGitlabSASTVulnerability(issue *model.QueryResult, file *model.VulnerableFile)
 }
 
 // NewGitlabSASTReport initializes a new instance of GitlabSASTReport to be uses
@@ -110,7 +110,7 @@ func initGitlabSASTScan(start, end time.Time) gitlabSASTScan {
 }
 
 // BuildGitlabSASTVulnerability adds a new vulnerability struct to vulnerability slice
-func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.VulnerableQuery, file *model.VulnerableFile) {
+func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.QueryResult, file *model.VulnerableFile) {
 	if len(issue.Files) > 0 {
 		vulnerability := gitlabSASTVulnerability{
 			ID:       file.SimilarityID,

@@ -136,7 +136,7 @@ type SarifRun struct {
 
 // SarifReport represents a usable sarif report reference
 type SarifReport interface {
-	BuildSarifIssue(issue *model.VulnerableQuery)
+	BuildSarifIssue(issue *model.QueryResult)
 }
 
 type sarifReport struct {
@@ -264,7 +264,7 @@ func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata, cisMetadata r
 }
 
 // BuildSarifIssue creates a new entries in Results (one for each file) and new entry in Rules and Taxonomy if necessary
-func (sr *sarifReport) BuildSarifIssue(issue *model.VulnerableQuery) {
+func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) {
 	if len(issue.Files) > 0 {
 		metadata := ruleMetadata{
 			queryID:          issue.QueryID,

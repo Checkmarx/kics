@@ -11,11 +11,13 @@
 		"HIGH": 0,
 		"INFO": 0,
 		"LOW": 0,
-		"MEDIUM": 3
+		"MEDIUM": 3,
+		"TRACE": 0
 	},
 	"total_counter": 3,
-	"start": "2021-09-28T12:07:37.9374314+01:00",
-	"end": "2021-09-28T12:07:40.1148004+01:00",
+	"total_bom_resources": 0,
+	"start": "2021-10-13T14:14:18.2779211+01:00",
+	"end": "2021-10-13T14:14:21.3798816+01:00",
 	"paths": [
 		"fixtures/samples/positive.yaml"
 	],
@@ -29,9 +31,6 @@
 			"category": "Networking and Firewall",
 			"description": "AWS Security Group Ingress should have a single port",
 			"description_id": "5f2b65f3",
-			"cis_description_id": "",
-			"cis_description_title": "",
-			"cis_description_text": "",
 			"files": [
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
@@ -42,8 +41,7 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort",
-					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is not equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort",
-					"value": null
+					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is not equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort"
 				},
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
@@ -54,8 +52,7 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is equal to Resources.EcsSecurityGroupALBports.Properties.ToPort",
-					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is not equal to Resources.EcsSecurityGroupALBports.Properties.ToPort",
-					"value": null
+					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is not equal to Resources.EcsSecurityGroupALBports.Properties.ToPort"
 				},
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
@@ -66,8 +63,7 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort",
-					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is not equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort",
-					"value": null
+					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is not equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort"
 				}
 			]
 		}

@@ -70,7 +70,7 @@ func closeFile(path, filename string, file *os.File) {
 	fileCreationReport(path, filename)
 }
 
-func getPlatforms(queries model.VulnerableQuerySlice) string {
+func getPlatforms(queries model.QueryResultSlice) string {
 	platforms := make([]string, 0)
 	alreadyAdded := make(map[string]string)
 	for idx := range queries {

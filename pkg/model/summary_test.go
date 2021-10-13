@@ -45,13 +45,15 @@ func TestCreateSummary(t *testing.T) {
 			SeveritySummary: SeveritySummary{
 				ScanID: "scanID",
 				SeverityCounters: map[Severity]int{
+					SeverityTrace:  0,
 					SeverityInfo:   0,
 					SeverityLow:    0,
 					SeverityMedium: 0,
 					SeverityHigh:   0,
 				},
 			},
-			Queries:      []VulnerableQuery{},
+			Bom:          []QueryResult{},
+			Queries:      []QueryResult{},
 			ScannedPaths: []string{},
 		})
 	})
@@ -63,6 +65,7 @@ func TestCreateSummary(t *testing.T) {
 			SeveritySummary: SeveritySummary{
 				ScanID: "scanID",
 				SeverityCounters: map[Severity]int{
+					SeverityTrace:  0,
 					SeverityInfo:   0,
 					SeverityLow:    0,
 					SeverityMedium: 0,
@@ -70,7 +73,8 @@ func TestCreateSummary(t *testing.T) {
 				},
 				TotalCounter: 1,
 			},
-			Queries: []VulnerableQuery{
+			Bom: []QueryResult{},
+			Queries: []QueryResult{
 				{
 					QueryName: "query_name",
 					QueryID:   "QueryID",

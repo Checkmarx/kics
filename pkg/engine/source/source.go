@@ -16,6 +16,7 @@ type QueryInspectorParameters struct {
 	IncludeQueries IncludeQueries
 	ExcludeQueries ExcludeQueries
 	InputDataPath  string
+	BomQueries     bool
 }
 
 // ExcludeQueries is a struct that represents the option to exclude queries by ids or by categories

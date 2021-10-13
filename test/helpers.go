@@ -106,7 +106,7 @@ func MapToStringSlice(stringKeyMap map[string]string) []string {
 	return keys
 }
 
-var queryHigh = model.VulnerableQuery{
+var queryHigh = model.QueryResult{
 	QueryName:                   "ALB protocol is HTTP",
 	QueryID:                     "de7f5e83-da88-4046-871f-ea18504b1d43",
 	Description:                 "ALB protocol is HTTP Description",
@@ -137,7 +137,7 @@ var queryHigh = model.VulnerableQuery{
 	},
 }
 
-var queryMedium = model.VulnerableQuery{
+var queryMedium = model.QueryResult{
 	QueryName: "AmazonMQ Broker Encryption Disabled",
 	QueryID:   "3db3f534-e3a3-487f-88c7-0a9fbf64b702",
 	Severity:  model.SeverityMedium,
@@ -163,7 +163,7 @@ var SummaryMock = model.Summary{
 		TotalQueries:           1,
 		FailedToExecuteQueries: 0,
 	},
-	Queries: []model.VulnerableQuery{
+	Queries: []model.QueryResult{
 		queryHigh,
 	},
 	SeveritySummary: model.SeveritySummary{
@@ -190,7 +190,7 @@ var ComplexSummaryMock = model.Summary{
 		TotalQueries:           2,
 		FailedToExecuteQueries: 0,
 	},
-	Queries: []model.VulnerableQuery{
+	Queries: []model.QueryResult{
 		queryHigh,
 		queryMedium,
 	},

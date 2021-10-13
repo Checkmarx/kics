@@ -25,6 +25,7 @@ const (
 	SeverityMedium = "MEDIUM"
 	SeverityLow    = "LOW"
 	SeverityInfo   = "INFO"
+	SeverityTrace  = "TRACE"
 )
 
 // Constants to describe issue's type
@@ -41,6 +42,7 @@ var (
 		SeverityMedium,
 		SeverityLow,
 		SeverityInfo,
+		SeverityTrace,
 	}
 
 	AllIssueTypesAsString = []string{

@@ -2,6 +2,7 @@ Usage:
   kics scan [flags]
 
 Flags:
+  -m, --bom                           include bill of materials (BoM) in results output
       --cloud-provider strings        list of cloud providers to scan (aws, azure, gcp)
       --config string                 path to configuration file
       --disable-full-descriptions     disable request for full descriptions and use default vulnerability descriptions

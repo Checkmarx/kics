@@ -87,6 +87,10 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 	fmt.Printf("------------------------------------\n\n")
 	for index := range summary.Queries {
 		idx := len(summary.Queries) - index - 1
+		if summary.Queries[idx].Severity == model.SeverityTrace {
+			continue
+		}
+
 		fmt.Printf(
 			"%s, Severity: %s, Results: %d\n",
 			printer.PrintBySev(summary.Queries[idx].QueryName, string(summary.Queries[idx].Severity)),
@@ -125,7 +129,7 @@ func printSeverityCounter(severity string, counter int, printColor color.RGBColo
 	fmt.Printf("%s: %d\n", printColor.Sprint(severity), counter)
 }
 
-func printFiles(query *model.VulnerableQuery, printer *Printer) {
+func printFiles(query *model.QueryResult, printer *Printer) {
 	for fileIdx := range query.Files {
 		fmt.Printf("\t%s %s:%s\n", printer.PrintBySev(fmt.Sprintf("[%d]:", fileIdx+1), string(query.Severity)),
 			query.Files[fileIdx].FileName, printer.Success.Sprint(query.Files[fileIdx].Line))

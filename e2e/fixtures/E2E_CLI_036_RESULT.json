@@ -11,11 +11,13 @@
 		"HIGH": 4,
 		"INFO": 0,
 		"LOW": 5,
-		"MEDIUM": 11
+		"MEDIUM": 11,
+		"TRACE": 0
 	},
 	"total_counter": 20,
-	"start": "2021-09-28T11:31:57.4326046+01:00",
-	"end": "2021-09-28T11:31:59.6045617+01:00",
+	"total_bom_resources": 0,
+	"start": "2021-10-13T14:15:32.8196438+01:00",
+	"end": "2021-10-13T14:15:36.6271662+01:00",
 	"paths": [
 		"fixtures/samples/positive.yaml"
 	],
@@ -29,9 +31,6 @@
 			"category": "Networking and Firewall",
 			"description": "All Application Load Balancers (ALB) should block connection requests over HTTP",
 			"description_id": "55f05412",
-			"cis_description_id": "",
-			"cis_description_title": "",
-			"cis_description_text": "",
 			"files": [
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
@@ -42,8 +41,7 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "'Resources.ALBListener.Protocol' not equal to 'HTTP'",
-					"actual_value": "'Resources.ALBListener.Protocol' equals to 'HTTP'",
-					"value": null
+					"actual_value": "'Resources.ALBListener.Protocol' equals to 'HTTP'"
 				}
 			]
 		},
@@ -56,9 +54,6 @@
 			"category": "Insecure Configurations",
 			"description": "Network_Mode should be 'awsvpc' in ecs_task_definition. AWS VPCs provides the controls to facilitate a formal process for approving and testing all network connections and changes to the firewall and router configurations",
 			"description_id": "bded2e99",
-			"cis_description_id": "",
-			"cis_description_title": "",
-			"cis_description_text": "",
 			"files": [
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
@@ -69,8 +64,7 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "'Resources.TaskDefinition.Properties.NetworkMode' is set and is 'awsvpc'",
-					"actual_value": "'Resources.TaskDefinition.Properties.NetworkMode' is undefined and defaults to 'bridge'",
-					"value": null
+					"actual_value": "'Resources.TaskDefinition.Properties.NetworkMode' is undefined and defaults to 'bridge'"
 				}
 			]
 		},
@@ -83,9 +77,6 @@
 			"category": "Networking and Firewall",
 			"description": "ECS Service's security group should not allow unrestricted access to all ports from all IPv4 addresses",
 			"description_id": "747f49ac",
-			"cis_description_id": "",
-			"cis_description_title": "",
-			"cis_description_text": "",
 			"files": [
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
@@ -96,8 +87,7 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "Resource name 'EcsSecurityGroupHTTPinbound02' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from all IPv4 adresses and to all available ports",
-					"actual_value": "Resource name 'EcsSecurityGroupHTTPinbound02' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from CIDR 0.0.0.0/0 to all available ports",
-					"value": null
+					"actual_value": "Resource name 'EcsSecurityGroupHTTPinbound02' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from CIDR 0.0.0.0/0 to all available ports"
 				},
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
@@ -108,8 +98,7 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "Resource name 'EcsSecurityGroupSSHinbound' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from all IPv4 adresses and to all available ports",
-					"actual_value": "Resource name 'EcsSecurityGroupSSHinbound' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from CIDR 0.0.0.0/0 to all available ports",
-					"value": null
+					"actual_value": "Resource name 'EcsSecurityGroupSSHinbound' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from CIDR 0.0.0.0/0 to all available ports"
 				}
 			]
 		},
@@ -122,9 +111,6 @@
 			"category": "Networking and Firewall",
 			"description": "All Application Load Balancers (ALB) must be protected with Web Application Firewall (WAF) service",
 			"description_id": "2cad71a7",
-			"cis_description_id": "",
-			"cis_description_title": "",
-			"cis_description_text": "",
 			"files": [
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
@@ -135,8 +121,7 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "'Resources.ECSALB' does not have an 'internal' scheme and has a 'WebACLAssociation' associated",
-					"actual_value": "'Resources.ECSALB' does not have an 'internal' scheme and a 'WebACLAssociation' associated",
-					"value": null
+					"actual_value": "'Resources.ECSALB' does not have an 'internal' scheme and a 'WebACLAssociation' associated"
 				}
 			]
 		},
@@ -149,9 +134,6 @@
 			"category": "Availability",
 			"description": "AWS Auto Scaling Groups must have associated ELBs to ensure high availability and improve application performance. This means the attribute 'LoadBalancerNames' must be defined and not empty.",
 			"description_id": "99966f58",
-			"cis_description_id": "",
-			"cis_description_title": "",
-			"cis_description_text": "",
 			"files": [
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
@@ -162,8 +144,7 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "'Resources.ECSAutoScalingGroup.Properties.LoadBalancerNames' is defined",
-					"actual_value": "'Resources.ECSAutoScalingGroup.Properties.LoadBalancerNames' is not defined",
-					"value": null
+					"actual_value": "'Resources.ECSAutoScalingGroup.Properties.LoadBalancerNames' is not defined"
 				}
 			]
 		},
@@ -176,9 +157,6 @@
 			"category": "Availability",
 			"description": "ECS Service should have at least 1 task running",
 			"description_id": "cd242bdd",
-			"cis_description_id": "",
-			"cis_description_title": "",
-			"cis_description_text": "",
 			"files": [
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
@@ -189,8 +167,7 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "Resources.service.Properties.DeploymentConfiguration is defined and not null",
-					"actual_value": "Resources.service.Properties.DeploymentConfiguration is undefined or null",
-					"value": null
+					"actual_value": "Resources.service.Properties.DeploymentConfiguration is undefined or null"
 				}
 			]
 		},
@@ -203,9 +180,6 @@
 			"category": "Networking and Firewall",
 			"description": "An AWS Elastic Load Balancer (ELB) shouldn´t have security groups without outbound rules",
 			"description_id": "3ccdd7d2",
-			"cis_description_id": "",
-			"cis_description_title": "",
-			"cis_description_text": "",
 			"files": [
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
@@ -216,8 +190,7 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "'Resources.EcsSecurityGroup.Properties.SecurityGroupIngress' is defined",
-					"actual_value": "'Resources.EcsSecurityGroup.Properties.SecurityGroupIngress' is undefined",
-					"value": null
+					"actual_value": "'Resources.EcsSecurityGroup.Properties.SecurityGroupIngress' is undefined"
 				}
 			]
 		},
@@ -230,9 +203,6 @@
 			"category": "Networking and Firewall",
 			"description": "An AWS Elastic Load Balancer (ELB) shouldn´t have security groups without outbound rules",
 			"description_id": "7b876844",
-			"cis_description_id": "",
-			"cis_description_title": "",
-			"cis_description_text": "",
 			"files": [
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
@@ -243,8 +213,7 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "'Resources.EcsSecurityGroup.Properties.SecurityGroupEgress' is defined",
-					"actual_value": "'Resources.EcsSecurityGroup.Properties.SecurityGroupEgress' is undefined",
-					"value": null
+					"actual_value": "'Resources.EcsSecurityGroup.Properties.SecurityGroupEgress' is undefined"
 				}
 			]
 		},
@@ -257,9 +226,6 @@
 			"category": "Access Control",
 			"description": "Check if any ECS cluster has not defined proper roles for services' task definitions.",
 			"description_id": "b47b42b2",
-			"cis_description_id": "",
-			"cis_description_title": "",
-			"cis_description_text": "",
 			"files": [
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
@@ -270,8 +236,7 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "'Resources.service.Properties.TaskDefinition' refers to a TaskDefinition with Role",
-					"actual_value": "'Resources.service.Properties.TaskDefinition' does not refer to a TaskDefinition with Role",
-					"value": null
+					"actual_value": "'Resources.service.Properties.TaskDefinition' does not refer to a TaskDefinition with Role"
 				}
 			]
 		},
@@ -284,22 +249,7 @@
 			"category": "Networking and Firewall",
 			"description": "AWS Security Group Ingress should have a single port",
 			"description_id": "5f2b65f3",
-			"cis_description_id": "",
-			"cis_description_title": "",
-			"cis_description_text": "",
 			"files": [
-				{
-					"file_name": "fixtures\\samples\\positive.yaml",
-					"similarity_id": "810487007189ac4de717dffc3204a05756e80e910b34f89ee08fd14f612328aa",
-					"line": 27,
-					"issue_type": "IncorrectValue",
-					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
-					"search_line": 0,
-					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort",
-					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is not equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort",
-					"value": null
-				},
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
 					"similarity_id": "d60022e14f1b45c574f71c0f48b3fee882b471819597b770e3545988a8f5295a",
@@ -309,8 +259,18 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort",
-					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is not equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort",
-					"value": null
+					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is not equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort"
+				},
+				{
+					"file_name": "fixtures\\samples\\positive.yaml",
+					"similarity_id": "810487007189ac4de717dffc3204a05756e80e910b34f89ee08fd14f612328aa",
+					"line": 27,
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort",
+					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is not equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort"
 				},
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
@@ -321,8 +281,7 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is equal to Resources.EcsSecurityGroupALBports.Properties.ToPort",
-					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is not equal to Resources.EcsSecurityGroupALBports.Properties.ToPort",
-					"value": null
+					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is not equal to Resources.EcsSecurityGroupALBports.Properties.ToPort"
 				}
 			]
 		},
@@ -335,9 +294,6 @@
 			"category": "Networking and Firewall",
 			"description": "AWS Security Group Ingress CIDR should not be open to the world",
 			"description_id": "08256d31",
-			"cis_description_id": "",
-			"cis_description_title": "",
-			"cis_description_text": "",
 			"files": [
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
@@ -348,8 +304,7 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp is not open to the world (0.0.0.0/0)",
-					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp is open to the world (0.0.0.0/0)",
-					"value": null
+					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp is open to the world (0.0.0.0/0)"
 				},
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
@@ -360,8 +315,7 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is not open to the world (0.0.0.0/0)",
-					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is open to the world (0.0.0.0/0)",
-					"value": null
+					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is open to the world (0.0.0.0/0)"
 				}
 			]
 		},
@@ -374,9 +328,6 @@
 			"category": "Observability",
 			"description": "Amazon ECS must have the HealthCheck property defined to give more control over monitoring the health of tasks",
 			"description_id": "e2e3a50a",
-			"cis_description_id": "",
-			"cis_description_title": "",
-			"cis_description_text": "",
 			"files": [
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
@@ -387,8 +338,7 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' contains 'HealthCheck' property",
-					"actual_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property",
-					"value": null
+					"actual_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property"
 				},
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
@@ -399,8 +349,7 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' contains 'HealthCheck' property",
-					"actual_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property",
-					"value": null
+					"actual_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property"
 				}
 			]
 		},
@@ -413,22 +362,7 @@
 			"category": "Best Practices",
 			"description": "AWS Security Group Rule should have description defined",
 			"description_id": "f7c62b11",
-			"cis_description_id": "",
-			"cis_description_title": "",
-			"cis_description_text": "",
 			"files": [
-				{
-					"file_name": "fixtures\\samples\\positive.yaml",
-					"similarity_id": "e96cf20cc6e1e11dce2d40d9e2b37446a00f00c3f541aa7dd13861059f6fcce8",
-					"line": 19,
-					"issue_type": "MissingAttribute",
-					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
-					"search_line": 0,
-					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description is set",
-					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description is undefined",
-					"value": null
-				},
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
 					"similarity_id": "39fec612777f59fb4181dd2330ee465ec860c962acfebb07a4f1ee1f122d24e7",
@@ -438,8 +372,7 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.Description is set",
-					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.Description is undefined",
-					"value": null
+					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.Description is undefined"
 				},
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
@@ -450,8 +383,18 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is set",
-					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is undefined",
-					"value": null
+					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is undefined"
+				},
+				{
+					"file_name": "fixtures\\samples\\positive.yaml",
+					"similarity_id": "e96cf20cc6e1e11dce2d40d9e2b37446a00f00c3f541aa7dd13861059f6fcce8",
+					"line": 19,
+					"issue_type": "MissingAttribute",
+					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description is set",
+					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description is undefined"
 				}
 			]
 		}
