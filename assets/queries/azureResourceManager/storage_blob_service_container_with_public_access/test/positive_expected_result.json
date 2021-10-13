@@ -16,5 +16,23 @@
     "severity": "HIGH",
     "line": 50,
     "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Storage Blob Service Container With Public Access",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "Storage Blob Service Container With Public Access",
+    "severity": "HIGH",
+    "line": 109,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "Storage Blob Service Container With Public Access",
+    "severity": "HIGH",
+    "line": 52,
+    "fileName": "positive6.json"
   }
 ]

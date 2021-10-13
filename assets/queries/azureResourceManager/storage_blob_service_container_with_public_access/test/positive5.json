@@ -1,0 +1,128 @@
+{
+  "properties": {
+    "template": {
+      "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "existingVNETName": {
+          "type": "string",
+          "metadata": {
+            "description": "Name of the virtual network to use for cloud shell containers."
+          }
+        },
+        "existingStorageSubnetName": {
+          "type": "string",
+          "metadata": {
+            "description": "Name of the subnet to use for storage account."
+          }
+        },
+        "existingContainerSubnetName": {
+          "type": "string",
+          "metadata": {
+            "description": "Name of the subnet to use for cloud shell containers."
+          }
+        },
+        "storageAccountName": {
+          "type": "string",
+          "metadata": {
+            "description": "Name of the storage account in subnet."
+          }
+        },
+        "location": {
+          "type": "string",
+          "defaultValue": "[resourceGroup().location]",
+          "metadata": {
+            "description": "Location for all resources."
+          }
+        }
+      },
+      "variables": {
+        "containerSubnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('existingVNETName'), parameters('existingContainerSubnetName'))]",
+        "storageSubnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('existingVNETName'), parameters('existingStorageSubnetName'))]"
+      },
+      "resources": [
+        {
+          "type": "Microsoft.Storage/storageAccounts",
+          "apiVersion": "2019-06-01",
+          "name": "[parameters('storageAccountName')]",
+          "location": "[parameters('location')]",
+          "sku": {
+            "name": "Standard_LRS",
+            "tier": "Standard"
+          },
+          "kind": "StorageV2",
+          "properties": {
+            "networkAcls": {
+              "bypass": "None",
+              "virtualNetworkRules": [
+                {
+                  "id": "[variables('containerSubnetRef')]",
+                  "action": "Allow"
+                },
+                {
+                  "id": "[variables('storageSubnetRef')]",
+                  "action": "Allow"
+                }
+              ],
+              "defaultAction": "Deny"
+            },
+            "supportsHttpsTrafficOnly": true,
+            "encryption": {
+              "services": {
+                "file": {
+                  "keyType": "Account",
+                  "enabled": true
+                },
+                "blob": {
+                  "keyType": "Account",
+                  "enabled": true
+                }
+              },
+              "keySource": "Microsoft.Storage"
+            },
+            "accessTier": "Cool"
+          }
+        },
+        {
+          "type": "Microsoft.Storage/storageAccounts/blobServices",
+          "apiVersion": "2019-06-01",
+          "name": "[concat(parameters('storageAccountName'), '/default')]",
+          "dependsOn": [
+            "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+          ],
+          "sku": {
+            "name": "Standard_LRS",
+            "tier": "Standard"
+          },
+          "properties": {
+            "deleteRetentionPolicy": {
+              "enabled": false
+            }
+          },
+          "resources": [
+            {
+              "type": "containers",
+              "apiVersion": "2019-06-01",
+              "name": "container",
+              "properties": {
+                "denyEncryptionScopeOverride": true,
+                "publicAccess": "Blob",
+                "metadata": {}
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "resourceGroup": "storageRG",
+    "parameters": {
+      "storageAccountType": {
+        "value": "[parameters('storageAccountType')]"
+      }
+    }
+  },
+  "kind": "template",
+  "id": "/providers/Microsoft.Management/managementGroups/ContosoOnlineGroup/providers/Microsoft.Blueprint/blueprints/simpleBlueprint/artifacts/storageTemplate",
+  "type": "Microsoft.Blueprint/blueprints/artifacts",
+  "name": "storageTemplate"
+}
