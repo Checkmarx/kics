@@ -92,7 +92,6 @@ jobs:
       # https://github.com/docker/roadmap/issues/115#issuecomment-891694974
       # https://github.com/docker/roadmap/issues/115
       # https://github.com/docker/hub-feedback/issues/2127
-      #
       #- name: Update repo description
       #  uses: peter-evans/dockerhub-description@v2
       #  with:
