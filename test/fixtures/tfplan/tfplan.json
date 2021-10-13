@@ -1,0 +1,26 @@
+{
+  "format_version": "0.2",
+  "terraform_version": "1.0.5",
+  "variables": {},
+  "planned_values": {
+    "root_module": {
+      "resources": [
+        {
+          "address": "fakewebservices_database.prod_db",
+          "mode": "managed",
+          "type": "fakewebservices_database",
+          "name": "prod_db",
+          "provider_name": "registry.terraform.io/hashicorp/fakewebservices",
+          "schema_version": 0,
+          "values": {
+            "name": "Production DB",
+            "size": 256
+          },
+          "sensitive_values": {}
+        }
+      ]
+    }
+  },
+  "resource_changes": [],
+  "configuration": {}
+}

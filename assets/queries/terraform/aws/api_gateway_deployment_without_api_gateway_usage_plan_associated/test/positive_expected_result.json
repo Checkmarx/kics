@@ -2,11 +2,25 @@
   {
     "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "filename": "positive1.tf"
   },
   {
     "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
     "severity": "LOW",
-    "line": 9
+    "line": 9,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
+    "severity": "LOW",
+    "line": 14,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
+    "severity": "LOW",
+    "line": 31,
+    "filename": "positive2.json"
   }
 ]

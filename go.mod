@@ -15,6 +15,7 @@ require (
 	github.com/hashicorp/go-getter v1.5.9
 	github.com/hashicorp/hcl v1.0.0
 	github.com/hashicorp/hcl/v2 v2.10.1
+	github.com/hashicorp/terraform-json v0.13.0
 	github.com/johnfercher/maroto v0.33.0
 	github.com/mailru/easyjson v0.7.7
 	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
@@ -27,7 +28,7 @@ require (
 	github.com/spf13/viper v1.9.0
 	github.com/stretchr/testify v1.7.0
 	github.com/tdewolff/minify/v2 v2.9.22
-	github.com/tidwall/gjson v1.9.3
+	github.com/tidwall/gjson v1.9.4
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/zclconf/go-cty v1.9.1
 	golang.org/x/net v0.0.0-20210825183410-e898025ed96a

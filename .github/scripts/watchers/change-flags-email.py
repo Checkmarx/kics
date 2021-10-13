@@ -117,7 +117,7 @@ if len(data.keys()) == 0:
     exit(0)
 
 email_body = ''
-with open(os.path.join(os.path.dirname(sys.argv[0]), 'email_template.txt')) as template:
+with open(os.path.join(os.path.dirname(sys.argv[0]), 'flags_email_template.tmpl')) as template:
     template_string = template.read()
     env = Environment(trim_blocks=True, lstrip_blocks=True)
     template_jinja = env.from_string(template_string)
