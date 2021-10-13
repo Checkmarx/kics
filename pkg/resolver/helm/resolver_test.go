@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/stretchr/testify/require"
 )
 
 func TestHelm_SupportedTypes(t *testing.T) {
@@ -196,8 +197,11 @@ spec:
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Resolve() = %v, wantErr = %v", err, tt.wantErr)
 			}
-			if !reflect.DeepEqual(got, tt.want) {
+			if !reflect.DeepEqual(got.File, tt.want.File) {
 				t.Errorf("Resolve() = %v, want = %v", got, tt.want)
+			}
+			if err == nil {
+				require.NotEmpty(t, got.Excluded)
 			}
 		})
 	}
