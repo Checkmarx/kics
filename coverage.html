@@ -67,7 +67,7 @@
 				
 				<option value="file5">github.com/Checkmarx/kics/internal/console/helpers/exit_handler.go (100.0%)</option>
 				
-				<option value="file6">github.com/Checkmarx/kics/internal/console/helpers/helpers.go (82.9%)</option>
+				<option value="file6">github.com/Checkmarx/kics/internal/console/helpers/helpers.go (82.4%)</option>
 				
 				<option value="file7">github.com/Checkmarx/kics/internal/console/kics.go (78.4%)</option>
 				
@@ -147,7 +147,7 @@
 				
 				<option value="file45">github.com/Checkmarx/kics/pkg/model/model_yaml.go (93.5%)</option>
 				
-				<option value="file46">github.com/Checkmarx/kics/pkg/model/summary.go (89.8%)</option>
+				<option value="file46">github.com/Checkmarx/kics/pkg/model/summary.go (86.4%)</option>
 				
 				<option value="file47">github.com/Checkmarx/kics/pkg/parser/docker/parser.go (91.2%)</option>
 				
@@ -452,7 +452,7 @@ func isQueryID(id string) bool <span class="cov5" title="5">{
 
 func convertSliceToDummyMap(slice []string) map[string]string <span class="cov5" title="5">{
         returnMap := make(map[string]string, len(slice))
-        for _, element := range slice </span><span class="cov10" title="22">{
+        for _, element := range slice </span><span class="cov10" title="24">{
                 returnMap[element] = ""
         }</span>
         <span class="cov5" title="5">return returnMap</span>
@@ -520,7 +520,7 @@ func validateMultiStrEnum(flagName string) error <span class="cov2" title="2">{
         enums := GetMultiStrFlag(flagName)
         invalidEnum := make([]string, 0)
         caseInsensitiveMap := make(map[string]string)
-        for key, value := range validMultiStrEnums[flagName] </span><span class="cov10" title="28">{
+        for key, value := range validMultiStrEnums[flagName] </span><span class="cov10" title="30">{
                 caseInsensitiveMap[strings.ToLower(key)] = value
         }</span>
         <span class="cov2" title="2">for _, enum := range enums </span><span class="cov3" title="3">{
@@ -615,11 +615,11 @@ var shouldFail map[string]struct{}
 // ResultsExitCode calculate exit code base on severity of results, returns 0 if no results was reported
 func ResultsExitCode(summary *model.Summary) int <span class="cov5" title="4">{
         // severityArr is needed to make sure 'for' cycle is made in an ordered fashion
-        severityArr := []model.Severity{"HIGH", "MEDIUM", "LOW", "INFO"}
-        codeMap := map[model.Severity]int{"HIGH": 50, "MEDIUM": 40, "LOW": 30, "INFO": 20}
+        severityArr := []model.Severity{"HIGH", "MEDIUM", "LOW", "INFO", "TRACE"}
+        codeMap := map[model.Severity]int{"HIGH": 50, "MEDIUM": 40, "LOW": 30, "INFO": 20, "TRACE": 0}
         exitMap := summary.SeveritySummary.SeverityCounters
-        for _, severity := range severityArr </span><span class="cov7" title="8">{
-                if _, reportSeverity := shouldFail[strings.ToLower(string(severity))]; !reportSeverity </span><span class="cov5" title="4">{
+        for _, severity := range severityArr </span><span class="cov8" title="9">{
+                if _, reportSeverity := shouldFail[strings.ToLower(string(severity))]; !reportSeverity </span><span class="cov6" title="5">{
                         continue</span>
                 }
                 <span class="cov5" title="4">if exitMap[severity] &gt; 0 </span><span class="cov4" title="3">{
@@ -762,7 +762,11 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
         <span class="cov3" title="2">fmt.Printf("------------------------------------\n\n")
         for index := range summary.Queries </span><span class="cov5" title="4">{
                 idx := len(summary.Queries) - index - 1
-                fmt.Printf(
+                if summary.Queries[idx].Severity == model.SeverityTrace </span><span class="cov0" title="0">{
+                        continue</span>
+                }
+
+                <span class="cov5" title="4">fmt.Printf(
                         "%s, Severity: %s, Results: %d\n",
                         printer.PrintBySev(summary.Queries[idx].QueryName, string(summary.Queries[idx].Severity)),
                         printer.PrintBySev(string(summary.Queries[idx].Severity), string(summary.Queries[idx].Severity)),
@@ -800,7 +804,7 @@ func printSeverityCounter(severity string, counter int, printColor color.RGBColo
         fmt.Printf("%s: %d\n", printColor.Sprint(severity), counter)
 }</span>
 
-func printFiles(query *model.VulnerableQuery, printer *Printer) <span class="cov5" title="4">{
+func printFiles(query *model.QueryResult, printer *Printer) <span class="cov5" title="4">{
         for fileIdx := range query.Files </span><span class="cov6" title="6">{
                 fmt.Printf("\t%s %s:%s\n", printer.PrintBySev(fmt.Sprintf("[%d]:", fileIdx+1), string(query.Severity)),
                         query.Files[fileIdx].FileName, printer.Success.Sprint(query.Files[fileIdx].Line))
@@ -1604,7 +1608,7 @@ func setupCfgFile() (bool, error) <span class="cov4" title="8">{
 func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" title="10">{
         log.Debug().Msg("console.bindFlags()")
         settingsMap := v.AllSettings()
-        cmd.Flags().VisitAll(func(f *pflag.Flag) </span><span class="cov10" title="380">{
+        cmd.Flags().VisitAll(func(f *pflag.Flag) </span><span class="cov10" title="390">{
                 settingsMap[f.Name] = true
                 if strings.Contains(f.Name, "-") </span><span class="cov9" title="290">{
                         envVarSuffix := strings.ToUpper(strings.ReplaceAll(f.Name, "-", "_"))
@@ -1613,13 +1617,13 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                                 log.Err(err).Msg("Failed to bind Viper flags")
                         }</span>
                 }
-                <span class="cov10" title="380">if !f.Changed &amp;&amp; v.IsSet(f.Name) </span><span class="cov3" title="6">{
+                <span class="cov10" title="390">if !f.Changed &amp;&amp; v.IsSet(f.Name) </span><span class="cov3" title="6">{
                         val := v.Get(f.Name)
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="358">{
-                if val == true </span><span class="cov9" title="357">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="368">{
+                if val == true </span><span class="cov9" title="367">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -1774,6 +1778,7 @@ func createQueryFilter() *source.QueryInspectorParameters <span class="cov3" tit
                 IncludeQueries: includeQueries,
                 ExcludeQueries: excludeQueries,
                 InputDataPath:  flags.GetStrFlag(flags.InputDataFlag),
+                BomQueries:     flags.GetBoolFlag(flags.BomFlag),
         }
 
         return &amp;queryFilter
@@ -2181,6 +2186,7 @@ var (
                 "Secret Management":       "CAT012",
                 "Supply-Chain":            "CAT013",
                 "Structure and Semantics": "CAT014",
+                "Bill Of Materials":       "CAT015",
         }
 
         // AvailablePlatforms - All platforms available
@@ -2200,6 +2206,7 @@ var (
                 "medium",
                 "low",
                 "info",
+                "trace",
         }
 
         // AvailableLogLevels - All log levels available
@@ -2525,13 +2532,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="37">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2556,7 +2563,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4681,7 +4688,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5627,12 +5634,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="22641">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="22661">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="22641">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="22404">{
+                <span class="cov9" title="22661">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="22424">{
                         return skipFolder
                 }</span>
 
@@ -5690,24 +5697,24 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="236">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="22644">{
-        if info.IsDir() </span><span class="cov8" title="5082">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="22664">{
+        if info.IsDir() </span><span class="cov8" title="5088">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
                         return true, filepath.SkipDir
                 }</span>
-                <span class="cov8" title="5081">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
-                if err != nil || resolved </span><span class="cov8" title="5079">{
+                <span class="cov8" title="5087">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
+                if err != nil || resolved </span><span class="cov8" title="5085">{
                         return true, nil
                 }</span>
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="17562">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="17576">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="17562">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="17326">{
+        <span class="cov9" title="17576">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="17340">{
                 return true, nil
         }</span>
         <span class="cov5" title="236">return false, nil</span>
@@ -6508,7 +6515,8 @@ func checkQueryExcludeField(id interface{}, excludeQueries []string) bool <span 
 func checkQueryExclude(metadata map[string]interface{}, queryParameters *QueryInspectorParameters) bool <span class="cov4" title="5">{
         return checkQueryExcludeField(metadata["id"], queryParameters.ExcludeQueries.ByIDs) ||
                 checkQueryExcludeField(metadata["category"], queryParameters.ExcludeQueries.ByCategories) ||
-                checkQueryExcludeField(metadata["severity"], queryParameters.ExcludeQueries.BySeverities)
+                checkQueryExcludeField(metadata["severity"], queryParameters.ExcludeQueries.BySeverities) ||
+                (!queryParameters.BomQueries &amp;&amp; metadata["severity"] == model.SeverityTrace)
 }</span>
 
 // GetQueries walks a given filesource path returns all queries found in an array of
@@ -6705,6 +6713,7 @@ type QueryInspectorParameters struct {
         IncludeQueries IncludeQueries
         ExcludeQueries ExcludeQueries
         InputDataPath  string
+        BomQueries     bool
 }
 
 // ExcludeQueries is a struct that represents the option to exclude queries by ids or by categories
@@ -7539,6 +7548,7 @@ const (
         SeverityMedium = "MEDIUM"
         SeverityLow    = "LOW"
         SeverityInfo   = "INFO"
+        SeverityTrace  = "TRACE"
 )
 
 // Constants to describe issue's type
@@ -7555,6 +7565,7 @@ var (
                 SeverityMedium,
                 SeverityLow,
                 SeverityInfo,
+                SeverityTrace,
         }
 
         AllIssueTypesAsString = []string{
@@ -8130,9 +8141,10 @@ import (
 
 // SeveritySummary contains scans' result numbers, how many vulnerabilities of each severity was detected
 type SeveritySummary struct {
-        ScanID           string           `json:"scan_id"`
-        SeverityCounters map[Severity]int `json:"severity_counters"`
-        TotalCounter     int              `json:"total_counter"`
+        ScanID            string           `json:"scan_id"`
+        SeverityCounters  map[Severity]int `json:"severity_counters"`
+        TotalCounter      int              `json:"total_counter"`
+        TotalBOMResources int              `json:"total_bom_resources"`
 }
 
 // VulnerableFile contains information of a vulnerable file and where the vulnerability was found
@@ -8147,11 +8159,11 @@ type VulnerableFile struct {
         SearchValue      string     `json:"search_value"`
         KeyExpectedValue string     `json:"expected_value"`
         KeyActualValue   string     `json:"actual_value"`
-        Value            *string    `json:"value"`
+        Value            *string    `json:"value,omitempty"`
 }
 
-// VulnerableQuery contains a query that tested positive ID, name, severity and a list of files that tested vulnerable
-type VulnerableQuery struct {
+// QueryResult contains a query that tested positive ID, name, severity and a list of files that tested vulnerable
+type QueryResult struct {
         QueryName                   string           `json:"query_name"`
         QueryID                     string           `json:"query_id"`
         QueryURI                    string           `json:"query_url"`
@@ -8160,9 +8172,9 @@ type VulnerableQuery struct {
         Category                    string           `json:"category"`
         Description                 string           `json:"description"`
         DescriptionID               string           `json:"description_id"`
-        CISDescriptionIDFormatted   string           `json:"cis_description_id"`
-        CISDescriptionTitle         string           `json:"cis_description_title"`
-        CISDescriptionTextFormatted string           `json:"cis_description_text"`
+        CISDescriptionIDFormatted   string           `json:"cis_description_id,omitempty"`
+        CISDescriptionTitle         string           `json:"cis_description_title,omitempty"`
+        CISDescriptionTextFormatted string           `json:"cis_description_text,omitempty"`
         CISDescriptionID            string           `json:"cis_description_id_raw,omitempty"`
         CISDescriptionText          string           `json:"cis_description_text_raw,omitempty"`
         CISRationaleText            string           `json:"cis_description_rationale,omitempty"`
@@ -8171,8 +8183,8 @@ type VulnerableQuery struct {
         Files                       []VulnerableFile `json:"files"`
 }
 
-// VulnerableQuerySlice is a slice of VulnerableQuery
-type VulnerableQuerySlice []VulnerableQuery
+// QueryResultSlice is a slice of QueryResult
+type QueryResultSlice []QueryResult
 
 // Counters hold information about how many files were scanned, parsed, failed to be scaned, the total of queries
 // and how many queries failed to execute
@@ -8197,8 +8209,9 @@ type Summary struct {
         Counters
         SeveritySummary
         Times
-        ScannedPaths []string             `json:"paths"`
-        Queries      VulnerableQuerySlice `json:"queries"`
+        ScannedPaths []string         `json:"paths"`
+        Queries      QueryResultSlice `json:"queries"`
+        Bom          QueryResultSlice `json:"bill_of_materials,omitempty"`
 }
 
 // PathParameters - structure wraps the required fields for temporary path translation
@@ -8283,14 +8296,14 @@ func resolvePath(filePath string, pathExtractionMap map[string]ExtractedPathObje
 func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
         scanID string, pathExtractionMap map[string]ExtractedPathObject) Summary <span class="cov4" title="2">{
         log.Debug().Msg("model.CreateSummary()")
-        q := make(map[string]VulnerableQuery, len(vulnerabilities))
+        q := make(map[string]QueryResult, len(vulnerabilities))
         severitySummary := SeveritySummary{
                 ScanID: scanID,
         }
         for i := range vulnerabilities </span><span class="cov1" title="1">{
                 item := vulnerabilities[i]
                 if _, ok := q[item.QueryID]; !ok </span><span class="cov1" title="1">{
-                        q[item.QueryID] = VulnerableQuery{
+                        q[item.QueryID] = QueryResult{
                                 QueryName:     item.QueryName,
                                 QueryID:       item.QueryID,
                                 Severity:      item.Severity,
@@ -8319,15 +8332,20 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
                 q[item.QueryID] = qItem</span>
         }
 
-        <span class="cov4" title="2">queries := make([]VulnerableQuery, 0, len(q))
-        sevs := map[Severity]int{SeverityInfo: 0, SeverityLow: 0, SeverityMedium: 0, SeverityHigh: 0}
+        <span class="cov4" title="2">queries := make([]QueryResult, 0, len(q))
+        sevs := map[Severity]int{SeverityTrace: 0, SeverityInfo: 0, SeverityLow: 0, SeverityMedium: 0, SeverityHigh: 0}
         for idx := range q </span><span class="cov1" title="1">{
-                queries = append(queries, q[idx])
                 sevs[q[idx].Severity] += len(q[idx].Files)
-                severitySummary.TotalCounter += len(q[idx].Files)
-        }</span>
 
-        <span class="cov4" title="2">severityOrder := map[Severity]int{SeverityInfo: 3, SeverityLow: 2, SeverityMedium: 1, SeverityHigh: 0}
+                if q[idx].Severity == SeverityTrace </span><span class="cov0" title="0">{
+                        continue</span>
+                }
+                <span class="cov1" title="1">queries = append(queries, q[idx])
+
+                severitySummary.TotalCounter += len(q[idx].Files)</span>
+        }
+
+        <span class="cov4" title="2">severityOrder := map[Severity]int{SeverityTrace: 4, SeverityInfo: 3, SeverityLow: 2, SeverityMedium: 1, SeverityHigh: 0}
         sort.Slice(queries, func(i, j int) bool </span><span class="cov0" title="0">{
                 if severityOrder[queries[i].Severity] == severityOrder[queries[j].Severity] </span><span class="cov0" title="0">{
                         return queries[i].QueryName &lt; queries[j].QueryName
@@ -8335,9 +8353,18 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
                 <span class="cov0" title="0">return severityOrder[queries[i].Severity] &lt; severityOrder[queries[j].Severity]</span>
         })
 
+        <span class="cov4" title="2">materials := make([]QueryResult, 0, len(q))
+        for idx := range q </span><span class="cov1" title="1">{
+                if q[idx].Severity == SeverityTrace </span><span class="cov0" title="0">{
+                        materials = append(materials, q[idx])
+                        severitySummary.TotalBOMResources += len(q[idx].Files)
+                }</span>
+        }
+
         <span class="cov4" title="2">severitySummary.SeverityCounters = sevs
 
         return Summary{
+                Bom:             materials,
                 Counters:        counters,
                 Queries:         queries,
                 SeveritySummary: severitySummary,
@@ -11084,7 +11111,7 @@ func (c *Parser) CommentsCommands(filePath string, fileContent []byte) model.Com
                                 }
                                 <span class="cov3" title="2">fields := strings.Fields(strings.TrimSpace(strings.TrimPrefix(line, commentToken)))
                                 if len(fields) &gt; 1 &amp;&amp; fields[0] == "kics-scan" &amp;&amp; fields[1] != "" </span><span class="cov3" title="2">{
-                                        commandParameters := strings.SplitN(fields[1], "=", 2)
+                                        commandParameters := strings.SplitN(fields[1], "=", 2) //nolint:gomnd
                                         if len(commandParameters) &gt; 1 </span><span class="cov1" title="1">{
                                                 commentsCommands[commandParameters[0]] = commandParameters[1]
                                         }</span> else<span class="cov1" title="1"> {
@@ -12415,7 +12442,7 @@ func closeFile(path, filename string, file *os.File) <span class="cov7" title="4
         <span class="cov7" title="4">fileCreationReport(path, filename)</span>
 }
 
-func getPlatforms(queries model.VulnerableQuerySlice) string <span class="cov6" title="3">{
+func getPlatforms(queries model.QueryResultSlice) string <span class="cov6" title="3">{
         platforms := make([]string, 0)
         alreadyAdded := make(map[string]string)
         for idx := range queries </span><span class="cov6" title="3">{
@@ -12726,7 +12753,7 @@ type gitlabSASTVulnerabilityIdentifier struct {
 
 // GitlabSASTReport represents a usable gitlab sast report reference
 type GitlabSASTReport interface {
-        BuildGitlabSASTVulnerability(issue *model.VulnerableQuery, file *model.VulnerableFile)
+        BuildGitlabSASTVulnerability(issue *model.QueryResult, file *model.VulnerableFile)
 }
 
 // NewGitlabSASTReport initializes a new instance of GitlabSASTReport to be uses
@@ -12758,7 +12785,7 @@ func initGitlabSASTScan(start, end time.Time) gitlabSASTScan <span class="cov10"
 }</span>
 
 // BuildGitlabSASTVulnerability adds a new vulnerability struct to vulnerability slice
-func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.VulnerableQuery, file *model.VulnerableFile) <span class="cov6" title="2">{
+func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.QueryResult, file *model.VulnerableFile) <span class="cov6" title="2">{
         if len(issue.Files) &gt; 0 </span><span class="cov1" title="1">{
                 vulnerability := gitlabSASTVulnerability{
                         ID:       file.SimilarityID,
@@ -12940,7 +12967,7 @@ type SarifRun struct {
 
 // SarifReport represents a usable sarif report reference
 type SarifReport interface {
-        BuildSarifIssue(issue *model.VulnerableQuery)
+        BuildSarifIssue(issue *model.QueryResult)
 }
 
 type sarifReport struct {
@@ -12963,7 +12990,7 @@ func initSarifTool() sarifTool <span class="cov4" title="5">{
 
 func initSarifCategories() []sarifTaxanomyDefinition <span class="cov4" title="5">{
         allCategories := []sarifTaxanomyDefinition{noCategory}
-        for _, category := range categories </span><span class="cov10" title="70">{
+        for _, category := range categories </span><span class="cov10" title="75">{
                 allCategories = append(allCategories, category)
         }</span>
         <span class="cov4" title="5">return allCategories</span>
@@ -13005,7 +13032,7 @@ func NewSarifReport() SarifReport <span class="cov3" title="4">{
 }</span>
 
 func (sr *sarifReport) findSarifCategory(category string) int <span class="cov3" title="3">{
-        for idx, taxonomy := range sr.Runs[0].Taxonomies[0].TaxonomyDefinitions </span><span class="cov9" title="45">{
+        for idx, taxonomy := range sr.Runs[0].Taxonomies[0].TaxonomyDefinitions </span><span class="cov9" title="48">{
                 if taxonomy.DefinitionName == category </span><span class="cov0" title="0">{
                         return idx
                 }</span>
@@ -13068,7 +13095,7 @@ func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata, cisMetadata r
 }
 
 // BuildSarifIssue creates a new entries in Results (one for each file) and new entry in Rules and Taxonomy if necessary
-func (sr *sarifReport) BuildSarifIssue(issue *model.VulnerableQuery) <span class="cov4" title="5">{
+func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) <span class="cov4" title="5">{
         if len(issue.Files) &gt; 0 </span><span class="cov3" title="4">{
                 metadata := ruleMetadata{
                         queryID:          issue.QueryID,
@@ -13121,7 +13148,7 @@ var noCategory = sarifTaxanomyDefinition{
         DefinitionFullDescription:  sarifMessage{Text: "Category is not defined"},
 }
 
-func createSarifCategory(identifier, name, description string) sarifTaxanomyDefinition <span class="cov10" title="14">{
+func createSarifCategory(identifier, name, description string) sarifTaxanomyDefinition <span class="cov10" title="15">{
         return sarifTaxanomyDefinition{
                 DefinitionID:   identifier,
                 DefinitionName: name,
@@ -13173,6 +13200,7 @@ var categories = map[string]sarifTaxanomyDefinition{
                 "Structure and Semantics",
                 "Malformed document structure or inadequate semantics",
         ),
+        "Bill Of Materials": createSarifCategory(categoryIdentifier+"015", "Bill Of Materials", "List of resources provisioned"),
 }
 </pre>
 		
@@ -13243,7 +13271,7 @@ func createQueryEntryMetadataField(m pdf.Maroto, label, value string, textSize i
         }</span>)
 }
 
-func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery) error <span class="cov4" title="2">{
+func createQueriesTable(m pdf.Maroto, queries []model.QueryResult) error <span class="cov4" title="2">{
         for i := range queries </span><span class="cov4" title="2">{
                 m.SetBackgroundColor(color.NewWhite())
                 queryName := queries[i].QueryName
@@ -13330,7 +13358,7 @@ func createDescription(m pdf.Maroto, description string) <span class="cov4" titl
         })
 }
 
-func createCISRows(m pdf.Maroto, query *model.VulnerableQuery) <span class="cov0" title="0">{
+func createCISRows(m pdf.Maroto, query *model.QueryResult) <span class="cov0" title="0">{
         cisID := query.CISDescriptionIDFormatted
         description := query.CISDescriptionTextFormatted
         title := query.CISDescriptionTitle
@@ -13378,7 +13406,7 @@ func getRowLength(value string) float64 <span class="cov4" title="2">{
         return float64(result)
 }</span>
 
-func createResultsTable(m pdf.Maroto, query *model.VulnerableQuery) <span class="cov4" title="2">{
+func createResultsTable(m pdf.Maroto, query *model.QueryResult) <span class="cov4" title="2">{
         for idx := range query.Files </span><span class="cov7" title="4">{
                 if idx%2 == 0 </span><span class="cov4" title="2">{
                         m.SetBackgroundColor(grayColor)
@@ -14270,18 +14298,18 @@ func StringifyStruct(v interface{}) (string, error) <span class="cov0" title="0"
 }
 
 // MapToStringSlice extract slice of keys from a map[string]string
-func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov3" title="2">{
+func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov2" title="2">{
         keys := make([]string, len(stringKeyMap))
 
         i := 0
-        for k := range stringKeyMap </span><span class="cov10" title="22">{
+        for k := range stringKeyMap </span><span class="cov10" title="23">{
                 keys[i] = k
                 i++
         }</span>
-        <span class="cov3" title="2">return keys</span>
+        <span class="cov2" title="2">return keys</span>
 }
 
-var queryHigh = model.VulnerableQuery{
+var queryHigh = model.QueryResult{
         QueryName:                   "ALB protocol is HTTP",
         QueryID:                     "de7f5e83-da88-4046-871f-ea18504b1d43",
         Description:                 "ALB protocol is HTTP Description",
@@ -14312,7 +14340,7 @@ var queryHigh = model.VulnerableQuery{
         },
 }
 
-var queryMedium = model.VulnerableQuery{
+var queryMedium = model.QueryResult{
         QueryName: "AmazonMQ Broker Encryption Disabled",
         QueryID:   "3db3f534-e3a3-487f-88c7-0a9fbf64b702",
         Severity:  model.SeverityMedium,
@@ -14338,7 +14366,7 @@ var SummaryMock = model.Summary{
                 TotalQueries:           1,
                 FailedToExecuteQueries: 0,
         },
-        Queries: []model.VulnerableQuery{
+        Queries: []model.QueryResult{
                 queryHigh,
         },
         SeveritySummary: model.SeveritySummary{
@@ -14365,7 +14393,7 @@ var ComplexSummaryMock = model.Summary{
                 TotalQueries:           2,
                 FailedToExecuteQueries: 0,
         },
-        Queries: []model.VulnerableQuery{
+        Queries: []model.QueryResult{
                 queryHigh,
                 queryMedium,
         },
