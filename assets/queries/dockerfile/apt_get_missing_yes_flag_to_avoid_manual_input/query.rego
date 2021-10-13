@@ -8,7 +8,8 @@ CxPolicy[result] {
 
 	count(resource.Value) == 1
 
-	command := resource.Value[j]
+	commands := resource.Value[j]
+	command := split(commands, "&&")[_]
 	isAptGet(command)
 
 	not avoidManualInput(command)
@@ -51,18 +52,14 @@ avoidManualInputInList(command) {
 	contains(command[j], flags[x])
 }
 
-isAptGet(command) {
-	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install", command)
+avoidManualInput(command) {
+	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*(-([A-Za-z])*y|-yes|--assumeyes) (-(-)?[a-zA-Z]+ *)*install", command)
 }
 
 avoidManualInput(command) {
-	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*(-(q)?y|-yes|--assumeyes) (-(-)?[a-zA-Z]+ *)*install", command)
+	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install (-(-)?[a-zA-Z]+ *)*(-([A-Za-z])*y|-yes|--assumeyes)", command)
 }
 
 avoidManualInput(command) {
-	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install (-(-)?[a-zA-Z]+ *)*(-(q)?y|-yes|--assumeyes)", command)
-}
-
-avoidManualInput(command) {
-	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install ([A-Za-z0-9-:=.$_]+ *)*(-(q)?y|-yes|--assumeyes)", command)
+	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install ([A-Za-z0-9\\W]+ *)*(-([A-Za-z])*y|-yes|--assumeyes)", command)
 }

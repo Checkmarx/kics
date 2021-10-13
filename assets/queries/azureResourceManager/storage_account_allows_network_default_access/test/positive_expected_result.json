@@ -16,5 +16,23 @@
     "severity": "LOW",
     "line": 8,
     "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Storage Account Allows Default Network Access",
+    "severity": "LOW",
+    "line": 43,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "Storage Account Allows Default Network Access",
+    "severity": "LOW",
+    "line": 20,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "Storage Account Allows Default Network Access",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive6.json"
   }
 ]
