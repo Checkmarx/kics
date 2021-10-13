@@ -1,0 +1,39 @@
+name: alert-update-terraform-modules
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+
+jobs:
+  notification-update-flags:
+    name: Send email with terraform modules updates
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 0
+      - name: Execute diff and send email
+        env:
+          AWS_REGION: ${{ secrets.EMAIL_AWS_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.EMAIL_AWS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.EMAIL_AWS_SECRET_KEY }}
+        run: |
+          pip3 install -r .github/scripts/watchers/requirements.txt
+          python3 -u .github/scripts/watchers/terraform-modules-update.py \
+            -c internal/console/assets/libraries/common.json \
+            -u https://registry.terraform.io/v1/modules
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3.10.1
+        with:
+          title: "feat(queries): update terraform registry data on commons.json"
+          token: ${{ secrets.KICS_BOT_PAT }}
+          commit-message: "feat(queries): update terraform registry data on commons.json"
+          delete-branch: true
+          branch: feature/kicsbot-update-queries-docs
+          body: |
+            **Automated Changes**
+            Updating terraform registry data on commons.json.
+            Triggered by SHA: _${{ github.sha }}_
+          labels: terraform
