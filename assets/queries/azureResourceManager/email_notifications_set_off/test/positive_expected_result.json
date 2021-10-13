@@ -26,13 +26,13 @@
   {
     "queryName": "Email Notifications Disabled",
     "severity": "INFO",
-    "line": 17,
+    "line": 21,
     "filename": "positive5.json"
   },
   {
     "queryName": "Email Notifications Disabled",
     "severity": "INFO",
-    "line": 16,
+    "line": 20,
     "filename": "positive6.json"
   }
 ]
