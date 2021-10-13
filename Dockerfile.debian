@@ -3,7 +3,7 @@
 # it does not define an ENTRYPOINT as this is a requirement described here:
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/process/container-phases?view=azure-devops#linux-based-containers
 #
-FROM golang:1.17.2-buster as build_env
+FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.17.2-buster as build_env
 # Create a group and user
 RUN groupadd checkmarx && useradd -g checkmarx -M -s /bin/bash checkmarx
 USER checkmarx
@@ -14,6 +14,8 @@ ARG VERSION="development"
 ARG COMMIT="NOCOMMIT"
 ARG SENTRY_DSN=""
 ARG DESCRIPTIONS_URL=""
+ARG TARGETOS
+ARG TARGETARCH
 
 #Copy go mod and sum files
 COPY --chown=checkmarx:checkmarx go.mod .
@@ -25,7 +27,7 @@ COPY . .
 USER root
 # Build the Go app
 RUN apt-get install -y ca-certificates
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
+RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
   -ldflags "-s -w -X github.com/Checkmarx/kics/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/internal/constants.BaseURL=${DESCRIPTIONS_URL}" \
   -a -installsuffix cgo \
   -o bin/kics cmd/console/main.go
