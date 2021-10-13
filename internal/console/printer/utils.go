@@ -5,21 +5,24 @@ import (
 	"time"
 
 	consoleFlags "github.com/Checkmarx/kics/internal/console/flags"
-	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
 
 func validateFlags() error {
-	if consoleFlags.GetBoolFlag(consoleFlags.VerboseFlag) && consoleFlags.GetBoolFlag(consoleFlags.SilentFlag) {
-		return errors.New("can't provide 'silent' and 'verbose' flags simultaneously")
+	verboseFlag := consoleFlags.GetBoolFlag(consoleFlags.VerboseFlag)
+	silentFlag := consoleFlags.GetBoolFlag(consoleFlags.SilentFlag)
+	ciFlag := consoleFlags.GetBoolFlag(consoleFlags.CIFlag)
+
+	if silentFlag && verboseFlag {
+		return consoleFlags.FormatNewError(consoleFlags.SilentFlag, consoleFlags.VerboseFlag)
 	}
 
-	if consoleFlags.GetBoolFlag(consoleFlags.VerboseFlag) && consoleFlags.GetBoolFlag(consoleFlags.CIFlag) {
-		return errors.New("can't provide 'verbose' and 'ci' flags simultaneously")
+	if verboseFlag && ciFlag {
+		return consoleFlags.FormatNewError(consoleFlags.VerboseFlag, consoleFlags.CIFlag)
 	}
 
-	if consoleFlags.GetBoolFlag(consoleFlags.CIFlag) && consoleFlags.GetBoolFlag(consoleFlags.SilentFlag) {
-		return errors.New("can't provide 'silent' and 'ci' flags simultaneously")
+	if silentFlag && ciFlag {
+		return consoleFlags.FormatNewError(consoleFlags.SilentFlag, consoleFlags.CIFlag)
 	}
 	return nil
 }

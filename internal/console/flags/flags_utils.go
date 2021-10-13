@@ -11,7 +11,8 @@ import (
 	"github.com/spf13/viper"
 )
 
-func formatNewError(flag1, flag2 string) error {
+// FormatNewError reports the impossibility of flag1 and flag2 usage simultaneously
+func FormatNewError(flag1, flag2 string) error {
 	return errors.Errorf("can't provide '%s' and '%s' flags simultaneously",
 		flag1,
 		flag2)
@@ -20,10 +21,10 @@ func formatNewError(flag1, flag2 string) error {
 // ValidateQuerySelectionFlags reports the impossibility of include and exclude flags usage simultaneously
 func ValidateQuerySelectionFlags() error {
 	if len(GetMultiStrFlag(IncludeQueriesFlag)) > 0 && len(GetMultiStrFlag(ExcludeQueriesFlag)) > 0 {
-		return formatNewError(IncludeQueriesFlag, ExcludeQueriesFlag)
+		return FormatNewError(IncludeQueriesFlag, ExcludeQueriesFlag)
 	}
 	if len(GetMultiStrFlag(IncludeQueriesFlag)) > 0 && len(GetMultiStrFlag(ExcludeCategoriesFlag)) > 0 {
-		return formatNewError(IncludeQueriesFlag, ExcludeCategoriesFlag)
+		return FormatNewError(IncludeQueriesFlag, ExcludeCategoriesFlag)
 	}
 	return nil
 }
