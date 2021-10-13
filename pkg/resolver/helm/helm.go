@@ -60,16 +60,16 @@ func runInstall(args []string, client *action.Install,
 
 	chartRequested = setID(chartRequested)
 
-	if err := checkIfInstallable(chartRequested); err != nil {
-		return nil, []string{}, err
+	if instErr := checkIfInstallable(chartRequested); instErr != nil {
+		return nil, []string{}, instErr
 	}
 
 	client.Namespace = "kics-namespace"
-	release, err := client.Run(chartRequested, vals)
+	helmRelease, err := client.Run(chartRequested, vals)
 	if err != nil {
 		return nil, []string{}, err
 	}
-	return release, excluded, nil
+	return helmRelease, excluded, nil
 }
 
 // checkIfInstallable validates if a chart can be installed
