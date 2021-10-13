@@ -392,6 +392,7 @@ func createQueryFilter() *source.QueryInspectorParameters {
 		IncludeQueries: includeQueries,
 		ExcludeQueries: excludeQueries,
 		InputDataPath:  flags.GetStrFlag(flags.InputDataFlag),
+		BomQueries:     flags.GetBoolFlag(flags.BomFlag),
 	}
 
 	return &queryFilter

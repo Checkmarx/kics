@@ -83,7 +83,7 @@ type Summary struct {
 	Times
 	ScannedPaths []string         `json:"paths"`
 	Queries      QueryResultSlice `json:"queries"`
-	Bom          QueryResultSlice `json:"bill_of_materials"`
+	Bom          QueryResultSlice `json:"bill_of_materials,omitempty"`
 }
 
 // PathParameters - structure wraps the required fields for temporary path translation

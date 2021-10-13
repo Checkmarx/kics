@@ -62,6 +62,12 @@
     "usage": "exclude results by providing the severity of a result\n${sliceInstructions}\nexample: 'info,low'",
     "validation": "sliceFlagsShouldNotStartWithFlags,validateMultiStrEnum"
   },
+  "bom": {
+    "flagType": "bool",
+    "shorthandFlag": "m",
+    "defaultValue": "false",
+    "usage": "include bill of materials (BoM) in results output"
+  },
   "fail-on": {
     "flagType": "multiStr",
     "shorthandFlag": "",
