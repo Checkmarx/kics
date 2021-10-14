@@ -207,9 +207,9 @@
 				
 				<option value="file75">github.com/Checkmarx/kics/pkg/report/sarif.go (90.9%)</option>
 				
-				<option value="file76">github.com/Checkmarx/kics/pkg/resolver/helm/helm.go (88.7%)</option>
+				<option value="file76">github.com/Checkmarx/kics/pkg/resolver/helm/helm.go (89.1%)</option>
 				
-				<option value="file77">github.com/Checkmarx/kics/pkg/resolver/helm/resolver.go (89.4%)</option>
+				<option value="file77">github.com/Checkmarx/kics/pkg/resolver/helm/resolver.go (88.4%)</option>
 				
 				<option value="file78">github.com/Checkmarx/kics/pkg/resolver/resolver.go (90.5%)</option>
 				
@@ -1622,8 +1622,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="387">{
-                if val == true </span><span class="cov9" title="386">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="360">{
+                if val == true </span><span class="cov9" title="359">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2532,13 +2532,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="39">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="37">total += v
+                <span class="cov9" title="39">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2563,7 +2563,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2987,7 +2987,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="18">{
-        for _, a := range s </span><span class="cov8" title="39">{
+        for _, a := range s </span><span class="cov8" title="38">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -4688,7 +4688,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -7172,11 +7172,8 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
                 return []string{}, nil
         }</span>
 
-        <span class="cov0" title="0">excluded := make([]string, len(resFiles.File))
-
-        for idx, rfile := range resFiles.File </span><span class="cov0" title="0">{
+        <span class="cov0" title="0">for _, rfile := range resFiles.File </span><span class="cov0" title="0">{
                 s.Tracker.TrackFileFound()
-                excluded[idx] = rfile.FileName
                 documents, retParse, err := s.Parser.Parse(rfile.FileName, rfile.Content)
                 if err != nil </span><span class="cov0" title="0">{
                         if retParse == "break" </span><span class="cov0" title="0">{
@@ -7209,7 +7206,7 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
                 }
                 <span class="cov0" title="0">s.Tracker.TrackFileParse()</span>
         }
-        <span class="cov0" title="0">return excluded, nil</span>
+        <span class="cov0" title="0">return resFiles.Excluded, nil</span>
 }
 </pre>
 		
@@ -7672,7 +7669,8 @@ type QueryConfig struct {
 
 // ResolvedFiles keeps the information of all file/template resolved
 type ResolvedFiles struct {
-        File []ResolvedFile
+        File     []ResolvedFile
+        Excluded []string
 }
 
 // ResolvedFile keeps the information of a file/template resolved
@@ -13725,6 +13723,7 @@ import (
         "io"
         "log"
         "os"
+        "path/filepath"
         "strings"
 
         "github.com/pkg/errors"
@@ -13745,7 +13744,7 @@ var (
 )
 
 func runInstall(args []string, client *action.Install,
-        valueOpts *values.Options) (*release.Release, error) <span class="cov2" title="3">{
+        valueOpts *values.Options) (*release.Release, []string, error) <span class="cov2" title="3">{
         log.SetOutput(io.Discard)
         defer log.SetOutput(os.Stderr)
         if client.Version == "" &amp;&amp; client.Devel </span><span class="cov0" title="0">{
@@ -13754,35 +13753,41 @@ func runInstall(args []string, client *action.Install,
 
         <span class="cov2" title="3">name, charts, err := client.NameAndChart(args)
         if err != nil </span><span class="cov0" title="0">{
-                return nil, err
+                return nil, []string{}, err
         }</span>
         <span class="cov2" title="3">client.ReleaseName = name
 
         cp, err := client.ChartPathOptions.LocateChart(charts, settings)
         if err != nil </span><span class="cov0" title="0">{
-                return nil, err
+                return nil, []string{}, err
         }</span>
 
         <span class="cov2" title="3">p := getter.All(settings)
         vals, err := valueOpts.MergeValues(p)
         if err != nil </span><span class="cov0" title="0">{
-                return nil, err
+                return nil, []string{}, err
         }</span>
 
         // Check chart dependencies to make sure all are present in /charts
         <span class="cov2" title="3">chartRequested, err := loader.Load(cp)
         if err != nil </span><span class="cov1" title="1">{
-                return nil, err
+                return nil, []string{}, err
         }</span>
 
-        <span class="cov2" title="2">chartRequested = setID(chartRequested)
+        <span class="cov2" title="2">excluded := getExcluded(chartRequested, filepath.Dir(cp))
 
-        if err := checkIfInstallable(chartRequested); err != nil </span><span class="cov0" title="0">{
-                return nil, err
+        chartRequested = setID(chartRequested)
+
+        if instErr := checkIfInstallable(chartRequested); instErr != nil </span><span class="cov0" title="0">{
+                return nil, []string{}, instErr
         }</span>
 
         <span class="cov2" title="2">client.Namespace = "kics-namespace"
-        return client.Run(chartRequested, vals)</span>
+        helmRelease, err := client.Run(chartRequested, vals)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, []string{}, err
+        }</span>
+        <span class="cov2" title="2">return helmRelease, excluded, nil</span>
 }
 
 // checkIfInstallable validates if a chart can be installed
@@ -13841,6 +13846,19 @@ func addID(file *chart.File) *chart.File <span class="cov4" title="9">{
         <span class="cov4" title="9">file.Data = []byte(strings.Join(split, "\n"))
         return file</span>
 }
+
+// getExcluded will return all files rendered to be excluded from scan
+func getExcluded(charterino *chart.Chart, chartpath string) []string <span class="cov2" title="3">{
+        path := filepath.Join(chartpath, charterino.ChartFullPath())
+        excluded := make([]string, 0)
+        for _, temp := range charterino.Templates </span><span class="cov4" title="9">{
+                excluded = append(excluded, filepath.Join(path, temp.Name))
+        }</span>
+        <span class="cov2" title="3">for _, dep := range charterino.Dependencies() </span><span class="cov1" title="1">{
+                excluded = append(excluded, getExcluded(dep, chartpath)...)
+        }</span>
+        <span class="cov2" title="3">return excluded</span>
+}
 </pre>
 		
 		<pre class="file" id="file77" style="display: none">package helm
@@ -13876,12 +13894,14 @@ const (
 
 // Resolve will render the passed helm chart and return its content ready for parsing
 func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) <span class="cov3" title="3">{
-        var rfiles = model.ResolvedFiles{}
-        splits, err := renderHelm(filePath)
+        splits, excluded, err := renderHelm(filePath)
         if err != nil </span><span class="cov1" title="1">{ // return error to be logged
                 return model.ResolvedFiles{}, errors.New("failed to render helm chart")
         }</span>
-        <span class="cov2" title="2">for _, split := range *splits </span><span class="cov3" title="3">{
+        <span class="cov2" title="2">var rfiles = model.ResolvedFiles{
+                Excluded: excluded,
+        }
+        for _, split := range *splits </span><span class="cov3" title="3">{
                 origpath := filepath.Join(filepath.Dir(filePath), split.path)
                 rfiles.File = append(rfiles.File, model.ResolvedFile{
                         FileName:     origpath,
@@ -13900,13 +13920,17 @@ func (r *Resolver) SupportedTypes() []model.FileKind <span class="cov1" title="1
 }</span>
 
 // renderHelm will use helm library to render helm charts
-func renderHelm(path string) (*[]splitManifest, error) <span class="cov3" title="3">{
+func renderHelm(path string) (*[]splitManifest, []string, error) <span class="cov3" title="3">{
         client := newClient()
-        manifest, err := runInstall([]string{path}, client, &amp;values.Options{})
+        manifest, excluded, err := runInstall([]string{path}, client, &amp;values.Options{})
         if err != nil </span><span class="cov1" title="1">{
-                return nil, err
+                return nil, []string{}, err
         }</span>
-        <span class="cov2" title="2">return splitManifestYAML(manifest)</span>
+        <span class="cov2" title="2">splitted, err := splitManifestYAML(manifest)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, []string{}, err
+        }</span>
+        <span class="cov2" title="2">return splitted, excluded, nil</span>
 }
 
 // splitManifestYAML will split the rendered file and return its content by template as well as the template path
