@@ -2,6 +2,7 @@ package kics
 
 import (
 	"context"
+	"encoding/json"
 	"io"
 	"sync"
 
@@ -149,5 +150,50 @@ func (s *Service) saveToFile(ctx context.Context, file *model.FileMetadata) {
 	err := s.Storage.SaveFile(ctx, file)
 	if err == nil {
 		s.files = append(s.files, *file)
+	}
+}
+
+// PrepareScanDocument removes _kics_lines from payload and parses json filters
+func PrepareScanDocument(body map[string]interface{}, kind model.FileKind) map[string]interface{} {
+	bodyMap := make(map[string]interface{})
+	j, err := json.Marshal(body)
+	if err != nil {
+		log.Error().Msgf("failed to remove kics line information")
+		return body
+	}
+	if err := json.Unmarshal(j, &bodyMap); err != nil {
+		log.Error().Msgf("failed to remove kics line information")
+		return body
+	}
+	prepareScanDocumentRoot(bodyMap, kind)
+	return bodyMap
+}
+
+func prepareScanDocumentRoot(body interface{}, kind model.FileKind) {
+	switch bodyType := body.(type) {
+	case map[string]interface{}:
+		prepareScanDocumentValue(bodyType, kind)
+	case []interface{}:
+		for _, indx := range bodyType {
+			prepareScanDocumentRoot(indx, kind)
+		}
+	}
+}
+
+func prepareScanDocumentValue(bodyType map[string]interface{}, kind model.FileKind) {
+	delete(bodyType, "_kics_lines")
+	for key, v := range bodyType {
+		switch value := v.(type) {
+		case map[string]interface{}:
+			prepareScanDocumentRoot(value, kind)
+		case []interface{}:
+			for _, indx := range value {
+				prepareScanDocumentRoot(indx, kind)
+			}
+		case string:
+			if field, ok := lines[kind]; ok && contains(field, key) {
+				bodyType[key] = resolveJSONFilter(value)
+			}
+		}
 	}
 }
