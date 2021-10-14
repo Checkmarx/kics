@@ -195,7 +195,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 	}()
 
 	require.Nil(tb, err)
-	validateIssueTypes(tb, vulnerabilities)
+	validateQueryResultFields(tb, vulnerabilities)
 	requireEqualVulnerabilities(tb, expectedVulnerabilities, vulnerabilities, entry.dir)
 }
 
@@ -212,11 +212,38 @@ func vulnerabilityCompare(vulnerabilitySlice []model.Vulnerability, i, j int) bo
 	return vulnerabilitySlice[i].Line < vulnerabilitySlice[j].Line
 }
 
-func validateIssueTypes(tb testing.TB, vulnerabilies []model.Vulnerability) {
+func validateQueryResultFields(tb testing.TB, vulnerabilies []model.Vulnerability) {
 	for idx := range vulnerabilies {
 		issueType := string(vulnerabilies[idx].IssueType)
 		_, ok := issueTypes[issueType]
 		require.True(tb, ok, "Results 'issueType' is not valid :: %v", issueType)
+		if vulnerabilies[idx].Severity == model.SeverityTrace {
+			require.Equal(tb, "Bill Of Materials", vulnerabilies[idx].Category, "TRACE results should have category 'Bill Of Materials'")
+			require.Equal(tb, model.IssueType("BillOfMaterials"), vulnerabilies[idx].IssueType, "TRACE results should have issueType 'BillOfMaterials'")
+			require.NotEmpty(tb, vulnerabilies[idx].Value, "TRACE results should not have empty value")
+
+			bomResult := make(map[string]string)
+			json.Unmarshal([]byte(*vulnerabilies[idx].Value), &bomResult)
+			bomOutputRequiredFields := map[string]bool{
+				"resource_type":          true,
+				"resource_name":          true,
+				"resource_engine":        false,
+				"resource_accessibility": true,
+				"resource_vendor":        true,
+				"resource_category":      true,
+			}
+			for key := range bomOutputRequiredFields {
+				_, ok := bomResult[key]
+				if bomOutputRequiredFields[key] {
+					require.True(tb, ok, "BoM results should have the required value fields: %s", key)
+				}
+			}
+
+			for key := range bomResult {
+				_, ok := bomOutputRequiredFields[key]
+				require.True(tb, ok, "BoM results should only have the allowed value fields, unknown field: %s", key)
+			}
+		}
 	}
 }
 
