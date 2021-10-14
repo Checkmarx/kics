@@ -7,7 +7,7 @@ This provides you the ability to run KICS scans in your Bitbucket repositories a
 ### Example configuration
 
 ```yaml
-image: checkmarx/kics:latest-alpine
+image: checkmarx/kics:latest
 
 pipelines:
   default:
