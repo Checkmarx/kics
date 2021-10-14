@@ -191,7 +191,7 @@ jobs:
           file: ./Dockerfile.ubi7
           push: true
           tags: checkmarx/kics:nightly-ubi7
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           build-args: |
             VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
             COMMIT=${{ github.sha }}
