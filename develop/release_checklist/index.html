@@ -1067,6 +1067,7 @@
 <ol>
 <li>Check for any <code>update-queries-docs</code> pull requests open, review and merge if any</li>
 <li>Prepare release (run prepare-release action)</li>
+<li>Use prepare release pull request to bump UBI7 image version label in the <a href="https://github.com/Checkmarx/kics/blob/master/Dockerfile.ubi7">Dockerfile.ubi7</a></li>
 <li>Review and merge prepare-release pull-request</li>
 <li>Create and push new version git tag</li>
 <li>Wait for goreleaser action to complete</li>
@@ -1075,6 +1076,7 @@
 <li>Check if <code>update-docs-release</code> workflow completed with success</li>
 <li>Trigger <code>release-docker-image</code> workflow</li>
 <li>Check if image is published in dockerhub / update hub documentation if changed.</li>
+<li>Check for dependabots PR's in KICS' <a href="https://github.com/Checkmarx/kics-github-action">github action</a>, merge them and add a new tag.</li>
 </ol>
                 
               
