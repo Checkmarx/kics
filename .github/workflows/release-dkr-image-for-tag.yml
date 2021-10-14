@@ -96,7 +96,7 @@ jobs:
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
       - name: Push ubi7 to Docker Hub
-        if: ${{ hashFiles('Dockerfile.debian') }} != ""
+        if: ${{ hashFiles('Dockerfile.ubi7') }} != ""
         id: build_ubi7
         uses: docker/build-push-action@v2.7.0
         with:
