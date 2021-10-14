@@ -1085,7 +1085,7 @@
   - docker
 
 before_install:
-  - docker pull checkmarx/kics:latest-alpine
+  - docker pull checkmarx/kics:latest
 
 script:
   - docker run -v ${PWD}/path checkmarx/kics:latest scan -p /path -o ${PWD} --ci --ignore-on-exit results
