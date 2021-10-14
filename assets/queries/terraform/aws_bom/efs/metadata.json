@@ -1,9 +1,9 @@
 {
   "id": "f53f16d6-46a9-4277-9fbe-617b1e24cdca",
-  "queryName": "BOM - EFS",
+  "queryName": "BOM - AWS EFS",
   "severity": "TRACE",
   "category": "Bill Of Materials",
-  "descriptionText": "A list of EFS resources specified",
+  "descriptionText": "A list of EFS resources found. Amazon Elastic File System (Amazon EFS) automatically grows and shrinks as you add and remove files with no need for management or provisioning.",
   "descriptionUrl": "https://kics.io",
   "platform": "Terraform",
   "descriptionID": "5522243f",

@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "BOM - EFS",
+    "queryName": "BOM - AWS EFS",
     "severity": "TRACE",
     "line": 1,
     "fileName": "positive1.tf"

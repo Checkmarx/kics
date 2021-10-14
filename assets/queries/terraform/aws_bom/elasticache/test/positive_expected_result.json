@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "BOM - Elasticache",
+    "queryName": "BOM - AWS Elasticache",
     "severity": "TRACE",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "BOM - Elasticache",
+    "queryName": "BOM - AWS Elasticache",
     "severity": "TRACE",
     "line": 1,
     "fileName": "positive2.tf"
