@@ -1,0 +1,36 @@
+swagger: "2.0"
+info:
+  title: Simple API Overview
+  version: 1.0.0
+paths:
+  "/":
+    get:
+      operationId: listVersionsv2
+      summary: List API versions
+      responses:
+        "200":
+          description: 200 response
+    parameters:
+      - name: Token
+        in: header
+        description: Token
+        required: true
+        type: string
+      - name: token
+        in: header
+        description: token
+        required: true
+        type: string
+parameters:
+  oneParam:
+    name: Token2
+    in: header
+    description: Token
+    required: true
+    type: string
+  anotherParam:
+    name: token2
+    in: header
+    description: token
+    required: true
+    type: string

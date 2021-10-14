@@ -3,7 +3,7 @@
   "files_scanned": 1,
   "files_parsed": 1,
   "files_failed_to_scan": 0,
-  "queries_total": 785,
+  "queries_total": 821,
   "queries_failed_to_execute": 0,
   "queries_failed_to_compute_similarity_id": 0,
   "scan_id": "console",
@@ -11,11 +11,13 @@
     "HIGH": 0,
     "INFO": 1,
     "LOW": 0,
-    "MEDIUM": 3
+    "MEDIUM": 3,
+    "TRACE": 0
   },
   "total_counter": 4,
-  "start": "2021-09-10T13:55:18.709293+01:00",
-  "end": "2021-09-10T13:55:22.21519+01:00",
+  "total_bom_resources": 0,
+  "start": "2021-10-13T17:17:25.393163+01:00",
+  "end": "2021-10-13T17:17:42.164831+01:00",
   "paths": [
     "fixtures/samples/terraform-single.tf"
   ],
@@ -29,12 +31,9 @@
       "category": "Observability",
       "description": "Make sure Logging is enabled for Redshift Cluster",
       "description_id": "458fe7a3",
-      "cis_description_id": "",
-      "cis_description_title": "",
-      "cis_description_text": "",
       "files": [
         {
-          "file_name": "fixtures/samples/terraform-single.tf",
+          "file_name": "../../e2e/fixtures/samples/terraform-single.tf",
           "similarity_id": "2abf26c3014fc445da69d8d5bb862c1c511e8e16ad3a6c6f6e14c28aa0adac1d",
           "line": 1,
           "issue_type": "MissingAttribute",
@@ -42,8 +41,7 @@
           "search_line": 0,
           "search_value": "",
           "expected_value": "'aws_redshift_cluster.logging' is true",
-          "actual_value": "'aws_redshift_cluster.logging' is undefined",
-          "value": null
+          "actual_value": "'aws_redshift_cluster.logging' is undefined"
         }
       ]
     },
@@ -56,24 +54,9 @@
       "category": "Insecure Configurations",
       "description": "Redshift Cluster should be configured in VPC (Virtual Private Cloud)",
       "description_id": "6fd531fa",
-      "cis_description_id": "",
-      "cis_description_title": "",
-      "cis_description_text": "",
       "files": [
         {
-          "file_name": "fixtures/samples/terraform-single.tf",
-          "similarity_id": "4aa3f159f39767de53b49ed871977b8b499bf19b3b0865b1631042aa830598aa",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[default1]",
-          "search_line": 0,
-          "search_value": "cluster_subnet_group_name",
-          "expected_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is set",
-          "actual_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is undefined",
-          "value": null
-        },
-        {
-          "file_name": "fixtures/samples/terraform-single.tf",
+          "file_name": "../../e2e/fixtures/samples/terraform-single.tf",
           "similarity_id": "83461a5eac8fed2264fac68a6d352d1ed752867a9b0a131afa9ba7e366159b59",
           "line": 1,
           "issue_type": "MissingAttribute",
@@ -81,8 +64,18 @@
           "search_line": 0,
           "search_value": "vpc_security_group_ids",
           "expected_value": "aws_redshift_cluster[default1].vpc_security_group_ids is set",
-          "actual_value": "aws_redshift_cluster[default1].vpc_security_group_ids is undefined",
-          "value": null
+          "actual_value": "aws_redshift_cluster[default1].vpc_security_group_ids is undefined"
+        },
+        {
+          "file_name": "../../e2e/fixtures/samples/terraform-single.tf",
+          "similarity_id": "4aa3f159f39767de53b49ed871977b8b499bf19b3b0865b1631042aa830598aa",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "aws_redshift_cluster[default1]",
+          "search_line": 0,
+          "search_value": "cluster_subnet_group_name",
+          "expected_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is set",
+          "actual_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is undefined"
         }
       ]
     },
@@ -95,21 +88,17 @@
       "category": "Best Practices",
       "description": "AWS services resource tags are an essential part of managing components",
       "description_id": "09db2d52",
-      "cis_description_id": "",
-      "cis_description_title": "",
-      "cis_description_text": "",
       "files": [
         {
-          "file_name": "fixtures/samples/terraform-single.tf",
-          "similarity_id": "406b71d9fd0edb656a4735df30dde77c5f8a6c4ec3caa3442f986a92832c653b",
+          "file_name": "../../e2e/fixtures/samples/terraform-single.tf",
+          "similarity_id": "ff26328ed857afb92e2be8b946b4dd28fb0e5125fae679653e0117e5b9359554",
           "line": 1,
           "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[{{default1}}]",
           "search_line": 0,
           "search_value": "",
           "expected_value": "aws_redshift_cluster[{{default1}}].tags is defined and not null",
-          "actual_value": "aws_redshift_cluster[{{default1}}].tags is undefined or null",
-          "value": null
+          "actual_value": "aws_redshift_cluster[{{default1}}].tags is undefined or null"
         }
       ]
     }

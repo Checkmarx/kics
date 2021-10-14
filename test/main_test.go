@@ -25,12 +25,13 @@ import (
 
 var (
 	queriesPaths = map[string]model.QueryConfig{
-		"../assets/queries/terraform/aws":        {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
-		"../assets/queries/terraform/azure":      {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
-		"../assets/queries/terraform/gcp":        {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
-		"../assets/queries/terraform/github":     {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
-		"../assets/queries/terraform/kubernetes": {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
-		"../assets/queries/terraform/general":    {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
+		"../assets/queries/terraform/aws_bom":    {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/aws":        {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/azure":      {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/gcp":        {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/github":     {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/kubernetes": {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/general":    {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/k8s":                  {FileKind: []model.FileKind{model.KindYAML}, Platform: "k8s"},
 		"../assets/queries/cloudFormation":       {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
 		"../assets/queries/ansible/aws":          {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
@@ -47,6 +48,7 @@ var (
 		"MissingAttribute":   "",
 		"IncorrectValue":     "",
 		"RedundantAttribute": "",
+		"BillOfMaterials":    "",
 	}
 )
 

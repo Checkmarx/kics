@@ -25,6 +25,7 @@ const (
 	SeverityMedium = "MEDIUM"
 	SeverityLow    = "LOW"
 	SeverityInfo   = "INFO"
+	SeverityTrace  = "TRACE"
 )
 
 // Constants to describe issue's type
@@ -41,6 +42,7 @@ var (
 		SeverityMedium,
 		SeverityLow,
 		SeverityInfo,
+		SeverityTrace,
 	}
 
 	AllIssueTypesAsString = []string{
@@ -145,7 +147,8 @@ type QueryConfig struct {
 
 // ResolvedFiles keeps the information of all file/template resolved
 type ResolvedFiles struct {
-	File []ResolvedFile
+	File     []ResolvedFile
+	Excluded []string
 }
 
 // ResolvedFile keeps the information of a file/template resolved

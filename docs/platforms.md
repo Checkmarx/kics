@@ -51,6 +51,17 @@ KICS supports scanning OpenAPI 3.0 specs with `.json` and `.yaml` extension.
 
 KICS supports scanning Terraform's HCL files with `.tf` extension and input variables using `terraform.tfvars` or files with `.auto.tfvars` extension that are in same directory of `.tf` files.
 
+### Terraform Plan
+
+KICS supports scanning terraform plans given in JSON. The `planned_values` will be extracted, built in a way that KICS can understand, and scanned as a normal terraform file.
+
+Results will point to the plan file.
+
+To get terraform plan in JSON format simply run the command:
+```
+terraform show -json plan-sample.tfplan > plan-sample.tfplan.json
+```
+
 ### Limitations
 
 Although KICS support variables and interpolations, KICS does not support functions and enviroment variables. In case of variables used as function parameters, it will parse as wrapped expression, so the following function call:

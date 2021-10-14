@@ -23,3 +23,10 @@ settings_are_equal(resource, rest_api_id, stage_name) {
 	usage_plan.api_stages.api_id == rest_api_id
 	usage_plan.api_stages.stage == stage_name
 }
+
+# api_stages can also be an array
+settings_are_equal(resource, rest_api_id, stage_name) {
+	usage_plan := resource.aws_api_gateway_usage_plan[_]
+	usage_plan.api_stages[_].api_id == rest_api_id
+	usage_plan.api_stages[_].stage == stage_name
+}

@@ -229,7 +229,8 @@ func checkQueryExcludeField(id interface{}, excludeQueries []string) bool {
 func checkQueryExclude(metadata map[string]interface{}, queryParameters *QueryInspectorParameters) bool {
 	return checkQueryExcludeField(metadata["id"], queryParameters.ExcludeQueries.ByIDs) ||
 		checkQueryExcludeField(metadata["category"], queryParameters.ExcludeQueries.ByCategories) ||
-		checkQueryExcludeField(metadata["severity"], queryParameters.ExcludeQueries.BySeverities)
+		checkQueryExcludeField(metadata["severity"], queryParameters.ExcludeQueries.BySeverities) ||
+		(!queryParameters.BomQueries && metadata["severity"] == model.SeverityTrace)
 }
 
 // GetQueries walks a given filesource path returns all queries found in an array of

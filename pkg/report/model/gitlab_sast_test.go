@@ -28,7 +28,7 @@ func TestNewGitlabSASTReport(t *testing.T) {
 
 type gitlabSASTTest struct {
 	name string
-	vq   model.VulnerableQuery
+	vq   model.QueryResult
 	file model.VulnerableFile
 	want gitlabSASTReport
 }
@@ -36,7 +36,7 @@ type gitlabSASTTest struct {
 var tests = []gitlabSASTTest{
 	{
 		name: "Should not create any rule",
-		vq: model.VulnerableQuery{
+		vq: model.QueryResult{
 			QueryName:   "test",
 			QueryID:     "1",
 			Description: "test description",
@@ -51,7 +51,7 @@ var tests = []gitlabSASTTest{
 	},
 	{
 		name: "Should create one occurrence",
-		vq: model.VulnerableQuery{
+		vq: model.QueryResult{
 			QueryName:   "test",
 			QueryID:     "1",
 			Description: "test description",

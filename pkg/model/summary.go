@@ -13,9 +13,10 @@ import (
 
 // SeveritySummary contains scans' result numbers, how many vulnerabilities of each severity was detected
 type SeveritySummary struct {
-	ScanID           string           `json:"scan_id"`
-	SeverityCounters map[Severity]int `json:"severity_counters"`
-	TotalCounter     int              `json:"total_counter"`
+	ScanID            string           `json:"scan_id"`
+	SeverityCounters  map[Severity]int `json:"severity_counters"`
+	TotalCounter      int              `json:"total_counter"`
+	TotalBOMResources int              `json:"total_bom_resources"`
 }
 
 // VulnerableFile contains information of a vulnerable file and where the vulnerability was found
@@ -30,11 +31,11 @@ type VulnerableFile struct {
 	SearchValue      string     `json:"search_value"`
 	KeyExpectedValue string     `json:"expected_value"`
 	KeyActualValue   string     `json:"actual_value"`
-	Value            *string    `json:"value"`
+	Value            *string    `json:"value,omitempty"`
 }
 
-// VulnerableQuery contains a query that tested positive ID, name, severity and a list of files that tested vulnerable
-type VulnerableQuery struct {
+// QueryResult contains a query that tested positive ID, name, severity and a list of files that tested vulnerable
+type QueryResult struct {
 	QueryName                   string           `json:"query_name"`
 	QueryID                     string           `json:"query_id"`
 	QueryURI                    string           `json:"query_url"`
@@ -43,9 +44,9 @@ type VulnerableQuery struct {
 	Category                    string           `json:"category"`
 	Description                 string           `json:"description"`
 	DescriptionID               string           `json:"description_id"`
-	CISDescriptionIDFormatted   string           `json:"cis_description_id"`
-	CISDescriptionTitle         string           `json:"cis_description_title"`
-	CISDescriptionTextFormatted string           `json:"cis_description_text"`
+	CISDescriptionIDFormatted   string           `json:"cis_description_id,omitempty"`
+	CISDescriptionTitle         string           `json:"cis_description_title,omitempty"`
+	CISDescriptionTextFormatted string           `json:"cis_description_text,omitempty"`
 	CISDescriptionID            string           `json:"cis_description_id_raw,omitempty"`
 	CISDescriptionText          string           `json:"cis_description_text_raw,omitempty"`
 	CISRationaleText            string           `json:"cis_description_rationale,omitempty"`
@@ -54,8 +55,8 @@ type VulnerableQuery struct {
 	Files                       []VulnerableFile `json:"files"`
 }
 
-// VulnerableQuerySlice is a slice of VulnerableQuery
-type VulnerableQuerySlice []VulnerableQuery
+// QueryResultSlice is a slice of QueryResult
+type QueryResultSlice []QueryResult
 
 // Counters hold information about how many files were scanned, parsed, failed to be scaned, the total of queries
 // and how many queries failed to execute
@@ -80,8 +81,9 @@ type Summary struct {
 	Counters
 	SeveritySummary
 	Times
-	ScannedPaths []string             `json:"paths"`
-	Queries      VulnerableQuerySlice `json:"queries"`
+	ScannedPaths []string         `json:"paths"`
+	Queries      QueryResultSlice `json:"queries"`
+	Bom          QueryResultSlice `json:"bill_of_materials,omitempty"`
 }
 
 // PathParameters - structure wraps the required fields for temporary path translation
@@ -166,14 +168,14 @@ func resolvePath(filePath string, pathExtractionMap map[string]ExtractedPathObje
 func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 	scanID string, pathExtractionMap map[string]ExtractedPathObject) Summary {
 	log.Debug().Msg("model.CreateSummary()")
-	q := make(map[string]VulnerableQuery, len(vulnerabilities))
+	q := make(map[string]QueryResult, len(vulnerabilities))
 	severitySummary := SeveritySummary{
 		ScanID: scanID,
 	}
 	for i := range vulnerabilities {
 		item := vulnerabilities[i]
 		if _, ok := q[item.QueryID]; !ok {
-			q[item.QueryID] = VulnerableQuery{
+			q[item.QueryID] = QueryResult{
 				QueryName:     item.QueryName,
 				QueryID:       item.QueryID,
 				Severity:      item.Severity,
@@ -202,15 +204,20 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 		q[item.QueryID] = qItem
 	}
 
-	queries := make([]VulnerableQuery, 0, len(q))
-	sevs := map[Severity]int{SeverityInfo: 0, SeverityLow: 0, SeverityMedium: 0, SeverityHigh: 0}
+	queries := make([]QueryResult, 0, len(q))
+	sevs := map[Severity]int{SeverityTrace: 0, SeverityInfo: 0, SeverityLow: 0, SeverityMedium: 0, SeverityHigh: 0}
 	for idx := range q {
-		queries = append(queries, q[idx])
 		sevs[q[idx].Severity] += len(q[idx].Files)
+
+		if q[idx].Severity == SeverityTrace {
+			continue
+		}
+		queries = append(queries, q[idx])
+
 		severitySummary.TotalCounter += len(q[idx].Files)
 	}
 
-	severityOrder := map[Severity]int{SeverityInfo: 3, SeverityLow: 2, SeverityMedium: 1, SeverityHigh: 0}
+	severityOrder := map[Severity]int{SeverityTrace: 4, SeverityInfo: 3, SeverityLow: 2, SeverityMedium: 1, SeverityHigh: 0}
 	sort.Slice(queries, func(i, j int) bool {
 		if severityOrder[queries[i].Severity] == severityOrder[queries[j].Severity] {
 			return queries[i].QueryName < queries[j].QueryName
@@ -218,9 +225,18 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 		return severityOrder[queries[i].Severity] < severityOrder[queries[j].Severity]
 	})
 
+	materials := make([]QueryResult, 0, len(q))
+	for idx := range q {
+		if q[idx].Severity == SeverityTrace {
+			materials = append(materials, q[idx])
+			severitySummary.TotalBOMResources += len(q[idx].Files)
+		}
+	}
+
 	severitySummary.SeverityCounters = sevs
 
 	return Summary{
+		Bom:             materials,
 		Counters:        counters,
 		Queries:         queries,
 		SeveritySummary: severitySummary,

@@ -26,9 +26,16 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 	}
 
 	jLine := initializeJSONLine(fileContent)
-	dd := jLine.setLineInfo(r)
+	kicsJSON := jLine.setLineInfo(r)
 
-	return []model.Document{dd}, nil
+	// Try to parse JSON as Terraform plan
+	kicsPlan, err := parseTFPlan(kicsJSON)
+	if err != nil {
+		// JSON is not a tf plan
+		return []model.Document{kicsJSON}, nil
+	}
+
+	return []model.Document{kicsPlan}, nil
 }
 
 // SupportedExtensions returns extensions supported by this parser, which is json extension
@@ -43,7 +50,7 @@ func (p *Parser) GetKind() model.FileKind {
 
 // SupportedTypes returns types supported by this parser, which are cloudFormation
 func (p *Parser) SupportedTypes() []string {
-	return []string{"CloudFormation", "OpenAPI", "AzureResourceManager"}
+	return []string{"CloudFormation", "OpenAPI", "AzureResourceManager", "Terraform"}
 }
 
 // GetCommentToken return an empty string, since JSON does not have comment token

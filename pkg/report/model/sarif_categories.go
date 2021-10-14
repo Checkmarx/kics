@@ -61,4 +61,5 @@ var categories = map[string]sarifTaxanomyDefinition{
 		"Structure and Semantics",
 		"Malformed document structure or inadequate semantics",
 	),
+	"Bill Of Materials": createSarifCategory(categoryIdentifier+"015", "Bill Of Materials", "List of resources provisioned"),
 }

@@ -12,9 +12,11 @@ examples
 .goreleaser.yml
 cx.configuration
 docker-compose.yml
-Dockerfile
-Dockerfile.debian
 mkdocs.yml
 sonar-project.properties
 *.sarif
 *.zip
+Dockerfile
+Dockerfile.*
+assets/queries/**/test
+assets/template

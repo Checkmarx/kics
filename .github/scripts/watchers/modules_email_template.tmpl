@@ -1,0 +1,13 @@
+THIS IS AN AUTOMATIC MESSAGE
+
+Hi,
+Some changes were detected on terraform modules:
+{% for change_name in data %}
+  + {{change_name}} changes:
+  {% for change in data[change_name] %}
+    - {{change}}
+  {% endfor %}
+{% endfor %}
+
+Best regards,
+KICS Team.

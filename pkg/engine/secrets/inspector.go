@@ -124,13 +124,23 @@ func NewInspector(
 		return nil, err
 	}
 
+	regexQueries, err := compileRegexQueries(queryFilter, allRegexQueries.Rules)
+	if err != nil {
+		return nil, err
+	}
+
+	allowRules, err := compileRegex(allRegexQueries.AllowRules)
+	if err != nil {
+		return nil, err
+	}
+
 	return &Inspector{
 		ctx:                   ctx,
 		detector:              lineDetector,
 		excludeResults:        excludeResults,
 		tracker:               tracker,
-		regexQueries:          compileRegexQueries(queryFilter, allRegexQueries.Rules),
-		allowRules:            compileRegex(allRegexQueries.AllowRules),
+		regexQueries:          regexQueries,
+		allowRules:            allowRules,
 		vulnerabilities:       make([]model.Vulnerability, 0),
 		queryExecutionTimeout: queryExecutionTimeout,
 		foundLines:            make([]int, 0),
@@ -167,7 +177,7 @@ func (c *Inspector) Inspect(ctx context.Context, basePaths []string,
 	return c.vulnerabilities, nil
 }
 
-func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQueries []RegexQuery) []RegexQuery {
+func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQueries []RegexQuery) ([]RegexQuery, error) {
 	var regexQueries []RegexQuery
 
 	for i := range allRegexQueries {
@@ -207,19 +217,27 @@ func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQ
 		}
 	}
 	for i := range regexQueries {
-		regexQueries[i].Regex = regexp.MustCompile(regexQueries[i].RegexStr)
+		compiledRegexp, err := regexp.Compile(regexQueries[i].RegexStr)
+		if err != nil {
+			return regexQueries, err
+		}
+		regexQueries[i].Regex = compiledRegexp
 		for j := range regexQueries[i].AllowRules {
 			regexQueries[i].AllowRules[j].Regex = regexp.MustCompile(regexQueries[i].AllowRules[j].RegexStr)
 		}
 	}
-	return regexQueries
+	return regexQueries, nil
 }
 
-func compileRegex(allowRules []AllowRule) []AllowRule {
+func compileRegex(allowRules []AllowRule) ([]AllowRule, error) {
 	for j := range allowRules {
-		allowRules[j].Regex = regexp.MustCompile(allowRules[j].RegexStr)
+		compiledRegex, err := regexp.Compile(allowRules[j].RegexStr)
+		if err != nil {
+			return nil, err
+		}
+		allowRules[j].Regex = compiledRegex
 	}
-	return allowRules
+	return allowRules, nil
 }
 
 func (c *Inspector) GetQueriesLength() int {

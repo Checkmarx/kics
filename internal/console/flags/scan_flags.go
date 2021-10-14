@@ -2,6 +2,7 @@ package flags
 
 // Flags constants for scan
 const (
+	BomFlag                = "bom"
 	CloudProviderFlag      = "cloud-provider"
 	ConfigFlag             = "config"
 	DisableCISDescFlag     = "disable-cis-descriptions"
