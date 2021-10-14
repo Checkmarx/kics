@@ -7,6 +7,7 @@ import (
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/resolver/helm"
+	"github.com/stretchr/testify/require"
 )
 
 func initilizeBuilder() *Resolver {
@@ -132,8 +133,11 @@ spec:
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Resolve() error = %v, wantErr = %v", err, tt.wantErr)
 			}
-			if !reflect.DeepEqual(got, tt.want) {
+			if !reflect.DeepEqual(got.File, tt.want.File) {
 				t.Errorf("Resolve() = %v, want = %v", got, tt.want)
+			}
+			if err == nil {
+				require.NotEmpty(t, got.Excluded)
 			}
 		})
 	}

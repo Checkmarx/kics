@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/pkg/errors"
@@ -25,7 +26,7 @@ var (
 )
 
 func runInstall(args []string, client *action.Install,
-	valueOpts *values.Options) (*release.Release, error) {
+	valueOpts *values.Options) (*release.Release, []string, error) {
 	log.SetOutput(io.Discard)
 	defer log.SetOutput(os.Stderr)
 	if client.Version == "" && client.Devel {
@@ -34,35 +35,41 @@ func runInstall(args []string, client *action.Install,
 
 	name, charts, err := client.NameAndChart(args)
 	if err != nil {
-		return nil, err
+		return nil, []string{}, err
 	}
 	client.ReleaseName = name
 
 	cp, err := client.ChartPathOptions.LocateChart(charts, settings)
 	if err != nil {
-		return nil, err
+		return nil, []string{}, err
 	}
 
 	p := getter.All(settings)
 	vals, err := valueOpts.MergeValues(p)
 	if err != nil {
-		return nil, err
+		return nil, []string{}, err
 	}
 
 	// Check chart dependencies to make sure all are present in /charts
 	chartRequested, err := loader.Load(cp)
 	if err != nil {
-		return nil, err
+		return nil, []string{}, err
 	}
+
+	excluded := getExcluded(chartRequested, filepath.Dir(cp))
 
 	chartRequested = setID(chartRequested)
 
-	if err := checkIfInstallable(chartRequested); err != nil {
-		return nil, err
+	if instErr := checkIfInstallable(chartRequested); instErr != nil {
+		return nil, []string{}, instErr
 	}
 
 	client.Namespace = "kics-namespace"
-	return client.Run(chartRequested, vals)
+	helmRelease, err := client.Run(chartRequested, vals)
+	if err != nil {
+		return nil, []string{}, err
+	}
+	return helmRelease, excluded, nil
 }
 
 // checkIfInstallable validates if a chart can be installed
@@ -120,4 +127,17 @@ func addID(file *chart.File) *chart.File {
 	}
 	file.Data = []byte(strings.Join(split, "\n"))
 	return file
+}
+
+// getExcluded will return all files rendered to be excluded from scan
+func getExcluded(charterino *chart.Chart, chartpath string) []string {
+	path := filepath.Join(chartpath, charterino.ChartFullPath())
+	excluded := make([]string, 0)
+	for _, temp := range charterino.Templates {
+		excluded = append(excluded, filepath.Join(path, temp.Name))
+	}
+	for _, dep := range charterino.Dependencies() {
+		excluded = append(excluded, getExcluded(dep, chartpath)...)
+	}
+	return excluded
 }

@@ -31,10 +31,12 @@ const (
 
 // Resolve will render the passed helm chart and return its content ready for parsing
 func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) {
-	var rfiles = model.ResolvedFiles{}
-	splits, err := renderHelm(filePath)
+	splits, excluded, err := renderHelm(filePath)
 	if err != nil { // return error to be logged
 		return model.ResolvedFiles{}, errors.New("failed to render helm chart")
+	}
+	var rfiles = model.ResolvedFiles{
+		Excluded: excluded,
 	}
 	for _, split := range *splits {
 		origpath := filepath.Join(filepath.Dir(filePath), split.path)
@@ -55,13 +57,17 @@ func (r *Resolver) SupportedTypes() []model.FileKind {
 }
 
 // renderHelm will use helm library to render helm charts
-func renderHelm(path string) (*[]splitManifest, error) {
+func renderHelm(path string) (*[]splitManifest, []string, error) {
 	client := newClient()
-	manifest, err := runInstall([]string{path}, client, &values.Options{})
+	manifest, excluded, err := runInstall([]string{path}, client, &values.Options{})
 	if err != nil {
-		return nil, err
+		return nil, []string{}, err
 	}
-	return splitManifestYAML(manifest)
+	splitted, err := splitManifestYAML(manifest)
+	if err != nil {
+		return nil, []string{}, err
+	}
+	return splitted, excluded, nil
 }
 
 // splitManifestYAML will split the rendered file and return its content by template as well as the template path

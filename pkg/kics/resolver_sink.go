@@ -21,11 +21,8 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 		return []string{}, nil
 	}
 
-	excluded := make([]string, len(resFiles.File))
-
-	for idx, rfile := range resFiles.File {
+	for _, rfile := range resFiles.File {
 		s.Tracker.TrackFileFound()
-		excluded[idx] = rfile.FileName
 		documents, retParse, err := s.Parser.Parse(rfile.FileName, rfile.Content)
 		if err != nil {
 			if retParse == "break" {
@@ -58,5 +55,5 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 		}
 		s.Tracker.TrackFileParse()
 	}
-	return excluded, nil
+	return resFiles.Excluded, nil
 }

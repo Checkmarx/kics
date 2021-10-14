@@ -147,7 +147,8 @@ type QueryConfig struct {
 
 // ResolvedFiles keeps the information of all file/template resolved
 type ResolvedFiles struct {
-	File []ResolvedFile
+	File     []ResolvedFile
+	Excluded []string
 }
 
 // ResolvedFile keeps the information of a file/template resolved
