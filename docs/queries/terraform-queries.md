@@ -400,6 +400,13 @@ Bellow are listed queries related with Terraform SHARED (V2/V3):
 |Variable Without Type<br/><sup><sub>fc5109bf-01fd-49fb-8bde-4492b543c34a</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|All variables should contain a valid type.|<a href="https://www.terraform.io/docs/language/values/variables.html#input-variable-documentation">Documentation</a><br/>|
 |Generic Git Module Without Revision<br/><sup><sub>3a81fc06-566f-492a-91dd-7448e409e2cd</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|All generic git repositories should reference a revision.|<a href="https://www.terraform.io/docs/language/modules/sources.html#selecting-a-revision">Documentation</a><br/>|
 |Variable Without Description<br/><sup><sub>2a153952-2544-4687-bcc9-cc8fea814a9b</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|All variables should contain a valid description.|<a href="https://www.terraform.io/docs/language/values/variables.html#input-variable-documentation">Documentation</a><br/>|
+### AWS_BOM
+Bellow are listed queries related with Terraform AWS_BOM:
+
+
+
+|            Query             |Severity|Category|Description|Help|
+|------------------------------|--------|--------|-----------|----|
 ### AZURE
 Bellow are listed queries related with Terraform AZURE:
 
