@@ -21,22 +21,24 @@ import (
 // k8sRegexMetadata - Regex that finds Kubernetes defining property "metadata"
 // k8sRegexSpec - Regex that finds Kubernetes defining property "spec"
 var (
-	openAPIRegex              = regexp.MustCompile("(\\s*\"openapi\":)|(\\s*openapi:)|(\\s*\"swagger\":)|(\\s*swagger:)")
-	openAPIRegexInfo          = regexp.MustCompile("(\\s*\"info\":)|(\\s*info:)")
-	openAPIRegexPath          = regexp.MustCompile("(\\s*\"paths\":)|(\\s*paths:)")
-	armRegexContentVersion    = regexp.MustCompile("\\s*\"contentVersion\":")
-	armRegexResources         = regexp.MustCompile("\\s*\"resources\":")
-	cloudRegex                = regexp.MustCompile("(\\s*\"Resources\":)|(\\s*Resources:)")
-	k8sRegex                  = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
-	k8sRegexKind              = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
-	k8sRegexMetadata          = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
-	ansibleVaultRegex         = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
-	tfPlanRegexPV             = regexp.MustCompile("\\s*\"planned_values\":")
-	tfPlanRegexRC             = regexp.MustCompile("\\s*\"resource_changes\":")
-	tfPlanRegexConf           = regexp.MustCompile("\\s*\"configuration\":")
-	tfPlanRegexTV             = regexp.MustCompile("\\s*\"terraform_version\":")
-	blueprintsRegexKind       = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
-	blueprintsRegexProperties = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
+	openAPIRegex                      = regexp.MustCompile("(\\s*\"openapi\":)|(\\s*openapi:)|(\\s*\"swagger\":)|(\\s*swagger:)")
+	openAPIRegexInfo                  = regexp.MustCompile("(\\s*\"info\":)|(\\s*info:)")
+	openAPIRegexPath                  = regexp.MustCompile("(\\s*\"paths\":)|(\\s*paths:)")
+	armRegexContentVersion            = regexp.MustCompile("\\s*\"contentVersion\":")
+	armRegexResources                 = regexp.MustCompile("\\s*\"resources\":")
+	cloudRegex                        = regexp.MustCompile("(\\s*\"Resources\":)|(\\s*Resources:)")
+	k8sRegex                          = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
+	k8sRegexKind                      = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
+	k8sRegexMetadata                  = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
+	ansibleVaultRegex                 = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
+	tfPlanRegexPV                     = regexp.MustCompile("\\s*\"planned_values\":")
+	tfPlanRegexRC                     = regexp.MustCompile("\\s*\"resource_changes\":")
+	tfPlanRegexConf                   = regexp.MustCompile("\\s*\"configuration\":")
+	tfPlanRegexTV                     = regexp.MustCompile("\\s*\"terraform_version\":")
+	blueprintArtifactsRegexKind       = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
+	blueprintArtifactsRegexProperties = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
+	blueprintRegexTargetScope         = regexp.MustCompile("(\\s*\"targetScope\":)|(\\s*targetScope:)")
+	blueprintRegexProperties          = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
 )
 
 const (
@@ -162,8 +164,14 @@ var types = map[string]regexSlice{
 	},
 	"blueprintsartifacts": {
 		[]*regexp.Regexp{
-			blueprintsRegexKind,
-			blueprintsRegexProperties,
+			blueprintArtifactsRegexKind,
+			blueprintArtifactsRegexProperties,
+		},
+	},
+	"blueprint": {
+		[]*regexp.Regexp{
+			blueprintRegexTargetScope,
+			blueprintRegexProperties,
 		},
 	},
 }
@@ -213,7 +221,7 @@ func checkContent(path string, results, unwanted chan<- string, ext string) {
 	}
 
 	if returnType != "" {
-		if returnType == "blueprints" {
+		if returnType == "blueprint" || returnType == "blueprintsartifacts" {
 			returnType = arm
 		}
 		// write to channel type of file
