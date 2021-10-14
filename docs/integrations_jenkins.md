@@ -93,7 +93,7 @@ pipeline {
         stage('KICS scan') {
             steps {
                 script {
-                    docker.image('checkmarx/kics:latest-alpine').inside("--entrypoint=''") {
+                    docker.image('checkmarx/kics:latest').inside("--entrypoint=''") {
                       unstash 'source'
                       sh('/app/bin/kics scan -p \'\$(pwd)\' -q /app/bin/assets/queries --ci --report-formats html -o \'\$(pwd)\' --ignore-on-exit results')
                       archiveArtifacts(artifacts: 'results.html', fingerprint: true)

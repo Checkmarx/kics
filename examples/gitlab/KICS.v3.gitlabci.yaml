@@ -5,7 +5,7 @@
 # defined as in https://docs.gitlab.com/ee/development/cicd/templates.html#versioning
 #
 image:
-  name: checkmarx/kics:latest-alpine
+  name: checkmarx/kics:latest
   entrypoint: [""]
 
 stages:
