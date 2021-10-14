@@ -137,9 +137,9 @@
 				
 				<option value="file40">github.com/Checkmarx/kics/pkg/kics/resolver_sink.go (0.0%)</option>
 				
-				<option value="file41">github.com/Checkmarx/kics/pkg/kics/service.go (29.7%)</option>
+				<option value="file41">github.com/Checkmarx/kics/pkg/kics/service.go (45.8%)</option>
 				
-				<option value="file42">github.com/Checkmarx/kics/pkg/kics/sink.go (58.5%)</option>
+				<option value="file42">github.com/Checkmarx/kics/pkg/kics/sink.go (51.2%)</option>
 				
 				<option value="file43">github.com/Checkmarx/kics/pkg/model/model.go (89.7%)</option>
 				
@@ -1622,8 +1622,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="368">{
-                if val == true </span><span class="cov9" title="367">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="387">{
+                if val == true </span><span class="cov9" title="386">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2532,13 +2532,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="36">total += v
+                <span class="cov9" title="37">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2563,7 +2563,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2987,7 +2987,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="18">{
-        for _, a := range s </span><span class="cov8" title="38">{
+        for _, a := range s </span><span class="cov8" title="39">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -7194,15 +7194,16 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
                         }
 
                         <span class="cov0" title="0">file := model.FileMetadata{
-                                ID:           uuid.New().String(),
-                                ScanID:       scanID,
-                                Document:     document,
-                                OriginalData: string(rfile.OriginalData),
-                                Kind:         kind,
-                                FilePath:     rfile.FileName,
-                                Content:      string(rfile.Content),
-                                HelmID:       rfile.SplitID,
-                                IDInfo:       rfile.IDInfo,
+                                ID:               uuid.New().String(),
+                                ScanID:           scanID,
+                                Document:         PrepareScanDocument(document, kind),
+                                OriginalData:     string(rfile.OriginalData),
+                                LineInfoDocument: document,
+                                Kind:             kind,
+                                FilePath:         rfile.FileName,
+                                Content:          string(rfile.Content),
+                                HelmID:           rfile.SplitID,
+                                IDInfo:           rfile.IDInfo,
                         }
                         s.saveToFile(ctx, &amp;file)</span>
                 }
@@ -7216,6 +7217,7 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 
 import (
         "context"
+        "encoding/json"
         "io"
         "sync"
 
@@ -7290,7 +7292,7 @@ func (s *Service) StartScan(
         scanID string,
         errCh chan&lt;- error,
         wg *sync.WaitGroup,
-        currentQuery chan&lt;- int64) <span class="cov10" title="4">{
+        currentQuery chan&lt;- int64) <span class="cov6" title="4">{
         log.Debug().Msg("service.StartScan()")
         defer wg.Done()
 
@@ -7304,7 +7306,7 @@ func (s *Service) StartScan(
                 errCh &lt;- errors.Wrap(err, "failed to inspect secrets")
         }</span>
 
-        <span class="cov10" title="4">vulnerabilities, err := s.Inspector.Inspect(
+        <span class="cov6" title="4">vulnerabilities, err := s.Inspector.Inspect(
                 ctx,
                 scanID,
                 s.files,
@@ -7315,7 +7317,7 @@ func (s *Service) StartScan(
         if err != nil </span><span class="cov0" title="0">{
                 errCh &lt;- errors.Wrap(err, "failed to inspect files")
         }</span>
-        <span class="cov10" title="4">vulnerabilities = append(vulnerabilities, secretsVulnerabilities...)
+        <span class="cov6" title="4">vulnerabilities = append(vulnerabilities, secretsVulnerabilities...)
 
         err = s.Storage.SaveVulnerabilities(ctx, vulnerabilities)
         if err != nil </span><span class="cov0" title="0">{
@@ -7350,12 +7352,12 @@ func getContent(rc io.Reader) (*[]byte, error) <span class="cov0" title="0">{
 }
 
 // GetVulnerabilities returns a list of scan detected vulnerabilities
-func (s *Service) GetVulnerabilities(ctx context.Context, scanID string) ([]model.Vulnerability, error) <span class="cov10" title="4">{
+func (s *Service) GetVulnerabilities(ctx context.Context, scanID string) ([]model.Vulnerability, error) <span class="cov6" title="4">{
         return s.Storage.GetVulnerabilities(ctx, scanID)
 }</span>
 
 // GetScanSummary returns how many vulnerabilities of each severity was found
-func (s *Service) GetScanSummary(ctx context.Context, scanIDs []string) ([]model.SeveritySummary, error) <span class="cov10" title="4">{
+func (s *Service) GetScanSummary(ctx context.Context, scanIDs []string) ([]model.SeveritySummary, error) <span class="cov6" title="4">{
         return s.Storage.GetScanSummary(ctx, scanIDs)
 }</span>
 
@@ -7364,6 +7366,51 @@ func (s *Service) saveToFile(ctx context.Context, file *model.FileMetadata) <spa
         if err == nil </span><span class="cov0" title="0">{
                 s.files = append(s.files, *file)
         }</span>
+}
+
+// PrepareScanDocument removes _kics_lines from payload and parses json filters
+func PrepareScanDocument(body map[string]interface{}, kind model.FileKind) map[string]interface{} <span class="cov1" title="1">{
+        bodyMap := make(map[string]interface{})
+        j, err := json.Marshal(body)
+        if err != nil </span><span class="cov0" title="0">{
+                log.Error().Msgf("failed to remove kics line information")
+                return body
+        }</span>
+        <span class="cov1" title="1">if err := json.Unmarshal(j, &amp;bodyMap); err != nil </span><span class="cov0" title="0">{
+                log.Error().Msgf("failed to remove kics line information")
+                return body
+        }</span>
+        <span class="cov1" title="1">prepareScanDocumentRoot(bodyMap, kind)
+        return bodyMap</span>
+}
+
+func prepareScanDocumentRoot(body interface{}, kind model.FileKind) <span class="cov7" title="6">{
+        switch bodyType := body.(type) </span>{
+        case map[string]interface{}:<span class="cov7" title="6">
+                prepareScanDocumentValue(bodyType, kind)</span>
+        case []interface{}:<span class="cov0" title="0">
+                for _, indx := range bodyType </span><span class="cov0" title="0">{
+                        prepareScanDocumentRoot(indx, kind)
+                }</span>
+        }
+}
+
+func prepareScanDocumentValue(bodyType map[string]interface{}, kind model.FileKind) <span class="cov7" title="6">{
+        delete(bodyType, "_kics_lines")
+        for key, v := range bodyType </span><span class="cov10" title="11">{
+                switch value := v.(type) </span>{
+                case map[string]interface{}:<span class="cov6" title="4">
+                        prepareScanDocumentRoot(value, kind)</span>
+                case []interface{}:<span class="cov1" title="1">
+                        for _, indx := range value </span><span class="cov1" title="1">{
+                                prepareScanDocumentRoot(indx, kind)
+                        }</span>
+                case string:<span class="cov7" title="6">
+                        if field, ok := lines[kind]; ok &amp;&amp; contains(field, key) </span><span class="cov1" title="1">{
+                                bodyType[key] = resolveJSONFilter(value)
+                        }</span>
+                }
+        }
 }
 </pre>
 		
@@ -7432,58 +7479,13 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
         return errors.Wrap(err, "failed to save file content")</span>
 }
 
-// PrepareScanDocument removes _kics_lines from payload and parses json filters
-func PrepareScanDocument(body map[string]interface{}, kind model.FileKind) map[string]interface{} <span class="cov1" title="1">{
-        bodyMap := make(map[string]interface{})
-        j, err := json.Marshal(body)
-        if err != nil </span><span class="cov0" title="0">{
-                log.Error().Msgf("failed to remove kics line information")
-                return body
-        }</span>
-        <span class="cov1" title="1">if err := json.Unmarshal(j, &amp;bodyMap); err != nil </span><span class="cov0" title="0">{
-                log.Error().Msgf("failed to remove kics line information")
-                return body
-        }</span>
-        <span class="cov1" title="1">prepareScanDocumentRoot(bodyMap, kind)
-        return bodyMap</span>
-}
-
-func prepareScanDocumentRoot(body interface{}, kind model.FileKind) <span class="cov7" title="6">{
-        switch bodyType := body.(type) </span>{
-        case map[string]interface{}:<span class="cov7" title="6">
-                prepareScanDocumentValue(bodyType, kind)</span>
-        case []interface{}:<span class="cov0" title="0">
-                for _, indx := range bodyType </span><span class="cov0" title="0">{
-                        prepareScanDocumentRoot(indx, kind)
-                }</span>
-        }
-}
-
-func prepareScanDocumentValue(bodyType map[string]interface{}, kind model.FileKind) <span class="cov7" title="6">{
-        delete(bodyType, "_kics_lines")
-        for key, v := range bodyType </span><span class="cov10" title="11">{
-                switch value := v.(type) </span>{
-                case map[string]interface{}:<span class="cov6" title="4">
-                        prepareScanDocumentRoot(value, kind)</span>
-                case []interface{}:<span class="cov1" title="1">
-                        for _, indx := range value </span><span class="cov1" title="1">{
-                                prepareScanDocumentRoot(indx, kind)
-                        }</span>
-                case string:<span class="cov7" title="6">
-                        if field, ok := lines[kind]; ok &amp;&amp; contains(field, key) </span><span class="cov1" title="1">{
-                                bodyType[key] = resolveJSONFilter(value)
-                        }</span>
-                }
-        }
-}
-
-func contains(strSlice []string, key string) bool <span class="cov7" title="6">{
-        for _, v := range strSlice </span><span class="cov7" title="6">{
+func contains(strSlice []string, key string) bool <span class="cov10" title="6">{
+        for _, v := range strSlice </span><span class="cov10" title="6">{
                 if v == key </span><span class="cov1" title="1">{
                         return true
                 }</span>
         }
-        <span class="cov7" title="5">return false</span>
+        <span class="cov9" title="5">return false</span>
 }
 
 func resolveJSONFilter(jsonFilter string) string <span class="cov1" title="1">{
