@@ -1,0 +1,11 @@
+{
+  "id": "baecd2da-492a-4d59-b9dc-29540a1398e0",
+  "queryName": "BOM - SQS",
+  "severity": "TRACE",
+  "category": "Bill Of Materials",
+  "descriptionText": "A list of SQS resources specified",
+  "descriptionUrl": "https://kics.io",
+  "platform": "Terraform",
+  "descriptionID": "63fc27c2",
+  "cloudProvider": "aws"
+}

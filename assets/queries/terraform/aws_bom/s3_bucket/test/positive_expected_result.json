@@ -1,18 +1,18 @@
 [
   {
-    "queryName": "BOM - S3 Buckets",
+    "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "BOM - S3 Buckets",
+    "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 1,
     "fileName": "positive2.tf"
   },
   {
-    "queryName": "BOM - S3 Buckets",
+    "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 1,
     "fileName": "positive3.tf"

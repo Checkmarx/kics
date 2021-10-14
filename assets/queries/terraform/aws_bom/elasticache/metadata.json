@@ -1,0 +1,11 @@
+{
+  "id": "54229498-850b-4f78-b3a7-218d24ef2c37",
+  "queryName": "BOM - AWS Elasticache",
+  "severity": "TRACE",
+  "category": "Bill Of Materials",
+  "descriptionText": "A list of Elasticache resources found. Amazon ElastiCache is a fully managed, in-memory caching service supporting flexible, real-time use cases. You can use ElastiCache for caching, which accelerates application and database performance, or as a primary data store for use cases that don't require durability like session stores, gaming leaderboards, streaming, and analytics. ElastiCache is compatible with Redis and Memcached.",
+  "descriptionUrl": "https://kics.io",
+  "platform": "Terraform",
+  "descriptionID": "34559ecd",
+  "cloudProvider": "aws"
+}

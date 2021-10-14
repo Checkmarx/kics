@@ -1,0 +1,11 @@
+{
+  "id": "2d16c3fb-35ba-4ec0-b4e4-06ee3cbd4045",
+  "queryName": "BOM - AWS S3 Buckets",
+  "severity": "TRACE",
+  "category": "Bill Of Materials",
+  "descriptionText": "A list of S3 resources found. Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance.",
+  "descriptionUrl": "https://kics.io",
+  "platform": "Terraform",
+  "descriptionID": "0bdf2341",
+  "cloudProvider": "aws"
+}
