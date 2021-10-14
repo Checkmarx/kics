@@ -103,6 +103,7 @@ jobs:
           context: .
           file: ./Dockerfile.ubi7
           push: true
+          platforms: linux/amd64
           tags: ${{ steps.prep.outputs.ubi7_tags }}
           build-args: |
             VERSION=${{ github.event.inputs.tag }}

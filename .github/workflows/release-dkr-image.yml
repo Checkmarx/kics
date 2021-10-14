@@ -82,7 +82,7 @@ jobs:
           file: ./Dockerfile.ubi7
           push: true
           tags: checkmarx/kics:ubi7,checkmarx/kics:${{ steps.get-version.outputs.version }}-ubi7
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           build-args: |
             VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
