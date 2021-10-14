@@ -1,6 +1,6 @@
 variable "web_type" {
   description = "Size/type of the host."
-  default     = "m1.large"
+  default     = "m5.large"
 }
 
 module "ebs_optimized" {
