@@ -1622,8 +1622,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="368">{
-                if val == true </span><span class="cov9" title="367">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="385">{
+                if val == true </span><span class="cov9" title="384">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2532,13 +2532,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="32">total += v
+                <span class="cov8" title="34">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2563,7 +2563,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2761,22 +2761,24 @@ import (
 // k8sRegexMetadata - Regex that finds Kubernetes defining property "metadata"
 // k8sRegexSpec - Regex that finds Kubernetes defining property "spec"
 var (
-        openAPIRegex              = regexp.MustCompile("(\\s*\"openapi\":)|(\\s*openapi:)|(\\s*\"swagger\":)|(\\s*swagger:)")
-        openAPIRegexInfo          = regexp.MustCompile("(\\s*\"info\":)|(\\s*info:)")
-        openAPIRegexPath          = regexp.MustCompile("(\\s*\"paths\":)|(\\s*paths:)")
-        armRegexContentVersion    = regexp.MustCompile("\\s*\"contentVersion\":")
-        armRegexResources         = regexp.MustCompile("\\s*\"resources\":")
-        cloudRegex                = regexp.MustCompile("(\\s*\"Resources\":)|(\\s*Resources:)")
-        k8sRegex                  = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
-        k8sRegexKind              = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
-        k8sRegexMetadata          = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
-        ansibleVaultRegex         = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
-        tfPlanRegexPV             = regexp.MustCompile("\\s*\"planned_values\":")
-        tfPlanRegexRC             = regexp.MustCompile("\\s*\"resource_changes\":")
-        tfPlanRegexConf           = regexp.MustCompile("\\s*\"configuration\":")
-        tfPlanRegexTV             = regexp.MustCompile("\\s*\"terraform_version\":")
-        blueprintsRegexKind       = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
-        blueprintsRegexProperties = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
+        openAPIRegex                      = regexp.MustCompile("(\\s*\"openapi\":)|(\\s*openapi:)|(\\s*\"swagger\":)|(\\s*swagger:)")
+        openAPIRegexInfo                  = regexp.MustCompile("(\\s*\"info\":)|(\\s*info:)")
+        openAPIRegexPath                  = regexp.MustCompile("(\\s*\"paths\":)|(\\s*paths:)")
+        armRegexContentVersion            = regexp.MustCompile("\\s*\"contentVersion\":")
+        armRegexResources                 = regexp.MustCompile("\\s*\"resources\":")
+        cloudRegex                        = regexp.MustCompile("(\\s*\"Resources\":)|(\\s*Resources:)")
+        k8sRegex                          = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
+        k8sRegexKind                      = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
+        k8sRegexMetadata                  = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
+        ansibleVaultRegex                 = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
+        tfPlanRegexPV                     = regexp.MustCompile("\\s*\"planned_values\":")
+        tfPlanRegexRC                     = regexp.MustCompile("\\s*\"resource_changes\":")
+        tfPlanRegexConf                   = regexp.MustCompile("\\s*\"configuration\":")
+        tfPlanRegexTV                     = regexp.MustCompile("\\s*\"terraform_version\":")
+        blueprintArtifactsRegexKind       = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
+        blueprintArtifactsRegexProperties = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
+        blueprintRegexTargetScope         = regexp.MustCompile("(\\s*\"targetScope\":)|(\\s*targetScope:)")
+        blueprintRegexProperties          = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
 )
 
 const (
@@ -2798,12 +2800,12 @@ func Analyze(paths []string) (typesRes, excludeRes []string, errRes error) <span
         results := make(chan string)
 
         // get all the files inside the given paths
-        for _, path := range paths </span><span class="cov5" title="8">{
+        for _, path := range paths </span><span class="cov4" title="8">{
                 if _, err := os.Stat(path); err != nil </span><span class="cov1" title="1">{
                         return []string{}, []string{}, errors.Wrap(err, "failed to analyze path")
                 }</span>
                 <span class="cov4" title="7">if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov7" title="32">{
-                        if !info.IsDir() </span><span class="cov7" title="24">{
+                        if !info.IsDir() </span><span class="cov6" title="24">{
                                 files = append(files, path)
                         }</span>
                         <span class="cov7" title="32">return nil</span>
@@ -2815,7 +2817,7 @@ func Analyze(paths []string) (typesRes, excludeRes []string, errRes error) <span
         // unwanted is the channel shared by the workers that contains the unwanted files that the parser will ignore
         <span class="cov4" title="6">unwanted := make(chan string, len(files))
 
-        for _, file := range files </span><span class="cov7" title="24">{
+        for _, file := range files </span><span class="cov6" title="24">{
                 wg.Add(1)
                 // analyze the files concurrently
                 go worker(file, results, unwanted, &amp;wg)
@@ -2841,13 +2843,13 @@ func Analyze(paths []string) (typesRes, excludeRes []string, errRes error) <span
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
 // writes the answer to the results channel
 // if no types were found, the worker will write the path of the file in the unwanted channel
-func worker(path string, results, unwanted chan&lt;- string, wg *sync.WaitGroup) <span class="cov7" title="24">{
+func worker(path string, results, unwanted chan&lt;- string, wg *sync.WaitGroup) <span class="cov6" title="24">{
         defer wg.Done()
         ext := filepath.Ext(path)
         if ext == "" </span><span class="cov2" title="2">{
                 ext = filepath.Base(path)
         }</span>
-        <span class="cov7" title="24">switch ext </span>{
+        <span class="cov6" title="24">switch ext </span>{
         // Dockerfile
         case ".dockerfile", "Dockerfile":<span class="cov2" title="2">
                 results &lt;- "dockerfile"</span>
@@ -2855,7 +2857,7 @@ func worker(path string, results, unwanted chan&lt;- string, wg *sync.WaitGroup)
         case ".tf", "tfvars":<span class="cov2" title="2">
                 results &lt;- "terraform"</span>
         // Cloud Formation, Ansible, OpenAPI
-        case yaml, yml, json:<span class="cov6" title="14">
+        case yaml, yml, json:<span class="cov5" title="14">
                 checkContent(path, results, unwanted, ext)</span>
         }
 }
@@ -2902,23 +2904,29 @@ var types = map[string]regexSlice{
         },
         "blueprintsartifacts": {
                 []*regexp.Regexp{
-                        blueprintsRegexKind,
-                        blueprintsRegexProperties,
+                        blueprintArtifactsRegexKind,
+                        blueprintArtifactsRegexProperties,
+                },
+        },
+        "blueprint": {
+                []*regexp.Regexp{
+                        blueprintRegexTargetScope,
+                        blueprintRegexProperties,
                 },
         },
 }
 
 // overrides k8s match when all regexs passes for azureresourcemanager key and extension is set to json
-func needsOverride(check bool, returnType, key, ext string) bool <span class="cov9" title="75">{
+func needsOverride(check bool, returnType, key, ext string) bool <span class="cov9" title="89">{
         if check &amp;&amp; returnType == "kubernetes" &amp;&amp; key == "azureresourcemanager" &amp;&amp; ext == json </span><span class="cov0" title="0">{
                 return true
         }</span>
-        <span class="cov9" title="75">return false</span>
+        <span class="cov9" title="89">return false</span>
 }
 
 // checkContent will determine the file type by content when worker was unable to
 // determine by ext, if no type was determined checkContent adds it to unwanted channel
-func checkContent(path string, results, unwanted chan&lt;- string, ext string) <span class="cov6" title="14">{
+func checkContent(path string, results, unwanted chan&lt;- string, ext string) <span class="cov5" title="14">{
         // get file content
         content, err := os.ReadFile(path)
         if err != nil </span><span class="cov0" title="0">{
@@ -2926,34 +2934,34 @@ func checkContent(path string, results, unwanted chan&lt;- string, ext string) <
                 return
         }</span>
 
-        <span class="cov6" title="14">returnType := ""
+        <span class="cov5" title="14">returnType := ""
 
         // Sort map so that CloudFormation (type that as less requireds) goes last
         keys := make([]string, 0, len(types))
-        for k := range types </span><span class="cov9" title="84">{
+        for k := range types </span><span class="cov9" title="98">{
                 keys = append(keys, k)
         }</span>
 
-        <span class="cov6" title="14">sort.Sort(sort.Reverse(sort.StringSlice(keys)))
+        <span class="cov5" title="14">sort.Sort(sort.Reverse(sort.StringSlice(keys)))
 
-        for _, key := range keys </span><span class="cov9" title="84">{
+        for _, key := range keys </span><span class="cov9" title="98">{
                 check := true
-                for _, typeRegex := range types[key].regex </span><span class="cov10" title="107">{
-                        if res := typeRegex.Match(content); !res </span><span class="cov9" title="73">{
+                for _, typeRegex := range types[key].regex </span><span class="cov10" title="121">{
+                        if res := typeRegex.Match(content); !res </span><span class="cov9" title="87">{
                                 check = false
                                 break</span>
                         }
                 }
                 // If all regexs passed and there wasn't a type already assigned
-                <span class="cov9" title="84">if check &amp;&amp; returnType == "" </span><span class="cov5" title="9">{
+                <span class="cov9" title="98">if check &amp;&amp; returnType == "" </span><span class="cov5" title="9">{
                         returnType = key
-                }</span> else<span class="cov9" title="75"> if needsOverride(check, returnType, key, ext) </span><span class="cov0" title="0">{
+                }</span> else<span class="cov9" title="89"> if needsOverride(check, returnType, key, ext) </span><span class="cov0" title="0">{
                         returnType = key
                 }</span>
         }
 
-        <span class="cov6" title="14">if returnType != "" </span><span class="cov5" title="9">{
-                if returnType == "blueprints" </span><span class="cov0" title="0">{
+        <span class="cov5" title="14">if returnType != "" </span><span class="cov5" title="9">{
+                if returnType == "blueprint" || returnType == "blueprintsartifacts" </span><span class="cov0" title="0">{
                         returnType = arm
                 }</span>
                 // write to channel type of file
@@ -2977,7 +2985,7 @@ func checkContent(path string, results, unwanted chan&lt;- string, ext string) <
 func createSlice(chanel chan string) []string <span class="cov5" title="12">{
         slice := make([]string, 0)
         for i := range chanel </span><span class="cov6" title="18">{
-                if !contains(slice, i) </span><span class="cov6" title="14">{
+                if !contains(slice, i) </span><span class="cov5" title="14">{
                         slice = append(slice, i)
                 }</span>
         }
@@ -2987,12 +2995,12 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="18">{
-        for _, a := range s </span><span class="cov8" title="38">{
+        for _, a := range s </span><span class="cov7" title="38">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
         }
-        <span class="cov6" title="14">return false</span>
+        <span class="cov5" title="14">return false</span>
 }
 </pre>
 		
