@@ -25,8 +25,9 @@ docker run -it -u $UID:$GID -v $PWD:/path checkmarx/kics:ubi7 scan -p /path/asse
 
 Another option is [rebuilding the dockerfile](https://github.com/Checkmarx/kics/blob/master/Dockerfile.ubi7) providing build arguments e.g: `--build-arg UID=999 --build-arg GID=999 --build-arg KUSER=myuser --build-arg KUSER=mygroup`
 
+#### Custom Queries
 
-You can provide your own path to the queries directory with `-q` CLI option (see CLI Options section below), otherwise the default directory will be used The default *./assets/queries* is built-in in the image.
+You can provide your own path to the queries directory with `-q` CLI option (see CLI Options section below), otherwise the default directory will be used The default *./assets/queries* is built-in in the image. You can use this to provide a path to your own custom queries. Check [create a new query guide](creating-queries.md) to learn how to define your own queries.
 
 #### One-liner Install Script
 
@@ -84,6 +85,7 @@ So all you need is:
 - [Explore KICS commands](commands.md) to see what you can do with KICS.
 - [Explore supported platforms](platforms.md) to see which files you can scan with KICS.
 - [Explore the queries internals](queries.md) for better understanding how KICS works.
+- [Create a new query](creating-queries.md) to learn how to create your own custom queries.
 - [Explore the output results format](results.md) and quickly fix the issues detected.
 - [Contribute](CONTRIBUTING.md) if you want to go the extra mile.
 
