@@ -1,5 +1,7 @@
 package generic.cloudformation
 
+import data.generic.common as common_lib
+
 isCloudFormationFalse(answer) {
 	lower(answer) == "no"
 } else {
@@ -53,4 +55,11 @@ udpPortsMap = {
 # Get content of the resource(s) based on the type
 getResourcesByType(resources, type) = list {
     list = [resource | resources[i].Type == type; resource := resources[i]]
+}
+
+getBucketName(resource) = name {
+	name := resource.Properties.Bucket
+    not common_lib.valid_key(name, "Ref")
+} else = name {
+	name := resource.Properties.Bucket.Ref
 }

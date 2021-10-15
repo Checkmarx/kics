@@ -1,6 +1,8 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
+
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
@@ -29,7 +31,7 @@ match(bucketResource, resourceName, bucketAssociated) {
 has_bucket_policy(bucketResource, resourceName) {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::S3::BucketPolicy"
-	bucketAssociated := resource.Properties.Bucket
+	bucketAssociated := cf_lib.getBucketName(resource)
 
 	match(bucketResource, resourceName, bucketAssociated)
 
