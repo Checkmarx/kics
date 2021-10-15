@@ -47,9 +47,6 @@ CxPolicy[result] {
 bucketHasPolicy(bucketName, resources) {
 	resources[_].Type == "AWS::S3::BucketPolicy"
 	cf_lib.getBucketName(resources[_]) == bucketName
-} else {
-	resources[_].Type == "AWS::S3::BucketPolicy"
-	
 }
 
 bucketHasPolicyWithValidSslVerification(bucketName, resources) {
