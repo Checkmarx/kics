@@ -2,6 +2,7 @@ package converter
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -52,22 +53,42 @@ func (c *converter) rangeSource(r hcl.Range) string {
 
 func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Document, error) {
 	var err error
+	countValue := body.Attributes["count"]
+	count := -1
+
+	if countValue != nil {
+		value, err := countValue.Expr.Value(nil)
+		if err == nil {
+			intValue, err := strconv.Atoi(value.AsBigFloat().String())
+			if err == nil {
+				count = intValue
+			}
+		}
+	}
+
+	if count == 0 {
+		return nil, nil
+	}
+
 	out := make(model.Document)
 	kicsS := make(map[string]model.LineObject)
 	// set kics line for the body
 	kicsS["_kics__default"] = model.LineObject{
 		Line: defLine,
 	}
-	for key, value := range body.Attributes {
-		out[key], err = c.convertExpression(value.Expr)
-		// set kics line for the body value
-		kicsS["_kics_"+key] = model.LineObject{
-			Line: value.SrcRange.Start.Line,
-			Arr:  c.getArrLines(value.Expr),
-		}
-		if err != nil {
-			sentry.CaptureException(err)
-			return nil, err
+
+	if body.Attributes != nil {
+		for key, value := range body.Attributes {
+			out[key], err = c.convertExpression(value.Expr)
+			// set kics line for the body value
+			kicsS["_kics_"+key] = model.LineObject{
+				Line: value.SrcRange.Start.Line,
+				Arr:  c.getArrLines(value.Expr),
+			}
+			if err != nil {
+				sentry.CaptureException(err)
+				return nil, err
+			}
 		}
 	}
 
@@ -133,6 +154,10 @@ func (c *converter) convertBlock(block *hclsyntax.Block, out model.Document, def
 
 	if err != nil {
 		return err
+	}
+
+	if value == nil {
+		return nil
 	}
 
 	for _, label := range block.Labels {

@@ -20,6 +20,25 @@ resource "aws_s3_bucket" "b" {
   }
 }
 `
+	count = `
+   resource "aws_instance" "server" {
+	count = true == true ? 0 : 1
+  
+	subnet_id     = var.subnet_ids[count.index]
+  
+	ami           = "ami-a1b2c3d4"
+	instance_type = "t2.micro"
+  
+  }
+  
+  resource "aws_instance" "server1" {
+	count = length(var.subnet_ids)
+  
+	ami           = "ami-a1b2c3d4"
+	instance_type = "t2.micro"
+	subnet_id     = var.subnet_ids[count.index]
+  
+  }`
 )
 
 // TestParser_GetKind tests the functions [GetKind()] and all the methods called by them
@@ -49,6 +68,18 @@ func Test_Parser(t *testing.T) {
 	require.Len(t, document, 1)
 	require.Contains(t, document[0], "resource")
 	require.Contains(t, document[0]["resource"], "aws_s3_bucket")
+}
+
+// Test_Count tests resources with count set to 0
+func Test_Count(t *testing.T) {
+	parser := NewDefault()
+	document, err := parser.Parse("count.tf", []byte(count))
+	require.NoError(t, err)
+	require.Len(t, document, 1)
+	require.Contains(t, document[0], "resource")
+	require.Contains(t, document[0]["resource"].(model.Document)["aws_instance"], "server1")
+	require.NotContains(t, document[0]["resource"].(model.Document)["aws_instance"], "server")
+
 }
 
 // Test_Resolve tests the functions [Resolve()] and all the methods called by them
