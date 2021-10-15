@@ -5,7 +5,6 @@ resource "aws_instance" "server" {
   
 	ami           = "ami-a1b2c3d4"
 	instance_type = "t2.micro"
-  
 }
   
 resource "aws_instance" "server1" {
@@ -14,5 +13,4 @@ resource "aws_instance" "server1" {
 	ami           = "ami-a1b2c3d4"
 	instance_type = "t2.micro"
 	subnet_id     = var.subnet_ids[count.index]
-  
 }

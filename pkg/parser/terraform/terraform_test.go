@@ -79,7 +79,6 @@ func Test_Count(t *testing.T) {
 	require.Contains(t, document[0], "resource")
 	require.Contains(t, document[0]["resource"].(model.Document)["aws_instance"], "server1")
 	require.NotContains(t, document[0]["resource"].(model.Document)["aws_instance"], "server")
-
 }
 
 // Test_Resolve tests the functions [Resolve()] and all the methods called by them
