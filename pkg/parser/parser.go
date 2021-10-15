@@ -16,6 +16,7 @@ type kindParser interface {
 	SupportedTypes() []string
 	Parse(filePath string, fileContent []byte) ([]model.Document, error)
 	Resolve(fileContent []byte, filename string) (*[]byte, error)
+	StringifyContent(content []byte) (string, error)
 }
 
 // Builder is a representation of parsers that will be construct
@@ -68,6 +69,13 @@ type Parser struct {
 	Platform   []string
 }
 
+// ParsedDocument is a struct containing data retrieved from parsing
+type ParsedDocument struct {
+	Docs    []model.Document
+	Kind    model.FileKind
+	Content string
+}
+
 // CommentsCommands gets commands on comments in the file beginning, before the code starts
 func (c *Parser) CommentsCommands(filePath string, fileContent []byte) model.CommentsCommands {
 	if c.isValidExtension(filePath) {
@@ -101,20 +109,34 @@ func (c *Parser) CommentsCommands(filePath string, fileContent []byte) model.Com
 
 // Parse executes a parser on the fileContent and returns the file content as a Document, the file kind and
 // an error, if an error has occurred
-func (c *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, model.FileKind, error) {
+func (c *Parser) Parse(filePath string, fileContent []byte) (ParsedDocument, error) {
 	if c.isValidExtension(filePath) {
 		resolved, err := c.parsers.Resolve(fileContent, filePath)
 		if err != nil {
-			return nil, "", err
+			return ParsedDocument{}, err
 		}
 		obj, err := c.parsers.Parse(filePath, *resolved)
 		if err != nil {
-			return nil, "", err
+			return ParsedDocument{}, err
 		}
 
-		return obj, c.parsers.GetKind(), nil
+		cont, err := c.parsers.StringifyContent(fileContent)
+		if err != nil {
+			log.Error().Msgf("failed to stringify original content: %s", err)
+			cont = string(fileContent)
+		}
+
+		return ParsedDocument{
+			Docs:    obj,
+			Kind:    c.parsers.GetKind(),
+			Content: cont,
+		}, nil
 	}
-	return nil, "break", ErrNotSupportedFile
+	return ParsedDocument{
+		Docs:    nil,
+		Kind:    "break",
+		Content: "",
+	}, ErrNotSupportedFile
 }
 
 // SupportedExtensions returns extensions supported by KICS

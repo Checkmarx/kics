@@ -1,6 +1,7 @@
 package json
 
 import (
+	"bytes"
 	"encoding/json"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -56,4 +57,14 @@ func (p *Parser) SupportedTypes() []string {
 // GetCommentToken return an empty string, since JSON does not have comment token
 func (p *Parser) GetCommentToken() string {
 	return ""
+}
+
+// StringifyContent converts original content into string formated version
+func (p *Parser) StringifyContent(content []byte) (string, error) {
+	var out bytes.Buffer
+	err := json.Indent(&out, content, "", "  ")
+	if err != nil {
+		return "", err
+	}
+	return out.String(), nil
 }
