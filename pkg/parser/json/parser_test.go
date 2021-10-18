@@ -57,3 +57,58 @@ func Test_GetCommentToken(t *testing.T) {
 	parser := &Parser{}
 	require.Equal(t, "", parser.GetCommentToken())
 }
+
+func TestJSON_StringifyContent(t *testing.T) {
+	type fields struct {
+		parser Parser
+	}
+	type args struct {
+		content []byte
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    string
+		wantErr bool
+	}{
+		{
+			name: "test stringify content",
+			fields: fields{
+				parser: Parser{shouldIdent: false},
+			},
+			args: args{
+				content: []byte(`{
+					"key" : "value"
+				}
+`),
+			},
+			want: `{
+					"key" : "value"
+				}
+`,
+			wantErr: false,
+		},
+		{
+			name: "test stringify content single line",
+			fields: fields{
+				parser: Parser{shouldIdent: true},
+			},
+			args: args{
+				content: []byte(`{"key":"value"}`),
+			},
+			want: `{
+  "key": "value"
+}`,
+			wantErr: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := tt.fields.parser.StringifyContent(tt.args.content)
+			require.Equal(t, tt.wantErr, (err != nil))
+			require.Equal(t, tt.want, got)
+		})
+	}
+}

@@ -27,7 +27,7 @@ func TestParser_Parse(t *testing.T) {
 }
 `))
 		require.NoError(t, err)
-		require.Len(t, docs, 1)
+		require.Len(t, docs.Docs, 1)
 		require.Contains(t, docs.Docs[0], "martin")
 		require.Equal(t, model.KindJSON, docs.Kind)
 	}
@@ -41,7 +41,7 @@ martin:
   name: CxBraga
 `))
 		require.NoError(t, err)
-		require.Len(t, docs, 1)
+		require.Len(t, docs.Docs, 1)
 		require.Contains(t, docs.Docs[0], "martin")
 		require.Equal(t, model.KindYAML, docs.Kind)
 	}
@@ -57,7 +57,7 @@ RUN echo hello
 `))
 
 		require.NoError(t, err)
-		require.Len(t, docs, 1)
+		require.Len(t, docs.Docs, 1)
 		require.Equal(t, model.KindDOCKER, docs.Kind)
 	}
 }

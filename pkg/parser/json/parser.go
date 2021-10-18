@@ -9,6 +9,7 @@ import (
 
 // Parser defines a parser type
 type Parser struct {
+	shouldIdent bool
 }
 
 // Resolve - replace or modifies in-memory content before parsing
@@ -36,6 +37,8 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 		return []model.Document{kicsJSON}, nil
 	}
 
+	p.shouldIdent = true
+
 	return []model.Document{kicsPlan}, nil
 }
 
@@ -61,10 +64,13 @@ func (p *Parser) GetCommentToken() string {
 
 // StringifyContent converts original content into string formated version
 func (p *Parser) StringifyContent(content []byte) (string, error) {
-	var out bytes.Buffer
-	err := json.Indent(&out, content, "", "  ")
-	if err != nil {
-		return "", err
+	if p.shouldIdent {
+		var out bytes.Buffer
+		err := json.Indent(&out, content, "", "  ")
+		if err != nil {
+			return "", err
+		}
+		return out.String(), nil
 	}
-	return out.String(), nil
+	return string(content), nil
 }

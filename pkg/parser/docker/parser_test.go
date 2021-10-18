@@ -125,3 +125,59 @@ func Test_GetCommentToken(t *testing.T) {
 	parser := &Parser{}
 	require.Equal(t, "#", parser.GetCommentToken())
 }
+
+func TestDocker_StringifyContent(t *testing.T) {
+	type fields struct {
+		parser Parser
+	}
+	type args struct {
+		content []byte
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    string
+		wantErr bool
+	}{
+		{
+			name: "test stringify content",
+			fields: fields{
+				parser: Parser{},
+			},
+			args: args{
+				content: []byte(`
+FROM openjdk:11-jdk
+VOLUME /tmp
+ADD http://source.file/package.file.tar.gz /temp
+RUN tar --xjf /temp/package.file.tar.gz \
+	&& make -C /tmp/package.file \
+	&& rm /tmp/ package.file.tar.gz
+ARG JAR_FILE
+ADD ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+`),
+			},
+			want: `
+FROM openjdk:11-jdk
+VOLUME /tmp
+ADD http://source.file/package.file.tar.gz /temp
+RUN tar --xjf /temp/package.file.tar.gz \
+	&& make -C /tmp/package.file \
+	&& rm /tmp/ package.file.tar.gz
+ARG JAR_FILE
+ADD ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+`,
+			wantErr: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := tt.fields.parser.StringifyContent(tt.args.content)
+			require.Equal(t, tt.wantErr, (err != nil))
+			require.Equal(t, tt.want, got)
+		})
+	}
+}
