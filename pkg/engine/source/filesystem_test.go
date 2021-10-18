@@ -486,16 +486,18 @@ func Test_ReadMetadata(t *testing.T) {
 		queryDir string
 	}
 	tests := []struct {
-		name string
-		args args
-		want map[string]interface{}
+		name    string
+		args    args
+		want    map[string]interface{}
+		wantErr bool
 	}{
 		{
 			name: "read_metadata_error",
 			args: args{
 				queryDir: "error-path",
 			},
-			want: nil,
+			want:    nil,
+			wantErr: false,
 		},
 		{
 			name: "read_metadata_template",
@@ -512,11 +514,13 @@ func Test_ReadMetadata(t *testing.T) {
 				"platform":        "<PLATFORM>",
 				"aggregation":     float64(1),
 			},
+			wantErr: false,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := ReadMetadata(tt.args.queryDir); !reflect.DeepEqual(got, tt.want) {
+			if got, err := ReadMetadata(tt.args.queryDir); !reflect.DeepEqual(got, tt.want) {
+				require.Equal(t, tt.wantErr, (err != nil))
 				gotStr, err := test.StringifyStruct(got)
 				require.Nil(t, err)
 				wantStr, err := test.StringifyStruct(tt.want)
