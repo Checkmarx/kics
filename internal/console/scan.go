@@ -16,6 +16,7 @@ import (
 	internalPrinter "github.com/Checkmarx/kics/internal/console/printer"
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/internal/metrics"
+	sentry_report "github.com/Checkmarx/kics/internal/sentry"
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/analyzer"
@@ -36,7 +37,6 @@ import (
 	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/Checkmarx/kics/pkg/resolver/helm"
 	"github.com/Checkmarx/kics/pkg/scanner"
-	"github.com/getsentry/sentry-go"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
@@ -265,13 +265,20 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
 }
 
 func initScanCmd(scanCmd *cobra.Command) error {
-	if err := flags.InitJSONFlags(scanCmd, scanFlagsListContent, false); err != nil {
+	if err := flags.InitJSONFlags(
+		scanCmd, scanFlagsListContent,
+		false,
+		source.ListSupportedPlatforms(),
+		source.ListSupportedCloudProviders()); err != nil {
 		return err
 	}
 
 	if err := scanCmd.MarkFlagRequired(flags.PathFlag); err != nil {
-		sentry.CaptureException(err)
-		log.Err(err).Msg("Failed to add command required flags")
+		sentry_report.ReportSentry(&sentry_report.Report{
+			Message:  "Failed to add command required flags",
+			Err:      err,
+			Location: "func initScanCmd()",
+		}, true)
 	}
 	return nil
 }

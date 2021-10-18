@@ -4,16 +4,17 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"fmt"
 	"strings"
 	"time"
 
 	"github.com/Checkmarx/kics/internal/metrics"
+	sentry_report "github.com/Checkmarx/kics/internal/sentry"
 	"github.com/Checkmarx/kics/pkg/detector"
 	"github.com/Checkmarx/kics/pkg/detector/docker"
 	"github.com/Checkmarx/kics/pkg/detector/helm"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/getsentry/sentry-go"
 	"github.com/open-policy-agent/opa/ast"
 	"github.com/open-policy-agent/opa/cover"
 	"github.com/open-policy-agent/opa/rego"
@@ -103,60 +104,16 @@ func NewInspector(
 
 	commonLibrary, err := queriesSource.GetQueryLibrary("common")
 	if err != nil {
-		sentry.CaptureException(err)
-		log.Err(err).
-			Msgf("Inspector failed to get library for %s platform", "common")
+		sentry_report.ReportSentry(&sentry_report.Report{
+			Message:  fmt.Sprintf("Inspector failed to get library for %s platform", "common"),
+			Err:      err,
+			Location: "func NewInspector()",
+			Platform: "common",
+		}, true)
 		return nil, errors.Wrap(err, "failed to get library")
 	}
 	platformLibraries := getPlatformLibraries(queriesSource, queries)
-	opaQueries := make([]*preparedQuery, 0, len(queries))
-	for _, metadata := range queries {
-		platformGeneralQuery, ok := platformLibraries[metadata.Platform]
-		if !ok {
-			log.Err(err).
-				Msgf("Inspector failed to get generic query, query=%s", metadata.Query)
-			continue
-		}
-
-		select {
-		case <-ctx.Done():
-			return nil, nil
-		default:
-			var opaQuery rego.PreparedEvalQuery
-			mergedInputData, err := source.MergeInputData(platformGeneralQuery.LibraryInputData, metadata.InputData)
-			if err != nil {
-				log.Debug().Msg("Could not merge platform library input data")
-			}
-			mergedInputData, err = source.MergeInputData(commonLibrary.LibraryInputData, mergedInputData)
-			if err != nil {
-				log.Debug().Msg("Could not merge common library input data")
-			}
-			store := inmem.NewFromReader(bytes.NewBufferString(mergedInputData))
-			opaQuery, err = rego.New(
-				rego.Query(regoQuery),
-				rego.Module("Common", commonLibrary.LibraryCode),
-				rego.Module("Generic", platformGeneralQuery.LibraryCode),
-				rego.Module(metadata.Query, metadata.Content),
-				rego.Store(store),
-				rego.UnsafeBuiltins(unsafeRegoFunctions),
-			).PrepareForEval(ctx)
-
-			if err != nil {
-				sentry.CaptureException(err)
-				log.Err(err).
-					Msgf("Inspector failed to prepare query for evaluation, query=%s", metadata.Query)
-
-				continue
-			}
-
-			tracker.TrackQueryLoad(metadata.Aggregation)
-
-			opaQueries = append(opaQueries, &preparedQuery{
-				opaQuery: opaQuery,
-				metadata: metadata,
-			})
-		}
-	}
+	opaQueries := prepareQueries(ctx, queries, commonLibrary, platformLibraries, tracker)
 
 	failedQueries := make(map[string]error)
 
@@ -194,9 +151,12 @@ func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.Qu
 	for platform := range supportedPlatforms {
 		platformLibrary, errLoadingPlatformLib := queriesSource.GetQueryLibrary(platform)
 		if errLoadingPlatformLib != nil {
-			sentry.CaptureException(errLoadingPlatformLib)
-			log.Err(errLoadingPlatformLib).
-				Msgf("Inspector failed to get library for %s platform", platform)
+			sentry_report.ReportSentry(&sentry_report.Report{
+				Message:  fmt.Sprintf("Inspector failed to get library for %s platform", platform),
+				Err:      errLoadingPlatformLib,
+				Location: "func getPlatformLibraries()",
+				Platform: platform,
+			}, true)
 			continue
 		}
 		platformLibraries[platform] = platformLibrary
@@ -242,10 +202,14 @@ func (c *Inspector) Inspect(
 			baseScanPaths: baseScanPaths,
 		})
 		if err != nil {
-			sentry.CaptureException(err)
-			log.Err(err).
-				Str("scanID", scanID).
-				Msgf("Inspector. query executed with error, query=%s", query.metadata.Query)
+			sentry_report.ReportSentry(&sentry_report.Report{
+				Message:  fmt.Sprintf("Inspector. query executed with error, query=%s", query.metadata.Query),
+				Err:      err,
+				Location: "func Inspect()",
+				Platform: query.metadata.Platform,
+				Metadata: query.metadata.Metadata,
+				Query:    query.metadata.Query,
+			}, true)
 
 			c.failedQueries[query.metadata.Query] = err
 
@@ -356,9 +320,14 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 	for _, queryResultItem := range queryResultItems {
 		vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector)
 		if err != nil {
-			sentry.CaptureException(err)
-			log.Err(err).
-				Msgf("Inspector can't save vulnerability, query=%s", ctx.query.metadata.Query)
+			sentry_report.ReportSentry(&sentry_report.Report{
+				Message:  fmt.Sprintf("Inspector can't save vulnerability, query=%s", ctx.query.metadata.Query),
+				Err:      err,
+				Location: "func decodeQueryResults()",
+				Platform: ctx.query.metadata.Platform,
+				Metadata: ctx.query.metadata.Metadata,
+				Query:    ctx.query.metadata.Query,
+			}, true)
 
 			if _, ok := c.failedQueries[ctx.query.metadata.Query]; !ok {
 				c.failedQueries[ctx.query.metadata.Query] = err
@@ -425,4 +394,66 @@ func shouldSkipFile(command model.CommentsCommands, queryID string) bool {
 		}
 	}
 	return false
+}
+
+func prepareQueries(
+	ctx context.Context,
+	queries []model.QueryMetadata,
+	commonLibrary source.RegoLibraries,
+	platformLibraries map[string]source.RegoLibraries,
+	tracker Tracker) []*preparedQuery {
+	opaQueries := make([]*preparedQuery, 0, len(queries))
+	for _, metadata := range queries {
+		platformGeneralQuery, ok := platformLibraries[metadata.Platform]
+		if !ok {
+			log.Err(errors.New("failed to get platform library")).
+				Msgf("Inspector failed to get library for query: %s, with platform: %s", metadata.Query, metadata.Platform)
+			continue
+		}
+
+		select {
+		case <-ctx.Done():
+			return nil
+		default:
+			var opaQuery rego.PreparedEvalQuery
+			mergedInputData, err := source.MergeInputData(platformGeneralQuery.LibraryInputData, metadata.InputData)
+			if err != nil {
+				log.Debug().Msg("Could not merge platform library input data")
+			}
+			mergedInputData, err = source.MergeInputData(commonLibrary.LibraryInputData, mergedInputData)
+			if err != nil {
+				log.Debug().Msg("Could not merge common library input data")
+			}
+			store := inmem.NewFromReader(bytes.NewBufferString(mergedInputData))
+			opaQuery, err = rego.New(
+				rego.Query(regoQuery),
+				rego.Module("Common", commonLibrary.LibraryCode),
+				rego.Module("Generic", platformGeneralQuery.LibraryCode),
+				rego.Module(metadata.Query, metadata.Content),
+				rego.Store(store),
+				rego.UnsafeBuiltins(unsafeRegoFunctions),
+			).PrepareForEval(ctx)
+
+			if err != nil {
+				sentry_report.ReportSentry(&sentry_report.Report{
+					Message:  fmt.Sprintf("Inspector failed to prepare query for evaluation, query=%s", metadata.Query),
+					Err:      err,
+					Location: "func NewInspector()",
+					Query:    metadata.Query,
+					Metadata: metadata.Metadata,
+					Platform: metadata.Platform,
+				}, true)
+
+				continue
+			}
+
+			tracker.TrackQueryLoad(metadata.Aggregation)
+
+			opaQueries = append(opaQueries, &preparedQuery{
+				opaQuery: opaQuery,
+				metadata: metadata,
+			})
+		}
+	}
+	return opaQueries
 }

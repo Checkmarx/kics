@@ -2,6 +2,7 @@ package source
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"path"
 	"path/filepath"
@@ -10,8 +11,8 @@ import (
 
 	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/internal/constants"
+	sentry_report "github.com/Checkmarx/kics/internal/sentry"
 	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/getsentry/sentry-go"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -258,9 +259,12 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 	for _, queryDir := range queryDirs {
 		query, errRQ := ReadQuery(queryDir)
 		if errRQ != nil {
-			sentry.CaptureException(errRQ)
-			log.Err(errRQ).
-				Msgf("Query provider failed to read query, query=%s", path.Base(queryDir))
+			sentry_report.ReportSentry(&sentry_report.Report{
+				Message:  fmt.Sprintf("Query provider failed to read query, query=%s", path.Base(queryDir)),
+				Err:      errRQ,
+				Location: "func GetQueries()",
+				FileName: path.Base(queryDir),
+			}, true)
 			continue
 		}
 
@@ -342,17 +346,12 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 func ReadMetadata(queryDir string) map[string]interface{} {
 	f, err := os.Open(filepath.Clean(path.Join(queryDir, MetadataFileName)))
 	if err != nil {
-		sentry.CaptureException(err)
-		if os.IsNotExist(err) {
-			log.Warn().
-				Msgf("Queries provider can't find metadata, query=%s", path.Base(queryDir))
-
-			return nil
-		}
-
-		log.Err(err).
-			Msgf("Queries provider can't read metadata, query=%s", path.Base(queryDir))
-
+		sentry_report.ReportSentry(&sentry_report.Report{
+			Message:  fmt.Sprintf("Queries provider can't read metadata, query=%s", path.Base(queryDir)),
+			Err:      err,
+			Location: "func ReadMetadata()",
+			FileName: path.Base(queryDir),
+		}, true)
 		return nil
 	}
 	defer func() {
@@ -364,9 +363,12 @@ func ReadMetadata(queryDir string) map[string]interface{} {
 
 	var metadata map[string]interface{}
 	if err := json.NewDecoder(f).Decode(&metadata); err != nil {
-		sentry.CaptureException(err)
-		log.Err(err).
-			Msgf("Queries provider can't unmarshal metadata, query=%s", path.Base(queryDir))
+		sentry_report.ReportSentry(&sentry_report.Report{
+			Message:  fmt.Sprintf("Queries provider can't unmarshal metadata, query=%s", path.Base(queryDir)),
+			Err:      err,
+			Location: "func ReadMetadata()",
+			FileName: path.Base(queryDir),
+		}, true)
 
 		return nil
 	}

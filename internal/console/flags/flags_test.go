@@ -6,7 +6,6 @@ import (
 	"testing"
 
 	"github.com/Checkmarx/kics/internal/constants"
-	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/stretchr/testify/require"
 )
 
@@ -178,29 +177,40 @@ func TestFlags_SetMultiStrFlag(t *testing.T) {
 
 func TestFlags_evalUsage(t *testing.T) {
 	tests := []struct {
-		name     string
-		usage    string
-		expected string
+		name               string
+		supportedPlatforms []string
+		supportedProviders []string
+		usage              string
+		expected           string
 	}{
 		{
-			name:     "should return same text",
-			usage:    "test",
-			expected: "test",
+			name:               "should return same text",
+			usage:              "test",
+			expected:           "test",
+			supportedPlatforms: []string{""},
+			supportedProviders: []string{""},
 		},
 		{
-			name:     "should return message translated",
-			usage:    "test ${supportedPlatforms}",
-			expected: fmt.Sprintf("test %s", strings.Join(source.ListSupportedPlatforms(), ", ")),
+			name:               "should return message translated",
+			usage:              "test ${supportedPlatforms}",
+			supportedPlatforms: []string{"terraform", "dockerfile"},
+			supportedProviders: []string{"aws", "azure"},
+			expected:           fmt.Sprintf("test %s", strings.Join([]string{"terraform", "dockerfile"}, ", ")),
 		},
 		{
-			name:     "should return message translated for multiple variables",
-			usage:    "test ${supportedPlatforms} ${defaultLogFile}",
-			expected: fmt.Sprintf("test %s %s", strings.Join(source.ListSupportedPlatforms(), ", "), constants.DefaultLogFile),
+			name:               "should return message translated for multiple variables",
+			usage:              "test ${supportedPlatforms} ${defaultLogFile}",
+			supportedPlatforms: []string{"terraform", "dockerfile"},
+			supportedProviders: []string{"aws", "azure"},
+			expected:           fmt.Sprintf("test %s %s", strings.Join([]string{"terraform", "dockerfile"}, ", "), constants.DefaultLogFile),
 		},
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			got := evalUsage(test.usage)
+			got := evalUsage(
+				test.usage,
+				test.supportedPlatforms,
+				test.supportedProviders)
 			require.Equal(t, test.expected, got)
 		})
 	}
