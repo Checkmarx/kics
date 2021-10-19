@@ -22,7 +22,7 @@ jobs:
         run: |
           pip3 install -r .github/scripts/watchers/requirements.txt
           python3 -u .github/scripts/watchers/terraform-modules-update.py \
-            -c internal/console/assets/libraries/common.json \
+            -c assets/libraries/common.json \
             -u https://registry.terraform.io/v1/modules
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3.10.1
