@@ -183,9 +183,9 @@
 				
 				<option value="file63">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (84.6%)</option>
 				
-				<option value="file64">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (71.4%)</option>
+				<option value="file64">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file65">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file65">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (90.9%)</option>
 				
 				<option value="file66">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -207,7 +207,7 @@
 				
 				<option value="file75">github.com/Checkmarx/kics/pkg/report/sarif.go (90.9%)</option>
 				
-				<option value="file76">github.com/Checkmarx/kics/pkg/resolver/helm/helm.go (89.1%)</option>
+				<option value="file76">github.com/Checkmarx/kics/pkg/resolver/helm/helm.go (88.5%)</option>
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/resolver/helm/resolver.go (88.4%)</option>
 				
@@ -1622,8 +1622,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="363">{
-                if val == true </span><span class="cov9" title="362">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="388">{
+                if val == true </span><span class="cov9" title="387">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2532,13 +2532,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="29">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="31">total += v
+                <span class="cov8" title="29">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2563,7 +2563,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2995,7 +2995,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="18">{
-        for _, a := range s </span><span class="cov7" title="39">{
+        for _, a := range s </span><span class="cov7" title="38">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -4696,7 +4696,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -12209,7 +12209,7 @@ type ProgressBar struct {
 }
 
 // NewProgressBar creates a new instance of a Circle Progress Bar
-func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" title="3">{
+func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" title="3">{
         newPb := pb.New64(constants.MaxInteger)
         tmp := fmt.Sprintf(`{{ "%s" }} {{(cycle . "\\" "-" "|" "/" "-" "|" )}}`, label)
         newPb.SetWidth(barWidth)
@@ -12217,7 +12217,7 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
         if silent </span><span class="cov1" title="1">{
                 newPb.SetWriter(io.Discard)
         }</span>
-        <span class="cov10" title="3">newPb.Start()
+        <span class="cov2" title="3">newPb.Start()
 
         return ProgressBar{
                 label: label,
@@ -12234,17 +12234,17 @@ func (p ProgressBar) Start() <span class="cov1" title="1">{
         wg := &amp;sync.WaitGroup{}
         go p.incrementProgress(wg)
 
-        go func() </span><span class="cov0" title="0">{
-                defer func() </span><span class="cov0" title="0">{
+        go func() </span><span class="cov1" title="1">{
+                defer func() </span><span class="cov1" title="1">{
                         wg.Wait()
                 }</span>()
         }()
 }
 
-func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov0" title="0">{
+func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov1" title="1">{
         wg.Add(1)
         defer wg.Done()
-        for </span><span class="cov0" title="0">{ // increment until the Close func is called
+        for </span><span class="cov10" title="10850">{ // increment until the Close func is called
                 p.pBar.Increment()
         }</span>
 }
@@ -12300,7 +12300,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov1" title="1">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -12309,7 +12309,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov1" title="1">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
@@ -12321,14 +12321,14 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov1" title="1">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov1" title="1">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file66" style="display: none">package progress
@@ -13782,7 +13782,7 @@ func runInstall(args []string, client *action.Install,
                 return nil, []string{}, err
         }</span>
 
-        <span class="cov2" title="2">excluded := getExcluded(chartRequested, filepath.Dir(cp))
+        <span class="cov2" title="2">excluded := getExcluded(chartRequested, cp)
 
         chartRequested = setID(chartRequested)
 
@@ -13856,16 +13856,13 @@ func addID(file *chart.File) *chart.File <span class="cov4" title="9">{
 }
 
 // getExcluded will return all files rendered to be excluded from scan
-func getExcluded(charterino *chart.Chart, chartpath string) []string <span class="cov2" title="3">{
-        path := filepath.Join(chartpath, charterino.ChartFullPath())
+func getExcluded(charterino *chart.Chart, chartpath string) []string <span class="cov2" title="2">{
         excluded := make([]string, 0)
-        for _, temp := range charterino.Templates </span><span class="cov4" title="9">{
-                excluded = append(excluded, filepath.Join(path, temp.Name))
+        for _, file := range charterino.Raw </span><span class="cov5" title="18">{
+                excluded = append(excluded, filepath.Join(chartpath, file.Name))
         }</span>
-        <span class="cov2" title="3">for _, dep := range charterino.Dependencies() </span><span class="cov1" title="1">{
-                excluded = append(excluded, getExcluded(dep, chartpath)...)
-        }</span>
-        <span class="cov2" title="3">return excluded</span>
+
+        <span class="cov2" title="2">return excluded</span>
 }
 </pre>
 		
