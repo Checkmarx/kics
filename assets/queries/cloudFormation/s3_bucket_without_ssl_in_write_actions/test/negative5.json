@@ -1,0 +1,49 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Resources": {
+    "BucketPolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+            "Ref": "S3Bucket88"
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": false
+                }
+              },
+              "Resource": [
+                "",
+                [
+                  "arn:aws:s3:::",
+                  "S3Bucket2",
+                  "/*"
+                ]
+              ],
+              "Sid": "EnsureSSL",
+              "Effect": "Deny",
+              "Principal": "*",
+              "Action": "s3:*"
+            }
+          ],
+          "Id": "MyPolicy",
+          "Version": "2012-10-17T00:00:00Z"
+        }
+      }
+    },
+    "S3Bucket88": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "AccessControl": "PublicRead",
+        "WebsiteConfiguration": {
+          "ErrorDocument": "error.html",
+          "IndexDocument": "index.html"
+        }
+      },
+      "Type": "AWS::S3::Bucket"
+    }
+  }
+}
