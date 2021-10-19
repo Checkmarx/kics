@@ -2,7 +2,6 @@ package terraform
 
 import (
 	"path/filepath"
-	"strings"
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
@@ -61,69 +60,6 @@ func TestMergeMaps(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			mergeMaps(tt.args.baseMap, tt.args.newMap)
 			require.Equal(t, tt.want, tt.args.baseMap)
-		})
-	}
-}
-
-func TestParseFile(t *testing.T) {
-	tests := []fileTest{
-		{
-			name:     "Should parse variable file",
-			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "terraform.tfvars"),
-			want: `test_terraform = "terraform.tfvars"
-`,
-			wantErr: false,
-		},
-		{
-			name:     "Should parse terraform file",
-			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "test.tf"),
-			want: `variable "local_default_var" {
-  type    = "string"
-  default = "local_default"
-}
-
-variable "" {
-  type    = "string"
-  default = "invalid_block"
-}
-
-variable "invalid_attr" {
-}
-
-resource "test" "test1" {
-  test_map        = var.map2
-  test_bool       = var.test1
-  test_list       = var.test2
-  test_neted_map  = var.map2[var.map1["map1key1"]]]
-
-  test_block {
-    terraform_var = var.test_terraform
-  }
-
-  test_default_local = var.local_default_var
-  test_default       = var.default_var
-}
-`,
-			wantErr: false,
-		},
-		{
-			name:     "Should get error when trying to parse inexistent file",
-			filename: filepath.Join(".", "not_found.tf"),
-			want:     "",
-			wantErr:  true,
-		},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			parsedFile, err := parseFile(tt.filename)
-			if tt.wantErr {
-				require.NotNil(t, err)
-				require.Nil(t, parsedFile)
-			} else {
-				require.NoError(t, err)
-				require.Equal(t, tt.want, strings.ReplaceAll(string(parsedFile.Bytes), "\r", ""))
-			}
 		})
 	}
 }

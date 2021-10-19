@@ -20,17 +20,6 @@ func mergeMaps(baseMap, newItems converter.InputVariableMap) {
 	}
 }
 
-func parseFile(filename string) (*hcl.File, error) {
-	file, err := os.ReadFile(filename)
-	if err != nil {
-		return nil, err
-	}
-
-	parsedFile, _ := hclsyntax.ParseConfig(file, filename, hcl.Pos{Line: 1, Column: 1})
-
-	return parsedFile, nil
-}
-
 func setInputVariablesDefaultValues(filename string) (converter.InputVariableMap, error) {
 	parsedFile, err := parseFile(filename)
 	if err != nil || parsedFile == nil {

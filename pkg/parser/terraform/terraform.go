@@ -1,6 +1,7 @@
 package terraform
 
 import (
+	"os"
 	"path/filepath"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -34,6 +35,7 @@ func NewDefault() *Parser {
 // Resolve - replace or modifies in-memory content before parsing
 func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
 	getInputVariables(filepath.Dir(filename))
+	getDataSourcePolicy(filepath.Dir(filename))
 	return &fileContent, nil
 }
 
@@ -86,6 +88,17 @@ func addExtraInfo(json []model.Document, path string) ([]model.Document, error) 
 	}
 
 	return json, nil
+}
+
+func parseFile(filename string) (*hcl.File, error) {
+	file, err := os.ReadFile(filename)
+	if err != nil {
+		return nil, err
+	}
+
+	parsedFile, _ := hclsyntax.ParseConfig(file, filename, hcl.Pos{Line: 1, Column: 1})
+
+	return parsedFile, nil
 }
 
 // Parse execute parser for the content in a file
