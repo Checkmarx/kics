@@ -7007,14 +7007,6 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mysql_server#public_network_access_enabled">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Default Azure Storage Account Network Access Is Too Permissive<br/><sup><sub>a5613650-32ec-4975-a305-31af783153ea</sub></sup></td>
-<td>Terraform</td>
-<td><span style="color:#C00">High</span></td>
-<td>Encryption</td>
-<td>Default Azure Storage Account network access should be set to Deny</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account_network_rules#default_action">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Storage Account Not Forcing HTTPS<br/><sup><sub>12944ec4-1fa0-47be-8b17-42a034f937c2</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
@@ -7341,6 +7333,14 @@
 <td>Insecure Defaults</td>
 <td>Default Network Access rule for Storage Accounts must be set to deny, which means the attribute 'default_action' must be 'Deny'</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account_network_rules">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Default Azure Storage Account Network Access Is Too Permissive<br/><sup><sub>a5613650-32ec-4975-a305-31af783153ea</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Defaults</td>
+<td>Default Azure Storage Account network access should be set to Deny</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account_network_rules#default_action">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Firewall Rule Allows Too Many Hosts To Access Redis Cache<br/><sup><sub>a829b715-cf75-4e92-b645-54c9b739edfb</sub></sup></td>
