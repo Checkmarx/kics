@@ -57,7 +57,8 @@ func TestUniqueQueryIDs(t *testing.T) {
 	descriptionIdentifiers := make(map[string]string)
 
 	for _, entry := range queries {
-		metadata := source.ReadMetadata(entry.dir)
+		metadata, err := source.ReadMetadata(entry.dir)
+		require.NoError(t, err)
 		uuid := metadata["id"].(string)
 		duplicateDir, ok := queriesIdentifiers[uuid]
 		require.False(t, ok, "\nnon unique queryID found uuid: %s\nqueryDir: %s\nduplicateDir: %s",
