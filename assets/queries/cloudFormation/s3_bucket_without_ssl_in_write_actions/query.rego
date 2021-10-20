@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -45,12 +46,12 @@ CxPolicy[result] {
 
 bucketHasPolicy(bucketName, resources) {
 	resources[_].Type == "AWS::S3::BucketPolicy"
-	resources[_].Properties.Bucket == bucketName
+	cf_lib.getBucketName(resources[_]) == bucketName
 }
 
 bucketHasPolicyWithValidSslVerification(bucketName, resources) {
 	resources[_].Type == "AWS::S3::BucketPolicy"
-	resources[_].Properties.Bucket == bucketName
+	cf_lib.getBucketName(resources[_]) == bucketName
 
 	isValidSslPolicyStatement(resources[_].Properties.PolicyDocument.Statement)
 }
