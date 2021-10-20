@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/Checkmarx/kics/internal/metrics"
-	sentry_report "github.com/Checkmarx/kics/internal/sentry"
+	sentryReport "github.com/Checkmarx/kics/internal/sentry"
 	"github.com/Checkmarx/kics/pkg/detector"
 	"github.com/Checkmarx/kics/pkg/detector/docker"
 	"github.com/Checkmarx/kics/pkg/detector/helm"
@@ -104,7 +104,7 @@ func NewInspector(
 
 	commonLibrary, err := queriesSource.GetQueryLibrary("common")
 	if err != nil {
-		sentry_report.ReportSentry(&sentry_report.Report{
+		sentryReport.ReportSentry(&sentryReport.Report{
 			Message:  fmt.Sprintf("Inspector failed to get library for %s platform", "common"),
 			Err:      err,
 			Location: "func NewInspector()",
@@ -151,7 +151,7 @@ func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.Qu
 	for platform := range supportedPlatforms {
 		platformLibrary, errLoadingPlatformLib := queriesSource.GetQueryLibrary(platform)
 		if errLoadingPlatformLib != nil {
-			sentry_report.ReportSentry(&sentry_report.Report{
+			sentryReport.ReportSentry(&sentryReport.Report{
 				Message:  fmt.Sprintf("Inspector failed to get library for %s platform", platform),
 				Err:      errLoadingPlatformLib,
 				Location: "func getPlatformLibraries()",
@@ -202,7 +202,7 @@ func (c *Inspector) Inspect(
 			baseScanPaths: baseScanPaths,
 		})
 		if err != nil {
-			sentry_report.ReportSentry(&sentry_report.Report{
+			sentryReport.ReportSentry(&sentryReport.Report{
 				Message:  fmt.Sprintf("Inspector. query executed with error, query=%s", query.metadata.Query),
 				Err:      err,
 				Location: "func Inspect()",
@@ -320,7 +320,7 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 	for _, queryResultItem := range queryResultItems {
 		vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector)
 		if err != nil {
-			sentry_report.ReportSentry(&sentry_report.Report{
+			sentryReport.ReportSentry(&sentryReport.Report{
 				Message:  fmt.Sprintf("Inspector can't save vulnerability, query=%s", ctx.query.metadata.Query),
 				Err:      err,
 				Location: "func decodeQueryResults()",
@@ -435,7 +435,7 @@ func prepareQueries(
 			).PrepareForEval(ctx)
 
 			if err != nil {
-				sentry_report.ReportSentry(&sentry_report.Report{
+				sentryReport.ReportSentry(&sentryReport.Report{
 					Message:  fmt.Sprintf("Inspector failed to prepare query for evaluation, query=%s", metadata.Query),
 					Err:      err,
 					Location: "func NewInspector()",

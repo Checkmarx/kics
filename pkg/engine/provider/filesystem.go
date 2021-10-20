@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	sentry_report "github.com/Checkmarx/kics/internal/sentry"
+	sentryReport "github.com/Checkmarx/kics/internal/sentry"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
@@ -130,7 +130,7 @@ func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string,
 		if info.IsDir() {
 			excluded, errRes := resolverSink(ctx, strings.ReplaceAll(path, "\\", "/"))
 			if errRes != nil {
-				sentry_report.ReportSentry(&sentry_report.Report{
+				sentryReport.ReportSentry(&sentryReport.Report{
 					Message:  fmt.Sprintf("Filesystem files provider couldn't Resolve Directory, file=%s", info.Name()),
 					Err:      errRes,
 					Location: "func walkDir()",
@@ -154,7 +154,7 @@ func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string,
 
 		err = sink(ctx, strings.ReplaceAll(path, "\\", "/"), c)
 		if err != nil {
-			sentry_report.ReportSentry(&sentry_report.Report{
+			sentryReport.ReportSentry(&sentryReport.Report{
 				Message:  fmt.Sprintf("Filesystem files provider couldn't parse file, file=%s", info.Name()),
 				Err:      err,
 				Location: "func walkDir()",
@@ -179,7 +179,7 @@ func openScanFile(scanPath string, extensions model.Extensions) (*os.File, error
 
 func closeFile(file *os.File, info os.FileInfo) {
 	if err := file.Close(); err != nil {
-		sentry_report.ReportSentry(&sentry_report.Report{
+		sentryReport.ReportSentry(&sentryReport.Report{
 			Message:  fmt.Sprintf("Filesystem couldn't close file, file=%s", info.Name()),
 			Err:      err,
 			Location: "func closeFile()",

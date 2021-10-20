@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"io"
 
-	sentry_report "github.com/Checkmarx/kics/internal/sentry"
+	sentryReport "github.com/Checkmarx/kics/internal/sentry"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser/jsonfilter/parser"
 	"github.com/antlr/antlr4/runtime/Go/antlr"
@@ -42,7 +42,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 	for _, document := range documents {
 		_, err = json.Marshal(document)
 		if err != nil {
-			sentry_report.ReportSentry(&sentry_report.Report{
+			sentryReport.ReportSentry(&sentryReport.Report{
 				Message:  fmt.Sprintf("failed to marshal content in file: %s", filename),
 				Err:      err,
 				Location: "func sink()",

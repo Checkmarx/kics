@@ -9,7 +9,7 @@ import (
 	"github.com/Checkmarx/kics/internal/console/flags"
 	"github.com/Checkmarx/kics/internal/console/printer"
 	"github.com/Checkmarx/kics/internal/constants"
-	sentry_report "github.com/Checkmarx/kics/internal/sentry"
+	sentryReport "github.com/Checkmarx/kics/internal/sentry"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/getsentry/sentry-go"
 	"github.com/rs/zerolog"
@@ -73,7 +73,7 @@ func Execute() error {
 	rootCmd := NewKICSCmd()
 
 	if err := initialize(rootCmd); err != nil {
-		sentry_report.ReportSentry(&sentry_report.Report{
+		sentryReport.ReportSentry(&sentryReport.Report{
 			Message:  "Failed to initialize CLI",
 			Err:      err,
 			Location: "func Execute()",
@@ -82,7 +82,7 @@ func Execute() error {
 	}
 
 	if err := rootCmd.ExecuteContext(ctx); err != nil {
-		sentry_report.ReportSentry(&sentry_report.Report{
+		sentryReport.ReportSentry(&sentryReport.Report{
 			Message:  "Failed to run application",
 			Err:      err,
 			Location: "func Execute()",

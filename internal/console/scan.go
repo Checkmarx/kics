@@ -16,7 +16,7 @@ import (
 	internalPrinter "github.com/Checkmarx/kics/internal/console/printer"
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/internal/metrics"
-	sentry_report "github.com/Checkmarx/kics/internal/sentry"
+	sentryReport "github.com/Checkmarx/kics/internal/sentry"
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/analyzer"
@@ -274,7 +274,7 @@ func initScanCmd(scanCmd *cobra.Command) error {
 	}
 
 	if err := scanCmd.MarkFlagRequired(flags.PathFlag); err != nil {
-		sentry_report.ReportSentry(&sentry_report.Report{
+		sentryReport.ReportSentry(&sentryReport.Report{
 			Message:  "Failed to add command required flags",
 			Err:      err,
 			Location: "func initScanCmd()",

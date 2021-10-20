@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	sentry_report "github.com/Checkmarx/kics/internal/sentry"
+	sentryReport "github.com/Checkmarx/kics/internal/sentry"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
@@ -35,7 +35,7 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 		for _, document := range documents {
 			_, err = json.Marshal(document)
 			if err != nil {
-				sentry_report.ReportSentry(&sentry_report.Report{
+				sentryReport.ReportSentry(&sentryReport.Report{
 					Message:  fmt.Sprintf("failed to marshal content in file: %s", rfile.FileName),
 					Err:      err,
 					Location: "func resolverSink()",
