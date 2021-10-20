@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/Checkmarx/kics/pkg/descriptions/model"
+	genModel "github.com/Checkmarx/kics/pkg/model"
 )
 
 // MockHTTPClient - the mock http client
@@ -31,6 +32,11 @@ func (m *MockDecriptionsClient) CheckConnection() error {
 	return CheckConnection()
 }
 
+// CheckConnection - mock CIS descriptions client check connection function
+func (m *MockDecriptionsClient) CheckLatestVersion(version string) (genModel.Version, error) {
+	return CheckVersion(version)
+}
+
 var (
 	// GetDoFunc - mock client's `Do` func
 	GetDoFunc func(req *http.Request) (*http.Response, error)
@@ -38,6 +44,8 @@ var (
 	CheckConnection func() error
 	// GetDescriptions - mock client's `RequestDescriptions` func
 	GetDescriptions func(descriptionIDs []string) (map[string]model.CISDescriptions, error)
+	// CheckVersion mock client's `CheckLatestVersion` func
+	CheckVersion func(version string) (genModel.Version, error)
 )
 
 // MockRequestBody - mock request body

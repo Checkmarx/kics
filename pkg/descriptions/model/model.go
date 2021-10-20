@@ -22,3 +22,8 @@ type DescriptionResponse struct {
 	Descriptions map[string]CISDescriptions `json:"Descriptions"`
 	Timestamp    string                     `json:"Timestamp"`
 }
+
+// VersionRequest - is the model for the version request
+type VersionRequest struct {
+	Version string `json:"version"`
+}

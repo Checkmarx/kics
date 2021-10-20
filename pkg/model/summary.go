@@ -1,6 +1,7 @@
 package model
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -75,9 +76,16 @@ type Times struct {
 	End   time.Time `json:"end"`
 }
 
+// VersionResponse - is the model for the version response
+type VersionResponse struct {
+	Latest           bool   `json:"is_latest"`
+	LatestVersionTag string `json:"latest_version"`
+}
+
 // Summary is a report of a single scan
 type Summary struct {
-	Version string `json:"kics_version,omitempty"`
+	Version       string `json:"kics_version,omitempty"`
+	latestVersion Version
 	Counters
 	SeveritySummary
 	Times
@@ -166,7 +174,7 @@ func resolvePath(filePath string, pathExtractionMap map[string]ExtractedPathObje
 
 // CreateSummary creates a report for a single scan, based on its scanID
 func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
-	scanID string, pathExtractionMap map[string]ExtractedPathObject) Summary {
+	scanID string, pathExtractionMap map[string]ExtractedPathObject, version Version) Summary {
 	log.Debug().Msg("model.CreateSummary()")
 	q := make(map[string]QueryResult, len(vulnerabilities))
 	severitySummary := SeveritySummary{
@@ -241,5 +249,14 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 		Queries:         queries,
 		SeveritySummary: severitySummary,
 		ScannedPaths:    removeAllURLCredentials(pathExtractionMap),
+		latestVersion:   version,
+	}
+}
+
+func (s *Summary) PrintVersionCheck() {
+	if !s.latestVersion.Latest {
+		message := fmt.Sprintf("A new version 'v%s' of KICS is available, please consider updating", s.latestVersion.LatestVersionTag)
+		fmt.Println(message)
+		log.Warn().Msgf(message)
 	}
 }

@@ -585,6 +585,10 @@ func scan(changedDefaultQueryPath, changedDefaultLibrariesPath bool) error {
 		return err
 	}
 
+	if err = descriptions.CheckVersion(t); err != nil {
+		log.Err(err).Msgf("failed to check latest version")
+	}
+
 	store := storage.NewMemoryStorage()
 	extractedPaths, err := prepareAndAnalyzePaths(changedDefaultQueryPath, changedDefaultLibrariesPath)
 	if err != nil {
@@ -663,7 +667,7 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end 
 		FailedSimilarityID:     t.FailedSimilarityID,
 	}
 
-	summary := model.CreateSummary(counters, results, scanID, pathParameters.PathExtractionMap)
+	summary := model.CreateSummary(counters, results, scanID, pathParameters.PathExtractionMap, t.Version)
 	summary.Times = model.Times{
 		Start: start,
 		End:   end,
