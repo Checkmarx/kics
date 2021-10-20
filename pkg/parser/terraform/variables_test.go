@@ -14,10 +14,10 @@ import (
 type mergeMapsTest struct {
 	name string
 	args struct {
-		baseMap converter.InputVariableMap
-		newMap  converter.InputVariableMap
+		baseMap converter.VariableMap
+		newMap  converter.VariableMap
 	}
-	want converter.InputVariableMap
+	want converter.VariableMap
 }
 
 type fileTest struct {
@@ -30,7 +30,7 @@ type fileTest struct {
 type inputVarTest struct {
 	name     string
 	filename string
-	want     converter.InputVariableMap
+	want     converter.VariableMap
 	wantErr  bool
 }
 
@@ -39,17 +39,17 @@ func TestMergeMaps(t *testing.T) {
 		{
 			name: "Should merge the second map on the first map",
 			args: struct {
-				baseMap converter.InputVariableMap
-				newMap  converter.InputVariableMap
+				baseMap converter.VariableMap
+				newMap  converter.VariableMap
 			}{
-				baseMap: converter.InputVariableMap{
+				baseMap: converter.VariableMap{
 					"test": cty.StringVal("test"),
 				},
-				newMap: converter.InputVariableMap{
+				newMap: converter.VariableMap{
 					"new": cty.StringVal("new"),
 				},
 			},
-			want: converter.InputVariableMap{
+			want: converter.VariableMap{
 				"test": cty.StringVal("test"),
 				"new":  cty.StringVal("new"),
 			},
@@ -69,7 +69,7 @@ func TestSetInputVariablesDefaultValues(t *testing.T) {
 		{
 			name:     "Should get default variable values from tf file",
 			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "test.tf"),
-			want: converter.InputVariableMap{
+			want: converter.VariableMap{
 				"local_default_var": cty.StringVal("local_default"),
 			},
 			wantErr: false,
@@ -77,7 +77,7 @@ func TestSetInputVariablesDefaultValues(t *testing.T) {
 		{
 			name:     "Should get default variable values from tf file",
 			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "variables.tf"),
-			want: converter.InputVariableMap{
+			want: converter.VariableMap{
 				"default_var_file": cty.StringVal("default_var_file"),
 			},
 			wantErr: false,
@@ -85,7 +85,7 @@ func TestSetInputVariablesDefaultValues(t *testing.T) {
 		{
 			name:     "Should get empty map from variable blockless file",
 			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "test_without_variables_block.tf"),
-			want:     converter.InputVariableMap{},
+			want:     converter.VariableMap{},
 			wantErr:  false,
 		},
 		{
@@ -114,7 +114,7 @@ func TestGetInputVariablesFromFile(t *testing.T) {
 		{
 			name:     "Should get variables from file",
 			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "variable_set.auto.tfvars"),
-			want: converter.InputVariableMap{
+			want: converter.VariableMap{
 				"test1": cty.BoolVal(false),
 				"test2": cty.TupleVal([]cty.Value{cty.BoolVal(false), cty.BoolVal(true)}),
 				"map1": cty.ObjectVal(map[string]cty.Value{
@@ -158,7 +158,7 @@ func TestGetInputVariables(t *testing.T) {
 		{
 			name:     "Should load input variables",
 			filename: filepath.FromSlash("../../../test/fixtures/test_terraform_variables"),
-			want: converter.InputVariableMap{
+			want: converter.VariableMap{
 				"var": cty.ObjectVal(map[string]cty.Value{
 					"test1": cty.BoolVal(false),
 					"test2": cty.TupleVal([]cty.Value{cty.BoolVal(false), cty.BoolVal(true)}),

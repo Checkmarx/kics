@@ -15,17 +15,17 @@ import (
 	ctyjson "github.com/zclconf/go-cty/cty/json"
 )
 
-// InputVariableMap represents a set of terraform input variables
-type InputVariableMap map[string]cty.Value
+// VariableMap represents a set of terraform input variables
+type VariableMap map[string]cty.Value
 
-var inputVarMap = make(InputVariableMap)
+var inputVarMap = make(VariableMap)
 
 // This file is attributed to https://github.com/tmccombs/hcl2json.
 // convertBlock() is manipulated for combining the both blocks and labels for one given resource.
 
 // DefaultConverted an hcl File to a toJson serializable object
 // This assumes that the body is a hclsyntax.Body
-var DefaultConverted = func(file *hcl.File, inputVariables InputVariableMap) (model.Document, error) {
+var DefaultConverted = func(file *hcl.File, inputVariables VariableMap) (model.Document, error) {
 	inputVarMap = inputVariables
 	c := converter{bytes: file.Bytes}
 	body, err := c.convertBody(file.Body.(*hclsyntax.Body), 0)

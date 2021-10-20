@@ -16,7 +16,7 @@ import (
 const RetriesDefaultValue = 50
 
 // Converter returns content json, error line, error
-type Converter func(file *hcl.File, inputVariables converter.InputVariableMap) (model.Document, error)
+type Converter func(file *hcl.File, inputVariables converter.VariableMap) (model.Document, error)
 
 // Parser struct that contains the function to parse file and the number of retries if something goes wrong
 type Parser struct {
