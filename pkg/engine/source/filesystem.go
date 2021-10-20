@@ -313,7 +313,10 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 		return model.QueryMetadata{}, errors.Wrapf(err, "failed to read query %s", path.Base(queryDir))
 	}
 
-	metadata := ReadMetadata(queryDir)
+	metadata, err := ReadMetadata(queryDir)
+	if err != nil {
+		return model.QueryMetadata{}, errors.Wrapf(err, "failed to read query %s", path.Base(queryDir))
+	}
 
 	platform := getPlatform(metadata["platform"].(string))
 
@@ -339,7 +342,7 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 }
 
 // ReadMetadata read query's metadata file inside the query directory
-func ReadMetadata(queryDir string) map[string]interface{} {
+func ReadMetadata(queryDir string) (map[string]interface{}, error) {
 	f, err := os.Open(filepath.Clean(path.Join(queryDir, MetadataFileName)))
 	if err != nil {
 		sentry.CaptureException(err)
@@ -347,13 +350,13 @@ func ReadMetadata(queryDir string) map[string]interface{} {
 			log.Warn().
 				Msgf("Queries provider can't find metadata, query=%s", path.Base(queryDir))
 
-			return nil
+			return nil, err
 		}
 
 		log.Err(err).
 			Msgf("Queries provider can't read metadata, query=%s", path.Base(queryDir))
 
-		return nil
+		return nil, err
 	}
 	defer func() {
 		if err := f.Close(); err != nil {
@@ -368,10 +371,10 @@ func ReadMetadata(queryDir string) map[string]interface{} {
 		log.Err(err).
 			Msgf("Queries provider can't unmarshal metadata, query=%s", path.Base(queryDir))
 
-		return nil
+		return nil, err
 	}
 
-	return metadata
+	return metadata, nil
 }
 
 func getPlatform(metadataPlatform string) string {

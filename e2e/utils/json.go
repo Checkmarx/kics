@@ -168,6 +168,8 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 		expectI.End = timeValue
 		actualI.Version = "development"
 		expectI.Version = actualI.Version
+		actualI.FailedToExecuteQueries = 0
+		expectI.FailedToExecuteQueries = 0
 
 		for i := range actualI.Queries {
 			actualQuery := actualI.Queries[i]

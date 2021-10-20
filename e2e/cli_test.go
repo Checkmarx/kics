@@ -33,7 +33,10 @@ func Test_E2E_CLI(t *testing.T) {
 				out, err := utils.RunCommand(append(kicsPath, tt.Args.Args[arg]...))
 				// Check command Error
 				require.NoError(t, err, "Capture CLI output should not yield an error")
-				// Check exit status code
+
+				// Check exit status code (required)
+				require.True(t, arg < len(tt.WantStatus),
+					"No status code associated to this test. Check the wantStatus of the test case.")
 				require.Equalf(t, out.Status, tt.WantStatus[arg],
 					"Actual KICS status code: %v\nExpected KICS status code: %v",
 					out.Status, tt.WantStatus[arg])
