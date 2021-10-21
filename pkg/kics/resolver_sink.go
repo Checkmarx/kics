@@ -24,15 +24,15 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 
 	for _, rfile := range resFiles.File {
 		s.Tracker.TrackFileFound()
-		documents, retParse, err := s.Parser.Parse(rfile.FileName, rfile.Content)
+		documents, err := s.Parser.Parse(rfile.FileName, rfile.Content)
 		if err != nil {
-			if retParse == "break" {
+			if documents.Kind == "break" {
 				return []string{}, nil
 			}
 			log.Err(err).Msgf("failed to parse file content")
 			return []string{}, nil
 		}
-		for _, document := range documents {
+		for _, document := range documents.Docs {
 			_, err = json.Marshal(document)
 			if err != nil {
 				sentryReport.ReportSentry(&sentryReport.Report{

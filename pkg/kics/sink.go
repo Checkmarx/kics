@@ -31,7 +31,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 		return errors.Wrapf(err, "failed to get file content: %s", filename)
 	}
 
-	documents, kind, err := s.Parser.Parse(filename, *content)
+	documents, err := s.Parser.Parse(filename, *content)
 	if err != nil {
 		log.Err(err).Msgf("failed to parse file content: %s", filename)
 		return nil
@@ -39,7 +39,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 
 	fileCommands := s.Parser.CommentsCommands(filename, *content)
 
-	for _, document := range documents {
+	for _, document := range documents.Docs {
 		_, err = json.Marshal(document)
 		if err != nil {
 			sentryReport.ReportSentry(&sentryReport.Report{
@@ -55,10 +55,10 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 		file := model.FileMetadata{
 			ID:               uuid.New().String(),
 			ScanID:           scanID,
-			Document:         PrepareScanDocument(document, kind),
+			Document:         PrepareScanDocument(document, documents.Kind),
 			LineInfoDocument: document,
-			OriginalData:     string(*content),
-			Kind:             kind,
+			OriginalData:     documents.Content,
+			Kind:             documents.Kind,
 			FilePath:         filename,
 			Commands:         fileCommands,
 		}

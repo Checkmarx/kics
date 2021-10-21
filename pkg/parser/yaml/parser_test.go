@@ -365,3 +365,51 @@ func Test_GetCommentToken(t *testing.T) {
 	parser := &Parser{}
 	require.Equal(t, "#", parser.GetCommentToken())
 }
+
+func TestYAML_StringifyContent(t *testing.T) {
+	type fields struct {
+		parser Parser
+	}
+	type args struct {
+		content []byte
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    string
+		wantErr bool
+	}{
+		{
+			name: "test stringify content",
+			fields: fields{
+				parser: Parser{},
+			},
+			args: args{
+				content: []byte(`
+martin:
+  name: test
+---
+martin2:
+  name: test2
+`),
+			},
+			want: `
+martin:
+  name: test
+---
+martin2:
+  name: test2
+`,
+			wantErr: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := tt.fields.parser.StringifyContent(tt.args.content)
+			require.Equal(t, tt.wantErr, (err != nil))
+			require.Equal(t, tt.want, got)
+		})
+	}
+}

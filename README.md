@@ -69,7 +69,7 @@ KICS is a true community project. It's built as an open source from day one, and
 [Check out how](docs/CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers. 
 
 ## Meet us at conferences
--   [DevSecOps Singapore 2021](https://devopscon.io/singapore/)
+-   [DevSecOps Singapore 2021](https://devopscon.io/cloud-platforms-serverless/infrastructure-is-the-new-code-is-your-devsecops-ready/)
 -   [Blackhat Europe 2021](https://www.blackhat.com/eu-21/arsenal/schedule/#kics-keeping-infrastructure-as-code-secure-25111)
 -   [HashiTalks IL 2021](https://events.hashicorp.com/hashitalksisrael) ([video](https://www.youtube.com/watch?v=DFRiSVH4lu0))
 -   [Yalla DevOps 2021](https://yalla-devops.com/) ([video](https://youtu.be/Hs_YbAH9giI))

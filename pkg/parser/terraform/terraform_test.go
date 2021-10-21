@@ -130,3 +130,59 @@ func Test_GetCommentToken(t *testing.T) {
 	parser := &Parser{}
 	require.Equal(t, "#", parser.GetCommentToken())
 }
+
+func TestTerraform_StringifyContent(t *testing.T) {
+	type fields struct {
+		parser Parser
+	}
+	type args struct {
+		content []byte
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    string
+		wantErr bool
+	}{
+		{
+			name: "test stringify content",
+			fields: fields{
+				parser: Parser{},
+			},
+			args: args{
+				content: []byte(`
+resource "aws_s3_bucket" "b" {
+	bucket = "S3B_541"
+	acl    = "public-read"
+
+	tags = {
+		Name        = "My bucket"
+		Environment = "Dev"
+	}
+}
+`),
+			},
+			want: `
+resource "aws_s3_bucket" "b" {
+	bucket = "S3B_541"
+	acl    = "public-read"
+
+	tags = {
+		Name        = "My bucket"
+		Environment = "Dev"
+	}
+}
+`,
+			wantErr: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := tt.fields.parser.StringifyContent(tt.args.content)
+			require.Equal(t, tt.wantErr, (err != nil))
+			require.Equal(t, tt.want, got)
+		})
+	}
+}

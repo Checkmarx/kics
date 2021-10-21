@@ -11,13 +11,13 @@ import (
 
 	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/pkg/engine/source"
-	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
@@ -141,16 +141,16 @@ func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte)
 	files := make(model.FileMetadatas, 0)
 
 	for _, parser := range combinedParser {
-		parsedDocuments, kind, err := parser.Parse(filePath, content)
-		for _, document := range parsedDocuments {
+		docs, err := parser.Parse(filePath, content)
+		for _, document := range docs.Docs {
 			require.NoError(t, err)
 			files = append(files, model.FileMetadata{
 				ID:               uuid.NewString(),
 				ScanID:           scanID,
-				Document:         kics.PrepareScanDocument(document, kind),
+				Document:         kics.PrepareScanDocument(document, docs.Kind),
 				LineInfoDocument: document,
-				OriginalData:     string(content),
-				Kind:             kind,
+				OriginalData:     docs.Content,
+				Kind:             docs.Kind,
 				FilePath:         filePath,
 			})
 		}
