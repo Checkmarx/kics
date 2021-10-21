@@ -97,34 +97,34 @@ func updateReportFormats() {
 }
 
 func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool) *scan.Parameters {
-	var scanParams scan.Parameters
-
-	scanParams.CloudProvider = flags.GetMultiStrFlag(flags.CloudProviderFlag)
-	scanParams.DisableCISDesc = flags.GetBoolFlag(flags.DisableCISDescFlag)
-	scanParams.DisableFullDesc = flags.GetBoolFlag(flags.DisableFullDescFlag)
-	scanParams.ExcludeCategories = flags.GetMultiStrFlag(flags.ExcludeCategoriesFlag)
-	scanParams.ExcludePaths = flags.GetMultiStrFlag(flags.ExcludePathsFlag)
-	scanParams.ExcludeQueries = flags.GetMultiStrFlag(flags.ExcludeQueriesFlag)
-	scanParams.ExcludeResults = flags.GetMultiStrFlag(flags.ExcludeResultsFlag)
-	scanParams.ExcludeSeverities = flags.GetMultiStrFlag(flags.ExcludeSeveritiesFlag)
-	scanParams.IncludeQueries = flags.GetMultiStrFlag(flags.IncludeQueriesFlag)
-	scanParams.InputData = flags.GetStrFlag(flags.InputDataFlag)
-	scanParams.OutputName = flags.GetStrFlag(flags.OutputNameFlag)
-	scanParams.OutputPath = flags.GetStrFlag(flags.OutputPathFlag)
-	scanParams.Path = flags.GetMultiStrFlag(flags.PathFlag)
-	scanParams.PayloadPath = flags.GetStrFlag(flags.PayloadPathFlag)
-	scanParams.PreviewLines = flags.GetIntFlag(flags.PreviewLinesFlag)
-	scanParams.QueriesPath = flags.GetStrFlag(flags.QueriesPath)
-	scanParams.LibrariesPath = flags.GetStrFlag(flags.LibrariesPath)
-	scanParams.ReportFormats = flags.GetMultiStrFlag(flags.ReportFormatsFlag)
-	scanParams.Platform = flags.GetMultiStrFlag(flags.TypeFlag)
-	scanParams.QueryExecTimeout = flags.GetIntFlag(flags.QueryExecTimeoutFlag)
-	scanParams.LineInfoPayload = flags.GetBoolFlag(flags.LineInfoPayloadFlag)
-	scanParams.DisableSecrets = flags.GetBoolFlag(flags.DisableSecretsFlag)
-	scanParams.SecretsRegexesPath = flags.GetStrFlag(flags.SecretsRegexesPathFlag)
-	scanParams.ScanID = scanID
-	scanParams.ChangedDefaultLibrariesPath = changedDefaultLibrariesPath
-	scanParams.ChangedDefaultQueryPath = changedDefaultQueryPath
+	scanParams := scan.Parameters{
+		CloudProvider:               flags.GetMultiStrFlag(flags.CloudProviderFlag),
+		DisableCISDesc:              flags.GetBoolFlag(flags.DisableCISDescFlag),
+		DisableFullDesc:             flags.GetBoolFlag(flags.DisableFullDescFlag),
+		ExcludeCategories:           flags.GetMultiStrFlag(flags.ExcludeCategoriesFlag),
+		ExcludePaths:                flags.GetMultiStrFlag(flags.ExcludePathsFlag),
+		ExcludeQueries:              flags.GetMultiStrFlag(flags.ExcludeQueriesFlag),
+		ExcludeResults:              flags.GetMultiStrFlag(flags.ExcludeResultsFlag),
+		ExcludeSeverities:           flags.GetMultiStrFlag(flags.ExcludeSeveritiesFlag),
+		IncludeQueries:              flags.GetMultiStrFlag(flags.IncludeQueriesFlag),
+		InputData:                   flags.GetStrFlag(flags.InputDataFlag),
+		OutputName:                  flags.GetStrFlag(flags.OutputNameFlag),
+		OutputPath:                  flags.GetStrFlag(flags.OutputPathFlag),
+		Path:                        flags.GetMultiStrFlag(flags.PathFlag),
+		PayloadPath:                 flags.GetStrFlag(flags.PayloadPathFlag),
+		PreviewLines:                flags.GetIntFlag(flags.PreviewLinesFlag),
+		QueriesPath:                 flags.GetStrFlag(flags.QueriesPath),
+		LibrariesPath:               flags.GetStrFlag(flags.LibrariesPath),
+		ReportFormats:               flags.GetMultiStrFlag(flags.ReportFormatsFlag),
+		Platform:                    flags.GetMultiStrFlag(flags.TypeFlag),
+		QueryExecTimeout:            flags.GetIntFlag(flags.QueryExecTimeoutFlag),
+		LineInfoPayload:             flags.GetBoolFlag(flags.LineInfoPayloadFlag),
+		DisableSecrets:              flags.GetBoolFlag(flags.DisableSecretsFlag),
+		SecretsRegexesPath:          flags.GetStrFlag(flags.SecretsRegexesPathFlag),
+		ScanID:                      scanID,
+		ChangedDefaultLibrariesPath: changedDefaultLibrariesPath,
+		ChangedDefaultQueryPath:     changedDefaultQueryPath,
+	}
 
 	return &scanParams
 }
