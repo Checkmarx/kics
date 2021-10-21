@@ -47,7 +47,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 				Err:      err,
 				Location: "func sink()",
 				FileName: filename,
-				Kind:     kind,
+				Kind:     documents.Kind,
 			}, true)
 			continue
 		}

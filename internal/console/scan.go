@@ -10,8 +10,9 @@ import (
 	"github.com/Checkmarx/kics/internal/console/flags"
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/constants"
+	sentryReport "github.com/Checkmarx/kics/internal/sentry"
+	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/scan"
-	"github.com/getsentry/sentry-go"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 )
@@ -44,12 +45,21 @@ func NewScanCmd() *cobra.Command {
 }
 
 func initScanCmd(scanCmd *cobra.Command) error {
-	if err := flags.InitJSONFlags(scanCmd, scanFlagsListContent, false); err != nil {
+	if err := flags.InitJSONFlags(
+		scanCmd,
+		scanFlagsListContent,
+		false,
+		source.ListSupportedPlatforms(),
+		source.ListSupportedCloudProviders()); err != nil {
 		return err
 	}
 
 	if err := scanCmd.MarkFlagRequired(flags.PathFlag); err != nil {
-		sentry.CaptureException(err)
+		sentryReport.ReportSentry(&sentryReport.Report{
+			Message:  "Failed to add command required flags",
+			Err:      err,
+			Location: "func initScanCmd()",
+		}, true)
 		log.Err(err).Msg("Failed to add command required flags")
 	}
 	return nil
