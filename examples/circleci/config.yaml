@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   kics:
     docker:
-      - image: checkmarx/kics:latest-alpine
+      - image: checkmarx/kics:latest
     steps:
       - checkout
       - run:

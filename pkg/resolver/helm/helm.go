@@ -56,7 +56,7 @@ func runInstall(args []string, client *action.Install,
 		return nil, []string{}, err
 	}
 
-	excluded := getExcluded(chartRequested, filepath.Dir(cp))
+	excluded := getExcluded(chartRequested, cp)
 
 	chartRequested = setID(chartRequested)
 
@@ -131,13 +131,10 @@ func addID(file *chart.File) *chart.File {
 
 // getExcluded will return all files rendered to be excluded from scan
 func getExcluded(charterino *chart.Chart, chartpath string) []string {
-	path := filepath.Join(chartpath, charterino.ChartFullPath())
 	excluded := make([]string, 0)
-	for _, temp := range charterino.Templates {
-		excluded = append(excluded, filepath.Join(path, temp.Name))
+	for _, file := range charterino.Raw {
+		excluded = append(excluded, filepath.Join(chartpath, file.Name))
 	}
-	for _, dep := range charterino.Dependencies() {
-		excluded = append(excluded, getExcluded(dep, chartpath)...)
-	}
+
 	return excluded
 }

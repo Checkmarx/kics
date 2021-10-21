@@ -1,0 +1,80 @@
+FROM --platform=${BUILDPLATFORM:-linux/amd64} registry.access.redhat.com/ubi7:latest AS build_env
+
+WORKDIR /build
+
+ENV PATH=$PATH:/usr/local/go/bin
+
+ADD https://golang.org/dl/go1.17.1.linux-amd64.tar.gz .
+RUN yum install git gcc -y \
+  && rm -rf /usr/local/go && tar -C /usr/local -xzf go1.17.1.linux-amd64.tar.gz \
+  && rm -f go1.17.1.linux-amd64.tar.gz
+
+ENV GOPRIVATE=github.com/Checkmarx/*
+ARG VERSION="development"
+ARG COMMIT="NOCOMMIT"
+ARG SENTRY_DSN=""
+ARG DESCRIPTIONS_URL=""
+
+ARG TARGETOS
+ARG TARGETARCH
+
+# Copy go mod and sum files
+COPY go.mod .
+COPY go.sum .
+
+# Get dependancies - will also be cached if we won't change mod/sum
+RUN go mod download -x
+
+# COPY the source code as the last step
+COPY . .
+
+# Build the Go app
+RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
+  -ldflags "-s -w -X github.com/Checkmarx/kics/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/internal/constants.BaseURL=${DESCRIPTIONS_URL}" \
+  -a -installsuffix cgo \
+  -o bin/kics cmd/console/main.go
+
+FROM registry.access.redhat.com/ubi7:latest
+
+ENV RELEASE=$RELEASE \
+  VERSION=$VERSION
+
+LABEL name="KICS" \
+  summary="Provides the latest release of the KICS (Keeping Infrastructure as Code Secure) scanner" \
+  description="Checkmarx/kics is an opensource project that enable you to find security vulnerabilities, compliance issues, and infrastructure misconfigurations early in the development cycle of your infrastructure-as-code find more in https://kics.io" \
+  maintainer="kics@checkmarx.com" \
+  vendor="Checkmarx" \
+  version="v1.4.5" \
+  release="1" \
+  io.k8s.display-name="KICS by Checkmarx" \
+  io.openshift.tags="kics checkmarx"
+
+ARG KUSER=kics
+ARG KGROUP=kics
+ARG UID=1000
+ARG GID=1000
+
+RUN yum install git -y \
+  && groupadd -g ${UID} ${KGROUP} \
+  && adduser \
+  --home-dir /app/bin \
+  --no-create-home \
+  --uid ${UID} \
+  -g ${KGROUP} \
+  -s /bin/bash \
+  ${KUSER}
+
+USER ${KUSER}
+
+COPY LICENSE /licenses/LICENSE
+
+WORKDIR /app/bin
+
+# Copy built binary to the runtime container
+COPY --chown=${KUSER}:${KGROUP} --from=build_env /build/bin/kics /app/bin/kics
+COPY --chown=${KUSER}:${KGROUP} --from=build_env /build/assets/ /app/bin/assets/
+
+ENV PATH $PATH:/app/bin
+
+# Command to run the executable
+ENTRYPOINT ["/app/bin/kics"]

@@ -12,7 +12,7 @@ trigger:
   - master
 pool:
   vmImage: "ubuntu-latest"
-container: checkmarx/kics:latest-debian
+container: checkmarx/kics:debian
 steps:
   # running in CI mode, exporting results to a JSON file and printing the results in stdout
   # KICS should fail the pipeline if results are found
@@ -50,7 +50,7 @@ trigger:
   - master
 pool:
   vmImage: "ubuntu-latest"
-container: checkmarx/kics:latest-debian
+container: checkmarx/kics:debian
 steps:
   # run in CI mode, do not fail the pipeline on results found and export the report in both json and SARIF format.
   - script: |

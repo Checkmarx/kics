@@ -1,4 +1,4 @@
-image: checkmarx/kics:latest-alpine
+image: checkmarx/kics:latest
 
 pipelines:
   default:

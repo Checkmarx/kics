@@ -331,3 +331,15 @@ find_selector_by_value(filter, str) = rtn {
 	trim(fvalue._value, "'") == str
 	rtn := fvalue
 }
+
+get_tag_name_if_exists(resource) = name {
+	name := resource.tags.Name
+} else = name {
+	name := ""
+}
+
+get_encryption_if_exists(resource) = encryption {
+	encryption := resource.encrypted
+} else = encryption {
+	encryption := "unencrypted"
+}

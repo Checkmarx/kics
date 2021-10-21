@@ -1,0 +1,25 @@
+package Cx
+
+import data.generic.common as common_lib
+
+CxPolicy[result] {
+	efs_file_system := input.document[i].resource.aws_efs_file_system[name]
+
+	bom_output = {
+		"resource_type": "aws_efs_file_system",
+		"resource_name": common_lib.get_tag_name_if_exists(efs_file_system),
+		"resource_accessibility": common_lib.get_encryption_if_exists(efs_file_system),
+		"resource_vendor": "AWS",
+		"resource_category": "Storage",
+	}
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("aws_efs_file_system[%s]", [name]),
+		"issueType": "BillOfMaterials",
+		"keyExpectedValue": "",
+		"keyActualValue": "",
+		"searchLine": common_lib.build_search_line(["resource", "aws_efs_file_system", name], []),
+		"value": json.marshal(bom_output),
+	}
+}

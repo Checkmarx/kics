@@ -53,7 +53,7 @@ jobs:
         with:
           go-version: 1.17
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v2.7.0
+        uses: goreleaser/goreleaser-action@v2.8.0
         with:
           version: v0.160.0
           args: release --rm-dist --snapshot --skip-validate --config="./.goreleaser-nightly.yml"
@@ -183,6 +183,19 @@ jobs:
             VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
             COMMIT=${{ github.sha }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+      - name: Build and push ubi7 to Docker Hub
+        id: build_ubi7
+        uses: docker/build-push-action@v2.7.0
+        with:
+          context: .
+          file: ./Dockerfile.ubi7
+          push: true
+          tags: checkmarx/kics:nightly-ubi7
+          platforms: linux/amd64
+          build-args: |
+            VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
+            COMMIT=${{ github.sha }}
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
       - name: Export Image Digests
         run: |
           VERSION=nightly
@@ -192,10 +205,12 @@ jobs:
           DIGEST=${{ steps.build_alpine.outputs.digest }}
           ALPINE_DIGEST=${{ steps.build_alpine.outputs.digest }}
           DEBIAN_DIGEST=${{ steps.build_debian.outputs.digest }}
+          UBI7_DIGEST=${{ steps.build_ubi7.outputs.digest }}
 
           echo "scratch,${COMMIT_SHA8},${DATE},${DIGEST}" >> docs/docker/nightly.csv
           echo "alpine,${COMMIT_SHA8},${DATE},${ALPINE_DIGEST}" >> docs/docker/nightly.csv
           echo "debian,${COMMIT_SHA8},${DATE},${DEBIAN_DIGEST}" >> docs/docker/nightly.csv
+          echo "ubi7,${COMMIT_SHA8},${DATE},${UBI7_DIGEST}" >> docs/docker/nightly.csv
       - uses: actions/setup-python@v2.2.2
         with:
           python-version: 3.x

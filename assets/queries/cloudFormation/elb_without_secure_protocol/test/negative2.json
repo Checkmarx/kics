@@ -1,0 +1,44 @@
+{
+  "Resources": {
+    "MyLoadBalancer1": {
+      "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
+      "Properties": {
+        "CrossZone": true,
+        "Listeners": [
+          {
+            "InstancePort": "80",
+            "InstanceProtocol": "HTTPS",
+            "LoadBalancerPort": "443",
+            "Protocol": "HTTPS",
+            "PolicyNames": [
+              "My-SSLNegotiation-Policy"
+            ],
+            "SSLCertificateId": "arn:aws:iam::123456789012:server-certificate/my-server-certificate"
+          }
+        ],
+        "HealthCheck": {
+          "Interval": "10",
+          "Timeout": "5",
+          "Target": "HTTP:80/",
+          "HealthyThreshold": "2",
+          "UnhealthyThreshold": "3"
+        },
+        "Policies": [
+          {
+            "PolicyName": "My-SSLNegotiation-Policy",
+            "PolicyType": "SSLNegotiationPolicyType",
+            "Attributes": [
+              {
+                "Name": "Reference-Security-Policy",
+                "Value": "ELBSecurityPolicy-TLS-1-2-2017-01"
+              }
+            ]
+          }
+        ],
+        "AvailabilityZones": [
+          "us-east-2a"
+        ]
+      }
+    }
+  }
+}

@@ -141,16 +141,16 @@ func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte)
 	files := make(model.FileMetadatas, 0)
 
 	for _, parser := range combinedParser {
-		parsedDocuments, kind, err := parser.Parse(filePath, content)
-		for _, document := range parsedDocuments {
+		docs, err := parser.Parse(filePath, content)
+		for _, document := range docs.Docs {
 			require.NoError(t, err)
 			files = append(files, model.FileMetadata{
 				ID:               uuid.NewString(),
 				ScanID:           scanID,
-				Document:         kics.PrepareScanDocument(document, kind),
+				Document:         kics.PrepareScanDocument(document, docs.Kind),
 				LineInfoDocument: document,
-				OriginalData:     string(content),
-				Kind:             kind,
+				OriginalData:     docs.Content,
+				Kind:             docs.Kind,
 				FilePath:         filePath,
 			})
 		}

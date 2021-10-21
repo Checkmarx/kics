@@ -64,7 +64,7 @@ When your pipeline executes, it will run this job. If KICS finds any issues, it 
 
 ```yaml
 image:
-    name: checkmarx/kics:latest-alpine
+    name: checkmarx/kics:latest
     entrypoint: ['']
 
 stages:
