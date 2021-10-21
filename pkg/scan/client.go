@@ -62,7 +62,7 @@ func NewClient(params *Parameters, proBarBuilder *progress.PbBuilder, printer *c
 	}
 
 	if err = descriptions.CheckVersion(t); err != nil {
-		log.Err(err).Msgf("failed to check latest version")
+		log.Warn().Msgf("failed to check latest version")
 	}
 
 	store := storage.NewMemoryStorage()
@@ -76,7 +76,7 @@ func NewClient(params *Parameters, proBarBuilder *progress.PbBuilder, printer *c
 		Storage:           store,
 		ExcludeResultsMap: excludeResultsMap,
 		Printer:           printer,
-	}, err
+	}, nil
 }
 
 // PerformScan executes executeScan and postScan
