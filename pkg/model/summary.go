@@ -84,8 +84,8 @@ type VersionResponse struct {
 
 // Summary is a report of a single scan
 type Summary struct {
-	Version       string `json:"kics_version,omitempty"`
-	LatestVersion Version
+	Version       string  `json:"kics_version,omitempty"`
+	LatestVersion Version `json:"-"`
 	Counters
 	SeveritySummary
 	Times
@@ -253,6 +253,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 	}
 }
 
+// PrintVersionCheck - Prints and logs warning if not using KICS latest version
 func (s *Summary) PrintVersionCheck() {
 	if !s.LatestVersion.Latest {
 		message := fmt.Sprintf("A new version 'v%s' of KICS is available, please consider updating", s.LatestVersion.LatestVersionTag)

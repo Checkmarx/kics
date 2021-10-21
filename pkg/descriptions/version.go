@@ -6,6 +6,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 )
 
+// CheckVersion - checks if using the latest version and saves that information in the tracker
 func CheckVersion(t *tracker.CITracker) error {
 	versionInfo := model.Version{
 		Latest: true,

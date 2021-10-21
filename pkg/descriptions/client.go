@@ -89,6 +89,7 @@ func (c *Client) CheckConnection() error {
 	return err
 }
 
+// CheckLatestVersion - Check if using KICS latest version from endpoint
 func (c *Client) CheckLatestVersion(version string) (model.Version, error) {
 	baseURL, err := getBaseURL()
 	if err != nil {

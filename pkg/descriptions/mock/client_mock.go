@@ -32,7 +32,7 @@ func (m *MockDecriptionsClient) CheckConnection() error {
 	return CheckConnection()
 }
 
-// CheckConnection - mock CIS descriptions client check connection function
+// CheckLatestVersion - mock client request version function
 func (m *MockDecriptionsClient) CheckLatestVersion(version string) (genModel.Version, error) {
 	return CheckVersion(version)
 }
