@@ -125,3 +125,8 @@ func (p *Parser) GetKind() model.FileKind {
 func (p *Parser) GetCommentToken() string {
 	return "#"
 }
+
+// StringifyContent converts original content into string formated version
+func (p *Parser) StringifyContent(content []byte) (string, error) {
+	return string(content), nil
+}
