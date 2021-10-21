@@ -8,7 +8,6 @@ import (
 
 	"github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/constants"
-	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -34,12 +33,12 @@ type flagJSON struct {
 	Validation     string
 }
 
-func evalUsage(usage string) string {
+func evalUsage(usage string, supportedPlatforms, supportedCloudProviders []string) string {
 	variables := map[string]string{
 		"sliceInstructions":  "can be provided multiple times or as a comma separated string",
 		"supportedLogLevels": strings.Join(constants.AvailableLogLevels, ","),
-		"supportedPlatforms": strings.Join(source.ListSupportedPlatforms(), ", "),
-		"supportedProviders": strings.Join(source.ListSupportedCloudProviders(), ", "),
+		"supportedPlatforms": strings.Join(supportedPlatforms, ", "),
+		"supportedProviders": strings.Join(supportedCloudProviders, ", "),
 		"supportedReports":   strings.Join(append([]string{"all"}, helpers.ListReportFormats()...), ", "),
 		"defaultLogFile":     constants.DefaultLogFile,
 		"logFormatPretty":    constants.LogFormatPretty,
@@ -72,7 +71,12 @@ func checkHiddenAndDeprecated(flagSet *pflag.FlagSet, flagName string, flagProps
 }
 
 // InitJSONFlags initialize cobra flags
-func InitJSONFlags(cmd *cobra.Command, flagsListContent string, persistentFlag bool) error {
+func InitJSONFlags(
+	cmd *cobra.Command,
+	flagsListContent string,
+	persistentFlag bool,
+	supportedPlatforms,
+	supportedCloudProviders []string) error {
 	var flagsList map[string]flagJSON
 	err := json.Unmarshal([]byte(flagsListContent), &flagsList)
 	if err != nil {
@@ -86,7 +90,7 @@ func InitJSONFlags(cmd *cobra.Command, flagsListContent string, persistentFlag b
 	}
 
 	for flagName, flagProps := range flagsList {
-		flagProps.Usage = evalUsage(flagProps.Usage)
+		flagProps.Usage = evalUsage(flagProps.Usage, supportedPlatforms, supportedCloudProviders)
 
 		switch flagProps.FlagType {
 		case "multiStr":
@@ -187,4 +191,23 @@ func SetMultiStrFlag(flagName string, value []string) {
 	} else {
 		log.Debug().Msgf("Could not set string slice flag %s", flagName)
 	}
+}
+
+// GetAllFlags returns all flags values
+func GetAllFlags() map[string]interface{} {
+	flags := make(map[string]interface{})
+	for flag, value := range flagsBoolReferences {
+		flags[flag] = value
+	}
+	for flag, value := range flagsIntReferences {
+		flags[flag] = value
+	}
+	for flag, value := range flagsMultiStrReferences {
+		flags[flag] = value
+	}
+	for flag, value := range flagsStrReferences {
+		flags[flag] = value
+	}
+
+	return flags
 }
