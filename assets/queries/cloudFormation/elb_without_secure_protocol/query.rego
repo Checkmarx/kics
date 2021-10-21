@@ -25,6 +25,5 @@ CxPolicy[result] {
 
 is_secure(listener, protocol) {
 	secureProtocols := {"SSL", "HTTPS"}
-
 	listener[protocol] == secureProtocols[_]
 }
