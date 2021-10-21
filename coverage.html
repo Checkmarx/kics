@@ -55,7 +55,7 @@
 			<div id="nav">
 				<select id="files">
 				
-				<option value="file0">github.com/Checkmarx/kics/internal/console/flags/flags.go (35.0%)</option>
+				<option value="file0">github.com/Checkmarx/kics/internal/console/flags/flags.go (31.1%)</option>
 				
 				<option value="file1">github.com/Checkmarx/kics/internal/console/flags/flags_utils.go (0.0%)</option>
 				
@@ -71,7 +71,7 @@
 				
 				<option value="file7">github.com/Checkmarx/kics/internal/console/helpers/helpers.go (82.4%)</option>
 				
-				<option value="file8">github.com/Checkmarx/kics/internal/console/kics.go (78.4%)</option>
+				<option value="file8">github.com/Checkmarx/kics/internal/console/kics.go (79.4%)</option>
 				
 				<option value="file9">github.com/Checkmarx/kics/internal/console/list_platforms.go (100.0%)</option>
 				
@@ -125,17 +125,17 @@
 				
 				<option value="file34">github.com/Checkmarx/kics/pkg/detector/search_line_detector.go (95.0%)</option>
 				
-				<option value="file35">github.com/Checkmarx/kics/pkg/engine/inspector.go (78.5%)</option>
+				<option value="file35">github.com/Checkmarx/kics/pkg/engine/inspector.go (81.3%)</option>
 				
 				<option value="file36">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (89.0%)</option>
 				
-				<option value="file37">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (78.0%)</option>
+				<option value="file37">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (79.4%)</option>
 				
 				<option value="file38">github.com/Checkmarx/kics/pkg/engine/secrets/inspector.go (88.6%)</option>
 				
 				<option value="file39">github.com/Checkmarx/kics/pkg/engine/similarity/similarity_id.go (94.7%)</option>
 				
-				<option value="file40">github.com/Checkmarx/kics/pkg/engine/source/filesystem.go (65.9%)</option>
+				<option value="file40">github.com/Checkmarx/kics/pkg/engine/source/filesystem.go (67.1%)</option>
 				
 				<option value="file41">github.com/Checkmarx/kics/pkg/engine/source/source.go (67.9%)</option>
 				
@@ -147,7 +147,7 @@
 				
 				<option value="file45">github.com/Checkmarx/kics/pkg/kics/service.go (45.8%)</option>
 				
-				<option value="file46">github.com/Checkmarx/kics/pkg/kics/sink.go (51.2%)</option>
+				<option value="file46">github.com/Checkmarx/kics/pkg/kics/sink.go (52.4%)</option>
 				
 				<option value="file47">github.com/Checkmarx/kics/pkg/model/model.go (89.7%)</option>
 				
@@ -191,7 +191,7 @@
 				
 				<option value="file67">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (84.9%)</option>
 				
-				<option value="file68">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
+				<option value="file68">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (90.5%)</option>
 				
 				<option value="file69">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
@@ -258,7 +258,6 @@ import (
 
         "github.com/Checkmarx/kics/internal/console/helpers"
         "github.com/Checkmarx/kics/internal/constants"
-        "github.com/Checkmarx/kics/pkg/engine/source"
         "github.com/rs/zerolog/log"
         "github.com/spf13/cobra"
         "github.com/spf13/pflag"
@@ -284,12 +283,12 @@ type flagJSON struct {
         Validation     string
 }
 
-func evalUsage(usage string) string <span class="cov5" title="3">{
+func evalUsage(usage string, supportedPlatforms, supportedCloudProviders []string) string <span class="cov5" title="3">{
         variables := map[string]string{
                 "sliceInstructions":  "can be provided multiple times or as a comma separated string",
                 "supportedLogLevels": strings.Join(constants.AvailableLogLevels, ","),
-                "supportedPlatforms": strings.Join(source.ListSupportedPlatforms(), ", "),
-                "supportedProviders": strings.Join(source.ListSupportedCloudProviders(), ", "),
+                "supportedPlatforms": strings.Join(supportedPlatforms, ", "),
+                "supportedProviders": strings.Join(supportedCloudProviders, ", "),
                 "supportedReports":   strings.Join(append([]string{"all"}, helpers.ListReportFormats()...), ", "),
                 "defaultLogFile":     constants.DefaultLogFile,
                 "logFormatPretty":    constants.LogFormatPretty,
@@ -322,7 +321,12 @@ func checkHiddenAndDeprecated(flagSet *pflag.FlagSet, flagName string, flagProps
 }
 
 // InitJSONFlags initialize cobra flags
-func InitJSONFlags(cmd *cobra.Command, flagsListContent string, persistentFlag bool) error <span class="cov0" title="0">{
+func InitJSONFlags(
+        cmd *cobra.Command,
+        flagsListContent string,
+        persistentFlag bool,
+        supportedPlatforms,
+        supportedCloudProviders []string) error <span class="cov0" title="0">{
         var flagsList map[string]flagJSON
         err := json.Unmarshal([]byte(flagsListContent), &amp;flagsList)
         if err != nil </span><span class="cov0" title="0">{
@@ -336,7 +340,7 @@ func InitJSONFlags(cmd *cobra.Command, flagsListContent string, persistentFlag b
         }</span>
 
         <span class="cov0" title="0">for flagName, flagProps := range flagsList </span><span class="cov0" title="0">{
-                flagProps.Usage = evalUsage(flagProps.Usage)
+                flagProps.Usage = evalUsage(flagProps.Usage, supportedPlatforms, supportedCloudProviders)
 
                 switch flagProps.FlagType </span>{
                 case "multiStr":<span class="cov0" title="0">
@@ -437,6 +441,25 @@ func SetMultiStrFlag(flagName string, value []string) <span class="cov3" title="
         }</span> else<span class="cov1" title="1"> {
                 log.Debug().Msgf("Could not set string slice flag %s", flagName)
         }</span>
+}
+
+// GetAllFlags returns all flags values
+func GetAllFlags() map[string]interface{} <span class="cov0" title="0">{
+        flags := make(map[string]interface{})
+        for flag, value := range flagsBoolReferences </span><span class="cov0" title="0">{
+                flags[flag] = value
+        }</span>
+        <span class="cov0" title="0">for flag, value := range flagsIntReferences </span><span class="cov0" title="0">{
+                flags[flag] = value
+        }</span>
+        <span class="cov0" title="0">for flag, value := range flagsMultiStrReferences </span><span class="cov0" title="0">{
+                flags[flag] = value
+        }</span>
+        <span class="cov0" title="0">for flag, value := range flagsStrReferences </span><span class="cov0" title="0">{
+                flags[flag] = value
+        }</span>
+
+        <span class="cov0" title="0">return flags</span>
 }
 </pre>
 		
@@ -1076,6 +1099,8 @@ import (
         "github.com/Checkmarx/kics/internal/console/flags"
         "github.com/Checkmarx/kics/internal/console/printer"
         "github.com/Checkmarx/kics/internal/constants"
+        sentryReport "github.com/Checkmarx/kics/internal/sentry"
+        "github.com/Checkmarx/kics/pkg/engine/source"
         "github.com/getsentry/sentry-go"
         "github.com/rs/zerolog"
         "github.com/rs/zerolog/log"
@@ -1113,7 +1138,12 @@ func initialize(rootCmd *cobra.Command) error <span class="cov10" title="12">{
         rootCmd.AddCommand(NewListPlatformsCmd())
         rootCmd.CompletionOptions.DisableDefaultCmd = true
 
-        if err := flags.InitJSONFlags(rootCmd, kicsFlagsListContent, true); err != nil </span><span class="cov0" title="0">{
+        if err := flags.InitJSONFlags(
+                rootCmd,
+                kicsFlagsListContent,
+                true,
+                source.ListSupportedPlatforms(),
+                source.ListSupportedCloudProviders()); err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
 
@@ -1133,18 +1163,22 @@ func Execute() error <span class="cov10" title="12">{
         rootCmd := NewKICSCmd()
 
         if err := initialize(rootCmd); err != nil </span><span class="cov0" title="0">{
-                sentry.CaptureException(err)
-                log.Err(err).Msg("Failed to initialize CLI")
+                sentryReport.ReportSentry(&amp;sentryReport.Report{
+                        Message:  "Failed to initialize CLI",
+                        Err:      err,
+                        Location: "func Execute()",
+                }, true)
                 return err
         }</span>
 
         <span class="cov10" title="12">if err := rootCmd.ExecuteContext(ctx); err != nil </span><span class="cov3" title="2">{
-                sentry.CaptureException(err)
-                if printer.IsInitialized() </span><span class="cov3" title="2">{
-                        log.Err(err).Msg("Failed to run application")
-                }</span>
-                <span class="cov3" title="2">return err</span>
-        }
+                sentryReport.ReportSentry(&amp;sentryReport.Report{
+                        Message:  "Failed to run application",
+                        Err:      err,
+                        Location: "func Execute()",
+                }, printer.IsInitialized())
+                return err
+        }</span>
 
         <span class="cov9" title="10">return nil</span>
 }
@@ -1666,8 +1700,9 @@ import (
         "github.com/Checkmarx/kics/internal/console/flags"
         consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
         "github.com/Checkmarx/kics/internal/constants"
+        sentryReport "github.com/Checkmarx/kics/internal/sentry"
+        "github.com/Checkmarx/kics/pkg/engine/source"
         "github.com/Checkmarx/kics/pkg/scan"
-        "github.com/getsentry/sentry-go"
         "github.com/rs/zerolog/log"
         "github.com/spf13/cobra"
 )
@@ -1700,12 +1735,21 @@ func NewScanCmd() *cobra.Command <span class="cov7" title="12">{
 }
 
 func initScanCmd(scanCmd *cobra.Command) error <span class="cov7" title="12">{
-        if err := flags.InitJSONFlags(scanCmd, scanFlagsListContent, false); err != nil </span><span class="cov0" title="0">{
+        if err := flags.InitJSONFlags(
+                scanCmd,
+                scanFlagsListContent,
+                false,
+                source.ListSupportedPlatforms(),
+                source.ListSupportedCloudProviders()); err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
 
         <span class="cov7" title="12">if err := scanCmd.MarkFlagRequired(flags.PathFlag); err != nil </span><span class="cov0" title="0">{
-                sentry.CaptureException(err)
+                sentryReport.ReportSentry(&amp;sentryReport.Report{
+                        Message:  "Failed to add command required flags",
+                        Err:      err,
+                        Location: "func initScanCmd()",
+                }, true)
                 log.Err(err).Msg("Failed to add command required flags")
         }</span>
         <span class="cov7" title="12">return nil</span>
@@ -2242,13 +2286,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="36">total += v
+                <span class="cov8" title="34">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2273,7 +2317,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4608,16 +4652,17 @@ import (
         "bytes"
         "context"
         "encoding/json"
+        "fmt"
         "strings"
         "time"
 
         "github.com/Checkmarx/kics/internal/metrics"
+        sentryReport "github.com/Checkmarx/kics/internal/sentry"
         "github.com/Checkmarx/kics/pkg/detector"
         "github.com/Checkmarx/kics/pkg/detector/docker"
         "github.com/Checkmarx/kics/pkg/detector/helm"
         "github.com/Checkmarx/kics/pkg/engine/source"
         "github.com/Checkmarx/kics/pkg/model"
-        "github.com/getsentry/sentry-go"
         "github.com/open-policy-agent/opa/ast"
         "github.com/open-policy-agent/opa/cover"
         "github.com/open-policy-agent/opa/rego"
@@ -4707,62 +4752,18 @@ func NewInspector(
 
         <span class="cov2" title="4">commonLibrary, err := queriesSource.GetQueryLibrary("common")
         if err != nil </span><span class="cov0" title="0">{
-                sentry.CaptureException(err)
-                log.Err(err).
-                        Msgf("Inspector failed to get library for %s platform", "common")
+                sentryReport.ReportSentry(&amp;sentryReport.Report{
+                        Message:  fmt.Sprintf("Inspector failed to get library for %s platform", "common"),
+                        Err:      err,
+                        Location: "func NewInspector()",
+                        Platform: "common",
+                }, true)
                 return nil, errors.Wrap(err, "failed to get library")
         }</span>
         <span class="cov2" title="4">platformLibraries := getPlatformLibraries(queriesSource, queries)
-        opaQueries := make([]*preparedQuery, 0, len(queries))
-        for _, metadata := range queries </span><span class="cov10" title="3772">{
-                platformGeneralQuery, ok := platformLibraries[metadata.Platform]
-                if !ok </span><span class="cov0" title="0">{
-                        log.Err(err).
-                                Msgf("Inspector failed to get generic query, query=%s", metadata.Query)
-                        continue</span>
-                }
+        opaQueries := prepareQueries(ctx, queries, commonLibrary, platformLibraries, tracker)
 
-                <span class="cov10" title="3772">select </span>{
-                case &lt;-ctx.Done():<span class="cov0" title="0">
-                        return nil, nil</span>
-                default:<span class="cov10" title="3772">
-                        var opaQuery rego.PreparedEvalQuery
-                        mergedInputData, err := source.MergeInputData(platformGeneralQuery.LibraryInputData, metadata.InputData)
-                        if err != nil </span><span class="cov0" title="0">{
-                                log.Debug().Msg("Could not merge platform library input data")
-                        }</span>
-                        <span class="cov10" title="3772">mergedInputData, err = source.MergeInputData(commonLibrary.LibraryInputData, mergedInputData)
-                        if err != nil </span><span class="cov0" title="0">{
-                                log.Debug().Msg("Could not merge common library input data")
-                        }</span>
-                        <span class="cov10" title="3772">store := inmem.NewFromReader(bytes.NewBufferString(mergedInputData))
-                        opaQuery, err = rego.New(
-                                rego.Query(regoQuery),
-                                rego.Module("Common", commonLibrary.LibraryCode),
-                                rego.Module("Generic", platformGeneralQuery.LibraryCode),
-                                rego.Module(metadata.Query, metadata.Content),
-                                rego.Store(store),
-                                rego.UnsafeBuiltins(unsafeRegoFunctions),
-                        ).PrepareForEval(ctx)
-
-                        if err != nil </span><span class="cov0" title="0">{
-                                sentry.CaptureException(err)
-                                log.Err(err).
-                                        Msgf("Inspector failed to prepare query for evaluation, query=%s", metadata.Query)
-
-                                continue</span>
-                        }
-
-                        <span class="cov10" title="3772">tracker.TrackQueryLoad(metadata.Aggregation)
-
-                        opaQueries = append(opaQueries, &amp;preparedQuery{
-                                opaQuery: opaQuery,
-                                metadata: metadata,
-                        })</span>
-                }
-        }
-
-        <span class="cov2" title="4">failedQueries := make(map[string]error)
+        failedQueries := make(map[string]error)
 
         queriesNumber := sumAllAggregatedQueries(opaQueries)
 
@@ -4798,9 +4799,12 @@ func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.Qu
         for platform := range supportedPlatforms </span><span class="cov4" title="22">{
                 platformLibrary, errLoadingPlatformLib := queriesSource.GetQueryLibrary(platform)
                 if errLoadingPlatformLib != nil </span><span class="cov0" title="0">{
-                        sentry.CaptureException(errLoadingPlatformLib)
-                        log.Err(errLoadingPlatformLib).
-                                Msgf("Inspector failed to get library for %s platform", platform)
+                        sentryReport.ReportSentry(&amp;sentryReport.Report{
+                                Message:  fmt.Sprintf("Inspector failed to get library for %s platform", platform),
+                                Err:      errLoadingPlatformLib,
+                                Location: "func getPlatformLibraries()",
+                                Platform: platform,
+                        }, true)
                         continue</span>
                 }
                 <span class="cov4" title="22">platformLibraries[platform] = platformLibrary</span>
@@ -4846,10 +4850,14 @@ func (c *Inspector) Inspect(
                         baseScanPaths: baseScanPaths,
                 })
                 if err != nil </span><span class="cov0" title="0">{
-                        sentry.CaptureException(err)
-                        log.Err(err).
-                                Str("scanID", scanID).
-                                Msgf("Inspector. query executed with error, query=%s", query.metadata.Query)
+                        sentryReport.ReportSentry(&amp;sentryReport.Report{
+                                Message:  fmt.Sprintf("Inspector. query executed with error, query=%s", query.metadata.Query),
+                                Err:      err,
+                                Location: "func Inspect()",
+                                Platform: query.metadata.Platform,
+                                Metadata: query.metadata.Metadata,
+                                Query:    query.metadata.Query,
+                        }, true)
 
                         c.failedQueries[query.metadata.Query] = err
 
@@ -4960,9 +4968,14 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
         for _, queryResultItem := range queryResultItems </span><span class="cov1" title="2">{
                 vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector)
                 if err != nil </span><span class="cov0" title="0">{
-                        sentry.CaptureException(err)
-                        log.Err(err).
-                                Msgf("Inspector can't save vulnerability, query=%s", ctx.query.metadata.Query)
+                        sentryReport.ReportSentry(&amp;sentryReport.Report{
+                                Message:  fmt.Sprintf("Inspector can't save vulnerability, query=%s", ctx.query.metadata.Query),
+                                Err:      err,
+                                Location: "func decodeQueryResults()",
+                                Platform: ctx.query.metadata.Platform,
+                                Metadata: ctx.query.metadata.Metadata,
+                                Query:    ctx.query.metadata.Query,
+                        }, true)
 
                         if _, ok := c.failedQueries[ctx.query.metadata.Query]; !ok </span><span class="cov0" title="0">{
                                 c.failedQueries[ctx.query.metadata.Query] = err
@@ -5029,6 +5042,68 @@ func shouldSkipFile(command model.CommentsCommands, queryID string) bool <span c
                 }
         }
         <span class="cov2" title="4">return false</span>
+}
+
+func prepareQueries(
+        ctx context.Context,
+        queries []model.QueryMetadata,
+        commonLibrary source.RegoLibraries,
+        platformLibraries map[string]source.RegoLibraries,
+        tracker Tracker) []*preparedQuery <span class="cov2" title="4">{
+        opaQueries := make([]*preparedQuery, 0, len(queries))
+        for _, metadata := range queries </span><span class="cov10" title="3772">{
+                platformGeneralQuery, ok := platformLibraries[metadata.Platform]
+                if !ok </span><span class="cov0" title="0">{
+                        log.Err(errors.New("failed to get platform library")).
+                                Msgf("Inspector failed to get library for query: %s, with platform: %s", metadata.Query, metadata.Platform)
+                        continue</span>
+                }
+
+                <span class="cov10" title="3772">select </span>{
+                case &lt;-ctx.Done():<span class="cov0" title="0">
+                        return nil</span>
+                default:<span class="cov10" title="3772">
+                        var opaQuery rego.PreparedEvalQuery
+                        mergedInputData, err := source.MergeInputData(platformGeneralQuery.LibraryInputData, metadata.InputData)
+                        if err != nil </span><span class="cov0" title="0">{
+                                log.Debug().Msg("Could not merge platform library input data")
+                        }</span>
+                        <span class="cov10" title="3772">mergedInputData, err = source.MergeInputData(commonLibrary.LibraryInputData, mergedInputData)
+                        if err != nil </span><span class="cov0" title="0">{
+                                log.Debug().Msg("Could not merge common library input data")
+                        }</span>
+                        <span class="cov10" title="3772">store := inmem.NewFromReader(bytes.NewBufferString(mergedInputData))
+                        opaQuery, err = rego.New(
+                                rego.Query(regoQuery),
+                                rego.Module("Common", commonLibrary.LibraryCode),
+                                rego.Module("Generic", platformGeneralQuery.LibraryCode),
+                                rego.Module(metadata.Query, metadata.Content),
+                                rego.Store(store),
+                                rego.UnsafeBuiltins(unsafeRegoFunctions),
+                        ).PrepareForEval(ctx)
+
+                        if err != nil </span><span class="cov0" title="0">{
+                                sentryReport.ReportSentry(&amp;sentryReport.Report{
+                                        Message:  fmt.Sprintf("Inspector failed to prepare query for evaluation, query=%s", metadata.Query),
+                                        Err:      err,
+                                        Location: "func NewInspector()",
+                                        Query:    metadata.Query,
+                                        Metadata: metadata.Metadata,
+                                        Platform: metadata.Platform,
+                                }, true)
+
+                                continue</span>
+                        }
+
+                        <span class="cov10" title="3772">tracker.TrackQueryLoad(metadata.Aggregation)
+
+                        opaQueries = append(opaQueries, &amp;preparedQuery{
+                                opaQuery: opaQuery,
+                                metadata: metadata,
+                        })</span>
+                }
+        }
+        <span class="cov2" title="4">return opaQueries</span>
 }
 </pre>
 		
@@ -5238,12 +5313,13 @@ func nextRandom() string <span class="cov10" title="4">{
 
 import (
         "context"
+        "fmt"
         "os"
         "path/filepath"
         "strings"
 
+        sentryReport "github.com/Checkmarx/kics/internal/sentry"
         "github.com/Checkmarx/kics/pkg/model"
-        "github.com/getsentry/sentry-go"
         "github.com/pkg/errors"
         "github.com/rs/zerolog/log"
 )
@@ -5365,9 +5441,12 @@ func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string,
                 <span class="cov5" title="237">if info.IsDir() </span><span class="cov1" title="1">{
                         excluded, errRes := resolverSink(ctx, strings.ReplaceAll(path, "\\", "/"))
                         if errRes != nil </span><span class="cov0" title="0">{
-                                sentry.CaptureException(errRes)
-                                log.Err(errRes).
-                                        Msgf("Filesystem files provider couldn't Resolve Directory, file=%s", info.Name())
+                                sentryReport.ReportSentry(&amp;sentryReport.Report{
+                                        Message:  fmt.Sprintf("Filesystem files provider couldn't Resolve Directory, file=%s", info.Name()),
+                                        Err:      errRes,
+                                        Location: "func walkDir()",
+                                        FileName: info.Name(),
+                                }, true)
                                 return nil
                         }</span>
                         <span class="cov1" title="1">if errAdd := s.AddExcluded(excluded); errAdd != nil </span><span class="cov0" title="0">{
@@ -5386,9 +5465,12 @@ func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string,
 
                 err = sink(ctx, strings.ReplaceAll(path, "\\", "/"), c)
                 if err != nil </span><span class="cov5" title="118">{
-                        sentry.CaptureException(err)
-                        log.Err(err).
-                                Msgf("Filesystem files provider couldn't parse file, file=%s", info.Name())
+                        sentryReport.ReportSentry(&amp;sentryReport.Report{
+                                Message:  fmt.Sprintf("Filesystem files provider couldn't parse file, file=%s", info.Name()),
+                                Err:      err,
+                                Location: "func walkDir()",
+                                FileName: info.Name(),
+                        }, true)
                 }</span>
                 <span class="cov5" title="236">return nil</span>
         })
@@ -5408,9 +5490,12 @@ func openScanFile(scanPath string, extensions model.Extensions) (*os.File, error
 
 func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="236">{
         if err := file.Close(); err != nil </span><span class="cov0" title="0">{
-                sentry.CaptureException(err)
-                log.Err(err).
-                        Msgf("Filesystem couldn't close file, file=%s", info.Name())
+                sentryReport.ReportSentry(&amp;sentryReport.Report{
+                        Message:  fmt.Sprintf("Filesystem couldn't close file, file=%s", info.Name()),
+                        Err:      err,
+                        Location: "func closeFile()",
+                        FileName: info.Name(),
+                }, true)
         }</span>
 }
 
@@ -6006,6 +6091,7 @@ func standardizeToRelativePath(basePath, path string) (string, error) <span clas
 
 import (
         "encoding/json"
+        "fmt"
         "os"
         "path"
         "path/filepath"
@@ -6014,8 +6100,8 @@ import (
 
         "github.com/Checkmarx/kics/assets"
         "github.com/Checkmarx/kics/internal/constants"
+        sentryReport "github.com/Checkmarx/kics/internal/sentry"
         "github.com/Checkmarx/kics/pkg/model"
-        "github.com/getsentry/sentry-go"
         "github.com/pkg/errors"
         "github.com/rs/zerolog/log"
 )
@@ -6262,9 +6348,12 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
         for _, queryDir := range queryDirs </span><span class="cov5" title="7">{
                 query, errRQ := ReadQuery(queryDir)
                 if errRQ != nil </span><span class="cov0" title="0">{
-                        sentry.CaptureException(errRQ)
-                        log.Err(errRQ).
-                                Msgf("Query provider failed to read query, query=%s", path.Base(queryDir))
+                        sentryReport.ReportSentry(&amp;sentryReport.Report{
+                                Message:  fmt.Sprintf("Query provider failed to read query, query=%s", path.Base(queryDir)),
+                                Err:      errRQ,
+                                Location: "func GetQueries()",
+                                FileName: path.Base(queryDir),
+                        }, true)
                         continue</span>
                 }
 
@@ -6349,19 +6438,15 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) <span class="cov5" 
 func ReadMetadata(queryDir string) (map[string]interface{}, error) <span class="cov6" title="9">{
         f, err := os.Open(filepath.Clean(path.Join(queryDir, MetadataFileName)))
         if err != nil </span><span class="cov1" title="1">{
-                sentry.CaptureException(err)
-                if os.IsNotExist(err) </span><span class="cov1" title="1">{
-                        log.Warn().
-                                Msgf("Queries provider can't find metadata, query=%s", path.Base(queryDir))
+                sentryReport.ReportSentry(&amp;sentryReport.Report{
+                        Message:  fmt.Sprintf("Queries provider can't read metadata, query=%s", path.Base(queryDir)),
+                        Err:      err,
+                        Location: "func ReadMetadata()",
+                        FileName: path.Base(queryDir),
+                }, true)
 
-                        return nil, err
-                }</span>
-
-                <span class="cov0" title="0">log.Err(err).
-                        Msgf("Queries provider can't read metadata, query=%s", path.Base(queryDir))
-
-                return nil, err</span>
-        }
+                return nil, err
+        }</span>
         <span class="cov5" title="8">defer func() </span><span class="cov5" title="8">{
                 if err := f.Close(); err != nil </span><span class="cov0" title="0">{
                         log.Err(err).
@@ -6371,9 +6456,12 @@ func ReadMetadata(queryDir string) (map[string]interface{}, error) <span class="
 
         <span class="cov5" title="8">var metadata map[string]interface{}
         if err := json.NewDecoder(f).Decode(&amp;metadata); err != nil </span><span class="cov0" title="0">{
-                sentry.CaptureException(err)
-                log.Err(err).
-                        Msgf("Queries provider can't unmarshal metadata, query=%s", path.Base(queryDir))
+                sentryReport.ReportSentry(&amp;sentryReport.Report{
+                        Message:  fmt.Sprintf("Queries provider can't unmarshal metadata, query=%s", path.Base(queryDir)),
+                        Err:      err,
+                        Location: "func ReadMetadata()",
+                        FileName: path.Base(queryDir),
+                }, true)
 
                 return nil, err
         }</span>
@@ -6875,9 +6963,10 @@ func getSeverity(severity string) model.Severity <span class="cov3" title="4">{
 import (
         "context"
         "encoding/json"
+        "fmt"
 
+        sentryReport "github.com/Checkmarx/kics/internal/sentry"
         "github.com/Checkmarx/kics/pkg/model"
-        "github.com/getsentry/sentry-go"
         "github.com/google/uuid"
         "github.com/rs/zerolog/log"
 )
@@ -6906,8 +6995,13 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
                 <span class="cov0" title="0">for _, document := range documents.Docs </span><span class="cov0" title="0">{
                         _, err = json.Marshal(document)
                         if err != nil </span><span class="cov0" title="0">{
-                                sentry.CaptureException(err)
-                                log.Err(err).Msgf("failed to marshal content in file: %s", rfile.FileName)
+                                sentryReport.ReportSentry(&amp;sentryReport.Report{
+                                        Message:  fmt.Sprintf("failed to marshal content in file: %s", rfile.FileName),
+                                        Err:      err,
+                                        Location: "func resolverSink()",
+                                        FileName: rfile.FileName,
+                                        Kind:     kind,
+                                }, true)
                                 continue</span>
                         }
 
@@ -7137,12 +7231,13 @@ func prepareScanDocumentValue(bodyType map[string]interface{}, kind model.FileKi
 import (
         "context"
         "encoding/json"
+        "fmt"
         "io"
 
+        sentryReport "github.com/Checkmarx/kics/internal/sentry"
         "github.com/Checkmarx/kics/pkg/model"
         "github.com/Checkmarx/kics/pkg/parser/jsonfilter/parser"
         "github.com/antlr/antlr4/runtime/Go/antlr"
-        "github.com/getsentry/sentry-go"
         "github.com/google/uuid"
         "github.com/pkg/errors"
         "github.com/rs/zerolog/log"
@@ -7175,8 +7270,13 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
         for _, document := range documents.Docs </span><span class="cov0" title="0">{
                 _, err = json.Marshal(document)
                 if err != nil </span><span class="cov0" title="0">{
-                        sentry.CaptureException(err)
-                        log.Err(err).Msgf("failed to marshal content in file: %s", filename)
+                        sentryReport.ReportSentry(&amp;sentryReport.Report{
+                                Message:  fmt.Sprintf("failed to marshal content in file: %s", filename),
+                                Err:      err,
+                                Location: "func sink()",
+                                FileName: filename,
+                                Kind:     documents.Kind,
+                        }, true)
                         continue</span>
                 }
 
@@ -10953,9 +11053,9 @@ import (
         "strconv"
         "strings"
 
+        sentryReport "github.com/Checkmarx/kics/internal/sentry"
         "github.com/Checkmarx/kics/pkg/model"
         "github.com/Checkmarx/kics/pkg/parser/terraform/functions"
-        "github.com/getsentry/sentry-go"
         "github.com/hashicorp/hcl/v2"
         "github.com/hashicorp/hcl/v2/hclsyntax"
         "github.com/rs/zerolog/log"
@@ -10980,7 +11080,12 @@ var DefaultConverted = func(file *hcl.File, inputVariables InputVariableMap) (mo
         body, err := c.convertBody(file.Body.(*hclsyntax.Body), 0)
 
         if err != nil </span><span class="cov0" title="0">{
-                sentry.CaptureException(err)
+                sentryReport.ReportSentry(&amp;sentryReport.Report{
+                        Location: "var DefaultConverted",
+                        Err:      err,
+                        Kind:     model.KindTerraform,
+                        Message:  "Failed to convert body in terraform parser",
+                }, false)
                 if er, ok := err.(*hcl.Diagnostic); ok &amp;&amp; er.Subject != nil </span><span class="cov0" title="0">{
                         return nil, err
                 }</span>
@@ -11034,7 +11139,12 @@ func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Docume
                                 Arr:  c.getArrLines(value.Expr),
                         }
                         if err != nil </span><span class="cov0" title="0">{
-                                sentry.CaptureException(err)
+                                sentryReport.ReportSentry(&amp;sentryReport.Report{
+                                        Location: "func convertBody",
+                                        Err:      err,
+                                        Kind:     model.KindTerraform,
+                                        Message:  "Failed to convert Expression in terraform parser",
+                                }, false)
                                 return nil, err
                         }</span>
                 }
@@ -11047,7 +11157,12 @@ func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Docume
                 }
                 err = c.convertBlock(block, out, block.TypeRange.Start.Line)
                 if err != nil </span><span class="cov0" title="0">{
-                        sentry.CaptureException(err)
+                        sentryReport.ReportSentry(&amp;sentryReport.Report{
+                                Location: "func convertBody",
+                                Err:      err,
+                                Kind:     model.KindTerraform,
+                                Message:  "Failed to convert block in terraform parser",
+                        }, false)
                         return nil, err
                 }</span>
         }
@@ -11076,7 +11191,12 @@ func (c *converter) getArrLines(expr hclsyntax.Expression) []map[string]model.Li
                                 for _, item := range valType.Items </span><span class="cov4" title="6">{
                                         key, err := c.convertKey(item.KeyExpr)
                                         if err != nil </span><span class="cov0" title="0">{
-                                                sentry.CaptureException(err)
+                                                sentryReport.ReportSentry(&amp;sentryReport.Report{
+                                                        Location: "func getArrLines",
+                                                        Err:      err,
+                                                        Kind:     model.KindTerraform,
+                                                        Message:  "Failed to convert key in terraform parser",
+                                                }, false)
                                                 return nil
                                         }</span>
                                         <span class="cov4" title="6">arrEx["_kics_"+key] = model.LineObject{
@@ -11150,7 +11270,12 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
                 for _, ex := range value.Exprs </span><span class="cov5" title="7">{
                         elem, err := c.convertExpression(ex)
                         if err != nil </span><span class="cov0" title="0">{
-                                sentry.CaptureException(err)
+                                sentryReport.ReportSentry(&amp;sentryReport.Report{
+                                        Location: "func convertExpression",
+                                        Err:      err,
+                                        Kind:     model.KindTerraform,
+                                        Message:  "Failed to convert expression in terraform parser",
+                                }, false)
                                 return nil, err
                         }</span>
                         <span class="cov5" title="7">list = append(list, elem)</span>
@@ -11166,7 +11291,12 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
                         Functions: functions.TerraformFuncs,
                 })
                 if err != nil </span><span class="cov1" title="1">{
-                        sentry.CaptureException(err)
+                        sentryReport.ReportSentry(&amp;sentryReport.Report{
+                                Location: "func convertExpression",
+                                Err:      err,
+                                Kind:     model.KindTerraform,
+                                Message:  "Failed to get value in terraform parser",
+                        }, false)
                         return c.wrapExpr(expr)
                 }</span>
                 <span class="cov0" title="0">return ctyjson.SimpleJSONValue{Value: expressionEvaluated}, nil</span>
@@ -11188,12 +11318,22 @@ func (c *converter) objectConsExpr(value *hclsyntax.ObjectConsExpr) (model.Docum
         for _, item := range value.Items </span><span class="cov7" title="18">{
                 key, err := c.convertKey(item.KeyExpr)
                 if err != nil </span><span class="cov0" title="0">{
-                        sentry.CaptureException(err)
+                        sentryReport.ReportSentry(&amp;sentryReport.Report{
+                                Location: "func objectConsExpr",
+                                Err:      err,
+                                Kind:     model.KindTerraform,
+                                Message:  "Failed to convert key in terraform parser",
+                        }, false)
                         return nil, err
                 }</span>
                 <span class="cov7" title="18">m[key], err = c.convertExpression(item.ValueExpr)
                 if err != nil </span><span class="cov0" title="0">{
-                        sentry.CaptureException(err)
+                        sentryReport.ReportSentry(&amp;sentryReport.Report{
+                                Location: "func objectConsExpr",
+                                Err:      err,
+                                Kind:     model.KindTerraform,
+                                Message:  "Failed to convert expression in terraform parser",
+                        }, false)
                         return nil, err
                 }</span>
         }
@@ -11216,7 +11356,12 @@ func (c *converter) convertTemplate(t *hclsyntax.TemplateExpr) (string, error) <
                 // safe because the value is just the string
                 v, err := t.Value(nil)
                 if err != nil </span><span class="cov0" title="0">{
-                        sentry.CaptureException(err)
+                        sentryReport.ReportSentry(&amp;sentryReport.Report{
+                                Location: "func convertTemplate",
+                                Err:      err,
+                                Kind:     model.KindTerraform,
+                                Message:  "Failed to get value in terraform parser",
+                        }, false)
                         return "", err
                 }</span>
                 <span class="cov7" title="24">return v.AsString(), nil</span>
@@ -11225,7 +11370,12 @@ func (c *converter) convertTemplate(t *hclsyntax.TemplateExpr) (string, error) <
         for _, part := range t.Parts </span><span class="cov7" title="23">{
                 s, err := c.convertStringPart(part)
                 if err != nil </span><span class="cov0" title="0">{
-                        sentry.CaptureException(err)
+                        sentryReport.ReportSentry(&amp;sentryReport.Report{
+                                Location: "func convertTemplate",
+                                Err:      err,
+                                Kind:     model.KindTerraform,
+                                Message:  "Failed to convert string part in terraform parser",
+                        }, false)
                         return "", err
                 }</span>
                 <span class="cov7" title="23">builder.WriteString(s)</span>
@@ -11238,7 +11388,12 @@ func (c *converter) convertStringPart(expr hclsyntax.Expression) (string, error)
         case *hclsyntax.LiteralValueExpr:<span class="cov6" title="15">
                 s, err := ctyconvert.Convert(v.Val, cty.String)
                 if err != nil </span><span class="cov0" title="0">{
-                        sentry.CaptureException(err)
+                        sentryReport.ReportSentry(&amp;sentryReport.Report{
+                                Location: "func convertStringPart",
+                                Err:      err,
+                                Kind:     model.KindTerraform,
+                                Message:  "Failed to cty convert in terraform parser",
+                        }, false)
                         return "", err
                 }</span>
                 <span class="cov6" title="15">return s.AsString(), nil</span>
@@ -11270,13 +11425,23 @@ func (c *converter) convertTemplateConditional(expr *hclsyntax.ConditionalExpr) 
         builder.WriteString("}")
         trueResult, err := c.convertStringPart(expr.TrueResult)
         if err != nil </span><span class="cov0" title="0">{
-                sentry.CaptureException(err)
+                sentryReport.ReportSentry(&amp;sentryReport.Report{
+                        Location: "func convertTemplateConditional",
+                        Err:      err,
+                        Kind:     model.KindTerraform,
+                        Message:  "Failed to convert string part terraform parser",
+                }, false)
                 return "", nil
         }</span>
         <span class="cov2" title="2">builder.WriteString(trueResult)
         falseResult, err := c.convertStringPart(expr.FalseResult)
         if err != nil </span><span class="cov0" title="0">{
-                sentry.CaptureException(err)
+                sentryReport.ReportSentry(&amp;sentryReport.Report{
+                        Location: "func convertTemplateConditional",
+                        Err:      err,
+                        Kind:     model.KindTerraform,
+                        Message:  "Failed to convert string part terraform parser",
+                }, false)
                 return "", nil
         }</span>
         <span class="cov2" title="2">if len(falseResult) &gt; 0 </span><span class="cov1" title="1">{
@@ -11301,7 +11466,12 @@ func (c *converter) convertTemplateFor(expr *hclsyntax.ForExpr) (string, error) 
         builder.WriteString("}")
         templ, err := c.convertStringPart(expr.ValExpr)
         if err != nil </span><span class="cov0" title="0">{
-                sentry.CaptureException(err)
+                sentryReport.ReportSentry(&amp;sentryReport.Report{
+                        Location: "func convertTemplateFor",
+                        Err:      err,
+                        Kind:     model.KindTerraform,
+                        Message:  "Failed to convert string part terraform parser",
+                }, false)
                 return "", err
         }</span>
         <span class="cov1" title="1">builder.WriteString(templ)
@@ -12026,8 +12196,8 @@ func (p ProgressBar) Start() <span class="cov1" title="1">{
         wg := &amp;sync.WaitGroup{}
         go p.incrementProgress(wg)
 
-        go func() </span><span class="cov1" title="1">{
-                defer func() </span><span class="cov1" title="1">{
+        go func() </span><span class="cov0" title="0">{
+                defer func() </span><span class="cov0" title="0">{
                         wg.Wait()
                 }</span>()
         }()
@@ -12036,7 +12206,7 @@ func (p ProgressBar) Start() <span class="cov1" title="1">{
 func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov1" title="1">{
         wg.Add(1)
         defer wg.Done()
-        for </span><span class="cov10" title="4988">{ // increment until the Close func is called
+        for </span><span class="cov10" title="12001">{ // increment until the Close func is called
                 p.pBar.Increment()
         }</span>
 }
