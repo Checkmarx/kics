@@ -149,11 +149,11 @@
 				
 				<option value="file46">github.com/Checkmarx/kics/pkg/model/summary.go (86.4%)</option>
 				
-				<option value="file47">github.com/Checkmarx/kics/pkg/parser/docker/parser.go (91.2%)</option>
+				<option value="file47">github.com/Checkmarx/kics/pkg/parser/docker/parser.go (91.4%)</option>
 				
 				<option value="file48">github.com/Checkmarx/kics/pkg/parser/json/json_line.go (91.6%)</option>
 				
-				<option value="file49">github.com/Checkmarx/kics/pkg/parser/json/parser.go (76.5%)</option>
+				<option value="file49">github.com/Checkmarx/kics/pkg/parser/json/parser.go (76.0%)</option>
 				
 				<option value="file50">github.com/Checkmarx/kics/pkg/parser/json/tfplan.go (88.5%)</option>
 				
@@ -167,11 +167,11 @@
 				
 				<option value="file55">github.com/Checkmarx/kics/pkg/parser/jsonfilter/parser/jsonfilter_tree_visitor.go (0.0%)</option>
 				
-				<option value="file56">github.com/Checkmarx/kics/pkg/parser/parser.go (93.8%)</option>
+				<option value="file56">github.com/Checkmarx/kics/pkg/parser/parser.go (91.2%)</option>
 				
 				<option value="file57">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (77.5%)</option>
 				
-				<option value="file58">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (82.9%)</option>
+				<option value="file58">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (83.3%)</option>
 				
 				<option value="file59">github.com/Checkmarx/kics/pkg/parser/terraform/variables.go (92.2%)</option>
 				
@@ -181,7 +181,7 @@
 				
 				<option value="file62">github.com/Checkmarx/kics/pkg/parser/utils/swagger_utils.go (84.6%)</option>
 				
-				<option value="file63">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (84.6%)</option>
+				<option value="file63">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (84.9%)</option>
 				
 				<option value="file64">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (71.4%)</option>
 				
@@ -1622,8 +1622,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="387">{
-                if val == true </span><span class="cov9" title="386">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="363">{
+                if val == true </span><span class="cov9" title="362">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2532,13 +2532,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov8" title="32">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -4696,7 +4696,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -7185,15 +7185,15 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 
         <span class="cov0" title="0">for _, rfile := range resFiles.File </span><span class="cov0" title="0">{
                 s.Tracker.TrackFileFound()
-                documents, retParse, err := s.Parser.Parse(rfile.FileName, rfile.Content)
+                documents, err := s.Parser.Parse(rfile.FileName, rfile.Content)
                 if err != nil </span><span class="cov0" title="0">{
-                        if retParse == "break" </span><span class="cov0" title="0">{
+                        if documents.Kind == "break" </span><span class="cov0" title="0">{
                                 return []string{}, nil
                         }</span>
                         <span class="cov0" title="0">log.Err(err).Msgf("failed to parse file content")
                         return []string{}, nil</span>
                 }
-                <span class="cov0" title="0">for _, document := range documents </span><span class="cov0" title="0">{
+                <span class="cov0" title="0">for _, document := range documents.Docs </span><span class="cov0" title="0">{
                         _, err = json.Marshal(document)
                         if err != nil </span><span class="cov0" title="0">{
                                 sentry.CaptureException(err)
@@ -7454,7 +7454,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
                 return errors.Wrapf(err, "failed to get file content: %s", filename)
         }</span>
 
-        <span class="cov0" title="0">documents, kind, err := s.Parser.Parse(filename, *content)
+        <span class="cov0" title="0">documents, err := s.Parser.Parse(filename, *content)
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err).Msgf("failed to parse file content: %s", filename)
                 return nil
@@ -7462,7 +7462,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 
         <span class="cov0" title="0">fileCommands := s.Parser.CommentsCommands(filename, *content)
 
-        for _, document := range documents </span><span class="cov0" title="0">{
+        for _, document := range documents.Docs </span><span class="cov0" title="0">{
                 _, err = json.Marshal(document)
                 if err != nil </span><span class="cov0" title="0">{
                         sentry.CaptureException(err)
@@ -7473,10 +7473,10 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
                 <span class="cov0" title="0">file := model.FileMetadata{
                         ID:               uuid.New().String(),
                         ScanID:           scanID,
-                        Document:         PrepareScanDocument(document, kind),
+                        Document:         PrepareScanDocument(document, documents.Kind),
                         LineInfoDocument: document,
-                        OriginalData:     string(*content),
-                        Kind:             kind,
+                        OriginalData:     documents.Content,
+                        Kind:             documents.Kind,
                         FilePath:         filename,
                         Commands:         fileCommands,
                 }
@@ -8499,6 +8499,11 @@ func (p *Parser) SupportedTypes() []string <span class="cov1" title="1">{
 func (p *Parser) GetCommentToken() string <span class="cov1" title="1">{
         return "#"
 }</span>
+
+// StringifyContent converts original content into string formated version
+func (p *Parser) StringifyContent(content []byte) (string, error) <span class="cov1" title="1">{
+        return string(content), nil
+}</span>
 </pre>
 		
 		<pre class="file" id="file48" style="display: none">package json
@@ -8807,6 +8812,7 @@ func (f *fifo) head() int <span class="cov4" title="19">{
 		<pre class="file" id="file49" style="display: none">package json
 
 import (
+        "bytes"
         "encoding/json"
 
         "github.com/Checkmarx/kics/pkg/model"
@@ -8814,15 +8820,16 @@ import (
 
 // Parser defines a parser type
 type Parser struct {
+        shouldIdent bool
 }
 
 // Resolve - replace or modifies in-memory content before parsing
-func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) <span class="cov8" title="1">{
+func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) <span class="cov1" title="1">{
         return &amp;fileContent, nil
 }</span>
 
 // Parse parses json file and returns it as a Document
-func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) <span class="cov8" title="1">{
+func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) <span class="cov1" title="1">{
         r := model.Document{}
         err := json.Unmarshal(fileContent, &amp;r)
         if err != nil </span><span class="cov0" title="0">{
@@ -8831,38 +8838,53 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) <
                 return r, err
         }</span>
 
-        <span class="cov8" title="1">jLine := initializeJSONLine(fileContent)
+        <span class="cov1" title="1">jLine := initializeJSONLine(fileContent)
         kicsJSON := jLine.setLineInfo(r)
 
         // Try to parse JSON as Terraform plan
         kicsPlan, err := parseTFPlan(kicsJSON)
-        if err != nil </span><span class="cov8" title="1">{
+        if err != nil </span><span class="cov1" title="1">{
                 // JSON is not a tf plan
                 return []model.Document{kicsJSON}, nil
         }</span>
 
-        <span class="cov0" title="0">return []model.Document{kicsPlan}, nil</span>
+        <span class="cov0" title="0">p.shouldIdent = true
+
+        return []model.Document{kicsPlan}, nil</span>
 }
 
 // SupportedExtensions returns extensions supported by this parser, which is json extension
-func (p *Parser) SupportedExtensions() []string <span class="cov8" title="1">{
+func (p *Parser) SupportedExtensions() []string <span class="cov1" title="1">{
         return []string{".json"}
 }</span>
 
 // GetKind returns JSON constant kind
-func (p *Parser) GetKind() model.FileKind <span class="cov8" title="1">{
+func (p *Parser) GetKind() model.FileKind <span class="cov1" title="1">{
         return model.KindJSON
 }</span>
 
 // SupportedTypes returns types supported by this parser, which are cloudFormation
-func (p *Parser) SupportedTypes() []string <span class="cov8" title="1">{
+func (p *Parser) SupportedTypes() []string <span class="cov1" title="1">{
         return []string{"CloudFormation", "OpenAPI", "AzureResourceManager", "Terraform"}
 }</span>
 
 // GetCommentToken return an empty string, since JSON does not have comment token
-func (p *Parser) GetCommentToken() string <span class="cov8" title="1">{
+func (p *Parser) GetCommentToken() string <span class="cov1" title="1">{
         return ""
 }</span>
+
+// StringifyContent converts original content into string formated version
+func (p *Parser) StringifyContent(content []byte) (string, error) <span class="cov10" title="2">{
+        if p.shouldIdent </span><span class="cov1" title="1">{
+                var out bytes.Buffer
+                err := json.Indent(&amp;out, content, "", "  ")
+                if err != nil </span><span class="cov0" title="0">{
+                        return "", err
+                }</span>
+                <span class="cov1" title="1">return out.String(), nil</span>
+        }
+        <span class="cov1" title="1">return string(content), nil</span>
+}
 </pre>
 		
 		<pre class="file" id="file50" style="display: none">package json
@@ -11053,6 +11075,7 @@ type kindParser interface {
         SupportedTypes() []string
         Parse(filePath string, fileContent []byte) ([]model.Document, error)
         Resolve(fileContent []byte, filename string) (*[]byte, error)
+        StringifyContent(content []byte) (string, error)
 }
 
 // Builder is a representation of parsers that will be construct
@@ -11105,6 +11128,13 @@ type Parser struct {
         Platform   []string
 }
 
+// ParsedDocument is a struct containing data retrieved from parsing
+type ParsedDocument struct {
+        Docs    []model.Document
+        Kind    model.FileKind
+        Content string
+}
+
 // CommentsCommands gets commands on comments in the file beginning, before the code starts
 func (c *Parser) CommentsCommands(filePath string, fileContent []byte) model.CommentsCommands <span class="cov1" title="1">{
         if c.isValidExtension(filePath) </span><span class="cov1" title="1">{
@@ -11138,20 +11168,34 @@ func (c *Parser) CommentsCommands(filePath string, fileContent []byte) model.Com
 
 // Parse executes a parser on the fileContent and returns the file content as a Document, the file kind and
 // an error, if an error has occurred
-func (c *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, model.FileKind, error) <span class="cov4" title="3">{
+func (c *Parser) Parse(filePath string, fileContent []byte) (ParsedDocument, error) <span class="cov4" title="3">{
         if c.isValidExtension(filePath) </span><span class="cov4" title="3">{
                 resolved, err := c.parsers.Resolve(fileContent, filePath)
                 if err != nil </span><span class="cov0" title="0">{
-                        return nil, "", err
+                        return ParsedDocument{}, err
                 }</span>
                 <span class="cov4" title="3">obj, err := c.parsers.Parse(filePath, *resolved)
                 if err != nil </span><span class="cov0" title="0">{
-                        return nil, "", err
+                        return ParsedDocument{}, err
                 }</span>
 
-                <span class="cov4" title="3">return obj, c.parsers.GetKind(), nil</span>
+                <span class="cov4" title="3">cont, err := c.parsers.StringifyContent(fileContent)
+                if err != nil </span><span class="cov0" title="0">{
+                        log.Error().Msgf("failed to stringify original content: %s", err)
+                        cont = string(fileContent)
+                }</span>
+
+                <span class="cov4" title="3">return ParsedDocument{
+                        Docs:    obj,
+                        Kind:    c.parsers.GetKind(),
+                        Content: cont,
+                }, nil</span>
         }
-        <span class="cov0" title="0">return nil, "break", ErrNotSupportedFile</span>
+        <span class="cov0" title="0">return ParsedDocument{
+                Docs:    nil,
+                Kind:    "break",
+                Content: "",
+        }, ErrNotSupportedFile</span>
 }
 
 // SupportedExtensions returns extensions supported by KICS
@@ -11747,6 +11791,11 @@ func (p *Parser) GetKind() model.FileKind <span class="cov1" title="1">{
 func (p *Parser) GetCommentToken() string <span class="cov1" title="1">{
         return "#"
 }</span>
+
+// StringifyContent converts original content into string formated version
+func (p *Parser) StringifyContent(content []byte) (string, error) <span class="cov1" title="1">{
+        return string(content), nil
+}</span>
 </pre>
 		
 		<pre class="file" id="file59" style="display: none">package terraform
@@ -12210,6 +12259,11 @@ func addExtraInfo(documents []model.Document, filePath string) []model.Document 
 // GetCommentToken return the comment token of YAML - #
 func (p *Parser) GetCommentToken() string <span class="cov1" title="1">{
         return "#"
+}</span>
+
+// StringifyContent converts original content into string formated version
+func (p *Parser) StringifyContent(content []byte) (string, error) <span class="cov1" title="1">{
+        return string(content), nil
 }</span>
 </pre>
 		
