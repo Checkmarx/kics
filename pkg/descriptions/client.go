@@ -119,7 +119,7 @@ func (c *Client) CheckLatestVersion(version string) (model.Version, error) {
 	startTime := time.Now()
 	resp, err := doRequest(req)
 	if err != nil {
-		log.Err(err).Msgf("Unable to POST to descriptions endpoint")
+		log.Err(err).Msgf("Unable to POST to version endpoint")
 		return model.Version{}, err
 	}
 	defer resp.Body.Close()
