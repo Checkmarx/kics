@@ -18,6 +18,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "resource with type 'Microsoft.Security/securityContacts' has 'attributes.exp' property id defined",
 		"keyActualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'attributes' property defined",
+		"searchLine": common_lib.build_search_line(path, ["properties"]),
 	}
 }
 
@@ -35,5 +36,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "resource with type 'Microsoft.Security/securityContacts' has 'attributes.exp' property id defined",
 		"keyActualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'attributes.exp' property defined",
+		"searchLine": common_lib.build_search_line(path, ["properties", "attributes"]),
 	}
 }

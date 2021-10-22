@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	doc := input.document[i]
 	[path, value] = walk(doc)
@@ -14,5 +16,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("parameters.%s.defaultValue is not hardcoded", [p]),
 		"keyActualValue": sprintf("parameters.%s.defaultValue is hardcoded", [p]),
+		"searchLine": common_lib.build_search_line(["parameters", p, "defaultValue"], []),
 	}
 }

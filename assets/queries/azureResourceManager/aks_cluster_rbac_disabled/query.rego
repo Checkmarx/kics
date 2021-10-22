@@ -32,6 +32,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' has the 'enableRBAC' property set to true",
 		"keyActualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' set to true",
-		"searchLine": common_lib.build_search_line(path, [ "properties", "enableRBAC"]),
+		"searchLine": common_lib.build_search_line(path, ["properties", "enableRBAC"]),
 	}
 }

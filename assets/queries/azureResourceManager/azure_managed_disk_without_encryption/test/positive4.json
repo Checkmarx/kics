@@ -1,0 +1,41 @@
+{
+  "properties": {
+    "template": {
+      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "projectName": {
+          "type": "string",
+          "metadata": {
+            "description": "Specifies a name for generating resource names."
+          }
+        }
+      },
+      "variables": {
+        "vmName": "[concat(parameters('projectName'), '-vm')]"
+      },
+      "resources": [
+        {
+          "type": "Microsoft.Compute/disks",
+          "apiVersion": "2020-09-30",
+          "name": "[concat(variables('vmName'),'-disk1')]",
+          "location": "[resourceGroup().location]",
+          "sku": {
+            "name": "Standard_LRS"
+          },
+          "properties": {
+            "creationData": {
+              "createOption": "Empty"
+            },
+            "diskSizeGB": 512
+          }
+        }
+      ],
+      "outputs": {}
+    },
+    "parameters": {}
+  },
+  "kind": "template",
+  "type": "Microsoft.Blueprint/blueprints/artifacts",
+  "name": "myTemplate"
+}

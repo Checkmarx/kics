@@ -1,6 +1,6 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	types := ["Microsoft.Sql/servers/databases/securityAlertPolicies", "securityAlertPolicies"]
@@ -12,14 +12,15 @@ CxPolicy[result] {
 	properties := value.properties
 	lower(properties.state) == "enabled"
 
-	not commonLib.valid_key(properties, "emailAddresses")
+	not common_lib.valid_key(properties, "emailAddresses")
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s.name={{%s}}.properties", [commonLib.concat_path(path), value.name]),
+		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "securityAlertPolicies.properties.emailAddresses is defined and contains emails",
 		"keyActualValue": "securityAlertPolicies.properties.emailAddresses is not defined",
+		"searchLine": common_lib.build_search_line(path, ["properties"]),
 	}
 }
 
@@ -37,10 +38,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s.name={{%s}}.properties.emailAddresses", [commonLib.concat_path(path), value.name]),
+		"searchKey": sprintf("%s.name={{%s}}.properties.emailAddresses", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "securityAlertPolicies.properties.emailAddresses is defined and contains emails",
 		"keyActualValue": "securityAlertPolicies.properties.emailAddresses doesn't contain emails",
+		"searchLine": common_lib.build_search_line(path, ["properties", "emailAddresses"]),
 	}
 }
 

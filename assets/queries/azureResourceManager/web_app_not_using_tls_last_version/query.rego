@@ -18,6 +18,7 @@ CxPolicy[result] {
 		"issueType": issue.issueType,
 		"keyExpectedValue": "'siteConfig.minTlsVersion' is 1.2",
 		"keyActualValue": issue.keyActualValue,
+		"searchLine": common_lib.build_search_line(path, issue.sl),
 	}
 }
 
@@ -33,11 +34,13 @@ prepare_issue(resource) = issue {
 		"issueType": "IncorrectValue",
 		"keyActualValue": "'minTlsVersion' is not 1.2",
 		"sk": ".properties.siteConfig.minTlsVersion",
+		"sl": ["properties", "siteConfig", "minTlsVersion"],
 	}
 } else = issue {
 	issue := {
 		"issueType": "MissingAttribute",
 		"keyActualValue": "'siteConfig.minTlsVersion' is undefined",
 		"sk": "",
+		"sl": ["name"],
 	}
 }

@@ -19,6 +19,7 @@ CxPolicy[result] {
 		"issueType": issue.issueType,
 		"keyExpectedValue": "resource authsettings has 'properties.enabled' property set to true",
 		"keyActualValue": issue.keyActualValue,
+		"searchLine": common_lib.build_search_line(path, issue.sl),
 	}
 }
 
@@ -42,6 +43,7 @@ CxPolicy[result] {
 		"issueType": issue.issueType,
 		"keyExpectedValue": "resource authsettings has 'properties.enabled' property set to true",
 		"keyActualValue": issue.keyActualValue,
+		"searchLine": common_lib.build_search_line(childPath, issue.sl),
 	}
 }
 
@@ -52,11 +54,13 @@ prepare_issue(resource) = issue {
 		"issueType": "IncorrectValue",
 		"keyActualValue": "'enabled' is false on authsettings properties",
 		"sk": ".properties.enabled",
+		"sl": ["properties", "enabled"],
 	}
 } else = issue {
 	issue := {
 		"issueType": "MissingAttribute",
 		"keyActualValue": "'enabled' is undefined",
 		"sk": "",
+		"sl": ["name"],
 	}
 }

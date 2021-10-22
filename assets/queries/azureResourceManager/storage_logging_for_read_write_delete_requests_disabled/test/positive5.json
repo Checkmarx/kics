@@ -1,0 +1,105 @@
+{
+  "properties": {
+    "template": {
+      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "storageAccountName": {
+          "type": "string"
+        },
+        "settingName": {
+          "type": "string"
+        },
+        "storageSyncName": {
+          "type": "string"
+        },
+        "workspaceId": {
+          "type": "string"
+        }
+      },
+      "resources": [
+        {
+          "apiVersion": "2019-10-01",
+          "name": "nested",
+          "type": "Microsoft.Resources/deployments",
+          "properties": {
+            "mode": "Incremental",
+            "expressionEvaluationOptions": {
+              "scope": "inner"
+            },
+            "parameters": {
+              "endpoints": {
+                "value": "[reference(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')), '2019-06-01', 'Full').properties.primaryEndpoints]"
+              },
+              "settingName": {
+                "value": "[parameters('settingName')]"
+              },
+              "storageAccountName": {
+                "value": "[parameters('storageAccountName')]"
+              },
+              "storageSyncName": {
+                "value": "[parameters('storageSyncName')]"
+              },
+              "workspaceId": {
+                "value": "[parameters('workspaceId')]"
+              }
+            },
+            "template": {
+              "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+              "contentVersion": "1.0.0.0",
+              "parameters": {
+                "endpoints": {
+                  "type": "object"
+                },
+                "settingName": {
+                  "type": "String"
+                },
+                "storageAccountName": {
+                  "type": "String"
+                },
+                "storageSyncName": {
+                  "type": "String"
+                },
+                "workspaceId": {
+                  "type": "String"
+                }
+              },
+              "variables": {
+                "hasqueue": "[contains(parameters('endpoints'),'queue')]"
+              },
+              "resources": [
+                {
+                  "condition": "[variables('hasqueue')]",
+                  "type": "Microsoft.Storage/storageAccounts/queueServices/providers/diagnosticsettings",
+                  "apiVersion": "2017-05-01-preview",
+                  "name": "[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))]",
+                  "properties": {
+                    "workspaceId": "[parameters('workspaceId')]",
+                    "storageAccountId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageSyncName'))]",
+                    "logs": [
+                      {
+                        "category": "StorageRead",
+                        "enabled": false
+                      }
+                    ],
+                    "metrics": [
+                      {
+                        "category": "Transaction",
+                        "enabled": true
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "outputs": {}
+    },
+    "parameters": {}
+  },
+  "kind": "template",
+  "type": "Microsoft.Blueprint/blueprints/artifacts",
+  "name": "myTemplate"
+}

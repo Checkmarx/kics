@@ -34,5 +34,41 @@
     "severity": "INFO",
     "line": 20,
     "filename": "positive6.json"
+  },
+  {
+    "queryName": "Email Notifications Disabled",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive7.json"
+  },
+  {
+    "queryName": "Email Notifications Disabled",
+    "severity": "INFO",
+    "line": 15,
+    "filename": "positive8.json"
+  },
+  {
+    "queryName": "Email Notifications Disabled",
+    "severity": "INFO",
+    "line": 18,
+    "filename": "positive9.json"
+  },
+  {
+    "queryName": "Email Notifications Disabled",
+    "severity": "INFO",
+    "line": 15,
+    "filename": "positive10.json"
+  },
+  {
+    "queryName": "Email Notifications Disabled",
+    "severity": "INFO",
+    "line": 23,
+    "filename": "positive11.json"
+  },
+  {
+    "queryName": "Email Notifications Disabled",
+    "severity": "INFO",
+    "line": 22,
+    "filename": "positive12.json"
   }
 ]

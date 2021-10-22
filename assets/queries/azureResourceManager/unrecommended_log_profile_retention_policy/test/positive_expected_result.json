@@ -16,5 +16,23 @@
     "severity": "MEDIUM",
     "line": 26,
     "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Unrecommended Log Profile Retention Policy",
+    "severity": "MEDIUM",
+    "line": 28,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Unrecommended Log Profile Retention Policy",
+    "severity": "MEDIUM",
+    "line": 27,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "Unrecommended Log Profile Retention Policy",
+    "severity": "MEDIUM",
+    "line": 28,
+    "fileName": "positive4.json"
   }
 ]

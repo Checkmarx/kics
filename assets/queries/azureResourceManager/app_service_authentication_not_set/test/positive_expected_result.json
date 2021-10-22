@@ -22,5 +22,29 @@
     "severity": "INFO",
     "line": 40,
     "fileName": "positive4.json"
+  },
+  {
+    "queryName": "App Service Authentication Is Not Set",
+    "severity": "INFO",
+    "line": 39,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "App Service Authentication Is Not Set",
+    "severity": "INFO",
+    "line": 35,
+    "fileName": "positive6.json"
+  },
+  {
+    "queryName": "App Service Authentication Is Not Set",
+    "severity": "INFO",
+    "line": 46,
+    "fileName": "positive7.json"
+  },
+  {
+    "queryName": "App Service Authentication Is Not Set",
+    "severity": "INFO",
+    "line": 42,
+    "fileName": "positive8.json"
   }
 ]

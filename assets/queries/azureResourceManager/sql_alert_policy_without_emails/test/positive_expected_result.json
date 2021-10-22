@@ -9,12 +9,30 @@
     "queryName": "SQL Alert Policy Without Emails",
     "severity": "INFO",
     "line": 48,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "SQL Alert Policy Without Emails",
+    "severity": "INFO",
+    "line": 48,
     "filename": "positive3.json"
   },
   {
     "queryName": "SQL Alert Policy Without Emails",
     "severity": "INFO",
     "line": 48,
-    "filename": "positive2.json"
+    "filename": "positive4.json"
+  },
+  {
+    "queryName": "SQL Alert Policy Without Emails",
+    "severity": "INFO",
+    "line": 50,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "SQL Alert Policy Without Emails",
+    "severity": "INFO",
+    "line": 50,
+    "filename": "positive6.json"
   }
 ]

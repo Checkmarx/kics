@@ -25,6 +25,7 @@ CxPolicy[result] {
 		"issueType": issue.type,
 		"keyExpectedValue": sprintf("'diagnosticsettings.properties.logs.%s' is defined and enabled", [cats[l]]),
 		"keyActualValue": sprintf("'diagnosticsettings.properties.logs.%s' is %s", [issue.msg]),
+		"searchLine": common_lib.build_search_line(path, ["properties", "logs", cats[l]]),
 	}
 }
 

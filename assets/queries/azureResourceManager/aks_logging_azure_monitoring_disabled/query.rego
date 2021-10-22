@@ -17,6 +17,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'apiVersion' is not '2017-08-03'",
 		"keyActualValue": "'apiVersion' is '2017-08-03'",
+		"searchLine": common_lib.build_search_line(path, ["apiVersion"]),
 	}
 }
 
@@ -36,6 +37,7 @@ CxPolicy[result] {
 		"issueType": issue.issueType,
 		"keyExpectedValue": "'addonProfiles.omsagent.enabled' is defined and false",
 		"keyActualValue": issue.keyActualValue,
+		"searchLine": common_lib.build_search_line(path, issue.sl),
 	}
 }
 
@@ -45,11 +47,13 @@ prepare_issue(resource) = issue {
 		"issueType": "IncorrectValue",
 		"keyActualValue": "'addonProfiles.omsagent.enabled' is false",
 		"sk": ".properties.addonProfiles.omsagent.enabled",
+		"sl": ["properties", "addonProfiles", "omsagent", "enabled"],
 	}
 } else = issue {
 	issue := {
 		"issueType": "MissingAttribute",
 		"keyActualValue": "'addonProfiles.omsagent.enabled' is undefined",
 		"sk": "",
+		"sl": ["name"],
 	}
 }

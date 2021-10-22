@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.azureresourcemanager as arm_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -22,5 +23,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource with type '%s' restricts access to SSH", [typeInfo.type]),
 		"keyActualValue": sprintf("resource with type '%s' does not restrict access to SSH", [typeInfo.type]),
+		"searchLine": common_lib.build_search_line(path, typeInfo.sl),
 	}
 }

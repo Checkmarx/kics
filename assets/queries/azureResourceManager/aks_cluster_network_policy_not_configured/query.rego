@@ -18,6 +18,7 @@ CxPolicy[result] {
 		"issueType": issue.issueType,
 		"keyExpectedValue": "'networkProfile.networkPolicy' is defined and not empty",
 		"keyActualValue": issue.keyActualValue,
+		"searchLine": common_lib.build_search_line(path, issue.sl),
 	}
 }
 
@@ -31,11 +32,13 @@ prepare_issue(resource) = issue {
 		"issueType": "IncorrectValue",
 		"keyActualValue": "'networkProfile.networkPolicy' is empty",
 		"sk": ".properties.networkProfile.networkPolicy",
+		"sl": ["properties", "networkProfile", "networkPolicy"],
 	}
 } else = issue {
 	issue := {
 		"issueType": "MissingAttribute",
 		"keyActualValue": "'networkProfile.networkPolicy' is undefined",
 		"sk": "",
+		"sl": ["name"],
 	}
 }

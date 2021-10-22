@@ -19,6 +19,7 @@ CxPolicy[result] {
 		"issueType": issue.issueType,
 		"keyExpectedValue": "'disablePasswordAuthentication' is set to true",
 		"keyActualValue": issue.keyActualValue,
+		"searchLine": common_lib.build_search_line(path, issue.sl),
 	}
 }
 
@@ -32,11 +33,14 @@ prepare_issue(resource) = issue {
 		"issueType": "IncorrectValue",
 		"keyActualValue": "'disablePasswordAuthentication' is set to false",
 		"sk": ".properties.osProfile.linuxConfiguration.disablePasswordAuthentication",
+		"sl": ["properties", "osProfile", "linuxConfiguration", "disablePasswordAuthentication"],
 	}
 } else = issue {
 	issue := {
 		"issueType": "MissingAttribute",
 		"keyActualValue": "'disablePasswordAuthentication' is undefined",
 		"sk": "",
+		"sl": ["name"],
+
 	}
 }
