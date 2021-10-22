@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "BOM - SNS",
+    "severity": "TRACE",
+    "line": 1,
+    "fileName": "positive1.tf"
+  }
+]
