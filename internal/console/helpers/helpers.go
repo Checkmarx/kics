@@ -122,6 +122,7 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 	log.Info().Msgf("Queries failed to execute: %d", summary.FailedToExecuteQueries)
 	log.Info().Msg("Inspector stopped")
 
+	summary.PrintVersionCheck()
 	return nil
 }
 

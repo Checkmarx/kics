@@ -25,7 +25,7 @@ func (c *Client) getSummary(results []model.Vulnerability, end time.Time, pathPa
 		FailedSimilarityID:     c.Tracker.FailedSimilarityID,
 	}
 
-	summary := model.CreateSummary(counters, results, c.ScanParams.ScanID, pathParameters.PathExtractionMap)
+	summary := model.CreateSummary(counters, results, c.ScanParams.ScanID, pathParameters.PathExtractionMap, c.Tracker.Version)
 	summary.Times = model.Times{
 		Start: c.ScanStartTime,
 		End:   end,

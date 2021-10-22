@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/pkg/model"
 )
 
 // CITracker contains information of how many queries were loaded and executed
@@ -18,6 +19,7 @@ type CITracker struct {
 	ScanSecrets        int
 	ScanPaths          int
 	lines              int
+	Version            model.Version
 }
 
 // NewTracker will create a new instance of a tracker with the number of lines to display in results output
@@ -72,10 +74,17 @@ func (c *CITracker) FailedComputeSimilarityID() {
 	c.FailedSimilarityID++
 }
 
+// TrackScanSecret - add to secrets scanned
 func (c *CITracker) TrackScanSecret() {
 	c.ScanSecrets++
 }
 
+// TrackScanPath - paths to preform scan
 func (c *CITracker) TrackScanPath() {
 	c.ScanPaths++
+}
+
+// TrackVersion - information if current version is latest
+func (c *CITracker) TrackVersion(retrievedVersion model.Version) {
+	c.Version = retrievedVersion
 }

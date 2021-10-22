@@ -7,6 +7,7 @@ import (
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
+	"github.com/Checkmarx/kics/pkg/descriptions"
 	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/rs/zerolog/log"
 )
@@ -60,6 +61,10 @@ func NewClient(params *Parameters, proBarBuilder *progress.PbBuilder, printer *c
 		return nil, err
 	}
 
+	if err = descriptions.CheckVersion(t); err != nil {
+		log.Warn().Msgf("failed to check latest version")
+	}
+
 	store := storage.NewMemoryStorage()
 
 	excludeResultsMap := getExcludeResultsMap(params.ExcludeResults)
@@ -71,7 +76,7 @@ func NewClient(params *Parameters, proBarBuilder *progress.PbBuilder, printer *c
 		Storage:           store,
 		ExcludeResultsMap: excludeResultsMap,
 		Printer:           printer,
-	}, err
+	}, nil
 }
 
 // PerformScan executes executeScan and postScan

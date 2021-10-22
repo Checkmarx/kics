@@ -12,6 +12,7 @@ import (
 
 	"github.com/Checkmarx/kics/internal/constants"
 	descModel "github.com/Checkmarx/kics/pkg/descriptions/model"
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/rs/zerolog/log"
 )
 
@@ -56,6 +57,7 @@ type HTTPClient interface {
 type HTTPDescription interface {
 	CheckConnection() error
 	RequestDescriptions(descriptionIDs []string) (map[string]descModel.CISDescriptions, error)
+	CheckLatestVersion(version string) (model.Version, error)
 }
 
 // Client - client for making CIS descriptions requests
@@ -85,6 +87,60 @@ func (c *Client) CheckConnection() error {
 	log.Debug().Msg("HTTP GET success")
 	defer resp.Body.Close()
 	return err
+}
+
+// CheckLatestVersion - Check if using KICS latest version from endpoint
+func (c *Client) CheckLatestVersion(version string) (model.Version, error) {
+	baseURL, err := getBaseURL()
+	if err != nil {
+		log.Debug().Msg("Unable to get baseURL")
+		return model.Version{}, err
+	}
+	endpointURL := fmt.Sprintf("%s/api/%s", baseURL, "version")
+
+	versionRequest := descModel.VersionRequest{
+		Version: version,
+	}
+
+	requestBody, err := json.Marshal(versionRequest)
+	if err != nil {
+		log.Err(err).Msg("Unable to marshal request body")
+		return model.Version{}, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, endpointURL, bytes.NewReader(requestBody))
+	if err != nil {
+		return model.Version{}, err
+	}
+	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("Authorization", fmt.Sprintf("Basic %s", base64.StdEncoding.EncodeToString([]byte(getBasicAuth()))))
+
+	log.Debug().Msgf("HTTP POST to version endpoint")
+
+	startTime := time.Now()
+	resp, err := doRequest(req)
+	if err != nil {
+		log.Err(err).Msgf("Unable to POST to version endpoint")
+		return model.Version{}, err
+	}
+	defer resp.Body.Close()
+	endTime := time.Since(startTime)
+	log.Debug().Msgf("HTTP Status: %d %s %v", resp.StatusCode, http.StatusText(resp.StatusCode), endTime)
+
+	b, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Err(err).Msg("Unable to read response body")
+		return model.Version{}, err
+	}
+
+	var VersionResponse model.Version
+	err = json.Unmarshal(b, &VersionResponse)
+	if err != nil {
+		log.Err(err).Msg("Unable to unmarshal response body")
+		return model.Version{}, err
+	}
+
+	return VersionResponse, nil
 }
 
 // RequestDescriptions - gets CIS descriptions from endpoint
