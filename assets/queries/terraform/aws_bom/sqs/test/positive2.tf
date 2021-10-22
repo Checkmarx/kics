@@ -33,7 +33,7 @@ resource "aws_sqs_queue_policy" "positive2" {
           ]
       },
       "Action": "sqs:SendMessage",
-      "Resource": "${aws_sqs_queue.positive2.arn}"
+      "Resource": "aws_sqs_queue.positive2.arn"
     }
   ]
 }

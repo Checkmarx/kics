@@ -28,7 +28,7 @@ resource "aws_sqs_queue" "positive4" {
           ]
       },
       "Action": "sqs:SendMessage",
-      "Resource": "${aws_sqs_queue.positive4.arn}"
+      "Resource": "aws_sqs_queue.positive4.arn"
     }
   ]
 }

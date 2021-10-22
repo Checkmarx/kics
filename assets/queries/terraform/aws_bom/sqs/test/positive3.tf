@@ -23,7 +23,7 @@ resource "aws_sqs_queue" "positive3" {
       "Effect": "Allow",
       "Principal": "*",
       "Action": "sqs:SendMessage",
-      "Resource": "${aws_sqs_queue.positive3.arn}"
+      "Resource": "aws_sqs_queue.positive3.arn"
     }
   ]
 }

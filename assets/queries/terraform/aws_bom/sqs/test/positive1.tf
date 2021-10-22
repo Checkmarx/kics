@@ -28,7 +28,7 @@ resource "aws_sqs_queue_policy" "positive1" {
       "Effect": "Allow",
       "Principal": "*",
       "Action": "sqs:SendMessage",
-      "Resource": "${aws_sqs_queue.positive1.arn}"
+      "Resource": "aws_sqs_queue.positive1.arn"
     }
   ]
 }

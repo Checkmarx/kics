@@ -11,7 +11,7 @@ resource "aws_sns_topic" "positive4" {
         "*"
       ],
       "Effect": "Allow",
-      "Resource": "${aws_sns_topic.positive4.arn}",
+      "Resource": "aws_sns_topic.positive4.arn",
       "Principal": {
         "AWS": "*"
       }

@@ -10,7 +10,7 @@ CxPolicy[result] {
 		"resource_name": elasticache.cluster_id,
 		# memcached or redis
 		"resource_engine": get_engine_type(elasticache),
-		"resource_accessibility": getAccessibility(elasticache),
+		"resource_accessibility": get_accessibility(elasticache),
 		"resource_vendor": "AWS",
 		"resource_category": "Queues",
 	}
@@ -80,7 +80,7 @@ is_restricted(securityGroupName) {
 
 options := {"security_group_names", "security_group_ids"}
 
-getAccessibility(elasticache) = accessibility {
+get_accessibility(elasticache) = accessibility {
 	count({
 		x | securityGroupInfo := elasticache[options[_]][x];
 		is_unrestricted(securityGroupInfo)	

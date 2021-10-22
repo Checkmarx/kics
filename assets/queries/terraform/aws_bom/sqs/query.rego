@@ -9,7 +9,7 @@ CxPolicy[result] {
 	bom_output = {
 		"resource_type": "aws_sqs_queue",
 		"resource_name": get_queue_name(aws_sqs_queue_resource),
-		"resource_accessibility": terra_lib.getAccessibility(aws_sqs_queue_resource, name, "aws_sqs_queue_policy", "queue_url"),
+		"resource_accessibility": terra_lib.get_accessibility(aws_sqs_queue_resource, name, "aws_sqs_queue_policy", "queue_url"),
 		"resource_vendor": "AWS",
 		"resource_category": "Queues",
 	}

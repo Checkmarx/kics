@@ -9,7 +9,7 @@ CxPolicy[result] {
 	bom_output = {
 		"resource_type": "aws_s3_bucket",
 		"resource_name": get_bucket_name(bucket_resource),
-		"resource_accessibility": getAccessibility(bucket_resource, name),
+		"resource_accessibility": get_accessibility(bucket_resource, name),
 		"resource_vendor": "AWS",
 		"resource_category": "Storage",
 	}
@@ -36,7 +36,7 @@ is_public_access_blocked(s3BucketPublicAccessBlock) {
     s3BucketPublicAccessBlock.block_public_policy == true
 }
 
-getAccessibility(bucket, bucketName) = accessibility {
+get_accessibility(bucket, bucketName) = accessibility {
 	# cases when public access is blocked by aws_s3_bucket_public_access_block
 	s3BucketPublicAccessBlock := input.document[i].resource.aws_s3_bucket_public_access_block[_]
 	split(s3BucketPublicAccessBlock.bucket, ".")[1] == bucketName
@@ -44,7 +44,7 @@ getAccessibility(bucket, bucketName) = accessibility {
 	accessibility := "private"
 } else = accessibility {
 	# cases when there is a unrestriced policy
-	accessibility := terra_lib.getAccessibility(bucket, bucketName, "aws_s3_bucket_policy", "bucket")
+	accessibility := terra_lib.get_accessibility(bucket, bucketName, "aws_s3_bucket_policy", "bucket")
     accessibility != "unknown"   
 } else = accessibility {
 	# last cases: acl definition

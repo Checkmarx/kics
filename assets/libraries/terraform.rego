@@ -483,7 +483,7 @@ is_publicly_accessible(policy) {
 	anyPrincipal(statement)
 }
 
-getAccessibility(resource, name, resourcePolicyName, resourceTarget) = accessibility {
+get_accessibility(resource, name, resourcePolicyName, resourceTarget) = accessibility {
 	policy := common_lib.json_unmarshal(resource.policy)
 	is_publicly_accessible(policy)
 	accessibility = "public"

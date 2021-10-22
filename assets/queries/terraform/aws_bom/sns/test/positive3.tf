@@ -15,7 +15,7 @@ resource "aws_sns_topic_policy" "positive3" {
         "*"
       ],
       "Effect": "Allow",
-      "Resource": "${aws_sns_topic.positive3.arn}",
+      "Resource": "aws_sns_topic.positive3.arn",
       "Principal" : { 
         "AWS": [ 
           "arn:aws:iam::123456789012:root",
