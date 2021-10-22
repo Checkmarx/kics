@@ -16,5 +16,35 @@
     "severity": "TRACE",
     "line": 1,
     "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "BOM - AWS S3 Buckets",
+    "severity": "TRACE",
+    "line": 1,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "BOM - AWS S3 Buckets",
+    "severity": "TRACE",
+    "line": 1,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "BOM - AWS S3 Buckets",
+    "severity": "TRACE",
+    "line": 1,
+    "fileName": "positive6.tf"
+  },
+  {
+    "queryName": "BOM - AWS S3 Buckets",
+    "severity": "TRACE",
+    "line": 1,
+    "fileName": "positive7.tf"
+  },
+  {
+    "queryName": "BOM - AWS S3 Buckets",
+    "severity": "TRACE",
+    "line": 1,
+    "fileName": "positive8.tf"
   }
 ]

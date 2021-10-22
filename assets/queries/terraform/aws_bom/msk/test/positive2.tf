@@ -29,7 +29,7 @@ resource "aws_security_group" "sg" {
 }
 
 resource "aws_kms_key" "kms" {
-  description = "positive1"
+  description = "positive2"
 }
 
 resource "aws_cloudwatch_log_group" "test" {
@@ -81,8 +81,8 @@ resource "aws_kinesis_firehose_delivery_stream" "test_stream" {
   }
 }
 
-resource "aws_msk_cluster" "positive1" {
-  cluster_name           = "positive1"
+resource "aws_msk_cluster" "positive2" {
+  cluster_name           = "positive2"
   kafka_version          = "2.4.1"
   number_of_broker_nodes = 3
 
@@ -95,10 +95,6 @@ resource "aws_msk_cluster" "positive1" {
       aws_subnet.subnet_az3.id,
     ]
     security_groups = [aws_security_group.sg.id]
-  }
-
-  encryption_info {
-    encryption_at_rest_kms_key_arn = aws_kms_key.kms.arn
   }
 
   open_monitoring {

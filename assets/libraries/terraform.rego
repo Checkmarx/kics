@@ -1,5 +1,7 @@
 package generic.terraform
 
+import data.generic.common as common_lib
+
 check_cidr(rule) {
 	rule.cidr_blocks[_] == "0.0.0.0/0"
 } else {
@@ -466,4 +468,47 @@ uses_aws_managed_key(key, awsManagedKey) {
 	keyName := split(key, ".")[2]
 	kms := input.document[z].data.aws_kms_key[keyName]
 	kms.key_id == awsManagedKey
+}
+
+getStatement(policy) = st {
+	is_array(policy.Statement)
+	st = policy.Statement[_]
+} else = st {
+	st := policy.Statement
+}
+
+is_publicly_accessible(policy) {
+	statement := getStatement(policy)
+	statement.Effect == "Allow"
+	anyPrincipal(statement)
+}
+
+getAccessibility(resource, name, resourcePolicyName, resourceTarget) = accessibility {
+	policy := common_lib.json_unmarshal(resource.policy)
+	is_publicly_accessible(policy)
+	accessibility = "public"
+} else = accessibility {
+	policy := common_lib.json_unmarshal(resource.policy)
+	not is_publicly_accessible(policy)
+	accessibility = "restrict"
+} else = accessibility {
+	not common_lib.valid_key(resource, "policy")
+	
+	resourcePolicy := input.document[_].resource[resourcePolicyName][_]
+	split(resourcePolicy[resourceTarget], ".")[1] == name
+
+	policy := common_lib.json_unmarshal(resourcePolicy.policy)
+	is_publicly_accessible(policy)
+	accessibility = "public"
+} else = accessibility {
+	not common_lib.valid_key(resource, "policy")
+	
+	resourcePolicy := input.document[_].resource[resourcePolicyName][_]
+	split(resourcePolicy[resourceTarget], ".")[1] == name
+
+	policy := common_lib.json_unmarshal(resourcePolicy.policy)
+	not is_publicly_accessible(policy)
+	accessibility = "restrict"
+} else = accessibility {
+	accessibility = "unknown"
 }

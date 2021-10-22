@@ -8,15 +8,14 @@ CxPolicy[result] {
 	bom_output = {
 		"resource_type": "aws_msk_cluster",
 		"resource_name": aws_msk_cluster_resource.cluster_name,
-		# TODO: need to check MSK policy
-		"resource_accessibility": "unknown",
+		"resource_accessibility": common_lib.get_encryption_if_exists(aws_msk_cluster_resource),
 		"resource_vendor": "AWS",
 		"resource_category": "Queues",
 	}
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_msk_cluster_resource[%s]", [name]),
+		"searchKey": sprintf("aws_msk_cluster[%s]", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",
 		"keyActualValue": "",
