@@ -33,7 +33,7 @@ resource "aws_elasticache_security_group" "positive3" {
 resource "aws_elasticache_cluster" "positive3" {
     cluster_id = "test-cache"
     engine = "redis"
-    node_type = "dc1.large"
+    node_type = "cache.m4.large"
     port = 6379
     num_cache_nodes = 1
     parameter_group_name = aws_elasticache_parameter_group.default.id

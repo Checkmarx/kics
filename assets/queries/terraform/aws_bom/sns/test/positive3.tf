@@ -3,7 +3,7 @@ resource "aws_sns_topic" "positive3" {
 }
 
 resource "aws_sns_topic_policy" "positive3" {
-  arn = "${aws_sns_topic.positive3.arn}"
+  arn = aws_sns_topic.positive3.arn
 
   policy = <<EOF
 {
