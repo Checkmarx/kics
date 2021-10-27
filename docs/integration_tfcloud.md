@@ -17,12 +17,12 @@ Set the name you wish for the Task Event Hook
 In the Hook endpoint URL place:
 
 ```
-https://kics.io/tfc/event
+https://kics.io/tfc/event?failOn=low
 ```
 
 And Create event hook.
 
-Note: You can choose which kind of severity you wish for KICS to fail on by passing `failOn` as query parameter in the URL. If a severity is chosen KICS will fail on any result found with that severity and above.
+Note: You can choose which kind of severity you wish for KICS to fail on by passing `failOn` as query parameter in the URL. KICS will fail on any result found with that severity and above.
 
 Availble Severities are:
  - high
@@ -30,13 +30,8 @@ Availble Severities are:
  - low
  - info
 
-If `failOn` is not present or invalid, KICS will fail on any vulnerability found.
+Query parameter `failOn` is required and cannot be empty.
 
-Example:
-
-```
-https://kics.io/tfc/event?failOn=medium
-```
 
 ### Adding KICS Event Hook to Workspace
 
