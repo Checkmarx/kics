@@ -1,4 +1,4 @@
-resource "aws_sqs_queue" "positive1" {
+resource "aws_sqs_queue" "positive4" {
   name                      = "terraform-example-queue"
   delay_seconds             = 90
   max_message_size          = 2048
@@ -12,11 +12,6 @@ resource "aws_sqs_queue" "positive1" {
   tags = {
     Environment = "production"
   }
-}
-
-
-resource "aws_sqs_queue_policy" "positive1" {
-  queue_url = aws_sqs_queue.positive1.id
 
   policy = <<POLICY
 {
@@ -26,9 +21,14 @@ resource "aws_sqs_queue_policy" "positive1" {
     {
       "Sid": "First",
       "Effect": "Allow",
-      "Principal": "*",
+      "Principal" : { 
+        "AWS": [ 
+          "arn:aws:iam::123456789012:root",
+          "arn:aws:iam::555555555555:root" 
+          ]
+      },
       "Action": "sqs:SendMessage",
-      "Resource": "aws_sqs_queue.positive1.arn"
+      "Resource": "aws_sqs_queue.positive4.arn"
     }
   ]
 }

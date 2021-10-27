@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as terra_lib
 
 CxPolicy[result] {
 	aws_sqs_queue_resource := input.document[i].resource.aws_sqs_queue[name]
@@ -8,8 +9,7 @@ CxPolicy[result] {
 	bom_output = {
 		"resource_type": "aws_sqs_queue",
 		"resource_name": get_queue_name(aws_sqs_queue_resource),
-		# TODO: need to check SQS policy
-		"resource_accessibility": "unknown",
+		"resource_accessibility": terra_lib.get_accessibility(aws_sqs_queue_resource, name, "aws_sqs_queue_policy", "queue_url"),
 		"resource_vendor": "AWS",
 		"resource_category": "Queues",
 	}

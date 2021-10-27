@@ -1,0 +1,11 @@
+{
+  "id": "eccc4d59-74b9-4974-86f1-74386e0c7f33",
+  "queryName": "BOM - SNS",
+  "severity": "TRACE",
+  "category": "Bill Of Materials",
+  "descriptionText": "A list of SNS resources specified. Amazon Simple Notification Service (Amazon SNS) is a fully managed messaging service for both application-to-application (A2A) and application-to-person (A2P) communication.",
+  "descriptionUrl": "https://kics.io",
+  "platform": "Terraform",
+  "descriptionID": "4c016c6f",
+  "cloudProvider": "aws"
+}
