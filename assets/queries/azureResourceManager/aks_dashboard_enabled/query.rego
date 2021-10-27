@@ -17,6 +17,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'apiVersion' is not '2017-08-03'",
 		"keyActualValue": "'apiVersion' is '2017-08-03'",
+		"searchLine": common_lib.build_search_line(path, ["apiVersion"]),
 	}
 }
 
@@ -36,6 +37,7 @@ CxPolicy[result] {
 		"issueType": issue.issueType,
 		"keyExpectedValue": "'addonProfiles.kubeDashboard.enabled' is defined and false",
 		"keyActualValue": issue.keyActualValue,
+		"searchLine": common_lib.build_search_line(path, issue.sl),
 	}
 }
 
@@ -53,11 +55,13 @@ prepare_issue(resource) = issue {
 		"issueType": "IncorrectValue",
 		"keyActualValue": "'addonProfiles.kubeDashboard.enabled' is false",
 		"sk": ".properties.addonProfiles.kubeDashboard.enabled",
+		"sl": ["properties", "addonProfiles", "kubeDashboard", "enabled"],
 	}
 } else = issue {
 	issue := {
 		"issueType": "MissingAttribute",
 		"keyActualValue": "'addonProfiles.kubeDashboard.enabled' is undefined",
 		"sk": "",
+		"sl": ["name"],
 	}
 }

@@ -10,13 +10,14 @@ CxPolicy[result] {
 
 	properties := value.properties
 	lower(properties.state) == "enabled"
-	properties.disabledAlerts[_] != ""
+	properties.disabledAlerts[idx] != ""
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.name={{%s}}.disabledAlerts", [common_lib.concat_path(path), value.name]),
+		"searchKey": sprintf("%s.name={{%s}}.properties.disabledAlerts", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s.name=%s.disabledAlerts' should not have values defined", [common_lib.concat_path(path), value.name]),
 		"keyActualValue": sprintf("'%s.name=%s.disabledAlerts' has values defined", [common_lib.concat_path(path), value.name]),
+		"searchLine": common_lib.build_search_line(path, ["properties", "disabledAlerts", idx]),
 	}
 }

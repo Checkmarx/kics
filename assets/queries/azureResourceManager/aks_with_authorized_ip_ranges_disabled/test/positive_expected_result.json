@@ -28,5 +28,35 @@
     "severity": "MEDIUM",
     "line": 37,
     "filename": "positive5.json"
+  },
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive6.json"
+  },
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive7.json"
+  },
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "MEDIUM",
+    "line": 38,
+    "filename": "positive8.json"
+  },
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive9.json"
+  },
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "MEDIUM",
+    "line": 39,
+    "filename": "positive10.json"
   }
 ]

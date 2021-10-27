@@ -10,5 +10,17 @@
     "severity": "HIGH",
     "line": 19,
     "filename": "positive2.json"
+  },
+  {
+    "queryName": "Azure Managed Disk Without Encryption",
+    "severity": "HIGH",
+    "line": 32,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Azure Managed Disk Without Encryption",
+    "severity": "HIGH",
+    "line": 21,
+    "filename": "positive4.json"
   }
 ]

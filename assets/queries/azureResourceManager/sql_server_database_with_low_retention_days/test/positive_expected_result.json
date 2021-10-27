@@ -10,5 +10,17 @@
     "severity": "MEDIUM",
     "line": 43,
     "filename": "positive2.json"
+  },
+  {
+    "queryName": "SQL Server Database With Unrecommended Retention Days",
+    "severity": "MEDIUM",
+    "line": 50,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "SQL Server Database With Unrecommended Retention Days",
+    "severity": "MEDIUM",
+    "line": 45,
+    "filename": "positive4.json"
   }
 ]

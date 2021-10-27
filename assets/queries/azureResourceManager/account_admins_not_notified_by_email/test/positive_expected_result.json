@@ -10,5 +10,17 @@
     "severity": "INFO",
     "line": 13,
     "filename": "positive2.json"
+  },
+  {
+    "queryName": "Account Admins Not Notified By Email",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Account Admins Not Notified By Email",
+    "severity": "INFO",
+    "line": 15,
+    "filename": "positive4.json"
   }
 ]

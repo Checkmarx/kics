@@ -18,6 +18,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' has 'log_connections' set to 'on'",
 		"keyActualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' has 'log_connections' set to 'off'",
+		"searchLine": common_lib.build_search_line(parentPath, ["resources", "properties", "value"]),
 	}
 }
 
@@ -37,35 +38,40 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' has 'log_connections' set to 'on'",
 		"keyActualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' has 'log_connections' value undefined",
+		"searchLine": common_lib.build_search_line(parentPath, ["resources", "name"]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resources[_]
-	resource.type == "Microsoft.DBforPostgreSQL/servers/configurations"
-	endswith(resource.name, "log_connections")
-	resource.properties.value == "off"
+	doc := input.document[i]
+	[path, value] = walk(doc)
+	value.type == "Microsoft.DBforPostgreSQL/servers/configurations"
+	endswith(value.name, "log_connections")
+	value.properties.value == "off"
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name={{%s}}.properties.value", [resource.name]),
+		"documentId": doc.id,
+		"searchKey": sprintf("%s.name={{%s}}.properties.value", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' has 'log_connections' property set to 'on'",
 		"keyActualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' doesn't have 'log_connections' property set to 'on'",
+		"searchLine": common_lib.build_search_line(path, ["properties", "value"]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resources[_]
-	resource.type == "Microsoft.DBforPostgreSQL/servers/configurations"
-	endswith(resource.name, "log_connections")
-	not common_lib.valid_key(resource.properties, "value")
+	doc := input.document[i]
+	[path, value] = walk(doc)
+	value.type == "Microsoft.DBforPostgreSQL/servers/configurations"
+	endswith(value.name, "log_connections")
+	not common_lib.valid_key(value.properties, "value")
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name={{%s}}", [resource.name]),
+		"documentId": doc.id,
+		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' has 'log_connections' property set to 'on'",
 		"keyActualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' doesn't have 'log_connections' value undefined",
+		"searchLine": common_lib.build_search_line(path, ["properties"]),
 	}
 }

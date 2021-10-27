@@ -16,5 +16,23 @@
     "severity": "LOW",
     "line": 15,
     "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Website Azure Active Directory Disabled",
+    "severity": "LOW",
+    "line": 12,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "Website Azure Active Directory Disabled",
+    "severity": "LOW",
+    "line": 17,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "Website Azure Active Directory Disabled",
+    "severity": "LOW",
+    "line": 17,
+    "fileName": "positive6.json"
   }
 ]

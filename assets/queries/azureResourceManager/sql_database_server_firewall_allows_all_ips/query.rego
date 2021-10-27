@@ -18,6 +18,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "endIpAddress is not '255.255.255.255' when startIpAddress is '0.0.0.0'",
 		"keyActualValue": sprintf("endIpAddress is '%s' and startIpAddress is '%s'", [properties.endIpAddress, properties.startIpAddress]),
+		"searchLine": common_lib.build_search_line(path, ["properties", "endIpAddress"]),
 	}
 }
 

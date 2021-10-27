@@ -1,0 +1,29 @@
+{
+  "properties": {
+    "template": {
+      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+      "contentVersion": "2.0.0.0",
+      "apiProfile": "2019-03-01-hybrid",
+      "parameters": {},
+      "variables": {},
+      "functions": [],
+      "resources": [
+        {
+          "type": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+          "apiVersion": "2021-02-01-preview",
+          "name": "sample/server/default",
+          "properties": {
+            "emailAddresses": [ "sample@email.com" ],
+            "retentionDays": 4,
+            "state": "Enabled"
+          }
+        }
+      ],
+      "outputs": {}
+    },
+    "parameters": {}
+  },
+  "kind": "template",
+  "type": "Microsoft.Blueprint/blueprints/artifacts",
+  "name": "myTemplate"
+}

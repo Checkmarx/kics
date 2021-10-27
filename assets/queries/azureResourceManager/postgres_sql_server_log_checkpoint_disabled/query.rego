@@ -17,6 +17,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' has 'log_checkpoints' set to 'on'",
 		"keyActualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' has 'log_checkpoints' set to 'off'",
+		"searchLine": common_lib.build_search_line(parentPath, ["resources", "properties", "value"]),
 	}
 }
 
@@ -31,39 +32,44 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s.name={{%s}}.name=log_checkpoints", [common_lib.concat_path(parentPath), parentValue.name]),
+		"searchKey": sprintf("%s.name={{%s}}.resources.name=log_checkpoints", [common_lib.concat_path(parentPath), parentValue.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' has 'log_checkpoints' set to 'on'",
 		"keyActualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' 'log_checkpoints' is not defined",
+		"searchLine": common_lib.build_search_line(parentPath, ["resources", "name"]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resources[_]
-	resource.type == "Microsoft.DBforPostgreSQL/servers/configurations"
-	endswith(resource.name, "log_checkpoints")
-	resource.properties.value == "off"
+	doc := input.document[i]
+	[path, value] = walk(doc)
+	value.type == "Microsoft.DBforPostgreSQL/servers/configurations"
+	endswith(value.name, "log_checkpoints")
+	value.properties.value == "off"
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name={{%s}}.properties.value", [resource.name]),
+		"searchKey": sprintf("%s.name={{%s}}.properties.value", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' has 'log_checkpoints' property set to 'on'",
 		"keyActualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' doesn't have 'log_checkpoints' property set to 'off'",
+		"searchLine": common_lib.build_search_line(path, ["properties", "value"]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resources[_]
-	resource.type == "Microsoft.DBforPostgreSQL/servers/configurations"
-	endswith(resource.name, "log_checkpoints")
-	not common_lib.valid_key(resource.properties, "value")
+	doc := input.document[i]
+	[path, value] = walk(doc)
+	value.type == "Microsoft.DBforPostgreSQL/servers/configurations"
+	endswith(value.name, "log_checkpoints")
+	not common_lib.valid_key(value.properties, "value")
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name={{%s}}", [resource.name]),
+		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' has 'log_checkpoints' property set to 'off'",
 		"keyActualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' 'log_checkpoints' is not defined",
+		"searchLine": common_lib.build_search_line(path, ["properties"]),
 	}
 }

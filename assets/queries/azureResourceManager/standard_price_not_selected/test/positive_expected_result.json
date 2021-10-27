@@ -4,5 +4,11 @@
     "severity": "MEDIUM",
     "line": 27,
     "filename": "positive1.json"
+  },
+  {
+    "queryName": "Standard Price Is Not Selected",
+    "severity": "MEDIUM",
+    "line": 29,
+    "filename": "positive2.json"
   }
 ]

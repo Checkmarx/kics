@@ -18,6 +18,7 @@ CxPolicy[result] {
 		"issueType": issue.issueType,
 		"keyExpectedValue": "'encryptionSettingsCollection.enabled' is set to true",
 		"keyActualValue": issue.keyActualValue,
+		"searchLine": common_lib.build_search_line(path, issue.sl),
 	}
 }
 
@@ -27,11 +28,13 @@ prepare_issue(resource) = issue {
 		"issueType": "IncorrectValue",
 		"keyActualValue": "'encryptionSettingsCollection.enabled' is set to false",
 		"sk": ".properties.encryptionSettingsCollection.enabled",
+		"sl": ["properties", "encryptionSettingsCollection", "enabled"],
 	}
 } else = issue {
 	issue := {
 		"issueType": "MissingAttribute",
 		"keyActualValue": "'encryptionSettingsCollection.enabled' is undefined",
 		"sk": "",
+		"sl": ["name"],
 	}
 }

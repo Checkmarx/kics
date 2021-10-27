@@ -1,0 +1,41 @@
+{
+  "properties": {
+    "template": {
+      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+      "contentVersion": "2.0.0.0",
+      "apiProfile": "2019-03-01-hybrid",
+      "parameters": {
+        "adminPassword": {
+          "type": "secureString"
+        },
+        "adminLogin": {
+          "type": "string"
+        },
+        "sqlServerName": {
+          "type": "string"
+        }
+      },
+      "variables": {},
+      "functions": [],
+      "resources": [
+        {
+          "type": "Microsoft.Sql/servers",
+          "apiVersion": "2015-05-01-preview",
+          "name": "[parameters('sqlServerName')]",
+          "location": "[resourceGroup().location]",
+          "tags": {},
+          "properties": {
+            "administratorLogin": "[parameters('adminLogin')]",
+            "administratorLoginPassword": "[parameters('adminPassword')]",
+            "version": "12.0"
+          }
+        }
+      ],
+      "outputs": {}
+    },
+    "parameters": {}
+  },
+  "kind": "template",
+  "type": "Microsoft.Blueprint/blueprints/artifacts",
+  "name": "myTemplate"
+}

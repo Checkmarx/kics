@@ -10,5 +10,17 @@
     "severity": "HIGH",
     "line": 54,
     "filename": "positive2.json"
+  },
+  {
+    "queryName": "Secret Without Expiration Date",
+    "severity": "HIGH",
+    "line": 51,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Secret Without Expiration Date",
+    "severity": "HIGH",
+    "line": 56,
+    "filename": "positive4.json"
   }
 ]

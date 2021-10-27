@@ -11,14 +11,15 @@ CxPolicy[result] {
 
 	to_number(split(value.apiVersion, "-")[0]) < 2019
 
-	skValue := is_undefined(value)
+	pathValue := is_undefined(value)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name={{%s}}%s", [resourceName, skValue]),
+		"searchKey": sprintf("resources.name={{%s}}%s", [resourceName, pathValue.sk]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "resource with type 'Microsoft.Storage/storageAccounts' has the 'supportsHttpsTrafficOnly' property defined",
 		"keyActualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' property defined",
+		"searchLine": common_lib.build_search_line(path, pathValue.sl),
 	}
 }
 
@@ -33,17 +34,18 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": "resources.type={{Microsoft.Storage/storageAccounts}}.properties.supportsHttpsTrafficOnly",
+		"searchKey": sprintf("%s.name=%s.properties.supportsHttpsTrafficOnly", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "resource with type 'Microsoft.Storage/storageAccounts' has the 'supportsHttpsTrafficOnly' property set to true",
 		"keyActualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' set to true",
+		"searchLine": common_lib.build_search_line(path, ["properties", "supportsHttpsTrafficOnly"]),
 	}
 }
 
-is_undefined(value) = sk {
+is_undefined(value) = path {
 	not common_lib.valid_key(value, "properties")
-	sk := ""
-} else = sk {
+	path := {"sk": "", "sl": ["name"]}
+} else = path {
 	not common_lib.valid_key(value.properties, "supportsHttpsTrafficOnly")
-	sk := ".properties"
+	path := {"sk": "properties", "sl": ["properties"]}
 }

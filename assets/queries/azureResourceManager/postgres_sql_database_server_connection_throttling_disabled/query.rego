@@ -24,6 +24,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource '%s' has an 'auditingsettings' resource enabled", [value.name]),
 		"keyActualValue": sprintf("resource '%s' doesn't have an 'auditingsettings' resource enabled", [value.name]),
+		"searchLine": common_lib.build_search_line(childrenArr[c].path, ["properties", "value"]),
 	}
 }
 
@@ -46,5 +47,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("resource '%s' has an 'auditingsettings' resource enabled", [value.name]),
 		"keyActualValue": sprintf("resource '%s' doesn't have an 'auditingsettings' resource enabled", [value.name]),
+		"searchLine": common_lib.build_search_line(path, ["name"]),
 	}
 }

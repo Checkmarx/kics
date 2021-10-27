@@ -10,5 +10,17 @@
     "severity": "HIGH",
     "line": 13,
     "fileName": "positive2.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server SSL Disabled",
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server SSL Disabled",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive4.json"
   }
 ]

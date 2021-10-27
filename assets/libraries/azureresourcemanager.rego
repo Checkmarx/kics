@@ -4,13 +4,28 @@ package generic.azureresourcemanager
 get_sg_info(value) = typeInfo {
 	value.type == "Microsoft.Network/networkSecurityGroups"
 	properties := value.properties.securityRules[x].properties
-	typeInfo := {"type": value.type, "properties": properties, "path": "resources.type={{Microsoft.Network/networkSecurityGroups}}.properties.securityRules"}
+	typeInfo := {
+		"type": value.type, 
+		"properties": properties, 
+		"path": "resources.type={{Microsoft.Network/networkSecurityGroups}}.properties.securityRules",
+		"sl": ["properties", "securityRules", x, "properties"]	
+	}
 } else = typeInfo {
 	value.type == "Microsoft.Network/networkSecurityGroups/securityRules"
-	typeInfo := {"type": value.type, "properties": value.properties, "path": "resources.type={{Microsoft.Network/networkSecurityGroups/securityRules}}.properties"}
+	typeInfo := {
+		"type": value.type, 
+		"properties": value.properties, 
+		"path": "resources.type={{Microsoft.Network/networkSecurityGroups/securityRules}}.properties",
+		"sl": ["properties"]
+   }   
 } else = typeInfo {
 	value.type == "securityRules"
-	typeInfo := {"type": value.type, "properties": value.properties, "path": "resources.type={{securityRules}}.properties"}
+	typeInfo := {
+		"type": value.type, 
+		"properties": value.properties, 
+		"path": "resources.type={{securityRules}}.properties",
+		"sl": ["properties"]
+	}
 }
 
 # checks if source address prefix is open to the Internet
