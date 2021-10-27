@@ -65,6 +65,7 @@ nav:
       - Jenkins: integrations_jenkins.md
       - TeamCity: integrations_teamcity.md
       - Travis CI: integrations_travisci.md
+      - Terraform Cloud: integration_tfcloud.md
       - AWS CDK: cdk.md
       - Badge: BADGE.md
   - Project:
