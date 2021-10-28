@@ -134,6 +134,7 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 		ScanID:                      scanID,
 		ChangedDefaultLibrariesPath: changedDefaultLibrariesPath,
 		ChangedDefaultQueryPath:     changedDefaultQueryPath,
+		BillOfMaterials:             flags.GetBoolFlag(flags.BomFlag),
 	}
 
 	return &scanParams
