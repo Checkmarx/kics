@@ -184,6 +184,7 @@ func (c *Client) createQueryFilter() *source.QueryInspectorParameters {
 		IncludeQueries: includeQueries,
 		ExcludeQueries: excludeQueries,
 		InputDataPath:  c.ScanParams.InputData,
+		BomQueries:     c.ScanParams.BillOfMaterials,
 	}
 
 	return &queryFilter
