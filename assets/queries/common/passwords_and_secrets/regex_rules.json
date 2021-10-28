@@ -276,6 +276,10 @@
     {
       "description": "Avoiding arn",
       "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[=:]\\s*['\"]?(arn:)['\"]?"
+    },
+    {
+      "description": "Avoiding TF file function",
+      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*=\\s*['\"]?(file\\()['\"]?"
     }
   ]
 }
