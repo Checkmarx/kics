@@ -17,7 +17,7 @@
           {
             "id": "id",
             "properties": {
-              "description": "access to RDP",
+              "description": "access to SSH",
               "protocol": "Tcp",
               "sourcePortRange": "*",
               "destinationPortRange": "22",

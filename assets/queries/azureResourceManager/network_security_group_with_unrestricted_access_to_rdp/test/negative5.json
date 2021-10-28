@@ -13,7 +13,7 @@
           "type": "Microsoft.Network/networkSecurityGroups/securityRules",
           "apiVersion": "2020-11-01",
           "properties": {
-            "description": "access to RDP",
+            "description": "access",
             "protocol": "Tcp",
             "sourcePortRange": "*",
             "destinationPortRanges": [
