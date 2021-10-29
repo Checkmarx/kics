@@ -1,0 +1,29 @@
+name: update-infra-version
+
+on:
+  workflow_dispatch:
+  release:
+    type: [published]
+
+jobs:
+  update-infra-version:
+    name: Updates infra with new release
+    runs-on: ubuntu-latest
+    if: "!github.event.release.prerelease"
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 0
+      - name: Update Terraform Cloud Integration
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.KICS_BOT_PAT }}
+          repository: ${{ secrets.TFC_REPO_PATH }}
+          event-type: new-release
+      - name: Update Infra
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.KICS_BOT_PAT }}
+          repository: ${{ secrets.INFRA_REPO }}
+          event-type: new-release
