@@ -199,8 +199,10 @@ func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQ
 
 	for i := range allRegexQueries {
 		includeSpecificSecretQuery = isValueInArray(allRegexQueries[i].ID, queryFilter.IncludeQueries.ByIDs)
-		if len(queryFilter.IncludeQueries.ByIDs) > 0 && !allSecretsQueryAndCustom && (includeAllSecretsQuery || includeSpecificSecretQuery) {
-			regexQueries = append(regexQueries, allRegexQueries[i])
+		if len(queryFilter.IncludeQueries.ByIDs) > 0 && !allSecretsQueryAndCustom {
+			if includeAllSecretsQuery || includeSpecificSecretQuery {
+				regexQueries = append(regexQueries, allRegexQueries[i])
+			}
 		} else {
 			if !shouldExecuteQuery(
 				allRegexQueries[i].ID,
