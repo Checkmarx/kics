@@ -181,8 +181,9 @@ func (c *Inspector) Inspect(ctx context.Context, basePaths []string,
 
 func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQueries []RegexQuery, isCustom bool) ([]RegexQuery, error) {
 	var regexQueries []RegexQuery
+	var includeSpecificSecretQuery bool
 
-	onlyKicsSecretsRegexes := true
+	allSecretsQueryAndCustom := false
 
 	includeAllSecretsQuery := isValueInArray("a88baa34-e2ad-44ea-ad6f-8cac87bc7c71", queryFilter.IncludeQueries.ByIDs)
 
@@ -192,16 +193,14 @@ func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQ
 		if err != nil {
 			return nil, err
 		}
-		onlyKicsSecretsRegexes = false
+		allSecretsQueryAndCustom = true
 		regexQueries = kicsRegexQueries.Rules
 	}
 
 	for i := range allRegexQueries {
-		if len(queryFilter.IncludeQueries.ByIDs) > 0 && onlyKicsSecretsRegexes {
-			includeSpecificSecretQuery := isValueInArray(allRegexQueries[i].ID, queryFilter.IncludeQueries.ByIDs)
-			if includeAllSecretsQuery || includeSpecificSecretQuery {
-				regexQueries = append(regexQueries, allRegexQueries[i])
-			}
+		includeSpecificSecretQuery = isValueInArray(allRegexQueries[i].ID, queryFilter.IncludeQueries.ByIDs)
+		if len(queryFilter.IncludeQueries.ByIDs) > 0 && !allSecretsQueryAndCustom && (includeAllSecretsQuery || includeSpecificSecretQuery) {
+			regexQueries = append(regexQueries, allRegexQueries[i])
 		} else {
 			if !shouldExecuteQuery(
 				allRegexQueries[i].ID,
