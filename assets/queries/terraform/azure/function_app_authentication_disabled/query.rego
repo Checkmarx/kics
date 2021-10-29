@@ -28,6 +28,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_function_app[%s].auth_settings.enabled' is set to true", [name]),
 		"keyActualValue": sprintf("'azurerm_function_app[%s].auth_settings.enabled' is not set to true", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "azurerm_function_app", name, "enabled"], []),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_function_app", name, "auth_settings", "enabled"], []),
 	}
 }
