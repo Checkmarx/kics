@@ -96,7 +96,8 @@ func NewInspector(
 	executionTimeout int,
 	regexRulesContent string,
 ) (*Inspector, error) {
-	if disableSecretsQuery {
+	excludeSecretsQuery := isValueInArray("a88baa34-e2ad-44ea-ad6f-8cac87bc7c71", queryFilter.ExcludeQueries.ByIDs)
+	if disableSecretsQuery || excludeSecretsQuery {
 		return &Inspector{
 			ctx:                   ctx,
 			tracker:               tracker,
@@ -182,7 +183,12 @@ func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQ
 
 	for i := range allRegexQueries {
 		if len(queryFilter.IncludeQueries.ByIDs) > 0 {
-			if isValueInArray(allRegexQueries[i].ID, queryFilter.IncludeQueries.ByIDs) {
+			includeAllSecretsQuery := isValueInArray("a88baa34-e2ad-44ea-ad6f-8cac87bc7c71", queryFilter.IncludeQueries.ByIDs)
+			includeSpecificSecretQuery := isValueInArray(allRegexQueries[i].ID, queryFilter.IncludeQueries.ByIDs)
+			if includeAllSecretsQuery {
+				regexQueries = append(regexQueries, allRegexQueries[i])
+				break
+			} else if includeSpecificSecretQuery {
 				regexQueries = append(regexQueries, allRegexQueries[i])
 			}
 		} else {
