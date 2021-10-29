@@ -3,7 +3,7 @@
   "queryName": "Public Storage Account",
   "severity": "HIGH",
   "category": "Access Control",
-  "descriptionText": "Check if 'network_rules' is open to public.",
+  "descriptionText": "Storage Account should not be public",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account",
   "platform": "Terraform",
   "descriptionID": "88948514",
