@@ -8,7 +8,7 @@
 6. Wait for goreleaser action to complete
 7. Test pre-release manually on each platform
 8. Publish new version by updating changelog and removing pre-release flag
-9. Check if `update-docs-release` workflow completed with success
+9. Check if `update-docs-release` and `update-infra-version` workflow completed with success
 10. Trigger `release-docker-image` workflow
 11. Check if image is published in dockerhub / update hub documentation if changed.
 12. Check for dependabots PR's in KICS' [github action](https://github.com/Checkmarx/kics-github-action), merge them and add a new tag.
