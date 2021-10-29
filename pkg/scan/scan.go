@@ -72,6 +72,8 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		return nil, err
 	}
 
+	isCustomSecretsRegexes := len(c.ScanParams.SecretsRegexesPath) > 0
+
 	secretsInspector, err := secrets.NewInspector(
 		ctx,
 		c.ExcludeResultsMap,
@@ -80,6 +82,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		c.ScanParams.DisableSecrets,
 		c.ScanParams.QueryExecTimeout,
 		secretsRegexRulesContent,
+		isCustomSecretsRegexes,
 	)
 	if err != nil {
 		log.Err(err)

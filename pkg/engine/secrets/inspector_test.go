@@ -15,10 +15,11 @@ import (
 )
 
 var testCompileRegexesInput = []struct {
-	name            string
-	inspectorParams *source.QueryInspectorParameters
-	allRegexQueries []RegexQuery
-	wantIDs         []string
+	name                   string
+	inspectorParams        *source.QueryInspectorParameters
+	allRegexQueries        []RegexQuery
+	wantIDs                []string
+	isCustomSecretsRegexes bool
 }{
 	{
 		name: "empty_query",
@@ -27,8 +28,9 @@ var testCompileRegexesInput = []struct {
 			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
 			InputDataPath:  "",
 		},
-		allRegexQueries: []RegexQuery{},
-		wantIDs:         []string{},
+		allRegexQueries:        []RegexQuery{},
+		wantIDs:                []string{},
+		isCustomSecretsRegexes: false,
 	},
 	{
 		name: "one_query",
@@ -44,7 +46,8 @@ var testCompileRegexesInput = []struct {
 				RegexStr: `['|"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\s*[:|=]\s*['|"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|"]?`,
 			},
 		},
-		wantIDs: []string{"487f4be7-3fd9-4506-a07a-eae252180c08"},
+		wantIDs:                []string{"487f4be7-3fd9-4506-a07a-eae252180c08"},
+		isCustomSecretsRegexes: false,
 	},
 	{
 		name: "three_queries",
@@ -73,7 +76,8 @@ var testCompileRegexesInput = []struct {
 				RegexStr: `[a-zA-Z]{3,10}://[^/\s:@]*?:[^/\s:@]*?@[^/\s:@]*`,
 			},
 		},
-		wantIDs: []string{"487f4be7-3fd9-4506-a07a-eae252180c08", "4b2b5fd3-364d-4093-bac2-17391b2a5297", "c4d3b58a-e6d4-450f-9340-04f1e702eaae"},
+		wantIDs:                []string{"487f4be7-3fd9-4506-a07a-eae252180c08", "4b2b5fd3-364d-4093-bac2-17391b2a5297", "c4d3b58a-e6d4-450f-9340-04f1e702eaae"},
+		isCustomSecretsRegexes: false,
 	},
 	{
 		name: "include_one",
@@ -102,7 +106,8 @@ var testCompileRegexesInput = []struct {
 				RegexStr: `[a-zA-Z]{3,10}://[^/\s:@]*?:[^/\s:@]*?@[^/\s:@]*`,
 			},
 		},
-		wantIDs: []string{"487f4be7-3fd9-4506-a07a-eae252180c08"},
+		wantIDs:                []string{"487f4be7-3fd9-4506-a07a-eae252180c08"},
+		isCustomSecretsRegexes: false,
 	},
 	{
 		name: "exclude_one",
@@ -131,7 +136,8 @@ var testCompileRegexesInput = []struct {
 				RegexStr: `[a-zA-Z]{3,10}://[^/\s:@]*?:[^/\s:@]*?@[^/\s:@]*`,
 			},
 		},
-		wantIDs: []string{"487f4be7-3fd9-4506-a07a-eae252180c08", "4b2b5fd3-364d-4093-bac2-17391b2a5297"},
+		wantIDs:                []string{"487f4be7-3fd9-4506-a07a-eae252180c08", "4b2b5fd3-364d-4093-bac2-17391b2a5297"},
+		isCustomSecretsRegexes: false,
 	},
 }
 
@@ -489,7 +495,7 @@ func TestEntropyInterval(t *testing.T) {
 
 func TestCompileRegexQueries(t *testing.T) {
 	for _, in := range testCompileRegexesInput {
-		got, err := compileRegexQueries(in.inspectorParams, in.allRegexQueries)
+		got, err := compileRegexQueries(in.inspectorParams, in.allRegexQueries, in.isCustomSecretsRegexes)
 		require.NoError(t, err, "test[%s] compileRegexQueries(%+v, %+v) error", in.name, in.inspectorParams, in.allRegexQueries)
 		require.Len(t,
 			got,
@@ -537,6 +543,7 @@ func TestNewInspector(t *testing.T) {
 			in.disableSecrets,
 			60,
 			in.assetsSecretsQueryRegexRulesJSON,
+			false,
 		)
 		if in.wantErr {
 			require.Error(t,
@@ -587,6 +594,7 @@ func TestInspect(t *testing.T) {
 			false,
 			60,
 			assets.SecretsQueryRegexRulesJSON,
+			false,
 		)
 		require.NoError(t, err, "NewInspector() should not return error")
 

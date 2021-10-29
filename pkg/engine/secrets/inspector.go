@@ -95,9 +95,10 @@ func NewInspector(
 	disableSecretsQuery bool,
 	executionTimeout int,
 	regexRulesContent string,
+	isCustomSecretsRegexes bool,
 ) (*Inspector, error) {
 	excludeSecretsQuery := isValueInArray("a88baa34-e2ad-44ea-ad6f-8cac87bc7c71", queryFilter.ExcludeQueries.ByIDs)
-	if disableSecretsQuery || excludeSecretsQuery {
+	if disableSecretsQuery || excludeSecretsQuery && !isCustomSecretsRegexes {
 		return &Inspector{
 			ctx:                   ctx,
 			tracker:               tracker,
@@ -125,7 +126,7 @@ func NewInspector(
 		return nil, err
 	}
 
-	regexQueries, err := compileRegexQueries(queryFilter, allRegexQueries.Rules)
+	regexQueries, err := compileRegexQueries(queryFilter, allRegexQueries.Rules, isCustomSecretsRegexes)
 	if err != nil {
 		return nil, err
 	}
@@ -178,17 +179,27 @@ func (c *Inspector) Inspect(ctx context.Context, basePaths []string,
 	return c.vulnerabilities, nil
 }
 
-func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQueries []RegexQuery) ([]RegexQuery, error) {
+func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQueries []RegexQuery, isCustom bool) ([]RegexQuery, error) {
 	var regexQueries []RegexQuery
 
+	onlyKicsSecretsRegexes := true
+
+	includeAllSecretsQuery := isValueInArray("a88baa34-e2ad-44ea-ad6f-8cac87bc7c71", queryFilter.IncludeQueries.ByIDs)
+
+	if includeAllSecretsQuery && isCustom { // merge case
+		var kicsRegexQueries RegexRuleStruct
+		err := json.Unmarshal([]byte(assets.SecretsQueryRegexRulesJSON), &kicsRegexQueries)
+		if err != nil {
+			return nil, err
+		}
+		onlyKicsSecretsRegexes = false
+		regexQueries = kicsRegexQueries.Rules
+	}
+
 	for i := range allRegexQueries {
-		if len(queryFilter.IncludeQueries.ByIDs) > 0 {
-			includeAllSecretsQuery := isValueInArray("a88baa34-e2ad-44ea-ad6f-8cac87bc7c71", queryFilter.IncludeQueries.ByIDs)
+		if len(queryFilter.IncludeQueries.ByIDs) > 0 && onlyKicsSecretsRegexes {
 			includeSpecificSecretQuery := isValueInArray(allRegexQueries[i].ID, queryFilter.IncludeQueries.ByIDs)
-			if includeAllSecretsQuery {
-				regexQueries = append(regexQueries, allRegexQueries[i])
-				break
-			} else if includeSpecificSecretQuery {
+			if includeAllSecretsQuery || includeSpecificSecretQuery {
 				regexQueries = append(regexQueries, allRegexQueries[i])
 			}
 		} else {
