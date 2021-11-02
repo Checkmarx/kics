@@ -95,9 +95,9 @@
 				
 				<option value="file19">github.com/Checkmarx/kics/internal/metrics/metrics.go (90.3%)</option>
 				
-				<option value="file20">github.com/Checkmarx/kics/internal/storage/memory.go (94.7%)</option>
+				<option value="file20">github.com/Checkmarx/kics/internal/storage/memory.go (95.2%)</option>
 				
-				<option value="file21">github.com/Checkmarx/kics/internal/tracker/ci.go (78.6%)</option>
+				<option value="file21">github.com/Checkmarx/kics/internal/tracker/ci.go (81.2%)</option>
 				
 				<option value="file22">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (90.4%)</option>
 				
@@ -193,7 +193,7 @@
 				
 				<option value="file68">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (84.9%)</option>
 				
-				<option value="file69">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (71.4%)</option>
+				<option value="file69">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (85.7%)</option>
 				
 				<option value="file70">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (90.9%)</option>
 				
@@ -1000,7 +1000,7 @@ func GenerateReport(path, filename string, body interface{}, formats []string, p
         progressBar := proBarBuilder.BuildCircle("Generating Reports: ")
 
         var err error = nil
-        progressBar.Start()
+        go progressBar.Start()
         defer progressBar.Close()
 
         for _, format := range formats </span><span class="cov5" title="4">{
@@ -2321,7 +2321,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2341,9 +2341,14 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
 import (
         "context"
         "fmt"
+        "sync"
 
         "github.com/Checkmarx/kics/pkg/model"
         "github.com/rs/zerolog/log"
+)
+
+var (
+        memoryMu sync.Mutex
 )
 
 // MemoryStorage is scans' results representation
@@ -2365,6 +2370,8 @@ func (m *MemoryStorage) GetFiles(_ context.Context, _ string) (model.FileMetadat
 
 // SaveVulnerabilities adds a list of vulnerabilities to vulnerabilities collection
 func (m *MemoryStorage) SaveVulnerabilities(_ context.Context, vulnerabilities []model.Vulnerability) error <span class="cov8" title="1">{
+        defer memoryMu.Unlock()
+        memoryMu.Lock()
         m.vulnerabilities = append(m.vulnerabilities, vulnerabilities...)
         return nil
 }</span>
@@ -2417,6 +2424,7 @@ func NewMemoryStorage() *MemoryStorage <span class="cov8" title="1">{
 
 import (
         "fmt"
+        "sync"
 
         "github.com/Checkmarx/kics/internal/constants"
         "github.com/Checkmarx/kics/pkg/model"
@@ -2424,6 +2432,11 @@ import (
 
 // CITracker contains information of how many queries were loaded and executed
 // and how many files were found and executed
+
+var (
+        trackerMu sync.Mutex
+)
+
 type CITracker struct {
         ExecutingQueries   int
         ExecutedQueries    int
@@ -2466,6 +2479,8 @@ func (c *CITracker) TrackQueryExecuting(queryAggregation int) <span class="cov1"
 
 // TrackQueryExecution adds a query executed
 func (c *CITracker) TrackQueryExecution(queryAggregation int) <span class="cov1" title="1">{
+        trackerMu.Lock()
+        defer trackerMu.Unlock()
         c.ExecutedQueries += queryAggregation
 }</span>
 
@@ -2762,7 +2777,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="18">{
-        for _, a := range s </span><span class="cov7" title="39">{
+        for _, a := range s </span><span class="cov7" title="38">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -4549,7 +4564,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -12275,7 +12290,6 @@ func (p *Parser) StringifyContent(content []byte) (string, error) <span class="c
 import (
         "fmt"
         "io"
-        "sync"
 
         "github.com/Checkmarx/kics/internal/constants"
         "github.com/cheggaaa/pb/v3"
@@ -12315,20 +12329,7 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
 }
 
 // Start initializes the Circle Progress Bar
-func (p ProgressBar) Start() <span class="cov1" title="1">{
-        wg := &amp;sync.WaitGroup{}
-        go p.incrementProgress(wg)
-
-        go func() </span><span class="cov0" title="0">{
-                defer func() </span><span class="cov0" title="0">{
-                        wg.Wait()
-                }</span>()
-        }()
-}
-
-func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov0" title="0">{
-        wg.Add(1)
-        defer wg.Done()
+func (p ProgressBar) Start() <span class="cov0" title="0">{
         for </span><span class="cov0" title="0">{ // increment until the Close func is called
                 p.pBar.Increment()
         }</span>
