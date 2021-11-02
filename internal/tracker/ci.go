@@ -2,6 +2,7 @@ package tracker
 
 import (
 	"fmt"
+	"sync"
 
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/model"
@@ -9,6 +10,11 @@ import (
 
 // CITracker contains information of how many queries were loaded and executed
 // and how many files were found and executed
+
+var (
+	trackerMu sync.Mutex
+)
+
 type CITracker struct {
 	ExecutingQueries   int
 	ExecutedQueries    int
@@ -51,6 +57,8 @@ func (c *CITracker) TrackQueryExecuting(queryAggregation int) {
 
 // TrackQueryExecution adds a query executed
 func (c *CITracker) TrackQueryExecution(queryAggregation int) {
+	trackerMu.Lock()
+	defer trackerMu.Unlock()
 	c.ExecutedQueries += queryAggregation
 }
 
