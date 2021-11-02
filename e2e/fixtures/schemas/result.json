@@ -38,7 +38,8 @@
     },
     "queries_failed_to_execute": {
       "type": "integer",
-      "const": 0
+      "minimum": 0,
+      "maximum": 5
     },
     "queries_failed_to_compute_similarity_id": {
       "type": "integer",
@@ -56,7 +57,8 @@
           "platform",
           "files",
           "category",
-          "description"
+          "description",
+          "description_id"
         ],
         "properties": {
           "query_name": {
@@ -102,6 +104,7 @@
                 "line",
                 "issue_type",
                 "search_key",
+                "search_line",
                 "search_value",
                 "expected_value",
                 "actual_value"
@@ -127,33 +130,37 @@
                   "minimum": 1
                 },
                 "issue_type": {
-                  "type": "string",
-                  "enum": [
-                    "IncorrectValue",
-                    "MissingAttribute",
-                    "RedundantAttribute"
-                  ],
-                  "search_key": {
                     "type": "string",
-                    "minLength": 0
-                  },
-                  "search_value": {
-                    "type": "string"
-                  },
-                  "expected_value": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "actual_value": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "value": {
-                    "type": [
-                      "string",
-                      "null"
+                    "enum": [
+                      "IncorrectValue",
+                      "MissingAttribute",
+                      "RedundantAttribute"
                     ]
-                  }
+                  },
+                "search_key": {
+                  "type": "string",
+                  "minLength": 0
+                },
+                "search_line": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "search_value": {
+                  "type": "string"
+                },
+                "expected_value": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "actual_value": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "value": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
                 }
               }
             }
@@ -180,6 +187,10 @@
           "description": {
             "type": "string",
             "minLength": 1
+          },
+          "description_id": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{8}$"
           }
         }
       }
@@ -193,33 +204,29 @@
         "HIGH",
         "MEDIUM",
         "LOW",
-        "INFO"
+        "INFO",
+        "TRACE"
       ],
       "properties": {
         "HIGH": {
           "type": "integer",
           "minimum": 0
         },
-        "search_key": {
-          "type": "string",
-          "minLength": 0
+        "MEDIUM": {
+          "type": "integer",
+          "minimum": 0
         },
-        "search_value": {
-          "type": "string"
+        "LOW": {
+          "type": "integer",
+          "minimum": 0
         },
-        "expected_value": {
-          "type": "string",
-          "minLength": 1
+        "INFO": {
+          "type": "integer",
+          "minimum": 0
         },
-        "actual_value": {
-          "type": "string",
-          "minLength": 1
-        },
-        "value": {
-          "type": [
-            "string",
-            "null"
-          ]
+        "TRACE": {
+          "type": "integer",
+          "minimum": 0
         }
       }
     },

@@ -20,7 +20,31 @@
   {
     "queryName": "PostgreSQL Database Server Log Connections Disabled",
     "severity": "MEDIUM",
-    "line": 42,
+    "line": 43,
     "fileName": "positive4.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Connections Disabled",
+    "severity": "MEDIUM",
+    "line": 42,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Connections Disabled",
+    "severity": "MEDIUM",
+    "line": 47,
+    "fileName": "positive6.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Connections Disabled",
+    "severity": "MEDIUM",
+    "line": 46,
+    "fileName": "positive7.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Connections Disabled",
+    "severity": "MEDIUM",
+    "line": 45,
+    "fileName": "positive8.json"
   }
 ]

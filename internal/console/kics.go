@@ -9,6 +9,8 @@ import (
 	"github.com/Checkmarx/kics/internal/console/flags"
 	"github.com/Checkmarx/kics/internal/console/printer"
 	"github.com/Checkmarx/kics/internal/constants"
+	sentryReport "github.com/Checkmarx/kics/internal/sentry"
+	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/getsentry/sentry-go"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -46,7 +48,12 @@ func initialize(rootCmd *cobra.Command) error {
 	rootCmd.AddCommand(NewListPlatformsCmd())
 	rootCmd.CompletionOptions.DisableDefaultCmd = true
 
-	if err := flags.InitJSONFlags(rootCmd, kicsFlagsListContent, true); err != nil {
+	if err := flags.InitJSONFlags(
+		rootCmd,
+		kicsFlagsListContent,
+		true,
+		source.ListSupportedPlatforms(),
+		source.ListSupportedCloudProviders()); err != nil {
 		return err
 	}
 
@@ -66,16 +73,20 @@ func Execute() error {
 	rootCmd := NewKICSCmd()
 
 	if err := initialize(rootCmd); err != nil {
-		sentry.CaptureException(err)
-		log.Err(err).Msg("Failed to initialize CLI")
+		sentryReport.ReportSentry(&sentryReport.Report{
+			Message:  "Failed to initialize CLI",
+			Err:      err,
+			Location: "func Execute()",
+		}, true)
 		return err
 	}
 
 	if err := rootCmd.ExecuteContext(ctx); err != nil {
-		sentry.CaptureException(err)
-		if printer.IsInitialized() {
-			log.Err(err).Msg("Failed to run application")
-		}
+		sentryReport.ReportSentry(&sentryReport.Report{
+			Message:  "Failed to run application",
+			Err:      err,
+			Location: "func Execute()",
+		}, printer.IsInitialized())
 		return err
 	}
 

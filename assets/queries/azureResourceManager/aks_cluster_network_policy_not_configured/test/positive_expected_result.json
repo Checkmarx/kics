@@ -10,5 +10,17 @@
     "severity": "MEDIUM",
     "line": 37,
     "filename": "positive2.json"
+  },
+  {
+    "queryName": "AKS Cluster Network Policy Not Configured",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "AKS Cluster Network Policy Not Configured",
+    "severity": "MEDIUM",
+    "line": 39,
+    "filename": "positive4.json"
   }
 ]

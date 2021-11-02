@@ -11,7 +11,7 @@ require (
 	github.com/golang/mock v1.6.0
 	github.com/google/pprof v0.0.0-20210720184732-4bb14d4b1be1
 	github.com/google/uuid v1.3.0
-	github.com/gookit/color v1.4.2
+	github.com/gookit/color v1.5.0
 	github.com/hashicorp/go-getter v1.5.9
 	github.com/hashicorp/hcl v1.0.0
 	github.com/hashicorp/hcl/v2 v2.10.1
@@ -28,7 +28,7 @@ require (
 	github.com/spf13/viper v1.9.0
 	github.com/stretchr/testify v1.7.0
 	github.com/tdewolff/minify/v2 v2.9.22
-	github.com/tidwall/gjson v1.9.4
+	github.com/tidwall/gjson v1.11.0
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/zclconf/go-cty v1.9.1
 	golang.org/x/net v0.0.0-20210825183410-e898025ed96a

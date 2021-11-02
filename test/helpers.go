@@ -204,4 +204,7 @@ var ComplexSummaryMock = model.Summary{
 		},
 		TotalCounter: 3,
 	},
+	LatestVersion: model.Version{
+		Latest: true,
+	},
 }

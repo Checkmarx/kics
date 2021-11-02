@@ -1,0 +1,34 @@
+{
+  "properties": {
+    "template": {
+      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+      "contentVersion": "2.0.0.0",
+      "apiProfile": "2019-03-01-hybrid",
+      "parameters": {},
+      "variables": {},
+      "functions": [],
+      "resources": [
+        {
+          "name": "webSite",
+          "type": "Microsoft.Web/sites",
+          "apiVersion": "2020-12-01",
+          "location": "location1",
+          "tags": {},
+          "properties": {
+            "enabled": true,
+            "httpsOnly": true,
+            "siteConfig": {
+              "http20Enabled": false
+            }
+          },
+          "resources": []
+        }
+      ],
+      "outputs": {}
+    },
+    "parameters": {}
+  },
+  "kind": "template",
+  "type": "Microsoft.Blueprint/blueprints/artifacts",
+  "name": "myTemplate"
+}

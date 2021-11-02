@@ -1,0 +1,100 @@
+{
+  "properties": {
+    "template": {
+      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "projectName": {
+          "type": "string",
+          "metadata": {
+            "description": "Specifies a name for generating resource names."
+          }
+        },
+        "location": {
+          "type": "string",
+          "defaultValue": "[resourceGroup().location]",
+          "metadata": {
+            "description": "Specifies the location for all resources."
+          }
+        },
+        "adminUsername": {
+          "type": "string",
+          "metadata": {
+            "description": "Specifies a username for the Virtual Machine."
+          }
+        },
+        "adminPublicKey": {
+          "type": "string",
+          "metadata": {
+            "description": "Specifies the SSH rsa public key file as a string. Use \"ssh-keygen -t rsa -b 2048\" to generate your SSH key pairs."
+          }
+        },
+        "vmSize": {
+          "type": "string",
+          "defaultValue": "Standard_D2s_v3",
+          "metadata": {
+            "description": "description"
+          }
+        }
+      },
+      "variables": {
+        "vmName": "[concat(parameters('projectName'), '-vm')]",
+        "networkInterfaceName": "[concat(parameters('projectName'), '-nic')]"
+      },
+      "resources": [
+        {
+          "type": "Microsoft.Compute/virtualMachines",
+          "apiVersion": "2021-03-01",
+          "name": "[variables('vmName')]",
+          "location": "[parameters('location')]",
+          "dependsOn": [
+            "[resourceId('Microsoft.Network/networkInterfaces', variables('networkInterfaceName'))]"
+          ],
+          "properties": {
+            "hardwareProfile": {
+              "vmSize": "[parameters('vmSize')]"
+            },
+            "osProfile": {
+              "computerName": "[variables('vmName')]",
+              "adminUsername": "[parameters('adminUsername')]",
+              "linuxConfiguration": {
+                "disablePasswordAuthentication": true,
+                "ssh": {
+                  "publicKeys": [
+                    {
+                      "path": "[concat('/home/', parameters('adminUsername'), '/.ssh/authorized_keys')]",
+                      "keyData": "[parameters('adminPublicKey')]"
+                    }
+                  ]
+                }
+              }
+            },
+            "storageProfile": {
+              "imageReference": {
+                "publisher": "Canonical",
+                "offer": "UbuntuServer",
+                "sku": "18.04-LTS",
+                "version": "latest"
+              },
+              "osDisk": {
+                "createOption": "fromImage"
+              }
+            },
+            "networkProfile": {
+              "networkInterfaces": [
+                {
+                  "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('networkInterfaceName'))]"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "outputs": {}
+    },
+    "parameters": {}
+  },
+  "kind": "template",
+  "type": "Microsoft.Blueprint/blueprints/artifacts",
+  "name": "myTemplate"
+}

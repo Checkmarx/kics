@@ -1,0 +1,48 @@
+{
+  "properties": {
+    "template": {
+      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+      "contentVersion": "2.0.0.0",
+      "apiProfile": "2019-03-01-hybrid",
+      "parameters": {},
+      "variables": {},
+      "functions": [],
+      "resources": [
+        {
+          "name": "securitygroup",
+          "type": "Microsoft.Network/networkSecurityGroups",
+          "apiVersion": "2020-11-01",
+          "location": "location1",
+          "tags": {},
+          "properties": {},
+          "resources": [
+            {
+              "type": "securityRules",
+              "apiVersion": "2020-11-01",
+              "properties": {
+                "description": "access",
+                "protocol": "Tcp",
+                "sourcePortRange": "*",
+                "destinationPortRanges": [
+                  "6634"
+                ],
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 100,
+                "direction": "Inbound"
+              },
+              "name": "sr"
+            }
+
+          ]
+        }
+      ],
+      "outputs": {}
+    },
+    "parameters": {}
+  },
+  "kind": "template",
+  "type": "Microsoft.Blueprint/blueprints/artifacts",
+  "name": "myTemplate"
+}

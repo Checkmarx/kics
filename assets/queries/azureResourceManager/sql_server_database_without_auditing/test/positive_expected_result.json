@@ -10,5 +10,17 @@
     "severity": "MEDIUM",
     "line": 22,
     "filename": "positive2.json"
+  },
+  {
+    "queryName": "SQL Server Database Without Auditing",
+    "severity": "MEDIUM",
+    "line": 24,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "SQL Server Database Without Auditing",
+    "severity": "MEDIUM",
+    "line": 24,
+    "filename": "positive4.json"
   }
 ]

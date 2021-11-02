@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "BOM - MSK",
+    "severity": "TRACE",
+    "line": 84,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "BOM - MSK",
+    "severity": "TRACE",
+    "line": 84,
+    "fileName": "positive2.tf"
+  }
+]

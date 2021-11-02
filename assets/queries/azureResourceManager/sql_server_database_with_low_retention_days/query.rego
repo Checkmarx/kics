@@ -20,6 +20,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'auditingSettings.properties.retentionDays' is defined and above 90 days",
 		"keyActualValue": "'auditingSettings.properties.retentionDays' is missing",
+		"searchLine": common_lib.build_search_line(path, ["properties"]),
 	}
 }
 
@@ -39,5 +40,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'auditingSettings.properties.retentionDays' is defined and above 90 days",
 		"keyActualValue": sprintf("'auditingSettings.properties.retentionDays' is %d", [properties.retentionDays]),
+		"searchLine": common_lib.build_search_line(path, ["properties", "retentionDays"]),
 	}
 }

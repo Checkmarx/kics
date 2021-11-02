@@ -122,6 +122,7 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 	log.Info().Msgf("Queries failed to execute: %d", summary.FailedToExecuteQueries)
 	log.Info().Msg("Inspector stopped")
 
+	summary.PrintVersionCheck()
 	return nil
 }
 
@@ -213,7 +214,7 @@ func GenerateReport(path, filename string, body interface{}, formats []string, p
 	progressBar := proBarBuilder.BuildCircle("Generating Reports: ")
 
 	var err error = nil
-	progressBar.Start()
+	go progressBar.Start()
 	defer progressBar.Close()
 
 	for _, format := range formats {

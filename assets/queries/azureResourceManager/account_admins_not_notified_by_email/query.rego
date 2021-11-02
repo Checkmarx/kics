@@ -1,6 +1,6 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	types := ["Microsoft.Sql/servers/databases/securityAlertPolicies", "securityAlertPolicies"]
@@ -15,10 +15,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s.name={{%s}}.properties.emailAccountAdmins", [commonLib.concat_path(path), value.name]),
+		"searchKey": sprintf("%s.name={{%s}}.properties.emailAccountAdmins", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "securityAlertPolicies.properties.emailAccountAdmins is set to true",
 		"keyActualValue": "securityAlertPolicies.properties.emailAccountAdmins is set to false",
+		"searchLine": common_lib.build_search_line(path, ["properties", "emailAccountAdmins"]),
 	}
 }
 
@@ -31,13 +32,14 @@ CxPolicy[result] {
 
 	properties := value.properties
 	lower(properties.state) == "enabled"
-	not commonLib.valid_key(properties, "emailAccountAdmins")
+	not common_lib.valid_key(properties, "emailAccountAdmins")
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s.name={{%s}}.properties", [commonLib.concat_path(path), value.name]),
+		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "securityAlertPolicies.properties.emailAccountAdmins is set to true",
 		"keyActualValue": "securityAlertPolicies.properties.emailAccountAdmins is missing",
+		"searchLine": common_lib.build_search_line(path, ["properties"]),
 	}
 }

@@ -33,7 +33,10 @@ func Test_E2E_CLI(t *testing.T) {
 				out, err := utils.RunCommand(append(kicsPath, tt.Args.Args[arg]...))
 				// Check command Error
 				require.NoError(t, err, "Capture CLI output should not yield an error")
-				// Check exit status code
+
+				// Check exit status code (required)
+				require.True(t, arg < len(tt.WantStatus),
+					"No status code associated to this test. Check the wantStatus of the test case.")
 				require.Equalf(t, out.Status, tt.WantStatus[arg],
 					"Actual KICS status code: %v\nExpected KICS status code: %v",
 					out.Status, tt.WantStatus[arg])
@@ -100,6 +103,10 @@ func checkExpectedOutput(t *testing.T, tt *testcases.TestCase, argIndex int) {
 	// Check result file (JSON)
 	if utils.Contains(resultsFormats, "json") {
 		utils.JSONSchemaValidation(t, jsonFileName, "result.json")
+	}
+	// Check result file (JSON including BoM)
+	if utils.Contains(resultsFormats, "json-bom") {
+		utils.JSONSchemaValidation(t, jsonFileName, "resultBoM.json")
 	}
 	// Check result file (GLSAST)
 	if utils.Contains(resultsFormats, "glsast") {

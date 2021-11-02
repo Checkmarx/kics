@@ -13,10 +13,12 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": "resources.type={{Microsoft.KeyVault/vaults}}.properties",
+		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("resource with type 'Microsoft.KeyVault/vaults' has '%s' property defined", [fields[x]]),
 		"keyActualValue": sprintf("resource with type 'Microsoft.KeyVault/vaults' doesn't have '%s' property defined", [fields[x]]),
+		"searchLine": common_lib.build_search_line(path, ["properties"]),
+
 	}
 }
 
@@ -31,9 +33,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.type={{Microsoft.KeyVault/vaults}}.properties.%s", [fields[x]]),
+		"searchKey": sprintf("%s.name={{%s}}.properties.%s", [common_lib.concat_path(path), value.name, fields[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource with type 'Microsoft.KeyVault/vaults' has '%s' property set to true", [fields[x]]),
 		"keyActualValue": sprintf("resource with type 'Microsoft.KeyVault/vaults' doesn't have '%s' property set to true", [fields[x]]),
+		"searchLine": common_lib.build_search_line(path, ["properties", fields[x]]),
 	}
 }

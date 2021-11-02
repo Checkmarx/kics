@@ -19,7 +19,7 @@ func TestParser_Parse(t *testing.T) {
 		if _, ok := parser.extensions[".json"]; !ok {
 			continue
 		}
-		docs, kind, err := parser.Parse("test.json", []byte(`
+		docs, err := parser.Parse("test.json", []byte(`
 {
 	"martin": {
 		"name": "CxBraga"
@@ -27,38 +27,38 @@ func TestParser_Parse(t *testing.T) {
 }
 `))
 		require.NoError(t, err)
-		require.Len(t, docs, 1)
-		require.Contains(t, docs[0], "martin")
-		require.Equal(t, model.KindJSON, kind)
+		require.Len(t, docs.Docs, 1)
+		require.Contains(t, docs.Docs[0], "martin")
+		require.Equal(t, model.KindJSON, docs.Kind)
 	}
 
 	for _, parser := range p {
 		if _, ok := parser.extensions[".yaml"]; !ok {
 			continue
 		}
-		docs, kind, err := parser.Parse("test.yaml", []byte(`
+		docs, err := parser.Parse("test.yaml", []byte(`
 martin:
   name: CxBraga
 `))
 		require.NoError(t, err)
-		require.Len(t, docs, 1)
-		require.Contains(t, docs[0], "martin")
-		require.Equal(t, model.KindYAML, kind)
+		require.Len(t, docs.Docs, 1)
+		require.Contains(t, docs.Docs[0], "martin")
+		require.Equal(t, model.KindYAML, docs.Kind)
 	}
 
 	for _, parser := range p {
 		if _, ok := parser.extensions[".dockerfile"]; !ok {
 			continue
 		}
-		docs, kind, err := parser.Parse("Dockerfile", []byte(`
+		docs, err := parser.Parse("Dockerfile", []byte(`
 FROM foo
 COPY . /
 RUN echo hello
 `))
 
 		require.NoError(t, err)
-		require.Len(t, docs, 1)
-		require.Equal(t, model.KindDOCKER, kind)
+		require.Len(t, docs.Docs, 1)
+		require.Equal(t, model.KindDOCKER, docs.Kind)
 	}
 }
 
@@ -70,9 +70,9 @@ func TestParser_Empty(t *testing.T) {
 		t.Errorf("Error building parser: %s", err)
 	}
 	for _, parser := range p {
-		doc, kind, err := parser.Parse("test.json", nil)
-		require.Nil(t, doc)
-		require.Equal(t, model.FileKind(""), kind)
+		docs, err := parser.Parse("test.json", nil)
+		require.Nil(t, docs.Docs)
+		require.Equal(t, model.FileKind(""), docs.Kind)
 		require.Error(t, err)
 		require.Equal(t, ErrNotSupportedFile, err)
 	}

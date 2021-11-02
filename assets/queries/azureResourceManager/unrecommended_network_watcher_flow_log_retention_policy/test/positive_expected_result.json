@@ -34,5 +34,41 @@
     "severity": "MEDIUM",
     "line": 15,
     "fileName": "positive4.json"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "MEDIUM",
+    "line": 22,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "MEDIUM",
+    "line": 23,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "MEDIUM",
+    "line": 21,
+    "fileName": "positive6.json"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "MEDIUM",
+    "line": 22,
+    "fileName": "positive6.json"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive7.json"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive8.json"
   }
 ]

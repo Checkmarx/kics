@@ -17,6 +17,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'apiVersion' is '2019-02-01' or newer",
 		"keyActualValue": sprintf("'apiVersion' is %s", [value.apiVersion]),
+		"searchLine": common_lib.build_search_line(path, ["apiVersion"]),
 	}
 }
 
@@ -38,6 +39,7 @@ CxPolicy[result] {
 		"issueType": issue.issueType,
 		"keyExpectedValue": "'apiServerAuthorizedIPRanges' is a defined as an array",
 		"keyActualValue": issue.keyActualValue,
+		"searchLine": common_lib.build_search_line(path, issue.sl),
 	}
 }
 
@@ -61,6 +63,7 @@ CxPolicy[result] {
 		"issueType": issue.issueType,
 		"keyExpectedValue": "'apiServerAccessProfile.authorizedIPRanges' is defined as an array",
 		"keyActualValue": issue.keyActualValue,
+		"searchLine": common_lib.build_search_line(path, issue.sl),
 	}
 }
 
@@ -96,12 +99,14 @@ prepare_issue_old_api(resource) = issue {
 		"issueType": "IncorrectValue",
 		"keyActualValue": "'apiServerAuthorizedIPRanges' is empty",
 		"sk": ".properties.apiServerAuthorizedIPRanges",
+		"sl": ["properties", "apiServerAuthorizedIPRanges"],
 	}
 } else = issue {
 	issue := {
 		"issueType": "MissingAttribute",
 		"keyActualValue": "'apiServerAuthorizedIPRanges' is undefined",
 		"sk": "",
+		"sl": ["name"],
 	}
 }
 
@@ -112,11 +117,13 @@ prepare_issue_new_api(value) = issue {
 		"issueType": "IncorrectValue",
 		"keyActualValue": "'apiServerAccessProfile.authorizedIPRanges' is empty",
 		"sk": ".properties.apiServerAccessProfile.authorizedIPRanges",
+		"sl": ["properties", "apiServerAuthorizedIPRanges", "authorizedIPRanges"],
 	}
 } else = issue {
 	issue := {
 		"issueType": "MissingAttribute",
 		"keyActualValue": "'apiServerAccessProfile.authorizedIPRanges' is undefined",
 		"sk": "",
+		"sl": ["name"],
 	}
 }

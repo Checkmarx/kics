@@ -10,5 +10,17 @@
     "severity": "HIGH",
     "line": 40,
     "filename": "positive2.json"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "HIGH",
+    "line": 55,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "HIGH",
+    "line": 42,
+    "filename": "positive4.json"
   }
 ]

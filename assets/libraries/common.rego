@@ -341,5 +341,8 @@ get_tag_name_if_exists(resource) = name {
 get_encryption_if_exists(resource) = encryption {
 	encryption := resource.encrypted
 } else = encryption {
+	valid_key(resource.encryption_info, "encryption_at_rest_kms_key_arn")
+	encryption := "encrypted"
+} else = encryption {
 	encryption := "unencrypted"
 }

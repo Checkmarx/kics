@@ -16,5 +16,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'pricingTier' is set to standard",
 		"keyActualValue": sprintf("'pricingTier' is set to %s", [value.properties.pricingTier]),
+		"searchLine": common_lib.build_search_line(path, ["properties", "pricingTier"]),
+
 	}
 }

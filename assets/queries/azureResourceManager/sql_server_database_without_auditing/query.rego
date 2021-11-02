@@ -26,5 +26,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("resource '%s' has an enabled 'auditingsettings' resource", [value.name]),
 		"keyActualValue": sprintf("resource '%s' is missing an enabled 'auditingsettings' resource", [value.name]),
+		"searchLine": common_lib.build_search_line(path, ["name"]),
 	}
 }

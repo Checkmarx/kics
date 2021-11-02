@@ -335,13 +335,11 @@ func TestInspect(t *testing.T) { //nolint
 			}
 		})
 
-		go func() {
-			defer func() {
-				close(currentQuery)
-			}()
-			wg.Wait()
+		defer func() {
+			close(currentQuery)
 		}()
 	}
+	wg.Wait()
 }
 
 // TestNewInspector tests the functions [NewInspector()] and all the methods called by them

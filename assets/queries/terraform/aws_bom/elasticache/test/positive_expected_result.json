@@ -10,5 +10,29 @@
     "severity": "TRACE",
     "line": 1,
     "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "BOM - AWS Elasticache",
+    "severity": "TRACE",
+    "line": 33,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "BOM - AWS Elasticache",
+    "severity": "TRACE",
+    "line": 33,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "BOM - AWS Elasticache",
+    "severity": "TRACE",
+    "line": 13,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "BOM - AWS Elasticache",
+    "severity": "TRACE",
+    "line": 13,
+    "fileName": "positive6.tf"
   }
 ]

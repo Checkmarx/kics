@@ -182,7 +182,10 @@ func TestInspectorSimilarityID(t *testing.T) {
 func getTestQueryID(params *testCaseParamsType) string {
 	var testQueryID string
 	if params.queryID == "" {
-		metadata := source.ReadMetadata(params.queryDir)
+		metadata, err := source.ReadMetadata(params.queryDir)
+		if err != nil {
+			return ""
+		}
 		v := metadata["id"]
 		testQueryID = v.(string)
 	} else {
@@ -259,7 +262,8 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 
 	queriesSource.EXPECT().GetQueries(getQueryFilter()).
 		DoAndReturn(func(interface{}) ([]model.QueryMetadata, error) {
-			metadata := source.ReadMetadata(testParams.queryDir)
+			metadata, err := source.ReadMetadata(testParams.queryDir)
+			require.NoError(t, err)
 
 			// Override metadata ID with custom QueryID for testing
 			if testParams.queryID() != metadata["id"] {

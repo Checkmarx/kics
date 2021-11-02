@@ -10,5 +10,17 @@
     "severity": "HIGH",
     "line": 14,
     "filename": "positive2.json"
+  },
+  {
+    "queryName": "SQL Database Server Firewall Allows All IPS",
+    "severity": "HIGH",
+    "line": 33,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "SQL Database Server Firewall Allows All IPS",
+    "severity": "HIGH",
+    "line": 16,
+    "filename": "positive4.json"
   }
 ]

@@ -2,12 +2,19 @@ package tracker
 
 import (
 	"fmt"
+	"sync"
 
 	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/pkg/model"
 )
 
 // CITracker contains information of how many queries were loaded and executed
 // and how many files were found and executed
+
+var (
+	trackerMu sync.Mutex
+)
+
 type CITracker struct {
 	ExecutingQueries   int
 	ExecutedQueries    int
@@ -18,6 +25,7 @@ type CITracker struct {
 	ScanSecrets        int
 	ScanPaths          int
 	lines              int
+	Version            model.Version
 }
 
 // NewTracker will create a new instance of a tracker with the number of lines to display in results output
@@ -49,6 +57,8 @@ func (c *CITracker) TrackQueryExecuting(queryAggregation int) {
 
 // TrackQueryExecution adds a query executed
 func (c *CITracker) TrackQueryExecution(queryAggregation int) {
+	trackerMu.Lock()
+	defer trackerMu.Unlock()
 	c.ExecutedQueries += queryAggregation
 }
 
@@ -72,10 +82,17 @@ func (c *CITracker) FailedComputeSimilarityID() {
 	c.FailedSimilarityID++
 }
 
+// TrackScanSecret - add to secrets scanned
 func (c *CITracker) TrackScanSecret() {
 	c.ScanSecrets++
 }
 
+// TrackScanPath - paths to preform scan
 func (c *CITracker) TrackScanPath() {
 	c.ScanPaths++
+}
+
+// TrackVersion - information if current version is latest
+func (c *CITracker) TrackVersion(retrievedVersion model.Version) {
+	c.Version = retrievedVersion
 }

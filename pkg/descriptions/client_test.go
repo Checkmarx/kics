@@ -103,3 +103,30 @@ func TestClient_post(t *testing.T) {
 	require.NotNil(t, response, "post() should return a response")
 	require.Equal(t, 200, response.StatusCode, "post() should return a 200 response")
 }
+
+func TestClient_CheckLatestVersion(t *testing.T) {
+	os.Setenv("KICS_DESCRIPTIONS_ENDPOINT", "http://example.com")
+	HTTPRequestClient = &mockclient.MockHTTPClient{}
+	mockclient.GetDoFunc = func(request *http.Request) (*http.Response, error) {
+		if request.Method == http.MethodGet {
+			r := ioutil.NopCloser(bytes.NewReader([]byte("KICS DESCRIPTIONS API")))
+			return &http.Response{
+				StatusCode: 200,
+				Body:       r,
+			}, nil
+		}
+
+		r := ioutil.NopCloser(bytes.NewReader([]byte(responseJSON)))
+		return &http.Response{
+			StatusCode: 200,
+			Body:       r,
+		}, nil
+	}
+	descClient := Client{}
+	version, err := descClient.CheckLatestVersion("1.4.0")
+	require.NoError(t, err, "CheckLatestVersion() should not return an error")
+	require.NotNil(t, version, "CheckLatestVersion() should return a version check")
+	t.Cleanup(func() {
+		os.Setenv("KICS_DESCRIPTIONS_ENDPOINT", "")
+	})
+}

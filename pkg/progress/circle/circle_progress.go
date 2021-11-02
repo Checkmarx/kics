@@ -3,7 +3,6 @@ package circle
 import (
 	"fmt"
 	"io"
-	"sync"
 
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/cheggaaa/pb/v3"
@@ -44,19 +43,6 @@ func NewProgressBar(label string, silent bool) ProgressBar {
 
 // Start initializes the Circle Progress Bar
 func (p ProgressBar) Start() {
-	wg := &sync.WaitGroup{}
-	go p.incrementProgress(wg)
-
-	go func() {
-		defer func() {
-			wg.Wait()
-		}()
-	}()
-}
-
-func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) {
-	wg.Add(1)
-	defer wg.Done()
 	for { // increment until the Close func is called
 		p.pBar.Increment()
 	}
