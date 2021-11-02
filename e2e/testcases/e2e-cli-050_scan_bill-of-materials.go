@@ -16,7 +16,7 @@ func init() { //nolint
 			ExpectedResult: []ResultsValidation{
 				{
 					ResultsFile:    "results",
-					ResultsFormats: []string{"json"},
+					ResultsFormats: []string{"json-bom"},
 				},
 			},
 		},
