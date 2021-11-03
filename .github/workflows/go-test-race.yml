@@ -41,7 +41,7 @@ jobs:
           go mod vendor
       - name: Test and Generate Report
         run: |
-          go test -race -timeout 1200s -mod=vendor -v $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
+          go test -race -timeout 3600s -mod=vendor -v $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
           result_code=${PIPESTATUS[0]}
           exit $result_code
       - name: Archive test logs
