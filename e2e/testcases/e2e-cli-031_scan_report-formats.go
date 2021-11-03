@@ -8,7 +8,7 @@ func init() { //nolint
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "--output-path", "output", "--output-name", "E2E_CLI_031_RESULT",
-					"--report-formats", "json,sarif,glsast,html",
+					"--report-formats", "json,SARIF,glsast,Html",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
 			},
 			ExpectedResult: []ResultsValidation{

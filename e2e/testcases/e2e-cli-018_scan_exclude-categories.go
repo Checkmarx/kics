@@ -9,12 +9,9 @@ func init() { //nolint
 			Args: []cmdArgs{
 				[]string{"scan", "--exclude-categories", "Observability,Insecure Configurations", "-s",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
-
-				[]string{"scan", "-s",
-					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 			},
 		},
-		WantStatus: []int{20, 40},
+		WantStatus: []int{20},
 	}
 
 	Tests = append(Tests, testSample)
