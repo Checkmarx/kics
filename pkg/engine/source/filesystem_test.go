@@ -636,3 +636,46 @@ func TestReadInputData(t *testing.T) {
 		})
 	}
 }
+
+func TestSource_validateMetadata(t *testing.T) {
+	tests := []struct {
+		name         string
+		metadata     map[string]interface{}
+		wantValid    bool
+		wantInvField string
+	}{
+		{
+			name: "valid metadata test case",
+			metadata: map[string]interface{}{
+				"id":       "1234",
+				"platform": "terraform",
+			},
+			wantValid:    true,
+			wantInvField: "platform",
+		},
+		{
+			name: "invalid metadata platform test case",
+			metadata: map[string]interface{}{
+				"id": "1234",
+			},
+			wantValid:    false,
+			wantInvField: "platform",
+		},
+		{
+			name: "invalid metadata id test case",
+			metadata: map[string]interface{}{
+				"platform": "terraform",
+			},
+			wantValid:    false,
+			wantInvField: "id",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			valid, invField := validateMetadata(tt.metadata)
+			require.Equal(t, tt.wantValid, valid)
+			require.Equal(t, tt.wantInvField, invField)
+		})
+	}
+}
