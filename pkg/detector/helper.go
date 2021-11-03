@@ -27,30 +27,40 @@ func GetBracketValues(expr string, list [][]string, restOfString string) [][]str
 	var tempList []string
 	firstOpen := strings.Index(expr, "{{")
 	firstClose := strings.Index(expr, "}}")
+	for firstOpen > firstClose && firstClose != -1 {
+		firstClose = strings.Index(expr[firstOpen:], "}}") + firstOpen
+	}
 	// in case we have '}}}' we need to advance one position to get the close
 	for firstClose+2 < len(expr) && string(expr[firstClose+2]) == `}` && firstClose != -1 {
 		firstClose++
 	}
-	switchVal := firstClose - firstOpen
-	if switchVal == 0 { // if there is no "{{" and no "}}"
-		if expr != "" {
+
+	switch t := firstClose - firstOpen; t >= 0 {
+	case true:
+		if t == 0 && expr != "" {
 			tempList = append(tempList, fmt.Sprintf("{{%s}}", expr), expr)
 			list = append(list, tempList)
 		}
-		if restOfString == "" {
+		if t == 0 && restOfString == "" {
 			return list // if there is no more string to read from return value of list
 		}
-		list = GetBracketValues(restOfString, list, "") // recursive call to the rest of the string
-	} else if switchVal > 0 { // if the position of  the first "}}" is bigger than than the position of "{{"
-		// recursive with the value inside of curly brackets
-		list = GetBracketValues(expr[firstOpen+2:firstClose], list, expr[firstClose+2:])
-	} else { // if the position of  the first "{{" is bigger than than the position of "}}"
+		if t > 0 {
+			list = GetBracketValues(expr[firstOpen+2:firstClose], list, expr[firstClose+2:])
+		} else {
+			list = GetBracketValues(restOfString, list, "") // recursive call to the rest of the string
+		}
+	case false:
 		nextClose := strings.Index(restOfString, "}}")
-		tempList = append(tempList, fmt.Sprintf("{{%s%s}}", expr, restOfString[nextClose:]),
-			fmt.Sprintf("%s%s", expr, restOfString[nextClose:]))
+		tempNextClose := nextClose + 2
+		if tempNextClose == len(restOfString) {
+			tempNextClose = nextClose
+		}
+		tempList = append(tempList, fmt.Sprintf("{{%s}}%s}}", expr, restOfString[:tempNextClose]),
+			fmt.Sprintf("%s}}%s", expr, restOfString[:tempNextClose]))
 		list = append(list, tempList)
 		list = GetBracketValues(restOfString[nextClose+2:], list, "") // recursive call to the rest of the string
 	}
+
 	return list
 }
 
