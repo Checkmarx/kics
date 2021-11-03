@@ -69,7 +69,7 @@
 				
 				<option value="file6">github.com/Checkmarx/kics/internal/console/helpers/exit_handler.go (100.0%)</option>
 				
-				<option value="file7">github.com/Checkmarx/kics/internal/console/helpers/helpers.go (82.5%)</option>
+				<option value="file7">github.com/Checkmarx/kics/internal/console/helpers/helpers.go (82.7%)</option>
 				
 				<option value="file8">github.com/Checkmarx/kics/internal/console/kics.go (79.4%)</option>
 				
@@ -1004,6 +1004,7 @@ func GenerateReport(path, filename string, body interface{}, formats []string, p
         defer progressBar.Close()
 
         for _, format := range formats </span><span class="cov5" title="4">{
+                format = strings.ToLower(format)
                 if err = reportGenerators[format](path, filename, body); err != nil </span><span class="cov1" title="1">{
                         log.Error().Msgf("Failed to generate %s report", format)
                         break</span>
@@ -1698,6 +1699,7 @@ import (
         "os"
         "os/signal"
         "path/filepath"
+        "strings"
         "syscall"
 
         "github.com/Checkmarx/kics/internal/console/flags"
@@ -1792,7 +1794,7 @@ func run(cmd *cobra.Command) error <span class="cov6" title="7">{
 
 func updateReportFormats() <span class="cov1" title="1">{
         for _, format := range flags.GetMultiStrFlag(flags.ReportFormatsFlag) </span><span class="cov1" title="1">{
-                if format == "all" </span><span class="cov0" title="0">{
+                if strings.EqualFold(format, "all") </span><span class="cov0" title="0">{
                         flags.SetMultiStrFlag(flags.ReportFormatsFlag, consoleHelpers.ListReportFormats())
                         break</span>
                 }
@@ -2290,13 +2292,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="37">total += v
+                <span class="cov8" title="31">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2321,7 +2323,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2777,7 +2779,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="18">{
-        for _, a := range s </span><span class="cov7" title="39">{
+        for _, a := range s </span><span class="cov7" title="38">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
