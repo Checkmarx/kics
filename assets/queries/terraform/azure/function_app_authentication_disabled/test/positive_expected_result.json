@@ -1,13 +1,13 @@
 [
   {
     "queryName": "Function App Authentication Disabled",
-    "severity": "INFO",
+    "severity": "HIGH",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "Function App Authentication Disabled",
-    "severity": "INFO",
+    "severity": "HIGH",
     "line": 10,
     "fileName": "positive2.tf"
   }
