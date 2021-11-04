@@ -1,4 +1,4 @@
-resource "azurerm_app_service" "positive3" {
+resource "azurerm_app_service" "negative" {
   name                = "example-app-service"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
@@ -7,6 +7,6 @@ resource "azurerm_app_service" "positive3" {
   site_config {
     dotnet_framework_version = "v4.0"
     scm_type                 = "LocalGit"
-    ftps_state = "AllAllowed"
+    ftps_state = "Disabled"
   }
 }
