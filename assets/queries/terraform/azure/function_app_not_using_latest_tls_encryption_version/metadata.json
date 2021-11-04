@@ -1,0 +1,11 @@
+{
+  "id": "c87749b3-ff10-41f5-9df2-c421e8151759",
+  "queryName": "Function App Not Using Latest TLS Encryption Version",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Ensure Function App is using the latest version of TLS encryption",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/function_app#min_tls_version",
+  "platform": "Terraform",
+  "descriptionID": "37e5ef3f",
+  "cloudProvider": "azure"
+}
