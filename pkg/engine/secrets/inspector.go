@@ -97,7 +97,11 @@ func NewInspector(
 	regexRulesContent string,
 	isCustomSecretsRegexes bool,
 ) (*Inspector, error) {
-	excludeSecretsQuery := isValueInArray("a88baa34-e2ad-44ea-ad6f-8cac87bc7c71", queryFilter.ExcludeQueries.ByIDs)
+	passwordsAndSecretsQueryID, err := getPasswordsAndSecretsQueryID()
+	if err != nil {
+		return nil, err
+	}
+	excludeSecretsQuery := isValueInArray(passwordsAndSecretsQueryID, queryFilter.ExcludeQueries.ByIDs)
 	if disableSecretsQuery || excludeSecretsQuery && !isCustomSecretsRegexes {
 		return &Inspector{
 			ctx:                   ctx,
@@ -114,7 +118,7 @@ func NewInspector(
 		Add(helm.DetectKindLine{}, model.KindHELM).
 		Add(docker.DetectKindLine{}, model.KindDOCKER)
 
-	err := json.Unmarshal([]byte(assets.SecretsQueryMetadataJSON), &SecretsQueryMetadata)
+	err = json.Unmarshal([]byte(assets.SecretsQueryMetadataJSON), &SecretsQueryMetadata)
 	if err != nil {
 		return nil, err
 	}
@@ -126,7 +130,7 @@ func NewInspector(
 		return nil, err
 	}
 
-	regexQueries, err := compileRegexQueries(queryFilter, allRegexQueries.Rules, isCustomSecretsRegexes)
+	regexQueries, err := compileRegexQueries(queryFilter, allRegexQueries.Rules, isCustomSecretsRegexes, passwordsAndSecretsQueryID)
 	if err != nil {
 		return nil, err
 	}
@@ -179,13 +183,18 @@ func (c *Inspector) Inspect(ctx context.Context, basePaths []string,
 	return c.vulnerabilities, nil
 }
 
-func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQueries []RegexQuery, isCustom bool) ([]RegexQuery, error) {
+func compileRegexQueries(
+	queryFilter *source.QueryInspectorParameters,
+	allRegexQueries []RegexQuery,
+	isCustom bool,
+	passwordsAndSecretsQueryID string,
+) ([]RegexQuery, error) {
 	var regexQueries []RegexQuery
 	var includeSpecificSecretQuery bool
 
 	allSecretsQueryAndCustom := false
 
-	includeAllSecretsQuery := isValueInArray("a88baa34-e2ad-44ea-ad6f-8cac87bc7c71", queryFilter.IncludeQueries.ByIDs)
+	includeAllSecretsQuery := isValueInArray(passwordsAndSecretsQueryID, queryFilter.IncludeQueries.ByIDs)
 
 	if includeAllSecretsQuery && isCustom { // merge case
 		var kicsRegexQueries RegexRuleStruct
@@ -522,4 +531,13 @@ func shouldExecuteQuery(filterTarget, id, category, severity string, filter []st
 		return false
 	}
 	return true
+}
+
+func getPasswordsAndSecretsQueryID() (string, error) {
+	var metadata = make(map[string]string)
+	err := json.Unmarshal([]byte(assets.SecretsQueryMetadataJSON), &metadata)
+	if err != nil {
+		return "", err
+	}
+	return metadata["id"], nil
 }
