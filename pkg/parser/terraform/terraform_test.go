@@ -239,7 +239,7 @@ resource "test" "test1" {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			parsedFile, err := parseFile(tt.filename)
+			parsedFile, err := parseFile(tt.filename, false)
 			if tt.wantErr {
 				require.NotNil(t, err)
 				require.Nil(t, parsedFile)

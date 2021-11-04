@@ -21,7 +21,7 @@ func mergeMaps(baseMap, newItems converter.VariableMap) {
 }
 
 func setInputVariablesDefaultValues(filename string) (converter.VariableMap, error) {
-	parsedFile, err := parseFile(filename)
+	parsedFile, err := parseFile(filename, false)
 	if err != nil || parsedFile == nil {
 		return nil, err
 	}
@@ -66,7 +66,7 @@ func checkTfvarsValid(f *hcl.File, filename string) error {
 }
 
 func getInputVariablesFromFile(filename string) (converter.VariableMap, error) {
-	parsedFile, err := parseFile(filename)
+	parsedFile, err := parseFile(filename, false)
 	if err != nil || parsedFile == nil {
 		return nil, err
 	}

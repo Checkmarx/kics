@@ -75,9 +75,12 @@ func getDataSourcePolicy(currentPath string) {
 		log.Error().Msg("Error getting .tf files to parse data source")
 		return
 	}
+	if len(tfFiles) == 0 {
+		return
+	}
 	jsonMap := make(map[string]map[string]string)
 	for _, tfFile := range tfFiles {
-		parsedFile, parseErr := parseFile(tfFile)
+		parsedFile, parseErr := parseFile(tfFile, true)
 		if parseErr != nil {
 			log.Debug().Msgf("Error trying to parse file %s for data source.", tfFile)
 			continue
@@ -129,7 +132,7 @@ func getPrincipalSpec() *hcldec.ObjectSpec {
 			Required: false,
 		},
 		"identifiers": &hcldec.AttrSpec{
-			Name:     "identifiers ",
+			Name:     "identifiers",
 			Type:     cty.List(cty.String),
 			Required: false,
 		},
@@ -221,12 +224,12 @@ func parseDataSourceBody(body *hclsyntax.Body) string {
 		"statement": getStatementSpec(),
 	}
 
-	target, DecodeErr := hcldec.Decode(body, dataSourceSpec, &hcl.EvalContext{
+	target, decodeErrs := hcldec.Decode(body, dataSourceSpec, &hcl.EvalContext{
 		Variables: inputVariableMap,
 		Functions: functions.TerraformFuncs,
 	})
-	if DecodeErr != nil {
-		log.Error().Msg("Error trying to eval data source block.")
+	if decodeErrs != nil {
+		log.Debug().Msg("Error trying to eval data source block.")
 		return ""
 	}
 	dataSourceJSON := decodeDataSourcePolicy(target)

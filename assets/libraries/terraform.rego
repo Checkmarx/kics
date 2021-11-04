@@ -449,6 +449,8 @@ check_principals(statement) {
 
 check_actions(statement, typeAction) {
 	any([statement.actions[_] == typeAction, statement.actions[_] == "*"])
+} else {
+	any([statement.Actions[_] == typeAction, statement.Actions[_] == "*"])
 }
 
 # it verifies if 'Principal' or 'Actions' has wildcard
@@ -493,7 +495,7 @@ get_accessibility(resource, name, resourcePolicyName, resourceTarget) = accessib
 	accessibility = "restrict"
 } else = accessibility {
 	not common_lib.valid_key(resource, "policy")
-	
+
 	resourcePolicy := input.document[_].resource[resourcePolicyName][_]
 	split(resourcePolicy[resourceTarget], ".")[1] == name
 
@@ -502,7 +504,7 @@ get_accessibility(resource, name, resourcePolicyName, resourceTarget) = accessib
 	accessibility = "public"
 } else = accessibility {
 	not common_lib.valid_key(resource, "policy")
-	
+
 	resourcePolicy := input.document[_].resource[resourcePolicyName][_]
 	split(resourcePolicy[resourceTarget], ".")[1] == name
 

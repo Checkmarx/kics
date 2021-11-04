@@ -3,6 +3,7 @@ package terraform
 import (
 	"os"
 	"path/filepath"
+	"regexp"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
@@ -90,12 +91,15 @@ func addExtraInfo(json []model.Document, path string) ([]model.Document, error) 
 	return json, nil
 }
 
-func parseFile(filename string) (*hcl.File, error) {
+func parseFile(filename string, shouldReplaceData bool) (*hcl.File, error) {
 	file, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, err
 	}
-
+	if shouldReplaceData {
+		replaceDataIdentifiers := regexp.MustCompile(`(data\.[A-Za-z0-9._-]+)`)
+		file = []byte(replaceDataIdentifiers.ReplaceAllString(string(file), "\"$1\""))
+	}
 	parsedFile, _ := hclsyntax.ParseConfig(file, filename, hcl.Pos{Line: 1, Column: 1})
 
 	return parsedFile, nil
