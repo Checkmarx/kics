@@ -123,7 +123,7 @@
 				
 				<option value="file33">github.com/Checkmarx/kics/pkg/detector/helm/helm_detect.go (88.2%)</option>
 				
-				<option value="file34">github.com/Checkmarx/kics/pkg/detector/helper.go (93.9%)</option>
+				<option value="file34">github.com/Checkmarx/kics/pkg/detector/helper.go (94.1%)</option>
 				
 				<option value="file35">github.com/Checkmarx/kics/pkg/detector/search_line_detector.go (95.0%)</option>
 				
@@ -2292,13 +2292,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2323,7 +2323,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2779,7 +2779,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="18">{
-        for _, a := range s </span><span class="cov7" title="38">{
+        for _, a := range s </span><span class="cov7" title="39">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -4422,35 +4422,45 @@ const (
 )
 
 // GetBracketValues gets values inside "{{ }}" ignoring any "{{" or "}}" inside
-func GetBracketValues(expr string, list [][]string, restOfString string) [][]string <span class="cov7" title="17">{
+func GetBracketValues(expr string, list [][]string, restOfString string) [][]string <span class="cov7" title="21">{
         var tempList []string
         firstOpen := strings.Index(expr, "{{")
         firstClose := strings.Index(expr, "}}")
+        for firstOpen &gt; firstClose &amp;&amp; firstClose != -1 </span><span class="cov1" title="1">{
+                firstClose = strings.Index(expr[firstOpen:], "}}") + firstOpen
+        }</span>
         // in case we have '}}}' we need to advance one position to get the close
-        for firstClose+2 &lt; len(expr) &amp;&amp; string(expr[firstClose+2]) == `}` &amp;&amp; firstClose != -1 </span><span class="cov1" title="1">{
+        <span class="cov7" title="21">for firstClose+2 &lt; len(expr) &amp;&amp; string(expr[firstClose+2]) == `}` &amp;&amp; firstClose != -1 </span><span class="cov1" title="1">{
                 firstClose++
         }</span>
-        <span class="cov7" title="17">switchVal := firstClose - firstOpen
-        if switchVal == 0 </span><span class="cov5" title="9">{ // if there is no "{{" and no "}}"
-                if expr != "" </span><span class="cov5" title="7">{
+
+        <span class="cov7" title="21">switch t := firstClose - firstOpen; t &gt;= 0 </span>{
+        case true:<span class="cov7" title="18">
+                if t == 0 &amp;&amp; expr != "" </span><span class="cov5" title="8">{
                         tempList = append(tempList, fmt.Sprintf("{{%s}}", expr), expr)
                         list = append(list, tempList)
                 }</span>
-                <span class="cov5" title="9">if restOfString == "" </span><span class="cov5" title="8">{
+                <span class="cov7" title="18">if t == 0 &amp;&amp; restOfString == "" </span><span class="cov5" title="9">{
                         return list // if there is no more string to read from return value of list
                 }</span>
-                <span class="cov1" title="1">list = GetBracketValues(restOfString, list, "")</span> // recursive call to the rest of the string
-        } else<span class="cov5" title="8"> if switchVal &gt; 0 </span><span class="cov5" title="6">{ // if the position of  the first "}}" is bigger than than the position of "{{"
-                // recursive with the value inside of curly brackets
-                list = GetBracketValues(expr[firstOpen+2:firstClose], list, expr[firstClose+2:])
-        }</span> else<span class="cov2" title="2"> { // if the position of  the first "{{" is bigger than than the position of "}}"
+                <span class="cov5" title="9">if t &gt; 0 </span><span class="cov5" title="8">{
+                        list = GetBracketValues(expr[firstOpen+2:firstClose], list, expr[firstClose+2:])
+                }</span> else<span class="cov1" title="1"> {
+                        list = GetBracketValues(restOfString, list, "") // recursive call to the rest of the string
+                }</span>
+        case false:<span class="cov3" title="3">
                 nextClose := strings.Index(restOfString, "}}")
-                tempList = append(tempList, fmt.Sprintf("{{%s%s}}", expr, restOfString[nextClose:]),
-                        fmt.Sprintf("%s%s", expr, restOfString[nextClose:]))
+                tempNextClose := nextClose + 2
+                if tempNextClose == len(restOfString) </span><span class="cov2" title="2">{
+                        tempNextClose = nextClose
+                }</span>
+                <span class="cov3" title="3">tempList = append(tempList, fmt.Sprintf("{{%s}}%s}}", expr, restOfString[:tempNextClose]),
+                        fmt.Sprintf("%s}}%s", expr, restOfString[:tempNextClose]))
                 list = append(list, tempList)
-                list = GetBracketValues(restOfString[nextClose+2:], list, "") // recursive call to the rest of the string
-        }</span>
-        <span class="cov5" title="9">return list</span>
+                list = GetBracketValues(restOfString[nextClose+2:], list, "")</span> // recursive call to the rest of the string
+        }
+
+        <span class="cov6" title="12">return list</span>
 }
 
 // GenerateSubstrings returns the substrings used for line searching depending on search key
@@ -4566,7 +4576,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -12386,7 +12396,7 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" ti
 
 // Start initializes the Circle Progress Bar
 func (p ProgressBar) Start() <span class="cov1" title="1">{
-        for </span><span class="cov10" title="7660">{ // increment until the Close func is called
+        for </span><span class="cov10" title="6917">{ // increment until the Close func is called
                 p.pBar.Increment()
         }</span>
 }
