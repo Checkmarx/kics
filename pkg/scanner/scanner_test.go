@@ -91,6 +91,7 @@ func createServices(types, cloudProviders []string) (serviceSlice, *storage.Memo
 		false,
 		60,
 		assets.SecretsQueryRegexRulesJSON,
+		false,
 	)
 	if err != nil {
 		return nil, nil, err
