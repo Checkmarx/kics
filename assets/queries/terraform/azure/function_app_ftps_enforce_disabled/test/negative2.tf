@@ -1,4 +1,4 @@
-resource "azurerm_function_app" "negative" {
+resource "azurerm_function_app" "negative2" {
   name                       = "test-azure-functions"
   location                   = azurerm_resource_group.example.location
   resource_group_name        = azurerm_resource_group.example.name
@@ -7,6 +7,6 @@ resource "azurerm_function_app" "negative" {
   storage_account_access_key = azurerm_storage_account.example.primary_access_key
 
    site_config {
-    ftps_state = "FtpsOnly"
+    ftps_state = "Disabled"
   }
 }

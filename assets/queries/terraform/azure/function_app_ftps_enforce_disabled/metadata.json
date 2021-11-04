@@ -3,7 +3,7 @@
   "queryName": "Function App FTPS Enforce Disabled",
   "severity": "HIGH",
   "category": "Insecure Configurations",
-  "descriptionText": "Azure Function App should only enforce FTPS",
+  "descriptionText": "Azure Function App should only enforce FTPS when 'ftps_state' is enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/function_app#ftps_state",
   "platform": "Terraform",
   "descriptionID": "2144ef13",
