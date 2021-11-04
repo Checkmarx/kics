@@ -2082,6 +2082,13 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mysql_server#public_network_access_enabled">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>App Service Not Using Latest TLS Encryption Version<br/><sup><sub>b7b9d1c7-2d3b-49b4-b867-ebbe68d0b643</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Ensure App Service is using the latest version of TLS encryption</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#min_tls_version">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Storage Account Not Forcing HTTPS<br/><sup><sub>12944ec4-1fa0-47be-8b17-42a034f937c2</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
@@ -2115,6 +2122,13 @@
 <td>Insecure Configurations</td>
 <td>Web app should only accept HTTPS traffic in Azure Web App Service.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#https_only">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Function App FTPS Enforce Disabled<br/><sup><sub>9dab0179-433d-4dff-af8f-0091025691df</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Azure Function App should only enforce FTPS when 'ftps_state' is enabled</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/function_app#ftps_state">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>VM Not Attached To Network<br/><sup><sub>bbf6b3df-4b65-4f87-82cc-da9f30f8c033</sub></sup></td>
