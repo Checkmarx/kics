@@ -133,7 +133,7 @@
 				
 				<option value="file38">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (79.4%)</option>
 				
-				<option value="file39">github.com/Checkmarx/kics/pkg/engine/secrets/inspector.go (88.6%)</option>
+				<option value="file39">github.com/Checkmarx/kics/pkg/engine/secrets/inspector.go (86.0%)</option>
 				
 				<option value="file40">github.com/Checkmarx/kics/pkg/engine/similarity/similarity_id.go (94.7%)</option>
 				
@@ -193,7 +193,7 @@
 				
 				<option value="file68">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (84.9%)</option>
 				
-				<option value="file69">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
+				<option value="file69">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (85.7%)</option>
 				
 				<option value="file70">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
@@ -2292,13 +2292,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="28">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="28">total += v
+                <span class="cov8" title="33">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2323,7 +2323,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2779,7 +2779,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="18">{
-        for _, a := range s </span><span class="cov8" title="42">{
+        for _, a := range s </span><span class="cov7" title="36">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -4385,7 +4385,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -5746,8 +5746,14 @@ func NewInspector(
         disableSecretsQuery bool,
         executionTimeout int,
         regexRulesContent string,
+        isCustomSecretsRegexes bool,
 ) (*Inspector, error) <span class="cov3" title="9">{
-        if disableSecretsQuery </span><span class="cov1" title="1">{
+        passwordsAndSecretsQueryID, err := getPasswordsAndSecretsQueryID()
+        if err != nil </span><span class="cov1" title="1">{
+                return nil, err
+        }</span>
+        <span class="cov2" title="8">excludeSecretsQuery := isValueInArray(passwordsAndSecretsQueryID, queryFilter.ExcludeQueries.ByIDs)
+        if disableSecretsQuery || excludeSecretsQuery &amp;&amp; !isCustomSecretsRegexes </span><span class="cov1" title="1">{
                 return &amp;Inspector{
                         ctx:                   ctx,
                         tracker:               tracker,
@@ -5759,12 +5765,12 @@ func NewInspector(
                 }, nil
         }</span>
 
-        <span class="cov2" title="8">lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
+        <span class="cov2" title="7">lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
                 Add(helm.DetectKindLine{}, model.KindHELM).
                 Add(docker.DetectKindLine{}, model.KindDOCKER)
 
-        err := json.Unmarshal([]byte(assets.SecretsQueryMetadataJSON), &amp;SecretsQueryMetadata)
-        if err != nil </span><span class="cov1" title="1">{
+        err = json.Unmarshal([]byte(assets.SecretsQueryMetadataJSON), &amp;SecretsQueryMetadata)
+        if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
         <span class="cov2" title="7">queryExecutionTimeout := time.Duration(executionTimeout) * time.Second
@@ -5775,7 +5781,7 @@ func NewInspector(
                 return nil, err
         }</span>
 
-        <span class="cov2" title="6">regexQueries, err := compileRegexQueries(queryFilter, allRegexQueries.Rules)
+        <span class="cov2" title="6">regexQueries, err := compileRegexQueries(queryFilter, allRegexQueries.Rules, isCustomSecretsRegexes, passwordsAndSecretsQueryID)
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
@@ -5828,12 +5834,33 @@ func (c *Inspector) Inspect(ctx context.Context, basePaths []string,
         <span class="cov2" title="4">return c.vulnerabilities, nil</span>
 }
 
-func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQueries []RegexQuery) ([]RegexQuery, error) <span class="cov3" title="11">{
+func compileRegexQueries(
+        queryFilter *source.QueryInspectorParameters,
+        allRegexQueries []RegexQuery,
+        isCustom bool,
+        passwordsAndSecretsQueryID string,
+) ([]RegexQuery, error) <span class="cov3" title="11">{
         var regexQueries []RegexQuery
+        var includeSpecificSecretQuery bool
 
-        for i := range allRegexQueries </span><span class="cov5" title="136">{
-                if len(queryFilter.IncludeQueries.ByIDs) &gt; 0 </span><span class="cov2" title="3">{
-                        if isValueInArray(allRegexQueries[i].ID, queryFilter.IncludeQueries.ByIDs) </span><span class="cov1" title="1">{
+        allSecretsQueryAndCustom := false
+
+        includeAllSecretsQuery := isValueInArray(passwordsAndSecretsQueryID, queryFilter.IncludeQueries.ByIDs)
+
+        if includeAllSecretsQuery &amp;&amp; isCustom </span><span class="cov0" title="0">{ // merge case
+                var kicsRegexQueries RegexRuleStruct
+                err := json.Unmarshal([]byte(assets.SecretsQueryRegexRulesJSON), &amp;kicsRegexQueries)
+                if err != nil </span><span class="cov0" title="0">{
+                        return nil, err
+                }</span>
+                <span class="cov0" title="0">allSecretsQueryAndCustom = true
+                regexQueries = kicsRegexQueries.Rules</span>
+        }
+
+        <span class="cov3" title="11">for i := range allRegexQueries </span><span class="cov5" title="136">{
+                includeSpecificSecretQuery = isValueInArray(allRegexQueries[i].ID, queryFilter.IncludeQueries.ByIDs)
+                if len(queryFilter.IncludeQueries.ByIDs) &gt; 0 &amp;&amp; !allSecretsQueryAndCustom </span><span class="cov2" title="3">{
+                        if includeAllSecretsQuery || includeSpecificSecretQuery </span><span class="cov1" title="1">{
                                 regexQueries = append(regexQueries, allRegexQueries[i])
                         }</span>
                 } else<span class="cov5" title="133"> {
@@ -5895,13 +5922,13 @@ func (c *Inspector) GetQueriesLength() int <span class="cov2" title="4">{
         return len(c.regexQueries)
 }</span>
 
-func isValueInArray(value string, array []string) bool <span class="cov6" title="400">{
-        for i := range array </span><span class="cov2" title="6">{
+func isValueInArray(value string, array []string) bool <span class="cov7" title="552">{
+        for i := range array </span><span class="cov2" title="7">{
                 if strings.EqualFold(value, array[i]) </span><span class="cov1" title="2">{
                         return true
                 }</span>
         }
-        <span class="cov6" title="398">return false</span>
+        <span class="cov7" title="550">return false</span>
 }
 
 func (c *Inspector) isSecret(s string, query *RegexQuery) (isSecretRet bool, groups [][]string) <span class="cov8" title="1636">{
@@ -6155,6 +6182,15 @@ func shouldExecuteQuery(filterTarget, id, category, severity string, filter []st
                 return false
         }</span>
         <span class="cov6" title="396">return true</span>
+}
+
+func getPasswordsAndSecretsQueryID() (string, error) <span class="cov3" title="9">{
+        var metadata = make(map[string]string)
+        err := json.Unmarshal([]byte(assets.SecretsQueryMetadataJSON), &amp;metadata)
+        if err != nil </span><span class="cov1" title="1">{
+                return "", err
+        }</span>
+        <span class="cov2" title="8">return metadata["id"], nil</span>
 }
 </pre>
 		
@@ -12328,7 +12364,7 @@ type ProgressBar struct {
 }
 
 // NewProgressBar creates a new instance of a Circle Progress Bar
-func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" title="3">{
+func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" title="3">{
         newPb := pb.New64(constants.MaxInteger)
         tmp := fmt.Sprintf(`{{ "%s" }} {{(cycle . "\\" "-" "|" "/" "-" "|" )}}`, label)
         newPb.SetWidth(barWidth)
@@ -12336,7 +12372,7 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" ti
         if silent </span><span class="cov1" title="1">{
                 newPb.SetWriter(io.Discard)
         }</span>
-        <span class="cov2" title="3">newPb.Start()
+        <span class="cov10" title="3">newPb.Start()
 
         return ProgressBar{
                 label: label,
@@ -12349,8 +12385,8 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" ti
 }
 
 // Start initializes the Circle Progress Bar
-func (p ProgressBar) Start() <span class="cov1" title="1">{
-        for </span><span class="cov10" title="3968">{ // increment until the Close func is called
+func (p ProgressBar) Start() <span class="cov0" title="0">{
+        for </span><span class="cov0" title="0">{ // increment until the Close func is called
                 p.pBar.Increment()
         }</span>
 }
