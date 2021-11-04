@@ -130,6 +130,13 @@ func NewInspector(
 		return nil, err
 	}
 
+	if isCustomSecretsRegexes {
+		err = validateCustomSecretsQueriesID(allRegexQueries.Rules)
+		if err != nil {
+			return nil, err
+		}
+	}
+
 	regexQueries, err := compileRegexQueries(queryFilter, allRegexQueries.Rules, isCustomSecretsRegexes, passwordsAndSecretsQueryID)
 	if err != nil {
 		return nil, err
@@ -540,4 +547,14 @@ func getPasswordsAndSecretsQueryID() (string, error) {
 		return "", err
 	}
 	return metadata["id"], nil
+}
+
+func validateCustomSecretsQueriesID(allRegexQueries []RegexQuery) error {
+	for i := range allRegexQueries {
+		re := regexp.MustCompile(`^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$`)
+		if !(re.MatchString(allRegexQueries[i].ID)) {
+			return fmt.Errorf("the query %s defines a invalid query ID (%s)", allRegexQueries[i].Name, allRegexQueries[i].ID)
+		}
+	}
+	return nil
 }
