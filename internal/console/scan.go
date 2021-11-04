@@ -5,6 +5,7 @@ import (
 	"os"
 	"os/signal"
 	"path/filepath"
+	"strings"
 	"syscall"
 
 	"github.com/Checkmarx/kics/internal/console/flags"
@@ -99,7 +100,7 @@ func run(cmd *cobra.Command) error {
 
 func updateReportFormats() {
 	for _, format := range flags.GetMultiStrFlag(flags.ReportFormatsFlag) {
-		if format == "all" {
+		if strings.EqualFold(format, "all") {
 			flags.SetMultiStrFlag(flags.ReportFormatsFlag, consoleHelpers.ListReportFormats())
 			break
 		}
@@ -134,6 +135,7 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 		ScanID:                      scanID,
 		ChangedDefaultLibrariesPath: changedDefaultLibrariesPath,
 		ChangedDefaultQueryPath:     changedDefaultQueryPath,
+		BillOfMaterials:             flags.GetBoolFlag(flags.BomFlag),
 	}
 
 	return &scanParams

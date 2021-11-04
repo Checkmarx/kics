@@ -17,7 +17,7 @@
           {
             "id": "id",
             "properties": {
-              "description": "access to RDP",
+              "description": "access to SSH",
               "protocol": "Tcp",
               "sourcePortRange": "*",
               "destinationPortRange": "22",
@@ -28,6 +28,21 @@
               "direction": "Inbound"
             },
             "name": "security rule"
+          },
+           {
+            "id": "id2",
+            "properties": {
+              "description": "access to RDP",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "3389",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Deny",
+              "priority": 301,
+              "direction": "Inbound"
+            },
+            "name": "security rule2"
           }
         ]
       },

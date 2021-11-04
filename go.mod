@@ -19,18 +19,18 @@ require (
 	github.com/johnfercher/maroto v0.33.0
 	github.com/mailru/easyjson v0.7.7
 	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
-	github.com/moby/buildkit v0.9.1
+	github.com/moby/buildkit v0.9.2
 	github.com/open-policy-agent/opa v0.33.0
 	github.com/pkg/errors v0.9.1
-	github.com/rs/zerolog v1.25.0
+	github.com/rs/zerolog v1.26.0
 	github.com/spf13/cobra v1.2.1
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.9.0
 	github.com/stretchr/testify v1.7.0
 	github.com/tdewolff/minify/v2 v2.9.22
-	github.com/tidwall/gjson v1.10.2
+	github.com/tidwall/gjson v1.11.0
 	github.com/xeipuuv/gojsonschema v1.2.0
-	github.com/zclconf/go-cty v1.9.1
+	github.com/zclconf/go-cty v1.10.0
 	golang.org/x/net v0.0.0-20210825183410-e898025ed96a
 	golang.org/x/term v0.0.0-20210220032956-6a3ed077a48d
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b

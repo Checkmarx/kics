@@ -1,0 +1,52 @@
+name: go-test-race
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  go-test-race:
+    name: unit-tests-race
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 0
+      - name: Set up Go 1.17.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17.x
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v2.3.4
+        with:
+          persist-credentials: false
+      - name: Get cache paths
+        id: go-cache-paths
+        run: |
+          echo "::set-output name=go-build::$(go env GOCACHE)"
+          echo "::set-output name=go-mod::$(go env GOMODCACHE)"
+      - name: Cache dependencies
+        uses: actions/cache@v2.1.6
+        with:
+          path: ${{ steps.go-cache-paths.outputs.go-build }}
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-${{ env.cache-name }}
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
+      - name: Get Modules
+        run: |
+          go mod vendor
+      - name: Test and Generate Report
+        run: |
+          go test -race -timeout 3600s -mod=vendor -v $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
+          result_code=${PIPESTATUS[0]}
+          exit $result_code
+      - name: Archive test logs
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: unit-test-${{ runner.os }}-${{ github.event.pull_request.head.sha }}.log
+          path: unit-test.log

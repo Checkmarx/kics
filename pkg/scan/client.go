@@ -40,6 +40,7 @@ type Parameters struct {
 	ChangedDefaultQueryPath     bool
 	ChangedDefaultLibrariesPath bool
 	ScanID                      string
+	BillOfMaterials             bool
 }
 
 // Client represents a scan client

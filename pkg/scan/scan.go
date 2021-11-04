@@ -39,7 +39,7 @@ type executeScanParameters struct {
 
 func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 	progressBar := c.ProBarBuilder.BuildCircle("Preparing Scan Assets: ")
-	progressBar.Start()
+	go progressBar.Start()
 
 	extractedPaths, err := c.prepareAndAnalyzePaths()
 	if err != nil {
@@ -184,6 +184,7 @@ func (c *Client) createQueryFilter() *source.QueryInspectorParameters {
 		IncludeQueries: includeQueries,
 		ExcludeQueries: excludeQueries,
 		InputDataPath:  c.ScanParams.InputData,
+		BomQueries:     c.ScanParams.BillOfMaterials,
 	}
 
 	return &queryFilter

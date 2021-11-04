@@ -3,9 +3,14 @@ package storage
 import (
 	"context"
 	"fmt"
+	"sync"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/rs/zerolog/log"
+)
+
+var (
+	memoryMu sync.Mutex
 )
 
 // MemoryStorage is scans' results representation
@@ -27,6 +32,8 @@ func (m *MemoryStorage) GetFiles(_ context.Context, _ string) (model.FileMetadat
 
 // SaveVulnerabilities adds a list of vulnerabilities to vulnerabilities collection
 func (m *MemoryStorage) SaveVulnerabilities(_ context.Context, vulnerabilities []model.Vulnerability) error {
+	defer memoryMu.Unlock()
+	memoryMu.Lock()
 	m.vulnerabilities = append(m.vulnerabilities, vulnerabilities...)
 	return nil
 }

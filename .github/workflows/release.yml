@@ -41,9 +41,3 @@ jobs:
           KICS_BOT_PAT: ${{ secrets.KICS_BOT_PAT }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
           DESCRIPTIONS_URL: ${{ secrets.DESCRIPTIONS_URL }}
-      - name: Terraform Cloud Lambda Dispatch
-        uses: peter-evans/repository-dispatch@v1
-        with:
-          token: ${{ secrets.KICS_BOT_PAT }}
-          repository: ${{ secrets.TFC_REPO_PATH }}
-          event-type: new-release

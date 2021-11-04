@@ -104,6 +104,10 @@ func checkExpectedOutput(t *testing.T, tt *testcases.TestCase, argIndex int) {
 	if utils.Contains(resultsFormats, "json") {
 		utils.JSONSchemaValidation(t, jsonFileName, "result.json")
 	}
+	// Check result file (JSON including BoM)
+	if utils.Contains(resultsFormats, "json-bom") {
+		utils.JSONSchemaValidation(t, jsonFileName, "resultBoM.json")
+	}
 	// Check result file (GLSAST)
 	if utils.Contains(resultsFormats, "glsast") {
 		utils.JSONSchemaValidation(t, "gl-sast-"+jsonFileName, "result-gl-sast.json")
