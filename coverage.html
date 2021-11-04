@@ -137,7 +137,7 @@
 				
 				<option value="file40">github.com/Checkmarx/kics/pkg/engine/similarity/similarity_id.go (94.7%)</option>
 				
-				<option value="file41">github.com/Checkmarx/kics/pkg/engine/source/filesystem.go (67.1%)</option>
+				<option value="file41">github.com/Checkmarx/kics/pkg/engine/source/filesystem.go (67.8%)</option>
 				
 				<option value="file42">github.com/Checkmarx/kics/pkg/engine/source/source.go (67.9%)</option>
 				
@@ -2292,13 +2292,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="38">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="35">total += v
+                <span class="cov9" title="38">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2323,7 +2323,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2779,7 +2779,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="18">{
-        for _, a := range s </span><span class="cov7" title="32">{
+        for _, a := range s </span><span class="cov7" title="38">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -4385,7 +4385,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -4566,7 +4566,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -6514,6 +6514,20 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
         <span class="cov5" title="7">return queries, err</span>
 }
 
+// validateMetadata prevents panics when KICS queries metadata fields are missing
+func validateMetadata(metadata map[string]interface{}) (exist bool, field string) <span class="cov6" title="10">{
+        fields := []string{
+                "id",
+                "platform",
+        }
+        for _, field = range fields </span><span class="cov7" title="19">{
+                if _, exist = metadata[field]; !exist </span><span class="cov2" title="2">{
+                        return
+                }</span>
+        }
+        <span class="cov5" title="8">return</span>
+}
+
 // ReadQuery reads query's files for a given path and returns a QueryMetadata struct with it's
 // content
 func ReadQuery(queryDir string) (model.QueryMetadata, error) <span class="cov5" title="7">{
@@ -6525,6 +6539,10 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) <span class="cov5" 
         <span class="cov5" title="7">metadata, err := ReadMetadata(queryDir)
         if err != nil </span><span class="cov0" title="0">{
                 return model.QueryMetadata{}, errors.Wrapf(err, "failed to read query %s", path.Base(queryDir))
+        }</span>
+
+        <span class="cov5" title="7">if valid, missingField := validateMetadata(metadata); !valid </span><span class="cov0" title="0">{
+                return model.QueryMetadata{}, fmt.Errorf("failed to read metadata field: %s", missingField)
         }</span>
 
         <span class="cov5" title="7">platform := getPlatform(metadata["platform"].(string))
