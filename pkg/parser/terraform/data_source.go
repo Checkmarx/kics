@@ -1,10 +1,10 @@
 package terraform
 
 import (
+	"bytes"
 	"encoding/json"
 	"path/filepath"
 
-	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
 	"github.com/Checkmarx/kics/pkg/parser/terraform/functions"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hcldec"
@@ -16,14 +16,14 @@ import (
 )
 
 type dataSourcePolicyCondition struct {
-	Test     string   `json:"test"`
-	Variable string   `json:"variable"`
-	Values   []string `json:"values"`
+	Test     string   `json:"test,omitempty"`
+	Variable string   `json:"variable,omitempty"`
+	Values   []string `json:"values,omitempty"`
 }
 
 type dataSourcePolicyPrincipal struct {
-	Type        string   `json:"type"`
-	Identifiers []string `json:"identifiers"`
+	Type        string   `json:"type,omitempty"`
+	Identifiers []string `json:"identifiers,omitempty"`
 }
 
 type dataSourcePolicyStatement struct {
@@ -64,9 +64,9 @@ type convertedPolicyStatement struct {
 }
 
 type convertedPolicy struct {
-	ID        string                     `json:"Id"`
-	Statement []convertedPolicyStatement `json:"Statement"`
-	Version   string                     `json:"Version"`
+	ID        string                     `json:"Id,omitempty"`
+	Statement []convertedPolicyStatement `json:"Statement,omitempty"`
+	Version   string                     `json:"Version,omitempty"`
 }
 
 func getDataSourcePolicy(currentPath string) {
@@ -75,11 +75,11 @@ func getDataSourcePolicy(currentPath string) {
 		log.Error().Msg("Error getting .tf files to parse data source")
 		return
 	}
-	variablesMap := make(converter.VariableMap)
 	jsonMap := make(map[string]map[string]string)
 	for _, tfFile := range tfFiles {
-		parsedFile, err := parseFile(tfFile)
-		if err != nil {
+		parsedFile, parseErr := parseFile(tfFile)
+		if parseErr != nil {
+			log.Debug().Msgf("Error trying to parse file %s for data source.", tfFile)
 			continue
 		}
 		body, ok := parsedFile.Body.(*hclsyntax.Body)
@@ -95,19 +95,27 @@ func getDataSourcePolicy(currentPath string) {
 			}
 		}
 	}
-	//also needs to infer type correctly here
-	variablesMap["aws_iam_policy_document"], err = gocty.ToCtyValue(jsonMap, cty.Map(cty.Map(cty.String)))
-	inputVariableMap["data"] = cty.ObjectVal(variablesMap)
+	policyResource := map[string]map[string]map[string]string{
+		"aws_iam_policy_document": jsonMap,
+	}
+	data, err := gocty.ToCtyValue(policyResource, cty.Map(cty.Map(cty.Map(cty.String))))
+	if err != nil {
+		log.Error().Msg("Error trying to convert policy to cty value.")
+		return
+	}
+	inputVariableMap["data"] = data
 }
 
 func decodeDataSourcePolicy(value cty.Value) dataSourcePolicy {
 	jsonified, err := ctyjson.Marshal(value, cty.DynamicPseudoType)
 	if err != nil {
+		log.Error().Msg("Error trying to decode data source block.")
 		return dataSourcePolicy{}
 	}
 	var data dataSource
 	err = json.Unmarshal(jsonified, &data)
 	if err != nil {
+		log.Error().Msg("Error trying to encode data source json.")
 		return dataSourcePolicy{}
 	}
 	return data.Value
@@ -213,10 +221,14 @@ func parseDataSourceBody(body *hclsyntax.Body) string {
 		"statement": getStatementSpec(),
 	}
 
-	target, _ := hcldec.Decode(body, dataSourceSpec, &hcl.EvalContext{
+	target, DecodeErr := hcldec.Decode(body, dataSourceSpec, &hcl.EvalContext{
 		Variables: inputVariableMap,
 		Functions: functions.TerraformFuncs,
 	})
+	if DecodeErr != nil {
+		log.Error().Msg("Error trying to eval data source block.")
+		return ""
+	}
 	dataSourceJSON := decodeDataSourcePolicy(target)
 	convertedDataSource := convertedPolicy{
 		ID:      dataSourceJSON.ID,
@@ -224,18 +236,25 @@ func parseDataSourceBody(body *hclsyntax.Body) string {
 	}
 	statements := make([]convertedPolicyStatement, len(dataSourceJSON.Statement))
 	for idx := range dataSourceJSON.Statement {
-		convertedCondition := convertedPolicyCondition{
-			dataSourceJSON.Statement[idx].Condition.Test: map[string][]string{
-				dataSourceJSON.Statement[idx].Condition.Variable: dataSourceJSON.Statement[idx].Condition.Values,
-			},
+		var convertedCondition convertedPolicyCondition
+		if dataSourceJSON.Statement[idx].Condition.Variable != "" {
+			convertedCondition = convertedPolicyCondition{
+				dataSourceJSON.Statement[idx].Condition.Test: map[string][]string{
+					dataSourceJSON.Statement[idx].Condition.Variable: dataSourceJSON.Statement[idx].Condition.Values,
+				},
+			}
 		}
-
-		convertedPrincipal := convertedPolicyPrincipal{
-			dataSourceJSON.Statement[idx].Principals.Type: dataSourceJSON.Statement[idx].Principals.Identifiers,
+		var convertedPrincipal convertedPolicyPrincipal
+		if dataSourceJSON.Statement[idx].Principals.Type != "" {
+			convertedPrincipal = convertedPolicyPrincipal{
+				dataSourceJSON.Statement[idx].Principals.Type: dataSourceJSON.Statement[idx].Principals.Identifiers,
+			}
 		}
-
-		convertedNotPrincipal := convertedPolicyPrincipal{
-			dataSourceJSON.Statement[idx].NotPrincipals.Type: dataSourceJSON.Statement[idx].NotPrincipals.Identifiers,
+		var convertedNotPrincipal convertedPolicyPrincipal
+		if dataSourceJSON.Statement[idx].NotPrincipals.Type != "" {
+			convertedNotPrincipal = convertedPolicyPrincipal{
+				dataSourceJSON.Statement[idx].NotPrincipals.Type: dataSourceJSON.Statement[idx].NotPrincipals.Identifiers,
+			}
 		}
 
 		convertedStatement := convertedPolicyStatement{
@@ -249,13 +268,16 @@ func parseDataSourceBody(body *hclsyntax.Body) string {
 			NotPrincipals: convertedNotPrincipal,
 			Principals:    convertedPrincipal,
 		}
-		//needs to check here if it is converting correctly
-		statements = append(statements, convertedStatement)
+		statements[idx] = convertedStatement
 	}
 	convertedDataSource.Statement = statements
-	dataSourceConvertedStringfy, err := json.Marshal(convertedDataSource)
+	buffer := &bytes.Buffer{}
+	encoder := json.NewEncoder(buffer)
+	encoder.SetEscapeHTML(false)
+	err := encoder.Encode(convertedDataSource)
 	if err != nil {
+		log.Error().Msg("Error trying to encoding data source json.")
 		return ""
 	}
-	return string(dataSourceConvertedStringfy)
+	return buffer.String()
 }
