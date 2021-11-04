@@ -1,7 +1,7 @@
 {
   "id": "c87749b3-ff10-41f5-9df2-c421e8151759",
   "queryName": "Function App Managed Identity Disabled",
-  "severity": "LOW",
+  "severity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "Azure Function App should have managed identity enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/function_app#identity",
