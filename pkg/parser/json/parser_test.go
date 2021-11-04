@@ -37,7 +37,7 @@ func TestParser_SupportedTypes(t *testing.T) {
 func TestParser_Parse(t *testing.T) {
 	p := &Parser{}
 
-	doc, err := p.Parse("test.json", []byte(have))
+	doc, _, err := p.Parse("test.json", []byte(have))
 	require.NoError(t, err)
 	require.Len(t, doc, 1)
 	require.Contains(t, doc[0], "martin")
