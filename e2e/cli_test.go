@@ -24,10 +24,12 @@ func Test_E2E_CLI(t *testing.T) {
 
 	templates := prepareTemplates()
 
-	for _, tt := range testcases.Tests {
+	for _, tt := range testcases.Tests[51:] {
 		for arg := range tt.Args.Args {
 			tt := tt
 			arg := arg
+			os.Setenv("KICS_DESCRIPTIONS_ENDPOINT", "http://localhost:3000/kics-mock")
+
 			t.Run(fmt.Sprintf("%s_%d", tt.Name, arg), func(t *testing.T) {
 				t.Parallel()
 				out, err := utils.RunCommand(append(kicsPath, tt.Args.Args[arg]...))
@@ -87,6 +89,7 @@ func Test_E2E_CLI(t *testing.T) {
 	}
 
 	t.Cleanup(func() {
+		os.Setenv("KICS_DESCRIPTIONS_ENDPOINT", "")
 		err := os.RemoveAll("output")
 		require.NoError(t, err)
 		t.Logf("E2E tests ::ellapsed time:: %v", time.Since(scanStartTime))

@@ -5,8 +5,23 @@ on:
     branches: [master]
 
 jobs:
-  unit-tests:
+  server-mock:
+    name: server-mock
+    runs-on: ubuntu-latest
+    container:
+      image: node:14.15.0-alpine3.12
+      ports:
+        - 3000:3000
+    steps:
+    - uses: actions/checkout@v2.3.4
+    - run: npm ci
+      working-directory: .github/scripts/server-mock
+    - run: npm start
+      working-directory: .github/scripts/server-mock
+
+  e2e-tests:
     name: e2e-tests
+    needs: [server-mock]
     strategy:
       matrix:
         go-version: [1.17.x]

@@ -1,0 +1,26 @@
+{
+    "d69d8a89": {
+        "cisDescriptionRuleID": "d69d8a89",
+        "cisDescriptionText": "Passwords and Secrets Custom Description Text",
+        "cisDescriptionTitle": "Test 1A",
+        "cisRationaleText": "Test 1B",
+        "cisBenchmarkName": "Test 1C",
+        "cisBenchmarkVersion": "development"
+    },
+    "2bee4895": {
+        "cisDescriptionRuleID": "2bee4895",
+        "cisDescriptionText": "Check if 'encrypted' field is false or undefined (default is false)",
+        "cisDescriptionTitle": "Test 2A",
+        "cisRationaleText": "Test 2B",
+        "cisBenchmarkName": "Test 2C",
+        "cisBenchmarkVersion": "development"
+    },
+    "9a581503": {
+        "cisDescriptionRuleID": "9a581503",
+        "cisDescriptionText": "Check if 'publicly_accessible' field is true or undefined (default is true)",
+        "cisDescriptionTitle": "Test 3A",
+        "cisRationaleText": "Test 3B",
+        "cisBenchmarkName": "Test 3C",
+        "cisBenchmarkVersion": "1.4.6"
+    }
+}
