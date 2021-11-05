@@ -20,13 +20,6 @@ type mergeMapsTest struct {
 	want converter.VariableMap
 }
 
-type fileTest struct {
-	name     string
-	filename string
-	want     string
-	wantErr  bool
-}
-
 type inputVarTest struct {
 	name     string
 	filename string

@@ -42,6 +42,14 @@ resource "aws_s3_bucket" "b" {
   }`
 )
 
+type fileTest struct {
+	name                    string
+	filename                string
+	shouldReplaceDataSource bool
+	want                    string
+	wantErr                 bool
+}
+
 // TestParser_GetKind tests the functions [GetKind()] and all the methods called by them
 func TestParser_GetKind(t *testing.T) {
 	p := &Parser{}
@@ -195,7 +203,8 @@ func TestParseFile(t *testing.T) {
 			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "terraform.tfvars"),
 			want: `test_terraform = "terraform.tfvars"
 `,
-			wantErr: false,
+			shouldReplaceDataSource: false,
+			wantErr:                 false,
 		},
 		{
 			name:     "Should parse terraform file",
@@ -227,19 +236,52 @@ resource "test" "test1" {
   test_default       = var.default_var
 }
 `,
-			wantErr: false,
+			shouldReplaceDataSource: false,
+			wantErr:                 false,
 		},
 		{
-			name:     "Should get error when trying to parse inexistent file",
-			filename: filepath.Join(".", "not_found.tf"),
-			want:     "",
-			wantErr:  true,
+			name:                    "Should get error when trying to parse inexistent file",
+			filename:                filepath.Join(".", "not_found.tf"),
+			shouldReplaceDataSource: false,
+			want:                    "",
+			wantErr:                 true,
+		},
+		{
+			name:     "Should parse data source file without errors",
+			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_data_source", "data_source.tf"),
+			want: `resource "aws_cloudwatch_log_destination_policy" "test_destination_policy" {
+  destination_name = aws_cloudwatch_log_destination.test_destination.name
+  access_policy    = "data.aws_iam_policy_document.test_destination_policy.json"
+}
+
+data "aws_iam_policy_document" "test_destination_policy" {
+  statement {
+    effect = "Allow"
+
+    principals {
+      type = "AWS"
+
+      identifiers = [
+        "data.aws_caller_identity.current.id",
+      ]
+    }
+
+    actions = [
+      "logs:*",
+    ]
+
+  }
+}
+
+`,
+			shouldReplaceDataSource: true,
+			wantErr:                 false,
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			parsedFile, err := parseFile(tt.filename, false)
+			parsedFile, err := parseFile(tt.filename, tt.shouldReplaceDataSource)
 			if tt.wantErr {
 				require.NotNil(t, err)
 				require.Nil(t, parsedFile)

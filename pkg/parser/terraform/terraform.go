@@ -91,12 +91,12 @@ func addExtraInfo(json []model.Document, path string) ([]model.Document, error) 
 	return json, nil
 }
 
-func parseFile(filename string, shouldReplaceData bool) (*hcl.File, error) {
+func parseFile(filename string, shouldReplaceDataSource bool) (*hcl.File, error) {
 	file, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, err
 	}
-	if shouldReplaceData {
+	if shouldReplaceDataSource {
 		replaceDataIdentifiers := regexp.MustCompile(`(data\.[A-Za-z0-9._-]+)`)
 		file = []byte(replaceDataIdentifiers.ReplaceAllString(string(file), "\"$1\""))
 	}
