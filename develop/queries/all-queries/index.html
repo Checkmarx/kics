@@ -9199,6 +9199,14 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/function_app#ftps_state">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>App Service FTPS Enforce Disabled<br/><sup><sub>85da374f-b00f-4832-9d44-84a1ca1e89f8</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Azure App Service should only enforce FTPS when 'ftps_state' is enabled</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#ftps_state">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>VM Not Attached To Network<br/><sup><sub>bbf6b3df-4b65-4f87-82cc-da9f30f8c033</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
@@ -9461,6 +9469,14 @@
 <td>Insecure Configurations</td>
 <td>Azure Virtual Network subnet must be configured with a Network Security Group, which means the attribute 'security_group' must be defined and not empty</td>
 <td><a href="https://www.terraform.io/docs/providers/azure/r/virtual_network.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Function App Managed Identity Disabled<br/><sup><sub>c87749b3-ff10-41f5-9df2-c421e8151759</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Azure Function App should have managed identity enabled</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/function_app#identity">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Security Center Pricing Tier Is Not Standard<br/><sup><sub>819d50fd-1cdf-45c3-9936-be408aaad93e</sub></sup></td>
