@@ -70,7 +70,7 @@ type convertedPolicy struct {
 }
 
 func getDataSourcePolicy(currentPath string) {
-	tfFiles, err := filepath.Glob(filepath.Join(filepath.Dir(currentPath), "*.tf"))
+	tfFiles, err := filepath.Glob(filepath.Join(currentPath, "*.tf"))
 	if err != nil {
 		log.Error().Msg("Error getting .tf files to parse data source")
 		return

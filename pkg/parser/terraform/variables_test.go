@@ -55,6 +55,9 @@ func TestMergeMaps(t *testing.T) {
 			require.Equal(t, tt.want, tt.args.baseMap)
 		})
 	}
+	t.Cleanup(func() {
+		inputVariableMap = make(converter.VariableMap)
+	})
 }
 
 func TestSetInputVariablesDefaultValues(t *testing.T) {
@@ -100,6 +103,9 @@ func TestSetInputVariablesDefaultValues(t *testing.T) {
 			require.Equal(t, tt.want, defaultValues)
 		})
 	}
+	t.Cleanup(func() {
+		inputVariableMap = make(converter.VariableMap)
+	})
 }
 
 func TestGetInputVariablesFromFile(t *testing.T) {
@@ -144,6 +150,9 @@ func TestGetInputVariablesFromFile(t *testing.T) {
 			require.Equal(t, tt.want, inputVars)
 		})
 	}
+	t.Cleanup(func() {
+		inputVariableMap = make(converter.VariableMap)
+	})
 }
 
 func TestGetInputVariables(t *testing.T) {
@@ -176,4 +185,7 @@ func TestGetInputVariables(t *testing.T) {
 			require.Equal(t, tt.want, inputVariableMap)
 		})
 	}
+	t.Cleanup(func() {
+		inputVariableMap = make(converter.VariableMap)
+	})
 }

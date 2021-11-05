@@ -4,6 +4,7 @@ import (
 	"path/filepath"
 	"testing"
 
+	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
 	"github.com/stretchr/testify/require"
 	"github.com/zclconf/go-cty/cty/gocty"
 )
@@ -21,7 +22,7 @@ func Test_getDataSourcePolicy(t *testing.T) {
 		{
 			name: "should load data source as json without errors 1",
 			args: args{
-				currentPath:  filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_data_source", "data_source_1.tf"),
+				currentPath:  filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_data_source"),
 				resourceName: "test_destination_policy",
 			},
 			want: `{"Statement":[{"Actions":["logs:*"],"Effect":"Allow","Principals":{"AWS":["data.aws_caller_identity.current.id"]}}]}
@@ -30,7 +31,7 @@ func Test_getDataSourcePolicy(t *testing.T) {
 		{
 			name: "should load data source as json without errors 2",
 			args: args{
-				currentPath:  filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_data_source", "data_source_2.tf"),
+				currentPath:  filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_data_source"),
 				resourceName: "test_example",
 			},
 			want: `{"Id":"lala","Statement":[{"Actions":["s3:ListAllMyBuckets","s3:GetBucketLocation"],"Resources":["arn:aws:s3:::*"],"Sid":"1"},{"Actions":["s3:ListBucket"],"Condition":{"StringLike":{"s3:prefix":["","home/","home/&{aws:username}/"]}},"Resources":["arn:aws:s3:::test"]},{"Actions":["s3:*"],"Resources":["arn:aws:s3:::test/home/&{aws:username}","arn:aws:s3:::test/home/&{aws:username}/*"]}]}
@@ -56,4 +57,8 @@ func Test_getDataSourcePolicy(t *testing.T) {
 			require.Equal(t, tt.want, got)
 		})
 	}
+
+	t.Cleanup(func() {
+		inputVariableMap = make(converter.VariableMap)
+	})
 }

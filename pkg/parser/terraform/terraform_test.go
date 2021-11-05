@@ -248,7 +248,7 @@ resource "test" "test1" {
 		},
 		{
 			name:     "Should parse data source file without errors",
-			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_data_source", "data_source.tf"),
+			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_data_source", "data_source_1.tf"),
 			want: `resource "aws_cloudwatch_log_destination_policy" "test_destination_policy" {
   destination_name = aws_cloudwatch_log_destination.test_destination.name
   access_policy    = "data.aws_iam_policy_document.test_destination_policy.json"
