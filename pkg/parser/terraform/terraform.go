@@ -89,21 +89,21 @@ func addExtraInfo(json []model.Document, path string) ([]model.Document, error) 
 }
 
 // Parse execute parser for the content in a file
-func (p *Parser) Parse(path string, content []byte) ([]model.Document, error) {
+func (p *Parser) Parse(path string, content []byte) ([]model.Document, []int, error) {
 	file, diagnostics := hclsyntax.ParseConfig(content, filepath.Base(path), hcl.Pos{Byte: 0, Line: 1, Column: 1})
 
 	if diagnostics != nil && diagnostics.HasErrors() && len(diagnostics.Errs()) > 0 {
 		err := diagnostics.Errs()[0]
-		return nil, err
+		return nil, []int{}, err
 	}
 
 	fc, parseErr := p.convertFunc(file, inputVariableMap)
 	json, err := addExtraInfo([]model.Document{fc}, path)
 	if err != nil {
-		return json, errors.Wrap(err, "failed terraform parse")
+		return json, []int{}, errors.Wrap(err, "failed terraform parse")
 	}
 
-	return json, errors.Wrap(parseErr, "failed terraform parse")
+	return json, []int{}, errors.Wrap(parseErr, "failed terraform parse")
 }
 
 // SupportedExtensions returns Terraform extensions

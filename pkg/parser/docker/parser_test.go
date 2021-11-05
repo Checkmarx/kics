@@ -66,7 +66,7 @@ func TestParser_Parse(t *testing.T) {
 	}
 
 	for idx, sampleFile := range sample {
-		doc, err := p.Parse("Dockerfile", []byte(sampleFile))
+		doc, _, err := p.Parse("Dockerfile", []byte(sampleFile))
 		switch idx {
 		case 0:
 			require.NoError(t, err)
