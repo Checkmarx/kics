@@ -1,0 +1,11 @@
+{
+  "id": "ace823d1-4432-4dee-945b-cdf11a5a6bd0",
+  "queryName": "Function App HTTP2 Disabled",
+  "severity": "LOW",
+  "category": "Insecure Configurations",
+  "descriptionText": "Function App should have 'http2_enabled' enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/function_app#http2_enabled",
+  "platform": "Terraform",
+  "descriptionID": "7c364a67",
+  "cloudProvider": "azure"
+}
