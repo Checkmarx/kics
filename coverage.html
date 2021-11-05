@@ -211,7 +211,7 @@
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/report/model/gitlab_sast.go (75.0%)</option>
 				
-				<option value="file78">github.com/Checkmarx/kics/pkg/report/model/sarif.go (93.6%)</option>
+				<option value="file78">github.com/Checkmarx/kics/pkg/report/model/sarif.go (94.0%)</option>
 				
 				<option value="file79">github.com/Checkmarx/kics/pkg/report/model/sarif_categories.go (100.0%)</option>
 				
@@ -2294,13 +2294,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="30">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="30">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2325,7 +2325,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2781,7 +2781,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="18">{
-        for _, a := range s </span><span class="cov7" title="36">{
+        for _, a := range s </span><span class="cov7" title="38">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -4578,7 +4578,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -13509,7 +13509,11 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) <span class="co
                         kind = "informational"
                 }</span>
                 <span class="cov3" title="4">for idx := range issue.Files </span><span class="cov3" title="4">{
-                        result := sarifResult{
+                        line := issue.Files[idx].Line
+                        if line &lt; 1 </span><span class="cov1" title="1">{
+                                line = 1
+                        }</span>
+                        <span class="cov3" title="4">result := sarifResult{
                                 ResultRuleID:    issue.QueryID,
                                 ResultRuleIndex: ruleIndex,
                                 ResultKind:      kind,
@@ -13518,13 +13522,13 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) <span class="co
                                         {
                                                 PhysicalLocation: sarifPhysicalLocation{
                                                         ArtifactLocation: sarifArtifactLocation{ArtifactURI: issue.Files[idx].FileName},
-                                                        Region:           sarifRegion{StartLine: issue.Files[idx].Line},
+                                                        Region:           sarifRegion{StartLine: line},
                                                 },
                                         },
                                 },
                         }
-                        sr.Runs[0].Results = append(sr.Runs[0].Results, result)
-                }</span>
+                        sr.Runs[0].Results = append(sr.Runs[0].Results, result)</span>
+                }
         }
 }
 </pre>
