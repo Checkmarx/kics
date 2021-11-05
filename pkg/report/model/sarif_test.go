@@ -43,7 +43,7 @@ var sarifTests = []sarifTest{
 		},
 	},
 	{
-		name: "Should create one occurrence",
+		name: "Should create one occurrence with valid startLine",
 		vq: []model.QueryResult{
 			{
 				QueryName:   "test",
@@ -52,7 +52,7 @@ var sarifTests = []sarifTest{
 				QueryURI:    "https://www.test.com",
 				Severity:    model.SeverityHigh,
 				Files: []model.VulnerableFile{
-					{KeyActualValue: "test", FileName: "test.json", Line: 1},
+					{KeyActualValue: "test", FileName: "test.json", Line: -1},
 				},
 			},
 		},
