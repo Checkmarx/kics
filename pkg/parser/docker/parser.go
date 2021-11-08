@@ -48,12 +48,19 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 
 	fromValue := "args"
 	from := make(map[string][]Command)
+	ignoreStruct := newIgnore()
 
 	for _, child := range parsed.AST.Children {
 		child.Value = strings.ToLower(child.Value)
 		if child.Value == "from" {
 			fromValue = strings.TrimPrefix(child.Original, "FROM ")
 		}
+
+		if ignoreStruct.getIgnoreComments(child) {
+			ignoreStruct.setIgnore(fromValue)
+		}
+
+		ignoreStruct.ignoreBlock(child, fromValue)
 
 		cmd := Command{
 			Cmd:       child.Value,
@@ -90,6 +97,8 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 	}
 
 	documents = append(documents, *doc)
+
+	// ignoreLines := ignoreStruct.getIgnoreLines() nolint
 
 	return documents, []int{}, nil
 }

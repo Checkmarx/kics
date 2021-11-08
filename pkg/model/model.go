@@ -62,7 +62,7 @@ var (
 
 var (
 	// KICSCommentRgxp is the regexp to identify if a comment is a KICS comment
-	KICSCommentRgxp = regexp.MustCompile(`^((/{2})|#)\s*kics\s*`)
+	KICSCommentRgxp = regexp.MustCompile(`^((/{2})|#)*\s*kics\s*`)
 )
 
 // Version - is the model for the version response
