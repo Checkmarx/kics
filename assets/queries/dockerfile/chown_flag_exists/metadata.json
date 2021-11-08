@@ -3,7 +3,7 @@
   "queryName": "Chown Flag Exists",
   "severity": "LOW",
   "category": "Best Practices",
-  "descriptionText": "It is condidered a best practice for every executable in a container to be owned by the root user even if it is executed by a non-root user, only execution permissions are required on the file, not ownership",
+  "descriptionText": "It is considered a best practice for every executable in a container to be owned by the root user even if it is executed by a non-root user, only execution permissions are required on the file, not ownership",
   "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
   "platform": "Dockerfile",
   "descriptionID": "ba0a34dc"
