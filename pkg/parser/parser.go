@@ -14,7 +14,7 @@ type kindParser interface {
 	GetCommentToken() string
 	SupportedExtensions() []string
 	SupportedTypes() []string
-	Parse(filePath string, fileContent []byte) ([]model.Document, error)
+	Parse(filePath string, fileContent []byte) ([]model.Document, []int, error)
 	Resolve(fileContent []byte, filename string) (*[]byte, error)
 	StringifyContent(content []byte) (string, error)
 }
@@ -71,9 +71,10 @@ type Parser struct {
 
 // ParsedDocument is a struct containing data retrieved from parsing
 type ParsedDocument struct {
-	Docs    []model.Document
-	Kind    model.FileKind
-	Content string
+	Docs        []model.Document
+	Kind        model.FileKind
+	Content     string
+	IgnoreLines []int
 }
 
 // CommentsCommands gets commands on comments in the file beginning, before the code starts
@@ -115,7 +116,7 @@ func (c *Parser) Parse(filePath string, fileContent []byte) (ParsedDocument, err
 		if err != nil {
 			return ParsedDocument{}, err
 		}
-		obj, err := c.parsers.Parse(filePath, *resolved)
+		obj, igLines, err := c.parsers.Parse(filePath, *resolved)
 		if err != nil {
 			return ParsedDocument{}, err
 		}
@@ -127,15 +128,17 @@ func (c *Parser) Parse(filePath string, fileContent []byte) (ParsedDocument, err
 		}
 
 		return ParsedDocument{
-			Docs:    obj,
-			Kind:    c.parsers.GetKind(),
-			Content: cont,
+			Docs:        obj,
+			Kind:        c.parsers.GetKind(),
+			Content:     cont,
+			IgnoreLines: igLines,
 		}, nil
 	}
 	return ParsedDocument{
-		Docs:    nil,
-		Kind:    "break",
-		Content: "",
+		Docs:        nil,
+		Kind:        "break",
+		Content:     "",
+		IgnoreLines: []int{},
 	}, ErrNotSupportedFile
 }
 

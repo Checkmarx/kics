@@ -2,7 +2,7 @@
   "id": "f118890b-2468-42b1-9ce9-af35146b425b",
   "queryName": "MySQL Server Public Access Enabled",
   "severity": "HIGH",
-  "category": "Encryption",
+  "category": "Networking and Firewall",
   "descriptionText": "MySQL Server public access should be disabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mysql_server#public_network_access_enabled",
   "platform": "Terraform",

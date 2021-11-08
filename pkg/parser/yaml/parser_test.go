@@ -250,7 +250,7 @@ downscaler_enabled: "false"
 
 	for idx, tt := range have {
 		t.Run(fmt.Sprintf("test_parse_case_%d", idx), func(t *testing.T) {
-			doc, err := p.Parse("test.yaml", []byte(tt))
+			doc, _, err := p.Parse("test.yaml", []byte(tt))
 			if want[idx].wantErr {
 				require.Error(t, err)
 			} else {
@@ -349,7 +349,7 @@ func TestModel_TestYamlParser(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			parser := Parser{}
-			got, err := parser.Parse("", []byte(tt.sample))
+			got, _, err := parser.Parse("", []byte(tt.sample))
 			if tt.wantErr {
 				require.Error(t, err)
 			} else {

@@ -64,5 +64,14 @@ Moreover, to exclude scenarios like `automountServiceAccountToken: false`, we ca
 
 
 #### Flags
-It is important to mention that you can disable this query through flag `--disable-secrets`.
-Furthermore, if you want to add new rules, you can point the path through the flag `--secrets-regexes-path`.
+
+##### Passwords And Secrets Exclusion
+It is important to mention that you can disable this query through flag `--disable-secrets`. Furthermore, you also can disable it through flag `--exclude-queries`, which should point to its query ID.
+
+##### Passwords And Secrets Inclusion
+When the flag `--include-queries` is not used, the Password and Secrets query is included for default. However, when this flag is used, the Password and Secrets query is not included for default. So, to include this query, you can use the flag `--include-queries`, which should point to the Password and Secrets query ID.
+
+##### New Rules Addition
+If you want to use your own rules, you can point the path through the flag `--secrets-regexes-path`. KICS is prepared for two cases:
+- only the use of the user's rule (through the flag `--secrets-regexes-path`)
+- the use of the user's rules plus all KICS rules (through the flag `--secrets-regexes-path` and `--include-queries`, which should point to the Passwords and Secrets query ID)

@@ -37,13 +37,13 @@ func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
 }
 
 // Parse - parses dockerfile to Json
-func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
+func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, error) {
 	var documents []model.Document
 	reader := bytes.NewReader(fileContent)
 
 	parsed, err := parser.Parse(reader)
 	if err != nil {
-		return nil, errors.Wrap(err, "failed to parse Dockerfile")
+		return nil, []int{}, errors.Wrap(err, "failed to parse Dockerfile")
 	}
 
 	fromValue := "args"
@@ -82,16 +82,16 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 
 	j, err := json.Marshal(resource)
 	if err != nil {
-		return nil, errors.Wrap(err, "failed to Marshal Dockerfile")
+		return nil, []int{}, errors.Wrap(err, "failed to Marshal Dockerfile")
 	}
 
 	if err := json.Unmarshal(j, &doc); err != nil {
-		return nil, errors.Wrap(err, "failed to Unmarshal Dockerfile")
+		return nil, []int{}, errors.Wrap(err, "failed to Unmarshal Dockerfile")
 	}
 
 	documents = append(documents, *doc)
 
-	return documents, nil
+	return documents, []int{}, nil
 }
 
 // GetKind returns the kind of the parser

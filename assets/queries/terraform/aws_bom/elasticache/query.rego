@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"resource_engine": get_engine_type(elasticache),
 		"resource_accessibility": get_accessibility(elasticache),
 		"resource_vendor": "AWS",
-		"resource_category": "Queues",
+		"resource_category": "In Memory Data Structure",
 	}
 
 	result := {
@@ -83,14 +83,14 @@ options := {"security_group_names", "security_group_ids"}
 get_accessibility(elasticache) = accessibility {
 	count({
 		x | securityGroupInfo := elasticache[options[_]][x];
-		is_unrestricted(securityGroupInfo)	
+		is_unrestricted(securityGroupInfo)
 	}) > 0
 
 	accessibility := "at least one security group associated with the elasticache is unrestricted"
 } else = accessibility {
 	count({
 		x | securityGroupInfo := elasticache[options[_]][x];
-		is_restricted(securityGroupInfo)	
+		is_restricted(securityGroupInfo)
 	}) == count(elasticache[options[_]])
 
 	accessibility := "all security groups associated with the elasticache are restricted"

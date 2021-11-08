@@ -218,6 +218,7 @@ func GenerateReport(path, filename string, body interface{}, formats []string, p
 	defer progressBar.Close()
 
 	for _, format := range formats {
+		format = strings.ToLower(format)
 		if err = reportGenerators[format](path, filename, body); err != nil {
 			log.Error().Msgf("Failed to generate %s report", format)
 			break

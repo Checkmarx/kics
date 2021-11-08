@@ -14,7 +14,7 @@ func init() { //nolint
 					"--cloud-provider"},
 
 				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml",
-					"--cloud-provider", "aws"},
+					"--cloud-provider", "aWs"},
 			},
 		},
 		WantStatus: []int{126, 126, 50},

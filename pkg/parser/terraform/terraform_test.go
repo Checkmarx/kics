@@ -71,7 +71,7 @@ func TestParser_SupportedExtensions(t *testing.T) {
 // Test_Parser tests the functions [Parser()] and all the methods called by them
 func Test_Parser(t *testing.T) {
 	parser := NewDefault()
-	document, err := parser.Parse("test.tf", []byte(have))
+	document, _, err := parser.Parse("test.tf", []byte(have))
 
 	require.NoError(t, err)
 	require.Len(t, document, 1)
@@ -82,7 +82,7 @@ func Test_Parser(t *testing.T) {
 // Test_Count tests resources with count set to 0
 func Test_Count(t *testing.T) {
 	parser := NewDefault()
-	document, err := parser.Parse("count.tf", []byte(count))
+	document, _, err := parser.Parse("count.tf", []byte(count))
 	require.NoError(t, err)
 	require.Len(t, document, 1)
 	require.Contains(t, document[0], "resource")

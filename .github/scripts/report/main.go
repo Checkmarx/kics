@@ -52,17 +52,23 @@ func FindTest(tests []TestsData, testName string) (*TestsData, bool) {
 }
 
 func main() {
-	testPath := flag.String("test-path", "", "")
-	testName := flag.String("test-name", "", "")
-	reportPath := flag.String("report-path", "", "")
-	reportName := flag.String("report-name", "", "")
+	var testPath, testName, reportPath, reportName string
+
+	flag.StringVar(&testPath, "test-path", "", "")
+	flag.StringVar(&testName, "test-name", "", "")
+	flag.StringVar(&reportPath, "report-path", "", "")
+	flag.StringVar(&reportName, "report-name", "", "")
 
 	flag.Parse()
 
 	// Read TestLog (NDJSON)
-	jsonFile3, _ := os.Open(filepath.Join(filepath.ToSlash(*testPath), *testName))
+	jsonTestsOutput, err := os.Open(filepath.Join(filepath.ToSlash(testPath), testName))
+	if err != nil {
+		fmt.Printf("Error when trying to open: %v\n", filepath.Join(filepath.ToSlash(testPath), testName))
+		os.Exit(1)
+	}
 
-	decoder := json.NewDecoder(jsonFile3)
+	decoder := json.NewDecoder(jsonTestsOutput)
 
 	testList := []TestsData{}
 	finalStatus := TestLog{}
@@ -97,8 +103,13 @@ func main() {
 
 	// Parse Output from Failed Tests
 	if hasFailures {
-		jsonFile4, _ := os.Open(filepath.Join(filepath.ToSlash(*testPath), *testName))
-		decoder2 := json.NewDecoder(jsonFile4)
+		jsonTestsOutputClean, err := os.Open(filepath.Join(filepath.ToSlash(testPath), testName))
+		if err != nil {
+			fmt.Printf("Error when trying to open: %v\n", filepath.Join(filepath.ToSlash(testPath), testName))
+			os.Exit(1)
+		}
+
+		decoder2 := json.NewDecoder(jsonTestsOutputClean)
 		for decoder2.More() {
 			var log TestLog
 			decoder2.Decode(&log)
@@ -145,8 +156,8 @@ func main() {
 		Counters:  counter,
 	}
 
-	err := generateE2EReport(filepath.ToSlash(*reportPath), *reportName, reportList)
-	if err != nil {
-		fmt.Println(err)
+	reportError := generateE2EReport(filepath.ToSlash(reportPath), reportName, reportList)
+	if reportError != nil {
+		fmt.Println(reportError)
 	}
 }

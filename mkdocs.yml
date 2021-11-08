@@ -46,6 +46,7 @@ nav:
       - General Info: queries.md
       - Creating Queries: creating-queries.md
       - Passwords And Secrets: secrets.md
+      - Bill of Materials: bom.md
       - Queries List:
           - All: queries/all-queries.md
           - Ansible: queries/ansible-queries.md
