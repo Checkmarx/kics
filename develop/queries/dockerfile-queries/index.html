@@ -1484,7 +1484,7 @@
 <td>Chown Flag Exists<br/><sup><sub>aa93e17f-b6db-4162-9334-c70334e7ac28</sub></sup></td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Best Practices</td>
-<td>If the user only needs execution permissions on the file and not ownership, don't use --chown option</td>
+<td>It is considered a best practice for every executable in a container to be owned by the root user even if it is executed by a non-root user, only execution permissions are required on the file, not ownership</td>
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
 </tr>
 <tr>

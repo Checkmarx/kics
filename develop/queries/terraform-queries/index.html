@@ -2075,13 +2075,6 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>MySQL Server Public Access Enabled<br/><sup><sub>f118890b-2468-42b1-9ce9-af35146b425b</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Encryption</td>
-<td>MySQL Server public access should be disabled</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mysql_server#public_network_access_enabled">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>App Service Not Using Latest TLS Encryption Version<br/><sup><sub>b7b9d1c7-2d3b-49b4-b867-ebbe68d0b643</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
@@ -2173,6 +2166,13 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_registry">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>MySQL Server Public Access Enabled<br/><sup><sub>f118890b-2468-42b1-9ce9-af35146b425b</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>MySQL Server public access should be disabled</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mysql_server#public_network_access_enabled">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>SSH Is Exposed To The Internet<br/><sup><sub>3e3c175e-aadf-4e2b-a464-3fdac5748d24</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
@@ -2213,6 +2213,13 @@
 <td>Networking and Firewall</td>
 <td>The Ip Range Must Contain Ips</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cosmosdb_account#ip_range_filter">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>MSSQL Server Public Network Access Enabled<br/><sup><sub>ade36cf4-329f-4830-a83d-9db72c800507</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>MSSQL Server public network access should be disabled</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_server#public_network_access_enabled">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Redis Publicly Accessible<br/><sup><sub>5089d055-53ff-421b-9482-a5267bdce629</sub></sup></td>
@@ -2579,11 +2586,25 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server#infrastructure_encryption_enabled">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Function App HTTP2 Disabled<br/><sup><sub>ace823d1-4432-4dee-945b-cdf11a5a6bd0</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Insecure Configurations</td>
+<td>Function App should have 'http2_enabled' enabled</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/function_app#http2_enabled">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Dashboard Is Enabled<br/><sup><sub>61c3cb8b-0715-47e4-b788-86dde40dd2db</sub></sup></td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Insecure Configurations</td>
 <td>Check if the Kubernetes Dashboard is enabled.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>App Service HTTP2 Disabled<br/><sup><sub>525b53be-62ed-4244-b4df-41aecfcb4071</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Insecure Configurations</td>
+<td>App Service should have 'http2_enabled' enabled</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#http2_enabled">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Network Interfaces IP Forwarding Enabled<br/><sup><sub>4216ebac-d74c-4423-b437-35025cb88af5</sub></sup></td>
