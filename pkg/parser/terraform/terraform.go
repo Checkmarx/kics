@@ -6,11 +6,13 @@ import (
 	"regexp"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/parser/terraform/comment"
 	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
 	"github.com/Checkmarx/kics/pkg/parser/utils"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/pkg/errors"
+	"github.com/rs/zerolog/log"
 )
 
 // RetriesDefaultValue is default number of times a parser will retry to execute
@@ -108,11 +110,17 @@ func parseFile(filename string, shouldReplaceDataSource bool) (*hcl.File, error)
 // Parse execute parser for the content in a file
 func (p *Parser) Parse(path string, content []byte) ([]model.Document, []int, error) {
 	file, diagnostics := hclsyntax.ParseConfig(content, filepath.Base(path), hcl.Pos{Byte: 0, Line: 1, Column: 1})
-
 	if diagnostics != nil && diagnostics.HasErrors() && len(diagnostics.Errs()) > 0 {
 		err := diagnostics.Errs()[0]
 		return nil, []int{}, err
 	}
+
+	ignore, err := comment.ParseComments(content, path)
+	if err != nil {
+		log.Err(err).Msg("failed to parse comments")
+	}
+
+	linesToIgnore := comment.GetIgnoreLines(ignore, file.Body.(*hclsyntax.Body))
 
 	fc, parseErr := p.convertFunc(file, inputVariableMap)
 	json, err := addExtraInfo([]model.Document{fc}, path)
@@ -120,7 +128,7 @@ func (p *Parser) Parse(path string, content []byte) ([]model.Document, []int, er
 		return json, []int{}, errors.Wrap(err, "failed terraform parse")
 	}
 
-	return json, []int{}, errors.Wrap(parseErr, "failed terraform parse")
+	return json, linesToIgnore, errors.Wrap(parseErr, "failed terraform parse")
 }
 
 // SupportedExtensions returns Terraform extensions

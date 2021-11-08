@@ -240,7 +240,7 @@ func Test_ignoreCommentsYAML(t *testing.T) {
 		},
 		{
 			name: "test_3: regular-comment",
-			want: []int{},
+			want: nil,
 			args: args{
 				&yaml.Node{
 					Kind: yaml.MappingNode,

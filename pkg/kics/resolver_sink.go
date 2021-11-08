@@ -56,6 +56,7 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 				Content:          string(rfile.Content),
 				HelmID:           rfile.SplitID,
 				IDInfo:           rfile.IDInfo,
+				LinesIgnore:      documents.IgnoreLines,
 			}
 			s.saveToFile(ctx, &file)
 		}

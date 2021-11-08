@@ -23,7 +23,7 @@ func (c *comment) value() (value model.CommentCommand) {
 	if model.KICSCommentRgxp.MatchString(comment) {
 		comment = model.KICSCommentRgxp.ReplaceAllString(comment, "")
 		commands := strings.Split(strings.Trim(comment, "\n"), " ")
-		value = processCommands(commands)
+		value = model.ProcessCommands(commands)
 		return
 	}
 
@@ -34,7 +34,7 @@ func (c *comment) value() (value model.CommentCommand) {
 type Ignore map[model.CommentCommand][]hcl.Pos
 
 // Build builds the Ignore map
-func (i *Ignore) Build(ignoreLine, ignoreBlock, ignoreComment []hcl.Pos) {
+func (i *Ignore) build(ignoreLine, ignoreBlock, ignoreComment []hcl.Pos) {
 	ignoreStruct := map[model.CommentCommand][]hcl.Pos{
 		model.IgnoreLine:    ignoreLine,
 		model.IgnoreBlock:   ignoreBlock,
@@ -84,7 +84,7 @@ func getLinesFromBlock(block *hcl.Block, position hcl.Pos) (lines []int) {
 	lines = make([]int, 0)
 	if checkBlockRange(block, position) {
 		rangeBlock := block.Body.(*hclsyntax.Body).Range()
-		lines = append(lines, lineRange(rangeBlock.Start.Line, rangeBlock.End.Line)...)
+		lines = append(lines, model.Range(rangeBlock.Start.Line, rangeBlock.End.Line)...)
 	} else {
 		// check in attributes
 		attribute := block.Body.(*hclsyntax.Body).AttributeAtPos(position)
@@ -100,22 +100,13 @@ func getLinesFromAttr(atr *hcl.Attribute) (lines []int) {
 		return
 	}
 
-	lines = append(lines, lineRange(atr.Range.Start.Line, atr.Range.End.Line)...)
+	lines = append(lines, model.Range(atr.Range.Start.Line, atr.Range.End.Line)...)
 	return
 }
 
 // checkBlockRange checks if the position is inside a block
 func checkBlockRange(block *hcl.Block, position hcl.Pos) bool {
 	return block.TypeRange.End == position
-}
-
-// lineRange returns a list of lines from a range
-func lineRange(start, end int) (lines []int) {
-	lines = make([]int, end-start+1)
-	for i := range lines {
-		lines[i] = start + i
-	}
-	return
 }
 
 // ///////////////////////////
@@ -148,7 +139,7 @@ func processTokens(tokens hclsyntax.Tokens) (ig Ignore) {
 			(*comment)(&tokens[i+1]), ignoreLines, ignoreBlocks, ignoreComments)
 	}
 	ig = make(map[model.CommentCommand][]hcl.Pos)
-	ig.Build(ignoreLines, ignoreBlocks, ignoreComments)
+	ig.build(ignoreLines, ignoreBlocks, ignoreComments)
 	return ig
 }
 
@@ -162,31 +153,15 @@ func processComment(comment *comment, tokenToIgnore *comment,
 	switch comment.value() {
 	case model.IgnoreLine:
 		// comment is of type kics ignore-line
-		ignoreLineR = append(ignoreLineR, tokenToIgnore.position())
+		ignoreLineR = append(ignoreLineR, tokenToIgnore.position(), hcl.Pos{Line: comment.position().Line - 1})
 	case model.IgnoreBlock:
 		// comment is of type kics ignore-block
-		ignoreBlockR = append(ignoreBlockR, tokenToIgnore.position())
+		ignoreBlockR = append(ignoreBlockR, tokenToIgnore.position(), hcl.Pos{Line: comment.position().Line - 1})
 	default:
 		// comment is not of type kics ignore
-		ignoreCommentsR = append(ignoreCommentsR, comment.position())
+		ignoreCommentsR = append(ignoreCommentsR, hcl.Pos{Line: comment.position().Line - 1})
 		return
 	}
 
 	return
-}
-
-// processCommands goes over kics commands in a line and returns the type of command given
-func processCommands(commands []string) model.CommentCommand {
-	for _, command := range commands {
-		switch com := model.CommentCommand(command); com {
-		case model.IgnoreLine:
-			return model.IgnoreLine
-		case model.IgnoreBlock:
-			return model.IgnoreBlock
-		default:
-			continue
-		}
-	}
-
-	return model.CommentCommand(commands[0])
 }
