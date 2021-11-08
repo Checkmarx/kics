@@ -1,7 +1,9 @@
 package terraform
 
 import (
+	"os"
 	"path/filepath"
+	"regexp"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
@@ -15,7 +17,7 @@ import (
 const RetriesDefaultValue = 50
 
 // Converter returns content json, error line, error
-type Converter func(file *hcl.File, inputVariables converter.InputVariableMap) (model.Document, error)
+type Converter func(file *hcl.File, inputVariables converter.VariableMap) (model.Document, error)
 
 // Parser struct that contains the function to parse file and the number of retries if something goes wrong
 type Parser struct {
@@ -34,6 +36,7 @@ func NewDefault() *Parser {
 // Resolve - replace or modifies in-memory content before parsing
 func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
 	getInputVariables(filepath.Dir(filename))
+	getDataSourcePolicy(filepath.Dir(filename))
 	return &fileContent, nil
 }
 
@@ -86,6 +89,20 @@ func addExtraInfo(json []model.Document, path string) ([]model.Document, error) 
 	}
 
 	return json, nil
+}
+
+func parseFile(filename string, shouldReplaceDataSource bool) (*hcl.File, error) {
+	file, err := os.ReadFile(filename)
+	if err != nil {
+		return nil, err
+	}
+	if shouldReplaceDataSource {
+		replaceDataIdentifiers := regexp.MustCompile(`(data\.[A-Za-z0-9._-]+)`)
+		file = []byte(replaceDataIdentifiers.ReplaceAllString(string(file), "\"$1\""))
+	}
+	parsedFile, _ := hclsyntax.ParseConfig(file, filename, hcl.Pos{Line: 1, Column: 1})
+
+	return parsedFile, nil
 }
 
 // Parse execute parser for the content in a file
