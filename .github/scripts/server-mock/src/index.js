@@ -17,7 +17,7 @@ app.post('/kics-mock/api/descriptions', (req, res) => {
         "requestID": "f4594caf-5ad0-45b6-bccd-c1d61b825ce1"
     })
   } catch {
-    return res.status(400).send({status: 'failed'})
+    return res.status(500).send({status: 'failed'})
   }
 })
 
