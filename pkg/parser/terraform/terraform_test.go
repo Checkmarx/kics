@@ -13,8 +13,10 @@ var (
 	have = `
 resource "aws_s3_bucket" "b" {
   bucket = "S3B_541"
+  // kics-scan ignore-line
   acl    = "public-read"
-
+  // regular comment
+  // kics-scan ignore-block
   tags = {
     Name        = "My bucket"
     Environment = "Dev"
@@ -71,8 +73,9 @@ func TestParser_SupportedExtensions(t *testing.T) {
 // Test_Parser tests the functions [Parser()] and all the methods called by them
 func Test_Parser(t *testing.T) {
 	parser := NewDefault()
-	document, _, err := parser.Parse("test.tf", []byte(have))
+	document, linesToIgnore, err := parser.Parse("test.tf", []byte(have))
 
+	require.Equal(t, []int{8, 9, 10, 11, 5, 4, 6}, linesToIgnore)
 	require.NoError(t, err)
 	require.Len(t, document, 1)
 	require.Contains(t, document[0], "resource")

@@ -98,9 +98,9 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 
 	documents = append(documents, *doc)
 
-	// ignoreLines := ignoreStruct.getIgnoreLines() nolint
+	ignoreLines := ignoreStruct.getIgnoreLines()
 
-	return documents, []int{}, nil
+	return documents, ignoreLines, nil
 }
 
 // GetKind returns the kind of the parser

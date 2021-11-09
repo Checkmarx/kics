@@ -35,7 +35,10 @@ func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, [
 		return nil, []int{}, errors.Wrap(errors.New("invalid yaml"), "failed to parse yaml")
 	}
 
-	return convertKeysToString(addExtraInfo(documents, filePath)), []int{}, nil
+	linesToIgnore := model.NewIgnore.GetLines()
+	model.NewIgnore.Reset()
+
+	return convertKeysToString(addExtraInfo(documents, filePath)), linesToIgnore, nil
 }
 
 // convertKeysToString goes through every document to convert map[interface{}]interface{}

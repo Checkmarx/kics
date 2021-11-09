@@ -20,14 +20,14 @@ var (
 	NewIgnore = &Ignore{}
 )
 
-// Build builds the ignore struct
-func (i *Ignore) Build(lines []int) {
+// build builds the ignore struct
+func (i *Ignore) build(lines []int) {
 	i.Lines = append(i.Lines, lines...)
 }
 
 // GetLines returns the lines to ignore
 func (i *Ignore) GetLines() []int {
-	return removeDuplicates(i.Lines)
+	return RemoveDuplicates(i.Lines)
 }
 
 // Reset resets the ignore struct
@@ -41,7 +41,7 @@ func ignoreCommentsYAML(node *yaml.Node) {
 	if node.HeadComment != "" {
 		// Squence Node - Head Comment comes in root node
 		linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&node.HeadComment), 0, node, node.Kind)...)
-		NewIgnore.Build(linesIgnore)
+		NewIgnore.build(linesIgnore)
 		return
 	}
 	// check if comment is in the content
@@ -52,7 +52,7 @@ func ignoreCommentsYAML(node *yaml.Node) {
 		linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&content.HeadComment), i, node, node.Kind)...)
 	}
 
-	NewIgnore.Build(linesIgnore)
+	NewIgnore.build(linesIgnore)
 }
 
 // processCommentYAML returns the lines to ignore
@@ -94,18 +94,8 @@ func processBlock(kind yaml.Kind, content []*yaml.Node, position int) (linesIgno
 	}
 
 	linesIgnore = append(linesIgnore, content[position].Line, content[position].Line-1)
-	linesIgnore = append(linesIgnore, serviceRange(contentToIgnore[0].Line,
+	linesIgnore = append(linesIgnore, Range(contentToIgnore[0].Line,
 		getNodeLastLine(contentToIgnore[len(contentToIgnore)-1]))...)
-	return
-}
-
-// serviceRange returns the range of the services lines
-func serviceRange(startLine, endLine int) (lines []int) {
-	lines = make([]int, 0)
-	for i := startLine; i <= endLine; i++ {
-		lines = append(lines, i)
-	}
-
 	return
 }
 
@@ -124,20 +114,6 @@ func getNodeLastLine(node *yaml.Node) (lastLine int) {
 	return
 }
 
-// removeDuplicates removes duplicates from a slice
-func removeDuplicates(linesIgnore []int) (list []int) {
-	keys := make(map[int]bool)
-	list = make([]int, 0)
-	for _, entry := range linesIgnore {
-		if _, value := keys[entry]; !value {
-			keys[entry] = true
-			list = append(list, entry)
-		}
-	}
-
-	return
-}
-
 // value returns the value of the comment
 func (c *comment) value() (value CommentCommand) {
 	comment := strings.ToLower(string(*c))
@@ -146,25 +122,9 @@ func (c *comment) value() (value CommentCommand) {
 	if KICSCommentRgxp.MatchString(comment) {
 		comment = KICSCommentRgxp.ReplaceAllString(comment, "")
 		commands := strings.Split(strings.Trim(comment, "\n"), " ")
-		value = processCommands(commands)
+		value = ProcessCommands(commands)
 		return
 	}
 
 	return CommentCommand(comment)
-}
-
-// processCommands goes over kics commands in a line and returns the type of command given
-func processCommands(commands []string) CommentCommand {
-	for _, command := range commands {
-		switch com := CommentCommand(command); com {
-		case IgnoreLine:
-			return IgnoreLine
-		case IgnoreBlock:
-			return IgnoreBlock
-		default:
-			continue
-		}
-	}
-
-	return CommentCommand(commands[0])
 }
