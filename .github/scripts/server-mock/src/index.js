@@ -5,15 +5,16 @@ const app = express()
 app.use(express.json())
 
 app.post('/kics-mock/api/descriptions', (req, res) => {
-  res.setHeader("Content-Security-Policy", "script-src 'self'")
-  res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
   try {
     const fetchDescriptions = req?.body?.descriptions.reduce((acc, descriptionID) => {
       if (descriptions[descriptionID])
         acc[descriptionID] = descriptions[descriptionID]
       return acc
     }, {})
-    return res.status(200).send({
+
+    res.setHeader("Content-Security-Policy", "script-src 'self'")
+    res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
+    return res.json({
         "descriptions": fetchDescriptions,
         "timestamp": "2021-11-05T11:22:32Z",
         "requestID": "f4594caf-5ad0-45b6-bccd-c1d61b825ce1"
