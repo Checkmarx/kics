@@ -4,9 +4,16 @@ const descriptions = require('./descriptions.json')
 const app = express()
 app.use(express.json())
 
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "script-src 'self'")
+  res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
+  return next()
+})
+
 app.post('/kics-mock/api/descriptions', (req, res) => {
   try {
-    const fetchDescriptions = req?.body?.descriptions.reduce((acc, descriptionID) => {
+    const descriptionParams = Array.isArray(req.body.descriptions) ? req.body.descriptions : [req.body.descriptions]
+    const fetchDescriptions = descriptionParams.reduce((acc, descriptionID) => {
       if (descriptions[descriptionID])
         acc[descriptionID] = descriptions[descriptionID]
       return acc
