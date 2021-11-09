@@ -28,18 +28,22 @@ func Test_E2E_CLI(t *testing.T) {
 		for arg := range tt.Args.Args {
 			tt := tt
 			arg := arg
-			os.Setenv("KICS_DESCRIPTIONS_ENDPOINT", "http://localhost:3000/kics-mock")
-
 			t.Run(fmt.Sprintf("%s_%d", tt.Name, arg), func(t *testing.T) {
 				t.Parallel()
-				out, err := utils.RunCommand(append(kicsPath, tt.Args.Args[arg]...))
+
+				useMock := false
+				if arg <= len(tt.Args.UseMock)-1 && tt.Args.UseMock[arg] {
+					useMock = true
+				}
+
+				out, err := utils.RunCommand(append(kicsPath, tt.Args.Args[arg]...), useMock)
 				// Check command Error
 				require.NoError(t, err, "Capture CLI output should not yield an error")
 
 				// Check exit status code (required)
 				require.True(t, arg < len(tt.WantStatus),
 					"No status code associated to this test. Check the wantStatus of the test case.")
-				require.Equalf(t, out.Status, tt.WantStatus[arg],
+				require.Equalf(t, tt.WantStatus[arg], out.Status,
 					"Actual KICS status code: %v\nExpected KICS status code: %v",
 					out.Status, tt.WantStatus[arg])
 
@@ -89,7 +93,6 @@ func Test_E2E_CLI(t *testing.T) {
 	}
 
 	t.Cleanup(func() {
-		os.Setenv("KICS_DESCRIPTIONS_ENDPOINT", "")
 		err := os.RemoveAll("output")
 		require.NoError(t, err)
 		t.Logf("E2E tests ::ellapsed time:: %v", time.Since(scanStartTime))
@@ -110,6 +113,10 @@ func checkExpectedOutput(t *testing.T, tt *testcases.TestCase, argIndex int) {
 	// Check result file (JSON including BoM)
 	if utils.Contains(resultsFormats, "json-bom") {
 		utils.JSONSchemaValidation(t, jsonFileName, "resultBoM.json")
+	}
+	// Check result file (JSON including BoM)
+	if utils.Contains(resultsFormats, "json-cis") {
+		utils.JSONSchemaValidation(t, jsonFileName, "resultCIS.json")
 	}
 	// Check result file (GLSAST)
 	if utils.Contains(resultsFormats, "glsast") {

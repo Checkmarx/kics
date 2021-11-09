@@ -191,6 +191,18 @@
           "description_id": {
             "type": "string",
             "pattern": "^[a-f0-9]{8}$"
+          },
+          "cis_description_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "cis_description_title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "cis_description_text": {
+            "type": "string",
+            "minLength": 1
           }
         }
       }
