@@ -160,11 +160,13 @@ resource "google_storage_bucket" "example" {
 ```
 
 KICS currently supports five commands:
-- `ignore`: Will ignore file when running a scan;
-- `enable=<query_id>,<query_id>`: Will get results on this file **only** for listed queries;
-- `disable=<query_id>,<query_id>`: Will ignore results on this file for listed queries;
-- `ignore-line`: Will ignore the line beneath the comment on the results
-- `ignore-block`: Will ignore the block and all its key-value pairs on the results
+- Must be in file's start:
+    - `ignore`: Will ignore file when running a scan;
+    - `enable=<query_id>,<query_id>`: Will get results on this file **only** for listed queries;
+    - `disable=<query_id>,<query_id>`: Will ignore results on this file for listed queries;
+- Can be used in all file extension:
+    - `ignore-line`: Will ignore the line beneath the comment on the results
+    - `ignore-block`: Will ignore the block and all its key-value pairs on the results
 
 The order of prescendence in above commands are:
 1. ignore
