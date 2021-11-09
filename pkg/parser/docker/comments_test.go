@@ -8,6 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// Test_newIgnore tests the newIgnore function to ensure it returns a new ignore struct with the correct values set.
 func Test_newIgnore(t *testing.T) {
 	tests := []struct {
 		name string
@@ -30,6 +31,7 @@ func Test_newIgnore(t *testing.T) {
 	}
 }
 
+// Test_ignore_setIgnore tests the setIgnore function to ensure it sets the correct values.
 func Test_ignore_setIgnore(t *testing.T) {
 	type fields struct {
 		from  map[string]bool
@@ -67,6 +69,7 @@ func Test_ignore_setIgnore(t *testing.T) {
 	}
 }
 
+// Test_ignore_ignoreBlock tests the ignoreBlock function to ensure it sets the correct values.
 func Test_ignore_ignoreBlock(t *testing.T) {
 	type fields struct {
 		from  map[string]bool
@@ -130,6 +133,7 @@ func Test_ignore_ignoreBlock(t *testing.T) {
 	}
 }
 
+// Test_ignore_getIgnoreLines tests the getIgnoreLines function to ensure it returns the correct values.
 func Test_ignore_getIgnoreLines(t *testing.T) {
 	type fields struct {
 		from  map[string]bool
@@ -170,6 +174,7 @@ func Test_ignore_getIgnoreLines(t *testing.T) {
 	}
 }
 
+// Test_ignore_getIgnoreComments tests the getIgnoreComments function to ensure it returns the correct values.
 func Test_ignore_getIgnoreComments(t *testing.T) {
 	type fields struct {
 		from  map[string]bool
@@ -193,7 +198,7 @@ func Test_ignore_getIgnoreComments(t *testing.T) {
 			},
 			args: args{
 				node: &parser.Node{
-					PrevComment: []string{"kics ignore-line"},
+					PrevComment: []string{"kics-scan ignore-line"},
 					StartLine:   3,
 					EndLine:     3,
 				},
@@ -209,7 +214,7 @@ func Test_ignore_getIgnoreComments(t *testing.T) {
 			},
 			args: args{
 				node: &parser.Node{
-					PrevComment: []string{"kics ignore-line"},
+					PrevComment: []string{"kics-scan ignore-line"},
 					StartLine:   3,
 					EndLine:     6,
 				},
@@ -225,7 +230,7 @@ func Test_ignore_getIgnoreComments(t *testing.T) {
 			},
 			args: args{
 				node: &parser.Node{
-					PrevComment: []string{"kics ignore-line", "kics regular command"},
+					PrevComment: []string{"kics-scan ignore-line", "kics-scan regular command"},
 					StartLine:   3,
 					EndLine:     6,
 				},
@@ -257,7 +262,7 @@ func Test_ignore_getIgnoreComments(t *testing.T) {
 			},
 			args: args{
 				node: &parser.Node{
-					PrevComment: []string{"kics ignore-block"},
+					PrevComment: []string{"kics-scan ignore-block"},
 					StartLine:   3,
 					EndLine:     6,
 				},

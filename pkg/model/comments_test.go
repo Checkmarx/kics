@@ -5,6 +5,7 @@ import (
 	"testing"
 )
 
+// TestRemoveDuplicates tests the RemoveDuplicates function.
 func TestRemoveDuplicates(t *testing.T) {
 	type args struct {
 		lines []int
@@ -31,6 +32,7 @@ func TestRemoveDuplicates(t *testing.T) {
 	}
 }
 
+// TestProcessCommands tests the ProcessCommands function.
 func TestProcessCommands(t *testing.T) {
 	type args struct {
 		commands []string
@@ -71,6 +73,7 @@ func TestProcessCommands(t *testing.T) {
 	}
 }
 
+// TestRange tests the Range function.
 func TestRange(t *testing.T) {
 	type args struct {
 		start int

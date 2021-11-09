@@ -43,7 +43,7 @@ func TestParser_Parse(t *testing.T) {
 		`
 		FROM ubuntu:xenial
 		RUN echo hi > /etc/hi.conf
-		# kics ignore-line
+		# kics-scan ignore-line
 		CMD ["echo"]
 		HEALTHCHECK --retries=5 CMD echo hi
 		ONBUILD ADD foo bar
@@ -54,7 +54,7 @@ func TestParser_Parse(t *testing.T) {
 		CMD ["echo"]
 		`,
 		`
-		# kics ignore-block
+		# kics-scan ignore-block
 		FROM golang:alpine
 		ENV CGO_ENABLED=0
 		WORKDIR /app

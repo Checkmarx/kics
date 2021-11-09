@@ -32,7 +32,7 @@ func TestParser_SupportedTypes(t *testing.T) {
 func TestParser_Parse(t *testing.T) { //nolint
 	p := &Parser{}
 	have := []string{`
-# kics ignore-block
+# kics-scan ignore-block
 martin:
   name: test
 ---
@@ -40,7 +40,7 @@ martin2:
   name: test2
 `, `
 ---
-# kics ignore-block
+# kics-scan ignore-block
 - name: Create an empty bucket2
   amazon.aws.aws_s3:
     bucket: mybucket
@@ -51,7 +51,7 @@ martin2:
 test:
   - &test_anchor
     group:
-      # kics ignore-line
+      # kics-scan ignore-line
       name: "cx"
 test_2:
   perm:

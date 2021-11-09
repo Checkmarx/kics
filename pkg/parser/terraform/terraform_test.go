@@ -13,10 +13,10 @@ var (
 	have = `
 resource "aws_s3_bucket" "b" {
   bucket = "S3B_541"
-  // kics ignore-line
+  // kics-scan ignore-line
   acl    = "public-read"
   // regular comment
-  // kics ignore-block
+  // kics-scan ignore-block
   tags = {
     Name        = "My bucket"
     Environment = "Dev"

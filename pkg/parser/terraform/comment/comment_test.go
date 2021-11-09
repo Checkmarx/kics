@@ -13,7 +13,7 @@ import (
 var (
 	samples = map[string][]byte{
 		"ignore-block": []byte(`
-		// kics ignore-block
+		// kics-scan ignore-block
 		resource "aws_api_gateway_stage" "positive2" {
 			deployment_id = "some deployment id"
 			rest_api_id   = "some rest api id"
@@ -22,14 +22,14 @@ var (
 		"ignore-line": []byte(`
 		resource "aws_api_gateway_stage" "positive2" {
 		  deployment_id = "some deployment id"
-		  // kics ignore-line
+		  // kics-scan ignore-line
 		  rest_api_id   = "some rest api id"
 		  stage_name    = "development"
 		}`),
 		"regular-comment": []byte(`
 		resource "aws_api_gateway_stage" "positive2" {
 		  deployment_id = "some deployment id"
-		  // kics do-not-ignore
+		  // kics-scan do-not-ignore
 		  rest_api_id   = "some rest api id"
 		  // regular comment
 		  stage_name    = "development"
@@ -37,7 +37,7 @@ var (
 		"ignore-inner-block": []byte(`
 		resource "aws_api_gateway_stage" "positive2" {
 		  deployment_id = "some deployment id"
-		  // kics ignore-block
+		  // kics-scan ignore-block
 		  tags = {
 			Terraform   = "true"
 			Environment = "dev"
@@ -62,7 +62,7 @@ func TestComment_ParseComments(t *testing.T) {
 			filename: "",
 			want: Ignore{
 				model.IgnoreBlock: []hcl.Pos{
-					{Line: 3, Column: 11, Byte: 34},
+					{Line: 3, Column: 11, Byte: 39},
 					{Line: 2, Column: 0, Byte: 0},
 				},
 				model.IgnoreLine:    []hcl.Pos{},
@@ -77,7 +77,7 @@ func TestComment_ParseComments(t *testing.T) {
 			want: Ignore{
 				model.IgnoreBlock: []hcl.Pos{},
 				model.IgnoreLine: []hcl.Pos{
-					{Line: 5, Column: 16, Byte: 130},
+					{Line: 5, Column: 16, Byte: 135},
 					{Line: 4, Column: 0, Byte: 0},
 				},
 				model.IgnoreComment: []hcl.Pos{},
@@ -104,7 +104,7 @@ func TestComment_ParseComments(t *testing.T) {
 			filename: "",
 			want: Ignore{
 				model.IgnoreBlock: []hcl.Pos{
-					{Line: 5, Column: 9, Byte: 124},
+					{Line: 5, Column: 9, Byte: 129},
 					{Line: 4, Column: 0, Byte: 0},
 				},
 				model.IgnoreLine:    []hcl.Pos{},

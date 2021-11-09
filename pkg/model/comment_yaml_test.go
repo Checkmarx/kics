@@ -7,6 +7,7 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+// Test_ignoreCommentsYAML tests the YAML marshalling of the ignoreComments type.
 func Test_ignoreCommentsYAML(t *testing.T) {
 	type args struct {
 		node *yaml.Node
@@ -35,7 +36,7 @@ func Test_ignoreCommentsYAML(t *testing.T) {
 						},
 						{
 							Kind:        yaml.ScalarNode,
-							HeadComment: "# kics ignore-block",
+							HeadComment: "# kics-scan ignore-block",
 							Value:       "key_object",
 							Line:        2,
 						},
@@ -136,7 +137,7 @@ func Test_ignoreCommentsYAML(t *testing.T) {
 					Content: []*yaml.Node{
 						{
 							Kind:        yaml.ScalarNode,
-							HeadComment: "# kics ignore-line",
+							HeadComment: "# kics-scan ignore-line",
 							Value:       "key",
 							Line:        1,
 						},
@@ -247,7 +248,7 @@ func Test_ignoreCommentsYAML(t *testing.T) {
 					Content: []*yaml.Node{
 						{
 							Kind:        yaml.ScalarNode,
-							HeadComment: "# kics regular comment",
+							HeadComment: "# kics-scan regular comment",
 							Value:       "key",
 							Line:        1,
 						},
@@ -355,7 +356,7 @@ func Test_ignoreCommentsYAML(t *testing.T) {
 			args: args{
 				&yaml.Node{
 					Kind:        yaml.MappingNode,
-					HeadComment: "# kics ignore-block",
+					HeadComment: "# kics-scan ignore-block",
 					Content: []*yaml.Node{
 						{
 							Kind:  yaml.ScalarNode,
@@ -479,7 +480,7 @@ func Test_ignoreCommentsYAML(t *testing.T) {
 						},
 						{
 							Kind:        yaml.ScalarNode,
-							HeadComment: "# kics ignore-block",
+							HeadComment: "# kics-scan ignore-block",
 							Value:       "seq_object",
 							Line:        5,
 						},
