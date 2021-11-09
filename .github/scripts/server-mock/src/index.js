@@ -1,19 +1,21 @@
 const express = require('express')
-const descriptions = require('./descriptions.json')
+const jsonDescriptions = require('./descriptions.json')
 
 const app = express()
 app.use(express.json())
 
 app.post('/kics-mock/api/descriptions', (req, res) => {
+  res.setHeader("Content-Security-Policy", "script-src 'self'")
+  res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
+
   try {
-    const fetchDescriptions = req?.body?.descriptions.reduce((acc, descriptionID) => {
-      if (descriptions[descriptionID])
-        acc[descriptionID] = descriptions[descriptionID]
+    const { descriptions } = req.body
+    const fetchDescriptions = descriptions.reduce((acc, descriptionID) => {
+      if (jsonDescriptions[descriptionID])
+        acc[descriptionID] = jsonDescriptions[descriptionID]
       return acc
     }, {})
 
-    res.setHeader("Content-Security-Policy", "script-src 'self'")
-    res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
     return res.json({
         "descriptions": fetchDescriptions,
         "timestamp": "2021-11-05T11:22:32Z",
