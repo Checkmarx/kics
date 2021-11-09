@@ -1272,7 +1272,7 @@ To overwrite the key, you need to create files following the pattern <code>&lt;q
 <p>Then you can execute KICS normally adding <code>--input-data ./custom-input/</code>, if <code>custom-input</code> folder is in current path, and it will replace the key <code>defaultPasswords</code> on <code>passwords_and_secrets_in_infrastructure_code</code> query with the custom value you defined.</p>
 <p><strong>NOTE</strong>: The value which will replace the default value, <strong>MUST</strong> be the same type as the default key (e.g. <code>defaultPasswords</code> must be an array of strings)</p>
 <h2 id="using_commands_on_scanned_files_as_comments">Using commands on scanned files as comments<a class="headerlink" href="#using_commands_on_scanned_files_as_comments" title="Permanent link">&para;</a></h2>
-<p>KICS scan supports some special commands in the comments that are on the file beginning (i.e.: all comments before any valid line on IaC file). To use this feature you need to create a comment that starts with <code>kics-scan</code> and wanted command with values (if necessary).</p>
+<p>KICS scan supports some special commands in the comments. To use this feature you need to create a comment that starts with <code>kics-scan</code> and wanted command with values (if necessary).</p>
 <p>For example, if you want to ignore a tf file when running a scan, you can start your file as following:</p>
 <pre><code class="language-hcl"># kics-scan ignore
 # rest of the file...
@@ -1291,20 +1291,54 @@ resource &quot;google_storage_bucket&quot; &quot;example&quot; {
 # This also not works, since there is valid script before this comment
 # kics-scan ignore
 </code></pre>
-<p>KICS currently supports three commands:
-- <code>ignore</code>: Will ignore file when running a scan;
-- <code>enable=&lt;query_id&gt;,&lt;query_id&gt;</code>: Will get results on this file <strong>only</strong> for listed queries;
-- <code>disable=&lt;query_id&gt;,&lt;query_id&gt;</code>: Will ignore results on this file for listed queries;</p>
+<p>KICS currently supports five commands:
+- Must be in file's start:
+    - <code>ignore</code>: Will ignore file when running a scan;
+    - <code>enable=&lt;query_id&gt;,&lt;query_id&gt;</code>: Will get results on this file <strong>only</strong> for listed queries;
+    - <code>disable=&lt;query_id&gt;,&lt;query_id&gt;</code>: Will ignore results on this file for listed queries;
+- Can be used in all file extension:
+    - <code>ignore-line</code>: Will ignore the line beneath the comment on the results
+    - <code>ignore-block</code>: Will ignore the block and all its key-value pairs on the results</p>
 <p>The order of prescendence in above commands are:
 1. ignore
-2. enable
-3. disable</p>
+2. ignore-block
+3. ignore-line
+4. enable
+5. disable</p>
 <p>For example:</p>
 <pre><code class="language-hcl"># kics-scan disable=0afa6ab8-a047-48cf-be07-93a2f8c34cf7
 # kics-scan
 </code></pre>
 <p>In this case, this file will be ignored by KICS, instead of ignoring results for query with id 0afa6ab8-a047-48cf-be07-93a2f8c34cf7.</p>
-<p>This feature is supported by all extensions that supports comments. Currently, KICS supports this features for:
+<p><code>kics-scan ignore-line</code> example:</p>
+<pre><code class="language-hcl">1: resource &quot;google_storage_bucket&quot; &quot;example&quot; {
+2:  # kics-scan ignore-line
+3:  name          = &quot;image-store.com&quot;
+4:  location      = &quot;EU&quot;
+5:  force_destroy = true
+6: }
+</code></pre>
+<p>Results that point to lines 2 and 3 will be ignored.</p>
+<p><code>kics-scan ignore-block</code> example:</p>
+<pre><code class="language-hcl">1: # kics-scan ignore-block
+2: resource &quot;google_storage_bucket&quot; &quot;example&quot; {
+3:  name          = &quot;image-store.com&quot;
+4:  location      = &quot;EU&quot;
+5:  force_destroy = true
+6: }
+</code></pre>
+<p>Results that point from line 1 to 6 will be ignored.</p>
+<p>For Dockerfile <code>ignore-block</code> is only usable when the whole <code>FROM</code> block should be ignored.</p>
+<pre><code class="language-Dockerfile">1: # kics-scan ignore-block
+2: FROM kics
+3: USER Checkmarx
+4:
+5: FROM kics:2.0
+6: USER Checkmarx
+</code></pre>
+<p>in this case only lines from 1 to 3 will be ignored.</p>
+<p><code>ignore-line</code> will ignore all lines of a multi-line command in Docker.</p>
+<p>This feature is supported by all extensions that supports comments. Currently, KICS supports this feature for:
 - Dockerfile;
 - HCL (Terraform);
 - YAML;</p>
