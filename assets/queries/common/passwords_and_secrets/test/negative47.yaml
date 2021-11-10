@@ -1,0 +1,10 @@
+Resources:
+  MytFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-CdnViewerRequest'
+      Code:
+        ZipFile: !Sub |
+          function msg(userPass) {
+            return {"username": userPass[1], "password": userPass[2]}
+          }

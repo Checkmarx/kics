@@ -19,7 +19,7 @@ func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
 }
 
 // Parse parses yaml/yml file and returns it as a Document
-func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, error) {
+func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, []int, error) {
 	var documents []model.Document
 	dec := yaml.NewDecoder(bytes.NewReader(fileContent))
 
@@ -32,10 +32,13 @@ func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, e
 	}
 
 	if len(documents) == 0 {
-		return nil, errors.Wrap(errors.New("invalid yaml"), "failed to parse yaml")
+		return nil, []int{}, errors.Wrap(errors.New("invalid yaml"), "failed to parse yaml")
 	}
 
-	return convertKeysToString(addExtraInfo(documents, filePath)), nil
+	linesToIgnore := model.NewIgnore.GetLines()
+	model.NewIgnore.Reset()
+
+	return convertKeysToString(addExtraInfo(documents, filePath)), linesToIgnore, nil
 }
 
 // convertKeysToString goes through every document to convert map[interface{}]interface{}

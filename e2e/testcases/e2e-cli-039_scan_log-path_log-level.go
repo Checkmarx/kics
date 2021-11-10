@@ -11,7 +11,7 @@ func init() { //nolint
 			Args: []cmdArgs{
 
 				[]string{"scan", "--log-path", "output/E2E_CLI_039_LOG",
-					"--log-level", "TRACE",
+					"--log-level", "Trace",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 			},
 

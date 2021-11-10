@@ -43,6 +43,7 @@ func TestParser_Parse(t *testing.T) {
 		`
 		FROM ubuntu:xenial
 		RUN echo hi > /etc/hi.conf
+		# kics-scan ignore-line
 		CMD ["echo"]
 		HEALTHCHECK --retries=5 CMD echo hi
 		ONBUILD ADD foo bar
@@ -53,6 +54,7 @@ func TestParser_Parse(t *testing.T) {
 		CMD ["echo"]
 		`,
 		`
+		# kics-scan ignore-block
 		FROM golang:alpine
 		ENV CGO_ENABLED=0
 		WORKDIR /app
@@ -66,7 +68,7 @@ func TestParser_Parse(t *testing.T) {
 	}
 
 	for idx, sampleFile := range sample {
-		doc, err := p.Parse("Dockerfile", []byte(sampleFile))
+		doc, igLines, err := p.Parse("Dockerfile", []byte(sampleFile))
 		switch idx {
 		case 0:
 			require.NoError(t, err)
@@ -76,6 +78,7 @@ func TestParser_Parse(t *testing.T) {
 			docJDk := doc[0]["command"].(map[string]interface{})["openjdk:11-jdk"]
 			require.Len(t, docJDk, 7)
 			require.Contains(t, docJDk.([]interface{})[5].(map[string]interface{})["Value"].([]interface{})[0], "${JAR_FILE}")
+			// require.Equal(t, nil, igLines)
 		case 1:
 			require.NoError(t, err)
 			require.Len(t, doc, 1)
@@ -88,6 +91,7 @@ func TestParser_Parse(t *testing.T) {
 			require.Len(t, docXec2, 3)
 			require.Contains(t, docXec.([]interface{})[3].(map[string]interface{})["Flags"].([]interface{})[0], "--retries=5")
 			require.Contains(t, docXec.([]interface{})[4].(map[string]interface{})["SubCmd"], "add")
+			require.Equal(t, []int{4, 5}, igLines)
 		case 2:
 			require.NoError(t, err)
 			require.Len(t, doc, 1)
@@ -96,6 +100,7 @@ func TestParser_Parse(t *testing.T) {
 			docGoALP := doc[0]["command"].(map[string]interface{})["golang:alpine"]
 			require.Len(t, docGoALP, 5)
 			require.Contains(t, docGoALP.([]interface{})[4].(map[string]interface{})["Value"].([]interface{})[0], "${GIT_USER}")
+			require.Equal(t, []int{2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, igLines)
 		}
 	}
 }

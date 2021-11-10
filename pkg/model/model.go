@@ -2,6 +2,7 @@
 package model
 
 import (
+	"regexp"
 	"sort"
 	"strings"
 
@@ -17,6 +18,13 @@ const (
 	KindDOCKER    FileKind = "DOCKERFILE"
 	KindCOMMON    FileKind = "*"
 	KindHELM      FileKind = "HELM"
+)
+
+// Constants to describe commands given from comments
+const (
+	IgnoreLine    CommentCommand = "ignore-line"
+	IgnoreBlock   CommentCommand = "ignore-block"
+	IgnoreComment CommentCommand = "ignore-comment"
 )
 
 // Constants to describe vulnerability's severity
@@ -52,6 +60,11 @@ var (
 	}
 )
 
+var (
+	// KICSCommentRgxp is the regexp to identify if a comment is a KICS comment
+	KICSCommentRgxp = regexp.MustCompile(`^((/{2})|#)*\s*kics-scan\s*`)
+)
+
 // Version - is the model for the version response
 type Version struct {
 	Latest           bool   `json:"is_latest"`
@@ -64,6 +77,9 @@ type VulnerabilityLines struct {
 	VulnLines            []CodeLine
 	LineWithVulnerabilty string
 }
+
+// CommentCommand represents a command given from a comment
+type CommentCommand string
 
 // FileKind is the extension of a file
 type FileKind string
@@ -103,6 +119,7 @@ type FileMetadata struct {
 	HelmID           string
 	IDInfo           map[int]interface{}
 	Commands         CommentsCommands
+	LinesIgnore      []int
 }
 
 // QueryMetadata is a representation of general information about a query

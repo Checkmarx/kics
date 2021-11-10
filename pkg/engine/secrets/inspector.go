@@ -95,8 +95,14 @@ func NewInspector(
 	disableSecretsQuery bool,
 	executionTimeout int,
 	regexRulesContent string,
+	isCustomSecretsRegexes bool,
 ) (*Inspector, error) {
-	if disableSecretsQuery {
+	passwordsAndSecretsQueryID, err := getPasswordsAndSecretsQueryID()
+	if err != nil {
+		return nil, err
+	}
+	excludeSecretsQuery := isValueInArray(passwordsAndSecretsQueryID, queryFilter.ExcludeQueries.ByIDs)
+	if disableSecretsQuery || excludeSecretsQuery && !isCustomSecretsRegexes {
 		return &Inspector{
 			ctx:                   ctx,
 			tracker:               tracker,
@@ -112,7 +118,7 @@ func NewInspector(
 		Add(helm.DetectKindLine{}, model.KindHELM).
 		Add(docker.DetectKindLine{}, model.KindDOCKER)
 
-	err := json.Unmarshal([]byte(assets.SecretsQueryMetadataJSON), &SecretsQueryMetadata)
+	err = json.Unmarshal([]byte(assets.SecretsQueryMetadataJSON), &SecretsQueryMetadata)
 	if err != nil {
 		return nil, err
 	}
@@ -124,7 +130,14 @@ func NewInspector(
 		return nil, err
 	}
 
-	regexQueries, err := compileRegexQueries(queryFilter, allRegexQueries.Rules)
+	if isCustomSecretsRegexes {
+		err = validateCustomSecretsQueriesID(allRegexQueries.Rules)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	regexQueries, err := compileRegexQueries(queryFilter, allRegexQueries.Rules, isCustomSecretsRegexes, passwordsAndSecretsQueryID)
 	if err != nil {
 		return nil, err
 	}
@@ -177,12 +190,33 @@ func (c *Inspector) Inspect(ctx context.Context, basePaths []string,
 	return c.vulnerabilities, nil
 }
 
-func compileRegexQueries(queryFilter *source.QueryInspectorParameters, allRegexQueries []RegexQuery) ([]RegexQuery, error) {
+func compileRegexQueries(
+	queryFilter *source.QueryInspectorParameters,
+	allRegexQueries []RegexQuery,
+	isCustom bool,
+	passwordsAndSecretsQueryID string,
+) ([]RegexQuery, error) {
 	var regexQueries []RegexQuery
+	var includeSpecificSecretQuery bool
+
+	allSecretsQueryAndCustom := false
+
+	includeAllSecretsQuery := isValueInArray(passwordsAndSecretsQueryID, queryFilter.IncludeQueries.ByIDs)
+
+	if includeAllSecretsQuery && isCustom { // merge case
+		var kicsRegexQueries RegexRuleStruct
+		err := json.Unmarshal([]byte(assets.SecretsQueryRegexRulesJSON), &kicsRegexQueries)
+		if err != nil {
+			return nil, err
+		}
+		allSecretsQueryAndCustom = true
+		regexQueries = kicsRegexQueries.Rules
+	}
 
 	for i := range allRegexQueries {
-		if len(queryFilter.IncludeQueries.ByIDs) > 0 {
-			if isValueInArray(allRegexQueries[i].ID, queryFilter.IncludeQueries.ByIDs) {
+		includeSpecificSecretQuery = isValueInArray(allRegexQueries[i].ID, queryFilter.IncludeQueries.ByIDs)
+		if len(queryFilter.IncludeQueries.ByIDs) > 0 && !allSecretsQueryAndCustom {
+			if includeAllSecretsQuery || includeSpecificSecretQuery {
 				regexQueries = append(regexQueries, allRegexQueries[i])
 			}
 		} else {
@@ -504,4 +538,23 @@ func shouldExecuteQuery(filterTarget, id, category, severity string, filter []st
 		return false
 	}
 	return true
+}
+
+func getPasswordsAndSecretsQueryID() (string, error) {
+	var metadata = make(map[string]string)
+	err := json.Unmarshal([]byte(assets.SecretsQueryMetadataJSON), &metadata)
+	if err != nil {
+		return "", err
+	}
+	return metadata["id"], nil
+}
+
+func validateCustomSecretsQueriesID(allRegexQueries []RegexQuery) error {
+	for i := range allRegexQueries {
+		re := regexp.MustCompile(`^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$`)
+		if !(re.MatchString(allRegexQueries[i].ID)) {
+			return fmt.Errorf("the query %s defines an invalid query ID (%s)", allRegexQueries[i].Name, allRegexQueries[i].ID)
+		}
+	}
+	return nil
 }

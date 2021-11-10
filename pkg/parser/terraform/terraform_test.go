@@ -2,6 +2,7 @@ package terraform
 
 import (
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -12,8 +13,10 @@ var (
 	have = `
 resource "aws_s3_bucket" "b" {
   bucket = "S3B_541"
+  // kics-scan ignore-line
   acl    = "public-read"
-
+  // regular comment
+  // kics-scan ignore-block
   tags = {
     Name        = "My bucket"
     Environment = "Dev"
@@ -23,23 +26,31 @@ resource "aws_s3_bucket" "b" {
 	count = `
    resource "aws_instance" "server" {
 	count = true == true ? 0 : 1
-  
+
 	subnet_id     = var.subnet_ids[count.index]
-  
+
 	ami           = "ami-a1b2c3d4"
 	instance_type = "t2.micro"
-  
+
   }
-  
+
   resource "aws_instance" "server1" {
 	count = length(var.subnet_ids)
-  
+
 	ami           = "ami-a1b2c3d4"
 	instance_type = "t2.micro"
 	subnet_id     = var.subnet_ids[count.index]
-  
+
   }`
 )
+
+type fileTest struct {
+	name                    string
+	filename                string
+	shouldReplaceDataSource bool
+	want                    string
+	wantErr                 bool
+}
 
 // TestParser_GetKind tests the functions [GetKind()] and all the methods called by them
 func TestParser_GetKind(t *testing.T) {
@@ -62,8 +73,9 @@ func TestParser_SupportedExtensions(t *testing.T) {
 // Test_Parser tests the functions [Parser()] and all the methods called by them
 func Test_Parser(t *testing.T) {
 	parser := NewDefault()
-	document, err := parser.Parse("test.tf", []byte(have))
+	document, linesToIgnore, err := parser.Parse("test.tf", []byte(have))
 
+	require.Equal(t, []int{8, 9, 10, 11, 5, 4, 6}, linesToIgnore)
 	require.NoError(t, err)
 	require.Len(t, document, 1)
 	require.Contains(t, document[0], "resource")
@@ -73,7 +85,7 @@ func Test_Parser(t *testing.T) {
 // Test_Count tests resources with count set to 0
 func Test_Count(t *testing.T) {
 	parser := NewDefault()
-	document, err := parser.Parse("count.tf", []byte(count))
+	document, _, err := parser.Parse("count.tf", []byte(count))
 	require.NoError(t, err)
 	require.Len(t, document, 1)
 	require.Contains(t, document[0], "resource")
@@ -183,6 +195,103 @@ resource "aws_s3_bucket" "b" {
 			got, err := tt.fields.parser.StringifyContent(tt.args.content)
 			require.Equal(t, tt.wantErr, (err != nil))
 			require.Equal(t, tt.want, got)
+		})
+	}
+}
+
+func TestParseFile(t *testing.T) {
+	tests := []fileTest{
+		{
+			name:     "Should parse variable file",
+			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "terraform.tfvars"),
+			want: `test_terraform = "terraform.tfvars"
+`,
+			shouldReplaceDataSource: false,
+			wantErr:                 false,
+		},
+		{
+			name:     "Should parse terraform file",
+			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "test.tf"),
+			want: `variable "local_default_var" {
+  type    = "string"
+  default = "local_default"
+}
+
+variable "" {
+  type    = "string"
+  default = "invalid_block"
+}
+
+variable "invalid_attr" {
+}
+
+resource "test" "test1" {
+  test_map        = var.map2
+  test_bool       = var.test1
+  test_list       = var.test2
+  test_neted_map  = var.map2[var.map1["map1key1"]]]
+
+  test_block {
+    terraform_var = var.test_terraform
+  }
+
+  test_default_local = var.local_default_var
+  test_default       = var.default_var
+}
+`,
+			shouldReplaceDataSource: false,
+			wantErr:                 false,
+		},
+		{
+			name:                    "Should get error when trying to parse inexistent file",
+			filename:                filepath.Join(".", "not_found.tf"),
+			shouldReplaceDataSource: false,
+			want:                    "",
+			wantErr:                 true,
+		},
+		{
+			name:     "Should parse data source file without errors",
+			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_data_source", "data_source_1.tf"),
+			want: `resource "aws_cloudwatch_log_destination_policy" "test_destination_policy" {
+  destination_name = aws_cloudwatch_log_destination.test_destination.name
+  access_policy    = "data.aws_iam_policy_document.test_destination_policy.json"
+}
+
+data "aws_iam_policy_document" "test_destination_policy" {
+  statement {
+    effect = "Allow"
+
+    principals {
+      type = "AWS"
+
+      identifiers = [
+        "data.aws_caller_identity.current.id",
+      ]
+    }
+
+    actions = [
+      "logs:*",
+    ]
+
+  }
+}
+
+`,
+			shouldReplaceDataSource: true,
+			wantErr:                 false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			parsedFile, err := parseFile(tt.filename, tt.shouldReplaceDataSource)
+			if tt.wantErr {
+				require.NotNil(t, err)
+				require.Nil(t, parsedFile)
+			} else {
+				require.NoError(t, err)
+				require.Equal(t, tt.want, strings.ReplaceAll(string(parsedFile.Bytes), "\r", ""))
+			}
 		})
 	}
 }

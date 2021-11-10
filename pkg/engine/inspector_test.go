@@ -363,7 +363,7 @@ func TestNewInspector(t *testing.T) { // nolint
 			Query:     "all_auth_users_get_read_access",
 			Content:   string(contentByte),
 			InputData: "{}",
-			Platform:  "cloudFormation",
+			Platform:  "terraform",
 			Metadata: map[string]interface{}{
 				"id":              "57b9893d-33b1-4419-bcea-b828fb87e318",
 				"queryName":       "All Auth Users Get Read Access",
@@ -371,7 +371,7 @@ func TestNewInspector(t *testing.T) { // nolint
 				"category":        "Access Control",
 				"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", // nolint
 				"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
-				"platform":        "CloudFormation",
+				"platform":        "Terraform",
 			},
 			Aggregation: 1,
 		},
@@ -521,18 +521,10 @@ func TestEngine_LenQueriesByPlat(t *testing.T) {
 		{
 			name: "test_len_queries_plat",
 			args: args{
-				queriesPath: filepath.FromSlash("./assets/queries"),
+				queriesPath: filepath.FromSlash("./test/fixtures"),
 				platform:    []string{"terraform"},
 			},
-			min: 100,
-		},
-		{
-			name: "test_len_queries_plat_dockerfile",
-			args: args{
-				queriesPath: filepath.FromSlash("./assets/queries"),
-				platform:    []string{"dockerfile"},
-			},
-			min: 50,
+			min: 1,
 		},
 	}
 
@@ -540,7 +532,7 @@ func TestEngine_LenQueriesByPlat(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			ins := newInspectorInstance(t, tt.args.queriesPath)
 			got := ins.LenQueriesByPlat(tt.args.platform)
-			require.True(t, got > tt.min)
+			require.True(t, got >= tt.min)
 		})
 	}
 }
@@ -560,7 +552,7 @@ func TestEngine_GetFailedQueries(t *testing.T) {
 		{
 			name: "test_get_failed_queries",
 			args: args{
-				queriesPath:     filepath.FromSlash("./assets/queries"),
+				queriesPath:     filepath.FromSlash("./test/fixtures"),
 				nrFailedQueries: 5,
 			},
 		},
@@ -695,4 +687,34 @@ func (m *mockSource) GetQueryLibrary(platform string) (source.RegoLibraries, err
 		LibraryCode:      embeddedLibrary,
 		LibraryInputData: "{}",
 	}, errGettingEmbeddedLibrary
+}
+
+func TestInspector_checkComment(t *testing.T) {
+	tests := []struct {
+		name  string
+		lines []int
+		line  int
+		want  bool
+	}{
+		{
+			name:  "test_checkComment_true",
+			lines: []int{1, 2, 3, 4, 5, 6},
+			line:  3,
+			want:  true,
+		},
+		{
+			name:  "test_checkComment_false",
+			lines: []int{1, 2, 3, 4, 5, 6},
+			line:  7,
+			want:  false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := checkComment(tt.line, tt.lines); got != tt.want {
+				t.Errorf("checkComment() = %v, want %v", got, tt.want)
+			}
+		})
+	}
 }

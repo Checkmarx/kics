@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "App Service Managed Identity Disabled",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive1.tf"
+  }
+]

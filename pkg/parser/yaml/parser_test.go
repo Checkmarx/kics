@@ -32,6 +32,7 @@ func TestParser_SupportedTypes(t *testing.T) {
 func TestParser_Parse(t *testing.T) { //nolint
 	p := &Parser{}
 	have := []string{`
+# kics-scan ignore-block
 martin:
   name: test
 ---
@@ -39,6 +40,7 @@ martin2:
   name: test2
 `, `
 ---
+# kics-scan ignore-block
 - name: Create an empty bucket2
   amazon.aws.aws_s3:
     bucket: mybucket
@@ -49,6 +51,7 @@ martin2:
 test:
   - &test_anchor
     group:
+      # kics-scan ignore-line
       name: "cx"
 test_2:
   perm:
@@ -72,8 +75,9 @@ downscaler_enabled: "false"
 	}
 
 	type wantExpect struct {
-		want    string
-		wantErr bool
+		want              string
+		wantErr           bool
+		wantLinesToIgnore []int
 	}
 
 	want := []wantExpect{
@@ -85,16 +89,16 @@ downscaler_enabled: "false"
 				  "_kics_line": 0
 				},
 				"_kics_martin": {
-				  "_kics_line": 2
+				  "_kics_line": 3
 				}
 			  },
 			  "martin": {
 				"_kics_lines": {
 				  "_kics__default": {
-					"_kics_line": 2
+					"_kics_line": 3
 				  },
 				  "_kics_name": {
-					"_kics_line": 3
+					"_kics_line": 4
 				  }
 				},
 				"name": "test"
@@ -106,16 +110,16 @@ downscaler_enabled: "false"
 				  "_kics_line": 0
 				},
 				"_kics_martin2": {
-				  "_kics_line": 5
+				  "_kics_line": 6
 				}
 			  },
 			  "martin2": {
 				"_kics_lines": {
 				  "_kics__default": {
-					"_kics_line": 5
+					"_kics_line": 6
 				  },
 				  "_kics_name": {
-					"_kics_line": 6
+					"_kics_line": 7
 				  }
 				},
 				"name": "test2"
@@ -123,7 +127,8 @@ downscaler_enabled: "false"
 			}
 		  ]
 		  `,
-			wantErr: false,
+			wantErr:           false,
+			wantLinesToIgnore: []int{3, 2, 4},
 		},
 		{
 			want: `[
@@ -133,13 +138,13 @@ downscaler_enabled: "false"
 				  "_kics_arr": [
 					{
 					  "_kics__default": {
-						"_kics_line": 3
-					  },
-					  "_kics_amazon.aws.aws_s3": {
 						"_kics_line": 4
 					  },
+					  "_kics_amazon.aws.aws_s3": {
+						"_kics_line": 5
+					  },
 					  "_kics_name": {
-						"_kics_line": 3
+						"_kics_line": 4
 					  }
 					}
 				  ],
@@ -151,16 +156,16 @@ downscaler_enabled: "false"
 				  "amazon.aws.aws_s3": {
 					"_kics_lines": {
 					  "_kics__default": {
-						"_kics_line": 4
-					  },
-					  "_kics_bucket": {
 						"_kics_line": 5
 					  },
-					  "_kics_mode": {
+					  "_kics_bucket": {
 						"_kics_line": 6
 					  },
-					  "_kics_permission": {
+					  "_kics_mode": {
 						"_kics_line": 7
+					  },
+					  "_kics_permission": {
+						"_kics_line": 8
 					  }
 					},
 					"bucket": "mybucket",
@@ -173,7 +178,8 @@ downscaler_enabled: "false"
 			}
 		  ]
 		  `,
-			wantErr: false,
+			wantErr:           false,
+			wantLinesToIgnore: []int{4, 3, 5, 6, 7, 8},
 		},
 		{
 			want: `[
@@ -196,7 +202,7 @@ downscaler_enabled: "false"
 				  "_kics_line": 2
 				},
 				"_kics_test_2": {
-				  "_kics_line": 6
+				  "_kics_line": 7
 				}
 			  },
 			  "test": [
@@ -207,7 +213,7 @@ downscaler_enabled: "false"
 						"_kics_line": 4
 					  },
 					  "_kics_name": {
-						"_kics_line": 5
+						"_kics_line": 6
 					  }
 					},
 					"name": "cx"
@@ -217,20 +223,20 @@ downscaler_enabled: "false"
 			  "test_2": {
 				"_kics_lines": {
 				  "_kics__default": {
-					"_kics_line": 6
+					"_kics_line": 7
 				  },
 				  "_kics_perm": {
 					"_kics_arr": [
 					  {
 						"_kics_<<": {
-						  "_kics_line": 8
+						  "_kics_line": 9
 						},
 						"_kics__default": {
-						  "_kics_line": 8
+						  "_kics_line": 9
 						}
 					  }
 					],
-					"_kics_line": 7
+					"_kics_line": 8
 				  }
 				},
 				"perm": [
@@ -240,20 +246,23 @@ downscaler_enabled: "false"
 			}
 		  ]
 		  `,
-			wantErr: false,
+			wantErr:           false,
+			wantLinesToIgnore: []int{5, 6},
 		},
 		{
-			want:    "{}",
-			wantErr: true,
+			want:              "{}",
+			wantErr:           true,
+			wantLinesToIgnore: []int{},
 		},
 	}
 
 	for idx, tt := range have {
 		t.Run(fmt.Sprintf("test_parse_case_%d", idx), func(t *testing.T) {
-			doc, err := p.Parse("test.yaml", []byte(tt))
+			doc, linesToIgnore, err := p.Parse("test.yaml", []byte(tt))
 			if want[idx].wantErr {
 				require.Error(t, err)
 			} else {
+				require.Equal(t, want[idx].wantLinesToIgnore, linesToIgnore)
 				require.NoError(t, err)
 				compareJSONLine(t, doc, want[idx].want)
 			}
@@ -349,7 +358,7 @@ func TestModel_TestYamlParser(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			parser := Parser{}
-			got, err := parser.Parse("", []byte(tt.sample))
+			got, _, err := parser.Parse("", []byte(tt.sample))
 			if tt.wantErr {
 				require.Error(t, err)
 			} else {

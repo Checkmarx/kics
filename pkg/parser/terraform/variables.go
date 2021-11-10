@@ -12,27 +12,16 @@ import (
 	"github.com/zclconf/go-cty/cty"
 )
 
-var inputVariableMap = make(converter.InputVariableMap)
+var inputVariableMap = make(converter.VariableMap)
 
-func mergeMaps(baseMap, newItems converter.InputVariableMap) {
+func mergeMaps(baseMap, newItems converter.VariableMap) {
 	for key, value := range newItems {
 		baseMap[key] = value
 	}
 }
 
-func parseFile(filename string) (*hcl.File, error) {
-	file, err := os.ReadFile(filename)
-	if err != nil {
-		return nil, err
-	}
-
-	parsedFile, _ := hclsyntax.ParseConfig(file, filename, hcl.Pos{Line: 1, Column: 1})
-
-	return parsedFile, nil
-}
-
-func setInputVariablesDefaultValues(filename string) (converter.InputVariableMap, error) {
-	parsedFile, err := parseFile(filename)
+func setInputVariablesDefaultValues(filename string) (converter.VariableMap, error) {
+	parsedFile, err := parseFile(filename, false)
 	if err != nil || parsedFile == nil {
 		return nil, err
 	}
@@ -44,7 +33,7 @@ func setInputVariablesDefaultValues(filename string) (converter.InputVariableMap
 			},
 		},
 	})
-	defaultValuesMap := make(converter.InputVariableMap)
+	defaultValuesMap := make(converter.VariableMap)
 	for _, block := range content.Blocks {
 		if len(block.Labels) == 0 || block.Labels[0] == "" {
 			continue
@@ -76,8 +65,8 @@ func checkTfvarsValid(f *hcl.File, filename string) error {
 	return nil
 }
 
-func getInputVariablesFromFile(filename string) (converter.InputVariableMap, error) {
-	parsedFile, err := parseFile(filename)
+func getInputVariablesFromFile(filename string) (converter.VariableMap, error) {
+	parsedFile, err := parseFile(filename, false)
 	if err != nil || parsedFile == nil {
 		return nil, err
 	}
@@ -87,7 +76,7 @@ func getInputVariablesFromFile(filename string) (converter.InputVariableMap, err
 	}
 
 	attrs := parsedFile.Body.(*hclsyntax.Body).Attributes
-	variables := make(converter.InputVariableMap)
+	variables := make(converter.VariableMap)
 	for name, attr := range attrs {
 		value, _ := attr.Expr.Value(&hcl.EvalContext{})
 		variables[name] = value
@@ -96,7 +85,7 @@ func getInputVariablesFromFile(filename string) (converter.InputVariableMap, err
 }
 
 func getInputVariables(currentPath string) {
-	variablesMap := make(converter.InputVariableMap)
+	variablesMap := make(converter.VariableMap)
 	tfFiles, err := filepath.Glob(filepath.Join(currentPath, "*.tf"))
 	if err != nil {
 		log.Error().Msg("Error getting .tf files")
