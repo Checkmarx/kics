@@ -11,8 +11,6 @@ CIS Benchmarks are best practices for the secure configuration of a target syste
 KICS 1.4.4 has been awarded the following certifications:
 - CIS Amazon Web Services Foundations Benchmark v1.4.0, Level 1
 - CIS Amazon Web Services Foundations Benchmark v1.4.0, Level 2
-- CIS Amazon Web Services Foundations Benchmark v1.4.0, Level 1
-- CIS Amazon Web Services Foundations Benchmark v1.4.0, Level 2
 
 ## What are the Level 1, Level 2 certifications?
 Most CIS Benchmarks include multiple configuration profiles. A profile definition describes the configurations assigned to benchmark recommendations.
