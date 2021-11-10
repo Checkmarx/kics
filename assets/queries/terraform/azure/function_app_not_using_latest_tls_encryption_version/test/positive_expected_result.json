@@ -2,13 +2,7 @@
   {
     "queryName": "Function App Not Using Latest TLS Encryption Version",
     "severity": "HIGH",
-    "line": 1,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "Function App Not Using Latest TLS Encryption Version",
-    "severity": "HIGH",
     "line": 12,
-    "fileName": "positive2.tf"
+    "fileName": "positive1.tf"
   }
 ]
