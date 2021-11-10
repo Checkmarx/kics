@@ -22,11 +22,11 @@ func (c *comment) value() (value model.CommentCommand) {
 	// check if we are working with kics command
 	if model.KICSCommentRgxp.MatchString(comment) {
 		comment = model.KICSCommentRgxp.ReplaceAllString(comment, "")
-		commands := strings.Split(strings.Trim(comment, "\n"), " ")
+		comment = strings.Trim(comment, "\n")
+		commands := strings.Split(strings.Trim(comment, "\r"), " ")
 		value = model.ProcessCommands(commands)
 		return
 	}
-
 	return model.CommentCommand(comment)
 }
 

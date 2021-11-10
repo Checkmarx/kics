@@ -46,6 +46,9 @@ func ignoreCommentsYAML(node *yaml.Node) {
 	}
 	// check if comment is in the content
 	for i, content := range node.Content {
+		if content.FootComment != "" && i+2 < len(node.Content) {
+			linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&content.FootComment), i+2, node, node.Kind)...) //nolint
+		}
 		if content.HeadComment == "" {
 			continue
 		}
@@ -117,14 +120,13 @@ func getNodeLastLine(node *yaml.Node) (lastLine int) {
 // value returns the value of the comment
 func (c *comment) value() (value CommentCommand) {
 	comment := strings.ToLower(string(*c))
-
 	// check if we are working with kics command
 	if KICSCommentRgxp.MatchString(comment) {
 		comment = KICSCommentRgxp.ReplaceAllString(comment, "")
-		commands := strings.Split(strings.Trim(comment, "\n"), " ")
+		comment = strings.Trim(comment, "\n")
+		commands := strings.Split(strings.Trim(comment, "\r"), " ")
 		value = ProcessCommands(commands)
 		return
 	}
-
 	return CommentCommand(comment)
 }
