@@ -1,0 +1,11 @@
+{
+  "id": "b61cce4b-0cc4-472b-8096-15617a6d769b",
+  "queryName": "App Service Managed Identity Disabled",
+  "severity": "HIGH",
+  "category": "Resource Management",
+  "descriptionText": "Azure App Service should have managed identity enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#identity",
+  "platform": "Terraform",
+  "descriptionID": "c8096e2d",
+  "cloudProvider": "azure"
+}
