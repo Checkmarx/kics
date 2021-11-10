@@ -590,6 +590,20 @@ func Test_getPlatform(t *testing.T) {
 			},
 			want: "terraform",
 		},
+		{
+			name: "get_platform_AzureResourceManager",
+			args: args{
+				PlatformInMetadata: "AzureResourceManager",
+			},
+			want: "azureResourceManager",
+		},
+		{
+			name: "get_platform_unknown",
+			args: args{
+				PlatformInMetadata: "Unknown",
+			},
+			want: "unknown",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -676,6 +690,56 @@ func TestSource_validateMetadata(t *testing.T) {
 			valid, invField := validateMetadata(tt.metadata)
 			require.Equal(t, tt.wantValid, valid)
 			require.Equal(t, tt.wantInvField, invField)
+		})
+	}
+}
+
+// TestSource_ListSupportedCloudProviders tests the function ListSupportedCloudProviders.
+func TestSource_ListSupportedCloudProviders(t *testing.T) {
+	want := []string{"aws", "azure", "gcp"}
+	t.Run("test List Suported CP", func(t *testing.T) {
+		got := ListSupportedCloudProviders()
+		require.Equal(t, want, got)
+	})
+}
+
+func TestSource_getLibraryInDir(t *testing.T) {
+	if err := test.ChangeCurrentDir("kics"); err != nil {
+		t.Fatal(err)
+	}
+
+	type args struct {
+		platform       string
+		libraryDirPath string
+	}
+
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			name: "test get library in dir for terraform",
+			args: args{
+				platform:       "terraform",
+				libraryDirPath: filepath.FromSlash("./assets/libraries"),
+			},
+			want: filepath.FromSlash("assets/libraries/terraform.rego"),
+		},
+		{
+			name: "test get library in dir error",
+			args: args{
+				platform:       "",
+				libraryDirPath: filepath.FromSlash("./assets/libraries"),
+			},
+			want: "",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := getLibraryInDir(tt.args.platform, tt.args.libraryDirPath)
+			require.Equal(t, tt.want, got)
 		})
 	}
 }
