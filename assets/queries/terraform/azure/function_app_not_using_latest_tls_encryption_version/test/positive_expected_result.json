@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Function App Not Using Latest TLS Encryption Version",
+    "severity": "HIGH",
+    "line": 12,
+    "fileName": "positive1.tf"
+  }
+]
