@@ -222,6 +222,17 @@ in this case only lines from 1 to 3 will be ignored.
 
 `ignore-line` will ignore all lines of a multi-line command in Docker.
 
+**NOTE**: For YAML when trying to ignore the whole resource this file should start with `---` and then the KICS comment command as you can see on the following example:
+```yaml
+1: ---
+2: # kics-scan ignore-block
+3: apiVersion: v1
+4: kind: Pod
+5: metadata:
+6:  name: memory-demo-1
+7:  namespace: mem-example
+```
+
 This feature is supported by all extensions that supports comments. Currently, KICS supports this feature for:
 - Dockerfile;
 - HCL (Terraform);
