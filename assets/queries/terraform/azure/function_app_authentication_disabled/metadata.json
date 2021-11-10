@@ -1,0 +1,11 @@
+{
+  "id": "e65a0733-94a0-4826-82f4-df529f4c593f",
+  "queryName": "Function App Authentication Disabled",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Azure Function App authentication settings should be enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/function_app#auth_settings",
+  "platform": "Terraform",
+  "descriptionID": "7526dc36",
+  "cloudProvider": "azure"
+}

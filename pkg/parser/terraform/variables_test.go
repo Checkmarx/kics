@@ -2,7 +2,6 @@ package terraform
 
 import (
 	"path/filepath"
-	"strings"
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
@@ -15,23 +14,16 @@ import (
 type mergeMapsTest struct {
 	name string
 	args struct {
-		baseMap converter.InputVariableMap
-		newMap  converter.InputVariableMap
+		baseMap converter.VariableMap
+		newMap  converter.VariableMap
 	}
-	want converter.InputVariableMap
-}
-
-type fileTest struct {
-	name     string
-	filename string
-	want     string
-	wantErr  bool
+	want converter.VariableMap
 }
 
 type inputVarTest struct {
 	name     string
 	filename string
-	want     converter.InputVariableMap
+	want     converter.VariableMap
 	wantErr  bool
 }
 
@@ -40,17 +32,17 @@ func TestMergeMaps(t *testing.T) {
 		{
 			name: "Should merge the second map on the first map",
 			args: struct {
-				baseMap converter.InputVariableMap
-				newMap  converter.InputVariableMap
+				baseMap converter.VariableMap
+				newMap  converter.VariableMap
 			}{
-				baseMap: converter.InputVariableMap{
+				baseMap: converter.VariableMap{
 					"test": cty.StringVal("test"),
 				},
-				newMap: converter.InputVariableMap{
+				newMap: converter.VariableMap{
 					"new": cty.StringVal("new"),
 				},
 			},
-			want: converter.InputVariableMap{
+			want: converter.VariableMap{
 				"test": cty.StringVal("test"),
 				"new":  cty.StringVal("new"),
 			},
@@ -63,69 +55,9 @@ func TestMergeMaps(t *testing.T) {
 			require.Equal(t, tt.want, tt.args.baseMap)
 		})
 	}
-}
-
-func TestParseFile(t *testing.T) {
-	tests := []fileTest{
-		{
-			name:     "Should parse variable file",
-			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "terraform.tfvars"),
-			want: `test_terraform = "terraform.tfvars"
-`,
-			wantErr: false,
-		},
-		{
-			name:     "Should parse terraform file",
-			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "test.tf"),
-			want: `variable "local_default_var" {
-  type    = "string"
-  default = "local_default"
-}
-
-variable "" {
-  type    = "string"
-  default = "invalid_block"
-}
-
-variable "invalid_attr" {
-}
-
-resource "test" "test1" {
-  test_map        = var.map2
-  test_bool       = var.test1
-  test_list       = var.test2
-  test_neted_map  = var.map2[var.map1["map1key1"]]]
-
-  test_block {
-    terraform_var = var.test_terraform
-  }
-
-  test_default_local = var.local_default_var
-  test_default       = var.default_var
-}
-`,
-			wantErr: false,
-		},
-		{
-			name:     "Should get error when trying to parse inexistent file",
-			filename: filepath.Join(".", "not_found.tf"),
-			want:     "",
-			wantErr:  true,
-		},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			parsedFile, err := parseFile(tt.filename)
-			if tt.wantErr {
-				require.NotNil(t, err)
-				require.Nil(t, parsedFile)
-			} else {
-				require.NoError(t, err)
-				require.Equal(t, tt.want, strings.ReplaceAll(string(parsedFile.Bytes), "\r", ""))
-			}
-		})
-	}
+	t.Cleanup(func() {
+		inputVariableMap = make(converter.VariableMap)
+	})
 }
 
 func TestSetInputVariablesDefaultValues(t *testing.T) {
@@ -133,7 +65,7 @@ func TestSetInputVariablesDefaultValues(t *testing.T) {
 		{
 			name:     "Should get default variable values from tf file",
 			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "test.tf"),
-			want: converter.InputVariableMap{
+			want: converter.VariableMap{
 				"local_default_var": cty.StringVal("local_default"),
 			},
 			wantErr: false,
@@ -141,7 +73,7 @@ func TestSetInputVariablesDefaultValues(t *testing.T) {
 		{
 			name:     "Should get default variable values from tf file",
 			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "variables.tf"),
-			want: converter.InputVariableMap{
+			want: converter.VariableMap{
 				"default_var_file": cty.StringVal("default_var_file"),
 			},
 			wantErr: false,
@@ -149,7 +81,7 @@ func TestSetInputVariablesDefaultValues(t *testing.T) {
 		{
 			name:     "Should get empty map from variable blockless file",
 			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "test_without_variables_block.tf"),
-			want:     converter.InputVariableMap{},
+			want:     converter.VariableMap{},
 			wantErr:  false,
 		},
 		{
@@ -171,6 +103,9 @@ func TestSetInputVariablesDefaultValues(t *testing.T) {
 			require.Equal(t, tt.want, defaultValues)
 		})
 	}
+	t.Cleanup(func() {
+		inputVariableMap = make(converter.VariableMap)
+	})
 }
 
 func TestGetInputVariablesFromFile(t *testing.T) {
@@ -178,7 +113,7 @@ func TestGetInputVariablesFromFile(t *testing.T) {
 		{
 			name:     "Should get variables from file",
 			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "variable_set.auto.tfvars"),
-			want: converter.InputVariableMap{
+			want: converter.VariableMap{
 				"test1": cty.BoolVal(false),
 				"test2": cty.TupleVal([]cty.Value{cty.BoolVal(false), cty.BoolVal(true)}),
 				"map1": cty.ObjectVal(map[string]cty.Value{
@@ -215,6 +150,9 @@ func TestGetInputVariablesFromFile(t *testing.T) {
 			require.Equal(t, tt.want, inputVars)
 		})
 	}
+	t.Cleanup(func() {
+		inputVariableMap = make(converter.VariableMap)
+	})
 }
 
 func TestGetInputVariables(t *testing.T) {
@@ -222,7 +160,7 @@ func TestGetInputVariables(t *testing.T) {
 		{
 			name:     "Should load input variables",
 			filename: filepath.FromSlash("../../../test/fixtures/test_terraform_variables"),
-			want: converter.InputVariableMap{
+			want: converter.VariableMap{
 				"var": cty.ObjectVal(map[string]cty.Value{
 					"test1": cty.BoolVal(false),
 					"test2": cty.TupleVal([]cty.Value{cty.BoolVal(false), cty.BoolVal(true)}),
@@ -247,4 +185,7 @@ func TestGetInputVariables(t *testing.T) {
 			require.Equal(t, tt.want, inputVariableMap)
 		})
 	}
+	t.Cleanup(func() {
+		inputVariableMap = make(converter.VariableMap)
+	})
 }

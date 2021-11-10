@@ -1,15 +1,14 @@
 package Cx
 
-import data.generic.terraform as terraLib
+import data.generic.common as common_lib
+import data.generic.terraform as terra_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_glue_resource_policy[name]
 
-	policyName := split(resource.policy, ".")[2]
-
-	policy := input.document[j].data.aws_iam_policy_document[policyName]
-
-	terraLib.has_wildcard(policy.statement, "glue:*")
+	policy := common_lib.json_unmarshal(resource.policy)
+	statement := policy.Statement
+	terra_lib.has_wildcard(statement[_], "glue:*")
 
 	result := {
 		"documentId": input.document[i].id,

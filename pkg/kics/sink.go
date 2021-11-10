@@ -61,6 +61,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 			Kind:             documents.Kind,
 			FilePath:         filename,
 			Commands:         fileCommands,
+			LinesIgnore:      documents.IgnoreLines,
 		}
 		s.saveToFile(ctx, &file)
 	}

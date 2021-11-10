@@ -1,0 +1,10 @@
+{
+  "id": "b2315cae-b110-4426-81e0-80bb8640cddZ",
+  "queryName": "Athena Database Not Encrypted",
+  "severity": "high",
+  "category": "Encryption",
+  "descriptionText": "AWS Athena Database data in S3 should be encrypted",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/athena_database#encryption_configuration",
+  "platform": "Terraform",
+  "descriptionID": "c90feea8"
+}

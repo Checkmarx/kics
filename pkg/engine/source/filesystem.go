@@ -309,6 +309,20 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 	return queries, err
 }
 
+// validateMetadata prevents panics when KICS queries metadata fields are missing
+func validateMetadata(metadata map[string]interface{}) (exist bool, field string) {
+	fields := []string{
+		"id",
+		"platform",
+	}
+	for _, field = range fields {
+		if _, exist = metadata[field]; !exist {
+			return
+		}
+	}
+	return
+}
+
 // ReadQuery reads query's files for a given path and returns a QueryMetadata struct with it's
 // content
 func ReadQuery(queryDir string) (model.QueryMetadata, error) {
@@ -320,6 +334,10 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 	metadata, err := ReadMetadata(queryDir)
 	if err != nil {
 		return model.QueryMetadata{}, errors.Wrapf(err, "failed to read query %s", path.Base(queryDir))
+	}
+
+	if valid, missingField := validateMetadata(metadata); !valid {
+		return model.QueryMetadata{}, fmt.Errorf("failed to read metadata field: %s", missingField)
 	}
 
 	platform := getPlatform(metadata["platform"].(string))

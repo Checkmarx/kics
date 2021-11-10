@@ -1,0 +1,11 @@
+{
+  "id": "ade36cf4-329f-4830-a83d-9db72c800507",
+  "queryName": "MSSQL Server Public Network Access Enabled",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "MSSQL Server public network access should be disabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_server#public_network_access_enabled",
+  "platform": "Terraform",
+  "descriptionID": "d1ee9c09",
+  "cloudProvider": "azure"
+}

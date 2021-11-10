@@ -36,6 +36,7 @@ func (m *Document) UnmarshalYAML(value *yaml.Node) error {
 // to place their line information in the payload
 func unmarshal(val *yaml.Node) interface{} {
 	tmp := make(map[string]interface{})
+	ignoreCommentsYAML(val)
 
 	// if Yaml Node is an Array than we are working with ansible
 	// which need to be placed inside "playbooks"

@@ -18,13 +18,13 @@ func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
 }
 
 // Parse parses json file and returns it as a Document
-func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
+func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, error) {
 	r := model.Document{}
 	err := json.Unmarshal(fileContent, &r)
 	if err != nil {
 		r := []model.Document{}
 		err = json.Unmarshal(fileContent, &r)
-		return r, err
+		return r, []int{}, err
 	}
 
 	jLine := initializeJSONLine(fileContent)
@@ -34,12 +34,12 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 	kicsPlan, err := parseTFPlan(kicsJSON)
 	if err != nil {
 		// JSON is not a tf plan
-		return []model.Document{kicsJSON}, nil
+		return []model.Document{kicsJSON}, []int{}, nil
 	}
 
 	p.shouldIdent = true
 
-	return []model.Document{kicsPlan}, nil
+	return []model.Document{kicsPlan}, []int{}, nil
 }
 
 // SupportedExtensions returns extensions supported by this parser, which is json extension
