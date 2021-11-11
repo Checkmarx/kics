@@ -168,22 +168,24 @@ func (c *Inspector) Inspect(ctx context.Context, basePaths []string,
 		timeoutCtx, cancel := context.WithTimeout(ctx, c.queryExecutionTimeout*time.Second)
 		defer cancel()
 		for idx := range files {
-			select {
-			case <-timeoutCtx.Done():
-				return c.vulnerabilities, timeoutCtx.Err()
-			default:
-				// check file content line by line
-				if c.regexQueries[i].Multiline == (MultilineResult{}) {
-					lines := c.detector.SplitLines(&files[idx])
+			if _, ok := files[idx].Commands["ignore"]; !ok {
+				select {
+				case <-timeoutCtx.Done():
+					return c.vulnerabilities, timeoutCtx.Err()
+				default:
+					// check file content line by line
+					if c.regexQueries[i].Multiline == (MultilineResult{}) {
+						lines := c.detector.SplitLines(&files[idx])
 
-					for lineNumber, currentLine := range lines {
-						c.checkLineByLine(&c.regexQueries[i], basePaths, &files[idx], lineNumber, currentLine)
+						for lineNumber, currentLine := range lines {
+							c.checkLineByLine(&c.regexQueries[i], basePaths, &files[idx], lineNumber, currentLine)
+						}
+						continue
 					}
-					continue
-				}
 
-				// check file content as a whole
-				c.checkFileContent(&c.regexQueries[i], basePaths, &files[idx])
+					// check file content as a whole
+					c.checkFileContent(&c.regexQueries[i], basePaths, &files[idx])
+				}
 			}
 		}
 	}
