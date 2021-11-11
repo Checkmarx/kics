@@ -22,6 +22,7 @@ The pipelines examples can be found in our [GitHub Repository](https://github.co
 ### MegaLinter
 
 KICS is natively embedded in [MegaLinter](https://megalinter.github.io/), a 100% Open-Source tool for CI/CD workflows that analyzes consistency and quality of:
+
 - 48 languages
 - 22 formats
 - 20 tooling formats 
