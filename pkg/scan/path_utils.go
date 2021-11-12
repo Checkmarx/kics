@@ -32,6 +32,10 @@ func (c *Client) prepareAndAnalyzePaths() (extractedPaths provider.ExtractedPath
 		return extractedPaths, errAnalyze
 	}
 
+	if len(newTypeFlagValue) == 0 {
+		return provider.ExtractedPath{}, nil
+	}
+
 	c.ScanParams.Platform = newTypeFlagValue
 	c.ScanParams.ExcludePaths = newExcludePathsFlagValue
 
@@ -106,8 +110,17 @@ func analyzePaths(paths, types, exclude []string) (typesRes, excludeRes []string
 			log.Err(err)
 			return []string{}, []string{}, err
 		}
-		log.Info().Msgf("Loading queries of type: %s", strings.Join(types, ", "))
+		logLoadingQueriesType(types)
 	}
 	exclude = append(exclude, exc...)
 	return types, exclude, nil
+}
+
+func logLoadingQueriesType(types []string) {
+	if len(types) == 0 {
+		log.Info().Msg("No queries were loaded")
+		return
+	}
+
+	log.Info().Msgf("Loading queries of type: %s", strings.Join(types, ", "))
 }

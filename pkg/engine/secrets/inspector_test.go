@@ -154,20 +154,20 @@ var testInspectInput = []struct {
 				ID:       "853012ab-cc05-4c1c-b517-9c3552085ee8",
 				Document: model.Document{},
 				OriginalData: `
-resource "google_container_cluster" "primary3" {
-name               = "marcellus-wallace"
-location           = "us-central1-a"
-initial_node_count = 3
+	resource "google_container_cluster" "primary3" {
+	name               = "marcellus-wallace"
+	location           = "us-central1-a"
+	initial_node_count = 3
 
-master_auth {
-	username = "1234567890qwertyuiopasdfghjklçzxcvbnm"
-	password = ""
+	master_auth {
+		username = "1234567890qwertyuiopasdfghjklçzxcvbnm"
+		password = ""
 
-	client_certificate_config {
-		issue_client_certificate = true
+		client_certificate_config {
+			issue_client_certificate = true
+		}
 	}
-}
-}`,
+	}`,
 				Kind:     "TF",
 				FilePath: "assets/queries/common/passwords_and_secrets/test/negative7.tf",
 			},
@@ -182,13 +182,13 @@ master_auth {
 				ID:       "b032c51d-2e7c-4ffc-8a81-41405c166bc8",
 				Document: model.Document{},
 				OriginalData: `
-apiVersion: v1
-kind: Secret
-metadata:
-name: secret-basic-auth
-type: kubernetes.io/basic-auth
-stringData:
-password: "root"`,
+	apiVersion: v1
+	kind: Secret
+	metadata:
+	name: secret-basic-auth
+	type: kubernetes.io/basic-auth
+	stringData:
+	password: "root"`,
 				Kind:     "K8S",
 				FilePath: "assets/queries/common/passwords_and_secrets/test/positive1.yaml",
 			},
@@ -211,21 +211,21 @@ password: "root"`,
 				ID:       "d274e272-a4af-497e-a900-a277500e4182",
 				Document: model.Document{},
 				OriginalData: `
-resource "aws_transfer_ssh_key" "example" {
-server_id = aws_transfer_server.example.id
-user_name = aws_transfer_user.example.user_name
-body      = <<EOT
------BEGIN OPENSSH PRIVATE KEY-----
-b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAaAAAABNlY2RzYS
-1zaGEyLW5pc3RwMjU2AAAACG5pc3RwMjU2AAAAQQTTD+Q+10oNWDzXxx9x2bOobcXAA4rd
-jGaQoqJjcXRWR2TS1ioKvML1fI5KLP4kuF3TlyPTLgJxlfrJtYYEfGHwAAAA0FjbkWRY25
-FkAAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNMP5D7XSg1YPNfH
-H3HZs6htxcADit2MZpCiomNxdFZHZNLWKgq8wvV8jkos/iS4XdOXI9MuAnGV+sm1hgR8Yf
-AAAAAgHI23o+KRbewZJJxFExEGwiOPwM7gonjATdzLP+YT/6sAAAA0cm9nZXJpb3AtbWFj
-Ym9va0BSb2dlcmlvUC1NYWNCb29rcy1NYWNCb29rLVByby5sb2NhbAECAwQ=
------END OPENSSH PRIVATE KEY-----
-EOT
-}`,
+	resource "aws_transfer_ssh_key" "example" {
+	server_id = aws_transfer_server.example.id
+	user_name = aws_transfer_user.example.user_name
+	body      = <<EOT
+	-----BEGIN OPENSSH PRIVATE KEY-----
+	b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAaAAAABNlY2RzYS
+	1zaGEyLW5pc3RwMjU2AAAACG5pc3RwMjU2AAAAQQTTD+Q+10oNWDzXxx9x2bOobcXAA4rd
+	jGaQoqJjcXRWR2TS1ioKvML1fI5KLP4kuF3TlyPTLgJxlfrJtYYEfGHwAAAA0FjbkWRY25
+	FkAAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNMP5D7XSg1YPNfH
+	H3HZs6htxcADit2MZpCiomNxdFZHZNLWKgq8wvV8jkos/iS4XdOXI9MuAnGV+sm1hgR8Yf
+	AAAAAgHI23o+KRbewZJJxFExEGwiOPwM7gonjATdzLP+YT/6sAAAA0cm9nZXJpb3AtbWFj
+	Ym9va0BSb2dlcmlvUC1NYWNCb29rcy1NYWNCb29rLVByby5sb2NhbAECAwQ=
+	-----END OPENSSH PRIVATE KEY-----
+	EOT
+	}`,
 				Kind:     "TF",
 				FilePath: "assets/queries/common/passwords_and_secrets/test/positive13.tf",
 			},
@@ -248,24 +248,24 @@ EOT
 				ID:       "",
 				Document: model.Document{},
 				OriginalData: `
-resource "aws_lambda_function" "analysis_lambda2" {
-  # lambda have plain text secrets in environment variables
-  filename      = "resources/lambda_function_payload.zip"
-  function_name = "${local.resource_prefix.value}-analysis"
-  role          = "${aws_iam_role.iam_for_lambda.arn}"
-  handler       = "exports.test"
+	resource "aws_lambda_function" "analysis_lambda2" {
+	  # lambda have plain text secrets in environment variables
+	  filename      = "resources/lambda_function_payload.zip"
+	  function_name = "${local.resource_prefix.value}-analysis"
+	  role          = "${aws_iam_role.iam_for_lambda.arn}"
+	  handler       = "exports.test"
 
-  source_code_hash = "${filebase64sha256("resources/lambda_function_payload.zip")}"
+	  source_code_hash = "${filebase64sha256("resources/lambda_function_payload.zip")}"
 
-  runtime = "nodejs12.x"
+	  runtime = "nodejs12.x"
 
-  environment {
-    variables = {
-      secret_key = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
-    }
-  }
-}
-`,
+	  environment {
+	    variables = {
+	      secret_key = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+	    }
+	  }
+	}
+	`,
 				Kind:     "TF",
 				FilePath: "assets/queries/common/passwords_and_secrets/test/positive37.tf",
 			},
@@ -280,6 +280,66 @@ resource "aws_lambda_function" "analysis_lambda2" {
 			},
 		},
 		wantErr: false,
+	},
+	{
+		name: "valid_no_results",
+		files: model.FileMetadatas{
+			{
+				ID: "853012ab-cc05-4c1c-b517-9c3552085ee8",
+				Commands: model.CommentsCommands{
+					"ignore": "",
+				},
+				Document: model.Document{},
+				OriginalData: `# kics-scan ignore
+resource "google_container_cluster" "primary3" {
+name               = "marcellus-wallace"
+location           = "us-central1-a"
+initial_node_count = 3
+
+master_auth {
+	username = "1234567890qwertyuiopasdfghjklçzxcvbnm"
+	password = "password123456"
+
+	client_certificate_config {
+		issue_client_certificate = true
+	}
+}
+}`,
+				Kind:     "TF",
+				FilePath: "assets/queries/common/passwords_and_secrets/test/negative7.tf",
+			},
+		},
+		wantVuln: []model.Vulnerability{},
+		wantErr:  false,
+	},
+	{
+		name: "valid_no_results",
+		files: model.FileMetadatas{
+			{
+				ID:          "853012ab-cc05-4c1c-b517-9c3552085ee8",
+				LinesIgnore: []int{9},
+				Document:    model.Document{},
+				OriginalData: `
+resource "google_container_cluster" "primary3" {
+name               = "marcellus-wallace"
+location           = "us-central1-a"
+initial_node_count = 3
+
+master_auth {
+	username = "1234567890qwertyuiopasdfghjklçzxcvbnm"
+  # password = "password123456"
+
+	client_certificate_config {
+		issue_client_certificate = true
+	}
+}
+}`,
+				Kind:     "TF",
+				FilePath: "assets/queries/common/passwords_and_secrets/test/negative7.tf",
+			},
+		},
+		wantVuln: []model.Vulnerability{},
+		wantErr:  false,
 	},
 }
 
