@@ -523,7 +523,7 @@ is_default_password(password) = output {
    output = true
 } else = output {
 	# repetition of the same number more than three times
-	regex.match(`(1{3,}|2{3,}|3{3,}|4{3,}|5{3,}|6{3,}|7{3,}|8{3,}|9{3,})`, password) == true
+	regex.match(`(0{3,}|1{3,}|2{3,}|3{3,}|4{3,}|5{3,}|6{3,}|7{3,}|8{3,}|9{3,})`, password) == true
 	output = true
 } else = output {
 	output = false
