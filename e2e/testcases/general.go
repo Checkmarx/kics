@@ -25,6 +25,7 @@ type args struct {
 	ExpectedPayload []string
 	ExpectedResult  []ResultsValidation
 	ExpectedLog     LogValidation
+	UseMock         []bool
 }
 
 type TestTemplates struct {
