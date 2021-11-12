@@ -312,6 +312,35 @@ master_auth {
 		wantVuln: []model.Vulnerability{},
 		wantErr:  false,
 	},
+	{
+		name: "valid_no_results",
+		files: model.FileMetadatas{
+			{
+				ID:          "853012ab-cc05-4c1c-b517-9c3552085ee8",
+				LinesIgnore: []int{9},
+				Document:    model.Document{},
+				OriginalData: `
+resource "google_container_cluster" "primary3" {
+name               = "marcellus-wallace"
+location           = "us-central1-a"
+initial_node_count = 3
+
+master_auth {
+	username = "1234567890qwertyuiopasdfghjklçzxcvbnm"
+  # password = "password123456"
+
+	client_certificate_config {
+		issue_client_certificate = true
+	}
+}
+}`,
+				Kind:     "TF",
+				FilePath: "assets/queries/common/passwords_and_secrets/test/negative7.tf",
+			},
+		},
+		wantVuln: []model.Vulnerability{},
+		wantErr:  false,
+	},
 }
 
 var testNewInspectorInputs = []struct {

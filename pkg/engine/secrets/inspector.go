@@ -461,25 +461,27 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 
 	if _, ok := c.excludeResults[engine.PtrStringToString(simID)]; !ok {
 		linesVuln := c.detector.GetAdjecent(file, lineNumber+1)
-		vuln := model.Vulnerability{
-			QueryID:          query.ID,
-			QueryName:        SecretsQueryMetadata["queryName"] + " - " + query.Name,
-			SimilarityID:     engine.PtrStringToString(simID),
-			FileID:           file.ID,
-			FileName:         file.FilePath,
-			Line:             linesVuln.Line,
-			VulnLines:        linesVuln.VulnLines,
-			IssueType:        "RedundantAttribute",
-			Platform:         SecretsQueryMetadata["platform"],
-			Severity:         model.SeverityHigh,
-			QueryURI:         SecretsQueryMetadata["descriptionUrl"],
-			Category:         SecretsQueryMetadata["category"],
-			Description:      SecretsQueryMetadata["descriptionText"],
-			DescriptionID:    SecretsQueryMetadata["descriptionID"],
-			KeyExpectedValue: "Hardcoded secret key should not appear in source",
-			KeyActualValue:   fmt.Sprintf("'%s' contains a secret", issueLine),
+		if !ignoreLine(linesVuln.Line, file.LinesIgnore) {
+			vuln := model.Vulnerability{
+				QueryID:          query.ID,
+				QueryName:        SecretsQueryMetadata["queryName"] + " - " + query.Name,
+				SimilarityID:     engine.PtrStringToString(simID),
+				FileID:           file.ID,
+				FileName:         file.FilePath,
+				Line:             linesVuln.Line,
+				VulnLines:        linesVuln.VulnLines,
+				IssueType:        "RedundantAttribute",
+				Platform:         SecretsQueryMetadata["platform"],
+				Severity:         model.SeverityHigh,
+				QueryURI:         SecretsQueryMetadata["descriptionUrl"],
+				Category:         SecretsQueryMetadata["category"],
+				Description:      SecretsQueryMetadata["descriptionText"],
+				DescriptionID:    SecretsQueryMetadata["descriptionID"],
+				KeyExpectedValue: "Hardcoded secret key should not appear in source",
+				KeyActualValue:   fmt.Sprintf("'%s' contains a secret", issueLine),
+			}
+			c.vulnerabilities = append(c.vulnerabilities, vuln)
 		}
-		c.vulnerabilities = append(c.vulnerabilities, vuln)
 	}
 }
 
@@ -563,4 +565,13 @@ func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.Fil
 
 	// check file content as a whole
 	c.checkFileContent(&c.regexQueries[i], basePaths, &files[idx])
+}
+
+func ignoreLine(lineNumber int, linesIgnore []int) bool {
+	for _, ignoreLine := range linesIgnore {
+		if lineNumber == ignoreLine {
+			return true
+		}
+	}
+	return false
 }
