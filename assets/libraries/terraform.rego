@@ -57,7 +57,7 @@ getProtocolList(protocol) = protocols {
 	protocols := ["UDP"]
 }
 
-# Checks if any principal are allowed ina policy
+# Checks if any principal are allowed in a policy
 anyPrincipal(statement) {
 	contains(statement.Principal, "*")
 }
@@ -485,15 +485,16 @@ is_publicly_accessible(policy) {
 	anyPrincipal(statement)
 }
 
-get_accessibility(resource, name, resourcePolicyName, resourceTarget) = accessibility {
+get_accessibility(resource, name, resourcePolicyName, resourceTarget) = info {
 	policy := common_lib.json_unmarshal(resource.policy)
 	is_publicly_accessible(policy)
-	accessibility = "public"
-} else = accessibility {
+	info = {"accessibility": "public", "policy": policy}
+} else = info {
 	policy := common_lib.json_unmarshal(resource.policy)
 	not is_publicly_accessible(policy)
-	accessibility = "restrict"
-} else = accessibility {
+
+	info = {"accessibility": "restrict", "policy": policy}
+} else = info {
 	not common_lib.valid_key(resource, "policy")
 
 	resourcePolicy := input.document[_].resource[resourcePolicyName][_]
@@ -501,8 +502,9 @@ get_accessibility(resource, name, resourcePolicyName, resourceTarget) = accessib
 
 	policy := common_lib.json_unmarshal(resourcePolicy.policy)
 	is_publicly_accessible(policy)
-	accessibility = "public"
-} else = accessibility {
+
+	info = {"accessibility": "public", "policy": policy}
+} else = info {
 	not common_lib.valid_key(resource, "policy")
 
 	resourcePolicy := input.document[_].resource[resourcePolicyName][_]
@@ -510,7 +512,19 @@ get_accessibility(resource, name, resourcePolicyName, resourceTarget) = accessib
 
 	policy := common_lib.json_unmarshal(resourcePolicy.policy)
 	not is_publicly_accessible(policy)
-	accessibility = "restrict"
-} else = accessibility {
-	accessibility = "unknown"
+	info = {"accessibility": "restrict", "policy": policy}
+} else = info {
+	info = {"accessibility": "unknown", "policy": ""}
+}
+
+is_default_password(password) = output {
+   defaults := {"password", "admin", "guest", "user", "12345"}
+   contains(password, defaults[_])
+   output = true
+} else = output {
+	# repetition of the same number more than three times
+	regex.match(`(1{3,}|2{3,}|3{3,}|4{3,}|5{3,}|6{3,}|7{3,}|8{3,}|9{3,})`, password) == true
+	output = true
+} else = output {
+	output = false
 }
