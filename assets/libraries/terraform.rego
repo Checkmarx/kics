@@ -518,8 +518,7 @@ get_accessibility(resource, name, resourcePolicyName, resourceTarget) = info {
 }
 
 is_default_password(password) = output {
-   defaults := {"password", "admin", "guest", "user", "12345"}
-   contains(password, defaults[_])
+   contains(password, data.common_lib.default_passwords[_])
    output = true
 } else = output {
 	# repetition of the same number more than three times
