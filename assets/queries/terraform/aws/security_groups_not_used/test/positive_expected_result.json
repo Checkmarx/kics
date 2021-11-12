@@ -4,5 +4,17 @@
     "severity": "INFO",
     "line": 8,
     "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Security Group Not Used",
+    "severity": "INFO",
+    "line": 15,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Security Group Not Used",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive3.tf"
   }
 ]

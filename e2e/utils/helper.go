@@ -13,8 +13,13 @@ type CmdOutput struct {
 }
 
 // RunCommand executes the kics in a terminal
-func RunCommand(args []string) (*CmdOutput, error) {
+func RunCommand(args []string, useMock bool) (*CmdOutput, error) {
+	descriptionServer := "KICS_DESCRIPTIONS_ENDPOINT=http://kics.io"
+	if useMock {
+		descriptionServer = "KICS_DESCRIPTIONS_ENDPOINT=http://localhost:3000/kics-mock"
+	}
 	cmd := exec.Command(args[0], args[1:]...) //nolint
+	cmd.Env = append(os.Environ(), descriptionServer)
 	stdOutput, err := cmd.CombinedOutput()
 	if err != nil {
 		if exitError, ok := err.(*exec.ExitError); ok {
