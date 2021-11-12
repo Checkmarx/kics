@@ -16,8 +16,13 @@ CxPolicy[result] {
 }
 
 CheckFlowLogExistance(service) = result {
-	documents := input.document[index].Resources[a]
-	documents.Type = "AWS::EC2::FlowLog"
+	result := [x |
+		documents := input.document[index].Resources[a]
+		documents.Type = "AWS::EC2::FlowLog"
+		n := documents[_].ResourceId
+		n == service
+		x := true
+	]
 
-	result := documents[_].ResourceId == service
+	count(result) > 0
 }
