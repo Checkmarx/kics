@@ -173,18 +173,7 @@ func (c *Inspector) Inspect(ctx context.Context, basePaths []string,
 				case <-timeoutCtx.Done():
 					return c.vulnerabilities, timeoutCtx.Err()
 				default:
-					// check file content line by line
-					if c.regexQueries[i].Multiline == (MultilineResult{}) {
-						lines := c.detector.SplitLines(&files[idx])
-
-						for lineNumber, currentLine := range lines {
-							c.checkLineByLine(&c.regexQueries[i], basePaths, &files[idx], lineNumber, currentLine)
-						}
-						continue
-					}
-
-					// check file content as a whole
-					c.checkFileContent(&c.regexQueries[i], basePaths, &files[idx])
+					c.checkContent(i, idx, basePaths, files)
 				}
 			}
 		}
@@ -559,4 +548,19 @@ func validateCustomSecretsQueriesID(allRegexQueries []RegexQuery) error {
 		}
 	}
 	return nil
+}
+
+func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.FileMetadatas) {
+	// check file content line by line
+	if c.regexQueries[i].Multiline == (MultilineResult{}) {
+		lines := c.detector.SplitLines(&files[idx])
+
+		for lineNumber, currentLine := range lines {
+			c.checkLineByLine(&c.regexQueries[i], basePaths, &files[idx], lineNumber, currentLine)
+		}
+		return
+	}
+
+	// check file content as a whole
+	c.checkFileContent(&c.regexQueries[i], basePaths, &files[idx])
 }
