@@ -1290,6 +1290,10 @@ Platform: Kubernetes
 <pre><code>terraform show -json plan-sample.tfplan &gt; plan-sample.tfplan.json
 </code></pre>
 <h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
+<h4 id="ansible_1">Ansible<a class="headerlink" href="#ansible_1" title="Permanent link">&para;</a></h4>
+<p>At the moment, KICS does not support a robust approach to identifying Ansible samples. The identification of these samples is done through exclusion. When a YAML sample is not a CloudFormation, Helm, Kubernetes or OpenAPI sample, KICS recognize it as Ansible. </p>
+<p>Thus, KICS recognize other YAML samples (that are not Ansible) as Ansible, e.g. GitHub Actions samples. However, you can ignore these samples by writing <code>#kics-scan ignore</code> on the top of the file. For more details, please read this <a href="https://github.com/Checkmarx/kics/blob/25b6b703e924ed42067d9ab7772536864aee900b/docs/running-kics.md#using-commands-on-scanned-files-as-comments">documentation</a>. </p>
+<h4 id="terraform_1">Terraform<a class="headerlink" href="#terraform_1" title="Permanent link">&para;</a></h4>
 <p>Although KICS support variables and interpolations, KICS does not support functions and enviroment variables. In case of variables used as function parameters, it will parse as wrapped expression, so the following function call:</p>
 <pre><code class="language-hcl">resource &quot;aws_launch_configuration&quot; &quot;example&quot; {
   image_id      = data.aws_ami.ubuntu.id
