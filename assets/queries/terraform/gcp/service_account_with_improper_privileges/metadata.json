@@ -1,0 +1,11 @@
+{
+  "id": "cefdad16-0dd5-4ac5-8ed2-a37502c78672",
+  "queryName": "Service Account with Improper Privileges",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Service account should not have improper privileges like admin, editor, owner, or write roles",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#shielded_instance_config",
+  "platform": "Terraform",
+  "descriptionID": "1b2dbbea",
+  "cloudProvider": "gcp"
+}
