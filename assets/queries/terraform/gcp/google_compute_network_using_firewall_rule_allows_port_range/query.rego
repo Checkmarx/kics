@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as terra_lib
 
 CxPolicy[result] {
 	
@@ -8,8 +9,8 @@ CxPolicy[result] {
 	
 	firewall := input.document[_].resource.google_compute_firewall[_]
 
-	split(firewall.network, ".")[1] == name
-	is_ingress(firewall)
+	terra_lib.matches(firewall.network, name)
+	common_lib.is_ingress(firewall)
 	is_port_range(firewall.allow)
 	
 	result := {
@@ -20,12 +21,6 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("'google_compute_network[%s]' is using a firewall rule that allows access to port range", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "google_compute_network", name], []),
 	}
-}
-
-is_ingress(firewall) {
-	not common_lib.valid_key(firewall, "direction")
-} else {
-	firewall.direction == "INGRESS"
 }
 
 is_port_range(allow) {

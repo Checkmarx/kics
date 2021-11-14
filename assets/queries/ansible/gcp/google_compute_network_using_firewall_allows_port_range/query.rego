@@ -9,7 +9,7 @@ CxPolicy[result] {
 	firewall := task[modulesFirewall[_]]
 	ans_lib.checkState(firewall)
 
-	is_ingress(firewall)
+	common_lib.is_ingress(firewall)
 	regex.match("[0-9]+-[0-9]+", firewall.allowed[_].ports[_])
 	firewall.allowed[_].ports[_] != "0-65535"
 
@@ -27,10 +27,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'%s' is not using a firewall rule that allows access to port range", [modulesCompute[m]]),
 		"keyActualValue": sprintf("'%s' is using a firewall rule that allows access to port range", [modulesCompute[m]]),
 	}
-}
-
-is_ingress(firewall) {
-	not common_lib.valid_key(firewall, "direction")
-} else {
-	firewall.direction == "INGRESS"
 }
