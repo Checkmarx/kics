@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Google Compute Network Using Default Firewall Rule",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive.yaml"
+  }
+]

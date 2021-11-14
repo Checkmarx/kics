@@ -514,3 +514,9 @@ get_accessibility(resource, name, resourcePolicyName, resourceTarget) = accessib
 } else = accessibility {
 	accessibility = "unknown"
 }
+
+matches(target, name) {
+	split(target, ".")[1] == name
+} else {
+	target == name
+}
