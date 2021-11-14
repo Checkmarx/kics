@@ -14,8 +14,8 @@ CxPolicy[result] {
 
 	tk := ans_lib.tasks[id][_]
 	modulesCompute := {"google.cloud.gcp_compute_network", "gcp_compute_network"}
-	cp := tk[modulesCompute[m]]
-	ans_lib.checkState(cp)
+	computeNetwork := tk[modulesCompute[m]]
+	ans_lib.checkState(computeNetwork)
 	firewall.network == sprintf("{{ %s }}", [tk.register])
 
 
