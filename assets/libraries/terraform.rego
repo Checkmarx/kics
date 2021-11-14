@@ -514,3 +514,9 @@ get_accessibility(resource, name, resourcePolicyName, resourceTarget) = accessib
 } else = accessibility {
 	accessibility = "unknown"
 }
+
+matches(firewallNetwork, name) {
+	split(firewallNetwork, ".")[1] == name
+} else {
+	firewallNetwork == name
+}
