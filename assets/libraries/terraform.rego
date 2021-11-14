@@ -514,3 +514,9 @@ get_accessibility(resource, name, resourcePolicyName, resourceTarget) = accessib
 } else = accessibility {
 	accessibility = "unknown"
 }
+
+check_member(attribute, search) {
+	startswith(attribute.members[_], search)
+} else {
+	startswith(attribute.member, search)
+}
