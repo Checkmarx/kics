@@ -2,6 +2,20 @@
 
 There are multiple ways to get KICS up and running:
 
+#### Homebrew
+
+KICS is avaiable on Checkmarx [homebrew-tap](https://github.com/Checkmarx/homebrew-tap). It can be used as follows:
+
+```
+brew install Checkmarx/tap/kics 
+```
+
+To use KICS default queries add KICS_QUERIES_PATH env to your `~/.zshrc`, `~/.zprofile`:
+
+```
+echo 'export KICS_QUERIES_PATH=/usr/local/opt/kics/share/kics/assets/queries' >> ~/.zshrc
+```
+
 #### Docker
 
 KICS is available as a <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">Docker image</a> and can be used as follows:
