@@ -3,8 +3,8 @@ package Cx
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	public := input.document[i].resource.aws_redshift_cluster[name]
-	not common_lib.valid_key(public, "port")
+	redshift := input.document[i].resource.aws_redshift_cluster[name]
+	not common_lib.valid_key(redshift, "port")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -13,13 +13,12 @@ CxPolicy[result] {
 		"keyExpectedValue": "aws_redshift_cluster.port is defined and not null",
 		"keyActualValue": "aws_redshift_cluster.port is undefined or null",
 		"searchLine": common_lib.build_search_line(["resource", "aws_redshift_cluster", name], []),
-
 	}
 }
 
 CxPolicy[result] {
-	public := input.document[i].resource.aws_redshift_cluster[name]
-	public.port == 5439
+	redshift := input.document[i].resource.aws_redshift_cluster[name]
+	redshift.port == 5439
 
 	result := {
 		"documentId": input.document[i].id,
