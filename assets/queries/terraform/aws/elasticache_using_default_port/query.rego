@@ -12,7 +12,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_elasticache_cluster.port is defined and not null",
 		"keyActualValue": "aws_elasticache_cluster.port is undefined or null",
-		
 		"searchLine": common_lib.build_search_line(["resource", "aws_elasticache_cluster", name], []),
 	}
 }
