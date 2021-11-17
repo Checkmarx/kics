@@ -203,7 +203,7 @@
 				
 				<option value="file73">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (85.5%)</option>
 				
-				<option value="file74">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
+				<option value="file74">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (85.7%)</option>
 				
 				<option value="file75">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
@@ -2302,13 +2302,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="30">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="33">total += v
+                <span class="cov8" title="30">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2333,7 +2333,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4586,7 +4586,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -13189,7 +13189,7 @@ type ProgressBar struct {
 }
 
 // NewProgressBar creates a new instance of a Circle Progress Bar
-func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" title="3">{
+func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" title="3">{
         newPb := pb.New64(constants.MaxInteger)
         tmp := fmt.Sprintf(`{{ "%s" }} {{(cycle . "\\" "-" "|" "/" "-" "|" )}}`, label)
         newPb.SetWidth(barWidth)
@@ -13197,7 +13197,7 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" ti
         if silent </span><span class="cov1" title="1">{
                 newPb.SetWriter(io.Discard)
         }</span>
-        <span class="cov2" title="3">newPb.Start()
+        <span class="cov10" title="3">newPb.Start()
 
         return ProgressBar{
                 label: label,
@@ -13210,8 +13210,8 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" ti
 }
 
 // Start initializes the Circle Progress Bar
-func (p ProgressBar) Start() <span class="cov1" title="1">{
-        for </span><span class="cov10" title="7164">{ // increment until the Close func is called
+func (p ProgressBar) Start() <span class="cov0" title="0">{
+        for </span><span class="cov0" title="0">{ // increment until the Close func is called
                 p.pBar.Increment()
         }</span>
 }
