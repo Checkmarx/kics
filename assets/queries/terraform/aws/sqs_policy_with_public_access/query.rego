@@ -10,11 +10,9 @@ CxPolicy[result] {
 	statement := policy.Statement[_]
 
 	statement.Effect == "Allow"
-	commonLib.containsOrInArrayContains(statement.Action, "*")
+	commonLib.containsOrInArrayContains(statement.Principal, "*")
 	terraLib.anyPrincipal(statement)
 
-	queue_name := trim_prefix(trim_suffix(resource.queue_url, ".id}"), "${aws_sqs_queue.")
-	queue_resource := input.document[j].resource.aws_sqs_queue[queue_name]
 
 	result := {
 		"documentId": input.document[i].id,
