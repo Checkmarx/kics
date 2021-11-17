@@ -5,8 +5,9 @@ go 1.16
 require (
 	github.com/BurntSushi/toml v0.4.1
 	github.com/agnivade/levenshtein v1.1.1
-	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20210907221601-4f80a5e09cd0
+	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20211114212643-ec144ca0d701
 	github.com/cheggaaa/pb/v3 v3.0.8
+	github.com/emicklei/proto v1.9.1
 	github.com/getsentry/sentry-go v0.11.0
 	github.com/golang/mock v1.6.0
 	github.com/google/pprof v0.0.0-20210720184732-4bb14d4b1be1

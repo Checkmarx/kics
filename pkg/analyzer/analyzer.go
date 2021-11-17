@@ -116,6 +116,9 @@ func worker(path string, results, unwanted chan<- string, wg *sync.WaitGroup) {
 	// Terraform
 	case ".tf", "tfvars":
 		results <- "terraform"
+	// GRPC
+	case ".proto":
+		results <- "grpc"
 	// Cloud Formation, Ansible, OpenAPI
 	case yaml, yml, json:
 		checkContent(path, results, unwanted, ext)

@@ -47,6 +47,7 @@ var (
 		"Terraform":            "terraform",
 		"OpenAPI":              "openapi",
 		"AzureResourceManager": "azureresourcemanager",
+		"GRPC":                 "grpc",
 	}
 
 	// AvailableSeverities - All severities available

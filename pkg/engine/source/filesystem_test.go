@@ -621,6 +621,7 @@ func TestListSupportedPlatforms(t *testing.T) {
 		"AzureResourceManager",
 		"CloudFormation",
 		"Dockerfile",
+		"GRPC",
 		"Kubernetes",
 		"OpenAPI",
 		"Terraform",

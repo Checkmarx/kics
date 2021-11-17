@@ -96,7 +96,7 @@ test-race: generate
 test-unit: ## Run unit tests
 test-unit: generate
 	$(call print-target)
-	@go test -v $(shell go list ./... | grep -v e2e)
+	@go test $(shell go list ./... | grep -v e2e)
 
 .PHONY: test-cover
 test-cover: ## Run tests with code coverage

@@ -61,6 +61,7 @@ var (
 		"OpenAPI":              "openAPI",
 		"Terraform":            "terraform",
 		"AzureResourceManager": "azureResourceManager",
+		"GRPC":                 "grpc",
 	}
 	platformKeys = MapToStringSlice(availablePlatforms)
 
@@ -240,7 +241,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
 	wg := &sync.WaitGroup{}
 	currentQuery := make(chan int64)
 	proBarBuilder := progress.InitializePbBuilder(true, true, true)
-	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile", "AzureResourceManager"}
+	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile", "AzureResourceManager", "GRPC"}
 	progressBar := proBarBuilder.BuildCounter("Executing queries: ", inspector.LenQueriesByPlat(platforms), wg, currentQuery)
 	go progressBar.Start()
 
