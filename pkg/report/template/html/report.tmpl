@@ -11,7 +11,7 @@
   <div class="container">
     <div class="report-header-footer"><span class="title">KICS <span>REPORT</span></span><span class="timestamp">{{ getCurrentTime }}</span><a href="https://www.kics.io/" rel="noopener" target="_blank">KICS.IO</a></div>
     <div class="run-info">
-      <span style="flex-basis:100%" id="scan-paths"><strong>KICS v{{ getVersion }}</strong></span>
+      <span style="flex-basis:100%" id="scan-paths"><strong>KICS {{ getVersion }}</strong></span>
       <span style="flex-basis:100%" id="scan-paths"><strong>Scanned paths:</strong> {{ getPaths .ScannedPaths }}</span>
       <span style="flex-basis:100%" id="scan-platforms"><strong>Platforms:</strong> {{ getPlatforms .Queries }}</span>
       {{- with .Times -}}
