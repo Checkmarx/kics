@@ -10,6 +10,8 @@ import (
 	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
+
+	yamlParser "gopkg.in/yaml.v3"
 )
 
 // openAPIRegex - Regex that finds OpenAPI defining property "openapi"
@@ -39,6 +41,10 @@ var (
 	blueprintArtifactsRegexProperties = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
 	blueprintRegexTargetScope         = regexp.MustCompile("(\\s*\"targetScope\":)|(\\s*targetScope:)")
 	blueprintRegexProperties          = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
+)
+
+var (
+	listKeywordsGoogleDeployment = []string{"resources"}
 )
 
 const (
@@ -226,19 +232,36 @@ func checkContent(path string, results, unwanted chan<- string, ext string) {
 		}
 		// write to channel type of file
 		results <- returnType
+		return
 	} else if ext == yaml || ext == yml {
-		// check if it is an ansible vault
-		if res := ansibleVaultRegex.Match(content); res {
-			unwanted <- path
-		} else {
-			// Since Ansible has no defining property
-			// and no other type matched for YAML file extension, assume the file type is Ansible
-			results <- "ansible"
+		platform := checkYamlPlatform(content)
+		if platform != "" {
+			results <- platform
+			return
 		}
-	} else {
-		// No type was determined (ignore on parser)
-		unwanted <- path
 	}
+	// No type was determined (ignore on parser)
+	unwanted <- path
+}
+
+func checkYamlPlatform(content []byte) string {
+	var yamlContent map[string]interface{}
+	if err := yamlParser.Unmarshal(content, &yamlContent); err != nil {
+		log.Warn().Msgf("failed to parse yaml file: %s", err)
+	}
+	// check if it is google deployment manager platform
+	for _, keyword := range listKeywordsGoogleDeployment {
+		if _, ok := yamlContent[keyword]; ok {
+			return "googledeploymentmanager"
+		}
+	}
+	// check if it is an ansible vault
+	if res := ansibleVaultRegex.Match(content); !res {
+		// Since Ansible has no defining property
+		// and no other type matched for YAML file extension, assume the file type is Ansible
+		return "ansible"
+	}
+	return ""
 }
 
 // createSlice creates a slice from the channel given removing any duplicates

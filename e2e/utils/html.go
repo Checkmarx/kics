@@ -13,14 +13,15 @@ import (
 )
 
 var availablePlatforms = map[string]string{
-	"Ansible":              "ansible",
-	"CloudFormation":       "cloudFormation",
-	"Common":               "common",
-	"Dockerfile":           "dockerfile",
-	"Kubernetes":           "k8s",
-	"OpenAPI":              "openAPI",
-	"Terraform":            "terraform",
-	"AzureResourceManager": "azureResourceManager",
+	"Ansible":                 "ansible",
+	"CloudFormation":          "cloudFormation",
+	"Common":                  "common",
+	"Dockerfile":              "dockerfile",
+	"Kubernetes":              "k8s",
+	"OpenAPI":                 "openAPI",
+	"Terraform":               "terraform",
+	"AzureResourceManager":    "azureResourceManager",
+	"GoogleDeploymentManager": "googleDeploymentManager",
 }
 
 // HTMLValidation executes many asserts to validate the HTML Report
