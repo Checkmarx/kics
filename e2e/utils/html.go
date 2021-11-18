@@ -21,6 +21,7 @@ var availablePlatforms = map[string]string{
 	"OpenAPI":              "openAPI",
 	"Terraform":            "terraform",
 	"AzureResourceManager": "azureResourceManager",
+	"GRPC":                 "grpc",
 }
 
 // HTMLValidation executes many asserts to validate the HTML Report

@@ -1,7 +1,7 @@
 {
   "allOf": [
     {
-      "$ref" : "result.json"
+      "$ref": "result.json"
     },
     {
       "type": "object",
@@ -42,29 +42,30 @@
                 "const": "TRACE"
               },
               "platform": {
-                  "type": "string",
-                  "enum": [
-                    "Common",
-                    "Ansible",
-                    "CloudFormation",
-                    "Dockerfile",
-                    "Kubernetes",
-                    "OpenAPI",
-                    "Terraform",
-                    "AzureResourceManager"
-                  ]
+                "type": "string",
+                "enum": [
+                  "Common",
+                  "Ansible",
+                  "CloudFormation",
+                  "Dockerfile",
+                  "Kubernetes",
+                  "OpenAPI",
+                  "Terraform",
+                  "AzureResourceManager",
+                  "GRPC"
+                ]
               },
               "category": {
-                  "type": "string",
-                  "category": "Bill Of Materials"
+                "type": "string",
+                "category": "Bill Of Materials"
               },
               "description": {
-                  "type": "string",
-                  "minLength": 1
+                "type": "string",
+                "minLength": 1
               },
               "description_id": {
-                  "type": "string",
-                  "pattern": "^[a-f0-9]{8}$"
+                "type": "string",
+                "pattern": "^[a-f0-9]{8}$"
               },
               "files": {
                 "type": "array",
@@ -128,11 +129,11 @@
                         "null"
                       ]
                     }
-                    }
                   }
                 }
               }
             }
+          }
         }
       }
     }

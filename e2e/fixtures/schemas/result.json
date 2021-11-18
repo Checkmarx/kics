@@ -91,7 +91,8 @@
               "Kubernetes",
               "OpenAPI",
               "Terraform",
-              "AzureResourceManager"
+              "AzureResourceManager",
+              "GRPC"
             ]
           },
           "files": {
@@ -130,13 +131,13 @@
                   "minimum": 1
                 },
                 "issue_type": {
-                    "type": "string",
-                    "enum": [
-                      "IncorrectValue",
-                      "MissingAttribute",
-                      "RedundantAttribute"
-                    ]
-                  },
+                  "type": "string",
+                  "enum": [
+                    "IncorrectValue",
+                    "MissingAttribute",
+                    "RedundantAttribute"
+                  ]
+                },
                 "search_key": {
                   "type": "string",
                   "minLength": 0
