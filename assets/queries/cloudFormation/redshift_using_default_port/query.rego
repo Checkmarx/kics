@@ -13,6 +13,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.Port' is defined", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.Port' is not defined", [name]),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties"], []),
 	}
 }
 
@@ -27,5 +28,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.Port' is not set to 5439", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.Port' is set to 5439", [name]),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "Port"], []),
 	}
 }
