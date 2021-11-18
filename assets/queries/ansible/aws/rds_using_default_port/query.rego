@@ -21,5 +21,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'port' is not set to %d", [enginePort]),
 		"keyActualValue": sprintf("'port' is set to %d", [enginePort]),
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "port"], []),
 	}
 }
