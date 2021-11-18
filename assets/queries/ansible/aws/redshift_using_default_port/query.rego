@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ans_lib
+import data.generic.common as common_lib 
 
 CxPolicy[result] {
 	task := ans_lib.tasks[id][t]
@@ -14,5 +15,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "redshift.port is not set to 5439",
 		"keyActualValue": "redshift.port is set to 5439",
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "port"], []),
 	}
 }
