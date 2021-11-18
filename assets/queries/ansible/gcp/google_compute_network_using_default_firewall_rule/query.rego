@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.ansible as ans_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
-	task := ans_lib.tasks[_][_]
+	task := ans_lib.tasks[_][t]
 	modulesFirewall := {"google.cloud.gcp_compute_firewall", "gcp_compute_firewall"}
 	firewall := task[modulesFirewall[_]]
 	ans_lib.checkState(firewall)
@@ -23,6 +24,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' is not using a default firewall rule", [modulesCompute[m]]),
 		"keyActualValue": sprintf("'%s' is using a default firewall rule", [modulesCompute[m]]),
+		"searchLine": common_lib.build_search_line(["playbooks", t, modulesCompute[m]], []),
 	}
 }
 
