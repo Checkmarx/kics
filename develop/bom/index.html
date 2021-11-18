@@ -1155,15 +1155,19 @@
 <p>Find the existing queries under: <a href="https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws_bom">assets/queries/terraform/aws_bom</a></p>
 <p>BoM queries extracts metadata about the resources and organizes it in the following structure:</p>
 <pre><code class="language-go">billOfMaterialsRequiredFields := map[string]bool{
+    &quot;acl&quot;:                    false,
+    &quot;is_default_password&quot;:    false,
+    &quot;policy&quot;:                 false,
     &quot;resource_type&quot;:          true,
     &quot;resource_name&quot;:          true,
     &quot;resource_engine&quot;:        false,
     &quot;resource_accessibility&quot;: true,
     &quot;resource_vendor&quot;:        true,
     &quot;resource_category&quot;:      true,
+    &quot;user_name&quot;:              false,
 }
 </code></pre>
-<p>After extracting the information the query stores the stringified JSON structure inside the <code>value</code> field in the <code>result</code>:</p>
+<p>After extracting the information, the query stores the stringified JSON structure inside the <code>value</code> field in the <code>result</code>:</p>
 <pre><code class="language-rego">CxPolicy[result] {
     bucket_resource := input.document[i].resource.aws_s3_bucket[name]
 
