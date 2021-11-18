@@ -122,18 +122,34 @@ func processElements(elements map[string]interface{}, filePath string) {
 func addExtraInfo(documents []model.Document, filePath string) []model.Document {
 	for _, documentPlaybooks := range documents { // iterate over documents
 		if playbooks, ok := documentPlaybooks["playbooks"]; ok {
-			for _, resources := range playbooks.([]interface{}) { // iterate over playbooks
-				for _, v := range resources.(map[string]interface{}) {
-					_, ok := v.(map[string]interface{})
-					if ok {
-						processElements(v.(map[string]interface{}), filePath)
-					}
-				}
-			}
+			processPlaybooks(playbooks, filePath)
 		}
 	}
 
 	return documents
+}
+
+func processPlaybooks(playbooks interface{}, filePath string) {
+	sliceResources, ok := playbooks.([]interface{})
+	if !ok { // prevent panic if playbooks is not a slice
+		return
+	}
+	for _, resources := range sliceResources { // iterate over playbooks
+		processPlaybooksElements(resources, filePath)
+	}
+}
+
+func processPlaybooksElements(resources interface{}, filePath string) {
+	mapResources, ok := resources.(map[string]interface{})
+	if !ok { // prevent panic if playbooks is not a map
+		return
+	}
+	for _, value := range mapResources {
+		mapValue, ok := value.(map[string]interface{})
+		if ok {
+			processElements(mapValue, filePath)
+		}
+	}
 }
 
 // GetCommentToken return the comment token of YAML - #
