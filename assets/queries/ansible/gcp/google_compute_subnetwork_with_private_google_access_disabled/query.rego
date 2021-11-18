@@ -18,6 +18,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s.private_ip_google_access is defined and not null", [modules[m]]),
 		"keyActualValue": sprintf("%s.private_ip_google_access is undefined or null", [modules[m]]),
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m]], []),
 	}
 }
 
@@ -34,5 +35,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "%s.private_ip_google_access is set to true",
 		"keyActualValue": "%s.private_ip_google_access is set to false",
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "private_ip_google_access"], []),
 	}
 }
