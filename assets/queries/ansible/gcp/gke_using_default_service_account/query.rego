@@ -18,6 +18,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'service_account' is not default",
 		"keyActualValue": "'service_account' is default",
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "node_config"], []),
 	}
 }
 
@@ -34,5 +35,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'service_account' is not default",
 		"keyActualValue": "'service_account' is default",
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "node_config", "service_account"], []),
 	}
 }
