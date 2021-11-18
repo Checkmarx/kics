@@ -346,3 +346,17 @@ get_encryption_if_exists(resource) = encryption {
 } else = encryption {
 	encryption := "unencrypted"
 }
+
+get_statement(policy) = st {
+	is_object(policy.Statement)
+	st = [policy.Statement]
+} else = st {
+	is_array(policy.Statement)
+	st = policy.Statement
+}
+
+is_allow_effect(statement) {
+	not valid_key(statement, "Effect")
+} else {
+	statement.Effect == "Allow"
+}
