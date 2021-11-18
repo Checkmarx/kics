@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ans_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	task := ans_lib.tasks[id][t]
@@ -20,5 +21,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'cache_port' is not set to %d", [enginePort]),
 		"keyActualValue": sprintf("'cache_port' is set to %d", [enginePort]),
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "cache_port"], []),
 	}
 }
