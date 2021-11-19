@@ -1,15 +1,21 @@
 package Cx
 
-import data.generic.ansible as ansLib
+import data.generic.ansible as ans_lib
+import data.generic.common as common_lib
 
 modules := {"community.aws.ecs_ecr", "ecs_ecr"}
 
 CxPolicy[result] {
-	task := ansLib.tasks[id][t]
+	task := ans_lib.tasks[id][t]
 	cloudwatchlogs := task[modules[m]]
-	ansLib.checkState(cloudwatchlogs)
+	ans_lib.checkState(cloudwatchlogs)
 
-	re_match("\\*", cloudwatchlogs.policy.Statement[index].Principal)
+	st := common_lib.get_statement(common_lib.get_policy(cloudwatchlogs.policy))
+	statement := st[_]
+
+	common_lib.is_allow_effect(statement)
+
+	contains(statement.Principal, "*")
 
 	result := {
 		"documentId": id,
@@ -17,21 +23,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "ecs_ecr.policy.Principal is not equal to '*'",
 		"keyActualValue": "ecs_ecr.policy.Principal is equal to '*'",
-	}
-}
-
-CxPolicy[result] {
-	task := ansLib.tasks[id][t]
-	cloudwatchlogs := task[modules[m]]
-	ansLib.checkState(cloudwatchlogs)
-
-	re_match("\"Principal\"\\ *:\\ *\"\\*\"", cloudwatchlogs.policy)
-
-	result := {
-		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "ecs_ecr.policy.Principal is not equal '*'",
-		"keyActualValue": "ecs_ecr.policy.Principal is equal '*'",
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}
 }
