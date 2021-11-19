@@ -1,19 +1,25 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::IAM::Policy"
-	statements := resource.Properties.PolicyDocument.Statement
+	
+	policy := resource.Properties.PolicyDocument
+	st := common_lib.get_statement(common_lib.get_policy(policy))
+	statement := st[_]
 
-	contains(statements[_].Action[_], "sts:AssumeRole")
-
-	contains(statements[_].Resource, "*")
+	common_lib.is_allow_effect(statement)
+	common_lib.equalsOrInArray(statement.Resource, "*")
+	common_lib.equalsOrInArray(statement.Action, lower("sts:AssumeRole"))
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.PolicyDocument.Statement", [name]),
+		"searchKey": sprintf("Resources.%s.Properties.PolicyDocument", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.PolicyDocument.Statement' with AssumeRole action does not grant access in all services ('*')", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.PolicyDocument.Statement' with AssumeRole action is granting access in all services ('*')", [name]),
+		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "PolicyDocument"], []),
 	}
 }

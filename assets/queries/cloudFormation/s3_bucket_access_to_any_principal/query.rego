@@ -1,29 +1,6 @@
 package Cx
 
-CxPolicy[result] {
-	resourceBucket := input.document[indexBucket].Resources[nameBucket]
-	resourceBucket.Type == "AWS::S3::Bucket"
-
-	policyStatements := [policyStatement |
-		resourcePolicy := input.document[indexBucket].Resources[_]
-		resourcePolicy.Type == "AWS::S3::BucketPolicy"
-		checkRef(resourcePolicy.Properties.Bucket, nameBucket)
-		policyStatement := resourcePolicy.Properties.PolicyDocument.Statement[_]
-	]
-
-	checkPolicyConfiguration(policyStatements)
-
-	publicAccessBlockConfiguration := resourceBucket.Properties.PublicAccessBlockConfiguration
-	publicAccessBlockConfiguration.RestrictPublicBuckets == false
-
-	result := {
-		"documentId": input.document[indexBucket].id,
-		"searchKey": sprintf("Resources.%s.Properties.PublicAccessBlockConfiguration.RestrictPublicBuckets", [nameBucket]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'Resources.Properties.PublicAccessBlockConfiguration.RestrictPublicBuckets' is true",
-		"keyActualValue": "'Resources.Properties.PublicAccessBlockConfiguration.RestrictPublicBuckets' is false",
-	}
-}
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resourceBucket := input.document[indexBucket].Resources[nameBucket]
@@ -33,45 +10,39 @@ CxPolicy[result] {
 		resourcePolicy := input.document[indexBucket].Resources[_]
 		resourcePolicy.Type == "AWS::S3::BucketPolicy"
 		checkRef(resourcePolicy.Properties.Bucket, nameBucket)
-		policyStatement := resourcePolicy.Properties.PolicyDocument.Statement[_]
+		policy := resourcePolicy.Properties.PolicyDocument
+		st := common_lib.get_statement(common_lib.get_policy(policy))
+		policyStatement := st[_]
+		common_lib.is_allow_effect(policyStatement)
 	]
 
-	checkPolicyConfiguration(policyStatements)
+	checkPolicy(policyStatements[_])
 
 	publicAccessBlockConfiguration := resourceBucket.Properties.PublicAccessBlockConfiguration
-	publicAccessBlockConfiguration.IgnorePublicAcls == false
+
+	targets := {"RestrictPublicBuckets", "IgnorePublicAcls"}
+	publicAccessBlockConfiguration[targets[t]] == false
 
 	result := {
 		"documentId": input.document[indexBucket].id,
-		"searchKey": sprintf("Resources.%s.Properties.PublicAccessBlockConfiguration.IgnorePublicAcls", [nameBucket]),
+		"searchKey": sprintf("Resources.%s.Properties.PublicAccessBlockConfiguration.%s", [nameBucket, targets[t]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'Resources.Properties.PublicAccessBlockConfiguration.IgnorePublicAcls' is true",
-		"keyActualValue": "'Resources.Properties.PublicAccessBlockConfiguration.IgnorePublicAcls' is false",
+		"keyExpectedValue": sprintf("'Resources.Properties.PublicAccessBlockConfiguration.%s' is set to true", [targets[t]]),
+		"keyActualValue": sprintf("'Resources.Properties.PublicAccessBlockConfiguration.%s' is set to false", [targets[t]]),
+		"searchLine": common_lib.build_search_line(["Resource", nameBucket, "Properties", "PublicAccessBlockConfiguration", targets[t]], []),
 	}
-}
-
-checkPolicyConfiguration(policyStatements) {
-	some p
-	policyStatements[p].Effect == "Allow"
-	checkPolicy(policyStatements[p])
 }
 
 checkPolicy(policyProperty) {
 	policyProperty.Principal == "*"
-}
-
-checkPolicy(policyProperty) {
+} else {
 	policyProperty.Principal.AWS == "*"
-}
-
-checkPolicy(policyProperty) {
+} else {
 	policyProperty.Principal.AWS[_] == "*"
 }
 
 checkRef(obj, name) {
 	obj.Ref == name
-}
-
-checkRef(obj, name) {
+} else {
 	obj == name
 }
