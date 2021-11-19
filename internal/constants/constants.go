@@ -47,7 +47,7 @@ var (
 		"OpenAPI":                 "openAPI",
 		"Terraform":               "terraform",
 		"AzureResourceManager":    "azureResourceManager",
-		"GoogleDeploymentManager": "googledeploymentmanager",
+		"GoogleDeploymentManager": "googleDeploymentManager",
 	}
 
 	// AvailableSeverities - All severities available

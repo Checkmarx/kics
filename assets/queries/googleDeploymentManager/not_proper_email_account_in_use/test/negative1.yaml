@@ -1,0 +1,11 @@
+resources:
+- name: a-new-pubsub-topic
+  type: pubsub.v1.topic
+
+  accessControl:
+    gcpIamPolicy:
+      bindings:
+      - role: roles/pubsub.publisher
+        members:
+        - "user:jane@example.com"
+        - "serviceAccount:my-other-app@appspot.gserviceaccount.com"
