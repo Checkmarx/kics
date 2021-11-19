@@ -41,4 +41,4 @@ replace github.com/docker/docker => github.com/docker/docker v1.4.2-0.2020022723
 
 replace github.com/docker/distribution => github.com/docker/distribution v0.0.0-20191216044856-a8371794149d
 
-replace github.com/containerd/containerd => github.com/containerd/containerd v1.5.7
+replace github.com/containerd/containerd => github.com/containerd/containerd v1.5.8
