@@ -32,7 +32,7 @@ USER Checkmarx
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 
 # Runtime image
-FROM alpine:3.14.2
+FROM alpine:3.14.3
 
 # Install Git
 RUN apk add --no-cache \
