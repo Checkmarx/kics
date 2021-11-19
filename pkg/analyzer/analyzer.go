@@ -48,10 +48,11 @@ var (
 )
 
 const (
-	yml  = ".yml"
-	yaml = ".yaml"
-	json = ".json"
-	arm  = "azureresourcemanager"
+	yml        = ".yml"
+	yaml       = ".yaml"
+	json       = ".json"
+	arm        = "azureresourcemanager"
+	kubernetes = "kubernetes"
 )
 
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
@@ -184,7 +185,7 @@ var types = map[string]regexSlice{
 
 // overrides k8s match when all regexs passes for azureresourcemanager key and extension is set to json
 func needsOverride(check bool, returnType, key, ext string) bool {
-	if check && returnType == "kubernetes" && key == "azureresourcemanager" && ext == json {
+	if check && returnType == kubernetes && key == "azureresourcemanager" && ext == json {
 		return true
 	}
 	return false
@@ -225,23 +226,37 @@ func checkContent(path string, results, unwanted chan<- string, ext string) {
 			returnType = key
 		}
 	}
-
+	returnType = checkReturnType(path, returnType, ext, content)
 	if returnType != "" {
-		if returnType == "blueprint" || returnType == "blueprintsartifacts" {
-			returnType = arm
-		}
-		// write to channel type of file
 		results <- returnType
 		return
-	} else if ext == yaml || ext == yml {
-		platform := checkYamlPlatform(content)
-		if platform != "" {
-			results <- platform
-			return
-		}
 	}
 	// No type was determined (ignore on parser)
 	unwanted <- path
+}
+
+func checkReturnType(path, returnType, ext string, content []byte) string {
+	if returnType != "" {
+		if returnType == "blueprint" || returnType == "blueprintsartifacts" {
+			return arm
+		}
+	} else if ext == yaml || ext == yml {
+		if checkHelm(path) {
+			return kubernetes
+		}
+		platform := checkYamlPlatform(content)
+		if platform != "" {
+			return platform
+		}
+	}
+	return returnType
+}
+
+func checkHelm(path string) bool {
+	if _, err := os.Stat(filepath.Join(filepath.Dir(path), "Chart.yaml")); errors.Is(err, os.ErrNotExist) {
+		return false
+	}
+	return true
 }
 
 func checkYamlPlatform(content []byte) string {
