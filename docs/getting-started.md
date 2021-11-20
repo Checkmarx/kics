@@ -2,20 +2,6 @@
 
 There are multiple ways to get KICS up and running:
 
-#### Homebrew
-
-KICS is avaiable on Checkmarx [homebrew-tap](https://github.com/Checkmarx/homebrew-tap). It can be used as follows:
-
-```
-brew install Checkmarx/tap/kics 
-```
-
-To use KICS default queries add KICS_QUERIES_PATH env to your `~/.zshrc`, `~/.zprofile`:
-
-```
-echo 'export KICS_QUERIES_PATH=/usr/local/opt/kics/share/kics/assets/queries' >> ~/.zshrc
-```
-
 #### Docker
 
 KICS is available as a <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">Docker image</a> and can be used as follows:
@@ -38,6 +24,20 @@ docker run -it -u $UID:$GID -v $PWD:/path checkmarx/kics:ubi7 scan -p /path/asse
 ```
 
 Another option is [rebuilding the dockerfile](https://github.com/Checkmarx/kics/blob/master/Dockerfile.ubi7) providing build arguments e.g: `--build-arg UID=999 --build-arg GID=999 --build-arg KUSER=myuser --build-arg KUSER=mygroup`
+
+#### Homebrew
+
+KICS is avaiable on Checkmarx [homebrew-tap](https://github.com/Checkmarx/homebrew-tap). It can be used as follows:
+
+```
+brew install Checkmarx/tap/kics 
+```
+
+To use KICS default queries add KICS_QUERIES_PATH env to your `~/.zshrc`, `~/.zprofile`:
+
+```
+echo 'export KICS_QUERIES_PATH=/usr/local/opt/kics/share/kics/assets/queries' >> ~/.zshrc
+```
 
 #### Custom Queries
 
