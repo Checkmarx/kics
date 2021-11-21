@@ -10,16 +10,16 @@ CxPolicy[result] {
 	iamRole := task[modules[m]]
 	ans_lib.checkState(iamRole)
 
-	policy := common_lib.json_unmarshal(iamRole.assume_role_policy_document)
+	policy := iamRole.assume_role_policy_document
+	st := common_lib.get_statement(common_lib.get_policy(policy))
+	statement := st[_]
 
-	statement := common_lib.get_statement(policy)
-
-	statement.Effect == "Allow"
+	common_lib.is_allow_effect(statement)
 
 	common_lib.is_cross_account(statement)
 	common_lib.is_assume_role(statement)
 
-	not common_lib.has_externalID(statement)
+	not common_lib.has_external_id(statement)
 	not common_lib.has_mfa(statement)
 
 	result := {
@@ -28,5 +28,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "assume_role_policy_document should not contain ':root",
 		"keyActualValue": "assume_role_policy_document contains ':root'",
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "assume_role_policy_document"], []),
 	}
 }

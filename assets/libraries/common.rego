@@ -348,11 +348,23 @@ get_encryption_if_exists(resource) = encryption {
 }
 
 get_statement(policy) = st {
-	is_array(policy.Statement)
-	st = policy.Statement[s]
-} else = st {
 	is_object(policy.Statement)
+	st = [policy.Statement]
+} else = st {
+	is_array(policy.Statement)
 	st = policy.Statement
+}
+
+is_allow_effect(statement) {
+	not valid_key(statement, "Effect")
+} else {
+	statement.Effect == "Allow"
+}
+
+get_policy(p) = policy {
+	policy = json_unmarshal(p)
+} else = policy {
+	policy = p
 }
 
 is_cross_account(statement) {
@@ -369,7 +381,7 @@ is_assume_role(statement) {
 	statement.Action[_] == "sts:AssumeRole"
 }
 
-has_externalID(statement) {
+has_external_id(statement) {
 	count(statement.Condition.StringEquals["sts:ExternalId"]) > 0
 }
 

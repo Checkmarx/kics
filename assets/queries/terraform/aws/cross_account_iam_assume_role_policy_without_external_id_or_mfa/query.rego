@@ -7,14 +7,15 @@ CxPolicy[result] {
 
 	policy := common_lib.json_unmarshal(resource.assume_role_policy)
 
-	statement := common_lib.get_statement(policy)
+	st := common_lib.get_statement(policy)
+	statement := st[_]
 
-	statement.Effect == "Allow"
+	common_lib.is_allow_effect(statement)
 
 	common_lib.is_cross_account(statement)
 	common_lib.is_assume_role(statement)
 
-	not common_lib.has_externalID(statement)
+	not common_lib.has_external_id(statement)
 	not common_lib.has_mfa(statement)
 
 	result := {
@@ -23,7 +24,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'assume_role_policy' requires external ID or MFA",
 		"keyActualValue": "'assume_role_policy' does not require external ID or MFA",
-		"searchLine": common_lib.build_search_line(["resource", "aws_redshift_cluster", name], []),
+		"searchLine": common_lib.build_search_line(["resource", "aws_iam_role", name, "assume_role_policy"], []),
 	}
 }
 
