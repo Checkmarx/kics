@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "SES Policy With Public Access",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive.tf"
+  }
+]
