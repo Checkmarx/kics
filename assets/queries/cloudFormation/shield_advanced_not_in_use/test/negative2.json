@@ -1,0 +1,51 @@
+{
+  "Resources": {
+    "MyEIP": {
+      "Properties": {
+        "InstanceId": "Logical name of an AWS::EC2::Instance resource"
+      },
+      "Type": "AWS::EC2::EIP"
+    },
+    "Policy2": {
+      "Properties": {
+        "DeleteAllPolicyResources": false,
+        "ExcludeResourceTags": true,
+        "IncludeMap": {
+          "ACCOUNT": [
+            "AWS::AccountId"
+          ]
+        },
+        "PolicyName": "TaggedPolicy",
+        "RemediationEnabled": false,
+        "ResourceTags": [
+          {
+            "Key": "resourceTag1",
+            "Value": "value"
+          },
+          {
+            "Key": "resourceTag2",
+            "Value": "value"
+          }
+        ],
+        "ResourceType": "ResourceTypeList",
+        "ResourceTypeList": [
+          "AWS::EC2::EIP"
+        ],
+        "SecurityServicePolicyData": {
+          "Type": "SHIELD_ADVANCED"
+        },
+        "Tags": [
+          {
+            "Key": "tag1",
+            "Value": "value"
+          },
+          {
+            "Key": "tag2",
+            "Value": "value"
+          }
+        ]
+      },
+      "Type": "AWS::FMS::Policy"
+    }
+  }
+}
