@@ -1,0 +1,11 @@
+{
+	"id": "a186e82c-1078-4a7b-85d8-579561fde884",
+	"queryName": "API Gateway without WAF",
+	"severity": "MEDIUM",
+  	"category": "Networking and Firewall",
+	"descriptionText": "API Gateway should have WAF (Web Application Firewall) enabled",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafregional_web_acl_association#resource_arn",
+	"platform": "Terraform",
+	"descriptionID": "bfefa118",
+	"cloudProvider": "aws"
+}
