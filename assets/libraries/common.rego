@@ -366,3 +366,13 @@ get_policy(p) = policy {
 } else = policy {
 	policy = p
 }
+
+any_principal(statement) {
+	contains(statement.Principal, "*")
+} else {
+	is_string(statement.Principal.AWS)
+	contains(statement.Principal.AWS, "*")
+} else {
+	is_array(statement.Principal.AWS)
+	contains(statement.Principal.AWS[_], "*")
+}

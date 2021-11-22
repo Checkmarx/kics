@@ -112,7 +112,7 @@ jobs:
           echo "${VERSION}-alpine,${ALPINE_DIGEST}" >> docs/docker/digests.csv
           echo "${VERSION}-debian,${DEBIAN_DIGEST}" >> docs/docker/digests.csv
           echo "${VERSION}-ubi7,${UBI7_DIGEST}" >> docs/docker/digests.csv
-      - uses: actions/setup-python@v2.2.2
+      - uses: actions/setup-python@v2.3.0
         with:
           python-version: 3.x
       - name: Generate .md table

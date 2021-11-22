@@ -1,0 +1,11 @@
+{
+  "id": "704fcc44-a58f-4af5-82e2-93f2a58ef918",
+  "queryName": "User with IAM Role",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "As a best practice, it is better to assign an IAM Role to a group than to a user",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/iam_policy#role",
+  "platform": "Terraform",
+  "descriptionID": "256939e9",
+  "cloudProvider": "gcp"
+}

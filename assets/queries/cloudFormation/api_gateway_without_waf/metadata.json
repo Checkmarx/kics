@@ -1,0 +1,11 @@
+{
+  "id": "fcbf9019-566c-4832-a65c-af00d8137d2b",
+  "queryName": "API Gateway without WAF",
+	"severity": "MEDIUM",
+  "category": "Networking and Firewall",
+	"descriptionText": "API Gateway should have WAF (Web Application Firewall) enabled",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webaclassociation.html#cfn-wafv2-webaclassociation-resourcearn",
+  "platform": "CloudFormation",
+  "descriptionID": "774d759c",
+  "cloudProvider": "aws"
+}
