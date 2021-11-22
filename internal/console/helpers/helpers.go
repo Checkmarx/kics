@@ -27,11 +27,12 @@ const (
 )
 
 var reportGenerators = map[string]func(path, filename string, body interface{}) error{
-	"json":   report.PrintJSONReport,
-	"sarif":  report.PrintSarifReport,
-	"html":   report.PrintHTMLReport,
-	"glsast": report.PrintGitlabSASTReport,
-	"pdf":    report.PrintPdfReport,
+	"json":      report.PrintJSONReport,
+	"sarif":     report.PrintSarifReport,
+	"html":      report.PrintHTMLReport,
+	"glsast":    report.PrintGitlabSASTReport,
+	"pdf":       report.PrintPdfReport,
+	"sonarqube": report.PrintSonarQubeReport,
 }
 
 // Printer wil print console output with colors

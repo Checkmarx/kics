@@ -2,6 +2,7 @@
   {
     "queryName": "IAM Policies With Full Privileges",
     "severity": "HIGH",
-    "line": 8
+    "line": 4,
+    "fileName": "positive.yaml"
   }
 ]

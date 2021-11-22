@@ -1,43 +1,34 @@
 package Cx
 
-import data.generic.ansible as ansLib
-import data.generic.common as commonLib
+import data.generic.ansible as ans_lib
+import data.generic.common as common_lib
 
 modules := {"community.aws.sqs_queue", "sqs_queue"}
 
 CxPolicy[result] {
-	task := ansLib.tasks[id][t]
+	task := ans_lib.tasks[id][t]
 	sqsPolicy := task[modules[m]]
-	ansLib.checkState(sqsPolicy)
+	ans_lib.checkState(sqsPolicy)
 
-	contains(sqsPolicy.policy.Statement[_].Principal, "*")
-	contains(sqsPolicy.policy.Statement[_].Effect, "Allow")
-	contains(sqsPolicy.policy.Statement[_].Action, "*")
+	st := common_lib.get_statement(common_lib.get_policy(sqsPolicy.policy))
+	statement := st[_]
+
+	common_lib.is_allow_effect(statement)
+	all_principals(statement)
+	common_lib.containsOrInArrayContains(statement.Action, "*")
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.policy.Principal", [task.name, modules[m]]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "sqs_queue.policy.Principal should not be equal to '*'",
 		"keyActualValue": "sqs_queue.policy.Principal is equal to '*'",
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}
 }
 
-CxPolicy[result] {
-	task := ansLib.tasks[id][t]
-	sqsPolicy := task[modules[m]]
-	ansLib.checkState(sqsPolicy)
-
-	statement := sqsPolicy.policy.Statement[_]
-	contains(statement.Effect, "Allow")
-	contains(statement.Action, "*")
-	commonLib.containsOrInArrayContains(statement.Principal.AWS, "*")
-
-	result := {
-		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.policy.Principal.AWS", [task.name, modules[m]]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "sqs_queue.policy.Principal.AWS should not be equal to '*'",
-		"keyActualValue": "sqs_queue.policy.Principal.AWS is equal to '*'",
-	}
+all_principals(statement) {
+	common_lib.containsOrInArrayContains(statement.Principal.AWS, "*")
+} else {
+	statement.Principal == "*"
 }
