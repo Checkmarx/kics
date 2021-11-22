@@ -63,9 +63,9 @@ terraform show -json plan-sample.tfplan > plan-sample.tfplan.json
 ```
 
 ### Terraform Modules
-KICS supports some official modules for aws that can be found on [Terraform registry](https://registry.terraform.io/providers/hashicorp/aws/latest), you can see the supported modules list in libraries folder [common.json file](https://github.com/Checkmarx/kics/blob/master/assets/libraries/common.json). This means KICS can found issues in verified modules listed on this json.
+KICS supports some official modules for AWS that can be found on [Terraform registry](https://registry.terraform.io/providers/hashicorp/aws/latest), you can see the supported modules list in the libraries folder [common.json file](https://github.com/Checkmarx/kics/blob/master/assets/libraries/common.json). This means KICS can find issues in verified modules listed on this json.
 
-Currently KICS does not support unofficial or custom modules.
+Currently, KICS does not support unofficial or custom modules.
 
 ### Limitations
 
