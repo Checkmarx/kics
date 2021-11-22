@@ -1289,6 +1289,9 @@ Platform: Kubernetes
 <p>To get terraform plan in JSON format simply run the command:</p>
 <pre><code>terraform show -json plan-sample.tfplan &gt; plan-sample.tfplan.json
 </code></pre>
+<h3 id="terraform_modules">Terraform Modules<a class="headerlink" href="#terraform_modules" title="Permanent link">&para;</a></h3>
+<p>KICS supports some official modules for AWS that can be found on <a href="https://registry.terraform.io/providers/hashicorp/aws/latest">Terraform registry</a>, you can see the supported modules list in the libraries folder <a href="https://github.com/Checkmarx/kics/blob/master/assets/libraries/common.json">common.json file</a>. This means KICS can find issues in verified modules listed on this json.</p>
+<p>Currently, KICS does not support unofficial or custom modules.</p>
 <h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
 <h4 id="ansible_1">Ansible<a class="headerlink" href="#ansible_1" title="Permanent link">&para;</a></h4>
 <p>At the moment, KICS does not support a robust approach to identifying Ansible samples. The identification of these samples is done through exclusion. When a YAML sample is not a CloudFormation, Helm, Kubernetes or OpenAPI sample, KICS recognize it as Ansible. </p>
