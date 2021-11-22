@@ -1,28 +1,27 @@
 package Cx
 
-import data.generic.ansible as ansLib
+import data.generic.ansible as ans_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
-	task := ansLib.tasks[id][t]
+	task := ans_lib.tasks[id][t]
 	modules := {"community.aws.sqs_queue", "sqs_queue"}
 	sqs_queue := task[modules[m]]
-	ansLib.checkState(sqs_queue)
+	ans_lib.checkState(sqs_queue)
 
-	isAccessible(sqs_queue)
+	st := common_lib.get_statement(common_lib.get_policy(sqs_queue.policy))
+	statement := st[_]
+
+	common_lib.is_allow_effect(statement)
+
+	statement.Principal == "*"
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.policy.Principal", [task.name, modules[m]]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "sqs_queue.policy.Principal doesn't get the queue publicly accessible",
 		"keyActualValue": "sqs_queue.policy.Principal does get the queue publicly accessible",
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}
-}
-
-isAccessible(task) {
-	task.policy.Statement.Principal == "*"
-}
-
-isAccessible(task) {
-	task.policy.Statement[s].Principal == "*"
 }

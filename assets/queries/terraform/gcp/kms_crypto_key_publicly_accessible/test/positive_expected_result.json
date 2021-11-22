@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "KMS Crypto Key is Publicly Accessible",
+    "severity": "HIGH",
+    "line": 24,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "KMS Crypto Key is Publicly Accessible",
+    "severity": "HIGH",
+    "line": 24,
+    "fileName": "positive2.tf"
+  }
+]
