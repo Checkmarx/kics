@@ -1,6 +1,6 @@
 {
   "id": "34b921bd-90a0-402e-a0a5-dc73371fd963",
-  "queryName": "SES Policy With Public Access",
+  "queryName": "SES Policy With Allowed IAM Actions",
   "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "SES policy should not allow IAM actions to all principals",
