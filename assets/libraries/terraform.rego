@@ -545,3 +545,9 @@ check_member(attribute, search) {
 } else {
 	startswith(attribute.member, search)
 }
+
+matches(target, name) {
+	split(target, ".")[1] == name
+} else {
+	target == name
+}

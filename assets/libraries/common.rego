@@ -347,6 +347,12 @@ get_encryption_if_exists(resource) = encryption {
 	encryption := "unencrypted"
 }
 
+is_ingress(firewall) {
+	not valid_key(firewall, "direction")
+} else {
+	firewall.direction == "INGRESS"
+}
+
 get_statement(policy) = st {
 	is_object(policy.Statement)
 	st = [policy.Statement]
