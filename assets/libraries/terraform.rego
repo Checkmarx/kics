@@ -527,3 +527,9 @@ is_default_password(password) = output {
 } else = output {
 	output = false
 }
+
+matches(target, name) {
+	split(target, ".")[1] == name
+} else {
+	target == name
+}
