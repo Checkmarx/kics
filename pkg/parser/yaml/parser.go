@@ -6,6 +6,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser/utils"
 	"github.com/pkg/errors"
+	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"
 )
 
@@ -132,6 +133,7 @@ func addExtraInfo(documents []model.Document, filePath string) []model.Document 
 func processPlaybooks(playbooks interface{}, filePath string) {
 	sliceResources, ok := playbooks.([]interface{})
 	if !ok { // prevent panic if playbooks is not a slice
+		log.Warn().Msgf("Failed to parse playbooks: %s", filePath)
 		return
 	}
 	for _, resources := range sliceResources { // iterate over playbooks
@@ -141,14 +143,17 @@ func processPlaybooks(playbooks interface{}, filePath string) {
 
 func processPlaybooksElements(resources interface{}, filePath string) {
 	mapResources, ok := resources.(map[string]interface{})
-	if !ok { // prevent panic if playbooks is not a map
+	if !ok {
+		log.Warn().Msgf("Failed to parse playbooks elements: %s", filePath)
 		return
 	}
 	for _, value := range mapResources {
 		mapValue, ok := value.(map[string]interface{})
-		if ok {
-			processElements(mapValue, filePath)
+		if !ok {
+			log.Warn().Msgf("Failed to parse playbooks values: %s", filePath)
+			continue
 		}
+		processElements(mapValue, filePath)
 	}
 }
 
