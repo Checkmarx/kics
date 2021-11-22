@@ -347,6 +347,23 @@ get_encryption_if_exists(resource) = encryption {
 	encryption := "unencrypted"
 }
 
+engines := {
+	"aurora": 3306,
+	"aurora-mysql": 3306,
+	"aurora-postgresql": 3306,
+	"mariadb": 3306,
+	"mysql": 3306,
+	"oracle-ee": 1521,
+	"oracle-ee-cdb": 1521,
+	"oracle-se2": 1521,
+	"oracle-se2-cdb": 1521,
+	"postgres": 5432,
+	"sqlserver-ee": 1433,
+	"sqlserver-se": 1433,
+	"sqlserver-ex": 1433,
+	"sqlserver-web": 1433,
+}
+
 is_ingress(firewall) {
 	not valid_key(firewall, "direction")
 } else {

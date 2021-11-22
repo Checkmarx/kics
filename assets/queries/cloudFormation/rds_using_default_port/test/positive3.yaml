@@ -1,0 +1,16 @@
+Resources:
+ MyDB:
+  Type: AWS::RDS::DBInstance
+  Properties:
+    DBSecurityGroups:
+    - Ref: MyDbSecurityByEC2SecurityGroup
+    - Ref: MyDbSecurityByCIDRIPGroup
+    AllocatedStorage: '5'
+    DBInstanceClass: db.t2.small
+    Engine: mysql
+    LicenseModel: bring-your-own-license
+    MasterUsername: master
+    MasterUserPassword: SecretPassword01
+    BackupRetentionPeriod: 7
+    Port: 3306
+  DeletionPolicy: Snapshot
