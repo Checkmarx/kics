@@ -1,0 +1,20 @@
+- name: add sending authorization policy to email identityyy
+  community.aws.aws_ses_identity_policy:
+    identity: example@example.com
+    policy_name: ExamplePolicy
+    policy: >
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Action": "*",
+            "Principal": {
+              "AWS": "*"
+            },
+            "Effect": "Allow",
+            "Resource": "*",
+            "Sid": ""
+          }
+        ]
+      }
+    state: present
