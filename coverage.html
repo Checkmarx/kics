@@ -223,21 +223,25 @@
 				
 				<option value="file83">github.com/Checkmarx/kics/pkg/report/model/sarif_categories.go (100.0%)</option>
 				
-				<option value="file84">github.com/Checkmarx/kics/pkg/report/pdf.go (88.3%)</option>
+				<option value="file84">github.com/Checkmarx/kics/pkg/report/model/sonarqube.go (92.9%)</option>
 				
-				<option value="file85">github.com/Checkmarx/kics/pkg/report/sarif.go (90.9%)</option>
+				<option value="file85">github.com/Checkmarx/kics/pkg/report/pdf.go (88.3%)</option>
 				
-				<option value="file86">github.com/Checkmarx/kics/pkg/resolver/helm/helm.go (88.5%)</option>
+				<option value="file86">github.com/Checkmarx/kics/pkg/report/sarif.go (90.9%)</option>
 				
-				<option value="file87">github.com/Checkmarx/kics/pkg/resolver/helm/resolver.go (88.4%)</option>
+				<option value="file87">github.com/Checkmarx/kics/pkg/report/sonarqube.go (90.9%)</option>
 				
-				<option value="file88">github.com/Checkmarx/kics/pkg/resolver/resolver.go (90.5%)</option>
+				<option value="file88">github.com/Checkmarx/kics/pkg/resolver/helm/helm.go (88.5%)</option>
 				
-				<option value="file89">github.com/Checkmarx/kics/pkg/scanner/scanner.go (56.4%)</option>
+				<option value="file89">github.com/Checkmarx/kics/pkg/resolver/helm/resolver.go (88.4%)</option>
 				
-				<option value="file90">github.com/Checkmarx/kics/pkg/utils/map.go (100.0%)</option>
+				<option value="file90">github.com/Checkmarx/kics/pkg/resolver/resolver.go (90.5%)</option>
 				
-				<option value="file91">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
+				<option value="file91">github.com/Checkmarx/kics/pkg/scanner/scanner.go (56.4%)</option>
+				
+				<option value="file92">github.com/Checkmarx/kics/pkg/utils/map.go (100.0%)</option>
+				
+				<option value="file93">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
 				
 				</select>
 			</div>
@@ -573,7 +577,7 @@ func isQueryID(id string) bool <span class="cov5" title="5">{
 
 func convertSliceToDummyMap(slice []string) map[string]string <span class="cov5" title="5">{
         returnMap := make(map[string]string, len(slice))
-        for _, element := range slice </span><span class="cov10" title="24">{
+        for _, element := range slice </span><span class="cov10" title="25">{
                 returnMap[element] = ""
         }</span>
         <span class="cov5" title="5">return returnMap</span>
@@ -823,11 +827,12 @@ const (
 )
 
 var reportGenerators = map[string]func(path, filename string, body interface{}) error{
-        "json":   report.PrintJSONReport,
-        "sarif":  report.PrintSarifReport,
-        "html":   report.PrintHTMLReport,
-        "glsast": report.PrintGitlabSASTReport,
-        "pdf":    report.PrintPdfReport,
+        "json":      report.PrintJSONReport,
+        "sarif":     report.PrintSarifReport,
+        "html":      report.PrintHTMLReport,
+        "glsast":    report.PrintGitlabSASTReport,
+        "pdf":       report.PrintPdfReport,
+        "sonarqube": report.PrintSonarQubeReport,
 }
 
 // Printer wil print console output with colors
@@ -1061,7 +1066,7 @@ func GetDefaultQueryPath(queriesPath string) (string, error) <span class="cov3" 
 // ListReportFormats return a slice with all supported report formats
 func ListReportFormats() []string <span class="cov1" title="1">{
         supportedFormats := make([]string, 0, len(reportGenerators))
-        for reportFormats := range reportGenerators </span><span class="cov5" title="5">{
+        for reportFormats := range reportGenerators </span><span class="cov6" title="6">{
                 supportedFormats = append(supportedFormats, reportFormats)
         }</span>
         <span class="cov1" title="1">sort.Strings(supportedFormats)
@@ -2302,13 +2307,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="30">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="30">total += v
+                <span class="cov8" title="31">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2333,7 +2338,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2789,7 +2794,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="18">{
-        for _, a := range s </span><span class="cov7" title="38">{
+        for _, a := range s </span><span class="cov7" title="39">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -5579,12 +5584,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="23361">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="23407">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="23361">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="23124">{
+                <span class="cov9" title="23407">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="23170">{
                         return skipFolder
                 }</span>
 
@@ -5651,24 +5656,24 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="236">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="23364">{
-        if info.IsDir() </span><span class="cov8" title="5176">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="23410">{
+        if info.IsDir() </span><span class="cov8" title="5188">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
                         return true, filepath.SkipDir
                 }</span>
-                <span class="cov8" title="5175">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
-                if err != nil || resolved </span><span class="cov8" title="5173">{
+                <span class="cov8" title="5187">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
+                if err != nil || resolved </span><span class="cov8" title="5185">{
                         return true, nil
                 }</span>
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="18188">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="18222">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="18188">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="17952">{
+        <span class="cov9" title="18222">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="17986">{
                 return true, nil
         }</span>
         <span class="cov5" title="236">return false, nil</span>
@@ -13403,18 +13408,18 @@ func getCurrentTime() string <span class="cov1" title="1">{
         return fmt.Sprint(dt.Format("01/02/2006 15:04"))
 }</span>
 
-func fileCreationReport(path, filename string) <span class="cov10" title="6">{
+func fileCreationReport(path, filename string) <span class="cov10" title="7">{
         log.Info().Str("fileName", filename).Msgf("Results saved to file %s", path)
         fmt.Printf("Results saved to file %s\n", path)
 }</span>
 
-func closeFile(path, filename string, file *os.File) <span class="cov7" title="4">{
+func closeFile(path, filename string, file *os.File) <span class="cov8" title="5">{
         err := file.Close()
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err).Msgf("Failed to close file %s", path)
         }</span>
 
-        <span class="cov7" title="4">fileCreationReport(path, filename)</span>
+        <span class="cov8" title="5">fileCreationReport(path, filename)</span>
 }
 
 func getPlatforms(queries model.QueryResultSlice) string <span class="cov6" title="3">{
@@ -13430,18 +13435,18 @@ func getPlatforms(queries model.QueryResultSlice) string <span class="cov6" titl
 }
 
 // ExportJSONReport - encodes a given body to a JSON file in a given filepath
-func ExportJSONReport(path, filename string, body interface{}) error <span class="cov6" title="3">{
+func ExportJSONReport(path, filename string, body interface{}) error <span class="cov7" title="4">{
         if !strings.Contains(filename, ".") </span><span class="cov1" title="1">{
                 filename += jsonExtension
         }</span>
-        <span class="cov6" title="3">fullPath := filepath.Join(path, filename)
+        <span class="cov7" title="4">fullPath := filepath.Join(path, filename)
 
         f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
 
-        <span class="cov6" title="3">defer closeFile(fullPath, filename, f)
+        <span class="cov7" title="4">defer closeFile(fullPath, filename, f)
 
         encoder := json.NewEncoder(f)
         encoder.SetIndent("", "\t")
@@ -13449,17 +13454,17 @@ func ExportJSONReport(path, filename string, body interface{}) error <span class
         return encoder.Encode(body)</span>
 }
 
-func getSummary(body interface{}) (sum model.Summary, err error) <span class="cov6" title="3">{
+func getSummary(body interface{}) (sum model.Summary, err error) <span class="cov7" title="4">{
         var summary model.Summary
         result, err := json.Marshal(body)
         if err != nil </span><span class="cov0" title="0">{
                 return model.Summary{}, err
         }</span>
-        <span class="cov6" title="3">if err := json.Unmarshal(result, &amp;summary); err != nil </span><span class="cov0" title="0">{
+        <span class="cov7" title="4">if err := json.Unmarshal(result, &amp;summary); err != nil </span><span class="cov0" title="0">{
                 return model.Summary{}, err
         }</span>
 
-        <span class="cov6" title="3">return summary, nil</span>
+        <span class="cov7" title="4">return summary, nil</span>
 }
 </pre>
 		
@@ -14183,7 +14188,129 @@ var categories = map[string]sarifTaxanomyDefinition{
 }
 </pre>
 		
-		<pre class="file" id="file84" style="display: none">package report
+		<pre class="file" id="file84" style="display: none">package model
+
+import (
+        "github.com/Checkmarx/kics/internal/constants"
+        "github.com/Checkmarx/kics/pkg/model"
+)
+
+// severitySonarQubeEquivalence maps the severity of the KICS to the SonarQube equivalent
+var severitySonarQubeEquivalence = map[model.Severity]string{
+        "INFO":   "INFO",
+        "LOW":    "MINOR",
+        "MEDIUM": "MAJOR",
+        "HIGH":   "CRITICAL",
+}
+
+// categorySonarQubeEquivalence maps the category to the SonarQube equivalent
+var categorySonarQubeEquivalence = map[string]string{
+        "Access Control":          "VULNERABILITY",
+        "Availability":            "VULNERABILITY",
+        "Backup":                  "VULNERABILITY",
+        "Best Practices":          "CODE_SMELL",
+        "Build Process":           "VULNERABILITY",
+        "Encryption":              "VULNERABILITY",
+        "Insecure Configurations": "CODE_SMELL",
+        "Insecure Defaults":       "CODE_SMELL",
+        "Networking and Firewall": "VULNERABILITY",
+        "Observability":           "VULNERABILITY",
+        "Resource Management":     "VULNERABILITY",
+        "Secret Management":       "VULNERABILITY",
+        "Supply-Chain":            "VULNERABILITY",
+        "Structure and Semantics": "CODE_SMELL",
+}
+
+// SonarQubeReportBuilder is the builder for the SonarQubeReport struct
+type SonarQubeReportBuilder struct {
+        version string
+        report  *SonarQubeReport
+}
+
+// SonarQubeReport is a list of issues for SonarQube Report
+type SonarQubeReport struct {
+        Issues []Issue `json:"issues"`
+}
+
+// Issue is a single issue for SonarQube Report
+type Issue struct {
+        EngineID           string      `json:"engineId"`
+        RuleID             string      `json:"ruleId"`
+        Severity           string      `json:"severity"`
+        Type               string      `json:"type"`
+        PrimaryLocation    *Location   `json:"primaryLocation"`
+        SecondaryLocations []*Location `json:"secondaryLocations,omitempty"`
+}
+
+// Location is the location for the vulnerability in the SonarQube Report
+type Location struct {
+        Message   string `json:"message"`
+        FilePath  string `json:"filePath"`
+        TextRange *Range `json:"textRange"`
+}
+
+// Range is the range for the vulnerability in the SonarQube Report
+type Range struct {
+        StartLine int `json:"startLine"`
+}
+
+// NewSonarQubeRepory creates a new SonarQubeReportBuilder instance
+func NewSonarQubeRepory() *SonarQubeReportBuilder <span class="cov1" title="1">{
+        return &amp;SonarQubeReportBuilder{
+                version: "KICS " + constants.Version,
+                report: &amp;SonarQubeReport{
+                        Issues: make([]Issue, 0),
+                },
+        }
+}</span>
+
+// BuildReport builds the SonarQubeReport from the given QueryResults
+func (s *SonarQubeReportBuilder) BuildReport(summary *model.Summary) *SonarQubeReport <span class="cov1" title="1">{
+        for i := range summary.Queries </span><span class="cov1" title="1">{
+                s.buildIssue(&amp;summary.Queries[i])
+        }</span>
+        <span class="cov1" title="1">return s.report</span>
+}
+
+// buildIssue builds the issue from the given QueryResult and adds it to the SonarQubeReport
+func (s *SonarQubeReportBuilder) buildIssue(query *model.QueryResult) <span class="cov1" title="1">{
+        issue := Issue{
+                EngineID:           s.version,
+                RuleID:             query.QueryID,
+                Severity:           severitySonarQubeEquivalence[query.Severity],
+                Type:               categorySonarQubeEquivalence[query.Category],
+                PrimaryLocation:    buildLocation(0, query),
+                SecondaryLocations: buildSecondaryLocation(query),
+        }
+        s.report.Issues = append(s.report.Issues, issue)
+}</span>
+
+// buildSecondaryLocation builds the secondary location for the SonarQube Report
+func buildSecondaryLocation(query *model.QueryResult) []*Location <span class="cov1" title="1">{
+        locations := make([]*Location, 0)
+        for i := range query.Files[1:] </span><span class="cov1" title="1">{
+                locations = append(locations, buildLocation(i+1, query))
+        }</span>
+        <span class="cov1" title="1">return locations</span>
+}
+
+// buildLocation builds the location for the SonarQube Report
+func buildLocation(index int, query *model.QueryResult) *Location <span class="cov10" title="2">{
+        message := query.Description
+        if query.CISDescriptionID != "" </span><span class="cov0" title="0">{
+                message = query.CISDescriptionID
+        }</span>
+        <span class="cov10" title="2">return &amp;Location{
+                Message:  message,
+                FilePath: query.Files[index].FileName,
+                TextRange: &amp;Range{
+                        StartLine: query.Files[index].Line,
+                },
+        }</span>
+}
+</pre>
+		
+		<pre class="file" id="file85" style="display: none">package report
 
 import (
         _ "embed" // used for embedding report static files
@@ -14665,7 +14792,7 @@ func getPurpleColor() color.Color <span class="cov4" title="2">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file85" style="display: none">package report
+		<pre class="file" id="file86" style="display: none">package report
 
 import (
         "strings"
@@ -14695,7 +14822,39 @@ func PrintSarifReport(path, filename string, body interface{}) error <span class
 }
 </pre>
 		
-		<pre class="file" id="file86" style="display: none">package helm
+		<pre class="file" id="file87" style="display: none">package report
+
+import (
+        "strings"
+
+        reportModel "github.com/Checkmarx/kics/pkg/report/model"
+)
+
+// PrintSonarQubeReport prints the SonarQube report in the given path and filename with the given body
+func PrintSonarQubeReport(path, filename string, body interface{}) error <span class="cov8" title="1">{
+        if !strings.HasSuffix(filename, ".json") </span><span class="cov8" title="1">{
+                filename += ".json"
+        }</span>
+
+        <span class="cov8" title="1">if !strings.HasPrefix(filename, "sonarqube-") </span><span class="cov8" title="1">{
+                filename = "sonarqube-" + filename
+        }</span>
+
+        <span class="cov8" title="1">if body != "" </span><span class="cov8" title="1">{
+                summary, err := getSummary(body)
+                if err != nil </span><span class="cov0" title="0">{
+                        return err
+                }</span>
+
+                <span class="cov8" title="1">SonarQubeReport := reportModel.NewSonarQubeRepory()
+                body = SonarQubeReport.BuildReport(&amp;summary)</span>
+        }
+
+        <span class="cov8" title="1">return ExportJSONReport(path, filename, body)</span>
+}
+</pre>
+		
+		<pre class="file" id="file88" style="display: none">package helm
 
 import (
         "fmt"
@@ -14837,7 +14996,7 @@ func getExcluded(charterino *chart.Chart, chartpath string) []string <span class
 }
 </pre>
 		
-		<pre class="file" id="file87" style="display: none">package helm
+		<pre class="file" id="file89" style="display: none">package helm
 
 import (
         "path/filepath"
@@ -15002,7 +15161,7 @@ func getIDMap(originalData []byte) (map[int]interface{}, error) <span class="cov
 }
 </pre>
 		
-		<pre class="file" id="file88" style="display: none">package resolver
+		<pre class="file" id="file90" style="display: none">package resolver
 
 import (
         "os"
@@ -15082,7 +15241,7 @@ func (r *Resolver) GetType(filePath string) model.FileKind <span class="cov10" t
 }
 </pre>
 		
-		<pre class="file" id="file89" style="display: none">package scanner
+		<pre class="file" id="file91" style="display: none">package scanner
 
 import (
         "context"
@@ -15188,7 +15347,7 @@ func startProgressBar(total int, wg *sync.WaitGroup, progressChannel chan int64,
 }</span>
 </pre>
 		
-		<pre class="file" id="file90" style="display: none">package utils
+		<pre class="file" id="file92" style="display: none">package utils
 
 import "sort"
 
@@ -15203,7 +15362,7 @@ func SortedKeys(mapToSort map[string]string) []string <span class="cov1" title="
 }
 </pre>
 		
-		<pre class="file" id="file91" style="display: none">package test
+		<pre class="file" id="file93" style="display: none">package test
 
 import (
         "bytes"
