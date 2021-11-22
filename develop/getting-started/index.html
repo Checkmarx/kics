@@ -1178,6 +1178,13 @@ docker run -v {​​​​path_to_host_folder_to_scan}​​​​:/path checkm
 <pre><code class="language-sh">docker run -it -u $UID:$GID -v $PWD:/path checkmarx/kics:ubi7 scan -p /path/assets/queries/dockerfile -o /path -v
 </code></pre>
 <p>Another option is <a href="https://github.com/Checkmarx/kics/blob/master/Dockerfile.ubi7">rebuilding the dockerfile</a> providing build arguments e.g: <code>--build-arg UID=999 --build-arg GID=999 --build-arg KUSER=myuser --build-arg KUSER=mygroup</code></p>
+<h4 id="homebrew">Homebrew<a class="headerlink" href="#homebrew" title="Permanent link">&para;</a></h4>
+<p>KICS is avaiable on Checkmarx <a href="https://github.com/Checkmarx/homebrew-tap">homebrew-tap</a>. It can be used as follows:</p>
+<pre><code>brew install Checkmarx/tap/kics 
+</code></pre>
+<p>To use KICS default queries add KICS_QUERIES_PATH env to your <code>~/.zshrc</code>, <code>~/.zprofile</code>:</p>
+<pre><code>echo 'export KICS_QUERIES_PATH=/usr/local/opt/kics/share/kics/assets/queries' &gt;&gt; ~/.zshrc
+</code></pre>
 <h4 id="custom_queries">Custom Queries<a class="headerlink" href="#custom_queries" title="Permanent link">&para;</a></h4>
 <p>You can provide your own path to the queries directory with <code>-q</code> CLI option (see CLI Options section below), otherwise the default directory will be used The default <em>./assets/queries</em> is built-in in the image. You can use this to provide a path to your own custom queries. Check <a href="../creating-queries/">create a new query guide</a> to learn how to define your own queries.</p>
 <h4 id="one-liner_install_script">One-liner Install Script<a class="headerlink" href="#one-liner_install_script" title="Permanent link">&para;</a></h4>
