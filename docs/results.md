@@ -440,7 +440,7 @@ SonarQube reports, follow [SonarQube Import Format](https://docs.sonarqube.org/l
 {
 	"issues": [
 		{
-			"engineId": "KICS development",
+			"engineId": "KICS 1.4.7",
 			"ruleId": "0afa6ab8-a047-48cf-be07-93a2f8c34cf7",
 			"severity": "MAJOR",
 			"type": "VULNERABILITY",
