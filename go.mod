@@ -37,8 +37,4 @@ require (
 	helm.sh/helm/v3 v3.7.1
 )
 
-replace github.com/docker/docker => github.com/docker/docker v1.4.2-0.20200227233006-38f52c9fec82
-
-replace github.com/docker/distribution => github.com/docker/distribution v0.0.0-20191216044856-a8371794149d
-
-replace github.com/containerd/containerd => github.com/containerd/containerd v1.5.8
+replace github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
