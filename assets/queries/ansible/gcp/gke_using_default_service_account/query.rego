@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("name={{%s}}.{{%s}}.node_config", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'service_account' is not default",
-		"keyActualValue": "'service_account' is default",
+		"keyActualValue": "'service_account' is missing",
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "node_config"], []),
 	}
 }
