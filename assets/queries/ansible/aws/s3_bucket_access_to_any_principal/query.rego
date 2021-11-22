@@ -1,22 +1,26 @@
 package Cx
 
-import data.generic.ansible as ansLib
+import data.generic.ansible as ans_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
-	task := ansLib.tasks[id][t]
+	task := ans_lib.tasks[id][t]
 	modules := {"amazon.aws.s3_bucket", "s3_bucket"}
 	s3_bucket := task[modules[m]]
-	ansLib.checkState(s3_bucket)
-	statement := s3_bucket.policy.Statement[_]
+	ans_lib.checkState(s3_bucket)
 
+	st := common_lib.get_statement(common_lib.get_policy(s3_bucket.policy))
+	statement := st[_]
+
+	common_lib.is_allow_effect(statement)
 	statement.Principal == "*"
-	statement.Effect == "Allow"
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.policy.Statement", [task.name, modules[m]]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "s3_bucket.policy.Statement doesn't make the bucket accessible to all AWS Accounts",
 		"keyActualValue": "s3_bucket.policy.Statement does make the bucket accessible to all AWS Accounts",
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}
 }
