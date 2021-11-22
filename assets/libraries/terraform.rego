@@ -533,3 +533,9 @@ matches(target, name) {
 } else {
 	target == name
 }
+
+check_member(attribute, search) {
+	startswith(attribute.members[_], search)
+} else {
+	startswith(attribute.member, search)
+}
