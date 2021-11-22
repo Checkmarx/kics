@@ -539,3 +539,9 @@ check_member(attribute, search) {
 } else {
 	startswith(attribute.member, search)
 }
+
+check_member(attribute, search) {
+	startswith(attribute.members[_], search)
+} else {
+	startswith(attribute.member, search)
+}
