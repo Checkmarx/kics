@@ -52,17 +52,8 @@ var (
 	}
 
 	// TODO uncomment this test once all metadata are fixed
-	availablePlatforms = map[string]string{
-		"Ansible":              "ansible",
-		"CloudFormation":       "cloudFormation",
-		"Common":               "common",
-		"Dockerfile":           "dockerfile",
-		"Kubernetes":           "k8s",
-		"OpenAPI":              "openAPI",
-		"Terraform":            "terraform",
-		"AzureResourceManager": "azureResourceManager",
-	}
-	platformKeys = MapToStringSlice(availablePlatforms)
+	availablePlatforms = initPlatforms()
+	platformKeys       = MapToStringSlice(availablePlatforms)
 
 	CategoriesKeys = MapToStringSlice(constants.AvailableCategories)
 
@@ -119,6 +110,15 @@ var (
 		},
 	}
 )
+
+func initPlatforms() map[string]string {
+	platforms := make(map[string]string)
+	for k, v := range constants.AvailablePlatforms {
+		platforms[k] = v
+	}
+	platforms["Common"] = "common"
+	return platforms
+}
 
 func TestQueriesContent(t *testing.T) {
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: io.Discard})
