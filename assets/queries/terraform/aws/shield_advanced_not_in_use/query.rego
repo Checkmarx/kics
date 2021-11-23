@@ -14,6 +14,7 @@ resources := {
 CxPolicy[result] {
 	target := input.document[i].resource[resources[idx]][name]
 
+
 	not has_shield_advanced(name)
 
 	result := {
@@ -28,9 +29,12 @@ CxPolicy[result] {
 
 has_shield_advanced(name) {
 	shield := input.document[_].resource.aws_shield_protection[_]
+	matches(shield, name)
+}
+
+matches(shield, name) {
 	split(shield.resource_arn,".")[1] == name
 } else {
-	shield := input.document[_].resource.aws_shield_protection[_]
 	target := split(shield.resource_arn,"/")[1]
 	split(target,".")[1] == name
 }
