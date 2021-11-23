@@ -1,13 +1,13 @@
 [
   {
     "queryName": "Google Compute Subnetwork with Private Google Access Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "Google Compute Subnetwork with Private Google Access Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 10,
     "fileName": "positive2.tf"
   }

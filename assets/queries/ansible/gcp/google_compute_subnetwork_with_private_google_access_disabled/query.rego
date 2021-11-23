@@ -32,7 +32,7 @@ CxPolicy[result] {
 		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.private_ip_google_access", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "%s.private_ip_google_access is set to true",
-		"keyActualValue": "%s.private_ip_google_access is set to false",
+		"keyExpectedValue":  sprintf("%s.private_ip_google_access is set to yes", [modules[m]]),
+		"keyActualValue": sprintf("%s.private_ip_google_access is set to no", [modules[m]]),
 	}
 }
