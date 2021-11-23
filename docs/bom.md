@@ -8,16 +8,20 @@ BoM queries extracts metadata about the resources and organizes it in the follow
 
 ```go
 billOfMaterialsRequiredFields := map[string]bool{
+    "acl":                    false,
+    "is_default_password":    false,
+    "policy":                 false,
     "resource_type":          true,
     "resource_name":          true,
     "resource_engine":        false,
     "resource_accessibility": true,
     "resource_vendor":        true,
     "resource_category":      true,
+    "user_name":              false,
 }
 ```
 
-After extracting the information the query stores the stringified JSON structure inside the `value` field in the `result`:
+After extracting the information, the query stores the stringified JSON structure inside the `value` field in the `result`:
 
 ```rego
 CxPolicy[result] {

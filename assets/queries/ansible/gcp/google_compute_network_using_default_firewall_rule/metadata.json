@@ -1,0 +1,11 @@
+{
+  "id": "29b8224a-60e9-4011-8ac2-7916a659841f",
+  "queryName": "Google Compute Network Using Default Firewall Rule",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Google Compute Network should not use default firewall rule",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_firewall_module.html#parameter-name",
+  "platform": "Ansible",
+  "descriptionID": "1c9178bb",
+  "cloudProvider": "gcp"
+}

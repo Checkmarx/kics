@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Virtual Network with DDoS Protection Plan disabled",
+    "severity": "MEDIUM",
+    "line": 18,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Virtual Network with DDoS Protection Plan disabled",
+    "severity": "MEDIUM",
+    "line": 27,
+    "fileName": "positive2.tf"
+  }
+]
