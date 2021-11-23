@@ -1,0 +1,11 @@
+{
+  "id": "dc126833-125a-40fb-905a-ce5f2afde240",
+  "queryName": "GKE Using Default Service Account",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Kubernetes Engine Clusters should not be configured to use the default service account",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html#parameter-node_config/service_account",
+  "platform": "Ansible",
+  "descriptionID": "d6e87258",
+  "cloudProvider": "gcp"
+}

@@ -13,6 +13,6 @@ resource "aws_mq_broker" "positive2" {
 
   user {
     username = "ExampleUser"
-    password = "MindTheGap"
+    password = "111111111111"
   }
 }

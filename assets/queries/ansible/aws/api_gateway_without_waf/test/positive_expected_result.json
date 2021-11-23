@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "API Gateway without WAF",
+		"severity": "MEDIUM",
+		"line": 8,
+		"fileName": "positive.yaml"
+	}
+]

@@ -1,23 +1,27 @@
 package Cx
 
-import data.generic.ansible as ansLib
+import data.generic.ansible as ans_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
-	task := ansLib.tasks[id][t]
+	task := ans_lib.tasks[id][t]
 	modules := {"community.aws.iam_managed_policy", "iam_managed_policy"}
 	awsApiGateway := task[modules[m]]
-	ansLib.checkState(awsApiGateway)
+	ans_lib.checkState(awsApiGateway)
 
-	resource := awsApiGateway.policy.Statement[_].Resource
-	contains(resource, "*")
-	action := awsApiGateway.policy.Statement[_].Action[j]
-	contains(action, "*")
+	st := common_lib.get_statement(common_lib.get_policy(awsApiGateway.policy))
+	statement := st[_]
+
+	common_lib.is_allow_effect(statement)
+	common_lib.equalsOrInArray(statement.Resource, "*")
+	common_lib.equalsOrInArray(statement.Action, "*")
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.policy.Statement.Action", [task.name, modules[m]]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "iam_managed_policy.policy.Statement.Action not contains '*'",
 		"keyActualValue": "iam_managed_policy.policy.Statement.Action contains '*'",
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}
 }

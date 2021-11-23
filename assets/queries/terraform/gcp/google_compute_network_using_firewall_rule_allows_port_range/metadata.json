@@ -1,0 +1,11 @@
+{
+  "id": "e6f61c37-106b-449f-a5bb-81bfcaceb8b4",
+  "queryName": "Google Compute Network Using Firewall Rule that Allows Port Range",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "Google Compute Network should not use a firewall rule that allows port range",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall#allow",
+  "platform": "Terraform",
+  "descriptionID": "7289eebd",
+  "cloudProvider": "gcp"
+}

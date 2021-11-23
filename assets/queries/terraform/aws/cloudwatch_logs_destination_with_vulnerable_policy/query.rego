@@ -7,14 +7,18 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_cloudwatch_log_destination_policy[name]
 
 	policy := common_lib.json_unmarshal(resource.access_policy)
-	statement := policy.Statement
-	terra_lib.has_wildcard(statement[_], "logs:*")
+	st := common_lib.get_statement(policy)
+	statement := st[_]
+
+	common_lib.is_allow_effect(statement)
+	terra_lib.has_wildcard(statement, "logs:*")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_cloudwatch_log_destination_policy[%s].access_policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("ws_cloudwatch_log_destination_policy[%s].access_policy does not have wildcard in 'principals' and 'actions'", [name]),
-		"keyActualValue": sprintf("ws_cloudwatch_log_destination_policy[%s].access_policy has wildcard in 'principals' or 'actions'", [name]),
+		"keyExpectedValue": sprintf("aws_cloudwatch_log_destination_policy[%s].access_policy does not have wildcard in 'principals' and 'actions'", [name]),
+		"keyActualValue": sprintf("aws_cloudwatch_log_destination_policy[%s].access_policy has wildcard in 'principals' or 'actions'", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_cloudwatch_log_destination_policy", name, "access_policy"], []),
 	}
 }

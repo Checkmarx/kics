@@ -1,0 +1,11 @@
+{
+  "id": "2cb674f6-32f9-40be-97f2-62c0dc38f0d5",
+  "queryName": "RDS Using Default Port",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "RDS should not use the default port (an attacker can easily guess the port). For engines related to Aurora, MariaDB or MySQL, the default port is 3306. PostgreSQL default port is 5432, Oracle default port is 1521 and SQL Server default port is 1433",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-port",
+  "platform": "Ansible",
+  "descriptionID": "4e928197",
+  "cloudProvider": "aws"
+}

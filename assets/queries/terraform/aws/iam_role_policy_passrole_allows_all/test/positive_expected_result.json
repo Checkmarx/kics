@@ -2,6 +2,7 @@
   {
     "queryName": "IAM Role Policy passRole Allows All",
     "severity": "MEDIUM",
-    "line": 11
+    "line": 5,
+    "fileName": "positive1.tf"
   }
 ]

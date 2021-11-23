@@ -1,0 +1,11 @@
+{
+  "id": "7289eebd-a477-4064-8ad4-3c044bd70b00",
+  "queryName": "Google Compute Network Using Firewall Rule that Allows Port Range",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "Google Compute Network should not use a firewall rule that allows port range",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_firewall_module.html#parameter-allowed",
+  "platform": "Ansible",
+  "descriptionID": "2b7880b0",
+  "cloudProvider": "gcp"
+}

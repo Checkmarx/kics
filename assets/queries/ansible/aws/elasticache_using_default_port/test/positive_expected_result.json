@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "ElastiCache Using Default Port",
+    "severity": "LOW",
+    "line": 9,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "ElastiCache Using Default Port",
+    "severity": "LOW",
+    "line": 9,
+    "fileName": "positive2.yaml"
+  }
+]
