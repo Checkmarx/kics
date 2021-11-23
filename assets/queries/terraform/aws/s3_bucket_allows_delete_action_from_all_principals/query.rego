@@ -40,9 +40,10 @@ CxPolicy[result] {
 
 delete_action_from_all_principals(policyValue){
 	policy := common_lib.json_unmarshal(policyValue)
-	statement := policy.Statement[_]
+	st := common_lib.get_statement(policy)
+	statement := st[_]
 
-	statement.Effect == "Allow"
+	common_lib.is_allow_effect(statement)
 	terra_lib.anyPrincipal(statement)
 	common_lib.containsOrInArrayContains(statement.Action, "delete")
 }

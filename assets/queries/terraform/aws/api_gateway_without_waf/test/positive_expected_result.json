@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "API Gateway without WAF",
+		"severity": "MEDIUM",
+		"line": 75,
+		"fileName": "positive.tf"
+	}
+]

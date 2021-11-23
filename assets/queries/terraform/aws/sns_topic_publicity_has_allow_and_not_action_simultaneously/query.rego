@@ -10,18 +10,19 @@ CxPolicy[result] {
 	validate_json(policy)
 
 	pol := common_lib.json_unmarshal(policy)
-	statement := pol.Statement[s]
+	st := common_lib.get_statement(pol)
+	statement := st[_]
 
-	statement.Effect == "Allow"
+	common_lib.is_allow_effect(statement)
 	statement.NotAction
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("%s[%s].policy.Sid", [resources[r], name]),
+		"searchKey": sprintf("%s[%s].policy", [resources[r], name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].policy.Sid doesn't have 'Effect: Allow' and 'NotAction' simultaneously", [resources[r], name]),
-		"keyActualValue": sprintf("%s[%s].policy.Sid has 'Effect: Allow' and 'NotAction' simultaneously", [resources[r], name]),
-		"searchLine": common_lib.build_search_line(["resource", name, "policy", "Statement", s, "Sid"], []),
+		"keyExpectedValue": sprintf("%s[%s].policy doesn't have 'Effect: Allow' and 'NotAction' simultaneously", [resources[r], name]),
+		"keyActualValue": sprintf("%s[%s].policy has 'Effect: Allow' and 'NotAction' simultaneously", [resources[r], name]),
+		"searchLine": common_lib.build_search_line(["resource", resources[r], name, "policy"], []),
 	}
 }
 
@@ -34,18 +35,19 @@ CxPolicy[result] {
 	validate_json(policy)
 
 	pol := common_lib.json_unmarshal(policy)
-	statement := pol.Statement[s]
+	st := common_lib.get_statement(pol)
+	statement := st[_]
 
-	statement.Effect == "Allow"
+	common_lib.is_allow_effect(statement)
 	statement.NotAction
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("module[%s].policy.Sid", [name]),
+		"searchKey": sprintf("module[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("module[%s].policy.Sid doesn't have 'Effect: Allow' and 'NotAction' simultaneously", [name]),
-		"keyActualValue": sprintf("module[%s].policy.Sid has 'Effect: Allow' and 'NotAction' simultaneously", [name]),
-		"searchLine": common_lib.build_search_line(["module", name, keyToCheck, "Statement", s, "Sid"], []),
+		"keyExpectedValue": sprintf("module[%s].policy doesn't have 'Effect: Allow' and 'NotAction' simultaneously", [name]),
+		"keyActualValue": sprintf("module[%s].policy has 'Effect: Allow' and 'NotAction' simultaneously", [name]),
+		"searchLine": common_lib.build_search_line(["module", name, keyToCheck], []),
 	}
 }
 

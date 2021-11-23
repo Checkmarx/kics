@@ -41,12 +41,12 @@ var (
 	// AvailablePlatforms - All platforms available
 	AvailablePlatforms = map[string]string{
 		"Ansible":              "ansible",
-		"CloudFormation":       "cloudformation",
+		"CloudFormation":       "cloudFormation",
 		"Dockerfile":           "dockerfile",
 		"Kubernetes":           "k8s",
+		"OpenAPI":              "openAPI",
 		"Terraform":            "terraform",
-		"OpenAPI":              "openapi",
-		"AzureResourceManager": "azureresourcemanager",
+		"AzureResourceManager": "azureResourceManager",
 	}
 
 	// AvailableSeverities - All severities available

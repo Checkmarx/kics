@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "ElastiCache Using Default Port",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "ElastiCache Using Default Port",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "ElastiCache Using Default Port",
+    "severity": "LOW",
+    "line": 7,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "ElastiCache Using Default Port",
+    "severity": "LOW",
+    "line": 7,
+    "fileName": "positive4.tf"
+  }
+]
