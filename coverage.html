@@ -205,7 +205,7 @@
 				
 				<option value="file74">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (85.7%)</option>
 				
-				<option value="file75">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (90.9%)</option>
+				<option value="file75">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
 				<option value="file76">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -225,7 +225,7 @@
 				
 				<option value="file84">github.com/Checkmarx/kics/pkg/report/model/sonarqube.go (92.9%)</option>
 				
-				<option value="file85">github.com/Checkmarx/kics/pkg/report/pdf.go (88.3%)</option>
+				<option value="file85">github.com/Checkmarx/kics/pkg/report/pdf.go (88.6%)</option>
 				
 				<option value="file86">github.com/Checkmarx/kics/pkg/report/sarif.go (90.9%)</option>
 				
@@ -2307,13 +2307,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="32">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2338,7 +2338,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4400,7 +4400,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -4591,7 +4591,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -13293,7 +13293,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov1" title="1">{
+                close: func() error </span><span class="cov0" title="0">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -13302,7 +13302,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov1" title="1">{
+        defer func() </span><span class="cov0" title="0">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
@@ -13314,14 +13314,14 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov1" title="1">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov1" title="1">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file76" style="display: none">package progress
@@ -14350,6 +14350,7 @@ import (
 
 const (
         defaultTextSize = 8
+        smallTextSize   = 6
         pgMarginLeft    = 10
         pgMarginTop     = 15
         pgMarginRight   = 10
@@ -14547,6 +14548,16 @@ func createResultsTable(m pdf.Maroto, query *model.QueryResult) <span class="cov
                         m.Col(colFullPage, func() </span><span class="cov7" title="4">{
                                 m.Text(fileLine, props.Text{
                                         Size:        defaultTextSize,
+                                        Align:       consts.Left,
+                                        Extrapolate: false,
+                                })
+                        }</span>)
+                })
+                <span class="cov7" title="4">expectedValue := fmt.Sprintf("Expected: %s", query.Files[idx].KeyExpectedValue)
+                m.Row(colFive, func() </span><span class="cov7" title="4">{
+                        m.Col(colFullPage, func() </span><span class="cov7" title="4">{
+                                m.Text(expectedValue, props.Text{
+                                        Size:        smallTextSize,
                                         Align:       consts.Left,
                                         Extrapolate: false,
                                 })
