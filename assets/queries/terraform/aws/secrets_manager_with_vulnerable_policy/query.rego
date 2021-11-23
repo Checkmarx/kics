@@ -1,15 +1,17 @@
 package Cx
 
-import data.generic.common as commonLib
-import data.generic.terraform as terraLib
+import data.generic.common as common_lib
+import data.generic.terraform as terra_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_secretsmanager_secret_policy[name]
 
-	policy := commonLib.json_unmarshal(resource.policy)
-	statement := policy.Statement[_]
+	policy := common_lib.json_unmarshal(resource.policy)
+	st := common_lib.get_statement(policy)
+	statement := st[_]
 
-	terraLib.has_wildcard(statement, "secretsmanager:*")
+	common_lib.is_allow_effect(statement)
+	terra_lib.has_wildcard(statement, "secretsmanager:*")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -17,5 +19,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_secretsmanager_secret_policy[%s].policy does not have wildcard in 'Principal' and 'Action'", [name]),
 		"keyActualValue": sprintf("aws_secretsmanager_secret_policy[%s].policy has wildcard in 'Principal' and 'Action'", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_secretsmanager_secret_policy", name, "policy"], []),
 	}
 }
