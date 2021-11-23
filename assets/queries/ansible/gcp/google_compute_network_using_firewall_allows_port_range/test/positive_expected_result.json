@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Google Compute Network Using Firewall Rule that Allows Port Range",
+    "severity": "LOW",
+    "line": 19,
+    "fileName": "positive.yaml"
+  }
+]

@@ -347,6 +347,29 @@ get_encryption_if_exists(resource) = encryption {
 	encryption := "unencrypted"
 }
 
+engines := {
+	"aurora": 3306,
+	"aurora-mysql": 3306,
+	"aurora-postgresql": 3306,
+	"mariadb": 3306,
+	"mysql": 3306,
+	"oracle-ee": 1521,
+	"oracle-ee-cdb": 1521,
+	"oracle-se2": 1521,
+	"oracle-se2-cdb": 1521,
+	"postgres": 5432,
+	"sqlserver-ee": 1433,
+	"sqlserver-se": 1433,
+	"sqlserver-ex": 1433,
+	"sqlserver-web": 1433,
+}
+
+is_ingress(firewall) {
+	not valid_key(firewall, "direction")
+} else {
+	firewall.direction == "INGRESS"
+}
+
 get_statement(policy) = st {
 	is_object(policy.Statement)
 	st = [policy.Statement]
@@ -359,4 +382,44 @@ is_allow_effect(statement) {
 	not valid_key(statement, "Effect")
 } else {
 	statement.Effect == "Allow"
+}
+
+get_policy(p) = policy {
+	policy = json_unmarshal(p)
+} else = policy {
+	policy = p
+}
+
+is_cross_account(statement) {
+	is_string(statement.Principal.AWS)
+	regex.match("(^[0-9]{12}$)|(^arn:aws:(iam|sts)::[0-9]{12})", statement.Principal.AWS)
+} else {
+	is_array(statement.Principal.AWS)
+	regex.match("(^[0-9]{12}$)|(^arn:aws:(iam|sts)::[0-9]{12})", statement.Principal.AWS[_])
+}
+
+is_assume_role(statement) {
+	statement.Action == "sts:AssumeRole"
+} else {
+	statement.Action[_] == "sts:AssumeRole"
+}
+
+has_external_id(statement) {
+	count(statement.Condition.StringEquals["sts:ExternalId"]) > 0
+}
+
+has_mfa(statement) {
+	statement.Condition.BoolIfExists["aws:MultiFactorAuthPresent"] == "true"
+} else {
+	statement.Condition.Bool["aws:MultiFactorAuthPresent"] == "true"
+}
+
+any_principal(statement) {
+	contains(statement.Principal, "*")
+} else {
+	is_string(statement.Principal.AWS)
+	contains(statement.Principal.AWS, "*")
+} else {
+	is_array(statement.Principal.AWS)
+	contains(statement.Principal.AWS[_], "*")
 }

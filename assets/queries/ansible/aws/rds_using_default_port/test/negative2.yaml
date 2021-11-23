@@ -1,0 +1,10 @@
+- name: create minimal aurora instance in default VPC and default subnet group2
+  community.aws.rds_instance:
+    engine: postgres
+    db_instance_identifier: ansible-test-aurora-db-instance
+    instance_type: db.t2.small
+    password: "{{ password }}"
+    username: "{{ username }}"
+    cluster_id: ansible-test-cluster  # This cluster must exist - see rds_cluster to manage it
+    backup_retention_period: 7
+    port: 5433

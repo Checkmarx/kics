@@ -1,0 +1,11 @@
+{
+  "id": "16cc87d1-dd47-4f46-b3ce-4dfcac8fd2f5",
+  "queryName": "KMS Crypto Key is Publicly Accessible",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "KMS Crypto Key should not be publicly accessible. In other words, the KMS Crypto Key policy should not set 'allUsers' or 'allAuthenticatedUsers' in the attribute 'member'/'members'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_kms_crypto_key_iam#google_kms_crypto_key_iam_policy",
+  "platform": "Terraform",
+  "descriptionID": "b1146d1f",
+  "cloudProvider": "gcp"
+}

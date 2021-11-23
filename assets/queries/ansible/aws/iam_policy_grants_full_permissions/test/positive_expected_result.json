@@ -2,6 +2,7 @@
   {
     "queryName": "IAM Policy Grants Full Permissions",
     "severity": "MEDIUM",
-    "line": 9
+    "line": 4,
+    "fileName": "positive.yaml"
   }
 ]

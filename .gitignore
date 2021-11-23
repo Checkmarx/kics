@@ -35,6 +35,7 @@ kics.config
 # Results
 results.*
 gl-sast-results.json
+sonarqube-results.json
 
 # Sarif files
 *.sarif
