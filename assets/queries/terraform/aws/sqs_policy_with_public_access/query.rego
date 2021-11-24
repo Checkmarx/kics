@@ -12,8 +12,7 @@ CxPolicy[result] {
 
 	common_lib.is_allow_effect(statement)
 	check_principal(statement.Principal, "*")
-  terraLib.anyPrincipal(statement)
-
+	terra_lib.anyPrincipal(statement)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -28,8 +27,8 @@ CxPolicy[result] {
 check_principal(field, value) {
 	is_object(field)
 	some i
-	val := [x | x := field[i]; commonLib.containsOrInArrayContains(x, value)]
+	val := [x | x := field[i]; common_lib.containsOrInArrayContains(x, value)]
 	count(val) > 0
 } else {
-	commonLib.containsOrInArrayContains(field, "*")
+	common_lib.containsOrInArrayContains(field, "*")
 }
