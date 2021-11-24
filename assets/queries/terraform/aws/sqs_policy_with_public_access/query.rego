@@ -10,8 +10,8 @@ CxPolicy[result] {
 	statement := policy.Statement[_]
 
 	statement.Effect == "Allow"
-	commonLib.containsOrInArrayContains(statement.Principal, "*")
-	terraLib.anyPrincipal(statement)
+	check_principal(statement.Principal, "*")
+    terraLib.anyPrincipal(statement)
 
 
 	result := {
@@ -21,4 +21,13 @@ CxPolicy[result] {
 		"keyExpectedValue": "'policy.Statement.Principal.AWS' is not equal '*'",
 		"keyActualValue": "'policy.Statement.Principal.AWS' is equal '*'",
 	}
+}
+
+check_principal(field, value) {
+	is_object(field)
+	some i
+	val := [x | x := field[i]; commonLib.containsOrInArrayContains(x, value)]
+	count(val) > 0
+} else {
+	commonLib.containsOrInArrayContains(field, "*")
 }
