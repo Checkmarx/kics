@@ -11,11 +11,8 @@ CxPolicy[result] {
 	statement := st[_]
 
 	common_lib.is_allow_effect(statement)
-	common_lib.containsOrInArrayContains(statement.Action, "*")
+	check_principal(statement.Principal, "*")
 	terra_lib.anyPrincipal(statement)
-
-	queue_name := trim_prefix(trim_suffix(resource.queue_url, ".id}"), "${aws_sqs_queue.")
-	queue_resource := input.document[j].resource.aws_sqs_queue[queue_name]
 
 	result := {
 		"documentId": input.document[i].id,
@@ -25,4 +22,13 @@ CxPolicy[result] {
 		"keyActualValue": "'policy.Statement.Principal.AWS' is equal '*'",
 		"searchLine": common_lib.build_search_line(["resource", "aws_sqs_queue_policy", name, "policy"], []),
 	}
+}
+
+check_principal(field, value) {
+	is_object(field)
+	some i
+	val := [x | x := field[i]; common_lib.containsOrInArrayContains(x, value)]
+	count(val) > 0
+} else {
+	common_lib.containsOrInArrayContains(field, "*")
 }
