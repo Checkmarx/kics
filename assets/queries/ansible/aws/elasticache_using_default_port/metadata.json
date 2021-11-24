@@ -1,0 +1,11 @@
+{
+  "id": "7cc6c791-5f68-4816-a564-b9b699f9d26e",
+  "queryName": "ElastiCache Using Default Port",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "ElastiCache should not use the default port (an attacker can easily guess the port). For engine set to Redis, the default port is 6379. The Memcached default port is 11211",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/elasticache_module.html#parameter-cache_port",
+  "platform": "Ansible",
+  "descriptionID": "be73fca3",
+  "cloudProvider": "aws"
+}

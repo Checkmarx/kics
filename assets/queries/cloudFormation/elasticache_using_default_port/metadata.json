@@ -1,0 +1,11 @@
+{
+  "id": "323db967-c68e-44e6-916c-a777f95af34b",
+  "queryName": "ElastiCache Using Default Port",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "ElastiCache should not use the default port (an attacker can easily guess the port). For engine set to Redis, the default port is 6379. The Memcached default port is 11211",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html#cfn-elasticache-replicationgroup-port",
+  "platform": "CloudFormation",
+  "descriptionID": "5aef27fd",
+  "cloudProvider": "aws"
+}

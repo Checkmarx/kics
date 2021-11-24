@@ -106,7 +106,9 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		return nil, err
 	}
 
-	progressBar.Close()
+	if err := progressBar.Close(); err != nil {
+		log.Debug().Msgf("Failed to close progress bar: %s", err.Error())
+	}
 
 	return &executeScanParameters{
 		services:       services,

@@ -2,6 +2,7 @@
   {
     "queryName": "S3 Bucket Access to Any Principal",
     "severity": "HIGH",
-    "line": 7
+    "line": 4,
+    "fileName": "positive.yaml"
   }
 ]

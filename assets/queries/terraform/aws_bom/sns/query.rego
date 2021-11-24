@@ -6,12 +6,15 @@ import data.generic.terraform as terra_lib
 CxPolicy[result] {
 	aws_sns_topic_resource := input.document[i].resource.aws_sns_topic[name]
 
+	info := terra_lib.get_accessibility(aws_sns_topic_resource, name, "aws_sns_topic_policy", "arn")
+
 	bom_output = {
 		"resource_type": "aws_sns_topic",
 		"resource_name": get_queue_name(aws_sns_topic_resource),
-		"resource_accessibility": terra_lib.get_accessibility(aws_sns_topic_resource, name, "aws_sns_topic_policy", "arn"),
+		"resource_accessibility": info.accessibility,
 		"resource_vendor": "AWS",
 		"resource_category": "Messaging",
+		"policy": info.policy,
 	}
 
 	result := {

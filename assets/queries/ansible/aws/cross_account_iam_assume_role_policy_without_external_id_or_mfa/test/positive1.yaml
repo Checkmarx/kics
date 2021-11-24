@@ -1,0 +1,21 @@
+- name: Create a role with description and tags
+  community.aws.iam_role:
+    name: mynewrole
+    assume_role_policy_document: >
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Action": "sts:AssumeRole",
+            "Principal": {
+              "AWS": "arn:aws:iam::987654321145:root"
+            },
+            "Effect": "Allow",
+            "Resource": "*",
+            "Sid": ""
+          }
+        ]
+      }
+    description: This is My New Role
+    tags:
+      env: dev

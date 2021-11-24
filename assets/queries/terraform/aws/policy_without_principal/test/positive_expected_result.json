@@ -2,6 +2,7 @@
   {
     "queryName": "Policy Without Principal",
     "severity": "MEDIUM",
-    "line": 12
+    "line": 9,
+    "fileName": "positive.tf"
   }
 ]
