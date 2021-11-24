@@ -551,3 +551,9 @@ matches(target, name) {
 } else {
 	target == name
 }
+
+matches(target, name) {
+	split(target, ".")[1] == name
+} else {
+	target == name
+}
