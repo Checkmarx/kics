@@ -15,10 +15,11 @@ import (
 )
 
 var testCompileRegexesInput = []struct {
-	name            string
-	inspectorParams *source.QueryInspectorParameters
-	allRegexQueries []RegexQuery
-	wantIDs         []string
+	name                   string
+	inspectorParams        *source.QueryInspectorParameters
+	allRegexQueries        []RegexQuery
+	wantIDs                []string
+	isCustomSecretsRegexes bool
 }{
 	{
 		name: "empty_query",
@@ -27,8 +28,9 @@ var testCompileRegexesInput = []struct {
 			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
 			InputDataPath:  "",
 		},
-		allRegexQueries: []RegexQuery{},
-		wantIDs:         []string{},
+		allRegexQueries:        []RegexQuery{},
+		wantIDs:                []string{},
+		isCustomSecretsRegexes: false,
 	},
 	{
 		name: "one_query",
@@ -44,7 +46,8 @@ var testCompileRegexesInput = []struct {
 				RegexStr: `['|"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\s*[:|=]\s*['|"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|"]?`,
 			},
 		},
-		wantIDs: []string{"487f4be7-3fd9-4506-a07a-eae252180c08"},
+		wantIDs:                []string{"487f4be7-3fd9-4506-a07a-eae252180c08"},
+		isCustomSecretsRegexes: false,
 	},
 	{
 		name: "three_queries",
@@ -73,7 +76,8 @@ var testCompileRegexesInput = []struct {
 				RegexStr: `[a-zA-Z]{3,10}://[^/\s:@]*?:[^/\s:@]*?@[^/\s:@]*`,
 			},
 		},
-		wantIDs: []string{"487f4be7-3fd9-4506-a07a-eae252180c08", "4b2b5fd3-364d-4093-bac2-17391b2a5297", "c4d3b58a-e6d4-450f-9340-04f1e702eaae"},
+		wantIDs:                []string{"487f4be7-3fd9-4506-a07a-eae252180c08", "4b2b5fd3-364d-4093-bac2-17391b2a5297", "c4d3b58a-e6d4-450f-9340-04f1e702eaae"},
+		isCustomSecretsRegexes: false,
 	},
 	{
 		name: "include_one",
@@ -102,7 +106,8 @@ var testCompileRegexesInput = []struct {
 				RegexStr: `[a-zA-Z]{3,10}://[^/\s:@]*?:[^/\s:@]*?@[^/\s:@]*`,
 			},
 		},
-		wantIDs: []string{"487f4be7-3fd9-4506-a07a-eae252180c08"},
+		wantIDs:                []string{"487f4be7-3fd9-4506-a07a-eae252180c08"},
+		isCustomSecretsRegexes: false,
 	},
 	{
 		name: "exclude_one",
@@ -131,7 +136,8 @@ var testCompileRegexesInput = []struct {
 				RegexStr: `[a-zA-Z]{3,10}://[^/\s:@]*?:[^/\s:@]*?@[^/\s:@]*`,
 			},
 		},
-		wantIDs: []string{"487f4be7-3fd9-4506-a07a-eae252180c08", "4b2b5fd3-364d-4093-bac2-17391b2a5297"},
+		wantIDs:                []string{"487f4be7-3fd9-4506-a07a-eae252180c08", "4b2b5fd3-364d-4093-bac2-17391b2a5297"},
+		isCustomSecretsRegexes: false,
 	},
 }
 
@@ -148,20 +154,20 @@ var testInspectInput = []struct {
 				ID:       "853012ab-cc05-4c1c-b517-9c3552085ee8",
 				Document: model.Document{},
 				OriginalData: `
-resource "google_container_cluster" "primary3" {
-name               = "marcellus-wallace"
-location           = "us-central1-a"
-initial_node_count = 3
+	resource "google_container_cluster" "primary3" {
+	name               = "marcellus-wallace"
+	location           = "us-central1-a"
+	initial_node_count = 3
 
-master_auth {
-	username = "1234567890qwertyuiopasdfghjklçzxcvbnm"
-	password = ""
+	master_auth {
+		username = "1234567890qwertyuiopasdfghjklçzxcvbnm"
+		password = ""
 
-	client_certificate_config {
-		issue_client_certificate = true
+		client_certificate_config {
+			issue_client_certificate = true
+		}
 	}
-}
-}`,
+	}`,
 				Kind:     "TF",
 				FilePath: "assets/queries/common/passwords_and_secrets/test/negative7.tf",
 			},
@@ -176,13 +182,13 @@ master_auth {
 				ID:       "b032c51d-2e7c-4ffc-8a81-41405c166bc8",
 				Document: model.Document{},
 				OriginalData: `
-apiVersion: v1
-kind: Secret
-metadata:
-name: secret-basic-auth
-type: kubernetes.io/basic-auth
-stringData:
-password: "root"`,
+	apiVersion: v1
+	kind: Secret
+	metadata:
+	name: secret-basic-auth
+	type: kubernetes.io/basic-auth
+	stringData:
+	password: "root"`,
 				Kind:     "K8S",
 				FilePath: "assets/queries/common/passwords_and_secrets/test/positive1.yaml",
 			},
@@ -205,21 +211,21 @@ password: "root"`,
 				ID:       "d274e272-a4af-497e-a900-a277500e4182",
 				Document: model.Document{},
 				OriginalData: `
-resource "aws_transfer_ssh_key" "example" {
-server_id = aws_transfer_server.example.id
-user_name = aws_transfer_user.example.user_name
-body      = <<EOT
------BEGIN OPENSSH PRIVATE KEY-----
-b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAaAAAABNlY2RzYS
-1zaGEyLW5pc3RwMjU2AAAACG5pc3RwMjU2AAAAQQTTD+Q+10oNWDzXxx9x2bOobcXAA4rd
-jGaQoqJjcXRWR2TS1ioKvML1fI5KLP4kuF3TlyPTLgJxlfrJtYYEfGHwAAAA0FjbkWRY25
-FkAAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNMP5D7XSg1YPNfH
-H3HZs6htxcADit2MZpCiomNxdFZHZNLWKgq8wvV8jkos/iS4XdOXI9MuAnGV+sm1hgR8Yf
-AAAAAgHI23o+KRbewZJJxFExEGwiOPwM7gonjATdzLP+YT/6sAAAA0cm9nZXJpb3AtbWFj
-Ym9va0BSb2dlcmlvUC1NYWNCb29rcy1NYWNCb29rLVByby5sb2NhbAECAwQ=
------END OPENSSH PRIVATE KEY-----
-EOT
-}`,
+	resource "aws_transfer_ssh_key" "example" {
+	server_id = aws_transfer_server.example.id
+	user_name = aws_transfer_user.example.user_name
+	body      = <<EOT
+	-----BEGIN OPENSSH PRIVATE KEY-----
+	b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAaAAAABNlY2RzYS
+	1zaGEyLW5pc3RwMjU2AAAACG5pc3RwMjU2AAAAQQTTD+Q+10oNWDzXxx9x2bOobcXAA4rd
+	jGaQoqJjcXRWR2TS1ioKvML1fI5KLP4kuF3TlyPTLgJxlfrJtYYEfGHwAAAA0FjbkWRY25
+	FkAAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNMP5D7XSg1YPNfH
+	H3HZs6htxcADit2MZpCiomNxdFZHZNLWKgq8wvV8jkos/iS4XdOXI9MuAnGV+sm1hgR8Yf
+	AAAAAgHI23o+KRbewZJJxFExEGwiOPwM7gonjATdzLP+YT/6sAAAA0cm9nZXJpb3AtbWFj
+	Ym9va0BSb2dlcmlvUC1NYWNCb29rcy1NYWNCb29rLVByby5sb2NhbAECAwQ=
+	-----END OPENSSH PRIVATE KEY-----
+	EOT
+	}`,
 				Kind:     "TF",
 				FilePath: "assets/queries/common/passwords_and_secrets/test/positive13.tf",
 			},
@@ -242,24 +248,24 @@ EOT
 				ID:       "",
 				Document: model.Document{},
 				OriginalData: `
-resource "aws_lambda_function" "analysis_lambda2" {
-  # lambda have plain text secrets in environment variables
-  filename      = "resources/lambda_function_payload.zip"
-  function_name = "${local.resource_prefix.value}-analysis"
-  role          = "${aws_iam_role.iam_for_lambda.arn}"
-  handler       = "exports.test"
+	resource "aws_lambda_function" "analysis_lambda2" {
+	  # lambda have plain text secrets in environment variables
+	  filename      = "resources/lambda_function_payload.zip"
+	  function_name = "${local.resource_prefix.value}-analysis"
+	  role          = "${aws_iam_role.iam_for_lambda.arn}"
+	  handler       = "exports.test"
 
-  source_code_hash = "${filebase64sha256("resources/lambda_function_payload.zip")}"
+	  source_code_hash = "${filebase64sha256("resources/lambda_function_payload.zip")}"
 
-  runtime = "nodejs12.x"
+	  runtime = "nodejs12.x"
 
-  environment {
-    variables = {
-      secret_key = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
-    }
-  }
-}
-`,
+	  environment {
+	    variables = {
+	      secret_key = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+	    }
+	  }
+	}
+	`,
 				Kind:     "TF",
 				FilePath: "assets/queries/common/passwords_and_secrets/test/positive37.tf",
 			},
@@ -274,6 +280,66 @@ resource "aws_lambda_function" "analysis_lambda2" {
 			},
 		},
 		wantErr: false,
+	},
+	{
+		name: "valid_no_results",
+		files: model.FileMetadatas{
+			{
+				ID: "853012ab-cc05-4c1c-b517-9c3552085ee8",
+				Commands: model.CommentsCommands{
+					"ignore": "",
+				},
+				Document: model.Document{},
+				OriginalData: `# kics-scan ignore
+resource "google_container_cluster" "primary3" {
+name               = "marcellus-wallace"
+location           = "us-central1-a"
+initial_node_count = 3
+
+master_auth {
+	username = "1234567890qwertyuiopasdfghjklçzxcvbnm"
+	password = "password123456"
+
+	client_certificate_config {
+		issue_client_certificate = true
+	}
+}
+}`,
+				Kind:     "TF",
+				FilePath: "assets/queries/common/passwords_and_secrets/test/negative7.tf",
+			},
+		},
+		wantVuln: []model.Vulnerability{},
+		wantErr:  false,
+	},
+	{
+		name: "valid_no_results",
+		files: model.FileMetadatas{
+			{
+				ID:          "853012ab-cc05-4c1c-b517-9c3552085ee8",
+				LinesIgnore: []int{9},
+				Document:    model.Document{},
+				OriginalData: `
+resource "google_container_cluster" "primary3" {
+name               = "marcellus-wallace"
+location           = "us-central1-a"
+initial_node_count = 3
+
+master_auth {
+	username = "1234567890qwertyuiopasdfghjklçzxcvbnm"
+  # password = "password123456"
+
+	client_certificate_config {
+		issue_client_certificate = true
+	}
+}
+}`,
+				Kind:     "TF",
+				FilePath: "assets/queries/common/passwords_and_secrets/test/negative7.tf",
+			},
+		},
+		wantVuln: []model.Vulnerability{},
+		wantErr:  false,
 	},
 }
 
@@ -489,7 +555,7 @@ func TestEntropyInterval(t *testing.T) {
 
 func TestCompileRegexQueries(t *testing.T) {
 	for _, in := range testCompileRegexesInput {
-		got, err := compileRegexQueries(in.inspectorParams, in.allRegexQueries)
+		got, err := compileRegexQueries(in.inspectorParams, in.allRegexQueries, in.isCustomSecretsRegexes, "")
 		require.NoError(t, err, "test[%s] compileRegexQueries(%+v, %+v) error", in.name, in.inspectorParams, in.allRegexQueries)
 		require.Len(t,
 			got,
@@ -537,6 +603,7 @@ func TestNewInspector(t *testing.T) {
 			in.disableSecrets,
 			60,
 			in.assetsSecretsQueryRegexRulesJSON,
+			false,
 		)
 		if in.wantErr {
 			require.Error(t,
@@ -587,6 +654,7 @@ func TestInspect(t *testing.T) {
 			false,
 			60,
 			assets.SecretsQueryRegexRulesJSON,
+			false,
 		)
 		require.NoError(t, err, "NewInspector() should not return error")
 

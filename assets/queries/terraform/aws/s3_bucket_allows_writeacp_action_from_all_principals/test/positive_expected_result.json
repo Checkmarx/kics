@@ -2,19 +2,19 @@
   {
     "queryName": "S3 Bucket Allows WriteACP Action From All Principals",
     "severity": "HIGH",
-    "line": 17,
+    "line": 8,
     "filename": "positive1.tf"
   },
   {
     "queryName": "S3 Bucket Allows WriteACP Action From All Principals",
     "severity": "HIGH",
-    "line": 42,
+    "line": 31,
     "filename": "positive1.tf"
   },
   {
     "queryName": "S3 Bucket Allows WriteACP Action From All Principals",
     "severity": "HIGH",
-    "line": 21,
+    "line": 12,
     "filename": "positive2.tf"
   }
 ]

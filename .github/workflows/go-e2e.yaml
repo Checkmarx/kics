@@ -5,7 +5,7 @@ on:
     branches: [master]
 
 jobs:
-  unit-tests:
+  e2e-tests:
     name: e2e-tests
     strategy:
       matrix:
@@ -21,10 +21,20 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: ${{ matrix.go-version }}
+      - name: Set up Node v14
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
       - name: Check out code
         uses: actions/checkout@v2.3.4
         with:
           persist-credentials: false
+      - name: Install mock server
+        run: npm ci
+        working-directory: .github/scripts/server-mock
+      - name: Start mock server
+        run: (npm run start&)
+        working-directory: .github/scripts/server-mock
       - name: Print go env
         run: go env
       - name: Get cache paths
@@ -33,7 +43,7 @@ jobs:
           echo "::set-output name=go-build::$(go env GOCACHE)"
           echo "::set-output name=go-mod::$(go env GOMODCACHE)"
       - name: Cache dependencies
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v2.1.7
         with:
           path: ${{ steps.go-cache-paths.outputs.go-build }}
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}

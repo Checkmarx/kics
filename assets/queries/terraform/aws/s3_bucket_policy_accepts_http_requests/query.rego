@@ -50,7 +50,8 @@ check_action(action) {
 
 deny_http_requests(policyValue) {
 	policy := common_lib.json_unmarshal(policyValue)
-	statement := policy.Statement[s]
+	st := common_lib.get_statement(policy)
+	statement := st[_]
 	check_action(statement.Action)
 	statement.Effect == "Deny"
 	statement.Condition.Bool["aws:SecureTransport"] == "false"

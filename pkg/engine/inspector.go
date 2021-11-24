@@ -348,9 +348,14 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 		if _, ok := c.excludeResults[vulnerability.SimilarityID]; ok {
 			log.Debug().
 				Msgf("Excluding result SimilarityID: %s", vulnerability.SimilarityID)
-		} else {
-			vulnerabilities = append(vulnerabilities, vulnerability)
+			continue
+		} else if checkComment(vulnerability.Line, file.LinesIgnore) {
+			log.Debug().
+				Msgf("Excluding result Comment: %s", vulnerability.SimilarityID)
+			continue
 		}
+
+		vulnerabilities = append(vulnerabilities, vulnerability)
 	}
 
 	if failedDetectLine {
@@ -358,6 +363,16 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 	}
 
 	return vulnerabilities, nil
+}
+
+// checkComment checks if the vulnerability should be skipped from comment
+func checkComment(line int, ignoreLines []int) bool {
+	for _, ignoreLine := range ignoreLines {
+		if line == ignoreLine {
+			return true
+		}
+	}
+	return false
 }
 
 // contains is a simple method to check if a slice

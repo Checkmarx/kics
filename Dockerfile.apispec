@@ -1,4 +1,4 @@
-FROM golang:1.17.2-alpine as build_env
+FROM golang:1.17.3-alpine as build_env
 # Create a group and user
 RUN addgroup -S Checkmarx && adduser -S Checkmarx -G Checkmarx
 USER Checkmarx
@@ -29,7 +29,7 @@ USER Checkmarx
 #Healthcheck the container
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 #runtime image
-FROM alpine:3.14.2
+FROM alpine:3.14.3
 
 RUN addgroup -S Checkmarx && adduser -S Checkmarx -G Checkmarx
 

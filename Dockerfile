@@ -1,4 +1,4 @@
-FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.17.2-alpine as build_env
+FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.17.3-alpine as build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
@@ -32,7 +32,7 @@ USER Checkmarx
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 
 # Runtime image
-FROM alpine:3.14.2
+FROM alpine:3.14.3
 
 # Install Git
 RUN apk add --no-cache \

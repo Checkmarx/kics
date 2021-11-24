@@ -92,8 +92,8 @@ func TestGetBracketValues(t *testing.T) {
 			},
 			want: [][]string{
 				{
-					"{{ {{password}}}}",
-					" {{password}}",
+					"{{ {{password}} }}",
+					" {{password}} ",
 				},
 			},
 		},
@@ -108,8 +108,8 @@ func TestGetBracketValues(t *testing.T) {
 					"open-jdk",
 				},
 				{
-					"{{ {{password}}}}",
-					" {{password}}",
+					"{{ {{password}} }}",
+					" {{password}} ",
 				},
 			},
 		},
@@ -122,6 +122,22 @@ func TestGetBracketValues(t *testing.T) {
 				{
 					"{{user/{id}}}",
 					"user/{id}",
+				},
+			},
+		},
+		{
+			name: "interpolated_brackets",
+			args: args{
+				expr: "name={{interpolated {{ interpolated.brackets }} brackets {{ interpolated.brackets }}}}.{{interpolated.brackets}}",
+			},
+			want: [][]string{
+				{
+					"{{interpolated {{ interpolated.brackets }} brackets {{ interpolated.brackets }}}}",
+					"interpolated {{ interpolated.brackets }} brackets {{ interpolated.brackets }}",
+				},
+				{
+					"{{interpolated.brackets}}",
+					"interpolated.brackets",
 				},
 			},
 		},

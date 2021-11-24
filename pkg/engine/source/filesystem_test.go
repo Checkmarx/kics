@@ -102,9 +102,9 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 						"id":              "57b9893d-33b1-4419-bcea-b828fb87e318",
 						"queryName":       "All Auth Users Get Read Access",
 						"severity":        model.SeverityHigh,
-						"platform":        "CloudFormation",
+						"platform":        "Terraform",
 					},
-					Platform:    "cloudFormation",
+					Platform:    "terraform",
 					Aggregation: 1,
 				},
 			},
@@ -219,9 +219,9 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 						"id":              "57b9893d-33b1-4419-bcea-b828fb87e318",
 						"queryName":       "All Auth Users Get Read Access",
 						"severity":        model.SeverityHigh,
-						"platform":        "CloudFormation",
+						"platform":        "Terraform",
 					},
-					Platform:    "cloudFormation",
+					Platform:    "terraform",
 					Aggregation: 1,
 				},
 			},
@@ -433,9 +433,9 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 						"id":              "57b9893d-33b1-4419-bcea-b828fb87e318",
 						"queryName":       "All Auth Users Get Read Access",
 						"severity":        model.SeverityHigh,
-						"platform":        "CloudFormation",
+						"platform":        "Terraform",
 					},
-					Platform:    "cloudFormation",
+					Platform:    "terraform",
 					Aggregation: 1,
 				},
 			},
@@ -511,7 +511,7 @@ func Test_ReadMetadata(t *testing.T) {
 				"id":              "<ID>",
 				"queryName":       "<QUERY_NAME>",
 				"severity":        model.SeverityHigh,
-				"platform":        "<PLATFORM>",
+				"platform":        "Dockerfile",
 				"aggregation":     float64(1),
 			},
 			wantErr: false,
@@ -590,6 +590,20 @@ func Test_getPlatform(t *testing.T) {
 			},
 			want: "terraform",
 		},
+		{
+			name: "get_platform_AzureResourceManager",
+			args: args{
+				PlatformInMetadata: "AzureResourceManager",
+			},
+			want: "azureResourceManager",
+		},
+		{
+			name: "get_platform_unknown",
+			args: args{
+				PlatformInMetadata: "Unknown",
+			},
+			want: "unknown",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -632,6 +646,99 @@ func TestReadInputData(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := readInputData(tt.path)
 			require.NoError(t, err)
+			require.Equal(t, tt.want, got)
+		})
+	}
+}
+
+func TestSource_validateMetadata(t *testing.T) {
+	tests := []struct {
+		name         string
+		metadata     map[string]interface{}
+		wantValid    bool
+		wantInvField string
+	}{
+		{
+			name: "valid metadata test case",
+			metadata: map[string]interface{}{
+				"id":       "1234",
+				"platform": "terraform",
+			},
+			wantValid:    true,
+			wantInvField: "platform",
+		},
+		{
+			name: "invalid metadata platform test case",
+			metadata: map[string]interface{}{
+				"id": "1234",
+			},
+			wantValid:    false,
+			wantInvField: "platform",
+		},
+		{
+			name: "invalid metadata id test case",
+			metadata: map[string]interface{}{
+				"platform": "terraform",
+			},
+			wantValid:    false,
+			wantInvField: "id",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			valid, invField := validateMetadata(tt.metadata)
+			require.Equal(t, tt.wantValid, valid)
+			require.Equal(t, tt.wantInvField, invField)
+		})
+	}
+}
+
+// TestSource_ListSupportedCloudProviders tests the function ListSupportedCloudProviders.
+func TestSource_ListSupportedCloudProviders(t *testing.T) {
+	want := []string{"aws", "azure", "gcp"}
+	t.Run("test List Suported CP", func(t *testing.T) {
+		got := ListSupportedCloudProviders()
+		require.Equal(t, want, got)
+	})
+}
+
+func TestSource_getLibraryInDir(t *testing.T) {
+	if err := test.ChangeCurrentDir("kics"); err != nil {
+		t.Fatal(err)
+	}
+
+	type args struct {
+		platform       string
+		libraryDirPath string
+	}
+
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			name: "test get library in dir for terraform",
+			args: args{
+				platform:       "terraform",
+				libraryDirPath: filepath.FromSlash("./assets/libraries"),
+			},
+			want: filepath.FromSlash("assets/libraries/terraform.rego"),
+		},
+		{
+			name: "test get library in dir error",
+			args: args{
+				platform:       "",
+				libraryDirPath: filepath.FromSlash("./assets/libraries"),
+			},
+			want: "",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := getLibraryInDir(tt.args.platform, tt.args.libraryDirPath)
 			require.Equal(t, tt.want, got)
 		})
 	}

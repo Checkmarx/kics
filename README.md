@@ -12,7 +12,7 @@
 [![Go Coverage](https://raw.githubusercontent.com/Checkmarx/kics/gh-pages/coverage.svg)](https://docs.kics.io/coverage.html)
 
 
-<img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/kics-hat-dark.png" width="250">
+<img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/kics_hat_color_new.png" width="250">
 
 ---
 
@@ -66,9 +66,10 @@ The nightly release will have a "nightly" prefix with the last commit hash code.
 ## Contribution
 
 KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.
-[Check out how](docs/CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers. 
+[Check out how](docs/CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
-## Meet us at conferences 
+## Meet us at conferences
+-   [OWASP Canberra Chapter - Meetup](https://www.meetup.com/OWASP-Canberra-Chapter/events/281946376/)
 -   [InfoSec City - Singapore 2021](https://www.infosec-city.com/sin21-bizcomm)
 -   [DevSecOps Singapore 2021](https://devopscon.io/cloud-platforms-serverless/infrastructure-is-the-new-code-is-your-devsecops-ready/)
 -   [Blackhat Europe 2021](https://www.blackhat.com/eu-21/arsenal/schedule/#kics-keeping-infrastructure-as-code-secure-25111)

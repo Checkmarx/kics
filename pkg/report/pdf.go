@@ -17,6 +17,7 @@ import (
 
 const (
 	defaultTextSize = 8
+	smallTextSize   = 6
 	pgMarginLeft    = 10
 	pgMarginTop     = 15
 	pgMarginRight   = 10
@@ -214,6 +215,16 @@ func createResultsTable(m pdf.Maroto, query *model.QueryResult) {
 			m.Col(colFullPage, func() {
 				m.Text(fileLine, props.Text{
 					Size:        defaultTextSize,
+					Align:       consts.Left,
+					Extrapolate: false,
+				})
+			})
+		})
+		expectedValue := fmt.Sprintf("Expected: %s", query.Files[idx].KeyExpectedValue)
+		m.Row(colFive, func() {
+			m.Col(colFullPage, func() {
+				m.Text(expectedValue, props.Text{
+					Size:        smallTextSize,
 					Align:       consts.Left,
 					Extrapolate: false,
 				})

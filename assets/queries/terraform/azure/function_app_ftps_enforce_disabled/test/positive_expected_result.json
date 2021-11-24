@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Function App FTPS Enforce Disabled",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Function App FTPS Enforce Disabled",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive2.tf"
+  }
+]

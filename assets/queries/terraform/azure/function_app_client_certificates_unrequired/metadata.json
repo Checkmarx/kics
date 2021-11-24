@@ -1,0 +1,11 @@
+{
+  "id": "9bb3c639-5edf-458c-8ee5-30c17c7d671d",
+  "queryName": "Function App Client Certificates Unrequired",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Azure Function App should have 'client_cert_mode' set to required",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/function_app#client_cert_mode",
+  "platform": "Terraform",
+  "descriptionID": "436752d7",
+  "cloudProvider": "azure"
+}

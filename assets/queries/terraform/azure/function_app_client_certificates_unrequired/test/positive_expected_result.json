@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Function App Client Certificates Unrequired",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Function App Client Certificates Unrequired",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive2.tf"
+  }
+]

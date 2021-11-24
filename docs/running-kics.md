@@ -133,7 +133,7 @@ Then you can execute KICS normally adding `--input-data ./custom-input/`, if `cu
 **NOTE**: The value which will replace the default value, **MUST** be the same type as the default key (e.g. `defaultPasswords` must be an array of strings)
 
 ## Using commands on scanned files as comments
-KICS scan supports some special commands in the comments that are on the file beginning (i.e.: all comments before any valid line on IaC file). To use this feature you need to create a comment that starts with `kics-scan` and wanted command with values (if necessary).
+KICS scan supports some special commands in the comments. To use this feature you need to create a comment that starts with `kics-scan` and wanted command with values (if necessary).
 
 For example, if you want to ignore a tf file when running a scan, you can start your file as following:
 
@@ -159,15 +159,21 @@ resource "google_storage_bucket" "example" {
 # kics-scan ignore
 ```
 
-KICS currently supports three commands:
-- `ignore`: Will ignore file when running a scan;
-- `enable=<query_id>,<query_id>`: Will get results on this file **only** for listed queries;
-- `disable=<query_id>,<query_id>`: Will ignore results on this file for listed queries;
+KICS currently supports five commands:
+- Must be in file's start:
+    - `ignore`: Will ignore file when running a scan;
+    - `enable=<query_id>,<query_id>`: Will get results on this file **only** for listed queries;
+    - `disable=<query_id>,<query_id>`: Will ignore results on this file for listed queries;
+- Can be used in all file extension:
+    - `ignore-line`: Will ignore the line beneath the comment on the results
+    - `ignore-block`: Will ignore the block and all its key-value pairs on the results
 
 The order of prescendence in above commands are:
 1. ignore
-2. enable
-3. disable
+2. ignore-block
+3. ignore-line
+4. enable
+5. disable
 
 For example:
 ```hcl
@@ -176,7 +182,58 @@ For example:
 ```
 In this case, this file will be ignored by KICS, instead of ignoring results for query with id 0afa6ab8-a047-48cf-be07-93a2f8c34cf7.
 
-This feature is supported by all extensions that supports comments. Currently, KICS supports this features for:
+`kics-scan ignore-line` example:
+
+```hcl
+1: resource "google_storage_bucket" "example" {
+2:  # kics-scan ignore-line
+3:  name          = "image-store.com"
+4:  location      = "EU"
+5:  force_destroy = true
+6: }
+```
+Results that point to lines 2 and 3 will be ignored.
+
+`kics-scan ignore-block` example:
+
+```hcl
+1: # kics-scan ignore-block
+2: resource "google_storage_bucket" "example" {
+3:  name          = "image-store.com"
+4:  location      = "EU"
+5:  force_destroy = true
+6: }
+```
+
+Results that point from line 1 to 6 will be ignored.
+
+For Dockerfile `ignore-block` is only usable when the whole `FROM` block should be ignored.
+
+```Dockerfile
+1: # kics-scan ignore-block
+2: FROM kics
+3: USER Checkmarx
+4:
+5: FROM kics:2.0
+6: USER Checkmarx
+```
+
+in this case only lines from 1 to 3 will be ignored.
+
+`ignore-line` will ignore all lines of a multi-line command in Docker.
+
+**NOTE**: For YAML when trying to ignore the whole resource this file should start with `---` and then the KICS comment command as you can see on the following example:
+```yaml
+1: ---
+2: # kics-scan ignore-block
+3: apiVersion: v1
+4: kind: Pod
+5: metadata:
+6:  name: memory-demo-1
+7:  namespace: mem-example
+```
+
+This feature is supported by all extensions that supports comments. Currently, KICS supports this feature for:
 - Dockerfile;
 - HCL (Terraform);
 - YAML;

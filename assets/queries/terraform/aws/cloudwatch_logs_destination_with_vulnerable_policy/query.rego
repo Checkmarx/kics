@@ -1,21 +1,24 @@
 package Cx
 
-import data.generic.terraform as terraLib
+import data.generic.common as common_lib
+import data.generic.terraform as terra_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_cloudwatch_log_destination_policy[name]
 
-	policyName := split(resource.access_policy, ".")[2]
+	policy := common_lib.json_unmarshal(resource.access_policy)
+	st := common_lib.get_statement(policy)
+	statement := st[_]
 
-	policy := input.document[j].data.aws_iam_policy_document[policyName]
-
-	terraLib.has_wildcard(policy.statement, "logs:*")
+	common_lib.is_allow_effect(statement)
+	terra_lib.has_wildcard(statement, "logs:*")
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("ws_cloudwatch_log_destination_policy[%s].access_policy", [name]),
+		"searchKey": sprintf("aws_cloudwatch_log_destination_policy[%s].access_policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("ws_cloudwatch_log_destination_policy[%s].access_policy does not have wildcard in 'principals' and 'actions'", [name]),
-		"keyActualValue": sprintf("ws_cloudwatch_log_destination_policy[%s].access_policy has wildcard in 'principals' or 'actions'", [name]),
+		"keyExpectedValue": sprintf("aws_cloudwatch_log_destination_policy[%s].access_policy does not have wildcard in 'principals' and 'actions'", [name]),
+		"keyActualValue": sprintf("aws_cloudwatch_log_destination_policy[%s].access_policy has wildcard in 'principals' or 'actions'", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_cloudwatch_log_destination_policy", name, "access_policy"], []),
 	}
 }

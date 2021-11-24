@@ -1,0 +1,11 @@
+{
+  "id": "9dab0179-433d-4dff-af8f-0091025691df",
+  "queryName": "Function App FTPS Enforce Disabled",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Azure Function App should only enforce FTPS when 'ftps_state' is enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/function_app#ftps_state",
+  "platform": "Terraform",
+  "descriptionID": "2144ef13",
+  "cloudProvider": "azure"
+}

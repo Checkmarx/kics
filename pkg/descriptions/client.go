@@ -44,7 +44,7 @@ var (
 	// HTTPRequestClient - http client to use for requests
 	HTTPRequestClient HTTPClient = &http.Client{
 		Transport: tr,
-		Timeout:   15 * time.Second,
+		Timeout:   20 * time.Second,
 	}
 )
 

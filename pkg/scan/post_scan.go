@@ -2,6 +2,7 @@ package scan
 
 import (
 	_ "embed" // Embed kics CLI img and scan-flags
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -91,6 +92,12 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 
 // postScan is responsible for the output results
 func (c *Client) postScan(scanResults *Results) error {
+	if scanResults == nil {
+		log.Info().Msg("No files were scanned")
+		fmt.Println("No files were scanned")
+		return nil
+	}
+
 	summary := c.getSummary(scanResults.Results, time.Now(), model.PathParameters{
 		ScannedPaths:      c.ScanParams.Path,
 		PathExtractionMap: scanResults.ExtractedPaths.ExtractionMap,

@@ -1,0 +1,11 @@
+{
+  "id": "34b921bd-90a0-402e-a0a5-dc73371fd963",
+  "queryName": "SES Policy With Allowed IAM Actions",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "SES policy should not allow IAM actions to all principals",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ses_identity_policy#policy",
+  "platform": "Terraform",
+  "descriptionID": "3b263662",
+  "cloudProvider": "aws"
+}

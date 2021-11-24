@@ -286,6 +286,10 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) {
 			kind = "informational"
 		}
 		for idx := range issue.Files {
+			line := issue.Files[idx].Line
+			if line < 1 {
+				line = 1
+			}
 			result := sarifResult{
 				ResultRuleID:    issue.QueryID,
 				ResultRuleIndex: ruleIndex,
@@ -295,7 +299,7 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) {
 					{
 						PhysicalLocation: sarifPhysicalLocation{
 							ArtifactLocation: sarifArtifactLocation{ArtifactURI: issue.Files[idx].FileName},
-							Region:           sarifRegion{StartLine: issue.Files[idx].Line},
+							Region:           sarifRegion{StartLine: line},
 						},
 					},
 				},

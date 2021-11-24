@@ -56,6 +56,7 @@ func testSecretsInspector(t *testing.T, samplePaths []string, expectedVulnerabil
 		false,
 		60,
 		assets.SecretsQueryRegexRulesJSON,
+		false,
 	)
 	require.NoError(t, err, "unable to create secrets inspector")
 

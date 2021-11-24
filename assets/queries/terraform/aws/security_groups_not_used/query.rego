@@ -27,3 +27,10 @@ is_used(securityGroupName, doc) {
 	securityGroupUsed := value.security_group_id
 	contains(securityGroupUsed, sprintf("aws_security_group.%s", [securityGroupName]))
 }
+
+# check security groups assigned to aws_instance resources
+is_used(securityGroupName, doc) {
+	[path, value] := walk(doc)
+	securityGroupUsed := value.vpc_security_group_ids[_]
+	contains(securityGroupUsed, sprintf("aws_security_group.%s", [securityGroupName]))
+}

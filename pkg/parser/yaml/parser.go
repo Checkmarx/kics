@@ -6,6 +6,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser/utils"
 	"github.com/pkg/errors"
+	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"
 )
 
@@ -19,7 +20,7 @@ func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
 }
 
 // Parse parses yaml/yml file and returns it as a Document
-func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, error) {
+func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, []int, error) {
 	var documents []model.Document
 	dec := yaml.NewDecoder(bytes.NewReader(fileContent))
 
@@ -32,10 +33,13 @@ func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, e
 	}
 
 	if len(documents) == 0 {
-		return nil, errors.Wrap(errors.New("invalid yaml"), "failed to parse yaml")
+		return nil, []int{}, errors.Wrap(errors.New("invalid yaml"), "failed to parse yaml")
 	}
 
-	return convertKeysToString(addExtraInfo(documents, filePath)), nil
+	linesToIgnore := model.NewIgnore.GetLines()
+	model.NewIgnore.Reset()
+
+	return convertKeysToString(addExtraInfo(documents, filePath)), linesToIgnore, nil
 }
 
 // convertKeysToString goes through every document to convert map[interface{}]interface{}
@@ -119,18 +123,38 @@ func processElements(elements map[string]interface{}, filePath string) {
 func addExtraInfo(documents []model.Document, filePath string) []model.Document {
 	for _, documentPlaybooks := range documents { // iterate over documents
 		if playbooks, ok := documentPlaybooks["playbooks"]; ok {
-			for _, resources := range playbooks.([]interface{}) { // iterate over playbooks
-				for _, v := range resources.(map[string]interface{}) {
-					_, ok := v.(map[string]interface{})
-					if ok {
-						processElements(v.(map[string]interface{}), filePath)
-					}
-				}
-			}
+			processPlaybooks(playbooks, filePath)
 		}
 	}
 
 	return documents
+}
+
+func processPlaybooks(playbooks interface{}, filePath string) {
+	sliceResources, ok := playbooks.([]interface{})
+	if !ok { // prevent panic if playbooks is not a slice
+		log.Warn().Msgf("Failed to parse playbooks: %s", filePath)
+		return
+	}
+	for _, resources := range sliceResources { // iterate over playbooks
+		processPlaybooksElements(resources, filePath)
+	}
+}
+
+func processPlaybooksElements(resources interface{}, filePath string) {
+	mapResources, ok := resources.(map[string]interface{})
+	if !ok {
+		log.Warn().Msgf("Failed to parse playbooks elements: %s", filePath)
+		return
+	}
+	for _, value := range mapResources {
+		mapValue, ok := value.(map[string]interface{})
+		if !ok {
+			log.Warn().Msgf("Failed to parse playbooks values: %s", filePath)
+			continue
+		}
+		processElements(mapValue, filePath)
+	}
 }
 
 // GetCommentToken return the comment token of YAML - #

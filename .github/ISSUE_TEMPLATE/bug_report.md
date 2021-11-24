@@ -7,6 +7,8 @@ assignees: ''
 
 ---
 
+Found a bug? You're welcome to [![Gitter](https://badges.gitter.im/kics-io/community.svg)](https://gitter.im/kics-io/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 - **Please make sure to:**
   - Describe in details what the problem is
   - Attach a log file with relevant data preferably in DEBUG level (`--log-level=DEBUG`)

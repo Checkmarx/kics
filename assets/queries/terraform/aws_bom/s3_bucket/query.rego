@@ -12,6 +12,7 @@ CxPolicy[result] {
 		"resource_accessibility": get_accessibility(bucket_resource, name),
 		"resource_vendor": "AWS",
 		"resource_category": "Storage",
+		"acl": get_bucket_acl(bucket_resource),
 	}
 
 	result := {
@@ -23,6 +24,12 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name], []),
 		"value": json.marshal(bom_output),
 	}
+}
+
+get_bucket_acl(bucket_resource) = acl {
+	acl := bucket_resource.acl
+} else = acl {
+	acl := "private"
 }
 
 get_bucket_name(bucket_resource) = name {
