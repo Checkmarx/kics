@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run KICS Scan
-        uses: checkmarx/kics-action@v1.4
+        uses: checkmarx/kics-action@development
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           path: ./
