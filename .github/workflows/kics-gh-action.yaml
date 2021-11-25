@@ -1,0 +1,27 @@
+name: KICS Github Action
+
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  kics-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run KICS Scan
+        uses: checkmarx/kics-action@v1.4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: ./
+          exclude_paths: "./assets/*,./.github/*,./test/*,./examples/*"
+          ignore_on_exit: results
+          enable_comments: true
+          output_path: ./results
+          output_formats: json,html
+          type: dockerfile
+      - uses: actions/upload-artifact@v2
+        with:
+          name: results
+          path: ./results
