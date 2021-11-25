@@ -2,34 +2,24 @@ name: release-docker-github-action
 
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: "Version To push"
+        required: true
 
 jobs:
   push_to_registry:
-    name: Push Docker image to Docker Hub
+    name: Push Docker GitHub Actions image to Docker Hub
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2.3.4
         with:
           fetch-depth: 0
-      - name: Get Release version
-        id: get-version
-        run: |
-          echo "::set-output name=version::$(git describe --match='v*' --tags --abbrev=0)"
-      - uses: toko-bifrost/ms-teams-deploy-card@master
-        if: always()
+      - name: Check out the tag
+        uses: actions/checkout@v2.3.4
         with:
-          github-token: ${{ secrets.KICS_BOT_PAT }}
-          webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK_URL }}
-          card-layout-start: cozy
-          card-layout-exit: complete
-          show-on-start: true
-          show-on-exit: true
-          custom-actions: |
-            - name: View CI Logs
-              value: https://github.com/Checkmarx/kics/actions/runs/${{ github.run_id }}
-            - name: View HEAD Commit
-              value: https://github.com/Checkmarx/kics/commit/${{ github.sha }}
+          ref: ${{ github.event.inputs.version }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
         with:
@@ -51,13 +41,17 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: checkmarx/kics:gh-action
           build-args: |
-            VERSION=${{ steps.get-version.outputs.version }}
+            VERSION=${{ github.event.inputs.version }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+      - name: Check out the repo
+        uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 0
       - name: Export Image Digests
         run: |
-          VERSION=${{ steps.get-version.outputs.version }}
+          VERSION=${{ github.event.inputs.version }}
 
           DIGEST=${{ steps.build_gh_action.outputs.digest }}
 
