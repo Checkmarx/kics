@@ -1,4 +1,4 @@
-name: KICS Github Action
+name: kiscs-github-action
 
 on:
   pull_request:
@@ -11,11 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run KICS Scan
-        uses: checkmarx/kics-action@development
+        uses: checkmarx/kics-action@v1.4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          path: ./
-          exclude_paths: "./assets/*,./.github/*,./test/*,./examples/*"
+          path: "./Dockerfile"
           ignore_on_exit: results
           enable_comments: true
           output_path: ./results
