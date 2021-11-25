@@ -1,0 +1,18 @@
+- name: create a firewall2
+  google.cloud.gcp_compute_firewall:
+    name: default
+    allowed:
+    - ip_protocol: tcp
+      ports:
+      - '22'
+    state: present
+    network: "{{ my_network2 }}"
+- name: create a network2
+  google.cloud.gcp_compute_network:
+    name: test_object2
+    auto_create_subnetworks: 'true'
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
+  register: my_network2

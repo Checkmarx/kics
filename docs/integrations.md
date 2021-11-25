@@ -15,6 +15,7 @@ Integrate KICS with:
 - [Jenkins](integrations_jenkins.md)
 - [TeamCity](integrations_teamcity.md)
 - [Travis](integrations_travisci.md)
+- [Pre-commit hooks](integrations_pre_commit.md)
 - More soon...
 
 The pipelines examples can be found in our [GitHub Repository](https://github.com/Checkmarx/kics/tree/master/examples)

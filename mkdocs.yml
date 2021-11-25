@@ -69,6 +69,8 @@ nav:
       - Terraform Cloud: integration_tfcloud.md
       - AWS CDK: cdk.md
       - Badge: BADGE.md
+      - Using pre-commit hooks: integrations_pre_commit.md
+  - Certifications: certifications.md
   - Project:
       - Roadmap: roadmap.md
       - Plans: "https://github.com/Checkmarx/kics/projects"

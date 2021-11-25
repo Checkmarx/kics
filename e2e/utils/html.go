@@ -12,15 +12,15 @@ import (
 	"golang.org/x/net/html"
 )
 
-var availablePlatforms = map[string]string{
-	"Ansible":              "ansible",
-	"CloudFormation":       "cloudFormation",
-	"Common":               "common",
-	"Dockerfile":           "dockerfile",
-	"Kubernetes":           "k8s",
-	"OpenAPI":              "openAPI",
-	"Terraform":            "terraform",
-	"AzureResourceManager": "azureResourceManager",
+var availablePlatforms = initPlatforms()
+
+func initPlatforms() map[string]string {
+	platforms := make(map[string]string)
+	for k, v := range constants.AvailablePlatforms {
+		platforms[k] = v
+	}
+	platforms["Common"] = "common"
+	return platforms
 }
 
 // HTMLValidation executes many asserts to validate the HTML Report

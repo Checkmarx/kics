@@ -527,3 +527,33 @@ is_default_password(password) = output {
 } else = output {
 	output = false
 }
+
+matches(target, name) {
+	split(target, ".")[1] == name
+} else {
+	target == name
+}
+
+check_member(attribute, search) {
+	startswith(attribute.members[_], search)
+} else {
+	startswith(attribute.member, search)
+}
+
+check_member(attribute, search) {
+	startswith(attribute.members[_], search)
+} else {
+	startswith(attribute.member, search)
+}
+
+matches(target, name) {
+	split(target, ".")[1] == name
+} else {
+	target == name
+}
+
+matches(target, name) {
+	split(target, ".")[1] == name
+} else {
+	target == name
+}

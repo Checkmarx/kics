@@ -1,0 +1,48 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "Prod": {
+      "Properties": {
+        "ClientCertificateId": "ClientCertificate",
+        "DeploymentId": "TestDeployment",
+        "Description": "Prod Stage",
+        "DocumentationVersion": "MyDocumentationVersion",
+        "MethodSettings": [
+          {
+            "DataTraceEnabled": "false",
+            "HttpMethod": "GET",
+            "MetricsEnabled": "true",
+            "ResourcePath": "/"
+          },
+          {
+            "DataTraceEnabled": "false",
+            "HttpMethod": "POST",
+            "MetricsEnabled": "true",
+            "ResourcePath": "/stack",
+            "ThrottlingBurstLimit": "999"
+          },
+          {
+            "DataTraceEnabled": "false",
+            "HttpMethod": "GET",
+            "MetricsEnabled": "true",
+            "ResourcePath": "/stack",
+            "ThrottlingBurstLimit": "555"
+          }
+        ],
+        "RestApiId": "MyRestApi",
+        "StageName": "Prod",
+        "Variables": {
+          "Stack": "Prod"
+        }
+      },
+      "Type": "AWS::ApiGateway::Stage"
+    },
+    "SampleWebACLAssociation": {
+      "Properties": {
+        "ResourceArn": "arn:aws:apigateway:region::/restapis/api-id/stages/stage",
+        "WebACLArn": "ExampleARNForWebACL"
+      },
+      "Type": "AWS::WAFv2::WebACLAssociation"
+    }
+  }
+}

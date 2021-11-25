@@ -9,14 +9,14 @@ CxPolicy[result] {
 	policyStatements := [policyStatement |
 		resourcePolicy := input.document[indexBucket].Resources[_]
 		resourcePolicy.Type == "AWS::S3::BucketPolicy"
-		checkRef(resourcePolicy.Properties.Bucket, nameBucket)
+		check_ref(resourcePolicy.Properties.Bucket, nameBucket)
 		policy := resourcePolicy.Properties.PolicyDocument
 		st := common_lib.get_statement(common_lib.get_policy(policy))
 		policyStatement := st[_]
 		common_lib.is_allow_effect(policyStatement)
 	]
 
-	checkPolicy(policyStatements[_])
+	common_lib.any_principal(policyStatements[_])
 
 	publicAccessBlockConfiguration := resourceBucket.Properties.PublicAccessBlockConfiguration
 
@@ -33,15 +33,7 @@ CxPolicy[result] {
 	}
 }
 
-checkPolicy(policyProperty) {
-	policyProperty.Principal == "*"
-} else {
-	policyProperty.Principal.AWS == "*"
-} else {
-	policyProperty.Principal.AWS[_] == "*"
-}
-
-checkRef(obj, name) {
+check_ref(obj, name) {
 	obj.Ref == name
 } else {
 	obj == name

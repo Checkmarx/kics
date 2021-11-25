@@ -1,0 +1,11 @@
+{
+  "id": "22ef1d26-80f8-4a6c-8c15-f35aab3cac78",
+  "queryName": "Google Compute Network Using Firewall Rule that Allows All Ports",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Google Compute Network should not use a firewall rule that allows all ports",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall#allow",
+  "platform": "Terraform",
+  "descriptionID": "20fce4e9",
+  "cloudProvider": "gcp"
+}

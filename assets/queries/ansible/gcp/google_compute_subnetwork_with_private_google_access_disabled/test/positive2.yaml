@@ -1,0 +1,11 @@
+- name: create a subnetwork2
+  google.cloud.gcp_compute_subnetwork:
+    name: ansiblenet
+    region: us-west1
+    network: "{{ network }}"
+    ip_cidr_range: 172.16.0.0/16
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    private_ip_google_access: no
+    state: present

@@ -16,7 +16,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.PolicyDocumentt", [name]),
+		"searchKey": sprintf("Resources.%s.Properties.PolicyDocument", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'Resources.Properties.PolicyDocument.Statement' doesn't contain '*'",
 		"keyActualValue": "'Resources.Properties.PolicyDocument.Statement' contains '*'",

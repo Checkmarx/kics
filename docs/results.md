@@ -313,7 +313,7 @@ SARIF reports are sorted by severity (from high to info), following [SARIF v2.1.
 }
 ```
 
-# Gitlab SAST
+## Gitlab SAST
 You can export html report by using `--report-formats "glsast"`.
 Gitlab SAST reports are sorted by severity (from high to info), following [Gitlab SAST Report scheme](https://docs.gitlab.com/ee/development/integrations/secure.html#report), also, the generated file will have a prefix `gl-sast-` as [recommendend by Gitlab docs](https://docs.gitlab.com/ee/development/integrations/secure.html#output-file) and looks like:
 
@@ -424,6 +424,147 @@ Gitlab SAST reports are sorted by severity (from high to info), following [Gitla
 					"name": "Keeping Infrastructure as Code Secure",
 					"url": "https://docs.kics.io/latest/queries/terraform-queries",
 					"value": "87065ef8-de9b-40d8-9753-f4a4303e27a4"
+				}
+			]
+		}
+	]
+}
+
+```
+
+## SonarQube
+You can export sonarqube report by using `--report-formats "sonarqube"`.
+SonarQube reports, follow [SonarQube Import Format](https://docs.sonarqube.org/latest/analysis/generic-issue/), also, the generated file will have a prefix `sonarqube-` and looks like:
+
+```json
+{
+	"issues": [
+		{
+			"engineId": "KICS 1.4.7",
+			"ruleId": "0afa6ab8-a047-48cf-be07-93a2f8c34cf7",
+			"severity": "MAJOR",
+			"type": "VULNERABILITY",
+			"primaryLocation": {
+				"message": "All Application Load Balancers (ALB) must be protected with Web Application Firewall (WAF) service",
+				"filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/negative2.tf",
+				"textRange": {
+					"startLine": 1
+				}
+			},
+			"secondaryLocations": [
+				{
+					"message": "All Application Load Balancers (ALB) must be protected with Web Application Firewall (WAF) service",
+					"filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive4.tf",
+					"textRange": {
+						"startLine": 1
+					}
+				},
+				{
+					"message": "All Application Load Balancers (ALB) must be protected with Web Application Firewall (WAF) service",
+					"filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/negative1.tf",
+					"textRange": {
+						"startLine": 1
+					}
+				},
+				{
+					"message": "All Application Load Balancers (ALB) must be protected with Web Application Firewall (WAF) service",
+					"filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive1.tf",
+					"textRange": {
+						"startLine": 1
+					}
+				},
+				{
+					"message": "All Application Load Balancers (ALB) must be protected with Web Application Firewall (WAF) service",
+					"filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive2.tf",
+					"textRange": {
+						"startLine": 1
+					}
+				},
+				{
+					"message": "All Application Load Balancers (ALB) must be protected with Web Application Firewall (WAF) service",
+					"filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive3.tf",
+					"textRange": {
+						"startLine": 1
+					}
+				}
+			]
+		},
+		{
+			"engineId": "KICS development",
+			"ruleId": "6e3fd2ed-5c83-4c68-9679-7700d224d379",
+			"severity": "MAJOR",
+			"type": "CODE_SMELL",
+			"primaryLocation": {
+				"message": "It's considered a best practice when using Application Load Balancers to drop invalid header fields",
+				"filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive5.tf",
+				"textRange": {
+					"startLine": 1
+				}
+			},
+			"secondaryLocations": [
+				{
+					"message": "It's considered a best practice when using Application Load Balancers to drop invalid header fields",
+					"filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive6.tf",
+					"textRange": {
+						"startLine": 1
+					}
+				},
+				{
+					"message": "It's considered a best practice when using Application Load Balancers to drop invalid header fields",
+					"filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/negative3.tf",
+					"textRange": {
+						"startLine": 1
+					}
+				}
+			]
+		},
+		{
+			"engineId": "KICS development",
+			"ruleId": "afecd1f1-6378-4f7e-bb3b-60c35801fdd4",
+			"severity": "MINOR",
+			"type": "CODE_SMELL",
+			"primaryLocation": {
+				"message": "Application Load Balancer should have deletion protection enabled",
+				"filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive2.tf",
+				"textRange": {
+					"startLine": 1
+				}
+			},
+			"secondaryLocations": [
+				{
+					"message": "Application Load Balancer should have deletion protection enabled",
+					"filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive1.tf",
+					"textRange": {
+						"startLine": 7
+					}
+				},
+				{
+					"message": "Application Load Balancer should have deletion protection enabled",
+					"filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive6.tf",
+					"textRange": {
+						"startLine": 1
+					}
+				},
+				{
+					"message": "Application Load Balancer should have deletion protection enabled",
+					"filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive5.tf",
+					"textRange": {
+						"startLine": 9
+					}
+				},
+				{
+					"message": "Application Load Balancer should have deletion protection enabled",
+					"filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive4.tf",
+					"textRange": {
+						"startLine": 1
+					}
+				},
+				{
+					"message": "Application Load Balancer should have deletion protection enabled",
+					"filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive3.tf",
+					"textRange": {
+						"startLine": 7
+					}
 				}
 			]
 		}
