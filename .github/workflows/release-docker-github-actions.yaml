@@ -70,7 +70,7 @@ jobs:
           token: ${{ secrets.KICS_BOT_PAT }}
           commit-message: "docs(kicsbot): update github-action image digest"
           delete-branch: true
-          branch: feature/kicsbot-update-queries-docs
+          branch: feature/kicsbot-update-gh-actions-digest
           body: |
             **Automated Changes**
             Updating docker github-action image digest
