@@ -1,0 +1,11 @@
+{
+  "id": "3e293410-d5b8-411f-85fd-7d26294f20c9",
+  "queryName": "VPC Without Network Firewall",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "VPC should have a Network Firewall associated",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-firewall.html#cfn-networkfirewall-firewall-vpcid",
+  "platform": "CloudFormation",
+  "descriptionID": "f090ffd2",
+  "cloudProvider": "aws"
+}

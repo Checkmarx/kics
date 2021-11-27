@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+    myVPC1:
+      Type: AWS::EC2::VPC
+      Properties:
+        CidrBlock: 10.0.0.0/16
+        EnableDnsSupport: 'false'
+        EnableDnsHostnames: 'false'
+        InstanceTenancy: dedicated
+    SampleFirewall:
+      Type: AWS::NetworkFirewall::Firewall
+      Properties:
+        FirewallName: SampleFirewallName
+        FirewallPolicyArn: !Ref SampleFirewallPolicy
+        VpcId: !Ref myVPC1
+        SubnetMappings:
+          - SubnetId: !Ref SampleSubnet1
+          - SubnetId: !Ref SampleSubnet2
+        Description: Firewall description goes here
