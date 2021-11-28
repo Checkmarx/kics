@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "EC2 Instance Using Default Security Group",
+		"severity": "LOW",
+		"line": 7,
+		"fileName": "positive.yaml"
+	}
+]
