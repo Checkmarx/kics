@@ -211,7 +211,7 @@ jobs:
           echo "alpine,${COMMIT_SHA8},${DATE},${ALPINE_DIGEST}" >> docs/docker/nightly.csv
           echo "debian,${COMMIT_SHA8},${DATE},${DEBIAN_DIGEST}" >> docs/docker/nightly.csv
           echo "ubi7,${COMMIT_SHA8},${DATE},${UBI7_DIGEST}" >> docs/docker/nightly.csv
-      - uses: actions/setup-python@v2.3.0
+      - uses: actions/setup-python@v2.3.1
         with:
           python-version: 3.x
       - name: Generate .md table
