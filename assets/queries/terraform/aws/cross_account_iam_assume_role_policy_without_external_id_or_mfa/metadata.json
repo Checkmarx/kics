@@ -1,0 +1,11 @@
+{
+  "id": "09c35abf-5852-4622-ac7a-b987b331232e",
+  "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Cross-Account IAM Assume Role Policy should require external ID or MFA to protect cross-account access",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role#assume_role_policy",
+  "platform": "Terraform",
+  "descriptionID": "18c64b43",
+  "cloudProvider": "aws"
+}

@@ -7,17 +7,19 @@ CxPolicy[result] {
 	resource := doc.resource.aws_iam_user_policy[name]
 
 	policy := common_lib.json_unmarshal(resource.policy)
-	statement := policy.Statement
+	st := common_lib.get_statement(policy)
+	statement := st[_]
 
-	mfa := existsMFA(statement)
-	mfa == "undefined"
+	common_lib.is_allow_effect(statement)
+	not_exists_mfa(statement) == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resource.aws_iam_user_policy[%s].policy", [name]),
+		"searchKey": sprintf("aws_iam_user_policy[%s].policy", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'aws:MultiFactorAuthPresent' is set",
-		"keyActualValue": "Attribute 'aws:MultiFactorAuthPresent' is undefined",
+		"keyExpectedValue": "The attributes 'policy.Statement.Condition', 'policy.Statement.Condition.BoolIfExists', and 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' are defined and not null",
+		"keyActualValue": "The attribute(s) 'policy.Statement.Condition' or/and 'policy.Statement.Condition.BoolIfExists' or/and 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' is/are undefined or null",
+		"searchLine": common_lib.build_search_line(["resource", "aws_iam_user_policy", name, "policy"], []),
 	}
 }
 
@@ -26,83 +28,45 @@ CxPolicy[result] {
 	resource := doc.resource.aws_iam_user_policy[name]
 
 	policy := common_lib.json_unmarshal(resource.policy)
-	statement := policy.Statement
+	st := common_lib.get_statement(policy)
+	statement := st[_]
 
-	mfa := existsMFA(statement)
-	mfa == "false"
+	common_lib.is_allow_effect(statement)
+	not_exists_mfa(statement) == "false"
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resource.aws_iam_user_policy[%s].policy", [name]),
+		"searchKey": sprintf("aws_iam_user_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Attribute 'aws:MultiFactorAuthPresent' is set a true",
-		"keyActualValue": "Attribute 'aws:MultiFactorAuthPresent' is set a false",
+	    "keyExpectedValue": "'policy.Statement.Principal.AWS' contains ':mfa/' or 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' is set to true",
+		"keyActualValue": "'policy.Statement.Principal.AWS' doesn't contain ':mfa/' or 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' is set to false",
+		"searchLine": common_lib.build_search_line(["resource", "aws_iam_user_policy", name, "policy"], []),
 	}
 }
 
-existsMFA(statement) = mfa {
-	isArray := is_array(statement)
-	b := statement[index].Condition.BoolIfExists
 
-	not common_lib.valid_key(b, "aws:MultiFactorAuthPresent")
-
-	mfa := "undefined"
-}
-
-existsMFA(statement) = mfa {
-	isArray := is_array(statement)
-	c := statement[index].Condition
-
-	not common_lib.valid_key(c, "BoolIfExists")
-
-	mfa := "undefined"
-}
-
-existsMFA(statement) = mfa {
-	isArray := is_array(statement)
-	s := statement[index]
-
-	not common_lib.valid_key(s, "Condition")
-
-	mfa := "undefined"
-}
-
-existsMFA(statement) = mfa {
-	isObject := is_object(statement)
-
+not_exists_mfa(statement) = mfa {
 	not common_lib.valid_key(statement.Condition.BoolIfExists, "aws:MultiFactorAuthPresent")
 
 	mfa := "undefined"
-}
-
-existsMFA(statement) = mfa {
-	isObject := is_object(statement)
-
+} else = mfa {
 	not common_lib.valid_key(statement.Condition, "BoolIfExists")
 
 	mfa := "undefined"
-}
-
-existsMFA(statement) = mfa {
-	isObject := is_object(statement)
-
+} else = mfa {
 	not common_lib.valid_key(statement, "Condition")
 
 	mfa := "undefined"
+} else = mfa {
+	statement.Condition.BoolIfExists["aws:MultiFactorAuthPresent"] != "true"
+	mfa := "false"
+} else = mfa {
+	user := statement.Principal.AWS
+	not contains(user, ":mfa/")
+	mfa := "false"
+} else = mfa {
+	user := statement.Principal.AWS[_]
+	not contains(user, ":mfa/")
+	mfa := "false"
 }
 
-existsMFA(statement) = mfa {
-	isObject := is_object(statement)
-
-	common_lib.valid_key(statement.Condition.BoolIfExists, "aws:MultiFactorAuthPresent")
-
-	mfa := statement.Condition.BoolIfExists["aws:MultiFactorAuthPresent"]
-}
-
-existsMFA(statement) = mfa {
-	isArray := is_array(statement)
-
-	common_lib.valid_key(statement[index].Condition.BoolIfExists, "aws:MultiFactorAuthPresent")
-
-	mfa := statement[index].Condition.BoolIfExists["aws:MultiFactorAuthPresent"]
-}

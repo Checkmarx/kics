@@ -1,20 +1,18 @@
 package Cx
 
-import data.generic.common as commonLib
-import data.generic.terraform as terraLib
+import data.generic.common as common_lib
+import data.generic.terraform as terra_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_sqs_queue_policy[name]
 
-	policy := commonLib.json_unmarshal(resource.policy)
-	statement := policy.Statement[_]
+	policy := common_lib.json_unmarshal(resource.policy)
+	st := common_lib.get_statement(policy)
+	statement := st[_]
 
-	statement.Effect == "Allow"
-	commonLib.containsOrInArrayContains(statement.Action, "*")
-	terraLib.anyPrincipal(statement)
-
-	queue_name := trim_prefix(trim_suffix(resource.queue_url, ".id}"), "${aws_sqs_queue.")
-	queue_resource := input.document[j].resource.aws_sqs_queue[queue_name]
+	common_lib.is_allow_effect(statement)
+	check_principal(statement.Principal, "*")
+	terra_lib.anyPrincipal(statement)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -22,5 +20,15 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy.Statement.Principal.AWS' is not equal '*'",
 		"keyActualValue": "'policy.Statement.Principal.AWS' is equal '*'",
+		"searchLine": common_lib.build_search_line(["resource", "aws_sqs_queue_policy", name, "policy"], []),
 	}
+}
+
+check_principal(field, value) {
+	is_object(field)
+	some i
+	val := [x | x := field[i]; common_lib.containsOrInArrayContains(x, value)]
+	count(val) > 0
+} else {
+	common_lib.containsOrInArrayContains(field, "*")
 }

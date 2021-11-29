@@ -1,23 +1,29 @@
 package Cx
 
-import data.generic.ansible as ansLib
+import data.generic.ansible as ans_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
-	task := ansLib.tasks[id][t]
+	task := ans_lib.tasks[id][t]
 	modules := {"amazon.aws.s3_bucket", "s3_bucket"}
 	bucket := task[modules[m]]
-	ansLib.checkState(bucket)
+	ans_lib.checkState(bucket)
 
-	bucket.policy.Statement[_].Effect == "Allow"
-	contains(lower(bucket.policy.Statement[_].Action), "write")
-	contains(lower(bucket.policy.Statement[_].Action), "acp")
-	bucket.policy.Statement[_].Principal == "*"
+	st := common_lib.get_statement(common_lib.get_policy(bucket.policy))
+	statement := st[_]
+
+	common_lib.is_allow_effect(statement)
+
+	common_lib.containsOrInArrayContains(statement.Action, "write")
+	common_lib.containsOrInArrayContains(statement.Action, "acp")
+	statement.Principal == "*"
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.policy.Statement", [task.name, modules[m]]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("s3_bucket[%s] does not allow WriteACP Action From All Principals", [bucket.name]),
 		"keyActualValue": sprintf("s3_bucket[%s] allows WriteACP Action From All Principals", [bucket.name]),
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}
 }

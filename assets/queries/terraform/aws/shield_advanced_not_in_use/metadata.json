@@ -1,0 +1,11 @@
+{
+  "id": "084c6686-2a70-4710-91b1-000393e54c12",
+  "queryName": "Shield Advanced Not In Use",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "AWS Shield Advanced should be used for Amazon Route 53 hosted zone, AWS Global Accelerator accelerator, Elastic IP Address, Elastic Load Balancing, and Amazon CloudFront Distribution to protect these resources against robust DDoS attacks",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/shield_protection#resource_arn",
+  "platform": "Terraform",
+  "descriptionID": "e09b31c7",
+  "cloudProvider": "aws"
+}

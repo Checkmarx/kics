@@ -1,0 +1,25 @@
+- name: create a cluster
+  google.cloud.gcp_container_cluster:
+    name: my-cluster
+    initial_node_count: 2
+    master_auth:
+      username: cluster_admin
+      password: my-secret-password
+    node_config:
+      machine_type: n1-standard-4
+      disk_size_gb: 500
+      service_account: "{{ default }}"
+    location: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
+- name: create a service account
+  google.cloud.gcp_iam_service_account:
+    name: sa-{{ resource_name.split("-")[-1] }}@graphite-playground.google.com.iam.gserviceaccount.com
+    display_name: My Ansible test key
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
+  register: default
