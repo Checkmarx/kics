@@ -45,7 +45,11 @@ KICS supports scanning Kubernetes manifests with `.yaml` extension.
 
 ## OpenAPI
 
-KICS supports scanning OpenAPI 3.0 specs with `.json` and `.yaml` extension.
+KICS supports scanning Swagger 2.0 and OpenAPI 3.0 specs with `.json` and `.yaml` extension.
+
+## Google Deployment Manager
+
+KICS supports scanning Google Deployment Manager files with `.yaml` extension.
 
 ## Terraform
 
