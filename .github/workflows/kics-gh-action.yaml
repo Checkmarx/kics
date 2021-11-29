@@ -1,4 +1,4 @@
-name: kiscs-github-action
+name: kics-github-action
 
 on:
   pull_request:

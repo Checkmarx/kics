@@ -1,4 +1,4 @@
-FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.17.3-alpine as build_env
+FROM golang:1.17.3-alpine as build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
@@ -12,8 +12,7 @@ ARG TARGETOS
 ARG TARGETARCH
 
 # Copy go mod and sum files
-COPY go.mod .
-COPY go.sum .
+COPY go.mod go.sum  ./
 
 # Get dependancies - will also be cached if we won't change mod/sum
 RUN go mod download -x
@@ -32,6 +31,8 @@ USER Checkmarx
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 
 # Runtime image
+# Ignore no User Cmd since KICS container is stopped afer scan
+# kics-scan ignore-line
 FROM alpine:3.14.3
 
 # Install Git
@@ -39,6 +40,8 @@ RUN apk add --no-cache \
     git=2.32.0-r0
 
 # Copy built binary to the runtime container
+# Vulnerability fixed in latest version of KICS remove when gh actions version is updated
+# kics-scan ignore-line
 COPY --from=build_env /app/bin/kics /app/bin/kics
 COPY --from=build_env /app/assets/queries /app/bin/assets/queries
 COPY --from=build_env /app/assets/libraries/* /app/bin/assets/libraries/
