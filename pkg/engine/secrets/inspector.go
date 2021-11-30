@@ -168,22 +168,13 @@ func (c *Inspector) Inspect(ctx context.Context, basePaths []string,
 		timeoutCtx, cancel := context.WithTimeout(ctx, c.queryExecutionTimeout*time.Second)
 		defer cancel()
 		for idx := range files {
-			select {
-			case <-timeoutCtx.Done():
-				return c.vulnerabilities, timeoutCtx.Err()
-			default:
-				// check file content line by line
-				if c.regexQueries[i].Multiline == (MultilineResult{}) {
-					lines := c.detector.SplitLines(&files[idx])
-
-					for lineNumber, currentLine := range lines {
-						c.checkLineByLine(&c.regexQueries[i], basePaths, &files[idx], lineNumber, currentLine)
-					}
-					continue
+			if _, ok := files[idx].Commands["ignore"]; !ok {
+				select {
+				case <-timeoutCtx.Done():
+					return c.vulnerabilities, timeoutCtx.Err()
+				default:
+					c.checkContent(i, idx, basePaths, files)
 				}
-
-				// check file content as a whole
-				c.checkFileContent(&c.regexQueries[i], basePaths, &files[idx])
 			}
 		}
 	}
@@ -470,25 +461,27 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 
 	if _, ok := c.excludeResults[engine.PtrStringToString(simID)]; !ok {
 		linesVuln := c.detector.GetAdjecent(file, lineNumber+1)
-		vuln := model.Vulnerability{
-			QueryID:          query.ID,
-			QueryName:        SecretsQueryMetadata["queryName"] + " - " + query.Name,
-			SimilarityID:     engine.PtrStringToString(simID),
-			FileID:           file.ID,
-			FileName:         file.FilePath,
-			Line:             linesVuln.Line,
-			VulnLines:        linesVuln.VulnLines,
-			IssueType:        "RedundantAttribute",
-			Platform:         SecretsQueryMetadata["platform"],
-			Severity:         model.SeverityHigh,
-			QueryURI:         SecretsQueryMetadata["descriptionUrl"],
-			Category:         SecretsQueryMetadata["category"],
-			Description:      SecretsQueryMetadata["descriptionText"],
-			DescriptionID:    SecretsQueryMetadata["descriptionID"],
-			KeyExpectedValue: "Hardcoded secret key should not appear in source",
-			KeyActualValue:   fmt.Sprintf("'%s' contains a secret", issueLine),
+		if !ignoreLine(linesVuln.Line, file.LinesIgnore) {
+			vuln := model.Vulnerability{
+				QueryID:          query.ID,
+				QueryName:        SecretsQueryMetadata["queryName"] + " - " + query.Name,
+				SimilarityID:     engine.PtrStringToString(simID),
+				FileID:           file.ID,
+				FileName:         file.FilePath,
+				Line:             linesVuln.Line,
+				VulnLines:        linesVuln.VulnLines,
+				IssueType:        "RedundantAttribute",
+				Platform:         SecretsQueryMetadata["platform"],
+				Severity:         model.SeverityHigh,
+				QueryURI:         SecretsQueryMetadata["descriptionUrl"],
+				Category:         SecretsQueryMetadata["category"],
+				Description:      SecretsQueryMetadata["descriptionText"],
+				DescriptionID:    SecretsQueryMetadata["descriptionID"],
+				KeyExpectedValue: "Hardcoded secret key should not appear in source",
+				KeyActualValue:   fmt.Sprintf("'%s' contains a secret", issueLine),
+			}
+			c.vulnerabilities = append(c.vulnerabilities, vuln)
 		}
-		c.vulnerabilities = append(c.vulnerabilities, vuln)
 	}
 }
 
@@ -557,4 +550,28 @@ func validateCustomSecretsQueriesID(allRegexQueries []RegexQuery) error {
 		}
 	}
 	return nil
+}
+
+func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.FileMetadatas) {
+	// check file content line by line
+	if c.regexQueries[i].Multiline == (MultilineResult{}) {
+		lines := c.detector.SplitLines(&files[idx])
+
+		for lineNumber, currentLine := range lines {
+			c.checkLineByLine(&c.regexQueries[i], basePaths, &files[idx], lineNumber, currentLine)
+		}
+		return
+	}
+
+	// check file content as a whole
+	c.checkFileContent(&c.regexQueries[i], basePaths, &files[idx])
+}
+
+func ignoreLine(lineNumber int, linesIgnore []int) bool {
+	for _, ignoreLine := range linesIgnore {
+		if lineNumber == ignoreLine {
+			return true
+		}
+	}
+	return false
 }

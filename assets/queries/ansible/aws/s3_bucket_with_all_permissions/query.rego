@@ -1,20 +1,21 @@
 package Cx
 
-import data.generic.ansible as ansLib
-import data.generic.common as commonLib
+import data.generic.ansible as ans_lib
+import data.generic.common as common_lib
 
 modules := {"amazon.aws.s3_bucket", "s3_bucket"}
 
 CxPolicy[result] {
-	task := ansLib.tasks[id][t]
+	task := ans_lib.tasks[id][t]
 	s3_bucket := task[modules[m]]
-	ansLib.checkState(s3_bucket)
+	ans_lib.checkState(s3_bucket)
 
-	policy := s3_bucket.policy
-	policy.Statement[ix].Effect = "Allow"
+	st := common_lib.get_statement(common_lib.get_policy(s3_bucket.policy))
+	statement := st[_]
 
-	action := policy.Statement[ix].Action
-	commonLib.containsOrInArrayContains(action, "*")
+	common_lib.is_allow_effect(statement)
+
+	common_lib.containsOrInArrayContains(statement.Action, "*")
 
 	result := {
 		"documentId": id,
@@ -22,5 +23,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy.Statement.Action' doesn't contain '*' when 'Effect' is 'Allow'",
 		"keyActualValue": "'policy.Statement.Action' contains '*' when 'Effect' is 'Allow'",
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}
 }

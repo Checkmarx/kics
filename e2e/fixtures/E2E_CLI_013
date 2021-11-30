@@ -2,7 +2,7 @@ Ansible
 AzureResourceManager
 CloudFormation
 Dockerfile
+GRPC
 Kubernetes
 OpenAPI
 Terraform
-GRPC

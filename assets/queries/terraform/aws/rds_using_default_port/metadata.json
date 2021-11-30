@@ -1,0 +1,11 @@
+{
+  "id": "bca7cc4d-b3a4-4345-9461-eb69c68fcd26",
+  "queryName": "RDS Using Default Port",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "RDS should not use the default port (an attacker can easily guess the port). For engines related to Aurora, MariaDB or MySQL, the default port is 3306. PostgreSQL default port is 5432, Oracle default port is 1521 and SQL Server default port is 1433",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#port",
+  "platform": "Terraform",
+  "descriptionID": "6cbad3f4",
+  "cloudProvider": "aws"
+}

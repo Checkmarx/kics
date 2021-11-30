@@ -1,0 +1,11 @@
+{
+  "id": "f5f38943-664b-4acc-ab11-f292fa10ed0b",
+  "queryName": "API Gateway without WAF",
+	"severity": "MEDIUM",
+  "category": "Networking and Firewall",
+	"descriptionText": "API Gateway should have WAF (Web Application Firewall) enabled",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/wafv2_resources_module.html#parameter-arn",
+  "platform": "Ansible",
+  "descriptionID": "8e789062",
+  "cloudProvider": "aws"
+}

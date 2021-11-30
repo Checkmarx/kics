@@ -20,8 +20,8 @@ require (
 	github.com/johnfercher/maroto v0.33.0
 	github.com/mailru/easyjson v0.7.7
 	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
-	github.com/moby/buildkit v0.9.2
-	github.com/open-policy-agent/opa v0.34.1
+	github.com/moby/buildkit v0.9.3
+	github.com/open-policy-agent/opa v0.34.2
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.26.0
 	github.com/spf13/cobra v1.2.1
@@ -38,8 +38,4 @@ require (
 	helm.sh/helm/v3 v3.7.1
 )
 
-replace github.com/docker/docker => github.com/docker/docker v1.4.2-0.20200227233006-38f52c9fec82
-
-replace github.com/docker/distribution => github.com/docker/distribution v0.0.0-20191216044856-a8371794149d
-
-replace github.com/containerd/containerd => github.com/containerd/containerd v1.5.7
+replace github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2

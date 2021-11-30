@@ -1,0 +1,11 @@
+{
+  "id": "8ed0bfce-f780-46d4-b086-21c3628f09ad",
+  "queryName": "SES Policy With Allowed IAM Actions",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "SES policy should not allow IAM actions to all principals",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_ses_identity_policy_module.html#parameter-policy",
+  "platform": "Ansible",
+  "descriptionID": "89d6e6fd",
+  "cloudProvider": "aws"
+}

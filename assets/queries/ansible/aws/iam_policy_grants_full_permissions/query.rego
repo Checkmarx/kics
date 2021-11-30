@@ -1,43 +1,27 @@
 package Cx
 
-import data.generic.ansible as ansLib
-import data.generic.common as commonLib
+import data.generic.ansible as ans_lib
+import data.generic.common as common_lib
 
 modules := {"community.aws.iam_managed_policy", "iam_managed_policy"}
 
 CxPolicy[result] {
-	task := ansLib.tasks[id][t]
+	task := ans_lib.tasks[id][t]
 	awsApiGateway := task[modules[m]]
-	ansLib.checkState(awsApiGateway)
+	ans_lib.checkState(awsApiGateway)
 
-	statement := awsApiGateway.policy.Statement[_]
-	contains(statement.Resource, "*")
-	contains(statement.Effect, "Allow")
+	st := common_lib.get_statement(common_lib.get_policy(awsApiGateway.policy))
+	statement := st[_]
+
+	common_lib.is_allow_effect(statement)
+	common_lib.equalsOrInArray(statement.Resource, "*")
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.policy.Statement.Resource", [task.name, modules[m]]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "iam_managed_policy.policy.Statement.Resource not equal '*'",
 		"keyActualValue": "iam_managed_policy.policy.Statement.Resource equal '*'",
-	}
-}
-
-CxPolicy[result] {
-	task := ansLib.tasks[id][t]
-	awsApiGateway := task[modules[m]]
-	ansLib.checkState(awsApiGateway)
-
-	policy := commonLib.json_unmarshal(awsApiGateway.policy)
-	statement := policy.Statement[_]
-	contains(statement.Resource, "*")
-	contains(statement.Effect, "Allow")
-
-	result := {
-		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.Statement.Principal.AWS", [task.name, modules[m]]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "iam_managed_policy.policy.Statement.Principal.AWS should not contain ':root'",
-		"keyActualValue": "iam_managed_policy.policy.Statement.Principal.AWS contains ':root'",
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}
 }

@@ -1,46 +1,49 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
+import data.generic.terraform as terra_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_iam_user_policy[name]
 
-	policy := commonLib.json_unmarshal(resource.policy)
-	statement := policy.Statement[_]
+	policy := common_lib.json_unmarshal(resource.policy)
+	st := common_lib.get_statement(policy)
+	statement := st[_]
 
 	statement.Action == "sts:AssumeRole"
-	statement.Effect == "Allow"
-	checkRoot(statement)
-	not checkMFA(statement)
+	common_lib.is_allow_effect(statement)
+	check_root(statement, resource)
+	not check_mfa(statement)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resource[aws_iam_user_policy].%s.policy", [name]),
+		"searchKey": sprintf("aws_iam_user_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'policy.Statement.Principal.AWS' contains ':mfa/' or 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' is true",
-		"keyActualValue": "'policy.Statement.Principal.AWS' doesn't contain ':mfa/' or 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' is false",
+		"keyExpectedValue": "'policy.Statement.Principal.AWS' contains ':mfa/' or 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' is set to true",
+		"keyActualValue": "'policy.Statement.Principal.AWS' doesn't contain ':mfa/' or 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' is set to false",
+		"searchLine": common_lib.build_search_line(["resource", "aws_iam_user_policy", name, "policy"], []),
 	}
 }
 
-checkMFA(statement) {
-	mfa := statement.Condition.BoolIfExists["aws:MultiFactorAuthPresent"]
-	mfa == "true"
-}
-
-checkMFA(statement) {
+check_mfa(statement) {
+	statement.Condition.BoolIfExists["aws:MultiFactorAuthPresent"] == "true"
+} else {
 	user := statement.Principal.AWS
+	contains(user, ":mfa/")
+} else {
+	user := statement.Principal.AWS[_]
 	contains(user, ":mfa/")
 }
 
-checkRoot(statement) {
+check_root(statement, resource) {
 	user := statement.Principal.AWS
 	contains(user, "root")
-}
-
-checkRoot(statement) {
-	input.document[i].resource.aws_iam_user_policy[name].user == "root"
-}
-
-checkRoot(statement) {
-	input.document[i].resource.aws_iam_user[name].name == "root"
+} else {
+	user := statement.Principal.AWS[_]
+	contains(user, "root")
+} else {
+	terra_lib.anyPrincipal(statement)
+} else {
+	options := {"user", "name"}
+	contains(resource[options[_]], "root")
 }

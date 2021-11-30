@@ -35,8 +35,9 @@ CxPolicy[result] {
 
 all_permissions(policyValue) {
 	policy := common_lib.json_unmarshal(policyValue)
-	statement := policy.Statement[_]
+	st := common_lib.get_statement(policy)
+	statement := st[_]
 
-	statement.Effect == "Allow"
+	common_lib.is_allow_effect(statement)
 	common_lib.containsOrInArrayContains(statement.Action, "*")
 }

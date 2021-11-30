@@ -2,7 +2,6 @@ package grpc
 
 import (
 	"encoding/json"
-	"fmt"
 	"reflect"
 	"testing"
 
@@ -35,16 +34,32 @@ func TestParser_Parse(t *testing.T) {
 			},
 			want: `[
 				{
-					"enum": {},
-					"services": {},
-					"imports": {},
 					"options": [],
+					"_kics_lines": {
+						"_kics_syntax": {
+							"_kics_line": 2
+						},
+						"kics__default": {
+							"_kics_line": 0
+						}
+					},
 					"syntax": "proto3",
 					"package": "",
-					"messages": {}
+					"messages": {
+						"_kics_lines": {}
+					},
+					"enum": {
+						"_kics_lines": {}
+					},
+					"services": {
+						"_kics_lines": {}
+					},
+					"imports": {
+						"_kics_lines": {}
+					}
 				}
 			]`,
-			want1:   []int{},
+			want1:   []int(nil),
 			wantErr: false,
 		},
 		{
@@ -56,6 +71,7 @@ func TestParser_Parse(t *testing.T) {
 				package Cx;
 				import public "other.proto";
 				option java_package = "com.example.foo";
+				// kics-scan ignore-block
 				enum EnumAllowingAlias {
 				  option allow_alias = true;
 				  UNKNOWN = 0;
@@ -63,82 +79,57 @@ func TestParser_Parse(t *testing.T) {
 				  RUNNING = 2 [(custom_option) = "hello world"];
 				}
 				message Outer {
+				  // kics-scan ignore-line
 				  option (my_option).a = true;
 				  message Inner {   // Level 2
 					int64 ival = 1;
 				  }
 				  repeated Inner inner_message = 2;
 				  EnumAllowingAlias enum_field =3;
+				  // kics-scan ignore-line
 				  map<int32, string> my_map = 4;
 				}`),
 			},
 			want: `[
 				{
-					"imports": {
-						"other.proto": {
-							"kind": "public"
-						}
-					},
-					"options": [
-						{
-							"constant": {
-								"isString": true,
-								"quoteRune": 34,
-								"source": "com.example.foo"
-							},
-							"name": "java_package"
-						}
-					],
-					"syntax": "proto3",
-					"package": "Cx",
-					"messages": {
-						"Outer": {
-							"field": {
-								"enum_field": {
-									"sequence": 3,
-									"type": "EnumAllowingAlias"
-								},
-								"inner_message": {
-									"repeated": true,
-									"sequence": 2,
-									"type": "Inner"
-								}
-							},
-							"inner_message": {
-								"Inner": {
-									"field": {
-										"ival": {
-											"sequence": 1,
-											"type": "int64"
-										}
-									}
-								}
-							},
-							"map": {
-								"my_map": {
-									"field": {
-										"sequence": 4,
-										"type": "string"
-									},
-									"key_type": "int32"
-								}
-							},
-							"options": {
-								"(my_option).a": {
-									"constant": {
-										"source": "true"
-									},
-									"name": "(my_option).a"
-								}
-							}
-						}
-					},
 					"enum": {
 						"EnumAllowingAlias": {
+							"_kics_lines": {
+								"_kics_RUNNING": {
+									"_kics_line": 10
+								},
+								"_kics_STARTED": {
+									"_kics_line": 9
+								},
+								"_kics_UNKNOWN": {
+									"_kics_line": 8
+								},
+								"_kics__default": {
+									"_kics_line": 6
+								},
+								"_kics_allow_alias": {
+									"_kics_line": 7
+								}
+							},
 							"field": {
 								"RUNNING": {
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 10
+										}
+									},
 									"options": {
+										"_kics_lines": {
+											"_kics__default": {
+												"_kics_line": 10
+											}
+										},
 										"constant": {
+											"_kics_lines": {
+												"_kics__default": {
+													"_kics_line": 10
+												}
+											},
 											"isString": true,
 											"quoteRune": 34,
 											"source": "hello world"
@@ -149,12 +140,22 @@ func TestParser_Parse(t *testing.T) {
 									"value": 2
 								},
 								"STARTED": {
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 9
+										}
+									},
 									"options": {
 										"constant": {}
 									},
 									"value": 1
 								},
 								"UNKNOWN": {
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 8
+										}
+									},
 									"options": {
 										"constant": {}
 									}
@@ -162,18 +163,190 @@ func TestParser_Parse(t *testing.T) {
 							},
 							"options": {
 								"allow_alias": {
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 7
+										}
+									},
 									"constant": {
+										"_kics_lines": {
+											"_kics__default": {
+												"_kics_line": 7
+											}
+										},
 										"source": "true"
 									},
 									"name": "allow_alias"
 								}
 							}
+						},
+						"_kics_lines": {
+							"_kics_EnumAllowingAlias": {
+								"_kics_line": 6
+							}
 						}
 					},
-					"services": {}
+					"services": {
+						"_kics_lines": {}
+					},
+					"imports": {
+						"_kics_lines": {
+							"_kics_other.proto": {
+								"_kics_line": 3
+							}
+						},
+						"other.proto": {
+							"kind": "public"
+						}
+					},
+					"options": [
+						{
+							"_kics_lines": {
+								"_kics__default": {
+									"_kics_line": 4
+								}
+							},
+							"constant": {
+								"_kics_lines": {
+									"_kics__default": {
+										"_kics_line": 4
+									}
+								},
+								"isString": true,
+								"quoteRune": 34,
+								"source": "com.example.foo"
+							},
+							"name": "java_package"
+						}
+					],
+					"_kics_lines": {
+						"_kics_package": {
+							"_kics_line": 2
+						},
+						"_kics_syntax": {
+							"_kics_line": 1
+						},
+						"kics__default": {
+							"_kics_arr": [
+								{
+									"java_package": {
+										"_kics_line": 4
+									}
+								}
+							],
+							"_kics_line": 0
+						}
+					},
+					"syntax": "proto3",
+					"package": "Cx",
+					"messages": {
+						"Outer": {
+							"_kics_lines": {
+								"_kics_(my_option).a": {
+									"_kics_line": 14
+								},
+								"_kics_Inner": {
+									"_kics_line": 15
+								},
+								"_kics__default": {
+									"_kics_line": 12
+								},
+								"_kics_enum_field": {
+									"_kics_line": 19
+								},
+								"_kics_inner_message": {
+									"_kics_line": 18
+								},
+								"_kics_my_map": {
+									"_kics_line": 21
+								}
+							},
+							"field": {
+								"enum_field": {
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 19
+										}
+									},
+									"sequence": 3,
+									"type": "EnumAllowingAlias"
+								},
+								"inner_message": {
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 18
+										}
+									},
+									"repeated": true,
+									"sequence": 2,
+									"type": "Inner"
+								}
+							},
+							"inner_message": {
+								"Inner": {
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 15
+										},
+										"_kics_ival": {
+											"_kics_line": 16
+										}
+									},
+									"field": {
+										"ival": {
+											"_kics_lines": {
+												"_kics__default": {
+													"_kics_line": 16
+												}
+											},
+											"sequence": 1,
+											"type": "int64"
+										}
+									}
+								}
+							},
+							"map": {
+								"my_map": {
+									"field": {
+										"_kics_lines": {
+											"_kics__default": {
+												"_kics_line": 21
+											}
+										},
+										"sequence": 4,
+										"type": "string"
+									},
+									"key_type": "int32"
+								}
+							},
+							"options": {
+								"(my_option).a": {
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 14
+										}
+									},
+									"constant": {
+										"_kics_lines": {
+											"_kics__default": {
+												"_kics_line": 14
+											}
+										},
+										"source": "true"
+									},
+									"name": "(my_option).a"
+								}
+							}
+						},
+						"_kics_lines": {
+							"_kics_Outer": {
+								"_kics_line": 12
+							}
+						}
+					}
 				}
 			]`,
-			want1:   []int{},
+			want1:   []int{5, 6, 7, 8, 9, 10, 13, 14, 20, 21},
 			wantErr: false,
 		},
 	}
@@ -186,9 +359,7 @@ func TestParser_Parse(t *testing.T) {
 				return
 			}
 			gotString, err := json.Marshal(got)
-			fmt.Println(string(gotString))
 			require.NoError(t, err)
-			fmt.Println(string(gotString))
 			require.JSONEq(t, tt.want, string(gotString))
 			if !reflect.DeepEqual(got1, tt.want1) {
 				t.Errorf("Parser.Parse() got1 = %v, want %v", got1, tt.want1)
@@ -276,7 +447,7 @@ func TestParser_GetCommentToken(t *testing.T) {
 		{
 			name: "grpc comment token",
 			p:    &Parser{},
-			want: "",
+			want: "//",
 		},
 	}
 	for _, tt := range tests {

@@ -1,0 +1,15 @@
+- name: add test alb to waf string032
+  community.aws.wafv2_resources:
+    name: string03
+    scope: REGIONAL
+    state: present
+    arn: "arn:aws:apigateway:region::/restapis/api-id/stages/prod"
+- name: Setup AWS API Gateway setup on AWS and deploy API definition2
+  community.aws.aws_api_gateway:
+    swagger_file: my_api.yml
+    stage: production
+    cache_enabled: true
+    cache_size: '1.6'
+    tracing_enabled: true
+    endpoint_type: EDGE
+    state: present

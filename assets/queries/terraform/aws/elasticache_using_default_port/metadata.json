@@ -1,0 +1,11 @@
+{
+  "id": "5d89db57-8b51-4b38-bb76-b9bd42bd40f0",
+  "queryName": "ElastiCache Using Default Port",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "ElastiCache should not use the default port (an attacker can easily guess the port). For engine set to Redis, the default port is 6379. The Memcached default port is 11211",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#port",
+  "platform": "Terraform",
+  "descriptionID": "86cc0d57",
+  "cloudProvider": "aws"
+}

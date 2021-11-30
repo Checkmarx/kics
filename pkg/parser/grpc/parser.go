@@ -24,7 +24,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 
 	var doc model.Document
 
-	jproto := converter.Convert(nodes)
+	jproto, linesIgnore := converter.Convert(nodes)
 
 	protoBytes, err := json.Marshal(jproto)
 	if err != nil {
@@ -36,7 +36,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 		return nil, nil, err
 	}
 
-	return []model.Document{doc}, []int{}, nil
+	return []model.Document{doc}, linesIgnore, nil
 }
 
 // GetKind returns the kind of the parser
@@ -56,7 +56,7 @@ func (p *Parser) SupportedTypes() []string {
 
 // GetCommentToken return the comment token of Docker - #
 func (p *Parser) GetCommentToken() string {
-	return ""
+	return "//"
 }
 
 // StringifyContent converts original content into string formated version

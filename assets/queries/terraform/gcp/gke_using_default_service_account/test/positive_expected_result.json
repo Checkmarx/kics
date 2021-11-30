@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "GKE Using Default Service Account",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "GKE Using Default Service Account",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive2.tf"
+  }
+]

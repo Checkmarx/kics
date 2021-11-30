@@ -1,0 +1,11 @@
+{
+  "id": "ad7444cf-817a-4765-a79e-2145f7981faf",
+  "queryName": "Shield Advanced Not In Use",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "AWS Shield Advanced should be used for Amazon Route 53 hosted zone, AWS Global Accelerator accelerator, Elastic IP Address, Elastic Load Balancing, and Amazon CloudFront Distribution to protect these resources against robust DDoS attacks",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fms-policy.html",
+  "platform": "CloudFormation",
+  "descriptionID": "ae5e799c",
+  "cloudProvider": "aws"
+}
