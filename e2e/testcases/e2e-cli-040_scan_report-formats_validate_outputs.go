@@ -8,13 +8,13 @@ func init() { //nolint
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "--output-path", "output", "--output-name", "E2E_CLI_040_RESULT",
-					"--report-formats", "json,sarif,glsast,html",
+					"--report-formats", "json,sarif,glsast,html,sonarqube",
 					"-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml"},
 			},
 			ExpectedResult: []ResultsValidation{
 				{
 					ResultsFile:    "E2E_CLI_040_RESULT",
-					ResultsFormats: []string{"json", "sarif", "glsast", "html"},
+					ResultsFormats: []string{"json", "sarif", "glsast", "html", "sonarqube"},
 				},
 			},
 		},
