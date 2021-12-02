@@ -8,30 +8,30 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 )
 
-type testSuites struct {
-	XMLName    xml.Name    `xml:"testsuites"`
-	Name       string      `xml:"name,attr"`
-	Time       string      `xml:"time,attr"`
-	Failures   string      `xml:"failures,attr"`
-	TestSuites []testSuite `xml:"testsuite"`
+type junitTestSuites struct {
+	XMLName    xml.Name         `xml:"testsuites"`
+	Name       string           `xml:"name,attr"`
+	Time       string           `xml:"time,attr"`
+	Failures   string           `xml:"failures,attr"`
+	TestSuites []junitTestSuite `xml:"testsuite"`
 }
 
-type testSuite struct {
-	XMLName   xml.Name   `xml:"testsuite"`
-	Name      string     `xml:"name,attr"`
-	Failures  string     `xml:"failures,attr"`
-	Tests     string     `xml:"tests,attr"`
-	TestCases []testCase `xml:"testcase"`
+type junitTestSuite struct {
+	XMLName   xml.Name        `xml:"testsuite"`
+	Name      string          `xml:"name,attr"`
+	Failures  string          `xml:"failures,attr"`
+	Tests     string          `xml:"tests,attr"`
+	TestCases []junitTestCase `xml:"testcase"`
 	failCount int
 }
 
-type testCase struct {
-	XMLName  xml.Name  `xml:"testcase"`
-	Name     string    `xml:"name,attr"`
-	Failures []failure `xml:"failure"`
+type junitTestCase struct {
+	XMLName  xml.Name       `xml:"testcase"`
+	Name     string         `xml:"name,attr"`
+	Failures []junitFailure `xml:"failure"`
 }
 
-type failure struct {
+type junitFailure struct {
 	XMLName xml.Name `xml:"failure"`
 	Type    string   `xml:"type,attr"`    // Query name
 	Message string   `xml:"message,attr"` // File name + line number
@@ -45,29 +45,35 @@ type JUnitReport interface {
 
 // NewJUnitReport creates a new JUnit report instance
 func NewJUnitReport(time string) JUnitReport {
-	return &testSuites{
+	return &junitTestSuites{
 		Name:       fmt.Sprintf("KICS v%s", constants.Version),
 		Time:       time,
 		Failures:   "",
-		TestSuites: make([]testSuite, 0),
+		TestSuites: make([]junitTestSuite, 0),
 	}
 }
 
 // GenerateTestEntry generates a new test entry for failed tests on KICS scan
-func (jUnit *testSuites) GenerateTestEntry(query *model.QueryResult) {
+func (jUnit *junitTestSuites) GenerateTestEntry(query *model.QueryResult) {
 	queryDescription := query.Description
 	if query.CISDescriptionText != "" {
 		queryDescription = query.CISDescriptionText
 	}
-	failedTestCase := testCase{
-		Name:     queryDescription,
-		Failures: make([]failure, len(query.Files)),
+	failedTestCase := junitTestCase{
+		Name:     fmt.Sprintf("[%s]: %s", query.QueryName, queryDescription),
+		Failures: make([]junitFailure, len(query.Files)),
 	}
 
 	for idx := range query.Files {
-		failedTest := failure{
-			Type:    query.QueryName,
-			Message: fmt.Sprintf("%s:%d", query.Files[idx].FileName, query.Files[idx].Line),
+		failedTest := junitFailure{
+			Type: query.QueryName,
+			Message: fmt.Sprintf(
+				"A problem was found on '%s' file in line %d, %s, but %s.",
+				query.Files[idx].FileName,
+				query.Files[idx].Line,
+				query.Files[idx].KeyExpectedValue,
+				query.Files[idx].KeyActualValue,
+			),
 		}
 		failedTestCase.Failures[idx] = failedTest
 	}
@@ -78,19 +84,19 @@ func (jUnit *testSuites) GenerateTestEntry(query *model.QueryResult) {
 			return
 		}
 	}
-	newTestSuite := testSuite{
-		Name:      query.Platform,
+	newTestSuite := junitTestSuite{
+		Name:      fmt.Sprintf("[%s]", query.Platform),
 		Failures:  "",
 		Tests:     "",
 		failCount: len(query.Files),
-		TestCases: make([]testCase, 0),
+		TestCases: make([]junitTestCase, 0),
 	}
 	newTestSuite.TestCases = append(newTestSuite.TestCases, failedTestCase)
 	jUnit.TestSuites = append(jUnit.TestSuites, newTestSuite)
 }
 
 // FinishReport finishes the report, adding the total number of failed tests for each platform and the total number of failed tests
-func (jUnit *testSuites) FinishReport() {
+func (jUnit *junitTestSuites) FinishReport() {
 	failsCount := 0
 	for idx := range jUnit.TestSuites {
 		failsCount += jUnit.TestSuites[idx].failCount

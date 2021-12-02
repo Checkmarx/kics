@@ -126,9 +126,10 @@ func exportXMLReport(path, filename string, body interface{}) error {
 	if err != nil {
 		return err
 	}
-
 	defer closeFile(fullPath, filename, f)
-
+	if _, err = f.WriteString(xml.Header); err != nil {
+		log.Debug().Err(err).Msg("Failed to write XML header")
+	}
 	encoder := xml.NewEncoder(f)
 	encoder.Indent("", "\t")
 
