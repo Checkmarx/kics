@@ -1,8 +1,10 @@
 package model
 
 import (
+	"fmt"
 	"path/filepath"
 	"reflect"
+	"runtime"
 	"testing"
 	"time"
 
@@ -57,9 +59,29 @@ func TestInitCycloneDxReport(t *testing.T) {
 func TestBuildCycloneDxReport(t *testing.T) {
 	var cycloneDx CycloneDxReport = initCycloneDxReport
 	var vulnsC1, vulnsC2 []Vulnerability
+	var positiveSha, negativeSha string
+
+	var sha256TestMap = map[string]map[string]string{
+		"positive": {
+			"Unix":    "487d5879d7ec205b4dcd037d5ce0075ed4fedb9dd5b8e45390ffdfa3442f15f7",
+			"Windows": "bd4ac2f61e7c623477b5d200b3662fd7caac5e89e042960fd1adb008e0962635",
+		},
+		"negative": {
+			"Unix":    "cd10cef2b154363f32ca4018426982509efbc9e1a8ea6bca587e68ffaef09c37",
+			"Windows": "68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29",
+		},
+	}
+
+	if runtime.GOOS == "windows" {
+		positiveSha = sha256TestMap["positive"]["Windows"]
+		negativeSha = sha256TestMap["negative"]["Windows"]
+	} else {
+		positiveSha = sha256TestMap["positive"]["Unix"]
+		negativeSha = sha256TestMap["negative"]["Unix"]
+	}
 
 	v1 := Vulnerability{
-		Ref: "pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/positive.tf@0.0.0-bd4ac2f61e7ce38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
+		Ref: fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/positive.tf@0.0.0-%se38a8e0a-b88b-4902-b3fe-b0fcb17d5c10", positiveSha[0:12]),
 		ID:  "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
 		Source: Source{
 			Name: "KICS",
@@ -80,7 +102,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 	}
 
 	v2 := Vulnerability{
-		Ref: "pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/positive.tf@0.0.0-bd4ac2f61e7c704dadd3-54fc-48ac-b6a0-02f170011473",
+		Ref: fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/positive.tf@0.0.0-%s704dadd3-54fc-48ac-b6a0-02f170011473", positiveSha[0:12]),
 		ID:  "704dadd3-54fc-48ac-b6a0-02f170011473",
 		Source: Source{
 			Name: "KICS",
@@ -101,7 +123,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 	}
 
 	v3 := Vulnerability{
-		Ref: "pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-68b4caecf5d5e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
+		Ref: fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-%se38a8e0a-b88b-4902-b3fe-b0fcb17d5c10", negativeSha[0:12]),
 		ID:  "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
 		Source: Source{
 			Name: "KICS",
@@ -126,14 +148,14 @@ func TestBuildCycloneDxReport(t *testing.T) {
 
 	c1 := Component{
 		Type:    "file",
-		BomRef:  "pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/positive.tf@0.0.0-bd4ac2f61e7c",
+		BomRef:  fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/positive.tf@0.0.0-%s", positiveSha[0:12]),
 		Name:    "../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/positive.tf",
-		Version: "0.0.0-bd4ac2f61e7c",
-		Purl:    "pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/positive.tf@0.0.0-bd4ac2f61e7c",
+		Version: fmt.Sprintf("0.0.0-%s", positiveSha[0:12]),
+		Purl:    fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/positive.tf@0.0.0-%s", positiveSha[0:12]),
 		Hashes: []Hash{
 			{
 				Alg:     "SHA-256",
-				Content: "bd4ac2f61e7c623477b5d200b3662fd7caac5e89e042960fd1adb008e0962635",
+				Content: positiveSha,
 			},
 		},
 		Vulnerabilities: vulnsC1,
@@ -143,14 +165,14 @@ func TestBuildCycloneDxReport(t *testing.T) {
 
 	c2 := Component{
 		Type:    "file",
-		BomRef:  "pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-68b4caecf5d5",
+		BomRef:  fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-%s", negativeSha[0:12]),
 		Name:    "../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf",
-		Version: "0.0.0-68b4caecf5d5",
-		Purl:    "pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-68b4caecf5d5",
+		Version: fmt.Sprintf("0.0.0-%s", negativeSha[0:12]),
+		Purl:    fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-%s", negativeSha[0:12]),
 		Hashes: []Hash{
 			{
 				Alg:     "SHA-256",
-				Content: "68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29",
+				Content: negativeSha,
 			},
 		},
 		Vulnerabilities: vulnsC2,
@@ -172,7 +194,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 			args: args{
 				summary: &test.ExampleSummaryMock,
 			},
-			want: &cycloneDx,
+			want: &cycloneDx, // alterar para linux, windows
 		},
 	}
 	for _, tt := range tests {
