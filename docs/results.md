@@ -436,7 +436,7 @@ Gitlab SAST reports are sorted by severity (from high to info), following [Gitla
 
 ## JUnit
 You can export JUnit report by using `--report-formats "junit"`.
-JUnit reports follows [JUnit XML specification by junit-team](https://github.com/junit-team/junit5/blob/main/platform-tests/src/test/resources/jenkins-junit.xsd), also, the generated file will have a prefix `junit-` and looks like:
+JUnit reports follow [JUnit XML specification by junit-team](https://github.com/junit-team/junit5/blob/main/platform-tests/src/test/resources/jenkins-junit.xsd), also, the generated file will have a prefix `junit-` and looks like:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
