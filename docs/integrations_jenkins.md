@@ -142,7 +142,7 @@ After that, you can add the following line to your pipeline script:
 
 The skipPublishingChecks option is important, otherwise the JUnit plugin will try to publish the results to GitHub in Jenkins. If you want to do this, you should check the [JUnit plugin documentation](https://plugins.jenkins.io/junit/) for more information.
 
-If you are using our example script, it will looks like the following:
+If you are using our example script, it will look like the following:
 ```groovy
 pipeline {
   agent any
