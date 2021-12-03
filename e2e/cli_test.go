@@ -122,6 +122,10 @@ func checkExpectedOutput(t *testing.T, tt *testcases.TestCase, argIndex int) {
 	if utils.Contains(resultsFormats, "glsast") {
 		utils.JSONSchemaValidation(t, "gl-sast-"+jsonFileName, "result-gl-sast.json")
 	}
+	// Check result file (SONARQUBE)
+	if utils.Contains(resultsFormats, "sonarqube") {
+		utils.JSONSchemaValidation(t, "sonarqube-"+jsonFileName, "result-sonarqube.json")
+	}
 	// Check result file (SARIF)
 	if utils.Contains(resultsFormats, "sarif") {
 		utils.JSONSchemaValidation(t, tt.Args.ExpectedResult[argIndex].ResultsFile+".sarif", "result-sarif.json")
