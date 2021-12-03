@@ -695,7 +695,7 @@ You can export CycloneDX report by using `--report-formats "cyclonedx"`. The gen
 					<v:description>[Terraform].[Resource Not Using Tags]: AWS services resource tags are an essential part of managing components</v:description>
 					<v:recommendations>
 						<v:recommendation>
-							<Recommendation>In line 1, a result was found &#39;aws_guardduty_detector[{{negative1}}].tags is undefined or null&#39;, but &#39;aws_guardduty_detector[{{negative1}}].tags is defined and not null&#39;</Recommendation>
+							<Recommendation>In line 1, a result was found. &#39;aws_guardduty_detector[{{negative1}}].tags is undefined or null&#39;, but &#39;aws_guardduty_detector[{{negative1}}].tags is defined and not null&#39;</Recommendation>
 						</v:recommendation>
 					</v:recommendations>
 				</v:vulnerability>

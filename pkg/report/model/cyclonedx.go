@@ -6,6 +6,7 @@ import (
 	"encoding/xml"
 	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
 	"time"
 
@@ -16,6 +17,7 @@ import (
 )
 
 const (
+	// KICS
 	KICS = "KICS"
 )
 
@@ -132,7 +134,7 @@ func getAllFiles(summary *model.Summary) []model.VulnerableFile {
 }
 
 func generateSha256(filePath string) string {
-	content, err := os.ReadFile(filePath)
+	content, err := os.ReadFile(filepath.Clean(filePath))
 
 	if err != nil {
 		log.Trace().Msgf("failed to read %s", filePath)
