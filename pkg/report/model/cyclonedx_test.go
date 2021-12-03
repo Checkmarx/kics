@@ -16,7 +16,7 @@ var metadata Metadata = Metadata{
 	Tools: &[]Tool{
 		{
 			Vendor:  "Checkmarx",
-			Name:    KICS,
+			Name:    "KICS",
 			Version: constants.Version,
 		},
 	},
@@ -62,7 +62,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 		Ref: "pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/positive.tf@0.0.0-bd4ac2f61e7ce38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
 		ID:  "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
 		Source: Source{
-			Name: KICS,
+			Name: "KICS",
 			URL:  "https://kics.io/",
 		},
 		Ratings: []Rating{
@@ -83,7 +83,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 		Ref: "pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/positive.tf@0.0.0-bd4ac2f61e7c704dadd3-54fc-48ac-b6a0-02f170011473",
 		ID:  "704dadd3-54fc-48ac-b6a0-02f170011473",
 		Source: Source{
-			Name: KICS,
+			Name: "KICS",
 			URL:  "https://kics.io/",
 		},
 		Ratings: []Rating{
@@ -104,7 +104,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 		Ref: "pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-68b4caecf5d5e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
 		ID:  "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
 		Source: Source{
-			Name: KICS,
+			Name: "KICS",
 			URL:  "https://kics.io/",
 		},
 		Ratings: []Rating{
