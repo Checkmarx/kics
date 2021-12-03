@@ -116,9 +116,8 @@ func getSummary(body interface{}) (sum model.Summary, err error) {
 	return summary, nil
 }
 
-// ExportXMLReport - encodes a given body to a XML file in a given filepath
-func ExportXMLReport(path, filename string, body interface{}) error {
-	if !strings.Contains(filename, ".") {
+func exportXMLReport(path, filename string, body interface{}) error {
+	if !strings.HasSuffix(filename, ".xml") {
 		filename += ".xml"
 	}
 
@@ -127,12 +126,9 @@ func ExportXMLReport(path, filename string, body interface{}) error {
 	if err != nil {
 		return err
 	}
-
 	defer closeFile(fullPath, filename, f)
-
-	_, errHeader := f.WriteString(xml.Header)
-	if errHeader != nil {
-		return err
+	if _, err = f.WriteString(xml.Header); err != nil {
+		log.Debug().Err(err).Msg("Failed to write XML header")
 	}
 	encoder := xml.NewEncoder(f)
 	encoder.Indent("", "\t")
