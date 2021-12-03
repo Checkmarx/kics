@@ -33,6 +33,7 @@ var reportGenerators = map[string]func(path, filename string, body interface{}) 
 	"glsast":    report.PrintGitlabSASTReport,
 	"pdf":       report.PrintPdfReport,
 	"sonarqube": report.PrintSonarQubeReport,
+	"junit":     report.PrintJUnitReport,
 }
 
 // Printer wil print console output with colors
