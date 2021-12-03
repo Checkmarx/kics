@@ -1,5 +1,6 @@
 # Results
 KICS can export results in multiple formats which can be seen on the following list:
+- CycloneDX (cyclonedx)
 - Gitlab SAST (glsast)
 - HTML (html)
 - JSON (json)
@@ -649,3 +650,57 @@ PDF reports are sorted by severity (from high to info), the results will have qu
 | --------------| ------------------------------------------|
 | `126`         | Engine Error                              |
 | `130`         | Signal-Interrupt                          |
+
+
+
+## CycloneDX
+Now, the CycloneDX report is only available in XML format since the vulnerability schema extension is not currently available in JSON. The guidelines used to build the CycloneDX report were the [bom schema 1.3](http://cyclonedx.org/schema/bom/1.3) and [vulnerability schema 1.0](https://github.com/CycloneDX/specification/blob/master/schema/ext/vulnerability-1.0.xsd).
+
+You can export CycloneDX report by using `--report-formats "cyclonedx"`. The generated report file will have a prefix `cyclonedx-` and looks like the following example:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.3" serialNumber="urn:uuid:9f9c80f3-5795-476d-974f-85e6cf1daa65" xmlns:v="http://cyclonedx.org/schema/ext/vulnerability/1.0" version="1">
+	<metadata>
+		<timestamp>2021-12-03T15:39:49Z</timestamp>
+		<tools>
+			<tool>
+				<vendor>Checkmarx</vendor>
+				<name>KICS</name>
+				<version>development</version>
+			</tool>
+		</tools>
+	</metadata>
+	<components>
+		<component type="file" bom-ref="pkg:generic/assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-68b4caecf5d5">
+			<name>assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf</name>
+			<version>0.0.0-68b4caecf5d5</version>
+			<hashes>
+				<hash alg="SHA-256">68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29</hash>
+			</hashes>
+			<purl>pkg:generic/assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-68b4caecf5d5</purl>
+			<v:vulnerabilities>
+				<v:vulnerability ref="pkg:generic/assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-68b4caecf5d5e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10">
+					<v:id>e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10</v:id>
+					<v:source>
+						<name>KICS</name>
+						<url>https://kics.io/</url>
+					</v:source>
+					<v:ratings>
+						<v:rating>
+							<v:severity>None</v:severity>
+							<v:method>Other</v:method>
+						</v:rating>
+					</v:ratings>
+					<v:description>[Terraform].[Resource Not Using Tags]: AWS services resource tags are an essential part of managing components</v:description>
+					<v:recommendations>
+						<v:recommendation>
+							<Recommendation>In line 1, a result was found &#39;aws_guardduty_detector[{{negative1}}].tags is undefined or null&#39;, but &#39;aws_guardduty_detector[{{negative1}}].tags is defined and not null&#39;</Recommendation>
+						</v:recommendation>
+					</v:recommendations>
+				</v:vulnerability>
+			</v:vulnerabilities>
+		</component>
+	</components>
+</bom>
+```
