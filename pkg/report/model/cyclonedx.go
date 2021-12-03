@@ -183,7 +183,7 @@ func getVulnerabilities(fileName, purl string, summary *model.Summary) []Vulnera
 					Description: getDescription(&query),
 					Recommendations: []Recommendation{
 						{
-							Recommendation: fmt.Sprintf("In line %d, the actual value is '%s'. However, the expected value is '%s'",
+							Recommendation: fmt.Sprintf("In line %d, a result was found '%s', but '%s'",
 								file.Line, file.KeyActualValue, file.KeyExpectedValue),
 						},
 					},

@@ -21,5 +21,5 @@ func PrintCycloneDxReport(path, filename string, body interface{}) error {
 		body = reportModel.BuildCycloneDxReport(&summary)
 	}
 
-	return ExportXMLReport(path, filename, body)
+	return exportXMLReport(path, filename, body)
 }
