@@ -10,11 +10,10 @@
       
       
       
-      
         <link rel="canonical" href="http://docs.kics.io/develop/results/">
       
       <link rel="icon" href="../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.3">
     
     
       
@@ -22,10 +21,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.a57b2b03.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.62128196.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.9204c3b2.min.css">
         
       
     
@@ -35,27 +34,15 @@
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
-    
     
     
       <link rel="stylesheet" href="../css/custom.css">
     
+    <script>function __md_scope(e,t,_){return new URL(_||(t===localStorage?"..":".."),location).pathname+"."+e}function __md_get(e,t=localStorage,_){return JSON.parse(t.getItem(__md_scope(e,t,_)))}function __md_set(e,t,_=localStorage,o){try{_.setItem(__md_scope(e,_,o),JSON.stringify(t))}catch(e){}}</script>
     
       
-  
-
-
-
-  
-  
-
-
-
-  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-186818347-2","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
-
 
     
     
@@ -72,9 +59,8 @@
     <body dir="ltr" data-md-color-scheme="kics" data-md-color-primary="" data-md-color-accent="">
   
     
-    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
-      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -90,6 +76,13 @@
     <div data-md-component="announce">
       
     </div>
+    
+      <div data-md-component="outdated" hidden>
+        <aside class="md-banner md-banner--warning">
+          
+        </aside>
+      </div>
+    
     
       
 
@@ -149,8 +142,7 @@
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
       </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
@@ -182,8 +174,7 @@
     
     
       <div class="md-header__source">
-        
-<a href="https://github.com/Checkmarx/kics/" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/Checkmarx/kics/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -340,8 +331,7 @@
   </label>
   
     <div class="md-nav__source">
-      
-<a href="https://github.com/Checkmarx/kics/" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/Checkmarx/kics/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -465,7 +455,6 @@
       </a>
       
         
-
 
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
@@ -1157,7 +1146,6 @@
                   <div class="md-sidebar__inner">
                     
 
-
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -1190,18 +1178,20 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/Checkmarx/kics/edit/master/docs/results.md" title="Edit this page" class="md-content__button md-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
-                  </a>
-                
-                
-                <h1 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h1>
+<a href="https://github.com/Checkmarx/kics/edit/master/docs/results.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+<h1 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h1>
 <p>KICS can export results in multiple formats which can be seen on the following list:
-- JSON (json)
-- SARIF (sarif)
 - Gitlab SAST (glsast)
 - HTML (html)
-- PDF (pdf)</p>
+- JSON (json)
+- JUnit (junit)
+- PDF (pdf)
+- SARIF (sarif)
+- SonarQube (sonarqube)</p>
 <p>To export in JSON format in current directory, you can use the following command:</p>
 <pre><code class="language-bash">./kics scan -p &lt;path-of-your-project-to-scan&gt; -o ./
 </code></pre>
@@ -1603,6 +1593,47 @@ Gitlab SAST reports are sorted by severity (from high to info), following <a hre
 }
 
 </code></pre>
+<h2 id="junit">JUnit<a class="headerlink" href="#junit" title="Permanent link">&para;</a></h2>
+<p>You can export JUnit report by using <code>--report-formats "junit"</code>.
+JUnit reports follow <a href="https://github.com/junit-team/junit5/blob/main/platform-tests/src/test/resources/jenkins-junit.xsd">JUnit XML specification by junit-team</a>, also, the generated file will have a prefix <code>junit-</code> and looks like:</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;testsuites name=&quot;KICS vdevelopment&quot; time=&quot;11.5808455s&quot; failures=&quot;25&quot;&gt;
+    &lt;testsuite name=&quot;[Terraform]&quot; failures=&quot;11&quot; tests=&quot;11&quot;&gt;
+        &lt;testcase name=&quot;[Authentication Without MFA]: Users should authenticate with MFA (Multi-factor Authentication)&quot;&gt;
+            &lt;failure type=&quot;Authentication Without MFA&quot; message=&quot;A problem was found on &amp;#39;assets/queries/terraform/aws/iam_policy_grants_full_permissions/test/positive.tf&amp;#39; file in line 20, The attributes &amp;#39;policy.Statement.Condition&amp;#39;, &amp;#39;policy.Statement.Condition.BoolIfExists&amp;#39;, and &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; are defined and not null, but The attribute(s) &amp;#39;policy.Statement.Condition&amp;#39; or/and &amp;#39;policy.Statement.Condition.BoolIfExists&amp;#39; or/and &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; is/are undefined or null.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;Authentication Without MFA&quot; message=&quot;A problem was found on &amp;#39;assets/queries/terraform/aws/iam_user_policy_without_mfa/test/negative.tf&amp;#39; file in line 43, The attributes &amp;#39;policy.Statement.Condition&amp;#39;, &amp;#39;policy.Statement.Condition.BoolIfExists&amp;#39;, and &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; are defined and not null, but The attribute(s) &amp;#39;policy.Statement.Condition&amp;#39; or/and &amp;#39;policy.Statement.Condition.BoolIfExists&amp;#39; or/and &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; is/are undefined or null.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;Authentication Without MFA&quot; message=&quot;A problem was found on &amp;#39;assets/queries/terraform/aws/authentication_without_mfa/test/positive2.tf&amp;#39; file in line 19, The attributes &amp;#39;policy.Statement.Condition&amp;#39;, &amp;#39;policy.Statement.Condition.BoolIfExists&amp;#39;, and &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; are defined and not null, but The attribute(s) &amp;#39;policy.Statement.Condition&amp;#39; or/and &amp;#39;policy.Statement.Condition.BoolIfExists&amp;#39; or/and &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; is/are undefined or null.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;Authentication Without MFA&quot; message=&quot;A problem was found on &amp;#39;assets/queries/terraform/aws/root_account_has_active_access_keys/test/negative.tf&amp;#39; file in line 16, The attributes &amp;#39;policy.Statement.Condition&amp;#39;, &amp;#39;policy.Statement.Condition.BoolIfExists&amp;#39;, and &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; are defined and not null, but The attribute(s) &amp;#39;policy.Statement.Condition&amp;#39; or/and &amp;#39;policy.Statement.Condition.BoolIfExists&amp;#39; or/and &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; is/are undefined or null.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;Authentication Without MFA&quot; message=&quot;A problem was found on &amp;#39;assets/queries/terraform/aws/iam_user_policy_without_mfa/test/negative.tf&amp;#39; file in line 18, &amp;#39;policy.Statement.Principal.AWS&amp;#39; contains &amp;#39;:mfa/&amp;#39; or &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; is set to true, but &amp;#39;policy.Statement.Principal.AWS&amp;#39; doesn&amp;#39;t contain &amp;#39;:mfa/&amp;#39; or &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; is set to false.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;Authentication Without MFA&quot; message=&quot;A problem was found on &amp;#39;assets/queries/terraform/aws/iam_policies_attached_to_user/test/positive2.tf&amp;#39; file in line 20, The attributes &amp;#39;policy.Statement.Condition&amp;#39;, &amp;#39;policy.Statement.Condition.BoolIfExists&amp;#39;, and &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; are defined and not null, but The attribute(s) &amp;#39;policy.Statement.Condition&amp;#39; or/and &amp;#39;policy.Statement.Condition.BoolIfExists&amp;#39; or/and &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; is/are undefined or null.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;Authentication Without MFA&quot; message=&quot;A problem was found on &amp;#39;assets/queries/terraform/aws/iam_policy_grants_full_permissions/test/negative.tf&amp;#39; file in line 20, The attributes &amp;#39;policy.Statement.Condition&amp;#39;, &amp;#39;policy.Statement.Condition.BoolIfExists&amp;#39;, and &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; are defined and not null, but The attribute(s) &amp;#39;policy.Statement.Condition&amp;#39; or/and &amp;#39;policy.Statement.Condition.BoolIfExists&amp;#39; or/and &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; is/are undefined or null.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;Authentication Without MFA&quot; message=&quot;A problem was found on &amp;#39;assets/queries/terraform/aws/iam_user_policy_without_mfa/test/positive.tf&amp;#39; file in line 18, The attributes &amp;#39;policy.Statement.Condition&amp;#39;, &amp;#39;policy.Statement.Condition.BoolIfExists&amp;#39;, and &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; are defined and not null, but The attribute(s) &amp;#39;policy.Statement.Condition&amp;#39; or/and &amp;#39;policy.Statement.Condition.BoolIfExists&amp;#39; or/and &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; is/are undefined or null.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;Authentication Without MFA&quot; message=&quot;A problem was found on &amp;#39;assets/queries/terraform/aws/root_account_has_active_access_keys/test/positive1.tf&amp;#39; file in line 16, The attributes &amp;#39;policy.Statement.Condition&amp;#39;, &amp;#39;policy.Statement.Condition.BoolIfExists&amp;#39;, and &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; are defined and not null, but The attribute(s) &amp;#39;policy.Statement.Condition&amp;#39; or/and &amp;#39;policy.Statement.Condition.BoolIfExists&amp;#39; or/and &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; is/are undefined or null.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;Authentication Without MFA&quot; message=&quot;A problem was found on &amp;#39;assets/queries/terraform/aws/root_account_has_active_access_keys/test/positive2.tf&amp;#39; file in line 16, The attributes &amp;#39;policy.Statement.Condition&amp;#39;, &amp;#39;policy.Statement.Condition.BoolIfExists&amp;#39;, and &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; are defined and not null, but The attribute(s) &amp;#39;policy.Statement.Condition&amp;#39; or/and &amp;#39;policy.Statement.Condition.BoolIfExists&amp;#39; or/and &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; is/are undefined or null.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;Authentication Without MFA&quot; message=&quot;A problem was found on &amp;#39;assets/queries/terraform/aws/authentication_without_mfa/test/positive1.tf&amp;#39; file in line 23, &amp;#39;policy.Statement.Principal.AWS&amp;#39; contains &amp;#39;:mfa/&amp;#39; or &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; is set to true, but &amp;#39;policy.Statement.Principal.AWS&amp;#39; doesn&amp;#39;t contain &amp;#39;:mfa/&amp;#39; or &amp;#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&amp;#39; is set to false.&quot;&gt;&lt;/failure&gt;
+        &lt;/testcase&gt;
+    &lt;/testsuite&gt;
+    &lt;testsuite name=&quot;[CloudFormation]&quot; failures=&quot;14&quot; tests=&quot;14&quot;&gt;
+        &lt;testcase name=&quot;[CloudWatch Metrics Disabled]: Checks if CloudWatch Metrics is Enabled&quot;&gt;
+            &lt;failure type=&quot;CloudWatch Metrics Disabled&quot; message=&quot;A problem was found on &amp;#39;assets/queries/cloudFormation/cloudwatch_metrics_disabled/test/positive4.json&amp;#39; file in line 5, Resources.Prod.Properties.MethodSettings should be defined, but Resources.Prod.Properties.MethodSettings is undefined.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;CloudWatch Metrics Disabled&quot; message=&quot;A problem was found on &amp;#39;assets/queries/cloudFormation/api_gateway_deployment_without_access_log_setting/test/positive6.json&amp;#39; file in line 13, Resources.GreetingApiProdStage2.Properties.MethodSettings[0].MetricsEnabled should be set to true, but Resources.GreetingApiProdStage2.Properties.MethodSettings[0].MetricsEnabled is undefined.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;CloudWatch Metrics Disabled&quot; message=&quot;A problem was found on &amp;#39;assets/queries/cloudFormation/api_gateway_deployment_without_access_log_setting/test/negative1.yaml&amp;#39; file in line 12, Resources.GreetingApiProdStage.Properties.MethodSettings[0].MetricsEnabled should be set to true, but Resources.GreetingApiProdStage.Properties.MethodSettings[0].MetricsEnabled is undefined.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;CloudWatch Metrics Disabled&quot; message=&quot;A problem was found on &amp;#39;assets/queries/cloudFormation/api_gateway_deployment_without_access_log_setting/test/positive2.yaml&amp;#39; file in line 12, Resources.GreetingApiProdStage1.Properties.MethodSettings[0].MetricsEnabled should be set to true, but Resources.GreetingApiProdStage1.Properties.MethodSettings[0].MetricsEnabled is undefined.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;CloudWatch Metrics Disabled&quot; message=&quot;A problem was found on &amp;#39;assets/queries/cloudFormation/cloudwatch_metrics_disabled/test/positive1.yaml&amp;#39; file in line 18, Resources.Prod.Properties.MethodSettings[0].MetricsEnabled should be set to true, but Resources.Prod.Properties.MethodSettings[0].MetricsEnabled is set to false.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;CloudWatch Metrics Disabled&quot; message=&quot;A problem was found on &amp;#39;assets/queries/cloudFormation/cloudwatch_metrics_disabled/test/positive3.yaml&amp;#39; file in line 6, Resources.Prod.Properties.MethodSettings should be defined, but Resources.Prod.Properties.MethodSettings is undefined.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;CloudWatch Metrics Disabled&quot; message=&quot;A problem was found on &amp;#39;assets/queries/cloudFormation/cloudwatch_metrics_disabled/test/positive2.json&amp;#39; file in line 25, Resources.Prod.Properties.MethodSettings[0].MetricsEnabled should be set to true, but Resources.Prod.Properties.MethodSettings[0].MetricsEnabled is undefined.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;CloudWatch Metrics Disabled&quot; message=&quot;A problem was found on &amp;#39;assets/queries/cloudFormation/cloudwatch_metrics_disabled/test/positive1.yaml&amp;#39; file in line 20, Resources.Prod.Properties.MethodSettings[1].MetricsEnabled should be set to true, but Resources.Prod.Properties.MethodSettings[1].MetricsEnabled is undefined.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;CloudWatch Metrics Disabled&quot; message=&quot;A problem was found on &amp;#39;assets/queries/cloudFormation/api_gateway_deployment_without_access_log_setting/test/negative2.json&amp;#39; file in line 17, Resources.GreetingApiProdStage.Properties.MethodSettings[0].MetricsEnabled should be set to true, but Resources.GreetingApiProdStage.Properties.MethodSettings[0].MetricsEnabled is undefined.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;CloudWatch Metrics Disabled&quot; message=&quot;A problem was found on &amp;#39;assets/queries/cloudFormation/api_gateway_deployment_without_access_log_setting/test/positive4.json&amp;#39; file in line 35, Resources.GreetingApiProdStage.Properties.MethodSettings[0].MetricsEnabled should be set to true, but Resources.GreetingApiProdStage.Properties.MethodSettings[0].MetricsEnabled is undefined.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;CloudWatch Metrics Disabled&quot; message=&quot;A problem was found on &amp;#39;assets/queries/cloudFormation/api_gateway_deployment_without_access_log_setting/test/positive5.json&amp;#39; file in line 16, Resources.GreetingApiProdStage1.Properties.MethodSettings[0].MetricsEnabled should be set to true, but Resources.GreetingApiProdStage1.Properties.MethodSettings[0].MetricsEnabled is undefined.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;CloudWatch Metrics Disabled&quot; message=&quot;A problem was found on &amp;#39;assets/queries/cloudFormation/api_gateway_deployment_without_access_log_setting/test/positive1.yaml&amp;#39; file in line 12, Resources.GreetingApiProdStage.Properties.MethodSettings[0].MetricsEnabled should be set to true, but Resources.GreetingApiProdStage.Properties.MethodSettings[0].MetricsEnabled is undefined.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;CloudWatch Metrics Disabled&quot; message=&quot;A problem was found on &amp;#39;assets/queries/cloudFormation/api_gateway_deployment_without_access_log_setting/test/positive3.yaml&amp;#39; file in line 12, Resources.GreetingApiProdStage2.Properties.MethodSettings[0].MetricsEnabled should be set to true, but Resources.GreetingApiProdStage2.Properties.MethodSettings[0].MetricsEnabled is undefined.&quot;&gt;&lt;/failure&gt;
+            &lt;failure type=&quot;CloudWatch Metrics Disabled&quot; message=&quot;A problem was found on &amp;#39;assets/queries/cloudFormation/cloudwatch_metrics_disabled/test/positive2.json&amp;#39; file in line 32, Resources.Prod.Properties.MethodSettings[1].MetricsEnabled should be set to true, but Resources.Prod.Properties.MethodSettings[1].MetricsEnabled is set to false.&quot;&gt;&lt;/failure&gt;
+        &lt;/testcase&gt;
+    &lt;/testsuite&gt;
+&lt;/testsuites&gt;
+</code></pre>
+<p>Also, you can check our <a href="../integrations_jenkins/">Jenkins integration section</a> to check how to integrate this report with Jenkins JUnit plugin.</p>
 <h2 id="sonarqube">SonarQube<a class="headerlink" href="#sonarqube" title="Permanent link">&para;</a></h2>
 <p>You can export sonarqube report by using <code>--report-formats "sonarqube"</code>.
 SonarQube reports, follow <a href="https://docs.sonarqube.org/latest/analysis/generic-issue/">SonarQube Import Format</a>, also, the generated file will have a prefix <code>sonarqube-</code> and looks like:</p>
@@ -1800,11 +1831,6 @@ PDF reports are sorted by severity (from high to info), the results will have qu
 </tr>
 </tbody>
 </table>
-                
-              
-              
-                
-
 
               
             </article>
@@ -1813,8 +1839,7 @@ PDF reports are sorted by severity (from high to info), the results will have qu
         
       </main>
       
-        
-<footer class="md-footer">
+        <footer class="md-footer">
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
@@ -1853,20 +1878,19 @@ PDF reports are sorted by severity (from high to info), the results will have qu
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-          <div class="md-footer-copyright__highlight">
-            &copy; 2021 Checkmarx Ltd. All Rights Reserved.
-          </div>
-        
-        
-          Made with
-          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-            Material for MkDocs
-          </a>
-        
-        
-      </div>
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2021 Checkmarx Ltd. All Rights Reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
       
     </div>
   </div>
@@ -1876,10 +1900,10 @@ PDF reports are sorted by severity (from high to info), the results will have qu
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.01824240.min.js", "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.b1047164.min.js"></script>
+      <script src="../assets/javascripts/bundle.e0abf5b0.min.js"></script>
       
         <script src="../js/version-mike.js"></script>
       
