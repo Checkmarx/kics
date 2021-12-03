@@ -209,7 +209,7 @@
 				
 				<option value="file76">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
-				<option value="file77">github.com/Checkmarx/kics/pkg/report/commons.go (81.6%)</option>
+				<option value="file77">github.com/Checkmarx/kics/pkg/report/commons.go (82.0%)</option>
 				
 				<option value="file78">github.com/Checkmarx/kics/pkg/report/gitlab_sast.go (93.3%)</option>
 				
@@ -217,31 +217,35 @@
 				
 				<option value="file80">github.com/Checkmarx/kics/pkg/report/json.go (92.3%)</option>
 				
-				<option value="file81">github.com/Checkmarx/kics/pkg/report/model/gitlab_sast.go (75.0%)</option>
+				<option value="file81">github.com/Checkmarx/kics/pkg/report/junit.go (92.3%)</option>
 				
-				<option value="file82">github.com/Checkmarx/kics/pkg/report/model/sarif.go (94.0%)</option>
+				<option value="file82">github.com/Checkmarx/kics/pkg/report/model/gitlab_sast.go (75.0%)</option>
 				
-				<option value="file83">github.com/Checkmarx/kics/pkg/report/model/sarif_categories.go (100.0%)</option>
+				<option value="file83">github.com/Checkmarx/kics/pkg/report/model/junit.go (77.3%)</option>
 				
-				<option value="file84">github.com/Checkmarx/kics/pkg/report/model/sonarqube.go (92.9%)</option>
+				<option value="file84">github.com/Checkmarx/kics/pkg/report/model/sarif.go (94.0%)</option>
 				
-				<option value="file85">github.com/Checkmarx/kics/pkg/report/pdf.go (88.6%)</option>
+				<option value="file85">github.com/Checkmarx/kics/pkg/report/model/sarif_categories.go (100.0%)</option>
 				
-				<option value="file86">github.com/Checkmarx/kics/pkg/report/sarif.go (90.9%)</option>
+				<option value="file86">github.com/Checkmarx/kics/pkg/report/model/sonarqube.go (92.9%)</option>
 				
-				<option value="file87">github.com/Checkmarx/kics/pkg/report/sonarqube.go (90.9%)</option>
+				<option value="file87">github.com/Checkmarx/kics/pkg/report/pdf.go (88.6%)</option>
 				
-				<option value="file88">github.com/Checkmarx/kics/pkg/resolver/helm/helm.go (88.5%)</option>
+				<option value="file88">github.com/Checkmarx/kics/pkg/report/sarif.go (90.9%)</option>
 				
-				<option value="file89">github.com/Checkmarx/kics/pkg/resolver/helm/resolver.go (88.4%)</option>
+				<option value="file89">github.com/Checkmarx/kics/pkg/report/sonarqube.go (90.9%)</option>
 				
-				<option value="file90">github.com/Checkmarx/kics/pkg/resolver/resolver.go (90.5%)</option>
+				<option value="file90">github.com/Checkmarx/kics/pkg/resolver/helm/helm.go (88.5%)</option>
 				
-				<option value="file91">github.com/Checkmarx/kics/pkg/scanner/scanner.go (56.4%)</option>
+				<option value="file91">github.com/Checkmarx/kics/pkg/resolver/helm/resolver.go (88.4%)</option>
 				
-				<option value="file92">github.com/Checkmarx/kics/pkg/utils/map.go (100.0%)</option>
+				<option value="file92">github.com/Checkmarx/kics/pkg/resolver/resolver.go (90.5%)</option>
 				
-				<option value="file93">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
+				<option value="file93">github.com/Checkmarx/kics/pkg/scanner/scanner.go (56.4%)</option>
+				
+				<option value="file94">github.com/Checkmarx/kics/pkg/utils/map.go (100.0%)</option>
+				
+				<option value="file95">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
 				
 				</select>
 			</div>
@@ -577,7 +581,7 @@ func isQueryID(id string) bool <span class="cov5" title="5">{
 
 func convertSliceToDummyMap(slice []string) map[string]string <span class="cov5" title="5">{
         returnMap := make(map[string]string, len(slice))
-        for _, element := range slice </span><span class="cov10" title="25">{
+        for _, element := range slice </span><span class="cov10" title="26">{
                 returnMap[element] = ""
         }</span>
         <span class="cov5" title="5">return returnMap</span>
@@ -833,6 +837,7 @@ var reportGenerators = map[string]func(path, filename string, body interface{}) 
         "glsast":    report.PrintGitlabSASTReport,
         "pdf":       report.PrintPdfReport,
         "sonarqube": report.PrintSonarQubeReport,
+        "junit":     report.PrintJUnitReport,
 }
 
 // Printer wil print console output with colors
@@ -1066,7 +1071,7 @@ func GetDefaultQueryPath(queriesPath string) (string, error) <span class="cov3" 
 // ListReportFormats return a slice with all supported report formats
 func ListReportFormats() []string <span class="cov1" title="1">{
         supportedFormats := make([]string, 0, len(reportGenerators))
-        for reportFormats := range reportGenerators </span><span class="cov6" title="6">{
+        for reportFormats := range reportGenerators </span><span class="cov6" title="7">{
                 supportedFormats = append(supportedFormats, reportFormats)
         }</span>
         <span class="cov1" title="1">sort.Strings(supportedFormats)
@@ -2307,13 +2312,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="30">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="30">total += v
+                <span class="cov8" title="34">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2338,7 +2343,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -13375,6 +13380,7 @@ func (i *PbBuilder) BuildCircle(label string) PBar <span class="cov1" title="1">
 
 import (
         "encoding/json"
+        "encoding/xml"
         "fmt"
         "html/template"
         "os"
@@ -13429,30 +13435,30 @@ func getCurrentTime() string <span class="cov1" title="1">{
         return fmt.Sprint(dt.Format("01/02/2006 15:04"))
 }</span>
 
-func fileCreationReport(path, filename string) <span class="cov10" title="7">{
+func fileCreationReport(path, filename string) <span class="cov10" title="8">{
         log.Info().Str("fileName", filename).Msgf("Results saved to file %s", path)
         fmt.Printf("Results saved to file %s\n", path)
 }</span>
 
-func closeFile(path, filename string, file *os.File) <span class="cov8" title="5">{
+func closeFile(path, filename string, file *os.File) <span class="cov8" title="6">{
         err := file.Close()
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err).Msgf("Failed to close file %s", path)
         }</span>
 
-        <span class="cov8" title="5">fileCreationReport(path, filename)</span>
+        <span class="cov8" title="6">fileCreationReport(path, filename)</span>
 }
 
-func getPlatforms(queries model.QueryResultSlice) string <span class="cov6" title="3">{
+func getPlatforms(queries model.QueryResultSlice) string <span class="cov5" title="3">{
         platforms := make([]string, 0)
         alreadyAdded := make(map[string]string)
-        for idx := range queries </span><span class="cov6" title="3">{
-                if _, ok := alreadyAdded[queries[idx].Platform]; !ok </span><span class="cov6" title="3">{
+        for idx := range queries </span><span class="cov5" title="3">{
+                if _, ok := alreadyAdded[queries[idx].Platform]; !ok </span><span class="cov5" title="3">{
                         alreadyAdded[queries[idx].Platform] = ""
                         platforms = append(platforms, queries[idx].Platform)
                 }</span>
         }
-        <span class="cov6" title="3">return strings.Join(platforms, ", ")</span>
+        <span class="cov5" title="3">return strings.Join(platforms, ", ")</span>
 }
 
 // ExportJSONReport - encodes a given body to a JSON file in a given filepath
@@ -13475,17 +13481,37 @@ func ExportJSONReport(path, filename string, body interface{}) error <span class
         return encoder.Encode(body)</span>
 }
 
-func getSummary(body interface{}) (sum model.Summary, err error) <span class="cov7" title="4">{
+func getSummary(body interface{}) (sum model.Summary, err error) <span class="cov7" title="5">{
         var summary model.Summary
         result, err := json.Marshal(body)
         if err != nil </span><span class="cov0" title="0">{
                 return model.Summary{}, err
         }</span>
-        <span class="cov7" title="4">if err := json.Unmarshal(result, &amp;summary); err != nil </span><span class="cov0" title="0">{
+        <span class="cov7" title="5">if err := json.Unmarshal(result, &amp;summary); err != nil </span><span class="cov0" title="0">{
                 return model.Summary{}, err
         }</span>
 
-        <span class="cov7" title="4">return summary, nil</span>
+        <span class="cov7" title="5">return summary, nil</span>
+}
+
+func exportXMLReport(path, filename string, body interface{}) error <span class="cov1" title="1">{
+        if !strings.HasSuffix(filename, ".xml") </span><span class="cov1" title="1">{
+                filename += ".xml"
+        }</span>
+
+        <span class="cov1" title="1">fullPath := filepath.Join(path, filename)
+        f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov1" title="1">defer closeFile(fullPath, filename, f)
+        if _, err = f.WriteString(xml.Header); err != nil </span><span class="cov0" title="0">{
+                log.Debug().Err(err).Msg("Failed to write XML header")
+        }</span>
+        <span class="cov1" title="1">encoder := xml.NewEncoder(f)
+        encoder.Indent("", "\t")
+
+        return encoder.Encode(body)</span>
 }
 </pre>
 		
@@ -13674,7 +13700,43 @@ func PrintJSONReport(path, filename string, body interface{}) error <span class=
 }
 </pre>
 		
-		<pre class="file" id="file81" style="display: none">package model
+		<pre class="file" id="file81" style="display: none">package report
+
+import (
+        "strings"
+
+        "github.com/Checkmarx/kics/pkg/model"
+        reportModel "github.com/Checkmarx/kics/pkg/report/model"
+)
+
+// PrintJUnitReport prints the JUnit report in the given path and filename with the given body
+func PrintJUnitReport(path, filename string, body interface{}) error <span class="cov8" title="1">{
+        if !strings.HasPrefix(filename, "junit-") </span><span class="cov8" title="1">{
+                filename = "junit-" + filename
+        }</span>
+
+        <span class="cov8" title="1">summary := model.Summary{}
+
+        if body != "" </span><span class="cov8" title="1">{
+                var err error
+                summary, err = getSummary(body)
+                if err != nil </span><span class="cov0" title="0">{
+                        return err
+                }</span>
+        }
+
+        <span class="cov8" title="1">jUnitReport := reportModel.NewJUnitReport(summary.Times.End.Sub(summary.Times.Start).String())
+        for idx := range summary.Queries </span><span class="cov8" title="1">{
+                jUnitReport.GenerateTestEntry(&amp;summary.Queries[idx])
+        }</span>
+
+        <span class="cov8" title="1">jUnitReport.FinishReport()
+
+        return exportXMLReport(path, filename, jUnitReport)</span>
+}
+</pre>
+		
+		<pre class="file" id="file82" style="display: none">package model
 
 import (
         "fmt"
@@ -13830,7 +13892,116 @@ func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.QueryRes
 }
 </pre>
 		
-		<pre class="file" id="file82" style="display: none">package model
+		<pre class="file" id="file83" style="display: none">package model
+
+import (
+        "encoding/xml"
+        "fmt"
+
+        "github.com/Checkmarx/kics/internal/constants"
+        "github.com/Checkmarx/kics/pkg/model"
+)
+
+type junitTestSuites struct {
+        XMLName    xml.Name         `xml:"testsuites"`
+        Name       string           `xml:"name,attr"`
+        Time       string           `xml:"time,attr"`
+        Failures   string           `xml:"failures,attr"`
+        TestSuites []junitTestSuite `xml:"testsuite"`
+}
+
+type junitTestSuite struct {
+        XMLName   xml.Name        `xml:"testsuite"`
+        Name      string          `xml:"name,attr"`
+        Failures  string          `xml:"failures,attr"`
+        Tests     string          `xml:"tests,attr"`
+        TestCases []junitTestCase `xml:"testcase"`
+        failCount int
+}
+
+type junitTestCase struct {
+        XMLName  xml.Name       `xml:"testcase"`
+        Name     string         `xml:"name,attr"`
+        Failures []junitFailure `xml:"failure"`
+}
+
+type junitFailure struct {
+        XMLName xml.Name `xml:"failure"`
+        Type    string   `xml:"type,attr"`    // Query name
+        Message string   `xml:"message,attr"` // File name + line number
+}
+
+// JUnitReport is a JUnit report representation
+type JUnitReport interface {
+        GenerateTestEntry(query *model.QueryResult)
+        FinishReport()
+}
+
+// NewJUnitReport creates a new JUnit report instance
+func NewJUnitReport(time string) JUnitReport <span class="cov10" title="3">{
+        return &amp;junitTestSuites{
+                Name:       fmt.Sprintf("KICS v%s", constants.Version),
+                Time:       time,
+                Failures:   "",
+                TestSuites: make([]junitTestSuite, 0),
+        }
+}</span>
+
+// GenerateTestEntry generates a new test entry for failed tests on KICS scan
+func (jUnit *junitTestSuites) GenerateTestEntry(query *model.QueryResult) <span class="cov1" title="1">{
+        queryDescription := query.Description
+        if query.CISDescriptionTextFormatted != "" </span><span class="cov0" title="0">{
+                queryDescription = query.CISDescriptionTextFormatted
+        }</span>
+        <span class="cov1" title="1">failedTestCase := junitTestCase{
+                Name:     fmt.Sprintf("[%s]: %s", query.QueryName, queryDescription),
+                Failures: make([]junitFailure, len(query.Files)),
+        }
+
+        for idx := range query.Files </span><span class="cov1" title="1">{
+                failedTest := junitFailure{
+                        Type: query.QueryName,
+                        Message: fmt.Sprintf(
+                                "A problem was found on '%s' file in line %d, %s, but %s.",
+                                query.Files[idx].FileName,
+                                query.Files[idx].Line,
+                                query.Files[idx].KeyExpectedValue,
+                                query.Files[idx].KeyActualValue,
+                        ),
+                }
+                failedTestCase.Failures[idx] = failedTest
+        }</span>
+        <span class="cov1" title="1">for idx := range jUnit.TestSuites </span><span class="cov0" title="0">{
+                if jUnit.TestSuites[idx].Name == query.Platform </span><span class="cov0" title="0">{
+                        jUnit.TestSuites[idx].TestCases = append(jUnit.TestSuites[idx].TestCases, failedTestCase)
+                        jUnit.TestSuites[idx].failCount += len(query.Files)
+                        return
+                }</span>
+        }
+        <span class="cov1" title="1">newTestSuite := junitTestSuite{
+                Name:      fmt.Sprintf("[%s]", query.Platform),
+                Failures:  "",
+                Tests:     "",
+                failCount: len(query.Files),
+                TestCases: make([]junitTestCase, 0),
+        }
+        newTestSuite.TestCases = append(newTestSuite.TestCases, failedTestCase)
+        jUnit.TestSuites = append(jUnit.TestSuites, newTestSuite)</span>
+}
+
+// FinishReport finishes the report, adding the total number of failed tests for each platform and the total number of failed tests
+func (jUnit *junitTestSuites) FinishReport() <span class="cov6" title="2">{
+        failsCount := 0
+        for idx := range jUnit.TestSuites </span><span class="cov1" title="1">{
+                failsCount += jUnit.TestSuites[idx].failCount
+                jUnit.TestSuites[idx].Failures = fmt.Sprintf("%d", jUnit.TestSuites[idx].failCount)
+                jUnit.TestSuites[idx].Tests = fmt.Sprintf("%d", jUnit.TestSuites[idx].failCount)
+        }</span>
+        <span class="cov6" title="2">jUnit.Failures = fmt.Sprintf("%d", failsCount)</span>
+}
+</pre>
+		
+		<pre class="file" id="file84" style="display: none">package model
 
 import (
         "github.com/Checkmarx/kics/internal/constants"
@@ -14142,7 +14313,7 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) <span class="co
 }
 </pre>
 		
-		<pre class="file" id="file83" style="display: none">package model
+		<pre class="file" id="file85" style="display: none">package model
 
 const categoryIdentifier = "CAT"
 
@@ -14209,7 +14380,7 @@ var categories = map[string]sarifTaxanomyDefinition{
 }
 </pre>
 		
-		<pre class="file" id="file84" style="display: none">package model
+		<pre class="file" id="file86" style="display: none">package model
 
 import (
         "github.com/Checkmarx/kics/internal/constants"
@@ -14331,7 +14502,7 @@ func buildLocation(index int, query *model.QueryResult) *Location <span class="c
 }
 </pre>
 		
-		<pre class="file" id="file85" style="display: none">package report
+		<pre class="file" id="file87" style="display: none">package report
 
 import (
         _ "embed" // used for embedding report static files
@@ -14824,7 +14995,7 @@ func getPurpleColor() color.Color <span class="cov4" title="2">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file86" style="display: none">package report
+		<pre class="file" id="file88" style="display: none">package report
 
 import (
         "strings"
@@ -14854,7 +15025,7 @@ func PrintSarifReport(path, filename string, body interface{}) error <span class
 }
 </pre>
 		
-		<pre class="file" id="file87" style="display: none">package report
+		<pre class="file" id="file89" style="display: none">package report
 
 import (
         "strings"
@@ -14886,7 +15057,7 @@ func PrintSonarQubeReport(path, filename string, body interface{}) error <span c
 }
 </pre>
 		
-		<pre class="file" id="file88" style="display: none">package helm
+		<pre class="file" id="file90" style="display: none">package helm
 
 import (
         "fmt"
@@ -15028,7 +15199,7 @@ func getExcluded(charterino *chart.Chart, chartpath string) []string <span class
 }
 </pre>
 		
-		<pre class="file" id="file89" style="display: none">package helm
+		<pre class="file" id="file91" style="display: none">package helm
 
 import (
         "path/filepath"
@@ -15193,7 +15364,7 @@ func getIDMap(originalData []byte) (map[int]interface{}, error) <span class="cov
 }
 </pre>
 		
-		<pre class="file" id="file90" style="display: none">package resolver
+		<pre class="file" id="file92" style="display: none">package resolver
 
 import (
         "os"
@@ -15273,7 +15444,7 @@ func (r *Resolver) GetType(filePath string) model.FileKind <span class="cov10" t
 }
 </pre>
 		
-		<pre class="file" id="file91" style="display: none">package scanner
+		<pre class="file" id="file93" style="display: none">package scanner
 
 import (
         "context"
@@ -15379,7 +15550,7 @@ func startProgressBar(total int, wg *sync.WaitGroup, progressChannel chan int64,
 }</span>
 </pre>
 		
-		<pre class="file" id="file92" style="display: none">package utils
+		<pre class="file" id="file94" style="display: none">package utils
 
 import "sort"
 
@@ -15394,7 +15565,7 @@ func SortedKeys(mapToSort map[string]string) []string <span class="cov1" title="
 }
 </pre>
 		
-		<pre class="file" id="file93" style="display: none">package test
+		<pre class="file" id="file95" style="display: none">package test
 
 import (
         "bytes"
