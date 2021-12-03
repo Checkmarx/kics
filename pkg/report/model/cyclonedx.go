@@ -150,9 +150,8 @@ func getPurl(filePath, version string) string {
 func getDescription(query *model.QueryResult) string {
 	queryDescription := query.Description
 
-	fmt.Println(query.CISDescriptionTextFormatted)
 	if query.CISDescriptionTextFormatted != "" {
-		queryDescription = fmt.Sprintf("[CIS]: %s", query.CISDescriptionTextFormatted)
+		queryDescription = query.CISDescriptionTextFormatted
 	}
 
 	description := fmt.Sprintf("[%s].[%s]: %s", query.Platform, query.QueryName, queryDescription)
@@ -183,7 +182,7 @@ func getVulnerabilities(fileName, purl string, summary *model.Summary) []Vulnera
 					Description: getDescription(&query),
 					Recommendations: []Recommendation{
 						{
-							Recommendation: fmt.Sprintf("In line %d, a result was found '%s', but '%s'",
+							Recommendation: fmt.Sprintf("In line %d, a result was found. '%s', but '%s'",
 								file.Line, file.KeyActualValue, file.KeyExpectedValue),
 						},
 					},
@@ -219,7 +218,7 @@ func InitCycloneDxReport() *CycloneDxReport {
 
 // BuildCycloneDxReport builds the CycloneDX report
 func BuildCycloneDxReport(summary *model.Summary) *CycloneDxReport {
-	var c Component
+	var component Component
 	var vuln []Vulnerability
 	var version, sha, purl, filePath string
 
@@ -240,7 +239,7 @@ func BuildCycloneDxReport(summary *model.Summary) *CycloneDxReport {
 		purl = getPurl(filePath, version)
 		vuln = getVulnerabilities(files[i].FileName, purl, summary)
 
-		c = Component{
+		component = Component{
 			Type:    "file",
 			BomRef:  purl,
 			Name:    filePath,
@@ -255,7 +254,7 @@ func BuildCycloneDxReport(summary *model.Summary) *CycloneDxReport {
 			Vulnerabilities: vuln,
 		}
 
-		bom.Components.Components = append(bom.Components.Components, c)
+		bom.Components.Components = append(bom.Components.Components, component)
 	}
 	return bom
 }
