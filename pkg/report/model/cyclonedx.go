@@ -16,11 +16,6 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-const (
-	// KICS
-	KICS = "KICS"
-)
-
 var cycloneDxSeverityLevelEquivalence = map[model.Severity]string{
 	"INFO":   "None",
 	"LOW":    "Low",
@@ -172,7 +167,7 @@ func getVulnerabilities(fileName, purl string, summary *model.Summary) []Vulnera
 					Ref: purl + query.QueryID,
 					ID:  query.QueryID,
 					Source: Source{
-						Name: KICS,
+						Name: "KICS",
 						URL:  "https://kics.io/",
 					},
 					Ratings: []Rating{
@@ -203,7 +198,7 @@ func InitCycloneDxReport() *CycloneDxReport {
 		Tools: &[]Tool{
 			{
 				Vendor:  "Checkmarx",
-				Name:    KICS,
+				Name:    "KICS",
 				Version: constants.Version,
 			},
 		},
