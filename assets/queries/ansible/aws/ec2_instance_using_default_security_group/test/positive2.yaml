@@ -4,7 +4,7 @@
     instance_type: t2.micro
     image: ami-123456
     wait: yes
-    group: 
+    group:
       - default
     count: 3
     vpc_subnet_id: subnet-29e63245
