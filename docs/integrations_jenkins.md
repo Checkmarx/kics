@@ -128,3 +128,47 @@ Jenkins will exhibit the following warning:
 The default Content-Security-Policy is currently overridden using the hudson.model.DirectoryBrowserSupport.CSP system property, which is a potential security issue when browsing untrusted files. As an alternative, you can set up a resource root URL that Jenkins will use to serve some static files without adding Content-Security-Policy headers.
 ```
 
+### Using KICS with JUnit plugin
+First of all you need to check if the JUnit plugin is installed:
+
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-junit-plugin.png" width="850">
+
+If it is not installed, you can install it by clicking on **Plugins** on the left menu bar, then click on **Install Plugin** and select **JUnit**.
+
+After that, you can add the following line to your pipeline script:
+```groovy
+    junit testResults: 'results/junit-results.xml', skipPublishingChecks: true
+```
+
+The skipPublishingChecks option is important, otherwise the JUnit plugin will try to publish the results to GitHub in Jenkins. If you want to do this, you should check the [JUnit plugin documentation](https://plugins.jenkins.io/junit/) for more information.
+
+If you are using our example script, it will look like the following:
+```groovy
+pipeline {
+  agent any
+  stages {
+    stage('Checkout Code') {
+      steps {
+        git(branch: 'master', url: 'https://github.com/GoogleCloudPlatform/terraform-google-examples')
+      }
+    }
+    
+    stage('KICS scan') {
+      steps {
+        sh "mkdir -p results"
+        sh(script: '/usr/bin/kics scan --ci --no-color -p ${WORKSPACE} --output-path results --ignore-on-exit results --report-formats "json,sarif,html"')
+        junit testResults: 'results/junit-results.xml', skipPublishingChecks: true
+        archiveArtifacts(artifacts: 'results/*.html,results/*.sarif,results/*.json', fingerprint: true)
+      }
+    }
+  }
+}
+```
+
+This will publish the JUnit results in Jenkins as you can see in the next images:
+
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-junit-overview.png" width="850">
+
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-junit-results-overview.png" width="850">
+
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-junit-result-details.png" width="850">

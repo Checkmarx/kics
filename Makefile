@@ -22,7 +22,7 @@ clean: ## remove files created during build
 	rm -rf *.log
 	rm -rf **/*.log
 	rm -f results.*
-	rm -f e2e/output
+	rm -rf e2e/output
 
 .PHONY: mod-tidy
 mod-tidy: ## go mod tidy - download and cleanup modules
@@ -115,7 +115,7 @@ test-coverage-report: test-cover
 test-e2e: ## Run E2E tests
 test-e2e: build
 	$(call print-target)
-	E2E_KICS_BINARY=$(PWD)/bin/kics go test -v -timeout 99999s "github.com/Checkmarx/kics/e2e"
+	E2E_KICS_BINARY=$(PWD)/bin/kics go test "github.com/Checkmarx/kics/e2e" -v -timeout 1500s
 
 .PHONY: cover
 cover: ## generate coverage report
