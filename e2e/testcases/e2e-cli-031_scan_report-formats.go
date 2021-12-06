@@ -8,17 +8,26 @@ func init() { //nolint
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "--output-path", "output", "--output-name", "E2E_CLI_031_RESULT",
-					"--report-formats", "json,SARIF,glsast,Html,SonarQUBE",
+					"--report-formats", "json,SARIF,glsast,Html,SonarQUBE,Junit",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
+
+				[]string{"scan", "--output-path", "output", "--output-name", "E2E_CLI_031_RESULT_CIS",
+					"--report-formats", "JUnit",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
 			},
 			ExpectedResult: []ResultsValidation{
 				{
 					ResultsFile:    "E2E_CLI_031_RESULT",
-					ResultsFormats: []string{"json", "sarif", "glsast", "html", "sonarqube"},
+					ResultsFormats: []string{"json", "sarif", "glsast", "html", "sonarqube", "junit"},
+				},
+				{
+					ResultsFile:    "E2E_CLI_031_RESULT_CIS",
+					ResultsFormats: []string{"junit"},
 				},
 			},
+			UseMock: []bool{false, true},
 		},
-		WantStatus: []int{50},
+		WantStatus: []int{50, 50},
 	}
 
 	Tests = append(Tests, testSample)
