@@ -23,7 +23,11 @@ type logMsg struct {
 }
 
 func prepareJSONPath(path string) string {
-	cwd, _ := os.Getwd()
+	cwd, err := os.Getwd()
+	if err != nil {
+		return ""
+	}
+
 	jsonPath := "file://" + filepath.Join(cwd, path)
 	if runtime.GOOS == "windows" {
 		jsonPath = strings.Replace(jsonPath, `\`, "/", -1)
