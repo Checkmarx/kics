@@ -22,7 +22,7 @@ type logMsg struct {
 	Message  string `json:"message"`
 }
 
-func prepareJsonPath(path string) string {
+func prepareJSONPath(path string) string {
 	cwd, _ := os.Getwd()
 	jsonPath := "file://" + filepath.Join(cwd, path)
 	if runtime.GOOS == "windows" {
@@ -33,8 +33,8 @@ func prepareJsonPath(path string) string {
 
 // JSONSchemaValidation loads a json file and validates it against a schema
 func JSONSchemaValidationFromFile(t *testing.T, file, schema string) {
-	schemaPath := prepareJsonPath(filepath.Join("fixtures", "schemas", schema))
-	resultPath := prepareJsonPath(filepath.Join("output", file))
+	schemaPath := prepareJSONPath(filepath.Join("fixtures", "schemas", schema))
+	resultPath := prepareJSONPath(filepath.Join("output", file))
 
 	schemaLoader := gojsonschema.NewReferenceLoader(schemaPath)
 	resultLoader := gojsonschema.NewReferenceLoader(resultPath)
@@ -44,7 +44,7 @@ func JSONSchemaValidationFromFile(t *testing.T, file, schema string) {
 
 // JSONSchemaValidation loads a json data and validates it against a schema
 func JSONSchemaValidationFromData(t *testing.T, data []byte, schema string) {
-	schemaPath := prepareJsonPath(filepath.Join("fixtures", "schemas", schema))
+	schemaPath := prepareJSONPath(filepath.Join("fixtures", "schemas", schema))
 
 	schemaLoader := gojsonschema.NewReferenceLoader(schemaPath)
 	resultLoader := gojsonschema.NewBytesLoader(data)

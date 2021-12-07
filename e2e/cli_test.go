@@ -137,7 +137,7 @@ func checkExpectedOutput(t *testing.T, tt *testcases.TestCase, argIndex int) {
 	// Check result file (JUNIT - XML)
 	if utils.Contains(resultsFormats, "junit") {
 		filename := "junit-" + tt.Args.ExpectedResult[argIndex].ResultsFile + ".xml"
-		json := utils.XMLToJson(t, filename)
+		json := utils.XMLToJSON(t, filename)
 		utils.JSONSchemaValidationFromData(t, json, "result-junit.json")
 	}
 }
