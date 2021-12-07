@@ -31,7 +31,7 @@ func prepareJSONPath(path string) string {
 	return jsonPath
 }
 
-// JSONSchemaValidation loads a json file and validates it against a schema
+// JSONSchemaValidationFromFile loads a json file and validates it against a schema
 func JSONSchemaValidationFromFile(t *testing.T, file, schema string) {
 	schemaPath := prepareJSONPath(filepath.Join("fixtures", "schemas", schema))
 	resultPath := prepareJSONPath(filepath.Join("output", file))
@@ -42,7 +42,7 @@ func JSONSchemaValidationFromFile(t *testing.T, file, schema string) {
 	JSONSchemaCompare(t, schemaLoader, resultLoader)
 }
 
-// JSONSchemaValidation loads a json data and validates it against a schema
+// JSONSchemaValidationFromData loads a json data and validates it against a schema
 func JSONSchemaValidationFromData(t *testing.T, data []byte, schema string) {
 	schemaPath := prepareJSONPath(filepath.Join("fixtures", "schemas", schema))
 
@@ -52,6 +52,7 @@ func JSONSchemaValidationFromData(t *testing.T, data []byte, schema string) {
 	JSONSchemaCompare(t, schemaLoader, resultLoader)
 }
 
+// JSONSchemaCompare executes schema assertions to validate the content of a JSON file
 func JSONSchemaCompare(t *testing.T, schema, report gojsonschema.JSONLoader) {
 	result, err := gojsonschema.Validate(schema, report)
 	require.NoError(t, err, "Schema Validation: Reading Json/Schema files should not yield an error"+
