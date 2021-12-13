@@ -258,7 +258,7 @@ func TestInspect(t *testing.T) { //nolint
 					Description:      "",
 					DescriptionID:    "Undefined",
 					Severity:         model.SeverityInfo,
-					Line:             -1,
+					Line:             1,
 					SearchLine:       -1,
 					VulnLines:        []model.CodeLine{},
 					IssueType:        "IncorrectValue",
