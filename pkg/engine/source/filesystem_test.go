@@ -622,12 +622,15 @@ func TestListSupportedPlatforms(t *testing.T) {
 		"CloudFormation",
 		"Dockerfile",
 		"GRPC",
+		"GoogleDeploymentManager",
 		"Kubernetes",
 		"OpenAPI",
 		"Terraform",
 	}
-	actual := ListSupportedPlatforms()
-	require.Equal(t, expected, actual, "expected=%s\ngot=%s", expected, actual)
+	listActual := ListSupportedPlatforms()
+	for _, actual := range listActual {
+		require.Contains(t, expected, actual, "expected=%s\ngot=%s", expected, listActual)
+	}
 }
 
 // TestReadInputData tests readInputData function

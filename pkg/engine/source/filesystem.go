@@ -418,6 +418,8 @@ func getPlatform(metadataPlatform string) string {
 		return "azureResourceManager"
 	case "GRPC":
 		return "grpc"
+	case "GoogleDeploymentManager":
+		return "googleDeploymentManager"
 	default:
 		return "unknown"
 	}

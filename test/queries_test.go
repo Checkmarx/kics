@@ -12,6 +12,7 @@ import (
 	"sync"
 	"testing"
 
+	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/mock"
@@ -174,7 +175,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 	wg := &sync.WaitGroup{}
 	currentQuery := make(chan int64)
 	proBarBuilder := progress.InitializePbBuilder(true, true, true)
-	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile", "AzureResourceManager", "GRPC"}
+	platforms := MapToStringSlice(constants.AvailablePlatforms)
 	progressBar := proBarBuilder.BuildCounter("Executing queries: ", inspector.LenQueriesByPlat(platforms), wg, currentQuery)
 	go progressBar.Start()
 	wg.Add(1)

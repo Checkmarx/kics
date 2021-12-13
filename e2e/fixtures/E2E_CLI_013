@@ -3,6 +3,7 @@ AzureResourceManager
 CloudFormation
 Dockerfile
 GRPC
+GoogleDeploymentManager
 Kubernetes
 OpenAPI
 Terraform

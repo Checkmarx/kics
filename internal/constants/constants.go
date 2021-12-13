@@ -40,14 +40,15 @@ var (
 
 	// AvailablePlatforms - All platforms available
 	AvailablePlatforms = map[string]string{
-		"Ansible":              "ansible",
-		"CloudFormation":       "cloudFormation",
-		"Dockerfile":           "dockerfile",
-		"Kubernetes":           "k8s",
-		"OpenAPI":              "openAPI",
-		"Terraform":            "terraform",
-		"AzureResourceManager": "azureResourceManager",
-		"GRPC":                 "grpc",
+		"Ansible":                 "ansible",
+		"CloudFormation":          "cloudFormation",
+		"Dockerfile":              "dockerfile",
+		"Kubernetes":              "k8s",
+		"OpenAPI":                 "openAPI",
+		"Terraform":               "terraform",
+		"AzureResourceManager":    "azureResourceManager",
+		"GoogleDeploymentManager": "googleDeploymentManager",
+		"GRPC":                    "grpc",
 	}
 
 	// AvailableSeverities - All severities available
