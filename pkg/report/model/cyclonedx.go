@@ -156,6 +156,32 @@ func getDescription(query *model.QueryResult) string {
 	return description
 }
 
+func getVulnerability(query *model.QueryResult, file *model.VulnerableFile, purl string) Vulnerability {
+	vuln := Vulnerability{
+		Ref: purl + query.QueryID,
+		ID:  query.QueryID,
+		Source: Source{
+			Name: "KICS",
+			URL:  "https://kics.io/",
+		},
+		Ratings: []Rating{
+			{
+				Severity: cycloneDxSeverityLevelEquivalence[query.Severity],
+				Method:   "Other",
+			},
+		},
+		Description: getDescription(query),
+		Recommendations: []Recommendation{
+			{
+				Recommendation: fmt.Sprintf("In line %d, a result was found. '%s', but '%s'",
+					file.Line, file.KeyActualValue, file.KeyExpectedValue),
+			},
+		},
+	}
+
+	return vuln
+}
+
 func getVulnerabilities(fileName, purl string, summary *model.Summary) []Vulnerability {
 	var vulns []Vulnerability
 	for i := range summary.Queries {
@@ -163,27 +189,7 @@ func getVulnerabilities(fileName, purl string, summary *model.Summary) []Vulnera
 		for idx := range query.Files {
 			file := query.Files[idx]
 			if fileName == file.FileName {
-				vuln := Vulnerability{
-					Ref: purl + query.QueryID,
-					ID:  query.QueryID,
-					Source: Source{
-						Name: "KICS",
-						URL:  "https://kics.io/",
-					},
-					Ratings: []Rating{
-						{
-							Severity: cycloneDxSeverityLevelEquivalence[query.Severity],
-							Method:   "Other",
-						},
-					},
-					Description: getDescription(&query),
-					Recommendations: []Recommendation{
-						{
-							Recommendation: fmt.Sprintf("In line %d, a result was found. '%s', but '%s'",
-								file.Line, file.KeyActualValue, file.KeyExpectedValue),
-						},
-					},
-				}
+				vuln := getVulnerability(&query, &file, purl)
 				vulns = append(vulns, vuln)
 			}
 		}
