@@ -75,7 +75,7 @@
 				
 				<option value="file9">github.com/Checkmarx/kics/internal/console/list_platforms.go (100.0%)</option>
 				
-				<option value="file10">github.com/Checkmarx/kics/internal/console/pre_scan.go (84.2%)</option>
+				<option value="file10">github.com/Checkmarx/kics/internal/console/pre_scan.go (82.9%)</option>
 				
 				<option value="file11">github.com/Checkmarx/kics/internal/console/printer/options.go (87.1%)</option>
 				
@@ -127,7 +127,7 @@
 				
 				<option value="file35">github.com/Checkmarx/kics/pkg/detector/search_line_detector.go (95.0%)</option>
 				
-				<option value="file36">github.com/Checkmarx/kics/pkg/engine/inspector.go (83.4%)</option>
+				<option value="file36">github.com/Checkmarx/kics/pkg/engine/inspector.go (82.2%)</option>
 				
 				<option value="file37">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (89.0%)</option>
 				
@@ -141,7 +141,7 @@
 				
 				<option value="file42">github.com/Checkmarx/kics/pkg/engine/source/source.go (67.9%)</option>
 				
-				<option value="file43">github.com/Checkmarx/kics/pkg/engine/vulnerability_builder.go (85.5%)</option>
+				<option value="file43">github.com/Checkmarx/kics/pkg/engine/vulnerability_builder.go (85.7%)</option>
 				
 				<option value="file44">github.com/Checkmarx/kics/pkg/engine/vulnerability_utils.go (84.1%)</option>
 				
@@ -1279,7 +1279,6 @@ import (
         "github.com/rs/zerolog/log"
         "github.com/spf13/cobra"
         "github.com/spf13/viper"
-        "golang.org/x/term"
 )
 
 func preRun(cmd *cobra.Command) error <span class="cov6" title="8">{
@@ -1400,7 +1399,7 @@ func (console *console) preScan() <span class="cov6" title="7">{
         log.Info().Msgf(strings.ReplaceAll(versionMsg, "\n", ""))
 
         noProgress := flags.GetBoolFlag(flags.NoProgressFlag)
-        if !term.IsTerminal(int(os.Stdin.Fd())) || strings.EqualFold(flags.GetStrFlag(flags.LogLevelFlag), "debug") </span><span class="cov6" title="7">{
+        if strings.EqualFold(flags.GetStrFlag(flags.LogLevelFlag), "debug") </span><span class="cov0" title="0">{
                 noProgress = true
         }</span>
 
@@ -2312,13 +2311,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="38">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="38">total += v
+                <span class="cov8" title="34">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2343,7 +2342,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2799,7 +2798,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="18">{
-        for _, a := range s </span><span class="cov7" title="39">{
+        for _, a := range s </span><span class="cov7" title="38">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -4596,7 +4595,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5135,7 +5134,7 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
                         continue</span>
                 }
 
-                <span class="cov3" title="2">if vulnerability.Line == UndetectedVulnerabilityLine </span><span class="cov3" title="2">{
+                <span class="cov3" title="2">if vulnerability.Line == UndetectedVulnerabilityLine </span><span class="cov0" title="0">{
                         failedDetectLine = true
                 }</span>
 
@@ -5152,7 +5151,7 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
                 <span class="cov1" title="1">vulnerabilities = append(vulnerabilities, vulnerability)</span>
         }
 
-        <span class="cov3" title="2">if failedDetectLine </span><span class="cov3" title="2">{
+        <span class="cov3" title="2">if failedDetectLine </span><span class="cov0" title="0">{
                 c.tracker.FailedDetectLine()
         }</span>
 
@@ -6978,6 +6977,7 @@ var DefaultVulnerabilityBuilder = func(ctx *QueryContext, tracker Tracker,
 
         if linesVulne.Line == -1 </span><span class="cov10" title="5">{
                 logWithFields.Warn().Msgf("Failed to detect line, query response %s", searchKey)
+                linesVulne.Line = 1
         }</span>
 
         <span class="cov10" title="5">searchValue := ""
