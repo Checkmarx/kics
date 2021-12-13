@@ -10,6 +10,8 @@ import (
 	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
+
+	yamlParser "gopkg.in/yaml.v3"
 )
 
 // openAPIRegex - Regex that finds OpenAPI defining property "openapi"
@@ -41,11 +43,16 @@ var (
 	blueprintRegexProperties          = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
 )
 
+var (
+	listKeywordsGoogleDeployment = []string{"resources"}
+)
+
 const (
-	yml  = ".yml"
-	yaml = ".yaml"
-	json = ".json"
-	arm  = "azureresourcemanager"
+	yml        = ".yml"
+	yaml       = ".yaml"
+	json       = ".json"
+	arm        = "azureresourcemanager"
+	kubernetes = "kubernetes"
 )
 
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
@@ -178,7 +185,7 @@ var types = map[string]regexSlice{
 
 // overrides k8s match when all regexs passes for azureresourcemanager key and extension is set to json
 func needsOverride(check bool, returnType, key, ext string) bool {
-	if check && returnType == "kubernetes" && key == "azureresourcemanager" && ext == json {
+	if check && returnType == kubernetes && key == "azureresourcemanager" && ext == json {
 		return true
 	}
 	return false
@@ -219,26 +226,57 @@ func checkContent(path string, results, unwanted chan<- string, ext string) {
 			returnType = key
 		}
 	}
+	returnType = checkReturnType(path, returnType, ext, content)
+	if returnType != "" {
+		results <- returnType
+		return
+	}
+	// No type was determined (ignore on parser)
+	unwanted <- path
+}
 
+func checkReturnType(path, returnType, ext string, content []byte) string {
 	if returnType != "" {
 		if returnType == "blueprint" || returnType == "blueprintsartifacts" {
-			returnType = arm
+			return arm
 		}
-		// write to channel type of file
-		results <- returnType
 	} else if ext == yaml || ext == yml {
-		// check if it is an ansible vault
-		if res := ansibleVaultRegex.Match(content); res {
-			unwanted <- path
-		} else {
-			// Since Ansible has no defining property
-			// and no other type matched for YAML file extension, assume the file type is Ansible
-			results <- "ansible"
+		if checkHelm(path) {
+			return kubernetes
 		}
-	} else {
-		// No type was determined (ignore on parser)
-		unwanted <- path
+		platform := checkYamlPlatform(content)
+		if platform != "" {
+			return platform
+		}
 	}
+	return returnType
+}
+
+func checkHelm(path string) bool {
+	if _, err := os.Stat(filepath.Join(filepath.Dir(path), "Chart.yaml")); errors.Is(err, os.ErrNotExist) {
+		return false
+	}
+	return true
+}
+
+func checkYamlPlatform(content []byte) string {
+	var yamlContent map[string]interface{}
+	if err := yamlParser.Unmarshal(content, &yamlContent); err != nil {
+		log.Warn().Msgf("failed to parse yaml file: %s", err)
+	}
+	// check if it is google deployment manager platform
+	for _, keyword := range listKeywordsGoogleDeployment {
+		if _, ok := yamlContent[keyword]; ok {
+			return "googledeploymentmanager"
+		}
+	}
+	// check if it is an ansible vault
+	if res := ansibleVaultRegex.Match(content); !res {
+		// Since Ansible has no defining property
+		// and no other type matched for YAML file extension, assume the file type is Ansible
+		return "ansible"
+	}
+	return ""
 }
 
 // createSlice creates a slice from the channel given removing any duplicates

@@ -19,14 +19,14 @@ func TestAnalyzer_Analyze(t *testing.T) {
 		{
 			name:        "analyze_test_dir_single_path",
 			paths:       []string{filepath.FromSlash("../../test/fixtures/analyzer_test")},
-			wantTypes:   []string{"dockerfile", "cloudformation", "kubernetes", "openapi", "terraform", "ansible", "azureresourcemanager"},
+			wantTypes:   []string{"dockerfile", "googledeploymentmanager", "cloudformation", "kubernetes", "openapi", "terraform", "ansible", "azureresourcemanager"},
 			wantExclude: []string{},
 			wantErr:     false,
 		},
 		{
 			name:        "analyze_test_helm_single_path",
 			paths:       []string{filepath.FromSlash("../../test/fixtures/analyzer_test/helm")},
-			wantTypes:   []string{"kubernetes", "ansible"}, // ansible is added because of unknown type in values.yaml
+			wantTypes:   []string{"kubernetes"},
 			wantExclude: []string{},
 			wantErr:     false,
 		},
@@ -35,16 +35,16 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			paths: []string{
 				filepath.FromSlash("../../test/fixtures/analyzer_test/Dockerfile"),
 				filepath.FromSlash("../../test/fixtures/analyzer_test/terraform.tf")},
-			wantTypes:   []string{"dockerfile", "terraform"}, // ansible is added because of unknown type in values.yaml
+			wantTypes:   []string{"dockerfile", "terraform"},
 			wantExclude: []string{},
 			wantErr:     false,
 		},
 		{
-			name: "analyze_test_mult_checks_path",
+			name: "analyze_test_multi_checks_path",
 			paths: []string{
 				filepath.FromSlash("../../test/fixtures/analyzer_test/openAPI_test")},
-			wantTypes:   []string{"kubernetes"}, // ansible is added because of unknown type in values.yaml
-			wantExclude: []string{},             // ansible is added because of unknown type in values.yaml
+			wantTypes:   []string{"openapi"},
+			wantExclude: []string{},
 			wantErr:     false,
 		},
 		{

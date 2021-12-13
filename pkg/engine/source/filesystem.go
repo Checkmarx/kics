@@ -416,6 +416,8 @@ func getPlatform(metadataPlatform string) string {
 		return "terraform"
 	case "AzureResourceManager":
 		return "azureResourceManager"
+	case "GoogleDeploymentManager":
+		return "googleDeploymentManager"
 	default:
 		return "unknown"
 	}

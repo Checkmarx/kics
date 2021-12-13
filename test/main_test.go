@@ -11,13 +11,13 @@ import (
 
 	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/pkg/engine/source"
+	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
-	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
@@ -25,23 +25,24 @@ import (
 
 var (
 	queriesPaths = map[string]model.QueryConfig{
-		"../assets/queries/terraform/aws_bom":    {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
-		"../assets/queries/terraform/aws":        {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
-		"../assets/queries/terraform/azure":      {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
-		"../assets/queries/terraform/gcp":        {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
-		"../assets/queries/terraform/github":     {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
-		"../assets/queries/terraform/kubernetes": {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
-		"../assets/queries/terraform/general":    {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
-		"../assets/queries/k8s":                  {FileKind: []model.FileKind{model.KindYAML}, Platform: "k8s"},
-		"../assets/queries/cloudFormation":       {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
-		"../assets/queries/ansible/aws":          {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
-		"../assets/queries/ansible/gcp":          {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
-		"../assets/queries/ansible/azure":        {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
-		"../assets/queries/dockerfile":           {FileKind: []model.FileKind{model.KindDOCKER}, Platform: "dockerfile"},
-		"../assets/queries/openAPI/general":      {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
-		"../assets/queries/openAPI/3.0":          {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
-		"../assets/queries/openAPI/2.0":          {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
-		"../assets/queries/azureResourceManager": {FileKind: []model.FileKind{model.KindJSON}, Platform: "azureResourceManager"},
+		"../assets/queries/terraform/aws_bom":       {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/aws":           {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/azure":         {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/gcp":           {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/github":        {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/kubernetes":    {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/general":       {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/k8s":                     {FileKind: []model.FileKind{model.KindYAML}, Platform: "k8s"},
+		"../assets/queries/cloudFormation":          {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
+		"../assets/queries/ansible/aws":             {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
+		"../assets/queries/ansible/gcp":             {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
+		"../assets/queries/ansible/azure":           {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
+		"../assets/queries/dockerfile":              {FileKind: []model.FileKind{model.KindDOCKER}, Platform: "dockerfile"},
+		"../assets/queries/openAPI/general":         {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
+		"../assets/queries/openAPI/3.0":             {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
+		"../assets/queries/openAPI/2.0":             {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
+		"../assets/queries/azureResourceManager":    {FileKind: []model.FileKind{model.KindJSON}, Platform: "azureResourceManager"},
+		"../assets/queries/googleDeploymentManager": {FileKind: []model.FileKind{model.KindYAML}, Platform: "googleDeploymentManager"},
 	}
 
 	issueTypes = map[string]string{
