@@ -1,7 +1,7 @@
 [
 	{
 		"queryName": "EMR Without VPC",
-		"severity": "MEDIUM",
+		"severity": "LOW",
 		"line": 1,
 		"fileName": "positive.tf"
 	}
