@@ -1,0 +1,7 @@
+resources:
+- name: mycluster2
+  type: container.v1.cluster
+  properties:
+    zone: us-east1-b
+    privateClusterConfig:
+      enablePrivateEndpoint: false

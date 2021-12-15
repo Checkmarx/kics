@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "Private Cluster Disabled",
+    "severity": "HIGH",
+    "line": 4,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Private Cluster Disabled",
+    "severity": "HIGH",
+    "line": 6,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Private Cluster Disabled",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive2.yaml"
+  }
+]
