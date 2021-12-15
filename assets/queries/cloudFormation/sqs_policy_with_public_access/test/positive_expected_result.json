@@ -2,25 +2,25 @@
   {
     "queryName": "SQS Policy With Public Access",
     "severity": "MEDIUM",
-    "line": 18,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "line": 7
   },
   {
     "queryName": "SQS Policy With Public Access",
     "severity": "MEDIUM",
-    "line": 18,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "line": 7
   },
   {
-    "line": 21,
+    "queryName": "SQS Policy With Public Access",
+    "severity": "MEDIUM",
     "fileName": "positive3.json",
-    "queryName": "SQS Policy With Public Access",
-    "severity": "MEDIUM"
+    "line": 9
   },
   {
     "queryName": "SQS Policy With Public Access",
     "severity": "MEDIUM",
-    "line": 15,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "line": 9
   }
 ]

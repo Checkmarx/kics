@@ -1,39 +1,26 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[Name]
+	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::IAM::Role"
 
-	out := commonLib.json_unmarshal(resource.Properties.AssumeRolePolicyDocument)
-	aws := out.Statement[_].Principal.AWS
+	policy := resource.Properties.AssumeRolePolicyDocument
+	st := common_lib.get_statement(common_lib.get_policy(policy))
+	statement := st[_]
 
-	commonLib.allowsAllPrincipalsToAssume(aws, out.Statement[_])
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement.Principal.AWS", [Name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement.Principal.AWS does not contain ':root'", [Name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement.Principal.AWS contains ':root'", [Name]),
-	}
-}
-
-CxPolicy[result] {
-	resource := input.document[i].Resources[Name]
-	resource.Type == "AWS::IAM::Role"
-
-	statement := resource.Properties.AssumeRolePolicyDocument.Statement[_]
+	common_lib.is_allow_effect(statement)
 	aws := statement.Principal.AWS
 
-	commonLib.allowsAllPrincipalsToAssume(aws, statement)
+	common_lib.allowsAllPrincipalsToAssume(aws, statement)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement.Principal.AWS", [Name]),
+		"searchKey": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement.Principal.AWS does not contain ':root'", [Name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement.Principal.AWS contains ':root'", [Name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement.Principal.AWS does not contain ':root'", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement.Principal.AWS contains ':root'", [name]),
+		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "AssumeRolePolicyDocument"], []),
 	}
 }
