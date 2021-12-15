@@ -1,0 +1,11 @@
+{
+  "id": "2b3c8a6d-9856-43e6-ab1d-d651094f03b4",
+  "queryName": "EMR Without VPC",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "Elastic MapReduce Cluster (EMR) should be launched in a Virtual Private Cloud (VPC)",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/emr_cluster#subnet_id",
+  "platform": "Terraform",
+  "descriptionID": "741aebff",
+  "cloudProvider": "aws"
+}
