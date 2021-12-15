@@ -1,0 +1,11 @@
+{
+  "id": "8d03993b-8384-419b-a681-d1f55149397c",
+  "queryName": "EC2 Instance Using Default Security Group",
+  "severity": "LOW",
+  "category": "Access Control",
+  "descriptionText": "EC2 instances should not use default security group(s)",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_module.html#parameter-group",
+  "platform": "Ansible",
+  "descriptionID": "cc323109",
+  "cloudProvider": "aws"
+}
