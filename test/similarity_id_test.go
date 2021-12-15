@@ -54,6 +54,7 @@ var (
 		"docker":         {".dockerfile"},
 		"k8s":            {".yaml", ".yml"},
 		"cloudFormation": {".yaml", ".yml"},
+		"grpc":           {".proto"},
 	}
 	testTable = []testCaseType{
 		{
@@ -312,7 +313,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 
 	wg := &sync.WaitGroup{}
 	proBarBuilder := progress.InitializePbBuilder(true, true, true)
-	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile", "AzureResourceManager"}
+	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile", "AzureResourceManager", "GRPC"}
 	progressBar := proBarBuilder.BuildCounter("Executing queries: ", inspector.LenQueriesByPlat(platforms), wg, currentQuery)
 	go progressBar.Start()
 
@@ -326,7 +327,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 			testParams.sampleContent(t),
 		),
 		[]string{BaseTestsScanPath},
-		[]string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile", "AzureResourceManager"},
+		[]string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile", "AzureResourceManager", "GRPC"},
 		currentQuery,
 	)
 

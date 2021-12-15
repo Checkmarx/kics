@@ -1,0 +1,24 @@
+syntax = "proto3" ;
+
+enum noInitCap {
+  option allow_alias = true ;
+  UNKNOWN            = 0 ;
+  STARTED            = 1 ;
+  RUNNING            = 2[(custom_option) = "hello world"] ;
+}
+
+enum NOT_CAMEL_CASE {
+  option allow_alias = true ;
+  UNKNOWN            = 0 ;
+  STARTED            = 1 ;
+  RUNNING            = 2[(custom_option) = "hello world"] ;
+}
+
+message Testing {
+  enum ALLCAPS {
+    option allow_alias = true ;
+    UNKNOWN            = 0 ;
+    STARTED            = 1 ;
+    RUNNING            = 2[(custom_option) = "hello world"] ;
+  }
+}

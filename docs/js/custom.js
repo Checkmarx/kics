@@ -49,7 +49,10 @@ var headerArray = [];
         tableHeader[i].style.verticalAlign = "initial";
       }
     }
-    const csvFilename = `${window.location.href.match(/[a-zA-Z]*-queries/)[0]}.csv`
+    // var untreatedName = document.getElementsByClassName("md-nav__link md-nav__link--active")[0].innerText
+    // var treatedName = untreatedName.replace(/\s+/g, '').toLowerCase()
+    // treatedName = htmlEncode(treatedName)
+    const csvFilename = `kics-queries.csv`
     const table = document.querySelector(":not(.modal-body) > table")
     const button = document.createElement("a")
     button.innerText = "Download"
@@ -62,6 +65,12 @@ var headerArray = [];
 
 function sanitize(str) {
   return str.replace(/</g, "&lt;").replace(/>/g, "&gt;")
+}
+
+function htmlEncode(str) {
+  return String(str).replace(/[^\w. ]/gi, function (c) {
+    return '&#' + c.charCodeAt(0) + ';';
+  });
 }
 
 function pasteFilter(numberOfColumns) {

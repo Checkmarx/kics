@@ -123,6 +123,9 @@ func worker(path string, results, unwanted chan<- string, wg *sync.WaitGroup) {
 	// Terraform
 	case ".tf", "tfvars":
 		results <- "terraform"
+	// GRPC
+	case ".proto":
+		results <- "grpc"
 	// Cloud Formation, Ansible, OpenAPI
 	case yaml, yml, json:
 		checkContent(path, results, unwanted, ext)
@@ -253,9 +256,13 @@ func checkReturnType(path, returnType, ext string, content []byte) string {
 }
 
 func checkHelm(path string) bool {
-	if _, err := os.Stat(filepath.Join(filepath.Dir(path), "Chart.yaml")); errors.Is(err, os.ErrNotExist) {
+	_, err := os.Stat(filepath.Join(filepath.Dir(path), "Chart.yaml"))
+	if errors.Is(err, os.ErrNotExist) {
 		return false
+	} else if err != nil {
+		log.Error().Msgf("failed to check helm: %s", err)
 	}
+
 	return true
 }
 
