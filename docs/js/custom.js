@@ -49,10 +49,10 @@ var headerArray = [];
         tableHeader[i].style.verticalAlign = "initial";
       }
     }
-    var untreatedName = document.getElementsByClassName("md-nav__link md-nav__link--active")[0].innerText
-    var treatedName = untreatedName.replace(/\s+/g, '').toLowerCase()
-    treatedName = htmlEncode(treatedName)
-    const csvFilename = `${treatedName}-queries.csv`
+    // var untreatedName = document.getElementsByClassName("md-nav__link md-nav__link--active")[0].innerText
+    // var treatedName = untreatedName.replace(/\s+/g, '').toLowerCase()
+    // treatedName = htmlEncode(treatedName)
+    const csvFilename = `kics-queries.csv`
     const table = document.querySelector(":not(.modal-body) > table")
     const button = document.createElement("a")
     button.innerText = "Download"
