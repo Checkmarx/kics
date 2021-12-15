@@ -1,0 +1,6 @@
+resources:
+- name: a-new-pubsub-topic
+  type: storage.v1.bucket
+  properties:
+      storageClass: STANDARD
+      location: EUROPE-WEST3
