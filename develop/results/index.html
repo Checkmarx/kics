@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/results/">
       
       <link rel="icon" href="../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.0">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.2">
     
     
       
@@ -21,10 +21,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.82f3c0b9.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.f7951f6f.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.9204c3b2.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
         
       
     
@@ -1185,6 +1185,7 @@
 
 <h1 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h1>
 <p>KICS can export results in multiple formats which can be seen on the following list:
+- CycloneDX (cyclonedx)
 - Gitlab SAST (glsast)
 - HTML (html)
 - JSON (json)
@@ -1831,6 +1832,54 @@ PDF reports are sorted by severity (from high to info), the results will have qu
 </tr>
 </tbody>
 </table>
+<h2 id="cyclonedx">CycloneDX<a class="headerlink" href="#cyclonedx" title="Permanent link">&para;</a></h2>
+<p>Now, the CycloneDX report is only available in XML format since the vulnerability schema extension is not currently available in JSON. The guidelines used to build the CycloneDX report were the <a href="http://cyclonedx.org/schema/bom/1.3">bom schema 1.3</a> and <a href="https://github.com/CycloneDX/specification/blob/master/schema/ext/vulnerability-1.0.xsd">vulnerability schema 1.0</a>.</p>
+<p>You can export CycloneDX report by using <code>--report-formats "cyclonedx"</code>. The generated report file will have a prefix <code>cyclonedx-</code> and looks like the following example:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;bom xmlns=&quot;http://cyclonedx.org/schema/bom/1.3&quot; serialNumber=&quot;urn:uuid:9f9c80f3-5795-476d-974f-85e6cf1daa65&quot; xmlns:v=&quot;http://cyclonedx.org/schema/ext/vulnerability/1.0&quot; version=&quot;1&quot;&gt;
+    &lt;metadata&gt;
+        &lt;timestamp&gt;2021-12-03T15:39:49Z&lt;/timestamp&gt;
+        &lt;tools&gt;
+            &lt;tool&gt;
+                &lt;vendor&gt;Checkmarx&lt;/vendor&gt;
+                &lt;name&gt;KICS&lt;/name&gt;
+                &lt;version&gt;development&lt;/version&gt;
+            &lt;/tool&gt;
+        &lt;/tools&gt;
+    &lt;/metadata&gt;
+    &lt;components&gt;
+        &lt;component type=&quot;file&quot; bom-ref=&quot;pkg:generic/assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-68b4caecf5d5&quot;&gt;
+            &lt;name&gt;assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf&lt;/name&gt;
+            &lt;version&gt;0.0.0-68b4caecf5d5&lt;/version&gt;
+            &lt;hashes&gt;
+                &lt;hash alg=&quot;SHA-256&quot;&gt;68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29&lt;/hash&gt;
+            &lt;/hashes&gt;
+            &lt;purl&gt;pkg:generic/assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-68b4caecf5d5&lt;/purl&gt;
+            &lt;v:vulnerabilities&gt;
+                &lt;v:vulnerability ref=&quot;pkg:generic/assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-68b4caecf5d5e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10&quot;&gt;
+                    &lt;v:id&gt;e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10&lt;/v:id&gt;
+                    &lt;v:source&gt;
+                        &lt;name&gt;KICS&lt;/name&gt;
+                        &lt;url&gt;https://kics.io/&lt;/url&gt;
+                    &lt;/v:source&gt;
+                    &lt;v:ratings&gt;
+                        &lt;v:rating&gt;
+                            &lt;v:severity&gt;None&lt;/v:severity&gt;
+                            &lt;v:method&gt;Other&lt;/v:method&gt;
+                        &lt;/v:rating&gt;
+                    &lt;/v:ratings&gt;
+                    &lt;v:description&gt;[Terraform].[Resource Not Using Tags]: AWS services resource tags are an essential part of managing components&lt;/v:description&gt;
+                    &lt;v:recommendations&gt;
+                        &lt;v:recommendation&gt;
+                            &lt;Recommendation&gt;In line 1, a result was found. &amp;#39;aws_guardduty_detector[{{negative1}}].tags is undefined or null&amp;#39;, but &amp;#39;aws_guardduty_detector[{{negative1}}].tags is defined and not null&amp;#39;&lt;/Recommendation&gt;
+                        &lt;/v:recommendation&gt;
+                    &lt;/v:recommendations&gt;
+                &lt;/v:vulnerability&gt;
+            &lt;/v:vulnerabilities&gt;
+        &lt;/component&gt;
+    &lt;/components&gt;
+&lt;/bom&gt;
+</code></pre>
 
               
             </article>
@@ -1900,10 +1949,10 @@ PDF reports are sorted by severity (from high to info), the results will have qu
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.cefbb252.min.js", "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.0bbba5b5.min.js", "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.17f42bbf.min.js"></script>
+      <script src="../assets/javascripts/bundle.649a939e.min.js"></script>
       
         <script src="../js/version-mike.js"></script>
       
