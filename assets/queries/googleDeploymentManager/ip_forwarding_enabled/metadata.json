@@ -1,0 +1,11 @@
+{
+  "id": "7c98538a-81c6-444b-bf04-e60bc3ceeec0",
+  "queryName": "IP Forwarding Enabled",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Instances must not have IP forwarding enabled, which means the attribute 'canIpForward' must not be true",
+  "descriptionUrl": "https://cloud.google.com/compute/docs/reference/rest/v1/instances",
+  "platform": "GoogleDeploymentManager",
+  "descriptionID": "dc6dbaa9",
+  "cloudProvider": "gcp"
+}
