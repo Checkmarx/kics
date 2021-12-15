@@ -22,23 +22,45 @@ type logMsg struct {
 	Message  string `json:"message"`
 }
 
-// JSONSchemaValidation execute a schema validation of JSON reports
-func JSONSchemaValidation(t *testing.T, file, schema string) {
-	cwd, _ := os.Getwd()
-	schemaPath := "file://" + filepath.Join(cwd, "fixtures", "schemas", schema)
-	resultPath := "file://" + filepath.Join(cwd, "output", file)
-
-	if runtime.GOOS == "windows" {
-		schemaPath = strings.Replace(schemaPath, `\`, "/", -1)
-		resultPath = strings.Replace(resultPath, `\`, "/", -1)
+func prepareJSONPath(path string) string {
+	cwd, err := os.Getwd()
+	if err != nil {
+		return ""
 	}
+
+	jsonPath := "file://" + filepath.Join(cwd, path)
+	if runtime.GOOS == "windows" {
+		jsonPath = strings.Replace(jsonPath, `\`, "/", -1)
+	}
+	return jsonPath
+}
+
+// JSONSchemaValidationFromFile loads a json file and validates it against a schema
+func JSONSchemaValidationFromFile(t *testing.T, file, schema string) {
+	schemaPath := prepareJSONPath(filepath.Join("fixtures", "schemas", schema))
+	resultPath := prepareJSONPath(filepath.Join("output", file))
 
 	schemaLoader := gojsonschema.NewReferenceLoader(schemaPath)
 	resultLoader := gojsonschema.NewReferenceLoader(resultPath)
 
-	result, err := gojsonschema.Validate(schemaLoader, resultLoader)
+	JSONSchemaCompare(t, schemaLoader, resultLoader)
+}
+
+// JSONSchemaValidationFromData loads a json data and validates it against a schema
+func JSONSchemaValidationFromData(t *testing.T, data []byte, schema string) {
+	schemaPath := prepareJSONPath(filepath.Join("fixtures", "schemas", schema))
+
+	schemaLoader := gojsonschema.NewReferenceLoader(schemaPath)
+	resultLoader := gojsonschema.NewBytesLoader(data)
+
+	JSONSchemaCompare(t, schemaLoader, resultLoader)
+}
+
+// JSONSchemaCompare executes schema assertions to validate the content of a JSON file
+func JSONSchemaCompare(t *testing.T, schema, report gojsonschema.JSONLoader) {
+	result, err := gojsonschema.Validate(schema, report)
 	require.NoError(t, err, "Schema Validation: Reading Json/Schema files should not yield an error"+
-		"\nSchema: 'fixtures/schemas/%s'\nActual File: 'output/%s'", schema, file)
+		"\nSchema: '%s'\nActual File: '%s'", schema.JsonSource(), report.JsonSource())
 
 	schemaErrors := ""
 	if !result.Valid() {
@@ -47,8 +69,8 @@ func JSONSchemaValidation(t *testing.T, file, schema string) {
 		}
 	}
 
-	require.True(t, result.Valid(), "Schema Validation Failed\nSchema: 'fixtures/schemas/%s'"+
-		"\nActual File: 'output/%s'\nFailed validations:\n%v\n", schema, file, schemaErrors)
+	require.True(t, result.Valid(), "Schema Validation Failed\nSchema: '%s'"+
+		"\nActual File: '%s'\nFailed validations:\n%v\n", schema.JsonSource(), report.JsonSource(), schemaErrors)
 }
 
 // PrepareExpected prepares the files for validation tests
