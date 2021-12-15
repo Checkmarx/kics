@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "VPC Without Network Firewall",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "VPC Without Network Firewall",
+    "severity": "MEDIUM",
+    "line": 21,
+    "fileName": "positive2.json"
+  }
+]
