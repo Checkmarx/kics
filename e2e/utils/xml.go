@@ -42,6 +42,7 @@ func readXMLasJSON(t *testing.T, fullPath, file string, data interface{}) []byte
 	return jsonData
 }
 
+// CycloneSchema is the struct used to unmarshal the cyclonedx xml
 type CycloneSchema struct {
 	XMLName      xml.Name `xml:"bom"`
 	XMLNS        string   `xml:"xmlns,attr"`
