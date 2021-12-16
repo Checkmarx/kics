@@ -1,0 +1,12 @@
+{
+  "Resources": {
+    "ElasticacheCluster": {
+      "Type": "AWS::ElastiCache::CacheCluster",
+      "Properties": {
+          "CacheNodeType": "cache.m3.medium",
+          "Engine": "memcached",
+          "NumCacheNodes": "1"
+      }
+   }
+  }
+}

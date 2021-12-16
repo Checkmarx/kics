@@ -16,6 +16,7 @@ const (
 	KindJSON      FileKind = "JSON"
 	KindYAML      FileKind = "YAML"
 	KindDOCKER    FileKind = "DOCKERFILE"
+	KindPROTO     FileKind = "PROTO"
 	KindCOMMON    FileKind = "*"
 	KindHELM      FileKind = "HELM"
 )

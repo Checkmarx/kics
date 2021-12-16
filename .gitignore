@@ -36,6 +36,7 @@ kics.config
 results.*
 gl-sast-results.json
 sonarqube-results.json
+cyclonedx-results.xml
 junit-results.xml
 
 # Sarif files

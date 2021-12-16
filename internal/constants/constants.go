@@ -48,6 +48,7 @@ var (
 		"Terraform":               "terraform",
 		"AzureResourceManager":    "azureResourceManager",
 		"GoogleDeploymentManager": "googleDeploymentManager",
+		"GRPC":                    "grpc",
 	}
 
 	// AvailableSeverities - All severities available

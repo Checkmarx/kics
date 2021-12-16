@@ -13,6 +13,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
+	protoParser "github.com/Checkmarx/kics/pkg/parser/grpc"
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
@@ -220,6 +221,7 @@ func (c *Client) createService(
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
+		Add(&protoParser.Parser{}).
 		Build(querySource.Types, querySource.CloudProviders)
 	if err != nil {
 		return nil, err

@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -154,6 +155,53 @@ var queryMedium = model.QueryResult{
 	},
 }
 
+var queryMedium2 = model.QueryResult{
+	QueryName: "GuardDuty Detector Disabled",
+	QueryID:   "704dadd3-54fc-48ac-b6a0-02f170011473",
+	Severity:  model.SeverityMedium,
+	Files: []model.VulnerableFile{
+		{
+			FileName:         filepath.Join("assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "positive.tf"),
+			Line:             2,
+			IssueType:        "IncorrectValue",
+			SearchKey:        "aws_guardduty_detector[positive1].enable",
+			KeyExpectedValue: "GuardDuty Detector should be Enabled",
+			KeyActualValue:   "GuardDuty Detector is not Enabled",
+			Value:            nil,
+		},
+	},
+	Platform:    "Terraform",
+	Description: "Make sure that Amazon GuardDuty is Enabled",
+}
+
+var queryInfo = model.QueryResult{
+	QueryName: "Resource Not Using Tags",
+	QueryID:   "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
+	Severity:  model.SeverityInfo,
+	Files: []model.VulnerableFile{
+		{
+			FileName:         filepath.Join("assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "negative.tf"),
+			Line:             1,
+			IssueType:        "MissingAttribute",
+			SearchKey:        "aws_guardduty_detector[{{negative1}}]",
+			KeyExpectedValue: "aws_guardduty_detector[{{negative1}}].tags is defined and not null",
+			KeyActualValue:   "aws_guardduty_detector[{{negative1}}].tags is undefined or null",
+			Value:            nil,
+		},
+		{
+			FileName:         filepath.Join("assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "positive.tf"),
+			Line:             1,
+			IssueType:        "MissingAttribute",
+			SearchKey:        "aws_guardduty_detector[{{positive1}}]",
+			KeyExpectedValue: "aws_guardduty_detector[{{positive1}}].tags is defined and not null",
+			KeyActualValue:   "aws_guardduty_detector[{{positive1}}].tags is undefined or null",
+			Value:            nil,
+		},
+	},
+	Platform:    "Terraform",
+	Description: "AWS services resource tags are an essential part of managing components",
+}
+
 // SummaryMock a summary to be used without running kics scan
 var SummaryMock = model.Summary{
 	Counters: model.Counters{
@@ -206,5 +254,33 @@ var ComplexSummaryMock = model.Summary{
 	},
 	LatestVersion: model.Version{
 		Latest: true,
+	},
+}
+
+// ExampleSummaryMock a summary with specific results to CycloneDX report tests
+var ExampleSummaryMock = model.Summary{
+	Counters: model.Counters{
+		ScannedFiles:           2,
+		ParsedFiles:            2,
+		FailedToScanFiles:      0,
+		TotalQueries:           2,
+		FailedToExecuteQueries: 0,
+	},
+	Queries: []model.QueryResult{
+		queryInfo,
+		queryMedium2,
+	},
+	SeveritySummary: model.SeveritySummary{
+		ScanID: "console",
+		SeverityCounters: map[model.Severity]int{
+			model.SeverityInfo:   2,
+			model.SeverityLow:    0,
+			model.SeverityMedium: 1,
+			model.SeverityHigh:   0,
+		},
+		TotalCounter: 3,
+	},
+	ScannedPaths: []string{
+		"./",
 	},
 }

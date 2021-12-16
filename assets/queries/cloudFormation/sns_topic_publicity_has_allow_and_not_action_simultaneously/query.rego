@@ -5,16 +5,20 @@ import data.generic.common as common_lib
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::SNS::TopicPolicy"
-	document := resource.Properties.PolicyDocument
-	statements = document.Statement
-	statements[k].Effect == "Allow"
-	common_lib.valid_key(statements[k], "NotAction")
+
+	policy := resource.Properties.PolicyDocument
+	st := common_lib.get_statement(common_lib.get_policy(policy))
+	statement := st[_]
+
+	common_lib.is_allow_effect(statement)
+	common_lib.valid_key(statement, "NotAction")
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.PolicyDocument.Statement.Sid=%s", [name, statements[k].Sid]),
+		"searchKey": sprintf("Resources.%s.Properties.PolicyDocument", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement.Sid[%s] has Effect 'Allow' and Action", [name, statements[k].Sid]),
-		"keyActualValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement.Sid[%s] has Effect 'Allow' and NotAction", [name, statements[k].Sid]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement has Effect 'Allow' and Action", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement has Effect 'Allow' and NotAction", [name]),
+		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "PolicyDocument"], []),
 	}
 }
