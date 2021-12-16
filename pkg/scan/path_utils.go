@@ -7,39 +7,40 @@ import (
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/pkg/analyzer"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
 
-func (c *Client) prepareAndAnalyzePaths() (extractedPaths provider.ExtractedPath, err error) {
+func (c *Client) prepareAndAnalyzePaths() (extractedPaths provider.ExtractedPath, ext []string, err error) {
 	err = c.preparePaths()
 	if err != nil {
-		return extractedPaths, err
+		return extractedPaths, []string{}, err
 	}
 
 	extractedPaths, err = provider.GetSources(c.ScanParams.Path)
 	if err != nil {
-		return extractedPaths, err
+		return extractedPaths, []string{}, err
 	}
 
-	newTypeFlagValue, newExcludePathsFlagValue, errAnalyze :=
+	analyzerResp, errAnalyze :=
 		analyzePaths(
 			extractedPaths.Path,
 			c.ScanParams.Platform,
 			c.ScanParams.ExcludePaths,
 		)
 	if errAnalyze != nil {
-		return extractedPaths, errAnalyze
+		return extractedPaths, []string{}, errAnalyze
 	}
 
-	if len(newTypeFlagValue) == 0 {
-		return provider.ExtractedPath{}, nil
+	if len(analyzerResp.Types) == 0 {
+		return provider.ExtractedPath{}, []string{}, nil
 	}
 
-	c.ScanParams.Platform = newTypeFlagValue
-	c.ScanParams.ExcludePaths = newExcludePathsFlagValue
+	c.ScanParams.Platform = analyzerResp.Types
+	c.ScanParams.ExcludePaths = analyzerResp.Unwanted
 
-	return extractedPaths, nil
+	return extractedPaths, analyzerResp.Ext, nil
 }
 
 func (c *Client) preparePaths() error {
@@ -101,19 +102,19 @@ func resolvePath(flagContent, flagName string) (string, error) {
 // analyzePaths will analyze the paths to scan to determine which type of queries to load
 // and which files should be ignored, it then updates the types and exclude flags variables
 // with the results found
-func analyzePaths(paths, types, exclude []string) (typesRes, excludeRes []string, errRes error) {
+func analyzePaths(paths, types, exclude []string) (response model.AnalizerResult, errRes error) {
 	var err error
-	exc := make([]string, 0)
+	resp := model.AnalizerResult{}
 	if types[0] == "" { // if '--type' flag was given skip file analyzing
-		types, exc, err = analyzer.Analyze(paths)
+		resp, err = analyzer.Analyze(paths)
 		if err != nil {
 			log.Err(err)
-			return []string{}, []string{}, err
+			return model.AnalizerResult{}, err
 		}
-		logLoadingQueriesType(types)
+		logLoadingQueriesType(resp.Types)
 	}
-	exclude = append(exclude, exc...)
-	return types, exclude, nil
+	resp.Unwanted = append(resp.Unwanted, exclude...)
+	return resp, nil
 }
 
 func logLoadingQueriesType(types []string) {

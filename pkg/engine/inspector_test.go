@@ -639,7 +639,7 @@ func TestShouldSkipFile(t *testing.T) {
 }
 
 func newInspectorInstance(t *testing.T, queryPath string) *Inspector {
-	querySource := source.NewFilesystemSource(queryPath, []string{""}, []string{""}, filepath.FromSlash("./assets/libraries"))
+	querySource := source.NewFilesystemSource(queryPath, []string{""}, []string{""}, []string{""}, filepath.FromSlash("./assets/libraries"))
 	var vb = func(ctx *QueryContext, tracker Tracker, v interface{},
 		detector *detector.DetectLine) (model.Vulnerability, error) {
 		return model.Vulnerability{}, nil
@@ -662,7 +662,7 @@ type mockSource struct {
 }
 
 func (m *mockSource) GetQueries(queryFilter *source.QueryInspectorParameters) ([]model.QueryMetadata, error) {
-	sources := source.NewFilesystemSource(m.Source, []string{""}, []string{""}, filepath.FromSlash("./assets/libraries"))
+	sources := source.NewFilesystemSource(m.Source, []string{""}, []string{""}, []string{""}, filepath.FromSlash("./assets/libraries"))
 
 	return sources.GetQueries(queryFilter)
 }

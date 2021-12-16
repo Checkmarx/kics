@@ -56,21 +56,26 @@ const (
 	kubernetes = "kubernetes"
 )
 
+type analizerResults struct {
+	types      string
+	extensions string
+}
+
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
 // should be loaded based on the extension of the file and the content
-func Analyze(paths []string) (typesRes, excludeRes []string, errRes error) {
+func Analyze(paths []string) (response model.AnalizerResult, errRes error) {
 	// start metrics for file analyzer
 	metrics.Metric.Start("file_type_analyzer")
 
 	var files []string
 	var wg sync.WaitGroup
 	// results is the channel shared by the workers that contains the types found
-	results := make(chan string)
+	results := make(chan analizerResults)
 
 	// get all the files inside the given paths
 	for _, path := range paths {
 		if _, err := os.Stat(path); err != nil {
-			return []string{}, []string{}, errors.Wrap(err, "failed to analyze path")
+			return model.AnalizerResult{}, errors.Wrap(err, "failed to analyze path")
 		}
 		if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 			if !info.IsDir() {
@@ -100,18 +105,22 @@ func Analyze(paths []string) (typesRes, excludeRes []string, errRes error) {
 		wg.Wait()
 	}()
 
-	availableTypes := createSlice(results)
-	unwantedPaths := createSlice(unwanted)
+	availableTypes, availableExtensions := createSlice(results)
+	unwantedPaths := createUnwanted(unwanted)
 
 	// stop metrics for file analyzer
 	metrics.Metric.Stop()
-	return availableTypes, unwantedPaths, nil
+	return model.AnalizerResult{
+		Types:    availableTypes,
+		Ext:      availableExtensions,
+		Unwanted: unwantedPaths,
+	}, nil
 }
 
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
 // writes the answer to the results channel
 // if no types were found, the worker will write the path of the file in the unwanted channel
-func worker(path string, results, unwanted chan<- string, wg *sync.WaitGroup) {
+func worker(path string, results chan<- analizerResults, unwanted chan<- string, wg *sync.WaitGroup) {
 	defer wg.Done()
 	ext := filepath.Ext(path)
 	if ext == "" {
@@ -120,13 +129,22 @@ func worker(path string, results, unwanted chan<- string, wg *sync.WaitGroup) {
 	switch ext {
 	// Dockerfile
 	case ".dockerfile", "Dockerfile":
-		results <- "dockerfile"
+		results <- analizerResults{
+			types:      "dockerfile",
+			extensions: ".dockerfile",
+		}
 	// Terraform
 	case ".tf", "tfvars":
-		results <- "terraform"
+		results <- analizerResults{
+			types:      "terraform",
+			extensions: ".tf",
+		}
 	// GRPC
 	case ".proto":
-		results <- "grpc"
+		results <- analizerResults{
+			types:      "grpc",
+			extensions: ".proto",
+		}
 	// Cloud Formation, Ansible, OpenAPI
 	case yaml, yml, json:
 		checkContent(path, results, unwanted, ext)
@@ -197,7 +215,7 @@ func needsOverride(check bool, returnType, key, ext string) bool {
 
 // checkContent will determine the file type by content when worker was unable to
 // determine by ext, if no type was determined checkContent adds it to unwanted channel
-func checkContent(path string, results, unwanted chan<- string, ext string) {
+func checkContent(path string, results chan<- analizerResults, unwanted chan<- string, ext string) {
 	// get file content
 	content, err := os.ReadFile(path)
 	if err != nil {
@@ -232,7 +250,9 @@ func checkContent(path string, results, unwanted chan<- string, ext string) {
 	}
 	returnType = checkReturnType(path, returnType, ext, content)
 	if returnType != "" {
-		results <- returnType
+		results <- analizerResults{
+			types: returnType,
+		}
 		return
 	}
 	// No type was determined (ignore on parser)
@@ -288,14 +308,28 @@ func checkYamlPlatform(content []byte) string {
 }
 
 // createSlice creates a slice from the channel given removing any duplicates
-func createSlice(chanel chan string) []string {
-	slice := make([]string, 0)
+func createSlice(chanel chan analizerResults) (types, ext []string) {
+	types = make([]string, 0)
+	ext = make([]string, 0)
 	for i := range chanel {
-		if !contains(slice, i) {
-			slice = append(slice, i)
+		if !contains(types, i.types) {
+			types = append(types, i.types)
+		}
+		if !contains(ext, i.extensions) {
+			ext = append(ext, i.extensions)
 		}
 	}
-	return slice
+	return
+}
+
+func createUnwanted(chanel chan string) (unwanted []string) {
+	unwanted = make([]string, 0)
+	for i := range chanel {
+		if !contains(unwanted, i) {
+			unwanted = append(unwanted, i)
+		}
+	}
+	return
 }
 
 // contains is a simple method to check if a slice

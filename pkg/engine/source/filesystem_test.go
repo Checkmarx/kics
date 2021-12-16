@@ -27,6 +27,7 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 		Types          []string
 		CloudProviders []string
 		Library        string
+		Ext            []string
 	}
 	tests := []struct {
 		name   string
@@ -39,12 +40,13 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 				Types:          []string{""},
 				CloudProviders: []string{""},
 				Library:        "./assets/libraries",
+				Ext:            []string{""},
 			},
 		},
 	}
 	for _, tt := range tests {
 		b.Run(tt.name, func(b *testing.B) {
-			s := NewFilesystemSource(tt.fields.Source, tt.fields.Types, tt.fields.CloudProviders, tt.fields.Library)
+			s := NewFilesystemSource(tt.fields.Source, tt.fields.Types, tt.fields.Ext, tt.fields.CloudProviders, tt.fields.Library)
 			for n := 0; n < b.N; n++ {
 				filter := QueryInspectorParameters{
 					IncludeQueries: IncludeQueries{ByIDs: []string{}},
@@ -159,7 +161,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, tt.fields.Library)
+			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, []string{""}, tt.fields.Library)
 			filter := QueryInspectorParameters{
 				IncludeQueries: IncludeQueries{ByIDs: []string{}},
 				ExcludeQueries: ExcludeQueries{ByIDs: tt.excludeIDs, ByCategories: tt.excludeCategory, BySeverities: tt.excludeSeverities},
@@ -248,7 +250,7 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, tt.fields.Library)
+			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, []string{""}, tt.fields.Library)
 			filter := QueryInspectorParameters{
 				IncludeQueries: IncludeQueries{
 					ByIDs: tt.includeIDs,
@@ -381,7 +383,7 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { // nolint
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, tt.fields.Library)
+			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, []string{""}, tt.fields.Library)
 
 			got, err := s.GetQueryLibrary(tt.args.platform)
 			if (err != nil) != tt.wantErr {
@@ -452,7 +454,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, tt.fields.Library)
+			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, []string{""}, tt.fields.Library)
 			filter := QueryInspectorParameters{
 				IncludeQueries: IncludeQueries{
 					ByIDs: []string{}},

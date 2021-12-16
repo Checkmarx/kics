@@ -192,7 +192,7 @@ func (c *Inspector) Inspect(
 	vulnerabilities = make([]model.Vulnerability, 0)
 	for _, query := range c.getQueriesByPlat(platforms) {
 		currentQuery <- 1
-
+		log.Trace().Msgf("Running query: %s", query.metadata.Query)
 		vuls, err := c.doRun(&QueryContext{
 			ctx:           ctx,
 			scanID:        scanID,
@@ -291,9 +291,9 @@ func (c *Inspector) doRun(ctx *QueryContext) ([]model.Vulnerability, error) {
 		})
 	}
 
-	log.Trace().
-		Str("scanID", ctx.scanID).
-		Msgf("Inspector executed with result %+v, query=%s", results, ctx.query.metadata.Query)
+	// log.Trace().
+	// 	Str("scanID", ctx.scanID).
+	// 	Msgf("Inspector executed with result %+v, query=%s", results, ctx.query.metadata.Query)
 
 	return c.decodeQueryResults(ctx, results)
 }

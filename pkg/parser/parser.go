@@ -37,13 +37,13 @@ func (b *Builder) Add(p kindParser) *Builder {
 }
 
 // Build prepares parsers and associates a parser to its extension and returns it
-func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) {
+func (b *Builder) Build(ext []string) ([]*Parser, error) {
 	parserSlice := make([]*Parser, 0, len(b.parsers))
 	for _, parser := range b.parsers {
 		var parsers kindParser
 		extensions := make(model.Extensions, len(b.parsers))
 		platforms := parser.SupportedTypes()
-		if _, _, ok := contains(types, parser.SupportedTypes()); ok {
+		if _, _, ok := contains(ext, parser.SupportedExtensions()); ok {
 			parsers = parser
 			for _, ext := range parser.SupportedExtensions() {
 				extensions[ext] = struct{}{}

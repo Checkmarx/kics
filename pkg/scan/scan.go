@@ -42,7 +42,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 	progressBar := c.ProBarBuilder.BuildCircle("Preparing Scan Assets: ")
 	go progressBar.Start()
 
-	extractedPaths, err := c.prepareAndAnalyzePaths()
+	extractedPaths, exts, err := c.prepareAndAnalyzePaths()
 	if err != nil {
 		log.Err(err)
 		return nil, err
@@ -55,6 +55,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 	querySource := source.NewFilesystemSource(
 		c.ScanParams.QueriesPath,
 		c.ScanParams.Platform,
+		exts,
 		c.ScanParams.CloudProvider,
 		c.ScanParams.LibrariesPath)
 
@@ -222,7 +223,7 @@ func (c *Client) createService(
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
 		Add(&protoParser.Parser{}).
-		Build(querySource.Types, querySource.CloudProviders)
+		Build(querySource.Ext)
 	if err != nil {
 		return nil, err
 	}

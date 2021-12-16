@@ -25,6 +25,7 @@ type FilesystemSource struct {
 	Types          []string
 	CloudProviders []string
 	Library        string
+	Ext            []string
 }
 
 const (
@@ -43,7 +44,7 @@ const (
 )
 
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
-func NewFilesystemSource(source string, types, cloudProviders []string, libraryPath string) *FilesystemSource {
+func NewFilesystemSource(source string, types, ext, cloudProviders []string, libraryPath string) *FilesystemSource {
 	log.Debug().Msg("source.NewFilesystemSource()")
 
 	if len(types) == 0 {
@@ -59,6 +60,7 @@ func NewFilesystemSource(source string, types, cloudProviders []string, libraryP
 		Types:          types,
 		CloudProviders: cloudProviders,
 		Library:        filepath.FromSlash(libraryPath),
+		Ext:            ext,
 	}
 }
 

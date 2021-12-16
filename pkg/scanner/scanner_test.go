@@ -37,6 +37,7 @@ func TestScanner_StartScan(t *testing.T) {
 	type feilds struct {
 		types          []string
 		cloudProviders []string
+		ext            []string
 	}
 	tests := []struct {
 		name   string
@@ -52,13 +53,14 @@ func TestScanner_StartScan(t *testing.T) {
 			feilds: feilds{
 				types:          []string{""},
 				cloudProviders: []string{""},
+				ext:            []string{""},
 			},
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			services, store, err := createServices(tt.feilds.types, tt.feilds.cloudProviders)
+			services, store, err := createServices(tt.feilds.types, tt.feilds.ext, tt.feilds.cloudProviders)
 			require.NoError(t, err)
 			err = StartScan(context.Background(), tt.args.scanID, progress.PbBuilder{}, services)
 			require.NoError(t, err)
@@ -67,14 +69,14 @@ func TestScanner_StartScan(t *testing.T) {
 	}
 }
 
-func createServices(types, cloudProviders []string) (serviceSlice, *storage.MemoryStorage, error) {
+func createServices(types, ext, cloudProviders []string) (serviceSlice, *storage.MemoryStorage, error) {
 	filesSource, err := provider.NewFileSystemSourceProvider([]string{filepath.FromSlash("../../test")}, []string{})
 	if err != nil {
 		return nil, nil, err
 	}
 
 	t := &tracker.CITracker{}
-	querySource := source.NewFilesystemSource(sourcePath, types, cloudProviders, filepath.FromSlash("../../assets/libraries"))
+	querySource := source.NewFilesystemSource(sourcePath, types, ext, cloudProviders, filepath.FromSlash("../../assets/libraries"))
 
 	inspector, err := engine.NewInspector(context.Background(),
 		querySource, engine.DefaultVulnerabilityBuilder,
@@ -102,7 +104,7 @@ func createServices(types, cloudProviders []string) (serviceSlice, *storage.Memo
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build(types, cloudProviders)
+		Build(types)
 	if err != nil {
 		return nil, nil, err
 	}

@@ -66,6 +66,12 @@ var (
 	KICSCommentRgxp = regexp.MustCompile(`^((/{2})|#)*\s*kics-scan\s*`)
 )
 
+type AnalizerResult struct {
+	Types    []string
+	Ext      []string
+	Unwanted []string
+}
+
 // Version - is the model for the version response
 type Version struct {
 	Latest           bool   `json:"is_latest"`

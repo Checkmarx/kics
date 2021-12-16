@@ -14,6 +14,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 		paths       []string
 		wantTypes   []string
 		wantExclude []string
+		wantExt     []string
 		wantErr     bool
 	}{
 		{
@@ -21,6 +22,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			paths:       []string{filepath.FromSlash("../../test/fixtures/analyzer_test")},
 			wantTypes:   []string{"dockerfile", "googledeploymentmanager", "cloudformation", "kubernetes", "openapi", "terraform", "ansible", "azureresourcemanager"},
 			wantExclude: []string{},
+			wantExt:     []string{},
 			wantErr:     false,
 		},
 		{
@@ -28,6 +30,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			paths:       []string{filepath.FromSlash("../../test/fixtures/analyzer_test/helm")},
 			wantTypes:   []string{"kubernetes"},
 			wantExclude: []string{},
+			wantExt:     []string{},
 			wantErr:     false,
 		},
 		{
@@ -37,6 +40,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 				filepath.FromSlash("../../test/fixtures/analyzer_test/terraform.tf")},
 			wantTypes:   []string{"dockerfile", "terraform"},
 			wantExclude: []string{},
+			wantExt:     []string{},
 			wantErr:     false,
 		},
 		{
@@ -45,6 +49,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 				filepath.FromSlash("../../test/fixtures/analyzer_test/openAPI_test")},
 			wantTypes:   []string{"openapi"},
 			wantExclude: []string{},
+			wantExt:     []string{},
 			wantErr:     false,
 		},
 		{
@@ -54,6 +59,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 				filepath.FromSlash("../../test/fixtures/analyzer_test/terraform.tf")},
 			wantTypes:   []string{},
 			wantExclude: []string{},
+			wantExt:     []string{},
 			wantErr:     true,
 		},
 		{
@@ -63,6 +69,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			},
 			wantTypes:   []string{},
 			wantExclude: []string{filepath.FromSlash("../../test/fixtures/type-test01/template01/metadata.json")},
+			wantExt:     []string{},
 			wantErr:     false,
 		},
 		{
@@ -72,22 +79,25 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			},
 			wantTypes:   []string{"terraform"},
 			wantExclude: []string{},
+			wantExt:     []string{},
 			wantErr:     false,
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, exc, err := Analyze(tt.paths)
+			res, err := Analyze(tt.paths)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Analyze = %v, wantErr = %v", err, tt.wantErr)
 			}
 			sort.Strings(tt.wantTypes)
 			sort.Strings(tt.wantExclude)
-			sort.Strings(got)
-			sort.Strings(exc)
-			require.Equal(t, tt.wantTypes, got, "wrong types from analyzer")
-			require.Equal(t, tt.wantExclude, exc, "wrong excludes from analyzer")
+			sort.Strings(res.Ext)
+			sort.Strings(res.Unwanted)
+			sort.Strings(res.Types)
+			require.Equal(t, tt.wantTypes, res.Types, "wrong types from analyzer")
+			require.Equal(t, tt.wantExclude, res.Unwanted, "wrong excludes from analyzer")
+			require.Equal(t, tt.wantExclude, res.Unwanted, "wrong excludes from analyzer")
 		})
 	}
 }
