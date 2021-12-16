@@ -150,7 +150,6 @@ func processPlaybooksElements(resources interface{}, filePath string) {
 	for _, value := range mapResources {
 		mapValue, ok := value.(map[string]interface{})
 		if !ok {
-			log.Warn().Msgf("Failed to parse playbooks values: %s", filePath)
 			continue
 		}
 		processElements(mapValue, filePath)
