@@ -10,11 +10,11 @@
     <div class="col-6 text-center">
         <br/><br/>
         <h4>Version 1.4.6.1</h4>
-        <p style="font-size:8pt">2021.11.24<p>
+        <p style="font-size:8pt">2021.12.16<p>
         <h4>Downloads:</h4>
-        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.4.8/kics_1.4.8_windows_x64.zip">Windows</a>
-        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.4.8/kics_1.4.8_linux_x64.tar.gz">Linux</a>
-        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.4.8/kics_1.4.8_darwin_x64.tar.gz">MacOS</a>
+        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.5.0/kics_1.5.0_windows_x64.zip">Windows</a>
+        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.5.0/kics_1.5.0_linux_x64.tar.gz">Linux</a>
+        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.5.0/kics_1.5.0_darwin_x64.tar.gz">MacOS</a>
         <hr/>
         <a class="btn btn-outline-success"  href="https://docs.kics.io/latest/CONTRIBUTING">Contribute!</a>
     </div>
