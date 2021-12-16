@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Cloud Storage Bucket Versioning Disabled",
+    "severity": "HIGH",
+    "line": 4,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Cloud Storage Bucket Versioning Disabled",
+    "severity": "HIGH",
+    "line": 8,
+    "filename": "positive2.yaml"
+  }
+]
