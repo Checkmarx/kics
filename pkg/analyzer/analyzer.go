@@ -8,6 +8,7 @@ import (
 	"sync"
 
 	"github.com/Checkmarx/kics/internal/metrics"
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 
@@ -267,7 +268,7 @@ func checkHelm(path string) bool {
 }
 
 func checkYamlPlatform(content []byte) string {
-	var yamlContent map[string]interface{}
+	var yamlContent model.Document
 	if err := yamlParser.Unmarshal(content, &yamlContent); err != nil {
 		log.Warn().Msgf("failed to parse yaml file: %s", err)
 	}
