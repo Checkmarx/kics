@@ -51,6 +51,10 @@ KICS supports scanning Swagger 2.0 and OpenAPI 3.0 specs with `.json` and `.yaml
 
 KICS supports scanning Google Deployment Manager files with `.yaml` extension.
 
+## gRPC
+
+KICS supports scanning gRPC files with `.proto` extension.
+
 ## Terraform
 
 KICS supports scanning Terraform's HCL files with `.tf` extension and input variables using `terraform.tfvars` or files with `.auto.tfvars` extension that are in same directory of `.tf` files.
@@ -74,9 +78,9 @@ Currently, KICS does not support unofficial or custom modules.
 ### Limitations
 
 #### Ansible
-At the moment, KICS does not support a robust approach to identifying Ansible samples. The identification of these samples is done through exclusion. When a YAML sample is not a CloudFormation, Helm, Kubernetes or OpenAPI sample, KICS recognize it as Ansible. 
+At the moment, KICS does not support a robust approach to identifying Ansible samples. The identification of these samples is done through exclusion. When a YAML sample is not a CloudFormation, Helm, Kubernetes or OpenAPI sample, KICS recognize it as Ansible.
 
-Thus, KICS recognize other YAML samples (that are not Ansible) as Ansible, e.g. GitHub Actions samples. However, you can ignore these samples by writing `#kics-scan ignore` on the top of the file. For more details, please read this [documentation](https://github.com/Checkmarx/kics/blob/25b6b703e924ed42067d9ab7772536864aee900b/docs/running-kics.md#using-commands-on-scanned-files-as-comments). 
+Thus, KICS recognize other YAML samples (that are not Ansible) as Ansible, e.g. GitHub Actions samples. However, you can ignore these samples by writing `#kics-scan ignore` on the top of the file. For more details, please read this [documentation](https://github.com/Checkmarx/kics/blob/25b6b703e924ed42067d9ab7772536864aee900b/docs/running-kics.md#using-commands-on-scanned-files-as-comments).
 
 
 #### Terraform

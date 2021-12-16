@@ -1,26 +1,14 @@
 [
   {
-    "fileName": "positive1.yaml",
     "queryName": "SNS Topic Publicity Has Allow and NotAction Simultaneously",
     "severity": "MEDIUM",
-    "line": 11
-  },
-  {
-    "queryName": "SNS Topic Publicity Has Allow and NotAction Simultaneously",
-    "severity": "MEDIUM",
-    "line": 15,
+    "line": 7,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "SNS Topic Publicity Has Allow and NotAction Simultaneously",
     "severity": "MEDIUM",
-    "line": 15,
+    "line": 8,
     "fileName": "positive2.json"
-  },
-  {
-    "severity": "MEDIUM",
-    "line": 19,
-    "fileName": "positive2.json",
-    "queryName": "SNS Topic Publicity Has Allow and NotAction Simultaneously"
   }
 ]

@@ -1,0 +1,11 @@
+{
+  "id": "fd632aaf-b8a1-424d-a4d1-0de22fd3247a",
+  "queryName": "VPC Without Network Firewall",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "VPC should have a Network Firewall associated",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/networkfirewall_firewall#vpc_id",
+  "platform": "Terraform",
+  "descriptionID": "2e7d55e6",
+  "cloudProvider": "aws"
+}

@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "VPC Without Network Firewall",
+    "severity": "MEDIUM",
+    "line": 1
+  }
+]

@@ -2,13 +2,13 @@
   {
     "queryName": "IAM Role Allows All Principals To Assume",
     "severity": "LOW",
-    "line": 13,
+    "line": 6,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "IAM Role Allows All Principals To Assume",
     "severity": "LOW",
-    "line": 13,
+    "line": 7,
     "fileName": "positive2.json"
   }
 ]

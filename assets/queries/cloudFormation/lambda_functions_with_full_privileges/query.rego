@@ -1,26 +1,6 @@
 package Cx
 
-CxPolicy[result] {
-	resources := input.document[i].Resources
-	resource := resources[name]
-
-	resource.Type == "AWS::Lambda::Function"
-
-	# check if the role referenced in the lambda function properties is defined in the same template
-	fullRole := split(resource.Properties.Role, ".")
-	role := fullRole[0]
-	resources[role]
-
-	policyName := checkPolicies(resources[role].Properties.Policies)
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.Policies.PolicyDocument", [role]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.Policies[%s].PolicyDocument does not give admin privileges to Resources.%s ", [role, policyName, name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.Policies[%s].PolicyDocument gives admin privileges to Resources.%s ", [role, policyName, name]),
-	}
-}
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resources := input.document[i].Resources
@@ -33,43 +13,25 @@ CxPolicy[result] {
 	role := fullRole[0]
 	resources[role]
 
-	policyName := checkPoliciesActionArray(resources[role].Properties.Policies)
+	policy := resources[role].Properties.Policies[p]
+
+	check_policy(policy.PolicyDocument)
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.Policies.PolicyDocument", [role]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.Policies[%s].PolicyDocument does not give admin privileges to Resources.%s ", [role, policyName, name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.Policies[%s].PolicyDocument gives admin privileges to Resources.%s ", [role, policyName, name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Policies[%s].PolicyDocument does not give admin privileges to Resources.%s ", [role, policy.PolicyName, name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.Policies[%s].PolicyDocument gives admin privileges to Resources.%s ", [role, policy.PolicyName, name]),
+		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "Policies", p], ["PolicyDocument"]),
 	}
 }
 
-checkPolicies(policies) = policyName {
-	some j, k
-	statement := policies[j].PolicyDocument.Statement[k]
-	statement.Effect == "Allow"
-	checkResource(statement)
-	checkAction(statement)
-    policyName := policies[j].PolicyName
-}
+check_policy(policy) {
+	st := common_lib.get_statement(common_lib.get_policy(policy))
+	statement := st[_]
 
-checkPoliciesActionArray(policies) = policyName {
-	some j, k
-	statement := policies[j].PolicyDocument.Statement[k]
-	statement.Effect == "Allow"
-	checkResource(statement)
-	checkActionArray(statement)
-    policyName := policies[j].PolicyName
-}
-
-checkResource(statement) {
-	contains(statement.Resource, "*")
-}
-
-checkActionArray(statement) {
-	contains(statement.Action[_], "*")
-}
-
-checkAction(statement) {
-	contains(statement.Action, "*")
+	common_lib.is_allow_effect(statement)
+    common_lib.containsOrInArrayContains(statement.Resource, "*")
+	common_lib.containsOrInArrayContains(statement.Action, "*")
 }
