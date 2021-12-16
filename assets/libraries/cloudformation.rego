@@ -33,6 +33,15 @@ checkAction(currentAction, actionToCompare) {
 } else {
     is_string(currentAction)
 	contains(lower(currentAction), actionToCompare)
+} else {
+    is_array(currentAction)
+    action := currentAction[_]
+    action == "*"
+    action == actionToCompare
+} else {
+    is_array(currentAction)
+    action := currentAction[_]
+    contains(lower(action), actionToCompare)
 }
 
 # Dictionary of UDP ports

@@ -33,6 +33,7 @@ var reportGenerators = map[string]func(path, filename string, body interface{}) 
 	"glsast":    report.PrintGitlabSASTReport,
 	"pdf":       report.PrintPdfReport,
 	"sonarqube": report.PrintSonarQubeReport,
+	"cyclonedx": report.PrintCycloneDxReport,
 	"junit":     report.PrintJUnitReport,
 }
 

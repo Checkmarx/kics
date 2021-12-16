@@ -1,0 +1,11 @@
+{
+  "id": "8c849af7-a399-46f7-a34c-32d3dc96f1fc",
+  "queryName": "ElastiCache Without VPC",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "ElastiCache should be launched in a Virtual Private Cloud (VPC)",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#subnet_group_name",
+  "platform": "Terraform",
+  "descriptionID": "cf79a8df",
+  "cloudProvider": "aws"
+}

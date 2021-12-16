@@ -1,4 +1,4 @@
-FROM golang:1.17.3-alpine as build_env
+FROM golang:1.17.5-alpine as build_env
 # Create a group and user
 RUN addgroup -S Checkmarx && adduser -S Checkmarx -G Checkmarx
 USER Checkmarx

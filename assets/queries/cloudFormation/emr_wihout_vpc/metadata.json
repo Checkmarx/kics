@@ -1,0 +1,11 @@
+{
+  "id": "bf89373a-be40-4c04-99f5-746742dfd7f3",
+  "queryName": "EMR Without VPC",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "Elastic MapReduce Cluster (EMR) should be launched in a Virtual Private Cloud (VPC)",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-jobflowinstancesconfig.html#cfn-elasticmapreduce-cluster-jobflowinstancesconfig-ec2subnetid",
+  "platform": "CloudFormation",
+  "descriptionID": "26800d21",
+  "cloudProvider": "aws"
+}

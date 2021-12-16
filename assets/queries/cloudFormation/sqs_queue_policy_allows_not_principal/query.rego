@@ -5,23 +5,22 @@ import data.generic.common as common_lib
 CxPolicy[result] {
 	document := input.document[i]
 
-	some queuePolicyName
 	document.Resources[queuePolicyName].Type == "AWS::SQS::QueuePolicy"
 	queuePolicy := document.Resources[queuePolicyName]
 
-	some stmt
-	isUnsafeStatement(queuePolicy.Properties.PolicyDocument.Statement[stmt])
+	policy := queuePolicy.Properties.PolicyDocument
+	st := common_lib.get_statement(common_lib.get_policy(policy))
+	statement := st[_]
+
+	common_lib.is_allow_effect(statement)
+	common_lib.valid_key(statement, "NotPrincipal")
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("Resources.%s.Properties.PolicyDocument.Statement.Effect=Allow.NotPrincipal", [queuePolicyName]),
+		"searchKey": sprintf("Resources.%s.Properties.PolicyDocument", [queuePolicyName]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement[*].NotPrincipal should never be used when Effect=Allow", [queuePolicyName]),
-		"keyActualValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement[%s].NotPrincipal is set and Effect=Allow", [queuePolicyName, stmt]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement.NotPrincipal should never be used when Effect=Allow", [queuePolicyName]),
+		"keyActualValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement.NotPrincipal is set and Effect=Allow", [queuePolicyName]),
+		"searchLine": common_lib.build_search_line(["Resource", queuePolicyName, "Properties", "PolicyDocument"], []),
 	}
-}
-
-isUnsafeStatement(stmt) {
-	stmt.Effect == "Allow"
-	common_lib.valid_key(stmt, "NotPrincipal")
 }

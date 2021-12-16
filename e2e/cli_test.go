@@ -108,31 +108,37 @@ func checkExpectedOutput(t *testing.T, tt *testcases.TestCase, argIndex int) {
 	}
 	// Check result file (JSON)
 	if utils.Contains(resultsFormats, "json") {
-		utils.JSONSchemaValidation(t, jsonFileName, "result.json")
+		utils.JSONSchemaValidationFromFile(t, jsonFileName, "result.json")
 	}
 	// Check result file (JSON including BoM)
 	if utils.Contains(resultsFormats, "json-bom") {
-		utils.JSONSchemaValidation(t, jsonFileName, "resultBoM.json")
+		utils.JSONSchemaValidationFromFile(t, jsonFileName, "resultBoM.json")
 	}
-	// Check result file (JSON including BoM)
+	// Check result file (JSON including CIS Descriptions)
 	if utils.Contains(resultsFormats, "json-cis") {
-		utils.JSONSchemaValidation(t, jsonFileName, "resultCIS.json")
+		utils.JSONSchemaValidationFromFile(t, jsonFileName, "resultCIS.json")
 	}
 	// Check result file (GLSAST)
 	if utils.Contains(resultsFormats, "glsast") {
-		utils.JSONSchemaValidation(t, "gl-sast-"+jsonFileName, "result-gl-sast.json")
+		utils.JSONSchemaValidationFromFile(t, "gl-sast-"+jsonFileName, "result-gl-sast.json")
 	}
 	// Check result file (SONARQUBE)
 	if utils.Contains(resultsFormats, "sonarqube") {
-		utils.JSONSchemaValidation(t, "sonarqube-"+jsonFileName, "result-sonarqube.json")
+		utils.JSONSchemaValidationFromFile(t, "sonarqube-"+jsonFileName, "result-sonarqube.json")
 	}
 	// Check result file (SARIF)
 	if utils.Contains(resultsFormats, "sarif") {
-		utils.JSONSchemaValidation(t, tt.Args.ExpectedResult[argIndex].ResultsFile+".sarif", "result-sarif.json")
+		utils.JSONSchemaValidationFromFile(t, tt.Args.ExpectedResult[argIndex].ResultsFile+".sarif", "result-sarif.json")
 	}
 	// Check result file (HTML)
 	if utils.Contains(resultsFormats, "html") {
 		utils.HTMLValidation(t, tt.Args.ExpectedResult[argIndex].ResultsFile+".html")
+	}
+	// Check result file (JUNIT - XML)
+	if utils.Contains(resultsFormats, "junit") {
+		filename := "junit-" + tt.Args.ExpectedResult[argIndex].ResultsFile + ".xml"
+		json := utils.XMLToJSON(t, filename)
+		utils.JSONSchemaValidationFromData(t, json, "result-junit.json")
 	}
 }
 

@@ -7,4 +7,5 @@ valid arguments:
   Terraform
   Dockerfile
   AzureResourceManager
+  GRPC
 {{.ScanHelp}}

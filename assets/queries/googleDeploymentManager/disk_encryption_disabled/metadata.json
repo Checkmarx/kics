@@ -1,0 +1,11 @@
+{
+  "id": "fc040fb6-4c23-4c0d-b12a-39edac35debb",
+  "queryName": "Disk Encryption Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "VM disks for critical VMs must be encrypted with Customer Supplied Encryption Keys (CSEK) or with Customer-managed encryption keys (CMEK), which means the attribute 'diskEncryptionKey' must be defined and its sub attributes 'rawKey' or 'kmsKeyName' must also be defined",
+  "descriptionUrl": "https://cloud.google.com/compute/docs/reference/rest/v1/instances",
+  "platform": "GoogleDeploymentManager",
+  "descriptionID": "107eb8fb",
+  "cloudProvider": "gcp"
+}

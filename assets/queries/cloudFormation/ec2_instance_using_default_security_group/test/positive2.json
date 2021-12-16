@@ -1,0 +1,29 @@
+{
+  "Resources": {
+    "MyEC2Instance": {
+      "Properties": {
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/sdm",
+            "Ebs": {
+              "DeleteOnTermination": "false",
+              "Iops": "200",
+              "VolumeSize": "20",
+              "VolumeType": "io1"
+            }
+          },
+          {
+            "DeviceName": "/dev/sdk",
+            "NoDevice": {}
+          }
+        ],
+        "ImageId": "ami-79fd7eee",
+        "KeyName": "testkey",
+        "SecurityGroups": [
+          "default"
+        ]
+      },
+      "Type": "AWS::EC2::Instance"
+    }
+  }
+}

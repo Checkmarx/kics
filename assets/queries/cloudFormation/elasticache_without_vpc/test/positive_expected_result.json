@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "ElastiCache Without VPC",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "ElastiCache Without VPC",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive2.json"
+  }
+]
