@@ -99,7 +99,7 @@
 				
 				<option value="file21">github.com/Checkmarx/kics/internal/tracker/ci.go (81.2%)</option>
 				
-				<option value="file22">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (90.5%)</option>
+				<option value="file22">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (89.5%)</option>
 				
 				<option value="file23">github.com/Checkmarx/kics/pkg/builder/engine/engine.go (71.8%)</option>
 				
@@ -205,7 +205,7 @@
 				
 				<option value="file74">github.com/Checkmarx/kics/pkg/parser/utils/swagger_utils.go (84.6%)</option>
 				
-				<option value="file75">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (82.1%)</option>
+				<option value="file75">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (81.8%)</option>
 				
 				<option value="file76">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (85.7%)</option>
 				
@@ -2353,7 +2353,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2562,6 +2562,7 @@ import (
         "sync"
 
         "github.com/Checkmarx/kics/internal/metrics"
+        "github.com/Checkmarx/kics/pkg/model"
         "github.com/pkg/errors"
         "github.com/rs/zerolog/log"
 
@@ -2821,8 +2822,8 @@ func checkHelm(path string) bool <span class="cov4" title="6">{
 }
 
 func checkYamlPlatform(content []byte) string <span class="cov2" title="2">{
-        var yamlContent map[string]interface{}
-        if err := yamlParser.Unmarshal(content, &amp;yamlContent); err != nil </span><span class="cov1" title="1">{
+        var yamlContent model.Document
+        if err := yamlParser.Unmarshal(content, &amp;yamlContent); err != nil </span><span class="cov0" title="0">{
                 log.Warn().Msgf("failed to parse yaml file: %s", err)
         }</span>
         // check if it is google deployment manager platform
@@ -4651,7 +4652,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -13980,7 +13981,6 @@ func processPlaybooksElements(resources interface{}, filePath string) <span clas
         <span class="cov1" title="1">for _, value := range mapResources </span><span class="cov3" title="2">{
                 mapValue, ok := value.(map[string]interface{})
                 if !ok </span><span class="cov1" title="1">{
-                        log.Warn().Msgf("Failed to parse playbooks values: %s", filePath)
                         continue</span>
                 }
                 <span class="cov1" title="1">processElements(mapValue, filePath)</span>
