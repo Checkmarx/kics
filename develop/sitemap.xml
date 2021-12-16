@@ -231,6 +231,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/queries/googledeploymentmanager-queries/</loc>
+         <lastmod>2021-12-16</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/grpc-queries/</loc>
+         <lastmod>2021-12-16</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/queries/kubernetes-queries/</loc>
          <lastmod>2021-12-16</lastmod>
          <changefreq>daily</changefreq>
