@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "IP Forwarding Enabled",
+    "severity": "MEDIUM",
+    "line": 16,
+    "filename": "positive1.yaml"
+  }
+]
