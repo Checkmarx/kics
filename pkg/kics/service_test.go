@@ -146,7 +146,7 @@ func createParserSourceProvider(path string) ([]*parser.Parser,
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build([]string{""})
+		Build([]string{""}, []string{""})
 
 	mockFilesSource, _ := provider.NewFileSystemSourceProvider([]string{path}, []string{})
 

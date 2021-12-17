@@ -223,7 +223,7 @@ func (c *Client) createService(
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
 		Add(&protoParser.Parser{}).
-		Build(querySource.Ext)
+		Build(querySource.Types, querySource.Ext)
 	if err != nil {
 		return nil, err
 	}

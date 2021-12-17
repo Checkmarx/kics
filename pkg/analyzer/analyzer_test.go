@@ -57,9 +57,9 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			paths: []string{
 				filepath.FromSlash("../../test/fixtures/analyzer_test/Dockserfile"),
 				filepath.FromSlash("../../test/fixtures/analyzer_test/terraform.tf")},
-			wantTypes:   []string{},
-			wantExclude: []string{},
-			wantExt:     []string{},
+			wantTypes:   []string(nil),
+			wantExclude: []string(nil),
+			wantExt:     []string(nil),
 			wantErr:     true,
 		},
 		{

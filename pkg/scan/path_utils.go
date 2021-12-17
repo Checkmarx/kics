@@ -114,6 +114,7 @@ func analyzePaths(paths, types, exclude []string) (response model.AnalizerResult
 		logLoadingQueriesType(resp.Types)
 	}
 	resp.Unwanted = append(resp.Unwanted, exclude...)
+	resp.Types = types
 	return resp, nil
 }
 

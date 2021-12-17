@@ -7,9 +7,8 @@ func init() { //nolint
 		Name: "should run only provided queries and exclude provided results [E2E-CLI-037]",
 		Args: args{
 			Args: []cmdArgs{
-
 				[]string{"scan", "--include-queries", "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
-					"--exclude-results", "ff26328ed857afb92e2be8b946b4dd28fb0e5125fae679653e0117e5b9359554",
+					"--exclude-results", "406b71d9fd0edb656a4735df30dde77c5f8a6c4ec3caa3442f986a92832c653b",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 
 				[]string{"scan", "--include-queries", "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",

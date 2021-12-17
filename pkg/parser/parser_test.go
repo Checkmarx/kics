@@ -65,7 +65,7 @@ RUN echo hello
 // TestParser_Empty tests the functions [Parse()] and all the methods called by them (tests an empty parser)
 func TestParser_Empty(t *testing.T) {
 	p, err := NewBuilder().
-		Build([]string{""})
+		Build([]string{""}, []string{""})
 	if err != nil {
 		t.Errorf("Error building parser: %s", err)
 	}
@@ -103,7 +103,7 @@ func initilizeBuilder() []*Parser {
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build([]string{""})
+		Build([]string{""}, []string{""})
 	return bd
 }
 
@@ -111,14 +111,14 @@ func TestIsValidExtension(t *testing.T) {
 	parser, _ := NewBuilder().
 		Add(&jsonParser.Parser{}).
 		Add(&dockerParser.Parser{}).
-		Build([]string{""})
+		Build([]string{""}, []string{""})
 	require.True(t, parser[0].isValidExtension("test.json"), "test.json should be a valid extension")
 	require.True(t, parser[1].isValidExtension("Dockerfile"), "dockerfile should be a valid extension")
 	require.False(t, parser[0].isValidExtension("test.xml"), "test.xml should not be a valid extension")
 }
 
 func TestCommentsCommands(t *testing.T) {
-	parser, _ := NewBuilder().Add(&dockerParser.Parser{}).Build([]string{""})
+	parser, _ := NewBuilder().Add(&dockerParser.Parser{}).Build([]string{""}, []string{""})
 	commands := parser[0].CommentsCommands("Dockerfile", []byte(`
 	# kics-scan ignore
 	# kics-scan disable=ffdf4b37-7703-4dfe-a682-9d2e99bc6c09

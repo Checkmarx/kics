@@ -104,7 +104,7 @@ func createServices(types, ext, cloudProviders []string) (serviceSlice, *storage
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build(types)
+		Build(types, ext)
 	if err != nil {
 		return nil, nil, err
 	}

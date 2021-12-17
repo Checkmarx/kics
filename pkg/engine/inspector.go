@@ -291,9 +291,9 @@ func (c *Inspector) doRun(ctx *QueryContext) ([]model.Vulnerability, error) {
 		})
 	}
 
-	// log.Trace().
-	// 	Str("scanID", ctx.scanID).
-	// 	Msgf("Inspector executed with result %+v, query=%s", results, ctx.query.metadata.Query)
+	log.Trace().
+		Str("scanID", ctx.scanID).
+		Msgf("Inspector executed with result %+v, query=%s", results, ctx.query.metadata.Query)
 
 	return c.decodeQueryResults(ctx, results)
 }
