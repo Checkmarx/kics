@@ -314,7 +314,7 @@ func PrintPdfReport(path, filename string, body interface{}) error {
 	return err
 }
 
-func createDateField(m pdf.Maroto, label string, time time.Time) {
+func createDateField(m pdf.Maroto, label string, scanTime time.Time) {
 	m.Row(colFour, func() {
 		m.Col(colTwo, func() {
 			m.Text(label, props.Text{
@@ -324,7 +324,7 @@ func createDateField(m pdf.Maroto, label string, time time.Time) {
 			})
 		})
 		m.Col(colTwo, func() {
-			m.Text(time.Format("15:04:05, Jan 02 2006"), props.Text{
+			m.Text(scanTime.Format("15:04:05, Jan 02 2006"), props.Text{
 				Size:        defaultTextSize,
 				Align:       consts.Left,
 				Extrapolate: false,
