@@ -314,7 +314,7 @@ func PrintPdfReport(path, filename string, body interface{}) error {
 	return err
 }
 
-func createDateField(m pdf.Maroto, label string, summary *model.Summary) {
+func createDateField(m pdf.Maroto, label string, time time.Time) {
 	m.Row(colFour, func() {
 		m.Col(colTwo, func() {
 			m.Text(label, props.Text{
@@ -324,7 +324,7 @@ func createDateField(m pdf.Maroto, label string, summary *model.Summary) {
 			})
 		})
 		m.Col(colTwo, func() {
-			m.Text(summary.Start.Format("15:04:05, Jan 02 2006"), props.Text{
+			m.Text(time.Format("15:04:05, Jan 02 2006"), props.Text{
 				Size:        defaultTextSize,
 				Align:       consts.Left,
 				Extrapolate: false,
@@ -334,8 +334,8 @@ func createDateField(m pdf.Maroto, label string, summary *model.Summary) {
 }
 
 func createDateArea(m pdf.Maroto, summary *model.Summary) {
-	createDateField(m, "START TIME", summary)
-	createDateField(m, "END TIME", summary)
+	createDateField(m, "START TIME", summary.Start)
+	createDateField(m, "END TIME", summary.End)
 }
 
 func createPlatformsArea(m pdf.Maroto, summary *model.Summary) {
