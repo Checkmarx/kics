@@ -66,6 +66,7 @@ var (
 	KICSCommentRgxp = regexp.MustCompile(`^((/{2})|#)*\s*kics-scan\s*`)
 )
 
+// AnalizerResult - types, extensions, and unwanted paths
 type AnalizerResult struct {
 	Types    []string
 	Ext      []string
