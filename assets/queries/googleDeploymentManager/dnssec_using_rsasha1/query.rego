@@ -6,7 +6,7 @@ CxPolicy[result] {
 	resource := input.document[i].resources[idx]
 	resource.type == "dns.v1.managedZone"
 
-	resource.properties.dnssecConfig.defaultKeySpecs[idx].algorithm == "rsasha1"
+	resource.properties.dnssecConfig.defaultKeySpecs[d].algorithm == "rsasha1"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -14,6 +14,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'algorithm' is not equal to 'rsasha1'",
 		"keyActualValue": "'algorithm' is equal to 'rsasha1'",
-		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "dnssecConfig", "defaultKeySpecs", idx, "algorithm"], []),
+		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "dnssecConfig", "defaultKeySpecs", d, "algorithm"], []),
 	}
 }
