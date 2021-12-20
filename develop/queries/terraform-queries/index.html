@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/queries/terraform-queries/">
       
       <link rel="icon" href="../../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.2">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.f7951f6f.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.edf004c2.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -1358,7 +1358,7 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_audit_config">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Object Versioning Not Enabled<br/><sup><sub>e7e961ac-d17e-4413-84bc-8a1fbe242944</sub></sup></td>
+<td>Cloud Storage Bucket Versioning Disabled<br/><sup><sub>e7e961ac-d17e-4413-84bc-8a1fbe242944</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Observability</td>
 <td>Object Versioning Not Enabled on Cloud Storage Bucket</td>
@@ -3713,13 +3713,6 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafregional_web_acl_association#resource_arn">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>ElastiCache Without VPC<br/><sup><sub>8c849af7-a399-46f7-a34c-32d3dc96f1fc</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Networking and Firewall</td>
-<td>ElastiCache should be launched in a Virtual Private Cloud (VPC)</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#subnet_group_name">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>S3 Bucket Without Versioning<br/><sup><sub>568a4d22-3517-44a6-a7ad-6a7eed88722c</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
@@ -4054,6 +4047,13 @@
 <td>Networking and Firewall</td>
 <td>ElastiCache should not use the default port (an attacker can easily guess the port). For engine set to Redis, the default port is 6379. The Memcached default port is 11211</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#port">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ElastiCache Without VPC<br/><sup><sub>8c849af7-a399-46f7-a34c-32d3dc96f1fc</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>ElastiCache should be launched in a Virtual Private Cloud (VPC)</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#subnet_group_name">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>EMR Without VPC<br/><sup><sub>2b3c8a6d-9856-43e6-ab1d-d651094f03b4</sub></sup></td>
@@ -4820,7 +4820,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.0bbba5b5.min.js", "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.649a939e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e1a181d9.min.js"></script>
       
         <script src="../../js/version-mike.js"></script>
       

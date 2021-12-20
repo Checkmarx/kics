@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/queries/all-queries/">
       
       <link rel="icon" href="../../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.2">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.f7951f6f.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.edf004c2.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -1380,7 +1380,7 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_audit_config">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Object Versioning Not Enabled<br/><sup><sub>e7e961ac-d17e-4413-84bc-8a1fbe242944</sub></sup></td>
+<td>Cloud Storage Bucket Versioning Disabled<br/><sup><sub>e7e961ac-d17e-4413-84bc-8a1fbe242944</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
 <td>Observability</td>
@@ -3948,14 +3948,6 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafregional_web_acl_association#resource_arn">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>ElastiCache Without VPC<br/><sup><sub>8c849af7-a399-46f7-a34c-32d3dc96f1fc</sub></sup></td>
-<td>Terraform</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Networking and Firewall</td>
-<td>ElastiCache should be launched in a Virtual Private Cloud (VPC)</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#subnet_group_name">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>S3 Bucket Without Versioning<br/><sup><sub>568a4d22-3517-44a6-a7ad-6a7eed88722c</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -4338,6 +4330,14 @@
 <td>Networking and Firewall</td>
 <td>ElastiCache should not use the default port (an attacker can easily guess the port). For engine set to Redis, the default port is 6379. The Memcached default port is 11211</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#port">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ElastiCache Without VPC<br/><sup><sub>8c849af7-a399-46f7-a34c-32d3dc96f1fc</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>ElastiCache should be launched in a Virtual Private Cloud (VPC)</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#subnet_group_name">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>EMR Without VPC<br/><sup><sub>2b3c8a6d-9856-43e6-ab1d-d651094f03b4</sub></sup></td>
@@ -6172,6 +6172,14 @@
 <td><a href="https://cloud.google.com/deployment-manager/docs/configuration/set-access-control-resources">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Cloud Storage Bucket Versioning Disabled<br/><sup><sub>ad0875c1-0b39-4890-9149-173158ba3bba</sub></sup></td>
+<td>GoogleDeploymentManager</td>
+<td><span style="color:#C00">High</span></td>
+<td>Observability</td>
+<td>Cloud Storage Bucket should be enabled</td>
+<td><a href="https://cloud.google.com/storage/docs/json_api/v1/buckets">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Disk Encryption Disabled<br/><sup><sub>fc040fb6-4c23-4c0d-b12a-39edac35debb</sub></sup></td>
 <td>GoogleDeploymentManager</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -7492,14 +7500,6 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>ElastiCache Without VPC<br/><sup><sub>ba766c53-fe71-4bbb-be35-b6803f2ef13e</sub></sup></td>
-<td>CloudFormation</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Networking and Firewall</td>
-<td>ElastiCache should be launched in a Virtual Private Cloud (VPC)</td>
-<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html#cfn-elasticache-cachecluster-cachesubnetgroupname">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>TCP/UDP Protocol Network ACL Entry Allows All Ports<br/><sup><sub>f57f849c-883b-4cb7-85e7-f7b199dff163</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -7978,6 +7978,14 @@
 <td>Networking and Firewall</td>
 <td>ElastiCache should not use the default port (an attacker can easily guess the port). For engine set to Redis, the default port is 6379. The Memcached default port is 11211</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html#cfn-elasticache-replicationgroup-port">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ElastiCache Without VPC<br/><sup><sub>ba766c53-fe71-4bbb-be35-b6803f2ef13e</sub></sup></td>
+<td>CloudFormation</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>ElastiCache should be launched in a Virtual Private Cloud (VPC)</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html#cfn-elasticache-cachecluster-cachesubnetgroupname">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>ECS Task Definition HealthCheck Missing<br/><sup><sub>d24389b4-b209-4ff0-8345-dc7a4569dcdd</sub></sup></td>
@@ -10420,20 +10428,20 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_storage_bucket_module.html#parameter-logging">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Object Versioning Not Enabled<br/><sup><sub>7814ddda-e758-4a56-8be3-289a81ded929</sub></sup></td>
-<td>Ansible</td>
-<td><span style="color:#C00">High</span></td>
-<td>Observability</td>
-<td>Object Versioning not fully enabled on Cloud Storage Bucket</td>
-<td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_storage_bucket_module.html#parameter-versioning">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>PostgreSQL Logging Of Temporary Files Disabled<br/><sup><sub>d6fae5b6-ada9-46c0-8b36-3108a2a2f77b</sub></sup></td>
 <td>Ansible</td>
 <td><span style="color:#C00">High</span></td>
 <td>Observability</td>
 <td>PostgreSQL database 'log_temp_files' flag isn't set to '0'</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Cloud Storage Bucket Versioning Disabled<br/><sup><sub>7814ddda-e758-4a56-8be3-289a81ded929</sub></sup></td>
+<td>Ansible</td>
+<td><span style="color:#C00">High</span></td>
+<td>Observability</td>
+<td>Object Versioning not fully enabled on Cloud Storage Bucket</td>
+<td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_storage_bucket_module.html#parameter-versioning">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Stackdriver Logging Disabled<br/><sup><sub>19c9e2a0-fc33-4264-bba1-e3682661e8f7</sub></sup></td>
@@ -11740,14 +11748,6 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/wafv2_resources_module.html#parameter-arn">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>ElastiCache Without VPC<br/><sup><sub>5527dcfc-94f9-4bf6-b7d4-1b78850cf41f</sub></sup></td>
-<td>Ansible</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Networking and Firewall</td>
-<td>ElastiCache should be launched in a Virtual Private Cloud (VPC)</td>
-<td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/elasticache_module.html#parameter-cache_subnet_group">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>S3 Bucket Without Versioning<br/><sup><sub>9232306a-f839-40aa-b3ef-b352001da9a5</sub></sup></td>
 <td>Ansible</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -11930,6 +11930,14 @@
 <td>Networking and Firewall</td>
 <td>ElastiCache should not use the default port (an attacker can easily guess the port). For engine set to Redis, the default port is 6379. The Memcached default port is 11211</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/elasticache_module.html#parameter-cache_port">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ElastiCache Without VPC<br/><sup><sub>5527dcfc-94f9-4bf6-b7d4-1b78850cf41f</sub></sup></td>
+<td>Ansible</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>ElastiCache should be launched in a Virtual Private Cloud (VPC)</td>
+<td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/elasticache_module.html#parameter-cache_subnet_group">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>S3 Bucket Logging Disabled<br/><sup><sub>c3b9f7b0-f5a0-49ec-9cbc-f1e346b7274d</sub></sup></td>
@@ -12373,7 +12381,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.0bbba5b5.min.js", "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.649a939e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e1a181d9.min.js"></script>
       
         <script src="../../js/version-mike.js"></script>
       
