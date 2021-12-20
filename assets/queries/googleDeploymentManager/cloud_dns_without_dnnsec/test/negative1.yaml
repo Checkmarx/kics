@@ -1,0 +1,7 @@
+resources:
+- name: dns4
+  type: dns.v1.managedZone
+  properties:
+    name: my-zone4
+    dnssecConfig:
+      state: "on"

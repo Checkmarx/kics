@@ -1,0 +1,11 @@
+{
+  "id": "313d6deb-3b67-4948-b41d-35b699c2492e",
+  "queryName": "Cloud DNS Without DNSSEC",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "DNSSEC must be enabled for Cloud DNS",
+  "descriptionUrl": "https://cloud.google.com/dns/docs/reference/v1/managedZones",
+  "platform": "GoogleDeploymentManager",
+  "descriptionID": "d926ffb6",
+  "cloudProvider": "gcp"
+}

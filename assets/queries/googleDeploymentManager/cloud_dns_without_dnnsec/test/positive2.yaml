@@ -1,0 +1,7 @@
+resources:
+- name: dns2
+  type: dns.v1.managedZone
+  properties:
+    name: my-zone2
+    dnssecConfig:
+      kind: "dns#managedZoneDnsSecConfig"
