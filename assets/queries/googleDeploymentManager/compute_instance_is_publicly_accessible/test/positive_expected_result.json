@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Compute Instance Is Publicly Accessible",
+    "severity": "HIGH",
+    "line": 8,
+    "filename": "positive1.yaml"
+  }
+]
