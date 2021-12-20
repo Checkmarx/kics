@@ -10,6 +10,6 @@
   register: acr
 - name: "Create lock for ACR1"
   azure.azcollection.azure_rm_lock:
-      managed_resource_id: "{{ acr3.id }}"
-      name: "acr_lock"
-      level: can_not_delete
+    managed_resource_id: "{{ acr3.id }}"
+    name: "acr_lock"
+    level: can_not_delete
