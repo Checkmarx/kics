@@ -1,0 +1,11 @@
+{
+  "id": "1239f54b-33de-482a-8132-faebe288e6a6",
+  "queryName": "Google Storage Bucket Level Access Disabled",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Google Storage Bucket Level Access should be enabled",
+  "descriptionUrl": "https://cloud.google.com/storage/docs/json_api/v1/buckets",
+  "platform": "GoogleDeploymentManager",
+  "descriptionID": "d9594b64",
+  "cloudProvider": "gcp"
+}
