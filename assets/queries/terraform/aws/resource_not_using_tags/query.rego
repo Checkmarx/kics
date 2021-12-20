@@ -5,8 +5,9 @@ import data.generic.terraform as terraform_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource[res][name]
-	check_default_tags == false
 	terraform_lib.check_resource_tags(res)
+
+	check_default_tags == false
 	not common_lib.valid_key(resource, "tags")
 
 	result := {
@@ -21,10 +22,10 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource[res][name]
-	check_default_tags == false
 	terraform_lib.check_resource_tags(res)
-	tags := remove_name_tag(resource.tags)
-	count(tags) == 0
+
+	check_default_tags == false
+	not check_different_tag(resource.tags)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -36,16 +37,13 @@ CxPolicy[result] {
 	}
 }
 
-remove_name_tag(tags) = res_tags {
-	not common_lib.valid_key(tags, "Name")
-	res_tags := tags
-} else = res_tags {
-	res_tags := object.remove(tags, {"Name"})
+check_different_tag(tags) {
+	tags[x]
+	x != "Name"
 }
 
 check_default_tags {
-	def_tags := input.document[_].provider[_].default_tags.tags
-	def_tags != {}
+	common_lib.valid_key(input.document[_].provider[_].default_tags, "tags")
 } else = false {
 	true
 }

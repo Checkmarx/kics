@@ -8,7 +8,7 @@ func init() { //nolint
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "--output-path", "output", "--output-name", "E2E_CLI_031_RESULT",
-					"--report-formats", "json,SARIF,glsast,Html,SonarQUBE,Junit",
+					"--report-formats", "json,SARIF,glsast,Html,SonarQUBE,Junit,cyclonedx",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
 
 				[]string{"scan", "--output-path", "output", "--output-name", "E2E_CLI_031_RESULT_CIS",
@@ -18,7 +18,7 @@ func init() { //nolint
 			ExpectedResult: []ResultsValidation{
 				{
 					ResultsFile:    "E2E_CLI_031_RESULT",
-					ResultsFormats: []string{"json", "sarif", "glsast", "html", "sonarqube", "junit"},
+					ResultsFormats: []string{"json", "sarif", "glsast", "html", "sonarqube", "junit", "cyclonedx"},
 				},
 				{
 					ResultsFile:    "E2E_CLI_031_RESULT_CIS",
