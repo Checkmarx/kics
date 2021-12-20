@@ -42,7 +42,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name={{%s}}.properties.privateClusterConfig.state", [resource.name]),
+		"searchKey": sprintf("resources.name={{%s}}.properties.dnssecConfig.state", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'state' is set to 'on'",
 		"keyActualValue": "'state' is not set to 'on'", 
