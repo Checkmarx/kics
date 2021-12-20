@@ -15,6 +15,8 @@ queries_path = {
     'common': os.path.join(queries_basepath, 'common', '*'),
     'dockerfile': os.path.join(queries_basepath, 'dockerfile', '*'),
     'terraform': os.path.join(queries_basepath, 'terraform', '**', '*'),
+    'grpc': os.path.join(queries_basepath, 'grpc', '*'),
+    'gdm': os.path.join(queries_basepath, 'googleDeploymentManager', '*'),
 }
 samples_ext = {
     'azureresourcemanager': ['json'],
@@ -25,6 +27,9 @@ samples_ext = {
     'common': ['yaml', 'json', 'dockerfile', 'tf'],
     'dockerfile': ['dockerfile'],
     'terraform': ['tf'],
+    'grpc': ['proto'],
+    'gdm': ['yaml'],
+
 }
 summary = {
     'total': 0,
