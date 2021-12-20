@@ -17,6 +17,7 @@ type Parser struct {
 // Resource Separates the list of commands by file
 type Resource struct {
 	CommandList map[string][]Command `json:"command"`
+	Arguments   []Command            `json:"args"`
 }
 
 // Command is the struct for each dockerfile command
@@ -46,8 +47,9 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 		return nil, []int{}, errors.Wrap(err, "failed to parse Dockerfile")
 	}
 
-	fromValue := "args"
+	fromValue := ""
 	from := make(map[string][]Command)
+	arguments := make([]Command, 0)
 	ignoreStruct := newIgnore()
 
 	for _, child := range parsed.AST.Children {
@@ -80,12 +82,17 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 			cmd.Value = append(cmd.Value, n.Value)
 		}
 
-		from[fromValue] = append(from[fromValue], cmd)
+		if fromValue == "" {
+			arguments = append(arguments, cmd)
+		} else {
+			from[fromValue] = append(from[fromValue], cmd)
+		}
 	}
 
 	doc := &model.Document{}
 	var resource Resource
 	resource.CommandList = from
+	resource.Arguments = arguments
 
 	j, err := json.Marshal(resource)
 	if err != nil {
