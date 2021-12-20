@@ -165,7 +165,7 @@
 				
 				<option value="file54">github.com/Checkmarx/kics/pkg/parser/docker/comments.go (100.0%)</option>
 				
-				<option value="file55">github.com/Checkmarx/kics/pkg/parser/docker/parser.go (92.5%)</option>
+				<option value="file55">github.com/Checkmarx/kics/pkg/parser/docker/parser.go (90.9%)</option>
 				
 				<option value="file56">github.com/Checkmarx/kics/pkg/parser/grpc/converter/converter.go (89.6%)</option>
 				
@@ -2322,13 +2322,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="36">total += v
+                <span class="cov8" title="34">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -4652,7 +4652,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -8818,6 +8818,7 @@ type Parser struct {
 // Resource Separates the list of commands by file
 type Resource struct {
         CommandList map[string][]Command `json:"command"`
+        Arguments   []Command            `json:"args"`
 }
 
 // Command is the struct for each dockerfile command
@@ -8847,8 +8848,9 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
                 return nil, []int{}, errors.Wrap(err, "failed to parse Dockerfile")
         }</span>
 
-        <span class="cov3" title="3">fromValue := "args"
+        <span class="cov3" title="3">fromValue := ""
         from := make(map[string][]Command)
+        arguments := make([]Command, 0)
         ignoreStruct := newIgnore()
 
         for _, child := range parsed.AST.Children </span><span class="cov8" title="21">{
@@ -8881,12 +8883,17 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
                         cmd.Value = append(cmd.Value, n.Value)
                 }</span>
 
-                <span class="cov8" title="21">from[fromValue] = append(from[fromValue], cmd)</span>
+                <span class="cov8" title="21">if fromValue == "" </span><span class="cov0" title="0">{
+                        arguments = append(arguments, cmd)
+                }</span> else<span class="cov8" title="21"> {
+                        from[fromValue] = append(from[fromValue], cmd)
+                }</span>
         }
 
         <span class="cov3" title="3">doc := &amp;model.Document{}
         var resource Resource
         resource.CommandList = from
+        resource.Arguments = arguments
 
         j, err := json.Marshal(resource)
         if err != nil </span><span class="cov0" title="0">{
