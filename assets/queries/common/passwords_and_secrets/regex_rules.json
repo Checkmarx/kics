@@ -284,6 +284,10 @@
     {
       "description": "Avoiding TF file function",
       "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*=\\s*['\"]?(file\\()['\"]?"
+    },
+    {
+      "description": "Avoiding ansible-vault encrypted variables",
+      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[=:]\\s*['\"]?(!vault \\|)['\"]?"
     }
   ]
 }
