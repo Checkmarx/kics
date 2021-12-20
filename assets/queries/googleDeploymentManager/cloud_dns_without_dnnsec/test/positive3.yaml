@@ -1,0 +1,7 @@
+resources:
+- name: dns3
+  type: dns.v1.managedZone
+  properties:
+    name: my-zone3
+    dnssecConfig:
+      state: "off"
