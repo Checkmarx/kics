@@ -1,0 +1,8 @@
+resources:
+- name: instance2
+  type: compute.v1.instance
+  properties:
+    scheduling:
+      automaticRestart: true
+    networkInterfaces:
+      network: network

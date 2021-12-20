@@ -1,0 +1,11 @@
+resources:
+- name: instance
+  type: compute.v1.instance
+  properties:
+    scheduling:
+      automaticRestart: true
+    networkInterfaces:
+      - accessConfigs:
+        - name: External NAT
+          type: ONE_TO_ONE_NAT
+        network: network
