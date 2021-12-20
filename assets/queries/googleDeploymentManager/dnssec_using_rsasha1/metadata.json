@@ -1,0 +1,11 @@
+{
+  "id": "6d7b121a-a2ed-4e37-bd2f-80d9df1dfd35",
+  "queryName": "DNSSEC Using RSASHA1",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "DNSSEC should not use the RSASHA1 algorithm",
+  "descriptionUrl": "https://cloud.google.com/dns/docs/reference/v1/managedZones",
+  "platform": "GoogleDeploymentManager",
+  "descriptionID": "7f322f20",
+  "cloudProvider": "gcp"
+}

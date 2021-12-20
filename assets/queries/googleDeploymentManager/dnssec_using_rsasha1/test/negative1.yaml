@@ -1,0 +1,9 @@
+resources:
+- name: dns2
+  type: dns.v1.managedZone
+  properties:
+    name: my-zone2
+    dnssecConfig:
+      state: "on"
+      defaultKeySpecs:
+        - algorithm: rsasha256
