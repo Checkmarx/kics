@@ -1,0 +1,15 @@
+- name: Create an azure container registry11
+  azure.azcollection.azure_rm_containerregistry:
+    name: myRegistry
+    location: eastus
+    admin_user_enabled: "true"
+    sku: Premium
+    tags:
+      Release: beta1
+      Environment: Production
+  register: acr2
+- name: "Create lock for ACR11"
+  azure.azcollection.azure_rm_lock:
+    managed_resource_id: "{{ acr2.id }}"
+    name: "acr_lock"
+    level: can_not_delete

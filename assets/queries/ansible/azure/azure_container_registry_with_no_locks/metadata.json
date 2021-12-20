@@ -3,8 +3,8 @@
   "queryName": "Azure Container Registry With No Locks",
   "severity": "HIGH",
   "category": "Insecure Configurations",
-  "descriptionText": "Azurerm Container Registry Must Contain Associated Locks ",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_containerregistry_module.html",
+  "descriptionText": "Azurerm Container Registry should contain associated locks through 'azure_rm_lock.managed_resource_id' or 'azure_rm_lock.resource_group' association",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_lock_module.html",
   "platform": "Ansible",
   "descriptionID": "7489a85f",
   "cloudProvider": "azure"

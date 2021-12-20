@@ -2,11 +2,19 @@
   {
     "queryName": "Azure Container Registry With No Locks",
     "severity": "HIGH",
-    "line": 5
+    "line": 2,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Azure Container Registry With No Locks",
     "severity": "HIGH",
-    "line": 20
+    "line": 17,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Azure Container Registry With No Locks",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive2.yaml"
   }
 ]
