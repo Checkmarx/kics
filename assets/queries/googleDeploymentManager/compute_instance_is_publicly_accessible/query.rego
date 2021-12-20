@@ -10,7 +10,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name={{%s}}.properties.networkInterfaces.accessConfigs", [resource.name]),
+		"searchKey": sprintf("resources.name={{%s}}.properties.networkInterfaces", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'accessConfigs' is undefined",
 		"keyActualValue": "'accessConfigs' is defined and not null", 
