@@ -36,7 +36,7 @@ CxPolicy[result] {
 
 	bom_output = {
 		"resource_type": "aws_sqs_queue_policy",
-		"resource_name": split(aws_sqs_queue_policy_resource.queue_url, ".")[1],
+		"resource_name": get_name(aws_sqs_queue_policy_resource),
 		"resource_accessibility": info.accessibility,
 		"resource_vendor": "AWS",
 		"resource_category": "Queues",
@@ -53,14 +53,20 @@ CxPolicy[result] {
 		"value": json.marshal(bom_output),
 	}
 }
-get_queue_name(aws_sqs_queue_resource) = name {
-	name := aws_sqs_queue_resource.name
-} else {
-	name := sprintf("%s<unknown-sufix>", [aws_sqs_queue_resource.name_prefix])
-} else {
+
+get_name(aws_sqs_queue_policy_resource) = name {
+	name := split(aws_sqs_queue_policy_resource.queue_url, ".")[1]
+} else = name {
 	name := "unknown"
 }
 
+get_queue_name(aws_sqs_queue_resource) = name {
+	name := aws_sqs_queue_resource.name
+} else = name {
+	name := sprintf("%s<unknown-sufix>", [aws_sqs_queue_resource.name_prefix])
+} else = name {
+	name := "unknown"
+}
 
 get_accessibility(policy) = info {
 	terra_lib.is_publicly_accessible(policy)
