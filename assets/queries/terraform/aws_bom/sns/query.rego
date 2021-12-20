@@ -30,8 +30,8 @@ CxPolicy[result] {
 
 get_queue_name(aws_sns_topic_resource) = name {
 	name := aws_sns_topic_resource.name
-} else {
+} else = name {
 	name := sprintf("%s<unknown-sufix>", [aws_sns_topic_resource.name_prefix])
-} else {
+} else = name {
 	name := "unknown"
 }
