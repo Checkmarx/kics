@@ -12,6 +12,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_storage_bucket[%s].uniform_bucket_level_access is true", [name]),
 		"keyActualValue": sprintf("google_storage_bucket[%s].uniform_bucket_level_access is false", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "google_storage_bucket", name, "uniform_bucket_level_access"], []),
 	}
 }
 
@@ -25,5 +26,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("google_storage_bucket[%s].uniform_bucket_level_access is defined and not null", [name]),
 		"keyActualValue": sprintf("google_storage_bucket[%s].uniform_bucket_level_access is undefined or null", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "google_storage_bucket", name], []),
 	}
 }
