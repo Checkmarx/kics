@@ -226,7 +226,7 @@
       "files": [
         {
           "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "ff26328ed857afb92e2be8b946b4dd28fb0e5125fae679653e0117e5b9359554",
+          "similarity_id": "b44463ffd0f5c1eadc04ce6649982da68658349ad880daef470250661d3d1512",
           "line": 1,
           "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[{{default}}]",
@@ -237,7 +237,7 @@
         },
         {
           "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "fa5d403b0ee5702d19523b159dfe830584ac506471647bbfb94d101d258cb3c8",
+          "similarity_id": "406b71d9fd0edb656a4735df30dde77c5f8a6c4ec3caa3442f986a92832c653b",
           "line": 10,
           "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[{{default1}}]",
