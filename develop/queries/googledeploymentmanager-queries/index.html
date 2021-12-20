@@ -1152,6 +1152,13 @@
 </thead>
 <tbody>
 <tr>
+<td>DNSSEC Using RSASHA1<br/><sup><sub>6d7b121a-a2ed-4e37-bd2f-80d9df1dfd35</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>DNSSEC should not use the RSASHA1 algorithm</td>
+<td><a href="https://cloud.google.com/dns/docs/reference/v1/managedZones">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Private Cluster Disabled<br/><sup><sub>48c61fbd-09c9-46cc-a521-012e0c325412</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
@@ -1166,6 +1173,13 @@
 <td><a href="https://cloud.google.com/deployment-manager/docs/configuration/set-access-control-resources">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Compute Instance Is Publicly Accessible<br/><sup><sub>8212e2d7-e683-49bc-bf78-d6799075c5a7</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>Compute instances shouldn't be accessible from the Internet.</td>
+<td><a href="https://cloud.google.com/compute/docs/reference/rest/v1/instances">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Cloud Storage Bucket Versioning Disabled<br/><sup><sub>ad0875c1-0b39-4890-9149-173158ba3bba</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Observability</td>
@@ -1178,6 +1192,20 @@
 <td>Encryption</td>
 <td>VM disks for critical VMs must be encrypted with Customer Supplied Encryption Keys (CSEK) or with Customer-managed encryption keys (CMEK), which means the attribute 'diskEncryptionKey' must be defined and its sub attributes 'rawKey' or 'kmsKeyName' must also be defined</td>
 <td><a href="https://cloud.google.com/compute/docs/reference/rest/v1/instances">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Cloud DNS Without DNSSEC<br/><sup><sub>313d6deb-3b67-4948-b41d-35b699c2492e</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>DNSSEC must be enabled for Cloud DNS</td>
+<td><a href="https://cloud.google.com/dns/docs/reference/v1/managedZones">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Google Storage Bucket Level Access Disabled<br/><sup><sub>1239f54b-33de-482a-8132-faebe288e6a6</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Google Storage Bucket Level Access should be enabled</td>
+<td><a href="https://cloud.google.com/storage/docs/json_api/v1/buckets">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>IP Forwarding Enabled<br/><sup><sub>7c98538a-81c6-444b-bf04-e60bc3ceeec0</sub></sup></td>
