@@ -10,10 +10,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
+		"searchKey": sprintf("resources.name={{%s}}.properties.networkInterfaces.accessConfigs", [resource.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'privateClusterConfig' is defined and not null",
-		"keyActualValue": "'privateClusterConfig' is undefined or null", 
+		"keyExpectedValue": "'accessConfigs' is undefined",
+		"keyActualValue": "'accessConfigs' is defined and not null", 
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "networkInterfaces", idx, "accessConfigs"], []),
 	}
 }
