@@ -288,6 +288,10 @@
     {
       "description": "Avoiding ansible-vault encrypted variables",
       "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[=:]\\s*['\"]?(!vault \\|)['\"]?"
+    },
+    {
+      "description": "Avoiding sha-hashed mysql native passwords",
+      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[=:]\\s*['\"]?(\\*[0-9A-F]{40})['\"]?"
     }
   ]
 }
