@@ -2,10 +2,12 @@ name: statistics
 
 on:
   workflow_dispatch:
-    
+  push:
+    branches: [master]
+
 jobs:
-  metrics:
-    name: test-metrics
+  statistics:
+    name: test-statistics
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source
