@@ -37,5 +37,5 @@ jobs:
         id: metrics
         run: |
           pip3 install -r .github/scripts/statistics/requirements.txt
-          python3 .github/scripts/statistics/get-statistics.py -c ${{steps.testcoverage.outputs.coverage}} -t ${{steps.testcoverage.outputs.total_tests}} -g ${{steps.go_loc.outputs.goloc}}
+          python3 .github/scripts/statistics/get_statistics.py -c ${{steps.testcoverage.outputs.coverage}} -t ${{steps.testcoverage.outputs.total_tests}} -g ${{steps.go_loc.outputs.goloc}}
       

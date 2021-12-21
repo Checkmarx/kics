@@ -1,13 +1,11 @@
-import requests
-import subprocess
 import os
 import glob
-import json
 from datetime import date
-from tabulate import tabulate
-import argparse
-
 import sys
+import argparse
+from tabulate import tabulate
+import requests
+
 base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.join(base, "metrics"))
 
@@ -37,12 +35,13 @@ def get_statistics(test_coverage, total_tests, go_loc):
             'github_stars': stars,
             'github_forks': forks,
             'github_downloads': all_github_downloads,
-            'bug_open' : bug_open_count,
-            'bug_closed' : bug_closed_count,
-            'feature_request_open' : feature_request_open_count, 
-            'feature_request_closed' : feature_request_closed_count,
+            'bugs_open' : bug_open_count,
+            'bugs_closed' : bug_closed_count,
+            'feature_requests_open' : feature_request_open_count,
+            'feature_requests_closed' : feature_request_closed_count,
             'total_tests': total_tests,
             'test_coverage': test_coverage,
+            'code_samples': code_samples,
             'e2e_tests' : e2e_tests
            }
 
@@ -80,7 +79,7 @@ def get_relevant_issues_info():
     bug_closed = base_url + "issue+state:closed+label:bug"
     feature_request_open = base_url + "issue+state:open+label:\"feature%20request\""
     feature_request_closed = base_url + "issue+state:closed+label:\"feature%20request\""
- 
+
     target_urls = [ { bug_open : ""}, { bug_closed : "" }, {feature_request_open: ""}, {feature_request_closed: ""} ]
 
     for target_url in target_urls:
@@ -98,7 +97,7 @@ def get_relevant_issues_info():
     return bug_open_count, bug_closed_count, feature_request_open_count, feature_request_closed_count
 
 def get_e2e_tests():
-    path, dirs, files = next(os.walk("./././e2e/testcases"))
+    _, _, files = next(os.walk("./././e2e/testcases"))
     e2e_tests = len(files) - 1
 
     return e2e_tests
@@ -115,7 +114,7 @@ def get_total_queries():
         for ext in samples_ext[key]:
             sample_path = os.path.join(value, 'test', f'*.{ext}')
             ext_samples = len([path for path in glob.glob(sample_path)])
-            
+
             total_samples += ext_samples
 
     return total_queries, total_samples
@@ -147,10 +146,9 @@ args = parser.parse_args()
 
 def main():
     statistics = get_statistics(args.coverage, args.total_tests, args.goloc)
-    date = statistics["date"]
 
     print(tabulate([[key, value] for key, value in statistics.items()], headers=[
-      'KICS_KPIS', date], tablefmt='orgtbl'))
+      'KICS_KPIS', statistics["date"]], tablefmt='orgtbl'))
 
 
 if __name__ == "__main__":
