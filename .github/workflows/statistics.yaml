@@ -2,10 +2,8 @@ name: statistics
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - "master"
-
+  pull_request:
+    branches: [master]
 jobs:
   statistics:
     name: test-statistics
