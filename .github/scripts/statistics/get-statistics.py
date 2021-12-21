@@ -10,7 +10,7 @@ import argparse
 # sys.path.append(os.path.abspath("./metrics/get_metrics.py"))
 
 
-def get_statistics(test_coverage, total_tests):
+def get_statistics(test_coverage, total_tests, go_loc):
     latest_realease_url = "https://api.github.com/repos/Checkmarx/kics/releases/latest"
     releases_url = "https://api.github.com/repos/Checkmarx/kics/releases"
     dockerhub_url = "https://hub.docker.com/v2/repositories/checkmarx/kics"
@@ -28,6 +28,7 @@ def get_statistics(test_coverage, total_tests):
     return {'date': date,
             'version': version,
             'total_queries': total_queries,
+            'go_loc': go_loc,
             'dockerhub_pulls': all_dockerhub_pulls,
             'github_stars': stars,
             'github_forks': forks,
@@ -190,11 +191,13 @@ parser.add_argument('-c', '--coverage', metavar='COV',
 required=True, help='path to KICS repository root')
 parser.add_argument('-t', '--total-tests', metavar='TESTS',
 required=True, help='path to KICS repository root')
+parser.add_argument('-g', '--goloc', metavar='GOLOC',
+required=True, help='path to KICS repository root')
 
 args = parser.parse_args()
 
 def main():
-    statistics = get_statistics(args.coverage, args.total_tests)
+    statistics = get_statistics(args.coverage, args.total_tests, args.goloc)
 
     print(tabulate([[key, value] for key, value in statistics.items()], headers=[
       '', ''], tablefmt='orgtbl'))
