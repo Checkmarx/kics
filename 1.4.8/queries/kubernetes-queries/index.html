@@ -1,0 +1,1860 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Open source solution for static code analysis of Infrastructure as Code. Finding security vulnerabilities, compliance issues, and infrastructure misconfigurations during project development cycle.">
+      
+      
+      
+        <link rel="canonical" href="http://docs.kics.io/1.4.8/queries/kubernetes-queries/">
+      
+      <link rel="icon" href="../../img/logo/kics-hat.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+    
+    
+      
+        <title>Kubernetes - KICS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.edf004c2.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="kics" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#kubernetes_queries_list" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-component="outdated" hidden>
+        <aside class="md-banner md-banner--warning">
+          
+        </aside>
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="KICS" class="md-header__button md-logo" aria-label="KICS" data-md-component="logo">
+      
+  <img src="../../img/logo/kics_hat_color_new.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KICS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Kubernetes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="kics" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Checkmarx/kics/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../getting-started/" class="md-tabs__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
+        Queries
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../integrations/" class="md-tabs__link">
+        Integrations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../certifications/" class="md-tabs__link">
+      Certifications
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../roadmap/" class="md-tabs__link">
+        Project
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../CONTRIBUTING/" class="md-tabs__link">
+      Contribution
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../about/" class="md-tabs__link">
+      About
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="KICS" class="md-nav__button md-logo" aria-label="KICS" data-md-component="logo">
+      
+  <img src="../../img/logo/kics_hat_color_new.png" alt="logo">
+
+    </a>
+    KICS
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Checkmarx/kics/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration-file/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../commands/" class="md-nav__link">
+        Command Line Interface
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-kics/" class="md-nav__link">
+        Running KICS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../results/" class="md-nav__link">
+        Results
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        Architecture
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../platforms/" class="md-nav__link">
+        Platforms
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changes/" class="md-nav__link">
+        Changes in v1.3.0
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Queries
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Queries" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Queries
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        General Info
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../creating-queries/" class="md-nav__link">
+        Creating Queries
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../secrets/" class="md-nav__link">
+        Passwords And Secrets
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bom/" class="md-nav__link">
+        Bill of Materials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5" type="checkbox" id="__nav_2_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5">
+          Queries List
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Queries List" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Queries List
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../all-queries/" class="md-nav__link">
+        All
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansible-queries/" class="md-nav__link">
+        Ansible
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../azureresourcemanager-queries/" class="md-nav__link">
+        Azure Resource Manager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloudformation-queries/" class="md-nav__link">
+        CloudFormation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dockerfile-queries/" class="md-nav__link">
+        Dockerfile
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Kubernetes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Kubernetes
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#kubernetes_queries_list" class="md-nav__link">
+    Kubernetes Queries List
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../terraform-queries/" class="md-nav__link">
+        Terraform
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openapi-queries/" class="md-nav__link">
+        OpenAPI
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Integrations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Integrations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Integrations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_azurepipelines/" class="md-nav__link">
+        Azure DevOps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_bitbucketpipelines/" class="md-nav__link">
+        Bitbucket Pipelines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_circleci/" class="md-nav__link">
+        CircleCI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_ghactions/" class="md-nav__link">
+        Github Actions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_gitlabci/" class="md-nav__link">
+        Gitlab CI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_jenkins/" class="md-nav__link">
+        Jenkins
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_teamcity/" class="md-nav__link">
+        TeamCity
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_travisci/" class="md-nav__link">
+        Travis CI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integration_tfcloud/" class="md-nav__link">
+        Terraform Cloud
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cdk/" class="md-nav__link">
+        AWS CDK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BADGE/" class="md-nav__link">
+        Badge
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_pre_commit/" class="md-nav__link">
+        Using pre-commit hooks
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../certifications/" class="md-nav__link">
+        Certifications
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Project
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Project" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Project
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/" class="md-nav__link">
+        Roadmap
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Checkmarx/kics/projects" class="md-nav__link">
+        Plans
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Checkmarx/kics/issues" class="md-nav__link">
+        Issues
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/" class="md-nav__link">
+        Releases
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../performance/" class="md-nav__link">
+        Performance
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONTRIBUTING/" class="md-nav__link">
+        Contribution
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#kubernetes_queries_list" class="md-nav__link">
+    Kubernetes Queries List
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/Checkmarx/kics/edit/master/docs/queries/kubernetes-queries.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+  <h1>Kubernetes</h1>
+
+<h2 id="kubernetes_queries_list">Kubernetes Queries List<a class="headerlink" href="#kubernetes_queries_list" title="Permanent link">&para;</a></h2>
+<p>This page contains all queries from Kubernetes.</p>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Severity</th>
+<th>Category</th>
+<th>Description</th>
+<th>Help</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Host Aliases Undefined Or Empty<br/><sup><sub>72b03514-20ae-4409-8842-2dd70c2e25aa</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>A Pod should have Host Aliases defined as to prevent the container from modifying the file after a pod's containers have already been started. This means the attribute 'spec.hostAliases' must be defined and not empty or null.</td>
+<td><a href="https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Shared Host Network Namespace<br/><sup><sub>6b6bdfb3-c3ae-44cb-88e4-7405c1ba2c8a</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Container should not share the host network namespace</td>
+<td><a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>PSP Allows Containers To Share The Host Network Namespace<br/><sup><sub>a33e9173-b674-4dfb-9d82-cf3754816e4b</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Check if Pod Security Policies allow containers to share the host network namespace.</td>
+<td><a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Tiller (Helm v2) Is Deployed<br/><sup><sub>6d173be7-545a-46c6-a81d-2ae52ed1605d</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Check if Tiller is deployed.</td>
+<td><a href="https://kubernetes.io/docs/concepts/containers/images/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>NET_RAW Capabilities Not Being Dropped<br/><sup><sub>dbbc6705-d541-43b0-b166-dd4be8208b54</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Containers should drop 'NET_RAW' or 'ALL' capabilities</td>
+<td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Container Is Privileged<br/><sup><sub>dd29336b-fe57-445b-a26e-e6aa867ae609</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Do not allow container to be privileged.</td>
+<td><a href="https://kubernetes.io/docs/concepts/workloads/pods/#privileged-mode-for-containers">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Not Limited Capabilities For Pod Security Policy<br/><sup><sub>caa93370-791f-4fc6-814b-ba6ce0cb4032</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Limit capabilities for a Pod Security Policy</td>
+<td><a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Tiller Service Is Not Deleted<br/><sup><sub>8b862ca9-0fbd-4959-ad72-b6609bdaa22d</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Check if there is any Tiller Service present</td>
+<td><a href="https://kubernetes.io/docs/concepts/services-networking/service">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Shared Host IPC Namespace<br/><sup><sub>cd290efd-6c82-4e9d-a698-be12ae31d536</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Container should not share the host IPC namespace</td>
+<td><a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Object Is Using A Deprecated API Version<br/><sup><sub>94b76ea5-e074-4ca2-8a03-c5a606e30645</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Check if any objects are using a deprecated version of API.</td>
+<td><a href="https://kubernetes.io/docs/reference/using-api/deprecation-policy/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Privilege Escalation Allowed<br/><sup><sub>5572cc5e-1e4c-4113-92a6-7a8a3bd25e6d</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Containers should not run with allowPrivilegeEscalation in order to prevent them from gaining more privileges than their parent process</td>
+<td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Shared Host PID Namespace<br/><sup><sub>302736f4-b16c-41b8-befe-c0baffa0bd9d</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Container should not share the host process ID namespace</td>
+<td><a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Cluster Allows Unsafe Sysctls<br/><sup><sub>9127f0d9-2310-42e7-866f-5fd9d20dcbad</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>A Kubernetes Cluster must not allow unsafe sysctls, to prevent a pod from having any influence on any other pod on the node, harming the node's health or gaining CPU or memory resources outside of the resource limits of a pod. This means the 'spec.securityContext.sysctls' must not have an unsafe sysctls and that the atrribute 'allowedUnsafeSysctls' must be undefined.</td>
+<td><a href="https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Role Binding To Default Service Account<br/><sup><sub>1e749bc9-fde8-471c-af0c-8254efd2dee5</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Defaults</td>
+<td>No role nor cluster role should bind to a default service account</td>
+<td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Tiller Deployment Is Accessible From Within The Cluster<br/><sup><sub>e17fa86a-6222-4584-a914-56e8f6c87e06</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>Check if any Tiller Deployment container allows access from within the cluster.</td>
+<td><a href="https://kubernetes.io/docs/concepts/containers/images/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>PSP With Unrestricted Access to Host Path<br/><sup><sub>de4421f1-4e35-43b4-9783-737dd4e4a47e</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Resource Management</td>
+<td>PodSecurityPolicy should set 'readOnly' to true in every host path allowed</td>
+<td><a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/#volumes-and-file-systems">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Non Kube System Pod With Host Mount<br/><sup><sub>aa8f7a35-9923-4cad-bd61-a19b7f6aac91</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>A non kube-system workload should not have hostPath mounted</td>
+<td><a href="https://kubernetes.io/docs/concepts/storage/volumes/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>RBAC Roles with Read Secrets Permissions<br/><sup><sub>b7bca5c4-1dab-4c2c-8cbe-3050b9d59b14</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Minimize access to secrets (RBAC)</td>
+<td><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Liveness Probe Is Not Defined<br/><sup><sub>ade74944-a674-4e00-859e-c6eab5bde441</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Availability</td>
+<td>Liveness Probe must be defined.</td>
+<td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-a-tcp-liveness-probe">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Readiness Probe Is Not Configured<br/><sup><sub>a659f3b5-9bf0-438a-bd9a-7d3a6427f1e3</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Availability</td>
+<td>Check if Readiness Probe is not configured.</td>
+<td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-readiness-probes">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Container Running With Low UID<br/><sup><sub>02323c00-cdc3-4fdc-a310-4f2b3e7a1660</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Best Practices</td>
+<td>Check if containers are running with low UID, which might cause conflicts with the host's user table.</td>
+<td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Container Running As Root<br/><sup><sub>cf34805e-3872-4c08-bf92-6ff7bb0cfadb</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Best Practices</td>
+<td>Check if containers are running as root unduly.</td>
+<td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Root Containers Admitted<br/><sup><sub>e3aa0612-4351-4a0d-983f-aefea25cf203</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Best Practices</td>
+<td>Containers must not be allowed to run with root privileges, which means the attributes 'privileged','allowPrivilegeEscalation' and 'readOnlyRootFilesystem' must be set to false, 'runAsUser.rule' must be set to 'MustRunAsNonRoot', and adding the root group must be forbidden</td>
+<td><a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Resource With Allow Privilege Escalation<br/><sup><sub>0a7c420c-4568-4cec-ba36-4d42a6f9613b</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Best Practices</td>
+<td>Minimize the admission of privileged resources</td>
+<td><a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Incorrect Volume Claim Access Mode ReadWriteOnce<br/><sup><sub>3878dc92-8e5d-47cf-9cdd-7590f71d21b9</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Build Process</td>
+<td>Stateful Sets must have one Volume Claim template with the access mode 'ReadWriteOnce'</td>
+<td><a href="https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Using Unrecommended Namespace<br/><sup><sub>611ab018-c4aa-4ba2-b0f6-a448337509a6</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Namespaces like 'default', 'kube-system' or 'kube-public' should not be used</td>
+<td><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Not Limited Capabilities For Container<br/><sup><sub>2f1a0619-b12b-48a0-825f-993bb6f01d58</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Limit the capabilities for a Container.</td>
+<td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>PSP Allows Sharing Host PID<br/><sup><sub>91dacd0e-d189-4a9c-8272-5999a3cc32d9</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Pod Security Policy allows containers to share the host process ID namespace</td>
+<td><a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Default Service Account In Use<br/><sup><sub>b93e973e-9066-4455-a63b-c1c0e1ec3a48</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Default service accounts should not be actively used</td>
+<td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Seccomp Profile Is Not Configured<br/><sup><sub>f377b83e-bd07-4f48-a591-60c82b14a78b</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Check if any resource does not configure Seccomp default profile properly</td>
+<td><a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/#seccomp">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>NET_RAW Capabilities Disabled for PSP<br/><sup><sub>2270987f-bb51-479f-b8be-3ca73e5ad648</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Containers need to have NET_RAW or All as drop capabilities</td>
+<td><a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>PSP Allows Sharing Host IPC<br/><sup><sub>80f93444-b240-4ebb-a4c6-5c40b76c04ea</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Pod Security Policy allows containers to share the host IPC namespace</td>
+<td><a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Container Runs Unmasked<br/><sup><sub>f922827f-aab6-447c-832a-e1ff63312bd3</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Check if a container has full access (unmasked) to the host’s /proc command, which would allow to retrieve sensitive information and possibly change the kernel parameters in runtime.</td>
+<td><a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/#allowedprocmounttypes">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Containers With Sys Admin Capabilities<br/><sup><sub>235236ee-ad78-4065-bd29-61b061f28ce0</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Containers should not have CAP_SYS_ADMIN Linux capability</td>
+<td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Ingress Controller Exposes Workload<br/><sup><sub>69bbc5e3-0818-4150-89cc-1e989b48f23b</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Ingress Controllers should not expose workload in order to avoid vulnerabilities and DoS attacks</td>
+<td><a href="https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Workload Mounting With Sensitive OS Directory<br/><sup><sub>5308a7a8-06f8-45ac-bf10-791fe21de46e</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Workload is mounting a volume with sensitive OS Directory</td>
+<td><a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>PSP With Added Capabilities<br/><sup><sub>7307579a-3abb-46ad-9ce5-2a915634d5c8</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>PodSecurityPolicy should not have added capabilities</td>
+<td><a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Containers With Added Capabilities<br/><sup><sub>19ebaa28-fc86-4a58-bcfa-015c9e22fe40</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Containers should not have added capability</td>
+<td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>PSP Set To Privileged<br/><sup><sub>c48e57d3-d642-4e0b-90db-37f807b41b91</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Do not allow pod to request execution as privileged.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#privileged">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>PSP Allows Privilege Escalation<br/><sup><sub>87554eef-154d-411d-bdce-9dbd91e56851</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>PodSecurityPolicy should not allow privilege escalation</td>
+<td><a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Service Account Name Undefined Or Empty<br/><sup><sub>591ade62-d6b0-4580-b1ae-209f80ba1cd9</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Defaults</td>
+<td>A Pod should have a Service Account defined so to restrict Kubernetes API access, which means the attribute 'serviceAccountName' should be defined and not empty.</td>
+<td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Service Account Token Automount Not Disabled<br/><sup><sub>48471392-d4d0-47c0-b135-cdec95eb3eef</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Defaults</td>
+<td>Service Account Tokens are automatically mounted even if not necessary</td>
+<td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Network Policy Is Not Targeting Any Pod<br/><sup><sub>85ab1c5b-014e-4352-b5f8-d7dea3bb4fd3</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Check if any network policy is not targeting any pod.</td>
+<td><a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Service With External Load Balance<br/><sup><sub>26763a1c-5dda-4772-b507-5fca7fb5f165</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Service has an external load balancer, which may cause accessibility from other networks and the Internet</td>
+<td><a href="https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Pod Misconfigured Network Policy<br/><sup><sub>0401f71b-9c1e-4821-ab15-a955caa621be</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Check if any pod is not being targeted by a proper network policy.</td>
+<td><a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CPU Limits Not Set<br/><sup><sub>4ac0e2b7-d2d2-4af7-8799-e8de6721ccda</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Resource Management</td>
+<td>CPU limits should be set because if the system has CPU time free, a container is guaranteed to be allocated as much CPU as it requests</td>
+<td><a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Volume Mount With OS Directory Write Permissions<br/><sup><sub>b7652612-de4e-4466-a0bf-1cd81f0c6063</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Resource Management</td>
+<td>Containers can mount sensitive folders from the hosts, giving them potentially dangerous access to critical host configurations and binaries.</td>
+<td><a href="https://kubernetes.io/docs/concepts/storage/volumes/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CPU Requests Not Set<br/><sup><sub>ca469dd4-c736-448f-8ac1-30a642705e0a</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Resource Management</td>
+<td>CPU requests should be set to ensure the sum of the resource requests of the scheduled Containers is less than the capacity of the node</td>
+<td><a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Memory Limits Not Defined<br/><sup><sub>b14d1bc4-a208-45db-92f0-e21f8e2588e9</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Resource Management</td>
+<td>Memory limits should be specified</td>
+<td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Memory Requests Not Defined<br/><sup><sub>229588ef-8fde-40c8-8756-f4f2b5825ded</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Resource Management</td>
+<td>Memory requests should be specified</td>
+<td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Shared Service Account<br/><sup><sub>c1032cf7-3628-44e2-bd53-38c17cf31b6b</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Secret Management</td>
+<td>A Service Account token is shared between workloads</td>
+<td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ServiceAccount Allows Access Secrets<br/><sup><sub>056ac60e-fe07-4acc-9b34-8e1d51716ab9</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Secret Management</td>
+<td>Roles and ClusterRoles when binded, should not use get, list or watch as verbs</td>
+<td><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Cluster Admin Rolebinding With Superuser Permissions<br/><sup><sub>249328b8-5f0f-409f-b1dd-029f07882e11</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Access Control</td>
+<td>Ensure that the cluster-admin role is only used where required (RBAC)</td>
+<td><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Permissive Access to Create Pods<br/><sup><sub>592ad21d-ad9b-46c6-8d2d-fad09d62a942</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Access Control</td>
+<td>The permission to create pods in a cluster should be restricted because it allows privilege escalation.</td>
+<td><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/#privilege-escalation-prevention-and-bootstrapping">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Docker Daemon Socket is Exposed to Containers<br/><sup><sub>a6f34658-fdfb-4154-9536-56d516f65828</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Access Control</td>
+<td>Sees if Docker Daemon Socket is not exposed to Containers</td>
+<td><a href="https://kubernetes.io/docs/concepts/storage/volumes/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Missing App Armor Config<br/><sup><sub>8b36775e-183d-4d46-b0f7-96a6f34a723f</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Access Control</td>
+<td>Containers should be configured with AppArmor for any application to reduce its potential attack</td>
+<td><a href="https://kubernetes.io/docs/tutorials/clusters/apparmor/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>RBAC Wildcard In Rule<br/><sup><sub>6b896afb-ca07-467a-b256-1a0077a1c08e</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Access Control</td>
+<td>Kubernetes Roles and ClusterRoles should not use wildcards in rules (objects or actions)</td>
+<td><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>HPA Targeted Deployments With Configured Replica Count<br/><sup><sub>5744cbb8-5946-4b75-a196-ade44449525b</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Availability</td>
+<td>Deployments targeted by HorizontalPodAutoscaler should not have a statically configured replica count set</td>
+<td><a href="https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Deployment Without PodDisruptionBudget<br/><sup><sub>b23e9b98-0cb6-4fc9-b257-1f3270442678</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Availability</td>
+<td>Deployments should be assigned with a PodDisruptionBudget to ensure high availability</td>
+<td><a href="https://kubernetes.io/docs/tasks/run-application/configure-pdb/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>HPA Targets Invalid Object<br/><sup><sub>2f652c42-619d-4361-b361-9f599688f8ca</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Availability</td>
+<td>The Horizontal Pod Autoscale must target a valid object</td>
+<td><a href="https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>StatefulSet Without Service Name<br/><sup><sub>bb241e61-77c3-4b97-9575-c0f8a1e008d0</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Availability</td>
+<td>Check if the StatefulSets have a headless 'serviceName'</td>
+<td><a href="https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>StatefulSet Without PodDisruptionBudget<br/><sup><sub>1db3a5a5-bf75-44e5-9e44-c56cfc8b1ac5</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Availability</td>
+<td>StatefulSets should be assigned with a PodDisruptionBudget to ensure high availability</td>
+<td><a href="https://kubernetes.io/docs/tasks/run-application/configure-pdb/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Metadata Label Is Invalid<br/><sup><sub>1123031a-f921-4c5b-bd86-ef354ecfd37a</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Best Practices</td>
+<td>Check if any label in the metadata is invalid.</td>
+<td><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>No Drop Capabilities for Containers<br/><sup><sub>268ca686-7fb7-4ae9-b129-955a2a89064e</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Best Practices</td>
+<td>Sees if Kubernetes Drop Capabilities exists to ensure containers security context</td>
+<td><a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>StatefulSet Requests Storage<br/><sup><sub>8cf4671a-cf3d-46fc-8389-21e7405063a2</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Build Process</td>
+<td>A StatefulSet requests volume storage.</td>
+<td><a href="https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Root Container Not Mounted As Read-only<br/><sup><sub>a9c2f49d-0671-4fc9-9ece-f4e261e128d0</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Build Process</td>
+<td>Check if the root container filesystem is not being mounted as read-only.</td>
+<td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Service Does Not Target Pod<br/><sup><sub>3ca03a61-3249-4c16-8427-6f8e47dda729</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Insecure Configurations</td>
+<td>Service should Target a Pod</td>
+<td><a href="https://kubernetes.io/docs/concepts/services-networking/service/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Pod or Container Without Security Context<br/><sup><sub>a97a340a-0063-418e-b3a1-3028941d0995</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Insecure Configurations</td>
+<td>A security context defines privilege and access control settings for a Pod or Container</td>
+<td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Pod or Container Without ResourceQuota<br/><sup><sub>48a5beba-e4c0-4584-a2aa-e6894e4cf424</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Insecure Configurations</td>
+<td>Pod or Container should have a ResourceQuota associated</td>
+<td><a href="https://kubernetes.io/docs/concepts/policy/resource-quotas/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Image Pull Policy Of The Container Is Not Set To Always<br/><sup><sub>caa3479d-885d-4882-9aac-95e5e78ef5c2</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Insecure Configurations</td>
+<td>Image Pull Policy of the container must be defined and set to Always</td>
+<td><a href="https://kubernetes.io/docs/concepts/containers/images/#updating-images">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Pod or Container Without LimitRange<br/><sup><sub>4a20ebac-1060-4c81-95d1-1f7f620e983b</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Insecure Configurations</td>
+<td>Pod or Container should have a LimitRange associated</td>
+<td><a href="https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/cpu-constraint-namespace/#create-a-limitrange-and-a-pod">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Image Without Digest<br/><sup><sub>7c81d34c-8e5a-402b-9798-9f442630e678</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Insecure Configurations</td>
+<td>Sees if Kubernetes image has digest on</td>
+<td><a href="https://kubernetes.io/docs/concepts/containers/images/#updating-images">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Dashboard Is Enabled<br/><sup><sub>d2ad057f-0928-41ef-a83c-f59203bb855b</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Insecure Configurations</td>
+<td>If not needed, disabling the dashboard can prevent from being used as an attack vector</td>
+<td><a href="https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Workload Host Port Not Specified<br/><sup><sub>2b1836f1-dcce-416e-8e16-da8c71920633</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>Verifies if Kubernetes workload's host port is specified</td>
+<td><a href="https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/#exposing-the-service">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Service Type is NodePort<br/><sup><sub>845acfbe-3e10-4b8e-b656-3b404d36dfb2</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>Service type should not be NodePort</td>
+<td><a href="https://kubernetes.io/docs/concepts/services-networking/service/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CronJob Deadline Not Configured<br/><sup><sub>192fe40b-b1c3-448a-aba2-6cc19a300fe3</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Resource Management</td>
+<td>Cronjobs must have a configured deadline, which means the attribute 'startingDeadlineSeconds' must be defined</td>
+<td><a href="https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>StatefulSet Has No PodAntiAffinity<br/><sup><sub>d740d048-8ed3-49d3-b77b-6f072f3b669e</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Resource Management</td>
+<td>Check if StatefulSet resources don't have a podAntiAffinity policy, which prevents multiple pods from being scheduled on the same node.</td>
+<td><a href="https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Container CPU Requests Not Equal To It's Limits<br/><sup><sub>9d43040e-e703-4e16-8bfe-8d4da10fa7e6</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Resource Management</td>
+<td>A Pod's Containers must have the same CPU requests as limits set, which is recommended to avoid resource DDOS of the node during spikes. This means the 'requests.cpu' must equal 'limits.cpu', and both be defined.</td>
+<td><a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Container Memory Requests Not Equal To It's Limits<br/><sup><sub>aafa7d94-62de-4fbf-8838-b69ee217b0e6</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Resource Management</td>
+<td>A Pod's Containers must have the same Memory requests as limits set, which is recommended to avoid resource DDOS of the node during spikes. This means the 'requests.memory' must equal 'limits.memory', and both be defined.</td>
+<td><a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Deployment Has No PodAntiAffinity<br/><sup><sub>a31b7b82-d994-48c4-bd21-3bab6c31827a</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Resource Management</td>
+<td>Check if Deployment resources don't have a podAntiAffinity policy, which prevents multiple pods from being scheduled on the same node.</td>
+<td><a href="https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Container Requests Not Equal To It's Limits<br/><sup><sub>aee3c7d2-a811-4201-90c7-11c028be9a46</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Resource Management</td>
+<td>A Pod's Containers must have the same requests as limits set, which is recommended to avoid resource DDOS of the node during spikes. This means the 'requests.memory' and 'requests.cpu' must equal 'limits.memory' and 'limits.cpu', respectively, and all four must be defined.</td>
+<td><a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Secrets As Environment Variables<br/><sup><sub>3d658f8b-d988-41a0-a841-40043121de1e</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Secret Management</td>
+<td>Container should not use secrets as environment variables</td>
+<td><a href="https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Invalid Image<br/><sup><sub>583053b7-e632-46f0-b989-f81ff8045385</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Supply-Chain</td>
+<td>Image must be defined and not be empty or equal to latest.</td>
+<td><a href="https://kubernetes.io/docs/concepts/containers/images/#updating-images">Documentation</a><br/></td>
+</tr>
+</tbody>
+</table>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../dockerfile-queries/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Dockerfile" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Dockerfile
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../terraform-queries/" class="md-footer__link md-footer__link--next" aria-label="Next: Terraform" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Terraform
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2021 Checkmarx Ltd. All Rights Reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.0bbba5b5.min.js", "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e1a181d9.min.js"></script>
+      
+        <script src="../../js/version-mike.js"></script>
+      
+        <script src="../../js/custom.js"></script>
+      
+    
+  </body>
+</html>
