@@ -51,6 +51,15 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
 <div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
         <img alt="OpenAPI" src="img/logo-helm.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
 </div>
+<div style="min-width:120;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="gRPC" src="img/logo-grpc.png"  width="120" style="min-width:120px">&nbsp;&nbsp;&nbsp;
+</div>
+<div style="min-width:55;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="Azure Resource Manager" src="img/logo-arm.png"  width="55" style="min-width:55px">&nbsp;&nbsp;&nbsp;
+</div>
+<div style="min-width:55;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="Google Deployment Manager" src="img/logo-gdm.png"  width="55" style="min-width:55px">&nbsp;&nbsp;&nbsp;
+</div>
 </div>
 
 Support of other solutions, such as Chef, and of additional cloud providers are on the [roadmap](roadmap.md).
