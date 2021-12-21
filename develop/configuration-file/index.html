@@ -1244,6 +1244,10 @@
   &quot;log-file&quot;: true,
   &quot;type&quot;: &quot;Dockerfile,Kubernetes&quot;,
   &quot;queries-path&quot;: &quot;assets/queries&quot;,
+  &quot;exclude-paths&quot;: [
+     &quot;foo/&quot;,
+     &quot;bar/&quot;,
+  ],
   &quot;output-path&quot;: &quot;results&quot;
 }
 </code></pre>
@@ -1255,6 +1259,9 @@ type:
   - Dockerfile
   - Kubernetes
 queries-path: &quot;assets/queries&quot;
+exclude-paths:
+  - &quot;foo/&quot;
+  - &quot;bar/&quot;
 output-path: &quot;results&quot;
 </code></pre>
 <blockquote>
