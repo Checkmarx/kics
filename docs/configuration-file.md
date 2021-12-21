@@ -11,6 +11,10 @@ Here is a Configuration file example:
   "log-file": true,
   "type": "Dockerfile,Kubernetes",
   "queries-path": "assets/queries",
+  "exclude-paths": [
+     "foo/",
+     "bar/",
+  ],
   "output-path": "results"
 }
 ```
@@ -25,6 +29,9 @@ type:
   - Dockerfile
   - Kubernetes
 queries-path: "assets/queries"
+exclude-paths:
+  - "foo/"
+  - "bar/"
 output-path: "results"
 ```
 
