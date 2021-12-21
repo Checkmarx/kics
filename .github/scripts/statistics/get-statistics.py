@@ -6,8 +6,12 @@ import json
 from datetime import date
 from tabulate import tabulate
 import argparse
-# import sys
-# sys.path.append(os.path.abspath("./metrics/get_metrics.py"))
+
+import sys
+base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.join(base, "metrics"))
+
+from get_metrics import queries_count, queries_path, samples_ext
 
 
 def get_statistics(test_coverage, total_tests, go_loc):
@@ -49,7 +53,6 @@ def get_github_downloads(releases_url):
         response_body = gh_resp.json()
         all_github_downloads = sum([item for sublist in [[asset['download_count'] for asset in release['assets']]
                                                          for release in response_body] for item in sublist])
-    print(f"Total GitHub downloads: {all_github_downloads}")
 
     return all_github_downloads
 
@@ -58,7 +61,6 @@ def get_dockerhub_pulls(dockerhub_url):
     if dkr_resp.status_code == 200:
         response_body = dkr_resp.json()
         all_dockerhub_pulls = response_body['pull_count']
-    print(f"Total Dockerhub pulls: {all_dockerhub_pulls}")
 
     return all_dockerhub_pulls
 
@@ -68,8 +70,6 @@ def get_info_from_repo(repo_url):
         response_body = info_resp.json()
         stars = response_body['watchers_count']
         forks = response_body['forks']
-    print(f"Total GitHub stars: {stars}")
-    print(f"Total GitHub forks: {forks}")
 
     return stars, forks
 
@@ -95,59 +95,13 @@ def get_relevant_issues_info():
     feature_request_open_count = target_urls[2][feature_request_open]
     feature_request_closed_count = target_urls[3][feature_request_closed]
 
-    print(f"Total GitHub bug open issues: {bug_open_count}")
-    print(f"Total GitHub bug closed issues: {bug_closed_count}")
-    print(f"Total GitHub feature request open issues: {feature_request_open_count}")
-    print(f"Total GitHub feature request closed issues: {feature_request_closed_count}")
-
     return bug_open_count, bug_closed_count, feature_request_open_count, feature_request_closed_count
 
 def get_e2e_tests():
     path, dirs, files = next(os.walk("./././e2e/testcases"))
     e2e_tests = len(files) - 1
-    print(f"Total E2E tests: {e2e_tests}")
 
     return e2e_tests
-
-queries_basepath = 'assets/queries'
-
-queries_path = {
-    'ansible': os.path.join(queries_basepath, 'ansible', '**', '*'),
-    'azureresourcemanager': os.path.join(queries_basepath, 'azureResourceManager', '*'),
-    'cloudformation': os.path.join(queries_basepath, 'cloudFormation', '*'),
-    'openapi': os.path.join(queries_basepath, 'openAPI', '**', '*'),
-    'k8s': os.path.join(queries_basepath, 'k8s', '*'),
-    'common': os.path.join(queries_basepath, 'common', '*'),
-    'dockerfile': os.path.join(queries_basepath, 'dockerfile', '*'),
-    'terraform': os.path.join(queries_basepath, 'terraform', '**', '*'),
-    'grpc': os.path.join(queries_basepath, 'grpc', '*'),
-    'gdm': os.path.join(queries_basepath, 'googleDeploymentManager', '*'),
-}
-
-samples_ext = {
-    'azureresourcemanager': ['json'],
-    'cloudformation': ['yaml', 'json'],
-    'openapi': ['yaml', 'json'],
-    'ansible': ['yaml'],
-    'k8s': ['yaml'],
-    'common': ['yaml', 'json', 'dockerfile', 'tf'],
-    'dockerfile': ['dockerfile'],
-    'terraform': ['tf'],
-    'grpc': ['proto'],
-    'gdm': ['yaml'],
-
-}
-
-def queries_count(path):
-    rtn_count = 0
-    with open(path) as fp:
-        metadata_obj = json.load(fp)
-        if 'aggregation' in metadata_obj:
-            rtn_count = metadata_obj['aggregation']
-        else:
-            rtn_count = 1
-
-    return rtn_count
 
 def get_total_queries():
     total_queries = 0
@@ -164,9 +118,6 @@ def get_total_queries():
             
             total_samples += ext_samples
 
-    print(f"Total queries: {total_queries}")
-    print(f"Total samples: {total_samples}")
-
     return total_queries, total_samples
 
 def get_version(latest_realease_url):
@@ -174,13 +125,11 @@ def get_version(latest_realease_url):
     if latest_resp.status_code == 200:
         response_body = latest_resp.json()
         version = response_body['name']
-    print(f"Version: {version}")
 
     return version
 
 def get_date():
     current_date = date.today().strftime("%Y/%m/%d")
-    print(f"Date: {current_date}")
 
     return current_date
 
@@ -188,21 +137,21 @@ def get_date():
 parser = argparse.ArgumentParser(
 description='Extract test coverage and total tests')
 parser.add_argument('-c', '--coverage', metavar='COV',
-required=True, help='path to KICS repository root')
+required=True)
 parser.add_argument('-t', '--total-tests', metavar='TESTS',
-required=True, help='path to KICS repository root')
+required=True)
 parser.add_argument('-g', '--goloc', metavar='GOLOC',
-required=True, help='path to KICS repository root')
+required=True)
 
 args = parser.parse_args()
 
 def main():
     statistics = get_statistics(args.coverage, args.total_tests, args.goloc)
+    date = statistics["date"]
 
     print(tabulate([[key, value] for key, value in statistics.items()], headers=[
-      '', ''], tablefmt='orgtbl'))
+      'KICS_KPIS', date], tablefmt='orgtbl'))
 
 
 if __name__ == "__main__":
     main()
-    print("Done!")

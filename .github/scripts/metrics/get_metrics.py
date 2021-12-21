@@ -72,21 +72,22 @@ for key, value in queries_path.items():
         samples_summary[f'{key}_{ext}_samples'] = ext_samples
         samples_summary['total'] += ext_samples
 
-print("::group::Queries Metrics")
-print(tabulate([[key, value] for key, value in summary.items()], headers=[
-      'Platform', 'Count'], tablefmt='orgtbl'))
-print("::endgroup::")
-print()
-print(f"::set-output name=total_queries::{summary['total']}")
-print()
-print("::group::Rego File Metrics")
-print(tabulate([[key, value] for key, value in rego_summary.items()], headers=[
-      'Platform', 'Count'], tablefmt='orgtbl'))
-print("::endgroup::")
-print()
-print(f"::set-output name=total_rego_files::{rego_summary['total']}")
-print()
-print("::group::Sample File Metrics")
-print(tabulate([[key, value] for key, value in samples_summary.items()], headers=[
-      'Samples', 'Count'], tablefmt='orgtbl'))
-print("::endgroup::")
+if __name__ == '__main__':
+    print("::group::Queries Metrics")
+    print(tabulate([[key, value] for key, value in summary.items()], headers=[
+        'Platform', 'Count'], tablefmt='orgtbl'))
+    print("::endgroup::")
+    print()
+    print(f"::set-output name=total_queries::{summary['total']}")
+    print()
+    print("::group::Rego File Metrics")
+    print(tabulate([[key, value] for key, value in rego_summary.items()], headers=[
+        'Platform', 'Count'], tablefmt='orgtbl'))
+    print("::endgroup::")
+    print()
+    print(f"::set-output name=total_rego_files::{rego_summary['total']}")
+    print()
+    print("::group::Sample File Metrics")
+    print(tabulate([[key, value] for key, value in samples_summary.items()], headers=[
+        'Samples', 'Count'], tablefmt='orgtbl'))
+    print("::endgroup::")
