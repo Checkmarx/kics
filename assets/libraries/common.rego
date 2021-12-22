@@ -344,6 +344,10 @@ get_encryption_if_exists(resource) = encryption {
 	valid_key(resource.encryption_info, "encryption_at_rest_kms_key_arn")
 	encryption := "encrypted"
 } else = encryption {
+	fields := {"sqs_managed_sse_enabled", "kms_master_key_id", "encryption_options", "server_side_encryption_configuration"}
+	valid_key(resource, fields[_])
+	encryption := "encrypted"
+} else = encryption {
 	encryption := "unencrypted"
 }
 

@@ -1,6 +1,8 @@
 resource "aws_sns_topic" "positive5" {
   name = "user-updates-topic"
 
+  kms_master_key_id = "alias/aws/sns"
+
   policy = <<EOF
 {
   "Version": "2012-10-17",

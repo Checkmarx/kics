@@ -8,7 +8,8 @@ CxPolicy[result] {
 	bom_output = {
 		"resource_type": "aws_msk_cluster",
 		"resource_name": aws_msk_cluster_resource.cluster_name,
-		"resource_accessibility": common_lib.get_encryption_if_exists(aws_msk_cluster_resource),
+		"resource_accessibility": "unknown",
+		"resource_encryption": common_lib.get_encryption_if_exists(aws_msk_cluster_resource),
 		"resource_vendor": "AWS",
 		"resource_category": "Streaming",
 	}

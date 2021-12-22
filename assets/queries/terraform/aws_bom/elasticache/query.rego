@@ -11,6 +11,7 @@ CxPolicy[result] {
 		# memcached or redis
 		"resource_engine": get_engine_type(elasticache),
 		"resource_accessibility": get_accessibility(elasticache),
+		"resource_encryption": "unknown",
 		"resource_vendor": "AWS",
 		"resource_category": "In Memory Data Structure",
 	}
