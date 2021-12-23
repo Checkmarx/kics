@@ -14,6 +14,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate' is defined", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate' is undefined", [name]),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "DistributionConfig"], []),
 	}
 }
 
@@ -22,13 +23,14 @@ CxPolicy[result] {
 	resource.Type == "AWS::CloudFront::Distribution"
 	properties := resource.Properties
 	protocolVer := properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion
-	not common_lib.inArray({"TLSv1.2_2018", "TLSv1.2_2019","TLSv1.2-2018", "TLSv1.2-2019"}, protocolVer)
+	not common_lib.is_recommended_tls(protocolVer)
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion' should be at least 1.2", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion' lesser than 1.2", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion' is TLSv1.2_x", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion' is %s", [name, protocolVer]),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "DistributionConfig", "ViewerCertificate", "MinimumProtocolVersion"], []),
 	}
 }
