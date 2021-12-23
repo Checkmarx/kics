@@ -2,11 +2,13 @@ package scan
 
 import (
 	"fmt"
+	"os"
 	"strings"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/pkg/analyzer"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -123,4 +125,10 @@ func logLoadingQueriesType(types []string) {
 	}
 
 	log.Info().Msgf("Loading queries of type: %s", strings.Join(types, ", "))
+}
+
+func deleteExtractionFolder(extractionMap map[string]model.ExtractedPathObject) {
+	for extractionFile := range extractionMap {
+		os.Remove(extractionFile)
+	}
 }
