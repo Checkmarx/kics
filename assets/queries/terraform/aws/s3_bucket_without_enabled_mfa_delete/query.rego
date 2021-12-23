@@ -4,6 +4,7 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	bucket := input.document[i].resource.aws_s3_bucket[name]
+	not common_lib.valid_key(bucket, "lifecycle_rule")
 	not common_lib.valid_key(bucket, "versioning")
 
 	result := {
@@ -22,8 +23,9 @@ checkedFields = {
 }
 
 CxPolicy[result] {
-	ver := input.document[i].resource.aws_s3_bucket[name].versioning
-	not common_lib.valid_key(ver, checkedFields[j])
+	bucket := input.document[i].resource.aws_s3_bucket[name]
+	not common_lib.valid_key(bucket, "lifecycle_rule")
+	not common_lib.valid_key(bucket.versioning, checkedFields[j])
 
 	result := {
 		"documentId": input.document[i].id,
@@ -36,8 +38,9 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	ver := input.document[i].resource.aws_s3_bucket[name].versioning
-	ver[checkedFields[j]] != true
+	bucket := input.document[i].resource.aws_s3_bucket[name]
+	not common_lib.valid_key(bucket, "lifecycle_rule")
+	bucket.versioning[checkedFields[j]] != true
 
 	result := {
 		"documentId": input.document[i].id,
@@ -53,6 +56,7 @@ CxPolicy[result] {
 	module := input.document[i].module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "versioning")
 
+	not common_lib.valid_key(module, "lifecycle_rule")
 	not common_lib.valid_key(module, keyToCheck)
 
 	result := {
@@ -69,6 +73,7 @@ CxPolicy[result] {
 	module := input.document[i].module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "versioning")
 
+	not common_lib.valid_key(module, "lifecycle_rule")
 	not common_lib.valid_key(module[keyToCheck],  checkedFields[c])
 
 	result := {
@@ -85,6 +90,7 @@ CxPolicy[result] {
 	module := input.document[i].module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "versioning")
 
+	not common_lib.valid_key(module, "lifecycle_rule")
 	module[keyToCheck][checkedFields[c]] != true
 
 	result := {
