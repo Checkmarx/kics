@@ -2,6 +2,7 @@ package provider
 
 import (
 	"context"
+	"errors"
 	"io/fs"
 	"os"
 	"os/signal"
@@ -13,6 +14,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/rs/zerolog/log"
 
+	"github.com/alexmullins/zip"
 	"github.com/hashicorp/go-getter"
 )
 
@@ -94,6 +96,12 @@ func GetSources(source []string) (ExtractedPath, error) {
 }
 
 func getPaths(g *getterStruct) (string, error) {
+	if isEncrypted(g.source) {
+		err := errors.New("zip encrypted files are not supported")
+		log.Err(err)
+		return "", err
+	}
+
 	// Build the client
 	client := &getter.Client{
 		Ctx:     g.ctx,
@@ -175,6 +183,25 @@ func getFileInfo(info fs.FileInfo, dst, pathFile string) fs.FileInfo {
 		fileInfo = info
 	}
 	return fileInfo
+}
+
+func isEncrypted(sourceFile string) bool {
+	if filepath.Ext(sourceFile) != ".zip" {
+		return false
+	}
+	zipFile, err := zip.OpenReader(sourceFile)
+	if err != nil {
+		log.Error().Msgf("failed to open %s: %v", sourceFile, err)
+		return false
+	}
+	defer zipFile.Close()
+	for _, file := range zipFile.File {
+		if file.IsEncrypted() {
+			log.Error().Msgf("file %s is encrypted", sourceFile)
+			return true
+		}
+	}
+	return false
 }
 
 // ======== Golang way to create random number for tmp dir naming =============
