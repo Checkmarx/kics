@@ -423,3 +423,7 @@ any_principal(statement) {
 	is_array(statement.Principal.AWS)
 	contains(statement.Principal.AWS[_], "*")
 }
+
+is_recommended_tls(field) {
+	inArray({"TLSv1.2_2018", "TLSv1.2_2019", "TLSv1.2_2021"}, field)
+}
