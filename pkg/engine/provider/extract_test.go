@@ -62,6 +62,16 @@ func TestProvider_GetSources(t *testing.T) {
 			wantErr: false,
 			want:    "test/fixtures/all_auth_users_get_read_access",
 		},
+		{
+			name: "test_get_encrypted_zip",
+			args: args{
+				source: []string{
+					"test/fixtures/protected-AES-256.zip",
+				},
+			},
+			wantErr: true,
+			want:    "",
+		},
 	}
 
 	for _, tt := range tests {
