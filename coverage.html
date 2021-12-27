@@ -129,7 +129,7 @@
 				
 				<option value="file36">github.com/Checkmarx/kics/pkg/engine/inspector.go (82.2%)</option>
 				
-				<option value="file37">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (89.0%)</option>
+				<option value="file37">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (88.8%)</option>
 				
 				<option value="file38">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (79.4%)</option>
 				
@@ -209,7 +209,7 @@
 				
 				<option value="file76">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (85.7%)</option>
 				
-				<option value="file77">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file77">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (95.5%)</option>
 				
 				<option value="file78">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -2353,7 +2353,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2855,7 +2855,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="22">{
-        for _, a := range s </span><span class="cov8" title="56">{
+        for _, a := range s </span><span class="cov8" title="64">{
                 if a == e </span><span class="cov4" title="8">{
                         return true
                 }</span>
@@ -5328,6 +5328,7 @@ func prepareQueries(
 
 import (
         "context"
+        "errors"
         "io/fs"
         "os"
         "os/signal"
@@ -5339,6 +5340,7 @@ import (
         "github.com/Checkmarx/kics/pkg/model"
         "github.com/rs/zerolog/log"
 
+        "github.com/alexmullins/zip"
         "github.com/hashicorp/go-getter"
 )
 
@@ -5370,12 +5372,12 @@ type getterStruct struct {
 // GetSources goes through the source slice, and determines the of source type (ex: zip, git, local).
 // It than extracts the files to be scanned. If the source given is not local, a temp dir
 // will be created where the files will be stored.
-func GetSources(source []string) (ExtractedPath, error) <span class="cov10" title="4">{
+func GetSources(source []string) (ExtractedPath, error) <span class="cov10" title="5">{
         extrStruct := ExtractedPath{
                 Path:          []string{},
                 ExtractionMap: make(map[string]model.ExtractedPathObject),
         }
-        for _, path := range source </span><span class="cov10" title="4">{
+        for _, path := range source </span><span class="cov10" title="5">{
                 destination := filepath.Join(os.TempDir(), "kics-extract-"+nextRandom())
 
                 mode := getter.ClientModeAny
@@ -5385,7 +5387,7 @@ func GetSources(source []string) (ExtractedPath, error) <span class="cov10" titl
                         log.Fatal().Msgf("Error getting wd: %s", err)
                 }</span>
 
-                <span class="cov10" title="4">opts := []getter.ClientOption{}
+                <span class="cov10" title="5">opts := []getter.ClientOption{}
 
                 opts = append(opts, getter.WithInsecure())
 
@@ -5402,11 +5404,11 @@ func GetSources(source []string) (ExtractedPath, error) <span class="cov10" titl
                 }
 
                 getterDst, err := getPaths(&amp;goGetter)
-                if err != nil </span><span class="cov1" title="1">{
+                if err != nil </span><span class="cov4" title="2">{
                         log.Error().Msgf("failed to find path %s: %s", path, err)
                         return ExtractedPath{}, err
                 }</span>
-                <span class="cov8" title="3">tempDst, local := checkSymLink(getterDst, path)
+                <span class="cov7" title="3">tempDst, local := checkSymLink(getterDst, path)
 
                 extrStruct.ExtractionMap[getterDst] = model.ExtractedPathObject{
                         Path:      path,
@@ -5416,12 +5418,18 @@ func GetSources(source []string) (ExtractedPath, error) <span class="cov10" titl
                 extrStruct.Path = append(extrStruct.Path, tempDst)</span>
         }
 
-        <span class="cov8" title="3">return extrStruct, nil</span>
+        <span class="cov7" title="3">return extrStruct, nil</span>
 }
 
-func getPaths(g *getterStruct) (string, error) <span class="cov10" title="4">{
+func getPaths(g *getterStruct) (string, error) <span class="cov10" title="5">{
+        if isEncrypted(g.source) </span><span class="cov1" title="1">{
+                err := errors.New("zip encrypted files are not supported")
+                log.Err(err)
+                return "", err
+        }</span>
+
         // Build the client
-        client := &amp;getter.Client{
+        <span class="cov8" title="4">client := &amp;getter.Client{
                 Ctx:     g.ctx,
                 Src:     g.source,
                 Dst:     g.destination,
@@ -5433,7 +5441,7 @@ func getPaths(g *getterStruct) (string, error) <span class="cov10" title="4">{
         wg := sync.WaitGroup{}
         wg.Add(1)
         errChan := make(chan error, channelLength)
-        go func() </span><span class="cov10" title="4">{
+        go func() </span><span class="cov8" title="4">{
                 defer wg.Done()
                 defer g.cancel()
                 if err := client.Get(); err != nil </span><span class="cov1" title="1">{
@@ -5441,7 +5449,7 @@ func getPaths(g *getterStruct) (string, error) <span class="cov10" title="4">{
                 }</span>
         }()
 
-        <span class="cov10" title="4">c := make(chan os.Signal, channelLength)
+        <span class="cov8" title="4">c := make(chan os.Signal, channelLength)
         signal.Notify(c, os.Interrupt)
 
         select </span>{
@@ -5449,58 +5457,77 @@ func getPaths(g *getterStruct) (string, error) <span class="cov10" title="4">{
                 signal.Reset(os.Interrupt)
                 g.cancel()
                 wg.Wait()</span>
-        case &lt;-g.ctx.Done():<span class="cov8" title="3">
+        case &lt;-g.ctx.Done():<span class="cov7" title="3">
                 wg.Wait()</span>
         case err := &lt;-errChan:<span class="cov1" title="1">
                 wg.Wait()
                 return "", err</span>
         }
 
-        <span class="cov8" title="3">return g.destination, nil</span>
+        <span class="cov7" title="3">return g.destination, nil</span>
 }
 
 // check if the dst is a symbolic link
-func checkSymLink(getterDst, pathFile string) (string, bool) <span class="cov8" title="3">{
+func checkSymLink(getterDst, pathFile string) (string, bool) <span class="cov7" title="3">{
         var local bool
         _, err := os.Stat(pathFile)
-        if err == nil </span><span class="cov8" title="3">{ // check if file exist locally
+        if err == nil </span><span class="cov7" title="3">{ // check if file exist locally
                 local = true
         }</span>
 
-        <span class="cov8" title="3">info, err := os.Lstat(getterDst)
+        <span class="cov7" title="3">info, err := os.Lstat(getterDst)
         if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msgf("failed lstat for %s: %v", getterDst, err)
         }</span>
 
-        <span class="cov8" title="3">fileInfo := getFileInfo(info, getterDst, pathFile)
+        <span class="cov7" title="3">fileInfo := getFileInfo(info, getterDst, pathFile)
 
-        if info.Mode()&amp;os.ModeSymlink != 0 </span><span class="cov5" title="2">{ // if it's a symbolic Link
+        if info.Mode()&amp;os.ModeSymlink != 0 </span><span class="cov4" title="2">{ // if it's a symbolic Link
                 path, err := os.Readlink(getterDst) // get location of symbolic Link
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed Readlink for %s: %v", getterDst, err)
                 }</span>
-                <span class="cov5" title="2">getterDst = path</span> // change path to local path
+                <span class="cov4" title="2">getterDst = path</span> // change path to local path
         } else<span class="cov1" title="1"> if !fileInfo.IsDir() </span><span class="cov0" title="0">{ // symbolic links are not created for single files
                 if local </span><span class="cov0" title="0">{ // check if file exist locally
                         getterDst = pathFile
                 }</span>
         }
-        <span class="cov8" title="3">return getterDst, local</span>
+        <span class="cov7" title="3">return getterDst, local</span>
 }
 
-func getFileInfo(info fs.FileInfo, dst, pathFile string) fs.FileInfo <span class="cov8" title="3">{
+func getFileInfo(info fs.FileInfo, dst, pathFile string) fs.FileInfo <span class="cov7" title="3">{
         var extension = filepath.Ext(pathFile)
         var path string
-        if extension == "" </span><span class="cov5" title="2">{
+        if extension == "" </span><span class="cov4" title="2">{
                 path = filepath.Join(dst, filepath.Base(pathFile[0:len(pathFile)-len(extension)])) // for single file
         }</span> else<span class="cov1" title="1"> {
                 path = filepath.Join(dst, filepath.Base(pathFile)) // for directories
         }</span>
-        <span class="cov8" title="3">fileInfo, err := os.Lstat(path)
-        if err != nil </span><span class="cov8" title="3">{
+        <span class="cov7" title="3">fileInfo, err := os.Lstat(path)
+        if err != nil </span><span class="cov7" title="3">{
                 fileInfo = info
         }</span>
-        <span class="cov8" title="3">return fileInfo</span>
+        <span class="cov7" title="3">return fileInfo</span>
+}
+
+func isEncrypted(sourceFile string) bool <span class="cov10" title="5">{
+        if filepath.Ext(sourceFile) != ".zip" </span><span class="cov7" title="3">{
+                return false
+        }</span>
+        <span class="cov4" title="2">zipFile, err := zip.OpenReader(sourceFile)
+        if err != nil </span><span class="cov0" title="0">{
+                log.Error().Msgf("failed to open %s: %v", sourceFile, err)
+                return false
+        }</span>
+        <span class="cov4" title="2">defer zipFile.Close()
+        for _, file := range zipFile.File </span><span class="cov7" title="3">{
+                if file.IsEncrypted() </span><span class="cov1" title="1">{
+                        log.Error().Msgf("file %s is encrypted", sourceFile)
+                        return true
+                }</span>
+        }
+        <span class="cov1" title="1">return false</span>
 }
 
 // ======== Golang way to create random number for tmp dir naming =============
@@ -5511,13 +5538,13 @@ func reseed() uint32 <span class="cov1" title="1">{
         return uint32(time.Now().UnixNano() + int64(os.Getpid()))
 }</span>
 
-func nextRandom() string <span class="cov10" title="4">{
+func nextRandom() string <span class="cov10" title="5">{
         randmu.Lock()
         r := rand
         if r == 0 </span><span class="cov1" title="1">{
                 r = reseed()
         }</span>
-        <span class="cov10" title="4">r = r*1664525 + 1013904223 // constants from Numerical Recipes
+        <span class="cov10" title="5">r = r*1664525 + 1013904223 // constants from Numerical Recipes
         rand = r
         randmu.Unlock()
         return strconv.Itoa(int(tempDirFormat + r%tempDirFormat))[1:]</span>
@@ -5645,12 +5672,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="24173">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="24181">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="24173">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="23934">{
+                <span class="cov9" title="24181">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="23942">{
                         return skipFolder
                 }</span>
 
@@ -5717,7 +5744,7 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="238">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="24176">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="24184">{
         if info.IsDir() </span><span class="cov8" title="5364">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
@@ -5730,11 +5757,11 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="18812">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="18820">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="18812">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="18574">{
+        <span class="cov9" title="18820">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="18582">{
                 return true, nil
         }</span>
         <span class="cov5" title="238">return false, nil</span>
@@ -14106,7 +14133,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov1" title="1">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -14115,26 +14142,26 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov1" title="1">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
                 }</span>
-                <span class="cov0" title="0">p.wg.Done()</span>
+                <span class="cov1" title="1">p.wg.Done()</span>
         }()
 
         <span class="cov3" title="2">for </span><span class="cov10" title="20">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov1" title="1">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov1" title="1">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file78" style="display: none">package progress
