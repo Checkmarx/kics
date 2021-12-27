@@ -5,7 +5,6 @@ import data.generic.common as common_lib
 CxPolicy[result] {
 	resources := input.document[i].Resources
 	resource := resources[k]
-
 	resource.Type == "AWS::Serverless::Function"
 
 	resources[j].Type == "AWS::Serverless::Function"
