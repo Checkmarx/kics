@@ -3,7 +3,9 @@ module github.com/Checkmarx/kics
 go 1.16
 
 require (
+	cloud.google.com/go/monitoring v1.1.0 // indirect
 	github.com/BurntSushi/toml v0.4.1
+	github.com/GoogleCloudPlatform/terraformer v0.8.18
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20211114212643-ec144ca0d701
 	github.com/cheggaaa/pb/v3 v3.0.8
@@ -38,3 +40,8 @@ require (
 )
 
 replace github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
+
+replace (
+	github.com/hashicorp/terraform => github.com/hashicorp/terraform v0.12.31
+	gopkg.in/jarcoal/httpmock.v1 => github.com/jarcoal/httpmock v1.0.5
+)

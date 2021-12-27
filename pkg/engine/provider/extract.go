@@ -41,6 +41,19 @@ type getterStruct struct {
 	source      string
 }
 
+func GetTerraformerSources(source []string) (ExtractedPath, error) {
+	path, err := terraformerImportAWS()
+	return ExtractedPath{
+		Path: []string{path},
+		ExtractionMap: map[string]model.ExtractedPathObject{
+			path: {
+				Path:      path,
+				LocalPath: true,
+			},
+		},
+	}, err
+}
+
 // GetSources goes through the source slice, and determines the of source type (ex: zip, git, local).
 // It than extracts the files to be scanned. If the source given is not local, a temp dir
 // will be created where the files will be stored.

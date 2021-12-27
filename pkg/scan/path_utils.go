@@ -2,6 +2,7 @@ package scan
 
 import (
 	"fmt"
+	"regexp"
 	"strings"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
@@ -11,15 +12,27 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+var (
+	terraformerRegex = regexp.MustCompile(`^terraformer::`)
+)
+
 func (c *Client) prepareAndAnalyzePaths() (extractedPaths provider.ExtractedPath, err error) {
 	err = c.preparePaths()
 	if err != nil {
 		return extractedPaths, err
 	}
 
-	extractedPaths, err = provider.GetSources(c.ScanParams.Path)
-	if err != nil {
-		return extractedPaths, err
+	if terraformerRegex.MatchString(c.ScanParams.Path[0]) {
+		log.Info().Msg("Terraformer detected, Importing with terraformer")
+		extractedPaths, err = provider.GetTerraformerSources(c.ScanParams.Path)
+		if err != nil {
+			return extractedPaths, err
+		}
+	} else {
+		extractedPaths, err = provider.GetSources(c.ScanParams.Path)
+		if err != nil {
+			return extractedPaths, err
+		}
 	}
 
 	newTypeFlagValue, newExcludePathsFlagValue, errAnalyze :=
