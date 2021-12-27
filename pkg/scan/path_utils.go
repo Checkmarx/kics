@@ -129,6 +129,9 @@ func logLoadingQueriesType(types []string) {
 
 func deleteExtractionFolder(extractionMap map[string]model.ExtractedPathObject) {
 	for extractionFile := range extractionMap {
-		os.Remove(extractionFile)
+		err := os.Remove(extractionFile)
+		if err != nil {
+			log.Err(err).Msg("Failed to delete KICS extraction folder")
+		}
 	}
 }
