@@ -12,6 +12,7 @@ CxPolicy[result] {
 		"resource_type": "aws_sqs_queue",
 		"resource_name": get_queue_name(aws_sqs_queue_resource),
 		"resource_accessibility": info.accessibility,
+		"resource_encryption": common_lib.get_encryption_if_exists(aws_sqs_queue_resource),
 		"resource_vendor": "AWS",
 		"resource_category": "Queues",
 		"policy": info.policy,

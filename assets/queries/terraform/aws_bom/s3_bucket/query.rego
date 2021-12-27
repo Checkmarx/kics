@@ -10,6 +10,7 @@ CxPolicy[result] {
 		"resource_type": "aws_s3_bucket",
 		"resource_name": get_bucket_name(bucket_resource),
 		"resource_accessibility": get_accessibility(bucket_resource, name),
+		"resource_encryption": common_lib.get_encryption_if_exists(bucket_resource),
 		"resource_vendor": "AWS",
 		"resource_category": "Storage",
 		"acl": get_bucket_acl(bucket_resource),

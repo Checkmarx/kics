@@ -12,6 +12,7 @@ CxPolicy[result] {
 		# RabbitMQ or ActiveMQ
 		"resource_engine": aws_mq_broker_resource.engine_type,
 		"resource_accessibility": check_publicly_accessible(aws_mq_broker_resource),
+		"resource_encryption": common_lib.get_encryption_if_exists(aws_mq_broker_resource),
 		"resource_vendor": "AWS",
 		"resource_category": "Queues",
 		"user_name": aws_mq_broker_resource.user.username,
