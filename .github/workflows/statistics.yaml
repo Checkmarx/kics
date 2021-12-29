@@ -1,0 +1,39 @@
+name: statistics
+
+on:
+  workflow_dispatch:
+  release:
+    type: [published]
+jobs:
+  statistics:
+    name: test-statistics
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v2.3.4
+      - name: Set up Go 1.17.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17.x
+      - name: Run test metrics script
+        id: testcoverage
+        run: |
+          make test-coverage-report | tee test-results
+          TOTAL_TESTS=$(cat test-results | grep -v TestQueriesContent/ | grep -v TestQueriesMetadata/ | grep -v TestQueries/ | grep PASS | wc -l)
+          echo "Total Tests :: ${TOTAL_TESTS}"
+          echo "::set-output name=total_tests::${TOTAL_TESTS}"
+      - name: Get Go_LOC
+        id: go_loc
+        run: |
+          sudo apt-get install cloc
+          GO_LOC=$(cloc . | grep Go | grep -Eo '[0-9]+$')
+          echo "::set-output name=goloc::${GO_LOC}"
+      - uses: actions/setup-python@v2.3.1
+        with:
+          python-version: "3.x"
+      - name: Run test statistics script
+        id: metrics
+        run: |
+          pip3 install -r .github/scripts/statistics/requirements.txt
+          python3 .github/scripts/statistics/get_statistics.py -c ${{steps.testcoverage.outputs.coverage}} -t ${{steps.testcoverage.outputs.total_tests}} -g ${{steps.go_loc.outputs.goloc}}
+      
