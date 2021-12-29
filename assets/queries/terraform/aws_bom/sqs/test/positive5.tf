@@ -12,4 +12,6 @@ resource "aws_sqs_queue" "positive5" {
   tags = {
     Environment = "production"
   }
+
+  sqs_managed_sse_enabled = true
 }

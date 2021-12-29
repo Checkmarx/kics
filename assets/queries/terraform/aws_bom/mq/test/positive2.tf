@@ -15,4 +15,8 @@ resource "aws_mq_broker" "positive2" {
     username = "ExampleUser"
     password = "111111111111"
   }
+
+  encryption_options {
+    kms_key_id = var.encryption_options.kms_key_id
+  }
 }

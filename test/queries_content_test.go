@@ -41,8 +41,8 @@ var (
 
 	searchValueAllowedQueriesPath = []string{
 		"../assets/queries/ansible/azure/sensitive_port_is_exposed_to_entire_network",
-		"../assets/queries/cloudFormation/ec2_sensitive_port_is_publicly_exposed",
-		"../assets/queries/cloudFormation/elb_sensitive_port_is_exposed_to_entire_network",
+		"../assets/queries/cloudFormation/aws/ec2_sensitive_port_is_publicly_exposed",
+		"../assets/queries/cloudFormation/aws/elb_sensitive_port_is_exposed_to_entire_network",
 		"../assets/queries/terraform/aws/sensitive_port_is_exposed_to_entire_network",
 		"../assets/queries/terraform/aws/sensitive_port_is_exposed_to_small_public_network",
 		"../assets/queries/terraform/azure/sensitive_port_is_exposed_to_entire_network",

@@ -9,7 +9,7 @@ queries_basepath = 'assets/queries'
 queries_path = {
     'ansible': os.path.join(queries_basepath, 'ansible', '**', '*'),
     'azureresourcemanager': os.path.join(queries_basepath, 'azureResourceManager', '*'),
-    'cloudformation': os.path.join(queries_basepath, 'cloudFormation', '*'),
+    'cloudformation': os.path.join(queries_basepath, 'cloudFormation', '**', '*'),
     'openapi': os.path.join(queries_basepath, 'openAPI', '**', '*'),
     'k8s': os.path.join(queries_basepath, 'k8s', '*'),
     'common': os.path.join(queries_basepath, 'common', '*'),
