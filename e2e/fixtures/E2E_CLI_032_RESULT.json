@@ -1,252 +1,286 @@
 {
-  "kics_version": "snapshot-8adbec12",
-  "files_scanned": 1,
-  "files_parsed": 1,
-  "files_failed_to_scan": 0,
-  "queries_total": 821,
-  "queries_failed_to_execute": 0,
-  "queries_failed_to_compute_similarity_id": 0,
-  "scan_id": "console",
-  "severity_counters": {
-    "HIGH": 6,
-    "INFO": 2,
-    "LOW": 0,
-    "MEDIUM": 6,
-    "TRACE": 0
-  },
-  "total_counter": 14,
-  "total_bom_resources": 0,
-  "start": "2021-10-13T16:59:04.004498+01:00",
-  "end": "2021-10-13T16:59:09.746826+01:00",
-  "paths": [
-    "fixtures/samples/terraform.tf"
-  ],
-  "queries": [
-    {
-      "query_name": "Passwords And Secrets - Generic Password",
-      "query_id": "487f4be7-3fd9-4506-a07a-eae252180c08",
-      "query_url": "https://kics.io/",
-      "severity": "HIGH",
-      "platform": "Common",
-      "category": "Secret Management",
-      "description": "Query to find passwords and secrets in infrastructure code.",
-      "description_id": "d69d8a89",
-      "files": [
-        {
-          "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "9e26d1ce4d2e0f7fa9b77195bd329f18c135b946ba74a13bc05a289dfc3455f1",
-          "line": 5,
-          "issue_type": "RedundantAttribute",
-          "search_key": "",
-          "search_line": 0,
-          "search_value": "",
-          "expected_value": "Hardcoded secret key should not appear in source",
-          "actual_value": "'  master_password    = \"Mustbe8characters\"' contains a secret"
-        },
-        {
-          "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "d6a018d85a93d338ed89c82b791f30c1913eff5e743f67cfa52176f5135aea2b",
-          "line": 14,
-          "issue_type": "RedundantAttribute",
-          "search_key": "",
-          "search_line": 0,
-          "search_value": "",
-          "expected_value": "Hardcoded secret key should not appear in source",
-          "actual_value": "'  master_password    = \"Mustbe8characters\"' contains a secret"
-        }
-      ]
-    },
-    {
-      "query_name": "Redshift Not Encrypted",
-      "query_id": "cfdcabb0-fc06-427c-865b-c59f13e898ce",
-      "query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#encrypted",
-      "severity": "HIGH",
-      "platform": "Terraform",
-      "category": "Encryption",
-      "description": "Check if 'encrypted' field is false or undefined (default is false)",
-      "description_id": "2bee4895",
-      "files": [
-        {
-          "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "e413b091a0cfff9b692ce5d9fa075e3f69e037a58030e9ef592d5f58ae446fbc",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[default]",
-          "search_line": 0,
-          "search_value": "",
-          "expected_value": "aws_redshift_cluster.encrypted is defined and not null",
-          "actual_value": "aws_redshift_cluster.encrypted is undefined or null"
-        },
-        {
-          "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "a09d6aefe0fec02ce6b1b30afb3186c7fa4454165a4a1754ed104d22d6156af7",
-          "line": 10,
-          "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[default1]",
-          "search_line": 0,
-          "search_value": "",
-          "expected_value": "aws_redshift_cluster.encrypted is defined and not null",
-          "actual_value": "aws_redshift_cluster.encrypted is undefined or null"
-        }
-      ]
-    },
-    {
-      "query_name": "Redshift Publicly Accessible",
-      "query_id": "af173fde-95ea-4584-b904-bb3923ac4bda",
-      "query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster",
-      "severity": "HIGH",
-      "platform": "Terraform",
-      "category": "Insecure Configurations",
-      "description": "Check if 'publicly_accessible' field is true or undefined (default is true)",
-      "description_id": "9a581503",
-      "files": [
-        {
-          "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "7ae2741fb3c480c38776368fbe21412672c6458d490e4648eb1ad1aadc24a741",
-          "line": 17,
-          "issue_type": "IncorrectValue",
-          "search_key": "aws_redshift_cluster[default1].publicly_accessible",
-          "search_line": 0,
-          "search_value": "",
-          "expected_value": "aws_redshift_cluster.publicly_accessible is false",
-          "actual_value": "aws_redshift_cluster.publicly_accessible is true"
-        },
-        {
-          "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "4234052fbe1fed19a465cec7fbed9eb156c22eeae7d97c3ac8096bcc7b39a2fe",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[default]",
-          "search_line": 0,
-          "search_value": "",
-          "expected_value": "aws_redshift_cluster.publicly_accessible is defined and not null",
-          "actual_value": "aws_redshift_cluster.publicly_accessible is undefined or null"
-        }
-      ]
-    },
-    {
-      "query_name": "Redshift Cluster Logging Disabled",
-      "query_id": "15ffbacc-fa42-4f6f-a57d-2feac7365caa",
-      "query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#enable",
-      "severity": "MEDIUM",
-      "platform": "Terraform",
-      "category": "Observability",
-      "description": "Make sure Logging is enabled for Redshift Cluster",
-      "description_id": "458fe7a3",
-      "files": [
-        {
-          "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "2abf26c3014fc445da69d8d5bb862c1c511e8e16ad3a6c6f6e14c28aa0adac1d",
-          "line": 10,
-          "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[default1]",
-          "search_line": 0,
-          "search_value": "",
-          "expected_value": "'aws_redshift_cluster.logging' is true",
-          "actual_value": "'aws_redshift_cluster.logging' is undefined"
-        },
-        {
-          "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "0455ad9d92fa1dc1cbf20dd5042ee21d9ae176388662b5982501aa01724e50d9",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[default]",
-          "search_line": 0,
-          "search_value": "",
-          "expected_value": "'aws_redshift_cluster.logging' is true",
-          "actual_value": "'aws_redshift_cluster.logging' is undefined"
-        }
-      ]
-    },
-    {
-      "query_name": "Redshift Cluster Without VPC",
-      "query_id": "0a494a6a-ebe2-48a0-9d77-cf9d5125e1b3",
-      "query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#vpc_security_group_ids",
-      "severity": "MEDIUM",
-      "platform": "Terraform",
-      "category": "Insecure Configurations",
-      "description": "Redshift Cluster should be configured in VPC (Virtual Private Cloud)",
-      "description_id": "6fd531fa",
-      "files": [
-        {
-          "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "709853fdb034e451c68825041190bbff098e2893528d91c39d84d31ea93ecae6",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[default]",
-          "search_line": 0,
-          "search_value": "cluster_subnet_group_name",
-          "expected_value": "aws_redshift_cluster[default].cluster_subnet_group_name is set",
-          "actual_value": "aws_redshift_cluster[default].cluster_subnet_group_name is undefined"
-        },
-        {
-          "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "c703e26654dc3e9da1ad3519663f38aed2a29e629b4342f9e75af464a07699e0",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[default]",
-          "search_line": 0,
-          "search_value": "vpc_security_group_ids",
-          "expected_value": "aws_redshift_cluster[default].vpc_security_group_ids is set",
-          "actual_value": "aws_redshift_cluster[default].vpc_security_group_ids is undefined"
-        },
-        {
-          "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "83461a5eac8fed2264fac68a6d352d1ed752867a9b0a131afa9ba7e366159b59",
-          "line": 10,
-          "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[default1]",
-          "search_line": 0,
-          "search_value": "vpc_security_group_ids",
-          "expected_value": "aws_redshift_cluster[default1].vpc_security_group_ids is set",
-          "actual_value": "aws_redshift_cluster[default1].vpc_security_group_ids is undefined"
-        },
-        {
-          "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "4aa3f159f39767de53b49ed871977b8b499bf19b3b0865b1631042aa830598aa",
-          "line": 10,
-          "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[default1]",
-          "search_line": 0,
-          "search_value": "cluster_subnet_group_name",
-          "expected_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is set",
-          "actual_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is undefined"
-        }
-      ]
-    },
-    {
-      "query_name": "Resource Not Using Tags",
-      "query_id": "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
-      "query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/resource-tagging",
-      "severity": "INFO",
-      "platform": "Terraform",
-      "category": "Best Practices",
-      "description": "AWS services resource tags are an essential part of managing components",
-      "description_id": "09db2d52",
-      "files": [
-        {
-          "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "b44463ffd0f5c1eadc04ce6649982da68658349ad880daef470250661d3d1512",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[{{default}}]",
-          "search_line": 0,
-          "search_value": "",
-          "expected_value": "aws_redshift_cluster[{{default}}].tags is defined and not null",
-          "actual_value": "aws_redshift_cluster[{{default}}].tags is undefined or null"
-        },
-        {
-          "file_name": "fixtures/samples/terraform.tf",
-          "similarity_id": "406b71d9fd0edb656a4735df30dde77c5f8a6c4ec3caa3442f986a92832c653b",
-          "line": 10,
-          "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[{{default1}}]",
-          "search_line": 0,
-          "search_value": "",
-          "expected_value": "aws_redshift_cluster[{{default1}}].tags is defined and not null",
-          "actual_value": "aws_redshift_cluster[{{default1}}].tags is undefined or null"
-        }
-      ]
-    }
-  ]
+	"kics_version": "development",
+	"files_scanned": 1,
+	"files_parsed": 1,
+	"files_failed_to_scan": 0,
+	"queries_total": 852,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"HIGH": 6,
+		"INFO": 2,
+		"LOW": 0,
+		"MEDIUM": 8,
+		"TRACE": 0
+	},
+	"total_counter": 16,
+	"total_bom_resources": 0,
+	"start": "2022-01-01T15:57:34.3589443Z",
+	"end": "2022-01-01T15:57:44.2986478Z",
+	"paths": [
+		"fixtures/samples/terraform.tf"
+	],
+	"queries": [
+		{
+			"query_name": "Passwords And Secrets - Generic Password",
+			"query_id": "487f4be7-3fd9-4506-a07a-eae252180c08",
+			"query_url": "https://kics.io/",
+			"severity": "HIGH",
+			"platform": "Common",
+			"category": "Secret Management",
+			"description": "Query to find passwords and secrets in infrastructure code.",
+			"description_id": "d69d8a89",
+			"files": [
+				{
+					"file_name": "fixtures/samples/terraform.tf",
+					"similarity_id": "9e26d1ce4d2e0f7fa9b77195bd329f18c135b946ba74a13bc05a289dfc3455f1",
+					"line": 5,
+					"issue_type": "RedundantAttribute",
+					"search_key": "",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Hardcoded secret key should not appear in source",
+					"actual_value": "'  master_password    = \"Mustbe8characters\"' contains a secret"
+				},
+				{
+					"file_name": "fixtures/samples/terraform.tf",
+					"similarity_id": "d6a018d85a93d338ed89c82b791f30c1913eff5e743f67cfa52176f5135aea2b",
+					"line": 14,
+					"issue_type": "RedundantAttribute",
+					"search_key": "",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Hardcoded secret key should not appear in source",
+					"actual_value": "'  master_password    = \"Mustbe8characters\"' contains a secret"
+				}
+			]
+		},
+		{
+			"query_name": "Redshift Not Encrypted",
+			"query_id": "cfdcabb0-fc06-427c-865b-c59f13e898ce",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#encrypted",
+			"severity": "HIGH",
+			"platform": "Terraform",
+			"category": "Encryption",
+			"description": "Check if 'encrypted' field is false or undefined (default is false)",
+			"description_id": "2bee4895",
+			"files": [
+				{
+					"file_name": "fixtures/samples/terraform.tf",
+					"similarity_id": "e413b091a0cfff9b692ce5d9fa075e3f69e037a58030e9ef592d5f58ae446fbc",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_redshift_cluster[default]",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "aws_redshift_cluster.encrypted is defined and not null",
+					"actual_value": "aws_redshift_cluster.encrypted is undefined or null"
+				},
+				{
+					"file_name": "fixtures/samples/terraform.tf",
+					"similarity_id": "a09d6aefe0fec02ce6b1b30afb3186c7fa4454165a4a1754ed104d22d6156af7",
+					"line": 10,
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_redshift_cluster[default1]",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "aws_redshift_cluster.encrypted is defined and not null",
+					"actual_value": "aws_redshift_cluster.encrypted is undefined or null"
+				}
+			]
+		},
+		{
+			"query_name": "Redshift Publicly Accessible",
+			"query_id": "af173fde-95ea-4584-b904-bb3923ac4bda",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster",
+			"severity": "HIGH",
+			"platform": "Terraform",
+			"category": "Insecure Configurations",
+			"description": "Check if 'publicly_accessible' field is true or undefined (default is true)",
+			"description_id": "9a581503",
+			"files": [
+				{
+					"file_name": "fixtures/samples/terraform.tf",
+					"similarity_id": "4234052fbe1fed19a465cec7fbed9eb156c22eeae7d97c3ac8096bcc7b39a2fe",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_redshift_cluster[default]",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "aws_redshift_cluster.publicly_accessible is defined and not null",
+					"actual_value": "aws_redshift_cluster.publicly_accessible is undefined or null"
+				},
+				{
+					"file_name": "fixtures/samples/terraform.tf",
+					"similarity_id": "7ae2741fb3c480c38776368fbe21412672c6458d490e4648eb1ad1aadc24a741",
+					"line": 17,
+					"issue_type": "IncorrectValue",
+					"search_key": "aws_redshift_cluster[default1].publicly_accessible",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "aws_redshift_cluster.publicly_accessible is false",
+					"actual_value": "aws_redshift_cluster.publicly_accessible is true"
+				}
+			]
+		},
+		{
+			"query_name": "Redshift Cluster Logging Disabled",
+			"query_id": "15ffbacc-fa42-4f6f-a57d-2feac7365caa",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#enable",
+			"severity": "MEDIUM",
+			"platform": "Terraform",
+			"category": "Observability",
+			"description": "Make sure Logging is enabled for Redshift Cluster",
+			"description_id": "458fe7a3",
+			"files": [
+				{
+					"file_name": "fixtures/samples/terraform.tf",
+					"similarity_id": "2abf26c3014fc445da69d8d5bb862c1c511e8e16ad3a6c6f6e14c28aa0adac1d",
+					"line": 10,
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_redshift_cluster[default1]",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'aws_redshift_cluster.logging' is true",
+					"actual_value": "'aws_redshift_cluster.logging' is undefined"
+				},
+				{
+					"file_name": "fixtures/samples/terraform.tf",
+					"similarity_id": "0455ad9d92fa1dc1cbf20dd5042ee21d9ae176388662b5982501aa01724e50d9",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_redshift_cluster[default]",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'aws_redshift_cluster.logging' is true",
+					"actual_value": "'aws_redshift_cluster.logging' is undefined"
+				}
+			]
+		},
+		{
+			"query_name": "Redshift Cluster Without VPC",
+			"query_id": "0a494a6a-ebe2-48a0-9d77-cf9d5125e1b3",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#vpc_security_group_ids",
+			"severity": "MEDIUM",
+			"platform": "Terraform",
+			"category": "Insecure Configurations",
+			"description": "Redshift Cluster should be configured in VPC (Virtual Private Cloud)",
+			"description_id": "6fd531fa",
+			"files": [
+				{
+					"file_name": "fixtures/samples/terraform.tf",
+					"similarity_id": "709853fdb034e451c68825041190bbff098e2893528d91c39d84d31ea93ecae6",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_redshift_cluster[default]",
+					"search_line": 0,
+					"search_value": "cluster_subnet_group_name",
+					"expected_value": "aws_redshift_cluster[default].cluster_subnet_group_name is set",
+					"actual_value": "aws_redshift_cluster[default].cluster_subnet_group_name is undefined"
+				},
+				{
+					"file_name": "fixtures/samples/terraform.tf",
+					"similarity_id": "4aa3f159f39767de53b49ed871977b8b499bf19b3b0865b1631042aa830598aa",
+					"line": 10,
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_redshift_cluster[default1]",
+					"search_line": 0,
+					"search_value": "cluster_subnet_group_name",
+					"expected_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is set",
+					"actual_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is undefined"
+				},
+				{
+					"file_name": "fixtures/samples/terraform.tf",
+					"similarity_id": "83461a5eac8fed2264fac68a6d352d1ed752867a9b0a131afa9ba7e366159b59",
+					"line": 10,
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_redshift_cluster[default1]",
+					"search_line": 0,
+					"search_value": "vpc_security_group_ids",
+					"expected_value": "aws_redshift_cluster[default1].vpc_security_group_ids is set",
+					"actual_value": "aws_redshift_cluster[default1].vpc_security_group_ids is undefined"
+				},
+				{
+					"file_name": "fixtures/samples/terraform.tf",
+					"similarity_id": "c703e26654dc3e9da1ad3519663f38aed2a29e629b4342f9e75af464a07699e0",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_redshift_cluster[default]",
+					"search_line": 0,
+					"search_value": "vpc_security_group_ids",
+					"expected_value": "aws_redshift_cluster[default].vpc_security_group_ids is set",
+					"actual_value": "aws_redshift_cluster[default].vpc_security_group_ids is undefined"
+				}
+			]
+		},
+		{
+			"query_name": "Redshift Using Default Port",
+			"query_id": "41abc6cc-dde1-4217-83d3-fb5f0cc09d8f",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#port",
+			"severity": "MEDIUM",
+			"platform": "Terraform",
+			"category": "Networking and Firewall",
+			"description": "Redshift should not use the default port (5439) because an attacker can easily guess the port",
+			"description_id": "e2e48d27",
+			"files": [
+				{
+					"file_name": "fixtures/samples/terraform.tf",
+					"similarity_id": "34ae9f216456678405a82e7419b9b1614ee09a765529f717679e1fa4f4a1ae0a",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_redshift_cluster[default]",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "aws_redshift_cluster.port is defined and not null",
+					"actual_value": "aws_redshift_cluster.port is undefined or null"
+				},
+				{
+					"file_name": "fixtures/samples/terraform.tf",
+					"similarity_id": "8f5d57a5515ee4c9c5e6d26274b4e7ae5e408e39399caff57aebe5121dc11af6",
+					"line": 10,
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_redshift_cluster[default1]",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "aws_redshift_cluster.port is defined and not null",
+					"actual_value": "aws_redshift_cluster.port is undefined or null"
+				}
+			]
+		},
+		{
+			"query_name": "Resource Not Using Tags",
+			"query_id": "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/resource-tagging",
+			"severity": "INFO",
+			"platform": "Terraform",
+			"category": "Best Practices",
+			"description": "AWS services resource tags are an essential part of managing components",
+			"description_id": "09db2d52",
+			"files": [
+				{
+					"file_name": "fixtures/samples/terraform.tf",
+					"similarity_id": "b44463ffd0f5c1eadc04ce6649982da68658349ad880daef470250661d3d1512",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_redshift_cluster[{{default}}]",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "aws_redshift_cluster[{{default}}].tags is defined and not null",
+					"actual_value": "aws_redshift_cluster[{{default}}].tags is undefined or null"
+				},
+				{
+					"file_name": "fixtures/samples/terraform.tf",
+					"similarity_id": "406b71d9fd0edb656a4735df30dde77c5f8a6c4ec3caa3442f986a92832c653b",
+					"line": 10,
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_redshift_cluster[{{default1}}]",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "aws_redshift_cluster[{{default1}}].tags is defined and not null",
+					"actual_value": "aws_redshift_cluster[{{default1}}].tags is undefined or null"
+				}
+			]
+		}
+	]
 }
