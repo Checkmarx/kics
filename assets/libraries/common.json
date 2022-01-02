@@ -1,12 +1,5 @@
 {
   "common_lib": {
-    "default_passwords" : [
-    "password", 
-    "admin", 
-    "guest", 
-    "user", 
-    "12345"
-  ],
     "modules": {
       "aws": {
         "terraform-aws-modules/vpc/aws": {
