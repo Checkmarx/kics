@@ -64,6 +64,8 @@ var (
 var (
 	// KICSCommentRgxp is the regexp to identify if a comment is a KICS comment
 	KICSCommentRgxp = regexp.MustCompile(`^((/{2})|#)*\s*kics-scan\s*`)
+	// KICSCommentRgxpYaml is the regexp to identify if the comment has KICS comment at the end of the comment in YAML
+	KICSCommentRgxpYaml = regexp.MustCompile(`((/{2})|#)*\s*kics-scan\s*(ignore-line|ignore-block)\s*\n*$`)
 )
 
 // Version - is the model for the version response

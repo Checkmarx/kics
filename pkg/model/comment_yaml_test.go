@@ -352,7 +352,7 @@ func Test_ignoreCommentsYAML(t *testing.T) {
 		},
 		{
 			name: "test_4: ignore-all",
-			want: []int{1, 0, 2, 3, 4, 5, 6, 7, 8, 9},
+			want: []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
 			args: args{
 				&yaml.Node{
 					Kind:        yaml.MappingNode,
