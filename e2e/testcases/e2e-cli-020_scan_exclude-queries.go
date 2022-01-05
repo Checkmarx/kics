@@ -7,8 +7,11 @@ func init() { //nolint
 		Name: "should exclude provided queries [E2E-CLI-020]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "--exclude-queries", "15ffbacc-fa42-4f6f-a57d-2feac7365caa,0a494a6a-ebe2-48a0-9d77-cf9d5125e1b3,e592a0c5-5bdb-414c-9066-5dba7cdea370", "-s",
-					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+				[]string{"scan",
+					"--exclude-queries", "15ffbacc-fa42-4f6f-a57d-2feac7365caa," +
+						"0a494a6a-ebe2-48a0-9d77-cf9d5125e1b3," +
+						"e592a0c5-5bdb-414c-9066-5dba7cdea370",
+					"-s", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 			},
 		},
 		WantStatus: []int{20},
