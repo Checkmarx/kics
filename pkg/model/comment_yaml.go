@@ -111,6 +111,11 @@ func getFootComments(comment string, content *yaml.Node, position, commentsNumbe
 
 func processRegularLine(comment string, content *yaml.Node, position int, isFooter bool) (linesIgnore []int) {
 	linesIgnore = make([]int, 0)
+
+	if len(content.Content) == 0 {
+		return linesIgnore
+	}
+
 	line := content.Content[position].Line
 	commentsNumber := strings.Count(comment, "#") // number of comments (coverage of nested comments)
 
