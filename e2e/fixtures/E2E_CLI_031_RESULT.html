@@ -187,11 +187,17 @@
     .query-details {
       margin: 12px 0;
       display: flex;
-      flex-direction: column
+      flex-direction: column;
+      text-align: justify
     }
 
-    .query-details>span:first-child {
-      font-size: 18px
+    .query-details>span.query-description-title {
+      font-size: 18px;
+      margin-top: 5px
+    }
+
+    .query-details>span.cis-description-text {
+      margin-top: 5px
     }
 
     .query-details>span:last-child {
@@ -316,12 +322,13 @@
 <body>
   <div class="container">
     <div class="report-header-footer"><span class="title">KICS <span>REPORT</span></span><span
-        class="timestamp">07/05/2021 14:43</span><a href="https://www.kics.io/" rel="noopener"
+        class="timestamp">01/05/2022 20:45</span><a href="https://www.kics.io/" rel="noopener"
         target="_blank">KICS.IO</a></div>
-    <div class="run-info"><span style="flex-basis:100%" id="scan-paths"><strong>Scanned paths:</strong> fixtures/samples/terraform.tf</span>
+    <div class="run-info"><span style="flex-basis:100%" id="scan-paths"><strong>KICS development</strong></span>
+      <span style="flex-basis:100%" id="scan-paths"><strong>Scanned paths:</strong> fixtures/samples/terraform.tf</span>
       <span style="flex-basis:100%" id="scan-platforms"><strong>Platforms:</strong> Common, Terraform</span><span
-        id="scan-start-time"><strong>Start time:</strong> 14:42:51, Jul 05 2021</span>
-      <span id="scan-end-time"><strong>End time:</strong> 14:43:00, Jul 05 2021</span>
+        id="scan-start-time"><strong>Start time:</strong> 20:45:22, Jan 05 2022</span>
+      <span id="scan-end-time"><strong>End time:</strong> 20:45:34, Jan 05 2022</span>
     </div>
     <h2 style="margin-top:41px" class="kics-orange">Vulnerabilities:</h2>
     <div class="counters">
@@ -352,7 +359,7 @@
                 <rect height="5" width="2" x="11" y="7" />
               </g>
             </g>
-          </svg></div><span class="badge" id="severity-count-medium">6</span>
+          </svg></div><span class="badge" id="severity-count-medium">7</span>
         <span class="caption">MEDIUM</span>
       </div>
       <div class="severity" onclick="filter('LOW')">
@@ -403,7 +410,7 @@
                 <circle cx="12" cy="12" r="3" />
               </g>
             </g>
-          </svg></div><span class="badge" id="severity-count-total">14</span>
+          </svg></div><span class="badge" id="severity-count-total">15</span>
         <span class="caption selected">TOTAL</span>
       </div>
     </div>
@@ -422,24 +429,23 @@
                     <path
                       d="M12,2L4,5v6.09c0,5.05,3.41,9.76,8,10.91c4.59-1.15,8-5.86,8-10.91V5L12,2z M13,16h-2v-2h2V16z M13,12h-2V7h2V12z" />
                   </g>
-                </svg></div><span class="query-name">Passwords And Secrets In Infrastructure Code</span>
+                </svg></div><span class="query-name">Passwords And Secrets - Generic Password</span>
             </h2><span><strong>Platform:</strong> <span class="query-info-platform">Common</span></span>
             <span><strong>Category:</strong> <span class="query-info-category">Secret Management</span></span>
           </div>
-          <div class="query-details"><span>Query to find passwords and secrets in infrastructure code.</span>
-            <span><a href="https://kics.io/" rel="noopener" target="_blank">https://kics.io/</a></span>
-          </div>
+          <div class="query-details"><span class="query-description-title">Query to find passwords and secrets in
+              infrastructure code.</span><span><a href="https://kics.io/" rel="noopener"
+                target="_blank">https://kics.io/</a></span></div>
         </div>
         <details>
           <summary>Results (<span class="severity-partial-count-high">2</span>)</summary>
           <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
+            <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
               <span>Line 14</span>
             </div>
             <div class="vulnerable-info-details"><span><strong>Expected:</strong> Hardcoded secret key should not appear
                 in source</span>
-              <span><strong>Found:</strong> Mustbe8characters</span>
+              <span><strong>Found:</strong> ' master_password = "Mustbe8characters"' contains a secret</span>
             </div>
             <div class="code-box">
               <div class="code-line"><span class="code-line-counter">13</span><span class="code"> master_username =
@@ -451,13 +457,12 @@
             </div>
           </div>
           <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
+            <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
               <span>Line 5</span>
             </div>
             <div class="vulnerable-info-details"><span><strong>Expected:</strong> Hardcoded secret key should not appear
                 in source</span>
-              <span><strong>Found:</strong> Mustbe8characters</span>
+              <span><strong>Found:</strong> ' master_password = "Mustbe8characters"' contains a secret</span>
             </div>
             <div class="code-box">
               <div class="code-line"><span class="code-line-counter">4</span><span class="code"> master_username =
@@ -490,8 +495,8 @@
             </h2><span><strong>Platform:</strong> <span class="query-info-platform">Terraform</span></span>
             <span><strong>Category:</strong> <span class="query-info-category">Encryption</span></span>
           </div>
-          <div class="query-details"><span>Check if 'encrypted' field is false or undefined (default is false)</span>
-            <span><a
+          <div class="query-details"><span class="query-description-title">Check if 'encrypted' field is false or
+              undefined (default is false)</span><span><a
                 href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#encrypted"
                 rel="noopener"
                 target="_blank">https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#encrypted</a></span>
@@ -500,13 +505,12 @@
         <details>
           <summary>Results (<span class="severity-partial-count-high">2</span>)</summary>
           <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
+            <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
               <span>Line 10</span>
             </div>
             <div class="vulnerable-info-details"><span><strong>Expected:</strong> aws_redshift_cluster.encrypted is
-                defined</span>
-              <span><strong>Found:</strong> aws_redshift_cluster.encrypted is undefined</span>
+                defined and not null</span>
+              <span><strong>Found:</strong> aws_redshift_cluster.encrypted is undefined or null</span>
             </div>
             <div class="code-box">
               <div class="code-line"><span class="code-line-counter">9</span><span class="code"></span></div>
@@ -517,13 +521,12 @@
             </div>
           </div>
           <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
+            <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
               <span>Line 1</span>
             </div>
             <div class="vulnerable-info-details"><span><strong>Expected:</strong> aws_redshift_cluster.encrypted is
-                defined</span>
-              <span><strong>Found:</strong> aws_redshift_cluster.encrypted is undefined</span>
+                defined and not null</span>
+              <span><strong>Found:</strong> aws_redshift_cluster.encrypted is undefined or null</span>
             </div>
             <div class="code-box">
               <div class="code-line error"><span class="code-line-counter">1</span><span class="code">resource
@@ -556,9 +559,9 @@
             </h2><span><strong>Platform:</strong> <span class="query-info-platform">Terraform</span></span>
             <span><strong>Category:</strong> <span class="query-info-category">Insecure Configurations</span></span>
           </div>
-          <div class="query-details"><span>Check if 'publicly_accessible' field is true or undefined (default is
-              true)</span>
-            <span><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster"
+          <div class="query-details"><span class="query-description-title">Check if 'publicly_accessible' field is true
+              or undefined (default is true)</span><span><a
+                href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster"
                 rel="noopener"
                 target="_blank">https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster</a></span>
           </div>
@@ -566,13 +569,12 @@
         <details>
           <summary>Results (<span class="severity-partial-count-high">2</span>)</summary>
           <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
+            <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
               <span>Line 1</span>
             </div>
             <div class="vulnerable-info-details"><span><strong>Expected:</strong>
-                aws_redshift_cluster.publicly_accessible is defined</span>
-              <span><strong>Found:</strong> aws_redshift_cluster.publicly_accessible is undefined</span>
+                aws_redshift_cluster.publicly_accessible is defined and not null</span>
+              <span><strong>Found:</strong> aws_redshift_cluster.publicly_accessible is undefined or null</span>
             </div>
             <div class="code-box">
               <div class="code-line error"><span class="code-line-counter">1</span><span class="code">resource
@@ -584,8 +586,7 @@
             </div>
           </div>
           <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
+            <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
               <span>Line 17</span>
             </div>
             <div class="vulnerable-info-details"><span><strong>Expected:</strong>
@@ -622,12 +623,64 @@
                       <rect height="5" width="2" x="11" y="7" />
                     </g>
                   </g>
+                </svg></div><span class="query-name">IAM Access Analyzer Undefined</span>
+            </h2><span><strong>Platform:</strong> <span class="query-info-platform">Terraform</span></span>
+            <span><strong>Category:</strong> <span class="query-info-category">Access Control</span></span>
+          </div>
+          <div class="query-details"><span class="query-description-title">IAM Access Analyzer should be defined to
+              identify unintentional access</span><span><a
+                href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/accessanalyzer_analyzer"
+                rel="noopener"
+                target="_blank">https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/accessanalyzer_analyzer</a></span>
+          </div>
+        </div>
+        <details>
+          <summary>Results (<span class="severity-partial-count-medium">1</span>)</summary>
+          <div class="vulnerable-info">
+            <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+              <span>Line 1</span>
+            </div>
+            <div class="vulnerable-info-details"><span><strong>Expected:</strong> 'aws_accessanalyzer_analyzer' is
+                set</span>
+              <span><strong>Found:</strong> 'aws_accessanalyzer_analyzer' is undefined</span>
+            </div>
+            <div class="code-box">
+              <div class="code-line error"><span class="code-line-counter">1</span><span class="code">resource
+                  "aws_redshift_cluster" "default" {</span></div>
+              <div class="code-line"><span class="code-line-counter">2</span><span class="code"> cluster_identifier =
+                  "tf-redshift-cluster"</span></div>
+              <div class="code-line"><span class="code-line-counter">3</span><span class="code"> database_name =
+                  "mydb"</span></div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+    <div data-type="severity" data-name="MEDIUM">
+      <hr class="separator">
+      <div class="query">
+        <div class="query-info">
+          <div class="query-title">
+            <h2>
+              <div class="kics-orange"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
+                  height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+                  <g>
+                    <path d="M0,0h24v24H0V0z" fill="none" />
+                  </g>
+                  <g>
+                    <g>
+                      <path
+                        d="M12,2L4,5v6.09c0,5.05,3.41,9.76,8,10.91c4.59-1.15,8-5.86,8-10.91V5L12,2z M18,11.09c0,4-2.55,7.7-6,8.83 c-3.45-1.13-6-4.82-6-8.83v-4.7l6-2.25l6,2.25V11.09z" />
+                      <rect height="2" width="2" x="11" y="14" />
+                      <rect height="5" width="2" x="11" y="7" />
+                    </g>
+                  </g>
                 </svg></div><span class="query-name">Redshift Cluster Logging Disabled</span>
             </h2><span><strong>Platform:</strong> <span class="query-info-platform">Terraform</span></span>
             <span><strong>Category:</strong> <span class="query-info-category">Observability</span></span>
           </div>
-          <div class="query-details"><span>Make sure Logging is enabled for Redshift Cluster</span>
-            <span><a
+          <div class="query-details"><span class="query-description-title">Make sure Logging is enabled for Redshift
+              Cluster</span><span><a
                 href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#enable"
                 rel="noopener"
                 target="_blank">https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#enable</a></span>
@@ -636,8 +689,7 @@
         <details>
           <summary>Results (<span class="severity-partial-count-medium">2</span>)</summary>
           <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
+            <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
               <span>Line 1</span>
             </div>
             <div class="vulnerable-info-details"><span><strong>Expected:</strong> 'aws_redshift_cluster.logging' is
@@ -654,8 +706,7 @@
             </div>
           </div>
           <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
+            <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
               <span>Line 10</span>
             </div>
             <div class="vulnerable-info-details"><span><strong>Expected:</strong> 'aws_redshift_cluster.logging' is
@@ -696,8 +747,8 @@
             </h2><span><strong>Platform:</strong> <span class="query-info-platform">Terraform</span></span>
             <span><strong>Category:</strong> <span class="query-info-category">Insecure Configurations</span></span>
           </div>
-          <div class="query-details"><span>Redshift Cluster should be configured in VPC (Virtual Private Cloud)</span>
-            <span><a
+          <div class="query-details"><span class="query-description-title">Redshift Cluster should be configured in VPC
+              (Virtual Private Cloud)</span><span><a
                 href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#vpc_security_group_ids"
                 rel="noopener"
                 target="_blank">https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#vpc_security_group_ids</a></span>
@@ -706,8 +757,39 @@
         <details>
           <summary>Results (<span class="severity-partial-count-medium">4</span>)</summary>
           <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
+            <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+              <span>Line 10</span>
+            </div>
+            <div class="vulnerable-info-details"><span><strong>Expected:</strong>
+                aws_redshift_cluster[default1].cluster_subnet_group_name is set</span>
+              <span><strong>Found:</strong> aws_redshift_cluster[default1].cluster_subnet_group_name is undefined</span>
+            </div>
+            <div class="code-box">
+              <div class="code-line"><span class="code-line-counter">9</span><span class="code"></span></div>
+              <div class="code-line error"><span class="code-line-counter">10</span><span class="code">resource
+                  "aws_redshift_cluster" "default1" {</span></div>
+              <div class="code-line"><span class="code-line-counter">11</span><span class="code"> cluster_identifier =
+                  "tf-redshift-cluster"</span></div>
+            </div>
+          </div>
+          <div class="vulnerable-info">
+            <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+              <span>Line 10</span>
+            </div>
+            <div class="vulnerable-info-details"><span><strong>Expected:</strong>
+                aws_redshift_cluster[default1].vpc_security_group_ids is set</span>
+              <span><strong>Found:</strong> aws_redshift_cluster[default1].vpc_security_group_ids is undefined</span>
+            </div>
+            <div class="code-box">
+              <div class="code-line"><span class="code-line-counter">9</span><span class="code"></span></div>
+              <div class="code-line error"><span class="code-line-counter">10</span><span class="code">resource
+                  "aws_redshift_cluster" "default1" {</span></div>
+              <div class="code-line"><span class="code-line-counter">11</span><span class="code"> cluster_identifier =
+                  "tf-redshift-cluster"</span></div>
+            </div>
+          </div>
+          <div class="vulnerable-info">
+            <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
               <span>Line 1</span>
             </div>
             <div class="vulnerable-info-details"><span><strong>Expected:</strong>
@@ -724,8 +806,7 @@
             </div>
           </div>
           <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
+            <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
               <span>Line 1</span>
             </div>
             <div class="vulnerable-info-details"><span><strong>Expected:</strong>
@@ -739,40 +820,6 @@
                   "tf-redshift-cluster"</span></div>
               <div class="code-line"><span class="code-line-counter">3</span><span class="code"> database_name =
                   "mydb"</span></div>
-            </div>
-          </div>
-          <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
-              <span>Line 10</span>
-            </div>
-            <div class="vulnerable-info-details"><span><strong>Expected:</strong>
-                aws_redshift_cluster[default1].cluster_subnet_group_name is set</span>
-              <span><strong>Found:</strong> aws_redshift_cluster[default1].cluster_subnet_group_name is undefined</span>
-            </div>
-            <div class="code-box">
-              <div class="code-line"><span class="code-line-counter">9</span><span class="code"></span></div>
-              <div class="code-line error"><span class="code-line-counter">10</span><span class="code">resource
-                  "aws_redshift_cluster" "default1" {</span></div>
-              <div class="code-line"><span class="code-line-counter">11</span><span class="code"> cluster_identifier =
-                  "tf-redshift-cluster"</span></div>
-            </div>
-          </div>
-          <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
-              <span>Line 10</span>
-            </div>
-            <div class="vulnerable-info-details"><span><strong>Expected:</strong>
-                aws_redshift_cluster[default1].vpc_security_group_ids is set</span>
-              <span><strong>Found:</strong> aws_redshift_cluster[default1].vpc_security_group_ids is undefined</span>
-            </div>
-            <div class="code-box">
-              <div class="code-line"><span class="code-line-counter">9</span><span class="code"></span></div>
-              <div class="code-line error"><span class="code-line-counter">10</span><span class="code">resource
-                  "aws_redshift_cluster" "default1" {</span></div>
-              <div class="code-line"><span class="code-line-counter">11</span><span class="code"> cluster_identifier =
-                  "tf-redshift-cluster"</span></div>
             </div>
           </div>
         </details>
@@ -801,9 +848,9 @@
             </h2><span><strong>Platform:</strong> <span class="query-info-platform">Terraform</span></span>
             <span><strong>Category:</strong> <span class="query-info-category">Best Practices</span></span>
           </div>
-          <div class="query-details"><span>AWS services resource tags are an essential part of managing
-              components</span>
-            <span><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/resource-tagging"
+          <div class="query-details"><span class="query-description-title">AWS services resource tags are an essential
+              part of managing components</span><span><a
+                href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/resource-tagging"
                 rel="noopener"
                 target="_blank">https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/resource-tagging</a></span>
           </div>
@@ -811,13 +858,28 @@
         <details>
           <summary>Results (<span class="severity-partial-count-info">2</span>)</summary>
           <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
+            <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+              <span>Line 10</span>
+            </div>
+            <div class="vulnerable-info-details"><span><strong>Expected:</strong>
+                aws_redshift_cluster[{{default1}}].tags is defined and not null</span>
+              <span><strong>Found:</strong> aws_redshift_cluster[{{default1}}].tags is undefined or null</span>
+            </div>
+            <div class="code-box">
+              <div class="code-line"><span class="code-line-counter">9</span><span class="code"></span></div>
+              <div class="code-line error"><span class="code-line-counter">10</span><span class="code">resource
+                  "aws_redshift_cluster" "default1" {</span></div>
+              <div class="code-line"><span class="code-line-counter">11</span><span class="code"> cluster_identifier =
+                  "tf-redshift-cluster"</span></div>
+            </div>
+          </div>
+          <div class="vulnerable-info">
+            <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
               <span>Line 1</span>
             </div>
             <div class="vulnerable-info-details"><span><strong>Expected:</strong> aws_redshift_cluster[{{default}}].tags
-                is defined</span>
-              <span><strong>Found:</strong> aws_redshift_cluster[{{default}}].tags is missing</span>
+                is defined and not null</span>
+              <span><strong>Found:</strong> aws_redshift_cluster[{{default}}].tags is undefined or null</span>
             </div>
             <div class="code-box">
               <div class="code-line error"><span class="code-line-counter">1</span><span class="code">resource
@@ -826,23 +888,6 @@
                   "tf-redshift-cluster"</span></div>
               <div class="code-line"><span class="code-line-counter">3</span><span class="code"> database_name =
                   "mydb"</span></div>
-            </div>
-          </div>
-          <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
-              <span>Line 10</span>
-            </div>
-            <div class="vulnerable-info-details"><span><strong>Expected:</strong>
-                aws_redshift_cluster[{{default1}}].tags is defined</span>
-              <span><strong>Found:</strong> aws_redshift_cluster[{{default1}}].tags is missing</span>
-            </div>
-            <div class="code-box">
-              <div class="code-line"><span class="code-line-counter">9</span><span class="code"></span></div>
-              <div class="code-line error"><span class="code-line-counter">10</span><span class="code">resource
-                  "aws_redshift_cluster" "default1" {</span></div>
-              <div class="code-line"><span class="code-line-counter">11</span><span class="code"> cluster_identifier =
-                  "tf-redshift-cluster"</span></div>
             </div>
           </div>
         </details>
