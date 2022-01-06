@@ -9,6 +9,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/gookit/color"
 	"github.com/rs/zerolog/log"
 )
 
@@ -257,7 +258,8 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 func (s *Summary) PrintVersionCheck() {
 	if !s.LatestVersion.Latest {
 		message := fmt.Sprintf("A new version 'v%s' of KICS is available, please consider updating", s.LatestVersion.LatestVersionTag)
-		fmt.Println(message)
+		orange := 214
+		color.C256(uint8(orange)).Println(message)
 		log.Warn().Msgf(message)
 	}
 }

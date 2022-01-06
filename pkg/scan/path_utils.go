@@ -3,12 +3,14 @@ package scan
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/pkg/analyzer"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/gookit/color"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -133,5 +135,13 @@ func deleteExtractionFolder(extractionMap map[string]model.ExtractedPathObject) 
 		if err != nil {
 			log.Err(err).Msg("Failed to delete KICS extraction folder")
 		}
+	}
+}
+
+func contributionAppeal(queriesPath string) {
+	if !strings.Contains(queriesPath, filepath.Join("assets", "queries")) {
+		msg := "\nAre you using a custom query? If so, feel free to contribute to KICS!\n"
+		contributionPage := "Check out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md\n\n"
+		color.Yellow.Print(msg + contributionPage)
 	}
 }

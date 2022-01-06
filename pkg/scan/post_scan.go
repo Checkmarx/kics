@@ -115,6 +115,10 @@ func (c *Client) postScan(scanResults *Results) error {
 
 	consolePrinter.PrintScanDuration(time.Since(c.ScanStartTime))
 
+	summary.PrintVersionCheck()
+
+	contributionAppeal(c.ScanParams.QueriesPath)
+
 	exitCode := consoleHelpers.ResultsExitCode(&summary)
 	if consoleHelpers.ShowError("results") && exitCode != 0 {
 		os.Exit(exitCode)
