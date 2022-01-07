@@ -39,3 +39,5 @@ require (
 )
 
 replace github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
+
+replace github.com/containerd/containerd  => github.com/containerd/containerd  v1.5.9
