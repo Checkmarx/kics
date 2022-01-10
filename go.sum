@@ -1468,10 +1468,10 @@ github.com/tarm/serial v0.0.0-20180830185346-98f6abe2eb07/go.mod h1:kDXzergiv9cb
 github.com/tchap/go-patricia v2.2.6+incompatible/go.mod h1:bmLyhP68RS6kStMGxByiQ23RP/odRBOTVjwp2cDyi6I=
 github.com/tdakkota/asciicheck v0.0.0-20200416190851-d7f85be797a2/go.mod h1:yHp0ai0Z9gUljN3o0xMhYJnH/IcvkdTBOX2fmJ93JEM=
 github.com/tdakkota/asciicheck v0.0.0-20200416200610-e657995f937b/go.mod h1:yHp0ai0Z9gUljN3o0xMhYJnH/IcvkdTBOX2fmJ93JEM=
-github.com/tdewolff/minify/v2 v2.9.22 h1:PlmaAakaJHdMMdTTwjjsuSwIxKqWPTlvjTj6a/g/ILU=
-github.com/tdewolff/minify/v2 v2.9.22/go.mod h1:dNlaFdXaIxgSXh3UFASqjTY0/xjpDkkCsYHA1NCGnmQ=
-github.com/tdewolff/parse/v2 v2.5.21 h1:s/OLsVxxmQUlbFtPODDVHA836qchgmoxjEsk/cUZl48=
-github.com/tdewolff/parse/v2 v2.5.21/go.mod h1:WzaJpRSbwq++EIQHYIRTpbYKNA3gn9it1Ik++q4zyho=
+github.com/tdewolff/minify/v2 v2.9.27 h1:/HXIZwTZzh8pwxoc6cg5lqvujqOLLaIL6O4ojHh5jIw=
+github.com/tdewolff/minify/v2 v2.9.27/go.mod h1:L/bwPtsU/Xx30MxCndlClCMMiLbqROgkR4vZT+QIGXA=
+github.com/tdewolff/parse/v2 v2.5.26 h1:a/q3lwDCi4GIQ+sSbs4UOHuObhqp8GHAhfqop/zDyQQ=
+github.com/tdewolff/parse/v2 v2.5.26/go.mod h1:WzaJpRSbwq++EIQHYIRTpbYKNA3gn9it1Ik++q4zyho=
 github.com/tdewolff/test v1.0.6 h1:76mzYJQ83Op284kMT+63iCNCI7NEERsIN8dLM+RiKr4=
 github.com/tdewolff/test v1.0.6/go.mod h1:6DAvZliBAAnD7rhVgwaM7DE5/d9NMOAJ09SqYqeK4QE=
 github.com/tetafro/godot v0.3.7/go.mod h1:/7NLHhv08H1+8DNj0MElpAACw1ajsCuf3TKNQxA5S+0=
