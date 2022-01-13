@@ -4,7 +4,7 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
-    resource.Type == "AWS::Config::ConfigRule"
+    resource.Type == "AWS::EC2::Instance"
 	not hasAccessKeyRotationRule(resource)
 
 	result := {
