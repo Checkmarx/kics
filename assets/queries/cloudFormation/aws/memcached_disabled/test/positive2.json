@@ -1,0 +1,22 @@
+{
+  "Description": "A sample template",
+  "Resources": {
+    "ElasticacheCluster4": {
+        "Type": "AWS::ElastiCache::CacheCluster",
+        "Properties": {
+            "Engine": "redis",
+            "CacheNodeType": "cache.t2.micro",
+            "NumCacheNodes": "1",
+            "VpcSecurityGroupIds": [
+                {
+                    "Fn::GetAtt": [
+                        "ElasticacheSecurityGroup",
+                        "GroupId"
+                    ]
+                }
+            ]
+        }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z"
+}

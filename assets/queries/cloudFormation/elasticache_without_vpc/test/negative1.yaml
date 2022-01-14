@@ -1,8 +1,0 @@
-Resources:
-  ElasticacheCluster:
-    Type: 'AWS::ElastiCache::CacheCluster'
-    Properties:    
-      Engine: memcached
-      CacheNodeType: cache.t2.micro
-      NumCacheNodes: '1'
-      CacheSubnetGroupName: default

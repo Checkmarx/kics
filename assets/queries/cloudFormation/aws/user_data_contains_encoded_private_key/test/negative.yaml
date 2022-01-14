@@ -1,0 +1,13 @@
+---
+Resources:
+  myLaunchConfig2:
+    Type: AWS::AutoScaling::LaunchConfiguration
+    Properties:
+      ImageId: "ami-02354e95b39ca8dec"
+      SecurityGroups:
+        - Ref: "myEC2SecurityGroup"
+        - myExistingEC2SecurityGroup
+      InstanceType: "m1.large"
+      KeyName:
+        Ref: "KeyName"
+      UserData: "some-gibberish"

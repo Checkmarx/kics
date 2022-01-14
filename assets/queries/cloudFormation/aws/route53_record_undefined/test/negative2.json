@@ -1,0 +1,32 @@
+{
+  "Description": "Router53",
+  "Resources": {
+    "HostedZone": {
+      "Type": "AWS::Route53::HostedZone",
+      "Properties": {
+        "Name": "HostedZone"
+      }
+    },
+    "RecordSet": {
+      "Type": "AWS::Route53::RecordSet",
+      "Properties": {
+        "HostedZoneId": "HostedZoneId",
+        "Name": [
+          "",
+          [
+            "DomainName",
+            ".",
+            "HostedZoneName",
+            "."
+          ]
+        ],
+        "Type": "CNAME",
+        "TTL": "900",
+        "ResourceRecords": [
+          "DnsEndpoint"
+        ]
+      }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09"
+}

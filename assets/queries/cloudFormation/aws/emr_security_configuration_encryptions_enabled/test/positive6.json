@@ -1,0 +1,19 @@
+{
+  "Resources": {
+    "EMRSecurityConfiguration01": {
+      "Properties": {
+        "Name": "String",
+        "SecurityConfiguration": {
+          "EncryptionConfiguration": {
+            "AtRestEncryptionConfiguration": {
+              "LocalDiskEncryptionConfiguration": {
+                "EnableEbsEncryption": false
+              }
+            }
+          }
+        }
+      },
+      "Type": "AWS::EMR::SecurityConfiguration"
+    }
+  }
+}

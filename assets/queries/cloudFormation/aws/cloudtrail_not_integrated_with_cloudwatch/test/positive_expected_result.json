@@ -1,0 +1,50 @@
+[
+  {
+    "severity": "MEDIUM",
+    "line": 62,
+    "fileName": "positive1.yaml",
+    "queryName": "CloudTrail Not Integrated With CloudWatch"
+  },
+  {
+    "severity": "MEDIUM",
+    "line": 62,
+    "fileName": "positive1.yaml",
+    "queryName": "CloudTrail Not Integrated With CloudWatch"
+  },
+  {
+    "severity": "MEDIUM",
+    "line": 62,
+    "fileName": "positive2.yaml",
+    "queryName": "CloudTrail Not Integrated With CloudWatch"
+  },
+  {
+    "severity": "MEDIUM",
+    "line": 62,
+    "fileName": "positive3.yaml",
+    "queryName": "CloudTrail Not Integrated With CloudWatch"
+  },
+  {
+    "queryName": "CloudTrail Not Integrated With CloudWatch",
+    "severity": "MEDIUM",
+    "line": 82,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "CloudTrail Not Integrated With CloudWatch",
+    "severity": "MEDIUM",
+    "line": 82,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "CloudTrail Not Integrated With CloudWatch",
+    "severity": "MEDIUM",
+    "line": 82,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "CloudTrail Not Integrated With CloudWatch",
+    "severity": "MEDIUM",
+    "line": 82,
+    "fileName": "positive6.json"
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Parameters": {
+    "ParentAccessToken": {
+      "Description": "Access Token",
+      "Type": "String",
+      "Default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ"
+    }
+  },
+  "Resources": {
+    "AmpApp": {
+      "Type": "AWS::Amplify::App",
+      "Properties": {
+        "OauthToken": "String",
+        "AccessToken": "ParentAccessToken",
+        "Description": "String",
+        "EnableBranchAutoDeletion": true,
+        "IAMServiceRole": "String",
+        "BuildSpec": "String",
+        "CustomHeaders": "String",
+        "Name": "NewAmpApp",
+        "Repository": "String"
+      }
+    }
+  }
+}

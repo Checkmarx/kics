@@ -1,7 +1,0 @@
-AWSTemplateFormatVersion: "2010-09-09"
-Resources:
-  mydetector3:
-    Type: AWS::GuardDuty::Detector
-    Properties:
-        Enable: False
-        FindingPublishingFrequency: FIFTEEN_MINUTES

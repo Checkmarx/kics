@@ -1,0 +1,63 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Description": "A sample template",
+  "Resources": {
+    "myKey": {
+      "Properties": {
+        "Description": "An example symmetric CMK",
+        "KeyPolicy": {
+          "Version": "2012-10-17",
+          "Id": "key-default-1",
+          "Statement": [
+            {
+              "Resource": "*",
+              "Sid": "Enable IAM User Permissions",
+              "Effect": "Allow",
+              "Principal": "*",
+              "Action": "kms:*"
+            },
+            {
+              "Sid": "Allow administration of the key",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": "arn:aws:iam::123456789012:user/Alice"
+              },
+              "Action": [
+                "kms:Create*",
+                "kms:Describe*",
+                "kms:Enable*",
+                "kms:List*",
+                "kms:Put*",
+                "kms:Update*",
+                "kms:Revoke*",
+                "kms:Disable*",
+                "kms:Get*",
+                "kms:Delete*",
+                "kms:ScheduleKeyDeletion",
+                "kms:CancelKeyDeletion"
+              ],
+              "Resource": "*"
+            },
+            {
+              "Sid": "Allow use of the key",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": "arn:aws:iam::123456789012:user/Bob"
+              },
+              "Action": [
+                "kms:DescribeKey",
+                "kms:Encrypt",
+                "kms:Decrypt",
+                "kms:ReEncrypt*",
+                "kms:GenerateDataKey",
+                "kms:GenerateDataKeyWithoutPlaintext"
+              ],
+              "Resource": "*"
+            }
+          ]
+        }
+      },
+      "Type": "AWS::KMS::Key"
+    }
+  }
+}

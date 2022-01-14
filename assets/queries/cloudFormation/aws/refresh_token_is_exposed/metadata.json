@@ -1,0 +1,11 @@
+{
+  "id": "5b48c507-0d1f-41b0-a630-76817c6b4189",
+  "queryName": "RefreshToken Is Exposed",
+  "severity": "MEDIUM",
+  "category": "Secret Management",
+  "descriptionText": "Alexa ASK Skill AuthenticationConfiguration RefreshToken should not be a plaintext string",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ask-skill.html#cfn-ask-skill-authenticationconfiguration",
+  "platform": "CloudFormation",
+  "descriptionID": "c752c5a6",
+  "cloudProvider": "aws"
+}

@@ -1,0 +1,59 @@
+{
+  "Resources": {
+    "SampleBucketPolicy5": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+          "Ref": "DOC-EXAMPLE-BUCKET"
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "DeleteObject",
+              "Effect": "Allow",
+              "Resource": "*",
+              "Principal": "*",
+              "Condition": {
+                "StringLike": {
+                  "aws:Referer": [
+                    "http://www.example.com/*",
+                    "http://example.net/*"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "SampleBucketPolicy6": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+          "Ref": "DOC-EXAMPLE-BUCKET"
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "DeleteObject",
+                "GetObject"
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+              "Principal": "*",
+              "Condition": {
+                "StringLike": {
+                  "aws:Referer": [
+                    "http://www.example.com/*",
+                    "http://example.net/*"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

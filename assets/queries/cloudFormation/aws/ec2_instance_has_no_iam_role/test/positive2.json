@@ -1,0 +1,99 @@
+{
+  "Resources": {
+    "NoIAM": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "AMIs",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Name"
+          ]
+        },
+        "KeyName": {
+          "Ref": "KeyName"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "Test"
+          }
+        ]
+      }
+    },
+    "IAM_Missing": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "AMIs",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Name"
+          ]
+        },
+        "KeyName": {
+          "Ref": "KeyName"
+        },
+        "IamInstanceProfile": {
+          "Ref": "NoProfile"
+        },
+        "SecurityGroupIds": [
+          {
+            "Ref": "SSHAccessSG"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "Test"
+          }
+        ]
+      }
+    },
+    "IAMNoRoles": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "AMIs",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Name"
+          ]
+        },
+        "KeyName": {
+          "Ref": "KeyName"
+        },
+        "IamInstanceProfile": {
+          "Ref": "NoRolesProfile"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "Test"
+          }
+        ]
+      }
+    },
+    "NoRolesProfile": {
+      "Type": "AWS::IAM::InstanceProfile",
+      "Properties": {
+        "Path": "/"
+      }
+    }
+  }
+}

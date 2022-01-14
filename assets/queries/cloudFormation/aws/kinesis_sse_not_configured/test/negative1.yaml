@@ -1,0 +1,13 @@
+Resources:
+  EventStream:
+    Type: AWS::Kinesis::Stream
+    Properties:
+      Name: EventStream
+      RetentionPeriodHours: 24
+      ShardCount: 1
+      StreamEncryption:
+            EncryptionType: KMS
+            KeyId: !Ref myKey
+      Tags:
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-EventStream-${AWS::Region}

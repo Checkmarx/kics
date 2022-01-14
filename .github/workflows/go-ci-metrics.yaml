@@ -20,7 +20,7 @@ jobs:
         id: metrics
         run: |
           pip3 install -r .github/scripts/metrics/requirements.txt
-          python3 .github/scripts/metrics/get-metrics.py
+          python3 .github/scripts/metrics/get_metrics.py
       - name: Generate badge
         run: |
           curl -L \

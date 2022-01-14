@@ -1,0 +1,11 @@
+{
+  "id": "be96849c-3df6-49c2-bc16-778a7be2519c",
+  "queryName": "Secure Ciphers Disabled",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Check if secure ciphers aren't used in CloudFront",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-viewercertificate.html",
+  "platform": "CloudFormation",
+  "descriptionID": "9ce51226",
+  "cloudProvider": "aws"
+}

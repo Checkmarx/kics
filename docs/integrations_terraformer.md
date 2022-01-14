@@ -1,18 +1,12 @@
 # Running KICS with Terraformer for AWS
 
-## **Disclaimer:** In order to run terraformer with KICS please follow the following prerequisites:
+## Configure AWS Credentials
 
-### Install Terraform
+For KICS to get the runtime information of your resources you need to provide AWS account Credentials as environment variables. Please note the AWS account provided should have read permissions to list service resources.
 
-Follow the steps described in Hashicorp documentation https://learn.hashicorp.com/tutorials/terraform/install-cli#install-terraform in order to install terraform.
+Setting AWS credentials as environment variables
 
-### Configure AWS Credentials
-
-<!-- - Install AWS CLI following these [steps](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-- Configure your AWS CLI following these [steps](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-config) -->
-
-Set your AWS credentials as environment variables
-
+MacOS and Linux:
 ```sh
 export AWS_ACCESS_KEY_ID="<AWS_ACCESS_KEY_ID>"
 export AWS_SECRET_ACCESS_KEY="<AWS_SECRET_ACCESS_KEY>"
@@ -20,46 +14,21 @@ export AWS_SESSION_TOKEN="<AWS_SESSION_TOKEN>"
 ```
 
 Windows:
+
 ```sh
-$env:AWS_ACCESS_KEY_ID='<AWS_ACCESS_KEY_ID>'
-$env:AWS_SECRET_ACCESS_KEY='<AWS_SECRET_ACCESS_KEY>'
-$env:AWS_SESSION_TOKEN='<AWS_SESSION_TOKEN>'
+SET AWS_ACCESS_KEY_ID=<AWS_ACCESS_KEY_ID>
+SET AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY>
+SET AWS_SESSION_TOKEN=<AWS_SESSION_TOKEN>
 ```
 
+Powershell:
 
-### Install AWS Provider Plugin
-
-In order for KICS to import resources using terraformer is required that the AWS Provider plugin for terraform be present.
-
-To install AWS Provider plugin:
-- Download the plugin from [Terraform Providers](https://releases.hashicorp.com/terraform-provider-aws/3.72.0/) according to your architecture.
-- Unzip the file to:
-
-### Linux:
-```
-$HOME/.terraform.d/plugins/linux_{arch}/
-
-Example:
-~/.terraform.d/plugins/linux_amd64/terraform-provider-aws_v3.71.0_x5
+```sh
+$Env:AWS_ACCESS_KEY_ID="<AWS_ACCESS_KEY_ID>"
+$Env:AWS_SECRET_ACCESS_KEY="<AWS_SECRET_ACCESS_KEY>"
+$Env:AWS_SESSION_TOKEN="<AWS_SESSION_TOKEN>"
 ```
 
-### Windows:
-
-```
-%APPDATA%\terraform.d\plugins\windows_{arch}
-
-Example:
-%APPDATA%\terraform.d\plugins\windows_amd64\terraform-provider-aws_v3.72.0_x5.exe
-```
-
-### Darwin
-
-```
-$HOME/.terraform.d/plugins/darwin_{arch}
-
-Example:
-$HOME/.terraform.d/plugins/darwin_amd64/terraform-provider-aws_3.72.0_darwin_amd64
-```
 
 
 ## KICS Terraform Path Syntax
@@ -81,15 +50,9 @@ To import all resources please use: `*`
 
 **Regions**: A slash-separated list of the regions to import from.
 
+## Running KICS with Terraformer
 
-
-## Running KICS with Terraformer Behaviour
-
-Example path:
-
-```sh
-kics scan -p 'terraformer::aws:vpc/subnet:eu-west-2/eu-west-1'
-```
+### Running KICS with Terraformer Behaviour
 
 Imported Resources tree structure:
 
@@ -103,8 +66,110 @@ Imported Resources tree structure:
             variables.tf
 ```
 
-When Running KICS using a terraformer path, resources are imported using the credentials set as environment variables in terraform format to the current working directory to a newly created folder named `kics-extract-terraformer` following the above-described structure.
+When Running KICS using a terraformer path, resources are imported using the credentials set as environment variables in terraform format to the current working directory in a new folder named `kics-extract-terraformer` following the above-described structure.
 KICS will then run a scan on these local files.
+
+If the flag `-o, --output-path` is passed the folder `kics-extract-terraformer` will be generated in the reports directory.
+
+### Docker
+
+To run KICS Terraformer integration with Docker simply pass the AWS Credentials that were set as environment variables to the `docker run` command and use the terraformer path syntax
+
+Examples:
+
+```sh
+docker run -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID -e AWS_SESSION_TOKEN checkmarx/kics:latest scan -p "terraformer::aws:vpc:eu-west-2" -v --no-progress
+```
+```sh
+docker run -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID -e AWS_SESSION_TOKEN -v ${PWD}:/path/ checkmarx/kics:latest scan -p "terraformer::aws:vpc:eu-west-2" -v --no-progress -o /path/results
+```
+
+
+
+<img src="./img/docker_terraformer.gif" />
+
+### Executable
+
+
+### **Disclaimer:** In order to run terraformer with KICS executable please follow these prerequisites:
+
+### Install Terraform
+
+Follow the steps described in Hashicorp documentation https://learn.hashicorp.com/tutorials/terraform/install-cli#install-terraform to install terraform.
+
+### Install AWS Provider Plugin
+
+It is required that the AWS Provider plugin for terraform to be present.
+
+To install AWS Provider plugin:
+- Download the plugin from [Terraform Providers](https://releases.hashicorp.com/terraform-provider-aws/3.72.0/) according to your architecture.
+- Unzip the file to:
+
+### Linux:
+```
+$HOME/.terraform.d/plugins/linux_{arch}/
+
+Example:
+~/.terraform.d/plugins/linux_amd64/terraform-provider-aws_v3.71.0_x5
+```
+
+### Darwin
+
+```
+$HOME/.terraform.d/plugins/darwin_{arch}
+
+Example:
+$HOME/.terraform.d/plugins/darwin_amd64/terraform-provider-aws_3.72.0_darwin_amd64
+```
+
+### Windows:
+
+For Windows a little more work is required, since you can't globally install the AWS Provider plugin, you need to have it present in every directory you wish to import the resources to.
+
+Please follow these steps:
+
+- Create a versions.tf file in the folder you wish to run KICS and import the resources to.
+
+- Paste the code found under `USE PROVIDER` from terraform AWS Provider [Documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) in the versions.tf file you just created.
+
+- run the command `terraform init` on the directory containing `versions.tf`. A new folder named `.terraform` should have been created containing the plugin. This folder must be present in every directory you wish to run KICS on using terraformer.
+
+**NOTE:** `.terraform.hcl.lock` can be deleted
+
+Example tf file:
+
+```hcl
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "3.72.0"
+    }
+  }
+}
+
+provider "aws" {
+  # Configuration options
+}
+```
+
+## Examples:
+
+Example path:
+
+```sh
+kics scan -p 'terraformer::aws:vpc/subnet:eu-west-2/eu-west-1'
+```
+
+These examples showcase KICS integration with terraformer for importing and scanning our VPCs in region `eu-west-2`.
+
+### Linux
+
+<img src="./img/linux_terraformer.gif" />
+
+### Windows
+
+<img src="./img/windows_terraformer.gif" />
 
 ## **NOTES**
 

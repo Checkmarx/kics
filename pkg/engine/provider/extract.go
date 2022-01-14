@@ -2,11 +2,14 @@ package provider
 
 import (
 	"context"
+	"errors"
 	"io/fs"
 	"os"
 	"os/signal"
 	"path/filepath"
 	"sync"
+
+	"github.com/alexmullins/zip"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/terraformer"
@@ -43,14 +46,14 @@ type getterStruct struct {
 // GetTerraformerSources uses Terraformer to download runtime resources from AWS provider
 // to terraform.
 // After Downloaded files kics scan the files as normal local files
-func GetTerraformerSources(source []string) (ExtractedPath, error) {
+func GetTerraformerSources(source []string, destinationPath string) (ExtractedPath, error) {
 	extrStruct := ExtractedPath{
 		Path:          []string{},
 		ExtractionMap: make(map[string]model.ExtractedPathObject),
 	}
 
 	for _, path := range source {
-		exportedPath, err := terraformer.Import(path)
+		exportedPath, err := terraformer.Import(path, destinationPath)
 		if err != nil {
 			log.Error().Msgf("failed to import %s: %s", path, err)
 		}
@@ -119,6 +122,12 @@ func GetSources(source []string) (ExtractedPath, error) {
 }
 
 func getPaths(g *getterStruct) (string, error) {
+	if isEncrypted(g.source) {
+		err := errors.New("zip encrypted files are not supported")
+		log.Err(err)
+		return "", err
+	}
+
 	// Build the client
 	client := &getter.Client{
 		Ctx:     g.ctx,
@@ -200,4 +209,23 @@ func getFileInfo(info fs.FileInfo, dst, pathFile string) fs.FileInfo {
 		fileInfo = info
 	}
 	return fileInfo
+}
+
+func isEncrypted(sourceFile string) bool {
+	if filepath.Ext(sourceFile) != ".zip" {
+		return false
+	}
+	zipFile, err := zip.OpenReader(sourceFile)
+	if err != nil {
+		log.Error().Msgf("failed to open %s: %v", sourceFile, err)
+		return false
+	}
+	defer zipFile.Close()
+	for _, file := range zipFile.File {
+		if file.IsEncrypted() {
+			log.Error().Msgf("file %s is encrypted", sourceFile)
+			return true
+		}
+	}
+	return false
 }

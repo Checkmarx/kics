@@ -1,0 +1,58 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "State: ElastiCache redis, a cloudonaut.io template",
+  "Resources": {
+    "ReplicationGroup": {
+      "DeletionPolicy": "Snapshot",
+      "UpdateReplacePolicy": "Snapshot",
+      "Type": "AWS::ElastiCache::ReplicationGroup",
+      "Properties": {
+        "AutomaticFailoverEnabled": [
+          "HasAutomaticFailoverEnabled",
+          true,
+          false
+        ],
+        "CacheNodeType": "CacheNodeType",
+        "CacheParameterGroupName": "CacheParameterGroup",
+        "CacheSubnetGroupName": "CacheSubnetGroupName",
+        "EngineVersion": "EngineVersion",
+        "AtRestEncryptionEnabled": false,
+        "KmsKeyId": [
+          "HasKmsKey",
+          {
+            "Fn::ImportValue": "${ParentKmsKeyStack}-KeyId"
+          },
+          "AWS::NoValue"
+        ],
+        "NotificationTopicArn": [
+          "HasAlertTopic",
+          {
+            "Fn::ImportValue": "${ParentAlertStack}-TopicARN"
+          },
+          "AWS::NoValue"
+        ],
+        "SnapshotRetentionLimit": "SnapshotRetentionLimit",
+        "TransitEncryptionEnabled": "TransitEncryption",
+        "ReplicationGroupDescription": "AWS::StackName",
+        "Engine": "redis",
+        "ReplicasPerNodeGroup": "NumReplicas",
+        "PreferredMaintenanceWindow": "sat:07:00-sat:08:00",
+        "SecurityGroupIds": [
+          "SecurityGroup"
+        ],
+        "SnapshotName": [
+          "HasSnapshotName",
+          "SnapshotName",
+          "AWS::NoValue"
+        ],
+        "AuthToken": [
+          "HasAuthToken",
+          "AuthToken",
+          "AWS::NoValue"
+        ],
+        "NumNodeGroups": "NumShards",
+        "SnapshotWindow": "00:00-03:00"
+      }
+    }
+  }
+}

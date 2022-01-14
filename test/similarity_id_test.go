@@ -150,11 +150,11 @@ var (
 			calls: []testParamsType{
 				getTestParams(&testCaseParamsType{
 					platform: "cloudFormation",
-					queryDir: "../assets/queries/cloudFormation/api_gateway_with_open_access",
+					queryDir: "../assets/queries/cloudFormation/aws/api_gateway_with_open_access",
 				}),
 				getTestParams(&testCaseParamsType{
 					platform: "cloudFormation",
-					queryDir: "../assets/queries/cloudFormation/api_gateway_with_open_access",
+					queryDir: "../assets/queries/cloudFormation/aws/api_gateway_with_open_access",
 				}),
 			},
 			expectedFunction: func(t *testing.T, condition bool) {

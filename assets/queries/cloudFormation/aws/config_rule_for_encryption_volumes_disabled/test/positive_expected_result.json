@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Config Rule For Encrypted Volumes Disabled",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "fileName": "positive2.json",
+    "queryName": "Config Rule For Encrypted Volumes Disabled",
+    "severity": "MEDIUM",
+    "line": 3
+  }
+]

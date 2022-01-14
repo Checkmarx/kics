@@ -1,0 +1,11 @@
+{
+  "id": "37cca703-b74c-48ba-ac81-595b53398e9b",
+  "queryName": "API Gateway Cache Encrypted Disabled",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "'API::Gateway::Deployment' should have 'CacheDataEncrypted' enabled when 'CachingEnabled' is set to true",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html",
+  "platform": "CloudFormation",
+  "descriptionID": "16f89b5d",
+  "cloudProvider": "aws"
+}

@@ -1,0 +1,25 @@
+{
+  "Resources": {
+    "NewApp": {
+      "Type": "AWS::Amplify::App",
+      "Properties": {
+        "EnableBranchAutoDeletion": true,
+        "IAMServiceRole": "String",
+        "Name": "NewAmpApp",
+        "AccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ",
+        "CustomHeaders": "String",
+        "Description": "String",
+        "OauthToken": "String",
+        "Repository": "String",
+        "BuildSpec": "String"
+      }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Parameters": {
+    "ParentUserToken": {
+      "Type": "String",
+      "Description": "UserToken"
+    }
+  }
+}

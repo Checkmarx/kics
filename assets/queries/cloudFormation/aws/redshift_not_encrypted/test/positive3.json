@@ -1,0 +1,41 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Description": "Redshift Stack",
+  "Resources": {
+    "RedshiftCluster": {
+      "Type": "AWS::Redshift::Cluster",
+      "Properties": {
+        "IamRoles": [
+          "RawDataBucketAccessRole.Arn"
+        ],
+        "MasterUserPassword": "MasterUserPassword",
+        "PubliclyAccessible": true,
+        "NodeType": "dc1.large",
+        "VpcSecurityGroupIds": [
+          "${RedshiftSecurityGroup}"
+        ],
+        "PreferredMaintenanceWindow": "Sun:09:15-Sun:09:45",
+        "ClusterSubnetGroupName": "RedshiftClusterSubnetGroup",
+        "ClusterType": [
+          "SingleNode",
+          "single-node",
+          "multi-node"
+        ],
+        "NumberOfNodes": [
+          "SingleNode",
+          "AWS::NoValue",
+          "RedshiftNodeCount"
+        ],
+        "DBName": "${DatabaseName}",
+        "MasterUsername": "MasterUsername",
+        "Port": 5439
+      }
+    },
+    "DataBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "${DataBucketName}"
+      }
+    }
+  }
+}

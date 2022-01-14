@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Open Access To Resources Through API",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Open Access To Resources Through API",
+    "severity": "LOW",
+    "line": 16,
+    "fileName": "positive2.json"
+  }
+]

@@ -1,0 +1,86 @@
+[
+  {
+    "severity": "HIGH",
+    "line": 36,
+    "fileName": "positive3.yaml",
+    "queryName": "CMK Unencrypted Storage"
+  },
+  {
+    "queryName": "CMK Unencrypted Storage",
+    "severity": "HIGH",
+    "line": 54,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "CMK Unencrypted Storage",
+    "severity": "HIGH",
+    "line": 54,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "CMK Unencrypted Storage",
+    "severity": "HIGH",
+    "line": 24,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "severity": "HIGH",
+    "line": 24,
+    "fileName": "positive3.yaml",
+    "queryName": "CMK Unencrypted Storage"
+  },
+  {
+    "severity": "HIGH",
+    "line": 58,
+    "fileName": "positive4.json",
+    "queryName": "CMK Unencrypted Storage"
+  },
+  {
+    "queryName": "CMK Unencrypted Storage",
+    "severity": "HIGH",
+    "line": 58,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "CMK Unencrypted Storage",
+    "severity": "HIGH",
+    "line": 25,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "CMK Unencrypted Storage",
+    "severity": "HIGH",
+    "line": 37,
+    "fileName": "positive6.json"
+  },
+  {
+    "fileName": "positive6.json",
+    "queryName": "CMK Unencrypted Storage",
+    "severity": "HIGH",
+    "line": 27
+  },
+  {
+    "fileName": "positive7.yaml",
+    "queryName": "CMK Unencrypted Storage",
+    "severity": "HIGH",
+    "line": 4
+  },
+  {
+    "fileName": "positive7.yaml",
+    "queryName": "CMK Unencrypted Storage",
+    "severity": "HIGH",
+    "line": 4
+  },
+  {
+    "fileName": "positive8.json",
+    "queryName": "CMK Unencrypted Storage",
+    "severity": "HIGH",
+    "line": 5
+  },
+  {
+    "fileName": "positive8.json",
+    "queryName": "CMK Unencrypted Storage",
+    "severity": "HIGH",
+    "line": 5
+  }
+]

@@ -1,0 +1,49 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Resources": {
+    "S3Bucket5": {
+      "Properties": {
+        "AccessControl": "PublicRead",
+        "WebsiteConfiguration": {
+          "IndexDocument": "index.html",
+          "ErrorDocument": "error.html"
+        }
+      },
+      "DeletionPolicy": "Retain",
+      "Type": "AWS::S3::Bucket"
+    },
+    "S3Bucket6": {
+      "Properties": {
+        "AccessControl": "PublicRead",
+        "WebsiteConfiguration": {
+          "ErrorDocument": "error.html",
+          "IndexDocument": "index.html"
+        }
+      },
+      "DeletionPolicy": "Retain",
+      "Type": "AWS::S3::Bucket"
+    }
+  },
+  "Outputs": {
+    "WebsiteURL": {
+      "Value": [
+        "S3Bucket",
+        "WebsiteURL"
+      ],
+      "Description": "URL for website hosted on S3"
+    },
+    "S3BucketSecureURL": {
+      "Value": [
+        "",
+        [
+          "https://",
+          [
+            "S3Bucket",
+            "DomainName"
+          ]
+        ]
+      ],
+      "Description": "Name of S3 bucket to hold website content"
+    }
+  }
+}

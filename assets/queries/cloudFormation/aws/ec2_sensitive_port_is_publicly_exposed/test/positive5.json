@@ -1,0 +1,45 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Resources": {
+    "UnsafeSecGroup01": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "SecurityGroupEgress": [
+          {
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIp": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "GroupDescription": "Allow http and redis",
+        "VpcId": "my-vpc",
+        "SecurityGroupIngress": [
+          {
+            "FromPort": 8080,
+            "ToPort": 8080,
+            "CidrIp": "127.0.0.1/32",
+            "IpProtocol": "tcp"
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 6379,
+            "ToPort": 6379,
+            "CidrIp": "10.0.0.1/0"
+          }
+        ]
+      }
+    },
+    "EC2Instance01": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-79fd7eee",
+        "InstanceType": "t3.medium",
+        "SecurityGroups": [
+          "UnsafeSecGroup01"
+        ],
+        "KeyName": "my-new-rsa-key"
+      }
+    }
+  }
+}

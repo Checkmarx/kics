@@ -1,0 +1,27 @@
+{
+  "Resources": {
+    "RSASigningKey": {
+      "Type": "AWS::KMS::Key",
+      "Properties": {
+        "Description": "RSA-3047 asymmetric CMK for signing and verification",
+        "KeySpec": "RSA_3072",
+        "KeyUsage": "SIGN_VERIFY",
+        "KeyPolicy": {
+          "Version": "2012-10-17",
+          "Id": "key-default-1",
+          "Statement": [
+            {
+              "Sid": "Enable IAM User Permissions",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": "*"
+              },
+              "Action": "kms:*",
+              "Resource": "*"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

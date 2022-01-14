@@ -1,0 +1,21 @@
+Resources:
+  UserPool:
+    Type: "AWS::Cognito::UserPool"
+    Properties:
+      UserPoolName: !Sub ${AuthName}-user-pool
+      AutoVerifiedAttributes:
+        - phone_number
+      MfaConfiguration: "ON"
+      SmsConfiguration:
+        ExternalId: !Sub ${AuthName}-external
+        SnsCallerArn: !GetAtt SNSRole.Arn
+  UserPool2:
+    Type: "AWS::Cognito::UserPool"
+    Properties:
+      UserPoolName: !Sub ${AuthName}-user-pool
+      AutoVerifiedAttributes:
+        - phone_number
+      MfaConfiguration: "OPTIONAL"
+      SmsConfiguration:
+        ExternalId: !Sub ${AuthName}-external
+        SnsCallerArn: !GetAtt SNSRole.Arn

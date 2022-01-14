@@ -1,0 +1,37 @@
+{
+  "Resources": {
+    "MyLoadBalancer2": {
+      "Properties": {
+        "AvailabilityZones": [
+          "us-east-2a"
+        ],
+        "CrossZone": true,
+        "Listeners": [
+          {
+            "InstancePort": "9443",
+            "InstanceProtocol": "SSL",
+            "LoadBalancerPort": "443",
+            "PolicyNames": [
+              "My-SSLNegotiation-Policy"
+            ],
+            "Protocol": "SSL",
+            "SSLCertificateId": "arn:aws:iam::123456789012:server-certificate/my-server-certificate"
+          }
+        ],
+        "Policies": [
+          {
+            "Attributes": [
+              {
+                "Name": "Reference-Security-Policy",
+                "Value": "ELBSecurityPolicy-TLS-1-2-2017-01"
+              }
+            ],
+            "PolicyName": "My-SSLNegotiation-Policy",
+            "PolicyType": "SSLNegotiationPolicyType"
+          }
+        ]
+      },
+      "Type": "AWS::ElasticLoadBalancing::LoadBalancer"
+    }
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Parameters": {
+    "CrossRealmTrustPrincipalPassword": {
+      "Type": "String"
+    },
+    "KdcAdminPassword": {
+      "Type": "String"
+    },
+    "Realm": {
+      "Type": "String"
+    },
+    "InstanceType": {
+      "Type": "String"
+    },
+    "ReleaseLabel": {
+      "Type": "String"
+    },
+    "SubnetId": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "emrEc2Role": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2008-10-17T00:00:00Z",
+          "Statement": [
+            {
+              "Sid": "",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "ec2.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Path": "/",
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/service-role/AmazonElasticMapReduceforEC2Role"
+        ]
+      }
+    },
+    "emrEc2InstanceProfile": {
+      "Properties": {
+        "Path": "/",
+        "Roles": [
+          "emrEc2Role"
+        ]
+      },
+      "Type": "AWS::IAM::InstanceProfile"
+    },
+    "cluster": {
+      "Type": "AWS::EMR::Cluster",
+      "Properties": {
+        "Name": "CFNtest2",
+        "JobFlowRole": "emrEc2InstanceProfile",
+        "ServiceRole": "emrRole",
+        "SecurityConfiguration": "securityConfiguration",
+        "Tags": [
+          {
+            "Key": "key1",
+            "Value": "value1"
+          }
+        ],
+        "Instances": {
+          "MasterInstanceGroup": {
+            "InstanceCount": 1,
+            "InstanceType": "InstanceType",
+            "Market": "ON_DEMAND",
+            "Name": "cfnMaster"
+          },
+          "CoreInstanceGroup": {
+            "InstanceCount": 1,
+            "InstanceType": "InstanceType",
+            "Market": "ON_DEMAND",
+            "Name": "cfnCore"
+          },
+          "Ec2SubnetId": "SubnetId"
+        },
+        "KerberosAttributes": {
+          "CrossRealmTrustPrincipalPassword": "CfnIntegrationTest-1",
+          "KdcAdminPassword": "CfnIntegrationTest-1",
+          "Realm": "EC2.INTERNAL"
+        },
+        "ReleaseLabel": "ReleaseLabel",
+        "VisibleToAllUsers": true
+      }
+    },
+    "key": {
+      "Type": "AWS::KMS::Key",
+      "Properties": {
+        "KeyPolicy": {
+          "Version": "2012-10-17T00:00:00Z",
+          "Id": "key-default-1",
+          "Statement": [
+            {
+              "Principal": {
+                "AWS": [
+                  "emrEc2Role",
+                  "Arn"
+                ]
+              },
+              "Action": "kms:*",
+              "Resource": "*",
+              "Sid": "Enable IAM User Permissions",
+              "Effect": "Allow"
+            },
+            {
+              "Action": "kms:*",
+              "Resource": "*",
+              "Sid": "Enable IAM User Permissions",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": [
+                  "",
+                  [
+                    "arn:aws:iam::",
+                    "AWS::AccountId",
+                    ":root"
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "securityConfiguration": {
+      "Type": "AWS::EMR::SecurityConfiguration",
+      "Properties": {
+        "SecurityConfiguration": {
+          "AuthenticationConfiguration": {
+            "KerberosConfiguration": {
+              "Provider": "ClusterDedicatedKdc",
+              "ClusterDedicatedKdcConfiguration": {
+                "TicketLifetimeInHours": 24,
+                "CrossRealmTrustConfiguration": {
+                  "Realm": "AD.DOMAIN.COM",
+                  "Domain": "ad.domain.com",
+                  "AdminServer": "ad.domain.com",
+                  "KdcServer": "ad.domain.com"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "emrRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "Path": "/",
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/service-role/AmazonElasticMapReduceRole"
+        ],
+        "AssumeRolePolicyDocument": {
+          "Version": "2008-10-17T00:00:00Z",
+          "Statement": [
+            {
+              "Sid": "",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "elasticmapreduce.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "keyArn": {
+      "Value": [
+        "key",
+        "Arn"
+      ]
+    }
+  }
+}

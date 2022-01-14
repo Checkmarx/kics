@@ -1,0 +1,12 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "mydetector4": {
+      "Properties": {
+        "Enable": false,
+        "FindingPublishingFrequency": "FIFTEEN_MINUTES"
+      },
+      "Type": "AWS::GuardDuty::Detector"
+    }
+  }
+}

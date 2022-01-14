@@ -1,0 +1,11 @@
+{
+  "id": "08b81bb3-0985-4023-8602-b606ad81d279",
+  "queryName": "EC2 Instance Using Default Security Group",
+  "severity": "LOW",
+  "category": "Access Control",
+  "descriptionText": "EC2 instances should not use default security group(s)",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-securitygroups",
+  "platform": "CloudFormation",
+  "descriptionID": "de993e1a",
+  "cloudProvider": "aws"
+}

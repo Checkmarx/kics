@@ -1,0 +1,139 @@
+{
+  "Outputs": {
+    "RdsDbId": {
+      "Description": "RDS Database Cluster ID",
+      "Value": "DatabaseCluster"
+    },
+    "RdsEndpointAdd": {
+      "Description": "RDS Database Endpoint",
+      "Value": "DatabaseCluster.Endpoint.Address"
+    },
+    "RdsReadEndpointAdd": {
+      "Description": "RDS Read Database Endpoint",
+      "Value": "DatabaseCluster.ReadEndpoint.Address"
+    },
+    "RdsEndpointPort": {
+      "Description": "RDS Database Port",
+      "Value": "DatabaseCluster.Endpoint.Port"
+    },
+    "DbUser": {
+      "Description": "RDS Database admin account user",
+      "Value": "PMDatabaseUsername"
+    },
+    "DbPassword": {
+      "Description": "RDS Database admin account password",
+      "Value": "PMDatabasePassword"
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Creates RDS Cluster",
+  "Parameters": {
+    "PMRDSSG": {
+      "Description": "Select the Security Group to use for the ELB",
+      "Type": "AWS::EC2::SecurityGroup::Id"
+    },
+    "PMPrivateSubnets": {
+      "Description": "Subnets to launch instances into",
+      "Type": "List\u003cAWS::EC2::Subnet::Id\u003e"
+    },
+    "PMServerEnv": {
+      "Description": "Server Environment name.",
+      "ConstraintDescription": "Choose an Environment from the drop down",
+      "Type": "String"
+    },
+    "PMDBClusterIdentifier": {
+      "Type": "String",
+      "Description": "Db Cluster Name."
+    },
+    "PMDBClusterParameterGroupName": {
+      "Description": "Db Parameter Groupname",
+      "Type": "String"
+    },
+    "PMDatabaseInstanceClass": {
+      "Type": "String",
+      "Default": "db.t2.micro",
+      "Description": "Database instance class"
+    },
+    "PMDatabaseEngine": {
+      "Type": "String",
+      "Default": "MySQL",
+      "Description": "Database engine, Aurora, MySQL or PostgreSQL"
+    },
+    "PMDatabaseEngineVer": {
+      "Type": "String",
+      "Description": "Database engine ver"
+    },
+    "PMDatabaseUsername": {
+      "NoEcho": "true",
+      "Type": "String",
+      "Description": "Database admin account name"
+    },
+    "PMDatabasePassword": {
+      "Description": "Database admin account password",
+      "NoEcho": "true",
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "Database2": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "Engine": "PMDatabaseEngine",
+        "DBClusterIdentifier": "DatabaseCluster",
+        "DBInstanceClass": "PMDatabaseInstanceClass",
+        "DBSubnetGroupName": "DbSubnetGroup",
+        "DBInstanceIdentifier": "${PMDBClusterIdentifier}-db2"
+      }
+    },
+    "DbSubnetGroup": {
+      "Type": "AWS::RDS::DBSubnetGroup",
+      "Properties": {
+        "DBSubnetGroupDescription": "${PMServerEnv} RDS DB subnet group",
+        "SubnetIds": {
+          "Ref": "PMPrivateSubnets"
+        }
+      }
+    },
+    "RDSDBClusterParameterGroup": {
+      "Properties": {
+        "Description": "CloudFormation Sample Aurora Cluster Parameter Group",
+        "Family": "PMDBClusterParameterGroupName",
+        "Parameters": {
+          "time_zone": "UTC",
+          "collation_connection": "utf8_general_ci",
+          "character_set_database": "utf8"
+        }
+      },
+      "Type": "AWS::RDS::DBClusterParameterGroup"
+    },
+    "DatabaseCluster": {
+      "Type": "AWS::RDS::DBCluster",
+      "Properties": {
+        "StorageEncrypted": true,
+        "BackupRetentionPeriod": 3,
+        "MasterUsername": "PMDatabaseUsername",
+        "MasterUserPassword": "PMDatabasePassword",
+        "DBClusterParameterGroupName": "RDSDBClusterParameterGroup",
+        "PreferredBackupWindow": "12:00-13:00",
+        "PreferredMaintenanceWindow": "mon:13:00-mon:14:00",
+        "VpcSecurityGroupIds": [
+          {
+            "Ref": "PMRDSSG"
+          }
+        ],
+        "Engine": "PMDatabaseEngine",
+        "EngineVersion": "PMDatabaseEngineVer"
+      }
+    },
+    "Database1": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "DBInstanceIdentifier": "${PMDBClusterIdentifier}-db1",
+        "Engine": "PMDatabaseEngine",
+        "DBClusterIdentifier": "DatabaseCluster",
+        "DBInstanceClass": "PMDatabaseInstanceClass",
+        "DBSubnetGroupName": "DbSubnetGroup"
+      }
+    }
+  }
+}

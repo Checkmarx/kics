@@ -1,0 +1,30 @@
+{
+  "Resources": {
+    "NewAmpApp": {
+      "Type": "AWS::Amplify::App",
+      "Properties": {
+        "Name": "NewAmpApp",
+        "Repository": "String",
+        "AccessToken": "{{resolve:secretsmanager:${MyAmpAppSecretManagerRotater}::password}}",
+        "BuildSpec": "String",
+        "Description": "String",
+        "OauthToken": "String",
+        "CustomHeaders": "String",
+        "EnableBranchAutoDeletion": true,
+        "IAMServiceRole": "String"
+      }
+    },
+    "MyAmpAppSecretManagerRotater": {
+      "Type": "AWS::SecretsManager::Secret",
+      "Properties": {
+        "Description": "This is my amp app instance secret",
+        "GenerateSecretString": {
+          "SecretStringTemplate": "{\"username\": \"admin\"}",
+          "GenerateStringKey": "password",
+          "PasswordLength": 16,
+          "ExcludeCharacters": "\"@/\\"
+        }
+      }
+    }
+  }
+}

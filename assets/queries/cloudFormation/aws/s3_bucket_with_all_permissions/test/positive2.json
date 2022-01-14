@@ -1,0 +1,30 @@
+{
+  "Resources": {
+    "SampleBucketPolicy4": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+          "Ref": "DOC-EXAMPLE-BUCKET"
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "*",
+              "Effect": "Allow",
+              "Resource": "*",
+              "Principal": "*",
+              "Condition": {
+                "StringLike": {
+                  "aws:Referer": [
+                    "http://www.example.com/*",
+                    "http://example.net/*"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "Resources": {
+    "StaticPage03": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "CostCenter",
+            "Value": "ITEngineering"
+          }
+        ],
+        "AccessControl": "PublicRead",
+        "BucketName": "public-read-static-page",
+        "WebsiteConfiguration": {
+          "ErrorDocument": "404.html",
+          "IndexDocument": "index.html"
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "WebsiteURL": {
+      "Value": {
+        "Fn::GetAtt": [
+          "StaticPage03",
+          "WebsiteURL"
+        ]
+      },
+      "Description": "URL for website hosted on S3"
+    },
+    "S3BucketSecureURL": {
+      "Description": "Name of S3 bucket to hold website content",
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Fn::GetAtt": [
+                "StaticPage03",
+                "DomainName"
+              ]
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Description": "Creating S3 bucket"
+}

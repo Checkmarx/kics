@@ -1,0 +1,28 @@
+{
+  "Description": "Sample CloudFormation template for DynamoDB with AWS-Owned CMK",
+  "Resources": {
+    "DynamoDBOnDemandTable4": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "SSESpecification": {
+          "SSEType": "KMS"
+        },
+        "TableName": "dynamodb-kms-2",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "pk",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "pk",
+            "KeyType": "HASH"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-11"
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive1.yaml",
+    "queryName": "CloudWatch Logging Disabled"
+  },
+  {
+    "queryName": "CloudWatch Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive2.json"
+  }
+]

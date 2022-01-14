@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: A sample template
+Resources:
+  myuser:
+    Type: AWS::IAM::User
+    Properties:
+      Path: "/"
+      LoginProfile:
+        Password: myP@ssW0rd123asw
+      Policies:
+      - PolicyName: giveaccesstoqueueonly
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - sqs:*
+            Resource:
+            - !GetAtt myqueue.Arn
+          - Effect: Deny
+            Action:
+            - sqs:*
+            NotResource:
+            - !GetAtt myqueue.Arn
+      - PolicyName: giveaccesstotopiconly
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - sns:*
+            Resource:
+            - !Ref mytopic
+          - Effect: Deny
+            Action:
+            - sns:*
+            NotResource:
+            - !Ref mytopic

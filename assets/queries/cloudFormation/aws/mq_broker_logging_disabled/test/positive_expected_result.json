@@ -1,0 +1,62 @@
+[
+  {
+    "queryName": "MQ Broker Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 22,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "MQ Broker Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 42,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "MQ Broker Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 63,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "MQ Broker Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 84,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "MQ Broker Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 88,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "MQ Broker Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 28,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "MQ Broker Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 56,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "MQ Broker Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 85,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "MQ Broker Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 115,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "MQ Broker Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 121,
+    "fileName": "positive2.json"
+  }
+]

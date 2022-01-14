@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "ECS Task Definition Container With Plaintext Password",
+    "severity": "HIGH",
+    "line": 27,
+    "fileName": "positive.yaml"
+  },
+  {
+    "line": 40,
+    "queryName": "ECS Task Definition Container With Plaintext Password",
+    "severity": "HIGH",
+    "fileName": "positive.json"
+  }
+]

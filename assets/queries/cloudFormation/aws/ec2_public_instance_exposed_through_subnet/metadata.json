@@ -1,0 +1,11 @@
+{
+  "id": "c44c95fc-ae92-4bb8-bdf8-bb9bc412004a",
+  "queryName": "EC2 Public Instance Exposed Through Subnet",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "EC2 instances with public IP addresses shouldn't allow for unrestricted traffic to their subnets",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html",
+  "platform": "CloudFormation",
+  "descriptionID": "163e9a52",
+  "cloudProvider": "aws"
+}

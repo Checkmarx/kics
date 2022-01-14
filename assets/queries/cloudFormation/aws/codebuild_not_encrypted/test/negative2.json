@@ -1,0 +1,47 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Description": "A sample template",
+  "Resources": {
+    "CodeBuildProject": {
+      "Project": {
+        "Type": "AWS::CodeBuild::Project",
+        "Properties": {
+          "Name": "myProjectName",
+          "Description": "A description about my project",
+          "TimeoutInMinutes": 10,
+          "EncryptionKey": "alias/alias-name",
+          "ServiceRole": "ServiceRole.Arn",
+          "Artifacts": {
+            "Type": "no_artifacts"
+          },
+          "Environment": {
+            "Type": "LINUX_CONTAINER",
+            "ComputeType": "BUILD_GENERAL1_SMALL",
+            "Image": "aws/codebuild/java:openjdk-8",
+            "EnvironmentVariables": [
+              {
+                "Name": "varName",
+                "Type": "varType",
+                "Value": "varValue"
+              }
+            ]
+          },
+          "Source": {
+            "Location": "codebuild-demo-test/0123ab9a371ebf0187b0fe5614fbb72c",
+            "Type": "S3"
+          },
+          "Tags": [
+            {
+              "Key": "Key1",
+              "Value": "Value1"
+            },
+            {
+              "Key": "Key2",
+              "Value": "Value2"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

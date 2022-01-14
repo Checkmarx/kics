@@ -1,0 +1,14 @@
+[
+  {
+    "line": 8,
+    "fileName": "positive1.yaml",
+    "queryName": "SDB Domain Declared As A Resource",
+    "severity": "LOW"
+  },
+  {
+    "queryName": "SDB Domain Declared As A Resource",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive2.json"
+  }
+]

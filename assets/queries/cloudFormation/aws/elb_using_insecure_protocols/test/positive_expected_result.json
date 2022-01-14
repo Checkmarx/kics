@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "ELB Using Insecure Protocols",
+    "severity": "HIGH",
+    "line": 27,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "ELB Using Insecure Protocols",
+    "severity": "HIGH",
+    "line": 34,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "ELB Using Insecure Protocols",
+    "severity": "HIGH",
+    "line": 35,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "ELB Using Insecure Protocols",
+    "severity": "HIGH",
+    "line": 50,
+    "fileName": "positive2.json"
+  }
+]

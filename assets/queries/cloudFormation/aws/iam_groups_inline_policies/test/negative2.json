@@ -1,0 +1,9 @@
+{
+  "Description": "A sample template",
+  "Resources": {
+    "myuser": {
+      "Type": "AWS::IAM::Group"
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09"
+}

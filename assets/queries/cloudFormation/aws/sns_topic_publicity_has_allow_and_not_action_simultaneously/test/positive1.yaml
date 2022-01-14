@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: A sample template
+Resources:
+  mysnspolicy:
+    Type: AWS::SNS::TopicPolicy
+    Properties:
+      PolicyDocument:
+        Id: MyTopicPolicy
+        Version: '2012-10-17'
+        Statement:
+        - Sid: MyStatementId
+          Effect: Allow
+          NotAction: "s3:DeleteBucket"
+          Resource: "arn:aws:s3:::*"
+        - Sid: MyStatementId2
+          Effect: Allow
+          NotAction: "iam:*"
+          Resource: "*"
+      Topics:
+      - !Ref mytopic

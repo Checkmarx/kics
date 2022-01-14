@@ -1,0 +1,35 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "RDS Storage Encrypted",
+  "Parameters": {
+      "SourceDBInstanceIdentifier": {
+          "Type": "String"
+      },
+      "DBInstanceType": {
+          "Type": "String"
+      },
+      "SourceRegion": {
+          "Type": "String"
+      }
+  },
+  "Resources": {
+      "MyDBSmall": {
+          "Type": "AWS::RDS::DBInstance",
+          "Properties": {
+              "DBInstanceClass": {
+                  "Ref": "DBInstanceType"
+              },
+              "SourceDBInstanceIdentifier": {
+                  "Ref": "SourceDBInstanceIdentifier"
+              },
+              "SourceRegion": {
+                  "Ref": "SourceRegion"
+              },
+              "KmsKeyId": {
+                  "Ref": "MyKey"
+              },
+              "EnableIAMDatabaseAuthentication" : true
+          }
+      }
+  }
+}

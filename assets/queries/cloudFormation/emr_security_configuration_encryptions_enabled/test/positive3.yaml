@@ -1,9 +1,0 @@
-Resources:
-  EMRSecurityConfiguration03:
-    Type: AWS::EMR::SecurityConfiguration
-    Properties:
-       Name: String
-       SecurityConfiguration:
-         EncryptionConfiguration:
-           EnableInTransitEncryption: false
-           EnableAtRestEncryption: false

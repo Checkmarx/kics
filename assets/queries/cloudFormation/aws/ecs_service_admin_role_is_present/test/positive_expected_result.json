@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "ECS Service Admin Role Is Present",
+    "severity": "HIGH",
+    "line": 87,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "ECS Service Admin Role Is Present",
+    "severity": "HIGH",
+    "line": 66,
+    "fileName": "positive2.json"
+  }
+]

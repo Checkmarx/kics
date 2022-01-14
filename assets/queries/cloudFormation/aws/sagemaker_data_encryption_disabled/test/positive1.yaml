@@ -1,0 +1,47 @@
+#this is a problematic code where the query should report a result(s)
+Description: "Basic NotebookInstance test update to a different instance type"
+Resources:
+  BasicNotebookInstance:
+    Type: "AWS::SageMaker::NotebookInstance"
+    Properties:
+      InstanceType: "ml.t2.large"
+      RoleArn: !GetAtt ExecutionRole.Arn
+  BasicNotebookInstance2:
+    Type: "AWS::SageMaker::NotebookInstance"
+    Properties:
+      InstanceType: "ml.t2.large"
+      RoleArn: !GetAtt ExecutionRole.Arn
+      KmsKeyId: 'some-kms-key'
+  BasicNotebookInstance3:
+    Type: "AWS::SageMaker::NotebookInstance"
+    Properties:
+      InstanceType: "ml.t2.large"
+      RoleArn: !GetAtt ExecutionRole.Arn
+      KmsKeyId : ""
+  ExecutionRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Principal:
+              Service:
+                - "sagemaker.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      Path: "/"
+      Policies:
+        -
+          PolicyName: "root"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action: "*"
+                Resource: "*"
+Outputs:
+  BasicNotebookInstanceId:
+    Value: !Ref BasicNotebookInstance

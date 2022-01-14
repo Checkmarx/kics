@@ -1,0 +1,19 @@
+#this code is a correct code for which the query should not find any result
+Resources:
+  ECSService:
+    Type: AWS::ECS::Service
+    DependsOn:
+    - Listener
+    Properties:
+      Role:
+        Ref: ECSServiceRole
+      TaskDefinition:
+        Ref: ECSTaskDefinition
+      DesiredCount: 1
+      LoadBalancers:
+      - TargetGroupArn:
+          Ref: TargetGroup
+        ContainerPort: 80
+        ContainerName: sample-app
+      Cluster:
+        Ref: ECSCluster

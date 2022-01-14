@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+    MyLoadBalancer:
+        Type: AWS::ElasticLoadBalancing::LoadBalancer
+        Properties:
+          AvailabilityZones:
+          - "us-east-2a"
+          CrossZone: true
+          Listeners:
+          - InstancePort: '80'
+            InstanceProtocol: HTTPS
+            LoadBalancerPort: '443'
+            Protocol: HTTPS
+            PolicyNames:
+            - My-SSLNegotiation-Policy
+            SSLCertificateId: arn:aws:iam::123456789012:server-certificate/my-server-certificate
+          Scheme: internal

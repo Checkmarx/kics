@@ -1,0 +1,11 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Creating S3 bucket
+Resources:
+  JenkinsArtifacts01:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: PublicRead
+      BucketName: jenkins-artifacts
+      Tags:
+        - Key: CostCenter
+          Value: ITEngineering

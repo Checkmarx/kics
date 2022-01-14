@@ -1,0 +1,50 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Router53"
+Resources:
+  Prod2:
+    Type: AWS::ApiGateway::Stage
+    Properties:
+      StageName: Prod
+      Description: Prod Stage
+      RestApiId: !Ref MyRestApi1
+      DeploymentId: !Ref TestDeployment
+      DocumentationVersion: !Ref MyDocumentationVersion
+      ClientCertificateId: !Ref ClientCertificate
+      Variables:
+        Stack: Prod
+      MethodSettings:
+        - ResourcePath: /
+          HttpMethod: GET
+          MetricsEnabled: 'true'
+          DataTraceEnabled: 'false'
+        - ResourcePath: /stack
+          HttpMethod: POST
+          MetricsEnabled: 'true'
+          DataTraceEnabled: 'false'
+          ThrottlingBurstLimit: '999'
+        - ResourcePath: /stack
+          HttpMethod: GET
+          MetricsEnabled: 'true'
+          DataTraceEnabled: 'false'
+          ThrottlingBurstLimit: '555'
+  usagePlan2:
+    Type: 'AWS::ApiGateway::UsagePlan'
+    Properties:
+      ApiStages:
+        - ApiId: !Ref MyRestApi
+          Stage: !Ref Prod
+      Description: Customer ABC's usage plan
+      Quota:
+        Limit: 5000
+        Period: MONTH
+      Throttle:
+        BurstLimit: 200
+        RateLimit: 100
+      UsagePlanName: Plan_ABC
+
+
+
+
+
+
+

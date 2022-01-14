@@ -1,0 +1,73 @@
+{
+  "Resources": {
+    "VPC": {
+      "Properties": {
+        "Tags": [
+          {
+            "Value": [
+              "",
+              [
+                "AWS::StackName",
+                "-VPC"
+              ]
+            ],
+            "Key": "Name"
+          }
+        ],
+        "CidrBlock": "10.1.0.0/16",
+        "EnableDnsSupport": true,
+        "EnableDnsHostnames": true
+      },
+      "Type": "AWS::EC2::VPC"
+    },
+    "InternetGateway": {
+      "Type": "AWS::EC2::InternetGateway",
+      "DependsOn": "VPC"
+    },
+    "AttachGateway": {
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+      "Properties": {
+        "VpcId": "VPC",
+        "InternetGatewayId": "InternetGateway"
+      }
+    },
+    "PublicSubnetA": {
+      "Properties": {
+        "CidrBlock": "10.1.10.0/24",
+        "AvailabilityZone": [
+          0,
+          ""
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "${AWS::StackName}-Public-A"
+          }
+        ]
+      },
+      "Type": "AWS::EC2::Subnet"
+    },
+    "Ec2Instance-01": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "Fn::FindInMap": [
+          "RegionMap",
+          {
+            "Ref": "AWS::Region"
+          },
+          "AMI"
+        ],
+        "KeyName": "some-rsa-key",
+        "Ref": "KeyName",
+        "NetworkInterfaces": [
+          {
+            "AssociatePublicIpAddress": "true",
+            "DeviceIndex": 0,
+            "SubnetId": "PublicSubnetA"
+          }
+        ],
+        "ImageId": "some-ec2-image"
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "Resources": {
+    "s3Permission": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "SourceAccount": "AWS::AccountId",
+        "SourceArn": "bucket.Arn",
+        "FunctionName": "function.Arn",
+        "Action": "lambda:InvokeFunction",
+        "Principal": "*"
+      }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Creates RDS Cluster"
+}

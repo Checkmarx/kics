@@ -1,9 +1,0 @@
-AWSTemplateFormatVersion: "2010-09-09"
-Description: A sample template
-Resources:
-    myuser:
-      Type: AWS::IAM::User
-      Properties:
-        Path: "/"
-        LoginProfile:
-          Password: myP@ssW0rd

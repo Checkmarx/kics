@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "EMR Cluster Without Security Configuration",
+    "severity": "MEDIUM",
+    "line": 18,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "line": 18,
+    "fileName": "positive1.yaml",
+    "queryName": "EMR Cluster Without Security Configuration",
+    "severity": "MEDIUM"
+  },
+  {
+    "fileName": "positive3.json",
+    "queryName": "EMR Cluster Without Security Configuration",
+    "severity": "MEDIUM",
+    "line": 43
+  },
+  {
+    "queryName": "EMR Cluster Without Security Configuration",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive4.json"
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "fileName": "positive1.yaml",
+    "queryName": "ECS Task Definition Network Mode Not Recommended",
+    "severity": "HIGH",
+    "line": 7
+  },
+  {
+    "line": 7,
+    "fileName": "positive2.json",
+    "queryName": "ECS Task Definition Network Mode Not Recommended",
+    "severity": "HIGH"
+  }
+]

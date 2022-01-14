@@ -1,0 +1,26 @@
+[
+  {
+    "fileName": "positive1.yaml",
+    "queryName": "ALB Listening on HTTP",
+    "severity": "HIGH",
+    "line": 13
+  },
+  {
+    "fileName": "positive1.yaml",
+    "queryName": "ALB Listening on HTTP",
+    "severity": "HIGH",
+    "line": 25
+  },
+  {
+    "queryName": "ALB Listening on HTTP",
+    "severity": "HIGH",
+    "line": 35,
+    "fileName": "positive2.json"
+  },
+  {
+    "line": 35,
+    "fileName": "positive2.json",
+    "queryName": "ALB Listening on HTTP",
+    "severity": "HIGH"
+  }
+]

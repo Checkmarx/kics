@@ -1,0 +1,11 @@
+{
+  "id": "9038b526-4c19-4928-bca2-c03d503bdb79",
+  "queryName": "Shielded VM Disabled",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Compute instances must be launched with Shielded VM enabled, which means the attribute 'shieldedInstanceConfig' must be defined and its sub attributes 'enableSecureBoot', 'enableVtpm' and 'enableIntegrityMonitoring' must be set to true",
+  "descriptionUrl": "https://cloud.google.com/compute/docs/reference/rest/v1/instances",
+  "platform": "GoogleDeploymentManager",
+  "descriptionID": "c67722e8",
+  "cloudProvider": "gcp"
+}

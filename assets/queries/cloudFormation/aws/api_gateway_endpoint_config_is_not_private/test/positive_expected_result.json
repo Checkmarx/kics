@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "API Gateway Endpoint Config is Not Private",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "API Gateway Endpoint Config is Not Private",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "API Gateway Endpoint Config is Not Private",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive2.json"
+  },
+  {
+    "line": 14,
+    "fileName": "positive2.json",
+    "queryName": "API Gateway Endpoint Config is Not Private",
+    "severity": "MEDIUM"
+  }
+]

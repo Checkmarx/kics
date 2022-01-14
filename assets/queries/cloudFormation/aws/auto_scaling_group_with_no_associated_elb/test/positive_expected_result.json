@@ -1,0 +1,38 @@
+[
+  {
+    "line": 28,
+    "fileName": "positive1.yaml",
+    "queryName": "Auto Scaling Group With No Associated ELB",
+    "severity": "MEDIUM"
+  },
+  {
+    "fileName": "positive1.yaml",
+    "queryName": "Auto Scaling Group With No Associated ELB",
+    "severity": "MEDIUM",
+    "line": 60
+  },
+  {
+    "queryName": "Auto Scaling Group With No Associated ELB",
+    "severity": "MEDIUM",
+    "line": 87,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Auto Scaling Group With No Associated ELB",
+    "severity": "MEDIUM",
+    "line": 38,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Auto Scaling Group With No Associated ELB",
+    "severity": "MEDIUM",
+    "line": 78,
+    "fileName": "positive2.json"
+  },
+  {
+    "fileName": "positive2.json",
+    "queryName": "Auto Scaling Group With No Associated ELB",
+    "severity": "MEDIUM",
+    "line": 126
+  }
+]

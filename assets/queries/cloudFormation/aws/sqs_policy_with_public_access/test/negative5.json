@@ -1,0 +1,29 @@
+{
+  "Resources": {
+    "SampleSQSPolicy2": {
+      "Type": "AWS::SQS::QueuePolicy",
+      "Properties": {
+        "Queues": [
+          "https://sqs:us-east-2.amazonaws.com/444455556666/queue2"
+        ],
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "SQS:SendMessage",
+                "SQS:CreateQueue"
+              ],
+              "Effect": "Allow",
+              "Resource": "arn:aws:sqs:us-east-2:444455556666:queue2",
+              "Principal": {
+                "AWS": [
+                  "111122223333"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -110,7 +110,7 @@ func TestImport(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			aws.ImporterFunc = mockImporter
-			got, err := Import(tt.args.terraformerPath)
+			got, err := Import(tt.args.terraformerPath, "")
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Import() error = %v, wantErr %v", err, tt.wantErr)
 				return

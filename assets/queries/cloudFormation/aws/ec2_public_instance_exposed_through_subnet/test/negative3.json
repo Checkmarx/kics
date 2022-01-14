@@ -1,0 +1,68 @@
+{
+  "Resources": {
+    "mySubnet": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "VpcId": "myVPC_1",
+        "CidrBlock": "10.0.0.0/24",
+        "AvailabilityZone": "us-east-1a"
+      }
+    },
+    "mySubnetRouteTableAssociation": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": "myRouteTable",
+        "SubnetId": "mySubnet"
+      }
+    },
+    "Ec2Instance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0ff8a91507f77f867",
+        "KeyName": "Keyname",
+        "NetworkInterfaces": [
+          {
+            "DeviceIndex": "0",
+            "SubnetId": "mySubnet",
+            "AssociatePublicIpAddress": false
+          }
+        ]
+      }
+    },
+    "myVPC_1": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock": "10.0.0.0/16",
+        "EnableDnsSupport": false,
+        "EnableDnsHostnames": false,
+        "InstanceTenancy": "dedicated"
+      }
+    },
+    "InternetGateway": {
+      "Type": "AWS::EC2::InternetGateway"
+    },
+    "VPCGatewayAttachment": {
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+      "Properties": {
+        "InternetGatewayId": "InternetGateway",
+        "VpcId": "myVPC_1"
+      }
+    },
+    "myRouteTable": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": "myVPC_1"
+      }
+    },
+    "myRoute": {
+      "Type": "AWS::EC2::Route",
+      "DependsOn": "VPCGatewayAttachment",
+      "Properties": {
+        "GatewayId": "InternetGateway",
+        "RouteTableId": "myRouteTable",
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "DestinationIpv6CidrBlock": "::/0"
+      }
+    }
+  }
+}

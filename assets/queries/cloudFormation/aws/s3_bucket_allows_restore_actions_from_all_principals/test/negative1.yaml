@@ -1,0 +1,18 @@
+#this code is a correct code for which the query should not find any result
+Resources:
+  SampleBucketPolicy1:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      Bucket: !Ref DOC-EXAMPLE-BUCKET
+      PolicyDocument:
+        Statement:
+          - Action:
+              - 's3:RestoreObject'
+            Effect: Deny
+            Resource: '*'
+            Principal: '*'
+            Condition:
+              StringLike:
+                'aws:Referer':
+                  - 'http://www.example.com/*'
+                  - 'http://example.net/*'

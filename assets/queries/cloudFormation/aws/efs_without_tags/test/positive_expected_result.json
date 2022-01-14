@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "EFS Without Tags",
+    "severity": "LOW",
+    "line": 15,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "EFS Without Tags",
+    "severity": "LOW",
+    "line": 40,
+    "fileName": "positive2.json"
+  }
+]

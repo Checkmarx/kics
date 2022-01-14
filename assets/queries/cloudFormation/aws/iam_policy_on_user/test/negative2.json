@@ -1,0 +1,18 @@
+{
+  "Resources": {
+    "GoodPolicy": {
+      "Properties": {
+        "Description": "Policy for something.",
+        "Path": "/",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": []
+        },
+        "Groups": [
+          "user_group"
+        ]
+      },
+      "Type": "AWS::IAM::Policy"
+    }
+  }
+}

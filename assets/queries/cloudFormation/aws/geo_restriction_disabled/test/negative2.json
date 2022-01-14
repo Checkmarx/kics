@@ -1,0 +1,29 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "myDistribution": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "Logging": {
+            "IncludeCookies": "false",
+            "Bucket": "mylogs.s3.amazonaws.com",
+            "Prefix": "myprefix"
+          },
+          "Restrictions": {
+            "GeoRestriction": {
+              "RestrictionType": "whitelist",
+              "Locations": [
+                "AQ",
+                "CV"
+              ]
+            }
+          },
+          "ViewerCertificate": {
+            "CloudFrontDefaultCertificate": "true"
+          }
+        }
+      }
+    }
+  }
+}

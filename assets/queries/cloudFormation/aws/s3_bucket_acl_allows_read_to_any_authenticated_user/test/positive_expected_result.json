@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive6.json"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
+    "severity": "HIGH",
+    "line": 20,
+    "fileName": "positive7.json"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive8.json"
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "Resources": {
+    "NewAmpApp1": {
+      "Type": "AWS::Amplify::Branch",
+      "Properties": {
+        "BranchName": "String",
+        "EnableAutoBuild": false,
+        "EnvironmentVariables": [
+          "EnvironmentVariable"
+        ],
+        "PullRequestEnvironmentName": "String",
+        "AppId": "String",
+        "Description": "String",
+        "EnablePerformanceMode": false,
+        "EnablePullRequestPreview": false,
+        "Stage": "String",
+        "BasicAuthConfig": {
+          "EnableBasicAuth": true,
+          "Password": "@skdsjdk0234!AB",
+          "Username": "admin"
+        },
+        "BuildSpec": "String"
+      }
+    }
+  }
+}

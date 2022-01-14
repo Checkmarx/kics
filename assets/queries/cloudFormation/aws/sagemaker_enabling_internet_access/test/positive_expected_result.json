@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "SageMaker Enabling Internet Access",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "SageMaker Enabling Internet Access",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive2.json"
+  }
+]

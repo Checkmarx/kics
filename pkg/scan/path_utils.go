@@ -2,6 +2,7 @@ package scan
 
 import (
 	"fmt"
+	"os"
 	"regexp"
 	"strings"
 
@@ -23,7 +24,7 @@ func (c *Client) prepareAndAnalyzePaths() (provider.ExtractedPath, error) {
 
 	regularPaths, terraformerPaths := extractPathType(c.ScanParams.Path)
 
-	terraformerExPaths, err := provider.GetTerraformerSources(terraformerPaths)
+	terraformerExPaths, err := provider.GetTerraformerSources(terraformerPaths, c.ScanParams.OutputPath)
 	if err != nil {
 		return provider.ExtractedPath{}, err
 	}
@@ -170,4 +171,13 @@ func extractPathType(paths []string) (regular, terraformer []string) {
 		}
 	}
 	return
+}
+
+func deleteExtractionFolder(extractionMap map[string]model.ExtractedPathObject) {
+	for extractionFile := range extractionMap {
+		err := os.Remove(extractionFile)
+		if err != nil {
+			log.Err(err).Msg("Failed to delete KICS extraction folder")
+		}
+	}
 }

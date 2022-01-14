@@ -1,0 +1,35 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Router53",
+  "Resources": {
+    "Deployment1": {
+      "Properties": {
+        "RestApiId": "MyRestApi",
+        "Description": "My deployment",
+        "StageName": "Prod"
+      },
+      "Type": "AWS::ApiGateway::Deployment"
+    },
+    "usagePlan1": {
+      "Properties": {
+        "Quota": {
+          "Limit": 5000,
+          "Period": "MONTH"
+        },
+        "Throttle": {
+          "BurstLimit": 200,
+          "RateLimit": 100
+        },
+        "UsagePlanName": "Plan_ABC",
+        "ApiStages": [
+          {
+            "ApiId": "MyRestApi",
+            "Stage": "Prod1"
+          }
+        ],
+        "Description": "Customer ABC's usage plan"
+      },
+      "Type": "AWS::ApiGateway::UsagePlan"
+    }
+  }
+}

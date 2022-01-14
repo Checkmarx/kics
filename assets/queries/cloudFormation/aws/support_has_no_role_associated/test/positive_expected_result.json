@@ -1,0 +1,38 @@
+[
+  {
+    "line": 4,
+    "fileName": "positive1.yaml",
+    "queryName": "Support Has No Role Associated",
+    "severity": "LOW"
+  },
+  {
+    "queryName": "Support Has No Role Associated",
+    "severity": "LOW",
+    "line": 16,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Support Has No Role Associated",
+    "severity": "LOW",
+    "line": 28,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Support Has No Role Associated",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Support Has No Role Associated",
+    "severity": "LOW",
+    "line": 29,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Support Has No Role Associated",
+    "severity": "LOW",
+    "line": 53,
+    "fileName": "positive2.json"
+  }
+]

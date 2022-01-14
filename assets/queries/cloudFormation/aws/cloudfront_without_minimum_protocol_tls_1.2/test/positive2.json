@@ -1,0 +1,92 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Resources": {
+    "cloudfrontdistribution": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "ViewerCertificate": {
+            "IamCertificateId": "String",
+            "MinimumProtocolVersion": "TLSv1.1_2016",
+            "SslSupportMethod": "String",
+            "AcmCertificateArn": "String",
+            "CloudFrontDefaultCertificate": true
+          },
+          "CacheBehaviors": [
+            {
+              "LambdaFunctionAssociations": [
+                {
+                  "EventType": "string-value",
+                  "LambdaFunctionARN": "string-value"
+                }
+              ]
+            }
+          ],
+          "DefaultCacheBehavior": {
+            "LambdaFunctionAssociations": [
+              {
+                "EventType": "string-value",
+                "LambdaFunctionARN": "string-value"
+              }
+            ]
+          },
+          "IPV6Enabled": "boolean-value",
+          "Origins": [
+            {
+              "CustomOriginConfig": {
+                "OriginKeepaliveTimeout": "integer-value",
+                "OriginReadTimeout": "integer-value"
+              }
+            }
+          ]
+        },
+        "Tags": [
+          {
+            "Key": "string-value",
+            "Value": "string-value"
+          }
+        ]
+      }
+    },
+    "cloudfrontdistribution2": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "Origins": [
+            {
+              "CustomOriginConfig": {
+                "OriginKeepaliveTimeout": "integer-value",
+                "OriginReadTimeout": "integer-value"
+              }
+            }
+          ],
+          "CacheBehaviors": [
+            {
+              "LambdaFunctionAssociations": [
+                {
+                  "EventType": "string-value",
+                  "LambdaFunctionARN": "string-value"
+                }
+              ]
+            }
+          ],
+          "DefaultCacheBehavior": {
+            "LambdaFunctionAssociations": [
+              {
+                "LambdaFunctionARN": "string-value",
+                "EventType": "string-value"
+              }
+            ]
+          },
+          "IPV6Enabled": "boolean-value"
+        },
+        "Tags": [
+          {
+            "Key": "string-value",
+            "Value": "string-value"
+          }
+        ]
+      }
+    }
+  }
+}

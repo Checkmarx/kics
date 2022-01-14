@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Hardcoded AWS Access Key In Lambda",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Hardcoded AWS Access Key In Lambda",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "line": 29,
+    "fileName": "positive3.json",
+    "queryName": "Hardcoded AWS Access Key In Lambda",
+    "severity": "MEDIUM"
+  },
+  {
+    "queryName": "Hardcoded AWS Access Key In Lambda",
+    "severity": "MEDIUM",
+    "line": 29,
+    "fileName": "positive4.json"
+  }
+]

@@ -1,0 +1,11 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  stackset:
+    Type: AWS::CloudFormation::StackSet
+    Properties:
+      PermissionModel: SERVICE_MANAGED
+      StackSetName: some_stack_name
+      TemplateURL: some_stack_link
+      AutoDeployment:
+        Enabled: true
+        RetainStacksOnAccountRemoval: true

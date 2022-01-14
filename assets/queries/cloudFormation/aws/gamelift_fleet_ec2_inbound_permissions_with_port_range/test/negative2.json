@@ -1,0 +1,29 @@
+{
+  "Resources": {
+    "FleetResource2": {
+      "Type": "AWS::GameLift::Fleet",
+      "Properties": {
+        "CertificateConfiguration": {
+          "CertificateType": "DISABLED"
+        },
+        "Description": "Description of my Game Fleet",
+        "DesiredEc2Instances": 1,
+        "EC2InboundPermissions": [
+          {
+            "FromPort": "1234",
+            "ToPort": "1234",
+            "IpRange": "0.0.0.0/24",
+            "Protocol": "TCP"
+          },
+          {
+            "ToPort": "1356",
+            "IpRange": "192.168.0.0/24",
+            "Protocol": "UDP",
+            "FromPort": "1356"
+          }
+        ],
+        "BuildId": "BuildResource"
+      }
+    }
+  }
+}

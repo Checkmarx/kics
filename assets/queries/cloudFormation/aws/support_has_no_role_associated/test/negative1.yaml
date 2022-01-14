@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: A sample template
+Resources:
+  MyPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: mygrouppolicy
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - s3:GetObject
+              - s3:PutObject
+              - s3:PutObjectAcl
+            Resource: arn:aws:s3:::myAWSBucket/*
+      Groups:
+        - myexistinggroup1
+        - !Ref mygroup

@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Router53"
+Resources:
+  Deployment1:
+    Type: 'AWS::ApiGateway::Deployment'
+    Properties:
+      RestApiId: !Ref MyRestApi
+      Description: My deployment
+      StageName: Prod
+  usagePlan1:
+    Type: 'AWS::ApiGateway::UsagePlan'
+    Properties:
+      ApiStages:
+        - ApiId: !Ref MyRestApi
+          Stage: !Ref Prod1
+      Description: Customer ABC's usage plan
+      Quota:
+        Limit: 5000
+        Period: MONTH
+      Throttle:
+        BurstLimit: 200
+        RateLimit: 100
+      UsagePlanName: Plan_ABC
+

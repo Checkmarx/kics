@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Wildcard In ACM Certificate Domain Name",
+    "severity": "LOW",
+    "line": 16,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "line": 19,
+    "fileName": "positive2.json",
+    "queryName": "Wildcard In ACM Certificate Domain Name",
+    "severity": "LOW"
+  }
+]

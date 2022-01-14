@@ -1,0 +1,35 @@
+{
+  "Parameters": {
+    "type": {
+      "Type": "String"
+    },
+    "cfnDomainName": {
+      "Type": "String"
+    },
+    "certificateArn": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "myDomainName1": {
+      "Properties": {
+        "DomainName": "cfnDomainName",
+        "EndpointConfiguration": {
+          "Types": [
+            "type"
+          ]
+        },
+        "RegionalCertificateArn": "certificateArn",
+        "CertificateArn": "certificateArn"
+      },
+      "Type": "AWS::ApiGateway::DomainName"
+    }
+  },
+  "Outputs": {
+    "DomainName": {
+      "Value": "myDomainName"
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Router53"
+}

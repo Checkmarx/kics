@@ -1,0 +1,70 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "A sample template",
+  "Resources": {
+    "MyEC2Instance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/sdm",
+            "Ebs": {
+              "DeleteOnTermination": false,
+              "VolumeSize": 20,
+              "VolumeType": "io1",
+              "Iops": 200
+            }
+          }
+        ],
+        "ImageId": "ami-0ff8a91507f77f867",
+        "InstanceType": "t2.micro",
+        "KeyName": "testkey"
+      }
+    },
+    "taskdefinition": {
+      "Type": "AWS::ECS::TaskDefinition",
+      "Properties": {
+        "ContainerDefinitions": [
+          {
+            "MountPoints": [
+              {
+                "SourceVolume": "my-vol",
+                "ContainerPath": "/var/www/my-vol"
+              }
+            ],
+            "Image": "amazon/amazon-ecs-sample",
+            "Cpu": 256,
+            "PortMappings": [
+              {
+                "HostPort": {
+                  "Ref": "AppHostPort"
+                },
+                "ContainerPort": {
+                  "Ref": "AppContainerPort"
+                }
+              }
+            ],
+            "EntryPoint": [
+              "/usr/sbin/apache2",
+              "-D",
+              "FOREGROUND"
+            ],
+            "Memory": 512,
+            "Essential": true,
+            "Name": {
+              "Ref": "AppName"
+            }
+          }
+        ],
+        "Volumes": [
+          {
+            "Host": {
+              "SourcePath": "/var/lib/docker/vfs/dir/"
+            },
+            "Name": "my-vol"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "Description": "Creates RDS Cluster",
+  "Resources": {
+    "RDSDBClusterParameterGroup": {
+      "Properties": {
+        "Description": "CloudFormation Sample Aurora Cluster Parameter Group",
+        "Family": "aurora5.6",
+        "Parameters": {
+          "time_zone": "US/Eastern"
+        }
+      },
+      "Type": "AWS::RDS::DBClusterParameterGroup"
+    },
+    "RDSDBInstance1": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "PubliclyAccessible": "true",
+        "AvailabilityZone": "eu-west-1b",
+        "DBClusterIdentifier": {
+          "Ref": "RDSCluster"
+        },
+        "DBInstanceClass": "db.r3.xlarge",
+        "DBParameterGroupName": {
+          "Ref": "RDSDBParameterGroup"
+        },
+        "DBSubnetGroupName": "DBSubnetGroup",
+        "Engine": "aurora"
+      }
+    },
+    "RDSDBInstance2": {
+      "Properties": {
+        "DBInstanceClass": "db.r3.xlarge",
+        "DBParameterGroupName": {
+          "Ref": "RDSDBParameterGroup"
+        },
+        "DBSubnetGroupName": "DBSubnetGroup",
+        "Engine": "aurora",
+        "PubliclyAccessible": "true",
+        "AvailabilityZone": "eu-west-1b",
+        "DBClusterIdentifier": {
+          "Ref": "RDSCluster"
+        }
+      },
+      "Type": "AWS::RDS::DBInstance"
+    },
+    "RDSDBParameterGroup": {
+      "Properties": {
+        "Parameters": {
+          "sql_mode": "IGNORE_SPACE",
+          "max_allowed_packet": 1024,
+          "innodb_buffer_pool_size": "{DBInstanceClassMemory*3/4}"
+        },
+        "Description": "CloudFormation Sample Aurora Parameter Group",
+        "Family": "aurora5.6"
+      },
+      "Type": "AWS::RDS::DBParameterGroup"
+    },
+    "RDSCluster1": {
+      "Properties": {
+        "Engine": "aurora",
+        "MasterUserPassword": "password",
+        "MasterUsername": "username",
+        "DBClusterParameterGroupName": {
+          "Ref": "RDSDBClusterParameterGroup"
+        },
+        "DBSubnetGroupName": "DBSubnetGroup"
+      },
+      "Type": "AWS::RDS::DBCluster"
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09"
+}

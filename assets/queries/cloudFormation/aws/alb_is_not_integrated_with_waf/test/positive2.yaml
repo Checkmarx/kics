@@ -1,0 +1,7 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  MyLoadBalancerV2:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name: myloadbalancerv2
+      Scheme: internet-facing

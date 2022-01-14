@@ -1,0 +1,81 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: A sample template
+Resources:
+  S3Bucket3:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: docexamplebucket1
+  SampleBucketPolicy5:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      Bucket:
+        Ref: docexamplebucketfail
+      PolicyDocument:
+        Statement:
+          - Action:
+              - 's3:GetObject'
+            Effect: Allow
+            Resource:
+              'Fn::Join':
+                - ''
+                - - 'arn:aws:s3:::'
+                  - Ref: docexamplebucket1
+                  - /*
+            Principal: '*'
+            Condition:
+              StringLike:
+                'aws:Referer':
+                  - 'http://www.example.com/*'
+                  - 'http://example.net/*'
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Retain
+    Properties: {}
+  SampleBucketPolicy2:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: docexamplebucket2
+      PolicyDocument:
+        Statement:
+          - Action:
+              - 's3:GetObject'
+            Effect: Allow
+            Resource:
+              'Fn::Join':
+                - ''
+                - - 'arn:aws:s3:::'
+                  - Ref: docexamplebucket
+                  - /*
+            Principal: '*'
+            Condition:
+              StringLike:
+                'aws:Referer':
+                  - 'http://www.example.com/*'
+                  - 'http://example.net/*'
+  S3Bucket7:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: docexamplebucket5
+  SampleBucketPolicy8:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      Bucket: !Ref docexamplebucketfail2
+      PolicyDocument:
+        Statement:
+          - Action:
+              - 's3:GetObject'
+            Effect: Allow
+            Resource:
+              'Fn::Join':
+                - ''
+                - - 'arn:aws:s3:::'
+                  - Ref: docexamplebucket1
+                  - /*
+            Principal: '*'
+            Condition:
+              StringLike:
+                'aws:Referer':
+                  - 'http://www.example.com/*'
+                  - 'http://example.net/*'

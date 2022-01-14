@@ -1,0 +1,13 @@
+Resources:
+  MyWorkSpace:
+    Type: AWS::WorkSpaces::Workspace
+    Properties:
+      BundleId: !FindInMap
+        - WSTypeMap
+        - !Ref 'WorkstationType'
+        - BundleId
+      DirectoryId: !FindInMap
+        - WSTypeMap
+        - !Ref 'WorkstationType'
+        - DirectoryId
+      UserName: !Ref 'UserName'

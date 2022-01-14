@@ -1,0 +1,21 @@
+{
+  "Description": "Router53",
+  "Resources": {
+    "MockMethod": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "RestApiId": "MyApi",
+        "ResourceId": [
+          "MyApi",
+          "RootResourceId"
+        ],
+        "HttpMethod": "OPTIONS",
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "Type": "MOCK"
+        }
+      }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09"
+}

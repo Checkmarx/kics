@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Parameters:
+  DBUser:
+    NoEcho: true
+    Description: The database admin account username
+    Type: String
+    MinLength: 1
+    MaxLength: 16
+    AllowedPattern: "[a-zA-Z][a-zA-Z0-9]*"
+    ConstraintDescription: must begin with a letter and contain only alphanumeric characters.
+  DBPassword:
+    NoEcho: true
+    Description: The database admin account password
+    Type: String
+    MinLength: 1
+    MaxLength: 41
+    AllowedPattern: "[a-zA-Z0-9]*"
+    ConstraintDescription: must contain only alphanumeric characters.
+Resources:
+  MyDB:
+    Type: "AWS::RDS::DBInstance"
+    Properties:
+      AllocatedStorage: '5'
+      DBInstanceClass: db.t2.small
+      Engine: MySQL
+      EngineVersion: '5.5'
+      MasterUsername: !Ref DBUser
+      MasterUserPassword: !Ref DBPassword
+      DBParameterGroupName: !Ref MyRDSParamGroup
+  MyRDSParamGroup:
+    Type: "AWS::RDS::DBParameterGroup"
+    Properties:
+      Family: MySQL5.5
+      Description: CloudFormation Sample Database Parameter Group
+      Parameters:
+        autocommit: '1'
+        general_log: '1'
+        old_passwords: '0'

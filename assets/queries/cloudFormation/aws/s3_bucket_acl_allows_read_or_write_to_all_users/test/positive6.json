@@ -1,0 +1,23 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Description": "Creating S3 bucket",
+  "Resources": {
+    "StaticPage01": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "AccessControl": "PublicReadWrite",
+        "BucketName": "public-read-static-page01",
+        "WebsiteConfiguration": {
+          "IndexDocument": "index.html",
+          "ErrorDocument": "404.html"
+        },
+        "Tags": [
+          {
+            "Key": "CostCenter",
+            "Value": "ITEngineering"
+          }
+        ]
+      }
+    }
+  }
+}

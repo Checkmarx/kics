@@ -1,0 +1,45 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Resources": {
+    "cloudfrontdistribution": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "string-value",
+            "Value": "string-value"
+          }
+        ],
+        "DistributionConfig": {
+          "CacheBehaviors": [
+            {
+              "LambdaFunctionAssociations": [
+                {
+                  "EventType": "string-value",
+                  "LambdaFunctionARN": "string-value"
+                }
+              ]
+            }
+          ],
+          "DefaultCacheBehavior": {
+            "LambdaFunctionAssociations": [
+              {
+                "EventType": "string-value",
+                "LambdaFunctionARN": "string-value"
+              }
+            ]
+          },
+          "IPV6Enabled": "boolean-value",
+          "Origins": [
+            {
+              "CustomOriginConfig": {
+                "OriginKeepaliveTimeout": "integer-value",
+                "OriginReadTimeout": "integer-value"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

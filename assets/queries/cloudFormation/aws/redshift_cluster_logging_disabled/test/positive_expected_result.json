@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Redshift Cluster Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "fileName": "positive2.json",
+    "queryName": "Redshift Cluster Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 6
+  }
+]

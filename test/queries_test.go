@@ -237,6 +237,7 @@ func validateQueryResultFields(tb testing.TB, vulnerabilies []model.Vulnerabilit
 				"resource_vendor":        true,
 				"resource_category":      true,
 				"user_name":              false,
+				"resource_encryption":    true,
 			}
 			for key := range bomOutputRequiredFields {
 				_, ok := bomResult[key]

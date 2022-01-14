@@ -1,0 +1,26 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Description": "Creating S3 bucket",
+  "Resources": {
+    "JenkinsArtifacts03": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "jenkins-artifacts",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        },
+        "Tags": [
+          {
+            "Key": "CostCenter",
+            "Value": "ITEngineering"
+          },
+          {
+            "Value": "CICD",
+            "Key": "Type"
+          }
+        ],
+        "AccessControl": "BucketOwnerFullControl"
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Permissive Web ACL Default Action",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "fileName": "positive2.json",
+    "queryName": "Permissive Web ACL Default Action",
+    "severity": "HIGH",
+    "line": 8
+  }
+]

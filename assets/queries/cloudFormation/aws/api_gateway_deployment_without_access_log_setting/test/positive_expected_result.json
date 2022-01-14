@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "API Gateway Deployment Without Access Log Setting",
+    "severity": "MEDIUM",
+    "line": 21,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "fileName": "positive3.yaml",
+    "queryName": "API Gateway Deployment Without Access Log Setting",
+    "severity": "MEDIUM",
+    "line": 21
+  },
+  {
+    "queryName": "API Gateway Deployment Without Access Log Setting",
+    "severity": "MEDIUM",
+    "line": 29,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "fileName": "positive4.json",
+    "queryName": "API Gateway Deployment Without Access Log Setting",
+    "severity": "MEDIUM",
+    "line": 15
+  },
+  {
+    "queryName": "API Gateway Deployment Without Access Log Setting",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "API Gateway Deployment Without Access Log Setting",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive6.json"
+  }
+]

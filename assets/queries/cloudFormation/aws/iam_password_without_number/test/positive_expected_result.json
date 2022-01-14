@@ -1,0 +1,14 @@
+[
+  {
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive1.yaml",
+    "queryName": "IAM Password Without Number"
+  },
+  {
+    "queryName": "IAM Password Without Number",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive2.json"
+  }
+]

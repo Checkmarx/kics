@@ -1,0 +1,40 @@
+
+Resources:
+  Test:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType:
+        Ref: InstanceType
+      ImageId:
+        Fn::FindInMap:
+        - AMIs
+        - Ref: AWS::Region
+        - Name
+      KeyName:
+        Ref: KeyName
+      IamInstanceProfile:
+        Ref: ListS3BucketsInstanceProfile
+      SecurityGroupIds:
+      - Ref: SSHAccessSG
+      Tags:
+      - Key: Name
+        Value: Test
+  ListS3BucketsInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Path: "/"
+      Roles:
+      - Ref: ListS3BucketsRole
+  ListS3BucketsRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - ec2.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Path: "/"

@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "ECS No Load Balancer Attached",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "ECS No Load Balancer Attached",
+    "severity": "MEDIUM",
+    "line": 25,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "ECS No Load Balancer Attached",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive2.json"
+  },
+  {
+    "severity": "MEDIUM",
+    "line": 27,
+    "fileName": "positive2.json",
+    "queryName": "ECS No Load Balancer Attached"
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "Description": "Creating S3 bucket",
+  "Resources": {
+    "S3BucketForWebsiteContent": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "AccessControl": "AuthenticatedRead",
+        "WebsiteConfiguration": {
+          "IndexDocument": "index.html",
+          "ErrorDocument": "error.html"
+        }
+      }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z"
+}

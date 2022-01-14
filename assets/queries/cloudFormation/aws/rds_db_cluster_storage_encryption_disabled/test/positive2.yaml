@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Creates RDS Cluster
+Resources:
+  RDSCluster1:
+    Properties:
+      DBClusterParameterGroupName:
+        Ref: RDSDBClusterParameterGroup
+      DBSubnetGroupName: DBSubnetGroup
+      Engine: aurora
+      MasterUserPassword: password
+      MasterUsername: username
+    Type: "AWS::RDS::DBCluster"
+  RDSDBClusterParameterGroup:
+    Properties:
+      Description: "CloudFormation Sample Aurora Cluster Parameter Group"
+      Family: aurora5.6
+      Parameters:
+        time_zone: US/Eastern
+    Type: "AWS::RDS::DBClusterParameterGroup"
+  RDSDBInstance1:
+    Properties:
+      AvailabilityZone: eu-west-1b
+      DBClusterIdentifier:
+        Ref: RDSCluster
+      DBInstanceClass: db.r3.xlarge
+      DBParameterGroupName:
+        Ref: RDSDBParameterGroup
+      DBSubnetGroupName: DBSubnetGroup
+      Engine: aurora
+      PubliclyAccessible: "true"
+    Type: "AWS::RDS::DBInstance"
+  RDSDBInstance2:
+    Properties:
+      AvailabilityZone: eu-west-1b
+      DBClusterIdentifier:
+        Ref: RDSCluster
+      DBInstanceClass: db.r3.xlarge
+      DBParameterGroupName:
+        Ref: RDSDBParameterGroup
+      DBSubnetGroupName: DBSubnetGroup
+      Engine: aurora
+      PubliclyAccessible: "true"
+    Type: "AWS::RDS::DBInstance"
+  RDSDBParameterGroup:
+    Type: 'AWS::RDS::DBParameterGroup'
+    Properties:
+      Description: CloudFormation Sample Aurora Parameter Group
+      Family: aurora5.6
+      Parameters:
+        sql_mode: IGNORE_SPACE
+        max_allowed_packet: 1024
+        innodb_buffer_pool_size: '{DBInstanceClassMemory*3/4}'

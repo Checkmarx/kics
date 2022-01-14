@@ -1,0 +1,59 @@
+{
+  "Resources": {
+    "ReplicationGroup": {
+      "UpdatePolicy": {
+        "UseOnlineResharding": true
+      },
+      "DeletionPolicy": "Snapshot",
+      "UpdateReplacePolicy": "Snapshot",
+      "Type": "AWS::ElastiCache::ReplicationGroup",
+      "Properties": {
+        "AuthToken": [
+          "HasAuthToken",
+          "AuthToken",
+          "AWS::NoValue"
+        ],
+        "AutomaticFailoverEnabled": [
+          "HasAutomaticFailoverEnabled",
+          true,
+          false
+        ],
+        "SecurityGroupIds": [
+          "SecurityGroup"
+        ],
+        "TransitEncryptionEnabled": true,
+        "SnapshotWindow": "00:00-03:00",
+        "CacheParameterGroupName": "CacheParameterGroup",
+        "CacheSubnetGroupName": "CacheSubnetGroupName",
+        "Engine": "redis",
+        "EngineVersion": "EngineVersion",
+        "KmsKeyId": [
+          "HasKmsKey",
+          {
+            "Fn::ImportValue": "${ParentKmsKeyStack}-KeyId"
+          },
+          "AWS::NoValue"
+        ],
+        "SnapshotRetentionLimit": "SnapshotRetentionLimit",
+        "ReplicationGroupDescription": "AWS::StackName",
+        "ReplicasPerNodeGroup": "NumReplicas",
+        "PreferredMaintenanceWindow": "sat:07:00-sat:08:00",
+        "SnapshotName": [
+          "HasSnapshotName",
+          "SnapshotName",
+          "AWS::NoValue"
+        ],
+        "AtRestEncryptionEnabled": true,
+        "CacheNodeType": "CacheNodeType",
+        "NotificationTopicArn": [
+          "HasAlertTopic",
+          {
+            "Fn::ImportValue": "${ParentAlertStack}-TopicARN"
+          },
+          "AWS::NoValue"
+        ],
+        "NumNodeGroups": "NumShards"
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "High Access Key Rotation Period",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "fileName": "positive2.json",
+    "queryName": "High Access Key Rotation Period",
+    "severity": "MEDIUM",
+    "line": 8
+  }
+]

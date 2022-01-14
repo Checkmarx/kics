@@ -1,0 +1,50 @@
+{
+  "Resources": {
+    "RecordServiceS3Bucket": {
+      "Properties": {
+        "ReplicationConfiguration": {
+          "Role": {
+            "Fn::GetAtt": [
+              "WorkItemBucketBackupRole",
+              "Arn"
+            ]
+          },
+          "Rules": [
+            {
+              "Id": "Backup",
+              "Prefix": "",
+              "Status": "Enabled",
+              "Destination": {
+                "Bucket": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:s3:::",
+                      {
+                        "Fn::Join": [
+                          "-",
+                          [
+                            {
+                              "Ref": "AWS::Region"
+                            },
+                            {
+                              "Ref": "AWS::StackName"
+                            },
+                            "replicationbucket"
+                          ]
+                        ]
+                      }
+                    ]
+                  ]
+                },
+                "StorageClass": "STANDARD"
+              }
+            }
+          ]
+        }
+      },
+      "Type": "AWS::S3::Bucket",
+      "DeletionPolicy": "Retain"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "Resources": {
+    "InstanceSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Allow http to client host",
+        "VpcId": {
+          "Ref": "myVPC"
+        },
+        "SecurityGroupIngress": [
+          {
+            "FromPort": 80,
+            "ToPort": 80,
+            "CidrIp": "127.0.0.1/32",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "SecurityGroupEgress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "CidrIp": "127.0.0.1/33"
+          }
+        ]
+      }
+    },
+    "Ec2Instance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "SecurityGroups": [
+          "InstanceSecurityGroup"
+        ],
+        "KeyName": "mykey",
+        "ImageId": ""
+      }
+    }
+  }
+}

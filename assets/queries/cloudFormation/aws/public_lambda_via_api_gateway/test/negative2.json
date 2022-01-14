@@ -1,0 +1,22 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "s3Permission": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "function",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "s3.amazonaws.com",
+        "SourceAccount": {
+          "Ref": "AWS::AccountId"
+        },
+        "SourceArn": "arn:aws:s3:eu-central-1:123456789012:bucketname"
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: A sample template 2
+Resources:
+    myuseeer:
+      Type: AWS::IAM::Group
+      Properties:
+        Path: "/"
+        LoginProfile:
+          Password: myP@ssW0rd
+        Policies:
+        - PolicyName: giveaccesstoqueueonly
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Effect: Allow
+              Action:
+              - sqs:*
+              Resource:
+              - !GetAtt myqueue.Arn
+            - Effect: Deny
+              Action:
+              - sqs:*
+              NotResource:
+              - !GetAtt myqueue.Arn
+    IamUserAdminSample22:
+      Type: AWS::IAM::User
+      Condition: IsSampleIamUser
+      Properties:
+        UserName: sample-iam-user-admin
+        Groups:
+        - !Ref 'myu2ser'

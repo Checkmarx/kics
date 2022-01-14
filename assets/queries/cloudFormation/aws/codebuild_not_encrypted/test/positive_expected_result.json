@@ -1,0 +1,14 @@
+[
+  {
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive1.yaml",
+    "queryName": "CodeBuild Not Encrypted"
+  },
+  {
+    "queryName": "CodeBuild Not Encrypted",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive2.json"
+  }
+]

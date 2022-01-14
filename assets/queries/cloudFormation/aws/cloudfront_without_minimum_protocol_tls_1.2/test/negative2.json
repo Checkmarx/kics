@@ -1,0 +1,52 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Resources": {
+    "cloudfrontdistribution": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "CacheBehaviors": [
+            {
+              "LambdaFunctionAssociations": [
+                {
+                  "EventType": "string-value",
+                  "LambdaFunctionARN": "string-value"
+                }
+              ]
+            }
+          ],
+          "DefaultCacheBehavior": {
+            "LambdaFunctionAssociations": [
+              {
+                "EventType": "string-value",
+                "LambdaFunctionARN": "string-value"
+              }
+            ]
+          },
+          "IPV6Enabled": "boolean-value",
+          "Origins": [
+            {
+              "CustomOriginConfig": {
+                "OriginKeepaliveTimeout": "integer-value",
+                "OriginReadTimeout": "integer-value"
+              }
+            }
+          ],
+          "ViewerCertificate": {
+            "IamCertificateId": "String",
+            "MinimumProtocolVersion": "TLSv1.2_2018",
+            "SslSupportMethod": "String",
+            "AcmCertificateArn": "String",
+            "CloudFrontDefaultCertificate": true
+          }
+        },
+        "Tags": [
+          {
+            "Key": "string-value",
+            "Value": "string-value"
+          }
+        ]
+      }
+    }
+  }
+}

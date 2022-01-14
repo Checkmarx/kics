@@ -1,0 +1,30 @@
+Resources:
+  MyEIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      InstanceId: !Ref Logical name of an AWS::EC2::Instance resource
+  Policy2:
+    Type: AWS::FMS::Policy
+    Properties:
+      ExcludeResourceTags: true
+      ResourceTags:
+        - Key: resourceTag1
+          Value: value
+        - Key: resourceTag2
+          Value: value
+      IncludeMap:
+        ACCOUNT:
+          - !Ref AWS::AccountId
+      PolicyName: TaggedPolicy
+      RemediationEnabled: false
+      ResourceType: ResourceTypeList
+      ResourceTypeList:
+        - AWS::EC2::EIP
+      SecurityServicePolicyData:
+        Type: SHIELD_ADVANCED
+      DeleteAllPolicyResources: false
+      Tags:
+        - Key: tag1
+          Value: value
+        - Key: tag2
+          Value: value

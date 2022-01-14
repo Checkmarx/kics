@@ -1,0 +1,31 @@
+{
+  "Resources": {
+    "MySkill": {
+      "Type": "Alexa::ASK::Skill",
+      "Properties": {
+        "SkillPackage": {
+          "S3BucketRole": "arn:aws:lambda:us-east-1:377024778620:function:aws-node-alexa-skill",
+          "Overrides": {
+            "Manifest": {
+              "apis": {
+                "custom": {
+                  "endpoint": {
+                    "uri": "arn:aws:lambda:us-east-1:377024778620:function:aws-node-alexa-skill"
+                  }
+                }
+              }
+            }
+          },
+          "S3Bucket": "my-skill-packages",
+          "S3Key": "skillpackage.zip"
+        },
+        "AuthenticationConfiguration": {
+          "ClientId": "amzn1.application-oa2-client.1234",
+          "ClientSecret": "1234",
+          "RefreshToken": "Atzr|1234"
+        },
+        "VendorId": "1234"
+      }
+    }
+  }
+}

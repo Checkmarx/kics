@@ -1,0 +1,105 @@
+#this is a problematic code where the query should report a result(s)
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  myLaunchTemplate:
+    Type: AWS::EC2::LaunchTemplate
+    Properties:
+      LaunchTemplateName: !Sub ${AWS::StackName}-launch-template
+      LaunchTemplateData:
+        BlockDeviceMappings:
+          - Ebs:
+              VolumeSize: 22
+              VolumeType: gp2
+              DeleteOnTermination: true
+              Encrypted: true
+            DeviceName: /dev/xvdcz
+        CreditSpecification:
+          CpuCredits: Unlimited
+        ImageId: ami-02354e95b39ca8dec
+        InstanceType: t2.micro
+        KeyName: my-key-pair-useast1
+        Monitoring:
+          Enabled: true
+        SecurityGroupIds:
+          - sg-7c227019
+          - sg-903004f8
+  myASG:
+    Type: AWS::AutoScaling::AutoScalingGroup
+    Properties:
+      AutoScalingGroupName: myASG
+      MinSize: "1"
+      MaxSize: "6"
+      DesiredCapacity: "2"
+      HealthCheckGracePeriod: 300
+      LaunchTemplate:
+        LaunchTemplateId: !Ref myLaunchTemplate
+        Version: !GetAtt myLaunchTemplate.LatestVersionNumber
+      VPCZoneIdentifier:
+        - !Ref myPublicSubnet1
+        - !Ref myPublicSubnet2
+      MetricsCollection:
+        - Granularity: "1Minute"
+          Metrics:
+            - "GroupMinSize"
+            - "GroupMaxSize"
+      Tags:
+        - Key: Environment
+          Value: Production
+          PropagateAtLaunch: "true"
+        - Key: Purpose
+          Value: WebServerGroup
+          PropagateAtLaunch: "false"
+  myASG2:
+    Type: AWS::AutoScaling::AutoScalingGroup
+    Properties:
+      AutoScalingGroupName: myASG2
+      MinSize: "1"
+      MaxSize: "6"
+      DesiredCapacity: "2"
+      HealthCheckGracePeriod: 300
+      LoadBalancerNames: []
+      LaunchTemplate:
+        LaunchTemplateId: !Ref myLaunchTemplate
+        Version: !GetAtt myLaunchTemplate.LatestVersionNumber
+      VPCZoneIdentifier:
+        - !Ref myPublicSubnet1
+        - !Ref myPublicSubnet2
+      MetricsCollection:
+        - Granularity: "1Minute"
+          Metrics:
+            - "GroupMinSize"
+            - "GroupMaxSize"
+      Tags:
+        - Key: Environment
+          Value: Production
+          PropagateAtLaunch: "true"
+        - Key: Purpose
+          Value: WebServerGroup
+          PropagateAtLaunch: "false"
+  myASG3:
+    Type: AWS::AutoScaling::AutoScalingGroup
+    Properties:
+      AutoScalingGroupName: myASG
+      MinSize: "1"
+      MaxSize: "6"
+      DesiredCapacity: "2"
+      HealthCheckGracePeriod: 300
+      LoadBalancerNames: []
+      LaunchTemplate:
+        LaunchTemplateId: !Ref myLaunchTemplate
+        Version: !GetAtt myLaunchTemplate.LatestVersionNumber
+      VPCZoneIdentifier:
+        - !Ref myPublicSubnet1
+        - !Ref myPublicSubnet2
+      MetricsCollection:
+        - Granularity: "1Minute"
+          Metrics:
+            - "GroupMinSize"
+            - "GroupMaxSize"
+      Tags:
+        - Key: Environment
+          Value: Production
+          PropagateAtLaunch: "true"
+        - Key: Purpose
+          Value: WebServerGroup
+          PropagateAtLaunch: "false"

@@ -1,9 +1,0 @@
-AWSTemplateFormatVersion: "2010-09-09"
-Description: "Router53"
-Resources:
-  HostedZone:
-    Type: AWS::Route53::HostedZone
-    Properties:
-      Name: "HostedZone"
-      QueryLoggingConfig:
-        CloudWatchLogsLogGroupArn: "SomeCloudWatchLogGroupArn"

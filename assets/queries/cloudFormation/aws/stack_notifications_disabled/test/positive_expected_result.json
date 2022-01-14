@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Stack Notifications Disabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Stack Notifications Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive2.json"
+  }
+]

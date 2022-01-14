@@ -1,0 +1,20 @@
+{
+  "Resources": {
+    "BadPolicy": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "Description": "Policy for something.",
+        "Path": "/",
+        "PolicyDocument": {
+          "Statement": [],
+          "Version": "2012-10-17"
+        },
+        "Users": [
+          {
+            "Ref": "TestUser"
+          }
+        ]
+      }
+    }
+  }
+}

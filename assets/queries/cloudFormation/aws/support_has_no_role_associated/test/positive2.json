@@ -1,0 +1,78 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "A sample template",
+  "Resources": {
+    "noRoles": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "AWSSupportAccess",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "*"
+              ],
+              "Resource": "*"
+            }
+          ]
+        },
+        "Users": [
+          "SomeUser"
+        ],
+        "Groups": [
+          "SomeGroup"
+        ]
+      }
+    },
+    "noUsers": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "AWSSupportAccess",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "*"
+              ],
+              "Resource": "*"
+            }
+          ]
+        },
+        "Roles": [
+          "SomeRole"
+        ],
+        "Groups": [
+          "SomeGroup"
+        ]
+      }
+    },
+    "noGroups": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "AWSSupportAccess",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "*"
+              ],
+              "Resource": "*"
+            }
+          ]
+        },
+        "Roles": [
+          "SomeRole"
+        ],
+        "Users": [
+          "SomeUser"
+        ]
+      }
+    }
+  }
+}

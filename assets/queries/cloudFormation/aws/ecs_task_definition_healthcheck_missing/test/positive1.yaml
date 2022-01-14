@@ -1,0 +1,68 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: A sample template
+Resources:
+  MyEC2Instance:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: "ami-0ff8a91507f77f867"
+      InstanceType: t2.micro
+      KeyName: testkey
+      BlockDeviceMappings:
+        - DeviceName: /dev/sdm
+          Ebs:
+            VolumeType: io1
+            Iops: 200
+            DeleteOnTermination: false
+            VolumeSize: 20
+  taskdefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+        - Name:
+            Ref: "AppName1"
+          MountPoints:
+            - SourceVolume: "my-vol"
+              ContainerPath: "/var/www/my-vol"
+          Image: "amazon/amazon-ecs-sample"
+          Cpu: 256
+          PortMappings:
+            - ContainerPort:
+                Ref: "AppContainerPort"
+              HostPort:
+                Ref: "AppHostPort"
+          EntryPoint:
+            - "/usr/sbin/apache2"
+            - "-D"
+            - "FOREGROUND"
+          HealthCheck:
+            Command:
+              - CMD-SHELL
+              - curl -f http://localhost:8080/ || exit 1
+            Interval: 30
+            Retries: 3
+            StartPeriod: 1
+            Timeout: 5
+          Memory: 512
+          Essential: true
+        - Name:
+            Ref: "AppName"
+          MountPoints:
+            - SourceVolume: "my-vol"
+              ContainerPath: "/var/www/my-vol"
+          Image: "amazon/amazon-ecs-sample"
+          Cpu: 256
+          PortMappings:
+            - ContainerPort:
+                Ref: "AppContainerPort"
+              HostPort:
+                Ref: "AppHostPort"
+          EntryPoint:
+            - "/usr/sbin/apache2"
+            - "-D"
+            - "FOREGROUND"
+          Memory: 512
+          Essential: true
+      Volumes:
+        - Host:
+            SourcePath: "/var/lib/docker/vfs/dir/"
+          Name: "my-vol"

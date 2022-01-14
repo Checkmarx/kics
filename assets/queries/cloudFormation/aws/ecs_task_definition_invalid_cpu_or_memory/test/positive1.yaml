@@ -1,0 +1,73 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: A sample template
+Resources:
+  ECSService:
+    Type: AWS::ECS::Service
+    DependsOn:
+      - Listener
+    Properties:
+      Role:
+        Ref: ECSServiceRole
+      TaskDefinition:
+        Ref: ECSTaskDefinition
+      DesiredCount: 1
+      LoadBalancers:
+        - TargetGroupArn:
+            Ref: TargetGroup
+          ContainerPort: 80
+          ContainerName: sample-app
+      Cluster:
+        Ref: ECSCluster
+      LaunchType: FARGATE
+  taskdefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+        - Name:
+            Ref: "AppName"
+          MountPoints:
+            - SourceVolume: "my-vol"
+              ContainerPath: "/var/www/my-vol"
+          Image: "amazon/amazon-ecs-sample"
+          Cpu: 256
+          PortMappings:
+            - ContainerPort:
+                Ref: "AppContainerPort"
+              HostPort:
+                Ref: "AppHostPort"
+          EntryPoint:
+            - "/usr/sbin/apache2"
+            - "-D"
+            - "FOREGROUND"
+          Memory: 4096
+          Essential: true
+      Volumes:
+        - Host:
+            SourcePath: "/var/lib/docker/vfs/dir/"
+          Name: "my-vol"
+  taskdefinition2:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+        - Name:
+            Ref: "AppName2"
+          MountPoints:
+            - SourceVolume: "my-vol"
+              ContainerPath: "/var/www/my-vol"
+          Image: "amazon/amazon-ecs-sample"
+          Cpu: 100
+          PortMappings:
+            - ContainerPort:
+                Ref: "AppContainerPort"
+              HostPort:
+                Ref: "AppHostPort"
+          EntryPoint:
+            - "/usr/sbin/apache2"
+            - "-D"
+            - "FOREGROUND"
+          Memory: 4096
+          Essential: true
+      Volumes:
+        - Host:
+            SourcePath: "/var/lib/docker/vfs/dir/"
+          Name: "my-vol"

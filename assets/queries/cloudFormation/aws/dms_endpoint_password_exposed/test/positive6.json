@@ -1,0 +1,36 @@
+{
+  "Parameters": {
+    "ParentMasterUsername": {
+      "Description": "username",
+      "Type": "String",
+      "Default": "username!"
+    }
+  },
+  "Resources": {
+    "DMSEndpoint6": {
+      "Type": "AWS::DMS::Endpoint",
+      "Properties": {
+        "ServerName": "String",
+        "EngineName": "String",
+        "KinesisSettings": "KinesisSettings",
+        "KmsKeyId": "String",
+        "Port": 80,
+        "S3Settings": "S3Settings",
+        "Tags": [
+          "Tag"
+        ],
+        "Username": "String",
+        "DatabaseName": "String",
+        "EndpointIdentifier": "String",
+        "MongoDbSettings": "MongoDbSettings",
+        "Password": "asDjskjs73!!",
+        "SslMode": "String",
+        "CertificateArn": "String",
+        "NeptuneSettings": "NeptuneSettings",
+        "EndpointType": "String",
+        "ExtraConnectionAttributes": "String",
+        "KafkaSettings": "KafkaSettings"
+      }
+    }
+  }
+}

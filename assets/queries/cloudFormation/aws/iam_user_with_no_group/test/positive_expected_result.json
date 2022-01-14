@@ -1,0 +1,26 @@
+[
+  {
+    "severity": "LOW",
+    "line": 6,
+    "fileName": "positive1.yaml",
+    "queryName": "IAM User With No Group"
+  },
+  {
+    "fileName": "positive2.yaml",
+    "queryName": "IAM User With No Group",
+    "severity": "LOW",
+    "line": 7
+  },
+  {
+    "queryName": "IAM User With No Group",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "IAM User With No Group",
+    "severity": "LOW",
+    "line": 8,
+    "fileName": "positive4.json"
+  }
+]

@@ -1,0 +1,10 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Creating S3 bucket
+Resources:
+  S3BucketForWebsiteContent:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: AuthenticatedRead
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html

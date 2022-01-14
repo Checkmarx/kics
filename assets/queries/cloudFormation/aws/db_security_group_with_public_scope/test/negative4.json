@@ -1,0 +1,32 @@
+{
+  "Resources": {
+    "DBinstance": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "AllocatedStorage": "5",
+        "DBInstanceClass": "db.t3.small",
+        "Engine": "MySQL",
+        "MasterUsername": "YourName",
+        "MasterUserPassword": "YourPassword",
+        "PubliclyAccessible": true,
+        "DBSecurityGroups": [
+          {
+            "Ref": "DbSecurityByEC2SecurityGroup"
+          }
+        ]
+      },
+      "DeletionPolicy": "Snapshot"
+    },
+    "DbSecurityByEC2SecurityGroup": {
+      "Type": "AWS::RDS::DBSecurityGroup",
+      "Properties": {
+        "GroupDescription": "Ingress for Amazon EC2 security group",
+        "DBSecurityGroupIngress": [
+          {
+            "CIDRIP": "1.2.3.4/24"
+          }
+        ]
+      }
+    }
+  }
+}

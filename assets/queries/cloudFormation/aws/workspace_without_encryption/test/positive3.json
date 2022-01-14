@@ -1,0 +1,20 @@
+{
+  "Resources": {
+    "MyWorkSpace": {
+      "Type": "AWS::WorkSpaces::Workspace",
+      "Properties": {
+        "BundleId": [
+          "WSTypeMap",
+          "WorkstationType",
+          "BundleId"
+        ],
+        "DirectoryId": [
+          "WSTypeMap",
+          "WorkstationType",
+          "DirectoryId"
+        ],
+        "UserName": "UserName"
+      }
+    }
+  }
+}

@@ -12,6 +12,7 @@ CxPolicy[result] {
 		"resource_type": "aws_sns_topic",
 		"resource_name": get_queue_name(aws_sns_topic_resource),
 		"resource_accessibility": info.accessibility,
+		"resource_encryption": common_lib.get_encryption_if_exists(aws_sns_topic_resource),
 		"resource_vendor": "AWS",
 		"resource_category": "Messaging",
 		"policy": info.policy,
@@ -30,8 +31,8 @@ CxPolicy[result] {
 
 get_queue_name(aws_sns_topic_resource) = name {
 	name := aws_sns_topic_resource.name
-} else {
+} else = name {
 	name := sprintf("%s<unknown-sufix>", [aws_sns_topic_resource.name_prefix])
-} else {
+} else = name {
 	name := "unknown"
 }

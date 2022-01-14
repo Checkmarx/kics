@@ -1,0 +1,51 @@
+{
+  "Resources": {
+    "UnsafeSecGroup04": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "IpProtocol": "tcp",
+            "FromPort": 22,
+            "ToPort": 22
+          }
+        ],
+        "GroupDescription": "Allow LDAP and SNMP",
+        "VpcId": "my-vpc",
+        "SecurityGroupIngress": [
+          {
+            "CidrIp": "10.0.0.0/0",
+            "ToPort": 389,
+            "FromPort": 389,
+            "IpProtocol": "all"
+          },
+          {
+            "FromPort": 180,
+            "IpProtocol": "udp",
+            "CidrIp": "10.0.0.1/0",
+            "ToPort": 150
+          },
+          {
+            "IpProtocol": "-1",
+            "CidrIp": "10.0.0.1/0",
+            "ToPort": 53,
+            "FromPort": 53
+          }
+        ]
+      }
+    },
+    "EC2Instance03": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "SecurityGroups": [
+          "UnsafeSecGroup04"
+        ],
+        "KeyName": "my-new-rsa-key",
+        "ImageId": "ami-79fd7eee",
+        "InstanceType": "t3.medium"
+      }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z"
+}

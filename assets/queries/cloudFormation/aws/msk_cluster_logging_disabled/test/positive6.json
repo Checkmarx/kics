@@ -1,0 +1,30 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "MSK Cluster with required properties.",
+  "Resources": {
+    "TestCluster10": {
+      "Type": "AWS::MSK::Cluster",
+      "Properties": {
+        "ClusterName": "ClusterWithRequiredProperties",
+        "KafkaVersion": "2.2.1",
+        "LoggingInfo": {
+          "BrokerLogs": {
+            "CloudWatchLogs": {
+              "Enabled": false,
+              "LogGroup": "aws_cloudwatch_log_group.test.name"
+            }
+          }
+        },
+        "NumberOfBrokerNodes": 3,
+        "BrokerNodeGroupInfo": {
+          "InstanceType": "kafka.m5.large",
+          "ClientSubnets": [
+            "ReplaceWithSubnetId1",
+            "ReplaceWithSubnetId2",
+            "ReplaceWithSubnetId3"
+          ]
+        }
+      }
+    }
+  }
+}

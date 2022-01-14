@@ -1,0 +1,16 @@
+{
+  "Resources": {
+    "EMRSecurityConfiguration03": {
+      "Type": "AWS::EMR::SecurityConfiguration",
+      "Properties": {
+        "SecurityConfiguration": {
+          "EncryptionConfiguration": {
+            "EnableInTransitEncryption": false,
+            "EnableAtRestEncryption": false
+          }
+        },
+        "Name": "String"
+      }
+    }
+  }
+}

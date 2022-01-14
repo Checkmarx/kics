@@ -12,6 +12,7 @@ CxPolicy[result] {
 		"resource_type": "aws_sqs_queue",
 		"resource_name": get_queue_name(aws_sqs_queue_resource),
 		"resource_accessibility": info.accessibility,
+		"resource_encryption": common_lib.get_encryption_if_exists(aws_sqs_queue_resource),
 		"resource_vendor": "AWS",
 		"resource_category": "Queues",
 		"policy": info.policy,
@@ -28,10 +29,51 @@ CxPolicy[result] {
 	}
 }
 
+CxPolicy[result] {
+	aws_sqs_queue_policy_resource := input.document[i].resource.aws_sqs_queue_policy[name]
+
+	policy := common_lib.json_unmarshal(aws_sqs_queue_policy_resource.policy)
+	info := get_accessibility(policy)
+
+	bom_output = {
+		"resource_type": "aws_sqs_queue_policy",
+		"resource_name": get_name(aws_sqs_queue_policy_resource),
+		"resource_accessibility": info.accessibility,
+		"resource_encryption": "unknown",
+		"resource_vendor": "AWS",
+		"resource_category": "Queues",
+		"policy": info.policy,
+	}
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("aws_sqs_queue_policy[%s]", [name]),
+		"issueType": "BillOfMaterials",
+		"keyExpectedValue": "",
+		"keyActualValue": "",
+		"searchLine": common_lib.build_search_line(["resource", "aws_sqs_queue_policy", name], []),
+		"value": json.marshal(bom_output),
+	}
+}
+
+get_name(aws_sqs_queue_policy_resource) = name {
+	name := split(aws_sqs_queue_policy_resource.queue_url, ".")[1]
+} else = name {
+	name := "unknown"
+}
+
 get_queue_name(aws_sqs_queue_resource) = name {
 	name := aws_sqs_queue_resource.name
-} else {
+} else = name {
 	name := sprintf("%s<unknown-sufix>", [aws_sqs_queue_resource.name_prefix])
-} else {
+} else = name {
 	name := "unknown"
+}
+
+get_accessibility(policy) = info {
+	terra_lib.is_publicly_accessible(policy)
+	info = {"accessibility": "public", "policy": policy}
+} else = info {
+	not  terra_lib.is_publicly_accessible(policy)
+	info = {"accessibility": "restrict", "policy": policy}
 }

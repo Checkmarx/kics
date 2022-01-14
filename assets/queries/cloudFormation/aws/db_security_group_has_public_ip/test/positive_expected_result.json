@@ -1,0 +1,14 @@
+[
+  {
+    "line": 69,
+    "fileName": "positive1.yaml",
+    "queryName": "DB Security Group Has Public IP",
+    "severity": "HIGH"
+  },
+  {
+    "queryName": "DB Security Group Has Public IP",
+    "severity": "HIGH",
+    "line": 61,
+    "fileName": "positive2.json"
+  }
+]

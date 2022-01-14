@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  stackset3:
+    Type: AWS::CloudFormation::StackSet
+    Properties:
+      PermissionModel: SERVICE_MANAGED
+      StackSetName: some_stack_name
+      TemplateURL: some_stack_link
+      AutoDeployment:
+        Enabled: true
+        RetainStacksOnAccountRemoval: false
+  stackset4:
+    Type: AWS::CloudFormation::StackSet
+    Properties:
+      PermissionModel: SERVICE_MANAGED
+      StackSetName: some_stack_name
+      TemplateURL: some_stack_link
+      AutoDeployment:
+        Enabled: true
+  stackset5:
+    Type: AWS::CloudFormation::StackSet
+    Properties:
+      PermissionModel: SERVICE_MANAGED
+      StackSetName: some_stack_name
+      TemplateURL: some_stack_link
+      AutoDeployment:
+        Enabled: false
+        RetainStacksOnAccountRemoval: true
+  stackset6:
+    Type: AWS::CloudFormation::StackSet
+    Properties:
+      PermissionModel: SERVICE_MANAGED
+      StackSetName: some_stack_name
+      TemplateURL: some_stack_link
+      AutoDeployment:
+        RetainStacksOnAccountRemoval: false
+  stackset7:
+    Type: AWS::CloudFormation::StackSet
+    Properties:
+      PermissionModel: SERVICE_MANAGED
+      StackSetName: some_stack_name
+      TemplateURL: some_stack_link

@@ -1,0 +1,14 @@
+[
+  {
+    "line": 6,
+    "fileName": "positive1.yaml",
+    "queryName": "SNS Topic is Publicly Accessible For Subscription",
+    "severity": "LOW"
+  },
+  {
+    "queryName": "SNS Topic is Publicly Accessible For Subscription",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive2.json"
+  }
+]

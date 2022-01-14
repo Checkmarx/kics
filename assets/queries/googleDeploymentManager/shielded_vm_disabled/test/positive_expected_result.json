@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Shielded VM Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Shielded VM Disabled",
+    "severity": "MEDIUM",
+    "line": 17,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Shielded VM Disabled",
+    "severity": "MEDIUM",
+    "line": 17,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Shielded VM Disabled",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive2.yaml"
+  }
+]

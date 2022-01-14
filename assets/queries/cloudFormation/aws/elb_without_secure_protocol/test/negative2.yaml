@@ -1,0 +1,22 @@
+#this code is a correct code for which the query should not find any result
+Resources:
+    MyLoadBalancer2:
+        Type: AWS::ElasticLoadBalancing::LoadBalancer
+        Properties:
+          AvailabilityZones:
+          - "us-east-2a"
+          CrossZone: true
+          Listeners:
+          - InstancePort: '9443'
+            InstanceProtocol: SSL
+            LoadBalancerPort: '443'
+            Protocol: SSL
+            PolicyNames:
+            - My-SSLNegotiation-Policy
+            SSLCertificateId: arn:aws:iam::123456789012:server-certificate/my-server-certificate
+          Policies:
+          - PolicyName: My-SSLNegotiation-Policy
+            PolicyType: SSLNegotiationPolicyType
+            Attributes:
+            - Name: Reference-Security-Policy
+              Value: ELBSecurityPolicy-TLS-1-2-2017-01

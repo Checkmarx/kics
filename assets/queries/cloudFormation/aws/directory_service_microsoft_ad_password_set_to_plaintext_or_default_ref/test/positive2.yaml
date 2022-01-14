@@ -1,0 +1,10 @@
+Resources:
+  NewAmpApp:
+      Type: AWS::DirectoryService::MicrosoftAD
+      Properties:
+          CreateAlias: true
+          Edition: String
+          EnableSso: true
+          Name: String
+          Password: 'asDjskjs73!!'
+          ShortName: String

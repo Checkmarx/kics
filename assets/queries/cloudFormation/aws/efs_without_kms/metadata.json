@@ -1,0 +1,11 @@
+{
+  "id": "6d087495-2a42-4735-abf7-02ef5660a7e6",
+  "queryName": "EFS Without KMS",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Amazon Elastic Filesystem should have filesystem encryption enabled using KMS CMK customer-managed keys instead of AWS managed-keys",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html",
+  "platform": "CloudFormation",
+  "descriptionID": "f5a9536a",
+  "cloudProvider": "aws"
+}

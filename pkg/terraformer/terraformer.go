@@ -55,7 +55,7 @@ func (t *Path) createTfOptions(destination, region string) *importer.ImportOptio
 }
 
 // Import imports the terraformer resources into the destination using terraformer
-func Import(terraformerPath string) (string, error) {
+func Import(terraformerPath, destinationPath string) (string, error) {
 	log.Info().Msg("importing terraformer resources")
 	tfLogger.SetOutput(ioutil.Discard)
 	pathOptions, err := extractTerraformerOptions(terraformerPath)
@@ -63,11 +63,17 @@ func Import(terraformerPath string) (string, error) {
 		return "", errors.Wrap(err, "wrong terraformer path syntax")
 	}
 	ctx := context.Background()
-	workingDir, err := os.Getwd()
-	if err != nil {
-		return "", errors.Wrap(err, "failed to get working directory")
+	if destinationPath == "" {
+		destinationPath, err = os.Getwd()
+		if err != nil {
+			return "", errors.Wrap(err, "failed to get working directory")
+		}
 	}
-	destination := filepath.Join(workingDir, "kics-extract-terraformer")
+
+	destination := filepath.Join(destinationPath, "kics-extract-terraformer")
+
+	log.Error().Msg(destination)
+
 	var provider CloudProvider
 
 	switch pathOptions.CloudProvider {
