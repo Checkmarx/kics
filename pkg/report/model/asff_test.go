@@ -36,7 +36,7 @@ func TestBuildASFFReport(t *testing.T) {
 
 		Remediation: Remediation{
 			Recommendation: AsffRecommendation{
-				Text: *aws.String("In line 1 of file (positive.tf), a result was found. resource.aws_mq_broker[positive1].encryption_options is not defined, but resource.aws_mq_broker[positive1].encryption_options is defined"),
+				Text: *aws.String("In line 1 of file positive.tf, a result was found. resource.aws_mq_broker[positive1].encryption_options is not defined, but resource.aws_mq_broker[positive1].encryption_options is defined"),
 			},
 		},
 		Compliance: Compliance{Status: *aws.String("FAILED")},

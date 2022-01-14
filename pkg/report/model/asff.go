@@ -34,24 +34,29 @@ type AwsSecurityFinding struct {
 	UpdatedAt     string
 }
 
+// AsffRecommendation includes the recommendation to avoid the finding
 type AsffRecommendation struct {
 	Text string
 }
 
+// Remediation contains the recommendation
 type Remediation struct {
 	Recommendation AsffRecommendation
 }
 
+// Resource contains the ID and the type of the target resource
 type Resource struct {
 	ID   string `json:"Id"`
 	Type string
 }
 
+// Severity contains the original severity (KICS severity) and the label severity (ASFF severity)
 type Severity struct {
 	Original string
 	Label    string
 }
 
+// Compliance contains the status of the finding
 type Compliance struct {
 	Status string
 }
