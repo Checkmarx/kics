@@ -6,11 +6,11 @@ import (
 	"os"
 	"os/signal"
 	"path/filepath"
-	"strconv"
 	"sync"
-	"time"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/terraformer"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/rs/zerolog/log"
 
 	"github.com/hashicorp/go-getter"
@@ -18,7 +18,6 @@ import (
 
 const (
 	channelLength = 2
-	tempDirFormat = 1e9
 )
 
 // ExtractedPath is a struct that contains the paths, temporary paths to remove
@@ -41,17 +40,30 @@ type getterStruct struct {
 	source      string
 }
 
+// GetTerraformerSources uses Terraformer to download runtime resources from AWS provider
+// to terraform.
+// After Downloaded files kics scan the files as normal local files
 func GetTerraformerSources(source []string) (ExtractedPath, error) {
-	path, err := terraformerImportAWS()
-	return ExtractedPath{
-		Path: []string{path},
-		ExtractionMap: map[string]model.ExtractedPathObject{
-			path: {
-				Path:      path,
-				LocalPath: true,
-			},
-		},
-	}, err
+	extrStruct := ExtractedPath{
+		Path:          []string{},
+		ExtractionMap: make(map[string]model.ExtractedPathObject),
+	}
+
+	for _, path := range source {
+		exportedPath, err := terraformer.Import(path)
+		if err != nil {
+			log.Error().Msgf("failed to import %s: %s", path, err)
+		}
+
+		extrStruct.ExtractionMap[exportedPath] = model.ExtractedPathObject{
+			Path:      exportedPath,
+			LocalPath: true,
+		}
+
+		extrStruct.Path = append(extrStruct.Path, exportedPath)
+	}
+
+	return extrStruct, nil
 }
 
 // GetSources goes through the source slice, and determines the of source type (ex: zip, git, local).
@@ -63,7 +75,7 @@ func GetSources(source []string) (ExtractedPath, error) {
 		ExtractionMap: make(map[string]model.ExtractedPathObject),
 	}
 	for _, path := range source {
-		destination := filepath.Join(os.TempDir(), "kics-extract-"+nextRandom())
+		destination := filepath.Join(os.TempDir(), "kics-extract-"+utils.NextRandom())
 
 		mode := getter.ClientModeAny
 
@@ -189,25 +201,3 @@ func getFileInfo(info fs.FileInfo, dst, pathFile string) fs.FileInfo {
 	}
 	return fileInfo
 }
-
-// ======== Golang way to create random number for tmp dir naming =============
-var rand uint32
-var randmu sync.Mutex
-
-func reseed() uint32 {
-	return uint32(time.Now().UnixNano() + int64(os.Getpid()))
-}
-
-func nextRandom() string {
-	randmu.Lock()
-	r := rand
-	if r == 0 {
-		r = reseed()
-	}
-	r = r*1664525 + 1013904223 // constants from Numerical Recipes
-	rand = r
-	randmu.Unlock()
-	return strconv.Itoa(int(tempDirFormat + r%tempDirFormat))[1:]
-}
-
-// ==============================================================================

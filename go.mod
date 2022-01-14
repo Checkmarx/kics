@@ -42,6 +42,6 @@ require (
 replace github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
 
 replace (
-	github.com/hashicorp/terraform => github.com/hashicorp/terraform v0.12.31
+	github.com/spf13/afero => github.com/spf13/afero v1.2.2
 	gopkg.in/jarcoal/httpmock.v1 => github.com/jarcoal/httpmock v1.0.5
 )

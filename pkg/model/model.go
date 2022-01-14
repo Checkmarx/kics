@@ -261,3 +261,9 @@ func (m FileMetadatas) Combine(lineInfo bool) Documents {
 	}
 	return documents
 }
+
+// AnalyzedPaths is a slice of types and excluded files obtained from the Analyzer
+type AnalyzedPaths struct {
+	Types []string
+	Exc   []string
+}

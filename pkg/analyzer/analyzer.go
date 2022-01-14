@@ -58,9 +58,13 @@ const (
 
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
 // should be loaded based on the extension of the file and the content
-func Analyze(paths []string) (typesRes, excludeRes []string, errRes error) {
+func Analyze(paths []string) (model.AnalyzedPaths, error) {
 	// start metrics for file analyzer
 	metrics.Metric.Start("file_type_analyzer")
+	returnAnalyzedPaths := model.AnalyzedPaths{
+		Types: make([]string, 0),
+		Exc:   make([]string, 0),
+	}
 
 	var files []string
 	var wg sync.WaitGroup
@@ -70,7 +74,7 @@ func Analyze(paths []string) (typesRes, excludeRes []string, errRes error) {
 	// get all the files inside the given paths
 	for _, path := range paths {
 		if _, err := os.Stat(path); err != nil {
-			return []string{}, []string{}, errors.Wrap(err, "failed to analyze path")
+			return returnAnalyzedPaths, errors.Wrap(err, "failed to analyze path")
 		}
 		if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 			if !info.IsDir() {
@@ -102,10 +106,11 @@ func Analyze(paths []string) (typesRes, excludeRes []string, errRes error) {
 
 	availableTypes := createSlice(results)
 	unwantedPaths := createSlice(unwanted)
-
+	returnAnalyzedPaths.Types = availableTypes
+	returnAnalyzedPaths.Exc = unwantedPaths
 	// stop metrics for file analyzer
 	metrics.Metric.Stop()
-	return availableTypes, unwantedPaths, nil
+	return returnAnalyzedPaths, nil
 }
 
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
