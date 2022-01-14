@@ -288,7 +288,7 @@ var ExampleSummaryMock = model.Summary{
 	},
 }
 
-// SummaryMock a summary to be used without running kics scan
+// SimpleSummaryMock a summary with specific results to ASFF report tests
 var SimpleSummaryMock = model.Summary{
 	Counters: model.Counters{
 		ScannedFiles:           1,
