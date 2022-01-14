@@ -1,5 +1,6 @@
 # Results
 KICS can export results in multiple formats which can be seen on the following list:
+- ASFF (asff)
 - CycloneDX (cyclonedx)
 - Gitlab SAST (glsast)
 - HTML (html)
@@ -703,4 +704,45 @@ You can export CycloneDX report by using `--report-formats "cyclonedx"`. The gen
 		</component>
 	</components>
 </bom>
+```
+
+## ASFF
+You can export ASFF (AWS Security Finding Format) report by using `--report-formats "asff"`.
+
+For default, the ASFF report uses a default AWS account ID ("AWS_ACCOUNT_ID") and a default AWS region ("AWS_REGION"). To set these values, you need to define AWS_ACCOUNT_ID and AWS_REGION in your environment variables.
+```
+[
+	{
+		"AwsAccountId": "AWS_ACCOUNT_ID",
+		"Compliance": {
+			"Status": "FAILED"
+		},
+		"CreatedAt": "2022-01-14T13:50:30Z",
+		"Description": "CloudTrail Log Files should have validation enabled",
+		"GeneratorId": "4d8681a2-3d30-4c89-8070-08acd142748e",
+		"Id": "AWS_REGION/AWS_ACCOUNT_ID/1dc18f740a5c4173264949fb366d3c3871d7d457c4db91f6d73a76caa9873000",
+		"ProductArn": "arn:aws:securityhub:AWS_REGION:AWS_ACCOUNT_ID:product/AWS_ACCOUNT_ID/default",
+		"Remediation": {
+			"Recommendation": {
+				"Text": "In line 2 of file assets\\queries\\ansible\\aws\\cloudtrail_log_file_validation_disabled\\test\\positive.yaml, a result was found. cloudtrail.enable_log_file_validation and cloudtrail.log_file_validation_enabled are undefined, but cloudtrail.enable_log_file_validation or cloudtrail.log_file_validation_enabled is defined"
+			}
+		},
+		"Resources": [
+			{
+				"Id": "4d8681a2-3d30-4c89-8070-08acd142748e",
+				"Type": "Other"
+			}
+		],
+		"SchemaVersion": "2018-10-08",
+		"Severity": {
+			"Original": "LOW",
+			"Label": "LOW"
+		},
+		"Title": "CloudTrail Log File Validation Disabled",
+		"Types": [
+			"Software and Configuration Checks/Vulnerabilities/KICS"
+		],
+		"UpdatedAt": "2022-01-14T13:50:30Z"
+	}
+]
 ```
