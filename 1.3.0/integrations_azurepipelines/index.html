@@ -294,7 +294,7 @@ TARGET_DIR=/home/vsts/kics
 wget -q -c https://github.com/Checkmarx/kics/releases/download/${LATEST_TAG}/${PACKAGE_NAME} -O - | tar -xz -C ${TARGET_DIR}
 </code></pre>
 <p>3.4- Start the scan</p>
-<pre><code class="language-shell"> ${TARGET_DIR}/kics --no-progress -q ${TARGET_DIR}/assets/queries -p ${PWD} -o ${PWD}/kics-results.json
+<pre><code class="language-shell"> ${TARGET_DIR}/kics scan --no-progress -q ${TARGET_DIR}/assets/queries -p ${PWD} -o ${PWD}/kics-results --output-name "azure-pipelines-integration" --report-formats "json,sarif"
 </code></pre>
 <p>3.5- Consume the results</p>
 <pre><code class="language-shell">TOTAL_SEVERITY_COUNTER=`grep '&quot;total_counter&quot;':' ' kics-results.json | awk {'print $2'}`
@@ -342,7 +342,7 @@ stages:
           wget -q -c https://github.com/Checkmarx/kics/releases/download/${LATEST_TAG}/${PACKAGE_NAME} -O - | tar -xz -C ${TARGET_DIR}
 
           echo '--- START SCANNING ---'
-          ${TARGET_DIR}/kics --no-progress -q ${TARGET_DIR}/assets/queries -p ${PWD} -o ${PWD}/kics-results.json
+          ${TARGET_DIR}/kics scan --no-progress -q ${TARGET_DIR}/assets/queries -p ${PWD} -o ${PWD}/kics-results --output-name "azure-pipelines-integration" --report-formats "json,sarif"
 
           TOTAL_SEVERITY_COUNTER=`grep '&quot;total_counter&quot;':' ' kics-results.json | awk {'print $2'}`
           export SEVERITY_COUNTER_HIGH=`grep '&quot;HIGH&quot;':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
