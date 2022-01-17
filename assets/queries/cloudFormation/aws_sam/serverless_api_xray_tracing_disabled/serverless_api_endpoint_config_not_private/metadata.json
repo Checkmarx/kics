@@ -1,0 +1,11 @@
+{
+  "id": "6b5b0313-771b-4319-ad7a-122ee78700ef",
+  "queryName": "Serverless API Endpoint Config Not Private",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "AWS Serverless API should set API Endpoint Config type to 'PRIVATE'. This way, it's not exposed to the public internet",
+  "descriptionUrl": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-api.html#sam-api-endpointconfiguration",
+  "platform": "CloudFormation",
+  "descriptionID": "f86c03cc",
+  "cloudProvider": "aws"
+}
