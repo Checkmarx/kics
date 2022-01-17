@@ -75,11 +75,19 @@ func BuildASFF(summary *model.Summary) []AwsSecurityFinding {
 	for idx := range summary.Queries {
 		query := summary.Queries[idx]
 
-		if query.CloudProvider == "AWS" {
-			for i := range query.Files {
-				finding := awsAccountInfo.getFinding(&query, &query.Files[i])
-				findings = append(findings, finding)
-			}
+		findingPerQuery := awsAccountInfo.getFindingsPerQuery(&query)
+		findings = append(findings, findingPerQuery...)
+	}
+
+	return findings
+}
+
+func (a *AwsAccountInfo) getFindingsPerQuery(query *model.QueryResult) []AwsSecurityFinding {
+	var findings []AwsSecurityFinding
+	if query.CloudProvider == "AWS" {
+		for i := range query.Files {
+			finding := a.getFinding(query, &query.Files[i])
+			findings = append(findings, finding)
 		}
 	}
 
