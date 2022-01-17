@@ -69,7 +69,7 @@
 				
 				<option value="file6">github.com/Checkmarx/kics/internal/console/helpers/exit_handler.go (100.0%)</option>
 				
-				<option value="file7">github.com/Checkmarx/kics/internal/console/helpers/helpers.go (81.4%)</option>
+				<option value="file7">github.com/Checkmarx/kics/internal/console/helpers/helpers.go (82.7%)</option>
 				
 				<option value="file8">github.com/Checkmarx/kics/internal/console/kics.go (79.4%)</option>
 				
@@ -835,8 +835,7 @@ import (
 )
 
 const (
-        wordWrapCount     = 5
-        charsLimitPerLine = 255
+        wordWrapCount = 5
 )
 
 var reportGenerators = map[string]func(path, filename string, body interface{}) error{
@@ -953,10 +952,7 @@ func printFiles(query *model.QueryResult, printer *Printer) <span class="cov5" t
                 if !printer.minimal </span><span class="cov4" title="3">{
                         fmt.Println()
                         for _, line := range query.Files[fileIdx].VulnLines </span><span class="cov0" title="0">{
-                                if len(line.Line) &gt; charsLimitPerLine </span><span class="cov0" title="0">{
-                                        line.Line = line.Line[:charsLimitPerLine]
-                                }</span>
-                                <span class="cov0" title="0">if line.Position == query.Files[fileIdx].Line </span><span class="cov0" title="0">{
+                                if line.Position == query.Files[fileIdx].Line </span><span class="cov0" title="0">{
                                         printer.Line.Printf("\t\t%03d: %s\n", line.Position, line.Line)
                                 }</span> else<span class="cov0" title="0"> {
                                         fmt.Printf("\t\t%03d: %s\n", line.Position, line.Line)
@@ -2326,13 +2322,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="36">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2357,7 +2353,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4465,7 +4461,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
