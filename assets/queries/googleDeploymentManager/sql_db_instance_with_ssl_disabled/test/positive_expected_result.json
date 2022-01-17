@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "SQL DB Instance With SSL Disabled",
+    "severity": "HIGH",
+    "line": 5,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "SQL DB Instance With SSL Disabled",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "SQL DB Instance With SSL Disabled",
+    "severity": "HIGH",
+    "line": 9,
+    "filename": "positive3.yaml"
+  }
+]
