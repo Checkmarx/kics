@@ -69,7 +69,7 @@
 				
 				<option value="file6">github.com/Checkmarx/kics/internal/console/helpers/exit_handler.go (100.0%)</option>
 				
-				<option value="file7">github.com/Checkmarx/kics/internal/console/helpers/helpers.go (82.7%)</option>
+				<option value="file7">github.com/Checkmarx/kics/internal/console/helpers/helpers.go (81.4%)</option>
 				
 				<option value="file8">github.com/Checkmarx/kics/internal/console/kics.go (79.4%)</option>
 				
@@ -123,7 +123,7 @@
 				
 				<option value="file33">github.com/Checkmarx/kics/pkg/detector/helm/helm_detect.go (88.2%)</option>
 				
-				<option value="file34">github.com/Checkmarx/kics/pkg/detector/helper.go (94.1%)</option>
+				<option value="file34">github.com/Checkmarx/kics/pkg/detector/helper.go (92.6%)</option>
 				
 				<option value="file35">github.com/Checkmarx/kics/pkg/detector/search_line_detector.go (95.0%)</option>
 				
@@ -835,7 +835,8 @@ import (
 )
 
 const (
-        wordWrapCount = 5
+        wordWrapCount     = 5
+        charsLimitPerLine = 255
 )
 
 var reportGenerators = map[string]func(path, filename string, body interface{}) error{
@@ -952,7 +953,10 @@ func printFiles(query *model.QueryResult, printer *Printer) <span class="cov5" t
                 if !printer.minimal </span><span class="cov4" title="3">{
                         fmt.Println()
                         for _, line := range query.Files[fileIdx].VulnLines </span><span class="cov0" title="0">{
-                                if line.Position == query.Files[fileIdx].Line </span><span class="cov0" title="0">{
+                                if len(line.Line) &gt; charsLimitPerLine </span><span class="cov0" title="0">{
+                                        line.Line = line.Line[:charsLimitPerLine]
+                                }</span>
+                                <span class="cov0" title="0">if line.Position == query.Files[fileIdx].Line </span><span class="cov0" title="0">{
                                         printer.Line.Printf("\t\t%03d: %s\n", line.Position, line.Line)
                                 }</span> else<span class="cov0" title="0"> {
                                         fmt.Printf("\t\t%03d: %s\n", line.Position, line.Line)
@@ -2322,13 +2326,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="35">total += v
+                <span class="cov8" title="31">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2353,7 +2357,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4568,13 +4572,21 @@ func getKeyWithCurlyBrackets(key string, extractedString [][]string, parts []str
                                         if err != nil </span><span class="cov0" title="0">{
                                                 log.Error().Msgf("failed to extract curly brackets substring")
                                         }</span>
-                                        <span class="cov0" title="0">substr1 = extractedString[i][1]</span>
+                                        <span class="cov0" title="0">if len(extractedString) &gt; i </span><span class="cov0" title="0">{
+                                                if len(extractedString[i][1]) &gt; 0 </span><span class="cov0" title="0">{
+                                                        substr1 = extractedString[i][1]
+                                                }</span>
+                                        }
                                 case len(parts) - 1:<span class="cov1" title="1">
                                         i, err := strconv.Atoi(extractedPart[1])
                                         if err != nil </span><span class="cov0" title="0">{
                                                 log.Error().Msgf("failed to extract curly brackets substring")
                                         }</span>
-                                        <span class="cov1" title="1">substr2 = extractedString[i][1]</span>
+                                        <span class="cov1" title="1">if len(extractedString) &gt; i </span><span class="cov1" title="1">{
+                                                if len(extractedString[i][1]) &gt; 0 </span><span class="cov1" title="1">{
+                                                        substr2 = extractedString[i][1]
+                                                }</span>
+                                        }
                                 }
                         } else<span class="cov1" title="1"> {
                                 substr1 = generateSubstr(substr1, parts, valuePartsLength)
@@ -4652,7 +4664,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
