@@ -1,0 +1,11 @@
+{
+  "id": "7ef7d141-9fbb-4679-a977-fd0883436906",
+  "queryName": "Cluster Master Authentication Disabled",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Kubernetes Engine Clusters must have Master Authentication set to enabled, which means the attribute 'masterAuth' must have the subattributes 'username' and 'password' defined and not empty",
+  "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters",
+  "platform": "GoogleDeploymentManager",
+  "descriptionID": "4a9cd0c6",
+  "cloudProvider": "gcp"
+}
