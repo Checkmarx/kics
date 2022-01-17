@@ -39,3 +39,5 @@ require (
 )
 
 replace github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
+
+replace github.com/docker/cli => github.com/docker/cli v20.10.12+incompatible
