@@ -5,6 +5,7 @@ import (
 	"errors"
 	"strconv"
 
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"
 )
@@ -73,7 +74,7 @@ func unmarshal(val *yaml.Node) interface{} {
 				case yaml.AliasNode:
 					tt := unmarshal(val.Content[i+1].Alias).(map[string]interface{})
 					tt["_kics_lines"] = getLines(val.Content[i+1], val.Content[i].Line)
-					mergeMaps(tmp, tt)
+					utils.MergeMaps(tmp, tt)
 				}
 			}
 		}
@@ -169,12 +170,5 @@ func transformBoolScalarNode(value string) bool {
 		return true
 	default:
 		return false
-	}
-}
-
-// mergeMaps merges two maps
-func mergeMaps(map1, map2 map[string]interface{}) {
-	for key, value := range map2 {
-		map1[key] = value
 	}
 }
