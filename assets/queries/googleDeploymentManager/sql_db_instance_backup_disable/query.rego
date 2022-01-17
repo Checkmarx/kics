@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources.name={{%s}}.properties.settings.backupConfiguration", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'settings.backupConfiguration' is defined and not null",
-		"keyActualValue": "'settings.backupConfiguration' is not defined or null", 
+		"keyActualValue": "'settings.backupConfiguration' is undefined or null", 
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "settings", "backupConfiguration"], []),
 	}
 }
