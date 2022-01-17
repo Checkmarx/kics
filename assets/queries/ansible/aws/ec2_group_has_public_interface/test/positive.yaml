@@ -1,0 +1,22 @@
+- name: create minimal aurora instance in default VPC and default subnet group
+  community.aws.rds_instance:
+    engine: aurora
+    db_instance_identifier: ansible-test-aurora-db-instance
+    instance_type: db.t2.small
+    password: "{{ password }}"
+    username: "{{ username }}"
+    cluster_id: ansible-test-cluster
+    db_security_groups: ["example"]
+- name: example ec2 group
+  ec2_group:
+    name: example
+    description: an example EC2 group
+    vpc_id: 12345
+    region: eu-west-1a
+    aws_secret_key: SECRET
+    aws_access_key: ACCESS
+    rules:
+      - proto: tcp
+        from_port: 80
+        to_port: 80
+        cidr_ip: 0.0.0.0/0
