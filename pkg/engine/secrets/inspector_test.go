@@ -345,6 +345,31 @@ master_auth {
 		name: "valid_no_results",
 		files: model.FileMetadatas{
 			{
+				ID:          "853012ab-cc05-4c1c-b517-9c3552085ee8",
+				LinesIgnore: []int{6, 7},
+				Document:    model.Document{},
+				OriginalData: `
+- name: Start a workflow in the Itential Automation Platform
+	community.network.iap_start_workflow:
+		iap_port: 3000
+	    iap_fqdn: localhost
+#       kics-scan ignore-line
+#       token_key: "DFSFSFHFGFGF[DSFSFAADAFASD%3D"
+		workflow_name: "RouterUpgradeWorkflow"
+		description: "OS-Router-Upgrade"
+		variables: {"deviceName":"ASR9K"}
+`,
+				Kind:     "ANS",
+				FilePath: "assets/queries/common/passwords_and_secrets/test/positive28.yaml",
+			},
+		},
+		wantVuln: []model.Vulnerability{},
+		wantErr:  false,
+	},
+	{
+		name: "valid_no_results",
+		files: model.FileMetadatas{
+			{
 				ID: "853012ab-cc05-4c1c-b517-9c3552085ee8",
 				Commands: model.CommentsCommands{
 					"disable": "baee238e-1921-4801-9c3f-79ae1d7b2cbc",
