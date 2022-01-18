@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"sort"
 
 	sentryReport "github.com/Checkmarx/kics/internal/sentry"
 	"github.com/Checkmarx/kics/pkg/model"
@@ -50,6 +51,10 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 				Kind:     documents.Kind,
 			}, true)
 			continue
+		}
+
+		if len(documents.IgnoreLines) > 0 {
+			sort.Ints(documents.IgnoreLines)
 		}
 
 		file := model.FileMetadata{

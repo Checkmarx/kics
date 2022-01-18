@@ -1,0 +1,11 @@
+{
+  "id": "66f2f9a1-32a6-4a2e-b356-31d803691a8c",
+  "queryName": "Serverless HTTP API Access Logging Settings Undefined",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "AWS Serverless HTTP API should have Access Logging Settings defined",
+  "descriptionUrl": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-httpapi.html#sam-httpapi-accesslogsettings",
+  "platform": "CloudFormation",
+  "descriptionID": "807f6bf8",
+  "cloudProvider": "aws"
+}

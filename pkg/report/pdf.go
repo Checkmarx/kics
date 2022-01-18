@@ -151,6 +151,9 @@ func createDescription(m pdf.Maroto, description string) {
 			})
 		})
 	})
+	m.Row(colFive, func() {
+		m.ColSpace(0)
+	})
 }
 
 func createCISRows(m pdf.Maroto, query *model.QueryResult) {
