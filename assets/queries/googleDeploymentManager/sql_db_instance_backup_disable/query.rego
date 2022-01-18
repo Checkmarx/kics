@@ -11,11 +11,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name={{%s}}.properties.settings.backupConfiguration", [resource.name]),
+		"searchKey": sprintf("resources.name={{%s}}.properties.settings", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'settings.backupConfiguration' is defined and not null",
 		"keyActualValue": "'settings.backupConfiguration' is undefined or null", 
-		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "settings", "backupConfiguration"], []),
+		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "settings"], []),
 	}
 }
 
@@ -28,11 +28,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name={{%s}}.properties.settings.backupConfiguration.enabled", [resource.name]),
+		"searchKey": sprintf("resources.name={{%s}}.properties.settings.backupConfiguration", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'settings.backupConfiguration.enabled' is defined and not null",
 		"keyActualValue": "'settings.backupConfiguration.enabled' is undefined or null", 
-		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "settings", "backupConfiguration", "enabled"], []),
+		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "settings", "backupConfiguration"], []),
 	}
 }
 
