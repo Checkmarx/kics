@@ -1,0 +1,11 @@
+{
+  "id": "5330b503-3319-44ff-9b1c-00ee873f728a",
+  "queryName": "EC2 Group Has Public Interface",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "The CIDR IP should not be a public interface",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
+  "platform": "Ansible",
+  "descriptionID": "506f9dd8",
+  "cloudProvider": "aws"
+}

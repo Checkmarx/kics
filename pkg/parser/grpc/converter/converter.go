@@ -618,19 +618,33 @@ func getLastElementLine(v interface{}, parentLine int) int {
 	// case proto.Proto:
 	// 	position = getLastElement(t.Elements[len(t.Elements)-1], t.Position.Line)
 	case *proto.Message:
-		position = getLastElementLine(t.Elements[len(t.Elements)-1], t.Position.Line)
+		if len(t.Elements) > 0 {
+			position = getLastElementLine(t.Elements[len(t.Elements)-1], t.Position.Line)
+		}
 	case *proto.Service:
-		position = getLastElementLine(t.Elements[len(t.Elements)-1], t.Position.Line)
+		if len(t.Elements) > 0 {
+			position = getLastElementLine(t.Elements[len(t.Elements)-1], t.Position.Line)
+		}
 	case *proto.EnumField:
-		position = getLastElementLine(t.Elements[len(t.Elements)-1], t.Position.Line)
+		if len(t.Elements) > 0 {
+			position = getLastElementLine(t.Elements[len(t.Elements)-1], t.Position.Line)
+		}
 	case *proto.Enum:
-		position = getLastElementLine(t.Elements[len(t.Elements)-1], t.Position.Line)
+		if len(t.Elements) > 0 {
+			position = getLastElementLine(t.Elements[len(t.Elements)-1], t.Position.Line)
+		}
 	case *proto.Oneof:
-		position = getLastElementLine(t.Elements[len(t.Elements)-1], t.Position.Line)
+		if len(t.Elements) > 0 {
+			position = getLastElementLine(t.Elements[len(t.Elements)-1], t.Position.Line)
+		}
 	case *proto.RPC:
-		position = getLastElementLine(t.Elements[len(t.Elements)-1], t.Position.Line)
+		if len(t.Elements) > 0 {
+			position = getLastElementLine(t.Elements[len(t.Elements)-1], t.Position.Line)
+		}
 	case *proto.Group:
-		position = getLastElementLine(t.Elements[len(t.Elements)-1], t.Position.Line)
+		if len(t.Elements) > 0 {
+			position = getLastElementLine(t.Elements[len(t.Elements)-1], t.Position.Line)
+		}
 	default:
 		position = setElementLine(v, parentLine)
 	}

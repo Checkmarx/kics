@@ -23,7 +23,8 @@ import (
 )
 
 const (
-	wordWrapCount = 5
+	wordWrapCount     = 5
+	charsLimitPerLine = 255
 )
 
 var reportGenerators = map[string]func(path, filename string, body interface{}) error{
@@ -140,6 +141,9 @@ func printFiles(query *model.QueryResult, printer *Printer) {
 		if !printer.minimal {
 			fmt.Println()
 			for _, line := range query.Files[fileIdx].VulnLines {
+				if len(line.Line) > charsLimitPerLine {
+					line.Line = line.Line[:charsLimitPerLine]
+				}
 				if line.Position == query.Files[fileIdx].Line {
 					printer.Line.Printf("\t\t%03d: %s\n", line.Position, line.Line)
 				} else {

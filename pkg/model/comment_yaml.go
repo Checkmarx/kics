@@ -40,35 +40,101 @@ func ignoreCommentsYAML(node *yaml.Node) {
 	linesIgnore := make([]int, 0)
 	if node.HeadComment != "" {
 		// Squence Node - Head Comment comes in root node
-		linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&node.HeadComment), 0, node, node.Kind)...)
+		linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&node.HeadComment), 0, node, node.Kind, false)...)
 		NewIgnore.build(linesIgnore)
 		return
 	}
 	// check if comment is in the content
 	for i, content := range node.Content {
 		if content.FootComment != "" && i+2 < len(node.Content) {
-			linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&content.FootComment), i+2, node, node.Kind)...) //nolint
+			linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&content.FootComment), i+2, node, node.Kind, true)...) //nolint
 		}
 		if content.HeadComment == "" {
 			continue
 		}
-		linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&content.HeadComment), i, node, node.Kind)...)
+		linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&content.HeadComment), i, node, node.Kind, false)...)
 	}
 
 	NewIgnore.build(linesIgnore)
 }
 
 // processCommentYAML returns the lines to ignore
-func processCommentYAML(comment *comment, position int, content *yaml.Node, kind yaml.Kind) (linesIgnore []int) {
+func processCommentYAML(comment *comment, position int, content *yaml.Node, kind yaml.Kind, isFooter bool) (linesIgnore []int) {
 	linesIgnore = make([]int, 0)
 	switch com := (*comment).value(); com {
 	case IgnoreLine:
 		linesIgnore = append(linesIgnore, processLine(kind, content, position)...)
 	case IgnoreBlock:
 		linesIgnore = append(linesIgnore, processBlock(kind, content.Content, position)...)
+	default:
+		linesIgnore = append(linesIgnore, processRegularLine(string(*comment), content, position, isFooter)...)
 	}
 
 	return
+}
+
+func getSeqLastLine(content *yaml.Node) int {
+	if len(content.Content) == 0 {
+		return content.Line
+	}
+
+	return content.Content[len(content.Content)-1].Line
+}
+
+func getFootComments(comment string, content *yaml.Node, position, commentsNumber int) (linesIgnore []int) {
+	for { // get the right position where the comment is a foot comment
+		if content.Content[position].FootComment == comment {
+			break
+		}
+		position--
+	}
+
+	line := content.Content[position].Line
+
+	if content.Content[position+1].Kind == yaml.SequenceNode {
+		// get the last line of the sequence through the sequence after the content that has the comment as a foot comment
+		// example:
+		// - proto: tcp  // content.Content[position]
+		//   ports:      // content.Content[position+1]
+		//     - 80
+		//     - 443    //  last line of the sequence
+		//   # public ALB 80 + 443 must be access able from everywhere
+		line = getSeqLastLine(content.Content[position+1])
+	}
+
+	for i := 1; i <= commentsNumber; i++ {
+		linesIgnore = append(linesIgnore, line+i)
+	}
+
+	return
+}
+
+func processRegularLine(comment string, content *yaml.Node, position int, isFooter bool) (linesIgnore []int) {
+	linesIgnore = make([]int, 0)
+
+	if len(content.Content) == 0 {
+		return linesIgnore
+	}
+
+	line := content.Content[position].Line
+	commentsNumber := strings.Count(comment, "#") // number of comments (coverage of nested comments)
+
+	if isFooter { // comment is a foot comment
+		return getFootComments(comment, content, position, commentsNumber)
+	}
+
+	// comment is not a foot comment
+
+	if KICSCommentRgxpYaml.MatchString(comment) {
+		// has kics-scan ignore at the end of the comment
+		linesIgnore = append(linesIgnore, line)
+	}
+
+	for i := 1; i <= commentsNumber; i++ {
+		linesIgnore = append(linesIgnore, line-i)
+	}
+
+	return linesIgnore
 }
 
 // processLine returns the lines to ignore for a line
