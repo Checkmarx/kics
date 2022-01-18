@@ -6,4 +6,4 @@ resources:
       nodePools:
         initialNodeCount: 2
         management:
-          autoUpgrade: true
+          autoRepair: true
