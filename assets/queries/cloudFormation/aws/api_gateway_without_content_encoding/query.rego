@@ -14,8 +14,9 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.MinimumCompressionSize", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Resources.%s.Properties.MinimumCompressionSize, is greater than -1 and smaller than 10485760",
-		"keyActualValue": "Resources.%s.Properties.MinimumCompressionSize, is set but smaller than 0",
+		"keyExpectedValue": "Resources.%s.Properties.MinimumCompressionSize is greater than -1 and smaller than 10485760",
+		"keyActualValue": "Resources.%s.Properties.MinimumCompressionSize is set but smaller than 0",
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "MinimumCompressionSize"], []),
 	}
 }
 
@@ -31,8 +32,9 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.MinimumCompressionSize", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Resources.%s.Properties.MinimumCompressionSize, is greater than -1 and smaller than 10485760",
-		"keyActualValue": "Resources.%s.Properties.MinimumCompressionSize, is set but greater than 10485759",
+		"keyExpectedValue": "Resources.%s.Properties.MinimumCompressionSize is greater than -1 and smaller than 10485760",
+		"keyActualValue": "Resources.%s.Properties.MinimumCompressionSize is set but greater than 10485759",
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "MinimumCompressionSize"], []),
 	}
 }
 
@@ -50,5 +52,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.MinimumCompressionSize is defined", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.MinimumCompressionSize is not defined", [name]),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties"], []),
 	}
 }
