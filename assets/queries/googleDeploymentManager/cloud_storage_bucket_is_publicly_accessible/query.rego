@@ -8,15 +8,14 @@ CxPolicy[result] {
 	resource.type == "storage.v1.bucketAccessControl"
 	properties := resource.properties
 
-	common_lib.valid_key(properties, "entity")
 	public_access_users[j] == resource.properties.entity
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("resources.name={{%s}}.properties.entity", [resource.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'entity' not equal to 'allUsers' nor 'allAuthenticatedUsers'",
-		"keyActualValue": sprintf("'entity' equal to '%s'", [resource.properties.entity]),
+		"keyExpectedValue": "'entity' is not equal to 'allUsers' or 'allAuthenticatedUsers'",
+		"keyActualValue": sprintf("'entity' is equal to '%s'", [resource.properties.entity]),
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "entity"], []),
 	}
 }
