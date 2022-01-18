@@ -10,7 +10,6 @@ import (
 	"github.com/Checkmarx/kics/pkg/analyzer"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/gookit/color"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -138,10 +137,21 @@ func deleteExtractionFolder(extractionMap map[string]model.ExtractedPathObject) 
 	}
 }
 
-func contributionAppeal(queriesPath string) {
+func contributionAppeal(printer *consoleHelpers.Printer, queriesPath string) {
 	if !strings.Contains(queriesPath, filepath.Join("assets", "queries")) {
 		msg := "\nAre you using a custom query? If so, feel free to contribute to KICS!\n"
-		contributionPage := "Check out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md\n\n"
-		color.Yellow.Print(msg + contributionPage)
+		contributionPage := "Check out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md\n"
+
+		fmt.Println(printer.ContributionMessage.Sprintf(msg + contributionPage))
+	}
+}
+
+// printVersionCheck - Prints and logs warning if not using KICS latest version
+func printVersionCheck(printer *consoleHelpers.Printer, s *model.Summary) {
+	if !s.LatestVersion.Latest {
+		message := fmt.Sprintf("A new version 'v%s' of KICS is available, please consider updating", s.LatestVersion.LatestVersionTag)
+
+		fmt.Println(printer.VersionMessage.Sprintf(message))
+		log.Warn().Msgf(message)
 	}
 }

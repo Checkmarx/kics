@@ -46,13 +46,15 @@ var reportGenerators = map[string]func(path, filename string, body interface{}) 
 // Line is the color to print the line with the vulnerability
 // minVersion is a bool that if true will print the results output in a minimum version
 type Printer struct {
-	Medium  color.RGBColor
-	High    color.RGBColor
-	Low     color.RGBColor
-	Info    color.RGBColor
-	Success color.RGBColor
-	Line    color.RGBColor
-	minimal bool
+	Medium              color.RGBColor
+	High                color.RGBColor
+	Low                 color.RGBColor
+	Info                color.RGBColor
+	Success             color.RGBColor
+	Line                color.RGBColor
+	VersionMessage      color.RGBColor
+	ContributionMessage color.RGBColor
+	minimal             bool
 }
 
 // WordWrap Wraps text at the specified number of words
@@ -277,13 +279,15 @@ func ListReportFormats() []string {
 // NewPrinter initializes a new Printer
 func NewPrinter(minimal bool) *Printer {
 	return &Printer{
-		Medium:  color.HEX("#ff7213"),
-		High:    color.HEX("#bb2124"),
-		Low:     color.HEX("#edd57e"),
-		Success: color.HEX("#22bb33"),
-		Info:    color.HEX("#5bc0de"),
-		Line:    color.HEX("#f0ad4e"),
-		minimal: minimal,
+		Medium:              color.HEX("#ff7213"),
+		High:                color.HEX("#bb2124"),
+		Low:                 color.HEX("#edd57e"),
+		Success:             color.HEX("#22bb33"),
+		Info:                color.HEX("#5bc0de"),
+		Line:                color.HEX("#f0ad4e"),
+		VersionMessage:      color.HEX("#ff9913"),
+		ContributionMessage: color.HEX("ffe313"),
+		minimal:             minimal,
 	}
 }
 
