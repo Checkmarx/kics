@@ -11,11 +11,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name={{%s}}.properties.settings.ipConfiguration", [resource.name]),
+		"searchKey": sprintf("resources.name={{%s}}.properties.settings", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'settings.ipConfiguration' is defined and not null",
 		"keyActualValue": "'settings.ipConfiguration' is undefined or null", 
-		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "settings", "ipConfiguration"], []),
+		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "settings"], []),
 	}
 }
 
@@ -28,11 +28,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name={{%s}}.properties.settings.ipConfiguration.requireSsl", [resource.name]),
+		"searchKey": sprintf("resources.name={{%s}}.properties.settings.ipConfiguration", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'settings.ipConfiguration.requireSsl' is defined and not null",
 		"keyActualValue": "'settings.ipConfiguration.requireSsl' is undefined or null", 
-		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "settings", "ipConfiguration", "requireSsl"], []),
+		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "settings", "ipConfiguration"], []),
 	}
 }
 

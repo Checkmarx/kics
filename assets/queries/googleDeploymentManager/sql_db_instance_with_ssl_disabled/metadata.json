@@ -3,7 +3,7 @@
   "queryName": "SQL DB Instance With SSL Disabled",
   "severity": "HIGH",
   "category": "Encryption",
-  "descriptionText": "Cloud SQL Database Instance with SSL disabled for incoming connections",
+  "descriptionText": "Cloud SQL Database Instance should have SLL enabled",
   "descriptionUrl": "https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/instances",
   "platform": "GoogleDeploymentManager",
   "descriptionID": "b42ee5a9",
