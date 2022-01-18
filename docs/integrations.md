@@ -16,7 +16,7 @@ Integrate KICS with:
 - [TeamCity](integrations_teamcity.md)
 - [Travis](integrations_travisci.md)
 - [Pre-commit hooks](integrations_pre_commit.md)
-- [Terraform Cloud](integration_tfcloud)
+- [Terraform Cloud](integration_tfcloud.md)
 - [Terraformer](integrations_terraformer.md)
 - More soon...
 
