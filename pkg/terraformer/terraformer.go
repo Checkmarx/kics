@@ -72,8 +72,6 @@ func Import(terraformerPath, destinationPath string) (string, error) {
 
 	destination := filepath.Join(destinationPath, "kics-extract-terraformer")
 
-	log.Error().Msg(destination)
-
 	var provider CloudProvider
 
 	switch pathOptions.CloudProvider {
@@ -91,7 +89,7 @@ func Import(terraformerPath, destinationPath string) (string, error) {
 		}
 	}
 
-	cleanUnwantedFiles(destination)
+	// cleanUnwantedFiles(destination)
 
 	return destination, nil
 }

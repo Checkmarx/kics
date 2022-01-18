@@ -134,7 +134,6 @@ func resolvePath(flagContent, flagName string) (string, error) {
 // and which files should be ignored, it then updates the types and exclude flags variables
 // with the results found
 func analyzePaths(paths, types, exclude []string) (model.AnalyzedPaths, error) {
-	exc := make([]string, 0)
 	var err error
 	var pathsFlag model.AnalyzedPaths
 	excluded := make([]string, 0)
@@ -146,9 +145,11 @@ func analyzePaths(paths, types, exclude []string) (model.AnalyzedPaths, error) {
 			return model.AnalyzedPaths{}, err
 		}
 		logLoadingQueriesType(pathsFlag.Types)
+	} else {
+		pathsFlag.Types = append(pathsFlag.Types, types...)
 	}
 	excluded = append(excluded, exclude...)
-	excluded = append(excluded, exc...)
+	excluded = append(excluded, pathsFlag.Exc...)
 	pathsFlag.Exc = excluded
 	return pathsFlag, nil
 }
@@ -175,7 +176,7 @@ func extractPathType(paths []string) (regular, terraformer []string) {
 
 func deleteExtractionFolder(extractionMap map[string]model.ExtractedPathObject) {
 	for extractionFile := range extractionMap {
-		err := os.Remove(extractionFile)
+		err := os.RemoveAll(extractionFile)
 		if err != nil {
 			log.Err(err).Msg("Failed to delete KICS extraction folder")
 		}
