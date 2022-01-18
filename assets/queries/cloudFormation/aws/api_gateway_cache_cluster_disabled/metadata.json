@@ -1,7 +1,7 @@
 {
   "id": "52790cad-d60d-41d5-8483-146f9f21208d",
   "queryName": "API Gateway Cache Cluster Disabled",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Insecure Configurations",
   "descriptionText": "AWS API Gateway should have cache clustering enabled",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html#cfn-apigateway-stage-cacheclusterenabled",
