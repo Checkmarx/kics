@@ -1,0 +1,11 @@
+{
+  "id": "a7f8ac28-eed1-483d-87c8-4c325f022572",
+  "queryName": "Serverless Function Environment Variables Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "AWS Serverless Function should encrypt environment variables",
+  "descriptionUrl": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-kmskeyarn",
+  "platform": "CloudFormation",
+  "descriptionID": "f218e4bc",
+  "cloudProvider": "aws"
+}
