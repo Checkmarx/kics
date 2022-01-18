@@ -10,11 +10,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name={{%s}}.properties.nodePools", [resource.name]),
+		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'nodePools' to be defined and not null",
 		"keyActualValue": "'nodePools' is undefined or null", 
-		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "nodePools"], []),
+		"searchLine": common_lib.build_search_line(["resources", idx, "properties"], []),
 	}
 }
 
@@ -26,10 +26,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name={{%s}}.properties.nodePools.upgradeSettings", [resource.name]),
+		"searchKey": sprintf("resources.name={{%s}}.properties.nodePools", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'nodePools.upgradeSettings' to be defined and not null",
 		"keyActualValue": "'nodePools.upgradeSettings' is undefined or null", 
-		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "nodePools", "upgradeSettings"], []),
+		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "nodePools"], []),
 	}
 }
