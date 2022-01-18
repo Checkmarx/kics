@@ -10,8 +10,8 @@
 	"severity_counters": {
 		"HIGH": 6,
 		"INFO": 2,
-		"LOW": 0,
-		"MEDIUM": 8,
+		"LOW": 2,
+		"MEDIUM": 6,
 		"TRACE": 0
 	},
 	"total_counter": 16,
@@ -218,7 +218,7 @@
 			"query_name": "Redshift Using Default Port",
 			"query_id": "41abc6cc-dde1-4217-83d3-fb5f0cc09d8f",
 			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#port",
-			"severity": "MEDIUM",
+			"severity": "LOW",
 			"platform": "Terraform",
 			"category": "Networking and Firewall",
 			"description": "Redshift should not use the default port (5439) because an attacker can easily guess the port",

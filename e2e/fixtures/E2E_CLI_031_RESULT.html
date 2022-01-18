@@ -322,13 +322,13 @@
 <body>
     <div class="container">
         <div class="report-header-footer"><span class="title">KICS <span>REPORT</span></span><span
-                class="timestamp">01/01/2022 15:43</span><a href="https://www.kics.io/" rel="noopener"
+                class="timestamp">01/18/2022 12:15</span><a href="https://www.kics.io/" rel="noopener"
                 target="_blank">KICS.IO</a></div>
         <div class="run-info"><span style="flex-basis:100%" id="scan-paths"><strong>KICS development</strong></span>
             <span style="flex-basis:100%" id="scan-paths"><strong>Scanned paths:</strong> fixtures/samples/terraform.tf</span>
             <span style="flex-basis:100%" id="scan-platforms"><strong>Platforms:</strong> Common, Terraform</span><span
-                id="scan-start-time"><strong>Start time:</strong> 15:43:08, Jan 01 2022</span>
-            <span id="scan-end-time"><strong>End time:</strong> 15:43:19, Jan 01 2022</span>
+                id="scan-start-time"><strong>Start time:</strong> 12:15:11, Jan 18 2022</span>
+            <span id="scan-end-time"><strong>End time:</strong> 12:15:23, Jan 18 2022</span>
         </div>
         <h2 style="margin-top:41px" class="kics-orange">Vulnerabilities:</h2>
         <div class="counters">
@@ -359,7 +359,7 @@
                                 <rect height="5" width="2" x="11" y="7" />
                             </g>
                         </g>
-                    </svg></div><span class="badge" id="severity-count-medium">8</span>
+                    </svg></div><span class="badge" id="severity-count-medium">6</span>
                 <span class="caption">MEDIUM</span>
             </div>
             <div class="severity" onclick="filter('LOW')">
@@ -376,7 +376,7 @@
                                 <rect height="5" width="2" x="11" y="7" />
                             </g>
                         </g>
-                    </svg></div><span class="badge" id="severity-count-low">0</span>
+                    </svg></div><span class="badge" id="severity-count-low">2</span>
                 <span class="caption">LOW</span>
             </div>
             <div class="severity" onclick="filter('INFO')">
@@ -443,24 +443,6 @@
                     <summary>Results (<span class="severity-partial-count-high">2</span>)</summary>
                     <div class="vulnerable-info">
                         <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
-                            <span>Line 14</span>
-                        </div>
-                        <div class="vulnerable-info-details"><span><strong>Expected:</strong> Hardcoded secret key
-                                should not appear in source</span>
-                            <span><strong>Found:</strong> ' master_password = "Mustbe8characters"' contains a
-                                secret</span>
-                        </div>
-                        <div class="code-box">
-                            <div class="code-line"><span class="code-line-counter">13</span><span class="code">
-                                    master_username = "foo"</span></div>
-                            <div class="code-line error"><span class="code-line-counter">14</span><span class="code">
-                                    master_password = "Mustbe8characters"</span></div>
-                            <div class="code-line"><span class="code-line-counter">15</span><span class="code">
-                                    node_type = "dc1.large"</span></div>
-                        </div>
-                    </div>
-                    <div class="vulnerable-info">
-                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
                             <span>Line 5</span>
                         </div>
                         <div class="vulnerable-info-details"><span><strong>Expected:</strong> Hardcoded secret key
@@ -475,6 +457,24 @@
                                     master_password = "Mustbe8characters"</span></div>
                             <div class="code-line"><span class="code-line-counter">6</span><span class="code"> node_type
                                     = "dc1.large"</span></div>
+                        </div>
+                    </div>
+                    <div class="vulnerable-info">
+                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+                            <span>Line 14</span>
+                        </div>
+                        <div class="vulnerable-info-details"><span><strong>Expected:</strong> Hardcoded secret key
+                                should not appear in source</span>
+                            <span><strong>Found:</strong> ' master_password = "Mustbe8characters"' contains a
+                                secret</span>
+                        </div>
+                        <div class="code-box">
+                            <div class="code-line"><span class="code-line-counter">13</span><span class="code">
+                                    master_username = "foo"</span></div>
+                            <div class="code-line error"><span class="code-line-counter">14</span><span class="code">
+                                    master_password = "Mustbe8characters"</span></div>
+                            <div class="code-line"><span class="code-line-counter">15</span><span class="code">
+                                    node_type = "dc1.large"</span></div>
                         </div>
                     </div>
                 </details>
@@ -511,23 +511,6 @@
                     <summary>Results (<span class="severity-partial-count-high">2</span>)</summary>
                     <div class="vulnerable-info">
                         <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
-                            <span>Line 1</span>
-                        </div>
-                        <div class="vulnerable-info-details"><span><strong>Expected:</strong>
-                                aws_redshift_cluster.encrypted is defined and not null</span>
-                            <span><strong>Found:</strong> aws_redshift_cluster.encrypted is undefined or null</span>
-                        </div>
-                        <div class="code-box">
-                            <div class="code-line error"><span class="code-line-counter">1</span><span
-                                    class="code">resource "aws_redshift_cluster" "default" {</span></div>
-                            <div class="code-line"><span class="code-line-counter">2</span><span class="code">
-                                    cluster_identifier = "tf-redshift-cluster"</span></div>
-                            <div class="code-line"><span class="code-line-counter">3</span><span class="code">
-                                    database_name = "mydb"</span></div>
-                        </div>
-                    </div>
-                    <div class="vulnerable-info">
-                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
                             <span>Line 10</span>
                         </div>
                         <div class="vulnerable-info-details"><span><strong>Expected:</strong>
@@ -541,6 +524,23 @@
                                     class="code">resource "aws_redshift_cluster" "default1" {</span></div>
                             <div class="code-line"><span class="code-line-counter">11</span><span class="code">
                                     cluster_identifier = "tf-redshift-cluster"</span></div>
+                        </div>
+                    </div>
+                    <div class="vulnerable-info">
+                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+                            <span>Line 1</span>
+                        </div>
+                        <div class="vulnerable-info-details"><span><strong>Expected:</strong>
+                                aws_redshift_cluster.encrypted is defined and not null</span>
+                            <span><strong>Found:</strong> aws_redshift_cluster.encrypted is undefined or null</span>
+                        </div>
+                        <div class="code-box">
+                            <div class="code-line error"><span class="code-line-counter">1</span><span
+                                    class="code">resource "aws_redshift_cluster" "default" {</span></div>
+                            <div class="code-line"><span class="code-line-counter">2</span><span class="code">
+                                    cluster_identifier = "tf-redshift-cluster"</span></div>
+                            <div class="code-line"><span class="code-line-counter">3</span><span class="code">
+                                    database_name = "mydb"</span></div>
                         </div>
                     </div>
                 </details>
@@ -720,24 +720,6 @@
                     <summary>Results (<span class="severity-partial-count-medium">4</span>)</summary>
                     <div class="vulnerable-info">
                         <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
-                            <span>Line 10</span>
-                        </div>
-                        <div class="vulnerable-info-details"><span><strong>Expected:</strong>
-                                aws_redshift_cluster[default1].cluster_subnet_group_name is set</span>
-                            <span><strong>Found:</strong> aws_redshift_cluster[default1].cluster_subnet_group_name is
-                                undefined</span>
-                        </div>
-                        <div class="code-box">
-                            <div class="code-line"><span class="code-line-counter">9</span><span class="code"></span>
-                            </div>
-                            <div class="code-line error"><span class="code-line-counter">10</span><span
-                                    class="code">resource "aws_redshift_cluster" "default1" {</span></div>
-                            <div class="code-line"><span class="code-line-counter">11</span><span class="code">
-                                    cluster_identifier = "tf-redshift-cluster"</span></div>
-                        </div>
-                    </div>
-                    <div class="vulnerable-info">
-                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
                             <span>Line 1</span>
                         </div>
                         <div class="vulnerable-info-details"><span><strong>Expected:</strong>
@@ -774,6 +756,24 @@
                     </div>
                     <div class="vulnerable-info">
                         <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+                            <span>Line 10</span>
+                        </div>
+                        <div class="vulnerable-info-details"><span><strong>Expected:</strong>
+                                aws_redshift_cluster[default1].cluster_subnet_group_name is set</span>
+                            <span><strong>Found:</strong> aws_redshift_cluster[default1].cluster_subnet_group_name is
+                                undefined</span>
+                        </div>
+                        <div class="code-box">
+                            <div class="code-line"><span class="code-line-counter">9</span><span class="code"></span>
+                            </div>
+                            <div class="code-line error"><span class="code-line-counter">10</span><span
+                                    class="code">resource "aws_redshift_cluster" "default1" {</span></div>
+                            <div class="code-line"><span class="code-line-counter">11</span><span class="code">
+                                    cluster_identifier = "tf-redshift-cluster"</span></div>
+                        </div>
+                    </div>
+                    <div class="vulnerable-info">
+                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
                             <span>Line 1</span>
                         </div>
                         <div class="vulnerable-info-details"><span><strong>Expected:</strong>
@@ -793,13 +793,13 @@
                 </details>
             </div>
         </div>
-        <div data-type="severity" data-name="MEDIUM">
+        <div data-type="severity" data-name="LOW">
             <hr class="separator">
             <div class="query">
                 <div class="query-info">
                     <div class="query-title">
                         <h2>
-                            <div class="kics-orange"><svg xmlns="http://www.w3.org/2000/svg"
+                            <div class="kics-purple"><svg xmlns="http://www.w3.org/2000/svg"
                                     enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px"
                                     fill="#000000">
                                     <g>
@@ -826,7 +826,7 @@
                     </div>
                 </div>
                 <details>
-                    <summary>Results (<span class="severity-partial-count-medium">2</span>)</summary>
+                    <summary>Results (<span class="severity-partial-count-low">2</span>)</summary>
                     <div class="vulnerable-info">
                         <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
                             <span>Line 1</span>
