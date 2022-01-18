@@ -159,7 +159,7 @@
 				
 				<option value="file51">github.com/Checkmarx/kics/pkg/model/model_easyjson.go (34.7%)</option>
 				
-				<option value="file52">github.com/Checkmarx/kics/pkg/model/model_yaml.go (93.7%)</option>
+				<option value="file52">github.com/Checkmarx/kics/pkg/model/model_yaml.go (89.4%)</option>
 				
 				<option value="file53">github.com/Checkmarx/kics/pkg/model/summary.go (81.4%)</option>
 				
@@ -251,7 +251,7 @@
 				
 				<option value="file97">github.com/Checkmarx/kics/pkg/scanner/scanner.go (56.4%)</option>
 				
-				<option value="file98">github.com/Checkmarx/kics/pkg/utils/map.go (100.0%)</option>
+				<option value="file98">github.com/Checkmarx/kics/pkg/utils/map.go (71.4%)</option>
 				
 				<option value="file99">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
 				
@@ -2326,13 +2326,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov9" title="37">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -4465,7 +4465,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -8418,6 +8418,7 @@ import (
         "errors"
         "strconv"
 
+        "github.com/Checkmarx/kics/pkg/utils"
         "github.com/rs/zerolog/log"
         "gopkg.in/yaml.v3"
 )
@@ -8483,6 +8484,10 @@ func unmarshal(val *yaml.Node) interface{} <span class="cov9" title="13">{
                                                 contentArray = append(contentArray, unmarshal(contentEntry))
                                         }</span>
                                         <span class="cov3" title="2">tmp[val.Content[i].Value] = contentArray</span>
+                                case yaml.AliasNode:<span class="cov0" title="0">
+                                        tt := unmarshal(val.Content[i+1].Alias).(map[string]interface{})
+                                        tt["_kics_lines"] = getLines(val.Content[i+1], val.Content[i].Line)
+                                        utils.MergeMaps(tmp, tt)</span>
                                 }
                         }
                 }
@@ -16814,6 +16819,13 @@ func SortedKeys(mapToSort map[string]string) []string <span class="cov1" title="
         }</span>
         <span class="cov1" title="1">sort.Strings(keys)
         return keys</span>
+}
+
+// MergeMaps merges two maps
+func MergeMaps(map1, map2 map[string]interface{}) <span class="cov0" title="0">{
+        for key, value := range map2 </span><span class="cov0" title="0">{
+                map1[key] = value
+        }</span>
 }
 </pre>
 		
