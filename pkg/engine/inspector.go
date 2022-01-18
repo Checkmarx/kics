@@ -392,22 +392,23 @@ func contains(s []string, e string) bool {
 	return false
 }
 
+func isDisabled(queries, queryID string, output bool) bool {
+	for _, query := range strings.Split(queries, ",") {
+		if strings.EqualFold(query, queryID) {
+			return output
+		}
+	}
+
+	return !output
+}
+
 // ShouldSkipVulnerability verifies if the vulnerability in question should be ignored through comment commands
 func ShouldSkipVulnerability(command model.CommentsCommands, queryID string) bool {
 	if queries, ok := command["enable"]; ok {
-		for _, query := range strings.Split(queries, ",") {
-			if strings.EqualFold(query, queryID) {
-				return false
-			}
-		}
-		return true
+		return isDisabled(queries, queryID, false)
 	}
 	if queries, ok := command["disable"]; ok {
-		for _, query := range strings.Split(queries, ",") {
-			if strings.EqualFold(query, queryID) {
-				return true
-			}
-		}
+		return isDisabled(queries, queryID, true)
 	}
 	return false
 }
