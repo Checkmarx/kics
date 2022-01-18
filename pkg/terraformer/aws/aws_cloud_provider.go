@@ -23,7 +23,7 @@ var provider = &awsterraformer.AWSProvider{}
 
 // Import imports the terraformer resources into the destination using terraformer
 func (a CloudProvider) Import(ctx context.Context, options *importer.ImportOptions, destination string) error {
-	ctx, cancel := context.WithTimeout(ctx, terraformerTimeout)
+	ctxT, cancel := context.WithTimeout(ctx, terraformerTimeout)
 	defer cancel()
 	wg := sync.WaitGroup{}
 	done := make(chan error, 1)
@@ -44,7 +44,7 @@ func (a CloudProvider) Import(ctx context.Context, options *importer.ImportOptio
 	select {
 	case err := <-done:
 		return err
-	case <-ctx.Done():
+	case <-ctxT.Done():
 		return errors.New("terraformer import execution timeout")
 	}
 }

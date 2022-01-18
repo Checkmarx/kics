@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Serverless Function Without Unique IAM Role",
+    "severity": "MEDIUM",
+    "line": 19,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Serverless Function Without Unique IAM Role",
+    "severity": "MEDIUM",
+    "line": 34,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Serverless Function Without Unique IAM Role",
+    "severity": "MEDIUM",
+    "line": 19,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Serverless Function Without Unique IAM Role",
+    "severity": "MEDIUM",
+    "line": 34,
+    "fileName": "positive2.yaml"
+  }
+]

@@ -1,4 +1,9 @@
-# Running KICS with Terraformer for AWS
+# Running KICS with Terraformer
+
+From version 1.5, KICS integrates with Terraformer to scan resources deployed in the Cloud. The runtime information of the resources is obtained by providing a Terraformer path to KICS, via `-p` flag. The scan happens immediately after this information is obtained. In the end, results are shown as for any other KICS scan.
+
+**Cloud providers supported:**
+- AWS
 
 ## Configure AWS Credentials
 
@@ -31,7 +36,7 @@ $Env:AWS_SESSION_TOKEN="<AWS_SESSION_TOKEN>"
 
 
 
-## KICS Terraform Path Syntax
+## KICS Terraformer Path Syntax
 
 ```sh
 terraformer::{CloudProvider}:{Resources}:{Regions}
@@ -52,9 +57,12 @@ To import all resources please use: `*`
 
 ## Running KICS with Terraformer
 
-### Running KICS with Terraformer Behaviour
+When Running KICS using a terraformer path, resources are imported using the credentials set as environment variables in terraform format to the current working directory in a new folder named `kics-extract-terraformer` following the above-described structure.
+KICS will then run a scan on these local files.
 
-Imported Resources tree structure:
+If the flag `-o, --output-path` is passed the folder `kics-extract-terraformer` will be generated in the reports directory instead.
+
+### Imported Resources tree structure:
 
 ```
  ▾ kics-extract-terraformer/
@@ -65,11 +73,6 @@ Imported Resources tree structure:
             terraform.tfstate
             variables.tf
 ```
-
-When Running KICS using a terraformer path, resources are imported using the credentials set as environment variables in terraform format to the current working directory in a new folder named `kics-extract-terraformer` following the above-described structure.
-KICS will then run a scan on these local files.
-
-If the flag `-o, --output-path` is passed the folder `kics-extract-terraformer` will be generated in the reports directory.
 
 ### Docker
 
@@ -113,7 +116,7 @@ Example:
 ~/.terraform.d/plugins/linux_amd64/terraform-provider-aws_v3.71.0_x5
 ```
 
-### Darwin
+### MacOS
 
 ```
 $HOME/.terraform.d/plugins/darwin_{arch}

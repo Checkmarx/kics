@@ -18,7 +18,7 @@ var mockOptions = &importer.ImportOptions{
 	Profile:       "",
 	Verbose:       false,
 	Zone:          "",
-	Regions:       []string{"us-east-1", "eu-west-2"},
+	Regions:       []string{"us-east-1"},
 	Projects:      []string{""},
 	ResourceGroup: "",
 	Connect:       true,

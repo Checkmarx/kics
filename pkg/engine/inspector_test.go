@@ -632,7 +632,7 @@ func TestShouldSkipFile(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := shouldSkipFile(tt.args.commands, tt.args.queryID)
+			got := ShouldSkipVulnerability(tt.args.commands, tt.args.queryID)
 			require.Equal(t, tt.expected, got)
 		})
 	}

@@ -11,3 +11,10 @@ func SortedKeys(mapToSort map[string]string) []string {
 	sort.Strings(keys)
 	return keys
 }
+
+// MergeMaps merges two maps
+func MergeMaps(map1, map2 map[string]interface{}) {
+	for key, value := range map2 {
+		map1[key] = value
+	}
+}

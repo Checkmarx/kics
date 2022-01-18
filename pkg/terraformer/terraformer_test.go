@@ -91,7 +91,7 @@ func TestImport(t *testing.T) {
 		{
 			name: "test import",
 			args: args{
-				terraformerPath: "aws:subnet:eu-west-2/eu-west-1",
+				terraformerPath: "aws:subnet:eu-west-2",
 			},
 			want:    "kics-extract-terraformer",
 			wantErr: false,
@@ -99,7 +99,7 @@ func TestImport(t *testing.T) {
 		{
 			name: "test import path error",
 			args: args{
-				terraformerPath: "aws:eu-west-2/eu-west-1",
+				terraformerPath: "aws:eu-west-2",
 			},
 			want:    ".",
 			wantErr: true,

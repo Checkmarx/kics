@@ -89,7 +89,7 @@ func Import(terraformerPath, destinationPath string) (string, error) {
 		}
 	}
 
-	// cleanUnwantedFiles(destination)
+	cleanUnwantedFiles(destination)
 
 	return destination, nil
 }

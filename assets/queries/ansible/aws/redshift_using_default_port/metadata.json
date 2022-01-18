@@ -1,0 +1,11 @@
+{
+  "id": "e01de151-a7bd-4db4-b49b-3c4775a5e881",
+  "queryName": "Redshift Using Default Port",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "Redshift should not use the default port (5439) because an attacker can easily guess the port",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/redshift_module.html#parameter-port",
+  "platform": "Ansible",
+  "descriptionID": "64fe28a7",
+  "cloudProvider": "aws"
+}

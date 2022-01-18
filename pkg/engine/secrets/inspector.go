@@ -448,6 +448,10 @@ func (c *Inspector) checkLineByLine(query *RegexQuery, basePaths []string, file 
 }
 
 func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadata, query *RegexQuery, lineNumber int, issueLine string) {
+	if engine.ShouldSkipVulnerability(file.Commands, query.ID) {
+		log.Debug().Msgf("Skipping vulnerability in file %s for query '%s':%s", file.FilePath, query.Name, query.ID)
+		return
+	}
 	simID, err := similarity.ComputeSimilarityID(
 		basePaths,
 		file.FilePath,
