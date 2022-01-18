@@ -69,7 +69,7 @@
 				
 				<option value="file6">github.com/Checkmarx/kics/internal/console/helpers/exit_handler.go (100.0%)</option>
 				
-				<option value="file7">github.com/Checkmarx/kics/internal/console/helpers/helpers.go (81.4%)</option>
+				<option value="file7">github.com/Checkmarx/kics/internal/console/helpers/helpers.go (81.2%)</option>
 				
 				<option value="file8">github.com/Checkmarx/kics/internal/console/kics.go (79.4%)</option>
 				
@@ -161,7 +161,7 @@
 				
 				<option value="file52">github.com/Checkmarx/kics/pkg/model/model_yaml.go (89.4%)</option>
 				
-				<option value="file53">github.com/Checkmarx/kics/pkg/model/summary.go (81.4%)</option>
+				<option value="file53">github.com/Checkmarx/kics/pkg/model/summary.go (86.4%)</option>
 				
 				<option value="file54">github.com/Checkmarx/kics/pkg/parser/docker/comments.go (100.0%)</option>
 				
@@ -859,13 +859,15 @@ var reportGenerators = map[string]func(path, filename string, body interface{}) 
 // Line is the color to print the line with the vulnerability
 // minVersion is a bool that if true will print the results output in a minimum version
 type Printer struct {
-        Medium  color.RGBColor
-        High    color.RGBColor
-        Low     color.RGBColor
-        Info    color.RGBColor
-        Success color.RGBColor
-        Line    color.RGBColor
-        minimal bool
+        Medium              color.RGBColor
+        High                color.RGBColor
+        Low                 color.RGBColor
+        Info                color.RGBColor
+        Success             color.RGBColor
+        Line                color.RGBColor
+        VersionMessage      color.RGBColor
+        ContributionMessage color.RGBColor
+        minimal             bool
 }
 
 // WordWrap Wraps text at the specified number of words
@@ -938,7 +940,6 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
         log.Info().Msgf("Queries failed to execute: %d", summary.FailedToExecuteQueries)
         log.Info().Msg("Inspector stopped")
 
-        summary.PrintVersionCheck()
         return nil</span>
 }
 
@@ -1094,13 +1095,15 @@ func ListReportFormats() []string <span class="cov1" title="1">{
 // NewPrinter initializes a new Printer
 func NewPrinter(minimal bool) *Printer <span class="cov4" title="3">{
         return &amp;Printer{
-                Medium:  color.HEX("#ff7213"),
-                High:    color.HEX("#bb2124"),
-                Low:     color.HEX("#edd57e"),
-                Success: color.HEX("#22bb33"),
-                Info:    color.HEX("#5bc0de"),
-                Line:    color.HEX("#f0ad4e"),
-                minimal: minimal,
+                Medium:              color.HEX("#ff7213"),
+                High:                color.HEX("#bb2124"),
+                Low:                 color.HEX("#edd57e"),
+                Success:             color.HEX("#22bb33"),
+                Info:                color.HEX("#5bc0de"),
+                Line:                color.HEX("#f0ad4e"),
+                VersionMessage:      color.HEX("#ff9913"),
+                ContributionMessage: color.HEX("ffe313"),
+                minimal:             minimal,
         }
 }</span>
 
@@ -2326,13 +2329,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="37">total += v
+                <span class="cov8" title="33">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2357,7 +2360,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4465,7 +4468,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -8590,7 +8593,6 @@ func transformBoolScalarNode(value string) bool <span class="cov1" title="1">{
 		<pre class="file" id="file53" style="display: none">package model
 
 import (
-        "fmt"
         "os"
         "path/filepath"
         "regexp"
@@ -8839,15 +8841,6 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
                 SeveritySummary: severitySummary,
                 ScannedPaths:    removeAllURLCredentials(pathExtractionMap),
                 LatestVersion:   version,
-        }</span>
-}
-
-// PrintVersionCheck - Prints and logs warning if not using KICS latest version
-func (s *Summary) PrintVersionCheck() <span class="cov0" title="0">{
-        if !s.LatestVersion.Latest </span><span class="cov0" title="0">{
-                message := fmt.Sprintf("A new version 'v%s' of KICS is available, please consider updating", s.LatestVersion.LatestVersionTag)
-                fmt.Println(message)
-                log.Warn().Msgf(message)
         }</span>
 }
 </pre>
