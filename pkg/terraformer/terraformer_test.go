@@ -1,7 +1,6 @@
 package terraformer
 
 import (
-	"os"
 	"path/filepath"
 	"reflect"
 	"testing"
@@ -9,7 +8,6 @@ import (
 	"github.com/Checkmarx/kics/pkg/terraformer/aws"
 	importer "github.com/GoogleCloudPlatform/terraformer/cmd"
 	"github.com/GoogleCloudPlatform/terraformer/terraformutils"
-	"github.com/stretchr/testify/require"
 )
 
 func TestPath_createTfOptions(t *testing.T) {
@@ -118,36 +116,6 @@ func TestImport(t *testing.T) {
 			if filepath.Base(got) != filepath.Base(tt.want) {
 				t.Errorf("Import() = %v, want %v", filepath.Base(got), filepath.Base(tt.want))
 			}
-		})
-	}
-}
-
-func Test_cleanUnwantedFiles(t *testing.T) {
-	type args struct {
-		destination string
-	}
-	tests := []struct {
-		name string
-		args args
-	}{
-		{
-			name: "test cleanUnwantedFiles",
-			args: args{
-				destination: "destination",
-			},
-		},
-	}
-	for _, tt := range tests {
-		err := os.Mkdir(tt.args.destination, 0777)
-		require.NoError(t, err)
-		_, errOut := os.Create(filepath.Join(tt.args.destination, "outputs.tf"))
-		require.NoError(t, errOut)
-		defer func() {
-			err := os.RemoveAll(tt.args.destination)
-			require.NoError(t, err)
-		}()
-		t.Run(tt.name, func(t *testing.T) {
-			cleanUnwantedFiles(tt.args.destination)
 		})
 	}
 }

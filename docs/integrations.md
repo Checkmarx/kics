@@ -16,6 +16,8 @@ Integrate KICS with:
 - [TeamCity](integrations_teamcity.md)
 - [Travis](integrations_travisci.md)
 - [Pre-commit hooks](integrations_pre_commit.md)
+- [Terraform Cloud](integration_tfcloud)
+- [Terraformer](integrations_terraformer.md)
 - More soon...
 
 The pipelines examples can be found in our [GitHub Repository](https://github.com/Checkmarx/kics/tree/master/examples)
@@ -26,9 +28,9 @@ KICS is natively embedded in [MegaLinter](https://megalinter.github.io/), a 100%
 
 - 48 languages
 - 22 formats
-- 20 tooling formats 
-- excessive copy-pastes and spelling mistakes 
- 
+- 20 tooling formats
+- excessive copy-pastes and spelling mistakes
+
 It also generates various reports, and can apply formatting and auto-fixes, to ensure all your projects sources are clean, whatever IDE/toolbox are used by their developers.
 
 To install MegaLinter in your repository, just run the following command
