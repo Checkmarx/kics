@@ -1199,6 +1199,7 @@
 
 <h1 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h1>
 <p>KICS can export results in multiple formats which can be seen on the following list:
+- ASFF (asff)
 - CycloneDX (cyclonedx)
 - Gitlab SAST (glsast)
 - HTML (html)
@@ -1893,6 +1894,44 @@ PDF reports are sorted by severity (from high to info), the results will have qu
         &lt;/component&gt;
     &lt;/components&gt;
 &lt;/bom&gt;
+</code></pre>
+<h2 id="asff">ASFF<a class="headerlink" href="#asff" title="Permanent link">&para;</a></h2>
+<p>You can export ASFF (AWS Security Finding Format) report by using <code>--report-formats "asff"</code>.</p>
+<p>For default, the ASFF report uses a default AWS account ID ("AWS_ACCOUNT_ID") and a default AWS region ("AWS_REGION"). To set these values, you need to define AWS_ACCOUNT_ID and AWS_REGION in your environment variables.</p>
+<pre><code>[
+    {
+        &quot;AwsAccountId&quot;: &quot;AWS_ACCOUNT_ID&quot;,
+        &quot;Compliance&quot;: {
+            &quot;Status&quot;: &quot;FAILED&quot;
+        },
+        &quot;CreatedAt&quot;: &quot;2022-01-14T13:50:30Z&quot;,
+        &quot;Description&quot;: &quot;CloudTrail Log Files should have validation enabled&quot;,
+        &quot;GeneratorId&quot;: &quot;4d8681a2-3d30-4c89-8070-08acd142748e&quot;,
+        &quot;Id&quot;: &quot;AWS_REGION/AWS_ACCOUNT_ID/1dc18f740a5c4173264949fb366d3c3871d7d457c4db91f6d73a76caa9873000&quot;,
+        &quot;ProductArn&quot;: &quot;arn:aws:securityhub:AWS_REGION:AWS_ACCOUNT_ID:product/AWS_ACCOUNT_ID/default&quot;,
+        &quot;Remediation&quot;: {
+            &quot;Recommendation&quot;: {
+                &quot;Text&quot;: &quot;In line 2 of file assets\\queries\\ansible\\aws\\cloudtrail_log_file_validation_disabled\\test\\positive.yaml, a result was found. cloudtrail.enable_log_file_validation and cloudtrail.log_file_validation_enabled are undefined, but cloudtrail.enable_log_file_validation or cloudtrail.log_file_validation_enabled is defined&quot;
+            }
+        },
+        &quot;Resources&quot;: [
+            {
+                &quot;Id&quot;: &quot;4d8681a2-3d30-4c89-8070-08acd142748e&quot;,
+                &quot;Type&quot;: &quot;Other&quot;
+            }
+        ],
+        &quot;SchemaVersion&quot;: &quot;2018-10-08&quot;,
+        &quot;Severity&quot;: {
+            &quot;Original&quot;: &quot;LOW&quot;,
+            &quot;Label&quot;: &quot;LOW&quot;
+        },
+        &quot;Title&quot;: &quot;CloudTrail Log File Validation Disabled&quot;,
+        &quot;Types&quot;: [
+            &quot;Software and Configuration Checks/Vulnerabilities/KICS&quot;
+        ],
+        &quot;UpdatedAt&quot;: &quot;2022-01-14T13:50:30Z&quot;
+    }
+]
 </code></pre>
 
               
