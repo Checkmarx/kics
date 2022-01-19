@@ -177,6 +177,9 @@ func extractPathType(paths []string) (regular, terraformer []string) {
 
 func deleteExtractionFolder(extractionMap map[string]model.ExtractedPathObject) {
 	for extractionFile := range extractionMap {
+		if strings.Contains(extractionFile, "kics-extract-terraformer") {
+			continue
+		}
 		err := os.RemoveAll(extractionFile)
 		if err != nil {
 			log.Err(err).Msg("Failed to delete KICS extraction folder")
