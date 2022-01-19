@@ -194,7 +194,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 			args: args{
 				summary: &test.ExampleSummaryMock,
 			},
-			want: &cycloneDx, // alterar para linux, windows
+			want: &cycloneDx,
 		},
 	}
 	for _, tt := range tests {
