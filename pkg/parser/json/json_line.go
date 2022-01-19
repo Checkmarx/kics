@@ -199,6 +199,11 @@ func (j *jsonLine) setLine(val map[string]interface{}, def int, father string, p
 		}
 
 		line := j.LineInfo[key][father]
+
+		if len(line.(*fifo).Value) == 0 {
+			continue
+		}
+
 		lineArr := make([]map[string]model.LineObject, 0)
 		lineNr := line.(*fifo).head()
 		if pop {
@@ -252,6 +257,9 @@ func (j *jsonLine) setSeqLines(v []interface{}, def int, father, key string,
 			stringedCon := fmt.Sprint(con)
 			// check if element is present in line info map
 			if lineStr, ok2 := j.LineInfo[stringedCon][father+"."+key]; ok2 {
+				if len(lineStr.(*fifo).Value) == 0 {
+					continue
+				}
 				lineArr = append(lineArr, map[string]model.LineObject{
 					"_kics__default": {
 						Line: lineStr.(*fifo).pop(),
@@ -273,7 +281,11 @@ func (j *jsonLine) getMapDefaultLine(v []interface{}, father string) int {
 				if _, ok2 := j.LineInfo[key][father]; !ok2 {
 					continue
 				}
-				linesNumbers = append(linesNumbers, j.LineInfo[key][father].(*fifo).head())
+				line := j.LineInfo[key][father]
+				if len(line.(*fifo).Value) == 0 {
+					continue
+				}
+				linesNumbers = append(linesNumbers, line.(*fifo).head())
 			}
 			if len(linesNumbers) > 0 {
 				sort.Ints(linesNumbers)

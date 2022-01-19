@@ -448,6 +448,10 @@ func (c *Inspector) checkLineByLine(query *RegexQuery, basePaths []string, file 
 }
 
 func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadata, query *RegexQuery, lineNumber int, issueLine string) {
+	if engine.ShouldSkipVulnerability(file.Commands, query.ID) {
+		log.Debug().Msgf("Skipping vulnerability in file %s for query '%s':%s", file.FilePath, query.Name, query.ID)
+		return
+	}
 	simID, err := similarity.ComputeSimilarityID(
 		basePaths,
 		file.FilePath,
@@ -479,6 +483,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 				DescriptionID:    SecretsQueryMetadata["descriptionID"],
 				KeyExpectedValue: "Hardcoded secret key should not appear in source",
 				KeyActualValue:   fmt.Sprintf("'%s' contains a secret", issueLine),
+				CloudProvider:    SecretsQueryMetadata["cloudProvider"],
 			}
 			c.vulnerabilities = append(c.vulnerabilities, vuln)
 		}

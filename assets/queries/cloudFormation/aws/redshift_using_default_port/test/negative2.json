@@ -1,0 +1,24 @@
+{
+    "Resources": {
+      "myCluster": {
+        "Type": "AWS::Redshift::Cluster",
+        "Properties": {
+          "MasterUserPassword": {
+            "Ref": "MasterUserPassword"
+          },
+          "NodeType": "ds2.xlarge",
+          "ClusterType": "single-node",
+          "Tags": [
+            {
+              "Value": "bar",
+              "Key": "foo"
+            }
+          ],
+          "PubliclyAccessible": false,
+          "DBName": "mydb",
+          "MasterUsername": "master",
+          "Port": "1150"
+        }
+      }
+    }
+  }

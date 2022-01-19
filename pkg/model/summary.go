@@ -1,7 +1,6 @@
 package model
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -42,6 +41,7 @@ type QueryResult struct {
 	QueryURI                    string           `json:"query_url"`
 	Severity                    Severity         `json:"severity"`
 	Platform                    string           `json:"platform"`
+	CloudProvider               string           `json:"cloud_provider,omitempty"`
 	Category                    string           `json:"category"`
 	Description                 string           `json:"description"`
 	DescriptionID               string           `json:"description_id"`
@@ -189,6 +189,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 				Severity:      item.Severity,
 				QueryURI:      item.QueryURI,
 				Platform:      item.Platform,
+				CloudProvider: strings.ToUpper(item.CloudProvider),
 				Category:      item.Category,
 				Description:   item.Description,
 				DescriptionID: item.DescriptionID,
@@ -250,14 +251,5 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 		SeveritySummary: severitySummary,
 		ScannedPaths:    removeAllURLCredentials(pathExtractionMap),
 		LatestVersion:   version,
-	}
-}
-
-// PrintVersionCheck - Prints and logs warning if not using KICS latest version
-func (s *Summary) PrintVersionCheck() {
-	if !s.LatestVersion.Latest {
-		message := fmt.Sprintf("A new version 'v%s' of KICS is available, please consider updating", s.LatestVersion.LatestVersionTag)
-		fmt.Println(message)
-		log.Warn().Msgf(message)
 	}
 }

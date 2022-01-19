@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Redshift Using Default Port",
+    "severity": "LOW",
+    "line": 4,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Redshift Using Default Port",
+    "severity": "LOW",
+    "line": 28,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Redshift Using Default Port",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Redshift Using Default Port",
+    "severity": "LOW",
+    "line": 39,
+    "fileName": "positive2.json"
+  }
+]

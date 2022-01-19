@@ -1,0 +1,43 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "ProdPos2": {
+      "Properties": {
+        "CacheClusterEnabled": false,
+        "ClientCertificateId": "ClientCertificate",
+        "DeploymentId": "TestDeployment",
+        "Description": "Prod Stage",
+        "DocumentationVersion": "MyDocumentationVersion",
+        "MethodSettings": [
+          {
+            "DataTraceEnabled": "false",
+            "HttpMethod": "GET",
+            "MetricsEnabled": "true",
+            "ResourcePath": "/"
+          },
+          {
+            "DataTraceEnabled": "false",
+            "HttpMethod": "POST",
+            "MetricsEnabled": "true",
+            "ResourcePath": "/stack",
+            "ThrottlingBurstLimit": "999"
+          },
+          {
+            "DataTraceEnabled": "false",
+            "HttpMethod": "GET",
+            "MetricsEnabled": "true",
+            "ResourcePath": "/stack",
+            "ThrottlingBurstLimit": "555"
+          }
+        ],
+        "RestApiId": "MyRestApi",
+        "StageName": "Prod",
+        "TracingEnabled": true,
+        "Variables": {
+          "Stack": "Prod"
+        }
+      },
+      "Type": "AWS::ApiGateway::Stage"
+    }
+  }
+}

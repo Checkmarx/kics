@@ -70,6 +70,7 @@ nav:
       - AWS CDK: cdk.md
       - Badge: BADGE.md
       - Using pre-commit hooks: integrations_pre_commit.md
+      - Terraformer: integrations_terraformer.md
   - Certifications: certifications.md
   - Project:
       - Roadmap: roadmap.md

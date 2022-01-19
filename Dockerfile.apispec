@@ -1,4 +1,4 @@
-FROM golang:1.17.5-alpine as build_env
+FROM golang:1.17.6-alpine as build_env
 # Create a group and user
 RUN addgroup -S Checkmarx && adduser -S Checkmarx -G Checkmarx
 USER Checkmarx
@@ -32,6 +32,16 @@ HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 FROM alpine:3.14.3
 
 RUN addgroup -S Checkmarx && adduser -S Checkmarx -G Checkmarx
+
+# Install Terraform and Terraform plugins
+RUN wget https://releases.hashicorp.com/terraform/1.1.3/terraform_1.1.3_linux_amd64.zip
+RUN unzip terraform_1.1.3_linux_amd64.zip && rm terraform_1.1.3_linux_amd64.zip
+RUN mv terraform /usr/bin/terraform
+
+RUN wget https://releases.hashicorp.com/terraform-provider-aws/3.72.0/terraform-provider-aws_3.72.0_linux_amd64.zip
+RUN unzip terraform-provider-aws_3.72.0_linux_amd64.zip && rm terraform-provider-aws_3.72.0_linux_amd64.zip
+RUN mkdir ~/.terraform.d && mkdir ~/.terraform.d/plugins && mkdir ~/.terraform.d/plugins/linux_amd64 && mv terraform-provider-aws_v3.72.0_x5 ~/.terraform.d/plugins/linux_amd64
+
 
 # Install Git
 RUN apk add --no-cache \

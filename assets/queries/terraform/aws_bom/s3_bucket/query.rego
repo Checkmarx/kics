@@ -52,7 +52,7 @@ get_accessibility(bucket, bucketName) = accessibility {
 	accessibility := "private"
 } else = accessibility {
 	# cases when there is a unrestriced policy
-	accessibility := terra_lib.get_accessibility(bucket, bucketName, "aws_s3_bucket_policy", "bucket")
+	accessibility := terra_lib.get_accessibility(bucket, bucketName, "aws_s3_bucket_policy", "bucket").accessibility
     accessibility != "unknown"   
 } else = accessibility {
 	# last cases: acl definition
