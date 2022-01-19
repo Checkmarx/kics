@@ -1,0 +1,10 @@
+resources:
+  - name: cluster
+    type: container.v1.cluster
+    properties:
+      description: my-cluster
+      networkPolicy:
+        enabled: true
+      addonsConfig:
+        networkPolicyConfig:
+          disabled: false
