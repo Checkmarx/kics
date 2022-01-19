@@ -6,7 +6,6 @@ CxPolicy[result] {
 	resource := input.document[i].resources[idx]
 	public_access_users := ["allUsers", "allAuthenticatedUsers"]
 	resource.type == "storage.v1.bucketAccessControl"
-	properties := resource.properties
 
 	public_access_users[j] == resource.properties.entity
 
