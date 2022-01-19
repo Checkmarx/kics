@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
@@ -14,35 +15,64 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-func (c *Client) prepareAndAnalyzePaths() (extractedPaths provider.ExtractedPath, err error) {
-	err = c.preparePaths()
+var terraformerRegex = regexp.MustCompile(`^terraformer::`)
+
+func (c *Client) prepareAndAnalyzePaths() (provider.ExtractedPath, error) {
+	err := c.preparePaths()
 	if err != nil {
-		return extractedPaths, err
+		return provider.ExtractedPath{}, err
 	}
 
-	extractedPaths, err = provider.GetSources(c.ScanParams.Path)
+	regularPaths, terraformerPaths := extractPathType(c.ScanParams.Path)
+
+	terraformerExPaths, err := provider.GetTerraformerSources(terraformerPaths, c.ScanParams.OutputPath)
 	if err != nil {
-		return extractedPaths, err
+		return provider.ExtractedPath{}, err
 	}
 
-	newTypeFlagValue, newExcludePathsFlagValue, errAnalyze :=
+	regularExPaths, err := provider.GetSources(regularPaths)
+	if err != nil {
+		return provider.ExtractedPath{}, err
+	}
+
+	allPaths := combinePaths(terraformerExPaths, regularExPaths)
+
+	pathTypes, errAnalyze :=
 		analyzePaths(
-			extractedPaths.Path,
+			allPaths.Path,
 			c.ScanParams.Platform,
 			c.ScanParams.ExcludePaths,
 		)
 	if errAnalyze != nil {
-		return extractedPaths, errAnalyze
+		return provider.ExtractedPath{}, errAnalyze
 	}
 
-	if len(newTypeFlagValue) == 0 {
+	if len(pathTypes.Types) == 0 {
 		return provider.ExtractedPath{}, nil
 	}
 
-	c.ScanParams.Platform = newTypeFlagValue
-	c.ScanParams.ExcludePaths = newExcludePathsFlagValue
+	c.ScanParams.Platform = pathTypes.Types
+	c.ScanParams.ExcludePaths = pathTypes.Exc
 
-	return extractedPaths, nil
+	return allPaths, nil
+}
+
+func combinePaths(terraformer, regular provider.ExtractedPath) provider.ExtractedPath {
+	var combinedPaths provider.ExtractedPath
+	paths := make([]string, 0)
+	combinedPathsEx := make(map[string]model.ExtractedPathObject)
+	paths = append(paths, terraformer.Path...)
+	paths = append(paths, regular.Path...)
+	combinedPaths.Path = paths
+	for k, v := range regular.ExtractionMap {
+		combinedPathsEx[k] = v
+	}
+	for k, v := range terraformer.ExtractionMap {
+		combinedPathsEx[k] = v
+	}
+
+	combinedPaths.ExtractionMap = combinedPathsEx
+	return combinedPaths
 }
 
 func (c *Client) preparePaths() error {
@@ -104,19 +134,25 @@ func resolvePath(flagContent, flagName string) (string, error) {
 // analyzePaths will analyze the paths to scan to determine which type of queries to load
 // and which files should be ignored, it then updates the types and exclude flags variables
 // with the results found
-func analyzePaths(paths, types, exclude []string) (typesRes, excludeRes []string, errRes error) {
+func analyzePaths(paths, types, exclude []string) (model.AnalyzedPaths, error) {
 	var err error
-	exc := make([]string, 0)
+	var pathsFlag model.AnalyzedPaths
+	excluded := make([]string, 0)
+
 	if types[0] == "" { // if '--type' flag was given skip file analyzing
-		types, exc, err = analyzer.Analyze(paths)
+		pathsFlag, err = analyzer.Analyze(paths)
 		if err != nil {
 			log.Err(err)
-			return []string{}, []string{}, err
+			return model.AnalyzedPaths{}, err
 		}
-		logLoadingQueriesType(types)
+		logLoadingQueriesType(pathsFlag.Types)
+	} else {
+		pathsFlag.Types = append(pathsFlag.Types, types...)
 	}
-	exclude = append(exclude, exc...)
-	return types, exclude, nil
+	excluded = append(excluded, exclude...)
+	excluded = append(excluded, pathsFlag.Exc...)
+	pathsFlag.Exc = excluded
+	return pathsFlag, nil
 }
 
 func logLoadingQueriesType(types []string) {
@@ -128,9 +164,20 @@ func logLoadingQueriesType(types []string) {
 	log.Info().Msgf("Loading queries of type: %s", strings.Join(types, ", "))
 }
 
+func extractPathType(paths []string) (regular, terraformer []string) {
+	for _, path := range paths {
+		if terraformerRegex.MatchString(path) {
+			terraformer = append(terraformer, terraformerRegex.ReplaceAllString(path, ""))
+		} else {
+			regular = append(regular, path)
+		}
+	}
+	return
+}
+
 func deleteExtractionFolder(extractionMap map[string]model.ExtractedPathObject) {
 	for extractionFile := range extractionMap {
-		err := os.Remove(extractionFile)
+		err := os.RemoveAll(extractionFile)
 		if err != nil {
 			log.Err(err).Msg("Failed to delete KICS extraction folder")
 		}
