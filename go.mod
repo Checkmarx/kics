@@ -27,13 +27,13 @@ require (
 	github.com/moby/buildkit v0.9.3
 	github.com/open-policy-agent/opa v0.34.2
 	github.com/pkg/errors v0.9.1
-	github.com/rs/zerolog v1.26.0
+	github.com/rs/zerolog v1.26.1
 	github.com/spf13/cobra v1.2.1
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.9.0
 	github.com/stretchr/testify v1.7.0
 	github.com/tdewolff/minify/v2 v2.9.22
-	github.com/tidwall/gjson v1.11.0
+	github.com/tidwall/gjson v1.13.0
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/zclconf/go-cty v1.10.0
 	golang.org/x/net v0.0.0-20211008194852-3b03d305991f
@@ -46,4 +46,5 @@ replace (
 	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
 	github.com/spf13/afero => github.com/spf13/afero v1.2.2
 	gopkg.in/jarcoal/httpmock.v1 => github.com/jarcoal/httpmock v1.0.5
+	github.com/containerd/containerd  => github.com/containerd/containerd  v1.5.9
 )
