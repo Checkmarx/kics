@@ -43,7 +43,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("resources.name={{%s}}.properties.ipAllocationPolicy.useIpAliases", [resource.name]),
-		"issueType": "MissingAttribute",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'ipAllocationPolicy.useIpAliases' to be true",
 		"keyActualValue": "'ipAllocationPolicy.useIpAliases' is false", 
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "ipAllocationPolicy", "useIpAliases"], []),
