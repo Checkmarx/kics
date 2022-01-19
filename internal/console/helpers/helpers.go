@@ -36,6 +36,7 @@ var reportGenerators = map[string]func(path, filename string, body interface{}) 
 	"sonarqube": report.PrintSonarQubeReport,
 	"cyclonedx": report.PrintCycloneDxReport,
 	"junit":     report.PrintJUnitReport,
+	"asff":      report.PrintASFFReport,
 }
 
 // Printer wil print console output with colors

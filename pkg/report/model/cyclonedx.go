@@ -144,11 +144,15 @@ func getPurl(filePath, version string) string {
 	return fmt.Sprintf("pkg:generic/%s@%s", filePath, version)
 }
 
-func getDescription(query *model.QueryResult) string {
+func getDescription(query *model.QueryResult, format string) string {
 	queryDescription := query.Description
 
 	if query.CISDescriptionTextFormatted != "" {
 		queryDescription = query.CISDescriptionTextFormatted
+	}
+
+	if format == "asff" {
+		return queryDescription
 	}
 
 	description := fmt.Sprintf("[%s].[%s]: %s", query.Platform, query.QueryName, queryDescription)
@@ -174,7 +178,7 @@ func getVulnerabilitiesByFile(query *model.QueryResult, fileName, purl string) [
 						Method:   "Other",
 					},
 				},
-				Description: getDescription(query),
+				Description: getDescription(query, "cyclonedx"),
 				Recommendations: []Recommendation{
 					{
 						Recommendation: fmt.Sprintf("In line %d, a result was found. '%s', but '%s'",

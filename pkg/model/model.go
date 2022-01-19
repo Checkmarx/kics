@@ -163,6 +163,7 @@ type Vulnerability struct {
 	KeyActualValue   string     `db:"key_actual_value" json:"actualValue"`
 	Value            *string    `db:"value" json:"value"`
 	Output           string     `json:"-"`
+	CloudProvider    string     `json:"cloud_provider"`
 }
 
 // QueryConfig is a struct that contains the fileKind and platform of the rego query
