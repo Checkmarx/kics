@@ -18,7 +18,7 @@ jobs:
         uses: golangci/golangci-lint-action@v2.5.2
         with:
           version: v1.37
-          args: -c .golangci.yml --timeout 10m
+          args: -c .golangci.yml --timeout 15m
           skip-go-installation: true
   go-generate:
     name: go-generate
