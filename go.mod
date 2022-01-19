@@ -33,7 +33,7 @@ require (
 	github.com/spf13/viper v1.9.0
 	github.com/stretchr/testify v1.7.0
 	github.com/tdewolff/minify/v2 v2.9.22
-	github.com/tidwall/gjson v1.11.0
+	github.com/tidwall/gjson v1.13.0
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/zclconf/go-cty v1.10.0
 	golang.org/x/net v0.0.0-20211008194852-3b03d305991f
