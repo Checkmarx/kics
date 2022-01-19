@@ -19,7 +19,7 @@ require (
 	github.com/gookit/color v1.5.0
 	github.com/hashicorp/go-getter v1.5.9
 	github.com/hashicorp/hcl v1.0.0
-	github.com/hashicorp/hcl/v2 v2.10.1
+	github.com/hashicorp/hcl/v2 v2.11.1
 	github.com/hashicorp/terraform-json v0.13.0
 	github.com/johnfercher/maroto v0.33.0
 	github.com/mailru/easyjson v0.7.7
