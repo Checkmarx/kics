@@ -9,7 +9,7 @@
     </div>
     <div class="col-6 text-center">
         <br/><br/>
-        <h4>Version 1.4.9</h4>
+        <h4>Version 1.5.0</h4>
         <p style="font-size:8pt">2022.01.19<p>
         <h4>Downloads:</h4>
         <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.5.0/kics_1.5.0_windows_x64.zip">Windows</a>
