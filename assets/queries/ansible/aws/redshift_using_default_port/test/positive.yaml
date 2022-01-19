@@ -1,0 +1,8 @@
+- name: Redshift
+  community.aws.redshift:
+    command: create
+    node_type: ds1.xlarge
+    identifier: new_cluster
+    username: cluster_admin
+    password: 1nsecur3
+    port: 5439

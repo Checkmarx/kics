@@ -240,7 +240,24 @@ downscaler_enabled: "false"
 				  }
 				},
 				"perm": [
-				  {}
+					{
+						"_kics_lines": {
+							"_kics__default": {
+								"_kics_line": 9
+							}
+						},
+						"group": {
+							"_kics_lines": {
+								"_kics__default": {
+									"_kics_line": 4
+								},
+								"_kics_name": {
+									"_kics_line": 6
+								}
+							},
+							"name": "cx"
+						}
+					}
 				]
 			  }
 			}

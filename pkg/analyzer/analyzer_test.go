@@ -78,16 +78,16 @@ func TestAnalyzer_Analyze(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, exc, err := Analyze(tt.paths)
+			got, err := Analyze(tt.paths)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Analyze = %v, wantErr = %v", err, tt.wantErr)
 			}
 			sort.Strings(tt.wantTypes)
 			sort.Strings(tt.wantExclude)
-			sort.Strings(got)
-			sort.Strings(exc)
-			require.Equal(t, tt.wantTypes, got, "wrong types from analyzer")
-			require.Equal(t, tt.wantExclude, exc, "wrong excludes from analyzer")
+			sort.Strings(got.Types)
+			sort.Strings(got.Exc)
+			require.Equal(t, tt.wantTypes, got.Types, "wrong types from analyzer")
+			require.Equal(t, tt.wantExclude, got.Exc, "wrong excludes from analyzer")
 		})
 	}
 }

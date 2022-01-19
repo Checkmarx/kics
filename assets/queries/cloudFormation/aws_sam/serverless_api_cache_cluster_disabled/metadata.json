@@ -1,0 +1,11 @@
+{
+  "id": "60a05ede-0a68-4d0d-a58f-f538cf55ff79",
+  "queryName": "Serverless API Cache Cluster Disabled",
+  "severity": "LOW",
+  "category": "Insecure Configurations",
+  "descriptionText": "AWS Serverless API should have cache clustering enabled",
+  "descriptionUrl": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-api.html#sam-api-cacheclusterenabled",
+  "platform": "CloudFormation",
+  "descriptionID": "1ce59cab",
+  "cloudProvider": "aws"
+}

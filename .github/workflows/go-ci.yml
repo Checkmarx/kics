@@ -18,7 +18,7 @@ jobs:
         uses: golangci/golangci-lint-action@v2.5.2
         with:
           version: v1.37
-          args: -c .golangci.yml
+          args: -c .golangci.yml --timeout 10m
           skip-go-installation: true
   go-generate:
     name: go-generate
@@ -68,6 +68,13 @@ jobs:
       - name: Get Modules
         run: |
           go mod vendor
+      - name: Set Windows Page size
+        if: matrix.os == 'windows-latest'
+        uses: al-cheb/configure-pagefile-action@v1.2
+        with:
+          minimum-size: 32GB
+          maximum-size: 32GB
+          disk-root: "C:"
       - name: Test and Generate Report
         if: matrix.os != 'windows-latest'
         run: |
