@@ -3,7 +3,9 @@ module github.com/Checkmarx/kics
 go 1.16
 
 require (
+	cloud.google.com/go/monitoring v1.2.0 // indirect
 	github.com/BurntSushi/toml v0.4.1
+	github.com/GoogleCloudPlatform/terraformer v0.8.18
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20211114212643-ec144ca0d701
@@ -38,8 +40,10 @@ require (
 	helm.sh/helm/v3 v3.7.1
 )
 
-replace github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
-
-replace github.com/containerd/containerd  => github.com/containerd/containerd  v1.5.9
-
-replace github.com/docker/cli => github.com/docker/cli v20.10.12+incompatible
+replace (
+	github.com/docker/cli => github.com/docker/cli v20.10.12+incompatible
+	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
+	github.com/spf13/afero => github.com/spf13/afero v1.2.2
+	gopkg.in/jarcoal/httpmock.v1 => github.com/jarcoal/httpmock v1.0.5
+	github.com/containerd/containerd  => github.com/containerd/containerd  v1.5.9
+)

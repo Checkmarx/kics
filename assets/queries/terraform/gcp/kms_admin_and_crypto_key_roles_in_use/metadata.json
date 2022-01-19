@@ -1,0 +1,11 @@
+{
+  "id": "92e4464a-4139-4d57-8742-b5acc0347680",
+  "queryName": "KMS Admin and CryptoKey Roles In Use",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Google Project IAM Policy should not assign a KMS admin role and CryptoKey role to the same member",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#policy_data",
+  "platform": "Terraform",
+  "descriptionID": "36d82ecd",
+  "cloudProvider": "gcp"
+}

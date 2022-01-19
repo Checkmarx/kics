@@ -1,0 +1,11 @@
+{
+  "id": "a478af30-8c3a-404d-aa64-0b673cee509a",
+  "queryName": "Redshift Using Default Port",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "Redshift should not use the default port (5439) because an attacker can easily guess the port",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html#cfn-redshift-cluster-port",
+  "platform": "CloudFormation",
+  "descriptionID": "e2aa0fb8",
+  "cloudProvider": "aws"
+}
