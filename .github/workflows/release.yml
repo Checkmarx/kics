@@ -35,7 +35,7 @@ jobs:
         uses: goreleaser/goreleaser-action@v2.8.1
         with:
           version: latest
-          args: release --rm-dist
+          args: release --rm-dist --timeout 60m
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           KICS_BOT_PAT: ${{ secrets.KICS_BOT_PAT }}
