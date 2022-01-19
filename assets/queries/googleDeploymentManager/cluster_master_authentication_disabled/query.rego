@@ -21,9 +21,9 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resources[idx]
 	resource.type == "container.v1.cluster"
-	masterAuth := resource.properties.masterAuth
 
-	not bothDefined(masterAuth)
+	not common_lib.valid_key(resource.properties.masterAuth, "username")
+	not common_lib.valid_key(resource.properties.masterAuth, "password")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -38,26 +38,16 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resources[idx]
 	resource.type == "container.v1.cluster"
-	masterAuth := resource.properties.masterAuth
 
-	not bothFilled(masterAuth)
+	not count(resource.properties.masterAuth.username) > 0
+	not count(resource.properties.masterAuth.password) > 0
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("resources.name={{%s}}.properties.masterAuth", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'masterAuth.username' to be not empty and attribute 'masterAuth.password' to be not empty",
-		"keyActualValue": "Attribute 'masterAuth.username' is empty and attribute 'masterAuth.password' is empty", 
+		"keyActualValue": "Attribute 'masterAuth.username' is empty or attribute 'masterAuth.password' is empty", 
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "masterAuth"], []),
 	}
-}
-
-bothDefined(masterAuth) {
-	masterAuth.username
-	masterAuth.password
-}
-
-bothFilled(masterAuth) {
-	count(masterAuth.username) > 0
-	count(masterAuth.password) > 0
 }
