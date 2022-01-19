@@ -54,7 +54,7 @@ CxPolicy[result] {
 	resource := input.document[i].resources[idx]
 	resource.type == "container.v1.cluster"
 
-	resource.properties.nodePools.management.autoUpgrade = false
+	resource.properties.nodePools.management.autoUpgrade == false
 
 	result := {
 		"documentId": input.document[i].id,
