@@ -1278,7 +1278,7 @@
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
-<td>Cloud SQL Database Instance with SSL disabled for incoming connections</td>
+<td>Cloud SQL Database Instance should have SLL enabled</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance#require_ssl">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -7138,6 +7138,14 @@
 <td><a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-tracing">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Cloud Storage Bucket Is Publicly Accessible<br/><sup><sub>77c1fa3f-83dc-4c9d-bfed-e1d0cc8fd9dc</sub></sup></td>
+<td>GoogleDeploymentManager</td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>Cloud Storage Bucket is anonymously or publicly accessible</td>
+<td><a href="https://cloud.google.com/storage/docs/json_api/v1/bucketAccessControls">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>SQL DB Instance Backup Disabled<br/><sup><sub>a5bf1a1c-92c7-401c-b4c6-ebdc8b686c01</sub></sup></td>
 <td>GoogleDeploymentManager</td>
 <td><span style="color:#C00">High</span></td>
@@ -7154,6 +7162,30 @@
 <td><a href="https://cloud.google.com/dns/docs/reference/v1/managedZones">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>SQL DB Instance With SSL Disabled<br/><sup><sub>660360d3-9ca7-46d1-b147-3acc4002953f</sub></sup></td>
+<td>GoogleDeploymentManager</td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Cloud SQL Database Instance should have SLL enabled</td>
+<td><a href="https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/instances">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Network Policy Disabled<br/><sup><sub>c47f90e8-4a19-43f0-8413-cc434d286c4e</sub></sup></td>
+<td>GoogleDeploymentManager</td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Kubernetes Engine Clusters must have Network Policy enabled, meaning that the attribute 'networkPolicy.enabled' must be true and the attribute 'addonsConfig.networkPolicyConfig.disabled' must be false</td>
+<td><a href="https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IP Aliasing Disabled<br/><sup><sub>28727987-e398-49b8-aef1-8a3e7789d111</sub></sup></td>
+<td>GoogleDeploymentManager</td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Kubernetes Clusters must be created with Alias IP ranges enabled, which means the attribute 'ipAllocationPolicy' must be defined and the subattribute 'useIpAliases' must be set to 'true'.</td>
+<td><a href="https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Not Proper Email Account In Use<br/><sup><sub>a21b8df3-c840-4b3d-a41a-10fb2afda171</sub></sup></td>
 <td>GoogleDeploymentManager</td>
 <td><span style="color:#C00">High</span></td>
@@ -7168,6 +7200,14 @@
 <td>Insecure Configurations</td>
 <td>Kubernetes Engine Clusters must have Legacy Authorization set to disabled, which means the attribute 'legacyAbac.enabled' must be false.</td>
 <td><a href="https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.LegacyAbac">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Cluster Master Authentication Disabled<br/><sup><sub>7ef7d141-9fbb-4679-a977-fd0883436906</sub></sup></td>
+<td>GoogleDeploymentManager</td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Kubernetes Engine Clusters must have Master Authentication set to enabled, which means the attribute 'masterAuth' must have the subattributes 'username' and 'password' defined and not empty</td>
+<td><a href="https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Private Cluster Disabled<br/><sup><sub>48c61fbd-09c9-46cc-a521-012e0c325412</sub></sup></td>
@@ -7192,6 +7232,14 @@
 <td>Observability</td>
 <td>Cloud Storage Bucket should be enabled</td>
 <td><a href="https://cloud.google.com/storage/docs/json_api/v1/buckets">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Node Auto Upgrade Disabled<br/><sup><sub>dc5c5fee-6c53-43b0-ab11-4c660e064aaf</sub></sup></td>
+<td>GoogleDeploymentManager</td>
+<td><span style="color:#C00">High</span></td>
+<td>Resource Management</td>
+<td>Kubernetes nodes must have auto upgrades set to true, which means the attribute 'nodePools' must be defined and the subattribute 'managment' must be defined and have the attribute 'autoUpgrade' set to true</td>
+<td><a href="https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Disk Encryption Disabled<br/><sup><sub>fc040fb6-4c23-4c0d-b12a-39edac35debb</sub></sup></td>
@@ -10854,7 +10902,7 @@
 <td>Ansible</td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
-<td>Cloud SQL Database Instance with SSL disabled for incoming connections</td>
+<td>Cloud SQL Database Instance should have SLL enabled</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/ip_configuration/require_ssl">Documentation</a><br/></td>
 </tr>
 <tr>
