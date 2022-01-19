@@ -99,7 +99,7 @@
 				
 				<option value="file21">github.com/Checkmarx/kics/internal/tracker/ci.go (81.2%)</option>
 				
-				<option value="file22">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (89.5%)</option>
+				<option value="file22">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (89.8%)</option>
 				
 				<option value="file23">github.com/Checkmarx/kics/pkg/builder/engine/engine.go (71.8%)</option>
 				
@@ -129,7 +129,7 @@
 				
 				<option value="file36">github.com/Checkmarx/kics/pkg/engine/inspector.go (82.1%)</option>
 				
-				<option value="file37">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (88.8%)</option>
+				<option value="file37">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (79.5%)</option>
 				
 				<option value="file38">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (79.4%)</option>
 				
@@ -207,7 +207,7 @@
 				
 				<option value="file75">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (81.8%)</option>
 				
-				<option value="file76">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (85.7%)</option>
+				<option value="file76">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
@@ -251,9 +251,15 @@
 				
 				<option value="file97">github.com/Checkmarx/kics/pkg/scanner/scanner.go (56.4%)</option>
 				
-				<option value="file98">github.com/Checkmarx/kics/pkg/utils/map.go (71.4%)</option>
+				<option value="file98">github.com/Checkmarx/kics/pkg/terraformer/aws/aws_cloud_provider.go (93.3%)</option>
 				
-				<option value="file99">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
+				<option value="file99">github.com/Checkmarx/kics/pkg/terraformer/terraformer.go (75.7%)</option>
+				
+				<option value="file100">github.com/Checkmarx/kics/pkg/utils/map.go (71.4%)</option>
+				
+				<option value="file101">github.com/Checkmarx/kics/pkg/utils/random.go (0.0%)</option>
+				
+				<option value="file102">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
 				
 				</select>
 			</div>
@@ -2329,13 +2335,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="37">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2360,7 +2366,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov6" title="13">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2619,9 +2625,13 @@ const (
 
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
 // should be loaded based on the extension of the file and the content
-func Analyze(paths []string) (typesRes, excludeRes []string, errRes error) <span class="cov4" title="7">{
+func Analyze(paths []string) (model.AnalyzedPaths, error) <span class="cov4" title="7">{
         // start metrics for file analyzer
         metrics.Metric.Start("file_type_analyzer")
+        returnAnalyzedPaths := model.AnalyzedPaths{
+                Types: make([]string, 0),
+                Exc:   make([]string, 0),
+        }
 
         var files []string
         var wg sync.WaitGroup
@@ -2631,7 +2641,7 @@ func Analyze(paths []string) (typesRes, excludeRes []string, errRes error) <span
         // get all the files inside the given paths
         for _, path := range paths </span><span class="cov4" title="8">{
                 if _, err := os.Stat(path); err != nil </span><span class="cov1" title="1">{
-                        return []string{}, []string{}, errors.Wrap(err, "failed to analyze path")
+                        return returnAnalyzedPaths, errors.Wrap(err, "failed to analyze path")
                 }</span>
                 <span class="cov4" title="7">if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov7" title="36">{
                         if !info.IsDir() </span><span class="cov6" title="28">{
@@ -2663,10 +2673,11 @@ func Analyze(paths []string) (typesRes, excludeRes []string, errRes error) <span
 
         <span class="cov4" title="6">availableTypes := createSlice(results)
         unwantedPaths := createSlice(unwanted)
-
+        returnAnalyzedPaths.Types = availableTypes
+        returnAnalyzedPaths.Exc = unwantedPaths
         // stop metrics for file analyzer
         metrics.Metric.Stop()
-        return availableTypes, unwantedPaths, nil</span>
+        return returnAnalyzedPaths, nil</span>
 }
 
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
@@ -2862,7 +2873,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="22">{
-        for _, a := range s </span><span class="cov8" title="64">{
+        for _, a := range s </span><span class="cov8" title="54">{
                 if a == e </span><span class="cov4" title="8">{
                         return true
                 }</span>
@@ -5350,20 +5361,20 @@ import (
         "os"
         "os/signal"
         "path/filepath"
-        "strconv"
         "sync"
-        "time"
-
-        "github.com/Checkmarx/kics/pkg/model"
-        "github.com/rs/zerolog/log"
 
         "github.com/alexmullins/zip"
+
+        "github.com/Checkmarx/kics/pkg/model"
+        "github.com/Checkmarx/kics/pkg/terraformer"
+        "github.com/Checkmarx/kics/pkg/utils"
+        "github.com/rs/zerolog/log"
+
         "github.com/hashicorp/go-getter"
 )
 
 const (
         channelLength = 2
-        tempDirFormat = 1e9
 )
 
 // ExtractedPath is a struct that contains the paths, temporary paths to remove
@@ -5386,6 +5397,32 @@ type getterStruct struct {
         source      string
 }
 
+// GetTerraformerSources uses Terraformer to download runtime resources from AWS provider
+// to terraform.
+// After Downloaded files kics scan the files as normal local files
+func GetTerraformerSources(source []string, destinationPath string) (ExtractedPath, error) <span class="cov0" title="0">{
+        extrStruct := ExtractedPath{
+                Path:          []string{},
+                ExtractionMap: make(map[string]model.ExtractedPathObject),
+        }
+
+        for _, path := range source </span><span class="cov0" title="0">{
+                exportedPath, err := terraformer.Import(path, destinationPath)
+                if err != nil </span><span class="cov0" title="0">{
+                        log.Error().Msgf("failed to import %s: %s", path, err)
+                }</span>
+
+                <span class="cov0" title="0">extrStruct.ExtractionMap[exportedPath] = model.ExtractedPathObject{
+                        Path:      exportedPath,
+                        LocalPath: true,
+                }
+
+                extrStruct.Path = append(extrStruct.Path, exportedPath)</span>
+        }
+
+        <span class="cov0" title="0">return extrStruct, nil</span>
+}
+
 // GetSources goes through the source slice, and determines the of source type (ex: zip, git, local).
 // It than extracts the files to be scanned. If the source given is not local, a temp dir
 // will be created where the files will be stored.
@@ -5395,7 +5432,7 @@ func GetSources(source []string) (ExtractedPath, error) <span class="cov10" titl
                 ExtractionMap: make(map[string]model.ExtractedPathObject),
         }
         for _, path := range source </span><span class="cov10" title="5">{
-                destination := filepath.Join(os.TempDir(), "kics-extract-"+nextRandom())
+                destination := filepath.Join(os.TempDir(), "kics-extract-"+utils.NextRandom())
 
                 mode := getter.ClientModeAny
 
@@ -5546,28 +5583,6 @@ func isEncrypted(sourceFile string) bool <span class="cov10" title="5">{
         }
         <span class="cov1" title="1">return false</span>
 }
-
-// ======== Golang way to create random number for tmp dir naming =============
-var rand uint32
-var randmu sync.Mutex
-
-func reseed() uint32 <span class="cov1" title="1">{
-        return uint32(time.Now().UnixNano() + int64(os.Getpid()))
-}</span>
-
-func nextRandom() string <span class="cov10" title="5">{
-        randmu.Lock()
-        r := rand
-        if r == 0 </span><span class="cov1" title="1">{
-                r = reseed()
-        }</span>
-        <span class="cov10" title="5">r = r*1664525 + 1013904223 // constants from Numerical Recipes
-        rand = r
-        randmu.Unlock()
-        return strconv.Itoa(int(tempDirFormat + r%tempDirFormat))[1:]</span>
-}
-
-// ==============================================================================
 </pre>
 		
 		<pre class="file" id="file38" style="display: none">package provider
@@ -8216,6 +8231,12 @@ func (m FileMetadatas) Combine(lineInfo bool) Documents <span class="cov8" title
                 }</span>
         }
         <span class="cov8" title="3">return documents</span>
+}
+
+// AnalyzedPaths is a slice of types and excluded files obtained from the Analyzer
+type AnalyzedPaths struct {
+        Types []string
+        Exc   []string
 }
 </pre>
 		
@@ -14175,7 +14196,7 @@ type ProgressBar struct {
 }
 
 // NewProgressBar creates a new instance of a Circle Progress Bar
-func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" title="3">{
+func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" title="3">{
         newPb := pb.New64(constants.MaxInteger)
         tmp := fmt.Sprintf(`{{ "%s" }} {{(cycle . "\\" "-" "|" "/" "-" "|" )}}`, label)
         newPb.SetWidth(barWidth)
@@ -14183,7 +14204,7 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
         if silent </span><span class="cov1" title="1">{
                 newPb.SetWriter(io.Discard)
         }</span>
-        <span class="cov10" title="3">newPb.Start()
+        <span class="cov2" title="3">newPb.Start()
 
         return ProgressBar{
                 label: label,
@@ -14196,8 +14217,8 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
 }
 
 // Start initializes the Circle Progress Bar
-func (p ProgressBar) Start() <span class="cov0" title="0">{
-        for </span><span class="cov0" title="0">{ // increment until the Close func is called
+func (p ProgressBar) Start() <span class="cov1" title="1">{
+        for </span><span class="cov10" title="4900">{ // increment until the Close func is called
                 p.pBar.Increment()
         }</span>
 }
@@ -16800,7 +16821,190 @@ func startProgressBar(total int, wg *sync.WaitGroup, progressChannel chan int64,
 }</span>
 </pre>
 		
-		<pre class="file" id="file98" style="display: none">package utils
+		<pre class="file" id="file98" style="display: none">package aws
+
+import (
+        "context"
+        "errors"
+        "sync"
+        "time"
+
+        importer "github.com/GoogleCloudPlatform/terraformer/cmd"
+        awsterraformer "github.com/GoogleCloudPlatform/terraformer/providers/aws"
+        "github.com/GoogleCloudPlatform/terraformer/terraformutils"
+)
+
+var terraformerTimeout = time.Minute * 3
+
+// ImporterFunc is the function kics uses to import resources (for testing porpuses)
+var ImporterFunc func(provider terraformutils.ProviderGenerator, options importer.ImportOptions, args []string) error = importer.Import
+
+// CloudProvider is the AWS Cloud Provider
+type CloudProvider struct{}
+
+var provider = &amp;awsterraformer.AWSProvider{}
+
+// Import imports the terraformer resources into the destination using terraformer
+func (a CloudProvider) Import(ctx context.Context, options *importer.ImportOptions, destination string) error <span class="cov8" title="1">{
+        ctxT, cancel := context.WithTimeout(ctx, terraformerTimeout)
+        defer cancel()
+        wg := sync.WaitGroup{}
+        done := make(chan error, 1)
+
+        for _, region := range options.Regions </span><span class="cov8" title="1">{
+                wg.Add(1)
+                go func(region string) </span><span class="cov8" title="1">{
+                        defer wg.Done()
+                        done &lt;- ImporterFunc(provider, *options, []string{region, ""})
+                }</span>(region)
+        }
+
+        <span class="cov8" title="1">go func() </span><span class="cov8" title="1">{
+                defer close(done)
+                wg.Wait()
+        }</span>()
+
+        <span class="cov8" title="1">select </span>{
+        case err := &lt;-done:<span class="cov8" title="1">
+                return err</span>
+        case &lt;-ctxT.Done():<span class="cov0" title="0">
+                return errors.New("terraformer import execution timeout")</span>
+        }
+}
+</pre>
+		
+		<pre class="file" id="file99" style="display: none">package terraformer
+
+import (
+        "context"
+        "io/fs"
+        "io/ioutil"
+        "os"
+        "path/filepath"
+        "strings"
+
+        tfLogger "log"
+
+        "github.com/Checkmarx/kics/pkg/terraformer/aws"
+        importer "github.com/GoogleCloudPlatform/terraformer/cmd"
+        "github.com/pkg/errors"
+        "github.com/rs/zerolog/log"
+)
+
+const terraformerPathLength = 3
+
+// Path is a struct that contains the terraformer path information
+type Path struct {
+        CloudProvider string
+        Region        []string
+        Resource      []string
+}
+
+// CloudProvider is an interface that defines the methods that a cloud provider must implement
+type CloudProvider interface {
+        Import(ctx context.Context, options *importer.ImportOptions, destination string) error
+}
+
+func (t *Path) createTfOptions(destination, region string) *importer.ImportOptions <span class="cov10" title="2">{
+        return &amp;importer.ImportOptions{
+                Resources:     t.Resource,
+                Excludes:      []string{""},
+                PathPattern:   filepath.Join(destination, "{service}"),
+                PathOutput:    "generated",
+                State:         "local",
+                Bucket:        "",
+                Profile:       "",
+                Verbose:       false,
+                Zone:          "",
+                Regions:       []string{region},
+                Projects:      []string{""},
+                ResourceGroup: "",
+                Connect:       true,
+                Compact:       false,
+                Filter:        []string{},
+                Plan:          false,
+                Output:        "hcl",
+                RetryCount:    5,
+                RetrySleepMs:  300,
+        }
+}</span>
+
+// Import imports the terraformer resources into the destination using terraformer
+func Import(terraformerPath, destinationPath string) (string, error) <span class="cov10" title="2">{
+        log.Info().Msg("importing terraformer resources")
+        tfLogger.SetOutput(ioutil.Discard)
+        pathOptions, err := extractTerraformerOptions(terraformerPath)
+        if err != nil </span><span class="cov1" title="1">{
+                return "", errors.Wrap(err, "wrong terraformer path syntax")
+        }</span>
+        <span class="cov1" title="1">ctx := context.Background()
+        if destinationPath == "" </span><span class="cov1" title="1">{
+                destinationPath, err = os.Getwd()
+                if err != nil </span><span class="cov0" title="0">{
+                        return "", errors.Wrap(err, "failed to get working directory")
+                }</span>
+        }
+
+        <span class="cov1" title="1">destination := filepath.Join(destinationPath, "kics-extract-terraformer")
+
+        var provider CloudProvider
+
+        switch pathOptions.CloudProvider </span>{
+        case "aws":<span class="cov1" title="1">
+                provider = aws.CloudProvider{}</span>
+        default:<span class="cov0" title="0">
+                return "", errors.New("unsupported Cloud Provider")</span>
+        }
+
+        <span class="cov1" title="1">for _, region := range pathOptions.Region </span><span class="cov1" title="1">{
+                regionDest := filepath.Join(destination, region)
+                err = provider.Import(ctx, pathOptions.createTfOptions(regionDest, region), destination)
+                if err != nil </span><span class="cov0" title="0">{
+                        return "", err
+                }</span>
+        }
+
+        <span class="cov1" title="1">cleanUnwantedFiles(destination)
+
+        return destination, nil</span>
+}
+
+func extractTerraformerOptions(path string) (*Path, error) <span class="cov10" title="2">{
+        pathInfo := strings.Split(path, ":")
+        if len(pathInfo) != terraformerPathLength </span><span class="cov1" title="1">{
+                return nil, errors.New("wrong terraformer path syntax")
+        }</span>
+        <span class="cov1" title="1">return &amp;Path{
+                CloudProvider: pathInfo[0],
+                Region:        strings.Split(pathInfo[2], "/"),
+                Resource:      strings.Split(pathInfo[1], "/"),
+        }, nil</span>
+}
+
+func cleanUnwantedFiles(destination string) <span class="cov1" title="1">{
+        err := filepath.Walk(destination, func(path string, info fs.FileInfo, err error) error </span><span class="cov1" title="1">{
+                if info != nil </span><span class="cov0" title="0">{
+                        deleteOutputFile(path, info)
+                }</span>
+                <span class="cov1" title="1">return nil</span>
+        })
+
+        <span class="cov1" title="1">if err != nil </span><span class="cov0" title="0">{
+                log.Err(err).Msg("failed to clean unwanted files")
+        }</span>
+}
+
+func deleteOutputFile(path string, output fs.FileInfo) <span class="cov0" title="0">{
+        if output.Name() == "outputs.tf" </span><span class="cov0" title="0">{
+                err := os.Remove(path)
+                if err != nil </span><span class="cov0" title="0">{
+                        log.Err(err).Msgf("failed to remove outputs.tf in path %s", path)
+                }</span>
+        }
+}
+</pre>
+		
+		<pre class="file" id="file100" style="display: none">package utils
 
 import "sort"
 
@@ -16822,7 +17026,42 @@ func MergeMaps(map1, map2 map[string]interface{}) <span class="cov0" title="0">{
 }
 </pre>
 		
-		<pre class="file" id="file99" style="display: none">package test
+		<pre class="file" id="file101" style="display: none">package utils
+
+import (
+        "os"
+        "strconv"
+        "sync"
+        "time"
+)
+
+// ======== Golang way to create random number for tmp dir naming =============
+var rand uint32
+var randmu sync.Mutex
+
+const tempDirFormat = 1e9
+
+func reseed() uint32 <span class="cov0" title="0">{
+        return uint32(time.Now().UnixNano() + int64(os.Getpid()))
+}</span>
+
+// NextRandom returns a random number
+func NextRandom() string <span class="cov0" title="0">{
+        randmu.Lock()
+        r := rand
+        if r == 0 </span><span class="cov0" title="0">{
+                r = reseed()
+        }</span>
+        <span class="cov0" title="0">r = r*1664525 + 1013904223 // constants from Numerical Recipes
+        rand = r
+        randmu.Unlock()
+        return strconv.Itoa(int(tempDirFormat + r%tempDirFormat))[1:]</span>
+}
+
+// ==============================================================================
+</pre>
+		
+		<pre class="file" id="file102" style="display: none">package test
 
 import (
         "bytes"
