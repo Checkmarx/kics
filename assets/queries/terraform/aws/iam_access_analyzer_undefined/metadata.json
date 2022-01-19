@@ -1,0 +1,11 @@
+{
+  "id": "e592a0c5-5bdb-414c-9066-5dba7cdea370",
+  "queryName": "IAM Access Analyzer Undefined",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "IAM Access Analyzer should be defined to identify unintentional access",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/accessanalyzer_analyzer",
+  "platform": "Terraform",
+  "descriptionID": "d03e85ae",
+  "cloudProvider": "aws"
+}

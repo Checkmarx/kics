@@ -3,7 +3,7 @@
 	"files_scanned": 1,
 	"files_parsed": 1,
 	"files_failed_to_scan": 0,
-	"queries_total": 852,
+	"queries_total": 855,
 	"queries_failed_to_execute": 0,
 	"queries_failed_to_compute_similarity_id": 0,
 	"scan_id": "console",
@@ -11,17 +11,41 @@
 		"HIGH": 0,
 		"INFO": 1,
 		"LOW": 1,
-		"MEDIUM": 3,
+		"MEDIUM": 4,
 		"TRACE": 0
 	},
-	"total_counter": 5,
+	"total_counter": 6,
 	"total_bom_resources": 0,
-	"start": "2022-01-01T16:02:11.0443695Z",
-	"end": "2022-01-01T16:02:21.5866822Z",
+	"start": "2022-01-19T11:56:40.4510238Z",
+	"end": "2022-01-19T11:56:52.7679418Z",
 	"paths": [
 		"fixtures/samples/terraform-single.tf"
 	],
 	"queries": [
+		{
+			"query_name": "IAM Access Analyzer Undefined",
+			"query_id": "e592a0c5-5bdb-414c-9066-5dba7cdea370",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/accessanalyzer_analyzer",
+			"severity": "MEDIUM",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Access Control",
+			"description": "IAM Access Analyzer should be defined to identify unintentional access",
+			"description_id": "d03e85ae",
+			"files": [
+				{
+					"file_name": "fixtures/samples/terraform-single.tf",
+					"similarity_id": "aa346cd1642a83b40e221f96a43d88dbfacecdf1f8e5314c24145f8d35530197",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "resource",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'aws_accessanalyzer_analyzer' is set",
+					"actual_value": "'aws_accessanalyzer_analyzer' is undefined"
+				}
+			]
+		},
 		{
 			"query_name": "Redshift Cluster Logging Disabled",
 			"query_id": "15ffbacc-fa42-4f6f-a57d-2feac7365caa",

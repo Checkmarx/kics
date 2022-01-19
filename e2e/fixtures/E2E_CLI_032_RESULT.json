@@ -3,7 +3,7 @@
 	"files_scanned": 1,
 	"files_parsed": 1,
 	"files_failed_to_scan": 0,
-	"queries_total": 852,
+	"queries_total": 855,
 	"queries_failed_to_execute": 0,
 	"queries_failed_to_compute_similarity_id": 0,
 	"scan_id": "console",
@@ -11,13 +11,13 @@
 		"HIGH": 6,
 		"INFO": 2,
 		"LOW": 2,
-		"MEDIUM": 6,
+		"MEDIUM": 7,
 		"TRACE": 0
 	},
-	"total_counter": 16,
+	"total_counter": 17,
 	"total_bom_resources": 0,
-	"start": "2022-01-01T15:57:34.3589443Z",
-	"end": "2022-01-01T15:57:44.2986478Z",
+	"start": "2022-01-19T11:53:06.6572927Z",
+	"end": "2022-01-19T11:53:22.0789313Z",
 	"paths": [
 		"fixtures/samples/terraform.tf"
 	],
@@ -105,17 +105,6 @@
 			"files": [
 				{
 					"file_name": "fixtures/samples/terraform.tf",
-					"similarity_id": "4234052fbe1fed19a465cec7fbed9eb156c22eeae7d97c3ac8096bcc7b39a2fe",
-					"line": 1,
-					"issue_type": "MissingAttribute",
-					"search_key": "aws_redshift_cluster[default]",
-					"search_line": 0,
-					"search_value": "",
-					"expected_value": "aws_redshift_cluster.publicly_accessible is defined and not null",
-					"actual_value": "aws_redshift_cluster.publicly_accessible is undefined or null"
-				},
-				{
-					"file_name": "fixtures/samples/terraform.tf",
 					"similarity_id": "7ae2741fb3c480c38776368fbe21412672c6458d490e4648eb1ad1aadc24a741",
 					"line": 17,
 					"issue_type": "IncorrectValue",
@@ -124,6 +113,41 @@
 					"search_value": "",
 					"expected_value": "aws_redshift_cluster.publicly_accessible is false",
 					"actual_value": "aws_redshift_cluster.publicly_accessible is true"
+				},
+				{
+					"file_name": "fixtures/samples/terraform.tf",
+					"similarity_id": "4234052fbe1fed19a465cec7fbed9eb156c22eeae7d97c3ac8096bcc7b39a2fe",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_redshift_cluster[default]",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "aws_redshift_cluster.publicly_accessible is defined and not null",
+					"actual_value": "aws_redshift_cluster.publicly_accessible is undefined or null"
+				}
+			]
+		},
+		{
+			"query_name": "IAM Access Analyzer Undefined",
+			"query_id": "e592a0c5-5bdb-414c-9066-5dba7cdea370",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/accessanalyzer_analyzer",
+			"severity": "MEDIUM",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Access Control",
+			"description": "IAM Access Analyzer should be defined to identify unintentional access",
+			"description_id": "d03e85ae",
+			"files": [
+				{
+					"file_name": "fixtures/samples/terraform.tf",
+					"similarity_id": "aa346cd1642a83b40e221f96a43d88dbfacecdf1f8e5314c24145f8d35530197",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "resource",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'aws_accessanalyzer_analyzer' is set",
+					"actual_value": "'aws_accessanalyzer_analyzer' is undefined"
 				}
 			]
 		},
@@ -140,10 +164,10 @@
 			"files": [
 				{
 					"file_name": "fixtures/samples/terraform.tf",
-					"similarity_id": "2abf26c3014fc445da69d8d5bb862c1c511e8e16ad3a6c6f6e14c28aa0adac1d",
-					"line": 10,
+					"similarity_id": "0455ad9d92fa1dc1cbf20dd5042ee21d9ae176388662b5982501aa01724e50d9",
+					"line": 1,
 					"issue_type": "MissingAttribute",
-					"search_key": "aws_redshift_cluster[default1]",
+					"search_key": "aws_redshift_cluster[default]",
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "'aws_redshift_cluster.logging' is true",
@@ -151,10 +175,10 @@
 				},
 				{
 					"file_name": "fixtures/samples/terraform.tf",
-					"similarity_id": "0455ad9d92fa1dc1cbf20dd5042ee21d9ae176388662b5982501aa01724e50d9",
-					"line": 1,
+					"similarity_id": "2abf26c3014fc445da69d8d5bb862c1c511e8e16ad3a6c6f6e14c28aa0adac1d",
+					"line": 10,
 					"issue_type": "MissingAttribute",
-					"search_key": "aws_redshift_cluster[default]",
+					"search_key": "aws_redshift_cluster[default1]",
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "'aws_redshift_cluster.logging' is true",
@@ -173,28 +197,6 @@
 			"description": "Redshift Cluster should be configured in VPC (Virtual Private Cloud)",
 			"description_id": "6fd531fa",
 			"files": [
-				{
-					"file_name": "fixtures/samples/terraform.tf",
-					"similarity_id": "709853fdb034e451c68825041190bbff098e2893528d91c39d84d31ea93ecae6",
-					"line": 1,
-					"issue_type": "MissingAttribute",
-					"search_key": "aws_redshift_cluster[default]",
-					"search_line": 0,
-					"search_value": "cluster_subnet_group_name",
-					"expected_value": "aws_redshift_cluster[default].cluster_subnet_group_name is set",
-					"actual_value": "aws_redshift_cluster[default].cluster_subnet_group_name is undefined"
-				},
-				{
-					"file_name": "fixtures/samples/terraform.tf",
-					"similarity_id": "4aa3f159f39767de53b49ed871977b8b499bf19b3b0865b1631042aa830598aa",
-					"line": 10,
-					"issue_type": "MissingAttribute",
-					"search_key": "aws_redshift_cluster[default1]",
-					"search_line": 0,
-					"search_value": "cluster_subnet_group_name",
-					"expected_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is set",
-					"actual_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is undefined"
-				},
 				{
 					"file_name": "fixtures/samples/terraform.tf",
 					"similarity_id": "83461a5eac8fed2264fac68a6d352d1ed752867a9b0a131afa9ba7e366159b59",
@@ -216,6 +218,28 @@
 					"search_value": "vpc_security_group_ids",
 					"expected_value": "aws_redshift_cluster[default].vpc_security_group_ids is set",
 					"actual_value": "aws_redshift_cluster[default].vpc_security_group_ids is undefined"
+				},
+				{
+					"file_name": "fixtures/samples/terraform.tf",
+					"similarity_id": "4aa3f159f39767de53b49ed871977b8b499bf19b3b0865b1631042aa830598aa",
+					"line": 10,
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_redshift_cluster[default1]",
+					"search_line": 0,
+					"search_value": "cluster_subnet_group_name",
+					"expected_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is set",
+					"actual_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is undefined"
+				},
+				{
+					"file_name": "fixtures/samples/terraform.tf",
+					"similarity_id": "709853fdb034e451c68825041190bbff098e2893528d91c39d84d31ea93ecae6",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_redshift_cluster[default]",
+					"search_line": 0,
+					"search_value": "cluster_subnet_group_name",
+					"expected_value": "aws_redshift_cluster[default].cluster_subnet_group_name is set",
+					"actual_value": "aws_redshift_cluster[default].cluster_subnet_group_name is undefined"
 				}
 			]
 		},
@@ -232,10 +256,10 @@
 			"files": [
 				{
 					"file_name": "fixtures/samples/terraform.tf",
-					"similarity_id": "34ae9f216456678405a82e7419b9b1614ee09a765529f717679e1fa4f4a1ae0a",
-					"line": 1,
+					"similarity_id": "8f5d57a5515ee4c9c5e6d26274b4e7ae5e408e39399caff57aebe5121dc11af6",
+					"line": 10,
 					"issue_type": "MissingAttribute",
-					"search_key": "aws_redshift_cluster[default]",
+					"search_key": "aws_redshift_cluster[default1]",
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "aws_redshift_cluster.port is defined and not null",
@@ -243,10 +267,10 @@
 				},
 				{
 					"file_name": "fixtures/samples/terraform.tf",
-					"similarity_id": "8f5d57a5515ee4c9c5e6d26274b4e7ae5e408e39399caff57aebe5121dc11af6",
-					"line": 10,
+					"similarity_id": "34ae9f216456678405a82e7419b9b1614ee09a765529f717679e1fa4f4a1ae0a",
+					"line": 1,
 					"issue_type": "MissingAttribute",
-					"search_key": "aws_redshift_cluster[default1]",
+					"search_key": "aws_redshift_cluster[default]",
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "aws_redshift_cluster.port is defined and not null",
