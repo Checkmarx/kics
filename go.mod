@@ -38,13 +38,13 @@ require (
 	github.com/zclconf/go-cty v1.10.0
 	golang.org/x/net v0.0.0-20211008194852-3b03d305991f
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
-	helm.sh/helm/v3 v3.7.1
+	helm.sh/helm/v3 v3.7.2
 )
 
 replace (
+	github.com/containerd/containerd => github.com/containerd/containerd v1.5.9
 	github.com/docker/cli => github.com/docker/cli v20.10.12+incompatible
 	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
 	github.com/spf13/afero => github.com/spf13/afero v1.2.2
 	gopkg.in/jarcoal/httpmock.v1 => github.com/jarcoal/httpmock v1.0.5
-	github.com/containerd/containerd  => github.com/containerd/containerd  v1.5.9
 )
