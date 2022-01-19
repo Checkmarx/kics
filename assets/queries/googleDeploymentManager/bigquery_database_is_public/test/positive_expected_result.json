@@ -2,7 +2,7 @@
   {
     "queryName": "BigQuery Dataset Is Public",
     "severity": "HIGH",
-    "line": 4,
+    "line": 7,
     "filename": "positive1.yaml"
   }
 ]
