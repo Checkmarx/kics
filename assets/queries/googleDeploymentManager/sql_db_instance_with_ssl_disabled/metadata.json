@@ -1,0 +1,11 @@
+{
+  "id": "660360d3-9ca7-46d1-b147-3acc4002953f",
+  "queryName": "SQL DB Instance With SSL Disabled",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Cloud SQL Database Instance should have SLL enabled",
+  "descriptionUrl": "https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/instances",
+  "platform": "GoogleDeploymentManager",
+  "descriptionID": "b42ee5a9",
+  "cloudProvider": "gcp"
+}
