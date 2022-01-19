@@ -38,7 +38,7 @@ CxPolicy[result] {
 	resource := input.document[i].resources[idx]
 	resource.type == "container.v1.cluster"
 
-	resource.properties.networkPolicy.enabled = false
+	resource.properties.networkPolicy.enabled == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -90,7 +90,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name={{%s}}.properties.addonsConfig", [resource.name]),
+		"searchKey": sprintf("resources.name={{%s}}.properties.addonsConfig.networkPolicyConfig", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'addonsConfig.networkPolicyConfig.disabled' to be defined and not null",
 		"keyActualValue": "'addonsConfig.networkPolicyConfig.disabled' is undefined or null", 
@@ -102,11 +102,11 @@ CxPolicy[result] {
 	resource := input.document[i].resources[idx]
 	resource.type == "container.v1.cluster"
 
-	resource.properties.addonsConfig.networkPolicyConfig.disabled = true
+	resource.properties.addonsConfig.networkPolicyConfig.disabled == true
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name={{%s}}.properties.addonsConfig", [resource.name]),
+		"searchKey": sprintf("resources.name={{%s}}.properties.addonsConfig.networkPolicyConfig.disabled", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'addonsConfig.networkPolicyConfig.disabled' to be false",
 		"keyActualValue": "'addonsConfig.networkPolicyConfig.disabled' is true", 
