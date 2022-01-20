@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "API Gateway Without Configured Authorizer",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "API Gateway Without Configured Authorizer",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "API Gateway Without Configured Authorizer",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive7.json"
+  },
+  {
+    "queryName": "API Gateway Without Configured Authorizer",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive8.json"
+  },
+  {
+    "queryName": "API Gateway Without Configured Authorizer",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "API Gateway Without Configured Authorizer",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "API Gateway Without Configured Authorizer",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "API Gateway Without Configured Authorizer",
+    "severity": "MEDIUM",
+    "line": 20,
+    "fileName": "positive6.json"
+  }
+]

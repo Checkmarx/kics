@@ -1,0 +1,13 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "DevWebSocket8": {
+      "Type": "AWS::ApiGatewayV2::Api",
+      "Properties": {
+        "Name": "TL-Dev-WebSocket-API",
+        "ProtocolType": "WEBSOCKET",
+        "RouteSelectionExpression": "$request.body.action"
+      }
+    }
+  }
+}

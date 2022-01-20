@@ -1,0 +1,22 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Resources": {
+    "MyRestApi3": {
+      "Properties": {
+        "EndpointConfiguration": {
+          "Types": [
+            "PRIVATE"
+          ]
+        },
+        "Name": "myRestApi"
+      },
+      "Type": "AWS::ApiGateway::RestApi"
+    },
+    "Authorizer": {
+      "Type": "AWS::ApiGateway::Authorizer",
+      "Properties": {
+        "RestApiId": "MyRestApi3"
+      }
+    }
+  }
+}

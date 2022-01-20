@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+    MyRestApi2:
+        Type: AWS::ApiGateway::RestApi
+        Properties:
+          EndpointConfiguration:
+            Types:
+              - PRIVATE
+          Name: myRestApi
+    Authorizer:
+        Type: 'AWS::ApiGateway::Authorizer'
+        Properties:
+          RestApiId: !Ref MyRestApi2
