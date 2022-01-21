@@ -1,0 +1,7 @@
+resources:
+  - name: bucket
+    type: storage.v1.bucket
+    properties:
+      name: my-bucket
+      versioning:
+        enabled: true
