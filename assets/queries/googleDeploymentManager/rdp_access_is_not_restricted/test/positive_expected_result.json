@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "RDP Access Is Not Restricted",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "RDP Access Is Not Restricted",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive2.yaml"
+  }
+]
