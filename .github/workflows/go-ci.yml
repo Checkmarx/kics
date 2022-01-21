@@ -51,6 +51,12 @@ jobs:
         uses: actions/checkout@v2.3.4
         with:
           persist-credentials: false
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            src:
+              - 'pkg/terraformer/**'
       - name: Get cache paths
         id: go-cache-paths
         run: |
@@ -76,15 +82,25 @@ jobs:
           maximum-size: 32GB
           disk-root: "C:"
       - name: Test and Generate Report
-        if: matrix.os != 'windows-latest'
+        if: matrix.os != 'windows-latest' && steps.changes.outputs.src == 'true'
         run: |
           go test -mod=vendor -v $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
           result_code=${PIPESTATUS[0]}
           exit $result_code
+      - name: Test and Generate Report Dev
+        if: matrix.os != 'windows-latest'  && steps.changes.outputs.src == 'false'
+        run: |
+          go test -tags dev -mod=vendor -v $(go list -tags dev ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
+          result_code=${PIPESTATUS[0]}
+          exit $result_code
       - name: Test and Generate Report Windows
-        if: matrix.os == 'windows-latest'
+        if: matrix.os == 'windows-latest' && steps.changes.outputs.src == 'true'
         run: |
           go test -mod=vendor -v $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
+      - name: Test and Generate Report Windows Dev
+        if: matrix.os == 'windows-latest' && steps.changes.outputs.src == 'false'
+        run: |
+          go test -mod=vendor -tags dev -v $(go list -tags dev ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
       - name: Archive test logs
         if: always()
         uses: actions/upload-artifact@v2
