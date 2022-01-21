@@ -3,6 +3,7 @@ package terraformer
 import (
 	"path/filepath"
 	"reflect"
+	"strings"
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/terraformer/aws"
@@ -113,7 +114,7 @@ func TestImport(t *testing.T) {
 				t.Errorf("Import() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
-			if filepath.Base(got) != filepath.Base(tt.want) {
+			if !strings.Contains(filepath.Base(got), filepath.Base(tt.want)) {
 				t.Errorf("Import() = %v, want %v", filepath.Base(got), filepath.Base(tt.want))
 			}
 		})
