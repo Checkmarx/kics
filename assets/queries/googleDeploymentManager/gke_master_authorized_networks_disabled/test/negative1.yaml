@@ -1,0 +1,7 @@
+resources:
+  - name: my-cluster
+    type: container.v1.cluster
+    properties:
+      description: cluster
+      masterAuthorizedNetworksConfig:
+        enabled: true
