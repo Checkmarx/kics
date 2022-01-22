@@ -1,0 +1,16 @@
+Resources:
+  DefaultVPC:
+    Type: AWS::EC2::Instance
+    Properties: 
+      ImageId: "ami-79fd7eee"
+      KeyName: "testkey"
+      SubnetId: !Ref PublicSubnetA2
+  PublicSubnetA2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref DefaultVPC
+      CidrBlock: 10.1.10.0/24
+      AvailabilityZone: !Select [ 0, !GetAZs ]    # Obtenha o primeiro AZ na lista
+      Tags:
+          - Key: Name
+            Value: !Sub ${AWS::StackName}-Public-A
