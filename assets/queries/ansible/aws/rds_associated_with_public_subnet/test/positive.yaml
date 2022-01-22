@@ -12,7 +12,7 @@
     state: present
     name: my_subnet_group
     description: My Fancy Ex Parrot Subnet Group
-    subnets: 
+    subnets:
       - "{{ subnet1.subnet.id }}"
       - "{{ subnet2.subnet.id }}"
   register: my_subnet_group
@@ -32,4 +32,3 @@
     tags:
       Name: Database Subnet
   register: subnet2
-

@@ -12,8 +12,8 @@
     state: present
     name: my_subnet_group2
     description: My Fancy Ex Parrot Subnet Group
-    subnets: 
-      - "{{ subnet22.subnet.id }}"
+    subnets:
+    - "{{ subnet22.subnet.id }}"
   register: my_subnet_group2
 - name: Create subnet for database servers22
   amazon.aws.ec2_vpc_subnet:
@@ -23,4 +23,3 @@
     tags:
       Name: Database Subnet
   register: subnet22
-
