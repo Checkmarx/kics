@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "RDS Associated with Public Subnet",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive.yaml"
+  }
+]

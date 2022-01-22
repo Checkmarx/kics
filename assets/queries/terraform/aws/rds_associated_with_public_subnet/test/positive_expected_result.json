@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "RDS Associated with Public Subnet",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "RDS Associated with Public Subnet",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive2.tf"
+  }
+]

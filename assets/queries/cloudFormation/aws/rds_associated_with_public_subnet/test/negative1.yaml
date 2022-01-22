@@ -1,0 +1,34 @@
+Resources:
+ Negative1:
+  Type: AWS::RDS::DBInstance
+  Properties:
+    AllocatedStorage: '5'
+    DBInstanceClass: db.t2.small
+    Engine: oracle-ee
+    LicenseModel: bring-your-own-license
+    MasterUsername: master
+    MasterUserPassword: SecretPassword01
+    BackupRetentionPeriod: 7
+    DBSubnetGroupName:
+       Ref: myDBSubnetGroup0
+  DeletionPolicy: Snapshot
+ myDBSubnetGroup0: 
+    Properties: 
+      DBSubnetGroupDescription: description
+      SubnetIds: 
+        - Ref: mySubnet10
+      Tags: 
+        - 
+          Key: String
+          Value: String
+    Type: "AWS::RDS::DBSubnetGroup"
+ mySubnet10:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: myVPC
+      CidrBlock: 10.0.0.0/24
+      AvailabilityZone: "us-east-1a"
+      Tags:
+      - Key: stack
+        Value: production

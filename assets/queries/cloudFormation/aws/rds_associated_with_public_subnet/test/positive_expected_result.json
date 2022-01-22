@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "RDS Associated with Public Subnet",
+    "severity": "HIGH",
+    "line": 12,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "RDS Associated with Public Subnet",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive2.json"
+  }
+]

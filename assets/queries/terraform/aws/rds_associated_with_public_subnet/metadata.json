@@ -1,0 +1,11 @@
+{
+  "id": "2f737336-b18a-4602-8ea0-b200312e1ac1",
+  "queryName": "RDS Associated with Public Subnet",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "RDS should not run in public subnet",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#db_subnet_group_name",
+  "platform": "Terraform",
+  "descriptionID": "425d310e",
+  "cloudProvider": "aws"
+}
