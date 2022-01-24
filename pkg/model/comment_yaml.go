@@ -2,6 +2,7 @@ package model
 
 import (
 	"strings"
+	"sync"
 
 	"gopkg.in/yaml.v3"
 )
@@ -18,10 +19,13 @@ type Ignore struct {
 var (
 	// NewIgnore is the ignore struct
 	NewIgnore = &Ignore{}
+	memoryMu  sync.Mutex
 )
 
 // build builds the ignore struct
 func (i *Ignore) build(lines []int) {
+	defer memoryMu.Unlock()
+	memoryMu.Lock()
 	i.Lines = append(i.Lines, lines...)
 }
 

@@ -99,16 +99,11 @@ test: ## Run all tests
 test: test-cover test-e2e
 	$(call print-target)
 
-.PHONY: test
-test-dev: ## Run all tests
-test-dev: test-cover test-e2e
-	$(call print-target)
-
 .PHONY: test-race-dev
 test-race-dev: ## Run tests with race detector
 test-race-dev: generate
 	$(call print-target)
-	@go test -tags dev -race $(shell go list ./... | grep -v e2e)
+	@go test -tags dev -timeout 5000s -race $(shell go list -tags dev ./... | grep -v e2e)
 
 .PHONY: test-race
 test-race: ## Run tests with race detector
@@ -126,7 +121,7 @@ test-unit: generate
 test-unit-dev: ## Run unit tests
 test-unit-dev: generate
 	$(call print-target)
-	@go test -tags dev $(shell go list ./... | grep -v e2e)
+	@go test -tags dev $(shell go list -tags dev ./... | grep -v e2e)
 
 .PHONY: test-cover
 test-cover: ## Run tests with code coverage
@@ -138,7 +133,7 @@ test-cover: generate
 test-cover-dev: ## Run tests with code coverage
 test-cover-dev: generate
 	$(call print-target)
-	@go test -tags dev -covermode=atomic -v -coverprofile=coverage.out $(shell go list ./... | grep -v e2e)
+	@go test -tags dev -covermode=atomic -v -coverprofile=coverage.out $(shell go list -tags dev ./... | grep -v e2e)
 
 .PHONY: test-coverage-report
 test-coverage-report: ## Run unit tests and generate test coverage report
