@@ -1,0 +1,11 @@
+{
+  "id": "e7530c3c-b7cf-4149-8db9-d037a0b5268e",
+  "queryName": "Elasticsearch Without IAM Authentication",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "AWS Elasticsearch should ensure IAM Authentication",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain",
+  "platform": "Terraform",
+  "descriptionID": "7677c71c",
+  "cloudProvider": "aws"
+}

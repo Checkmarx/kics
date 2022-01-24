@@ -1,0 +1,11 @@
+{
+  "id": "c47f90e8-4a19-43f0-8413-cc434d286c4e",
+  "queryName": "Network Policy Disabled",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Kubernetes Engine Clusters must have Network Policy enabled, meaning that the attribute 'networkPolicy.enabled' must be true and the attribute 'addonsConfig.networkPolicyConfig.disabled' must be false",
+  "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters",
+  "platform": "GoogleDeploymentManager",
+  "descriptionID": "e28f5312",
+  "cloudProvider": "gcp"
+}

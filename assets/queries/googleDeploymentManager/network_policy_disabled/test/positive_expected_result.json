@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "Network Policy Disabled",
+    "severity": "HIGH",
+    "line": 4,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Network Policy Disabled",
+    "severity": "HIGH",
+    "line": 4,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Network Policy Disabled",
+    "severity": "HIGH",
+    "line": 4,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Network Policy Disabled",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Network Policy Disabled",
+    "severity": "HIGH",
+    "line": 8,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Network Policy Disabled",
+    "severity": "HIGH",
+    "line": 4,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Network Policy Disabled",
+    "severity": "HIGH",
+    "line": 10,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Network Policy Disabled",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive4.yaml"
+  }
+]

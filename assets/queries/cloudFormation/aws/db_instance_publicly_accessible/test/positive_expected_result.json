@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "DB Instance Publicly Accessible",
+    "severity": "HIGH",
+    "line": 69,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "DB Instance Publicly Accessible",
+    "severity": "HIGH",
+    "line": 61,
+    "fileName": "positive2.json"
+  }
+]

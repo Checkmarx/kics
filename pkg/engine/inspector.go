@@ -337,8 +337,8 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 			continue
 		}
 		file := ctx.files[vulnerability.FileID]
-		if shouldSkipFile(file.Commands, vulnerability.QueryID) {
-			log.Debug().Msgf("Skipping file %s for query %s", file.FilePath, ctx.query.metadata.Query)
+		if ShouldSkipVulnerability(file.Commands, vulnerability.QueryID) {
+			log.Debug().Msgf("Skipping vulnerability in file %s for query '%s':%s", file.FilePath, vulnerability.QueryName, vulnerability.QueryID)
 			continue
 		}
 
@@ -393,21 +393,23 @@ func contains(s []string, e string) bool {
 	return false
 }
 
-func shouldSkipFile(command model.CommentsCommands, queryID string) bool {
-	if queries, ok := command["enable"]; ok {
-		for _, query := range strings.Split(queries, ",") {
-			if strings.EqualFold(query, queryID) {
-				return false
-			}
+func isDisabled(queries, queryID string, output bool) bool {
+	for _, query := range strings.Split(queries, ",") {
+		if strings.EqualFold(query, queryID) {
+			return output
 		}
-		return true
+	}
+
+	return !output
+}
+
+// ShouldSkipVulnerability verifies if the vulnerability in question should be ignored through comment commands
+func ShouldSkipVulnerability(command model.CommentsCommands, queryID string) bool {
+	if queries, ok := command["enable"]; ok {
+		return isDisabled(queries, queryID, false)
 	}
 	if queries, ok := command["disable"]; ok {
-		for _, query := range strings.Split(queries, ",") {
-			if strings.EqualFold(query, queryID) {
-				return true
-			}
-		}
+		return isDisabled(queries, queryID, true)
 	}
 	return false
 }

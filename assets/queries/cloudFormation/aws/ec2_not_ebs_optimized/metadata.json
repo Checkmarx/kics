@@ -1,0 +1,11 @@
+{
+  "id": "8dd0ff1f-0da4-48df-9bb3-7f338ae36a40",
+  "queryName": "EC2 Not EBS Optimized",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "It's considered a best practice for an EC2 instance to use an EBS optimized instance. This provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-ebsoptimized",
+  "platform": "CloudFormation",
+  "descriptionID": "4d5e32ad",
+  "cloudProvider": "aws"
+}

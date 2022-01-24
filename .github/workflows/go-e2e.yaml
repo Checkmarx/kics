@@ -24,7 +24,7 @@ jobs:
       - name: Set up Node v14
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: "14"
       - name: Check out code
         uses: actions/checkout@v2.3.4
         with:

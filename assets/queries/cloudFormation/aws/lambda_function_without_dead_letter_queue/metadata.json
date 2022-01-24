@@ -1,0 +1,11 @@
+{
+  "id": "c2eae442-d3ba-4cb1-84ca-1db4f80eae3d",
+  "queryName": "Lambda Function Without Dead Letter Queue",
+  "severity": "LOW",
+  "category": "Insecure Configurations",
+  "descriptionText": "AWS Lambda Function should be configured for a Dead Letter Queue(DLQ)",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-deadletterconfig",
+  "platform": "CloudFormation",
+  "descriptionID": "d5d9d047",
+  "cloudProvider": "aws"
+}

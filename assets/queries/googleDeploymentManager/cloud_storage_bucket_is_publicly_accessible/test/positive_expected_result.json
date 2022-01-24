@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Cloud Storage Bucket Is Publicly Accessible",
+    "severity": "HIGH",
+    "line": 5,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Cloud Storage Bucket Is Publicly Accessible",
+    "severity": "HIGH",
+    "line": 5,
+    "filename": "positive2.yaml"
+  }
+]

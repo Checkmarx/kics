@@ -1,0 +1,8 @@
+resources:
+  - name: cluster
+    type: container.v1.cluster
+    properties:
+      description: my-cluster
+      ipAllocationPolicy:
+        subnetworkName: my-network
+        useIpAliases: true

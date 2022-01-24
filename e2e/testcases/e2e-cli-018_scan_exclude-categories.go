@@ -7,7 +7,7 @@ func init() { //nolint
 		Name: "should exclude provided categories [E2E-CLI-018]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "--exclude-categories", "Observability,Insecure Configurations", "-s",
+				[]string{"scan", "--exclude-categories", "Observability,Insecure Configurations,Networking and Firewall,Access Control", "-s",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 			},
 		},

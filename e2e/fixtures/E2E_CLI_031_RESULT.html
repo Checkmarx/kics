@@ -2,875 +2,1016 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>KICS Scan Result</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      outline: 0;
-      box-sizing: border-box
-    }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>KICS Scan Result</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            outline: 0;
+            box-sizing: border-box
+        }
 
-    body {
-      font-family: sans-serif
-    }
+        body {
+            font-family: sans-serif
+        }
 
-    .container {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      margin: 5px;
-      border: 1px solid #bebebe
-    }
+        .container {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            margin: 5px;
+            border: 1px solid #bebebe
+        }
 
-    .run-info {
-      display: flex;
-      flex-wrap: wrap;
-      border: 1px solid #bebebe;
-      margin-top: 10px;
-      width: 50vw
-    }
+        .run-info {
+            display: flex;
+            flex-wrap: wrap;
+            border: 1px solid #bebebe;
+            margin-top: 10px;
+            width: 50vw
+        }
 
-    .run-info>span {
-      flex-basis: 50%;
-      text-align: center
-    }
+        .run-info>span {
+            flex-basis: 50%;
+            text-align: center
+        }
 
-    .counters {
-      display: flex;
-      flex-direction: row;
-      margin: 22px 0
-    }
+        .counters {
+            display: flex;
+            flex-direction: row;
+            margin: 22px 0
+        }
 
-    .report-header-footer {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      border-bottom: 1px solid #bebebe;
-      width: 100%;
-      padding: 15px 21px;
-      background-color: #503e9e;
-      height: 50px;
-      font-weight: 700;
-      font-size: 14px;
-      color: #fff;
-      cursor: default;
-      user-select: none
-    }
+        .report-header-footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border-bottom: 1px solid #bebebe;
+            width: 100%;
+            padding: 15px 21px;
+            background-color: #503e9e;
+            height: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            color: #fff;
+            cursor: default;
+            user-select: none
+        }
 
-    .report-header-footer>a {
-      color: inherit;
-      text-decoration: inherit
-    }
+        .report-header-footer>a {
+            color: inherit;
+            text-decoration: inherit
+        }
 
-    .report-header-footer>.title {
-      font-size: 18px
-    }
+        .report-header-footer>.title {
+            font-size: 18px
+        }
 
-    .report-header-footer>.title>span {
-      color: #000
-    }
+        .report-header-footer>.title>span {
+            color: #000
+        }
 
-    .report-header-footer>.timestamp {
-      font-weight: 400;
-      font-style: italic;
-      opacity: .5
-    }
+        .report-header-footer>.timestamp {
+            font-weight: 400;
+            font-style: italic;
+            opacity: .5
+        }
 
-    .severity {
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-      position: relative;
-      margin: 0 22px;
-      align-items: center
-    }
+        .severity {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            position: relative;
+            margin: 0 22px;
+            align-items: center
+        }
 
-    .severity>.caption.selected {
-      text-decoration: underline overline
-    }
+        .severity>.caption.selected {
+            text-decoration: underline overline
+        }
 
-    .badge {
-      color: #fff;
-      border: 2px solid #e8e8e8;
-      border-radius: 50%;
-      cursor: default;
-      user-select: none;
-      padding: 3px;
-      font-size: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 30px;
-      height: 30px;
-      position: absolute;
-      left: 60%;
-      top: 50%
-    }
+        .badge {
+            color: #fff;
+            border: 2px solid #e8e8e8;
+            border-radius: 50%;
+            cursor: default;
+            user-select: none;
+            padding: 3px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            left: 60%;
+            top: 50%
+        }
 
-    .kics-orange {
-      color: #fc6e3a
-    }
+        .kics-orange {
+            color: #fc6e3a
+        }
 
-    .kics-orange>svg {
-      fill: #fc6e3a
-    }
+        .kics-orange>svg {
+            fill: #fc6e3a
+        }
 
-    .kics-orange~.badge {
-      background-color: #503e9e
-    }
+        .kics-orange~.badge {
+            background-color: #503e9e
+        }
 
-    .kics-purple {
-      color: #503e9e
-    }
+        .kics-purple {
+            color: #503e9e
+        }
 
-    .kics-purple>svg {
-      fill: #503e9e
-    }
+        .kics-purple>svg {
+            fill: #503e9e
+        }
 
-    .kics-purple~.badge {
-      background-color: #fc6e3a
-    }
+        .kics-purple~.badge {
+            background-color: #fc6e3a
+        }
 
-    .severity>.icon>svg {
-      width: 80px;
-      height: auto
-    }
+        .severity>.icon>svg {
+            width: 80px;
+            height: auto
+        }
 
-    .severity>.caption {
-      font-size: 16px;
-      font-weight: bolder;
-      user-select: none;
-      cursor: default
-    }
+        .severity>.caption {
+            font-size: 16px;
+            font-weight: bolder;
+            user-select: none;
+            cursor: default
+        }
 
-    .separator {
-      border-top: 1px solid #979797;
-      opacity: .5;
-      width: 95%;
-      margin: 22px 0
-    }
+        .separator {
+            border-top: 1px solid #979797;
+            opacity: .5;
+            width: 95%;
+            margin: 22px 0
+        }
 
-    .query {
-      width: 95vw
-    }
+        .query {
+            width: 95vw
+        }
 
-    .query-title {
-      display: flex;
-      align-items: flex-start;
-      flex-direction: column;
-      width: 100%
-    }
+        .query-title {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            width: 100%
+        }
 
-    .query-title>h2 {
-      display: flex
-    }
+        .query-title>h2 {
+            display: flex
+        }
 
-    .query-title>h2>div {
-      width: 20px;
-      margin-right: 12px;
-      margin-left: -30px
-    }
+        .query-title>h2>div {
+            width: 20px;
+            margin-right: 12px;
+            margin-left: -30px
+        }
 
-    .query>* {
-      margin-left: 30px
-    }
+        .query>* {
+            margin-left: 30px
+        }
 
-    .query-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between
-    }
+        .query-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between
+        }
 
-    .query-details {
-      margin: 12px 0;
-      display: flex;
-      flex-direction: column
-    }
+        .query-details {
+            margin: 12px 0;
+            display: flex;
+            flex-direction: column;
+            text-align: justify
+        }
 
-    .query-details>span:first-child {
-      font-size: 18px
-    }
+        .query-details>span.query-description-title {
+            font-size: 18px;
+            margin-top: 5px
+        }
 
-    .query-details>span:last-child {
-      font-size: 14px
-    }
+        .query-details>span.cis-description-text {
+            margin-top: 5px
+        }
 
-    .vulnerable-info {
-      border: 1px #969696 solid;
-      border-radius: 2px;
-      display: flex;
-      flex-direction: column;
-      margin: 6px 9px
-    }
+        .query-details>span:last-child {
+            font-size: 14px
+        }
 
-    .vulnerable-info-header {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      margin: 6px 9px
-    }
+        .vulnerable-info {
+            border: 1px #969696 solid;
+            border-radius: 2px;
+            display: flex;
+            flex-direction: column;
+            margin: 6px 9px
+        }
 
-    .vulnerable-info-details {
-      display: flex;
-      flex-direction: column;
-      margin: 6px 9px
-    }
+        .vulnerable-info-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 6px 9px
+        }
 
-    .vulnerable-info-details>span>strong {
-      width: 5vw
-    }
+        .vulnerable-info-details {
+            display: flex;
+            flex-direction: column;
+            margin: 6px 9px
+        }
 
-    .code-box {
-      display: flex;
-      flex-direction: column;
-      background-color: #503e9e10
-    }
+        .vulnerable-info-details>span>strong {
+            width: 5vw
+        }
 
-    .code-line {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      height: 20px
-    }
+        .code-box {
+            display: flex;
+            flex-direction: column;
+            background-color: #503e9e10
+        }
 
-    .code-box>.error {
-      background-color: #fc6e3a50
-    }
+        .code-line {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            height: 20px
+        }
 
-    .code-line>.code-line-counter {
-      font-size: 10px;
-      margin-left: 9px;
-      margin-right: 10vw
-    }
+        .code-box>.error {
+            background-color: #fc6e3a50
+        }
 
-    .code-line>.code {
-      font-family: monospace;
-      font-size: 16px
-    }
+        .code-line>.code-line-counter {
+            font-size: 10px;
+            margin-left: 9px;
+            margin-right: 10vw
+        }
 
-    .kics-message {
-      margin: 24px 30vw;
-      text-align: center
-    }
+        .code-line>.code {
+            font-family: monospace;
+            font-size: 16px
+        }
 
-    .love {
-      color: #503e9d;
-      font-style: italic
-    }
+        .kics-message {
+            margin: 24px 30vw;
+            text-align: center
+        }
 
-    .social-networks {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 24px
-    }
+        .love {
+            color: #503e9d;
+            font-style: italic
+        }
 
-    .social-networks>a {
-      margin: 0 15px
-    }
+        .social-networks {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px
+        }
 
-    .social-networks>a>div>svg {
-      width: 20px;
-      height: 20px
-    }
+        .social-networks>a {
+            margin: 0 15px
+        }
 
-    .footer-text {
-      font-style: italic;
-      opacity: .5;
-      font-weight: 400;
-      width: 100%;
-      display: flex;
-      align-self: center;
-      justify-content: center
-    }
+        .social-networks>a>div>svg {
+            width: 20px;
+            height: 20px
+        }
 
-    a.checkmarx,
-    a.checkmarx:visited,
-    a.checkmarx:hover,
-    a.checkmarx:active {
-      cursor: pointer;
-      font-weight: 700;
-      text-decoration: underline;
-      color: #fff;
-      opacity: .8
-    }
+        .footer-text {
+            font-style: italic;
+            opacity: .5;
+            font-weight: 400;
+            width: 100%;
+            display: flex;
+            align-self: center;
+            justify-content: center
+        }
 
-    .hide {
-      display: none
-    }
+        a.checkmarx,
+        a.checkmarx:visited,
+        a.checkmarx:hover,
+        a.checkmarx:active {
+            cursor: pointer;
+            font-weight: 700;
+            text-decoration: underline;
+            color: #fff;
+            opacity: .8
+        }
 
-    summary {
-      cursor: pointer;
-      user-select: none;
-      font-size: 18px;
-      font-weight: 700
-    }
-  </style>
-  <script>function filter(a) { const b = document.querySelectorAll("[data-type='severity']"); b.forEach(b => a !== "TOTAL" && a !== b.getAttribute("data-name") ? b.classList.add("hide") : b.classList.remove("hide")); const c = document.querySelectorAll(".severity > .caption"); c.forEach(b => a && a === b.innerText ? b.classList.add("selected") : b.classList.remove("selected")) }</script>
+        .hide {
+            display: none
+        }
+
+        summary {
+            cursor: pointer;
+            user-select: none;
+            font-size: 18px;
+            font-weight: 700
+        }
+    </style>
+    <script>function filter(a) { const b = document.querySelectorAll("[data-type='severity']"); b.forEach(b => a !== "TOTAL" && a !== b.getAttribute("data-name") ? b.classList.add("hide") : b.classList.remove("hide")); const c = document.querySelectorAll(".severity > .caption"); c.forEach(b => a && a === b.innerText ? b.classList.add("selected") : b.classList.remove("selected")) }</script>
 </head>
 
 <body>
-  <div class="container">
-    <div class="report-header-footer"><span class="title">KICS <span>REPORT</span></span><span
-        class="timestamp">07/05/2021 14:43</span><a href="https://www.kics.io/" rel="noopener"
-        target="_blank">KICS.IO</a></div>
-    <div class="run-info"><span style="flex-basis:100%" id="scan-paths"><strong>Scanned paths:</strong> fixtures/samples/terraform.tf</span>
-      <span style="flex-basis:100%" id="scan-platforms"><strong>Platforms:</strong> Common, Terraform</span><span
-        id="scan-start-time"><strong>Start time:</strong> 14:42:51, Jul 05 2021</span>
-      <span id="scan-end-time"><strong>End time:</strong> 14:43:00, Jul 05 2021</span>
-    </div>
-    <h2 style="margin-top:41px" class="kics-orange">Vulnerabilities:</h2>
-    <div class="counters">
-      <div class="severity" onclick="filter('HIGH')">
-        <div class="kics-orange icon"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
-            height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
-            <g>
-              <path d="M0,0h24v24H0V0z" fill="none" />
-            </g>
-            <g>
-              <path
-                d="M12,2L4,5v6.09c0,5.05,3.41,9.76,8,10.91c4.59-1.15,8-5.86,8-10.91V5L12,2z M13,16h-2v-2h2V16z M13,12h-2V7h2V12z" />
-            </g>
-          </svg></div><span class="badge" id="severity-count-high">6</span>
-        <span class="caption">HIGH</span>
-      </div>
-      <div class="severity" onclick="filter('MEDIUM')">
-        <div class="kics-orange icon"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
-            height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
-            <g>
-              <path d="M0,0h24v24H0V0z" fill="none" />
-            </g>
-            <g>
-              <g>
-                <path
-                  d="M12,2L4,5v6.09c0,5.05,3.41,9.76,8,10.91c4.59-1.15,8-5.86,8-10.91V5L12,2z M18,11.09c0,4-2.55,7.7-6,8.83 c-3.45-1.13-6-4.82-6-8.83v-4.7l6-2.25l6,2.25V11.09z" />
-                <rect height="2" width="2" x="11" y="14" />
-                <rect height="5" width="2" x="11" y="7" />
-              </g>
-            </g>
-          </svg></div><span class="badge" id="severity-count-medium">6</span>
-        <span class="caption">MEDIUM</span>
-      </div>
-      <div class="severity" onclick="filter('LOW')">
-        <div class="kics-purple icon"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
-            height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
-            <g>
-              <path d="M0,0h24v24H0V0z" fill="none" />
-            </g>
-            <g>
-              <g>
-                <path
-                  d="M12,2L4,5v6.09c0,5.05,3.41,9.76,8,10.91c4.59-1.15,8-5.86,8-10.91V5L12,2z M18,11.09c0,4-2.55,7.7-6,8.83 c-3.45-1.13-6-4.82-6-8.83v-4.7l6-2.25l6,2.25V11.09z" />
-                <rect height="2" width="2" x="11" y="14" />
-                <rect height="5" width="2" x="11" y="7" />
-              </g>
-            </g>
-          </svg></div><span class="badge" id="severity-count-low">0</span>
-        <span class="caption">LOW</span>
-      </div>
-      <div class="severity" onclick="filter('INFO')">
-        <div class="kics-purple icon"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
-            height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
-            <g>
-              <rect fill="none" height="24" width="24" />
-            </g>
-            <g>
-              <g />
-              <g>
-                <path
-                  d="M21,5l-9-4L3,5v6c0,5.55,3.84,10.74,9,12c2.3-0.56,4.33-1.9,5.88-3.71l-3.12-3.12c-1.94,1.29-4.58,1.07-6.29-0.64 c-1.95-1.95-1.95-5.12,0-7.07c1.95-1.95,5.12-1.95,7.07,0c1.71,1.71,1.92,4.35,0.64,6.29l2.9,2.9C20.29,15.69,21,13.38,21,11V5z" />
-                <circle cx="12" cy="12" r="3" />
-              </g>
-            </g>
-          </svg></div><span class="badge" id="severity-count-info">2</span>
-        <span class="caption">INFO</span>
-      </div>
-      <div class="severity" onclick="filter('TOTAL')">
-        <div class="kics-orange icon"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
-            height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
-            <g>
-              <rect fill="none" height="24" width="24" />
-            </g>
-            <g>
-              <g />
-              <g>
-                <path
-                  d="M21,5l-9-4L3,5v6c0,5.55,3.84,10.74,9,12c2.3-0.56,4.33-1.9,5.88-3.71l-3.12-3.12c-1.94,1.29-4.58,1.07-6.29-0.64 c-1.95-1.95-1.95-5.12,0-7.07c1.95-1.95,5.12-1.95,7.07,0c1.71,1.71,1.92,4.35,0.64,6.29l2.9,2.9C20.29,15.69,21,13.38,21,11V5z" />
-                <circle cx="12" cy="12" r="3" />
-              </g>
-            </g>
-          </svg></div><span class="badge" id="severity-count-total">14</span>
-        <span class="caption selected">TOTAL</span>
-      </div>
-    </div>
-    <div data-type="severity" data-name="HIGH">
-      <hr class="separator">
-      <div class="query">
-        <div class="query-info">
-          <div class="query-title">
-            <h2>
-              <div class="kics-orange"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
-                  height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
-                  <g>
-                    <path d="M0,0h24v24H0V0z" fill="none" />
-                  </g>
-                  <g>
-                    <path
-                      d="M12,2L4,5v6.09c0,5.05,3.41,9.76,8,10.91c4.59-1.15,8-5.86,8-10.91V5L12,2z M13,16h-2v-2h2V16z M13,12h-2V7h2V12z" />
-                  </g>
-                </svg></div><span class="query-name">Passwords And Secrets In Infrastructure Code</span>
-            </h2><span><strong>Platform:</strong> <span class="query-info-platform">Common</span></span>
-            <span><strong>Category:</strong> <span class="query-info-category">Secret Management</span></span>
-          </div>
-          <div class="query-details"><span>Query to find passwords and secrets in infrastructure code.</span>
-            <span><a href="https://kics.io/" rel="noopener" target="_blank">https://kics.io/</a></span>
-          </div>
+    <div class="container">
+        <div class="report-header-footer"><span class="title">KICS <span>REPORT</span></span><span
+                class="timestamp">01/19/2022 11:50</span><a href="https://www.kics.io/" rel="noopener"
+                target="_blank">KICS.IO</a></div>
+        <div class="run-info"><span style="flex-basis:100%" id="scan-paths"><strong>KICS development</strong></span>
+            <span style="flex-basis:100%" id="scan-paths"><strong>Scanned paths:</strong> fixtures/samples/terraform.tf</span>
+            <span style="flex-basis:100%" id="scan-platforms"><strong>Platforms:</strong> Common, Terraform</span><span
+                id="scan-start-time"><strong>Start time:</strong> 11:50:24, Jan 19 2022</span>
+            <span id="scan-end-time"><strong>End time:</strong> 11:50:42, Jan 19 2022</span>
         </div>
-        <details>
-          <summary>Results (<span class="severity-partial-count-high">2</span>)</summary>
-          <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
-              <span>Line 14</span>
+        <h2 style="margin-top:41px" class="kics-orange">Vulnerabilities:</h2>
+        <div class="counters">
+            <div class="severity" onclick="filter('HIGH')">
+                <div class="kics-orange icon"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
+                        height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+                        <g>
+                            <path d="M0,0h24v24H0V0z" fill="none" />
+                        </g>
+                        <g>
+                            <path
+                                d="M12,2L4,5v6.09c0,5.05,3.41,9.76,8,10.91c4.59-1.15,8-5.86,8-10.91V5L12,2z M13,16h-2v-2h2V16z M13,12h-2V7h2V12z" />
+                        </g>
+                    </svg></div><span class="badge" id="severity-count-high">6</span>
+                <span class="caption">HIGH</span>
             </div>
-            <div class="vulnerable-info-details"><span><strong>Expected:</strong> Hardcoded secret key should not appear
-                in source</span>
-              <span><strong>Found:</strong> Mustbe8characters</span>
+            <div class="severity" onclick="filter('MEDIUM')">
+                <div class="kics-orange icon"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
+                        height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+                        <g>
+                            <path d="M0,0h24v24H0V0z" fill="none" />
+                        </g>
+                        <g>
+                            <g>
+                                <path
+                                    d="M12,2L4,5v6.09c0,5.05,3.41,9.76,8,10.91c4.59-1.15,8-5.86,8-10.91V5L12,2z M18,11.09c0,4-2.55,7.7-6,8.83 c-3.45-1.13-6-4.82-6-8.83v-4.7l6-2.25l6,2.25V11.09z" />
+                                <rect height="2" width="2" x="11" y="14" />
+                                <rect height="5" width="2" x="11" y="7" />
+                            </g>
+                        </g>
+                    </svg></div><span class="badge" id="severity-count-medium">7</span>
+                <span class="caption">MEDIUM</span>
             </div>
-            <div class="code-box">
-              <div class="code-line"><span class="code-line-counter">13</span><span class="code"> master_username =
-                  "foo"</span></div>
-              <div class="code-line error"><span class="code-line-counter">14</span><span class="code"> master_password
-                  = "Mustbe8characters"</span></div>
-              <div class="code-line"><span class="code-line-counter">15</span><span class="code"> node_type =
-                  "dc1.large"</span></div>
+            <div class="severity" onclick="filter('LOW')">
+                <div class="kics-purple icon"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
+                        height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+                        <g>
+                            <path d="M0,0h24v24H0V0z" fill="none" />
+                        </g>
+                        <g>
+                            <g>
+                                <path
+                                    d="M12,2L4,5v6.09c0,5.05,3.41,9.76,8,10.91c4.59-1.15,8-5.86,8-10.91V5L12,2z M18,11.09c0,4-2.55,7.7-6,8.83 c-3.45-1.13-6-4.82-6-8.83v-4.7l6-2.25l6,2.25V11.09z" />
+                                <rect height="2" width="2" x="11" y="14" />
+                                <rect height="5" width="2" x="11" y="7" />
+                            </g>
+                        </g>
+                    </svg></div><span class="badge" id="severity-count-low">2</span>
+                <span class="caption">LOW</span>
             </div>
-          </div>
-          <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
-              <span>Line 5</span>
+            <div class="severity" onclick="filter('INFO')">
+                <div class="kics-purple icon"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
+                        height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+                        <g>
+                            <rect fill="none" height="24" width="24" />
+                        </g>
+                        <g>
+                            <g />
+                            <g>
+                                <path
+                                    d="M21,5l-9-4L3,5v6c0,5.55,3.84,10.74,9,12c2.3-0.56,4.33-1.9,5.88-3.71l-3.12-3.12c-1.94,1.29-4.58,1.07-6.29-0.64 c-1.95-1.95-1.95-5.12,0-7.07c1.95-1.95,5.12-1.95,7.07,0c1.71,1.71,1.92,4.35,0.64,6.29l2.9,2.9C20.29,15.69,21,13.38,21,11V5z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </g>
+                        </g>
+                    </svg></div><span class="badge" id="severity-count-info">2</span>
+                <span class="caption">INFO</span>
             </div>
-            <div class="vulnerable-info-details"><span><strong>Expected:</strong> Hardcoded secret key should not appear
-                in source</span>
-              <span><strong>Found:</strong> Mustbe8characters</span>
+            <div class="severity" onclick="filter('TOTAL')">
+                <div class="kics-orange icon"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
+                        height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+                        <g>
+                            <rect fill="none" height="24" width="24" />
+                        </g>
+                        <g>
+                            <g />
+                            <g>
+                                <path
+                                    d="M21,5l-9-4L3,5v6c0,5.55,3.84,10.74,9,12c2.3-0.56,4.33-1.9,5.88-3.71l-3.12-3.12c-1.94,1.29-4.58,1.07-6.29-0.64 c-1.95-1.95-1.95-5.12,0-7.07c1.95-1.95,5.12-1.95,7.07,0c1.71,1.71,1.92,4.35,0.64,6.29l2.9,2.9C20.29,15.69,21,13.38,21,11V5z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </g>
+                        </g>
+                    </svg></div><span class="badge" id="severity-count-total">17</span>
+                <span class="caption selected">TOTAL</span>
             </div>
-            <div class="code-box">
-              <div class="code-line"><span class="code-line-counter">4</span><span class="code"> master_username =
-                  "foo"</span></div>
-              <div class="code-line error"><span class="code-line-counter">5</span><span class="code"> master_password =
-                  "Mustbe8characters"</span></div>
-              <div class="code-line"><span class="code-line-counter">6</span><span class="code"> node_type =
-                  "dc1.large"</span></div>
-            </div>
-          </div>
-        </details>
-      </div>
-    </div>
-    <div data-type="severity" data-name="HIGH">
-      <hr class="separator">
-      <div class="query">
-        <div class="query-info">
-          <div class="query-title">
-            <h2>
-              <div class="kics-orange"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
-                  height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
-                  <g>
-                    <path d="M0,0h24v24H0V0z" fill="none" />
-                  </g>
-                  <g>
-                    <path
-                      d="M12,2L4,5v6.09c0,5.05,3.41,9.76,8,10.91c4.59-1.15,8-5.86,8-10.91V5L12,2z M13,16h-2v-2h2V16z M13,12h-2V7h2V12z" />
-                  </g>
-                </svg></div><span class="query-name">Redshift Not Encrypted</span>
-            </h2><span><strong>Platform:</strong> <span class="query-info-platform">Terraform</span></span>
-            <span><strong>Category:</strong> <span class="query-info-category">Encryption</span></span>
-          </div>
-          <div class="query-details"><span>Check if 'encrypted' field is false or undefined (default is false)</span>
-            <span><a
-                href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#encrypted"
-                rel="noopener"
-                target="_blank">https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#encrypted</a></span>
-          </div>
         </div>
-        <details>
-          <summary>Results (<span class="severity-partial-count-high">2</span>)</summary>
-          <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
-              <span>Line 10</span>
+        <div data-type="severity" data-name="HIGH">
+            <hr class="separator">
+            <div class="query">
+                <div class="query-info">
+                    <div class="query-title">
+                        <h2>
+                            <div class="kics-orange"><svg xmlns="http://www.w3.org/2000/svg"
+                                    enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px"
+                                    fill="#000000">
+                                    <g>
+                                        <path d="M0,0h24v24H0V0z" fill="none" />
+                                    </g>
+                                    <g>
+                                        <path
+                                            d="M12,2L4,5v6.09c0,5.05,3.41,9.76,8,10.91c4.59-1.15,8-5.86,8-10.91V5L12,2z M13,16h-2v-2h2V16z M13,12h-2V7h2V12z" />
+                                    </g>
+                                </svg></div><span class="query-name">Passwords And Secrets - Generic Password</span>
+                        </h2><span><strong>Platform:</strong> <span class="query-info-platform">Common</span></span>
+                        <span><strong>Category:</strong> <span class="query-info-category">Secret
+                                Management</span></span>
+                    </div>
+                    <div class="query-details"><span class="query-description-title">Query to find passwords and secrets
+                            in infrastructure code.</span><span><a href="https://kics.io/" rel="noopener"
+                                target="_blank">https://kics.io/</a></span></div>
+                </div>
+                <details>
+                    <summary>Results (<span class="severity-partial-count-high">2</span>)</summary>
+                    <div class="vulnerable-info">
+                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+                            <span>Line 5</span>
+                        </div>
+                        <div class="vulnerable-info-details"><span><strong>Expected:</strong> Hardcoded secret key
+                                should not appear in source</span>
+                            <span><strong>Found:</strong> ' master_password = "Mustbe8characters"' contains a
+                                secret</span>
+                        </div>
+                        <div class="code-box">
+                            <div class="code-line"><span class="code-line-counter">4</span><span class="code">
+                                    master_username = "foo"</span></div>
+                            <div class="code-line error"><span class="code-line-counter">5</span><span class="code">
+                                    master_password = "Mustbe8characters"</span></div>
+                            <div class="code-line"><span class="code-line-counter">6</span><span class="code"> node_type
+                                    = "dc1.large"</span></div>
+                        </div>
+                    </div>
+                    <div class="vulnerable-info">
+                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+                            <span>Line 14</span>
+                        </div>
+                        <div class="vulnerable-info-details"><span><strong>Expected:</strong> Hardcoded secret key
+                                should not appear in source</span>
+                            <span><strong>Found:</strong> ' master_password = "Mustbe8characters"' contains a
+                                secret</span>
+                        </div>
+                        <div class="code-box">
+                            <div class="code-line"><span class="code-line-counter">13</span><span class="code">
+                                    master_username = "foo"</span></div>
+                            <div class="code-line error"><span class="code-line-counter">14</span><span class="code">
+                                    master_password = "Mustbe8characters"</span></div>
+                            <div class="code-line"><span class="code-line-counter">15</span><span class="code">
+                                    node_type = "dc1.large"</span></div>
+                        </div>
+                    </div>
+                </details>
             </div>
-            <div class="vulnerable-info-details"><span><strong>Expected:</strong> aws_redshift_cluster.encrypted is
-                defined</span>
-              <span><strong>Found:</strong> aws_redshift_cluster.encrypted is undefined</span>
-            </div>
-            <div class="code-box">
-              <div class="code-line"><span class="code-line-counter">9</span><span class="code"></span></div>
-              <div class="code-line error"><span class="code-line-counter">10</span><span class="code">resource
-                  "aws_redshift_cluster" "default1" {</span></div>
-              <div class="code-line"><span class="code-line-counter">11</span><span class="code"> cluster_identifier =
-                  "tf-redshift-cluster"</span></div>
-            </div>
-          </div>
-          <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
-              <span>Line 1</span>
-            </div>
-            <div class="vulnerable-info-details"><span><strong>Expected:</strong> aws_redshift_cluster.encrypted is
-                defined</span>
-              <span><strong>Found:</strong> aws_redshift_cluster.encrypted is undefined</span>
-            </div>
-            <div class="code-box">
-              <div class="code-line error"><span class="code-line-counter">1</span><span class="code">resource
-                  "aws_redshift_cluster" "default" {</span></div>
-              <div class="code-line"><span class="code-line-counter">2</span><span class="code"> cluster_identifier =
-                  "tf-redshift-cluster"</span></div>
-              <div class="code-line"><span class="code-line-counter">3</span><span class="code"> database_name =
-                  "mydb"</span></div>
-            </div>
-          </div>
-        </details>
-      </div>
-    </div>
-    <div data-type="severity" data-name="HIGH">
-      <hr class="separator">
-      <div class="query">
-        <div class="query-info">
-          <div class="query-title">
-            <h2>
-              <div class="kics-orange"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
-                  height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
-                  <g>
-                    <path d="M0,0h24v24H0V0z" fill="none" />
-                  </g>
-                  <g>
-                    <path
-                      d="M12,2L4,5v6.09c0,5.05,3.41,9.76,8,10.91c4.59-1.15,8-5.86,8-10.91V5L12,2z M13,16h-2v-2h2V16z M13,12h-2V7h2V12z" />
-                  </g>
-                </svg></div><span class="query-name">Redshift Publicly Accessible</span>
-            </h2><span><strong>Platform:</strong> <span class="query-info-platform">Terraform</span></span>
-            <span><strong>Category:</strong> <span class="query-info-category">Insecure Configurations</span></span>
-          </div>
-          <div class="query-details"><span>Check if 'publicly_accessible' field is true or undefined (default is
-              true)</span>
-            <span><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster"
-                rel="noopener"
-                target="_blank">https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster</a></span>
-          </div>
         </div>
-        <details>
-          <summary>Results (<span class="severity-partial-count-high">2</span>)</summary>
-          <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
-              <span>Line 1</span>
+        <div data-type="severity" data-name="HIGH">
+            <hr class="separator">
+            <div class="query">
+                <div class="query-info">
+                    <div class="query-title">
+                        <h2>
+                            <div class="kics-orange"><svg xmlns="http://www.w3.org/2000/svg"
+                                    enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px"
+                                    fill="#000000">
+                                    <g>
+                                        <path d="M0,0h24v24H0V0z" fill="none" />
+                                    </g>
+                                    <g>
+                                        <path
+                                            d="M12,2L4,5v6.09c0,5.05,3.41,9.76,8,10.91c4.59-1.15,8-5.86,8-10.91V5L12,2z M13,16h-2v-2h2V16z M13,12h-2V7h2V12z" />
+                                    </g>
+                                </svg></div><span class="query-name">Redshift Not Encrypted</span>
+                        </h2><span><strong>Platform:</strong> <span class="query-info-platform">Terraform</span></span>
+                        <span><strong>Category:</strong> <span class="query-info-category">Encryption</span></span>
+                    </div>
+                    <div class="query-details"><span class="query-description-title">Check if 'encrypted' field is false
+                            or undefined (default is false)</span><span><a
+                                href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#encrypted"
+                                rel="noopener"
+                                target="_blank">https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#encrypted</a></span>
+                    </div>
+                </div>
+                <details>
+                    <summary>Results (<span class="severity-partial-count-high">2</span>)</summary>
+                    <div class="vulnerable-info">
+                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+                            <span>Line 10</span>
+                        </div>
+                        <div class="vulnerable-info-details"><span><strong>Expected:</strong>
+                                aws_redshift_cluster.encrypted is defined and not null</span>
+                            <span><strong>Found:</strong> aws_redshift_cluster.encrypted is undefined or null</span>
+                        </div>
+                        <div class="code-box">
+                            <div class="code-line"><span class="code-line-counter">9</span><span class="code"></span>
+                            </div>
+                            <div class="code-line error"><span class="code-line-counter">10</span><span
+                                    class="code">resource "aws_redshift_cluster" "default1" {</span></div>
+                            <div class="code-line"><span class="code-line-counter">11</span><span class="code">
+                                    cluster_identifier = "tf-redshift-cluster"</span></div>
+                        </div>
+                    </div>
+                    <div class="vulnerable-info">
+                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+                            <span>Line 1</span>
+                        </div>
+                        <div class="vulnerable-info-details"><span><strong>Expected:</strong>
+                                aws_redshift_cluster.encrypted is defined and not null</span>
+                            <span><strong>Found:</strong> aws_redshift_cluster.encrypted is undefined or null</span>
+                        </div>
+                        <div class="code-box">
+                            <div class="code-line error"><span class="code-line-counter">1</span><span
+                                    class="code">resource "aws_redshift_cluster" "default" {</span></div>
+                            <div class="code-line"><span class="code-line-counter">2</span><span class="code">
+                                    cluster_identifier = "tf-redshift-cluster"</span></div>
+                            <div class="code-line"><span class="code-line-counter">3</span><span class="code">
+                                    database_name = "mydb"</span></div>
+                        </div>
+                    </div>
+                </details>
             </div>
-            <div class="vulnerable-info-details"><span><strong>Expected:</strong>
-                aws_redshift_cluster.publicly_accessible is defined</span>
-              <span><strong>Found:</strong> aws_redshift_cluster.publicly_accessible is undefined</span>
-            </div>
-            <div class="code-box">
-              <div class="code-line error"><span class="code-line-counter">1</span><span class="code">resource
-                  "aws_redshift_cluster" "default" {</span></div>
-              <div class="code-line"><span class="code-line-counter">2</span><span class="code"> cluster_identifier =
-                  "tf-redshift-cluster"</span></div>
-              <div class="code-line"><span class="code-line-counter">3</span><span class="code"> database_name =
-                  "mydb"</span></div>
-            </div>
-          </div>
-          <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
-              <span>Line 17</span>
-            </div>
-            <div class="vulnerable-info-details"><span><strong>Expected:</strong>
-                aws_redshift_cluster.publicly_accessible is false</span>
-              <span><strong>Found:</strong> aws_redshift_cluster.publicly_accessible is true</span>
-            </div>
-            <div class="code-box">
-              <div class="code-line"><span class="code-line-counter">16</span><span class="code"> cluster_type =
-                  "single-node"</span></div>
-              <div class="code-line error"><span class="code-line-counter">17</span><span class="code">
-                  publicly_accessible = true</span></div>
-              <div class="code-line"><span class="code-line-counter">18</span><span class="code">}</span></div>
-            </div>
-          </div>
-        </details>
-      </div>
-    </div>
-    <div data-type="severity" data-name="MEDIUM">
-      <hr class="separator">
-      <div class="query">
-        <div class="query-info">
-          <div class="query-title">
-            <h2>
-              <div class="kics-orange"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
-                  height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
-                  <g>
-                    <path d="M0,0h24v24H0V0z" fill="none" />
-                  </g>
-                  <g>
-                    <g>
-                      <path
-                        d="M12,2L4,5v6.09c0,5.05,3.41,9.76,8,10.91c4.59-1.15,8-5.86,8-10.91V5L12,2z M18,11.09c0,4-2.55,7.7-6,8.83 c-3.45-1.13-6-4.82-6-8.83v-4.7l6-2.25l6,2.25V11.09z" />
-                      <rect height="2" width="2" x="11" y="14" />
-                      <rect height="5" width="2" x="11" y="7" />
-                    </g>
-                  </g>
-                </svg></div><span class="query-name">Redshift Cluster Logging Disabled</span>
-            </h2><span><strong>Platform:</strong> <span class="query-info-platform">Terraform</span></span>
-            <span><strong>Category:</strong> <span class="query-info-category">Observability</span></span>
-          </div>
-          <div class="query-details"><span>Make sure Logging is enabled for Redshift Cluster</span>
-            <span><a
-                href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#enable"
-                rel="noopener"
-                target="_blank">https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#enable</a></span>
-          </div>
         </div>
-        <details>
-          <summary>Results (<span class="severity-partial-count-medium">2</span>)</summary>
-          <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
-              <span>Line 1</span>
+        <div data-type="severity" data-name="HIGH">
+            <hr class="separator">
+            <div class="query">
+                <div class="query-info">
+                    <div class="query-title">
+                        <h2>
+                            <div class="kics-orange"><svg xmlns="http://www.w3.org/2000/svg"
+                                    enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px"
+                                    fill="#000000">
+                                    <g>
+                                        <path d="M0,0h24v24H0V0z" fill="none" />
+                                    </g>
+                                    <g>
+                                        <path
+                                            d="M12,2L4,5v6.09c0,5.05,3.41,9.76,8,10.91c4.59-1.15,8-5.86,8-10.91V5L12,2z M13,16h-2v-2h2V16z M13,12h-2V7h2V12z" />
+                                    </g>
+                                </svg></div><span class="query-name">Redshift Publicly Accessible</span>
+                        </h2><span><strong>Platform:</strong> <span class="query-info-platform">Terraform</span></span>
+                        <span><strong>Category:</strong> <span class="query-info-category">Insecure
+                                Configurations</span></span>
+                    </div>
+                    <div class="query-details"><span class="query-description-title">Check if 'publicly_accessible'
+                            field is true or undefined (default is true)</span><span><a
+                                href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster"
+                                rel="noopener"
+                                target="_blank">https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster</a></span>
+                    </div>
+                </div>
+                <details>
+                    <summary>Results (<span class="severity-partial-count-high">2</span>)</summary>
+                    <div class="vulnerable-info">
+                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+                            <span>Line 17</span>
+                        </div>
+                        <div class="vulnerable-info-details"><span><strong>Expected:</strong>
+                                aws_redshift_cluster.publicly_accessible is false</span>
+                            <span><strong>Found:</strong> aws_redshift_cluster.publicly_accessible is true</span>
+                        </div>
+                        <div class="code-box">
+                            <div class="code-line"><span class="code-line-counter">16</span><span class="code">
+                                    cluster_type = "single-node"</span></div>
+                            <div class="code-line error"><span class="code-line-counter">17</span><span class="code">
+                                    publicly_accessible = true</span></div>
+                            <div class="code-line"><span class="code-line-counter">18</span><span class="code">}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vulnerable-info">
+                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+                            <span>Line 1</span>
+                        </div>
+                        <div class="vulnerable-info-details"><span><strong>Expected:</strong>
+                                aws_redshift_cluster.publicly_accessible is defined and not null</span>
+                            <span><strong>Found:</strong> aws_redshift_cluster.publicly_accessible is undefined or
+                                null</span>
+                        </div>
+                        <div class="code-box">
+                            <div class="code-line error"><span class="code-line-counter">1</span><span
+                                    class="code">resource "aws_redshift_cluster" "default" {</span></div>
+                            <div class="code-line"><span class="code-line-counter">2</span><span class="code">
+                                    cluster_identifier = "tf-redshift-cluster"</span></div>
+                            <div class="code-line"><span class="code-line-counter">3</span><span class="code">
+                                    database_name = "mydb"</span></div>
+                        </div>
+                    </div>
+                </details>
             </div>
-            <div class="vulnerable-info-details"><span><strong>Expected:</strong> 'aws_redshift_cluster.logging' is
-                true</span>
-              <span><strong>Found:</strong> 'aws_redshift_cluster.logging' is undefined</span>
-            </div>
-            <div class="code-box">
-              <div class="code-line error"><span class="code-line-counter">1</span><span class="code">resource
-                  "aws_redshift_cluster" "default" {</span></div>
-              <div class="code-line"><span class="code-line-counter">2</span><span class="code"> cluster_identifier =
-                  "tf-redshift-cluster"</span></div>
-              <div class="code-line"><span class="code-line-counter">3</span><span class="code"> database_name =
-                  "mydb"</span></div>
-            </div>
-          </div>
-          <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
-              <span>Line 10</span>
-            </div>
-            <div class="vulnerable-info-details"><span><strong>Expected:</strong> 'aws_redshift_cluster.logging' is
-                true</span>
-              <span><strong>Found:</strong> 'aws_redshift_cluster.logging' is undefined</span>
-            </div>
-            <div class="code-box">
-              <div class="code-line"><span class="code-line-counter">9</span><span class="code"></span></div>
-              <div class="code-line error"><span class="code-line-counter">10</span><span class="code">resource
-                  "aws_redshift_cluster" "default1" {</span></div>
-              <div class="code-line"><span class="code-line-counter">11</span><span class="code"> cluster_identifier =
-                  "tf-redshift-cluster"</span></div>
-            </div>
-          </div>
-        </details>
-      </div>
-    </div>
-    <div data-type="severity" data-name="MEDIUM">
-      <hr class="separator">
-      <div class="query">
-        <div class="query-info">
-          <div class="query-title">
-            <h2>
-              <div class="kics-orange"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
-                  height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
-                  <g>
-                    <path d="M0,0h24v24H0V0z" fill="none" />
-                  </g>
-                  <g>
-                    <g>
-                      <path
-                        d="M12,2L4,5v6.09c0,5.05,3.41,9.76,8,10.91c4.59-1.15,8-5.86,8-10.91V5L12,2z M18,11.09c0,4-2.55,7.7-6,8.83 c-3.45-1.13-6-4.82-6-8.83v-4.7l6-2.25l6,2.25V11.09z" />
-                      <rect height="2" width="2" x="11" y="14" />
-                      <rect height="5" width="2" x="11" y="7" />
-                    </g>
-                  </g>
-                </svg></div><span class="query-name">Redshift Cluster Without VPC</span>
-            </h2><span><strong>Platform:</strong> <span class="query-info-platform">Terraform</span></span>
-            <span><strong>Category:</strong> <span class="query-info-category">Insecure Configurations</span></span>
-          </div>
-          <div class="query-details"><span>Redshift Cluster should be configured in VPC (Virtual Private Cloud)</span>
-            <span><a
-                href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#vpc_security_group_ids"
-                rel="noopener"
-                target="_blank">https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#vpc_security_group_ids</a></span>
-          </div>
         </div>
-        <details>
-          <summary>Results (<span class="severity-partial-count-medium">4</span>)</summary>
-          <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
-              <span>Line 1</span>
+        <div data-type="severity" data-name="MEDIUM">
+            <hr class="separator">
+            <div class="query">
+                <div class="query-info">
+                    <div class="query-title">
+                        <h2>
+                            <div class="kics-orange"><svg xmlns="http://www.w3.org/2000/svg"
+                                    enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px"
+                                    fill="#000000">
+                                    <g>
+                                        <path d="M0,0h24v24H0V0z" fill="none" />
+                                    </g>
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M12,2L4,5v6.09c0,5.05,3.41,9.76,8,10.91c4.59-1.15,8-5.86,8-10.91V5L12,2z M18,11.09c0,4-2.55,7.7-6,8.83 c-3.45-1.13-6-4.82-6-8.83v-4.7l6-2.25l6,2.25V11.09z" />
+                                            <rect height="2" width="2" x="11" y="14" />
+                                            <rect height="5" width="2" x="11" y="7" />
+                                        </g>
+                                    </g>
+                                </svg></div><span class="query-name">IAM Access Analyzer Undefined</span>
+                        </h2><span><strong>Platform:</strong> <span class="query-info-platform">Terraform</span></span>
+                        <span><strong>Category:</strong> <span class="query-info-category">Access Control</span></span>
+                    </div>
+                    <div class="query-details"><span class="query-description-title">IAM Access Analyzer should be
+                            defined to identify unintentional access</span><span><a
+                                href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/accessanalyzer_analyzer"
+                                rel="noopener"
+                                target="_blank">https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/accessanalyzer_analyzer</a></span>
+                    </div>
+                </div>
+                <details>
+                    <summary>Results (<span class="severity-partial-count-medium">1</span>)</summary>
+                    <div class="vulnerable-info">
+                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+                            <span>Line 1</span>
+                        </div>
+                        <div class="vulnerable-info-details"><span><strong>Expected:</strong>
+                                'aws_accessanalyzer_analyzer' is set</span>
+                            <span><strong>Found:</strong> 'aws_accessanalyzer_analyzer' is undefined</span>
+                        </div>
+                        <div class="code-box">
+                            <div class="code-line error"><span class="code-line-counter">1</span><span
+                                    class="code">resource "aws_redshift_cluster" "default" {</span></div>
+                            <div class="code-line"><span class="code-line-counter">2</span><span class="code">
+                                    cluster_identifier = "tf-redshift-cluster"</span></div>
+                            <div class="code-line"><span class="code-line-counter">3</span><span class="code">
+                                    database_name = "mydb"</span></div>
+                        </div>
+                    </div>
+                </details>
             </div>
-            <div class="vulnerable-info-details"><span><strong>Expected:</strong>
-                aws_redshift_cluster[default].cluster_subnet_group_name is set</span>
-              <span><strong>Found:</strong> aws_redshift_cluster[default].cluster_subnet_group_name is undefined</span>
-            </div>
-            <div class="code-box">
-              <div class="code-line error"><span class="code-line-counter">1</span><span class="code">resource
-                  "aws_redshift_cluster" "default" {</span></div>
-              <div class="code-line"><span class="code-line-counter">2</span><span class="code"> cluster_identifier =
-                  "tf-redshift-cluster"</span></div>
-              <div class="code-line"><span class="code-line-counter">3</span><span class="code"> database_name =
-                  "mydb"</span></div>
-            </div>
-          </div>
-          <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
-              <span>Line 1</span>
-            </div>
-            <div class="vulnerable-info-details"><span><strong>Expected:</strong>
-                aws_redshift_cluster[default].vpc_security_group_ids is set</span>
-              <span><strong>Found:</strong> aws_redshift_cluster[default].vpc_security_group_ids is undefined</span>
-            </div>
-            <div class="code-box">
-              <div class="code-line error"><span class="code-line-counter">1</span><span class="code">resource
-                  "aws_redshift_cluster" "default" {</span></div>
-              <div class="code-line"><span class="code-line-counter">2</span><span class="code"> cluster_identifier =
-                  "tf-redshift-cluster"</span></div>
-              <div class="code-line"><span class="code-line-counter">3</span><span class="code"> database_name =
-                  "mydb"</span></div>
-            </div>
-          </div>
-          <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
-              <span>Line 10</span>
-            </div>
-            <div class="vulnerable-info-details"><span><strong>Expected:</strong>
-                aws_redshift_cluster[default1].cluster_subnet_group_name is set</span>
-              <span><strong>Found:</strong> aws_redshift_cluster[default1].cluster_subnet_group_name is undefined</span>
-            </div>
-            <div class="code-box">
-              <div class="code-line"><span class="code-line-counter">9</span><span class="code"></span></div>
-              <div class="code-line error"><span class="code-line-counter">10</span><span class="code">resource
-                  "aws_redshift_cluster" "default1" {</span></div>
-              <div class="code-line"><span class="code-line-counter">11</span><span class="code"> cluster_identifier =
-                  "tf-redshift-cluster"</span></div>
-            </div>
-          </div>
-          <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
-              <span>Line 10</span>
-            </div>
-            <div class="vulnerable-info-details"><span><strong>Expected:</strong>
-                aws_redshift_cluster[default1].vpc_security_group_ids is set</span>
-              <span><strong>Found:</strong> aws_redshift_cluster[default1].vpc_security_group_ids is undefined</span>
-            </div>
-            <div class="code-box">
-              <div class="code-line"><span class="code-line-counter">9</span><span class="code"></span></div>
-              <div class="code-line error"><span class="code-line-counter">10</span><span class="code">resource
-                  "aws_redshift_cluster" "default1" {</span></div>
-              <div class="code-line"><span class="code-line-counter">11</span><span class="code"> cluster_identifier =
-                  "tf-redshift-cluster"</span></div>
-            </div>
-          </div>
-        </details>
-      </div>
-    </div>
-    <div data-type="severity" data-name="INFO">
-      <hr class="separator">
-      <div class="query">
-        <div class="query-info">
-          <div class="query-title">
-            <h2>
-              <div class="kics-purple"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
-                  height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
-                  <g>
-                    <rect fill="none" height="24" width="24" />
-                  </g>
-                  <g>
-                    <g />
-                    <g>
-                      <path
-                        d="M21,5l-9-4L3,5v6c0,5.55,3.84,10.74,9,12c2.3-0.56,4.33-1.9,5.88-3.71l-3.12-3.12c-1.94,1.29-4.58,1.07-6.29-0.64 c-1.95-1.95-1.95-5.12,0-7.07c1.95-1.95,5.12-1.95,7.07,0c1.71,1.71,1.92,4.35,0.64,6.29l2.9,2.9C20.29,15.69,21,13.38,21,11V5z" />
-                      <circle cx="12" cy="12" r="3" />
-                    </g>
-                  </g>
-                </svg></div><span class="query-name">Resource Not Using Tags</span>
-            </h2><span><strong>Platform:</strong> <span class="query-info-platform">Terraform</span></span>
-            <span><strong>Category:</strong> <span class="query-info-category">Best Practices</span></span>
-          </div>
-          <div class="query-details"><span>AWS services resource tags are an essential part of managing
-              components</span>
-            <span><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/resource-tagging"
-                rel="noopener"
-                target="_blank">https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/resource-tagging</a></span>
-          </div>
         </div>
-        <details>
-          <summary>Results (<span class="severity-partial-count-info">2</span>)</summary>
-          <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
-              <span>Line 1</span>
+        <div data-type="severity" data-name="MEDIUM">
+            <hr class="separator">
+            <div class="query">
+                <div class="query-info">
+                    <div class="query-title">
+                        <h2>
+                            <div class="kics-orange"><svg xmlns="http://www.w3.org/2000/svg"
+                                    enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px"
+                                    fill="#000000">
+                                    <g>
+                                        <path d="M0,0h24v24H0V0z" fill="none" />
+                                    </g>
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M12,2L4,5v6.09c0,5.05,3.41,9.76,8,10.91c4.59-1.15,8-5.86,8-10.91V5L12,2z M18,11.09c0,4-2.55,7.7-6,8.83 c-3.45-1.13-6-4.82-6-8.83v-4.7l6-2.25l6,2.25V11.09z" />
+                                            <rect height="2" width="2" x="11" y="14" />
+                                            <rect height="5" width="2" x="11" y="7" />
+                                        </g>
+                                    </g>
+                                </svg></div><span class="query-name">Redshift Cluster Logging Disabled</span>
+                        </h2><span><strong>Platform:</strong> <span class="query-info-platform">Terraform</span></span>
+                        <span><strong>Category:</strong> <span class="query-info-category">Observability</span></span>
+                    </div>
+                    <div class="query-details"><span class="query-description-title">Make sure Logging is enabled for
+                            Redshift Cluster</span><span><a
+                                href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#enable"
+                                rel="noopener"
+                                target="_blank">https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#enable</a></span>
+                    </div>
+                </div>
+                <details>
+                    <summary>Results (<span class="severity-partial-count-medium">2</span>)</summary>
+                    <div class="vulnerable-info">
+                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+                            <span>Line 10</span>
+                        </div>
+                        <div class="vulnerable-info-details"><span><strong>Expected:</strong>
+                                'aws_redshift_cluster.logging' is true</span>
+                            <span><strong>Found:</strong> 'aws_redshift_cluster.logging' is undefined</span>
+                        </div>
+                        <div class="code-box">
+                            <div class="code-line"><span class="code-line-counter">9</span><span class="code"></span>
+                            </div>
+                            <div class="code-line error"><span class="code-line-counter">10</span><span
+                                    class="code">resource "aws_redshift_cluster" "default1" {</span></div>
+                            <div class="code-line"><span class="code-line-counter">11</span><span class="code">
+                                    cluster_identifier = "tf-redshift-cluster"</span></div>
+                        </div>
+                    </div>
+                    <div class="vulnerable-info">
+                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+                            <span>Line 1</span>
+                        </div>
+                        <div class="vulnerable-info-details"><span><strong>Expected:</strong>
+                                'aws_redshift_cluster.logging' is true</span>
+                            <span><strong>Found:</strong> 'aws_redshift_cluster.logging' is undefined</span>
+                        </div>
+                        <div class="code-box">
+                            <div class="code-line error"><span class="code-line-counter">1</span><span
+                                    class="code">resource "aws_redshift_cluster" "default" {</span></div>
+                            <div class="code-line"><span class="code-line-counter">2</span><span class="code">
+                                    cluster_identifier = "tf-redshift-cluster"</span></div>
+                            <div class="code-line"><span class="code-line-counter">3</span><span class="code">
+                                    database_name = "mydb"</span></div>
+                        </div>
+                    </div>
+                </details>
             </div>
-            <div class="vulnerable-info-details"><span><strong>Expected:</strong> aws_redshift_cluster[{{default}}].tags
-                is defined</span>
-              <span><strong>Found:</strong> aws_redshift_cluster[{{default}}].tags is missing</span>
+        </div>
+        <div data-type="severity" data-name="MEDIUM">
+            <hr class="separator">
+            <div class="query">
+                <div class="query-info">
+                    <div class="query-title">
+                        <h2>
+                            <div class="kics-orange"><svg xmlns="http://www.w3.org/2000/svg"
+                                    enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px"
+                                    fill="#000000">
+                                    <g>
+                                        <path d="M0,0h24v24H0V0z" fill="none" />
+                                    </g>
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M12,2L4,5v6.09c0,5.05,3.41,9.76,8,10.91c4.59-1.15,8-5.86,8-10.91V5L12,2z M18,11.09c0,4-2.55,7.7-6,8.83 c-3.45-1.13-6-4.82-6-8.83v-4.7l6-2.25l6,2.25V11.09z" />
+                                            <rect height="2" width="2" x="11" y="14" />
+                                            <rect height="5" width="2" x="11" y="7" />
+                                        </g>
+                                    </g>
+                                </svg></div><span class="query-name">Redshift Cluster Without VPC</span>
+                        </h2><span><strong>Platform:</strong> <span class="query-info-platform">Terraform</span></span>
+                        <span><strong>Category:</strong> <span class="query-info-category">Insecure
+                                Configurations</span></span>
+                    </div>
+                    <div class="query-details"><span class="query-description-title">Redshift Cluster should be
+                            configured in VPC (Virtual Private Cloud)</span><span><a
+                                href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#vpc_security_group_ids"
+                                rel="noopener"
+                                target="_blank">https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#vpc_security_group_ids</a></span>
+                    </div>
+                </div>
+                <details>
+                    <summary>Results (<span class="severity-partial-count-medium">4</span>)</summary>
+                    <div class="vulnerable-info">
+                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+                            <span>Line 1</span>
+                        </div>
+                        <div class="vulnerable-info-details"><span><strong>Expected:</strong>
+                                aws_redshift_cluster[default].vpc_security_group_ids is set</span>
+                            <span><strong>Found:</strong> aws_redshift_cluster[default].vpc_security_group_ids is
+                                undefined</span>
+                        </div>
+                        <div class="code-box">
+                            <div class="code-line error"><span class="code-line-counter">1</span><span
+                                    class="code">resource "aws_redshift_cluster" "default" {</span></div>
+                            <div class="code-line"><span class="code-line-counter">2</span><span class="code">
+                                    cluster_identifier = "tf-redshift-cluster"</span></div>
+                            <div class="code-line"><span class="code-line-counter">3</span><span class="code">
+                                    database_name = "mydb"</span></div>
+                        </div>
+                    </div>
+                    <div class="vulnerable-info">
+                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+                            <span>Line 10</span>
+                        </div>
+                        <div class="vulnerable-info-details"><span><strong>Expected:</strong>
+                                aws_redshift_cluster[default1].vpc_security_group_ids is set</span>
+                            <span><strong>Found:</strong> aws_redshift_cluster[default1].vpc_security_group_ids is
+                                undefined</span>
+                        </div>
+                        <div class="code-box">
+                            <div class="code-line"><span class="code-line-counter">9</span><span class="code"></span>
+                            </div>
+                            <div class="code-line error"><span class="code-line-counter">10</span><span
+                                    class="code">resource "aws_redshift_cluster" "default1" {</span></div>
+                            <div class="code-line"><span class="code-line-counter">11</span><span class="code">
+                                    cluster_identifier = "tf-redshift-cluster"</span></div>
+                        </div>
+                    </div>
+                    <div class="vulnerable-info">
+                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+                            <span>Line 1</span>
+                        </div>
+                        <div class="vulnerable-info-details"><span><strong>Expected:</strong>
+                                aws_redshift_cluster[default].cluster_subnet_group_name is set</span>
+                            <span><strong>Found:</strong> aws_redshift_cluster[default].cluster_subnet_group_name is
+                                undefined</span>
+                        </div>
+                        <div class="code-box">
+                            <div class="code-line error"><span class="code-line-counter">1</span><span
+                                    class="code">resource "aws_redshift_cluster" "default" {</span></div>
+                            <div class="code-line"><span class="code-line-counter">2</span><span class="code">
+                                    cluster_identifier = "tf-redshift-cluster"</span></div>
+                            <div class="code-line"><span class="code-line-counter">3</span><span class="code">
+                                    database_name = "mydb"</span></div>
+                        </div>
+                    </div>
+                    <div class="vulnerable-info">
+                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+                            <span>Line 10</span>
+                        </div>
+                        <div class="vulnerable-info-details"><span><strong>Expected:</strong>
+                                aws_redshift_cluster[default1].cluster_subnet_group_name is set</span>
+                            <span><strong>Found:</strong> aws_redshift_cluster[default1].cluster_subnet_group_name is
+                                undefined</span>
+                        </div>
+                        <div class="code-box">
+                            <div class="code-line"><span class="code-line-counter">9</span><span class="code"></span>
+                            </div>
+                            <div class="code-line error"><span class="code-line-counter">10</span><span
+                                    class="code">resource "aws_redshift_cluster" "default1" {</span></div>
+                            <div class="code-line"><span class="code-line-counter">11</span><span class="code">
+                                    cluster_identifier = "tf-redshift-cluster"</span></div>
+                        </div>
+                    </div>
+                </details>
             </div>
-            <div class="code-box">
-              <div class="code-line error"><span class="code-line-counter">1</span><span class="code">resource
-                  "aws_redshift_cluster" "default" {</span></div>
-              <div class="code-line"><span class="code-line-counter">2</span><span class="code"> cluster_identifier =
-                  "tf-redshift-cluster"</span></div>
-              <div class="code-line"><span class="code-line-counter">3</span><span class="code"> database_name =
-                  "mydb"</span></div>
+        </div>
+        <div data-type="severity" data-name="LOW">
+            <hr class="separator">
+            <div class="query">
+                <div class="query-info">
+                    <div class="query-title">
+                        <h2>
+                            <div class="kics-purple"><svg xmlns="http://www.w3.org/2000/svg"
+                                    enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px"
+                                    fill="#000000">
+                                    <g>
+                                        <path d="M0,0h24v24H0V0z" fill="none" />
+                                    </g>
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M12,2L4,5v6.09c0,5.05,3.41,9.76,8,10.91c4.59-1.15,8-5.86,8-10.91V5L12,2z M18,11.09c0,4-2.55,7.7-6,8.83 c-3.45-1.13-6-4.82-6-8.83v-4.7l6-2.25l6,2.25V11.09z" />
+                                            <rect height="2" width="2" x="11" y="14" />
+                                            <rect height="5" width="2" x="11" y="7" />
+                                        </g>
+                                    </g>
+                                </svg></div><span class="query-name">Redshift Using Default Port</span>
+                        </h2><span><strong>Platform:</strong> <span class="query-info-platform">Terraform</span></span>
+                        <span><strong>Category:</strong> <span class="query-info-category">Networking and
+                                Firewall</span></span>
+                    </div>
+                    <div class="query-details"><span class="query-description-title">Redshift should not use the default
+                            port (5439) because an attacker can easily guess the port</span><span><a
+                                href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#port"
+                                rel="noopener"
+                                target="_blank">https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#port</a></span>
+                    </div>
+                </div>
+                <details>
+                    <summary>Results (<span class="severity-partial-count-low">2</span>)</summary>
+                    <div class="vulnerable-info">
+                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+                            <span>Line 1</span>
+                        </div>
+                        <div class="vulnerable-info-details"><span><strong>Expected:</strong> aws_redshift_cluster.port
+                                is defined and not null</span>
+                            <span><strong>Found:</strong> aws_redshift_cluster.port is undefined or null</span>
+                        </div>
+                        <div class="code-box">
+                            <div class="code-line error"><span class="code-line-counter">1</span><span
+                                    class="code">resource "aws_redshift_cluster" "default" {</span></div>
+                            <div class="code-line"><span class="code-line-counter">2</span><span class="code">
+                                    cluster_identifier = "tf-redshift-cluster"</span></div>
+                            <div class="code-line"><span class="code-line-counter">3</span><span class="code">
+                                    database_name = "mydb"</span></div>
+                        </div>
+                    </div>
+                    <div class="vulnerable-info">
+                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+                            <span>Line 10</span>
+                        </div>
+                        <div class="vulnerable-info-details"><span><strong>Expected:</strong> aws_redshift_cluster.port
+                                is defined and not null</span>
+                            <span><strong>Found:</strong> aws_redshift_cluster.port is undefined or null</span>
+                        </div>
+                        <div class="code-box">
+                            <div class="code-line"><span class="code-line-counter">9</span><span class="code"></span>
+                            </div>
+                            <div class="code-line error"><span class="code-line-counter">10</span><span
+                                    class="code">resource "aws_redshift_cluster" "default1" {</span></div>
+                            <div class="code-line"><span class="code-line-counter">11</span><span class="code">
+                                    cluster_identifier = "tf-redshift-cluster"</span></div>
+                        </div>
+                    </div>
+                </details>
             </div>
-          </div>
-          <div class="vulnerable-info">
-            <div class="vulnerable-info-header"><strong>File:
-                C:\Users\lucasm\Documents\golang\kics\kics\e2e\fixtures\samples\terraform.tf</strong>
-              <span>Line 10</span>
+        </div>
+        <div data-type="severity" data-name="INFO">
+            <hr class="separator">
+            <div class="query">
+                <div class="query-info">
+                    <div class="query-title">
+                        <h2>
+                            <div class="kics-purple"><svg xmlns="http://www.w3.org/2000/svg"
+                                    enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px"
+                                    fill="#000000">
+                                    <g>
+                                        <rect fill="none" height="24" width="24" />
+                                    </g>
+                                    <g>
+                                        <g />
+                                        <g>
+                                            <path
+                                                d="M21,5l-9-4L3,5v6c0,5.55,3.84,10.74,9,12c2.3-0.56,4.33-1.9,5.88-3.71l-3.12-3.12c-1.94,1.29-4.58,1.07-6.29-0.64 c-1.95-1.95-1.95-5.12,0-7.07c1.95-1.95,5.12-1.95,7.07,0c1.71,1.71,1.92,4.35,0.64,6.29l2.9,2.9C20.29,15.69,21,13.38,21,11V5z" />
+                                            <circle cx="12" cy="12" r="3" />
+                                        </g>
+                                    </g>
+                                </svg></div><span class="query-name">Resource Not Using Tags</span>
+                        </h2><span><strong>Platform:</strong> <span class="query-info-platform">Terraform</span></span>
+                        <span><strong>Category:</strong> <span class="query-info-category">Best Practices</span></span>
+                    </div>
+                    <div class="query-details"><span class="query-description-title">AWS services resource tags are an
+                            essential part of managing components</span><span><a
+                                href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/resource-tagging"
+                                rel="noopener"
+                                target="_blank">https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/resource-tagging</a></span>
+                    </div>
+                </div>
+                <details>
+                    <summary>Results (<span class="severity-partial-count-info">2</span>)</summary>
+                    <div class="vulnerable-info">
+                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+                            <span>Line 10</span>
+                        </div>
+                        <div class="vulnerable-info-details"><span><strong>Expected:</strong>
+                                aws_redshift_cluster[{{default1}}].tags is defined and not null</span>
+                            <span><strong>Found:</strong> aws_redshift_cluster[{{default1}}].tags is undefined or
+                                null</span>
+                        </div>
+                        <div class="code-box">
+                            <div class="code-line"><span class="code-line-counter">9</span><span class="code"></span>
+                            </div>
+                            <div class="code-line error"><span class="code-line-counter">10</span><span
+                                    class="code">resource "aws_redshift_cluster" "default1" {</span></div>
+                            <div class="code-line"><span class="code-line-counter">11</span><span class="code">
+                                    cluster_identifier = "tf-redshift-cluster"</span></div>
+                        </div>
+                    </div>
+                    <div class="vulnerable-info">
+                        <div class="vulnerable-info-header"><strong>File: fixtures/samples/terraform.tf</strong>
+                            <span>Line 1</span>
+                        </div>
+                        <div class="vulnerable-info-details"><span><strong>Expected:</strong>
+                                aws_redshift_cluster[{{default}}].tags is defined and not null</span>
+                            <span><strong>Found:</strong> aws_redshift_cluster[{{default}}].tags is undefined or
+                                null</span>
+                        </div>
+                        <div class="code-box">
+                            <div class="code-line error"><span class="code-line-counter">1</span><span
+                                    class="code">resource "aws_redshift_cluster" "default" {</span></div>
+                            <div class="code-line"><span class="code-line-counter">2</span><span class="code">
+                                    cluster_identifier = "tf-redshift-cluster"</span></div>
+                            <div class="code-line"><span class="code-line-counter">3</span><span class="code">
+                                    database_name = "mydb"</span></div>
+                        </div>
+                    </div>
+                </details>
             </div>
-            <div class="vulnerable-info-details"><span><strong>Expected:</strong>
-                aws_redshift_cluster[{{default1}}].tags is defined</span>
-              <span><strong>Found:</strong> aws_redshift_cluster[{{default1}}].tags is missing</span>
-            </div>
-            <div class="code-box">
-              <div class="code-line"><span class="code-line-counter">9</span><span class="code"></span></div>
-              <div class="code-line error"><span class="code-line-counter">10</span><span class="code">resource
-                  "aws_redshift_cluster" "default1" {</span></div>
-              <div class="code-line"><span class="code-line-counter">11</span><span class="code"> cluster_identifier =
-                  "tf-redshift-cluster"</span></div>
-            </div>
-          </div>
-        </details>
-      </div>
+        </div>
+        <hr class="separator">
+        <div class="kics-message">KICS is open and will always stay such. Both the scanning engine and the security
+            queries are clear and open for the software development community.</div>
+        <div class="love">Spread the love:</div>
+        <div class="social-networks"><a href="https://github.com/Checkmarx/kics/" rel="noopener" target="_blank">
+                <div><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                        <g fill="none" fill-rule="evenodd">
+                            <g fill="#626264" fill-rule="nonzero">
+                                <g>
+                                    <g>
+                                        <path
+                                            d="M13.172 19.5c2-.688 3.633-1.898 4.898-3.633 1.266-1.734 1.899-3.695 1.899-5.883 0-1.312-.25-2.586-.75-3.82S18 3.844 17.062 2.906C16.125 1.97 15.04 1.25 13.806.75 12.57.25 11.297 0 9.985 0c-1.313 0-2.587.25-3.82.75-1.235.5-2.321 1.219-3.259 2.156C1.97 3.844 1.25 4.93.75 6.164.25 7.398 0 8.672 0 9.984c0 2.188.633 4.149 1.898 5.883 1.266 1.735 2.915 2.945 4.946 3.633.218.031.383-.008.492-.117.11-.11.164-.242.164-.399v-1.687c-1.156.25-2.063.094-2.719-.469-.294-.214-.497-.463-.608-.746l-.048-.145c-.125-.343-.297-.64-.516-.89-.125-.188-.265-.328-.421-.422L3 14.485c-.25-.188-.375-.329-.375-.422 0-.094.078-.141.234-.141l.235-.047c.406.031.781.219 1.125.563.15.124.26.25.33.374l.045.094c.406.656.937 1.016 1.593 1.078.407.032.86-.046 1.36-.234.062-.594.266-1.047.61-1.36-1.376-.156-2.407-.53-3.095-1.124-.968-.813-1.453-2.079-1.453-3.797 0-1.031.344-1.922 1.032-2.672-.125-.281-.188-.594-.188-.938-.062-.562.031-1.14.281-1.734h.282c.25 0 .546.063.89.188.5.187 1.032.468 1.594.843.781-.218 1.61-.328 2.484-.328.875 0 1.704.11 2.485.328.812-.531 1.515-.86 2.11-.984.26-.052.455-.072.585-.059l.07.012c.25.594.344 1.172.282 1.734 0 .344-.063.657-.188.938.688.75 1.031 1.64 1.031 2.672 0 1.75-.484 3.015-1.453 3.797-.719.593-1.75.968-3.094 1.125.438.406.657 1.03.657 1.875v2.718c0 .157.054.29.164.399.11.11.289.148.539.117z"
+                                            transform="translate(-358 -1497) translate(0 1332) translate(358 165)" />
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg></div>
+            </a></div>
+        <div class="report-header-footer"><span class="footer-text">The KICS project is powered by&nbsp;<a
+                    href="https://www.checkmarx.com/" class="checkmarx" rel="noopener" target="_blank">Checkmarx</a>,
+                global leader of Application Security Testing</span></div>
     </div>
-    <hr class="separator">
-    <div class="kics-message">KICS is open and will always stay such. Both the scanning engine and the security queries
-      are clear and open for the software development community.</div>
-    <div class="love">Spread the love:</div>
-    <div class="social-networks"><a href="https://github.com/Checkmarx/kics/" rel="noopener" target="_blank">
-        <div><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-            <g fill="none" fill-rule="evenodd">
-              <g fill="#626264" fill-rule="nonzero">
-                <g>
-                  <g>
-                    <path
-                      d="M13.172 19.5c2-.688 3.633-1.898 4.898-3.633 1.266-1.734 1.899-3.695 1.899-5.883 0-1.312-.25-2.586-.75-3.82S18 3.844 17.062 2.906C16.125 1.97 15.04 1.25 13.806.75 12.57.25 11.297 0 9.985 0c-1.313 0-2.587.25-3.82.75-1.235.5-2.321 1.219-3.259 2.156C1.97 3.844 1.25 4.93.75 6.164.25 7.398 0 8.672 0 9.984c0 2.188.633 4.149 1.898 5.883 1.266 1.735 2.915 2.945 4.946 3.633.218.031.383-.008.492-.117.11-.11.164-.242.164-.399v-1.687c-1.156.25-2.063.094-2.719-.469-.294-.214-.497-.463-.608-.746l-.048-.145c-.125-.343-.297-.64-.516-.89-.125-.188-.265-.328-.421-.422L3 14.485c-.25-.188-.375-.329-.375-.422 0-.094.078-.141.234-.141l.235-.047c.406.031.781.219 1.125.563.15.124.26.25.33.374l.045.094c.406.656.937 1.016 1.593 1.078.407.032.86-.046 1.36-.234.062-.594.266-1.047.61-1.36-1.376-.156-2.407-.53-3.095-1.124-.968-.813-1.453-2.079-1.453-3.797 0-1.031.344-1.922 1.032-2.672-.125-.281-.188-.594-.188-.938-.062-.562.031-1.14.281-1.734h.282c.25 0 .546.063.89.188.5.187 1.032.468 1.594.843.781-.218 1.61-.328 2.484-.328.875 0 1.704.11 2.485.328.812-.531 1.515-.86 2.11-.984.26-.052.455-.072.585-.059l.07.012c.25.594.344 1.172.282 1.734 0 .344-.063.657-.188.938.688.75 1.031 1.64 1.031 2.672 0 1.75-.484 3.015-1.453 3.797-.719.593-1.75.968-3.094 1.125.438.406.657 1.03.657 1.875v2.718c0 .157.054.29.164.399.11.11.289.148.539.117z"
-                      transform="translate(-358 -1497) translate(0 1332) translate(358 165)" />
-                  </g>
-                </g>
-              </g>
-            </g>
-          </svg></div>
-      </a></div>
-    <div class="report-header-footer"><span class="footer-text">The KICS project is powered by&nbsp;<a
-          href="https://www.checkmarx.com/" class="checkmarx" rel="noopener" target="_blank">Checkmarx</a>, global
-        leader of Application Security Testing</span></div>
-  </div>
 </body>
 
 </html>

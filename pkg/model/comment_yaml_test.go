@@ -1,6 +1,7 @@
 package model
 
 import (
+	"sort"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -19,7 +20,7 @@ func Test_ignoreCommentsYAML(t *testing.T) {
 	}{
 		{
 			name: "test_1: ignore-block",
-			want: []int{2, 1, 3, 4, 5, 6, 7, 8, 9},
+			want: []int{1, 2, 3, 4, 5, 6, 7, 8, 9},
 			args: args{
 				&yaml.Node{
 					Kind: yaml.MappingNode,
@@ -241,7 +242,7 @@ func Test_ignoreCommentsYAML(t *testing.T) {
 		},
 		{
 			name: "test_3: regular-comment",
-			want: nil,
+			want: []int{0},
 			args: args{
 				&yaml.Node{
 					Kind: yaml.MappingNode,
@@ -352,7 +353,7 @@ func Test_ignoreCommentsYAML(t *testing.T) {
 		},
 		{
 			name: "test_4: ignore-all",
-			want: []int{1, 0, 2, 3, 4, 5, 6, 7, 8, 9},
+			want: []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
 			args: args{
 				&yaml.Node{
 					Kind:        yaml.MappingNode,
@@ -463,7 +464,7 @@ func Test_ignoreCommentsYAML(t *testing.T) {
 		},
 		{
 			name: "test_5: ignore-seq",
-			want: []int{5, 4, 6, 7, 8, 9},
+			want: []int{4, 5, 6, 7, 8, 9},
 			args: args{
 				&yaml.Node{
 					Kind: yaml.MappingNode,
@@ -551,8 +552,12 @@ func Test_ignoreCommentsYAML(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			ignoreCommentsYAML(tt.args.node)
-			require.Equal(t, tt.want, NewIgnore.GetLines())
+			ignoreLines := NewIgnore.GetLines()
 			NewIgnore.Reset()
+			if len(ignoreLines) > 0 {
+				sort.Ints(ignoreLines)
+			}
+			require.Equal(t, tt.want, ignoreLines)
 		})
 	}
 }

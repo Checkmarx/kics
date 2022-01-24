@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "Cluster Master Authentication Disabled",
+    "severity": "HIGH",
+    "line": 4,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Cluster Master Authentication Disabled",
+    "severity": "HIGH",
+    "line": 5,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Cluster Master Authentication Disabled",
+    "severity": "HIGH",
+    "line": 5,
+    "filename": "positive3.yaml"
+  }
+]

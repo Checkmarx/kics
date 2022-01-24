@@ -23,7 +23,8 @@ import (
 )
 
 const (
-	wordWrapCount = 5
+	wordWrapCount     = 5
+	charsLimitPerLine = 255
 )
 
 var reportGenerators = map[string]func(path, filename string, body interface{}) error{
@@ -35,6 +36,7 @@ var reportGenerators = map[string]func(path, filename string, body interface{}) 
 	"sonarqube": report.PrintSonarQubeReport,
 	"cyclonedx": report.PrintCycloneDxReport,
 	"junit":     report.PrintJUnitReport,
+	"asff":      report.PrintASFFReport,
 }
 
 // Printer wil print console output with colors
@@ -46,13 +48,15 @@ var reportGenerators = map[string]func(path, filename string, body interface{}) 
 // Line is the color to print the line with the vulnerability
 // minVersion is a bool that if true will print the results output in a minimum version
 type Printer struct {
-	Medium  color.RGBColor
-	High    color.RGBColor
-	Low     color.RGBColor
-	Info    color.RGBColor
-	Success color.RGBColor
-	Line    color.RGBColor
-	minimal bool
+	Medium              color.RGBColor
+	High                color.RGBColor
+	Low                 color.RGBColor
+	Info                color.RGBColor
+	Success             color.RGBColor
+	Line                color.RGBColor
+	VersionMessage      color.RGBColor
+	ContributionMessage color.RGBColor
+	minimal             bool
 }
 
 // WordWrap Wraps text at the specified number of words
@@ -125,7 +129,6 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 	log.Info().Msgf("Queries failed to execute: %d", summary.FailedToExecuteQueries)
 	log.Info().Msg("Inspector stopped")
 
-	summary.PrintVersionCheck()
 	return nil
 }
 
@@ -140,6 +143,9 @@ func printFiles(query *model.QueryResult, printer *Printer) {
 		if !printer.minimal {
 			fmt.Println()
 			for _, line := range query.Files[fileIdx].VulnLines {
+				if len(line.Line) > charsLimitPerLine {
+					line.Line = line.Line[:charsLimitPerLine]
+				}
 				if line.Position == query.Files[fileIdx].Line {
 					printer.Line.Printf("\t\t%03d: %s\n", line.Position, line.Line)
 				} else {
@@ -278,13 +284,15 @@ func ListReportFormats() []string {
 // NewPrinter initializes a new Printer
 func NewPrinter(minimal bool) *Printer {
 	return &Printer{
-		Medium:  color.HEX("#ff7213"),
-		High:    color.HEX("#bb2124"),
-		Low:     color.HEX("#edd57e"),
-		Success: color.HEX("#22bb33"),
-		Info:    color.HEX("#5bc0de"),
-		Line:    color.HEX("#f0ad4e"),
-		minimal: minimal,
+		Medium:              color.HEX("#ff7213"),
+		High:                color.HEX("#bb2124"),
+		Low:                 color.HEX("#edd57e"),
+		Success:             color.HEX("#22bb33"),
+		Info:                color.HEX("#5bc0de"),
+		Line:                color.HEX("#f0ad4e"),
+		VersionMessage:      color.HEX("#ff9913"),
+		ContributionMessage: color.HEX("ffe313"),
+		minimal:             minimal,
 	}
 }
 

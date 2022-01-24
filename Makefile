@@ -61,6 +61,13 @@ build: generate
 	@go build -o ${TARGET_BIN} -ldflags "-X ${CONSTANTS_PATH}.SCMCommit=${COMMIT} -X ${CONSTANTS_PATH}.Version=${VERSION} -X ${CONSTANTS_PATH}.BaseURL=${DESCRIPTIONS_URL}" \
 		cmd/console/main.go
 
+.PHONY: build-dev
+build-dev: ## go build dev
+build-dev: generate
+	$(call print-target)
+	@go build -o ${TARGET_BIN} -tags dev -ldflags "-X ${CONSTANTS_PATH}.SCMCommit=${COMMIT} -X ${CONSTANTS_PATH}.Version=${VERSION} -X ${CONSTANTS_PATH}.BaseURL=${DESCRIPTIONS_URL}" \
+		cmd/console/main.go
+
 .PHONY: go-clean
 go-clean: ## Go clean build, test and modules caches
 	$(call print-target)
@@ -82,9 +89,26 @@ test-short: generate
 	@go test -short ./...
 
 .PHONY: test
+test-short-dev: # Run sanity unit tests
+test-short-dev: generate
+	$(call print-target)
+	@go test -tags dev -short ./...
+
+.PHONY: test
 test: ## Run all tests
 test: test-cover test-e2e
 	$(call print-target)
+
+.PHONY: test
+test-dev: ## Run all tests
+test-dev: test-cover test-e2e
+	$(call print-target)
+
+.PHONY: test-race-dev
+test-race-dev: ## Run tests with race detector
+test-race-dev: generate
+	$(call print-target)
+	@go test -tags dev -race $(shell go list ./... | grep -v e2e)
 
 .PHONY: test-race
 test-race: ## Run tests with race detector
@@ -98,11 +122,23 @@ test-unit: generate
 	$(call print-target)
 	@go test $(shell go list ./... | grep -v e2e)
 
+.PHONY: test-unit-dev
+test-unit-dev: ## Run unit tests
+test-unit-dev: generate
+	$(call print-target)
+	@go test -tags dev $(shell go list ./... | grep -v e2e)
+
 .PHONY: test-cover
 test-cover: ## Run tests with code coverage
 test-cover: generate
 	$(call print-target)
 	@go test -covermode=atomic -v -coverprofile=coverage.out $(shell go list ./... | grep -v e2e)
+
+.PHONY: test-cover-dev
+test-cover-dev: ## Run tests with code coverage
+test-cover-dev: generate
+	$(call print-target)
+	@go test -tags dev -covermode=atomic -v -coverprofile=coverage.out $(shell go list ./... | grep -v e2e)
 
 .PHONY: test-coverage-report
 test-coverage-report: ## Run unit tests and generate test coverage report
@@ -116,6 +152,12 @@ test-e2e: ## Run E2E tests
 test-e2e: build
 	$(call print-target)
 	E2E_KICS_BINARY=$(PWD)/bin/kics go test "github.com/Checkmarx/kics/e2e" -v -timeout 1500s
+
+.PHONY: test-e2e-dev
+test-e2e-dev: ## Run E2E tests
+test-e2e-dev: build
+	$(call print-target)
+	E2E_KICS_BINARY=$(PWD)/bin/kics go test -tags dev "github.com/Checkmarx/kics/e2e" -v -timeout 1500s
 
 .PHONY: cover
 cover: ## generate coverage report

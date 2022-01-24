@@ -1,0 +1,11 @@
+{
+  "id": "df58d46c-783b-43e0-bdd0-d99164f712ee",
+  "queryName": "GKE Legacy Authorization Enabled",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Kubernetes Engine Clusters must have Legacy Authorization set to disabled, which means the attribute 'legacyAbac.enabled' must be false.",
+  "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.LegacyAbac",
+  "platform": "GoogleDeploymentManager",
+  "descriptionID": "3de820a0",
+  "cloudProvider": "gcp"
+}

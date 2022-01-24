@@ -1,0 +1,6 @@
+resources:
+  - name: bucket-access-control
+    type: storage.v1.bucketAccessControl
+    properties:
+      storageClass: STANDARD
+      location: EUROPE-WEST3

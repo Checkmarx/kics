@@ -85,7 +85,7 @@ type GitlabSASTReport interface {
 func NewGitlabSASTReport(start, end time.Time) GitlabSASTReport {
 	return &gitlabSASTReport{
 		Schema:          "https://gitlab.com/gitlab-org/security-products/security-report-schemas/-/raw/v13.1.0/dist/sast-report-format.json",
-		SchemaVersion:   "13.1.0",
+		SchemaVersion:   "14.0.1",
 		Scan:            initGitlabSASTScan(start, end),
 		Vulnerabilities: make([]gitlabSASTVulnerability, 0),
 	}

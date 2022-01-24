@@ -1,0 +1,9 @@
+resources:
+  - name: cluster
+    type: container.v1.cluster
+    properties:
+      description: my-cluster
+      nodePools:
+        initialNodeCount: 2
+        management:
+          autoRepair: true
