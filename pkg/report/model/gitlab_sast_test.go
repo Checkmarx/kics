@@ -19,7 +19,7 @@ func TestNewGitlabSASTReport(t *testing.T) {
 		"https://gitlab.com/gitlab-org/security-products/security-report-schemas/-/raw/v13.1.0/dist/sast-report-format.json",
 		glSAST.Schema,
 	)
-	require.Equal(t, "13.1.0", glSAST.SchemaVersion)
+	require.Equal(t, "14.0.1", glSAST.SchemaVersion)
 	require.Equal(t, constants.Fullname, glSAST.Scan.Scanner.Name)
 	require.Equal(t, constants.URL, glSAST.Scan.Scanner.URL)
 	require.Equal(t, end.Format(timeFormat), glSAST.Scan.EndTime)
