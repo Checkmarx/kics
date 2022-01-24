@@ -1,36 +1,36 @@
 [
   {
-    "queryName": "S3 Bucket Without Versioning",
+    "queryName": "S3 bucket should have versioning enabled",
     "severity": "MEDIUM",
     "line": 11,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "S3 Bucket Without Versioning",
+    "queryName": "S3 bucket should have versioning enabled",
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive2.tf"
   },
   {
-    "queryName": "S3 Bucket Without Versioning",
+    "queryName": "S3 bucket should have versioning enabled",
     "severity": "MEDIUM",
     "line": 10,
     "fileName": "positive3.tf"
   },
   {
-    "queryName": "S3 Bucket Without Versioning",
+    "queryName": "S3 bucket should have versioning enabled",
     "severity": "MEDIUM",
     "line": 10,
     "fileName": "positive4.tf"
   },
   {
-    "queryName": "S3 Bucket Without Versioning",
+    "queryName": "S3 bucket should have versioning enabled",
     "severity": "MEDIUM",
     "line": 9,
     "fileName": "positive5.tf"
   },
   {
-    "queryName": "S3 Bucket Without Versioning",
+    "queryName": "S3 bucket should have versioning enabled",
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive6.tf"

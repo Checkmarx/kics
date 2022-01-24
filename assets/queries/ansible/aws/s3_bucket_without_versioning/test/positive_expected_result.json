@@ -1,11 +1,11 @@
 [
   {
-    "queryName": "S3 Bucket Without Versioning",
+    "queryName": "S3 bucket should have versioning enabled",
     "severity": "MEDIUM",
     "line": 3
   },
   {
-    "queryName": "S3 Bucket Without Versioning",
+    "queryName": "S3 bucket should have versioning enabled",
     "severity": "MEDIUM",
     "line": 15
   }
