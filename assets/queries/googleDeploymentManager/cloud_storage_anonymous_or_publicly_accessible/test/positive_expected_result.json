@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "Cloud Storage Anonymous or Publicly Accessible",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Cloud Storage Anonymous or Publicly Accessible",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Cloud Storage Anonymous or Publicly Accessible",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Cloud Storage Anonymous or Publicly Accessible",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Cloud Storage Anonymous or Publicly Accessible",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Cloud Storage Anonymous or Publicly Accessible",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive3.yaml"
+  }
+]

@@ -1,0 +1,11 @@
+resources:
+  - name: storage-bucket
+    type: storage.v1.bucket
+    properties:
+      name: my-bucket
+      acl:
+        - entity: allUsers
+        - entity: user-liz@example.com
+      defaultObjectAcl:
+        - entity: allAuthenticatedUsers
+        - entity: user-liz@example.com
