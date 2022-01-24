@@ -1,0 +1,6 @@
+resources:
+  - name: my-cluster
+    type: container.v1.cluster
+    properties:
+      description: cluster
+      monitoringService: "monitoring.googleapis.com/kubernetes"
