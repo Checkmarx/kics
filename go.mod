@@ -36,6 +36,7 @@ require (
 	golang.org/x/net v0.0.0-20210825183410-e898025ed96a
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
 	helm.sh/helm/v3 v3.7.1
+	mvdan.cc/sh/v3 v3.4.2
 )
 
 replace github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2

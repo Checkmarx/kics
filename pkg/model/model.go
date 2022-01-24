@@ -19,6 +19,7 @@ const (
 	KindPROTO     FileKind = "PROTO"
 	KindCOMMON    FileKind = "*"
 	KindHELM      FileKind = "HELM"
+	KindBUILDAH   FileKind = "SH"
 )
 
 // Constants to describe commands given from comments

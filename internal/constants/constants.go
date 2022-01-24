@@ -49,6 +49,7 @@ var (
 		"AzureResourceManager":    "azureResourceManager",
 		"GoogleDeploymentManager": "googleDeploymentManager",
 		"GRPC":                    "grpc",
+		"Buildah":                 "buildah",
 	}
 
 	// AvailableSeverities - All severities available

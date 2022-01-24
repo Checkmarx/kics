@@ -12,6 +12,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
+	buildahParser "github.com/Checkmarx/kics/pkg/parser/buildah"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
 	protoParser "github.com/Checkmarx/kics/pkg/parser/grpc"
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
@@ -224,6 +225,7 @@ func (c *Client) createService(
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
 		Add(&protoParser.Parser{}).
+		Add(&buildahParser.Parser{}).
 		Build(querySource.Types, querySource.CloudProviders)
 	if err != nil {
 		return nil, err

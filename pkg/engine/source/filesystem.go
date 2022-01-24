@@ -420,6 +420,8 @@ func getPlatform(metadataPlatform string) string {
 		return "grpc"
 	case "GoogleDeploymentManager":
 		return "googleDeploymentManager"
+	case "Buildah":
+		return "buildah"
 	default:
 		return "unknown"
 	}

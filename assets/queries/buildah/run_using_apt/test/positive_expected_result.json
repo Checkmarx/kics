@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "Run Using apt",
+		"severity": "MEDIUM",
+		"line": 3,
+		"fileName": "positive.sh"
+	}
+]

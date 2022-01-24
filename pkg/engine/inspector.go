@@ -126,7 +126,8 @@ func NewInspector(
 
 	lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
 		Add(helm.DetectKindLine{}, model.KindHELM).
-		Add(docker.DetectKindLine{}, model.KindDOCKER)
+		Add(docker.DetectKindLine{}, model.KindDOCKER).
+		Add(docker.DetectKindLine{}, model.KindBUILDAH)
 
 	queryExecTimeout := time.Duration(queryTimeout) * time.Second
 	log.Info().Msgf("Query execution timeout=%v", queryExecTimeout)
