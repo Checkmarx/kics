@@ -1,11 +1,14 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	firewall := input.document[i].resource.google_compute_firewall[name]
 
-	isDirIngress(firewall)
+	common_lib.is_ingress(firewall)
+	common_lib.is_unrestricted(firewall.source_ranges[_])
 	allowed := getAllowed(firewall)
-	isRDPport(allowed[_])
+	isRDPport(allowed[a])
 
 	result := {
 		"documentId": input.document[i].id,
@@ -13,6 +16,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'google_compute_firewall[%s].allow.ports' does not include RDP port 3389", [name]),
 		"keyActualValue": sprintf("'google_compute_firewall[%s].allow.ports' includes RDP port 3389", [name]),
+		"searchLine": common_lib.build_search_line(["google_compute_firewall", name, "allowed", a], []),
 	}
 }
 
@@ -26,27 +30,15 @@ getAllowed(firewall) = allowed {
 	allowed := [firewall.allow]
 }
 
-isDirIngress(firewall) {
-	firewall.direction == "INGRESS"
-}
-
-isDirIngress(firewall) {
-	not firewall.direction
-}
-
 isRDPport(allow) {
 	isTCPorUDP(allow.protocol)
-	some j
 	contains(allow.ports[j], "-")
 	port_bounds := split(allow.ports[j], "-")
 	low_bound := to_number(port_bounds[0])
 	high_bound := to_number(port_bounds[1])
 	isInBounds(low_bound, high_bound)
-}
-
-isRDPport(allow) {
+} else {
 	isTCPorUDP(allow.protocol)
-	some j
 	contains(allow.ports[j], "-") == false
 	to_number(allow.ports[j]) == 3389
 }
@@ -57,9 +49,6 @@ isInBounds(low, high) {
 }
 
 isTCPorUDP(protocol) {
-	lower(protocol) == "tcp"
-}
-
-isTCPorUDP(protocol) {
-	lower(protocol) == "udp"
+	protocols := {"tcp", "udp"}
+	lower(protocol) == protocols[_]
 }

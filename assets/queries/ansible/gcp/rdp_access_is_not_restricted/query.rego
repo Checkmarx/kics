@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -8,7 +9,8 @@ CxPolicy[result] {
 	instance := task[modules[m]]
 	ansLib.checkState(instance)
 
-	isDirIngress(instance)
+	common_lib.is_ingress(instance)
+	common_lib.is_unrestricted(instance.source_ranges[_])
 
 	allowed := instance.allowed
 	ansLib.allowsPort(allowed[k], "3389")
@@ -20,12 +22,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("gcp_compute_firewall.allowed.ip_protocol=%s.ports don't contain RDP port (3389) with unrestricted ingress traffic", [allowed[k].ip_protocol]),
 		"keyActualValue": sprintf("gcp_compute_firewall.allowed.ip_protocol=%s.ports contain RDP port (3389) with unrestricted ingress traffic", [allowed[k].ip_protocol]),
 	}
-}
-
-isDirIngress(instance) {
-	instance.direction == "INGRESS"
-} else {
-	not instance.direction
-} else = false {
-	true
 }

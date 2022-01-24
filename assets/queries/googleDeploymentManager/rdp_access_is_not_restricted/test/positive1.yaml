@@ -3,6 +3,8 @@ resources:
     type: compute.v1.firewall
     properties:
       name: my-firewall
+      sourceRanges:
+        - "0.0.0.0/0"
       allowed:
         - IPProtocol: icmp
           ports:
