@@ -5,11 +5,13 @@ package terraformer
 
 import (
 	"context"
+	"fmt"
 	"io/fs"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	tfLogger "log"
 
@@ -73,7 +75,9 @@ func Import(terraformerPath, destinationPath string) (string, error) {
 		}
 	}
 
-	destination := filepath.Join(destinationPath, "kics-extract-terraformer")
+	destFolderName := fmt.Sprintf("kics-extract-terraformer-%s", time.Now().Format("01-02-2006"))
+
+	destination := filepath.Join(destinationPath, destFolderName)
 
 	var provider CloudProvider
 
