@@ -431,3 +431,8 @@ any_principal(statement) {
 is_recommended_tls(field) {
 	inArray({"TLSv1.2_2018", "TLSv1.2_2019", "TLSv1.2_2021"}, field)
 }
+
+is_unrestricted(sourceRange) {
+	cidrs := {"0.0.0.0/0", "::/0"}
+	sourceRange == cidrs[_]
+}

@@ -2,13 +2,13 @@
   {
     "queryName": "SSH Access Is Not Restricted",
     "severity": "MEDIUM",
-    "line": 4,
+    "line": 10,
     "filename": "positive1.yaml"
   },
   {
     "queryName": "SSH Access Is Not Restricted",
     "severity": "MEDIUM",
-    "line": 4,
+    "line": 10,
     "filename": "positive2.yaml"
   }
 ]

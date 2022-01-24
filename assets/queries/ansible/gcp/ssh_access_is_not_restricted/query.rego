@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
@@ -8,8 +9,8 @@ CxPolicy[result] {
 	instance := task[modules[m]]
 	ansLib.checkState(instance)
 
-	isDirIngress(instance)
-	instance.source_ranges[_] == "0.0.0.0/0" #Allow traffic ingressing from anywhere
+	common_lib.is_ingress(instance)
+	common_lib.is_unrestricted(instance.source_ranges[_]) #Allow traffic ingressing from anywhere
 	allowed := instance.allowed
 	ansLib.allowsPort(allowed[k], "22")
 
@@ -20,12 +21,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("gcp_compute_firewall.allowed.ip_protocol=%s.ports don't contain SSH port (22) with unrestricted ingress traffic", [allowed[k].ip_protocol]),
 		"keyActualValue": sprintf("gcp_compute_firewall.allowed.ip_protocol=%s.ports contain SSH port (22) with unrestricted ingress traffic", [allowed[k].ip_protocol]),
 	}
-}
-
-isDirIngress(instance) {
-	instance.direction == "INGRESS"
-} else {
-	not instance.direction
-} else = false {
-	true
 }
