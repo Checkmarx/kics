@@ -5,6 +5,8 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/rs/zerolog/log"
+
 	"encoding/json"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -156,7 +158,12 @@ func getWordValue(wd *syntax.Word) string {
 	printer := syntax.NewPrinter()
 	var buf bytes.Buffer
 
-	printer.Print(&buf, wd)
+	err := printer.Print(&buf, wd)
+
+	if err != nil {
+		log.Debug().Msgf("failed to get word value: %s", err)
+	}
+
 	value := buf.String()
 	buf.Reset()
 
@@ -168,7 +175,13 @@ func getFullCommand(args []*syntax.Word) string {
 	printer := syntax.NewPrinter()
 
 	call := &syntax.CallExpr{Args: args}
-	printer.Print(&buf, call)
+
+	err := printer.Print(&buf, call)
+
+	if err != nil {
+		log.Debug().Msgf("failed to get full command: %s", err)
+	}
+
 	command := buf.String()
 	buf.Reset()
 

@@ -42,7 +42,7 @@ var (
 	blueprintArtifactsRegexProperties = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
 	blueprintRegexTargetScope         = regexp.MustCompile("(\\s*\"targetScope\":)|(\\s*targetScope:)")
 	blueprintRegexProperties          = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
-	buildahRegex                      = regexp.MustCompile("buildah")
+	buildahRegex                      = regexp.MustCompile(`\s*buildah\s*from\s*\w+`)
 )
 
 var (
