@@ -1,0 +1,11 @@
+{
+  "id": "95601b9a-7fe8-4aee-9b58-d36fd9382dfc",
+  "queryName": "Stackdriver Logging Disabled",
+  "severity": "HIGH",
+  "category": "Observability",
+  "descriptionText": "DNSSEC must be enabled for Cloud DNS",
+  "descriptionUrl": "https://cloud.google.com/dns/docs/reference/v1/managedZones",
+  "platform": "GoogleDeploymentManager",
+  "descriptionID": "ba92577c",
+  "cloudProvider": "gcp"
+}
