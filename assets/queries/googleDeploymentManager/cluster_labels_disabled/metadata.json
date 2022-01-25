@@ -1,0 +1,11 @@
+{
+  "id": "8810968b-4b15-421d-918b-d91eb4bb8d1d",
+  "queryName": "Cluster Labels Disabled",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Kubernetes Clusters must be configured with labels, which means the attribute 'resourceLabels' must be defined",
+  "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters",
+  "platform": "GoogleDeploymentManager",
+  "descriptionID": "8c094804",
+  "cloudProvider": "gcp"
+}
