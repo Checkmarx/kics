@@ -84,15 +84,17 @@
           "platform": {
             "type": "string",
             "enum": [
-              "Common",
               "Ansible",
+              "AzureResourceManager",
+              "Buildah",
               "CloudFormation",
+              "Common",
               "Dockerfile",
+              "GRPC",
+              "GoogleDeploymentManager",
               "Kubernetes",
               "OpenAPI",
-              "Terraform",
-              "AzureResourceManager",
-              "GRPC"
+              "Terraform"
             ]
           },
           "files": {

@@ -39,6 +39,7 @@ require (
 	golang.org/x/net v0.0.0-20211008194852-3b03d305991f
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
 	helm.sh/helm/v3 v3.7.2
+	mvdan.cc/sh/v3 v3.4.2
 )
 
 replace (

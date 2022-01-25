@@ -14,6 +14,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
+	buildahParser "github.com/Checkmarx/kics/pkg/parser/buildah"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
 	protoParser "github.com/Checkmarx/kics/pkg/parser/grpc"
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
@@ -46,6 +47,7 @@ var (
 		"../assets/queries/azureResourceManager":    {FileKind: []model.FileKind{model.KindJSON}, Platform: "azureResourceManager"},
 		"../assets/queries/googleDeploymentManager": {FileKind: []model.FileKind{model.KindYAML}, Platform: "googleDeploymentManager"},
 		"../assets/queries/grpc":                    {FileKind: []model.FileKind{model.KindPROTO}, Platform: "grpc"},
+		"../assets/queries/buildah":                 {FileKind: []model.FileKind{model.KindBUILDAH}, Platform: "buildah"},
 	}
 
 	issueTypes = map[string]string{
@@ -117,6 +119,10 @@ func loadQueries(tb testing.TB) []queryEntry {
 		fs, err := os.ReadDir(queriesPath)
 		require.Nil(tb, err)
 
+		if model.FileKind(queryConfig.Platform) != "buildah" {
+			continue
+		}
+
 		for _, f := range fs {
 			f.Name()
 			if f.IsDir() && f.Name() != "test" {
@@ -169,6 +175,7 @@ func getCombinedParser() []*parser.Parser {
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
 		Add(&protoParser.Parser{}).
+		Add(&buildahParser.Parser{}).
 		Build([]string{""}, []string{""})
 	return bd
 }

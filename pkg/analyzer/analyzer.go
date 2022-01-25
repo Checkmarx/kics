@@ -42,6 +42,7 @@ var (
 	blueprintArtifactsRegexProperties = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
 	blueprintRegexTargetScope         = regexp.MustCompile("(\\s*\"targetScope\":)|(\\s*targetScope:)")
 	blueprintRegexProperties          = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
+	buildahRegex                      = regexp.MustCompile(`\s*buildah\s*from\s*\w+`)
 )
 
 var (
@@ -132,6 +133,8 @@ func worker(path string, results, unwanted chan<- string, wg *sync.WaitGroup) {
 	// GRPC
 	case ".proto":
 		results <- "grpc"
+	case ".sh":
+		checkContent(path, results, unwanted, ext)
 	// Cloud Formation, Ansible, OpenAPI
 	case yaml, yml, json:
 		checkContent(path, results, unwanted, ext)
@@ -188,6 +191,11 @@ var types = map[string]regexSlice{
 		[]*regexp.Regexp{
 			blueprintRegexTargetScope,
 			blueprintRegexProperties,
+		},
+	},
+	"buildah": {
+		[]*regexp.Regexp{
+			buildahRegex,
 		},
 	},
 }

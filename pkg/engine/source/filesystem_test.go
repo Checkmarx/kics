@@ -619,6 +619,7 @@ func TestListSupportedPlatforms(t *testing.T) {
 	expected := []string{
 		"Ansible",
 		"AzureResourceManager",
+		"Buildah",
 		"CloudFormation",
 		"Dockerfile",
 		"GRPC",

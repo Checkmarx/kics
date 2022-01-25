@@ -49,12 +49,16 @@ type testCaseType struct {
 
 var (
 	fileExtension = map[string][]string{
-		"ansible":        {".yaml", ".yml"},
-		"terraform":      {".tf"},
-		"docker":         {".dockerfile"},
-		"k8s":            {".yaml", ".yml"},
-		"cloudFormation": {".yaml", ".yml"},
-		"grpc":           {".proto"},
+		"ansible":                 {".yaml", ".yml"},
+		"azureResourceManager":    {".json"},
+		"buildah":                 {".sh"},
+		"cloudFormation":          {".json", ".yaml", ".yml"},
+		"docker":                  {".dockerfile"},
+		"googleDeploymentManager": {".yaml", ".yml"},
+		"grpc":                    {".proto"},
+		"k8s":                     {".yaml", ".yml"},
+		"openapi":                 {".json", ".yaml", ".yml"},
+		"terraform":               {".tf"},
 	}
 	testTable = []testCaseType{
 		{
@@ -313,7 +317,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 
 	wg := &sync.WaitGroup{}
 	proBarBuilder := progress.InitializePbBuilder(true, true, true)
-	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile", "AzureResourceManager", "GRPC"}
+	platforms := []string{"Ansible", "AzureResourceManager", "Buildah", "CloudFormation", "Dockerfile", "GRPC", "Kubernetes", "OpenAPI", "Terraform"}
 	progressBar := proBarBuilder.BuildCounter("Executing queries: ", inspector.LenQueriesByPlat(platforms), wg, currentQuery)
 	go progressBar.Start()
 
@@ -327,7 +331,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 			testParams.sampleContent(t),
 		),
 		[]string{BaseTestsScanPath},
-		[]string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile", "AzureResourceManager", "GRPC"},
+		[]string{"Ansible", "AzureResourceManager", "Buildah", "CloudFormation", "Dockerfile", "GRPC", "Kubernetes", "OpenAPI", "Terraform"},
 		currentQuery,
 	)
 

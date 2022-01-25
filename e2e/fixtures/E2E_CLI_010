@@ -1,11 +1,13 @@
 Error: unknown argument for --type: [xml]
 valid arguments:
-  CloudFormation
-  OpenAPI
   Ansible
-  Kubernetes
-  Terraform
-  Dockerfile
   AzureResourceManager
+  Buildah
+  CloudFormation
+  Dockerfile
   GRPC
+  GoogleDeploymentManager
+  Kubernetes
+  OpenAPI
+  Terraform
 {{.ScanHelp}}
