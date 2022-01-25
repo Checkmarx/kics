@@ -26,7 +26,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
+		"searchKey": sprintf("resources.name={{%s}}.properties.loggingService", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'loggingService' to not be none",
 		"keyActualValue": "'loggingService' is none", 
