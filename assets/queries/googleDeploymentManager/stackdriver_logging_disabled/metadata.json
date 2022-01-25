@@ -3,8 +3,8 @@
   "queryName": "Stackdriver Logging Disabled",
   "severity": "HIGH",
   "category": "Observability",
-  "descriptionText": "DNSSEC must be enabled for Cloud DNS",
-  "descriptionUrl": "https://cloud.google.com/dns/docs/reference/v1/managedZones",
+  "descriptionText": "Kubernetes Engine Clusters must have Stackdriver Logging enabled, which means the attribute 'loggingService' must be defined and different from 'none'",
+  "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters",
   "platform": "GoogleDeploymentManager",
   "descriptionID": "ba92577c",
   "cloudProvider": "gcp"
