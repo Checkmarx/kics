@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'google_compute_firewall[%s].allow.ports' does not include RDP port 3389", [name]),
 		"keyActualValue": sprintf("'google_compute_firewall[%s].allow.ports' includes RDP port 3389", [name]),
-		"searchLine": common_lib.build_search_line(["google_compute_firewall", name, "allowed", a], []),
+		"searchLine": common_lib.build_search_line(["google_compute_firewall", name, "allow", a], []),
 	}
 }
 
