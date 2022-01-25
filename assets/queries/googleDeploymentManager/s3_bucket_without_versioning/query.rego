@@ -42,10 +42,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name={{%s}}.properties.versioning.enable", [resource.name]),
+		"searchKey": sprintf("resources.name={{%s}}.properties.versioning.enabled", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'versioning.enabled' to be true",
 		"keyActualValue": "'versioning.enabled' is false", 
-		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "versioning", "enable"], []),
+		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "versioning", "enabled"], []),
 	}
 }
