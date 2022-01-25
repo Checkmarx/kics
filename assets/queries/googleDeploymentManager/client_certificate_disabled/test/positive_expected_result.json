@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "Client Certificate Disabled",
+    "severity": "HIGH",
+    "line": 4,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Client Certificate Disabled",
+    "severity": "HIGH",
+    "line": 6,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Client Certificate Disabled",
+    "severity": "HIGH",
+    "line": 8,
+    "filename": "positive3.yaml"
+  }
+]
