@@ -4,7 +4,7 @@ go 1.16
 
 require (
 	cloud.google.com/go/monitoring v1.2.0 // indirect
-	github.com/BurntSushi/toml v0.4.1
+	github.com/BurntSushi/toml v1.0.0
 	github.com/GoogleCloudPlatform/terraformer v0.8.18
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
