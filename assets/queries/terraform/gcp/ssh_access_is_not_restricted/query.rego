@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'google_compute_firewall[%s].allow.ports' does not include SSH port 22", [name]),
 		"keyActualValue": sprintf("'google_compute_firewall[%s].allow.ports' includes SSH port 22", [name]),
-		"searchLine": common_lib.build_search_line(["google_compute_firewall", name, "allowed", a, "ports"], []),
+		"searchLine": common_lib.build_search_line(["google_compute_firewall", name, "allow", a, "ports"], []),
 	}
 }
 
