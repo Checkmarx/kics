@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "MySQL Instance With Local Infile On",
+    "severity": "HIGH",
+    "line": 8,
+    "filename": "positive1.yaml"
+  }
+]
