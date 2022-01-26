@@ -23,3 +23,14 @@ resource "google_container_node_pool" "negative2" {
   region  = "us-west1"
   cluster = google_container_cluster.primary.name
  }
+
+resource "google_container_node_pool" "negative3" {
+  project = "gcp_project"
+  name    = "primary-pool2"
+  region  = "us-west1"
+  cluster = google_container_cluster.primary.name
+
+  node_config {
+    image_type   = "COS_CONTAINERD"
+  }
+}
