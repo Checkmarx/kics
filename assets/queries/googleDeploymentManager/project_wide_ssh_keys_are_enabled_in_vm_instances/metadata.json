@@ -3,7 +3,7 @@
   "queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
   "severity": "MEDIUM",
   "category": "Secret Management",
-  "descriptionText": "Check if the VM Instance doesn't block project-wide SSH keys",
+  "descriptionText": "VM Instance should block project-wide SSH keys",
   "descriptionUrl": "https://cloud.google.com/compute/docs/reference/rest/v1/instances",
   "platform": "GoogleDeploymentManager",
   "descriptionID": "5e36c46d",
