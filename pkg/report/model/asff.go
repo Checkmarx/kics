@@ -79,6 +79,10 @@ func BuildASFF(summary *model.Summary) []AwsSecurityFinding {
 		findings = append(findings, findingPerQuery...)
 	}
 
+	if len(findings) == 0 {
+		return []AwsSecurityFinding{}
+	}
+
 	return findings
 }
 
