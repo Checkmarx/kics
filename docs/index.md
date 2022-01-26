@@ -1,4 +1,3 @@
-
 <div class="row" >
     <div class="col-6 text-center" >
         <img alt="KICS - Keeping Infrastructure as Code Secure" src="img/logo/kics-logo-docs.png" width="250">
@@ -11,19 +10,11 @@
         <br/><br/>
         <h4>Version 1.5.0</h4>
         <p style="font-size:8pt">2022.01.19<p>
-        <h4>Downloads:</h4>
-        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.5.0/kics_1.5.0_windows_x64.zip">Windows</a>
-        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.5.0/kics_1.5.0_linux_x64.tar.gz">Linux</a>
-        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.5.0/kics_1.5.0_darwin_x64.tar.gz">MacOS</a>
-        <hr/>
         <a class="btn btn-outline-success"  href="https://docs.kics.io/latest/CONTRIBUTING">Contribute!</a>
     </div>
 </div>
 
-
 ---
-
-
 
 #### Supported Platforms
 
@@ -64,33 +55,32 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
 
 Support of other solutions, such as Chef, and of additional cloud providers are on the [roadmap](roadmap.md).
 
-
 ## Getting Started
 
 Setting up and using KICS is super-easy.
 
-- First, see how to [install and get KICS running](getting-started.md).
-- Then explore KICS [output results format](results.md) and quickly fix the issues detected.
+-   First, see how to [install and get KICS running](getting-started.md).
+-   Then explore KICS [output results format](results.md) and quickly fix the issues detected.
 
 Interested in more advanced stuff?
-- Deep dive into KICS [queries](queries.md).
-- Understand how you to [integrate](integrations.md) KICS in your favorite CI/CD pipelines.
+
+-   Deep dive into KICS [queries](queries.md).
+-   Understand how you to [integrate](integrations.md) KICS in your favorite CI/CD pipelines.
 
 ## How it Works
 
 What makes KICS really powerful and popular is its built-in extensibility. This extensibility is achieved by:
 
-- Fully customizable and adjustable heuristics rules, called [queries](queries.md). These can be easily edited, extended and added.
-- Robust but yet simple [architecture](architecture.md), which allows quick addition of support for new Infrastructure as Code solutions.
-
+-   Fully customizable and adjustable heuristics rules, called [queries](queries.md). These can be easily edited, extended and added.
+-   Robust but yet simple [architecture](architecture.md), which allows quick addition of support for new Infrastructure as Code solutions.
 
 ## Contribution
 
 KICS is a true community project. It's built as an open source project from day one and anyone can find his own way to contribute to the project.
 [Check out how](CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
-- [How can I help?!](CONTRIBUTING.md)
-- <a href="https://github.com/Checkmarx/kics/" target="_blank">Take me to the repo on GitHub!</a>
+-   [How can I help?!](CONTRIBUTING.md)
+-   <a href="https://github.com/Checkmarx/kics/" target="_blank">Take me to the repo on GitHub!</a>
 
 ## About the Project
 
@@ -104,10 +94,9 @@ Now, Software <span style="color: #5FBB46">**=**</span> **Security**.
 
 Looking for more info? Explore KICS project in details:
 
-- [Roadmap](roadmap.md)
-- <a href="https://github.com/Checkmarx/kics/projects" target="_blank">Project plans</a>
-- <a href="https://github.com/Checkmarx/kics/issues" target="_blank">Issues</a>
+-   [Roadmap](roadmap.md)
+-   <a href="https://github.com/Checkmarx/kics/projects" target="_blank">Project plans</a>
+-   <a href="https://github.com/Checkmarx/kics/issues" target="_blank">Issues</a>
 
 Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a>.
 Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
-
