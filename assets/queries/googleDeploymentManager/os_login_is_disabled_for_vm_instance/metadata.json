@@ -3,7 +3,7 @@
   "queryName": "OSLogin Is Disabled In VM Instance",
   "severity": "MEDIUM",
   "category": "Insecure Configurations",
-  "descriptionText": "Check if any instance disables OSLogin",
+  "descriptionText": "VM instance should have OSLogin enabled",
   "descriptionUrl": "https://cloud.google.com/compute/docs/reference/rest/v1/instances",
   "platform": "GoogleDeploymentManager",
   "descriptionID": "0908cbc4",
