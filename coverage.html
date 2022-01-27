@@ -109,11 +109,11 @@
 				
 				<option value="file26">github.com/Checkmarx/kics/pkg/builder/writer/rego.go (89.8%)</option>
 				
-				<option value="file27">github.com/Checkmarx/kics/pkg/descriptions/client.go (58.8%)</option>
+				<option value="file27">github.com/Checkmarx/kics/pkg/descriptions/client.go (63.1%)</option>
 				
 				<option value="file28">github.com/Checkmarx/kics/pkg/descriptions/descriptions.go (85.7%)</option>
 				
-				<option value="file29">github.com/Checkmarx/kics/pkg/descriptions/version.go (60.0%)</option>
+				<option value="file29">github.com/Checkmarx/kics/pkg/descriptions/version.go (55.6%)</option>
 				
 				<option value="file30">github.com/Checkmarx/kics/pkg/detector/default_detect.go (100.0%)</option>
 				
@@ -2345,13 +2345,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="31">total += v
+                <span class="cov8" title="33">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2376,7 +2376,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2891,7 +2891,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="22">{
-        for _, a := range s </span><span class="cov7" title="46">{
+        for _, a := range s </span><span class="cov7" title="49">{
                 if a == e </span><span class="cov4" title="8">{
                         return true
                 }</span>
@@ -3827,24 +3827,20 @@ type Client struct {
 func (c *Client) CheckConnection() error <span class="cov0" title="0">{
         baseURL, err := getBaseURL()
         if err != nil </span><span class="cov0" title="0">{
-                log.Debug().Msg("Unable to get baseURL")
                 return err
         }</span>
 
         <span class="cov0" title="0">endpointURL := fmt.Sprintf("%s/api/", baseURL)
         req, err := http.NewRequest(http.MethodGet, endpointURL, nil)
         if err != nil </span><span class="cov0" title="0">{
-                log.Debug().Msg("Unable to create request")
                 return err
         }</span>
 
         <span class="cov0" title="0">resp, err := doRequest(req)
         if err != nil </span><span class="cov0" title="0">{
-                log.Err(err).Msgf("Unable to GET descriptions API")
                 return err
         }</span>
-        <span class="cov0" title="0">log.Debug().Msg("HTTP GET success")
-        defer resp.Body.Close()
+        <span class="cov0" title="0">defer resp.Body.Close()
         return err</span>
 }
 
@@ -3852,7 +3848,6 @@ func (c *Client) CheckConnection() error <span class="cov0" title="0">{
 func (c *Client) CheckLatestVersion(version string) (model.Version, error) <span class="cov1" title="1">{
         baseURL, err := getBaseURL()
         if err != nil </span><span class="cov0" title="0">{
-                log.Debug().Msg("Unable to get baseURL")
                 return model.Version{}, err
         }</span>
         <span class="cov1" title="1">endpointURL := fmt.Sprintf("%s/api/%s", baseURL, "version")
@@ -3863,7 +3858,6 @@ func (c *Client) CheckLatestVersion(version string) (model.Version, error) <span
 
         requestBody, err := json.Marshal(versionRequest)
         if err != nil </span><span class="cov0" title="0">{
-                log.Err(err).Msg("Unable to marshal request body")
                 return model.Version{}, err
         }</span>
 
@@ -3874,28 +3868,20 @@ func (c *Client) CheckLatestVersion(version string) (model.Version, error) <span
         <span class="cov1" title="1">req.Header.Add("Content-Type", "application/json")
         req.Header.Add("Authorization", fmt.Sprintf("Basic %s", base64.StdEncoding.EncodeToString([]byte(getBasicAuth()))))
 
-        log.Debug().Msgf("HTTP POST to version endpoint")
-
-        startTime := time.Now()
         resp, err := doRequest(req)
         if err != nil </span><span class="cov0" title="0">{
-                log.Err(err).Msgf("Unable to POST to version endpoint")
                 return model.Version{}, err
         }</span>
         <span class="cov1" title="1">defer resp.Body.Close()
-        endTime := time.Since(startTime)
-        log.Debug().Msgf("HTTP Status: %d %s %v", resp.StatusCode, http.StatusText(resp.StatusCode), endTime)
 
         b, err := io.ReadAll(resp.Body)
         if err != nil </span><span class="cov0" title="0">{
-                log.Err(err).Msg("Unable to read response body")
                 return model.Version{}, err
         }</span>
 
         <span class="cov1" title="1">var VersionResponse model.Version
         err = json.Unmarshal(b, &amp;VersionResponse)
         if err != nil </span><span class="cov0" title="0">{
-                log.Err(err).Msg("Unable to unmarshal response body")
                 return model.Version{}, err
         }</span>
 
@@ -4053,24 +4039,23 @@ import (
 )
 
 // CheckVersion - checks if using the latest version and saves that information in the tracker
-func CheckVersion(t *tracker.CITracker) error <span class="cov8" title="1">{
-        versionInfo := model.Version{
+func CheckVersion(t *tracker.CITracker) <span class="cov8" title="1">{
+        baseVersionInfo := model.Version{
                 Latest: true,
         }
 
         if err := descClient.CheckConnection(); err != nil </span><span class="cov0" title="0">{
-                t.TrackVersion(versionInfo)
-                return err
+                t.TrackVersion(baseVersionInfo)
+                return
         }</span>
 
         <span class="cov8" title="1">versionInfo, err := descClient.CheckLatestVersion(constants.Version)
         if err != nil </span><span class="cov0" title="0">{
-                t.TrackVersion(versionInfo)
-                return err
+                t.TrackVersion(baseVersionInfo)
+                return
         }</span>
 
-        <span class="cov8" title="1">t.TrackVersion(versionInfo)
-        return err</span>
+        <span class="cov8" title="1">t.TrackVersion(versionInfo)</span>
 }
 </pre>
 		
@@ -4696,7 +4681,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
