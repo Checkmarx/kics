@@ -68,23 +68,19 @@ type Client struct {
 func (c *Client) CheckConnection() error {
 	baseURL, err := getBaseURL()
 	if err != nil {
-		log.Debug().Msg("Unable to get baseURL")
 		return err
 	}
 
 	endpointURL := fmt.Sprintf("%s/api/", baseURL)
 	req, err := http.NewRequest(http.MethodGet, endpointURL, nil)
 	if err != nil {
-		log.Debug().Msg("Unable to create request")
 		return err
 	}
 
 	resp, err := doRequest(req)
 	if err != nil {
-		log.Err(err).Msgf("Unable to GET descriptions API")
 		return err
 	}
-	log.Debug().Msg("HTTP GET success")
 	defer resp.Body.Close()
 	return err
 }
@@ -93,7 +89,6 @@ func (c *Client) CheckConnection() error {
 func (c *Client) CheckLatestVersion(version string) (model.Version, error) {
 	baseURL, err := getBaseURL()
 	if err != nil {
-		log.Debug().Msg("Unable to get baseURL")
 		return model.Version{}, err
 	}
 	endpointURL := fmt.Sprintf("%s/api/%s", baseURL, "version")
@@ -104,7 +99,6 @@ func (c *Client) CheckLatestVersion(version string) (model.Version, error) {
 
 	requestBody, err := json.Marshal(versionRequest)
 	if err != nil {
-		log.Err(err).Msg("Unable to marshal request body")
 		return model.Version{}, err
 	}
 
@@ -115,28 +109,20 @@ func (c *Client) CheckLatestVersion(version string) (model.Version, error) {
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("Authorization", fmt.Sprintf("Basic %s", base64.StdEncoding.EncodeToString([]byte(getBasicAuth()))))
 
-	log.Debug().Msgf("HTTP POST to version endpoint")
-
-	startTime := time.Now()
 	resp, err := doRequest(req)
 	if err != nil {
-		log.Err(err).Msgf("Unable to POST to version endpoint")
 		return model.Version{}, err
 	}
 	defer resp.Body.Close()
-	endTime := time.Since(startTime)
-	log.Debug().Msgf("HTTP Status: %d %s %v", resp.StatusCode, http.StatusText(resp.StatusCode), endTime)
 
 	b, err := io.ReadAll(resp.Body)
 	if err != nil {
-		log.Err(err).Msg("Unable to read response body")
 		return model.Version{}, err
 	}
 
 	var VersionResponse model.Version
 	err = json.Unmarshal(b, &VersionResponse)
 	if err != nil {
-		log.Err(err).Msg("Unable to unmarshal response body")
 		return model.Version{}, err
 	}
 
