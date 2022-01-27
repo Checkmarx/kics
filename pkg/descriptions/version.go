@@ -7,22 +7,21 @@ import (
 )
 
 // CheckVersion - checks if using the latest version and saves that information in the tracker
-func CheckVersion(t *tracker.CITracker) error {
-	versionInfo := model.Version{
+func CheckVersion(t *tracker.CITracker) {
+	baseVersionInfo := model.Version{
 		Latest: true,
 	}
 
 	if err := descClient.CheckConnection(); err != nil {
-		t.TrackVersion(versionInfo)
-		return err
+		t.TrackVersion(baseVersionInfo)
+		return
 	}
 
 	versionInfo, err := descClient.CheckLatestVersion(constants.Version)
 	if err != nil {
-		t.TrackVersion(versionInfo)
-		return err
+		t.TrackVersion(baseVersionInfo)
+		return
 	}
 
 	t.TrackVersion(versionInfo)
-	return err
 }
