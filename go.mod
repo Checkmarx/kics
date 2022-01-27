@@ -25,7 +25,7 @@ require (
 	github.com/mailru/easyjson v0.7.7
 	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
 	github.com/moby/buildkit v0.9.3
-	github.com/open-policy-agent/opa v0.34.2
+	github.com/open-policy-agent/opa v0.36.1
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.26.1
 	github.com/spf13/cobra v1.3.0
@@ -36,7 +36,7 @@ require (
 	github.com/tidwall/gjson v1.13.0
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/zclconf/go-cty v1.10.0
-	golang.org/x/net v0.0.0-20211008194852-3b03d305991f
+	golang.org/x/net v0.0.0-20211111083644-e5c967477495
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
 	helm.sh/helm/v3 v3.7.2
 	mvdan.cc/sh/v3 v3.4.2
