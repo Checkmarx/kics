@@ -63,7 +63,7 @@ type Compliance struct {
 
 // BuildASFF builds the ASFF report
 func BuildASFF(summary *model.Summary) []AwsSecurityFinding {
-	var findings []AwsSecurityFinding
+	findings := []AwsSecurityFinding{}
 
 	awsAccountInfo := getAwsAccountInfo()
 
@@ -77,10 +77,6 @@ func BuildASFF(summary *model.Summary) []AwsSecurityFinding {
 
 		findingPerQuery := awsAccountInfo.getFindingsPerQuery(&query)
 		findings = append(findings, findingPerQuery...)
-	}
-
-	if len(findings) == 0 {
-		return []AwsSecurityFinding{}
 	}
 
 	return findings
