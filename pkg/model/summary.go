@@ -89,9 +89,10 @@ type Summary struct {
 	Counters
 	SeveritySummary
 	Times
-	ScannedPaths []string         `json:"paths"`
-	Queries      QueryResultSlice `json:"queries"`
-	Bom          QueryResultSlice `json:"bill_of_materials,omitempty"`
+	ScannedPaths []string          `json:"paths"`
+	Queries      QueryResultSlice  `json:"queries"`
+	Bom          QueryResultSlice  `json:"bill_of_materials,omitempty"`
+	FilePaths    map[string]string `json:"-"`
 }
 
 // PathParameters - structure wraps the required fields for temporary path translation
@@ -180,6 +181,8 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 	severitySummary := SeveritySummary{
 		ScanID: scanID,
 	}
+	filePaths := make(map[string]string)
+
 	for i := range vulnerabilities {
 		item := vulnerabilities[i]
 		if _, ok := q[item.QueryID]; !ok {
@@ -196,9 +199,11 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 			}
 		}
 
+		resolvedPath := resolvePath(item.FileName, pathExtractionMap)
+
 		qItem := q[item.QueryID]
 		qItem.Files = append(qItem.Files, VulnerableFile{
-			FileName:         resolvePath(item.FileName, pathExtractionMap),
+			FileName:         resolvedPath,
 			SimilarityID:     item.SimilarityID,
 			Line:             item.Line,
 			VulnLines:        item.VulnLines,
@@ -209,6 +214,8 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 			KeyActualValue:   item.KeyActualValue,
 			Value:            item.Value,
 		})
+
+		filePaths[resolvedPath] = item.FileName
 
 		q[item.QueryID] = qItem
 	}
@@ -251,5 +258,6 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 		SeveritySummary: severitySummary,
 		ScannedPaths:    removeAllURLCredentials(pathExtractionMap),
 		LatestVersion:   version,
+		FilePaths:       filePaths,
 	}
 }
