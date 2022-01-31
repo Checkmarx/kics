@@ -1,0 +1,11 @@
+{
+  "id": "1b3af2f9-af8c-4dfc-a0f1-a03adb70deb2",
+  "queryName": "Lambda Function With Privileged role",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "It is not advisable for AWS Lambda Functions to have privileged permissions.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function",
+  "platform": "Terraform",
+  "descriptionID": "1b3af2f9",
+  "cloudProvider": "aws"
+}
