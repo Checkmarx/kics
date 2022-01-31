@@ -73,10 +73,8 @@ CxPolicy[result] {
 	attached_aws_managed_policy_arns := terraform_lib.get_attached_managed_policy_ids(role_id, "role", input)
 	attached_customer_managed_policy_ids := terraform_lib.get_attached_managed_policy_ids(role_id, "role", input)
 	attached_customer_managed_policy_id = attached_customer_managed_policy_ids[_]
-	# We are considering only hardcoded arns for looking up against privileged set of policies
-	regex.match("arn:aws.*:iam::.*", attached_customer_managed_policy_id)
 	# Looking up of privileged policy_arns
-	attached_customer_managed_policy_id == data.common_lib.aws_privilege_escalation_policy_arns[_]
+	regex.match(sprintf("arn:aws.*:iam::policy/%s", [data.common_lib.aws_privilege_escalation_policy_names[_]]), attached_customer_managed_policy_id)
 	result := {
 		"documentId": document.id,
 		"searchKey": sprintf("aws_lambda_function[%s].role", [function_id]),
