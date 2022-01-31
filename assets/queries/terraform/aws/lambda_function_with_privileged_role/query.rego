@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"searchKey": sprintf("aws_lambda_function[%s].role", [function_id]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_lambda_function[%s].role has no priviled permissions through attached inline policy.", [function_id]),
+		"keyExpectedValue": sprintf("aws_lambda_function[%s].role has no privileged permissions through attached inline policy.", [function_id]),
 		"keyActualValue": sprintf("aws_lambda_function[%s].role has been provided privileged permissions through attached inline policy. Provided privileged permissions: '%v'", [function_id, concat("' , '",matching_actions)]),
 	}
 }
@@ -58,7 +58,7 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"searchKey": sprintf("aws_lambda_function[%s].role", [function_id]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_lambda_function[%s].role has no priviled permissions through attached managed policy", [function_id]),
+		"keyExpectedValue": sprintf("aws_lambda_function[%s].role has no privileged permissions through attached managed policy", [function_id]),
 		"keyActualValue": sprintf("aws_lambda_function[%s].role has been provided privileged permissions through attached managed policy '%v'. Provided privileged permissions: '%v'", [function_id, attached_customer_managed_policy_id,  concat("' , '",matching_actions)]),
 	}
 }
@@ -79,7 +79,7 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"searchKey": sprintf("aws_lambda_function[%s].role", [function_id]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_lambda_function[%s].role has no priviled permissions", [function_id]),
+		"keyExpectedValue": sprintf("aws_lambda_function[%s].role has no privileged permissions", [function_id]),
 		"keyActualValue": sprintf("aws_lambda_function[%s].role has been provided privileged permissions through attached pre-existing managed policy '%v'.", [function_id, attached_customer_managed_policy_id]),
 	}
 }
