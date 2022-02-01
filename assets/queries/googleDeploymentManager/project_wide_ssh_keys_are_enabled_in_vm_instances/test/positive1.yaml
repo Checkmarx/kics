@@ -1,0 +1,5 @@
+resources:
+  - name: vm
+    type: compute.v1.instance
+    properties:
+      description: my-vm
