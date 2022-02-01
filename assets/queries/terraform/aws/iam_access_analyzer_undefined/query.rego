@@ -33,5 +33,6 @@ CxPolicy[result] {
 
 not_defined(document_indexes) {
 	count(document_indexes) != 0
-	count({x | resource := input.document[x].resource; object.get(resource, "aws_accessanalyzer_analyzer", "undefined") != "undefined"}) == 0
+	count({name | input.document[x].resource[name]; contains(name, "aws")}) > 0
+	count({x | resource := input.document[x].resource; common_lib.valid_key(resource, "aws_accessanalyzer_analyzer")}) == 0
 }
