@@ -55,10 +55,13 @@ func TestCreateSummary(t *testing.T) {
 			Bom:          []QueryResult{},
 			Queries:      []QueryResult{},
 			ScannedPaths: []string{},
+			FilePaths:    make(map[string]string),
 		})
 	})
 
 	t.Run("create_summary", func(t *testing.T) {
+		filePaths := make(map[string]string)
+		filePaths["fileName"] = "fileName"
 		summary := CreateSummary(counter, vulnerabilities, "scanID", pathExtractionMap, Version{})
 		require.Equal(t, summary, Summary{
 			Counters: counter,
@@ -93,6 +96,7 @@ func TestCreateSummary(t *testing.T) {
 				},
 			},
 			ScannedPaths: []string{},
+			FilePaths:    filePaths,
 		})
 	})
 }

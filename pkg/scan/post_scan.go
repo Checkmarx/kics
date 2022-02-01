@@ -113,6 +113,8 @@ func (c *Client) postScan(scanResults *Results) error {
 		return err
 	}
 
+	deleteExtractionFolder(scanResults.ExtractedPaths.ExtractionMap)
+
 	consolePrinter.PrintScanDuration(time.Since(c.ScanStartTime))
 
 	printVersionCheck(c.Printer, &summary)

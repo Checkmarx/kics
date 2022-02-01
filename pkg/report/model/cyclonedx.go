@@ -128,11 +128,12 @@ func getAllFiles(summary *model.Summary) []model.VulnerableFile {
 	return fileNames
 }
 
-func generateSha256(filePath string) string {
-	content, err := os.ReadFile(filepath.Clean(filePath))
+func generateSha256(filePath string, filePaths map[string]string) string {
+	file := filePaths[filePath]
+	content, err := os.ReadFile(filepath.Clean(file))
 
 	if err != nil {
-		log.Trace().Msgf("failed to read %s", filePath)
+		log.Trace().Msgf("failed to read %s", file)
 		return ""
 	}
 
@@ -224,7 +225,7 @@ func InitCycloneDxReport() *CycloneDxReport {
 }
 
 // BuildCycloneDxReport builds the CycloneDX report
-func BuildCycloneDxReport(summary *model.Summary) *CycloneDxReport {
+func BuildCycloneDxReport(summary *model.Summary, filePaths map[string]string) *CycloneDxReport {
 	var component Component
 	var vuln []Vulnerability
 	var version, sha, purl, filePath string
@@ -234,7 +235,7 @@ func BuildCycloneDxReport(summary *model.Summary) *CycloneDxReport {
 
 	for i := range files {
 		filePath = strings.Replace(files[i].FileName, "\\", "/", -1)
-		sha = generateSha256(filePath)
+		sha = generateSha256(files[i].FileName, filePaths)
 
 		index := 12
 		if len(sha) < index {
