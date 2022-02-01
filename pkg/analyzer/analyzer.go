@@ -38,6 +38,7 @@ var (
 	tfPlanRegexRC                     = regexp.MustCompile("\\s*\"resource_changes\":")
 	tfPlanRegexConf                   = regexp.MustCompile("\\s*\"configuration\":")
 	tfPlanRegexTV                     = regexp.MustCompile("\\s*\"terraform_version\":")
+	cdkTfRegexMetadata                = regexp.MustCompile("\\s*\"metadata\":")
 	cdkTfRegexStackName               = regexp.MustCompile("\\s*\"stackName\":")
 	cdkTfRegexTerraform               = regexp.MustCompile("\\s*\"terraform\":")
 	blueprintArtifactsRegexKind       = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
@@ -185,6 +186,7 @@ var types = map[string]regexSlice{
 	},
 	"cdkTf": {
 		[]*regexp.Regexp{
+			cdkTfRegexMetadata,
 			cdkTfRegexStackName,
 			cdkTfRegexTerraform,
 		},
