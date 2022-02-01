@@ -1413,7 +1413,7 @@ disable-full-descriptions = &quot;disable request for full descriptions and use 
 <li>Add the necessary configurations as shown in the templates section in any of the supported formats.</li>
 <li>Pass the configuration file as argument:</li>
 </ol>
-<pre><code>kics scan --config kics-config.json
+<pre><code>docker run -v {​​​​path_to_kics_config}​​​​:/kics -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p &quot;/path&quot; --config /kics/kics-config.json
 </code></pre>
 <h4 id="configuration_as_code">Configuration as Code<a class="headerlink" href="#configuration_as_code" title="Permanent link">&para;</a></h4>
 <ol>
@@ -1421,7 +1421,7 @@ disable-full-descriptions = &quot;disable request for full descriptions and use 
 <li>Add the necessary configurations as shown in the templates section in any of the supported formats.</li>
 <li>Invoke KICS without arguments (KICS will search for the specific file in the root)</li>
 </ol>
-<pre><code>kics scan
+<pre><code>docker run -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p &quot;/path&quot;
 </code></pre>
 <p><strong>Note</strong>: If more than one path is given, KICS will warn that <code>--config</code> must be used to explicit decide.</p>
 <h4 id="environment_variables">Environment variables<a class="headerlink" href="#environment_variables" title="Permanent link">&para;</a></h4>

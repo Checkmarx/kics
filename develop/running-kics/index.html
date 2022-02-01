@@ -1238,7 +1238,7 @@
 </ul>
 <p>Files and directories that are not local will be placed in a temporarly folder during KICS execution.</p>
 <h3 id="local_files">Local Files<a class="headerlink" href="#local_files" title="Permanent link">&para;</a></h3>
-<pre><code>kics scan -p path/local
+<pre><code>docker run -v {​​​​path_to_scan}​​​​:/path checkmarx/kics scan -p &quot;/path&quot;
 </code></pre>
 <h3 id="archived_files">Archived Files<a class="headerlink" href="#archived_files" title="Permanent link">&para;</a></h3>
 <p>Available archive formats:</p>
@@ -1251,7 +1251,7 @@
 <li><code>bz2</code></li>
 <li><code>xz</code></li>
 </ul>
-<pre><code>kics scan -p path/local.zip
+<pre><code>docker run -v {​​​​path_to_scan_zip}​​​​:/path checkmarx/kics scan -p &quot;/path&quot;
 </code></pre>
 <p>More information can be seen <a href="https://github.com/hashicorp/go-getter#unarchiving">here</a></p>
 <h3 id="s3">S3<a class="headerlink" href="#s3" title="Permanent link">&para;</a></h3>
@@ -1265,19 +1265,19 @@
 <li><code>aws_access_token</code> - AWS access token if this is being used.</li>
 <li><code>aws_profile</code> - Use this profile from local ~/.aws/ config. Takes - priority over the other three.</li>
 </ul>
-<pre><code>kics scan -p s3::https://s3.amazonaws.com/bucket/foo?aws_profile=~/.aws/profile
+<pre><code>docker run -v ~/.aws:/path checkmarx/kics scan -p &quot;s3::https://s3.amazonaws.com/bucket/foo?aws_profile=/path/.aws/profile&quot;
 </code></pre>
 <p>More information can be seen <a href="https://github.com/hashicorp/go-getter#s3-s3">here</a></p>
 <h3 id="git">Git<a class="headerlink" href="#git" title="Permanent link">&para;</a></h3>
-<pre><code>kics scan -p git::https://github.com/Checkmarx/kics
+<pre><code>docker run checkmarx/kics scan -p &quot;git::https://github.com/Checkmarx/kics&quot;
 </code></pre>
 <h4 id="ssh">SSH<a class="headerlink" href="#ssh" title="Permanent link">&para;</a></h4>
-<pre><code>kics scan -p git::git@github.com:Checkmarx/kics.git
+<pre><code>docker run checkmarx/kics scan -p &quot;git::git@github.com:Checkmarx/kics.git&quot;
 </code></pre>
 <p>Please make sure you have SSH private key configured with your github account</p>
 <p>More information can be seen <a href="https://github.com/hashicorp/go-getter#git-git">here</a></p>
 <h3 id="gsc">GSC<a class="headerlink" href="#gsc" title="Permanent link">&para;</a></h3>
-<pre><code>kics scan -p gcs::https://www.googleapis.com/storage/v1/bucket
+<pre><code>docker run checkmarx/kics scan -p &quot;gcs::https://www.googleapis.com/storage/v1/bucket&quot;
 </code></pre>
 <p>Please make sure you have set GSC authentication credentials to your application code by environment variables</p>
 <p>More information can be seen <a href="https://github.com/hashicorp/go-getter#gcs-gcs">here</a></p>
@@ -1305,11 +1305,7 @@ To overwrite the key, you need to create files following the pattern <code>&lt;q
 <p>This means there are two keys, <code>defaultPasswords</code> and <code>blackList</code>, that can be overwritten. On the query, you can search them on <code>query.rego</code> file with: <code>data.defaultPasswords</code> and <code>data.blackList</code>, to understand how it is used by the query.</p>
 <p>To overwrite <code>defaultPasswords</code>, you can create a file <code>f996f3cb-00fc-480c-8973-8ab04d44a8cc.json</code> on a folder <code>custom-input</code>, for example, as following:</p>
 <pre><code class="language-json">{
-  &quot;defaultPasswords&quot;: [
-    &quot;myCustomValue1&quot;,
-    &quot;myCustomValue2&quot;,
-    &quot;myCustomValue3&quot;,
-  ]
+    &quot;defaultPasswords&quot;: [&quot;myCustomValue1&quot;, &quot;myCustomValue2&quot;, &quot;myCustomValue3&quot;]
 }
 </code></pre>
 <p>Then you can execute KICS normally adding <code>--input-data ./custom-input/</code>, if <code>custom-input</code> folder is in current path, and it will replace the key <code>defaultPasswords</code> on <code>passwords_and_secrets_in_infrastructure_code</code> query with the custom value you defined.</p>
@@ -1334,20 +1330,28 @@ resource &quot;google_storage_bucket&quot; &quot;example&quot; {
 # This also not works, since there is valid script before this comment
 # kics-scan ignore
 </code></pre>
-<p>KICS currently supports five commands:
-- Must be in file's start:
-    - <code>ignore</code>: Will ignore file when running a scan;
-    - <code>enable=&lt;query_id&gt;,&lt;query_id&gt;</code>: Will get results on this file <strong>only</strong> for listed queries;
-    - <code>disable=&lt;query_id&gt;,&lt;query_id&gt;</code>: Will ignore results on this file for listed queries;
-- Can be used in all file extension:
-    - <code>ignore-line</code>: Will ignore the line beneath the comment on the results
-    - <code>ignore-block</code>: Will ignore the block and all its key-value pairs on the results</p>
-<p>The order of prescendence in above commands are:
-1. ignore
-2. ignore-block
-3. ignore-line
-4. enable
-5. disable</p>
+<p>KICS currently supports five commands:</p>
+<ul>
+<li>Must be in file's start:<ul>
+<li><code>ignore</code>: Will ignore file when running a scan;</li>
+<li><code>enable=&lt;query_id&gt;,&lt;query_id&gt;</code>: Will get results on this file <strong>only</strong> for listed queries;</li>
+<li><code>disable=&lt;query_id&gt;,&lt;query_id&gt;</code>: Will ignore results on this file for listed queries;</li>
+</ul>
+</li>
+<li>Can be used in all file extension:<ul>
+<li><code>ignore-line</code>: Will ignore the line beneath the comment on the results</li>
+<li><code>ignore-block</code>: Will ignore the block and all its key-value pairs on the results</li>
+</ul>
+</li>
+</ul>
+<p>The order of prescendence in above commands are:</p>
+<ol>
+<li>ignore</li>
+<li>ignore-block</li>
+<li>ignore-line</li>
+<li>enable</li>
+<li>disable</li>
+</ol>
 <p>For example:</p>
 <pre><code class="language-hcl"># kics-scan disable=0afa6ab8-a047-48cf-be07-93a2f8c34cf7
 # kics-scan
@@ -1390,10 +1394,12 @@ resource &quot;google_storage_bucket&quot; &quot;example&quot; {
 6:  name: memory-demo-1
 7:  namespace: mem-example
 </code></pre>
-<p>This feature is supported by all extensions that supports comments. Currently, KICS supports this feature for:
-- Dockerfile;
-- HCL (Terraform);
-- YAML;</p>
+<p>This feature is supported by all extensions that supports comments. Currently, KICS supports this feature for:</p>
+<ul>
+<li>Dockerfile;</li>
+<li>HCL (Terraform);</li>
+<li>YAML;</li>
+</ul>
 
               
             </article>

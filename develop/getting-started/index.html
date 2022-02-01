@@ -1213,56 +1213,36 @@
 <p>KICS is available as a <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">Docker image</a> and can be used as follows:</p>
 <p>To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the -p KICS parameter (see Scan Command Options section below)</p>
 <pre><code class="language-shell">docker pull checkmarx/kics:latest
-docker run -v {​​​​path_to_host_folder_to_scan}​​​​:/path checkmarx/kics:latest scan -p &quot;/path&quot; -o &quot;/path/&quot;
+docker run -v {​​​​path_to_host_folder_to_scan}​​​​:/path checkmarx/kics scan -p &quot;/path&quot; -o &quot;/path/&quot;
 </code></pre>
 <p>You can see the list of available tags in <a href="https://hub.docker.com/r/checkmarx/kics/tags?page=1&amp;ordering=-name">dockerhub</a></p>
-<p>ℹ️  <strong>UBI Based Images</strong></p>
+<p>ℹ️ <strong>UBI Based Images</strong></p>
 <p>When using <a href="https://catalog.redhat.com">UBI7</a> based image, the KICS process will run under the <code>kics</code> user and <code>kics</code> group with default UID=1000 and GID=1000, when using bind mount to share host files with the container, the UID and GID can be overriden to match current user with the <code>-u</code> flag that overrides the username:group or UID:GID. e.g:</p>
 <pre><code class="language-sh">docker run -it -u $UID:$GID -v $PWD:/path checkmarx/kics:ubi7 scan -p /path/assets/queries/dockerfile -o /path -v
 </code></pre>
 <p>Another option is <a href="https://github.com/Checkmarx/kics/blob/master/Dockerfile.ubi7">rebuilding the dockerfile</a> providing build arguments e.g: <code>--build-arg UID=999 --build-arg GID=999 --build-arg KUSER=myuser --build-arg KUSER=mygroup</code></p>
 <h4 id="homebrew">Homebrew<a class="headerlink" href="#homebrew" title="Permanent link">&para;</a></h4>
 <p>KICS is avaiable on Checkmarx <a href="https://github.com/Checkmarx/homebrew-tap">homebrew-tap</a>. It can be used as follows:</p>
-<pre><code>brew install Checkmarx/tap/kics 
+<pre><code>brew install Checkmarx/tap/kics
 </code></pre>
 <p>To use KICS default queries add KICS_QUERIES_PATH env to your <code>~/.zshrc</code>, <code>~/.zprofile</code>:</p>
 <pre><code>echo 'export KICS_QUERIES_PATH=/usr/local/opt/kics/share/kics/assets/queries' &gt;&gt; ~/.zshrc
 </code></pre>
 <h4 id="custom_queries">Custom Queries<a class="headerlink" href="#custom_queries" title="Permanent link">&para;</a></h4>
 <p>You can provide your own path to the queries directory with <code>-q</code> CLI option (see CLI Options section below), otherwise the default directory will be used The default <em>./assets/queries</em> is built-in in the image. You can use this to provide a path to your own custom queries. Check <a href="../creating-queries/">create a new query guide</a> to learn how to define your own queries.</p>
-<h4 id="one-liner_install_script">One-liner Install Script<a class="headerlink" href="#one-liner_install_script" title="Permanent link">&para;</a></h4>
-<p>Run the following command to download and install kics. It will detect your current OS and download the appropriate binary package, defaults installation to <code>./bin</code> and the queries will be placed alongside the binary in <code>./bin/assets/queries</code>:</p>
-<pre><code class="language-shell">curl -sfL 'https://raw.githubusercontent.com/Checkmarx/kics/master/install.sh' | bash
-</code></pre>
-<p>If you want to place it somewhere else like <code>/usr/local/bin</code>:</p>
-<pre><code class="language-shell">sudo curl -sfL 'https://raw.githubusercontent.com/Checkmarx/kics/master/install.sh' | bash -s -- -b /usr/local/bin
-</code></pre>
-<h4 id="binary">Binary<a class="headerlink" href="#binary" title="Permanent link">&para;</a></h4>
-<p>KICS release process is pretty straightforward.
-When we're releasing a new version, we'll pack KICS executables for Linux, Windows and macOS operating systems.
-Our security queries will be included in the ZIP files and tarballs, so that you can scan your IaC code with the out-of-the-box queries.</p>
-<p>So all you need is:</p>
-<ol>
-<li>Go to <a href="https://github.com/Checkmarx/kics/releases/latest" target="_blank">KICS releases</a></li>
-<li>Download KICS binaries based on your OS</li>
-<li>Extract files</li>
-<li>Run kics executable with the cli options as described below (note that kics binary should be located in the same directory as queries directory)
-   <code>shell
-   ./kics scan -p '&lt;path-of-your-project-to-scan&gt;' -o '&lt;output-results.json&gt;'</code></li>
-</ol>
 <h4 id="build_from_sources">Build from Sources<a class="headerlink" href="#build_from_sources" title="Permanent link">&para;</a></h4>
 <ol>
 <li>Download and install Go from <a href="https://golang.org/dl/" target="_blank">https://golang.org/dl/</a></li>
 <li>Clone the repository:
-   <code>shell
-   git clone https://github.com/Checkmarx/kics.git</code></li>
+    <code>shell
+    git clone https://github.com/Checkmarx/kics.git</code></li>
 <li>Build the binaries:
-   <code>shell
-   cd kics
-   make build</code></li>
+    <code>shell
+    cd kics
+    make build</code></li>
 <li>Kick a scan!
-   <code>shell
-   ./bin/kics scan -p '&lt;path-of-your-project-to-scan&gt;' --report-formats json -o ./results</code></li>
+    <code>shell
+    ./bin/kics scan -p '&lt;path-of-your-project-to-scan&gt;' --report-formats json -o ./results</code></li>
 </ol>
 <hr />
 <p><strong>Note</strong>: KICS does not execute scan by default anymore.</p>

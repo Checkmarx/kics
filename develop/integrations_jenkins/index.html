@@ -1209,48 +1209,14 @@
 <p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-pipeline-success.png" width="850"></p>
 <p>Click on the build number to download the reports stored as artifacts.</p>
 <p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-pipeline-artifacts.png" width="850"></p>
-<h3 id="install_and_run">Install and run<a class="headerlink" href="#install_and_run" title="Permanent link">&para;</a></h3>
-<p>The following pipeline uses downloads KICS binaries and place them under <code>/usr/bin/kics</code> before scanning a project:</p>
-<pre><code class="language-groovy">pipeline {
-  agent any
-  stages {
-    stage('Checkout Code') {
-      steps {
-        git(branch: 'master', url: 'https://github.com/GoogleCloudPlatform/terraform-google-examples')
-      }
-    }
-    // Other stages ...
-    stage('KICS scan') {
-      steps {
-        installKICS()
-        sh &quot;mkdir -p results&quot;
-        sh(script: '/usr/bin/kics scan --ci --no-color -p ${WORKSPACE} --output-path results --ignore-on-exit results --report-formats &quot;json,sarif,html&quot;')
-        archiveArtifacts(artifacts: 'results/*.html,results/*.sarif,results/*.json', fingerprint: true)
-      }
-    }
-  }
-}
-
-def installKICS(){
-  def installScript = '''
-    LATEST_VERSION=1.2.4
-    if ! command -v /usr/bin/kics; then
-      wget -q -c https://github.com/Checkmarx/kics/releases/download/v${LATEST_VERSION}/kics_${LATEST_VERSION}_Linux_x64.tar.gz -O /tmp/kics.tar.gz
-      tar xfzv /tmp/kics.tar.gz -C /usr/bin
-      rm -f kics.tar.gz
-    fi
-    /usr/bin/kics version
-  '''
-
-  sh(script: installScript)
-}
-</code></pre>
 <h3 id="using_docker">Using Docker<a class="headerlink" href="#using_docker" title="Permanent link">&para;</a></h3>
 <p>The following pipeline uses KICS docker image to scan a project and publishes the HTML report in Jenkins.</p>
-<p>Plugins required:
-- <a href="https://plugins.jenkins.io/htmlpublisher/">HTML Publisher Plugin</a>
-- <a href="https://plugins.jenkins.io/docker-plugin/">Docker Plugin</a>
-- <a href="https://plugins.jenkins.io/docker-workflow/">Docker Pipeline Plugin</a></p>
+<p>Plugins required:</p>
+<ul>
+<li><a href="https://plugins.jenkins.io/htmlpublisher/">HTML Publisher Plugin</a></li>
+<li><a href="https://plugins.jenkins.io/docker-plugin/">Docker Plugin</a></li>
+<li><a href="https://plugins.jenkins.io/docker-workflow/">Docker Pipeline Plugin</a></li>
+</ul>
 <pre><code class="language-groovy">pipeline {
     agent {
         docker {
