@@ -159,7 +159,7 @@
 				
 				<option value="file51">github.com/Checkmarx/kics/pkg/model/model_easyjson.go (34.7%)</option>
 				
-				<option value="file52">github.com/Checkmarx/kics/pkg/model/model_yaml.go (86.8%)</option>
+				<option value="file52">github.com/Checkmarx/kics/pkg/model/model_yaml.go (89.4%)</option>
 				
 				<option value="file53">github.com/Checkmarx/kics/pkg/model/summary.go (86.4%)</option>
 				
@@ -2345,13 +2345,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="33">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2376,7 +2376,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="15">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2891,7 +2891,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="22">{
-        for _, a := range s </span><span class="cov8" title="61">{
+        for _, a := range s </span><span class="cov8" title="66">{
                 if a == e </span><span class="cov4" title="8">{
                         return true
                 }</span>
@@ -4681,7 +4681,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5708,12 +5708,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="24879">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="24845">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="24879">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="24640">{
+                <span class="cov9" title="24845">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="24606">{
                         return skipFolder
                 }</span>
 
@@ -5780,24 +5780,24 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="238">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="24882">{
-        if info.IsDir() </span><span class="cov8" title="5534">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="24848">{
+        if info.IsDir() </span><span class="cov8" title="5526">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
                         return true, filepath.SkipDir
                 }</span>
-                <span class="cov8" title="5533">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
-                if err != nil || resolved </span><span class="cov8" title="5531">{
+                <span class="cov8" title="5525">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
+                if err != nil || resolved </span><span class="cov8" title="5523">{
                         return true, nil
                 }</span>
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="19348">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="19322">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="19348">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="19110">{
+        <span class="cov9" title="19322">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="19084">{
                 return true, nil
         }</span>
         <span class="cov5" title="238">return false, nil</span>
@@ -8535,13 +8535,9 @@ func unmarshal(val *yaml.Node) interface{} <span class="cov9" title="13">{
                                         }</span>
                                         <span class="cov3" title="2">tmp[val.Content[i].Value] = contentArray</span>
                                 case yaml.AliasNode:<span class="cov0" title="0">
-                                        if tt, ok := unmarshal(val.Content[i+1].Alias).(map[string]interface{}); ok </span><span class="cov0" title="0">{
-                                                tt["_kics_lines"] = getLines(val.Content[i+1], val.Content[i].Line)
-                                                utils.MergeMaps(tmp, tt)
-                                        }</span>
-                                        <span class="cov0" title="0">if v, ok := unmarshal(val.Content[i+1].Alias).(string); ok </span><span class="cov0" title="0">{
-                                                tmp[val.Content[i].Value] = v
-                                        }</span>
+                                        tt := unmarshal(val.Content[i+1].Alias).(map[string]interface{})
+                                        tt["_kics_lines"] = getLines(val.Content[i+1], val.Content[i].Line)
+                                        utils.MergeMaps(tmp, tt)</span>
                                 }
                         }
                 }
@@ -14351,23 +14347,23 @@ func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) <
 }</span>
 
 // Parse parses yaml/yml file and returns it as a Document
-func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, []int, error) <span class="cov6" title="6">{
+func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, []int, error) <span class="cov7" title="5">{
         var documents []model.Document
         dec := yaml.NewDecoder(bytes.NewReader(fileContent))
 
         doc := &amp;model.Document{}
-        for dec.Decode(doc) == nil </span><span class="cov6" title="5">{
-                if doc != nil </span><span class="cov6" title="5">{
+        for dec.Decode(doc) == nil </span><span class="cov6" title="4">{
+                if doc != nil </span><span class="cov6" title="4">{
                         documents = append(documents, *doc)
                 }</span>
-                <span class="cov6" title="5">doc = &amp;model.Document{}</span>
+                <span class="cov6" title="4">doc = &amp;model.Document{}</span>
         }
 
-        <span class="cov6" title="6">if len(documents) == 0 </span><span class="cov3" title="2">{
+        <span class="cov7" title="5">if len(documents) == 0 </span><span class="cov3" title="2">{
                 return nil, []int{}, errors.Wrap(errors.New("invalid yaml"), "failed to parse yaml")
         }</span>
 
-        <span class="cov5" title="4">linesToIgnore := model.NewIgnore.GetLines()
+        <span class="cov5" title="3">linesToIgnore := model.NewIgnore.GetLines()
         model.NewIgnore.Reset()
 
         return convertKeysToString(addExtraInfo(documents, filePath)), linesToIgnore, nil</span>
@@ -14375,20 +14371,20 @@ func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, [
 
 // convertKeysToString goes through every document to convert map[interface{}]interface{}
 // to map[string]interface{}
-func convertKeysToString(docs []model.Document) []model.Document <span class="cov5" title="4">{
+func convertKeysToString(docs []model.Document) []model.Document <span class="cov5" title="3">{
         documents := make([]model.Document, 0, len(docs))
-        for _, doc := range docs </span><span class="cov6" title="5">{
-                for key, value := range doc </span><span class="cov8" title="11">{
+        for _, doc := range docs </span><span class="cov6" title="4">{
+                for key, value := range doc </span><span class="cov9" title="9">{
                         doc[key] = convert(value)
                 }</span>
-                <span class="cov6" title="5">documents = append(documents, doc)</span>
+                <span class="cov6" title="4">documents = append(documents, doc)</span>
         }
-        <span class="cov5" title="4">return documents</span>
+        <span class="cov5" title="3">return documents</span>
 }
 
 // convert goes recursively through the keys in the given value and converts nested maps type of map[interface{}]interface{}
 // to map[string]interface{}
-func convert(value interface{}) interface{} <span class="cov10" title="15">{
+func convert(value interface{}) interface{} <span class="cov10" title="11">{
         switch t := value.(type) </span>{
         case map[interface{}]interface{}:<span class="cov0" title="0">
                 mapStr := map[string]interface{}{}
@@ -14398,8 +14394,8 @@ func convert(value interface{}) interface{} <span class="cov10" title="15">{
                         }</span>
                 }
                 <span class="cov0" title="0">return mapStr</span>
-        case []interface{}:<span class="cov4" title="3">
-                for key, val := range t </span><span class="cov5" title="4">{
+        case []interface{}:<span class="cov3" title="2">
+                for key, val := range t </span><span class="cov3" title="2">{
                         t[key] = convert(val)
                 }</span>
         case model.Document:<span class="cov0" title="0">
@@ -14407,7 +14403,7 @@ func convert(value interface{}) interface{} <span class="cov10" title="15">{
                         t[key] = convert(val)
                 }</span>
         }
-        <span class="cov10" title="15">return value</span>
+        <span class="cov10" title="11">return value</span>
 }
 
 // SupportedExtensions returns extensions supported by this parser, which are yaml and yml extension
@@ -14451,14 +14447,14 @@ func processElements(elements map[string]interface{}, filePath string) <span cla
         }</span>
 }
 
-func addExtraInfo(documents []model.Document, filePath string) []model.Document <span class="cov5" title="4">{
-        for _, documentPlaybooks := range documents </span><span class="cov6" title="5">{ // iterate over documents
+func addExtraInfo(documents []model.Document, filePath string) []model.Document <span class="cov5" title="3">{
+        for _, documentPlaybooks := range documents </span><span class="cov6" title="4">{ // iterate over documents
                 if playbooks, ok := documentPlaybooks["playbooks"]; ok </span><span class="cov1" title="1">{
                         processPlaybooks(playbooks, filePath)
                 }</span>
         }
 
-        <span class="cov5" title="4">return documents</span>
+        <span class="cov5" title="3">return documents</span>
 }
 
 func processPlaybooks(playbooks interface{}, filePath string) <span class="cov1" title="1">{
