@@ -1,0 +1,9 @@
+resources:
+  - name: db-instance
+    type: sqladmin.v1beta4.instance
+    properties:
+      databaseVersion: MYSQL_5_7
+      settings:
+        databaseFlags:
+          - name: local_infile
+            value: off
