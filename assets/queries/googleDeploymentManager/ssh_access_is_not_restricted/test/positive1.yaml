@@ -1,0 +1,14 @@
+resources:
+  - name: firewall
+    type: compute.v1.firewall
+    properties:
+      name: my-firewall
+      sourceRanges:
+        - "0.0.0.0/0"
+      allowed:
+        - IPProtocol: icmp
+          ports:
+            - "80"
+            - "8080"
+            - "1000-2000"
+            - "22"
