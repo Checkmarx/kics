@@ -4,17 +4,5 @@
     "severity": "HIGH",
     "line": 4,
     "filename": "positive1.yaml"
-  },
-  {
-    "queryName": "COS Node Image Not Used",
-    "severity": "HIGH",
-    "line": 6,
-    "filename": "positive2.yaml"
-  },
-  {
-    "queryName": "COS Node Image Not Used",
-    "severity": "HIGH",
-    "line": 4,
-    "filename": "positive3.yaml"
   }
 ]
