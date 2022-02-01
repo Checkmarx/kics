@@ -22,5 +22,11 @@
     "severity": "INFO",
     "line": 10,
     "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "EC2 Instance Monitoring Disabled",
+    "severity": "INFO",
+    "line": 28,
+    "fileName": "positive5.json"
   }
 ]

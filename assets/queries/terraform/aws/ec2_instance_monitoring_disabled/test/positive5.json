@@ -1,0 +1,45 @@
+{
+  "//": {
+    "metadata": {
+      "backend": "local",
+      "stackName": "cdktf-test",
+      "version": "0.9.0"
+    },
+    "outputs": {}
+  },
+  "provider": {
+    "aws": [
+      {
+        "region": "us-east-1"
+      }
+    ]
+  },
+  "resource": {
+    "aws_instance": {
+      "cdktf-test": {
+        "//": {
+          "metadata": {
+            "path": "cdktf-test/cdktf-test",
+            "uniqueId": "cdktf-test"
+          }
+        },
+        "ami": "ami-1212f123",
+        "instance_type": "t2.micro",
+        "monitoring": false
+      }
+    }
+  },
+  "terraform": {
+    "backend": {
+      "local": {
+        "path": "/terraform.cdktf-test.tfstate"
+      }
+    },
+    "required_providers": {
+      "aws": {
+        "source": "aws",
+        "version": "~> 3.0"
+      }
+    }
+  }
+}
