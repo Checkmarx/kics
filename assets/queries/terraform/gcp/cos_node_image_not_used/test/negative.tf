@@ -24,7 +24,7 @@ resource "google_container_node_pool" "negative2" {
   cluster = google_container_cluster.primary.name
  }
 
-resource "google_container_node_pool" "negative3" {
+resource "google_container_node_pool" "negative4" {
   project = "gcp_project"
   name    = "primary-pool2"
   region  = "us-west1"
