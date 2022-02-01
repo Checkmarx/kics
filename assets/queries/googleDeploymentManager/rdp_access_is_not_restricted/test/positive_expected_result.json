@@ -2,11 +2,13 @@
   {
     "queryName": "RDP Access Is Not Restricted",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 14,
+    "filename": "positive1.yaml"
   },
   {
     "queryName": "RDP Access Is Not Restricted",
     "severity": "MEDIUM",
-    "line": 29
+    "line": 14,
+    "filename": "positive2.yaml"
   }
 ]

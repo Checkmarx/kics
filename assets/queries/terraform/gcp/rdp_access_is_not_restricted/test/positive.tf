@@ -13,6 +13,7 @@ resource "google_compute_firewall" "positive1" {
   }
 
   source_tags = ["web"]
+  source_ranges = ["0.0.0.0/0"]
 }
 
 resource "google_compute_firewall" "positive2" {
@@ -25,4 +26,5 @@ resource "google_compute_firewall" "positive2" {
   }
 
   source_tags = ["web"]
+  source_ranges = ["::/0"]
 }

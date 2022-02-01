@@ -1,18 +1,20 @@
 - name: rdp_in_range
   google.cloud.gcp_compute_firewall:
     name: test_object
+    source_ranges:
+      - "0.0.0.0/0"
     allowed:
-    - ip_protocol: tcp
-      ports:
-      - '22'
-      - '80'
-      - '8080'
-      - '2000-4000'
+      - ip_protocol: tcp
+        ports:
+          - "22"
+          - "80"
+          - "8080"
+          - "2000-4000"
     target_tags:
-    - test-ssh-server
-    - staging-ssh-server
+      - test-ssh-server
+      - staging-ssh-server
     source_tags:
-    - test-ssh-clients
+      - test-ssh-clients
     project: test_project
     auth_kind: serviceaccount
     service_account_file: "/tmp/auth.pem"
@@ -20,17 +22,19 @@
 - name: rdp_in_port
   google.cloud.gcp_compute_firewall:
     name: test_object
+    source_ranges:
+      - "0.0.0.0/0"
     allowed:
-    - ip_protocol: tcp
-      ports:
-      - '22'
-      - '80'
-      - '3389'
+      - ip_protocol: tcp
+        ports:
+          - "22"
+          - "80"
+          - "3389"
     target_tags:
-    - test-ssh-server
-    - staging-ssh-server
+      - test-ssh-server
+      - staging-ssh-server
     source_tags:
-    - test-ssh-clients
+      - test-ssh-clients
     project: test_project
     auth_kind: serviceaccount
     service_account_file: "/tmp/auth.pem"
