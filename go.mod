@@ -36,9 +36,9 @@ require (
 	github.com/tidwall/gjson v1.13.0
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/zclconf/go-cty v1.10.0
-	golang.org/x/net v0.0.0-20211216030914-fe4d6282115f
+	golang.org/x/net v0.0.0-20220107192237-5cfca573fb4d
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
-	helm.sh/helm/v3 v3.7.2
+	helm.sh/helm/v3 v3.8.0
 	mvdan.cc/sh/v3 v3.4.2
 )
 
