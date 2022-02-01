@@ -72,9 +72,13 @@ func unmarshal(val *yaml.Node) interface{} {
 					}
 					tmp[val.Content[i].Value] = contentArray
 				case yaml.AliasNode:
-					tt := unmarshal(val.Content[i+1].Alias).(map[string]interface{})
-					tt["_kics_lines"] = getLines(val.Content[i+1], val.Content[i].Line)
-					utils.MergeMaps(tmp, tt)
+					if tt, ok := unmarshal(val.Content[i+1].Alias).(map[string]interface{}); ok {
+						tt["_kics_lines"] = getLines(val.Content[i+1], val.Content[i].Line)
+						utils.MergeMaps(tmp, tt)
+					}
+					if v, ok := unmarshal(val.Content[i+1].Alias).(string); ok {
+						tmp[val.Content[i].Value] = v
+					}
 				}
 			}
 		}
