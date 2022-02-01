@@ -2,11 +2,13 @@
   {
     "queryName": "S3 Bucket Without Versioning",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 4,
+    "filename": "positive1.yaml"
   },
   {
     "queryName": "S3 Bucket Without Versioning",
     "severity": "MEDIUM",
-    "line": 15
+    "line": 7,
+    "filename": "positive2.yaml"
   }
 ]
