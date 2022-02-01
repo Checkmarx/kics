@@ -161,7 +161,7 @@
 				
 				<option value="file52">github.com/Checkmarx/kics/pkg/model/model_yaml.go (86.8%)</option>
 				
-				<option value="file53">github.com/Checkmarx/kics/pkg/model/summary.go (86.4%)</option>
+				<option value="file53">github.com/Checkmarx/kics/pkg/model/summary.go (87.0%)</option>
 				
 				<option value="file54">github.com/Checkmarx/kics/pkg/parser/buildah/comments.go (100.0%)</option>
 				
@@ -221,7 +221,7 @@
 				
 				<option value="file82">github.com/Checkmarx/kics/pkg/report/commons.go (82.0%)</option>
 				
-				<option value="file83">github.com/Checkmarx/kics/pkg/report/cyclonedx.go (87.5%)</option>
+				<option value="file83">github.com/Checkmarx/kics/pkg/report/cyclonedx.go (81.8%)</option>
 				
 				<option value="file84">github.com/Checkmarx/kics/pkg/report/gitlab_sast.go (93.3%)</option>
 				
@@ -233,7 +233,7 @@
 				
 				<option value="file88">github.com/Checkmarx/kics/pkg/report/model/asff.go (85.3%)</option>
 				
-				<option value="file89">github.com/Checkmarx/kics/pkg/report/model/cyclonedx.go (91.2%)</option>
+				<option value="file89">github.com/Checkmarx/kics/pkg/report/model/cyclonedx.go (91.4%)</option>
 				
 				<option value="file90">github.com/Checkmarx/kics/pkg/report/model/gitlab_sast.go (75.0%)</option>
 				
@@ -2376,7 +2376,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="16">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2904,7 +2904,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="22">{
-        for _, a := range s </span><span class="cov8" title="62">{
+        for _, a := range s </span><span class="cov8" title="61">{
                 if a == e </span><span class="cov4" title="8">{
                         return true
                 }</span>
@@ -8745,9 +8745,10 @@ type Summary struct {
         Counters
         SeveritySummary
         Times
-        ScannedPaths []string         `json:"paths"`
-        Queries      QueryResultSlice `json:"queries"`
-        Bom          QueryResultSlice `json:"bill_of_materials,omitempty"`
+        ScannedPaths []string          `json:"paths"`
+        Queries      QueryResultSlice  `json:"queries"`
+        Bom          QueryResultSlice  `json:"bill_of_materials,omitempty"`
+        FilePaths    map[string]string `json:"-"`
 }
 
 // PathParameters - structure wraps the required fields for temporary path translation
@@ -8836,6 +8837,8 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
         severitySummary := SeveritySummary{
                 ScanID: scanID,
         }
+        filePaths := make(map[string]string)
+
         for i := range vulnerabilities </span><span class="cov1" title="1">{
                 item := vulnerabilities[i]
                 if _, ok := q[item.QueryID]; !ok </span><span class="cov1" title="1">{
@@ -8852,9 +8855,11 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
                         }
                 }</span>
 
-                <span class="cov1" title="1">qItem := q[item.QueryID]
+                <span class="cov1" title="1">resolvedPath := resolvePath(item.FileName, pathExtractionMap)
+
+                qItem := q[item.QueryID]
                 qItem.Files = append(qItem.Files, VulnerableFile{
-                        FileName:         resolvePath(item.FileName, pathExtractionMap),
+                        FileName:         resolvedPath,
                         SimilarityID:     item.SimilarityID,
                         Line:             item.Line,
                         VulnLines:        item.VulnLines,
@@ -8865,6 +8870,8 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
                         KeyActualValue:   item.KeyActualValue,
                         Value:            item.Value,
                 })
+
+                filePaths[resolvedPath] = item.FileName
 
                 q[item.QueryID] = qItem</span>
         }
@@ -8907,6 +8914,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
                 SeveritySummary: severitySummary,
                 ScannedPaths:    removeAllURLCredentials(pathExtractionMap),
                 LatestVersion:   version,
+                FilePaths:       filePaths,
         }</span>
 }
 </pre>
@@ -14868,22 +14876,28 @@ func exportXMLReport(path, filename string, body interface{}) error <span class=
 import (
         "strings"
 
+        "github.com/Checkmarx/kics/pkg/model"
         reportModel "github.com/Checkmarx/kics/pkg/report/model"
 )
 
 // PrintCycloneDxReport prints the CycloneDX report in the given path and filename with the given body
 func PrintCycloneDxReport(path, filename string, body interface{}) error <span class="cov10" title="2">{
+        filePaths := make(map[string]string)
+
         if !strings.HasPrefix(filename, "cyclonedx-") </span><span class="cov10" title="2">{
                 filename = "cyclonedx-" + filename
         }</span>
 
         <span class="cov10" title="2">if body != "" </span><span class="cov10" title="2">{
-                summary, err := getSummary(body)
+                if s, ok := body.(*model.Summary); ok </span><span class="cov0" title="0">{
+                        filePaths = s.FilePaths
+                }</span>
+                <span class="cov10" title="2">summary, err := getSummary(body)
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov10" title="2">body = reportModel.BuildCycloneDxReport(&amp;summary)</span>
+                <span class="cov10" title="2">body = reportModel.BuildCycloneDxReport(&amp;summary, filePaths)</span>
         }
 
         <span class="cov10" title="2">return exportXMLReport(path, filename, body)</span>
@@ -15411,11 +15425,12 @@ func getAllFiles(summary *model.Summary) []model.VulnerableFile <span class="cov
         <span class="cov1" title="1">return fileNames</span>
 }
 
-func generateSha256(filePath string) string <span class="cov4" title="2">{
-        content, err := os.ReadFile(filepath.Clean(filePath))
+func generateSha256(filePath string, filePaths map[string]string) string <span class="cov4" title="2">{
+        file := filePaths[filePath]
+        content, err := os.ReadFile(filepath.Clean(file))
 
         if err != nil </span><span class="cov0" title="0">{
-                log.Trace().Msgf("failed to read %s", filePath)
+                log.Trace().Msgf("failed to read %s", file)
                 return ""
         }</span>
 
@@ -15507,7 +15522,7 @@ func InitCycloneDxReport() *CycloneDxReport <span class="cov4" title="2">{
 }</span>
 
 // BuildCycloneDxReport builds the CycloneDX report
-func BuildCycloneDxReport(summary *model.Summary) *CycloneDxReport <span class="cov1" title="1">{
+func BuildCycloneDxReport(summary *model.Summary, filePaths map[string]string) *CycloneDxReport <span class="cov1" title="1">{
         var component Component
         var vuln []Vulnerability
         var version, sha, purl, filePath string
@@ -15517,7 +15532,7 @@ func BuildCycloneDxReport(summary *model.Summary) *CycloneDxReport <span class="
 
         for i := range files </span><span class="cov4" title="2">{
                 filePath = strings.Replace(files[i].FileName, "\\", "/", -1)
-                sha = generateSha256(filePath)
+                sha = generateSha256(files[i].FileName, filePaths)
 
                 index := 12
                 if len(sha) &lt; index </span><span class="cov0" title="0">{
