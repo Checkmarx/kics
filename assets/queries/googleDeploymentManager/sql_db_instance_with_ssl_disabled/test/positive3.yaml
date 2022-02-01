@@ -1,0 +1,9 @@
+resources:
+  - name: sql-instance
+    type: sqladmin.v1beta4.instance
+    properties:
+      settings:
+        tier: db-custom-1-3840
+        ipConfiguration:
+          ipv4Enabled: true
+          requireSsl: false

@@ -1,0 +1,9 @@
+resources:
+  - name: bigquery
+    type: bigquery.v2.dataset
+    properties:
+      access:
+        - role: owner
+          specialGroup: allAuthenticatedUsers
+        - role: owner
+          specialGroup: my-group

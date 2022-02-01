@@ -1,0 +1,11 @@
+{
+  "id": "dc5c5fee-6c53-43b0-ab11-4c660e064aaf",
+  "queryName": "Node Auto Upgrade Disabled",
+  "severity": "HIGH",
+  "category": "Resource Management",
+  "descriptionText": "Kubernetes nodes must have auto upgrades set to true, which means the attribute 'nodePools' must be defined and the subattribute 'managment' must be defined and have the attribute 'autoUpgrade' set to true",
+  "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters",
+  "platform": "GoogleDeploymentManager",
+  "descriptionID": "40051d4a",
+  "cloudProvider": "gcp"
+}

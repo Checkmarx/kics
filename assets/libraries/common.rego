@@ -426,6 +426,8 @@ any_principal(statement) {
 } else {
 	is_array(statement.Principal.AWS)
 	contains(statement.Principal.AWS[_], "*")
+} else {
+	not valid_key(statement, "Principal")
 }
 
 is_recommended_tls(field) {

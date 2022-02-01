@@ -44,7 +44,7 @@ LABEL name="KICS" \
   description="Checkmarx/kics is an opensource project that enable you to find security vulnerabilities, compliance issues, and infrastructure misconfigurations early in the development cycle of your infrastructure-as-code find more in https://kics.io" \
   maintainer="kics@checkmarx.com" \
   vendor="Checkmarx" \
-  version="v1.4.9" \
+  version="v1.5.0" \
   release="1" \
   io.k8s.display-name="KICS by Checkmarx" \
   io.openshift.tags="kics checkmarx"
@@ -54,7 +54,7 @@ ARG KGROUP=kics
 ARG UID=1000
 ARG GID=1000
 
-RUN yum install git -y \
+RUN yum install git wget unzip -y \
   && groupadd -g ${UID} ${KGROUP} \
   && adduser \
   --home-dir /app/bin \
@@ -64,11 +64,25 @@ RUN yum install git -y \
   -s /bin/bash \
   ${KUSER}
 
+
 USER ${KUSER}
 
 COPY LICENSE /licenses/LICENSE
 
 WORKDIR /app/bin
+
+USER root
+
+# Install Terraform and Terraform plugins
+RUN wget https://releases.hashicorp.com/terraform/1.1.3/terraform_1.1.3_linux_amd64.zip
+RUN unzip terraform_1.1.3_linux_amd64.zip && rm terraform_1.1.3_linux_amd64.zip
+RUN mv terraform /usr/bin/terraform
+
+RUN wget https://releases.hashicorp.com/terraform-provider-aws/3.72.0/terraform-provider-aws_3.72.0_linux_amd64.zip
+RUN unzip terraform-provider-aws_3.72.0_linux_amd64.zip && rm terraform-provider-aws_3.72.0_linux_amd64.zip
+RUN mkdir /app/bin/.terraform.d && mkdir /app/bin/.terraform.d/plugins && mkdir /app/bin/.terraform.d/plugins/linux_amd64 && mv terraform-provider-aws_v3.72.0_x5 /app/bin/.terraform.d/plugins/linux_amd64
+
+USER ${KUSER}
 
 # Copy built binary to the runtime container
 COPY --chown=${KUSER}:${KGROUP} --from=build_env /build/bin/kics /app/bin/kics

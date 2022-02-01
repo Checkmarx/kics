@@ -5,6 +5,7 @@ import (
 	"errors"
 	"strconv"
 
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"
 )
@@ -70,6 +71,14 @@ func unmarshal(val *yaml.Node) interface{} {
 						contentArray = append(contentArray, unmarshal(contentEntry))
 					}
 					tmp[val.Content[i].Value] = contentArray
+				case yaml.AliasNode:
+					if tt, ok := unmarshal(val.Content[i+1].Alias).(map[string]interface{}); ok {
+						tt["_kics_lines"] = getLines(val.Content[i+1], val.Content[i].Line)
+						utils.MergeMaps(tmp, tt)
+					}
+					if v, ok := unmarshal(val.Content[i+1].Alias).(string); ok {
+						tmp[val.Content[i].Value] = v
+					}
 				}
 			}
 		}

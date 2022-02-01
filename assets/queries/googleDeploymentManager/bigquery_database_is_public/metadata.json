@@ -1,0 +1,11 @@
+{
+  "id": "83103dff-d57f-42a8-bd81-40abab64c1a7",
+  "queryName": "BigQuery Dataset Is Public",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "BigQuery dataset is anonymously or publicly accessible. Attribute access.specialGroup should not contain 'allAuthenticatedUsers'",
+  "descriptionUrl": "https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets",
+  "platform": "GoogleDeploymentManager",
+  "descriptionID": "6737ca8f",
+  "cloudProvider": "gcp"
+}

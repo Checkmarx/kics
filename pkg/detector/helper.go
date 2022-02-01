@@ -93,13 +93,21 @@ func getKeyWithCurlyBrackets(key string, extractedString [][]string, parts []str
 					if err != nil {
 						log.Error().Msgf("failed to extract curly brackets substring")
 					}
-					substr1 = extractedString[i][1]
+					if len(extractedString) > i {
+						if len(extractedString[i][1]) > 0 {
+							substr1 = extractedString[i][1]
+						}
+					}
 				case len(parts) - 1:
 					i, err := strconv.Atoi(extractedPart[1])
 					if err != nil {
 						log.Error().Msgf("failed to extract curly brackets substring")
 					}
-					substr2 = extractedString[i][1]
+					if len(extractedString) > i {
+						if len(extractedString[i][1]) > 0 {
+							substr2 = extractedString[i][1]
+						}
+					}
 				}
 			} else {
 				substr1 = generateSubstr(substr1, parts, valuePartsLength)

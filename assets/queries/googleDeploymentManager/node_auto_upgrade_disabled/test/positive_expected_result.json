@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Node Auto Upgrade Disabled",
+    "severity": "HIGH",
+    "line": 4,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Node Auto Upgrade Disabled",
+    "severity": "HIGH",
+    "line": 6,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Node Auto Upgrade Disabled",
+    "severity": "HIGH",
+    "line": 8,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Node Auto Upgrade Disabled",
+    "severity": "HIGH",
+    "line": 9,
+    "filename": "positive4.yaml"
+  }
+]

@@ -19,6 +19,7 @@ const (
 	KindPROTO     FileKind = "PROTO"
 	KindCOMMON    FileKind = "*"
 	KindHELM      FileKind = "HELM"
+	KindBUILDAH   FileKind = "SH"
 )
 
 // Constants to describe commands given from comments
@@ -64,6 +65,8 @@ var (
 var (
 	// KICSCommentRgxp is the regexp to identify if a comment is a KICS comment
 	KICSCommentRgxp = regexp.MustCompile(`^((/{2})|#)*\s*kics-scan\s*`)
+	// KICSCommentRgxpYaml is the regexp to identify if the comment has KICS comment at the end of the comment in YAML
+	KICSCommentRgxpYaml = regexp.MustCompile(`((/{2})|#)*\s*kics-scan\s*(ignore-line|ignore-block)\s*\n*$`)
 )
 
 // Version - is the model for the version response
@@ -161,6 +164,7 @@ type Vulnerability struct {
 	KeyActualValue   string     `db:"key_actual_value" json:"actualValue"`
 	Value            *string    `db:"value" json:"value"`
 	Output           string     `json:"-"`
+	CloudProvider    string     `json:"cloud_provider"`
 }
 
 // QueryConfig is a struct that contains the fileKind and platform of the rego query
@@ -260,4 +264,10 @@ func (m FileMetadatas) Combine(lineInfo bool) Documents {
 		}
 	}
 	return documents
+}
+
+// AnalyzedPaths is a slice of types and excluded files obtained from the Analyzer
+type AnalyzedPaths struct {
+	Types []string
+	Exc   []string
 }

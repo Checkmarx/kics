@@ -1,0 +1,43 @@
+{
+  "Resources": {
+    "myCluster": {
+      "Type": "AWS::Redshift::Cluster",
+      "Properties": {
+        "NodeType": "ds2.xlarge",
+        "ClusterType": "single-node",
+        "Tags": [
+          {
+            "Key": "foo",
+            "Value": "bar"
+          }
+        ],
+        "PubliclyAccessible": true,
+        "DBName": "mydb",
+        "MasterUsername": "master",
+        "MasterUserPassword": {
+          "Ref": "MasterUserPassword"
+        }
+      }
+    },
+    "myCluster2": {
+      "Type": "AWS::Redshift::Cluster",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "foo",
+            "Value": "bar"
+          }
+        ],
+        "PubliclyAccessible": true,
+        "DBName": "mydb",
+        "MasterUsername": "master",
+        "MasterUserPassword": {
+          "Ref": "MasterUserPassword"
+        },
+        "NodeType": "ds2.xlarge",
+        "ClusterType": "single-node",
+        "Port": 5439
+      }
+    }
+  }
+}

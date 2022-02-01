@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "BigQuery Dataset Is Public",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive1.yaml"
+  }
+]

@@ -62,9 +62,7 @@ func NewClient(params *Parameters, proBarBuilder *progress.PbBuilder, printer *c
 		return nil, err
 	}
 
-	if err = descriptions.CheckVersion(t); err != nil {
-		log.Warn().Msgf("failed to check latest version")
-	}
+	descriptions.CheckVersion(t)
 
 	store := storage.NewMemoryStorage()
 

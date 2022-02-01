@@ -71,6 +71,14 @@ downscaler_default_uptime: "always"
 downscaler_default_downtime: "never"
 downscaler_enabled: "false"
 {{end}}
+`, `
+resources:
+- name: &SA_NAME my-vm-access
+  type: *SA_NAME
+- name: my-vm
+  type: vm.jinja
+  properties:
+    serviceAccountId: *SA_NAME
 `,
 	}
 
@@ -240,7 +248,24 @@ downscaler_enabled: "false"
 				  }
 				},
 				"perm": [
-				  {}
+					{
+						"_kics_lines": {
+							"_kics__default": {
+								"_kics_line": 9
+							}
+						},
+						"group": {
+							"_kics_lines": {
+								"_kics__default": {
+									"_kics_line": 4
+								},
+								"_kics_name": {
+									"_kics_line": 6
+								}
+							},
+							"name": "cx"
+						}
+					}
 				]
 			  }
 			}
@@ -253,6 +278,70 @@ downscaler_enabled: "false"
 			want:              "{}",
 			wantErr:           true,
 			wantLinesToIgnore: []int{},
+		},
+		{
+			want: `[
+				{
+					"_kics_lines": {
+						"_kics__default": {
+							"_kics_line": 0
+						},
+						"_kics_resources": {
+							"_kics_arr": [
+								{
+									"_kics__default": {
+										"_kics_line": 3
+									},
+									"_kics_name": {
+										"_kics_line": 3
+									},
+									"_kics_type": {
+										"_kics_line": 4
+									}
+								},
+								{
+									"_kics__default": {
+										"_kics_line": 5
+									},
+									"_kics_name": {
+										"_kics_line": 5
+									},
+									"_kics_properties": {
+										"_kics_line": 7
+									},
+									"_kics_type": {
+										"_kics_line": 6
+									}
+								}
+							],
+							"_kics_line": 2
+						}
+					},
+					"resources": [
+						{
+							"name": "my-vm-access",
+							"type": "my-vm-access"
+						},
+						{
+							"name": "my-vm",
+							"properties": {
+								"_kics_lines": {
+									"_kics__default": {
+										"_kics_line": 7
+									},
+									"_kics_serviceAccountId": {
+										"_kics_line": 8
+									}
+								},
+								"serviceAccountId": "my-vm-access"
+							},
+							"type": "vm.jinja"
+						}
+					]
+				}
+			]`,
+			wantErr:           false,
+			wantLinesToIgnore: []int(nil),
 		},
 	}
 

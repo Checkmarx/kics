@@ -70,6 +70,15 @@ The nightly release will have a "nightly" prefix with the last commit hash code.
 KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.
 [Check out how](docs/CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
+**Note:** For development not related to terraformer please use the Golang build tag `dev` in commands `go run, go build and go test`
+
+Examples:
+
+-   `go test -tags dev ./...`
+-   `go run -tags dev cmd/console/main.go`
+-   `go build -tags dev cmd/console/main.go`
+
+
 ## Meet us at conferences
 -   [AWS re:Invent 2021: AWS On Air](https://youtu.be/9ZKldJeBHl4) ([video](https://youtu.be/9ZKldJeBHl4))
 -   [OWASP Bristol & Suffolk Chapter - Meetup](https://www.meetup.com/OWASP-Bristol/events/281869377/) ([video](https://youtu.be/KKZJEJF6I0M))

@@ -1,0 +1,25 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "A sample template",
+  "Resources": {
+    "myuseeer2": {
+      "Type": "AWS::IAM::Group",
+      "Properties": {
+        "Path": "/",
+        "LoginProfile": {
+          "Password": "myP@ssW0rd"
+        }
+      }
+    },
+    "IamUserAdminSample222": {
+      "Type": "AWS::IAM::User",
+      "Condition": "IsSampleIamUser",
+      "Properties": {
+        "UserName": "sample-iam-user-admin",
+        "Groups": [
+          "myu2ser"
+        ]
+      }
+    }
+  }
+}

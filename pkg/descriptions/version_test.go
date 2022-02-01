@@ -30,8 +30,6 @@ func TestDescriptions_CheckVersion(t *testing.T) {
 		LatestVersionTag: "1.4.5",
 	}
 
-	err := CheckVersion(mt)
-	require.NoError(t, err)
+	CheckVersion(mt)
 	require.Equal(t, want, mt.Version)
-
 }
