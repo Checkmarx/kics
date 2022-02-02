@@ -221,6 +221,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/queries/buildah-queries/</loc>
+         <lastmod>2022-02-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/queries/cloudformation-queries/</loc>
          <lastmod>2022-02-02</lastmod>
          <changefreq>daily</changefreq>

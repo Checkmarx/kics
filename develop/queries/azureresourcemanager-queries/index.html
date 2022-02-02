@@ -1230,13 +1230,6 @@
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.keyvault/vaults/secrets?tabs=json#SecretAttributes">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Azure Managed Disk Without Encryption<br/><sup><sub>350f3955-b5be-436f-afaa-3d2be2fa6cdd</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Encryption</td>
-<td>Azure Disk Encryption should be enabled</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.compute/disks?tabs=json#encryptionsettingscollection-object">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Storage Account Allows Unsecure Transfer<br/><sup><sub>1367dd13-2c90-4020-80b7-e4339a3dc2c4</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
@@ -1251,53 +1244,18 @@
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteconfig-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Azure Managed Disk Without Encryption<br/><sup><sub>350f3955-b5be-436f-afaa-3d2be2fa6cdd</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Azure Disk Encryption should be enabled</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.compute/disks?tabs=json#encryptionsettingscollection-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Website Not Forcing HTTPS<br/><sup><sub>488847ff-6031-487c-bf42-98fd6ac5c9a0</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
 <td>'Microsoft.Web/sites' should force the use of HTTPS</td>
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteproperties-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Network Security Group With Unrestricted Access To SSH<br/><sup><sub>2ade1579-4b2c-4590-bebb-f99bf597f612</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Networking and Firewall</td>
-<td>Port 22 (SSH) is exposed to the Internet</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.network/2020-07-01/networksecuritygroups?tabs=json#securityrulepropertiesformat-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Trusted Microsoft Services Not Enabled<br/><sup><sub>e25b56cd-a4d6-498f-ab92-e6296a082097</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Networking and Firewall</td>
-<td>Trusted Microsoft Services should be enabled for Storage Account access</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts?tabs=json#networkruleset-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Network Security Group With Unrestricted Access To RDP<br/><sup><sub>59cb3da7-f206-4ae6-b827-7abf0a9cab9d</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Networking and Firewall</td>
-<td>Port 3389 (Remote Desktop) is exposed to the Internet</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.network/2020-07-01/networksecuritygroups?tabs=json#securityrulepropertiesformat-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Website with Client Certificate Auth Disabled<br/><sup><sub>92302b47-b0cc-46cb-a28f-5610ecda140b</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Networking and Firewall</td>
-<td>'Microsoft.Web/sites' should have client certificate authentication enabled</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteproperties-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Storage Blob Service Container With Public Access<br/><sup><sub>a0ab985d-660b-41f7-ac81-70957ee8e627</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Networking and Firewall</td>
-<td>Storage Blob Service Container should not publicly accessible</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts/blobservices/containers?tabs=json#containerproperties-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>SQL Database Server Firewall Allows All IPS<br/><sup><sub>6a3201a5-1630-494b-b294-3129d06b0eca</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Networking and Firewall</td>
-<td>SQL Database Server Firewall endIpAddress should not be '255.255.255.255' when startIpAddress is '0.0.0.0' since this allows all IPS</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/2014-04-01/servers/firewallrules?tabs=json">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>MySQL Server SSL Enforcement Disabled<br/><sup><sub>90120147-f2e7-4fda-bb21-6fa9109afd63</sub></sup></td>
@@ -1307,11 +1265,53 @@
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.dbformysql/servers?tabs=json#serverpropertiesforcreate-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Trusted Microsoft Services Not Enabled<br/><sup><sub>e25b56cd-a4d6-498f-ab92-e6296a082097</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>Trusted Microsoft Services should be enabled for Storage Account access</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts?tabs=json#networkruleset-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>PostgreSQL Database Server SSL Disabled<br/><sup><sub>bf500309-da53-4dd3-bcf7-95f7974545a5</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
 <td>Microsoft.DBforPostgreSQL/servers sslEnforcement property should be set to 'Enabled'</td>
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.dbforpostgresql/2017-12-01/servers?tabs=json">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Storage Blob Service Container With Public Access<br/><sup><sub>a0ab985d-660b-41f7-ac81-70957ee8e627</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>Storage Blob Service Container should not publicly accessible</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts/blobservices/containers?tabs=json#containerproperties-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Network Security Group With Unrestricted Access To RDP<br/><sup><sub>59cb3da7-f206-4ae6-b827-7abf0a9cab9d</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>Port 3389 (Remote Desktop) is exposed to the Internet</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.network/2020-07-01/networksecuritygroups?tabs=json#securityrulepropertiesformat-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>SQL Database Server Firewall Allows All IPS<br/><sup><sub>6a3201a5-1630-494b-b294-3129d06b0eca</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>SQL Database Server Firewall endIpAddress should not be '255.255.255.255' when startIpAddress is '0.0.0.0' since this allows all IPS</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/2014-04-01/servers/firewallrules?tabs=json">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Website with Client Certificate Auth Disabled<br/><sup><sub>92302b47-b0cc-46cb-a28f-5610ecda140b</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>'Microsoft.Web/sites' should have client certificate authentication enabled</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteproperties-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Network Security Group With Unrestricted Access To SSH<br/><sup><sub>2ade1579-4b2c-4590-bebb-f99bf597f612</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>Port 22 (SSH) is exposed to the Internet</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.network/2020-07-01/networksecuritygroups?tabs=json#securityrulepropertiesformat-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Role Definitions Allow Custom Subscription Role Creation<br/><sup><sub>8fa9ceea-881f-4ef0-b0b8-728f589699a7</sub></sup></td>
@@ -1342,11 +1342,11 @@
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json#containerservicenetworkprofile-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>PostgreSQL Database Server Log Connections Disabled<br/><sup><sub>e69bda39-e1e2-47ca-b9ee-b6531b23aedd</sub></sup></td>
+<td>Standard Price Is Not Selected<br/><sup><sub>2081c7d6-2851-4cce-bda5-cb49d462da42</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
-<td>Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' property set to 'on'</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.dbforpostgresql/servers/configurations?tabs=json#configurationproperties-object">Documentation</a><br/></td>
+<td>Azure Security Center provides more features for standard pricing mode, so it must be activated.</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.security/pricings?tabs=json#pricingproperties-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>PostgresSQL Database Server Connection Throttling Disabled<br/><sup><sub>a6d774b6-d9ea-4bf4-8433-217bf15d2fb8</sub></sup></td>
@@ -1356,11 +1356,11 @@
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.dbforpostgresql/servers/configurations?tabs=json">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>AKS With Authorized IP Ranges Disabled<br/><sup><sub>2583fab1-953b-4fae-bd02-4a136a6c21f9</sub></sup></td>
+<td>PostgreSQL Database Server Log Connections Disabled<br/><sup><sub>e69bda39-e1e2-47ca-b9ee-b6531b23aedd</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
-<td>Azure Kubernetes Service must have an authorized IP range for API Services enabled</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json#managedclusterapiserveraccessprofile-object">Documentation</a><br/></td>
+<td>Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' property set to 'on'</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.dbforpostgresql/servers/configurations?tabs=json#configurationproperties-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>PostgreSQL Database Server Log Checkpoints Disabled<br/><sup><sub>f9112910-c7bb-4864-9f5e-2059ba413bb7</sub></sup></td>
@@ -1370,39 +1370,11 @@
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.dbforpostgresql/2017-12-01/servers/configurations?tabs=json">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Standard Price Is Not Selected<br/><sup><sub>2081c7d6-2851-4cce-bda5-cb49d462da42</sub></sup></td>
+<td>AKS With Authorized IP Ranges Disabled<br/><sup><sub>2583fab1-953b-4fae-bd02-4a136a6c21f9</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
-<td>Azure Security Center provides more features for standard pricing mode, so it must be activated.</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.security/pricings?tabs=json#pricingproperties-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Storage Logging For Read Write And Delete Requests Disabled<br/><sup><sub>43f6e60c-9cdb-4e77-864d-a66595d26518</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Observability</td>
-<td>Storage Logging should be enabled for read, write and delete methods</td>
-<td><a href="https://docs.microsoft.com/pt-pt/azure/azure-monitor/essentials/resource-manager-diagnostic-settings#diagnostic-setting-for-azure-storage">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>AKS Logging To Azure Monitoring Is Disabled<br/><sup><sub>9b09dee1-f09b-4013-91d2-158fa4695f4b</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Observability</td>
-<td>Azure Kubernetes Service should have logging to Azure Monitoring enabled.</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json#managedclusteraddonprofile">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>SQL Server Database With Unrecommended Retention Days<br/><sup><sub>c09cdac2-7670-458a-bf6c-efad6880973a</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Observability</td>
-<td>SQL Server Database Auditing Settings should keep the audit logs in the storage account for at least 90 days</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/servers/databases/auditingsettings?tabs=json">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Log Profile Incorrect Category<br/><sup><sub>4d522e7b-f938-4d51-a3b1-974ada528bd3</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Observability</td>
-<td>Log Profile Categories should be set to 'Write', 'Delete', and/or 'Action'</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.insights/2016-03-01/logprofiles?tabs=json#logprofileproperties-object">Documentation</a><br/></td>
+<td>Azure Kubernetes Service must have an authorized IP range for API Services enabled</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json#managedclusterapiserveraccessprofile-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Unrecommended Log Profile Retention Policy<br/><sup><sub>25684eac-daaa-4c2c-94b4-8d2dbb627909</sub></sup></td>
@@ -1412,11 +1384,18 @@
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.insights/2016-03-01/logprofiles?tabs=json#retentionpolicy-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Unrecommended Network Watcher Flow Log Retention Policy<br/><sup><sub>564b70f8-41cd-4690-aff8-bb53add86bc9</sub></sup></td>
+<td>SQL Server Database With Unrecommended Retention Days<br/><sup><sub>c09cdac2-7670-458a-bf6c-efad6880973a</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
-<td>Network Watcher Flow Log Retention Policy should be enabled and the recommended number of days for the retention should be higher than 90</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.network/2019-11-01/networkwatchers/flowlogs?tabs=json#retentionpolicyparameters-object">Documentation</a><br/></td>
+<td>SQL Server Database Auditing Settings should keep the audit logs in the storage account for at least 90 days</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/servers/databases/auditingsettings?tabs=json">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Storage Logging For Read Write And Delete Requests Disabled<br/><sup><sub>43f6e60c-9cdb-4e77-864d-a66595d26518</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Storage Logging should be enabled for read, write and delete methods</td>
+<td><a href="https://docs.microsoft.com/pt-pt/azure/azure-monitor/essentials/resource-manager-diagnostic-settings#diagnostic-setting-for-azure-storage">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>SQL Server Database Without Auditing<br/><sup><sub>e055285c-bc01-48b4-8aa5-8a54acdd29df</sub></sup></td>
@@ -1424,6 +1403,27 @@
 <td>Observability</td>
 <td>Every 'Microsoft.Sql/servers/databases' resource should have Auditing Enabled</td>
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/servers/databases/auditingsettings">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>AKS Logging To Azure Monitoring Is Disabled<br/><sup><sub>9b09dee1-f09b-4013-91d2-158fa4695f4b</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Azure Kubernetes Service should have logging to Azure Monitoring enabled.</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json#managedclusteraddonprofile">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Log Profile Incorrect Category<br/><sup><sub>4d522e7b-f938-4d51-a3b1-974ada528bd3</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Log Profile Categories should be set to 'Write', 'Delete', and/or 'Action'</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.insights/2016-03-01/logprofiles?tabs=json#logprofileproperties-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Unrecommended Network Watcher Flow Log Retention Policy<br/><sup><sub>564b70f8-41cd-4690-aff8-bb53add86bc9</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Network Watcher Flow Log Retention Policy should be enabled and the recommended number of days for the retention should be higher than 90</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.network/2019-11-01/networkwatchers/flowlogs?tabs=json#retentionpolicyparameters-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Hardcoded SecureString Parameter Default Value<br/><sup><sub>4d2cf896-c053-4be5-9c95-8b4771112f29</sub></sup></td>
