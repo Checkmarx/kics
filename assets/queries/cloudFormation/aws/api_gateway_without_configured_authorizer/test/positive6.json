@@ -1,0 +1,62 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Resources": {
+    "DevWebSocketAuthorizer9": {
+      "Type": "AWS::ApiGatewayV2::Authorizer",
+      "Properties": {
+        "ApiId": {
+          "Ref": "DevWebSocket2err"
+        },
+        "AuthorizerType": "REQUEST",
+        "AuthorizerUri": {
+          "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DevAuthorizerLambda.Arn}/invocations"
+        },
+        "IdentitySource": [
+          "route.request.querystring.token"
+        ],
+        "Name": "DevAuthorizer"
+      }
+    },
+    "DevWebSocket9": {
+      "Type": "AWS::ApiGatewayV2::Api",
+      "Properties": {
+        "Name": "TL-Dev-WebSocket-API",
+        "ProtocolType": "WEBSOCKET",
+        "RouteSelectionExpression": "$request.body.action"
+      }
+    },
+    "DevAuthorizerLambda9": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Environment": {
+          "Variables": {
+            "STAGE": "Dev"
+          }
+        },
+        "CodeUri": "WebSockets/Authorizer",
+        "Role": "arn:aws:iam::************:role/LambdaDynamoDB"
+      }
+    },
+    "DevAuthorizerLambdaPermission9": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Principal": "apigateway.amazonaws.com",
+        "FunctionName": {
+          "Ref": "DevAuthorizerLambda"
+        },
+        "SourceArn": {
+          "Fn::Sub": [
+            "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${__ApiId__}/${__Stage__}/$connect",
+            {
+              "__Stage__": "*",
+              "__ApiId__": {
+                "Ref": "DevWebSocket"
+              }
+            }
+          ]
+        },
+        "Action": "lambda:invokeFunction"
+      }
+    }
+  }
+}

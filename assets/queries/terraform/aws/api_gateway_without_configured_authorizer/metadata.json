@@ -1,0 +1,11 @@
+{
+  "id": "ed35928e-195c-4405-a252-98ccb664ab7C",
+  "queryName": "API Gateway Without Configured Authorizer",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "API Gateway REST API should have an API Gateway Authorizer",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_authorizer",
+  "platform": "Terraform",
+  "descriptionID": "c1eed330",
+  "cloudProvider": "aws"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "7fd0d461-5b8c-4815-898c-f2b4b117eb28",
+  "queryName": "API Gateway Without Configured Authorizer",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "API Gateway REST API should have an API Gateway Authorizer",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-authorizer.html",
+  "platform": "CloudFormation",
+  "descriptionID": "5734fbc7",
+  "cloudProvider": "aws"
+}
