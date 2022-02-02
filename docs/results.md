@@ -707,7 +707,7 @@ You can export CycloneDX report by using `--report-formats "cyclonedx"`. The gen
 ```
 
 ## ASFF
-You can export ASFF (AWS Security Finding Format) report by using `--report-formats "asff"`.
+You can export ASFF (AWS Security Finding Format) report by using `--report-formats "asff"`. The generated report file will have a prefix `asff-`.
 
 For default, the ASFF report uses a default AWS account ID ("AWS_ACCOUNT_ID") and a default AWS region ("AWS_REGION"). To set these values, you need to define AWS_ACCOUNT_ID and AWS_REGION in your environment variables.
 ```
