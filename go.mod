@@ -11,7 +11,7 @@ require (
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20211114212643-ec144ca0d701
 	github.com/aws/aws-sdk-go v1.42.44
 	github.com/cheggaaa/pb/v3 v3.0.8
-	github.com/emicklei/proto v1.9.1
+	github.com/emicklei/proto v1.9.2
 	github.com/getsentry/sentry-go v0.12.0
 	github.com/golang/mock v1.6.0
 	github.com/google/pprof v0.0.0-20210720184732-4bb14d4b1be1
