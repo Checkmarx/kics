@@ -68,6 +68,7 @@ nav:
       - Travis CI: integrations_travisci.md
       - Terraform Cloud: integration_tfcloud.md
       - AWS CDK: cdk.md
+      - AWS CodeBuild: integrations_aws_codebuild.md
       - Badge: BADGE.md
       - Using pre-commit hooks: integrations_pre_commit.md
       - Terraformer: integrations_terraformer.md
