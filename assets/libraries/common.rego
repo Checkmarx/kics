@@ -434,6 +434,10 @@ is_recommended_tls(field) {
 	inArray({"TLSv1.2_2018", "TLSv1.2_2019", "TLSv1.2_2021"}, field)
 }
 
+is_unrestricted(sourceRange) {
+	cidrs := {"0.0.0.0/0", "::/0"}
+	sourceRange == cidrs[_]
+}
 
 # Matches a value against a list of patterns 
 # and returns set of unique verdicts in form of boolean values  
