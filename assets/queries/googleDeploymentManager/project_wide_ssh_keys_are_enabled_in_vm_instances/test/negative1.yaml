@@ -1,0 +1,12 @@
+resources:
+  - name: vm
+    type: compute.v1.instance
+    properties:
+      description: my-vm
+      metadata:
+        fingerprint: fingerprint
+        items:
+          - key: my-key
+            value: true
+          - key: block-project-ssh-keys
+            value: true

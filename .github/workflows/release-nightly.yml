@@ -160,7 +160,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push alpine to Docker Hub
         id: build_alpine
-        uses: docker/build-push-action@v2.8.0
+        uses: docker/build-push-action@v2.9.0
         with:
           context: .
           push: true
@@ -172,7 +172,7 @@ jobs:
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
       - name: Build and push debian to Docker Hub
         id: build_debian
-        uses: docker/build-push-action@v2.8.0
+        uses: docker/build-push-action@v2.9.0
         with:
           context: .
           file: ./Dockerfile.debian
@@ -185,7 +185,7 @@ jobs:
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
       - name: Build and push ubi7 to Docker Hub
         id: build_ubi7
-        uses: docker/build-push-action@v2.8.0
+        uses: docker/build-push-action@v2.9.0
         with:
           context: .
           file: ./Dockerfile.ubi7
@@ -219,7 +219,7 @@ jobs:
           pip install csvtomd
           csvtomd docs/docker/nightly.csv > docs/docker/nightly.md
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3.12.0
+        uses: peter-evans/create-pull-request@v3.12.1
         with:
           title: "docs(kicsbot): update images digest"
           token: ${{ secrets.KICS_BOT_PAT }}

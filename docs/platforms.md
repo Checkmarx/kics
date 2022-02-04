@@ -79,6 +79,17 @@ KICS supports some official modules for AWS that can be found on [Terraform regi
 
 Currently, KICS does not support unofficial or custom modules.
 
+### Cloud Development Kit for Terraform (CDKTF) 
+
+KICS supports scanning CDKTF output JSON. It recognizes it through the fields `metadata`, `stackName`, and `terraform`.
+
+To get your CDKTF output JSON, run the following command inside the directory that contains your app:
+```
+cdktf synth
+```
+
+You can also run the command `cdktf synth --json` to display it in the terminal.
+
 ### Limitations
 
 #### Ansible

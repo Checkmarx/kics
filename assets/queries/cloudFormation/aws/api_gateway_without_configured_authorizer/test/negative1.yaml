@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  DevWebSocket2:
+    Type: 'AWS::ApiGatewayV2::Api'
+    Properties:
+      Name: TL-Dev-WebSocket-API
+      ProtocolType: WEBSOCKET
+      RouteSelectionExpression: $request.body.action
+  DevAuthorizerLambda:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      CodeUri: WebSockets/Authorizer
+      Role: 'arn:aws:iam::************:role/LambdaDynamoDB'
+      Environment:
+        Variables:
+          STAGE: Dev
+  DevAuthorizerLambdaPermission:
+    Type: 'AWS::Lambda::Permission'
+    Properties:
+      Action: 'lambda:invokeFunction'
+      Principal: apigateway.amazonaws.com
+      FunctionName:
+        Ref: DevAuthorizerLambda
+      SourceArn:
+        'Fn::Sub':
+          - >-
+            arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${__ApiId__}/${__Stage__}/$connect
+          - __Stage__: '*'
+            __ApiId__:
+              Ref: DevWebSocket
+  DevWebSocketAuthorizer:
+    Type: 'AWS::ApiGatewayV2::Authorizer'
+    Properties:
+      Name: DevAuthorizer
+      ApiId:
+        Ref: DevWebSocket2
+      AuthorizerType: REQUEST
+      AuthorizerUri:
+        'Fn::Sub': >-
+          arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DevAuthorizerLambda.Arn}/invocations
+      IdentitySource:
+        - route.request.querystring.token

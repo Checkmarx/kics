@@ -1,0 +1,7 @@
+resources:
+  - name: nodePool
+    type: container.v1.nodePool
+    properties:
+      name: my-node
+      config:
+        imageType: cos

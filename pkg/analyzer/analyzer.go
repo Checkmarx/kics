@@ -38,6 +38,9 @@ var (
 	tfPlanRegexRC                     = regexp.MustCompile("\\s*\"resource_changes\":")
 	tfPlanRegexConf                   = regexp.MustCompile("\\s*\"configuration\":")
 	tfPlanRegexTV                     = regexp.MustCompile("\\s*\"terraform_version\":")
+	cdkTfRegexMetadata                = regexp.MustCompile("\\s*\"metadata\":")
+	cdkTfRegexStackName               = regexp.MustCompile("\\s*\"stackName\":")
+	cdkTfRegexTerraform               = regexp.MustCompile("\\s*\"terraform\":")
 	blueprintArtifactsRegexKind       = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
 	blueprintArtifactsRegexProperties = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
 	blueprintRegexTargetScope         = regexp.MustCompile("(\\s*\"targetScope\":)|(\\s*targetScope:)")
@@ -181,6 +184,13 @@ var types = map[string]regexSlice{
 			tfPlanRegexTV,
 		},
 	},
+	"cdkTf": {
+		[]*regexp.Regexp{
+			cdkTfRegexMetadata,
+			cdkTfRegexStackName,
+			cdkTfRegexTerraform,
+		},
+	},
 	"blueprintsartifacts": {
 		[]*regexp.Regexp{
 			blueprintArtifactsRegexKind,
@@ -254,6 +264,9 @@ func checkContent(path string, results, unwanted chan<- string, ext string) {
 
 func checkReturnType(path, returnType, ext string, content []byte) string {
 	if returnType != "" {
+		if returnType == "cdkTf" {
+			return "terraform"
+		}
 		if returnType == "blueprint" || returnType == "blueprintsartifacts" {
 			return arm
 		}

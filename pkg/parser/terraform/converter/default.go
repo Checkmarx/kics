@@ -58,13 +58,21 @@ func (c *converter) rangeSource(r hcl.Range) string {
 
 func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Document, error) {
 	var err error
+	var v string
 	countValue := body.Attributes["count"]
 	count := -1
 
 	if countValue != nil {
 		value, err := countValue.Expr.Value(nil)
 		if err == nil {
-			intValue, err := strconv.Atoi(value.AsBigFloat().String())
+			switch value.Type() {
+			case cty.String:
+				v = value.AsString()
+			case cty.Number:
+				v = value.AsBigFloat().String()
+			}
+
+			intValue, err := strconv.Atoi(v)
 			if err == nil {
 				count = intValue
 			}

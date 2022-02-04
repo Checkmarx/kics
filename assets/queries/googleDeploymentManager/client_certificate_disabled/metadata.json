@@ -1,0 +1,11 @@
+{
+  "id": "dd690686-2bf9-4012-a821-f61912dd77be",
+  "queryName": "Client Certificate Disabled",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Kubernetes Clusters must be created with Client Certificate enabled, which means 'masterAuth' must have 'clientCertificateConfig' with the attribute 'issueClientCertificate' equal to true",
+  "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters",
+  "platform": "GoogleDeploymentManager",
+  "descriptionID": "e74562aa",
+  "cloudProvider": "gcp"
+}

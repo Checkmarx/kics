@@ -48,7 +48,7 @@ confirmPorts(label, servicePorts) {
 	resource.metadata.labels[_] == label[_]
 	[path, value] := walk(resource.spec)
 	cont := value[types[j]]
-	cont[_].ports[_].containerPort == servicePorts.port
+	cont[_].ports[_].containerPort == servicePorts.targetPort
 }
 
 match_label(string) = ret {

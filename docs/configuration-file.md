@@ -40,12 +40,13 @@ output-path: "results"
 ---
 
 ## Supported Formats
+
 KICS supports the following formats for the configuration files.
 
-- JSON
-- TOML
-- YAML
-- HCL
+-   JSON
+-   TOML
+-   YAML
+-   HCL
 
 Notice that format is about the content and not the file extension.
 
@@ -179,8 +180,8 @@ disable-full-descriptions = "disable request for full descriptions and use defau
 
 ---
 
-
 ## How to Use
+
 You can enclose all your configurations in a file and use it in two different ways.
 
 #### Command Argument File
@@ -188,8 +189,9 @@ You can enclose all your configurations in a file and use it in two different wa
 1. Create a file with any name/any extension. For the sake of example, let's call it `kics-config.json`
 2. Add the necessary configurations as shown in the templates section in any of the supported formats.
 3. Pass the configuration file as argument:
+
 ```
-kics scan --config kics-config.json
+docker run -v {​​​​path_to_kics_config}​​​​:/kics -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p "/path" --config /kics/kics-config.json
 ```
 
 #### Configuration as Code
@@ -197,21 +199,24 @@ kics scan --config kics-config.json
 1. Create a file named `kics.config` and place it in the root of your project repository.
 2. Add the necessary configurations as shown in the templates section in any of the supported formats.
 3. Invoke KICS without arguments (KICS will search for the specific file in the root)
+
 ```
-kics scan
+docker run -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p "/path"
 ```
 
 **Note**: If more than one path is given, KICS will warn that `--config` must be used to explicit decide.
 
 #### Environment variables
+
 KICS also accepts environment variables to fill flags values. To use it you just need to have the flag with a `KICS_` prefix. For example:
 
-- To use path flag as environment variable, you should have `KICS_PATH` on your environment;
-- To use multiple names variables, like `--output-path`, you should use it with `KICS_` and each word separated by `_`, e.g.: `KICS_OUTPUT_PATH`
+-   To use path flag as environment variable, you should have `KICS_PATH` on your environment;
+-   To use multiple names variables, like `--output-path`, you should use it with `KICS_` and each word separated by `_`, e.g.: `KICS_OUTPUT_PATH`
 
 ## Flags precedence
+
 KICS will use the following precende to fill flags:
 
-- CLI flags
-- Environment variables
-- Configuration file
+-   CLI flags
+-   Environment variables
+-   Configuration file

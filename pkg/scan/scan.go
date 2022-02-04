@@ -154,8 +154,6 @@ func (c *Client) executeScan(ctx context.Context) (*Results, error) {
 		return nil, err
 	}
 
-	deleteExtractionFolder(executeScanParameters.extractedPaths.ExtractionMap)
-
 	return &Results{
 		Results:        results,
 		ExtractedPaths: executeScanParameters.extractedPaths,

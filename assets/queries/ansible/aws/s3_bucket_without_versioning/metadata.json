@@ -3,7 +3,7 @@
   "queryName": "S3 Bucket Without Versioning",
   "severity": "MEDIUM",
   "category": "Observability",
-  "descriptionText": "S3 bucket without versioning",
+  "descriptionText": "S3 bucket should have versioning enabled",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html#parameter-versioning",
   "platform": "Ansible",
   "descriptionID": "622e4c8e",

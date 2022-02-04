@@ -1,0 +1,12 @@
+resources:
+  - name: vm
+    type: compute.v1.instance
+    properties:
+      description: my-vm
+      metadata:
+        fingerprint: fingerprint
+        items:
+          - key: enable-oslogin
+            value: true
+          - key: my-key-2
+            value: false

@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "COS Node Image Not Used",
+    "severity": "HIGH",
+    "line": 4,
+    "filename": "positive1.yaml"
+  }
+]

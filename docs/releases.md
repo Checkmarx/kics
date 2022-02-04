@@ -4,15 +4,13 @@ For our release versions we follow the <a href="https://semver.org/" target="_bl
 
 Our current release process is structured in the following way:
 
-- PATCH versions for minor backwards compatible bug fixes and new small features. This should have a bi-weekly cadence.
-- MINOR versions will include functionality that is backwards compatible. This should have a monthly cadence.
-- MAJOR versions for major functionality that it's added or changes that are not backwards compatible.
+-   PATCH versions for minor backwards compatible bug fixes and new small features. This should have a bi-weekly cadence.
+-   MINOR versions will include functionality that is backwards compatible. This should have a monthly cadence.
+-   MAJOR versions for major functionality that it's added or changes that are not backwards compatible.
 
 Every release is packed with:
 
-- Source code .zip/tarballs
-- Binaries for Windows, Linux and macOS
-- Docker image uploaded to <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">DockerHub</a>
+-   Docker image uploaded to <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">DockerHub</a>
 
 If waiting for a new release it's not enough, we also provide nightly builds that include the latest changes.
 
@@ -23,5 +21,6 @@ You can find our releases <a href="https://github.com/Checkmarx/kics/releases" t
 KICS docker images are pushed to [DockerHub](https://hub.docker.com/repository/docker/checkmarx/kics)
 
 List of images digests:
-- [Release versions](./docker-img/digests.md)
-- [Nightly images](./docker-img/nightly.md)
+
+-   [Release versions](./docker-img/digests.md)
+-   [Nightly images](./docker-img/nightly.md)

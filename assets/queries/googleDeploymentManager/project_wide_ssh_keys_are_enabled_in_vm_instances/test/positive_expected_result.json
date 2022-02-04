@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive3.yaml"
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Stackdriver Logging Disabled",
+    "severity": "HIGH",
+    "line": 4,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Stackdriver Logging Disabled",
+    "severity": "HIGH",
+    "line": 6,
+    "filename": "positive2.yaml"
+  }
+]

@@ -181,8 +181,16 @@ func TestBuildCycloneDxReport(t *testing.T) {
 	cycloneDx.Components.Components = append(cycloneDx.Components.Components, c2)
 	cycloneDx.Components.Components = append(cycloneDx.Components.Components, c1)
 
+	filePaths := make(map[string]string)
+
+	file1 := filepath.Join("..", "..", "..", "assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "positive.tf")
+	file2 := filepath.Join("..", "..", "..", "assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "negative.tf")
+	filePaths[file1] = file1
+	filePaths[file2] = file2
+
 	type args struct {
-		summary *model.Summary
+		summary   *model.Summary
+		filePaths map[string]string
 	}
 	tests := []struct {
 		name string
@@ -192,7 +200,8 @@ func TestBuildCycloneDxReport(t *testing.T) {
 		{
 			name: "Build CycloneDX report",
 			args: args{
-				summary: &test.ExampleSummaryMock,
+				summary:   &test.ExampleSummaryMock,
+				filePaths: filePaths,
 			},
 			want: &cycloneDx,
 		},
@@ -205,7 +214,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 					queries[idx].Files[i].FileName = filepath.Join("..", "..", "..", queries[idx].Files[i].FileName)
 				}
 			}
-			got := BuildCycloneDxReport(tt.args.summary)
+			got := BuildCycloneDxReport(tt.args.summary, tt.args.filePaths)
 			got.SerialNumber = "urn:uuid:" // set to "urn:uuid:" because it will be different for every report
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("BuildCycloneDxReport() = %v, want %v", got, tt.want)
