@@ -32,7 +32,7 @@ jobs:
           echo "curr tag ${{ steps.version.outputs.ctag }}"
           echo "prev ver ${{ steps.version.outputs.pversion }}"
           echo "curr ver ${{ steps.version.outputs.cversion }}"
-      - uses: actions/setup-python@v2.3.1
+      - uses: actions/setup-python@v2.3.2
         with:
           python-version: 3.x
       - name: Install dependencies
