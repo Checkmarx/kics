@@ -174,7 +174,7 @@ jobs:
           echo "scratch,${COMMIT_SHA8},${DATE},${DIGEST}" >> docs/docker/apispec.csv
           echo "alpine,${COMMIT_SHA8},${DATE},${ALPINE_DIGEST}" >> docs/docker/apispec.csv
           echo "debian,${COMMIT_SHA8},${DATE},${DEBIAN_DIGEST}" >> docs/docker/apispec.csv
-      - uses: actions/setup-python@v2.3.1
+      - uses: actions/setup-python@v2.3.2
         with:
           python-version: 3.x
       - name: Generate .md table

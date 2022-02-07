@@ -8,6 +8,7 @@ We provide plugins for some CI/CD tools. For some others we provide a tutorial o
 Integrate KICS with:
 
 -   [Azure Pipelines](integrations_azurepipelines.md)
+-   [Bamboo](integrations_bamboo.md)
 -   [Bitbucket Pipelines](integrations_bitbucketpipelines.md)
 -   [CircleCI](integrations_circleci.md)
 -   [Github Actions](integrations_ghactions.md)

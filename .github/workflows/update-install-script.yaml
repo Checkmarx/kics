@@ -30,7 +30,7 @@ jobs:
             && chmod +x godownloader \
             && rm -vf $(basename "${FULL_URL}") \
             && cd "${PROJDIR}"
-      - uses: actions/setup-python@v2.3.1
+      - uses: actions/setup-python@v2.3.2
         with:
           python-version: "3.x"
       - name: Install dependencies

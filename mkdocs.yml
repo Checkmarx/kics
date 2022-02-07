@@ -59,6 +59,7 @@ nav:
   - Integrations:
       - Overview: integrations.md
       - Azure DevOps: integrations_azurepipelines.md
+      - Bamboo: integrations_bamboo.md
       - Bitbucket Pipelines: integrations_bitbucketpipelines.md
       - CircleCI: integrations_circleci.md
       - Github Actions: integrations_ghactions.md
