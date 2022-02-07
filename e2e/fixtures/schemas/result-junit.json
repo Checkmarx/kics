@@ -1,21 +1,12 @@
 {
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "XMLName",
-    "Name",
-    "Time",
-    "Failures",
-    "TestSuites"
-  ],
+  "required": ["XMLName", "Name", "Time", "Failures", "TestSuites"],
   "definitions": {
     "XMLName": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "Space",
-        "Local"
-      ],
+      "required": ["Space", "Local"],
       "properties": {
         "Space": {
           "type": "string"
@@ -49,20 +40,14 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "XMLName",
-          "Name",
-          "Failures",
-          "Tests",
-          "TestCases"
-        ],
+        "required": ["XMLName", "Name", "Failures", "Tests", "TestCases"],
         "properties": {
           "XMLName": {
             "$ref": "#/definitions/XMLName"
           },
           "Name": {
             "type": "string",
-            "pattern": "^\\[\\w+\\]$"
+            "pattern": "^\\w+$"
           },
           "Failures": {
             "type": "string",
@@ -77,18 +62,18 @@
             "minItems": 1,
             "items": {
               "type": "object",
-              "required": [
-                "XMLName",
-                "Name",
-                "Failures"
-              ],
+              "required": ["XMLName", "Name", "ClassName", "Failures"],
               "properties": {
                 "XMLName": {
                   "$ref": "#/definitions/XMLName"
                 },
                 "Name": {
                   "type": "string",
-                  "pattern": "^\\[(.)+\\](.|\n)+$"
+                  "minLength": 1
+                },
+                "ClassName": {
+                  "type": "string",
+                  "pattern": "^\\w+$"
                 },
                 "Failures": {
                   "type": "array",
@@ -96,11 +81,7 @@
                   "items": {
                     "type": "object",
                     "additionalProperties": false,
-                    "required": [
-                      "XMLName",
-                      "Type",
-                      "Message"
-                    ],
+                    "required": ["XMLName", "Type", "Message"],
                     "properties": {
                       "XMLName": {
                         "$ref": "#/definitions/XMLName"
