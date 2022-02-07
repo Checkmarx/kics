@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/integrations_travisci/">
       
       <link rel="icon" href="../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.9">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.10">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.2b4465f4.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.d6be258b.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
@@ -1156,26 +1156,13 @@
 <p>This provides you the ability to run KICS scans in your repositories and streamline vulnerabilities and misconfiguration checks to your infrastructure as code (IaC).</p>
 <h1 id="example_configuration_using_docker">Example configuration using docker<a class="headerlink" href="#example_configuration_using_docker" title="Permanent link">&para;</a></h1>
 <pre><code class="language-yaml">services:
-  - docker
+    - docker
 
 before_install:
-  - docker pull checkmarx/kics:latest
+    - docker pull checkmarx/kics:latest
 
 script:
-  - docker run -v ${PWD}/path checkmarx/kics:latest scan -p /path -o ${PWD} --ci --ignore-on-exit results
-</code></pre>
-<h1 id="example_configuration_downloading_binaries">Example configuration downloading binaries<a class="headerlink" href="#example_configuration_downloading_binaries" title="Permanent link">&para;</a></h1>
-<pre><code class="language-yaml">env:
-  global:
-    - LATEST_VERSION=1.4.2
-
-install:
-  - mkdir ./tmp
-  - wget -q https://github.com/Checkmarx/kics/releases/download/v${LATEST_VERSION}/kics_${LATEST_VERSION}_Linux_x64.tar.gz -O ./tmp/kics.tar.gz
-  - tar xfzv ./tmp/kics.tar.gz -C ./tmp
-
-script:
-  - ./tmp/kics scan -p ${PWD}/path -o ${PWD} --exclude-paths ./tmp --ci --ignore-on-exit results
+    - docker run -v ${PWD}/path checkmarx/kics:latest scan -p /path -o ${PWD} --ci --ignore-on-exit results
 </code></pre>
 
               
@@ -1246,10 +1233,10 @@ script:
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.22074ed6.min.js", "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.092fa1f6.min.js", "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.960e086b.min.js"></script>
+      <script src="../assets/javascripts/bundle.e3b2bf44.min.js"></script>
       
         <script src="../js/version-mike.js"></script>
       
