@@ -1,39 +1,63 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.k8s as k8sLib
 
-CxPolicy[result] {
-	doc := input.document[i]
+types := {"initContainers", "containers"}
 
-	[path, value] = walk(doc)
-	securityContext := value.securityContext
-
-	to_number(securityContext.runAsUser) < 10000
+# container defines runAsUser
+checkUser(specInfo, container, containerType, document, metadata) = result {
+	uid := container.securityContext.runAsUser
+	to_number(uid) < 10000
 
 	result := {
-		"documentId": doc.id,
-		"searchKey": sprintf("%s.securityContext.runAsUser=%d", [common_lib.concat_path(path), securityContext.runAsUser]),
+		"documentId": document.id,
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser=%d", [metadata.name, specInfo.path, containerType, container.name, uid]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.securityContext.runAsUser should not be a low UID", [common_lib.concat_path(path)]),
-		"keyActualValue": sprintf("%s.securityContext.runAsUser is a low UID", [common_lib.concat_path(path)]),
-		"searchLine": common_lib.build_search_line(path, ["securityContext", "runAsUser"]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser should be set to a UID >= 10000", [metadata.name, specInfo.path, containerType, container.name]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser is set to a low UID", [metadata.name, specInfo.path, containerType, container.name]),
+	}
+}
+
+# pod defines runAsUser and container inherits this setting
+checkUser(specInfo, container, containerType, document, metadata) = result {
+	containerCtx := object.get(container, "securityContext", {})
+	not common_lib.valid_key(containerCtx, "runAsUser")
+
+	uid := specInfo.spec.securityContext.runAsUser
+	to_number(uid) < 10000
+
+	result := {
+		"documentId": document.id,
+		"searchKey": sprintf("metadata.name={{%s}}.%s.securityContext.runAsUser=%d", [metadata.name, specInfo.path, uid]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.securityContext.runAsUser should be set to a UID >= 10000", [metadata.name, specInfo.path]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.%s.securityContext.runAsUser is set to a low UID", [metadata.name, specInfo.path]),
+	}
+}
+
+# neither pod nor container define runAsUser
+checkUser(specInfo, container, containerType, document, metadata) = result {
+	specCtx := object.get(specInfo.spec, "securityContext", {})
+	not common_lib.valid_key(specCtx, "runAsUser")
+
+	containerCtx := object.get(container, "securityContext", {})
+	not common_lib.valid_key(containerCtx, "runAsUser")
+
+	result := {
+		"documentId": document.id,
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext", [metadata.name, specInfo.path, containerType, container.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser should be defined", [metadata.name, specInfo.path, containerType, container.name]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser is undefined", [metadata.name, specInfo.path, containerType, container.name]),
 	}
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	document := input.document[i]
+	metadata := document.metadata
 
-	[path, value] = walk(doc)
-	securityContext := value.securityContext
+	specInfo := k8sLib.getSpecInfo(document)
 
-	not common_lib.valid_key(securityContext, "runAsUser")
-
-	result := {
-		"documentId": doc.id,
-		"searchKey": sprintf("%s.securityContext", [common_lib.concat_path(path)]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s.securityContext.runAsUser should be defined", [common_lib.concat_path(path)]),
-		"keyActualValue": sprintf("%s.securityContext.runAsUser is undefined", [common_lib.concat_path(path)]),
-		"searchLine": common_lib.build_search_line(path, ["securityContext"]),
-	}
+	result := checkUser(specInfo, specInfo.spec[types[x]][_], types[x], document, metadata)
 }
