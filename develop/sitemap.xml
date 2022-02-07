@@ -101,6 +101,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/integrations_bamboo/</loc>
+         <lastmod>2022-02-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/integrations_bitbucketpipelines/</loc>
          <lastmod>2022-02-07</lastmod>
          <changefreq>daily</changefreq>
