@@ -5,6 +5,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"sort"
+	"strings"
 	"sync"
 
 	"github.com/Checkmarx/kics/internal/metrics"
@@ -81,10 +82,10 @@ func Analyze(paths []string) (model.AnalyzedPaths, error) {
 			return returnAnalyzedPaths, errors.Wrap(err, "failed to analyze path")
 		}
 		if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
-			if !info.IsDir() {
+			if !info.IsDir() && !strings.Contains(path, ".git") {
 				files = append(files, path)
 			}
-			return nil
+			return err
 		}); err != nil {
 			log.Error().Msgf("failed to analize path %s: %s", path, err)
 		}
