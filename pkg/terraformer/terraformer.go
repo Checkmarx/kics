@@ -16,6 +16,7 @@ import (
 	tfLogger "log"
 
 	"github.com/Checkmarx/kics/pkg/terraformer/aws"
+	"github.com/Checkmarx/kics/pkg/terraformer/gcp"
 	importer "github.com/GoogleCloudPlatform/terraformer/cmd"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
@@ -28,6 +29,7 @@ type Path struct {
 	CloudProvider string
 	Region        []string
 	Resource      []string
+	Projects      []string
 }
 
 // CloudProvider is an interface that defines the methods that a cloud provider must implement
@@ -35,7 +37,7 @@ type CloudProvider interface {
 	Import(ctx context.Context, options *importer.ImportOptions, destination string) error
 }
 
-func (t *Path) createTfOptions(destination, region string) *importer.ImportOptions {
+func (t *Path) createTfOptions(destination, region string, projects []string) *importer.ImportOptions {
 	return &importer.ImportOptions{
 		Resources:     t.Resource,
 		Excludes:      []string{""},
@@ -47,7 +49,7 @@ func (t *Path) createTfOptions(destination, region string) *importer.ImportOptio
 		Verbose:       false,
 		Zone:          "",
 		Regions:       []string{region},
-		Projects:      []string{""},
+		Projects:      projects,
 		ResourceGroup: "",
 		Connect:       true,
 		Compact:       false,
@@ -84,13 +86,15 @@ func Import(terraformerPath, destinationPath string) (string, error) {
 	switch pathOptions.CloudProvider {
 	case "aws":
 		provider = aws.CloudProvider{}
+	case "gcp":
+		provider = gcp.CloudProvider{}
 	default:
 		return "", errors.New("unsupported Cloud Provider")
 	}
 
 	for _, region := range pathOptions.Region {
 		regionDest := filepath.Join(destination, region)
-		err = provider.Import(ctx, pathOptions.createTfOptions(regionDest, region), destination)
+		err = provider.Import(ctx, pathOptions.createTfOptions(regionDest, region, pathOptions.Projects), destination)
 		if err != nil {
 			return "", err
 		}
@@ -103,13 +107,14 @@ func Import(terraformerPath, destinationPath string) (string, error) {
 
 func extractTerraformerOptions(path string) (*Path, error) {
 	pathInfo := strings.Split(path, ":")
-	if len(pathInfo) != terraformerPathLength {
+	if len(pathInfo) != terraformerPathLength && len(pathInfo) != terraformerPathLength+1 {
 		return nil, errors.New("wrong terraformer path syntax")
 	}
 	return &Path{
 		CloudProvider: pathInfo[0],
 		Region:        strings.Split(pathInfo[2], "/"),
 		Resource:      strings.Split(pathInfo[1], "/"),
+		Projects:      getProjects(pathInfo),
 	}, nil
 }
 
@@ -133,4 +138,12 @@ func deleteOutputFile(path string, output fs.FileInfo) {
 			log.Err(err).Msgf("failed to remove outputs.tf in path %s", path)
 		}
 	}
+}
+
+func getProjects(pathInfo []string) []string {
+	if len(pathInfo) == terraformerPathLength+1 {
+		return strings.Split(pathInfo[3], "/")
+	}
+
+	return []string{}
 }
