@@ -237,7 +237,7 @@
 				
 				<option value="file90">github.com/Checkmarx/kics/pkg/report/model/gitlab_sast.go (75.0%)</option>
 				
-				<option value="file91">github.com/Checkmarx/kics/pkg/report/model/junit.go (77.3%)</option>
+				<option value="file91">github.com/Checkmarx/kics/pkg/report/model/junit.go (94.4%)</option>
 				
 				<option value="file92">github.com/Checkmarx/kics/pkg/report/model/sarif.go (94.0%)</option>
 				
@@ -2345,13 +2345,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="35">total += v
+                <span class="cov8" title="34">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2376,7 +2376,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2904,7 +2904,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="22">{
-        for _, a := range s </span><span class="cov7" title="57">{
+        for _, a := range s </span><span class="cov8" title="61">{
                 if a == e </span><span class="cov4" title="8">{
                         return true
                 }</span>
@@ -15749,9 +15749,10 @@ type junitTestSuite struct {
 }
 
 type junitTestCase struct {
-        XMLName  xml.Name       `xml:"testcase"`
-        Name     string         `xml:"name,attr"`
-        Failures []junitFailure `xml:"failure"`
+        XMLName   xml.Name       `xml:"testcase"`
+        Name      string         `xml:"name,attr"`
+        ClassName string         `xml:"classname,attr"`
+        Failures  []junitFailure `xml:"failure"`
 }
 
 type junitFailure struct {
@@ -15772,7 +15773,7 @@ func NewJUnitReport(time string) JUnitReport <span class="cov10" title="3">{
                 Name:       fmt.Sprintf("KICS v%s", constants.Version),
                 Time:       time,
                 Failures:   "",
-                TestSuites: make([]junitTestSuite, 0),
+                TestSuites: []junitTestSuite{},
         }
 }</span>
 
@@ -15782,14 +15783,18 @@ func (jUnit *junitTestSuites) GenerateTestEntry(query *model.QueryResult) <span 
         if query.CISDescriptionTextFormatted != "" </span><span class="cov0" title="0">{
                 queryDescription = query.CISDescriptionTextFormatted
         }</span>
-        <span class="cov1" title="1">failedTestCase := junitTestCase{
-                Name:     fmt.Sprintf("[%s]: %s", query.QueryName, queryDescription),
-                Failures: make([]junitFailure, len(query.Files)),
-        }
+
+        <span class="cov1" title="1">failedTestCases := []junitTestCase{}
 
         for idx := range query.Files </span><span class="cov1" title="1">{
+                failedTestCase := junitTestCase{
+                        Name:      fmt.Sprintf("%s: %s file in line %d", query.QueryName, query.Files[idx].FileName, query.Files[idx].Line),
+                        ClassName: query.Platform,
+                        Failures:  []junitFailure{},
+                }
+
                 failedTest := junitFailure{
-                        Type: query.QueryName,
+                        Type: queryDescription,
                         Message: fmt.Sprintf(
                                 "A problem was found on '%s' file in line %d, %s, but %s.",
                                 query.Files[idx].FileName,
@@ -15798,23 +15803,19 @@ func (jUnit *junitTestSuites) GenerateTestEntry(query *model.QueryResult) <span 
                                 query.Files[idx].KeyActualValue,
                         ),
                 }
-                failedTestCase.Failures[idx] = failedTest
+
+                failedTestCase.Failures = append(failedTestCase.Failures, failedTest)
+                failedTestCases = append(failedTestCases, failedTestCase)
         }</span>
-        <span class="cov1" title="1">for idx := range jUnit.TestSuites </span><span class="cov0" title="0">{
-                if jUnit.TestSuites[idx].Name == query.Platform </span><span class="cov0" title="0">{
-                        jUnit.TestSuites[idx].TestCases = append(jUnit.TestSuites[idx].TestCases, failedTestCase)
-                        jUnit.TestSuites[idx].failCount += len(query.Files)
-                        return
-                }</span>
-        }
+
         <span class="cov1" title="1">newTestSuite := junitTestSuite{
-                Name:      fmt.Sprintf("[%s]", query.Platform),
+                Name:      query.Platform,
                 Failures:  "",
                 Tests:     "",
                 failCount: len(query.Files),
-                TestCases: make([]junitTestCase, 0),
+                TestCases: failedTestCases,
         }
-        newTestSuite.TestCases = append(newTestSuite.TestCases, failedTestCase)
+
         jUnit.TestSuites = append(jUnit.TestSuites, newTestSuite)</span>
 }
 
