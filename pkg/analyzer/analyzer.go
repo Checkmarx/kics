@@ -24,33 +24,33 @@ import (
 // k8sRegexMetadata - Regex that finds Kubernetes defining property "metadata"
 // k8sRegexSpec - Regex that finds Kubernetes defining property "spec"
 var (
-	openAPIRegex                                             = regexp.MustCompile("(\\s*\"openapi\":)|(\\s*openapi:)|(\\s*\"swagger\":)|(\\s*swagger:)")
-	openAPIRegexInfo                                         = regexp.MustCompile("(\\s*\"info\":)|(\\s*info:)")
-	openAPIRegexPath                                         = regexp.MustCompile("(\\s*\"paths\":)|(\\s*paths:)")
-	armRegexContentVersion                                   = regexp.MustCompile("\\s*\"contentVersion\":")
-	armRegexResources                                        = regexp.MustCompile("\\s*\"resources\":")
-	cloudRegex                                               = regexp.MustCompile("(\\s*\"Resources\":)|(\\s*Resources:)")
-	k8sRegex                                                 = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
-	k8sRegexKind                                             = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
-	k8sRegexMetadata                                         = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
-	ansibleVaultRegex                                        = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
-	tfPlanRegexPV                                            = regexp.MustCompile("\\s*\"planned_values\":")
-	tfPlanRegexRC                                            = regexp.MustCompile("\\s*\"resource_changes\":")
-	tfPlanRegexConf                                          = regexp.MustCompile("\\s*\"configuration\":")
-	tfPlanRegexTV                                            = regexp.MustCompile("\\s*\"terraform_version\":")
-	cdkTfRegexMetadata                                       = regexp.MustCompile("\\s*\"metadata\":")
-	cdkTfRegexStackName                                      = regexp.MustCompile("\\s*\"stackName\":")
-	cdkTfRegexTerraform                                      = regexp.MustCompile("\\s*\"terraform\":")
-	blueprintArtifactsRegexKind                              = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
-	blueprintArtifactsRegexProperties                        = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
-	blueprintArtifactsRegexParametes                         = regexp.MustCompile("(\\s*\"parameters\":)|(\\s*parameters:)")
-	blueprintPolicyAssignmentArtifactRegexPolicyDefinitionID = regexp.MustCompile("(\\s*\"policyDefinitionId\":)|(\\s*policyDefinitionId:)")
-	blueprintRoleAssignmentArtifactRegexPrincipalIds         = regexp.MustCompile("(\\s*\"principalIds\":)|(\\s*principalIds:)")
-	blueprintRoleAssignmentArtifactRegexRoleDefinitionID     = regexp.MustCompile("(\\s*\"roleDefinitionId\":)|(\\s*roleDefinitionId:)")
-	blueprintTemplateArtifactRegexParametes                  = regexp.MustCompile("(\\s*\"template\":)|(\\s*template:)")
-	blueprintRegexTargetScope                                = regexp.MustCompile("(\\s*\"targetScope\":)|(\\s*targetScope:)")
-	blueprintRegexProperties                                 = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
-	buildahRegex                                             = regexp.MustCompile(`\s*buildah\s*from\s*\w+`)
+	openAPIRegex                                    = regexp.MustCompile("(\\s*\"openapi\":)|(\\s*openapi:)|(\\s*\"swagger\":)|(\\s*swagger:)")
+	openAPIRegexInfo                                = regexp.MustCompile("(\\s*\"info\":)|(\\s*info:)")
+	openAPIRegexPath                                = regexp.MustCompile("(\\s*\"paths\":)|(\\s*paths:)")
+	armRegexContentVersion                          = regexp.MustCompile("\\s*\"contentVersion\":")
+	armRegexResources                               = regexp.MustCompile("\\s*\"resources\":")
+	cloudRegex                                      = regexp.MustCompile("(\\s*\"Resources\":)|(\\s*Resources:)")
+	k8sRegex                                        = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
+	k8sRegexKind                                    = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
+	k8sRegexMetadata                                = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
+	ansibleVaultRegex                               = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
+	tfPlanRegexPV                                   = regexp.MustCompile("\\s*\"planned_values\":")
+	tfPlanRegexRC                                   = regexp.MustCompile("\\s*\"resource_changes\":")
+	tfPlanRegexConf                                 = regexp.MustCompile("\\s*\"configuration\":")
+	tfPlanRegexTV                                   = regexp.MustCompile("\\s*\"terraform_version\":")
+	cdkTfRegexMetadata                              = regexp.MustCompile("\\s*\"metadata\":")
+	cdkTfRegexStackName                             = regexp.MustCompile("\\s*\"stackName\":")
+	cdkTfRegexTerraform                             = regexp.MustCompile("\\s*\"terraform\":")
+	artifactsRegexKind                              = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
+	artifactsRegexProperties                        = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
+	artifactsRegexParametes                         = regexp.MustCompile("(\\s*\"parameters\":)|(\\s*parameters:)")
+	policyAssignmentArtifactRegexPolicyDefinitionID = regexp.MustCompile("(\\s*\"policyDefinitionId\":)|(\\s*policyDefinitionId:)")
+	roleAssignmentArtifactRegexPrincipalIds         = regexp.MustCompile("(\\s*\"principalIds\":)|(\\s*principalIds:)")
+	roleAssignmentArtifactRegexRoleDefinitionID     = regexp.MustCompile("(\\s*\"roleDefinitionId\":)|(\\s*roleDefinitionId:)")
+	templateArtifactRegexParametes                  = regexp.MustCompile("(\\s*\"template\":)|(\\s*template:)")
+	blueprintpRegexTargetScope                      = regexp.MustCompile("(\\s*\"targetScope\":)|(\\s*targetScope:)")
+	blueprintpRegexProperties                       = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
+	buildahRegex                                    = regexp.MustCompile(`\s*buildah\s*from\s*\w+`)
 )
 
 var (
@@ -120,32 +120,32 @@ var types = map[string]regexSlice{
 	},
 	"policyAssignmentArtifact": {
 		[]*regexp.Regexp{
-			blueprintArtifactsRegexKind,
-			blueprintArtifactsRegexProperties,
-			blueprintArtifactsRegexParametes,
-			blueprintPolicyAssignmentArtifactRegexPolicyDefinitionID,
+			artifactsRegexKind,
+			artifactsRegexProperties,
+			artifactsRegexParametes,
+			policyAssignmentArtifactRegexPolicyDefinitionID,
 		},
 	},
 	"roleAssignmentArtifact": {
 		[]*regexp.Regexp{
-			blueprintArtifactsRegexKind,
-			blueprintArtifactsRegexProperties,
-			blueprintRoleAssignmentArtifactRegexPrincipalIds,
-			blueprintRoleAssignmentArtifactRegexRoleDefinitionID,
+			artifactsRegexKind,
+			artifactsRegexProperties,
+			roleAssignmentArtifactRegexPrincipalIds,
+			roleAssignmentArtifactRegexRoleDefinitionID,
 		},
 	},
 	"templateArtifact": {
 		[]*regexp.Regexp{
-			blueprintArtifactsRegexKind,
-			blueprintArtifactsRegexProperties,
-			blueprintArtifactsRegexParametes,
-			blueprintTemplateArtifactRegexParametes,
+			artifactsRegexKind,
+			artifactsRegexProperties,
+			artifactsRegexParametes,
+			templateArtifactRegexParametes,
 		},
 	},
 	"blueprint": {
 		[]*regexp.Regexp{
-			blueprintRegexTargetScope,
-			blueprintRegexProperties,
+			blueprintpRegexTargetScope,
+			blueprintpRegexProperties,
 		},
 	},
 	"buildah": {
