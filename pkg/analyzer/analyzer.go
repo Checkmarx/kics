@@ -82,10 +82,15 @@ func Analyze(paths []string) (model.AnalyzedPaths, error) {
 			return returnAnalyzedPaths, errors.Wrap(err, "failed to analyze path")
 		}
 		if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
-			if !info.IsDir() && !strings.Contains(path, ".git") {
+			if err != nil {
+				return err
+			}
+
+			if !info.IsDir() && !contains(strings.Split(path, string(os.PathSeparator)), ".git") {
 				files = append(files, path)
 			}
-			return err
+
+			return nil
 		}); err != nil {
 			log.Error().Msgf("failed to analize path %s: %s", path, err)
 		}
