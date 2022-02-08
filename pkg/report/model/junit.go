@@ -26,9 +26,10 @@ type junitTestSuite struct {
 }
 
 type junitTestCase struct {
-	XMLName  xml.Name       `xml:"testcase"`
-	Name     string         `xml:"name,attr"`
-	Failures []junitFailure `xml:"failure"`
+	XMLName   xml.Name       `xml:"testcase"`
+	Name      string         `xml:"name,attr"`
+	ClassName string         `xml:"classname,attr"`
+	Failures  []junitFailure `xml:"failure"`
 }
 
 type junitFailure struct {
@@ -49,7 +50,7 @@ func NewJUnitReport(time string) JUnitReport {
 		Name:       fmt.Sprintf("KICS v%s", constants.Version),
 		Time:       time,
 		Failures:   "",
-		TestSuites: make([]junitTestSuite, 0),
+		TestSuites: []junitTestSuite{},
 	}
 }
 
@@ -59,14 +60,18 @@ func (jUnit *junitTestSuites) GenerateTestEntry(query *model.QueryResult) {
 	if query.CISDescriptionTextFormatted != "" {
 		queryDescription = query.CISDescriptionTextFormatted
 	}
-	failedTestCase := junitTestCase{
-		Name:     fmt.Sprintf("[%s]: %s", query.QueryName, queryDescription),
-		Failures: make([]junitFailure, len(query.Files)),
-	}
+
+	failedTestCases := []junitTestCase{}
 
 	for idx := range query.Files {
+		failedTestCase := junitTestCase{
+			Name:      fmt.Sprintf("%s: %s file in line %d", query.QueryName, query.Files[idx].FileName, query.Files[idx].Line),
+			ClassName: query.Platform,
+			Failures:  []junitFailure{},
+		}
+
 		failedTest := junitFailure{
-			Type: query.QueryName,
+			Type: queryDescription,
 			Message: fmt.Sprintf(
 				"A problem was found on '%s' file in line %d, %s, but %s.",
 				query.Files[idx].FileName,
@@ -75,23 +80,19 @@ func (jUnit *junitTestSuites) GenerateTestEntry(query *model.QueryResult) {
 				query.Files[idx].KeyActualValue,
 			),
 		}
-		failedTestCase.Failures[idx] = failedTest
+
+		failedTestCase.Failures = append(failedTestCase.Failures, failedTest)
+		failedTestCases = append(failedTestCases, failedTestCase)
 	}
-	for idx := range jUnit.TestSuites {
-		if jUnit.TestSuites[idx].Name == query.Platform {
-			jUnit.TestSuites[idx].TestCases = append(jUnit.TestSuites[idx].TestCases, failedTestCase)
-			jUnit.TestSuites[idx].failCount += len(query.Files)
-			return
-		}
-	}
+
 	newTestSuite := junitTestSuite{
-		Name:      fmt.Sprintf("[%s]", query.Platform),
+		Name:      query.Platform,
 		Failures:  "",
 		Tests:     "",
 		failCount: len(query.Files),
-		TestCases: make([]junitTestCase, 0),
+		TestCases: failedTestCases,
 	}
-	newTestSuite.TestCases = append(newTestSuite.TestCases, failedTestCase)
+
 	jUnit.TestSuites = append(jUnit.TestSuites, newTestSuite)
 }
 

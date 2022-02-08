@@ -72,16 +72,17 @@ var junitTests = []junitTest{
 				{
 					XMLName:   xml.Name{Space: "", Local: ""},
 					failCount: 1,
-					Name:      "[Terraform]",
+					Name:      "Terraform",
 					Failures:  "1",
 					Tests:     "1",
 					TestCases: []junitTestCase{
 						{
-							XMLName: xml.Name{Space: "", Local: ""},
-							Name:    "[test]: test description",
+							XMLName:   xml.Name{Space: "", Local: ""},
+							Name:      "test: test.tf file in line 1",
+							ClassName: "Terraform",
 							Failures: []junitFailure{
 								{
-									Type:    "test",
+									Type:    "test description",
 									Message: "A problem was found on 'test.tf' file in line 1, expected, but actual.",
 								},
 							},
