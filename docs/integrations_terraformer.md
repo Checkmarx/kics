@@ -4,6 +4,7 @@ From version 1.5, KICS integrates with Terraformer to scan resources deployed in
 
 **Cloud providers supported:**
 - AWS
+- GCP
 
 ## Configure AWS Credentials
 
@@ -34,26 +35,28 @@ $Env:AWS_SECRET_ACCESS_KEY="<AWS_SECRET_ACCESS_KEY>"
 $Env:AWS_SESSION_TOKEN="<AWS_SESSION_TOKEN>"
 ```
 
-
-
 ## KICS Terraformer Path Syntax
 
 ```sh
-terraformer::{CloudProvider}:{Resources}:{Regions}
+terraformer::{CloudProvider}:{Resources}:{Regions}:{Projects}
 ```
 
 **CloudProvider**: The name of the Cloud Provider to import from.
 
 Possible values:
 - `aws`
+- `gcp`
 
 **Resources:** A slash-separated list of the resources intended to be imported and scanned.
-
-You can find a complete list of possible values [here](https://github.com/GoogleCloudPlatform/terraformer/blob/master/docs/aws.md#supported-services)
+You can find a complete list of possible values in the links below:
+- [aws](https://github.com/GoogleCloudPlatform/terraformer/blob/master/docs/aws.md#supported-services)
+- [gcp](https://github.com/GoogleCloudPlatform/terraformer/blob/master/docs/gcp.md)
 
 To import all resources please use: `*`
 
 **Regions**: A slash-separated list of the regions to import from.
+
+**Projects**: A slash-separated list of the projects ids to import from. **It is only required for GCP**.
 
 ## Running KICS with Terraformer
 
@@ -74,7 +77,7 @@ If the flag `-o, --output-path` is passed the folder `kics-extract-terraformer` 
             variables.tf
 ```
 
-### Docker
+### [AWS] Run KICS Terraformer integration with Docker
 
 To run KICS Terraformer integration with Docker simply pass the AWS Credentials that were set as environment variables to the `docker run` command and use the terraformer path syntax
 
@@ -87,92 +90,23 @@ docker run -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID -e AWS_SESSION_TOKEN ch
 docker run -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID -e AWS_SESSION_TOKEN -v ${PWD}:/path/ checkmarx/kics:latest scan -p "terraformer::aws:vpc:eu-west-2" -v --no-progress -o /path/results
 ```
 
-
-
 <img src="./img/docker_terraformer.gif" />
 
-### Executable
 
+### [GCP] Run KICS Terraformer integration with Docker
+To run KICS Terraformer integration with Docker, pass the path that points to the JSON file that contains your service account key as an environment variable (GOOGLE_APPLICATION_CREDENTIALS) to the docker run command and use the terraformer path syntax. Note that your project should have a region defined, and your account should have read permissions to list resources.
 
-### **Disclaimer:** In order to run terraformer with KICS executable please follow these prerequisites:
-
-### Install Terraform
-
-Follow the steps described in Hashicorp documentation https://learn.hashicorp.com/tutorials/terraform/install-cli#install-terraform to install terraform.
-
-### Install AWS Provider Plugin
-
-It is required that the AWS Provider plugin for terraform to be present.
-
-To install AWS Provider plugin:
-- Download the plugin from [Terraform Providers](https://releases.hashicorp.com/terraform-provider-aws/3.72.0/) according to your architecture.
-- Unzip the file to:
-
-### Linux:
-```
-$HOME/.terraform.d/plugins/linux_{arch}/
-
-Example:
-~/.terraform.d/plugins/linux_amd64/terraform-provider-aws_v3.71.0_x5
-```
-
-### MacOS
-
-```
-$HOME/.terraform.d/plugins/darwin_{arch}
-
-Example:
-$HOME/.terraform.d/plugins/darwin_amd64/terraform-provider-aws_3.72.0_darwin_amd64
-```
-
-### Windows:
-
-For Windows a little more work is required, since you can't globally install the AWS Provider plugin, you need to have it present in every directory you wish to import the resources to.
-
-Please follow these steps:
-
-- Create a versions.tf file in the folder you wish to run KICS and import the resources to.
-
-- Paste the code found under `USE PROVIDER` from terraform AWS Provider [Documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) in the versions.tf file you just created.
-
-- run the command `terraform init` on the directory containing `versions.tf`. A new folder named `.terraform` should have been created containing the plugin. This folder must be present in every directory you wish to run KICS on using terraformer.
-
-**NOTE:** `.terraform.hcl.lock` can be deleted
-
-Example tf file:
-
-```hcl
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-      version = "3.72.0"
-    }
-  }
-}
-
-provider "aws" {
-  # Configuration options
-}
-```
-
-## Examples:
-
-Example path:
+Also note that you should fill the `<credentials_path>` with the path that points to the directory where your service account key file is located, and the `<credentials-file-name>` should point to the service account key file name located in `<credentials_path>`.
 
 ```sh
-kics scan -p 'terraformer::aws:vpc/subnet:eu-west-2/eu-west-1'
+ docker run -v <credentials_path>:/credentials -e GOOGLE_APPLICATION_CREDENTIALS=/credentials/<credentials-file-name> checkmarx/kics:latest scan -p "terraformer::gcp:gcs:us-east4:project" -v --no-progress --log-level=DEBUG
+```
+```sh
+ docker run -v <credentials_path>:/credentials -v ${PWD}:/path/ -e GOOGLE_APPLICATION_CREDENTIALS=/credentials/<credentials-file-name> checkmarx/kics:latest scan -p "terraformer::gcp:gcs:us-east4:project" -v --no-progress --log-level=DEBUG -o /path/results
 ```
 
-These examples showcase KICS integration with terraformer for importing and scanning our VPCs in region `eu-west-2`.
+ ![credentials_key_gcp](https://user-images.githubusercontent.com/74001161/153022195-9d2a1cae-71c3-443a-ac08-4e2697f93469.gif)
 
-### Linux
-
-<img src="./img/linux_terraformer.gif" />
-
-### Windows
-
-<img src="./img/windows_terraformer.gif" />
 
 ## **NOTES**
 
