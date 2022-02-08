@@ -31,13 +31,11 @@ func (a CloudProvider) Import(ctx context.Context, options *importer.ImportOptio
 	wg := sync.WaitGroup{}
 	done := make(chan error, 1)
 
-	for _, region := range options.Regions {
-		wg.Add(1)
-		go func(region string) {
-			defer wg.Done()
-			done <- ImporterFunc(provider, *options, []string{options.ResourceGroup})
-		}(region)
-	}
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		done <- ImporterFunc(provider, *options, []string{options.ResourceGroup})
+	}()
 
 	go func() {
 		defer close(done)
