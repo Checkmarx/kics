@@ -44,9 +44,9 @@ var (
 	blueprintArtifactsRegexKind                              = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
 	blueprintArtifactsRegexProperties                        = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
 	blueprintArtifactsRegexParametes                         = regexp.MustCompile("(\\s*\"parameters\":)|(\\s*parameters:)")
-	blueprintPolicyAssignmentArtifactRegexPolicyDefinitionId = regexp.MustCompile("(\\s*\"policyDefinitionId\":)|(\\s*policyDefinitionId:)")
+	blueprintPolicyAssignmentArtifactRegexPolicyDefinitionID = regexp.MustCompile("(\\s*\"policyDefinitionId\":)|(\\s*policyDefinitionId:)")
 	blueprintRoleAssignmentArtifactRegexPrincipalIds         = regexp.MustCompile("(\\s*\"principalIds\":)|(\\s*principalIds:)")
-	blueprintRoleAssignmentArtifactRegexRoleDefinitionId     = regexp.MustCompile("(\\s*\"roleDefinitionId\":)|(\\s*roleDefinitionId:)")
+	blueprintRoleAssignmentArtifactRegexRoleDefinitionID     = regexp.MustCompile("(\\s*\"roleDefinitionId\":)|(\\s*roleDefinitionId:)")
 	blueprintTemplateArtifactRegexParametes                  = regexp.MustCompile("(\\s*\"template\":)|(\\s*template:)")
 	blueprintRegexTargetScope                                = regexp.MustCompile("(\\s*\"targetScope\":)|(\\s*targetScope:)")
 	blueprintRegexProperties                                 = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
@@ -123,7 +123,7 @@ var types = map[string]regexSlice{
 			blueprintArtifactsRegexKind,
 			blueprintArtifactsRegexProperties,
 			blueprintArtifactsRegexParametes,
-			blueprintPolicyAssignmentArtifactRegexPolicyDefinitionId,
+			blueprintPolicyAssignmentArtifactRegexPolicyDefinitionID,
 		},
 	},
 	"roleAssignmentArtifact": {
@@ -131,7 +131,7 @@ var types = map[string]regexSlice{
 			blueprintArtifactsRegexKind,
 			blueprintArtifactsRegexProperties,
 			blueprintRoleAssignmentArtifactRegexPrincipalIds,
-			blueprintRoleAssignmentArtifactRegexRoleDefinitionId,
+			blueprintRoleAssignmentArtifactRegexRoleDefinitionID,
 		},
 	},
 	"templateArtifact": {
