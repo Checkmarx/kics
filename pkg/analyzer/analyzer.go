@@ -50,6 +50,17 @@ var (
 
 var (
 	listKeywordsGoogleDeployment = []string{"resources"}
+	possibleFileTypes            = []string{
+		".yml",
+		".yaml",
+		".json",
+		".dockerfile",
+		"Dockerfile",
+		".tf",
+		"tfvars",
+		".proto",
+		".sh",
+	}
 )
 
 const (
@@ -81,9 +92,19 @@ func Analyze(paths []string) (model.AnalyzedPaths, error) {
 			return returnAnalyzedPaths, errors.Wrap(err, "failed to analyze path")
 		}
 		if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
-			if !info.IsDir() {
+			if err != nil {
+				return err
+			}
+
+			ext := filepath.Ext(path)
+			if ext == "" {
+				ext = filepath.Base(path)
+			}
+
+			if contains(possibleFileTypes, ext) {
 				files = append(files, path)
 			}
+
 			return nil
 		}); err != nil {
 			log.Error().Msgf("failed to analize path %s: %s", path, err)
