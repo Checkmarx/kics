@@ -22,3 +22,19 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "KeyPolicy"], []),
 	}
 }
+
+CxPolicy[result] {
+	resources := input.document[i].Resources[name]
+	resources.Type == "AWS::KMS::Key"
+
+	not common_lib.valid_key(resources.Properties, "KeyPolicy")
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("Resources.%s.Properties", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.KeyPolicy is defined and not null", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.KeyPolicy is undefined or null", [name]),
+		"searchLine": common_lib.build_search_line(["Resource", name, "Properties"], []),
+	}
+}

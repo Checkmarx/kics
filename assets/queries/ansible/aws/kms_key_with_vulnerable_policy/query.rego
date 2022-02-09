@@ -26,3 +26,21 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}
 }
+
+CxPolicy[result] {
+	task := ans_lib.tasks[id][t]
+	modules := {"community.aws.aws_kms", "aws_kms"}
+	aws_kms := task[modules[m]]
+	ans_lib.checkState(aws_kms)
+
+	not common_lib.valid_key(aws_kms, "policy")
+
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'policy' is undefined or null",
+		"keyActualValue": "'policy' is defined and not null",
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m]], []),
+	}
+}
