@@ -7,6 +7,7 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/Checkmarx/kics/e2e/utils"
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/pkg/analyzer"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
@@ -89,21 +90,24 @@ func (c *Client) preparePaths() error {
 }
 
 func (c *Client) getQueryPath() error {
+	queriesPath := make([]string, 0)
 	if c.ScanParams.ChangedDefaultQueryPath {
-		extractedQueriesPath, errExtractQueries := resolvePath(c.ScanParams.QueriesPath, "queries-path")
-		if errExtractQueries != nil {
-			return errExtractQueries
+		for _, queryPath := range c.ScanParams.QueriesPath {
+			extractedQueriesPath, errExtractQueries := resolvePath(queryPath, "queries-path")
+			if errExtractQueries != nil {
+				return errExtractQueries
+			}
+			queriesPath = append(queriesPath, extractedQueriesPath)
 		}
-		c.ScanParams.QueriesPath = extractedQueriesPath
 	} else {
 		log.Debug().Msgf("Looking for queries in executable path and in current work directory")
-		defaultQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(c.ScanParams.QueriesPath)
+		defaultQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(c.ScanParams.QueriesPath[0])
 		if errDefaultQueryPath != nil {
 			return errors.Wrap(errDefaultQueryPath, "unable to find queries")
 		}
-
-		c.ScanParams.QueriesPath = defaultQueryPath
+		queriesPath = append(queriesPath, defaultQueryPath)
 	}
+	c.ScanParams.QueriesPath = queriesPath
 	return nil
 }
 
@@ -187,8 +191,8 @@ func deleteExtractionFolder(extractionMap map[string]model.ExtractedPathObject) 
 	}
 }
 
-func contributionAppeal(printer *consoleHelpers.Printer, queriesPath string) {
-	if !strings.Contains(queriesPath, filepath.Join("assets", "queries")) {
+func contributionAppeal(printer *consoleHelpers.Printer, queriesPath []string) {
+	if utils.Contains(queriesPath, filepath.Join("assets", "queries")) {
 		msg := "\nAre you using a custom query? If so, feel free to contribute to KICS!\n"
 		contributionPage := "Check out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md\n"
 

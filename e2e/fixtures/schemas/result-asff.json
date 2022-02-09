@@ -5,12 +5,12 @@
         "aws_id_pattern": {
             "type": "string",
             "minLength": 1,
-            "pattern": "^AWS_REGION\/AWS_ACCOUNT_ID\/[A-Fa-f0-9]{64}$"
+            "pattern": "^[\\w-]+\/\\w+\/[A-Fa-f0-9]{64}$"
         },
         "arn_pattern": {
             "type": "string",
             "minLength": 1,
-            "pattern": "^arn:aws:securityhub:\\w+:\\w+:product\/\\w+\/default$"
+            "pattern": "^arn:aws:securityhub:[\\w-]+:\\w+:product\/\\w+\/default$"
         },
         "recommendation_text_pattern": {
             "pattern": "^In line \\d+ of file (.)+, a result was found. (.)+, but (.)+$"
@@ -38,7 +38,7 @@
         "properties": {
             "AwsAccountId": {
                 "type": "string",
-                "const": "AWS_ACCOUNT_ID"
+                "pattern": "^(AWS_ACCOUNT_ID|\\d{12})$"
             },
             "Compliance": {
                 "type": "object",

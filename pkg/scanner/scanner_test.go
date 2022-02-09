@@ -26,7 +26,7 @@ import (
 )
 
 var (
-	sourcePath = filepath.FromSlash("../../assets/queries")
+	sourcePath = []string{filepath.FromSlash("../../assets/queries")}
 )
 
 func TestScanner_StartScan(t *testing.T) {

@@ -29,7 +29,7 @@ type Parameters struct {
 	Path                        []string
 	PayloadPath                 string
 	PreviewLines                int
-	QueriesPath                 string
+	QueriesPath                 []string
 	LibrariesPath               string
 	ReportFormats               []string
 	Platform                    []string
