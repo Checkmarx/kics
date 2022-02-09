@@ -1,7 +1,6 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terra_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_elasticsearch_domain_policy[name]
@@ -12,7 +11,7 @@ CxPolicy[result] {
 
 	common_lib.is_allow_effect(statement)
 	not common_lib.valid_key(statement, "Condition")
-	terra_lib.has_wildcard(statement, "es:*")
+	common_lib.has_wildcard(statement, "es:*")
 
 	result := {
 		"documentId": input.document[i].id,

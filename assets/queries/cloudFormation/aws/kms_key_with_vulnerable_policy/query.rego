@@ -10,15 +10,15 @@ CxPolicy[result] {
 	statement := st[_]
 
 	common_lib.is_allow_effect(statement)
-	common_lib.equalsOrInArray(statement.Principal.AWS, "*")
-	common_lib.equalsOrInArray(statement.Action, "kms:*")
+	not common_lib.valid_key(statement, "Condition")
+	common_lib.has_wildcard(statement, "kms:*")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.KeyPolicy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.KeyPolicy.Statement is correct", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.KeyPolicy.Statement is too exposed", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.KeyPolicy.Statement does not have wildcard in 'Action' and 'Principal'", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.KeyPolicy.Statement has wildcard in 'Action' and 'Principal'", [name]),
 		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "KeyPolicy"], []),
 	}
 }
