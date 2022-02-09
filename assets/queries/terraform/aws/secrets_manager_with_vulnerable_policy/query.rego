@@ -11,6 +11,7 @@ CxPolicy[result] {
 	statement := st[_]
 
 	common_lib.is_allow_effect(statement)
+	not common_lib.valid_key(statement, "Condition")
 	terra_lib.has_wildcard(statement, "secretsmanager:*")
 
 	result := {
@@ -18,7 +19,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_secretsmanager_secret_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_secretsmanager_secret_policy[%s].policy does not have wildcard in 'Principal' and 'Action'", [name]),
-		"keyActualValue": sprintf("aws_secretsmanager_secret_policy[%s].policy has wildcard in 'Principal' and 'Action'", [name]),
+		"keyActualValue": sprintf("aws_secretsmanager_secret_policy[%s].policy has wildcard in 'Principal' or 'Action'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_secretsmanager_secret_policy", name, "policy"], []),
 	}
 }

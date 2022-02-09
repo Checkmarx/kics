@@ -422,44 +422,31 @@ empty_array(arr) {
 	false
 }
 
-check_principal(principal) {
-	is_string(principal) == true
-	principal == "*"
-}
-
-check_principal(principal) {
-	is_object(principal) == true
-	principal.AWS == "*"
-}
-
-check_action(action, typeAction) {
-	is_string(action) == true
-	any([action == typeAction, action == "*"])
-}
-
-check_action(action, typeAction) {
-	is_array(action) == true
-	any([action[_] == typeAction, action == "*"])
-}
-
 check_principals(statement) {
 	statement.principals.identifiers[_] == "*"
 	statement.principals.type == "AWS"
+} else {
+	is_object(statement.Principal) == true
+	statement.Principal.AWS == "*"
+} else {
+	is_string(statement.Principal) == true
+	statement.Principal == "*"
 }
 
 check_actions(statement, typeAction) {
 	any([statement.actions[_] == typeAction, statement.actions[_] == "*"])
 } else {
 	any([statement.Actions[_] == typeAction, statement.Actions[_] == "*"])
+} else {
+	is_array(statement.Action) == true
+	any([statement.Action[_] == typeAction, statement.Action[_] == "*"])
+} else {
+	is_string(statement.Action) == true
+	any([statement.Action == typeAction, statement.Action == "*"])
 }
 
-# it verifies if 'Principal' or 'Actions' has wildcard
 has_wildcard(statement, typeAction) {
-	check_principal(statement.Principal)
-} else {
 	check_principals(statement)
-} else {
-	check_action(statement.Action, typeAction)
 } else {
 	check_actions(statement, typeAction)
 }

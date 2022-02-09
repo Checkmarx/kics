@@ -11,6 +11,7 @@ CxPolicy[result] {
 	statement := st[_]
 
 	common_lib.is_allow_effect(statement)
+	not common_lib.valid_key(statement, "Condition")
 	terra_lib.has_wildcard(statement, "es:*")
 
 	result := {
