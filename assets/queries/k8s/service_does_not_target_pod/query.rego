@@ -7,11 +7,11 @@ CxPolicy[result] {
 	service.kind == "Service"
 	metadata := service.metadata
 
-	ports := service.spec.ports
-	servicePorts := ports[j]
-	ret := match_label(service.spec.selector)
-	count(ret) != 0
-	not confirmPorts(ret, servicePorts)
+	resource := matchResource(service.spec.selector)
+	resource != false
+
+	servicePorts := service.spec.ports[_]
+	not confirmPorts(resource, servicePorts)
 
 	result := {
 		"documentId": service.id,
@@ -27,9 +27,7 @@ CxPolicy[result] {
 	service.kind == "Service"
 	metadata := service.metadata
 
-	label := service.spec.selector
-	ret := match_label(label)
-	count(ret) == 0
+	not matchResource(service.spec.selector)
 
 	result := {
 		"documentId": service.id,
@@ -40,20 +38,33 @@ CxPolicy[result] {
 	}
 }
 
-listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob"]
-
-confirmPorts(label, servicePort) {
-	types := {"initContainers", "containers"}
-	resource := input.document[_]
-	resource.kind == listKinds[x]
-	resource.metadata.labels[_] == label[_]
-	[path, value] := walk(resource.spec)
-	cont := value[types[j]]
-	matchPort(cont[_].ports[_], servicePort)
+matchResource(serviceSelector) = resource {
+	document := input.document[_]
+	labels := getLabelsToMatch(document)
+	count([ x | x := serviceSelector[k]; x == labels[k]]) == count(serviceSelector)
+	resource := document
+} else = false {
+	true
 }
 
-match_label(string) = ret {
-	ret := {x | resource := input.document[_]; resource.kind == listKinds[_]; n := string[k]; n == resource.metadata.labels[k]; x := n}
+getLabelsToMatch(document) = labels {
+	matchLabelsKinds := {"Deployment", "DaemonSet", "ReplicaSet", "StatefulSet", "Job"}
+	document.kind == matchLabelsKinds[_]
+	labels := document.spec.selector.matchLabels
+} else = labels {
+	document.kind == "CronJob"
+	jobTemplates := {"job_template", "jobTemplate"}
+	labels := document.spec[jobTemplates[t]].spec.selector.matchLabels
+} else = labels {
+	podTemplateKinds := {"Pod", "ReplicationController"}
+	document.kind == podTemplateKinds[_]
+	labels := document.metadata.labels
+}
+
+confirmPorts(resource, servicePort) {
+	types := {"initContainers", "containers"}
+	specInfo := k8sLib.getSpecInfo(resource)
+	matchPort(specInfo.spec[types[x]][_].ports[_], servicePort)
 }
 
 matchPort(port, servicePort) {
