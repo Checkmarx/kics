@@ -1,9 +1,10 @@
 name: release-commits
 
 on:
-  workflow_dispatch:
-  pull_request:
-    branches: [master]
+  push:
+    tags:
+      - "v*"
+      
 jobs:
   release-commits:
     name: get-release-commits

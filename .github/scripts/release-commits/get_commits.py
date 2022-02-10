@@ -14,8 +14,7 @@ def get_commits():
 
     contributors = []
 
-    print("\n\n")
-    print('─' * 150)
+    print('\n' + '─' * 150)
 
     resp = requests.get(commits_url)
     if resp.status_code == 200:
