@@ -27,7 +27,7 @@ def get_commits():
             if not is_checkmarx_member(author):
                 contributors.append(author)
                 message = message + " by " + author
-            
+
             print(message)
 
     print("\nContributors: " + ', '.join(map(str, contributors)))
@@ -51,7 +51,7 @@ def is_checkmarx_member(member):
         if cx == member:
             return True
 
-    return False        
+    return False
 
 if __name__ == "__main__":
     get_commits()
