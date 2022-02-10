@@ -14,6 +14,9 @@ def get_commits():
 
     contributors = []
 
+    print("\n\n")
+    print('─' * 150)
+
     resp = requests.get(commits_url)
     if resp.status_code == 200:
         response_body = resp.json()
@@ -32,6 +35,7 @@ def get_commits():
 
     print("\nContributors: " + ', '.join(map(str, contributors)))
 
+    print('─' * 150)
 
 def is_checkmarx_member(member):
     cxMembers = [
