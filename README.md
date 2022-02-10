@@ -38,6 +38,10 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <img alt="gRPC" src="docs/img/logo-grpc.png" width="120">&nbsp;&nbsp;&nbsp;
 <img alt="Azure Resource Manager" src="docs/img/logo-arm.png" width="55">&nbsp;&nbsp;&nbsp;
 <img alt="Google Deployment Manager" src="docs/img/logo-gdm.png" width="55">&nbsp;&nbsp;&nbsp;
+<br>
+<br>
+<img alt="Cloud Deployment Kit" src="docs/img/logo-cdk.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="SAM" src="docs/img/logo-sam.png" width="55">&nbsp;&nbsp;&nbsp;
 
 Support of other solutions and additional cloud providers are on the [roadmap](docs/roadmap.md).
 
