@@ -1,0 +1,26 @@
+name: release-commits
+
+on:
+  workflow_dispatch:
+  release:
+    type: [published]
+jobs:
+  release-commits:
+    name: get-release-commits
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v2.3.4
+      - name: Set up Go 1.17.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17.x
+      - uses: actions/setup-python@v2.3.1
+        with:
+          python-version: "3.x"
+      - name: Run get release commits script
+        id: commits
+        run: |
+          pip3 install -r .github/scripts/release-commits/requirements.txt
+          python3 .github/scripts/release-commits/get_commits.py
+      
