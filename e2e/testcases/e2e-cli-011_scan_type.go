@@ -7,8 +7,8 @@ func init() { //nolint
 		Name: "should perform a valid scan with -t flag [E2E-CLI-011]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
-					"-t", "TeRraFOrM", "--silent", "--payload-path", "output/E2E_CLI_011_PAYLOAD.json"},
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/positive.dockerfile",
+					"-t", "DocKerFiLE", "--silent", "--payload-path", "output/E2E_CLI_011_PAYLOAD.json"},
 			},
 			ExpectedPayload: []string{
 				"E2E_CLI_011_PAYLOAD.json",

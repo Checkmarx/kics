@@ -9,7 +9,7 @@ func init() { //nolint
 		Name: "should perform a simple scan [E2E-CLI-007]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml"},
 			},
 		},
 		WantStatus: []int{50},

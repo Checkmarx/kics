@@ -9,7 +9,7 @@ func init() { //nolint
 		Name: "should disable colored output in the CLI [E2E-CLI-015]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "--no-color", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
+				[]string{"scan", "--no-color", "-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml"},
 			},
 		},
 		Validation: func(outputText string) bool {
