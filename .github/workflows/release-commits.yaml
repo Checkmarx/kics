@@ -2,8 +2,8 @@ name: release-commits
 
 on:
   workflow_dispatch:
-  release:
-    type: [published]
+  pull_request:
+    branches: [master]
 jobs:
   release-commits:
     name: get-release-commits
