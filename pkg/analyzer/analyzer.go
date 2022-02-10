@@ -50,16 +50,16 @@ var (
 
 var (
 	listKeywordsGoogleDeployment = []string{"resources"}
-	possibleFileTypes            = []string{
-		".yml",
-		".yaml",
-		".json",
-		".dockerfile",
-		"Dockerfile",
-		".tf",
-		"tfvars",
-		".proto",
-		".sh",
+	possibleFileTypes            = map[string]bool{
+		".yml":        true,
+		".yaml":       true,
+		".json":       true,
+		".dockerfile": true,
+		"Dockerfile":  true,
+		".tf":         true,
+		"tfvars":      true,
+		".proto":      true,
+		".sh":         true,
 	}
 )
 
@@ -101,7 +101,7 @@ func Analyze(paths []string) (model.AnalyzedPaths, error) {
 				ext = filepath.Base(path)
 			}
 
-			if contains(possibleFileTypes, ext) {
+			if _, ok := possibleFileTypes[ext]; ok {
 				files = append(files, path)
 			}
 
