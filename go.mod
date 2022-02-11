@@ -25,7 +25,7 @@ require (
 	github.com/mailru/easyjson v0.7.7
 	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
 	github.com/moby/buildkit v0.9.3
-	github.com/open-policy-agent/opa v0.37.1
+	github.com/open-policy-agent/opa v0.37.2
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.26.1
 	github.com/spf13/cobra v1.3.0
