@@ -11,11 +11,11 @@ func init() { //nolint
 		Name: "should run a scan in multiple paths [E2E-CLI-019]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "-v", "-q", "../assets/queries", "-p", "fixtures/samples/positive.dockerfile,fixtures/samples/terraform-single.tf"},
+				[]string{"scan", "-v", "-q", "../assets/queries", "-p", "fixtures/samples/positive.dockerfile,fixtures/samples/positive.yaml"},
 			},
 		},
 		Validation: func(outputText string) bool {
-			match, _ := regexp.MatchString(`Loading queries of type: (dockerfile|terraform), (dockerfile|terraform)`, outputText)
+			match, _ := regexp.MatchString(`Loading queries of type: (dockerfile|cloudformation), (dockerfile|cloudformation)`, outputText)
 			return match
 		},
 		WantStatus: []int{50},
