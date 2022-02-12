@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
 
 CxPolicy[result] {
@@ -26,6 +27,8 @@ CxPolicy[result] {
 	service := input.document[i]
 	service.kind == "Service"
 	metadata := service.metadata
+
+	common_lib.valid_key(service.spec, "selector")
 
 	resources := [x | x := input.document[_]; matchResource(x, service.spec.selector)]
 	count(resources) == 0
