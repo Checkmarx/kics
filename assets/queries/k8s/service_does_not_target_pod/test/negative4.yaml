@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello
+  name: negative4
 spec:
   selector:
-    app: hello
+    app: negative4
     tier: backend
   ports:
   - protocol: TCP
@@ -18,19 +18,19 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: hello
+      app: negative4
       tier: backend
       track: stable
   replicas: 3
   template:
     metadata:
       labels:
-        app: hello
+        app: negative4
         tier: backend
         track: stable
     spec:
       containers:
-        - name: hello
+        - name: negative4
           image: "gcr.io/google-samples/hello-go-gke:1.0"
           ports:
             - name: http
