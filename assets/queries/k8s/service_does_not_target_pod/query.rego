@@ -7,11 +7,11 @@ CxPolicy[result] {
 	service.kind == "Service"
 	metadata := service.metadata
 
-	resource := matchResource(service.spec.selector)
-	resource != false
+	resources := [x | x := input.document[_]; matchResource(x, service.spec.selector)]
+	count(resources) > 0
 
 	servicePorts := service.spec.ports[_]
-	not confirmPorts(resource, servicePorts)
+	not confirmPorts(resources[0], servicePorts)
 
 	result := {
 		"documentId": service.id,
@@ -27,7 +27,8 @@ CxPolicy[result] {
 	service.kind == "Service"
 	metadata := service.metadata
 
-	not matchResource(service.spec.selector)
+	resources := [x | x := input.document[_]; matchResource(x, service.spec.selector)]
+	count(resources) == 0
 
 	result := {
 		"documentId": service.id,
@@ -38,11 +39,10 @@ CxPolicy[result] {
 	}
 }
 
-matchResource(serviceSelector) = resource {
-	document := input.document[_]
-	labels := getLabelsToMatch(document)
+matchResource(resource, serviceSelector) = result {
+	labels := getLabelsToMatch(resource)
 	count([ x | x := serviceSelector[k]; x == labels[k]]) == count(serviceSelector)
-	resource := document
+	result := resource
 } else = false {
 	true
 }
