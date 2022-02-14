@@ -243,7 +243,7 @@ go run ./cmd/console/main.go generate-id
 - `descriptionText` should explain with detail the vulnerability and if possible provide a way to remediate
 - `descriptionUrl` points to the official documentation about the resource being targeted
 - `platform` query target platform (e.g. Terraform, Kubernetes, etc.)
-- `descriptionID` should be filled with the first eight characters of the `id`
+- `descriptionID` should be filled with the first eight characters of the `go run ./cmd/console/main.go generate-id` output
 - `cloudProvider` should specify the target cloud provider, when necessary (e.g. AWS, AZURE, GCP, etc.)
 - `aggregation` [optional] should be used when more than one query is implemented in the same query.rego file. Indicates how many queries are implemented
 - `override` [optional] should only be used when a `metadata.json` is shared between queries from different platforms or different specification versions like for example OpenAPI 2.0 (Swagger) and OpenAPI 3.0. This field defines an object that each field is mapped to a given `overrideKey` that should be provided from the query execution result (covered in the next section), if an `overrideKey` is provided, this will generate a new query that inherits the root level metadata values and only rewrites the fields defined inside this object.
