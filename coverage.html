@@ -261,13 +261,15 @@
 				
 				<option value="file102">github.com/Checkmarx/kics/pkg/terraformer/aws/aws_cloud_provider.go (93.3%)</option>
 				
-				<option value="file103">github.com/Checkmarx/kics/pkg/terraformer/terraformer.go (76.3%)</option>
+				<option value="file103">github.com/Checkmarx/kics/pkg/terraformer/azure/azure_cloud_provider.go (92.9%)</option>
 				
-				<option value="file104">github.com/Checkmarx/kics/pkg/utils/map.go (71.4%)</option>
+				<option value="file104">github.com/Checkmarx/kics/pkg/terraformer/terraformer.go (74.4%)</option>
 				
-				<option value="file105">github.com/Checkmarx/kics/pkg/utils/random.go (0.0%)</option>
+				<option value="file105">github.com/Checkmarx/kics/pkg/utils/map.go (71.4%)</option>
 				
-				<option value="file106">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
+				<option value="file106">github.com/Checkmarx/kics/pkg/utils/random.go (0.0%)</option>
+				
+				<option value="file107">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
 				
 				</select>
 			</div>
@@ -2376,7 +2378,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2904,7 +2906,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="22">{
-        for _, a := range s </span><span class="cov7" title="54">{
+        for _, a := range s </span><span class="cov7" title="52">{
                 if a == e </span><span class="cov4" title="8">{
                         return true
                 }</span>
@@ -17441,6 +17443,59 @@ func (a CloudProvider) Import(ctx context.Context, options *importer.ImportOptio
 		<pre class="file" id="file103" style="display: none">//go:build !dev
 // +build !dev
 
+package azure
+
+import (
+        "context"
+        "errors"
+        "sync"
+        "time"
+
+        importer "github.com/GoogleCloudPlatform/terraformer/cmd"
+        azureterraformer "github.com/GoogleCloudPlatform/terraformer/providers/azure"
+        "github.com/GoogleCloudPlatform/terraformer/terraformutils"
+)
+
+var terraformerTimeout = time.Minute * 3
+
+// ImporterFunc is the function kics uses to import resources (for testing porpuses)
+var ImporterFunc func(provider terraformutils.ProviderGenerator, options importer.ImportOptions, args []string) error = importer.Import
+
+// CloudProvider is the AZURE Cloud Provider
+type CloudProvider struct{}
+
+var provider = &amp;azureterraformer.AzureProvider{}
+
+// Import imports the terraformer resources into the destination using terraformer
+func (a CloudProvider) Import(ctx context.Context, options *importer.ImportOptions, destination string) error <span class="cov8" title="1">{
+        ctxT, cancel := context.WithTimeout(ctx, terraformerTimeout)
+        defer cancel()
+        wg := sync.WaitGroup{}
+        done := make(chan error, 1)
+
+        wg.Add(1)
+        go func() </span><span class="cov8" title="1">{
+                defer wg.Done()
+                done &lt;- ImporterFunc(provider, *options, []string{options.ResourceGroup})
+        }</span>()
+
+        <span class="cov8" title="1">go func() </span><span class="cov8" title="1">{
+                defer close(done)
+                wg.Wait()
+        }</span>()
+
+        <span class="cov8" title="1">select </span>{
+        case err := &lt;-done:<span class="cov8" title="1">
+                return err</span>
+        case &lt;-ctxT.Done():<span class="cov0" title="0">
+                return errors.New("terraformer import execution timeout")</span>
+        }
+}
+</pre>
+		
+		<pre class="file" id="file104" style="display: none">//go:build !dev
+// +build !dev
+
 package terraformer
 
 import (
@@ -17456,6 +17511,7 @@ import (
         tfLogger "log"
 
         "github.com/Checkmarx/kics/pkg/terraformer/aws"
+        "github.com/Checkmarx/kics/pkg/terraformer/azure"
         importer "github.com/GoogleCloudPlatform/terraformer/cmd"
         "github.com/pkg/errors"
         "github.com/rs/zerolog/log"
@@ -17524,6 +17580,8 @@ func Import(terraformerPath, destinationPath string) (string, error) <span class
         switch pathOptions.CloudProvider </span>{
         case "aws":<span class="cov1" title="1">
                 provider = aws.CloudProvider{}</span>
+        case "azure":<span class="cov0" title="0">
+                provider = azure.CloudProvider{}</span>
         default:<span class="cov0" title="0">
                 return "", errors.New("unsupported Cloud Provider")</span>
         }
@@ -17576,7 +17634,7 @@ func deleteOutputFile(path string, output fs.FileInfo) <span class="cov0" title=
 }
 </pre>
 		
-		<pre class="file" id="file104" style="display: none">package utils
+		<pre class="file" id="file105" style="display: none">package utils
 
 import "sort"
 
@@ -17598,7 +17656,7 @@ func MergeMaps(map1, map2 map[string]interface{}) <span class="cov0" title="0">{
 }
 </pre>
 		
-		<pre class="file" id="file105" style="display: none">package utils
+		<pre class="file" id="file106" style="display: none">package utils
 
 import (
         "os"
@@ -17633,7 +17691,7 @@ func NextRandom() string <span class="cov0" title="0">{
 // ==============================================================================
 </pre>
 		
-		<pre class="file" id="file106" style="display: none">package test
+		<pre class="file" id="file107" style="display: none">package test
 
 import (
         "bytes"
