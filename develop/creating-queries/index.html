@@ -1329,9 +1329,11 @@ CxPolicy[result] {
   &quot;queryName&quot;: &quot;CloudTrail Multi Region Disabled&quot;,
   &quot;severity&quot;: &quot;MEDIUM&quot;,
   &quot;category&quot;: &quot;Observability&quot;,
-  &quot;descriptionText&quot;: &quot;Check if MultiRegion is Enabled&quot;,
+  &quot;descriptionText&quot;: &quot;CloudTrail should have 'is_multi_region_trail' and 'include_global_service_events' enabled&quot;,
   &quot;descriptionUrl&quot;: &quot;https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#is_multi_region_trail&quot;,
-  &quot;platform&quot;: &quot;Terraform&quot;
+  &quot;platform&quot;: &quot;Terraform&quot;,
+  &quot;descriptionID&quot;: &quot;feb82a62&quot;,
+  &quot;cloudProvider&quot;: &quot;aws&quot;
 }
 </code></pre>
 <p>👨‍💻 <strong>Data File</strong></p>
@@ -1410,6 +1412,8 @@ CxPolicy[result] {
 <li><code>descriptionText</code> should explain with detail the vulnerability and if possible provide a way to remediate</li>
 <li><code>descriptionUrl</code> points to the official documentation about the resource being targeted</li>
 <li><code>platform</code> query target platform (e.g. Terraform, Kubernetes, etc.)</li>
+<li><code>descriptionID</code> should be filled with the first eight characters of the <code>go run ./cmd/console/main.go generate-id</code> output</li>
+<li><code>cloudProvider</code> should specify the target cloud provider, when necessary (e.g. AWS, AZURE, GCP, etc.)</li>
 <li><code>aggregation</code> [optional] should be used when more than one query is implemented in the same query.rego file. Indicates how many queries are implemented</li>
 <li><code>override</code> [optional] should only be used when a <code>metadata.json</code> is shared between queries from different platforms or different specification versions like for example OpenAPI 2.0 (Swagger) and OpenAPI 3.0. This field defines an object that each field is mapped to a given <code>overrideKey</code> that should be provided from the query execution result (covered in the next section), if an <code>overrideKey</code> is provided, this will generate a new query that inherits the root level metadata values and only rewrites the fields defined inside this object.</li>
 </ul>
@@ -1423,7 +1427,9 @@ CxPolicy[result] {
   &quot;descriptionText&quot;: &quot;A sensitive port, such as port 23 or port 110, is open for the whole network in either TCP or UDP protocol&quot;,
   &quot;descriptionUrl&quot;: &quot;https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_securitygroup_module.html#parameter-rules&quot;,
   &quot;platform&quot;: &quot;Ansible&quot;,
-  &quot;aggregation&quot;: 35
+  &quot;descriptionID&quot;: &quot;33745204&quot;,
+  &quot;cloudProvider&quot;: &quot;azure&quot;,
+  &quot;aggregation&quot;: 62
 }
 </code></pre>
 <ol>
@@ -1444,7 +1450,8 @@ CxPolicy[result] {
       &quot;descriptionUrl&quot;: &quot;https://swagger.io/specification/v2/#contactObject&quot;
     }
   },
-  &quot;aggregation&quot;: 2
+  &quot;aggregation&quot;: 2,
+  &quot;descriptionID&quot;: &quot;f3097573&quot;
 }
 </code></pre>
 <p>Filling query.rego:</p>
