@@ -35,8 +35,8 @@ CxPolicy[result] {
 		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.%s", [task.name, rds[r], options[o]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "rds_instance should have the property 'backup_retention_period' greater than 0",
-		"keyActualValue": "rds_instance has the property 'backup_retention_period' unassigned",
+		"keyExpectedValue": "RDS is not running in a public subnet",
+		"keyActualValue": "RDS is running in a public subnet",
 		"searchLine": common_lib.build_search_line(["playbooks", t, rds[r], options[o]], []),
 	}
 }
