@@ -4,6 +4,7 @@ From version 1.5, KICS integrates with Terraformer to scan resources deployed in
 
 **Cloud providers supported:**
 - AWS
+- AZURE
 
 ## Configure AWS Credentials
 
@@ -35,6 +36,67 @@ $Env:AWS_SESSION_TOKEN="<AWS_SESSION_TOKEN>"
 ```
 
 
+## Configure AZURE Credentials
+KICS provides two possibilities to use Terraformer with AZURE. Each one requires AZURE account credentials that you need to set as environment variables.
+
+#### Using Service Principal with Client Certificate
+
+MacOS and Linux:
+```sh
+export ARM_SUBSCRIPTION_ID="<ARM_SUBSCRIPTION_ID>"
+export ARM_CLIENT_ID="<ARM_CLIENT_ID>"
+export ARM_CLIENT_CERTIFICATE_PATH="<ARM_CLIENT_CERTIFICATE_PATH>"
+export ARM_CLIENT_CERTIFICATE_PASSWORD="<ARM_CLIENT_CERTIFICATE_PASSWORD>"
+export ARM_TENANT_ID="<ARM_TENANT_ID>"
+```
+
+Windows:
+
+```sh
+SET ARM_SUBSCRIPTION_ID=<ARM_SUBSCRIPTION_ID>
+SET ARM_CLIENT_ID="<ARM_CLIENT_ID>"
+SET ARM_CLIENT_CERTIFICATE_PATH="<ARM_CLIENT_CERTIFICATE_PATH>"
+SET ARM_CLIENT_CERTIFICATE_PASSWORD="<ARM_CLIENT_CERTIFICATE_PASSWORD>"
+SET ARM_TENANT_ID="<ARM_TENANT_ID>"
+```
+
+Powershell:
+
+```sh
+$Env:ARM_SUBSCRIPTION_ID="<ARM_SUBSCRIPTION_ID>"
+$Env:ARM_CLIENT_ID="<ARM_CLIENT_ID>"
+$Env:ARM_CLIENT_CERTIFICATE_PATH="<ARM_CLIENT_CERTIFICATE_PATH>"
+$Env:ARM_CLIENT_CERTIFICATE_PASSWORD="<ARM_CLIENT_CERTIFICATE_PASSWORD>"
+$Env:ARM_TENANT_ID="<ARM_TENANT_ID>"
+```
+
+#### Service Principal with Client Secret
+
+MacOS and Linux:
+```sh
+export ARM_SUBSCRIPTION_ID="<ARM_SUBSCRIPTION_ID>"
+export ARM_CLIENT_ID="<ARM_CLIENT_ID>"
+export ARM_CLIENT_SECRET="<ARM_CLIENT_SECRET>"
+export ARM_TENANT_ID="<ARM_TENANT_ID>"
+```
+
+Windows:
+
+```sh
+SET ARM_SUBSCRIPTION_ID=<ARM_SUBSCRIPTION_ID>
+SET ARM_CLIENT_ID="<ARM_CLIENT_ID>"
+SET ARM_CLIENT_SECRET="<ARM_CLIENT_SECRET>"
+SET ARM_TENANT_ID="<ARM_TENANT_ID>"
+```
+
+Powershell:
+
+```sh
+$Env:ARM_SUBSCRIPTION_ID="<ARM_SUBSCRIPTION_ID>"
+$Env:ARM_CLIENT_ID="<ARM_CLIENT_ID>"
+$Env:ARM_CLIENT_SECRET="<ARM_CLIENT_SECRET>"
+$Env:ARM_TENANT_ID="<ARM_TENANT_ID>"
+```
 
 ## KICS Terraformer Path Syntax
 
@@ -46,10 +108,12 @@ terraformer::{CloudProvider}:{Resources}:{Regions}
 
 Possible values:
 - `aws`
+- `azure`
 
 **Resources:** A slash-separated list of the resources intended to be imported and scanned.
-
-You can find a complete list of possible values [here](https://github.com/GoogleCloudPlatform/terraformer/blob/master/docs/aws.md#supported-services)
+You can find a complete list of possible values in the links below:
+- [aws](https://github.com/GoogleCloudPlatform/terraformer/blob/master/docs/aws.md#supported-services)
+- [azure](https://github.com/GoogleCloudPlatform/terraformer/blob/master/docs/azure.md#list-of-supported-azure-resources)
 
 To import all resources please use: `*`
 
@@ -74,7 +138,7 @@ If the flag `-o, --output-path` is passed the folder `kics-extract-terraformer` 
             variables.tf
 ```
 
-### Docker
+### [AWS] Run KICS Terraformer integration with Docker
 
 To run KICS Terraformer integration with Docker simply pass the AWS Credentials that were set as environment variables to the `docker run` command and use the terraformer path syntax
 
@@ -87,92 +151,37 @@ docker run -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID -e AWS_SESSION_TOKEN ch
 docker run -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID -e AWS_SESSION_TOKEN -v ${PWD}:/path/ checkmarx/kics:latest scan -p "terraformer::aws:vpc:eu-west-2" -v --no-progress -o /path/results
 ```
 
-
-
 <img src="./img/docker_terraformer.gif" />
 
-### Executable
 
+### [AZURE] Run KICS Terraformer integration with Docker
+To run KICS Terraformer integration with Docker simply pass the AZURE Credentials that were set as environment variables to the docker run command and use the terraformer path syntax. Choose one of the following options:
 
-### **Disclaimer:** In order to run terraformer with KICS executable please follow these prerequisites:
-
-### Install Terraform
-
-Follow the steps described in Hashicorp documentation https://learn.hashicorp.com/tutorials/terraform/install-cli#install-terraform to install terraform.
-
-### Install AWS Provider Plugin
-
-It is required that the AWS Provider plugin for terraform to be present.
-
-To install AWS Provider plugin:
-- Download the plugin from [Terraform Providers](https://releases.hashicorp.com/terraform-provider-aws/3.72.0/) according to your architecture.
-- Unzip the file to:
-
-### Linux:
-```
-$HOME/.terraform.d/plugins/linux_{arch}/
-
-Example:
-~/.terraform.d/plugins/linux_amd64/terraform-provider-aws_v3.71.0_x5
-```
-
-### MacOS
-
-```
-$HOME/.terraform.d/plugins/darwin_{arch}
-
-Example:
-$HOME/.terraform.d/plugins/darwin_amd64/terraform-provider-aws_3.72.0_darwin_amd64
-```
-
-### Windows:
-
-For Windows a little more work is required, since you can't globally install the AWS Provider plugin, you need to have it present in every directory you wish to import the resources to.
-
-Please follow these steps:
-
-- Create a versions.tf file in the folder you wish to run KICS and import the resources to.
-
-- Paste the code found under `USE PROVIDER` from terraform AWS Provider [Documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) in the versions.tf file you just created.
-
-- run the command `terraform init` on the directory containing `versions.tf`. A new folder named `.terraform` should have been created containing the plugin. This folder must be present in every directory you wish to run KICS on using terraformer.
-
-**NOTE:** `.terraform.hcl.lock` can be deleted
-
-Example tf file:
-
-```hcl
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-      version = "3.72.0"
-    }
-  }
-}
-
-provider "aws" {
-  # Configuration options
-}
-```
-
-## Examples:
-
-Example path:
+#### Using Service Principal with Client Certificate
+Note that you should fill the `<certificate_path>` with the path that points to the directory where your certificate is located, and the `<certificate-name>` should point to the certificate name located in `<certificate_path>`.
 
 ```sh
-kics scan -p 'terraformer::aws:vpc/subnet:eu-west-2/eu-west-1'
+docker run -v <certificate_path>:/certificate -e ARM_CLIENT_CERTIFICATE_PATH=/certificate/<certificate_name>.pfx -e ARM_CLIENT_CERTIFICATE_PASSWORD -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_SUBSCRIPTION_ID checkmarx/kics:latest scan -p "terraformer::azure:storage_account:eastus" -v --no-progress
+```
+```sh
+docker run -v <certificate_path>:/certificate -v ${PWD}:/path/ -e ARM_CLIENT_CERTIFICATE_PATH=/certificate/<certificate_name>.pfx -e ARM_CLIENT_CERTIFICATE_PASSWORD -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_SUBSCRIPTION_ID checkmarx/kics:latest scan -p "terraformer::azure:storage_account:eastus" -v --no-progress -o /path/results
 ```
 
-These examples showcase KICS integration with terraformer for importing and scanning our VPCs in region `eu-west-2`.
+![client_certificate_terraformer_azure](https://user-images.githubusercontent.com/74001161/152843317-7e83b70c-2a44-4f22-8a5e-fa9434950269.gif)
 
-### Linux
 
-<img src="./img/linux_terraformer.gif" />
+#### Service Principal with Client Secret
+```sh
+docker run -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET -e ARM_TENANT_ID checkmarx/kics:latest scan -p "terraformer::azure:storage_account:eastus" -v --no-progress
+```
+```sh
+docker run -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET -e ARM_TENANT_ID -v ${PWD}:/path/ checkmarx/kics:latest scan -p "terraformer::azure:storage_account:eastus" -v --no-progress -o /path/results
+```
 
-### Windows
+![client_secret_terraformer_azure](https://user-images.githubusercontent.com/74001161/152833926-68b7cc56-23c0-4297-b308-56f4c6746e09.gif)
 
-<img src="./img/windows_terraformer.gif" />
+
+
 
 ## **NOTES**
 
