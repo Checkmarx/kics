@@ -99,7 +99,7 @@
 				
 				<option value="file21">github.com/Checkmarx/kics/internal/tracker/ci.go (81.2%)</option>
 				
-				<option value="file22">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (88.1%)</option>
+				<option value="file22">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (87.7%)</option>
 				
 				<option value="file23">github.com/Checkmarx/kics/pkg/builder/engine/engine.go (71.8%)</option>
 				
@@ -557,9 +557,7 @@ func BindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov0" titl
                 }</span>
         })
         <span class="cov0" title="0">for key, val := range settingsMap </span><span class="cov0" title="0">{
-                if val == true </span><span class="cov0" title="0">{
-                        continue</span>
-                } else<span class="cov0" title="0"> {
+                if val != true </span><span class="cov0" title="0">{
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
                 }</span>
         }
@@ -575,11 +573,11 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) <span c
                 }</span>
                 <span class="cov0" title="0">valStr := strings.Join(paramSlice, ",")
                 if err := cmd.Flags().Set(flagName, fmt.Sprintf("%v", valStr)); err != nil </span><span class="cov0" title="0">{
-                        log.Err(err).Msg("Failed to get Viper flags")
+                        log.Err(err).Msg("Failed to set Viper flags")
                 }</span>
         default:<span class="cov0" title="0">
                 if err := cmd.Flags().Set(flagName, fmt.Sprintf("%v", val)); err != nil </span><span class="cov0" title="0">{
-                        log.Err(err).Msg("Failed to get Viper flags")
+                        log.Err(err).Msg("Failed to set Viper flags")
                 }</span>
         }
 }
@@ -2347,13 +2345,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="33">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2378,7 +2376,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="16">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2629,6 +2627,17 @@ var (
 
 var (
         listKeywordsGoogleDeployment = []string{"resources"}
+        possibleFileTypes            = map[string]bool{
+                ".yml":        true,
+                ".yaml":       true,
+                ".json":       true,
+                ".dockerfile": true,
+                "Dockerfile":  true,
+                ".tf":         true,
+                "tfvars":      true,
+                ".proto":      true,
+                ".sh":         true,
+        }
 )
 
 const (
@@ -2660,9 +2669,19 @@ func Analyze(paths []string) (model.AnalyzedPaths, error) <span class="cov4" tit
                         return returnAnalyzedPaths, errors.Wrap(err, "failed to analyze path")
                 }</span>
                 <span class="cov4" title="7">if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov7" title="36">{
-                        if !info.IsDir() </span><span class="cov6" title="28">{
+                        if err != nil </span><span class="cov0" title="0">{
+                                return err
+                        }</span>
+
+                        <span class="cov7" title="36">ext := filepath.Ext(path)
+                        if ext == "" </span><span class="cov4" title="10">{
+                                ext = filepath.Base(path)
+                        }</span>
+
+                        <span class="cov7" title="36">if _, ok := possibleFileTypes[ext]; ok </span><span class="cov6" title="22">{
                                 files = append(files, path)
                         }</span>
+
                         <span class="cov7" title="36">return nil</span>
                 }); err != nil <span class="cov0" title="0">{
                         log.Error().Msgf("failed to analize path %s: %s", path, err)
@@ -2672,7 +2691,7 @@ func Analyze(paths []string) (model.AnalyzedPaths, error) <span class="cov4" tit
         // unwanted is the channel shared by the workers that contains the unwanted files that the parser will ignore
         <span class="cov4" title="6">unwanted := make(chan string, len(files))
 
-        for _, file := range files </span><span class="cov6" title="28">{
+        for _, file := range files </span><span class="cov6" title="22">{
                 wg.Add(1)
                 // analyze the files concurrently
                 go worker(file, results, unwanted, &amp;wg)
@@ -2699,13 +2718,13 @@ func Analyze(paths []string) (model.AnalyzedPaths, error) <span class="cov4" tit
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
 // writes the answer to the results channel
 // if no types were found, the worker will write the path of the file in the unwanted channel
-func worker(path string, results, unwanted chan&lt;- string, wg *sync.WaitGroup) <span class="cov6" title="28">{
+func worker(path string, results, unwanted chan&lt;- string, wg *sync.WaitGroup) <span class="cov6" title="22">{
         defer wg.Done()
         ext := filepath.Ext(path)
         if ext == "" </span><span class="cov2" title="2">{
                 ext = filepath.Base(path)
         }</span>
-        <span class="cov6" title="28">switch ext </span>{
+        <span class="cov6" title="22">switch ext </span>{
         // Dockerfile
         case ".dockerfile", "Dockerfile":<span class="cov2" title="2">
                 results &lt;- "dockerfile"</span>
@@ -2906,7 +2925,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="22">{
-        for _, a := range s </span><span class="cov8" title="64">{
+        for _, a := range s </span><span class="cov7" title="51">{
                 if a == e </span><span class="cov4" title="8">{
                         return true
                 }</span>
@@ -4497,7 +4516,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -4696,7 +4715,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
