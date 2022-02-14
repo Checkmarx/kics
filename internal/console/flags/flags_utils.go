@@ -48,9 +48,7 @@ func BindFlags(cmd *cobra.Command, v *viper.Viper) error {
 		}
 	})
 	for key, val := range settingsMap {
-		if val == true {
-			continue
-		} else {
+		if val != true {
 			return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
 		}
 	}
@@ -66,11 +64,11 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
 		}
 		valStr := strings.Join(paramSlice, ",")
 		if err := cmd.Flags().Set(flagName, fmt.Sprintf("%v", valStr)); err != nil {
-			log.Err(err).Msg("Failed to get Viper flags")
+			log.Err(err).Msg("Failed to set Viper flags")
 		}
 	default:
 		if err := cmd.Flags().Set(flagName, fmt.Sprintf("%v", val)); err != nil {
-			log.Err(err).Msg("Failed to get Viper flags")
+			log.Err(err).Msg("Failed to set Viper flags")
 		}
 	}
 }
