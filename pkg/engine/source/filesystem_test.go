@@ -23,7 +23,7 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 		b.Fatal(err)
 	}
 	type fields struct {
-		Source         string
+		Source         []string
 		Types          []string
 		CloudProviders []string
 		Library        string
@@ -35,7 +35,7 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 		{
 			name: "testing_all_paths",
 			fields: fields{
-				Source:         "./assets/queries/",
+				Source:         []string{"./assets/queries/"},
 				Types:          []string{""},
 				CloudProviders: []string{""},
 				Library:        "./assets/libraries",
@@ -67,7 +67,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 	contentByte, err := os.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/content_get_queries.rego"))
 	require.NoError(t, err)
 	type fields struct {
-		Source         string
+		Source         []string
 		Types          []string
 		CloudProviders []string
 		Library        string
@@ -84,7 +84,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 		{
 			name: "get_queries_with_exclude_result_1",
 			fields: fields{
-				Source: source, Types: []string{""},
+				Source: []string{source}, Types: []string{""},
 				CloudProviders: []string{""}, Library: "./assets/libraries",
 			},
 			excludeCategory:   []string{},
@@ -113,7 +113,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 		{
 			name: "get_queries_with_exclude_no_result_1",
 			fields: fields{
-				Source: source, Types: []string{""},
+				Source: []string{source}, Types: []string{""},
 				CloudProviders: []string{""}, Library: "./assets/libraries",
 			},
 			excludeCategory:   []string{},
@@ -127,7 +127,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 			excludeIDs:      []string{"57b9893d-33b1-4419-bcea-b828fb87e318"},
 			excludeCategory: []string{},
 			fields: fields{
-				Source: "../no-path",
+				Source: []string{"../no-path"},
 			},
 			want:    nil,
 			wantErr: true,
@@ -135,7 +135,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 		{
 			name: "get_queries_with_exclude_category_no_result",
 			fields: fields{
-				Source: source, Types: []string{""},
+				Source: []string{source}, Types: []string{""},
 				CloudProviders: []string{""}, Library: "./assets/libraries",
 			},
 			excludeCategory:   []string{"Access Control"},
@@ -147,7 +147,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 		{
 			name: "get_queries_with_exclude_severity_no_result",
 			fields: fields{
-				Source: source, Types: []string{""},
+				Source: []string{source}, Types: []string{""},
 				CloudProviders: []string{""}, Library: "./assets/libraries",
 			},
 			excludeCategory:   []string{},
@@ -189,7 +189,7 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 	require.NoError(t, err)
 
 	type fields struct {
-		Source         string
+		Source         []string
 		Types          []string
 		CloudProviders []string
 		Library        string
@@ -204,7 +204,7 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 		{
 			name: "get_queries_with_include_result_1",
 			fields: fields{
-				Source: source, Types: []string{""}, CloudProviders: []string{""}, Library: "./assets/libraries",
+				Source: []string{source}, Types: []string{""}, CloudProviders: []string{""}, Library: "./assets/libraries",
 			},
 			includeIDs: []string{"57b9893d-33b1-4419-bcea-b828fb87e318"},
 			want: []model.QueryMetadata{
@@ -230,7 +230,7 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 		{
 			name: "get_queries_with_include_no_result_1",
 			fields: fields{
-				Source: source, Types: []string{""}, CloudProviders: []string{""}, Library: "./assets/libraries",
+				Source: []string{source}, Types: []string{""}, CloudProviders: []string{""}, Library: "./assets/libraries",
 			},
 			includeIDs: []string{"57b9893d-33b1-4419-bcea-xxxxxxx"},
 			want:       []model.QueryMetadata{},
@@ -240,7 +240,7 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 			name:       "get_queries_with_include_error",
 			includeIDs: []string{"57b9893d-33b1-4419-bcea-b828fb87e318"},
 			fields: fields{
-				Source: "../no-path",
+				Source: []string{"../no-path"},
 			},
 			want:    nil,
 			wantErr: true,
@@ -281,7 +281,7 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { // nolint
 		t.Fatal(err)
 	}
 	type fields struct {
-		Source  string
+		Source  []string
 		Library string
 	}
 	type args struct {
@@ -297,7 +297,7 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_terraform",
 			fields: fields{
-				Source:  "./assets/queries/template",
+				Source:  []string{"./assets/queries/template"},
 				Library: "./assets/libraries",
 			},
 			args: args{
@@ -309,7 +309,7 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_common",
 			fields: fields{
-				Source:  "./assets/queries/template",
+				Source:  []string{"./assets/queries/template"},
 				Library: "./assets/libraries",
 			},
 			args: args{
@@ -321,7 +321,7 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_cloudformation",
 			fields: fields{
-				Source:  "./assets/queries/template",
+				Source:  []string{"./assets/queries/template"},
 				Library: "./assets/libraries",
 			},
 			args: args{
@@ -333,7 +333,7 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_ansible",
 			fields: fields{
-				Source:  "./assets/queries/template",
+				Source:  []string{"./assets/queries/template"},
 				Library: "./assets/libraries",
 			},
 			args: args{
@@ -345,7 +345,7 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_dockerfile",
 			fields: fields{
-				Source:  "./assets/queries/template",
+				Source:  []string{"./assets/queries/template"},
 				Library: "./assets/libraries",
 			},
 			args: args{
@@ -357,7 +357,7 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_k8s",
 			fields: fields{
-				Source:  "./assets/queries/template",
+				Source:  []string{"./assets/queries/template"},
 				Library: "./assets/libraries",
 			},
 			args: args{
@@ -369,7 +369,7 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_unknown",
 			fields: fields{
-				Source:  "./assets/queries/template",
+				Source:  []string{"./assets/queries/template"},
 				Library: "./assets/libraries",
 			},
 			args: args{
@@ -405,7 +405,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 	require.NoError(t, err)
 
 	type fields struct {
-		Source         string
+		Source         []string
 		Types          []string
 		CloudProviders []string
 		Library        string
@@ -419,7 +419,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 		{
 			name: "get_queries_1",
 			fields: fields{
-				Source: source, Types: []string{""}, CloudProviders: []string{""}, Library: "./assets/libraries",
+				Source: []string{source}, Types: []string{""}, CloudProviders: []string{""}, Library: "./assets/libraries",
 			},
 			want: []model.QueryMetadata{
 				{
@@ -444,7 +444,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 		{
 			name: "get_queries_error",
 			fields: fields{
-				Source: "../no-path",
+				Source: []string{"../no-path"},
 			},
 			want:    nil,
 			wantErr: true,
