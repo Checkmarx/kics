@@ -1,0 +1,11 @@
+{
+  "id": "e42a3ef0-5325-4667-84bf-075ba1c9d58e",
+  "queryName": "EC2 Instance Using Default VPC",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "EC2 Instances should not be configured under a default VPC network",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-subnetid",
+  "platform": "CloudFormation",
+  "descriptionID": "8dd9abf5",
+  "cloudProvider": "aws"
+}
