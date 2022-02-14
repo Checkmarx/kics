@@ -676,3 +676,32 @@ has_highly_permissive_principal(policy_statement){
 	policy_statement.principal[_].aws[_] == ".*"
     statement_allows(policy_statement)
 }
+
+check_principals(statement) {
+	statement.principals.identifiers[_] == "*"
+	statement.principals.type == "AWS"
+} else {
+	is_object(statement.Principal) == true
+	statement.Principal.AWS == "*"
+} else {
+	is_string(statement.Principal) == true
+	statement.Principal == "*"
+}
+
+check_actions(statement, typeAction) {
+	any([statement.actions[_] == typeAction, statement.actions[_] == "*"])
+} else {
+	any([statement.Actions[_] == typeAction, statement.Actions[_] == "*"])
+} else {
+	is_array(statement.Action) == true
+	any([statement.Action[_] == typeAction, statement.Action[_] == "*"])
+} else {
+	is_string(statement.Action) == true
+	any([statement.Action == typeAction, statement.Action == "*"])
+}
+
+has_wildcard(statement, typeAction) {
+	check_principals(statement)
+} else {
+	check_actions(statement, typeAction)
+}

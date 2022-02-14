@@ -10,16 +10,16 @@ func init() { //nolint
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "--preview-lines", "1", "--no-color", "--no-progress",
-					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+					"-q", "../assets/queries", "-p", "fixtures/samples/positive.dockerfile"},
 			},
 		},
 		Validation: func(outputText string) bool {
 			// only the match1 must be true
-			match1, _ := regexp.MatchString(`001\: resource \"aws_redshift_cluster\" \"default1\" \{`, outputText)
-			match2, _ := regexp.MatchString(`002\:   publicly_accessible = false`, outputText)
+			match1, _ := regexp.MatchString(`005\: RUN gem install grpc -v \$\{GRPC_RUBY_VERSION\} blunder`, outputText)
+			match2, _ := regexp.MatchString(`006\: RUN bundle install`, outputText)
 			return match1 && !match2
 		},
-		WantStatus: []int{40},
+		WantStatus: []int{50},
 	}
 
 	Tests = append(Tests, testSample)

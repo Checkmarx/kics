@@ -26,7 +26,3 @@ resource "aws_kms_key" "negative1" {
   POLICY
 }
 
-resource "aws_kms_key" "negative2" {
-  description             = "KMS key 1"
-  deletion_window_in_days = 10
-}

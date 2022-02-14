@@ -8,19 +8,7 @@
   {
     "queryName": "BOM - SQS",
     "severity": "TRACE",
-    "line": 18,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "BOM - SQS",
-    "severity": "TRACE",
     "line": 1,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "BOM - SQS",
-    "severity": "TRACE",
-    "line": 18,
     "fileName": "positive2.tf"
   },
   {

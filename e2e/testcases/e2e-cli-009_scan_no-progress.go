@@ -9,7 +9,7 @@ func init() { //nolint
 		Name: "should hide the progress bar in the CLI [E2E-CLI-009]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf", "--no-progress"},
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/positive.dockerfile", "--no-progress"},
 			},
 		},
 		WantStatus: []int{50},

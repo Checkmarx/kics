@@ -352,7 +352,7 @@ func TestNewInspector(t *testing.T) { // nolint
 
 	track := &tracker.CITracker{}
 	sources := &mockSource{
-		Source: filepath.FromSlash("./test/fixtures/all_auth_users_get_read_access"),
+		Source: []string{filepath.FromSlash("./test/fixtures/all_auth_users_get_read_access")},
 		Types:  []string{""},
 	}
 	vbs := DefaultVulnerabilityBuilder
@@ -510,7 +510,7 @@ func TestEngine_LenQueriesByPlat(t *testing.T) {
 	}
 
 	type args struct {
-		queriesPath string
+		queriesPath []string
 		platform    []string
 	}
 	tests := []struct {
@@ -521,7 +521,7 @@ func TestEngine_LenQueriesByPlat(t *testing.T) {
 		{
 			name: "test_len_queries_plat",
 			args: args{
-				queriesPath: filepath.FromSlash("./test/fixtures"),
+				queriesPath: []string{filepath.FromSlash("./test/fixtures")},
 				platform:    []string{"terraform"},
 			},
 			min: 1,
@@ -542,7 +542,7 @@ func TestEngine_GetFailedQueries(t *testing.T) {
 		t.Fatal(err)
 	}
 	type args struct {
-		queriesPath     string
+		queriesPath     []string
 		nrFailedQueries int
 	}
 	tests := []struct {
@@ -552,7 +552,7 @@ func TestEngine_GetFailedQueries(t *testing.T) {
 		{
 			name: "test_get_failed_queries",
 			args: args{
-				queriesPath:     filepath.FromSlash("./test/fixtures"),
+				queriesPath:     []string{filepath.FromSlash("./test/fixtures")},
 				nrFailedQueries: 5,
 			},
 		},
@@ -638,7 +638,7 @@ func TestShouldSkipFile(t *testing.T) {
 	}
 }
 
-func newInspectorInstance(t *testing.T, queryPath string) *Inspector {
+func newInspectorInstance(t *testing.T, queryPath []string) *Inspector {
 	querySource := source.NewFilesystemSource(queryPath, []string{""}, []string{""}, filepath.FromSlash("./assets/libraries"))
 	var vb = func(ctx *QueryContext, tracker Tracker, v interface{},
 		detector *detector.DetectLine) (model.Vulnerability, error) {
@@ -657,7 +657,7 @@ func newInspectorInstance(t *testing.T, queryPath string) *Inspector {
 }
 
 type mockSource struct {
-	Source string
+	Source []string
 	Types  []string
 }
 

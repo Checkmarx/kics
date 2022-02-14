@@ -10,5 +10,17 @@
     "severity": "HIGH",
     "line": 8,
     "fileName": "positive.yaml"
+  },
+  {
+    "queryName": "KMS Key With Vulnerable Policy",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "KMS Key With Vulnerable Policy",
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive2.yaml"
   }
 ]

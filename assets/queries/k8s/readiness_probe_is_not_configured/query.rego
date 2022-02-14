@@ -1,28 +1,24 @@
 package Cx
 
-import data.generic.k8s as k8s
+import data.generic.k8s as k8sLib
 import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document[i]
-	kind := document.kind
-    listKinds := ["Job", "CronJob"]
-
-	not k8s.checkKind(kind, listKinds)
-
-	some j
-	types := {"initContainers", "containers"}
-	container := document.spec[types[x]][j]
-
-	not common_lib.valid_key(container, "readinessProbe")
-
+	specInfo := k8sLib.getSpecInfo(document)
 	metadata := document.metadata
 
+	listKinds := ["Job", "CronJob"]
+	not k8sLib.checkKind(document.kind, listKinds)
+
+	container := specInfo.spec.containers[_]
+	not common_lib.valid_key(container, "readinessProbe")
+
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}", [metadata.name, types[x], container.name]),
+		"documentId": document.id,
+		"searchKey": sprintf("metadata.name={{%s}}.%s.containers.name={{%s}}", [metadata.name, specInfo.path, container.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'spec.%s.name={{%s}}.readinessProbe' is set", [types[x], container.name]),
-		"keyActualValue": sprintf("'spec.%s.name={{%s}}.readinessProbe' is undefined", [types[x], container.name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.containers.name={{%s}}.readinessProbe is defined", [metadata.name, specInfo.path, container.name]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.%s.containers.name={{%s}}.readinessProbe is undefined", [metadata.name, specInfo.path, container.name]),
 	}
 }

@@ -11,7 +11,7 @@ func init() { //nolint
 			Args: []cmdArgs{
 
 				[]string{"scan", "--log-path", "output/E2E_CLI_038_LOG",
-					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+					"-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml"},
 			},
 
 			ExpectedLog: LogValidation{
@@ -24,7 +24,7 @@ func init() { //nolint
 				},
 			},
 		},
-		WantStatus: []int{40},
+		WantStatus: []int{50},
 	}
 
 	Tests = append(Tests, testSample)

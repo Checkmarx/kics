@@ -21,7 +21,7 @@ import (
 // Source is the path to the queries
 // Types are the types given by the flag --type for query selection mechanism
 type FilesystemSource struct {
-	Source         string
+	Source         []string
 	Types          []string
 	CloudProviders []string
 	Library        string
@@ -43,7 +43,7 @@ const (
 )
 
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
-func NewFilesystemSource(source string, types, cloudProviders []string, libraryPath string) *FilesystemSource {
+func NewFilesystemSource(source, types, cloudProviders []string, libraryPath string) *FilesystemSource {
 	log.Debug().Msg("source.NewFilesystemSource()")
 
 	if len(types) == 0 {
@@ -54,8 +54,12 @@ func NewFilesystemSource(source string, types, cloudProviders []string, libraryP
 		cloudProviders = []string{""}
 	}
 
+	for s := range source {
+		source[s] = filepath.FromSlash(source[s])
+	}
+
 	return &FilesystemSource{
-		Source:         filepath.FromSlash(source),
+		Source:         source,
 		Types:          types,
 		CloudProviders: cloudProviders,
 		Library:        filepath.FromSlash(libraryPath),
@@ -238,21 +242,25 @@ func checkQueryExclude(metadata map[string]interface{}, queryParameters *QueryIn
 // QueryMetadata struct
 func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters) ([]model.QueryMetadata, error) {
 	queryDirs := make([]string, 0)
-	err := filepath.Walk(s.Source,
-		func(p string, f os.FileInfo, err error) error {
-			if err != nil {
-				return err
-			}
+	var err error
 
-			if f.IsDir() || f.Name() != QueryFileName {
+	for _, source := range s.Source {
+		err = filepath.Walk(source,
+			func(p string, f os.FileInfo, err error) error {
+				if err != nil {
+					return err
+				}
+
+				if f.IsDir() || f.Name() != QueryFileName {
+					return nil
+				}
+
+				queryDirs = append(queryDirs, filepath.Dir(p))
 				return nil
-			}
-
-			queryDirs = append(queryDirs, filepath.Dir(p))
-			return nil
-		})
-	if err != nil {
-		return nil, errors.Wrap(err, "failed to get query Source")
+			})
+		if err != nil {
+			return nil, errors.Wrap(err, "failed to get query Source")
+		}
 	}
 
 	queries := make([]model.QueryMetadata, 0, len(queryDirs))

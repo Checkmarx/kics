@@ -1,0 +1,11 @@
+{
+  "id": "16732649-4ff6-4cd2-8746-e72c13fae4b8",
+  "queryName": "RDS Associated with Public Subnet",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "RDS should not run in public subnet",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-db_subnet_group_name",
+  "platform": "Ansible",
+  "descriptionID": "89ed6e35",
+  "cloudProvider": "aws"
+}

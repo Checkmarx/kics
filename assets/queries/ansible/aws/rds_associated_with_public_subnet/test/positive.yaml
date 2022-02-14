@@ -1,0 +1,34 @@
+- name: create minimal aurora instance in default VPC and default subnet group
+  community.aws.rds_instance:
+    engine: aurora
+    db_instance_identifier: ansible-test-aurora-db-instance
+    instance_type: db.t2.small
+    password: "{{ password }}"
+    username: "{{ username }}"
+    cluster_id: ansible-test-cluster
+    db_subnet_group_name: my_subnet_group
+- name: Add or change a subnet group
+  community.aws.rds_subnet_group:
+    state: present
+    name: my_subnet_group
+    description: My Fancy Ex Parrot Subnet Group
+    subnets:
+      - "{{ subnet1.subnet.id }}"
+      - "{{ subnet2.subnet.id }}"
+  register: my_subnet_group
+- name: Create subnet for database servers
+  amazon.aws.ec2_vpc_subnet:
+    state: present
+    vpc_id: vpc-123456
+    cidr: 0.0.0.0/0
+    tags:
+      Name: Database Subnet
+  register: subnet1
+- name: Create subnet for database servers2
+  amazon.aws.ec2_vpc_subnet:
+    state: present
+    vpc_id: vpc-123456
+    cidr: 10.0.1.16/28
+    tags:
+      Name: Database Subnet
+  register: subnet2

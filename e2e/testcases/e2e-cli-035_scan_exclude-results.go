@@ -10,17 +10,14 @@ func init() { //nolint
 
 				[]string{"scan",
 					"--exclude-results",
-					"2abf26c3014fc445da69d8d5bb862c1c511e8e16ad3a6c6f6e14c28aa0adac1d," +
-						"4aa3f159f39767de53b49ed871977b8b499bf19b3b0865b1631042aa830598aa," +
-						"83461a5eac8fed2264fac68a6d352d1ed752867a9b0a131afa9ba7e366159b59," +
-						"aa346cd1642a83b40e221f96a43d88dbfacecdf1f8e5314c24145f8d35530197," +
-						"34ae9f216456678405a82e7419b9b1614ee09a765529f717679e1fa4f4a1ae0a",
-					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+					"449be223f73b808ffbfb61a17090408aaba9615eb57f79c74e7e9cf6190b57d7," +
+						"d5a929b017b21438c2d42d4361f12941ea5b3d7f9eedfcb73848141b041d1f4d," +
+						"82ab4f612e7f3e0fbed0ac72f8747fe81f94961f94ad8302121f17ef184acd22",
+					"-q", "../assets/queries", "-p", "fixtures/samples/single.dockerfile"},
 
-				[]string{"scan", "--exclude-results", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+				[]string{"scan", "--exclude-results", "-q", "../assets/queries", "-p", "fixtures/samples/single.dockerfile"},
 			},
 		},
-
 		WantStatus: []int{20, 126},
 	}
 

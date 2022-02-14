@@ -1,6 +1,6 @@
 {
-    "path": "fixtures/samples/terraform-single.tf",
+    "path": "fixtures/samples/positive.yaml",
     "verbose": true,
-    "type": "Dockerfile,Kubernetes,Terraform",
+    "type": "Dockerfile",
     "queries-path": "../assets/queries"
 }
