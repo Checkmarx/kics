@@ -9,7 +9,7 @@ func init() { //nolint
 		Name: "should fetch CIS descriptions from environment [E2E-CLI-046]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/positive.dockerfile",
 					"--no-color", "-v",
 					"--disable-full-descriptions"},
 			},

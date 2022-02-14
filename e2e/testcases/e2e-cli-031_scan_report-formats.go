@@ -9,11 +9,11 @@ func init() { //nolint
 			Args: []cmdArgs{
 				[]string{"scan", "--output-path", "output", "--output-name", "E2E_CLI_031_RESULT",
 					"--report-formats", "json,SARIF,glsast,Html,SonarQUBE,Junit,cyclonedx,asff",
-					"-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
+					"-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml"},
 
 				[]string{"scan", "--output-path", "output", "--output-name", "E2E_CLI_031_RESULT_CIS",
 					"--report-formats", "JUnit",
-					"-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
+					"-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml"},
 			},
 			ExpectedResult: []ResultsValidation{
 				{

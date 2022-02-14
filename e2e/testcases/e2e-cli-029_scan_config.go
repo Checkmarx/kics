@@ -7,12 +7,14 @@ func init() { //nolint
 		Name: "should load a config file [E2E-CLI-029]",
 		Args: args{
 			Args: []cmdArgs{
+				[]string{"scan", "--config", "fixtures/samples/config.json", "--type", "cloudformation"},
+
 				[]string{"scan", "--config", "fixtures/samples/config.json"},
 
 				[]string{"scan", "--config", "fixtures/samples/config.json", "--silent"},
 			},
 		},
-		WantStatus: []int{40, 126},
+		WantStatus: []int{50, 0, 126},
 	}
 
 	Tests = append(Tests, testSample)
