@@ -1,0 +1,72 @@
+{
+  "Resources": {
+    "Positive1": {
+      "DeletionPolicy": "Snapshot",
+      "Properties": {
+        "AllocatedStorage": "5",
+        "BackupRetentionPeriod": 7,
+        "DBInstanceClass": "db.t2.small",
+        "DBSubnetGroupName": {
+          "Ref": "myDBSubnetGroup"
+        },
+        "Engine": "oracle-ee",
+        "LicenseModel": "bring-your-own-license",
+        "MasterUserPassword": "SecretPassword01",
+        "MasterUsername": "master"
+      },
+      "Type": "AWS::RDS::DBInstance"
+    },
+    "myDBSubnetGroup": {
+      "Properties": {
+        "DBSubnetGroupDescription": "description",
+        "SubnetIds": [
+          {
+            "Ref": "mySubnet1"
+          },
+          {
+            "Ref": "mySubnet2"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "String",
+            "Value": "String"
+          }
+        ]
+      },
+      "Type": "AWS::RDS::DBSubnetGroup"
+    },
+    "mySubnet1": {
+      "Properties": {
+        "AvailabilityZone": "us-east-1a",
+        "CidrBlock": "10.0.0.0/24",
+        "Tags": [
+          {
+            "Key": "stack",
+            "Value": "production"
+          }
+        ],
+        "VpcId": {
+          "Ref": "myVPC"
+        }
+      },
+      "Type": "AWS::EC2::Subnet"
+    },
+    "mySubnet2": {
+      "Properties": {
+        "AvailabilityZone": "us-east-1a",
+        "CidrBlock": "0.0.0.0/0",
+        "Tags": [
+          {
+            "Key": "stack",
+            "Value": "production"
+          }
+        ],
+        "VpcId": {
+          "Ref": "myVPC"
+        }
+      },
+      "Type": "AWS::EC2::Subnet"
+    }
+  }
+}
