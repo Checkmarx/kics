@@ -8,11 +8,13 @@ CxPolicy[result] {
 	service.kind == "Service"
 	metadata := service.metadata
 
+	common_lib.valid_key(service.spec, "selector")
+
 	resources := [x | x := input.document[_]; matchResource(x, service.spec.selector)]
 	count(resources) > 0
 
 	servicePorts := service.spec.ports[_]
-	not confirmPorts(resources[0], servicePorts)
+	not confirmPorts(resources, servicePorts)
 
 	result := {
 		"documentId": service.id,
@@ -64,9 +66,9 @@ getLabelsToMatch(document) = labels {
 	labels := document.metadata.labels
 }
 
-confirmPorts(resource, servicePort) {
+confirmPorts(resources, servicePort) {
 	types := {"initContainers", "containers"}
-	specInfo := k8sLib.getSpecInfo(resource)
+	specInfo := k8sLib.getSpecInfo(resources[_])
 	matchPort(specInfo.spec[types[x]][_].ports[_], servicePort)
 }
 
