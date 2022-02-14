@@ -1370,13 +1370,6 @@
 <td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-readiness-probes">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Liveness Probe Is Not Defined<br/><sup><sub>ade74944-a674-4e00-859e-c6eab5bde441</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Availability</td>
-<td>Liveness Probe must be defined.</td>
-<td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-a-tcp-liveness-probe">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Root Containers Admitted<br/><sup><sub>e3aa0612-4351-4a0d-983f-aefea25cf203</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Best Practices</td>
@@ -1816,6 +1809,13 @@
 <td>Supply-Chain</td>
 <td>Image must be defined and not be empty or equal to latest.</td>
 <td><a href="https://kubernetes.io/docs/concepts/containers/images/#updating-images">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Liveness Probe Is Not Defined<br/><sup><sub>ade74944-a674-4e00-859e-c6eab5bde441</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Availability</td>
+<td>In case of an unresponsive container, a Liveness Probe can help your application become more available since it restarts the container. However, it can lead to cascading failures. Define one if you really need it</td>
+<td><a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#when-should-you-use-a-liveness-probe">Documentation</a><br/></td>
 </tr>
 </tbody>
 </table>

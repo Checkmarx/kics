@@ -1729,6 +1729,13 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-listener.html#cfn-ec2-elb-listener-protocol">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>RDS Associated with Public Subnet<br/><sup><sub>4e88adee-a8eb-4605-a78d-9fb1096e3091</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>RDS should not run in public subnet</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-dbsubnetgroupname">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>DB Security Group Open To Large Scope<br/><sup><sub>0104165b-02d5-426f-abc9-91fb48189899</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
@@ -2833,6 +2840,13 @@
 <td>Networking and Firewall</td>
 <td>Redshift should not use the default port (5439) because an attacker can easily guess the port</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html#cfn-redshift-cluster-port">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EC2 Instance Using Default VPC<br/><sup><sub>e42a3ef0-5325-4667-84bf-075ba1c9d58e</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>EC2 Instances should not be configured under a default VPC network</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-subnetid">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Shield Advanced Not In Use<br/><sup><sub>ad7444cf-817a-4765-a79e-2145f7981faf</sub></sup></td>

@@ -3468,6 +3468,13 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>RDS Associated with Public Subnet<br/><sup><sub>2f737336-b18a-4602-8ea0-b200312e1ac1</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>RDS should not run in public subnet</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#db_subnet_group_name">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>DB Security Group Open To Large Scope<br/><sup><sub>4f615f3e-fb9c-4fad-8b70-2e9f781806ce</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
@@ -4544,6 +4551,13 @@
 <td>Networking and Firewall</td>
 <td>Redshift should not use the default port (5439) because an attacker can easily guess the port</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#port">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EC2 Instance Using Default VPC<br/><sup><sub>7e4a6e76-568d-43ef-8c4e-36dea481bff1</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>EC2 Instances should not be configured under a default VPC network</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#subnet_id">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Shield Advanced Not In Use<br/><sup><sub>084c6686-2a70-4710-91b1-000393e54c12</sub></sup></td>

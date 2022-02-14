@@ -2280,6 +2280,13 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>RDS Associated with Public Subnet<br/><sup><sub>16732649-4ff6-4cd2-8746-e72c13fae4b8</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>RDS should not run in public subnet</td>
+<td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-db_subnet_group_name">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>DB Security Group Open To Large Scope<br/><sup><sub>ea0ed1c7-9aef-4464-b7c7-94c762da3640</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
@@ -2768,6 +2775,13 @@
 <td>Networking and Firewall</td>
 <td>Redshift should not use the default port (5439) because an attacker can easily guess the port</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/redshift_module.html#parameter-port">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EC2 Instance Using Default VPC<br/><sup><sub>8833f180-96f1-46f4-9147-849aafa56029</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>EC2 Instances should not be configured under a default VPC network</td>
+<td><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_module.html#parameter-vpc_subnet_id">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>ElastiCache Using Default Port<br/><sup><sub>7cc6c791-5f68-4816-a564-b9b699f9d26e</sub></sup></td>

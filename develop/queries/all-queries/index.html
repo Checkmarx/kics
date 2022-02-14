@@ -2382,6 +2382,14 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>RDS Associated with Public Subnet<br/><sup><sub>16732649-4ff6-4cd2-8746-e72c13fae4b8</sub></sup></td>
+<td>Ansible</td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>RDS should not run in public subnet</td>
+<td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-db_subnet_group_name">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>DB Security Group Open To Large Scope<br/><sup><sub>ea0ed1c7-9aef-4464-b7c7-94c762da3640</sub></sup></td>
 <td>Ansible</td>
 <td><span style="color:#C00">High</span></td>
@@ -2942,6 +2950,14 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/redshift_module.html#parameter-port">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>EC2 Instance Using Default VPC<br/><sup><sub>8833f180-96f1-46f4-9147-849aafa56029</sub></sup></td>
+<td>Ansible</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>EC2 Instances should not be configured under a default VPC network</td>
+<td><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_module.html#parameter-vpc_subnet_id">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>ElastiCache Using Default Port<br/><sup><sub>7cc6c791-5f68-4816-a564-b9b699f9d26e</sub></sup></td>
 <td>Ansible</td>
 <td><span style="color:#CC0">Low</span></td>
@@ -3140,14 +3156,6 @@
 <td>Availability</td>
 <td>Check if Readiness Probe is not configured.</td>
 <td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-readiness-probes">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Liveness Probe Is Not Defined<br/><sup><sub>ade74944-a674-4e00-859e-c6eab5bde441</sub></sup></td>
-<td>Kubernetes</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Availability</td>
-<td>Liveness Probe must be defined.</td>
-<td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-a-tcp-liveness-probe">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Root Containers Admitted<br/><sup><sub>e3aa0612-4351-4a0d-983f-aefea25cf203</sub></sup></td>
@@ -3652,6 +3660,14 @@
 <td>Supply-Chain</td>
 <td>Image must be defined and not be empty or equal to latest.</td>
 <td><a href="https://kubernetes.io/docs/concepts/containers/images/#updating-images">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Liveness Probe Is Not Defined<br/><sup><sub>ade74944-a674-4e00-859e-c6eab5bde441</sub></sup></td>
+<td>Kubernetes</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Availability</td>
+<td>In case of an unresponsive container, a Liveness Probe can help your application become more available since it restarts the container. However, it can lead to cascading failures. Define one if you really need it</td>
+<td><a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#when-should-you-use-a-liveness-probe">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Cloud Storage Bucket Is Publicly Accessible<br/><sup><sub>77c1fa3f-83dc-4c9d-bfed-e1d0cc8fd9dc</sub></sup></td>
@@ -6334,6 +6350,14 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>RDS Associated with Public Subnet<br/><sup><sub>2f737336-b18a-4602-8ea0-b200312e1ac1</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>RDS should not run in public subnet</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#db_subnet_group_name">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>DB Security Group Open To Large Scope<br/><sup><sub>4f615f3e-fb9c-4fad-8b70-2e9f781806ce</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
@@ -7564,6 +7588,14 @@
 <td>Networking and Firewall</td>
 <td>Redshift should not use the default port (5439) because an attacker can easily guess the port</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#port">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EC2 Instance Using Default VPC<br/><sup><sub>7e4a6e76-568d-43ef-8c4e-36dea481bff1</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>EC2 Instances should not be configured under a default VPC network</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#subnet_id">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Shield Advanced Not In Use<br/><sup><sub>084c6686-2a70-4710-91b1-000393e54c12</sub></sup></td>
@@ -10574,6 +10606,14 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-listener.html#cfn-ec2-elb-listener-protocol">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>RDS Associated with Public Subnet<br/><sup><sub>4e88adee-a8eb-4605-a78d-9fb1096e3091</sub></sup></td>
+<td>CloudFormation</td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>RDS should not run in public subnet</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-dbsubnetgroupname">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>DB Security Group Open To Large Scope<br/><sup><sub>0104165b-02d5-426f-abc9-91fb48189899</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#C00">High</span></td>
@@ -11838,6 +11878,14 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html#cfn-redshift-cluster-port">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>EC2 Instance Using Default VPC<br/><sup><sub>e42a3ef0-5325-4667-84bf-075ba1c9d58e</sub></sup></td>
+<td>CloudFormation</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>EC2 Instances should not be configured under a default VPC network</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-subnetid">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Shield Advanced Not In Use<br/><sup><sub>ad7444cf-817a-4765-a79e-2145f7981faf</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#CC0">Low</span></td>
@@ -12443,14 +12491,6 @@
 <td><span style="color:#C00">High</span></td>
 <td>Supply-Chain</td>
 <td>Command 'dnf update' should not be used, as it can cause inconsistencies between builds and fails in updated packages</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Use of Apk Upgrade<br/><sup><sub>989ab888-7d1e-410f-9dde-c64a1d367bf2</sub></sup></td>
-<td>Dockerfile</td>
-<td><span style="color:#C00">High</span></td>
-<td>Supply-Chain</td>
-<td>Avoid usage of apk upgrade because some packages from the parent image cannot be upgraded inside an unprivileged container</td>
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
 </tr>
 <tr>
