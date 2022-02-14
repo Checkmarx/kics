@@ -10,14 +10,14 @@
       
       
       
-        <link rel="canonical" href="http://docs.kics.io/develop/performance/">
+        <link rel="canonical" href="http://docs.kics.io/develop/integrations_aws_codebuild/">
       
       <link rel="icon" href="../img/logo/kics-hat.ico">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.11">
     
     
       
-        <title>Performance - KICS</title>
+        <title>AWS CodeBuild - KICS</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#kics_accuracy_benchmark" class="md-skip">
+        <a href="#running_kics_on_aws_codebuild" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Performance
+              AWS CodeBuild
             
           </span>
         </div>
@@ -228,13 +228,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../integrations/" class="md-tabs__link">
+      <a href="../integrations/" class="md-tabs__link md-tabs__link--active">
         Integrations
       </a>
     </li>
@@ -256,15 +258,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../roadmap/" class="md-tabs__link md-tabs__link--active">
+      <a href="../roadmap/" class="md-tabs__link">
         Project
       </a>
     </li>
@@ -731,12 +731,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
       
       
       
@@ -925,11 +927,52 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../integrations_aws_codebuild/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          AWS CodeBuild
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         AWS CodeBuild
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example_setup_with_github" class="md-nav__link">
+    Example setup with GitHub
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1004,14 +1047,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
       
       
       
@@ -1088,55 +1129,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Performance
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
         Performance
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#kics_accuracy_benchmark" class="md-nav__link">
-    KICS Accuracy Benchmark
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kics_profiling" class="md-nav__link">
-    KICS Profiling
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1195,6 +1192,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1203,15 +1202,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#kics_accuracy_benchmark" class="md-nav__link">
-    KICS Accuracy Benchmark
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kics_profiling" class="md-nav__link">
-    KICS Profiling
+  <a href="#example_setup_with_github" class="md-nav__link">
+    Example setup with GitHub
   </a>
   
 </li>
@@ -1228,164 +1220,35 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/Checkmarx/kics/edit/master/docs/performance.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/Checkmarx/kics/edit/master/docs/integrations_aws_codebuild.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
-  <h1>Performance</h1>
+<h1 id="running_kics_on_aws_codebuild">Running KICS on AWS CodeBuild<a class="headerlink" href="#running_kics_on_aws_codebuild" title="Permanent link">&para;</a></h1>
+<p>You can integrate KICS into your AWS CodeBuild workflows.</p>
+<p>This provides you the ability to run KICS scans to find vulnerabilities and misconfiguration checks to your infrastructure as code (IaC).</p>
+<h2 id="example_setup_with_github">Example setup with GitHub<a class="headerlink" href="#example_setup_with_github" title="Permanent link">&para;</a></h2>
+<p>Enable AWS CodeBuild to access your personal profile or GitHub organization.</p>
+<p>Create a <code>buildspec.yml</code> file on the root of your repository, for example:</p>
+<pre><code class="language-yaml">version: 0.2
 
-<h2 id="kics_accuracy_benchmark">KICS Accuracy Benchmark<a class="headerlink" href="#kics_accuracy_benchmark" title="Permanent link">&para;</a></h2>
-<p>The values below were obtained after scanning 150 open source projects with KICS (1.2.x) covering
-the supported IaC technologies (c.f., Terraform, Ansible, Kubernetes, Docker, AWS Cloudformation).</p>
-<table>
-<thead>
-<tr>
-<th align="left">IaC Technology</th>
-<th align="left">Query Accuracy<sup>1</sup></th>
-<th align="left">Query Coverage<sup>2</sup></th>
-<th align="left">Scanned IaC files​</th>
-<th align="left">Number of Results​</th>
-<th align="left">Average Scan Time​ (s)</th>
-<th align="left">Average Project Size (MB)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">Terraform​</td>
-<td align="left">99.7%​</td>
-<td align="left">46%</td>
-<td align="left">1176​</td>
-<td align="left">709</td>
-<td align="left">6.6</td>
-<td align="left">33.4​</td>
-</tr>
-<tr>
-<td align="left">Docker​</td>
-<td align="left">98.8%​​</td>
-<td align="left">68%​</td>
-<td align="left">1017​</td>
-<td align="left">5109</td>
-<td align="left">11</td>
-<td align="left">0.7</td>
-</tr>
-<tr>
-<td align="left">Kubernetes​</td>
-<td align="left">99.3%​​</td>
-<td align="left">88.7%​</td>
-<td align="left">6089​</td>
-<td align="left">21753</td>
-<td align="left">7</td>
-<td align="left">90</td>
-</tr>
-<tr>
-<td align="left">CloudFormation​</td>
-<td align="left">95%​</td>
-<td align="left">73%​</td>
-<td align="left">1769​</td>
-<td align="left">5343</td>
-<td align="left">10.2</td>
-<td align="left">4.8</td>
-</tr>
-<tr>
-<td align="left">Ansible ​</td>
-<td align="left">100%</td>
-<td align="left">​ 54%​</td>
-<td align="left">3367​</td>
-<td align="left">1320</td>
-<td align="left">23.3</td>
-<td align="left">4.1</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p><sup>1</sup> Query Accuracy = TP results / results</p>
-<p><sup>2</sup> Query Coverage = Query with results / Queries</p>
-<hr />
-<p><br/></p>
-<h3 id="global_measures">Global Measures<a class="headerlink" href="#global_measures" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th align="left">Measure</th>
-<th align="left">Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left"><strong>Average Accuracy</strong></td>
-<td align="left">98.6%</td>
-</tr>
-<tr>
-<td align="left"><strong>Total Number of Results</strong></td>
-<td align="left">34234</td>
-</tr>
-<tr>
-<td align="left"><strong>Average Query Coverage</strong></td>
-<td align="left">66.4%</td>
-</tr>
-<tr>
-<td align="left"><strong>Total Scanned IaC Files</strong></td>
-<td align="left">13418</td>
-</tr>
-<tr>
-<td align="left"><strong>Average Scan Time (s)</strong></td>
-<td align="left">11.2</td>
-</tr>
-<tr>
-<td align="left"><strong>Average Project Size (MB)</strong></td>
-<td align="left">26.6</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="kics_profiling">KICS Profiling<a class="headerlink" href="#kics_profiling" title="Permanent link">&para;</a></h2>
-<p>Running Kics with <code>--profiling</code> flag will log the CPU/MEM metrics used for:</p>
-<ul>
-<li>Getting Queries</li>
-<li>Parsing Files</li>
-<li>Scanning Vulnerabilities</li>
-<li>Generating Reports</li>
-</ul>
-<p>Keep in mind that profiling will periodically stop KICS to retrieve the wanted metrics, meaning KICS execution time will increase substantially.</p>
-<hr />
-<h3 id="cpu_profiling">CPU Profiling<a class="headerlink" href="#cpu_profiling" title="Permanent link">&para;</a></h3>
-<p>Flag: <code>--profiling CPU</code></p>
-<pre><code class="language-text">9:43AM INF Scanning with Keeping Infrastructure as Code Secure dev
-9:43AM INF Total CPU usage for get_queries: 6.56s &lt;-
-9:43AM INF Inspector initialized, number of queries=1385
-9:43AM INF Total CPU usage for get_sources: 200.00ms &lt;-
-9:43AM INF Total CPU usage for inspect: 15.43s &lt;-
-9:43AM INF Results saved to file results/results.json fileName=results.json
-9:43AM INF Results saved to file results/results.sarif fileName=results.sarif
-9:43AM INF Results saved to file results/results.html fileName=results.html
-9:43AM INF Total CPU usage for generate_report: 290.00ms &lt;-
-9:43AM INF Files scanned: 221
-9:43AM INF Parsed files: 221
-9:43AM INF Queries loaded: 1385
-9:43AM INF Queries failed to execute: 0
-9:43AM INF Inspector stopped
-9:43AM INF Scan duration: 21.1476197s
+phases:
+    build:
+        commands:
+            - echo Starting Kics scan
+            - docker run -v $PWD:/path checkmarx/kics scan --no-progress --ignore-on-exit all -p /path -o /path --report-formats junit --output-name kics-report
+reports:
+    kics-report:
+        files:
+            - junit-kics-report.xml
 </code></pre>
-<hr />
-<h3 id="mem_profiling">MEM Profiling<a class="headerlink" href="#mem_profiling" title="Permanent link">&para;</a></h3>
-<p>Flag: <code>--profiling MEM</code></p>
-<pre><code class="language-text">9:43AM INF Scanning with Keeping Infrastructure as Code Secure dev
-9:43AM INF Total MEM usage for get_queries: 237.96MB &lt;-
-9:43AM INF Inspector initialized, number of queries=1385
-9:43AM INF Total MEM usage for get_sources: 280.53MB &lt;-
-9:43AM INF Total MEM usage for inspect: 335.44MB &lt;-
-9:43AM INF Results saved to file results/results.json fileName=results.json
-9:43AM INF Results saved to file results/results.sarif fileName=results.sarif
-9:43AM INF Results saved to file results/results.html fileName=results.html
-9:43AM INF Total MEM usage for generate_report: 333.38MB &lt;-
-9:43AM INF Files scanned: 221
-9:43AM INF Parsed files: 221
-9:43AM INF Queries loaded: 1385
-9:43AM INF Queries failed to execute: 0
-9:43AM INF Inspector stopped
-9:43AM INF Scan duration: 21.1476197s
-</code></pre>
+<p>After running the pipeline, you can see the logs and the reports section:</p>
+<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/codebuild-report.png" width="850"></p>
+<p>Go to report section to see reports:</p>
+<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/codebuild-report-section.png" width="850"></p>
+<p>Select the desired report to see the test cases:</p>
+<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/codebuild-test-cases.png" width="850"></p>
 
               
             </article>
@@ -1399,7 +1262,7 @@ the supported IaC technologies (c.f., Terraform, Ansible, Kubernetes, Docker, AW
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../releases/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Releases" rel="prev">
+        <a href="../cdk/" class="md-footer__link md-footer__link--prev" aria-label="Previous: AWS CDK" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1408,20 +1271,20 @@ the supported IaC technologies (c.f., Terraform, Ansible, Kubernetes, Docker, AW
               <span class="md-footer__direction">
                 Previous
               </span>
-              Releases
+              AWS CDK
             </div>
           </div>
         </a>
       
       
         
-        <a href="../CONTRIBUTING/" class="md-footer__link md-footer__link--next" aria-label="Next: Contribution" rel="next">
+        <a href="../BADGE/" class="md-footer__link md-footer__link--next" aria-label="Next: Badge" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Contribution
+              Badge
             </div>
           </div>
           <div class="md-footer__button md-icon">

@@ -96,6 +96,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/integrations_aws_codebuild/</loc>
+         <lastmod>2022-02-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/integrations_azurepipelines/</loc>
          <lastmod>2022-02-14</lastmod>
          <changefreq>daily</changefreq>
