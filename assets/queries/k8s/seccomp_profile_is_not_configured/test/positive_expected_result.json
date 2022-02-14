@@ -2,21 +2,37 @@
 	{
 		"queryName": "Seccomp Profile Is Not Configured",
 		"severity": "MEDIUM",
-		"line": 4
+		"line": 26,
+		"fileName": "positive1.yaml"
 	},
 	{
 		"queryName": "Seccomp Profile Is Not Configured",
 		"severity": "MEDIUM",
-		"line": 13
+		"line": 43,
+		"fileName": "positive1.yaml"
 	},
 	{
 		"queryName": "Seccomp Profile Is Not Configured",
 		"severity": "MEDIUM",
-		"line": 24
+		"line": 24,
+		"fileName": "positive2.yaml"
 	},
 	{
 		"queryName": "Seccomp Profile Is Not Configured",
 		"severity": "MEDIUM",
-		"line": 43
+		"line": 24,
+		"fileName": "positive3.yaml"
+	},
+	{
+		"queryName": "Seccomp Profile Is Not Configured",
+		"severity": "MEDIUM",
+		"line": 33,
+		"fileName": "positive3.yaml"
+	},
+	{
+		"queryName": "Seccomp Profile Is Not Configured",
+		"severity": "MEDIUM",
+		"line": 35,
+		"fileName": "positive4.yaml"
 	}
 ]

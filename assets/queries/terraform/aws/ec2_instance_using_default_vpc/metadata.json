@@ -1,0 +1,11 @@
+{
+  "id": "7e4a6e76-568d-43ef-8c4e-36dea481bff1",
+  "queryName": "EC2 Instance Using Default VPC",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "EC2 Instances should not be configured under a default VPC network",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#subnet_id",
+  "platform": "Terraform",
+  "descriptionID": "7e2909e5",
+  "cloudProvider": "aws"
+}

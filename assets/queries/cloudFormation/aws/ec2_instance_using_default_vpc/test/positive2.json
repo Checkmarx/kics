@@ -1,0 +1,29 @@
+{
+  "Resources": {
+    "DefaultVPC": {
+      "Properties": {
+        "ImageId": "ami-79fd7eee",
+        "KeyName": "testkey",
+        "SubnetId": "PublicSubnetA2"
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "PublicSubnetA2": {
+      "Properties": {
+        "AvailabilityZone": [
+          0,
+          ""
+        ],
+        "CidrBlock": "10.1.10.0/24",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "${AWS::StackName}-Public-A"
+          }
+        ],
+        "VpcId": "DefaultVPC"
+      },
+      "Type": "AWS::EC2::Subnet"
+    }
+  }
+}
