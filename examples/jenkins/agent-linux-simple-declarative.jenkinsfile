@@ -1,3 +1,5 @@
+// DEPRECATED
+
 pipeline {
   agent any
   stages {
