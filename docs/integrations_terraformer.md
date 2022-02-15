@@ -5,6 +5,7 @@ From version 1.5, KICS integrates with Terraformer to scan resources deployed in
 **Cloud providers supported:**
 - AWS
 - AZURE
+- GCP
 
 ## Configure AWS Credentials
 
@@ -100,8 +101,15 @@ $Env:ARM_TENANT_ID="<ARM_TENANT_ID>"
 
 ## KICS Terraformer Path Syntax
 
+### Regular
+
 ```sh
 terraformer::{CloudProvider}:{Resources}:{Regions}
+```
+
+### GCP
+```sh
+terraformer::{CloudProvider}:{Resources}:{Regions}:{Projects}
 ```
 
 **CloudProvider**: The name of the Cloud Provider to import from.
@@ -109,15 +117,19 @@ terraformer::{CloudProvider}:{Resources}:{Regions}
 Possible values:
 - `aws`
 - `azure`
+- `gcp`
 
 **Resources:** A slash-separated list of the resources intended to be imported and scanned.
 You can find a complete list of possible values in the links below:
 - [aws](https://github.com/GoogleCloudPlatform/terraformer/blob/master/docs/aws.md#supported-services)
 - [azure](https://github.com/GoogleCloudPlatform/terraformer/blob/master/docs/azure.md#list-of-supported-azure-resources)
+- [gcp](https://github.com/GoogleCloudPlatform/terraformer/blob/master/docs/gcp.md)
 
 To import all resources please use: `*`
 
 **Regions**: A slash-separated list of the regions to import from.
+
+**Projects**: A slash-separated list of the projects ids to import from. **It is only required for GCP**.
 
 ## Running KICS with Terraformer
 
@@ -153,7 +165,6 @@ docker run -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID -e AWS_SESSION_TOKEN -v
 
 <img src="./img/docker_terraformer.gif" />
 
-
 ### [AZURE] Run KICS Terraformer integration with Docker
 To run KICS Terraformer integration with Docker simply pass the AZURE Credentials that were set as environment variables to the docker run command and use the terraformer path syntax. Choose one of the following options:
 
@@ -181,6 +192,19 @@ docker run -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET -e ARM_T
 ![client_secret_terraformer_azure](https://user-images.githubusercontent.com/74001161/152833926-68b7cc56-23c0-4297-b308-56f4c6746e09.gif)
 
 
+### [GCP] Run KICS Terraformer integration with Docker
+To run KICS Terraformer integration with Docker, pass the path that points to the JSON file that contains your service account key as an environment variable (GOOGLE_APPLICATION_CREDENTIALS) to the docker run command and use the terraformer path syntax. Note that your project should have a region defined, and your account should have read permissions to list resources.
+
+Also note that you should fill the `<credentials_path>` with the path that points to the directory where your service account key file is located, and the `<credentials-file-name>` should point to the service account key file name located in `<credentials_path>`.
+
+```sh
+ docker run -v <credentials_path>:/credentials -e GOOGLE_APPLICATION_CREDENTIALS=/credentials/<credentials-file-name> checkmarx/kics:latest scan -p "terraformer::gcp:gcs:us-east4:project" -v --no-progress --log-level=DEBUG
+```
+```sh
+ docker run -v <credentials_path>:/credentials -v ${PWD}:/path/ -e GOOGLE_APPLICATION_CREDENTIALS=/credentials/<credentials-file-name> checkmarx/kics:latest scan -p "terraformer::gcp:gcs:us-east4:project" -v --no-progress --log-level=DEBUG -o /path/results
+```
+
+ ![credentials_key_gcp](https://user-images.githubusercontent.com/74001161/153022195-9d2a1cae-71c3-443a-ac08-4e2697f93469.gif)
 
 
 ## **NOTES**

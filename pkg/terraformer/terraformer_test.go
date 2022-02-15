@@ -19,10 +19,12 @@ func TestPath_createTfOptions(t *testing.T) {
 		CloudProvider string
 		Region        []string
 		Resource      []string
+		Projects      []string
 	}
 	type args struct {
 		destination string
 		region      string
+		projects    []string
 	}
 	tests := []struct {
 		name   string
@@ -36,10 +38,12 @@ func TestPath_createTfOptions(t *testing.T) {
 				CloudProvider: "aws",
 				Region:        []string{"us-east-1"},
 				Resource:      []string{"subnet"},
+				Projects:      []string{""},
 			},
 			args: args{
 				destination: "destination",
 				region:      "us-east-1",
+				projects:    []string{""},
 			},
 			want: &importer.ImportOptions{
 				Resources:     []string{"subnet"},
@@ -70,8 +74,9 @@ func TestPath_createTfOptions(t *testing.T) {
 				CloudProvider: tt.fields.CloudProvider,
 				Region:        tt.fields.Region,
 				Resource:      tt.fields.Resource,
+				Projects:      tt.fields.Projects,
 			}
-			if got := tr.createTfOptions(tt.args.destination, tt.args.region); !reflect.DeepEqual(got, tt.want) {
+			if got := tr.createTfOptions(tt.args.destination, tt.args.region, tt.args.projects); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("Path.createTfOptions() = %v, want %v", got, tt.want)
 			}
 		})
