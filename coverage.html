@@ -213,7 +213,7 @@
 				
 				<option value="file78">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (85.7%)</option>
 				
-				<option value="file79">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file79">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (90.9%)</option>
 				
 				<option value="file80">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -263,13 +263,15 @@
 				
 				<option value="file103">github.com/Checkmarx/kics/pkg/terraformer/azure/azure_cloud_provider.go (92.9%)</option>
 				
-				<option value="file104">github.com/Checkmarx/kics/pkg/terraformer/terraformer.go (74.4%)</option>
+				<option value="file104">github.com/Checkmarx/kics/pkg/terraformer/gcp/gcp_cloud_provider.go (93.8%)</option>
 				
-				<option value="file105">github.com/Checkmarx/kics/pkg/utils/map.go (71.4%)</option>
+				<option value="file105">github.com/Checkmarx/kics/pkg/terraformer/terraformer.go (72.1%)</option>
 				
-				<option value="file106">github.com/Checkmarx/kics/pkg/utils/random.go (0.0%)</option>
+				<option value="file106">github.com/Checkmarx/kics/pkg/utils/map.go (71.4%)</option>
 				
-				<option value="file107">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
+				<option value="file107">github.com/Checkmarx/kics/pkg/utils/random.go (0.0%)</option>
+				
+				<option value="file108">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
 				
 				</select>
 			</div>
@@ -2345,13 +2347,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="30">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov8" title="30">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2376,7 +2378,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov6" title="12">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2954,7 +2956,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="33">{
-        for _, a := range s </span><span class="cov8" title="105">{
+        for _, a := range s </span><span class="cov8" title="97">{
                 if a == e </span><span class="cov4" title="8">{
                         return true
                 }</span>
@@ -4744,7 +4746,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5771,12 +5773,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="25159">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="25167">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="25159">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="24924">{
+                <span class="cov9" title="25167">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="24932">{
                         return skipFolder
                 }</span>
 
@@ -5843,7 +5845,7 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="234">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="25162">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="25170">{
         if info.IsDir() </span><span class="cov8" title="5590">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
@@ -5856,11 +5858,11 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="19572">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="19580">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="19572">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="19338">{
+        <span class="cov9" title="19580">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="19346">{
                 return true, nil
         }</span>
         <span class="cov5" title="234">return false, nil</span>
@@ -14686,7 +14688,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov1" title="1">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -14695,7 +14697,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov1" title="1">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
@@ -14707,14 +14709,14 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov1" title="1">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov1" title="1">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file80" style="display: none">package progress
@@ -17552,6 +17554,63 @@ func (a CloudProvider) Import(ctx context.Context, options *importer.ImportOptio
 		<pre class="file" id="file104" style="display: none">//go:build !dev
 // +build !dev
 
+package gcp
+
+import (
+        "context"
+        "errors"
+        "sync"
+        "time"
+
+        importer "github.com/GoogleCloudPlatform/terraformer/cmd"
+        gcpterraformer "github.com/GoogleCloudPlatform/terraformer/providers/gcp"
+        "github.com/GoogleCloudPlatform/terraformer/terraformutils"
+)
+
+var terraformerTimeout = time.Minute * 3
+
+// ImporterFunc is the function kics uses to import resources (for testing porpuses)
+var ImporterFunc func(provider terraformutils.ProviderGenerator, options importer.ImportOptions, args []string) error = importer.Import
+
+// CloudProvider is the AWS Cloud Provider
+type CloudProvider struct{}
+
+var provider = &amp;gcpterraformer.GCPProvider{}
+
+// Import imports the terraformer resources into the destination using terraformer
+func (a CloudProvider) Import(ctx context.Context, options *importer.ImportOptions, destination string) error <span class="cov8" title="1">{
+        ctxT, cancel := context.WithTimeout(ctx, terraformerTimeout)
+        defer cancel()
+        wg := sync.WaitGroup{}
+        done := make(chan error, 1)
+
+        for _, project := range options.Projects </span><span class="cov8" title="1">{
+                for _, region := range options.Regions </span><span class="cov8" title="1">{
+                        wg.Add(1)
+                        go func(region string) </span><span class="cov8" title="1">{
+                                defer wg.Done()
+                                done &lt;- ImporterFunc(provider, *options, []string{region, project, ""})
+                        }</span>(region)
+                }
+        }
+
+        <span class="cov8" title="1">go func() </span><span class="cov8" title="1">{
+                defer close(done)
+                wg.Wait()
+        }</span>()
+
+        <span class="cov8" title="1">select </span>{
+        case err := &lt;-done:<span class="cov8" title="1">
+                return err</span>
+        case &lt;-ctxT.Done():<span class="cov0" title="0">
+                return errors.New("terraformer import execution timeout")</span>
+        }
+}
+</pre>
+		
+		<pre class="file" id="file105" style="display: none">//go:build !dev
+// +build !dev
+
 package terraformer
 
 import (
@@ -17568,6 +17627,7 @@ import (
 
         "github.com/Checkmarx/kics/pkg/terraformer/aws"
         "github.com/Checkmarx/kics/pkg/terraformer/azure"
+        "github.com/Checkmarx/kics/pkg/terraformer/gcp"
         importer "github.com/GoogleCloudPlatform/terraformer/cmd"
         "github.com/pkg/errors"
         "github.com/rs/zerolog/log"
@@ -17580,6 +17640,7 @@ type Path struct {
         CloudProvider string
         Region        []string
         Resource      []string
+        Projects      []string
 }
 
 // CloudProvider is an interface that defines the methods that a cloud provider must implement
@@ -17587,7 +17648,7 @@ type CloudProvider interface {
         Import(ctx context.Context, options *importer.ImportOptions, destination string) error
 }
 
-func (t *Path) createTfOptions(destination, region string) *importer.ImportOptions <span class="cov10" title="2">{
+func (t *Path) createTfOptions(destination, region string, projects []string) *importer.ImportOptions <span class="cov10" title="2">{
         return &amp;importer.ImportOptions{
                 Resources:     t.Resource,
                 Excludes:      []string{""},
@@ -17599,7 +17660,7 @@ func (t *Path) createTfOptions(destination, region string) *importer.ImportOptio
                 Verbose:       false,
                 Zone:          "",
                 Regions:       []string{region},
-                Projects:      []string{""},
+                Projects:      projects,
                 ResourceGroup: "",
                 Connect:       true,
                 Compact:       false,
@@ -17638,13 +17699,15 @@ func Import(terraformerPath, destinationPath string) (string, error) <span class
                 provider = aws.CloudProvider{}</span>
         case "azure":<span class="cov0" title="0">
                 provider = azure.CloudProvider{}</span>
+        case "gcp":<span class="cov0" title="0">
+                provider = gcp.CloudProvider{}</span>
         default:<span class="cov0" title="0">
                 return "", errors.New("unsupported Cloud Provider")</span>
         }
 
         <span class="cov1" title="1">for _, region := range pathOptions.Region </span><span class="cov1" title="1">{
                 regionDest := filepath.Join(destination, region)
-                err = provider.Import(ctx, pathOptions.createTfOptions(regionDest, region), destination)
+                err = provider.Import(ctx, pathOptions.createTfOptions(regionDest, region, pathOptions.Projects), destination)
                 if err != nil </span><span class="cov0" title="0">{
                         return "", err
                 }</span>
@@ -17657,13 +17720,14 @@ func Import(terraformerPath, destinationPath string) (string, error) <span class
 
 func extractTerraformerOptions(path string) (*Path, error) <span class="cov10" title="2">{
         pathInfo := strings.Split(path, ":")
-        if len(pathInfo) != terraformerPathLength </span><span class="cov1" title="1">{
+        if len(pathInfo) != terraformerPathLength &amp;&amp; len(pathInfo) != terraformerPathLength+1 </span><span class="cov1" title="1">{
                 return nil, errors.New("wrong terraformer path syntax")
         }</span>
         <span class="cov1" title="1">return &amp;Path{
                 CloudProvider: pathInfo[0],
                 Region:        strings.Split(pathInfo[2], "/"),
                 Resource:      strings.Split(pathInfo[1], "/"),
+                Projects:      getProjects(pathInfo),
         }, nil</span>
 }
 
@@ -17688,9 +17752,17 @@ func deleteOutputFile(path string, output fs.FileInfo) <span class="cov0" title=
                 }</span>
         }
 }
+
+func getProjects(pathInfo []string) []string <span class="cov1" title="1">{
+        if len(pathInfo) == terraformerPathLength+1 </span><span class="cov0" title="0">{
+                return strings.Split(pathInfo[3], "/")
+        }</span>
+
+        <span class="cov1" title="1">return []string{}</span>
+}
 </pre>
 		
-		<pre class="file" id="file105" style="display: none">package utils
+		<pre class="file" id="file106" style="display: none">package utils
 
 import "sort"
 
@@ -17712,7 +17784,7 @@ func MergeMaps(map1, map2 map[string]interface{}) <span class="cov0" title="0">{
 }
 </pre>
 		
-		<pre class="file" id="file106" style="display: none">package utils
+		<pre class="file" id="file107" style="display: none">package utils
 
 import (
         "os"
@@ -17747,7 +17819,7 @@ func NextRandom() string <span class="cov0" title="0">{
 // ==============================================================================
 </pre>
 		
-		<pre class="file" id="file107" style="display: none">package test
+		<pre class="file" id="file108" style="display: none">package test
 
 import (
         "bytes"
