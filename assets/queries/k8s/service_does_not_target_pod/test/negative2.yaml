@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: helloworld
+  name: negative2
 spec:
   type: ClusterIP
   ports:
@@ -14,22 +14,22 @@ spec:
       protocol: TCP
       targetPort: 8082
   selector:
-    app: helloworld
+    app: negative2
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: helloworld
+  name: negative2
   labels:
-    app: helloworld
+    app: negative2
 spec:
   selector:
     matchLabels:
-      app: helloworld
+      app: negative2
   template:
     metadata:
       labels:
-        app: helloworld
+        app: negative2
     spec:
       containers:
         - name: webserver

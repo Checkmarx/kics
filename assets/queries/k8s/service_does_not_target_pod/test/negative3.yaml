@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: negative3
+spec:
+  type: NodePort
+  selector:
+    app: negative3
+  ports:
+    - name: http
+      nodePort: 30475
+      port: 9377
+      protocol: TCP
+      targetPort: web
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: negative3
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: negative3
+  template:
+    metadata:
+      labels:
+        app: negative3
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - name: web
+              containerPort: 80
