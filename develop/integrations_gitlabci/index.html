@@ -1238,36 +1238,32 @@
 <h2 id="integrate_kics_with_gitlab_ci">Integrate KICS with GitLab CI<a class="headerlink" href="#integrate_kics_with_gitlab_ci" title="Permanent link">&para;</a></h2>
 <p>You can integrate KICS into your GitLab CI/CD pipelines.</p>
 <p>This provides you the ability to run KICS scans in your GitLab repositories and streamline vulnerabilities and misconfiguration checks to your infrastructure as code (IaC).</p>
-<h3 id="including_template">Including Template<a class="headerlink" href="#including_template" title="Permanent link">&para;</a></h3>
-<p>You can integrate KICS into your pipeline by <a href="https://docs.gitlab.com/ee/ci/yaml/includes.html">including</a> our <a href="https://docs.gitlab.com/ee/development/cicd/templates.html#versioning">versioned</a> <a href="https://raw.githubusercontent.com/checkmarx/kics/master/examples/gitlab/KICS.v1.gitlabci.yaml">template</a> in your <code>gitlabci.yaml</code>:</p>
-<pre><code class="language-yaml">include:
-  - remote: https://raw.githubusercontent.com/checkmarx/kics/master/examples/gitlab/KICS.v1.gitlabci.yaml
-</code></pre>
-<h3 id="full_example">Full Example<a class="headerlink" href="#full_example" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml">image: alpine
+<!-- ### Including Template
 
-before_script:
-  - apk add --no-cache libc6-compat curl
-  - DATETIME=&quot;`date '+%H:%M'`&quot;
-  - TAG=`curl --silent &quot;https://api.github.com/repos/Checkmarx/kics/releases/latest&quot; | grep '&quot;tag_name&quot;:' | sed -E 's/.*&quot;([^&quot;]+)&quot;.*/\1/'`
-  - echo &quot;${DATETIME} - INF latest tag is $TAG&quot;
-  - VERSION=`echo $TAG | sed -r 's/^.{1}//'`
-  - echo &quot;${DATETIME} - INF version is $VERSION&quot;
-  - echo &quot;${DATETIME} - INF downloading latest kics binaries kics_${VERSION}_linux_x64.tar.gz&quot;
-  - wget -q -c &quot;https://github.com/Checkmarx/kics/releases/download/${TAG}/kics_${VERSION}_linux_x64.tar.gz&quot; -O - | tar -xz --directory /usr/bin &amp;&gt;/dev/null
+You can integrate KICS into your pipeline by [including](https://docs.gitlab.com/ee/ci/yaml/includes.html) our [versioned](https://docs.gitlab.com/ee/development/cicd/templates.html#versioning) [template](https://raw.githubusercontent.com/checkmarx/kics/master/examples/gitlab/KICS.v1.gitlabci.yaml) in your `gitlabci.yaml`: -->
+
+<!-- ```yaml
+include:
+    - remote: https://raw.githubusercontent.com/checkmarx/kics/master/examples/gitlab/KICS.v1.gitlabci.yaml
+``` -->
+
+<h3 id="full_example">Full Example<a class="headerlink" href="#full_example" title="Permanent link">&para;</a></h3>
+<pre><code class="language-yaml">image:
+    name: checkmarx/kics:latest
+    entrypoint: [&quot;&quot;]
 
 stages:
-  - kics
+    - kics
 
 kics-scan:
-  stage: kics
-  script:
-    - kics scan --no-progress -q /usr/bin/assets/queries -p ${PWD} -o ${PWD} --report-formats json --output-name kics-results
-  artifacts:
-    name: kics-results.json
-    paths:
-      - kics-results.json
-    when: always
+    stage: kics
+    script:
+        - kics scan --no-progress -q /usr/bin/assets/queries -p ${PWD} -o ${PWD} --report-formats json --output-name kics-results
+    artifacts:
+        name: kics-results.json
+        paths:
+            - kics-results.json
+        when: always
 </code></pre>
 <hr />
 <h3 id="example_results">Example Results<a class="headerlink" href="#example_results" title="Permanent link">&para;</a></h3>
@@ -1281,19 +1277,19 @@ kics-scan:
 <h2 id="using_gitlab_sast_reports">Using GitLab SAST Reports<a class="headerlink" href="#using_gitlab_sast_reports" title="Permanent link">&para;</a></h2>
 <pre><code class="language-yaml">image:
     name: checkmarx/kics:latest
-    entrypoint: ['']
+    entrypoint: [&quot;&quot;]
 
 stages:
-  - kics
+    - kics
 
 kics-scan:
-  stage: kics
-  script:
-    - kics scan -q /app/bin/assets/queries -p ${PWD} --ignore-on-exit all --report-formats glsast -o ${PWD} --output-name kics-results
-  artifacts:
-    reports:
-      sast: gl-sast-kics-results.json
-    when: always
+    stage: kics
+    script:
+        - kics scan -q /app/bin/assets/queries -p ${PWD} --ignore-on-exit all --report-formats glsast -o ${PWD} --output-name kics-results
+    artifacts:
+        reports:
+            sast: gl-sast-kics-results.json
+        when: always
 </code></pre>
 <h3 id="example_results_1">Example results<a class="headerlink" href="#example_results_1" title="Permanent link">&para;</a></h3>
 <h4 id="pipeline_sast_report_integration">Pipeline SAST report integration<a class="headerlink" href="#pipeline_sast_report_integration" title="Permanent link">&para;</a></h4>
