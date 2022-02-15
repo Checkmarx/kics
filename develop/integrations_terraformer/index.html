@@ -1285,7 +1285,8 @@
 <p>From version 1.5, KICS integrates with Terraformer to scan resources deployed in the Cloud. The runtime information of the resources is obtained by providing a Terraformer path to KICS, via <code>-p</code> flag. The scan happens immediately after this information is obtained. In the end, results are shown as for any other KICS scan.</p>
 <p><strong>Cloud providers supported:</strong>
 - AWS
-- AZURE</p>
+- AZURE
+- GCP</p>
 <h2 id="configure_aws_credentials">Configure AWS Credentials<a class="headerlink" href="#configure_aws_credentials" title="Permanent link">&para;</a></h2>
 <p>For KICS to get the runtime information of your resources you need to provide AWS account Credentials as environment variables. Please note the AWS account provided should have read permissions to list service resources.</p>
 <p>Setting AWS credentials as environment variables</p>
@@ -1348,18 +1349,25 @@ $Env:ARM_CLIENT_SECRET=&quot;&lt;ARM_CLIENT_SECRET&gt;&quot;
 $Env:ARM_TENANT_ID=&quot;&lt;ARM_TENANT_ID&gt;&quot;
 </code></pre>
 <h2 id="kics_terraformer_path_syntax">KICS Terraformer Path Syntax<a class="headerlink" href="#kics_terraformer_path_syntax" title="Permanent link">&para;</a></h2>
+<h3 id="regular">Regular<a class="headerlink" href="#regular" title="Permanent link">&para;</a></h3>
 <pre><code class="language-sh">terraformer::{CloudProvider}:{Resources}:{Regions}
+</code></pre>
+<h3 id="gcp">GCP<a class="headerlink" href="#gcp" title="Permanent link">&para;</a></h3>
+<pre><code class="language-sh">terraformer::{CloudProvider}:{Resources}:{Regions}:{Projects}
 </code></pre>
 <p><strong>CloudProvider</strong>: The name of the Cloud Provider to import from.</p>
 <p>Possible values:
 - <code>aws</code>
-- <code>azure</code></p>
+- <code>azure</code>
+- <code>gcp</code></p>
 <p><strong>Resources:</strong> A slash-separated list of the resources intended to be imported and scanned.
 You can find a complete list of possible values in the links below:
 - <a href="https://github.com/GoogleCloudPlatform/terraformer/blob/master/docs/aws.md#supported-services">aws</a>
-- <a href="https://github.com/GoogleCloudPlatform/terraformer/blob/master/docs/azure.md#list-of-supported-azure-resources">azure</a></p>
+- <a href="https://github.com/GoogleCloudPlatform/terraformer/blob/master/docs/azure.md#list-of-supported-azure-resources">azure</a>
+- <a href="https://github.com/GoogleCloudPlatform/terraformer/blob/master/docs/gcp.md">gcp</a></p>
 <p>To import all resources please use: <code>*</code></p>
 <p><strong>Regions</strong>: A slash-separated list of the regions to import from.</p>
+<p><strong>Projects</strong>: A slash-separated list of the projects ids to import from. <strong>It is only required for GCP</strong>.</p>
 <h2 id="running_kics_with_terraformer_1">Running KICS with Terraformer<a class="headerlink" href="#running_kics_with_terraformer_1" title="Permanent link">&para;</a></h2>
 <p>When Running KICS using a terraformer path, resources are imported using the credentials set as environment variables in terraform format to the current working directory in a new folder named <code>kics-extract-terraformer</code> following the above-described structure.
 KICS will then run a scan on these local files.</p>
@@ -1396,6 +1404,14 @@ KICS will then run a scan on these local files.</p>
 <pre><code class="language-sh">docker run -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET -e ARM_TENANT_ID -v ${PWD}:/path/ checkmarx/kics:latest scan -p &quot;terraformer::azure:storage_account:eastus&quot; -v --no-progress -o /path/results
 </code></pre>
 <p><img alt="client_secret_terraformer_azure" src="https://user-images.githubusercontent.com/74001161/152833926-68b7cc56-23c0-4297-b308-56f4c6746e09.gif" /></p>
+<h3 id="gcp_run_kics_terraformer_integration_with_docker">[GCP] Run KICS Terraformer integration with Docker<a class="headerlink" href="#gcp_run_kics_terraformer_integration_with_docker" title="Permanent link">&para;</a></h3>
+<p>To run KICS Terraformer integration with Docker, pass the path that points to the JSON file that contains your service account key as an environment variable (GOOGLE_APPLICATION_CREDENTIALS) to the docker run command and use the terraformer path syntax. Note that your project should have a region defined, and your account should have read permissions to list resources.</p>
+<p>Also note that you should fill the <code>&lt;credentials_path&gt;</code> with the path that points to the directory where your service account key file is located, and the <code>&lt;credentials-file-name&gt;</code> should point to the service account key file name located in <code>&lt;credentials_path&gt;</code>.</p>
+<pre><code class="language-sh"> docker run -v &lt;credentials_path&gt;:/credentials -e GOOGLE_APPLICATION_CREDENTIALS=/credentials/&lt;credentials-file-name&gt; checkmarx/kics:latest scan -p &quot;terraformer::gcp:gcs:us-east4:project&quot; -v --no-progress --log-level=DEBUG
+</code></pre>
+<pre><code class="language-sh"> docker run -v &lt;credentials_path&gt;:/credentials -v ${PWD}:/path/ -e GOOGLE_APPLICATION_CREDENTIALS=/credentials/&lt;credentials-file-name&gt; checkmarx/kics:latest scan -p &quot;terraformer::gcp:gcs:us-east4:project&quot; -v --no-progress --log-level=DEBUG -o /path/results
+</code></pre>
+<p><img alt="credentials_key_gcp" src="https://user-images.githubusercontent.com/74001161/153022195-9d2a1cae-71c3-443a-ac08-4e2697f93469.gif" /></p>
 <h2 id="notes"><strong>NOTES</strong><a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>
 <li>If environment credentials are incorrect a timeout may occur.</li>
