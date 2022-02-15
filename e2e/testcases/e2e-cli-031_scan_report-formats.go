@@ -12,7 +12,7 @@ func init() { //nolint
 					"-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml"},
 
 				[]string{"scan", "--output-path", "output", "--output-name", "E2E_CLI_031_RESULT_CIS",
-					"--report-formats", "JUnit",
+					"--report-formats", "json,JUnit", "--include-queries", "275a3217-ca37-40c1-a6cf-bb57d245ab32",
 					"-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml"},
 			},
 			ExpectedResult: []ResultsValidation{
@@ -22,7 +22,7 @@ func init() { //nolint
 				},
 				{
 					ResultsFile:    "E2E_CLI_031_RESULT_CIS",
-					ResultsFormats: []string{"junit"},
+					ResultsFormats: []string{"junit", "json-cis"},
 				},
 			},
 			UseMock: []bool{false, true},
