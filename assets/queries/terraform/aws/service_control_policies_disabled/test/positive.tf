@@ -1,46 +1,8 @@
-resource "aws_organizations_policy" "positive1" {
-  name = "example"
+resource "aws_organizations_organization" "positive1" {
+  aws_service_access_principals = [
+    "cloudtrail.amazonaws.com",
+    "config.amazonaws.com",
+  ]
 
-  content = <<CONTENT
-{
-  "Version": "2012-10-17",
-  "Statement": [
-      {
-        "Effect": "Allow",
-        "Action": "iam",
-        "Resource": "*"
-        }
-    ]
-}
-CONTENT
-}
-
-resource "aws_organizations_policy" "positive2" {
-  name = "example"
-  type = "SERVICE_CONTROL_POLICY"
-  content = <<CONTENT
-{
-  "Version": "2012-10-17",
-  "Statement": {
-    "Effect": "Allow",
-    "Action": "*",
-    "Resource": ["some-resource"]
-  }
-}
-CONTENT
-}
-
-resource "aws_organizations_policy" "positive3" {
-  name = "example"
-
-  content = <<CONTENT
-{
-  "Version": "2012-10-17",
-  "Statement": {
-    "Effect": "Deny",
-    "Action": "*",
-    "Resource": "*"
-  }
-}
-CONTENT
+  feature_set = "CONSOLIDATED_BILLING"
 }

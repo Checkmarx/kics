@@ -3,33 +3,16 @@ package Cx
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	org_policy := input.document[i].resource.aws_organizations_policy[name]
+	org := input.document[i].resource.aws_organizations_organization[name]
 
-	serviceControlPolicy(object.get(org_policy, "type", "undefined"))
-
-	content := common_lib.json_unmarshal(org_policy.content)
-
-	st := common_lib.get_statement(content)
-	statement := st[_]
-
-	not policy_check(statement)
+	org.feature_set == "CONSOLIDATED_BILLING"
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_organizations_policy[%s].content", [name]),
+		"searchKey": sprintf("aws_organizations_organization[%s].feature_set", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Statements allow all policy actions in all resources",
-		"keyActualValue": "Some or all statements don't allow all policy actions in all resources",
-		"searchLine": common_lib.build_search_line(["resource", "aws_organizations_policy", name, "content"], []),
+		"keyExpectedValue": "'feature_set' is set to 'ALL' or undefined",
+		"keyActualValue": "'feature_set' is set to 'CONSOLIDATED_BILLING'",
+		"searchLine": common_lib.build_search_line(["resource", "aws_organizations_organization", name, "feature_set"], []),
 	}
-}
-
-serviceControlPolicy("SERVICE_CONTROL_POLICY") = true
-
-serviceControlPolicy("undefined") = true
-
-policy_check(statement) {
-	common_lib.is_allow_effect(statement)
-	common_lib.equalsOrInArray(statement.Action, "*")
-	common_lib.equalsOrInArray(statement.Resource, "*")
 }
