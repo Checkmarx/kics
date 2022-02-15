@@ -3,6 +3,7 @@ package report
 import (
 	_ "embed" // used for embedding report static files
 	"fmt"
+	"os"
 	"path/filepath"
 	"time"
 
@@ -242,6 +243,10 @@ func createHeaderArea(m pdf.Maroto) {
 	m.Row(rowLarge, func() {
 		m.Col(colSix, func() {
 			cxLogoPath := filepath.Join("docs", "img", "logo", "checkmarx-logo.png")
+			_, err := os.Stat(cxLogoPath)
+			if err != nil {
+				cxLogoPath = filepath.Join("..", "..", "docs", "img", "logo", "checkmarx-logo.png")
+			}
 			_ = m.FileImage(cxLogoPath, props.Rect{})
 		})
 	})
