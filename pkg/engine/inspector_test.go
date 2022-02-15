@@ -526,6 +526,17 @@ func TestEngine_LenQueriesByPlat(t *testing.T) {
 			},
 			min: 1,
 		},
+		{
+			name: "test_len_queries_plat_with_multiple_queries_path",
+			args: args{
+				queriesPath: []string{
+					filepath.FromSlash("./assets/queries/terraform/aws/alb_deletion_protection_disabled"),
+					filepath.FromSlash("./assets/queries/terraform/aws/alb_is_not_integrated_with_waf"),
+				},
+				platform: []string{"terraform"},
+			},
+			min: 2,
+		},
 	}
 
 	for _, tt := range tests {

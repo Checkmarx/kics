@@ -78,7 +78,7 @@ func combinePaths(terraformer, regular provider.ExtractedPath) provider.Extracte
 
 func (c *Client) preparePaths() error {
 	var err error
-	err = c.getQueryPath()
+	err = c.GetQueryPath()
 	if err != nil {
 		return err
 	}
@@ -89,7 +89,8 @@ func (c *Client) preparePaths() error {
 	return nil
 }
 
-func (c *Client) getQueryPath() error {
+// GetQueryPath gets all the queries paths
+func (c *Client) GetQueryPath() error {
 	queriesPath := make([]string, 0)
 	if c.ScanParams.ChangedDefaultQueryPath {
 		for _, queryPath := range c.ScanParams.QueriesPath {

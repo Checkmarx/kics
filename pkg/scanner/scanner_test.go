@@ -34,14 +34,14 @@ func TestScanner_StartScan(t *testing.T) {
 		scanID     string
 		noProgress bool
 	}
-	type feilds struct {
+	type fields struct {
 		types          []string
 		cloudProviders []string
 	}
 	tests := []struct {
 		name   string
 		args   args
-		feilds feilds
+		fields fields
 	}{
 		{
 			name: "testing_start_scan",
@@ -49,7 +49,7 @@ func TestScanner_StartScan(t *testing.T) {
 				scanID:     "console",
 				noProgress: true,
 			},
-			feilds: feilds{
+			fields: fields{
 				types:          []string{""},
 				cloudProviders: []string{""},
 			},
@@ -58,7 +58,7 @@ func TestScanner_StartScan(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			services, store, err := createServices(tt.feilds.types, tt.feilds.cloudProviders)
+			services, store, err := createServices(tt.fields.types, tt.fields.cloudProviders)
 			require.NoError(t, err)
 			err = StartScan(context.Background(), tt.args.scanID, progress.PbBuilder{}, services)
 			require.NoError(t, err)
