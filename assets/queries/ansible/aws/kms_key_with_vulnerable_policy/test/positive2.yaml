@@ -1,0 +1,5 @@
+---
+- name: Update IAM policy on an existing KMS key2
+  community.aws.aws_kms:
+    alias: my-kms-key
+    state: present

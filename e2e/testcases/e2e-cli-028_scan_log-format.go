@@ -11,7 +11,7 @@ func init() { //nolint
 			Args: []cmdArgs{
 
 				[]string{"scan", "--log-format", "json", "--verbose",
-					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+					"-q", "../assets/queries", "-p", "fixtures/samples/single.dockerfile"},
 			},
 		},
 
@@ -20,7 +20,7 @@ func init() { //nolint
 			match2, _ := regexp.MatchString(`"message":"Inspector initialized, number of queries=\d+"`, outputText)
 			return match1 && match2
 		},
-		WantStatus: []int{40},
+		WantStatus: []int{50},
 	}
 
 	Tests = append(Tests, testSample)

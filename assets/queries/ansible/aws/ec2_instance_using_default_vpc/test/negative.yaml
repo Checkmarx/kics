@@ -1,0 +1,17 @@
+- name: example2
+  amazon.aws.ec2:
+    key_name: mykey
+    instance_type: t2.micro
+    image: ami-123456
+    wait: yes
+    count: 3
+    vpc_subnet_id: "{{ my_subnet2.subnet.id }}"
+    assign_public_ip: yes
+- name: Create subnet for database server2
+  amazon.aws.ec2_vpc_subnet:
+    state: present
+    vpc_id: "{{ myVPC.vpcs.0.id }}"
+    cidr: 10.0.1.16/28
+    tags:
+      Name: Database Subnet
+  register: my_subnet2

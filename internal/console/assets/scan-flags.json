@@ -149,10 +149,10 @@
     "usage": "number of lines to be display in CLI results (min: 1, max: 30)"
   },
   "queries-path": {
-    "flagType": "str",
+    "flagType": "multiStr",
     "shorthandFlag": "q",
     "defaultValue": "./assets/queries",
-    "usage": "path to directory with queries"
+    "usage": "paths to directory with queries"
   },
   "report-formats": {
     "flagType": "multiStr",

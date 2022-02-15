@@ -1,0 +1,7 @@
+Resources:
+  RSASigningKey2:
+    Type: AWS::KMS::Key
+    Properties:
+      Description: RSA-3047 asymmetric CMK for signing and verification
+      KeySpec: RSA_3072
+      KeyUsage: SIGN_VERIFY

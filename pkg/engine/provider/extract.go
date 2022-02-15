@@ -105,7 +105,7 @@ func GetSources(source []string) (ExtractedPath, error) {
 
 		getterDst, err := getPaths(&goGetter)
 		if err != nil {
-			log.Error().Msgf("failed to find path %s: %s", path, err)
+			log.Error().Msgf("%s", err)
 			return ExtractedPath{}, err
 		}
 		tempDst, local := checkSymLink(getterDst, path)

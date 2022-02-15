@@ -1,5 +1,9 @@
 package testcases
 
+import (
+	"regexp"
+)
+
 // E2E-CLI-019 - KICS scan with multiple paths
 // should run a scan for all provided paths/files
 func init() { //nolint
@@ -7,11 +11,12 @@ func init() { //nolint
 		Name: "should run a scan in multiple paths [E2E-CLI-019]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf,fixtures/samples/terraform-single.tf"},
+				[]string{"scan", "-v", "-q", "../assets/queries", "-p", "fixtures/samples/positive.dockerfile,fixtures/samples/positive.yaml"},
 			},
-			ExpectedOut: []string{
-				"E2E_CLI_019",
-			},
+		},
+		Validation: func(outputText string) bool {
+			match, _ := regexp.MatchString(`Loading queries of type: (dockerfile|cloudformation), (dockerfile|cloudformation)`, outputText)
+			return match
 		},
 		WantStatus: []int{50},
 	}

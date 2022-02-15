@@ -1,0 +1,11 @@
+{
+  "id": "8833f180-96f1-46f4-9147-849aafa56029",
+  "queryName": "EC2 Instance Using Default VPC",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "EC2 Instances should not be configured under a default VPC network",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_module.html#parameter-vpc_subnet_id",
+  "platform": "Ansible",
+  "descriptionID": "701b1c92",
+  "cloudProvider": "aws"
+}

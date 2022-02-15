@@ -1,7 +1,6 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terra_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_efs_file_system_policy[name]
@@ -11,7 +10,8 @@ CxPolicy[result] {
 	statement := st[_]
 
 	common_lib.is_allow_effect(statement)
-	terra_lib.has_wildcard(statement, "elasticfilesystem:*")
+	not common_lib.valid_key(statement, "Condition")
+	common_lib.has_wildcard(statement, "elasticfilesystem:*")
 
 	result := {
 		"documentId": input.document[i].id,

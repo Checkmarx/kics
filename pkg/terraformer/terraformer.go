@@ -16,6 +16,7 @@ import (
 	tfLogger "log"
 
 	"github.com/Checkmarx/kics/pkg/terraformer/aws"
+	"github.com/Checkmarx/kics/pkg/terraformer/azure"
 	"github.com/Checkmarx/kics/pkg/terraformer/gcp"
 	importer "github.com/GoogleCloudPlatform/terraformer/cmd"
 	"github.com/pkg/errors"
@@ -86,6 +87,8 @@ func Import(terraformerPath, destinationPath string) (string, error) {
 	switch pathOptions.CloudProvider {
 	case "aws":
 		provider = aws.CloudProvider{}
+	case "azure":
+		provider = azure.CloudProvider{}
 	case "gcp":
 		provider = gcp.CloudProvider{}
 	default:

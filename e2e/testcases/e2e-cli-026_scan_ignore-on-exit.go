@@ -15,13 +15,13 @@ func init() { //nolint
 					"-s", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.invalid.name"},
 
 				[]string{"scan", "--ignore-on-exit", "errors",
-					"-s", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+					"-s", "-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml"},
 
 				[]string{"scan", "--ignore-on-exit", "all",
-					"-s", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+					"-s", "-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml"},
 			},
 		},
-		WantStatus: []int{126, 0, 40, 0},
+		WantStatus: []int{126, 0, 50, 0},
 	}
 
 	Tests = append(Tests, testSample)

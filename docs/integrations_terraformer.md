@@ -4,6 +4,7 @@ From version 1.5, KICS integrates with Terraformer to scan resources deployed in
 
 **Cloud providers supported:**
 - AWS
+- AZURE
 - GCP
 
 ## Configure AWS Credentials
@@ -35,8 +36,78 @@ $Env:AWS_SECRET_ACCESS_KEY="<AWS_SECRET_ACCESS_KEY>"
 $Env:AWS_SESSION_TOKEN="<AWS_SESSION_TOKEN>"
 ```
 
+
+## Configure AZURE Credentials
+KICS provides two possibilities to use Terraformer with AZURE. Each one requires AZURE account credentials that you need to set as environment variables.
+
+#### Using Service Principal with Client Certificate
+
+MacOS and Linux:
+```sh
+export ARM_SUBSCRIPTION_ID="<ARM_SUBSCRIPTION_ID>"
+export ARM_CLIENT_ID="<ARM_CLIENT_ID>"
+export ARM_CLIENT_CERTIFICATE_PATH="<ARM_CLIENT_CERTIFICATE_PATH>"
+export ARM_CLIENT_CERTIFICATE_PASSWORD="<ARM_CLIENT_CERTIFICATE_PASSWORD>"
+export ARM_TENANT_ID="<ARM_TENANT_ID>"
+```
+
+Windows:
+
+```sh
+SET ARM_SUBSCRIPTION_ID=<ARM_SUBSCRIPTION_ID>
+SET ARM_CLIENT_ID="<ARM_CLIENT_ID>"
+SET ARM_CLIENT_CERTIFICATE_PATH="<ARM_CLIENT_CERTIFICATE_PATH>"
+SET ARM_CLIENT_CERTIFICATE_PASSWORD="<ARM_CLIENT_CERTIFICATE_PASSWORD>"
+SET ARM_TENANT_ID="<ARM_TENANT_ID>"
+```
+
+Powershell:
+
+```sh
+$Env:ARM_SUBSCRIPTION_ID="<ARM_SUBSCRIPTION_ID>"
+$Env:ARM_CLIENT_ID="<ARM_CLIENT_ID>"
+$Env:ARM_CLIENT_CERTIFICATE_PATH="<ARM_CLIENT_CERTIFICATE_PATH>"
+$Env:ARM_CLIENT_CERTIFICATE_PASSWORD="<ARM_CLIENT_CERTIFICATE_PASSWORD>"
+$Env:ARM_TENANT_ID="<ARM_TENANT_ID>"
+```
+
+#### Service Principal with Client Secret
+
+MacOS and Linux:
+```sh
+export ARM_SUBSCRIPTION_ID="<ARM_SUBSCRIPTION_ID>"
+export ARM_CLIENT_ID="<ARM_CLIENT_ID>"
+export ARM_CLIENT_SECRET="<ARM_CLIENT_SECRET>"
+export ARM_TENANT_ID="<ARM_TENANT_ID>"
+```
+
+Windows:
+
+```sh
+SET ARM_SUBSCRIPTION_ID=<ARM_SUBSCRIPTION_ID>
+SET ARM_CLIENT_ID="<ARM_CLIENT_ID>"
+SET ARM_CLIENT_SECRET="<ARM_CLIENT_SECRET>"
+SET ARM_TENANT_ID="<ARM_TENANT_ID>"
+```
+
+Powershell:
+
+```sh
+$Env:ARM_SUBSCRIPTION_ID="<ARM_SUBSCRIPTION_ID>"
+$Env:ARM_CLIENT_ID="<ARM_CLIENT_ID>"
+$Env:ARM_CLIENT_SECRET="<ARM_CLIENT_SECRET>"
+$Env:ARM_TENANT_ID="<ARM_TENANT_ID>"
+```
+
 ## KICS Terraformer Path Syntax
 
+### Regular
+
+```sh
+terraformer::{CloudProvider}:{Resources}:{Regions}
+```
+
+### GCP
 ```sh
 terraformer::{CloudProvider}:{Resources}:{Regions}:{Projects}
 ```
@@ -45,11 +116,13 @@ terraformer::{CloudProvider}:{Resources}:{Regions}:{Projects}
 
 Possible values:
 - `aws`
+- `azure`
 - `gcp`
 
 **Resources:** A slash-separated list of the resources intended to be imported and scanned.
 You can find a complete list of possible values in the links below:
 - [aws](https://github.com/GoogleCloudPlatform/terraformer/blob/master/docs/aws.md#supported-services)
+- [azure](https://github.com/GoogleCloudPlatform/terraformer/blob/master/docs/azure.md#list-of-supported-azure-resources)
 - [gcp](https://github.com/GoogleCloudPlatform/terraformer/blob/master/docs/gcp.md)
 
 To import all resources please use: `*`
@@ -91,6 +164,32 @@ docker run -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID -e AWS_SESSION_TOKEN -v
 ```
 
 <img src="./img/docker_terraformer.gif" />
+
+### [AZURE] Run KICS Terraformer integration with Docker
+To run KICS Terraformer integration with Docker simply pass the AZURE Credentials that were set as environment variables to the docker run command and use the terraformer path syntax. Choose one of the following options:
+
+#### Using Service Principal with Client Certificate
+Note that you should fill the `<certificate_path>` with the path that points to the directory where your certificate is located, and the `<certificate-name>` should point to the certificate name located in `<certificate_path>`.
+
+```sh
+docker run -v <certificate_path>:/certificate -e ARM_CLIENT_CERTIFICATE_PATH=/certificate/<certificate_name>.pfx -e ARM_CLIENT_CERTIFICATE_PASSWORD -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_SUBSCRIPTION_ID checkmarx/kics:latest scan -p "terraformer::azure:storage_account:eastus" -v --no-progress
+```
+```sh
+docker run -v <certificate_path>:/certificate -v ${PWD}:/path/ -e ARM_CLIENT_CERTIFICATE_PATH=/certificate/<certificate_name>.pfx -e ARM_CLIENT_CERTIFICATE_PASSWORD -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_SUBSCRIPTION_ID checkmarx/kics:latest scan -p "terraformer::azure:storage_account:eastus" -v --no-progress -o /path/results
+```
+
+![client_certificate_terraformer_azure](https://user-images.githubusercontent.com/74001161/152843317-7e83b70c-2a44-4f22-8a5e-fa9434950269.gif)
+
+
+#### Service Principal with Client Secret
+```sh
+docker run -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET -e ARM_TENANT_ID checkmarx/kics:latest scan -p "terraformer::azure:storage_account:eastus" -v --no-progress
+```
+```sh
+docker run -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET -e ARM_TENANT_ID -v ${PWD}:/path/ checkmarx/kics:latest scan -p "terraformer::azure:storage_account:eastus" -v --no-progress -o /path/results
+```
+
+![client_secret_terraformer_azure](https://user-images.githubusercontent.com/74001161/152833926-68b7cc56-23c0-4297-b308-56f4c6746e09.gif)
 
 
 ### [GCP] Run KICS Terraformer integration with Docker
