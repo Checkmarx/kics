@@ -24,32 +24,38 @@ import (
 // k8sRegexMetadata - Regex that finds Kubernetes defining property "metadata"
 // k8sRegexSpec - Regex that finds Kubernetes defining property "spec"
 var (
-	openAPIRegex                      = regexp.MustCompile("(\\s*\"openapi\":)|(\\s*openapi:)|(\\s*\"swagger\":)|(\\s*swagger:)")
-	openAPIRegexInfo                  = regexp.MustCompile("(\\s*\"info\":)|(\\s*info:)")
-	openAPIRegexPath                  = regexp.MustCompile("(\\s*\"paths\":)|(\\s*paths:)")
-	armRegexContentVersion            = regexp.MustCompile("\\s*\"contentVersion\":")
-	armRegexResources                 = regexp.MustCompile("\\s*\"resources\":")
-	cloudRegex                        = regexp.MustCompile("(\\s*\"Resources\":)|(\\s*Resources:)")
-	k8sRegex                          = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
-	k8sRegexKind                      = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
-	k8sRegexMetadata                  = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
-	ansibleVaultRegex                 = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
-	tfPlanRegexPV                     = regexp.MustCompile("\\s*\"planned_values\":")
-	tfPlanRegexRC                     = regexp.MustCompile("\\s*\"resource_changes\":")
-	tfPlanRegexConf                   = regexp.MustCompile("\\s*\"configuration\":")
-	tfPlanRegexTV                     = regexp.MustCompile("\\s*\"terraform_version\":")
-	cdkTfRegexMetadata                = regexp.MustCompile("\\s*\"metadata\":")
-	cdkTfRegexStackName               = regexp.MustCompile("\\s*\"stackName\":")
-	cdkTfRegexTerraform               = regexp.MustCompile("\\s*\"terraform\":")
-	blueprintArtifactsRegexKind       = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
-	blueprintArtifactsRegexProperties = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
-	blueprintRegexTargetScope         = regexp.MustCompile("(\\s*\"targetScope\":)|(\\s*targetScope:)")
-	blueprintRegexProperties          = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
-	buildahRegex                      = regexp.MustCompile(`\s*buildah\s*from\s*\w+`)
+	openAPIRegex                                    = regexp.MustCompile("(\\s*\"openapi\":)|(\\s*openapi:)|(\\s*\"swagger\":)|(\\s*swagger:)")
+	openAPIRegexInfo                                = regexp.MustCompile("(\\s*\"info\":)|(\\s*info:)")
+	openAPIRegexPath                                = regexp.MustCompile("(\\s*\"paths\":)|(\\s*paths:)")
+	armRegexContentVersion                          = regexp.MustCompile("\\s*\"contentVersion\":")
+	armRegexResources                               = regexp.MustCompile("\\s*\"resources\":")
+	cloudRegex                                      = regexp.MustCompile("(\\s*\"Resources\":)|(\\s*Resources:)")
+	k8sRegex                                        = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
+	k8sRegexKind                                    = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
+	k8sRegexMetadata                                = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
+	ansibleVaultRegex                               = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
+	tfPlanRegexPV                                   = regexp.MustCompile("\\s*\"planned_values\":")
+	tfPlanRegexRC                                   = regexp.MustCompile("\\s*\"resource_changes\":")
+	tfPlanRegexConf                                 = regexp.MustCompile("\\s*\"configuration\":")
+	tfPlanRegexTV                                   = regexp.MustCompile("\\s*\"terraform_version\":")
+	cdkTfRegexMetadata                              = regexp.MustCompile("\\s*\"metadata\":")
+	cdkTfRegexStackName                             = regexp.MustCompile("\\s*\"stackName\":")
+	cdkTfRegexTerraform                             = regexp.MustCompile("\\s*\"terraform\":")
+	artifactsRegexKind                              = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
+	artifactsRegexProperties                        = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
+	artifactsRegexParametes                         = regexp.MustCompile("(\\s*\"parameters\":)|(\\s*parameters:)")
+	policyAssignmentArtifactRegexPolicyDefinitionID = regexp.MustCompile("(\\s*\"policyDefinitionId\":)|(\\s*policyDefinitionId:)")
+	roleAssignmentArtifactRegexPrincipalIds         = regexp.MustCompile("(\\s*\"principalIds\":)|(\\s*principalIds:)")
+	roleAssignmentArtifactRegexRoleDefinitionID     = regexp.MustCompile("(\\s*\"roleDefinitionId\":)|(\\s*roleDefinitionId:)")
+	templateArtifactRegexParametes                  = regexp.MustCompile("(\\s*\"template\":)|(\\s*template:)")
+	blueprintpRegexTargetScope                      = regexp.MustCompile("(\\s*\"targetScope\":)|(\\s*targetScope:)")
+	blueprintpRegexProperties                       = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
+	buildahRegex                                    = regexp.MustCompile(`\s*buildah\s*from\s*\w+`)
 )
 
 var (
 	listKeywordsGoogleDeployment = []string{"resources"}
+	armRegexTypes                = []string{"blueprint", "templateArtifact", "roleAssignmentArtifact", "policyAssignmentArtifact"}
 	possibleFileTypes            = map[string]bool{
 		".yml":        true,
 		".yaml":       true,
@@ -69,7 +75,96 @@ const (
 	json       = ".json"
 	arm        = "azureresourcemanager"
 	kubernetes = "kubernetes"
+	terraform  = "terraform"
+	gdm        = "googledeploymentmanager"
+	ansible    = "ansible"
+	grpc       = "grpc"
+	dockerfile = "dockerfile"
 )
+
+// regexSlice is a struct to contain a slice of regex
+type regexSlice struct {
+	regex []*regexp.Regexp
+}
+
+// types is a map that contains the regex by type
+var types = map[string]regexSlice{
+	"openapi": {
+		regex: []*regexp.Regexp{
+			openAPIRegex,
+			openAPIRegexInfo,
+			openAPIRegexPath,
+		},
+	},
+	"kubernetes": {
+		regex: []*regexp.Regexp{
+			k8sRegex,
+			k8sRegexKind,
+			k8sRegexMetadata,
+		},
+	},
+	"cloudformation": {
+		regex: []*regexp.Regexp{
+			cloudRegex,
+		},
+	},
+	"azureresourcemanager": {
+		[]*regexp.Regexp{
+			armRegexContentVersion,
+			armRegexResources,
+		},
+	},
+	"terraform": {
+		[]*regexp.Regexp{
+			tfPlanRegexConf,
+			tfPlanRegexPV,
+			tfPlanRegexRC,
+			tfPlanRegexTV,
+		},
+	},
+	"cdkTf": {
+		[]*regexp.Regexp{
+			cdkTfRegexMetadata,
+			cdkTfRegexStackName,
+			cdkTfRegexTerraform,
+		},
+	},
+	"policyAssignmentArtifact": {
+		[]*regexp.Regexp{
+			artifactsRegexKind,
+			artifactsRegexProperties,
+			artifactsRegexParametes,
+			policyAssignmentArtifactRegexPolicyDefinitionID,
+		},
+	},
+	"roleAssignmentArtifact": {
+		[]*regexp.Regexp{
+			artifactsRegexKind,
+			artifactsRegexProperties,
+			roleAssignmentArtifactRegexPrincipalIds,
+			roleAssignmentArtifactRegexRoleDefinitionID,
+		},
+	},
+	"templateArtifact": {
+		[]*regexp.Regexp{
+			artifactsRegexKind,
+			artifactsRegexProperties,
+			artifactsRegexParametes,
+			templateArtifactRegexParametes,
+		},
+	},
+	"blueprint": {
+		[]*regexp.Regexp{
+			blueprintpRegexTargetScope,
+			blueprintpRegexProperties,
+		},
+	},
+	"buildah": {
+		[]*regexp.Regexp{
+			buildahRegex,
+		},
+	},
+}
 
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
 // should be loaded based on the extension of the file and the content
@@ -150,85 +245,19 @@ func worker(path string, results, unwanted chan<- string, wg *sync.WaitGroup) {
 	switch ext {
 	// Dockerfile
 	case ".dockerfile", "Dockerfile":
-		results <- "dockerfile"
+		results <- dockerfile
 	// Terraform
 	case ".tf", "tfvars":
-		results <- "terraform"
+		results <- terraform
 	// GRPC
 	case ".proto":
-		results <- "grpc"
+		results <- grpc
 	case ".sh":
 		checkContent(path, results, unwanted, ext)
 	// Cloud Formation, Ansible, OpenAPI
 	case yaml, yml, json:
 		checkContent(path, results, unwanted, ext)
 	}
-}
-
-// regexSlice is a struct to contain a slice of regex
-type regexSlice struct {
-	regex []*regexp.Regexp
-}
-
-// types is a map that contains the regex by type
-var types = map[string]regexSlice{
-	"openapi": {
-		regex: []*regexp.Regexp{
-			openAPIRegex,
-			openAPIRegexInfo,
-			openAPIRegexPath,
-		},
-	},
-	"kubernetes": {
-		regex: []*regexp.Regexp{
-			k8sRegex,
-			k8sRegexKind,
-			k8sRegexMetadata,
-		},
-	},
-	"cloudformation": {
-		regex: []*regexp.Regexp{
-			cloudRegex,
-		},
-	},
-	"azureresourcemanager": {
-		[]*regexp.Regexp{
-			armRegexContentVersion,
-			armRegexResources,
-		},
-	},
-	"terraform": {
-		[]*regexp.Regexp{
-			tfPlanRegexConf,
-			tfPlanRegexPV,
-			tfPlanRegexRC,
-			tfPlanRegexTV,
-		},
-	},
-	"cdkTf": {
-		[]*regexp.Regexp{
-			cdkTfRegexMetadata,
-			cdkTfRegexStackName,
-			cdkTfRegexTerraform,
-		},
-	},
-	"blueprintsartifacts": {
-		[]*regexp.Regexp{
-			blueprintArtifactsRegexKind,
-			blueprintArtifactsRegexProperties,
-		},
-	},
-	"blueprint": {
-		[]*regexp.Regexp{
-			blueprintRegexTargetScope,
-			blueprintRegexProperties,
-		},
-	},
-	"buildah": {
-		[]*regexp.Regexp{
-			buildahRegex,
-		},
-	},
 }
 
 // overrides k8s match when all regexs passes for azureresourcemanager key and extension is set to json
@@ -262,7 +291,7 @@ func checkContent(path string, results, unwanted chan<- string, ext string) {
 	for _, key := range keys {
 		check := true
 		for _, typeRegex := range types[key].regex {
-			if res := typeRegex.Match(content); !res {
+			if !typeRegex.Match(content) {
 				check = false
 				break
 			}
@@ -286,9 +315,9 @@ func checkContent(path string, results, unwanted chan<- string, ext string) {
 func checkReturnType(path, returnType, ext string, content []byte) string {
 	if returnType != "" {
 		if returnType == "cdkTf" {
-			return "terraform"
+			return terraform
 		}
-		if returnType == "blueprint" || returnType == "blueprintsartifacts" {
+		if contains(armRegexTypes, returnType) {
 			return arm
 		}
 	} else if ext == yaml || ext == yml {
@@ -322,14 +351,14 @@ func checkYamlPlatform(content []byte) string {
 	// check if it is google deployment manager platform
 	for _, keyword := range listKeywordsGoogleDeployment {
 		if _, ok := yamlContent[keyword]; ok {
-			return "googledeploymentmanager"
+			return gdm
 		}
 	}
 	// check if it is an ansible vault
-	if res := ansibleVaultRegex.Match(content); !res {
+	if !ansibleVaultRegex.Match(content) {
 		// Since Ansible has no defining property
 		// and no other type matched for YAML file extension, assume the file type is Ansible
-		return "ansible"
+		return ansible
 	}
 	return ""
 }
