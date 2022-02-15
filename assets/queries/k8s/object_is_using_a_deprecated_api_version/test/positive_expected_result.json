@@ -13,5 +13,10 @@
 		"queryName": "Object Is Using A Deprecated API Version",
 		"severity": "HIGH",
 		"line": 58
+	},
+	{
+		"queryName": "Object Is Using A Deprecated API Version",
+		"severity": "HIGH",
+		"line": 76
 	}
 ]
