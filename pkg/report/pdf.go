@@ -227,8 +227,8 @@ func createResultsTable(m pdf.Maroto, query *model.QueryResult) {
 		m.Row(colFive, func() {
 			m.Col(colFullPage, func() {
 				m.Text(expectedValue, props.Text{
-					Size: smallTextSize,
-
+					Size:        smallTextSize,
+					Align:       consts.Left,
 					Extrapolate: false,
 				})
 			})
