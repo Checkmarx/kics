@@ -227,8 +227,8 @@ func createResultsTable(m pdf.Maroto, query *model.QueryResult) {
 		m.Row(colFive, func() {
 			m.Col(colFullPage, func() {
 				m.Text(expectedValue, props.Text{
-					Size:        smallTextSize,
-					Align:       consts.Left,
+					Size: smallTextSize,
+
 					Extrapolate: false,
 				})
 			})
@@ -239,6 +239,15 @@ func createResultsTable(m pdf.Maroto, query *model.QueryResult) {
 }
 
 func createHeaderArea(m pdf.Maroto) {
+	m.Row(rowLarge, func() {
+		m.Col(colSix, func() {
+			cxLogoPath := filepath.Join("docs", "img", "logo", "checkmarx-logo.png")
+			_ = m.FileImage(cxLogoPath, props.Rect{})
+		})
+	})
+	m.Row(colFive, func() {
+		m.ColSpace(0)
+	})
 	m.SetBackgroundColor(getPurpleColor())
 	m.Row(rowXLarge, func() {
 		m.Col(colSix, func() {
