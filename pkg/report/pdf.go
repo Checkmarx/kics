@@ -3,7 +3,6 @@ package report
 import (
 	_ "embed" // used for embedding report static files
 	"fmt"
-	"os"
 	"path/filepath"
 	"time"
 
@@ -44,6 +43,8 @@ var (
 	grayColor = getGrayColor()
 	//go:embed assets/vuln
 	vulnImageBase64 string
+	//go:embed assets/checkmarx-logo
+	checkmarxLogo string
 )
 
 const (
@@ -242,12 +243,7 @@ func createResultsTable(m pdf.Maroto, query *model.QueryResult) {
 func createHeaderArea(m pdf.Maroto) {
 	m.Row(rowLarge, func() {
 		m.Col(colSix, func() {
-			cxLogoPath := filepath.Join("docs", "img", "logo", "checkmarx-logo.png")
-			_, err := os.Stat(cxLogoPath)
-			if err != nil {
-				cxLogoPath = filepath.Join("..", "..", "docs", "img", "logo", "checkmarx-logo.png")
-			}
-			_ = m.FileImage(cxLogoPath, props.Rect{})
+			_ = m.Base64Image(checkmarxLogo, consts.Png, props.Rect{})
 		})
 	})
 	m.Row(colFive, func() {
