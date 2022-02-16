@@ -419,9 +419,25 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 		{
 			name: "get_queries_1",
 			fields: fields{
-				Source: []string{source}, Types: []string{""}, CloudProviders: []string{""}, Library: "./assets/libraries",
+				Source: []string{source, source}, Types: []string{""}, CloudProviders: []string{""}, Library: "./assets/libraries",
 			},
 			want: []model.QueryMetadata{
+				{
+					Query:     "all_auth_users_get_read_access",
+					Content:   string(contentByte),
+					InputData: "{}",
+					Metadata: map[string]interface{}{
+						"category":        "Access Control",
+						"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", //nolint
+						"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
+						"id":              "57b9893d-33b1-4419-bcea-b828fb87e318",
+						"queryName":       "All Auth Users Get Read Access",
+						"severity":        model.SeverityHigh,
+						"platform":        "Terraform",
+					},
+					Platform:    "terraform",
+					Aggregation: 1,
+				},
 				{
 					Query:     "all_auth_users_get_read_access",
 					Content:   string(contentByte),
