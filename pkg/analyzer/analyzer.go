@@ -51,6 +51,8 @@ var (
 	blueprintpRegexTargetScope                      = regexp.MustCompile("(\\s*\"targetScope\":)|(\\s*targetScope:)")
 	blueprintpRegexProperties                       = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
 	buildahRegex                                    = regexp.MustCompile(`\s*buildah\s*from\s*\w+`)
+	dockerComposeVersionRegex                       = regexp.MustCompile("\\s*version:")
+	dockerComposeServicesRegex                      = regexp.MustCompile("\\s*services:")
 )
 
 var (
@@ -164,6 +166,12 @@ var types = map[string]regexSlice{
 			buildahRegex,
 		},
 	},
+	"dockercompose": {
+		[]*regexp.Regexp{
+			dockerComposeVersionRegex,
+			dockerComposeServicesRegex,
+		},
+	},
 }
 
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
@@ -262,7 +270,7 @@ func worker(path string, results, unwanted chan<- string, wg *sync.WaitGroup) {
 
 // overrides k8s match when all regexs passes for azureresourcemanager key and extension is set to json
 func needsOverride(check bool, returnType, key, ext string) bool {
-	if check && returnType == kubernetes && key == "azureresourcemanager" && ext == json {
+	if check && returnType == kubernetes && key == arm && ext == json {
 		return true
 	}
 	return false
