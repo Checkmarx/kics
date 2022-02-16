@@ -9,6 +9,7 @@ import (
 
 	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 
@@ -325,7 +326,7 @@ func checkReturnType(path, returnType, ext string, content []byte) string {
 		if returnType == "cdkTf" {
 			return terraform
 		}
-		if contains(armRegexTypes, returnType) {
+		if utils.Contains(returnType, armRegexTypes) {
 			return arm
 		}
 	} else if ext == yaml || ext == yml {
@@ -375,20 +376,9 @@ func checkYamlPlatform(content []byte) string {
 func createSlice(chanel chan string) []string {
 	slice := make([]string, 0)
 	for i := range chanel {
-		if !contains(slice, i) {
+		if !utils.Contains(i, slice) {
 			slice = append(slice, i)
 		}
 	}
 	return slice
-}
-
-// contains is a simple method to check if a slice
-// contains an entry
-func contains(s []string, e string) bool {
-	for _, a := range s {
-		if a == e {
-			return true
-		}
-	}
-	return false
 }
