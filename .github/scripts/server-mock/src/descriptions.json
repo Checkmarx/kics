@@ -22,5 +22,13 @@
         "cisRationaleText": "Test 3B",
         "cisBenchmarkName": "Test 3C",
         "cisBenchmarkVersion": "1.4.6"
+    },
+    "55f05412": {
+        "cisDescriptionRuleID": "55f05412",
+        "cisDescriptionText": "ALB running on HTTP",
+        "cisDescriptionTitle": "Test 4A",
+        "cisRationaleText": "Test 4B",
+        "cisBenchmarkName": "Test 4C",
+        "cisBenchmarkVersion": "development"
     }
 }
