@@ -257,21 +257,29 @@
 				
 				<option value="file100">github.com/Checkmarx/kics/pkg/resolver/resolver.go (90.5%)</option>
 				
-				<option value="file101">github.com/Checkmarx/kics/pkg/scanner/scanner.go (56.4%)</option>
+				<option value="file101">github.com/Checkmarx/kics/pkg/scan/client.go (0.0%)</option>
 				
-				<option value="file102">github.com/Checkmarx/kics/pkg/terraformer/aws/aws_cloud_provider.go (93.3%)</option>
+				<option value="file102">github.com/Checkmarx/kics/pkg/scan/post_scan.go (0.0%)</option>
 				
-				<option value="file103">github.com/Checkmarx/kics/pkg/terraformer/azure/azure_cloud_provider.go (92.9%)</option>
+				<option value="file103">github.com/Checkmarx/kics/pkg/scan/scan.go (0.0%)</option>
 				
-				<option value="file104">github.com/Checkmarx/kics/pkg/terraformer/gcp/gcp_cloud_provider.go (81.2%)</option>
+				<option value="file104">github.com/Checkmarx/kics/pkg/scan/utils.go (14.6%)</option>
 				
-				<option value="file105">github.com/Checkmarx/kics/pkg/terraformer/terraformer.go (72.1%)</option>
+				<option value="file105">github.com/Checkmarx/kics/pkg/scanner/scanner.go (56.4%)</option>
 				
-				<option value="file106">github.com/Checkmarx/kics/pkg/utils/map.go (71.4%)</option>
+				<option value="file106">github.com/Checkmarx/kics/pkg/terraformer/aws/aws_cloud_provider.go (93.3%)</option>
 				
-				<option value="file107">github.com/Checkmarx/kics/pkg/utils/random.go (0.0%)</option>
+				<option value="file107">github.com/Checkmarx/kics/pkg/terraformer/azure/azure_cloud_provider.go (92.9%)</option>
 				
-				<option value="file108">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
+				<option value="file108">github.com/Checkmarx/kics/pkg/terraformer/gcp/gcp_cloud_provider.go (93.8%)</option>
+				
+				<option value="file109">github.com/Checkmarx/kics/pkg/terraformer/terraformer.go (72.1%)</option>
+				
+				<option value="file110">github.com/Checkmarx/kics/pkg/utils/map.go (71.4%)</option>
+				
+				<option value="file111">github.com/Checkmarx/kics/pkg/utils/random.go (0.0%)</option>
+				
+				<option value="file112">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
 				
 				</select>
 			</div>
@@ -2347,13 +2355,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov8" title="32">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2378,7 +2386,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2956,7 +2964,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="33">{
-        for _, a := range s </span><span class="cov8" title="87">{
+        for _, a := range s </span><span class="cov8" title="93">{
                 if a == e </span><span class="cov4" title="8">{
                         return true
                 }</span>
@@ -5037,7 +5045,7 @@ func NewInspector(
         tracker Tracker,
         queryParameters *source.QueryInspectorParameters,
         excludeResults map[string]bool,
-        queryTimeout int) (*Inspector, error) <span class="cov4" title="3">{
+        queryTimeout int) (*Inspector, error) <span class="cov5" title="4">{
         log.Debug().Msg("engine.NewInspector()")
 
         metrics.Metric.Start("get_queries")
@@ -5046,7 +5054,7 @@ func NewInspector(
                 return nil, errors.Wrap(err, "failed to get queries")
         }</span>
 
-        <span class="cov4" title="3">commonLibrary, err := queriesSource.GetQueryLibrary("common")
+        <span class="cov5" title="4">commonLibrary, err := queriesSource.GetQueryLibrary("common")
         if err != nil </span><span class="cov0" title="0">{
                 sentryReport.ReportSentry(&amp;sentryReport.Report{
                         Message:  fmt.Sprintf("Inspector failed to get library for %s platform", "common"),
@@ -5056,7 +5064,7 @@ func NewInspector(
                 }, true)
                 return nil, errors.Wrap(err, "failed to get library")
         }</span>
-        <span class="cov4" title="3">platformLibraries := getPlatformLibraries(queriesSource, queries)
+        <span class="cov5" title="4">platformLibraries := getPlatformLibraries(queriesSource, queries)
         opaQueries := prepareQueries(ctx, queries, commonLibrary, platformLibraries, tracker)
 
         failedQueries := make(map[string]error)
@@ -5087,13 +5095,13 @@ func NewInspector(
         }, nil</span>
 }
 
-func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.QueryMetadata) map[string]source.RegoLibraries <span class="cov4" title="3">{
+func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.QueryMetadata) map[string]source.RegoLibraries <span class="cov5" title="4">{
         supportedPlatforms := make(map[string]string)
-        for _, query := range queries </span><span class="cov10" title="13">{
+        for _, query := range queries </span><span class="cov10" title="15">{
                 supportedPlatforms[query.Platform] = ""
         }</span>
-        <span class="cov4" title="3">platformLibraries := make(map[string]source.RegoLibraries)
-        for platform := range supportedPlatforms </span><span class="cov7" title="7">{
+        <span class="cov5" title="4">platformLibraries := make(map[string]source.RegoLibraries)
+        for platform := range supportedPlatforms </span><span class="cov7" title="8">{
                 platformLibrary, errLoadingPlatformLib := queriesSource.GetQueryLibrary(platform)
                 if errLoadingPlatformLib != nil </span><span class="cov3" title="2">{
                         sentryReport.ReportSentry(&amp;sentryReport.Report{
@@ -5104,17 +5112,17 @@ func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.Qu
                         }, true)
                         continue</span>
                 }
-                <span class="cov6" title="5">platformLibraries[platform] = platformLibrary</span>
+                <span class="cov6" title="6">platformLibraries[platform] = platformLibrary</span>
         }
-        <span class="cov4" title="3">return platformLibraries</span>
+        <span class="cov5" title="4">return platformLibraries</span>
 }
 
-func sumAllAggregatedQueries(opaQueries []*preparedQuery) int <span class="cov4" title="3">{
+func sumAllAggregatedQueries(opaQueries []*preparedQuery) int <span class="cov5" title="4">{
         sum := 0
-        for _, query := range opaQueries </span><span class="cov6" title="5">{
+        for _, query := range opaQueries </span><span class="cov7" title="7">{
                 sum += query.metadata.Aggregation
         }</span>
-        <span class="cov4" title="3">return sum</span>
+        <span class="cov5" title="4">return sum</span>
 }
 
 // Inspect scan files and return the a list of vulnerabilities found on the process
@@ -5170,15 +5178,15 @@ func (c *Inspector) Inspect(
 }
 
 // LenQueriesByPlat returns the number of queries by platforms
-func (c *Inspector) LenQueriesByPlat(platforms []string) int <span class="cov1" title="1">{
+func (c *Inspector) LenQueriesByPlat(platforms []string) int <span class="cov3" title="2">{
         count := 0
-        for _, query := range c.queries </span><span class="cov3" title="2">{
-                if contains(platforms, query.metadata.Platform) </span><span class="cov1" title="1">{
+        for _, query := range c.queries </span><span class="cov5" title="4">{
+                if contains(platforms, query.metadata.Platform) </span><span class="cov4" title="3">{
                         c.tracker.TrackQueryExecuting(query.metadata.Aggregation)
                         count++
                 }</span>
         }
-        <span class="cov1" title="1">return count</span>
+        <span class="cov3" title="2">return count</span>
 }
 
 func (c *Inspector) getQueriesByPlat(platforms []string) []*preparedQuery <span class="cov3" title="2">{
@@ -5322,15 +5330,15 @@ func checkComment(line int, ignoreLines []int) bool <span class="cov4" title="3"
 
 // contains is a simple method to check if a slice
 // contains an entry
-func contains(s []string, e string) bool <span class="cov8" title="8">{
+func contains(s []string, e string) bool <span class="cov8" title="10">{
         if e == "common" </span><span class="cov1" title="1">{
                 return true
         }</span>
-        <span class="cov7" title="7">if e == "k8s" </span><span class="cov1" title="1">{
+        <span class="cov8" title="9">if e == "k8s" </span><span class="cov1" title="1">{
                 e = "kubernetes"
         }</span>
-        <span class="cov7" title="7">for _, a := range s </span><span class="cov8" title="8">{
-                if strings.EqualFold(a, e) </span><span class="cov6" title="5">{
+        <span class="cov8" title="9">for _, a := range s </span><span class="cov8" title="10">{
+                if strings.EqualFold(a, e) </span><span class="cov7" title="7">{
                         return true
                 }</span>
         }
@@ -5363,30 +5371,30 @@ func prepareQueries(
         queries []model.QueryMetadata,
         commonLibrary source.RegoLibraries,
         platformLibraries map[string]source.RegoLibraries,
-        tracker Tracker) []*preparedQuery <span class="cov4" title="3">{
+        tracker Tracker) []*preparedQuery <span class="cov5" title="4">{
         opaQueries := make([]*preparedQuery, 0, len(queries))
-        for _, metadata := range queries </span><span class="cov10" title="13">{
+        for _, metadata := range queries </span><span class="cov10" title="15">{
                 platformGeneralQuery, ok := platformLibraries[metadata.Platform]
-                if !ok </span><span class="cov8" title="8">{
+                if !ok </span><span class="cov7" title="8">{
                         log.Err(errors.New("failed to get platform library")).
                                 Msgf("Inspector failed to get library for query: %s, with platform: %s", metadata.Query, metadata.Platform)
                         continue</span>
                 }
 
-                <span class="cov6" title="5">select </span>{
+                <span class="cov7" title="7">select </span>{
                 case &lt;-ctx.Done():<span class="cov0" title="0">
                         return nil</span>
-                default:<span class="cov6" title="5">
+                default:<span class="cov7" title="7">
                         var opaQuery rego.PreparedEvalQuery
                         mergedInputData, err := source.MergeInputData(platformGeneralQuery.LibraryInputData, metadata.InputData)
                         if err != nil </span><span class="cov0" title="0">{
                                 log.Debug().Msg("Could not merge platform library input data")
                         }</span>
-                        <span class="cov6" title="5">mergedInputData, err = source.MergeInputData(commonLibrary.LibraryInputData, mergedInputData)
+                        <span class="cov7" title="7">mergedInputData, err = source.MergeInputData(commonLibrary.LibraryInputData, mergedInputData)
                         if err != nil </span><span class="cov0" title="0">{
                                 log.Debug().Msg("Could not merge common library input data")
                         }</span>
-                        <span class="cov6" title="5">store := inmem.NewFromReader(bytes.NewBufferString(mergedInputData))
+                        <span class="cov7" title="7">store := inmem.NewFromReader(bytes.NewBufferString(mergedInputData))
                         opaQuery, err = rego.New(
                                 rego.Query(regoQuery),
                                 rego.Module("Common", commonLibrary.LibraryCode),
@@ -5409,7 +5417,7 @@ func prepareQueries(
                                 continue</span>
                         }
 
-                        <span class="cov6" title="5">tracker.TrackQueryLoad(metadata.Aggregation)
+                        <span class="cov7" title="7">tracker.TrackQueryLoad(metadata.Aggregation)
 
                         opaQueries = append(opaQueries, &amp;preparedQuery{
                                 opaQuery: opaQuery,
@@ -5417,7 +5425,7 @@ func prepareQueries(
                         })</span>
                 }
         }
-        <span class="cov4" title="3">return opaQueries</span>
+        <span class="cov5" title="4">return opaQueries</span>
 }
 </pre>
 		
@@ -6563,7 +6571,7 @@ func NewFilesystemSource(source, types, cloudProviders []string, libraryPath str
                 cloudProviders = []string{""}
         }</span>
 
-        <span class="cov7" title="17">for s := range source </span><span class="cov7" title="17">{
+        <span class="cov7" title="17">for s := range source </span><span class="cov7" title="18">{
                 source[s] = filepath.FromSlash(source[s])
         }</span>
 
@@ -6659,22 +6667,22 @@ func (s *FilesystemSource) GetQueryLibrary(platform string) (RegoLibraries, erro
                 return RegoLibraries{}, errGettingEmbeddedLibrary
         }</span>
 
-        <span class="cov5" title="6">mergedLibraryCode, errMergeLibs := mergeLibraries(customLibraryCode, embeddedLibraryCode)
+        <span class="cov4" title="6">mergedLibraryCode, errMergeLibs := mergeLibraries(customLibraryCode, embeddedLibraryCode)
         if errMergeLibs != nil </span><span class="cov0" title="0">{
                 return RegoLibraries{}, errMergeLibs
         }</span>
 
-        <span class="cov5" title="6">embeddedLibraryData, errGettingEmbeddedLibraryCode := assets.GetEmbeddedLibraryData(strings.ToLower(platform))
+        <span class="cov4" title="6">embeddedLibraryData, errGettingEmbeddedLibraryCode := assets.GetEmbeddedLibraryData(strings.ToLower(platform))
         if errGettingEmbeddedLibraryCode != nil </span><span class="cov4" title="5">{
                 log.Debug().Msgf("Could not open embedded library data for %s platform", platform)
                 embeddedLibraryData = emptyInputData
         }</span>
-        <span class="cov5" title="6">mergedLibraryData, errMergingLibraryData := MergeInputData(embeddedLibraryData, customLibraryData)
+        <span class="cov4" title="6">mergedLibraryData, errMergingLibraryData := MergeInputData(embeddedLibraryData, customLibraryData)
         if errMergingLibraryData != nil </span><span class="cov0" title="0">{
                 log.Debug().Msgf("Could not merge library data for %s platform", platform)
         }</span>
 
-        <span class="cov5" title="6">regoLibrary := RegoLibraries{
+        <span class="cov4" title="6">regoLibrary := RegoLibraries{
                 LibraryCode:      mergedLibraryCode,
                 LibraryInputData: mergedLibraryData,
         }
@@ -6682,18 +6690,18 @@ func (s *FilesystemSource) GetQueryLibrary(platform string) (RegoLibraries, erro
 }
 
 // CheckType checks if the queries have the type passed as an argument in '--type' flag to be loaded
-func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool <span class="cov5" title="7">{
+func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool <span class="cov5" title="8">{
         if queryPlatform.(string) == common </span><span class="cov0" title="0">{
                 return true
         }</span>
-        <span class="cov5" title="7">if s.Types[0] != "" </span><span class="cov0" title="0">{
+        <span class="cov5" title="8">if s.Types[0] != "" </span><span class="cov0" title="0">{
                 return strings.Contains(strings.ToUpper(strings.Join(s.Types, ",")), strings.ToUpper(queryPlatform.(string)))
         }</span>
-        <span class="cov5" title="7">return true</span>
+        <span class="cov5" title="8">return true</span>
 }
 
 // CheckCloudProvider checks if the queries have the cloud provider passed as an argument in '--cloud-provider' flag to be loaded
-func (s *FilesystemSource) CheckCloudProvider(cloudProvider interface{}) bool <span class="cov5" title="7">{
+func (s *FilesystemSource) CheckCloudProvider(cloudProvider interface{}) bool <span class="cov5" title="8">{
         if cloudProvider != nil </span><span class="cov0" title="0">{
                 if strings.EqualFold(cloudProvider.(string), common) </span><span class="cov0" title="0">{
                         return true
@@ -6703,7 +6711,7 @@ func (s *FilesystemSource) CheckCloudProvider(cloudProvider interface{}) bool <s
                 }</span>
         }
 
-        <span class="cov5" title="7">if s.CloudProviders[0] == "" </span><span class="cov5" title="7">{
+        <span class="cov5" title="8">if s.CloudProviders[0] == "" </span><span class="cov5" title="8">{
                 return true
         }</span>
 
@@ -6725,22 +6733,22 @@ func checkQueryInclude(id interface{}, includedQueries []string) bool <span clas
         <span class="cov1" title="1">return false</span>
 }
 
-func checkQueryExcludeField(id interface{}, excludeQueries []string) bool <span class="cov6" title="12">{
+func checkQueryExcludeField(id interface{}, excludeQueries []string) bool <span class="cov6" title="15">{
         queryMetadataKey, ok := id.(string)
         if !ok </span><span class="cov0" title="0">{
                 log.Warn().
                         Msgf("Can't cast query metadata key = %v", id)
                 return false
         }</span>
-        <span class="cov6" title="12">for _, excludedQuery := range excludeQueries </span><span class="cov4" title="4">{
+        <span class="cov6" title="15">for _, excludedQuery := range excludeQueries </span><span class="cov4" title="4">{
                 if strings.EqualFold(queryMetadataKey, excludedQuery) </span><span class="cov3" title="3">{
                         return true
                 }</span>
         }
-        <span class="cov6" title="9">return false</span>
+        <span class="cov6" title="12">return false</span>
 }
 
-func checkQueryExclude(metadata map[string]interface{}, queryParameters *QueryInspectorParameters) bool <span class="cov4" title="5">{
+func checkQueryExclude(metadata map[string]interface{}, queryParameters *QueryInspectorParameters) bool <span class="cov4" title="6">{
         return checkQueryExcludeField(metadata["id"], queryParameters.ExcludeQueries.ByIDs) ||
                 checkQueryExcludeField(metadata["category"], queryParameters.ExcludeQueries.ByCategories) ||
                 checkQueryExcludeField(metadata["severity"], queryParameters.ExcludeQueries.BySeverities) ||
@@ -6753,27 +6761,27 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
         queryDirs := make([]string, 0)
         var err error
 
-        for _, source := range s.Source </span><span class="cov6" title="10">{
+        for _, source := range s.Source </span><span class="cov6" title="11">{
                 err = filepath.Walk(source,
-                        func(p string, f os.FileInfo, err error) error </span><span class="cov10" title="52">{
+                        func(p string, f os.FileInfo, err error) error </span><span class="cov10" title="59">{
                                 if err != nil </span><span class="cov3" title="3">{
                                         return err
                                 }</span>
 
-                                <span class="cov9" title="49">if f.IsDir() || f.Name() != QueryFileName </span><span class="cov9" title="42">{
+                                <span class="cov9" title="56">if f.IsDir() || f.Name() != QueryFileName </span><span class="cov9" title="48">{
                                         return nil
                                 }</span>
 
-                                <span class="cov5" title="7">queryDirs = append(queryDirs, filepath.Dir(p))
+                                <span class="cov5" title="8">queryDirs = append(queryDirs, filepath.Dir(p))
                                 return nil</span>
                         })
-                <span class="cov6" title="10">if err != nil </span><span class="cov3" title="3">{
+                <span class="cov6" title="11">if err != nil </span><span class="cov3" title="3">{
                         return nil, errors.Wrap(err, "failed to get query Source")
                 }</span>
         }
 
         <span class="cov5" title="7">queries := make([]model.QueryMetadata, 0, len(queryDirs))
-        for _, queryDir := range queryDirs </span><span class="cov5" title="7">{
+        for _, queryDir := range queryDirs </span><span class="cov5" title="8">{
                 query, errRQ := ReadQuery(queryDir)
                 if errRQ != nil </span><span class="cov0" title="0">{
                         sentryReport.ReportSentry(&amp;sentryReport.Report{
@@ -6785,41 +6793,41 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
                         continue</span>
                 }
 
-                <span class="cov5" title="7">if !s.CheckType(query.Metadata["platform"]) </span><span class="cov0" title="0">{
+                <span class="cov5" title="8">if !s.CheckType(query.Metadata["platform"]) </span><span class="cov0" title="0">{
                         continue</span>
                 }
 
-                <span class="cov5" title="7">if !s.CheckCloudProvider(query.Metadata["cloudProvider"]) </span><span class="cov0" title="0">{
+                <span class="cov5" title="8">if !s.CheckCloudProvider(query.Metadata["cloudProvider"]) </span><span class="cov0" title="0">{
                         continue</span>
                 }
 
-                <span class="cov5" title="7">customInputData, readInputErr := readInputData(filepath.Join(queryParameters.InputDataPath, query.Metadata["id"].(string)+".json"))
+                <span class="cov5" title="8">customInputData, readInputErr := readInputData(filepath.Join(queryParameters.InputDataPath, query.Metadata["id"].(string)+".json"))
                 if readInputErr != nil </span><span class="cov0" title="0">{
                         log.Err(errRQ).
                                 Msgf("failed to read input data, query=%s", path.Base(queryDir))
                         continue</span>
                 }
 
-                <span class="cov5" title="7">inputData, mergeError := MergeInputData(query.InputData, customInputData)
+                <span class="cov5" title="8">inputData, mergeError := MergeInputData(query.InputData, customInputData)
                 if mergeError != nil </span><span class="cov0" title="0">{
                         log.Err(mergeError).
                                 Msgf("failed to merge input data, query=%s", path.Base(queryDir))
                         continue</span>
                 }
-                <span class="cov5" title="7">query.InputData = inputData
+                <span class="cov5" title="8">query.InputData = inputData
 
                 if len(queryParameters.IncludeQueries.ByIDs) &gt; 0 </span><span class="cov2" title="2">{
                         if checkQueryInclude(query.Metadata["id"], queryParameters.IncludeQueries.ByIDs) </span><span class="cov1" title="1">{
                                 queries = append(queries, query)
                         }</span>
-                } else<span class="cov4" title="5"> {
+                } else<span class="cov4" title="6"> {
                         if checkQueryExclude(query.Metadata, queryParameters) </span><span class="cov3" title="3">{
                                 log.Debug().
                                         Msgf("Excluding query ID: %s category: %s severity: %s", query.Metadata["id"], query.Metadata["category"], query.Metadata["severity"])
                                 continue</span>
                         }
 
-                        <span class="cov2" title="2">queries = append(queries, query)</span>
+                        <span class="cov3" title="3">queries = append(queries, query)</span>
                 }
         }
 
@@ -6827,37 +6835,37 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 }
 
 // validateMetadata prevents panics when KICS queries metadata fields are missing
-func validateMetadata(metadata map[string]interface{}) (exist bool, field string) <span class="cov6" title="10">{
+func validateMetadata(metadata map[string]interface{}) (exist bool, field string) <span class="cov6" title="11">{
         fields := []string{
                 "id",
                 "platform",
         }
-        for _, field = range fields </span><span class="cov7" title="19">{
+        for _, field = range fields </span><span class="cov7" title="21">{
                 if _, exist = metadata[field]; !exist </span><span class="cov2" title="2">{
                         return
                 }</span>
         }
-        <span class="cov5" title="8">return</span>
+        <span class="cov5" title="9">return</span>
 }
 
 // ReadQuery reads query's files for a given path and returns a QueryMetadata struct with it's
 // content
-func ReadQuery(queryDir string) (model.QueryMetadata, error) <span class="cov5" title="7">{
+func ReadQuery(queryDir string) (model.QueryMetadata, error) <span class="cov5" title="8">{
         queryContent, err := os.ReadFile(filepath.Clean(path.Join(queryDir, QueryFileName)))
         if err != nil </span><span class="cov0" title="0">{
                 return model.QueryMetadata{}, errors.Wrapf(err, "failed to read query %s", path.Base(queryDir))
         }</span>
 
-        <span class="cov5" title="7">metadata, err := ReadMetadata(queryDir)
+        <span class="cov5" title="8">metadata, err := ReadMetadata(queryDir)
         if err != nil </span><span class="cov0" title="0">{
                 return model.QueryMetadata{}, errors.Wrapf(err, "failed to read query %s", path.Base(queryDir))
         }</span>
 
-        <span class="cov5" title="7">if valid, missingField := validateMetadata(metadata); !valid </span><span class="cov0" title="0">{
+        <span class="cov5" title="8">if valid, missingField := validateMetadata(metadata); !valid </span><span class="cov0" title="0">{
                 return model.QueryMetadata{}, fmt.Errorf("failed to read metadata field: %s", missingField)
         }</span>
 
-        <span class="cov5" title="7">platform := getPlatform(metadata["platform"].(string))
+        <span class="cov5" title="8">platform := getPlatform(metadata["platform"].(string))
 
         inputData, errInputData := readInputData(filepath.Join(queryDir, "data.json"))
         if errInputData != nil </span><span class="cov0" title="0">{
@@ -6865,12 +6873,12 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) <span class="cov5" 
                         Msgf("Query provider failed to read input data, query=%s", path.Base(queryDir))
         }</span>
 
-        <span class="cov5" title="7">aggregation := 1
+        <span class="cov5" title="8">aggregation := 1
         if agg, ok := metadata["aggregation"]; ok </span><span class="cov0" title="0">{
                 aggregation = int(agg.(float64))
         }</span>
 
-        <span class="cov5" title="7">return model.QueryMetadata{
+        <span class="cov5" title="8">return model.QueryMetadata{
                 Query:       path.Base(filepath.ToSlash(queryDir)),
                 Content:     string(queryContent),
                 Metadata:    metadata,
@@ -6881,7 +6889,7 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) <span class="cov5" 
 }
 
 // ReadMetadata read query's metadata file inside the query directory
-func ReadMetadata(queryDir string) (map[string]interface{}, error) <span class="cov6" title="9">{
+func ReadMetadata(queryDir string) (map[string]interface{}, error) <span class="cov6" title="10">{
         f, err := os.Open(filepath.Clean(path.Join(queryDir, MetadataFileName)))
         if err != nil </span><span class="cov1" title="1">{
                 sentryReport.ReportSentry(&amp;sentryReport.Report{
@@ -6893,14 +6901,14 @@ func ReadMetadata(queryDir string) (map[string]interface{}, error) <span class="
 
                 return nil, err
         }</span>
-        <span class="cov5" title="8">defer func() </span><span class="cov5" title="8">{
+        <span class="cov5" title="9">defer func() </span><span class="cov5" title="9">{
                 if err := f.Close(); err != nil </span><span class="cov0" title="0">{
                         log.Err(err).
                                 Msgf("Queries provider can't close file, file=%s", filepath.Clean(path.Join(queryDir, MetadataFileName)))
                 }</span>
         }()
 
-        <span class="cov5" title="8">var metadata map[string]interface{}
+        <span class="cov5" title="9">var metadata map[string]interface{}
         if err := json.NewDecoder(f).Decode(&amp;metadata); err != nil </span><span class="cov0" title="0">{
                 sentryReport.ReportSentry(&amp;sentryReport.Report{
                         Message:  fmt.Sprintf("Queries provider can't unmarshal metadata, query=%s", path.Base(queryDir)),
@@ -6912,10 +6920,10 @@ func ReadMetadata(queryDir string) (map[string]interface{}, error) <span class="
                 return nil, err
         }</span>
 
-        <span class="cov5" title="8">return metadata, nil</span>
+        <span class="cov5" title="9">return metadata, nil</span>
 }
 
-func getPlatform(metadataPlatform string) string <span class="cov7" title="16">{
+func getPlatform(metadataPlatform string) string <span class="cov7" title="17">{
         switch metadataPlatform </span>{
         case "Ansible":<span class="cov1" title="1">
                 return "ansible"</span>
@@ -6929,7 +6937,7 @@ func getPlatform(metadataPlatform string) string <span class="cov7" title="16">{
                 return "k8s"</span>
         case "OpenAPI":<span class="cov1" title="1">
                 return "openAPI"</span>
-        case "Terraform":<span class="cov5" title="8">
+        case "Terraform":<span class="cov5" title="9">
                 return "terraform"</span>
         case "AzureResourceManager":<span class="cov1" title="1">
                 return "azureResourceManager"</span>
@@ -6944,10 +6952,10 @@ func getPlatform(metadataPlatform string) string <span class="cov7" title="16">{
         }
 }
 
-func readInputData(inputDataPath string) (string, error) <span class="cov7" title="15">{
+func readInputData(inputDataPath string) (string, error) <span class="cov7" title="17">{
         inputData, err := os.ReadFile(filepath.Clean(inputDataPath))
-        if err != nil </span><span class="cov7" title="14">{
-                if os.IsNotExist(err) </span><span class="cov7" title="14">{
+        if err != nil </span><span class="cov7" title="16">{
+                if os.IsNotExist(err) </span><span class="cov7" title="16">{
                         return emptyInputData, nil
                 }</span>
                 <span class="cov0" title="0">return emptyInputData, errors.Wrapf(err, "failed to read query input data %s", path.Base(inputDataPath))</span>
@@ -7060,8 +7068,8 @@ func mergeLibraries(customLib, embeddedLib string) (string, error) <span class="
 }
 
 // MergeInputData merges KICS input data with custom input data user defined
-func MergeInputData(defaultInputData, customInputData string) (string, error) <span class="cov7" title="14">{
-        if checkEmptyInputdata(customInputData) &amp;&amp; checkEmptyInputdata(defaultInputData) </span><span class="cov7" title="12">{
+func MergeInputData(defaultInputData, customInputData string) (string, error) <span class="cov7" title="15">{
+        if checkEmptyInputdata(customInputData) &amp;&amp; checkEmptyInputdata(defaultInputData) </span><span class="cov7" title="13">{
                 return emptyInputData, nil
         }</span>
         <span class="cov2" title="2">if checkEmptyInputdata(defaultInputData) </span><span class="cov0" title="0">{
@@ -7090,7 +7098,7 @@ func MergeInputData(defaultInputData, customInputData string) (string, error) <s
         <span class="cov1" title="1">return string(mergedJSON), nil</span>
 }
 
-func checkEmptyInputdata(inputData string) bool <span class="cov10" title="31">{
+func checkEmptyInputdata(inputData string) bool <span class="cov10" title="33">{
         return inputData == emptyInputData || inputData == ""
 }</span>
 </pre>
@@ -17351,7 +17359,731 @@ func (r *Resolver) GetType(filePath string) model.FileKind <span class="cov10" t
 }
 </pre>
 		
-		<pre class="file" id="file101" style="display: none">package scanner
+		<pre class="file" id="file101" style="display: none">package scan
+
+import (
+        "context"
+        "time"
+
+        consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
+        "github.com/Checkmarx/kics/internal/storage"
+        "github.com/Checkmarx/kics/internal/tracker"
+        "github.com/Checkmarx/kics/pkg/descriptions"
+        "github.com/Checkmarx/kics/pkg/progress"
+        "github.com/rs/zerolog/log"
+)
+
+// Parameters represents all available scan parameters
+type Parameters struct {
+        CloudProvider               []string
+        DisableCISDesc              bool
+        DisableFullDesc             bool
+        ExcludeCategories           []string
+        ExcludePaths                []string
+        ExcludeQueries              []string
+        ExcludeResults              []string
+        ExcludeSeverities           []string
+        IncludeQueries              []string
+        InputData                   string
+        OutputName                  string
+        OutputPath                  string
+        Path                        []string
+        PayloadPath                 string
+        PreviewLines                int
+        QueriesPath                 []string
+        LibrariesPath               string
+        ReportFormats               []string
+        Platform                    []string
+        QueryExecTimeout            int
+        LineInfoPayload             bool
+        DisableSecrets              bool
+        SecretsRegexesPath          string
+        ChangedDefaultQueryPath     bool
+        ChangedDefaultLibrariesPath bool
+        ScanID                      string
+        BillOfMaterials             bool
+}
+
+// Client represents a scan client
+type Client struct {
+        ScanParams        *Parameters
+        ScanStartTime     time.Time
+        Tracker           *tracker.CITracker
+        Storage           *storage.MemoryStorage
+        ExcludeResultsMap map[string]bool
+        Printer           *consoleHelpers.Printer
+        ProBarBuilder     *progress.PbBuilder
+}
+
+// NewClient initializes the client with all the required parameters
+func NewClient(params *Parameters, proBarBuilder *progress.PbBuilder, printer *consoleHelpers.Printer) (*Client, error) <span class="cov0" title="0">{
+        t, err := tracker.NewTracker(params.PreviewLines)
+        if err != nil </span><span class="cov0" title="0">{
+                log.Err(err)
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">descriptions.CheckVersion(t)
+
+        store := storage.NewMemoryStorage()
+
+        excludeResultsMap := getExcludeResultsMap(params.ExcludeResults)
+
+        return &amp;Client{
+                ScanParams:        params,
+                Tracker:           t,
+                ProBarBuilder:     proBarBuilder,
+                Storage:           store,
+                ExcludeResultsMap: excludeResultsMap,
+                Printer:           printer,
+        }, nil</span>
+}
+
+// PerformScan executes executeScan and postScan
+func (c *Client) PerformScan(ctx context.Context) error <span class="cov0" title="0">{
+        c.ScanStartTime = time.Now()
+
+        scanResults, err := c.executeScan(ctx)
+
+        if err != nil </span><span class="cov0" title="0">{
+                log.Err(err)
+                return err
+        }</span>
+
+        <span class="cov0" title="0">postScanError := c.postScan(scanResults)
+
+        if postScanError != nil </span><span class="cov0" title="0">{
+                log.Err(postScanError)
+                return postScanError
+        }</span>
+
+        <span class="cov0" title="0">return nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file102" style="display: none">package scan
+
+import (
+        _ "embed" // Embed kics CLI img and scan-flags
+        "fmt"
+        "os"
+        "path/filepath"
+        "strings"
+        "time"
+
+        consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
+        consolePrinter "github.com/Checkmarx/kics/internal/console/printer"
+        "github.com/Checkmarx/kics/pkg/descriptions"
+        "github.com/Checkmarx/kics/pkg/model"
+        "github.com/Checkmarx/kics/pkg/progress"
+        "github.com/Checkmarx/kics/pkg/report"
+        "github.com/rs/zerolog/log"
+)
+
+func (c *Client) getSummary(results []model.Vulnerability, end time.Time, pathParameters model.PathParameters) model.Summary <span class="cov0" title="0">{
+        counters := model.Counters{
+                ScannedFiles:           c.Tracker.FoundFiles,
+                ParsedFiles:            c.Tracker.ParsedFiles,
+                TotalQueries:           c.Tracker.LoadedQueries,
+                FailedToExecuteQueries: c.Tracker.ExecutingQueries - c.Tracker.ExecutedQueries,
+                FailedSimilarityID:     c.Tracker.FailedSimilarityID,
+        }
+
+        summary := model.CreateSummary(counters, results, c.ScanParams.ScanID, pathParameters.PathExtractionMap, c.Tracker.Version)
+        summary.Times = model.Times{
+                Start: c.ScanStartTime,
+                End:   end,
+        }
+
+        if c.ScanParams.DisableCISDesc || c.ScanParams.DisableFullDesc </span><span class="cov0" title="0">{
+                log.Warn().Msg("Skipping CIS descriptions because provided disable flag is set")
+        }</span> else<span class="cov0" title="0"> {
+                err := descriptions.RequestAndOverrideDescriptions(&amp;summary)
+                if err != nil </span><span class="cov0" title="0">{
+                        log.Warn().Msgf("Unable to get descriptions: %s", err)
+                        log.Warn().Msgf("Using default descriptions")
+                }</span>
+        }
+
+        <span class="cov0" title="0">return summary</span>
+}
+
+func (c *Client) resolveOutputs(
+        summary *model.Summary,
+        documents model.Documents,
+        failedQueries map[string]error,
+        printer *consoleHelpers.Printer,
+        proBarBuilder progress.PbBuilder,
+) error <span class="cov0" title="0">{
+        log.Debug().Msg("console.resolveOutputs()")
+
+        if err := consoleHelpers.PrintResult(summary, failedQueries, printer); err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov0" title="0">if c.ScanParams.PayloadPath != "" </span><span class="cov0" title="0">{
+                if err := report.ExportJSONReport(
+                        filepath.Dir(c.ScanParams.PayloadPath),
+                        filepath.Base(c.ScanParams.PayloadPath),
+                        documents,
+                ); err != nil </span><span class="cov0" title="0">{
+                        return err
+                }</span>
+        }
+
+        <span class="cov0" title="0">return printOutput(
+                c.ScanParams.OutputPath,
+                c.ScanParams.OutputName,
+                summary, c.ScanParams.ReportFormats,
+                proBarBuilder,
+        )</span>
+}
+
+func printOutput(outputPath, filename string, body interface{}, formats []string, proBarBuilder progress.PbBuilder) error <span class="cov0" title="0">{
+        log.Debug().Msg("console.printOutput()")
+        if outputPath == "" </span><span class="cov0" title="0">{
+                return nil
+        }</span>
+        <span class="cov0" title="0">if len(formats) == 0 </span><span class="cov0" title="0">{
+                formats = []string{"json"}
+        }</span>
+
+        <span class="cov0" title="0">log.Debug().Msgf("Output formats provided [%v]", strings.Join(formats, ","))
+        err := consoleHelpers.GenerateReport(outputPath, filename, body, formats, proBarBuilder)
+
+        return err</span>
+}
+
+// postScan is responsible for the output results
+func (c *Client) postScan(scanResults *Results) error <span class="cov0" title="0">{
+        if scanResults == nil </span><span class="cov0" title="0">{
+                log.Info().Msg("No files were scanned")
+                fmt.Println("No files were scanned")
+                return nil
+        }</span>
+
+        <span class="cov0" title="0">summary := c.getSummary(scanResults.Results, time.Now(), model.PathParameters{
+                ScannedPaths:      c.ScanParams.Path,
+                PathExtractionMap: scanResults.ExtractedPaths.ExtractionMap,
+        })
+
+        if err := c.resolveOutputs(
+                &amp;summary,
+                scanResults.Files.Combine(c.ScanParams.LineInfoPayload),
+                scanResults.FailedQueries,
+                c.Printer,
+                *c.ProBarBuilder); err != nil </span><span class="cov0" title="0">{
+                log.Err(err)
+                return err
+        }</span>
+
+        <span class="cov0" title="0">deleteExtractionFolder(scanResults.ExtractedPaths.ExtractionMap)
+
+        consolePrinter.PrintScanDuration(time.Since(c.ScanStartTime))
+
+        printVersionCheck(c.Printer, &amp;summary)
+
+        contributionAppeal(c.Printer, c.ScanParams.QueriesPath)
+
+        exitCode := consoleHelpers.ResultsExitCode(&amp;summary)
+        if consoleHelpers.ShowError("results") &amp;&amp; exitCode != 0 </span><span class="cov0" title="0">{
+                os.Exit(exitCode)
+        }</span>
+
+        <span class="cov0" title="0">return nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file103" style="display: none">package scan
+
+import (
+        "context"
+        "os"
+
+        "github.com/Checkmarx/kics/assets"
+        "github.com/Checkmarx/kics/pkg/engine"
+        "github.com/Checkmarx/kics/pkg/engine/provider"
+        "github.com/Checkmarx/kics/pkg/engine/secrets"
+        "github.com/Checkmarx/kics/pkg/engine/source"
+        "github.com/Checkmarx/kics/pkg/kics"
+        "github.com/Checkmarx/kics/pkg/model"
+        "github.com/Checkmarx/kics/pkg/parser"
+        buildahParser "github.com/Checkmarx/kics/pkg/parser/buildah"
+        dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
+        protoParser "github.com/Checkmarx/kics/pkg/parser/grpc"
+        jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
+        terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
+        yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+        "github.com/Checkmarx/kics/pkg/resolver"
+        "github.com/Checkmarx/kics/pkg/resolver/helm"
+        "github.com/Checkmarx/kics/pkg/scanner"
+
+        "github.com/rs/zerolog/log"
+)
+
+// Results represents a result generated by a single scan
+type Results struct {
+        Results        []model.Vulnerability
+        ExtractedPaths provider.ExtractedPath
+        Files          model.FileMetadatas
+        FailedQueries  map[string]error
+}
+
+type executeScanParameters struct {
+        services       []*kics.Service
+        inspector      *engine.Inspector
+        extractedPaths provider.ExtractedPath
+}
+
+func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) <span class="cov0" title="0">{
+        progressBar := c.ProBarBuilder.BuildCircle("Preparing Scan Assets: ")
+        go progressBar.Start()
+
+        extractedPaths, err := c.prepareAndAnalyzePaths()
+        if err != nil </span><span class="cov0" title="0">{
+                log.Err(err)
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">if len(extractedPaths.Path) == 0 </span><span class="cov0" title="0">{
+                return nil, nil
+        }</span>
+
+        <span class="cov0" title="0">querySource := source.NewFilesystemSource(
+                c.ScanParams.QueriesPath,
+                c.ScanParams.Platform,
+                c.ScanParams.CloudProvider,
+                c.ScanParams.LibrariesPath)
+
+        queryFilter := c.createQueryFilter()
+
+        inspector, err := engine.NewInspector(ctx,
+                querySource,
+                engine.DefaultVulnerabilityBuilder,
+                c.Tracker,
+                queryFilter,
+                c.ExcludeResultsMap,
+                c.ScanParams.QueryExecTimeout,
+        )
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">secretsRegexRulesContent, err := getSecretsRegexRules(c.ScanParams.SecretsRegexesPath)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">isCustomSecretsRegexes := len(c.ScanParams.SecretsRegexesPath) &gt; 0
+
+        secretsInspector, err := secrets.NewInspector(
+                ctx,
+                c.ExcludeResultsMap,
+                c.Tracker,
+                queryFilter,
+                c.ScanParams.DisableSecrets,
+                c.ScanParams.QueryExecTimeout,
+                secretsRegexRulesContent,
+                isCustomSecretsRegexes,
+        )
+        if err != nil </span><span class="cov0" title="0">{
+                log.Err(err)
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">services, err := c.createService(
+                inspector,
+                secretsInspector,
+                extractedPaths.Path,
+                c.Tracker,
+                c.Storage,
+                querySource,
+        )
+        if err != nil </span><span class="cov0" title="0">{
+                log.Err(err)
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">if err := progressBar.Close(); err != nil </span><span class="cov0" title="0">{
+                log.Debug().Msgf("Failed to close progress bar: %s", err.Error())
+        }</span>
+
+        <span class="cov0" title="0">return &amp;executeScanParameters{
+                services:       services,
+                inspector:      inspector,
+                extractedPaths: extractedPaths,
+        }, nil</span>
+}
+
+func (c *Client) executeScan(ctx context.Context) (*Results, error) <span class="cov0" title="0">{
+        executeScanParameters, err := c.initScan(ctx)
+
+        if err != nil </span><span class="cov0" title="0">{
+                log.Err(err)
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">if executeScanParameters == nil </span><span class="cov0" title="0">{
+                return nil, nil
+        }</span>
+
+        <span class="cov0" title="0">if err = scanner.PrepareAndScan(ctx, c.ScanParams.ScanID, *c.ProBarBuilder, executeScanParameters.services); err != nil </span><span class="cov0" title="0">{
+                log.Err(err)
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">failedQueries := executeScanParameters.inspector.GetFailedQueries()
+
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">results, err := c.Storage.GetVulnerabilities(ctx, c.ScanParams.ScanID)
+        if err != nil </span><span class="cov0" title="0">{
+                log.Err(err)
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">files, err := c.Storage.GetFiles(ctx, c.ScanParams.ScanID)
+        if err != nil </span><span class="cov0" title="0">{
+                log.Err(err)
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">return &amp;Results{
+                Results:        results,
+                ExtractedPaths: executeScanParameters.extractedPaths,
+                Files:          files,
+                FailedQueries:  failedQueries,
+        }, nil</span>
+}
+
+func getExcludeResultsMap(excludeResults []string) map[string]bool <span class="cov0" title="0">{
+        excludeResultsMap := make(map[string]bool)
+        for _, er := range excludeResults </span><span class="cov0" title="0">{
+                excludeResultsMap[er] = true
+        }</span>
+        <span class="cov0" title="0">return excludeResultsMap</span>
+}
+
+func getSecretsRegexRules(regexRulesPath string) (regexRulesContent string, err error) <span class="cov0" title="0">{
+        if len(regexRulesPath) &gt; 0 </span><span class="cov0" title="0">{
+                b, err := os.ReadFile(regexRulesPath)
+                if err != nil </span><span class="cov0" title="0">{
+                        return regexRulesContent, err
+                }</span>
+                <span class="cov0" title="0">regexRulesContent = string(b)</span>
+        } else<span class="cov0" title="0"> {
+                regexRulesContent = assets.SecretsQueryRegexRulesJSON
+        }</span>
+
+        <span class="cov0" title="0">return regexRulesContent, nil</span>
+}
+
+func (c *Client) createQueryFilter() *source.QueryInspectorParameters <span class="cov0" title="0">{
+        excludeQueries := source.ExcludeQueries{
+                ByIDs:        c.ScanParams.ExcludeQueries,
+                ByCategories: c.ScanParams.ExcludeCategories,
+                BySeverities: c.ScanParams.ExcludeSeverities,
+        }
+
+        includeQueries := source.IncludeQueries{
+                ByIDs: c.ScanParams.IncludeQueries,
+        }
+
+        queryFilter := source.QueryInspectorParameters{
+                IncludeQueries: includeQueries,
+                ExcludeQueries: excludeQueries,
+                InputDataPath:  c.ScanParams.InputData,
+                BomQueries:     c.ScanParams.BillOfMaterials,
+        }
+
+        return &amp;queryFilter
+}</span>
+
+func (c *Client) createService(
+        inspector *engine.Inspector,
+        secretsInspector *secrets.Inspector,
+        paths []string,
+        t kics.Tracker,
+        store kics.Storage,
+        querySource *source.FilesystemSource) ([]*kics.Service, error) <span class="cov0" title="0">{
+        filesSource, err := c.getFileSystemSourceProvider(paths)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">combinedParser, err := parser.NewBuilder().
+                Add(&amp;jsonParser.Parser{}).
+                Add(&amp;yamlParser.Parser{}).
+                Add(terraformParser.NewDefault()).
+                Add(&amp;dockerParser.Parser{}).
+                Add(&amp;protoParser.Parser{}).
+                Add(&amp;buildahParser.Parser{}).
+                Build(querySource.Types, querySource.CloudProviders)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        // combinedResolver to be used to resolve files and templates
+        <span class="cov0" title="0">combinedResolver, err := resolver.NewBuilder().
+                Add(&amp;helm.Resolver{}).
+                Build()
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">services := make([]*kics.Service, 0, len(combinedParser))
+
+        for _, parser := range combinedParser </span><span class="cov0" title="0">{
+                services = append(
+                        services,
+                        &amp;kics.Service{
+                                SourceProvider:   filesSource,
+                                Storage:          store,
+                                Parser:           parser,
+                                Inspector:        inspector,
+                                SecretsInspector: secretsInspector,
+                                Tracker:          t,
+                                Resolver:         combinedResolver,
+                        },
+                )
+        }</span>
+        <span class="cov0" title="0">return services, nil</span>
+}
+
+func (c *Client) getFileSystemSourceProvider(paths []string) (*provider.FileSystemSourceProvider, error) <span class="cov0" title="0">{
+        var excludePaths []string
+        if c.ScanParams.PayloadPath != "" </span><span class="cov0" title="0">{
+                excludePaths = append(excludePaths, c.ScanParams.PayloadPath)
+        }</span>
+
+        <span class="cov0" title="0">if len(c.ScanParams.ExcludePaths) &gt; 0 </span><span class="cov0" title="0">{
+                excludePaths = append(excludePaths, c.ScanParams.ExcludePaths...)
+        }</span>
+
+        <span class="cov0" title="0">filesSource, err := provider.NewFileSystemSourceProvider(paths, excludePaths)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov0" title="0">return filesSource, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file104" style="display: none">package scan
+
+import (
+        "fmt"
+        "os"
+        "path/filepath"
+        "regexp"
+        "strings"
+
+        "github.com/Checkmarx/kics/e2e/utils"
+        consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
+        "github.com/Checkmarx/kics/pkg/analyzer"
+        "github.com/Checkmarx/kics/pkg/engine/provider"
+        "github.com/Checkmarx/kics/pkg/model"
+        "github.com/pkg/errors"
+        "github.com/rs/zerolog/log"
+)
+
+var terraformerRegex = regexp.MustCompile(`^terraformer::`)
+
+func (c *Client) prepareAndAnalyzePaths() (provider.ExtractedPath, error) <span class="cov0" title="0">{
+        err := c.preparePaths()
+        if err != nil </span><span class="cov0" title="0">{
+                return provider.ExtractedPath{}, err
+        }</span>
+
+        <span class="cov0" title="0">regularPaths, terraformerPaths := extractPathType(c.ScanParams.Path)
+
+        terraformerExPaths, err := provider.GetTerraformerSources(terraformerPaths, c.ScanParams.OutputPath)
+        if err != nil </span><span class="cov0" title="0">{
+                return provider.ExtractedPath{}, err
+        }</span>
+
+        <span class="cov0" title="0">regularExPaths, err := provider.GetSources(regularPaths)
+        if err != nil </span><span class="cov0" title="0">{
+                return provider.ExtractedPath{}, err
+        }</span>
+
+        <span class="cov0" title="0">allPaths := combinePaths(terraformerExPaths, regularExPaths)
+
+        pathTypes, errAnalyze :=
+                analyzePaths(
+                        allPaths.Path,
+                        c.ScanParams.Platform,
+                        c.ScanParams.ExcludePaths,
+                )
+        if errAnalyze != nil </span><span class="cov0" title="0">{
+                return provider.ExtractedPath{}, errAnalyze
+        }</span>
+
+        <span class="cov0" title="0">if len(pathTypes.Types) == 0 </span><span class="cov0" title="0">{
+                return provider.ExtractedPath{}, nil
+        }</span>
+
+        <span class="cov0" title="0">c.ScanParams.Platform = pathTypes.Types
+        c.ScanParams.ExcludePaths = pathTypes.Exc
+
+        return allPaths, nil</span>
+}
+
+func combinePaths(terraformer, regular provider.ExtractedPath) provider.ExtractedPath <span class="cov0" title="0">{
+        var combinedPaths provider.ExtractedPath
+        paths := make([]string, 0)
+        combinedPathsEx := make(map[string]model.ExtractedPathObject)
+        paths = append(paths, terraformer.Path...)
+        paths = append(paths, regular.Path...)
+        combinedPaths.Path = paths
+        for k, v := range regular.ExtractionMap </span><span class="cov0" title="0">{
+                combinedPathsEx[k] = v
+        }</span>
+        <span class="cov0" title="0">for k, v := range terraformer.ExtractionMap </span><span class="cov0" title="0">{
+                combinedPathsEx[k] = v
+        }</span>
+
+        <span class="cov0" title="0">combinedPaths.ExtractionMap = combinedPathsEx
+        return combinedPaths</span>
+}
+
+func (c *Client) preparePaths() error <span class="cov0" title="0">{
+        var err error
+        err = c.GetQueryPath()
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov0" title="0">err = c.getLibraryPath()
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov0" title="0">return nil</span>
+}
+
+// GetQueryPath gets all the queries paths
+func (c *Client) GetQueryPath() error <span class="cov10" title="3">{
+        queriesPath := make([]string, 0)
+        if c.ScanParams.ChangedDefaultQueryPath </span><span class="cov6" title="2">{
+                for _, queryPath := range c.ScanParams.QueriesPath </span><span class="cov6" title="2">{
+                        extractedQueriesPath, errExtractQueries := resolvePath(queryPath, "queries-path")
+                        if errExtractQueries != nil </span><span class="cov6" title="2">{
+                                return errExtractQueries
+                        }</span>
+                        <span class="cov0" title="0">queriesPath = append(queriesPath, extractedQueriesPath)</span>
+                }
+        } else<span class="cov1" title="1"> {
+                log.Debug().Msgf("Looking for queries in executable path and in current work directory")
+                defaultQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(c.ScanParams.QueriesPath[0])
+                if errDefaultQueryPath != nil </span><span class="cov0" title="0">{
+                        return errors.Wrap(errDefaultQueryPath, "unable to find queries")
+                }</span>
+                <span class="cov1" title="1">queriesPath = append(queriesPath, defaultQueryPath)</span>
+        }
+        <span class="cov1" title="1">c.ScanParams.QueriesPath = queriesPath
+        return nil</span>
+}
+
+func (c *Client) getLibraryPath() error <span class="cov0" title="0">{
+        if c.ScanParams.ChangedDefaultLibrariesPath </span><span class="cov0" title="0">{
+                extractedLibrariesPath, errExtractLibraries := resolvePath(c.ScanParams.LibrariesPath, "libraries-path")
+                if errExtractLibraries != nil </span><span class="cov0" title="0">{
+                        return errExtractLibraries
+                }</span>
+
+                <span class="cov0" title="0">c.ScanParams.LibrariesPath = extractedLibrariesPath</span>
+        }
+        <span class="cov0" title="0">return nil</span>
+}
+
+func resolvePath(flagContent, flagName string) (string, error) <span class="cov6" title="2">{
+        extractedPath, errExtractPath := provider.GetSources([]string{flagContent})
+        if errExtractPath != nil </span><span class="cov6" title="2">{
+                return "", errExtractPath
+        }</span>
+        <span class="cov0" title="0">if len(extractedPath.Path) != 1 </span><span class="cov0" title="0">{
+                return "", fmt.Errorf("could not find a valid path (--%s) on %s", flagName, flagContent)
+        }</span>
+        <span class="cov0" title="0">log.Debug().Msgf("Trying to load path (--%s) from %s", flagName, flagContent)
+        return extractedPath.Path[0], nil</span>
+}
+
+// analyzePaths will analyze the paths to scan to determine which type of queries to load
+// and which files should be ignored, it then updates the types and exclude flags variables
+// with the results found
+func analyzePaths(paths, types, exclude []string) (model.AnalyzedPaths, error) <span class="cov0" title="0">{
+        var err error
+        var pathsFlag model.AnalyzedPaths
+        excluded := make([]string, 0)
+
+        if types[0] == "" </span><span class="cov0" title="0">{ // if '--type' flag was given skip file analyzing
+                pathsFlag, err = analyzer.Analyze(paths)
+                if err != nil </span><span class="cov0" title="0">{
+                        log.Err(err)
+                        return model.AnalyzedPaths{}, err
+                }</span>
+                <span class="cov0" title="0">logLoadingQueriesType(pathsFlag.Types)</span>
+        } else<span class="cov0" title="0"> {
+                pathsFlag.Types = append(pathsFlag.Types, types...)
+        }</span>
+        <span class="cov0" title="0">excluded = append(excluded, exclude...)
+        excluded = append(excluded, pathsFlag.Exc...)
+        pathsFlag.Exc = excluded
+        return pathsFlag, nil</span>
+}
+
+func logLoadingQueriesType(types []string) <span class="cov0" title="0">{
+        if len(types) == 0 </span><span class="cov0" title="0">{
+                log.Info().Msg("No queries were loaded")
+                return
+        }</span>
+
+        <span class="cov0" title="0">log.Info().Msgf("Loading queries of type: %s", strings.Join(types, ", "))</span>
+}
+
+func extractPathType(paths []string) (regular, terraformer []string) <span class="cov0" title="0">{
+        for _, path := range paths </span><span class="cov0" title="0">{
+                if terraformerRegex.MatchString(path) </span><span class="cov0" title="0">{
+                        terraformer = append(terraformer, terraformerRegex.ReplaceAllString(path, ""))
+                }</span> else<span class="cov0" title="0"> {
+                        regular = append(regular, path)
+                }</span>
+        }
+        <span class="cov0" title="0">return</span>
+}
+
+func deleteExtractionFolder(extractionMap map[string]model.ExtractedPathObject) <span class="cov0" title="0">{
+        for extractionFile := range extractionMap </span><span class="cov0" title="0">{
+                if strings.Contains(extractionFile, "kics-extract-terraformer") </span><span class="cov0" title="0">{
+                        continue</span>
+                }
+                <span class="cov0" title="0">err := os.RemoveAll(extractionFile)
+                if err != nil </span><span class="cov0" title="0">{
+                        log.Err(err).Msg("Failed to delete KICS extraction folder")
+                }</span>
+        }
+}
+
+func contributionAppeal(printer *consoleHelpers.Printer, queriesPath []string) <span class="cov0" title="0">{
+        if utils.Contains(queriesPath, filepath.Join("assets", "queries")) </span><span class="cov0" title="0">{
+                msg := "\nAre you using a custom query? If so, feel free to contribute to KICS!\n"
+                contributionPage := "Check out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md\n"
+
+                fmt.Println(printer.ContributionMessage.Sprintf(msg + contributionPage))
+        }</span>
+}
+
+// printVersionCheck - Prints and logs warning if not using KICS latest version
+func printVersionCheck(printer *consoleHelpers.Printer, s *model.Summary) <span class="cov0" title="0">{
+        if !s.LatestVersion.Latest </span><span class="cov0" title="0">{
+                message := fmt.Sprintf("A new version 'v%s' of KICS is available, please consider updating", s.LatestVersion.LatestVersionTag)
+
+                fmt.Println(printer.VersionMessage.Sprintf(message))
+                log.Warn().Msgf(message)
+        }</span>
+}
+</pre>
+		
+		<pre class="file" id="file105" style="display: none">package scanner
 
 import (
         "context"
@@ -17457,7 +18189,7 @@ func startProgressBar(total int, wg *sync.WaitGroup, progressChannel chan int64,
 }</span>
 </pre>
 		
-		<pre class="file" id="file102" style="display: none">//go:build !dev
+		<pre class="file" id="file106" style="display: none">//go:build !dev
 // +build !dev
 
 package aws
@@ -17512,7 +18244,7 @@ func (a CloudProvider) Import(ctx context.Context, options *importer.ImportOptio
 }
 </pre>
 		
-		<pre class="file" id="file103" style="display: none">//go:build !dev
+		<pre class="file" id="file107" style="display: none">//go:build !dev
 // +build !dev
 
 package azure
@@ -17565,7 +18297,7 @@ func (a CloudProvider) Import(ctx context.Context, options *importer.ImportOptio
 }
 </pre>
 		
-		<pre class="file" id="file104" style="display: none">//go:build !dev
+		<pre class="file" id="file108" style="display: none">//go:build !dev
 // +build !dev
 
 package gcp
@@ -17608,7 +18340,7 @@ func (a CloudProvider) Import(ctx context.Context, options *importer.ImportOptio
                 }
         }
 
-        <span class="cov8" title="1">go func() </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">go func() </span><span class="cov8" title="1">{
                 defer close(done)
                 wg.Wait()
         }</span>()
@@ -17622,7 +18354,7 @@ func (a CloudProvider) Import(ctx context.Context, options *importer.ImportOptio
 }
 </pre>
 		
-		<pre class="file" id="file105" style="display: none">//go:build !dev
+		<pre class="file" id="file109" style="display: none">//go:build !dev
 // +build !dev
 
 package terraformer
@@ -17776,7 +18508,7 @@ func getProjects(pathInfo []string) []string <span class="cov1" title="1">{
 }
 </pre>
 		
-		<pre class="file" id="file106" style="display: none">package utils
+		<pre class="file" id="file110" style="display: none">package utils
 
 import "sort"
 
@@ -17798,7 +18530,7 @@ func MergeMaps(map1, map2 map[string]interface{}) <span class="cov0" title="0">{
 }
 </pre>
 		
-		<pre class="file" id="file107" style="display: none">package utils
+		<pre class="file" id="file111" style="display: none">package utils
 
 import (
         "os"
@@ -17833,7 +18565,7 @@ func NextRandom() string <span class="cov0" title="0">{
 // ==============================================================================
 </pre>
 		
-		<pre class="file" id="file108" style="display: none">package test
+		<pre class="file" id="file112" style="display: none">package test
 
 import (
         "bytes"
