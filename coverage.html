@@ -245,7 +245,7 @@
 				
 				<option value="file94">github.com/Checkmarx/kics/pkg/report/model/sonarqube.go (92.9%)</option>
 				
-				<option value="file95">github.com/Checkmarx/kics/pkg/report/pdf.go (89.3%)</option>
+				<option value="file95">github.com/Checkmarx/kics/pkg/report/pdf.go (89.1%)</option>
 				
 				<option value="file96">github.com/Checkmarx/kics/pkg/report/sarif.go (90.9%)</option>
 				
@@ -2355,13 +2355,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="29">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="29">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2386,7 +2386,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2964,7 +2964,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="33">{
-        for _, a := range s </span><span class="cov8" title="110">{
+        for _, a := range s </span><span class="cov8" title="96">{
                 if a == e </span><span class="cov4" title="8">{
                         return true
                 }</span>
@@ -16405,7 +16405,6 @@ func buildLocation(index int, query *model.QueryResult) *Location <span class="c
 import (
         _ "embed" // used for embedding report static files
         "fmt"
-        "os"
         "path/filepath"
         "time"
 
@@ -16446,6 +16445,8 @@ var (
         grayColor = getGrayColor()
         //go:embed assets/vuln
         vulnImageBase64 string
+        //go:embed assets/checkmarx-logo
+        checkmarxLogo string
 )
 
 const (
@@ -16644,13 +16645,8 @@ func createResultsTable(m pdf.Maroto, query *model.QueryResult) <span class="cov
 func createHeaderArea(m pdf.Maroto) <span class="cov4" title="2">{
         m.Row(rowLarge, func() </span><span class="cov4" title="2">{
                 m.Col(colSix, func() </span><span class="cov4" title="2">{
-                        cxLogoPath := filepath.Join("docs", "img", "logo", "checkmarx-logo.png")
-                        _, err := os.Stat(cxLogoPath)
-                        if err != nil </span><span class="cov4" title="2">{
-                                cxLogoPath = filepath.Join("..", "..", "docs", "img", "logo", "checkmarx-logo.png")
-                        }</span>
-                        <span class="cov4" title="2">_ = m.FileImage(cxLogoPath, props.Rect{})</span>
-                })
+                        _ = m.Base64Image(checkmarxLogo, consts.Png, props.Rect{})
+                }</span>)
         })
         <span class="cov4" title="2">m.Row(colFive, func() </span><span class="cov4" title="2">{
                 m.ColSpace(0)
