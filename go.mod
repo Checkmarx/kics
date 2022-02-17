@@ -9,7 +9,7 @@ require (
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20211114212643-ec144ca0d701
-	github.com/aws/aws-sdk-go v1.42.53
+	github.com/aws/aws-sdk-go v1.43.1
 	github.com/cheggaaa/pb/v3 v3.0.8
 	github.com/emicklei/proto v1.9.2
 	github.com/getsentry/sentry-go v0.12.0
