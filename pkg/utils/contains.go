@@ -3,7 +3,7 @@ package utils
 import "reflect"
 
 // Check if list contains target
-func Contains(target interface{}, list interface{}) bool {
+func Contains(target, list interface{}) bool {
 	listVal := reflect.ValueOf(list)
 
 	if listVal.Kind() == reflect.Slice || listVal.Kind() == reflect.Array {
