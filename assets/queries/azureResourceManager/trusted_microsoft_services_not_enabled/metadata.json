@@ -4,7 +4,7 @@
   "severity": "HIGH",
   "category": "Networking and Firewall",
   "descriptionText": "Trusted Microsoft Services should be enabled for Storage Account access",
-  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts?tabs=json#networkruleset-object",
+  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts?tabs=json#networkruleset",
   "platform": "AzureResourceManager",
   "cloudProvider": "azure",
   "descriptionID": "88ca11b3"
