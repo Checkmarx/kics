@@ -42,7 +42,6 @@ func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) {
 	for _, parser := range b.parsers {
 		supportedTypes := parser.SupportedTypes()
 		if contains(types, supportedTypes) {
-
 			extensions := make(model.Extensions, len(b.parsers))
 			var platforms []string
 			for _, ext := range parser.SupportedExtensions() {
