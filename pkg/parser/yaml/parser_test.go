@@ -25,7 +25,14 @@ func TestParser_SupportedExtensions(t *testing.T) {
 // TestParser_SupportedExtensions tests the functions [SupportedTypes()] and all the methods called by them
 func TestParser_SupportedTypes(t *testing.T) {
 	p := &Parser{}
-	require.Equal(t, []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "GoogleDeploymentManager", "DockerCompose"}, p.SupportedTypes())
+	require.Equal(t, map[string]bool{
+		"ansible":                 true,
+		"cloudformation":          true,
+		"kubernetes":              true,
+		"openapi":                 true,
+		"googledeploymentmanager": true,
+		"dockercompose":           true,
+	}, p.SupportedTypes())
 }
 
 // TestParser_Parse tests the functions [Parse()] and all the methods called by them
