@@ -2,7 +2,7 @@ package utils
 
 import "reflect"
 
-// Check if list contains target
+// Contains if a function to check if list contains target
 func Contains(target, list interface{}) bool {
 	listVal := reflect.ValueOf(list)
 
