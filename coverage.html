@@ -211,9 +211,9 @@
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (81.8%)</option>
 				
-				<option value="file78">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (85.7%)</option>
+				<option value="file78">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file79">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file79">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (90.9%)</option>
 				
 				<option value="file80">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -269,7 +269,7 @@
 				
 				<option value="file106">github.com/Checkmarx/kics/pkg/terraformer/aws/aws_cloud_provider.go (93.3%)</option>
 				
-				<option value="file107">github.com/Checkmarx/kics/pkg/terraformer/azure/azure_cloud_provider.go (78.6%)</option>
+				<option value="file107">github.com/Checkmarx/kics/pkg/terraformer/azure/azure_cloud_provider.go (92.9%)</option>
 				
 				<option value="file108">github.com/Checkmarx/kics/pkg/terraformer/gcp/gcp_cloud_provider.go (93.8%)</option>
 				
@@ -2355,13 +2355,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="32">total += v
+                <span class="cov8" title="34">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2386,7 +2386,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2602,41 +2602,41 @@ import (
         yamlParser "gopkg.in/yaml.v3"
 )
 
-// openAPIRegex - Regex that finds OpenAPI defining property "openapi"
+// openAPIRegex - Regex that finds OpenAPI defining property "openapi" or "swagger"
 // openAPIRegexInfo - Regex that finds OpenAPI defining property "info"
-// openAPIRegexPath - Regex that finds OpenAPI defining property "paths"
-// cloudRegex - Regex that finds Cloud Formation defining property "Resources"
+// openAPIRegexPath - Regex that finds OpenAPI defining property "paths", "components", or "webhooks" (from 3.1.0)
+// cloudRegex - Regex that finds CloudFormation defining property "Resources"
 // k8sRegex - Regex that finds Kubernetes defining property "apiVersion"
 // k8sRegexKind - Regex that finds Kubernetes defining property "kind"
 // k8sRegexMetadata - Regex that finds Kubernetes defining property "metadata"
 // k8sRegexSpec - Regex that finds Kubernetes defining property "spec"
 var (
-        openAPIRegex                                    = regexp.MustCompile("(\\s*\"openapi\":)|(\\s*openapi:)|(\\s*\"swagger\":)|(\\s*swagger:)")
-        openAPIRegexInfo                                = regexp.MustCompile("(\\s*\"info\":)|(\\s*info:)")
-        openAPIRegexPath                                = regexp.MustCompile("(\\s*\"paths\":)|(\\s*paths:)")
-        armRegexContentVersion                          = regexp.MustCompile("\\s*\"contentVersion\":")
-        armRegexResources                               = regexp.MustCompile("\\s*\"resources\":")
-        cloudRegex                                      = regexp.MustCompile("(\\s*\"Resources\":)|(\\s*Resources:)")
-        k8sRegex                                        = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
-        k8sRegexKind                                    = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
-        k8sRegexMetadata                                = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
+        openAPIRegex                                    = regexp.MustCompile("\\s*\"?(openapi|swagger)\"?\\s*:")
+        openAPIRegexInfo                                = regexp.MustCompile("\\s*\"?info\"?\\s*:")
+        openAPIRegexPath                                = regexp.MustCompile("\\s*\"?(paths|components|webhooks)\"?\\s*:")
+        armRegexContentVersion                          = regexp.MustCompile("\\s*\"contentVersion\"\\s*:")
+        armRegexResources                               = regexp.MustCompile("\\s*\"resources\"\\s*:")
+        cloudRegex                                      = regexp.MustCompile("\\s*\"?Resources\"?\\s*:")
+        k8sRegex                                        = regexp.MustCompile("\\s*\"?apiVersion\"?\\s*:")
+        k8sRegexKind                                    = regexp.MustCompile("\\s*\"?kind\"?\\s*:")
+        k8sRegexMetadata                                = regexp.MustCompile("\\s*\"?metadata\"?\\s*:")
         ansibleVaultRegex                               = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
-        tfPlanRegexPV                                   = regexp.MustCompile("\\s*\"planned_values\":")
-        tfPlanRegexRC                                   = regexp.MustCompile("\\s*\"resource_changes\":")
-        tfPlanRegexConf                                 = regexp.MustCompile("\\s*\"configuration\":")
-        tfPlanRegexTV                                   = regexp.MustCompile("\\s*\"terraform_version\":")
-        cdkTfRegexMetadata                              = regexp.MustCompile("\\s*\"metadata\":")
-        cdkTfRegexStackName                             = regexp.MustCompile("\\s*\"stackName\":")
-        cdkTfRegexTerraform                             = regexp.MustCompile("\\s*\"terraform\":")
-        artifactsRegexKind                              = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
-        artifactsRegexProperties                        = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
-        artifactsRegexParametes                         = regexp.MustCompile("(\\s*\"parameters\":)|(\\s*parameters:)")
-        policyAssignmentArtifactRegexPolicyDefinitionID = regexp.MustCompile("(\\s*\"policyDefinitionId\":)|(\\s*policyDefinitionId:)")
-        roleAssignmentArtifactRegexPrincipalIds         = regexp.MustCompile("(\\s*\"principalIds\":)|(\\s*principalIds:)")
-        roleAssignmentArtifactRegexRoleDefinitionID     = regexp.MustCompile("(\\s*\"roleDefinitionId\":)|(\\s*roleDefinitionId:)")
-        templateArtifactRegexParametes                  = regexp.MustCompile("(\\s*\"template\":)|(\\s*template:)")
-        blueprintpRegexTargetScope                      = regexp.MustCompile("(\\s*\"targetScope\":)|(\\s*targetScope:)")
-        blueprintpRegexProperties                       = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
+        tfPlanRegexPV                                   = regexp.MustCompile("\\s*\"planned_values\"\\s*:")
+        tfPlanRegexRC                                   = regexp.MustCompile("\\s*\"resource_changes\"\\s*:")
+        tfPlanRegexConf                                 = regexp.MustCompile("\\s*\"configuration\"\\s*:")
+        tfPlanRegexTV                                   = regexp.MustCompile("\\s*\"terraform_version\"\\s*:")
+        cdkTfRegexMetadata                              = regexp.MustCompile("\\s*\"metadata\"\\s*:")
+        cdkTfRegexStackName                             = regexp.MustCompile("\\s*\"stackName\"\\s*:")
+        cdkTfRegexTerraform                             = regexp.MustCompile("\\s*\"terraform\"\\s*:")
+        artifactsRegexKind                              = regexp.MustCompile("\\s*\"?kind\"?\\s*:")
+        artifactsRegexProperties                        = regexp.MustCompile("\\s*\"?properties\"?\\s*:")
+        artifactsRegexParametes                         = regexp.MustCompile("\\s*\"?parameters\"?\\s*:")
+        policyAssignmentArtifactRegexPolicyDefinitionID = regexp.MustCompile("\\s*\"?policyDefinitionId\"?\\s*:")
+        roleAssignmentArtifactRegexPrincipalIds         = regexp.MustCompile("\\s*\"?principalIds\"?\\s*:")
+        roleAssignmentArtifactRegexRoleDefinitionID     = regexp.MustCompile("\\s*\"?roleDefinitionId\"?\\s*:")
+        templateArtifactRegexParametes                  = regexp.MustCompile("\\s*\"?template\"?\\s*:")
+        blueprintpRegexTargetScope                      = regexp.MustCompile("\\s*\"?targetScope\"?\\s*:")
+        blueprintpRegexProperties                       = regexp.MustCompile("\\s*\"?properties\"?\\s*:")
         buildahRegex                                    = regexp.MustCompile(`\s*buildah\s*from\s*\w+`)
 )
 
@@ -2964,7 +2964,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="33">{
-        for _, a := range s </span><span class="cov8" title="101">{
+        for _, a := range s </span><span class="cov8" title="98">{
                 if a == e </span><span class="cov4" title="8">{
                         return true
                 }</span>
@@ -14618,7 +14618,7 @@ type ProgressBar struct {
 }
 
 // NewProgressBar creates a new instance of a Circle Progress Bar
-func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" title="3">{
+func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" title="3">{
         newPb := pb.New64(constants.MaxInteger)
         tmp := fmt.Sprintf(`{{ "%s" }} {{(cycle . "\\" "-" "|" "/" "-" "|" )}}`, label)
         newPb.SetWidth(barWidth)
@@ -14626,7 +14626,7 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
         if silent </span><span class="cov1" title="1">{
                 newPb.SetWriter(io.Discard)
         }</span>
-        <span class="cov10" title="3">newPb.Start()
+        <span class="cov2" title="3">newPb.Start()
 
         return ProgressBar{
                 label: label,
@@ -14639,8 +14639,8 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
 }
 
 // Start initializes the Circle Progress Bar
-func (p ProgressBar) Start() <span class="cov0" title="0">{
-        for </span><span class="cov0" title="0">{ // increment until the Close func is called
+func (p ProgressBar) Start() <span class="cov1" title="1">{
+        for </span><span class="cov10" title="4824">{ // increment until the Close func is called
                 p.pBar.Increment()
         }</span>
 }
@@ -14696,7 +14696,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov1" title="1">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -14705,7 +14705,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov1" title="1">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
@@ -14717,14 +14717,14 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov1" title="1">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov1" title="1">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file80" style="display: none">package progress
@@ -18279,7 +18279,7 @@ func (a CloudProvider) Import(ctx context.Context, options *importer.ImportOptio
                 done &lt;- ImporterFunc(provider, *options, []string{options.ResourceGroup})
         }</span>()
 
-        <span class="cov8" title="1">go func() </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">go func() </span><span class="cov8" title="1">{
                 defer close(done)
                 wg.Wait()
         }</span>()
