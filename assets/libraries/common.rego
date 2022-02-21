@@ -351,7 +351,7 @@ get_encryption_if_exists(resource) = encryption {
 	encryption := "unencrypted"
 }
 
-engines := {
+engines = {
 	"aurora": 3306,
 	"aurora-mysql": 3306,
 	"aurora-postgresql": 3306,
