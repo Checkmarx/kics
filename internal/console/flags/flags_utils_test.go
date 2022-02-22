@@ -3,6 +3,8 @@ package flags
 import (
 	"testing"
 
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 	"github.com/stretchr/testify/require"
 )
 
@@ -50,4 +52,67 @@ func TestFlags_ValidateQuerySelectionFlags(t *testing.T) {
 
 	got = ValidateQuerySelectionFlags()
 	require.Error(t, got)
+}
+
+func TestFlags_BindFlags(t *testing.T) {
+	mockCmd := &cobra.Command{
+		Use:   "mock",
+		Short: "Mock cmd",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			return nil
+		},
+	}
+	v := viper.New()
+	v.SetEnvPrefix("KICS")
+	v.AutomaticEnv()
+	v.Set("queries-path", []interface{}{"./assets/queries", "./test"})
+	v.Set("preview-lines", 3)
+
+	tests := []struct {
+		name                    string
+		cmd                     *cobra.Command
+		flagsListContent        string
+		persintentFlag          bool
+		supportedPlatforms      []string
+		supportedCloudProviders []string
+		wantErr                 bool
+	}{
+		{
+			name: "should bind flags without error",
+			cmd:  mockCmd,
+			flagsListContent: `{"log-level": {
+				"flagType": "str",
+				"shorthandFlag": "",
+				"defaultValue": "INFO",
+				"usage": "determines log level (${supportedLogLevels})",
+				"validation": "validateStrEnum"
+			},"preview-lines": {
+				"flagType": "int",
+				"shorthandFlag": "",
+				"defaultValue": "3",
+				"usage": "number of lines to be display in CLI results (min: 1, max: 30)"
+			},"queries-path": {
+				"flagType": "multiStr",
+				"shorthandFlag": "q",
+				"defaultValue": "./assets/queries",
+				"usage": "paths to directory with queries"
+			}}`,
+			persintentFlag:          false,
+			supportedPlatforms:      []string{"terraform"},
+			supportedCloudProviders: []string{"aws"},
+			wantErr:                 false,
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			InitJSONFlags(test.cmd, test.flagsListContent, test.persintentFlag, test.supportedPlatforms, test.supportedCloudProviders)
+			got := BindFlags(test.cmd, v)
+			if !test.wantErr {
+				require.NoError(t, got)
+			} else {
+				require.Error(t, got)
+			}
+		})
+	}
 }
