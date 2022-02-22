@@ -2,6 +2,7 @@ package flags
 
 import (
 	"fmt"
+	"os"
 	"strings"
 	"testing"
 
@@ -41,6 +42,8 @@ func TestFlags_InitJSONFlags(t *testing.T) {
 		},
 	}
 
+	kicsFlags, _ := os.ReadFile("../assets/kics-flags.json")
+
 	tests := []struct {
 		name                    string
 		cmd                     *cobra.Command
@@ -51,38 +54,9 @@ func TestFlags_InitJSONFlags(t *testing.T) {
 		wantErr                 bool
 	}{
 		{
-			name: "should initialize flags without error",
-			cmd:  mockCmd,
-			flagsListContent: `{"log-level": {
-				"flagType": "str",
-				"shorthandFlag": "",
-				"defaultValue": "INFO",
-				"usage": "determines log level (${supportedLogLevels})",
-				"validation": "validateStrEnum"
-			},"preview-lines": {
-				"flagType": "int",
-				"shorthandFlag": "",
-				"defaultValue": "3",
-				"usage": "number of lines to be display in CLI results (min: 1, max: 30)"
-			},"queries-path": {
-				"flagType": "multiStr",
-				"shorthandFlag": "q",
-				"defaultValue": "./assets/queries",
-				"usage": "paths to directory with queries"
-			},"verbose": {
-				"flagType": "bool",
-				"shorthandFlag": "v",
-				"defaultValue": "false",
-				"usage": "write logs to stdout too (mutually exclusive with silent)"
-			},"disable-cis-descriptions": {
-				"flagType": "bool",
-				"shorthandFlag": "",
-				"defaultValue": "false",
-				"usage": "disable request for CIS descriptions and use default vulnerability descriptions",
-				"hidden": true,
-				"deprecated": true,
-				"deprecatedInfo": "use --disable-full-descriptions instead"
-			}}`,
+			name:                    "should initialize flags without error",
+			cmd:                     mockCmd,
+			flagsListContent:        string(kicsFlags),
 			persintentFlag:          true,
 			supportedPlatforms:      []string{"terraform"},
 			supportedCloudProviders: []string{"aws"},
