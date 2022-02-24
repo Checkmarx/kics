@@ -10,5 +10,11 @@
     "severity": "HIGH",
     "line": 12,
     "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "S3 Static Website Host Enabled",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive3.tf"
   }
 ]

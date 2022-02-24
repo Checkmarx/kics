@@ -1,19 +1,19 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as terra_lib
 
 CxPolicy[result] {
+	terra_lib.is_deprecated_version(input.document)
+
 	resource := input.document[i].resource.aws_s3_bucket[name]
 	publicAccessACL(resource.acl)
 
-	publicBlockACL := input.document[j].resource.aws_s3_bucket_public_access_block[blockName]
+	publicBlockACL := input.document[_].resource.aws_s3_bucket_public_access_block[blockName]
 
 	split(publicBlockACL.bucket, ".")[1] == name
 
-	publicBlockACL.block_public_acls == true
-	publicBlockACL.block_public_policy == true
-	publicBlockACL.ignore_public_acls == true
-	publicBlockACL.restrict_public_buckets == true
+	public(publicBlockACL)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -46,6 +46,38 @@ CxPolicy[result] {
 	}
 }
 
+CxPolicy[result] {
+	not terra_lib.is_deprecated_version(input.document)
+
+	input.document[_].resource.aws_s3_bucket[bucketName]
+
+	acl := input.document[i].resource.aws_s3_bucket_acl[name]
+	split(acl.bucket, ".")[1] == bucketName
+
+	publicAccessACL(acl.acl)
+
+	publicBlockACL := input.document[_].resource.aws_s3_bucket_public_access_block[blockName]
+	split(publicBlockACL.bucket, ".")[1] == bucketName
+
+	public(publicBlockACL)
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("aws_s3_bucket_acl[%s].acl", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "S3 Bucket public ACL is not overridden by S3 bucket Public Access Block",
+		"keyActualValue": "S3 Bucket public ACL is overridden by S3 bucket Public Access Block",
+		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_acl", name, "acl"], []),
+	}
+}
+
 publicAccessACL("public-read") = true
 
 publicAccessACL("public-read-write") = true
+
+public(publicBlockACL) {
+	publicBlockACL.block_public_acls == true
+	publicBlockACL.block_public_policy == true
+	publicBlockACL.ignore_public_acls == true
+	publicBlockACL.restrict_public_buckets == true
+}

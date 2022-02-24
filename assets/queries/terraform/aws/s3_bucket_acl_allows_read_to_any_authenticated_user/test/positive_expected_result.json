@@ -10,5 +10,17 @@
     "severity": "HIGH",
     "line": 6,
     "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
+    "severity": "HIGH",
+    "line": 14,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
+    "severity": "HIGH",
+    "line": 20,
+    "fileName": "positive4.tf"
   }
 ]

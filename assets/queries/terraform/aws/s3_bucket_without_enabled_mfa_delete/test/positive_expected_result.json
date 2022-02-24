@@ -59,5 +59,17 @@
     "severity": "HIGH",
     "line": 9,
     "fileName": "positive8.tf"
+  },
+  {
+    "queryName": "S3 Bucket Without Enabled MFA Delete",
+    "severity": "HIGH",
+    "line": 28,
+    "fileName": "positive9.tf"
+  },
+  {
+    "queryName": "S3 Bucket Without Enabled MFA Delete",
+    "severity": "HIGH",
+    "line": 14,
+    "fileName": "positive10.tf"
   }
 ]

@@ -34,5 +34,17 @@
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive6.tf"
+  },
+  {
+    "queryName": "S3 Bucket Without Versioning",
+    "severity": "MEDIUM",
+    "line": 27,
+    "fileName": "positive7.tf"
+  },
+  {
+    "queryName": "S3 Bucket Without Versioning",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive8.tf"
   }
 ]

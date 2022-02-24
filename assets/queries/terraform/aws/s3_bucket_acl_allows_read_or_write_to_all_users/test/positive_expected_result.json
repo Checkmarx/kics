@@ -22,5 +22,17 @@
     "severity": "HIGH",
     "line": 6,
     "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
+    "severity": "HIGH",
+    "line": 20,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
+    "severity": "HIGH",
+    "line": 20,
+    "fileName": "positive6.tf"
   }
 ]

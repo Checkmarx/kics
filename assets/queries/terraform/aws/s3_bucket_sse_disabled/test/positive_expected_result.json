@@ -34,5 +34,29 @@
     "severity": "HIGH",
     "line": 15,
     "fileName": "positive6.tf"
+  },
+  {
+    "queryName": "S3 Bucket SSE Disabled",
+    "severity": "HIGH",
+    "line": 14,
+    "fileName": "positive7.tf"
+  },
+  {
+    "queryName": "S3 Bucket SSE Disabled",
+    "severity": "HIGH",
+    "line": 23,
+    "fileName": "positive8.tf"
+  },
+  {
+    "queryName": "S3 Bucket SSE Disabled",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive9.tf"
+  },
+  {
+    "queryName": "S3 Bucket SSE Disabled",
+    "severity": "HIGH",
+    "line": 21,
+    "fileName": "positive10.tf"
   }
 ]
