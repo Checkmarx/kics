@@ -1,3 +1,16 @@
+provider "aws" {
+  region = "us-east-1"
+}
+
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.0"
+    }
+  }
+}
+
 resource "aws_s3_bucket" "positive5" {
   bucket = "my-tf-test-bucket"
   acl    = "private"
@@ -25,4 +38,17 @@ resource "aws_s3_bucket_public_access_block" "positive5" {
 
   block_public_acls   = true
   block_public_policy = false
+}
+
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "4.2.0"
+    }
+  }
+}
+
+provider "aws" {
+  # Configuration options
 }

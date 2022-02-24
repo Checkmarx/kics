@@ -598,3 +598,15 @@ has_relation(related_resource_id, related_resource_type, current_resource, curre
 	is_string(value)
 	regex.match(sprintf("\\${%v\\.%v\\.", [related_resource_type, related_resource_id]), value)
 }
+
+is_deprecated_version(docs){
+	version := docs[_].terraform.required_providers.aws.version
+
+	regex.match("^(~>|<|<=|=)?\\s*[0123].", version)
+}
+
+has_target_resource(bucketName, resourceName) {
+	resource := input.document[i].resource[resourceName][_]
+
+	split(resource.bucket, ".")[1] == bucketName
+}

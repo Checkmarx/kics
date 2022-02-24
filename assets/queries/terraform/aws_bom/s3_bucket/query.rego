@@ -10,10 +10,10 @@ CxPolicy[result] {
 		"resource_type": "aws_s3_bucket",
 		"resource_name": get_bucket_name(bucket_resource),
 		"resource_accessibility": get_accessibility(bucket_resource, name),
-		"resource_encryption": common_lib.get_encryption_if_exists(bucket_resource),
+		"resource_encryption": get_encryption_if_exists(bucket_resource, name),
 		"resource_vendor": "AWS",
 		"resource_category": "Storage",
-		"acl": get_bucket_acl(bucket_resource),
+		"acl": get_bucket_acl(bucket_resource, name),
 	}
 
 	result := {
@@ -27,10 +27,19 @@ CxPolicy[result] {
 	}
 }
 
-get_bucket_acl(bucket_resource) = acl {
+get_bucket_acl(bucket_resource, s3BucketName) = acl {
+	terra_lib.is_deprecated_version(input.document)
 	acl := bucket_resource.acl
 } else = acl {
+	terra_lib.is_deprecated_version(input.document)
 	acl := "private"
+} else = acl {
+	not terra_lib.is_deprecated_version(input.document)
+	bucketAcl := input.document[_].resource.aws_s3_bucket_acl[_]
+	split(bucketAcl.bucket, ".")[1] == s3BucketName
+	acl := bucketAcl.acl
+} else = acl {
+	acl := "unknown"
 }
 
 get_bucket_name(bucket_resource) = name {
@@ -56,10 +65,19 @@ get_accessibility(bucket, bucketName) = accessibility {
     accessibility != "unknown"   
 } else = accessibility {
 	# last cases: acl definition
-	accessibility := bucket.acl
-} else = accessibility {
-	# last cases: acl definition
-	not common_lib.valid_key(bucket, "acl")
-	accessibility := "private"
+	accessibility := get_bucket_acl(bucket, bucketName)
 }
 
+get_encryption_if_exists(bucket_resource, s3BucketName) = encryption {
+	terra_lib.is_deprecated_version(input.document)
+	common_lib.valid_key(bucket_resource, "server_side_encryption_configuration")
+	encryption := "encrypted"
+} else = encryption {
+	not terra_lib.is_deprecated_version(input.document)
+	bucketAcl := input.document[_].resource.aws_s3_bucket_acl[_]
+	split(bucketAcl.bucket, ".")[1] == s3BucketName
+	terra_lib.has_target_resource(s3BucketName, "aws_s3_bucket_server_side_encryption_configuration")
+	encryption := "encrypted"
+} else = encryption {
+	encryption := "unencrypted"
+}
