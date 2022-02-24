@@ -39,16 +39,3 @@ resource "aws_s3_bucket_public_access_block" "positive5" {
   block_public_acls   = true
   block_public_policy = false
 }
-
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-      version = "4.2.0"
-    }
-  }
-}
-
-provider "aws" {
-  # Configuration options
-}
