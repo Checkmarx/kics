@@ -22,7 +22,7 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
       - name: Set up Node v14
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3.0.0
         with:
           node-version: "14"
       - name: Check out code
