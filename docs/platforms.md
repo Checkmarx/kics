@@ -24,7 +24,7 @@ KICS supports scanning Docker files named `Dockerfile` or with `.dockerfile` ext
 
 ## DockerCompose
 
-KICS supports scanning Docker files with `.yaml` extension.
+KICS supports scanning DockerCompose files with `.yaml` extension.
 
 ## Helm
 
