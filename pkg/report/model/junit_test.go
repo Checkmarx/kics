@@ -35,7 +35,7 @@ var junitTests = []junitTest{
 		vq:   []model.QueryResult{},
 		file: model.VulnerableFile{},
 		want: &junitTestSuites{
-			Name:       "KICS v" + constants.Version,
+			Name:       "KICS " + constants.Version,
 			Time:       now,
 			Failures:   "0",
 			TestSuites: make([]junitTestSuite, 0),
