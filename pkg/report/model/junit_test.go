@@ -65,7 +65,7 @@ var junitTests = []junitTest{
 		},
 		want: &junitTestSuites{
 			XMLName:  xml.Name{Space: "", Local: ""},
-			Name:     "KICS v" + constants.Version,
+			Name:     "KICS " + constants.Version,
 			Time:     now,
 			Failures: "1",
 			TestSuites: []junitTestSuite{
