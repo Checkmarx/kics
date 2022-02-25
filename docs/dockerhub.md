@@ -14,23 +14,25 @@ To scan a directory/file on your host you have to mount it as a volume to the co
 
 NOTE: from v1.3.0 KICS does not execute `scan` command by default anymore.
 
-
 ```sh
 docker pull checkmarx/kics:latest
 ```
 
 Scan a directory
+
 ```sh
 docker run -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan -p "/path" -o "/path/"
 ```
+
 Scan a single file
+
 ```sh
 docker run -v {path_to_host_folder}/{filename}.{extention}:/path/{filename}.{extention} checkmarx/kics:latest scan -p "/path" -o "/path/"
 ```
 
 This will generate a `results.json` file, for both examples, under `path`.
 
-ℹ️  **UBI Based Images**
+ℹ️ **UBI Based Images**
 
 When using [UBI7](https://catalog.redhat.com) based image, the KICS process will run under the `kics` user and `kics` group with default UID=1000 and GID=1000, when using bind mount to share host files with the container, the UID and GID can be overriden to match current user with the `-u` flag that overrides the username:group or UID:GID. e.g:
 
@@ -100,7 +102,7 @@ Flags:
   -r, --secrets-regexes-path string   path to secrets regex rules configuration file
       --timeout int                   number of seconds the query has to execute before being canceled (default 60)
   -t, --type strings                  case insensitive list of platform types to scan
-                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, Dockerfile, GRPC, GoogleDeploymentManager, Kubernetes, OpenAPI, Terraform)
+                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Kubernetes, OpenAPI, Terraform)
 
 Global Flags:
       --ci                  display only log messages to CLI output (mutually exclusive with silent)

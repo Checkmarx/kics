@@ -52,8 +52,8 @@ var (
 	blueprintpRegexTargetScope                      = regexp.MustCompile("(\\s*\"targetScope\":)|(\\s*targetScope:)")
 	blueprintpRegexProperties                       = regexp.MustCompile("(\\s*\"properties\":)|(\\s*properties:)")
 	buildahRegex                                    = regexp.MustCompile(`\s*buildah\s*from\s*\w+`)
-	dockerComposeVersionRegex                       = regexp.MustCompile(`\s*version:`)
-	dockerComposeServicesRegex                      = regexp.MustCompile(`\s*services:`)
+	dockerComposeVersionRegex                       = regexp.MustCompile(`\s*version\s*:`)
+	dockerComposeServicesRegex                      = regexp.MustCompile(`\s*services\s*:`)
 )
 
 var (
