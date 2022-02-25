@@ -34,6 +34,7 @@ func TestPrintASFFReport(t *testing.T) {
 			require.NoError(t, err)
 
 			require.FileExists(t, filepath.Join(test.caseTest.path, "asff-"+test.caseTest.filename+".json"))
+			os.RemoveAll(test.caseTest.path)
 		})
 	}
 }
