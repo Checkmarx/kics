@@ -7,7 +7,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.MAINTAINER={{%s}}", [name, resource.Value[0]]),
-		"issueType": "IncorrectValue", #"MissingAttribute" / "RedundantAttribute"
+		"issueType": "IncorrectValue", 
 		"keyExpectedValue": sprintf("Maintainer instruction being used in Label 'LABEL maintainer=%s'", [resource.Value[0]]),
 		"keyActualValue": sprintf("Maintainer instruction not being used in Label 'MAINTAINER %s'", [resource.Value[0]]),
 	}
