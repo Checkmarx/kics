@@ -17,7 +17,7 @@ func TestNewJUnitReport(t *testing.T) {
 	now := time.Now().String()
 	got := NewJUnitReport(now).(*junitTestSuites)
 	require.Equal(t, now, got.Time)
-	require.Equal(t, fmt.Sprintf("KICS v%s", constants.Version), got.Name)
+	require.Equal(t, fmt.Sprintf("KICS %s", constants.Version), got.Name)
 	require.Equal(t, "", got.Failures)
 	require.Len(t, got.TestSuites, 0)
 }
