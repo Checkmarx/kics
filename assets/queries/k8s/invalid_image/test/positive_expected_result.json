@@ -7,11 +7,6 @@
   {
     "queryName": "Invalid Image",
     "severity": "LOW",
-    "line": 18
-  },
-  {
-    "queryName": "Invalid Image",
-    "severity": "LOW",
-    "line": 30
+    "line": 19
   }
 ]

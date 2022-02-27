@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
     - name: uses-private-image-container
-      image: ""
+      image: nginx
       imagePullPolicy: Always
       command: [ "echo", "SUCCESS" ]
 ---
@@ -16,17 +16,6 @@ metadata:
 spec:
   containers:
     - name: uses-private-image-container
-      image:
-      imagePullPolicy: Always
-      command: [ "echo", "SUCCESS" ]
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: private-image-test-3344
-spec:
-  containers:
-    - name: uses-private-image-container
-      image: "latest"
+      image: nginx:latest
       imagePullPolicy: Always
       command: [ "echo", "SUCCESS" ]
