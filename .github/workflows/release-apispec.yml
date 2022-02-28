@@ -36,7 +36,7 @@ jobs:
         with:
           go-version: 1.17
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v2.8.1
+        uses: goreleaser/goreleaser-action@v2.9.1
         with:
           version: v0.160.0
           args: release --rm-dist --snapshot --skip-validate --config="./.goreleaser-apispec.yml"
