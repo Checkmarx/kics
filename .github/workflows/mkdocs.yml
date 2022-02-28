@@ -28,7 +28,7 @@ jobs:
               value: https://github.com/Checkmarx/kics/actions/runs/${{ github.run_id }}"
             - name: View HEAD Commit
               value: https://github.com/Checkmarx/kics/commit/${{ github.sha }}
-      - uses: actions/setup-python@v2.3.2
+      - uses: actions/setup-python@v3
         with:
           python-version: 3.x
       - name: Install dependencies
