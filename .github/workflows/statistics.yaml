@@ -28,7 +28,7 @@ jobs:
           sudo apt-get install cloc
           GO_LOC=$(cloc . | grep Go | grep -Eo '[0-9]+$')
           echo "::set-output name=goloc::${GO_LOC}"
-      - uses: actions/setup-python@v2.3.2
+      - uses: actions/setup-python@v3
         with:
           python-version: "3.x"
       - name: Run test statistics script
