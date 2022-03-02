@@ -1,7 +1,11 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	resource := input.document[i].command[name]
+	dockerLib.check_multi_stage(name, input.document[i].command)
+	
 	instructions := {"copy", "add", "run"}
 	some j
 	cmdInst := [x | resource[j].Cmd == instructions[y]; x := resource[j]]
