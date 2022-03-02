@@ -1,4 +1,4 @@
-FROM --platform=${BUILDPLATFORM:-linux/amd64} registry.access.redhat.com/ubi7:latest AS build_env
+FROM --platform=${BUILDPLATFORM:-linux/amd64} registry.access.redhat.com/ubi8:latest AS build_env
 
 WORKDIR /build
 
@@ -34,7 +34,7 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
   -a -installsuffix cgo \
   -o bin/kics cmd/console/main.go
 
-FROM registry.access.redhat.com/ubi7:latest
+FROM registry.access.redhat.com/ubi8:latest
 
 ENV RELEASE=$RELEASE \
   VERSION=$VERSION
