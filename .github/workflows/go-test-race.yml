@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Set up Go 1.17.x
@@ -19,7 +19,7 @@ jobs:
         with:
           go-version: 1.17.x
       - name: Check out code into the Go module directory
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v3
         with:
           persist-credentials: false
       - name: Get cache paths

@@ -2,6 +2,13 @@
 	{
 		"queryName": "Missing User Instruction",
 		"severity": "HIGH",
-		"line": 1
+		"line": 1,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Missing User Instruction",
+		"severity": "HIGH",
+		"line": 7,
+		"fileName": "positive2.dockerfile"
 	}
 ]

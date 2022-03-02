@@ -1,10 +1,13 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	resource := input.document[i].command[name]
+	dockerLib.check_multi_stage(name, input.document[i].command)
 
 	not name == "scratch"
-	not hasUserInstruction(resource)
+	not has_user_instruction(resource)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -15,7 +18,6 @@ CxPolicy[result] {
 	}
 }
 
-hasUserInstruction(resource) {
-	some j
-	resource[j].Cmd == "user"
+has_user_instruction(resource) {
+	resource[_].Cmd == "user"
 }

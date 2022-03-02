@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Set short hash
@@ -36,7 +36,7 @@ jobs:
         with:
           go-version: 1.17
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v2.8.1
+        uses: goreleaser/goreleaser-action@v2.9.1
         with:
           version: v0.160.0
           args: release --rm-dist --snapshot --skip-validate --config="./.goreleaser-apispec.yml"
@@ -110,7 +110,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v3
       - uses: toko-bifrost/ms-teams-deploy-card@master
         if: always()
         with:
@@ -174,7 +174,7 @@ jobs:
           echo "scratch,${COMMIT_SHA8},${DATE},${DIGEST}" >> docs/docker/apispec.csv
           echo "alpine,${COMMIT_SHA8},${DATE},${ALPINE_DIGEST}" >> docs/docker/apispec.csv
           echo "debian,${COMMIT_SHA8},${DATE},${DEBIAN_DIGEST}" >> docs/docker/apispec.csv
-      - uses: actions/setup-python@v2.3.2
+      - uses: actions/setup-python@v3
         with:
           python-version: 3.x
       - name: Generate .md table
@@ -182,7 +182,7 @@ jobs:
           pip install csvtomd
           csvtomd docs/docker/apispec.csv > docs/docker/apispec.md
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3.12.1
+        uses: peter-evans/create-pull-request@v3.14.0
         with:
           title: "docs(kicsbot): update images digest"
           token: ${{ secrets.KICS_BOT_PAT }}
