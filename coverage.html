@@ -211,7 +211,7 @@
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (81.8%)</option>
 				
-				<option value="file78">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (85.7%)</option>
+				<option value="file78">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
 				<option value="file79">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
@@ -2355,13 +2355,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="29">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov8" title="29">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2386,7 +2386,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2964,7 +2964,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="33">{
-        for _, a := range s </span><span class="cov8" title="93">{
+        for _, a := range s </span><span class="cov8" title="95">{
                 if a == e </span><span class="cov4" title="8">{
                         return true
                 }</span>
@@ -4754,7 +4754,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5097,11 +5097,11 @@ func NewInspector(
 
 func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.QueryMetadata) map[string]source.RegoLibraries <span class="cov5" title="4">{
         supportedPlatforms := make(map[string]string)
-        for _, query := range queries </span><span class="cov10" title="15">{
+        for _, query := range queries </span><span class="cov10" title="18">{
                 supportedPlatforms[query.Platform] = ""
         }</span>
         <span class="cov5" title="4">platformLibraries := make(map[string]source.RegoLibraries)
-        for platform := range supportedPlatforms </span><span class="cov7" title="8">{
+        for platform := range supportedPlatforms </span><span class="cov8" title="11">{
                 platformLibrary, errLoadingPlatformLib := queriesSource.GetQueryLibrary(platform)
                 if errLoadingPlatformLib != nil </span><span class="cov3" title="2">{
                         sentryReport.ReportSentry(&amp;sentryReport.Report{
@@ -5112,14 +5112,14 @@ func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.Qu
                         }, true)
                         continue</span>
                 }
-                <span class="cov6" title="6">platformLibraries[platform] = platformLibrary</span>
+                <span class="cov7" title="9">platformLibraries[platform] = platformLibrary</span>
         }
         <span class="cov5" title="4">return platformLibraries</span>
 }
 
 func sumAllAggregatedQueries(opaQueries []*preparedQuery) int <span class="cov5" title="4">{
         sum := 0
-        for _, query := range opaQueries </span><span class="cov7" title="7">{
+        for _, query := range opaQueries </span><span class="cov8" title="10">{
                 sum += query.metadata.Aggregation
         }</span>
         <span class="cov5" title="4">return sum</span>
@@ -5180,8 +5180,8 @@ func (c *Inspector) Inspect(
 // LenQueriesByPlat returns the number of queries by platforms
 func (c *Inspector) LenQueriesByPlat(platforms []string) int <span class="cov3" title="2">{
         count := 0
-        for _, query := range c.queries </span><span class="cov5" title="4">{
-                if contains(platforms, query.metadata.Platform) </span><span class="cov4" title="3">{
+        for _, query := range c.queries </span><span class="cov6" title="5">{
+                if contains(platforms, query.metadata.Platform) </span><span class="cov5" title="4">{
                         c.tracker.TrackQueryExecuting(query.metadata.Aggregation)
                         count++
                 }</span>
@@ -5320,7 +5320,7 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 
 // checkComment checks if the vulnerability should be skipped from comment
 func checkComment(line int, ignoreLines []int) bool <span class="cov4" title="3">{
-        for _, ignoreLine := range ignoreLines </span><span class="cov8" title="9">{
+        for _, ignoreLine := range ignoreLines </span><span class="cov7" title="9">{
                 if line == ignoreLine </span><span class="cov1" title="1">{
                         return true
                 }</span>
@@ -5330,14 +5330,14 @@ func checkComment(line int, ignoreLines []int) bool <span class="cov4" title="3"
 
 // contains is a simple method to check if a slice
 // contains an entry
-func contains(s []string, e string) bool <span class="cov8" title="10">{
-        if e == "common" </span><span class="cov1" title="1">{
+func contains(s []string, e string) bool <span class="cov8" title="11">{
+        if e == "common" </span><span class="cov3" title="2">{
                 return true
         }</span>
-        <span class="cov8" title="9">if e == "k8s" </span><span class="cov1" title="1">{
+        <span class="cov7" title="9">if e == "k8s" </span><span class="cov1" title="1">{
                 e = "kubernetes"
         }</span>
-        <span class="cov8" title="9">for _, a := range s </span><span class="cov8" title="10">{
+        <span class="cov7" title="9">for _, a := range s </span><span class="cov8" title="10">{
                 if strings.EqualFold(a, e) </span><span class="cov7" title="7">{
                         return true
                 }</span>
@@ -5373,7 +5373,7 @@ func prepareQueries(
         platformLibraries map[string]source.RegoLibraries,
         tracker Tracker) []*preparedQuery <span class="cov5" title="4">{
         opaQueries := make([]*preparedQuery, 0, len(queries))
-        for _, metadata := range queries </span><span class="cov10" title="15">{
+        for _, metadata := range queries </span><span class="cov10" title="18">{
                 platformGeneralQuery, ok := platformLibraries[metadata.Platform]
                 if !ok </span><span class="cov7" title="8">{
                         log.Err(errors.New("failed to get platform library")).
@@ -5381,20 +5381,20 @@ func prepareQueries(
                         continue</span>
                 }
 
-                <span class="cov7" title="7">select </span>{
+                <span class="cov8" title="10">select </span>{
                 case &lt;-ctx.Done():<span class="cov0" title="0">
                         return nil</span>
-                default:<span class="cov7" title="7">
+                default:<span class="cov8" title="10">
                         var opaQuery rego.PreparedEvalQuery
                         mergedInputData, err := source.MergeInputData(platformGeneralQuery.LibraryInputData, metadata.InputData)
                         if err != nil </span><span class="cov0" title="0">{
                                 log.Debug().Msg("Could not merge platform library input data")
                         }</span>
-                        <span class="cov7" title="7">mergedInputData, err = source.MergeInputData(commonLibrary.LibraryInputData, mergedInputData)
+                        <span class="cov8" title="10">mergedInputData, err = source.MergeInputData(commonLibrary.LibraryInputData, mergedInputData)
                         if err != nil </span><span class="cov0" title="0">{
                                 log.Debug().Msg("Could not merge common library input data")
                         }</span>
-                        <span class="cov7" title="7">store := inmem.NewFromReader(bytes.NewBufferString(mergedInputData))
+                        <span class="cov8" title="10">store := inmem.NewFromReader(bytes.NewBufferString(mergedInputData))
                         opaQuery, err = rego.New(
                                 rego.Query(regoQuery),
                                 rego.Module("Common", commonLibrary.LibraryCode),
@@ -5417,7 +5417,7 @@ func prepareQueries(
                                 continue</span>
                         }
 
-                        <span class="cov7" title="7">tracker.TrackQueryLoad(metadata.Aggregation)
+                        <span class="cov8" title="10">tracker.TrackQueryLoad(metadata.Aggregation)
 
                         opaQueries = append(opaQueries, &amp;preparedQuery{
                                 opaQuery: opaQuery,
@@ -14618,7 +14618,7 @@ type ProgressBar struct {
 }
 
 // NewProgressBar creates a new instance of a Circle Progress Bar
-func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" title="3">{
+func NewProgressBar(label string, silent bool) ProgressBar <span class="cov1" title="3">{
         newPb := pb.New64(constants.MaxInteger)
         tmp := fmt.Sprintf(`{{ "%s" }} {{(cycle . "\\" "-" "|" "/" "-" "|" )}}`, label)
         newPb.SetWidth(barWidth)
@@ -14626,7 +14626,7 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
         if silent </span><span class="cov1" title="1">{
                 newPb.SetWriter(io.Discard)
         }</span>
-        <span class="cov10" title="3">newPb.Start()
+        <span class="cov1" title="3">newPb.Start()
 
         return ProgressBar{
                 label: label,
@@ -14639,8 +14639,8 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
 }
 
 // Start initializes the Circle Progress Bar
-func (p ProgressBar) Start() <span class="cov0" title="0">{
-        for </span><span class="cov0" title="0">{ // increment until the Close func is called
+func (p ProgressBar) Start() <span class="cov1" title="1">{
+        for </span><span class="cov10" title="729528">{ // increment until the Close func is called
                 p.pBar.Increment()
         }</span>
 }
