@@ -40,7 +40,7 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}}", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}}.readOnly is defined and set to false", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}}.readOnly is defined and set to true", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}}.readOnly is undefined", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
 	}
 }
