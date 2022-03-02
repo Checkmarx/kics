@@ -1249,7 +1249,7 @@
 <td>Container Is Privileged<br/><sup><sub>dd29336b-fe57-445b-a26e-e6aa867ae609</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
-<td>Do not allow container to be privileged.</td>
+<td>Privileged containers lack essential security restrictions and should be avoided by removing the 'privileged' flag or by changing its value to false</td>
 <td><a href="https://kubernetes.io/docs/concepts/workloads/pods/#privileged-mode-for-containers">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -1806,10 +1806,10 @@
 <td><a href="https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Invalid Image<br/><sup><sub>583053b7-e632-46f0-b989-f81ff8045385</sub></sup></td>
+<td>Invalid Image Tag<br/><sup><sub>583053b7-e632-46f0-b989-f81ff8045385</sub></sup></td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Supply-Chain</td>
-<td>Image must be defined and not be empty or equal to latest.</td>
+<td>Image tag must be defined and not be empty or equal to latest.</td>
 <td><a href="https://kubernetes.io/docs/concepts/containers/images/#updating-images">Documentation</a><br/></td>
 </tr>
 <tr>

@@ -1240,14 +1240,6 @@
 </thead>
 <tbody>
 <tr>
-<td>Run Using Dnf Update<br/><sup><sub>bb362c19-e1b2-4006-bf6c-235c2482e774</sub></sup></td>
-<td>Buildah</td>
-<td><span style="color:#C00">High</span></td>
-<td>Supply-Chain</td>
-<td>Command 'dnf update' should not be used, as it can cause inconsistencies between builds and fails in updated packages</td>
-<td><a href="https://github.com/containers/buildah/blob/main/docs/buildah-run.1.md">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Run Using apt<br/><sup><sub>a1bc27c6-7115-48d8-bf9d-5a7e836845ba</sub></sup></td>
 <td>Buildah</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -3020,7 +3012,7 @@
 <td>Kubernetes</td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
-<td>Do not allow container to be privileged.</td>
+<td>Privileged containers lack essential security restrictions and should be avoided by removing the 'privileged' flag or by changing its value to false</td>
 <td><a href="https://kubernetes.io/docs/concepts/workloads/pods/#privileged-mode-for-containers">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -3656,11 +3648,11 @@
 <td><a href="https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Invalid Image<br/><sup><sub>583053b7-e632-46f0-b989-f81ff8045385</sub></sup></td>
+<td>Invalid Image Tag<br/><sup><sub>583053b7-e632-46f0-b989-f81ff8045385</sub></sup></td>
 <td>Kubernetes</td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Supply-Chain</td>
-<td>Image must be defined and not be empty or equal to latest.</td>
+<td>Image tag must be defined and not be empty or equal to latest.</td>
 <td><a href="https://kubernetes.io/docs/concepts/containers/images/#updating-images">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -12149,7 +12141,7 @@
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
 <td>Trusted Microsoft Services should be enabled for Storage Account access</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts?tabs=json#networkruleset-object">Documentation</a><br/></td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts?tabs=json#networkruleset">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>PostgreSQL Database Server SSL Disabled<br/><sup><sub>bf500309-da53-4dd3-bcf7-95f7974545a5</sub></sup></td>
@@ -12472,30 +12464,6 @@
 <td><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Yum Update Enabled<br/><sup><sub>8f6456be-0018-46db-9ce6-b3b6dc8d34d2</sub></sup></td>
-<td>Dockerfile</td>
-<td><span style="color:#C00">High</span></td>
-<td>Supply-Chain</td>
-<td>Yum update is being used</td>
-<td><a href="https://docs.docker.com/engine/install/centos/#upgrade-docker-engine-1">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Run Using Upgrade Commands<br/><sup><sub>682fe378-c180-4bd5-8a14-95fc285fb269</sub></sup></td>
-<td>Dockerfile</td>
-<td><span style="color:#C00">High</span></td>
-<td>Supply-Chain</td>
-<td>Commands 'apt-get upgrade' and 'apt-get dist-upgrade' should not be used</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Run Using dnf Update<br/><sup><sub>09fda05e-da85-4ee7-ab8d-2800a5e6e756</sub></sup></td>
-<td>Dockerfile</td>
-<td><span style="color:#C00">High</span></td>
-<td>Supply-Chain</td>
-<td>Command 'dnf update' should not be used, as it can cause inconsistencies between builds and fails in updated packages</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Last User Is 'root'<br/><sup><sub>67fd0c4a-68cf-46d7-8c41-bc9fba7e40ae</sub></sup></td>
 <td>Dockerfile</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -12573,14 +12541,6 @@
 <td><span style="color:#C60">Medium</span></td>
 <td>Supply-Chain</td>
 <td>Instead of 'gem install <gem>' we should use 'gem install <gem>:<version>'</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Run Using Zypper Update<br/><sup><sub>d4895357-dd49-4ba5-b726-1bb81cb50989</sub></sup></td>
-<td>Dockerfile</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Supply-Chain</td>
-<td>'zypper update' should not be used. Can cause inconsistencies between builds, producing problems for application developers</td>
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
 </tr>
 <tr>
