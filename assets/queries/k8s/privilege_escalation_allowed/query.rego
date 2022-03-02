@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.allowPrivilegeEscalation is set and is true", [metadata.name, specInfo.path, types[x], container.name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.allowPrivilegeEscalation is set and is false", [metadata.name, specInfo.path, types[x], container.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.allowPrivilegeEscalation is undefined", [metadata.name, specInfo.path, types[x], container.name]),
 	}
 }
