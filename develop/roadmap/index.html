@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/roadmap/">
       
       <link rel="icon" href="../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.11">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.4">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.50e68009.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.2d9f7617.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
@@ -32,8 +32,9 @@
     
       
         
+        
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
@@ -1233,15 +1234,16 @@
 </a>
 
 
+
   <h1>Roadmap</h1>
 
 <h2 id="kics_roadmap">KICS Roadmap<a class="headerlink" href="#kics_roadmap" title="Permanent link">&para;</a></h2>
 <p>These are our upcoming features:</p>
 <ul>
-<li>Schemas support gRPC</li>
-<li>Google Deployment Manager support</li>
-<li>Azure Blueprints support</li>
-<li>Bill-of-Material for cloud-resources generation</li>
+<li>Support extracting runtime configurations from additional Cloud providers such as Azure &amp; GCP</li>
+<li>CIS certifications for k8s and release 1.5</li>
+<li>Integration with AWS Security Hub</li>
+<li>Extend coverage of queries for GCP &amp; Azure</li>
 </ul>
 <p>Have an idea?
 Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a> or contact KICS core team at <a href="mailto:kics@checkmarx.com">kics@checkmarx.com</a></p>
@@ -1256,8 +1258,132 @@ Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on G
 </thead>
 <tbody>
 <tr>
+<td><strong>February 2022</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>v1.5.2</td>
+<td>Terraformer integration with AZURE</td>
+</tr>
+<tr>
+<td>v1.5.2</td>
+<td>Terraformer integration with GCP</td>
+</tr>
+<tr>
+<td>v1.5.2</td>
+<td>Multiple paths for queries</td>
+</tr>
+<tr>
+<td>v1.5.1</td>
+<td>Cloud Development Kit for Terraform support</td>
+</tr>
+<tr>
+<td><strong>January 2022</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>v1.5.0</td>
+<td>Terraformer integration with AWS</td>
+</tr>
+<tr>
+<td>v1.5.0</td>
+<td>AWS Serverless Application Model support</td>
+</tr>
+<tr>
+<td>v1.5.0</td>
+<td>ASFF report</td>
+</tr>
+<tr>
+<td><strong>December 2021</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>v1.4.9</td>
+<td>Google Deployment Manager support</td>
+</tr>
+<tr>
+<td>v1.4.9</td>
+<td>gRPC support</td>
+</tr>
+<tr>
+<td>v1.4.9</td>
+<td>CycloneDX SBOM report</td>
+</tr>
+<tr>
+<td>v1.4.9</td>
+<td>JUnit report</td>
+</tr>
+<tr>
+<td><strong>November 2021</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>v1.4.8</td>
+<td>Pre-commit hooks integration</td>
+</tr>
+<tr>
+<td>v1.4.8</td>
+<td>SonarQube report</td>
+</tr>
+<tr>
+<td>v1.4.7</td>
+<td>Parsers ignore comment by line</td>
+</tr>
+<tr>
+<td>v1.4.7</td>
+<td>MegaLinter integration</td>
+</tr>
+<tr>
+<td><strong>October 2021</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>v1.4.6</td>
+<td>Terraform Cloud integration</td>
+</tr>
+<tr>
+<td>v1.4.5</td>
+<td>Azure Blueprints support</td>
+</tr>
+<tr>
+<td>v1.4.5</td>
+<td>Bill-of-Material for cloud-resources generation (--bom option)</td>
+</tr>
+<tr>
+<td>v1.4.5</td>
+<td>Terraform plan support</td>
+</tr>
+<tr>
+<td><strong>September 2021</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>v1.4.4</td>
+<td>Terraform verified modules support</td>
+</tr>
+<tr>
+<td>v1.4.3</td>
+<td>Passwords and Secrets mechanism</td>
+</tr>
+<tr>
+<td>v1.4.3</td>
+<td>--disable-secrets and --secrets-regexes-path option</td>
+</tr>
+<tr>
+<td>v1.4.3</td>
+<td>TravisCI integration example</td>
+</tr>
+<tr>
+<td>v1.4.2</td>
+<td>--exclude-severities and --libraries-path option</td>
+</tr>
+<tr>
 <td><strong>August 2021</strong></td>
 <td></td>
+</tr>
+<tr>
+<td>v1.4.1</td>
+<td>Ignore/disable/enable feature on commented files</td>
 </tr>
 <tr>
 <td>v1.4.0</td>
@@ -1401,19 +1527,19 @@ Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on G
 </tr>
 <tr>
 <td>v1.1.0</td>
-<td>Adding support for K8S</td>
+<td>K8S support</td>
 </tr>
 <tr>
 <td>v1.1.0</td>
-<td>Adding support for Docker</td>
+<td>Docker support</td>
 </tr>
 <tr>
 <td>v1.1.0</td>
-<td>Adding support for Ansible</td>
+<td>Ansible support</td>
 </tr>
 <tr>
 <td>v1.1.0</td>
-<td>Adding support for AWS CloudFormation</td>
+<td>AWS CloudFormation support</td>
 </tr>
 <tr>
 <td><strong>November 2020</strong></td>
@@ -1502,10 +1628,10 @@ Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on G
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.092fa1f6.min.js", "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.bd0b6b67.min.js", "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.5a9542cf.min.js"></script>
+      <script src="../assets/javascripts/bundle.5413a266.min.js"></script>
       
         <script src="../js/version-mike.js"></script>
       
