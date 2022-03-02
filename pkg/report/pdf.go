@@ -261,7 +261,7 @@ func createHeaderArea(m pdf.Maroto) {
 			})
 		})
 		m.Col(colSix, func() {
-			m.Text(fmt.Sprintf("v%s ", constants.Version), props.Text{
+			m.Text(fmt.Sprintf("%s ", constants.Version), props.Text{
 				Size:        25,
 				Style:       consts.Bold,
 				Align:       consts.Right,

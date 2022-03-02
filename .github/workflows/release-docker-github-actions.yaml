@@ -56,7 +56,7 @@ jobs:
           DIGEST=${{ steps.build_gh_action.outputs.digest }}
 
           echo "${VERSION}-gh-actions,${DIGEST}" >> docs/docker/digests.csv
-      - uses: actions/setup-python@v2.3.2
+      - uses: actions/setup-python@v3
         with:
           python-version: 3.x
       - name: Generate .md table
@@ -64,7 +64,7 @@ jobs:
           pip install csvtomd
           csvtomd docs/docker/digests.csv > docs/docker/digests.md
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3.12.1
+        uses: peter-evans/create-pull-request@v3.14.0
         with:
           title: "docs(kicsbot): update images digest"
           token: ${{ secrets.KICS_BOT_PAT }}
