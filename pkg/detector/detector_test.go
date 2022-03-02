@@ -8,6 +8,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
+	"github.com/stretchr/testify/require"
 )
 
 type mockkindDetectLine struct {
@@ -156,6 +157,140 @@ func TestDetector_DetectLine(t *testing.T) {
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("DetectLine() = %v, want = %v", got, tt.want)
 			}
+		})
+	}
+}
+
+func TestDetector_SplitLines(t *testing.T) {
+	var defaultDetector defaultDetectLine
+	det := initDetector().Add(defaultDetector, model.KindTerraform)
+	det.defaultDetector = defaultDetector
+
+	tests := []struct {
+		name         string
+		fileMetadata *model.FileMetadata
+		expected     []string
+	}{
+		{
+			name: "should split lines without default detector",
+			fileMetadata: &model.FileMetadata{
+				Kind: model.KindTerraform,
+				OriginalData: `resource "aws_s3_bucket" "b" {
+					bucket = "my-tf-test-bucket"
+					acl    = "authenticated-read"
+				}`,
+			},
+			expected: []string{
+				"resource \"aws_s3_bucket\" \"b\" {",
+				"bucket = \"my-tf-test-bucket\"",
+				"acl    = \"authenticated-read\"",
+				"}",
+			},
+		},
+		{
+			name: "should split lines with default detector",
+			fileMetadata: &model.FileMetadata{
+				Kind: model.KindJSON,
+				OriginalData: `resource "aws_s3_bucket" "b" {
+					bucket = "my-tf-test-bucket"
+					acl    = "authenticated-read"
+				}`,
+			},
+			expected: []string{
+				"resource \"aws_s3_bucket\" \"b\" {",
+				"bucket = \"my-tf-test-bucket\"",
+				"acl    = \"authenticated-read\"",
+				"}",
+			},
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			got := det.SplitLines(test.fileMetadata)
+			for idx, s := range got {
+				got[idx] = strings.ReplaceAll(s, "\t", "")
+			}
+			require.Equal(t, test.expected, got)
+		})
+	}
+}
+
+func TestDetector_GetAdjacent(t *testing.T) {
+	var defaultDetector defaultDetectLine
+	det := initDetector().Add(defaultDetector, model.KindTerraform)
+	det.defaultDetector = defaultDetector
+
+	tests := []struct {
+		name         string
+		fileMetadata *model.FileMetadata
+		line         int
+		expected     model.VulnerabilityLines
+	}{
+		{
+			name: "should get adjacent lines without default detector",
+			fileMetadata: &model.FileMetadata{
+				Kind: model.KindTerraform,
+				OriginalData: `resource "aws_s3_bucket" "b" {
+bucket = "my-tf-test-bucket"
+acl    = "authenticated-read"
+}`,
+			},
+			line: 1,
+			expected: model.VulnerabilityLines{
+				Line: 1,
+				VulnLines: []model.CodeLine{
+					{
+						Position: 1,
+						Line:     "resource \"aws_s3_bucket\" \"b\" {",
+					},
+					{
+						Position: 2,
+						Line:     "bucket = \"my-tf-test-bucket\"",
+					},
+					{
+						Position: 3,
+						Line:     "acl    = \"authenticated-read\"",
+					},
+				},
+				LineWithVulnerabilty: "",
+			},
+		},
+		{
+			name: "should get adjacent lines with default detector",
+			fileMetadata: &model.FileMetadata{
+				Kind: model.KindJSON,
+				OriginalData: `resource "aws_s3_bucket" "b" {
+bucket = "my-tf-test-bucket"
+acl    = "authenticated-read"
+}`,
+			},
+			line: 1,
+			expected: model.VulnerabilityLines{
+				Line: 1,
+				VulnLines: []model.CodeLine{
+					{
+						Position: 1,
+						Line:     "resource \"aws_s3_bucket\" \"b\" {",
+					},
+					{
+						Position: 2,
+						Line:     "bucket = \"my-tf-test-bucket\"",
+					},
+					{
+						Position: 3,
+						Line:     "acl    = \"authenticated-read\"",
+					},
+				},
+				LineWithVulnerabilty: "",
+			},
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			got := det.GetAdjecent(test.fileMetadata, test.line)
+			require.Equal(t, test.expected, got)
 		})
 	}
 }
