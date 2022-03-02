@@ -119,10 +119,6 @@ func loadQueries(tb testing.TB) []queryEntry {
 		fs, err := os.ReadDir(queriesPath)
 		require.Nil(tb, err)
 
-		if model.FileKind(queryConfig.Platform) != "buildah" {
-			continue
-		}
-
 		for _, f := range fs {
 			f.Name()
 			if f.IsDir() && f.Name() != "test" {
