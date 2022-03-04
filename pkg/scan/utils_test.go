@@ -16,8 +16,8 @@ func Test_GetQueryPath(t *testing.T) {
 			name: "multiple queries path",
 			scanParams: Parameters{
 				QueriesPath: []string{
-					filepath.FromSlash("./assets/queries/terraform/aws"),
-					filepath.FromSlash("./assets/queries/terraform/azure"),
+					filepath.Join("..", "..", "assets", "queries", "terraform", "aws"),
+					filepath.Join("..", "..", "assets", "queries", "terraform", "azure"),
 				},
 				ChangedDefaultQueryPath: true,
 			},
@@ -27,16 +27,16 @@ func Test_GetQueryPath(t *testing.T) {
 			name: "single query path",
 			scanParams: Parameters{
 				QueriesPath: []string{
-					filepath.FromSlash("./assets/queries/terraform/aws"),
+					filepath.Join("..", "..", "assets", "queries", "terraform", "aws"),
 				},
 				ChangedDefaultQueryPath: true,
 			},
 			want: 1,
 		},
 		{
-			name: "empty query path",
+			name: "default query path",
 			scanParams: Parameters{
-				QueriesPath: []string{""},
+				QueriesPath: []string{filepath.Join("..", "..", "assets", "queries")},
 			},
 			want: 1,
 		},
