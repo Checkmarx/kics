@@ -14,6 +14,22 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'versioning.status' is enabled",
 		"keyActualValue": "'versioning.status' is disabled",
-		"searchLine": common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "versioning.status", "enabled"], []),
+		"searchLine": common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "versioning", "status"], []),
+	}
+}
+
+CxPolicy[result] {
+	some i
+	resource := input.document[i].resource.alicloud_oss_bucket[name]
+
+    not common_lib.valid_key(resource, "versioning")
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("alicloud_oss_bucket[%s]", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'versioning.status' is defined and set to enabled",
+		"keyActualValue": "'versioning' is missing",
+		"searchLine": common_lib.build_search_line(["resource", "alicloud_oss_bucket", name], []),
 	}
 }
