@@ -271,7 +271,7 @@
 				
 				<option value="file107">github.com/Checkmarx/kics/pkg/terraformer/azure/azure_cloud_provider.go (92.9%)</option>
 				
-				<option value="file108">github.com/Checkmarx/kics/pkg/terraformer/gcp/gcp_cloud_provider.go (93.8%)</option>
+				<option value="file108">github.com/Checkmarx/kics/pkg/terraformer/gcp/gcp_cloud_provider.go (81.2%)</option>
 				
 				<option value="file109">github.com/Checkmarx/kics/pkg/terraformer/terraformer.go (72.1%)</option>
 				
@@ -2386,7 +2386,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2964,7 +2964,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="33">{
-        for _, a := range s </span><span class="cov8" title="93">{
+        for _, a := range s </span><span class="cov8" title="92">{
                 if a == e </span><span class="cov4" title="8">{
                         return true
                 }</span>
@@ -4754,7 +4754,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -18336,7 +18336,7 @@ func (a CloudProvider) Import(ctx context.Context, options *importer.ImportOptio
                 }
         }
 
-        <span class="cov8" title="1">go func() </span><span class="cov8" title="1">{
+        <span class="cov8" title="1">go func() </span><span class="cov0" title="0">{
                 defer close(done)
                 wg.Wait()
         }</span>()
