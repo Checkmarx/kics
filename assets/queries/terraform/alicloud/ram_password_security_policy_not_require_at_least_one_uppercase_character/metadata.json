@@ -1,0 +1,11 @@
+{
+  "id": "5e0fb613-ba9b-44c3-88f0-b44188466bfd",
+  "queryName": "Ram Account Password Policy Not Required Uppercase Characters",
+  "severity": "MEDIUM",
+  "category": "Secret Management",
+  "descriptionText": "Ram Account Password Policy Require Uppercase Characters should be true",
+  "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy",
+  "platform": "Terraform",
+  "descriptionID": "5adbc73e",
+  "cloudProvider": "alicloud"
+}
