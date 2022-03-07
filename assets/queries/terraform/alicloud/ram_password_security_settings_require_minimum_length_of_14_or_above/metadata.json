@@ -1,0 +1,11 @@
+{
+    "id": "a9dfec39-a740-4105-bbd6-721ba163c053",
+    "queryName": "RAM password security settings not required minimum length of 14",
+    "severity": "HIGH",
+    "category": "Secret Management",
+    "descriptionText": "RAM password security settings required minimum length shoulb be defined and set to 14 or above",
+    "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy",
+    "platform": "Terraform",
+    "descriptionID": "a8b47743",
+    "cloudProvider": "alicloud"
+  }
