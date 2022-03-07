@@ -1,0 +1,8 @@
+[
+    {
+      "queryName": "RAM Password Security Settings not required logon block after maximum of 5 incorrect login attempts",
+      "severity": "HIGH",
+      "line": 10,
+      "fileName": "positive1.tf"
+    }
+  ]
