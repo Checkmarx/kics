@@ -3,6 +3,6 @@ resource "alicloud_oss_bucket" "bucket-versioning2" {
   acl    = "private"
 
   versioning {
-    status = "Disabled"
+    status = "Suspended"
   }
 }
