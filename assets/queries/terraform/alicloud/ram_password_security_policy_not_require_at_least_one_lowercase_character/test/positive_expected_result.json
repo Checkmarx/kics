@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Ram Account Password Policy Not Required Lowercase Characters",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive1.tf"
+  }
+]
