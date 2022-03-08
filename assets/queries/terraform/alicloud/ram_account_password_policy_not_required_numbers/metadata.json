@@ -4,7 +4,7 @@
   "severity": "MEDIUM",
   "category": "Secret Management",
   "descriptionText": "Ram Account Password Policy should have 'require_numbers' set to true",
-  "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy",
+  "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#require_numbers",
   "platform": "Terraform",
   "descriptionID": "0ee40b1d",
   "cloudProvider": "alicloud"
