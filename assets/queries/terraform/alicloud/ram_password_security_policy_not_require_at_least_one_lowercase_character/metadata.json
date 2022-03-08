@@ -1,6 +1,6 @@
 {
   "id": "89143358-cec6-49f5-9392-920c591c669c",
-  "queryName": "Ram Account Password Policy Not Required Lowercase Characters",
+  "queryName": "Ram Account Password Policy Not Require At Least one Lowercase Character",
   "severity": "MEDIUM",
   "category": "Secret Management",
   "descriptionText": "Ram Account Password Policy should have 'require_lowercase_characters' set to true",
