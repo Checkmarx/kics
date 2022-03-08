@@ -1,0 +1,11 @@
+{
+    "id": "140869ea-25f2-40d4-a595-0c0da135114e",
+    "queryName": "RDS instances log_connections parameter is not set to ON",
+    "severity": "LOW",
+    "category": "Observability",
+    "descriptionText": "log_connections parameter is not set to ON for RDS instances",
+    "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#versioning",
+    "platform": "Terraform",
+    "descriptionID": "0a96bec0",
+    "cloudProvider": "alicloud"
+  }
