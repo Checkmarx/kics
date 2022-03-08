@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/dockerhub/">
       
       <link rel="icon" href="../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.5">
     
     
       
@@ -1221,10 +1221,10 @@
 </code></pre>
 <p>This will generate a <code>results.json</code> file, for both examples, under <code>path</code>.</p>
 <p>ℹ️  <strong>UBI Based Images</strong></p>
-<p>When using <a href="https://catalog.redhat.com">UBI7</a> based image, the KICS process will run under the <code>kics</code> user and <code>kics</code> group with default UID=1000 and GID=1000, when using bind mount to share host files with the container, the UID and GID can be overriden to match current user with the <code>-u</code> flag that overrides the username:group or UID:GID. e.g:</p>
-<pre><code class="language-sh">docker run -it -u $UID:$GID -v $PWD:/path checkmarx/kics:ubi7 scan -p /path/assets/queries/dockerfile -o /path -v
+<p>When using <a href="https://catalog.redhat.com">UBI8</a> based image, the KICS process will run under the <code>kics</code> user and <code>kics</code> group with default UID=1000 and GID=1000, when using bind mount to share host files with the container, the UID and GID can be overriden to match current user with the <code>-u</code> flag that overrides the username:group or UID:GID. e.g:</p>
+<pre><code class="language-sh">docker run -it -u $UID:$GID -v $PWD:/path checkmarx/kics:ubi8 scan -p /path/assets/queries/dockerfile -o /path -v
 </code></pre>
-<p>Another option is <a href="https://github.com/Checkmarx/kics/blob/master/Dockerfile.ubi7">rebuilding the dockerfile</a> providing build arguments e.g: <code>--build-arg UID=999 --build-arg GID=999 --build-arg KUSER=myuser --build-arg KUSER=mygroup</code></p>
+<p>Another option is <a href="https://github.com/Checkmarx/kics/blob/master/Dockerfile.ubi8">rebuilding the dockerfile</a> providing build arguments e.g: <code>--build-arg UID=999 --build-arg GID=999 --build-arg KUSER=myuser --build-arg KUSER=mygroup</code></p>
 <h2 id="cli_options">CLI Options<a class="headerlink" href="#cli_options" title="Permanent link">&para;</a></h2>
 <p>Usage:</p>
 <pre><code class="language-txt">Executes a scan analysis
@@ -1331,7 +1331,7 @@ Global Flags:
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.bd0b6b67.min.js", "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.5413a266.min.js"></script>
+      <script src="../assets/javascripts/bundle.467223ff.min.js"></script>
       
         <script src="../js/version-mike.js"></script>
       
