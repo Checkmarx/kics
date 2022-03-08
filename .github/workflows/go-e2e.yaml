@@ -17,55 +17,56 @@ jobs:
         uses: styfle/cancel-workflow-action@0.9.1
         with:
           access_token: ${{ github.token }}
-      - name: Set up Go 1.17.x
-        uses: actions/setup-go@v2
-        with:
-          go-version: ${{ matrix.go-version }}
       - name: Set up Node v14
         uses: actions/setup-node@v3
         with:
           node-version: "14"
-      - name: Check out code
-        uses: actions/checkout@v3
-        with:
-          persist-credentials: false
       - name: Install mock server
         run: npm ci
         working-directory: .github/scripts/server-mock
       - name: Start mock server
         run: (npm run start&)
         working-directory: .github/scripts/server-mock
-      - name: Print go env
-        run: go env
-      - name: Get cache paths
-        id: go-cache-paths
-        run: |
-          echo "::set-output name=go-build::$(go env GOCACHE)"
-          echo "::set-output name=go-mod::$(go env GOMODCACHE)"
-      - name: Cache dependencies
+
+
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@master
+      - name: Cache Docker layers
         uses: actions/cache@v2.1.7
         with:
-          path: ${{ steps.go-cache-paths.outputs.go-build }}
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.ref }}
           restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
-      - name: Build binary
-        run: make build-dev
-      - name: Get Binary Path
-        id: getbin
-        run: |
-          #!/usr/bin/env python3
-          import os
-          path = os.path.join(os.environ['GITHUB_WORKSPACE'], 'bin', 'kics')
-          print(f"::set-output name=kics::{path}")
-          queries_path = os.path.join(os.environ['GITHUB_WORKSPACE'], 'assets', 'queries')
-          print(f"::set-output name=queries::{queries_path}")
-        shell: python3 {0}
+            ${{ runner.os }}-buildx-${{ github.ref }}
+      - name: Get short SHA
+        run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-8)" >> $GITHUB_ENV
+      - name: Build
+        id: docker_build
+        uses: docker/build-push-action@v2.9.0
+        with:
+          load: true
+          context: ./
+          file: ./Dockerfile
+          builder: ${{ steps.buildx.outputs.name }}
+          push: false
+          tags: kics:e2e-tests
+          build-args: |
+            VERSION=${GITHUB_SHA_SHORT}
+            COMMIT=${GITHUB_SHA}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
+
+
       - name: Run E2E Tests
         env:
-          E2E_KICS_BINARY: ${{ steps.getbin.outputs.kics }}
+          E2E_KICS_DOCKER: kics:e2e-tests
           E2E_KICS_QUERIES_PATH: ${{ steps.getbin.outputs.queries }}
         run: |
           go test -tags dev "github.com/Checkmarx/kics/e2e" -timeout 1500s -json > results.json

@@ -15,7 +15,7 @@ import (
 )
 
 func Test_E2E_CLI(t *testing.T) {
-	kicsPath := utils.GetKICSBinaryPath("")
+	kicsDockerImage := utils.GetKICSDockerImageName()
 	scanStartTime := time.Now()
 
 	if testing.Short() {
@@ -24,7 +24,7 @@ func Test_E2E_CLI(t *testing.T) {
 
 	templates := prepareTemplates()
 
-	for _, tt := range testcases.Tests {
+	for _, tt := range testcases.Tests[0:7] {
 		for arg := range tt.Args.Args {
 			tt := tt
 			arg := arg
@@ -36,7 +36,7 @@ func Test_E2E_CLI(t *testing.T) {
 					useMock = true
 				}
 
-				out, err := utils.RunCommand(append(kicsPath, tt.Args.Args[arg]...), useMock)
+				out, err := utils.RunCommand(kicsDockerImage, tt.Args.Args[arg], useMock)
 				// Check command Error
 				require.NoError(t, err, "Capture CLI output should not yield an error")
 
