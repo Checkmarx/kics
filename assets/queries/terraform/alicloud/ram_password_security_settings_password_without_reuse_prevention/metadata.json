@@ -3,8 +3,8 @@
     "queryName": "RAM Password Security Settings Password without Reuse Prevention",
     "severity": "MEDIUM",
     "category": "Secret Management",
-    "descriptionText": "RAM Password Security Settings Password should have Reuse Prevention",
-    "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy",
+    "descriptionText": "RAM Password Security Settings 'password_reuse_prevention' should be defined",
+    "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#password_reuse_prevention",
     "platform": "Terraform",
     "descriptionID": "2210f1f7",
     "cloudProvider": "alicloud"
