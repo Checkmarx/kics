@@ -201,8 +201,8 @@ func createCISRows(m pdf.Maroto, query *model.QueryResult) {
 }
 
 func getRowLength(value string) float64 {
-	length := len(value)
-	result := length/colRuneSlitter + 1
+	length := float64(len(value))
+	result := ((length / float64(2.5)) / colRuneSlitter) + 1
 	return float64(result)
 }
 
