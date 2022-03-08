@@ -199,8 +199,9 @@ func createCISRows(m pdf.Maroto, query *model.QueryResult) {
 
 func getRowLength(value string) float64 {
 	length := float64(len(value))
-	result := ((length / float64(2.5)) / colRuneSlitter) + 1
-	return float64(result)
+	x := 2.5
+	result := ((length / x) / colRuneSlitter) + 1
+	return result
 }
 
 func createResultsTable(m pdf.Maroto, query *model.QueryResult) {
