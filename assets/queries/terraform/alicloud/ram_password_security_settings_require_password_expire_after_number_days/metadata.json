@@ -3,8 +3,8 @@
     "queryName": "Ram Account Password Policy Not Required Password Expire after set of days",
     "severity": "MEDIUM",
     "category": "Secret Management",
-    "descriptionText": "Ram Account Password Policy Password should be Expire after defined set number of days",
-    "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy",
+    "descriptionText": "Ram Account Password Policy Password 'max_password_age' should be defined to expire after defined set number of days",
+    "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#max_password_age",
     "platform": "Terraform",
     "descriptionID": "6056f5ca",
     "cloudProvider": "alicloud"
