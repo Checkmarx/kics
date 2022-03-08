@@ -11,6 +11,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'max_login_attempts' is set to 5 or less",
 		"keyActualValue": "'max_login_attempts' is above than 5",
+        "searchLine": common_lib.build_search_line(["resource", "alicloud_ram_account_password_policy", name, "max_login_attempts"], []),
 		
 	}
 }
