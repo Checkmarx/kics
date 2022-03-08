@@ -1,0 +1,11 @@
+{
+    "id": "2bb13841-7575-439e-8e0a-cccd9ede2fa8",
+    "queryName": "Ram Account Password Policy Not Required Password Expire after set of days",
+    "severity": "MEDIUM",
+    "category": "Secret Management",
+    "descriptionText": "Ram Account Password Policy Password should be Expire after defined set number of days",
+    "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy",
+    "platform": "Terraform",
+    "descriptionID": "6056f5ca",
+    "cloudProvider": "alicloud"
+  }
