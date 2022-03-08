@@ -1,12 +1,12 @@
 [
     {
-      "queryName": "RAM password security settings not required minimum length of 14",
+      "queryName": "Ram Account Password Policy Not Required Minimum Length",
       "severity": "HIGH",
       "line": 2,
       "fileName": "positive1.tf"
     },
     {
-        "queryName": "RAM password security settings not required minimum length of 14",
+        "queryName": "Ram Account Password Policy Not Required Minimum Length",
         "severity": "HIGH",
         "line": 1,
         "fileName": "positive2.tf"

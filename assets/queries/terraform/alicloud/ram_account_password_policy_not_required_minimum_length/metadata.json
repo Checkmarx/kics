@@ -1,6 +1,6 @@
 {
     "id": "a9dfec39-a740-4105-bbd6-721ba163c053",
-    "queryName": "RAM password security settings not required minimum length of 14",
+    "queryName": "Ram Account Password Policy Not Required Minimum Length",
     "severity": "HIGH",
     "category": "Secret Management",
     "descriptionText": "RAM password security settings required minimum length shoulb be defined and set to 14 or above",
