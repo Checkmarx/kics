@@ -37,6 +37,7 @@ const (
 	colTen          = 10
 	colFullPage     = 12
 	colRuneSlitter  = 20
+	textSize        = 10
 )
 
 var (
@@ -45,10 +46,6 @@ var (
 	vulnImageBase64 string
 	//go:embed assets/checkmarx-logo
 	checkmarxLogo string
-)
-
-const (
-	textSize = 10
 )
 
 func createQueryEntryMetadataField(m pdf.Maroto, label, value string, textSize int) {
