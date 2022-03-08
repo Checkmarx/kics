@@ -15,7 +15,7 @@ jobs:
           cancel_others: false
           paths_ignore: '["docs/**", "**/**.md", "examples"]'
       - name: Check out code into the Go module directory
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v3
         with:
           persist-credentials: false
       - name: Set up Docker Buildx
