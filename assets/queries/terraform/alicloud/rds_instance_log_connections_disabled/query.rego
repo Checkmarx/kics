@@ -20,8 +20,8 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	some i
-	parameters := input.document[i].resource.alicloud_db_instance[name].parameters
-	not has_log_conn(parameters)
+	resource := input.document[i].resource.alicloud_db_instance[name]
+	not has_log_conn(resource)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -33,7 +33,8 @@ CxPolicy[result] {
 	}
 }
 
-has_log_conn(parameters){
-	parameter := parameters[j]
-    parameter.name == "log_connections"
+has_log_conn(resource){
+	parameter := resource.parameters[j]
+	parameter.name == "log_connections"
 }
+
