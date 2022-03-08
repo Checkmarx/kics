@@ -3,8 +3,8 @@
     "queryName": "RAM Password Security Settings not required logon block after maximum of 5 incorrect login attempts",
     "severity": "HIGH",
     "category": "Secret Management",
-    "descriptionText": "RAM Password Security Settings should block logon after maximum of 5 incorrect login attempts",
-    "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy",
+    "descriptionText": "RAM Password Security Settings should have 'max_login_attempts' to a maximum of 5 incorrect login attempts",
+    "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#max_login_attempts",
     "platform": "Terraform",
     "descriptionID": "6a2e9c34",
     "cloudProvider": "alicloud"
