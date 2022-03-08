@@ -13,6 +13,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'password_reuse_prevention' is defined and equal or lower than 24",
 		"keyActualValue": "'password_reuse_prevention' is not defined",
+        "searchLine": common_lib.build_search_line(["resource", "alicloud_ram_account_password_policy", name], []),
 		
 	}
 }
@@ -28,6 +29,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'password_reuse_prevention' should be equal or less 24",
 		"keyActualValue": "'password_reuse_prevention' is higher than 24",
+        "searchLine": common_lib.build_search_line(["resource", "alicloud_ram_account_password_policy", name, "password_reuse_prevention"], []),
 		
 	}
 }
