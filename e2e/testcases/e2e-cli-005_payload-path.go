@@ -8,8 +8,8 @@ func init() { //nolint
 		Name: "should create a payload file [E2E-CLI-005]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "--silent", "-p", "path/e2e/fixtures/samples/terraform.tf",
-					"--payload-path", "path/e2e/output/E2E_CLI_005_PAYLOAD.json"},
+				[]string{"scan", "--silent", "-p", "/path/e2e/fixtures/samples/terraform.tf",
+					"--payload-path", "/path/e2e/output/E2E_CLI_005_PAYLOAD.json"},
 			},
 			ExpectedOut: []string{
 				"E2E_CLI_005",
