@@ -2,13 +2,13 @@
     {
       "queryName": "RDS Instance Log Connections Disabled",
       "severity": "LOW",
-      "line": 6,
+      "line": 1,
       "fileName": "positive1.tf"
     },
     {
         "queryName": "RDS Instance Log Connections Disabled",
         "severity": "LOW",
-        "line": 13,
+        "line": 14,
         "fileName": "positive2.tf"
       }
   ]
