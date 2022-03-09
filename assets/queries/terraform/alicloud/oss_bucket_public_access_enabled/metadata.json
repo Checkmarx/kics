@@ -1,0 +1,11 @@
+{
+  "id": "62232513-b16f-4010-83d7-51d0e1d45426",
+  "queryName": "OSS Bucket Public Access Enabled",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "OSS Bucket should have public access disabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#acl",
+  "platform": "Terraform",
+  "descriptionID": "d8096622",
+  "cloudProvider": "alicloud"
+}
