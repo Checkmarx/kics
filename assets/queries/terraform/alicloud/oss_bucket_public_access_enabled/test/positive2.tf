@@ -1,6 +1,6 @@
 resource "alicloud_oss_bucket" "bucket_public_access_enabled3" {
   bucket = "bucket-170309-acl"
-  acl    = "public-read"
+  acl    = "public-read-write"
 }
 
 resource "alicloud_oss_bucket" "bucket-logging" {
