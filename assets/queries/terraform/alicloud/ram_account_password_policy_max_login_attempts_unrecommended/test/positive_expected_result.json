@@ -1,0 +1,8 @@
+[
+    {
+      "queryName": "Ram Account Password Policy Max Login Attempts Unrecommended",
+      "severity": "HIGH",
+      "line": 10,
+      "fileName": "positive1.tf"
+    }
+  ]

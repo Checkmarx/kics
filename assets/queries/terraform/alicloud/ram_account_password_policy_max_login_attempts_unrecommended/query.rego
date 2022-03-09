@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_ram_account_password_policy[name]
