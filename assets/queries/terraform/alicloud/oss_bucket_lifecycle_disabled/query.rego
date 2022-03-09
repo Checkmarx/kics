@@ -22,11 +22,11 @@ CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_oss_bucket[name]
 
-    not resource.lifecycle_rule
+    not common_lib.valid_key(resource, "lifecycle_rule")
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("alicloud_oss_bucket[%s].lifecycle_rule", [name]),
+		"searchKey": sprintf("alicloud_oss_bucket[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'lifecycle_rule' is set and enabled",
 		"keyActualValue": "'lifecycle_rule' is not set",
