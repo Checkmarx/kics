@@ -1,6 +1,6 @@
 {
     "id": "2bb13841-7575-439e-8e0a-cccd9ede2fa8",
-    "queryName": "Ram Account Password Policy Not Required Password Expire after set of days",
+    "queryName": "Ram Account Password Policy Max Password Age Unrecommended",
     "severity": "MEDIUM",
     "category": "Secret Management",
     "descriptionText": "Ram Account Password Policy Password 'max_password_age' should be defined to expire after defined set number of days",
