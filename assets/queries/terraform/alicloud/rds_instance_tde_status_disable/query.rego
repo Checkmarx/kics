@@ -10,14 +10,14 @@ CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_db_instance[name]
 	resource.engine == "MySQL"
 	resource.engine_version == supported_mysql_engines[_]  
-	resource.tde_status == "Disable"
+	resource.tde_status == "Disabled"
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("alicloud_db_instance[%s].tde_status", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'tde_status' value should be 'Enable'",
-		"keyActualValue": "'tde_status' value should be 'Disable'",
+		"keyExpectedValue": "'tde_status' value should be 'Enabled'",
+		"keyActualValue": "'tde_status' value should be 'Disabled'",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name, "tde_status"], []),
 	}
 }
@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("alicloud_db_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'tde_status' value should be 'Enable'",
+		"keyExpectedValue": "'tde_status' value should be 'Enabled'",
 		"keyActualValue": "'tde_status' is not declared",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name], []),
 	}
@@ -44,14 +44,14 @@ CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_db_instance[name]
 	resource.engine == "SQLServer"
 	resource.engine_version == supported_sql_engines[_]  
-	resource.tde_status == "Disable"
+	resource.tde_status == "Disabled"
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("alicloud_db_instance[%s].tde_status", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'tde_status' value should be 'Enable'",
-		"keyActualValue": "'tde_status' value should be 'Disable'",
+		"keyExpectedValue": "'tde_status' value should be 'Enabled'",
+		"keyActualValue": "'tde_status' value should be 'Disabled'",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name, "tde_status"], []),
 	}
 }
@@ -67,7 +67,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("alicloud_db_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'tde_status' value should be 'Enable'",
+		"keyExpectedValue": "'tde_status' value should be 'Enabled'",
 		"keyActualValue": "'tde_status' is not declared",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name], []),
 	}
