@@ -12,6 +12,11 @@
 	{
 		"queryName": "Missing App Armor Config",
 		"severity": "LOW",
+		"line": 5
+	},
+	{
+		"queryName": "Missing App Armor Config",
+		"severity": "LOW",
 		"line": 33
 	}
 ]

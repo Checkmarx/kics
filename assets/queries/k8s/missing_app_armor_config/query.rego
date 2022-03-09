@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
 
 types := {"initContainers", "containers"}
@@ -41,5 +42,28 @@ CxPolicy[result] {
 		"searchKey": sprintf("metadata.name={{%s}}.%s[%s]", [metadata.name, annotationsPath, expectedKey]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s[%s] should be set to 'runtime/default' or 'localhost'", [metadata.name, annotationsPath, expectedKey])
+	}
+}
+
+CxPolicy[result] {
+	document := input.document[i]
+	metadata := document.metadata
+
+	specInfo := k8sLib.getSpecInfo(document)
+	container := specInfo.spec[types[x]][_].name
+
+	metadataInfo := getMetadataInfo(document)
+	annotations := object.get(metadataInfo.metadata, "annotations", {})
+	expectedKey := sprintf("container.apparmor.security.beta.kubernetes.io/%s", [container])
+
+	not common_lib.valid_key(annotations, expectedKey)
+
+	annotationsPath := trim_left(sprintf("%s.annotations", [metadataInfo.path]), ".")
+	result := {
+		"documentId": document.id,
+		"searchKey": sprintf("metadata.name={{%s}}.%s", [metadata.name, annotationsPath]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s should specify an AppArmor profile for container {{%s}}", [metadata.name, annotationsPath, container]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.%s does not specify an AppArmor profile for container {{%s}}", [metadata.name, annotationsPath, container]),
 	}
 }
