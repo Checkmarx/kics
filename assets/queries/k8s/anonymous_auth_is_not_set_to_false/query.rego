@@ -1,33 +1,20 @@
 package Cx
 
+import data.generic.k8s as k8sLib
 import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i]
-	container := resource.spec.containers[j]
+	specInfo := k8sLib.getSpecInfo(resource)
+	container := specInfo.spec.containers[j]
 
 	inArray(container.command, "kube-apiserver")
-	not common_lib.valid_key(container, "args")
+	containerArgs := object.get(container, "args", {})
+	inArray(containerArgs, "--anonymous-auth=true")
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": "spec.containers.args",
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("spec.containers[%d] should have 'args' attribute", [j]),
-		"keyActualValue": sprintf("spec.containers[%d] does not contains 'args' attribute", [j]),
-	}
-}
-
-CxPolicy[result] {
-	resource := input.document[i]
-	container := resource.spec.containers[_]
-
-	inArray(container.command, "kube-apiserver")
-	inArray(container.args, "--anonymous-auth=true")
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": "spec.containers.args",
+		"searchKey": sprintf("spec.container[%d].args", [j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--anonymous-auth flag should be set to false",
 		"keyActualValue": "--anonymous-auth flag is set to true",
@@ -36,14 +23,16 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i]
-	container := resource.spec.containers[_]
+	specInfo := k8sLib.getSpecInfo(resource)
+	container := specInfo.spec.containers[j]
 
 	inArray(container.command, "kube-apiserver")
-	not inArray(container.args, "--anonymous-auth=false")
+	containerArgs := object.get(container, "args", {})
+	not inArray(containerArgs, "--anonymous-auth=false")
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": "spec.containers.args",
+		"searchKey": sprintf("spec.container[%d].args", [j]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "--anonymous-auth flag should be set to false",
 		"keyActualValue": "--anonymous-auth flag is not set",
