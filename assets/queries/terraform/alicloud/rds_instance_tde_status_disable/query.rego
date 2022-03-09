@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("alicloud_db_instance[%s].tde_status", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'tde_status' value should be 'Enabled'",
-		"keyActualValue": "'tde_status' value should be 'Disabled'",
+		"keyActualValue": "'tde_status' value is set to 'Disabled'",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name, "tde_status"], []),
 	}
 }
@@ -51,7 +51,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("alicloud_db_instance[%s].tde_status", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'tde_status' value should be 'Enabled'",
-		"keyActualValue": "'tde_status' value should be 'Disabled'",
+		"keyActualValue": "'tde_status' value is set to 'Disabled'",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name, "tde_status"], []),
 	}
 }
