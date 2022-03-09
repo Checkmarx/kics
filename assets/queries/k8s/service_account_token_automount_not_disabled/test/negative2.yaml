@@ -4,7 +4,7 @@ metadata:
   name: redistest-sa
 automountServiceAccountToken: false
 ---
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: demoenv
