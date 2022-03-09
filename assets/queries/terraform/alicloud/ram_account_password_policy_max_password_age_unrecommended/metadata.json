@@ -3,7 +3,7 @@
     "queryName": "Ram Account Password Policy Max Password Age Unrecommended",
     "severity": "MEDIUM",
     "category": "Secret Management",
-    "descriptionText": "Ram Account Password Policy Password 'max_password_age' should be defined to expire after defined set number of days",
+    "descriptionText": "Ram Account Password Policy Password 'max_password_age' should be higher than 0 and lower than 91",
     "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#max_password_age",
     "platform": "Terraform",
     "descriptionID": "6056f5ca",

@@ -10,5 +10,11 @@
         "severity": "MEDIUM",
         "line": 8,
         "fileName": "positive2.tf"
-      }
+      },
+      {
+          "queryName": "Ram Account Password Policy Max Password Age Unrecommended",
+          "severity": "MEDIUM",
+          "line": 8,
+          "fileName": "positive3.tf"
+        }
   ]
