@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Authorization Mode Set To Always Allow",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Authorization Mode Set To Always Allow",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive2.yaml"
+  }
+]
