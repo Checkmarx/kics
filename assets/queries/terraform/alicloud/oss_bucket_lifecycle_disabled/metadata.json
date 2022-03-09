@@ -1,0 +1,11 @@
+{
+    "id": "7db8bd7e-9772-478c-9ec5-4bc202c5686f",
+    "queryName": "OSS Bucket Lifecycle Rule Disabled",
+    "severity": "LOW",
+    "category": "Backup",
+    "descriptionText": "OSS Bucket should have lifecycle rule enabled and set to true",
+    "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#lifecycle_rule",
+    "platform": "Terraform",
+    "descriptionID": "66609561",
+    "cloudProvider": "alicloud"
+  }
