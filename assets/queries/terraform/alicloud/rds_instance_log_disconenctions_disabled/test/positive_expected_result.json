@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "RDS Instance Log Disconnections Disabled",
+    "severity": "LOW",
+    "line": 14,
+    "fileName": "positive1.tf"
+  },
+  {
+      "queryName": "RDS Instance Log Disconnections Disabled",
+      "severity": "LOW",
+      "line": 1,
+      "fileName": "positive2.tf"
+    }
+]
