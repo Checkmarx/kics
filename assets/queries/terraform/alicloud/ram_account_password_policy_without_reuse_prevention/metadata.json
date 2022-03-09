@@ -1,6 +1,6 @@
 {
     "id": "a8128dd2-89b0-464b-98e9-5d629041dfe0",
-    "queryName": "RAM Password Security Settings Password without Reuse Prevention",
+    "queryName": "RAM Account Password Policy without Reuse Prevention",
     "severity": "MEDIUM",
     "category": "Secret Management",
     "descriptionText": "RAM Password Security Settings 'password_reuse_prevention' should be defined and set to 24 or less",

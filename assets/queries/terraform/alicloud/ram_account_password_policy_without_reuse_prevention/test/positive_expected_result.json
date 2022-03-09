@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "RAM Password Security Settings Password without Reuse Prevention",
+    "queryName": "RAM Account Password Policy without Reuse Prevention",
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
-      "queryName": "RAM Password Security Settings Password without Reuse Prevention",
+      "queryName": "RAM Account Password Policy without Reuse Prevention",
       "severity": "MEDIUM",
       "line": 9,
       "fileName": "positive2.tf"
