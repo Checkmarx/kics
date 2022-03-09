@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "RDS Instance TDE Status Disabled",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "RDS Instance TDE Status Disabled",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "RDS Instance TDE Status Disabled",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "RDS Instance TDE Status Disabled",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive4.tf"
+  }
+]
