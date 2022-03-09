@@ -10,11 +10,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("alicloud_db_instance[%s].parameters[j]", [name]),
+		"searchKey": sprintf("alicloud_db_instance[%s].parameters[%d].value", [name, parameter]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'log_connections' parameter value should be 'ON'",
 		"keyActualValue": "'log_connections' parameter value is 'OFF'",
-		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name, "parameters", parameter], []),
+		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name, "parameters", parameter, "value"], []),
 	}
 }
 
