@@ -27,7 +27,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("alicloud_db_instance[%s]]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'log_disconnections' parameter is defined value should be 'ON'",
+		"keyExpectedValue": "'log_disconnections' parameter is defined and value should be 'ON'",
 		"keyActualValue": "'log_disconnections' parameter is not defined",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name], []),
 	}
