@@ -3,7 +3,7 @@
     "queryName": "RDS Instance Log Connections Disabled",
     "severity": "LOW",
     "category": "Observability",
-    "descriptionText": "'log_connections' parameter is set to ON for RDS instances",
+    "descriptionText": "'log_connections' parameter should be set to ON for RDS instances",
     "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#parameters",
     "platform": "Terraform",
     "descriptionID": "0a96bec0",
