@@ -3,7 +3,7 @@
     "queryName": "Ram Account Password Policy Max Login Attempts Unrecommended",
     "severity": "HIGH",
     "category": "Secret Management",
-    "descriptionText": "RAM Password Security Settings should have 'max_login_attempts' to a maximum of 5 incorrect login attempts",
+    "descriptionText": "Ram Account Password Policy should have 'max_login_attempts' to a maximum of 5 incorrect login attempts",
     "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#max_login_attempts",
     "platform": "Terraform",
     "descriptionID": "6a2e9c34",
