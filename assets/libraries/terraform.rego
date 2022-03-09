@@ -63,6 +63,10 @@ anyPrincipal(statement) {
 }
 
 anyPrincipal(statement) {
+	contains(statement.Principal[_], "*")
+}
+
+anyPrincipal(statement) {
 	is_string(statement.Principal.AWS)
 	contains(statement.Principal.AWS, "*")
 }
