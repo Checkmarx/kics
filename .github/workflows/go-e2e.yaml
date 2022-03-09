@@ -62,7 +62,7 @@ jobs:
           file: ./${{ matrix.kics-docker }}
           builder: ${{ steps.buildx.outputs.name }}
           push: false
-          tags: kics:e2e-tests
+          tags: kics:e2e-tests-${{ github.sha }}
           build-args: |
             VERSION=${GITHUB_SHA_SHORT}
             COMMIT=${GITHUB_SHA}
@@ -72,10 +72,10 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
       - name: Run E2E Tests
         env:
-          E2E_KICS_DOCKER: kics:e2e-tests
+          E2E_KICS_DOCKER: kics:e2e-tests-${{ github.sha }}
           E2E_KICS_QUERIES_PATH: ${{ steps.getbin.outputs.queries }}
         run: |
-          go test -tags dev "github.com/Checkmarx/kics/e2e" -timeout 1500s -json > results.json
+          go test -tags dev "github.com/Checkmarx/kics/e2e" -timeout 1500s -v
       - name: Generate E2E Report
         if: always()
         run: |
