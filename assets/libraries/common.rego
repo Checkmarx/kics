@@ -1,5 +1,7 @@
 package generic.common
 
+import future.keywords.in
+
 # build_search_line will convert all values to string, and build path with given values
 # values need to be in the correct order
 # obj case is for the walk function although it can be used as needed
@@ -704,4 +706,33 @@ has_wildcard(statement, typeAction) {
 	check_principals(statement)
 } else {
 	check_actions(statement, typeAction)
+}
+
+
+get_search_key(arr) = sk {
+	sk := concat_path(arr[0].searchKey)
+} else = sk {
+  sk := ""
+}
+
+# valid returns if the array_vals are nested in the object (array_vals should be sorted)
+# searchKey returns the searchKey possible
+#
+# object := {"elem1": {"elem2": "elem3"}}
+# array_vals := ["elem2", "elem3", "elem4"]
+#
+# return_value := {"valid": false, "searchKey": "elem2.elem3"}
+get_nested_values_info(object, array_vals) = return_value {
+	arr := [x |
+		some i, _ in array_vals;
+		[path, _] := walk(object)
+		path == array.slice(array_vals, 0, count(array_vals)-i)
+		x := {
+		   "searchKey": path
+		}
+	]
+	return_value := {
+		"valid": count(array_vals) == count(arr),
+		"searchKey": get_search_key(arr)
+	}
 }
