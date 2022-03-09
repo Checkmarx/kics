@@ -5,14 +5,13 @@ on:
     branches: [master]
 
 jobs:
-  e2e-tests:
+  e2e-tests-default:
     name: e2e-tests
     strategy:
       fail-fast: false
       matrix:
         go-version: [1.17.x]
         os: [ubuntu-latest]
-        kics-docker: ["Dockerfile", "Dockerfile.debian", "Dockerfile.ubi8"]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Cancel Previous Runs
@@ -59,10 +58,10 @@ jobs:
         with:
           load: true
           context: ./
-          file: ./${{ matrix.kics-docker }}
+          file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: false
-          tags: kics:e2e-tests-${{ github.sha }}
+          tags: kics:e2e-tests
           build-args: |
             VERSION=${GITHUB_SHA_SHORT}
             COMMIT=${GITHUB_SHA}
@@ -72,7 +71,177 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
       - name: Run E2E Tests
         env:
-          E2E_KICS_DOCKER: kics:e2e-tests-${{ github.sha }}
+          E2E_KICS_DOCKER: kics:e2e-tests
+          E2E_KICS_QUERIES_PATH: ${{ steps.getbin.outputs.queries }}
+        run: |
+          go test -tags dev "github.com/Checkmarx/kics/e2e" -timeout 1500s -v
+      - name: Generate E2E Report
+        if: always()
+        run: |
+          CWD=$(pwd)
+          cd .github/scripts/report
+          go mod tidy
+          go build
+          ./e2e-report -test-path ${CWD} -test-name results.json -report-path ${CWD} -report-name e2e-report.html
+      - name: Archive test report
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: e2e-tests-${{ runner.os }}-${{ github.event.pull_request.head.sha }}
+          path: e2e-report.html
+
+  e2e-tests-debian:
+    name: e2e-tests
+    strategy:
+      fail-fast: false
+      matrix:
+        go-version: [1.17.x]
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - name: Set up Go 1.17.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go-version }}
+      - name: Print go env
+        run: go env
+      - name: Get Modules
+        run: go mod vendor
+      - name: Set up Node v14
+        uses: actions/setup-node@v3
+        with:
+          node-version: "14"
+      - name: Install mock server
+        run: npm ci
+        working-directory: .github/scripts/server-mock
+      - name: Start mock server
+        run: (npm run start&)
+        working-directory: .github/scripts/server-mock
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@master
+      - name: Cache Docker layers
+        uses: actions/cache@v2.1.7
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-${{ github.ref }}
+      - name: Get short SHA
+        run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-8)" >> $GITHUB_ENV
+      - name: Build
+        id: docker_build
+        uses: docker/build-push-action@v2.9.0
+        with:
+          load: true
+          context: ./
+          file: ./Dockerfile.debian
+          builder: ${{ steps.buildx.outputs.name }}
+          push: false
+          tags: kics:e2e-tests
+          build-args: |
+            VERSION=${GITHUB_SHA_SHORT}
+            COMMIT=${GITHUB_SHA}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
+      - name: Run E2E Tests
+        env:
+          E2E_KICS_DOCKER: kics:e2e-tests
+          E2E_KICS_QUERIES_PATH: ${{ steps.getbin.outputs.queries }}
+        run: |
+          go test -tags dev "github.com/Checkmarx/kics/e2e" -timeout 1500s -v
+      - name: Generate E2E Report
+        if: always()
+        run: |
+          CWD=$(pwd)
+          cd .github/scripts/report
+          go mod tidy
+          go build
+          ./e2e-report -test-path ${CWD} -test-name results.json -report-path ${CWD} -report-name e2e-report.html
+      - name: Archive test report
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: e2e-tests-${{ runner.os }}-${{ github.event.pull_request.head.sha }}
+          path: e2e-report.html
+
+  e2e-tests-ubi8:
+    name: e2e-tests
+    strategy:
+      fail-fast: false
+      matrix:
+        go-version: [1.17.x]
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - name: Set up Go 1.17.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go-version }}
+      - name: Print go env
+        run: go env
+      - name: Get Modules
+        run: go mod vendor
+      - name: Set up Node v14
+        uses: actions/setup-node@v3
+        with:
+          node-version: "14"
+      - name: Install mock server
+        run: npm ci
+        working-directory: .github/scripts/server-mock
+      - name: Start mock server
+        run: (npm run start&)
+        working-directory: .github/scripts/server-mock
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@master
+      - name: Cache Docker layers
+        uses: actions/cache@v2.1.7
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-${{ github.ref }}
+      - name: Get short SHA
+        run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-8)" >> $GITHUB_ENV
+      - name: Build
+        id: docker_build
+        uses: docker/build-push-action@v2.9.0
+        with:
+          load: true
+          context: ./
+          file: ./Dockerfile.ubi8
+          builder: ${{ steps.buildx.outputs.name }}
+          push: false
+          tags: kics:e2e-tests
+          build-args: |
+            VERSION=${GITHUB_SHA_SHORT}
+            COMMIT=${GITHUB_SHA}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
+      - name: Run E2E Tests
+        env:
+          E2E_KICS_DOCKER: kics:e2e-tests
           E2E_KICS_QUERIES_PATH: ${{ steps.getbin.outputs.queries }}
         run: |
           go test -tags dev "github.com/Checkmarx/kics/e2e" -timeout 1500s -v
