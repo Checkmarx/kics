@@ -68,11 +68,6 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
-      - name: Docker Run
-        run: |
-          docker run -v ${PWD}:/path kics:e2e-tests scan --path /path/Dockerfile -o /path
-          docker run -v ${PWD}:/path kics:e2e-tests scan --path /path/e2e/fixtures/samples/terraform.tf --payload-path /path/e2e/output/E2E_CLI_005_PAYLOAD.json     
-
       - name: Display PWD / Files
         run: |
           pwd
