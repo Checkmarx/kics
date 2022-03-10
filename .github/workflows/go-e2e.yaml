@@ -56,13 +56,13 @@ jobs:
       - name: Build
         id: docker_build
         run: |
-          docker build -t kics:e2e-tests-${{ github.sha }} -f ./${{ matrix.kics-docker }} .
+          sudo docker build -t kics:e2e-tests-${{ github.sha }} -f ./${{ matrix.kics-docker }} .
       - name: Run E2E Tests
         env:
           E2E_KICS_DOCKER: kics:e2e-tests-${{ github.sha }}
           E2E_KICS_QUERIES_PATH: ${{ steps.getbin.outputs.queries }}
         run: |
-          go test -tags dev "github.com/Checkmarx/kics/e2e" -timeout 1500s -v
+          sudo go test -tags dev "github.com/Checkmarx/kics/e2e" -timeout 1500s -v
       - name: Generate E2E Report
         if: always()
         run: |
