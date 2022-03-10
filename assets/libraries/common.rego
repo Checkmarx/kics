@@ -736,3 +736,10 @@ get_nested_values_info(object, array_vals) = return_value {
 		"searchKey": get_search_key(arr)
 	}
 }
+
+remove_last_point(searchKey) = sk {
+  endswith(searchKey, ".")
+  sk = substring(searchKey, 0, count(searchKey) -1)
+} else = sk {
+   sk := searchKey
+}
