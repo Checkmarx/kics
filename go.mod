@@ -9,7 +9,7 @@ require (
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20211114212643-ec144ca0d701
-	github.com/aws/aws-sdk-go v1.43.13
+	github.com/aws/aws-sdk-go v1.43.15
 	github.com/cheggaaa/pb/v3 v3.0.8
 	github.com/emicklei/proto v1.9.2
 	github.com/getsentry/sentry-go v0.12.0
@@ -24,7 +24,7 @@ require (
 	github.com/johnfercher/maroto v0.34.0
 	github.com/mailru/easyjson v0.7.7
 	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
-	github.com/moby/buildkit v0.9.3
+	github.com/moby/buildkit v0.10.0
 	github.com/open-policy-agent/opa v0.38.0
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.26.1
