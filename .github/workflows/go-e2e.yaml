@@ -55,21 +55,8 @@ jobs:
         run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-8)" >> $GITHUB_ENV
       - name: Build
         id: docker_build
-        uses: docker/build-push-action@v2.9.0
-        with:
-          load: true
-          context: ./
-          file: ./${{ matrix.kics-docker }}
-          builder: ${{ steps.buildx.outputs.name }}
-          push: false
-          tags: kics:e2e-tests-${{ github.sha }}
-          build-args: |
-            VERSION=${GITHUB_SHA_SHORT}
-            COMMIT=${GITHUB_SHA}
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+        run: |
+          docker build -t kics:e2e-tests-${{ github.sha }} -f ./${{ matrix.kics-docker }} .
       - name: Run E2E Tests
         env:
           E2E_KICS_DOCKER: kics:e2e-tests-${{ github.sha }}
