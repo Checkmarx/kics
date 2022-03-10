@@ -43,6 +43,15 @@ func Test_E2E_CLI(t *testing.T) {
 				// Check exit status code (required)
 				require.True(t, arg < len(tt.WantStatus),
 					"No status code associated to this test. Check the wantStatus of the test case.")
+
+				if tt.WantStatus[arg] != out.Status {
+					fmt.Println("")
+					for _, line := range out.Output {
+						fmt.Println("Error: ", line)
+					}
+					fmt.Println("")
+				}
+
 				require.Equalf(t, tt.WantStatus[arg], out.Status,
 					"Actual KICS status code: %v\nExpected KICS status code: %v",
 					out.Status, tt.WantStatus[arg])
