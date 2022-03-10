@@ -67,23 +67,31 @@ jobs:
             COMMIT=${GITHUB_SHA}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
-      - name: Run E2E Tests
-        env:
-          E2E_KICS_DOCKER: kics:e2e-tests
-          E2E_KICS_QUERIES_PATH: ${{ steps.getbin.outputs.queries }}
+
+      - name: Docker Run
         run: |
-          go test -tags dev "github.com/Checkmarx/kics/e2e" -timeout 1500s -v
-      - name: Generate E2E Report
-        if: always()
-        run: |
-          CWD=$(pwd)
-          cd .github/scripts/report
-          go mod tidy
-          go build
-          ./e2e-report -test-path ${CWD} -test-name results.json -report-path ${CWD} -report-name e2e-report.html
-      - name: Archive test report
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: e2e-tests-${{ runner.os }}-${{ github.event.pull_request.head.sha }}
-          path: e2e-report.html
+          docker run -v ${PWD}:/path kics:e2e-tests scan --path /path/Dockerfile -o /path
+          docker run -v ${PWD}:/path kics:e2e-tests scan --path /path/e2e/fixtures/samples/terraform.tf --payload-path /path/e2e/output/E2E_CLI_005_PAYLOAD.json     
+
+      # - name: Run E2E Tests
+      #  env:
+      #    E2E_KICS_DOCKER: kics:e2e-tests
+      #    E2E_KICS_QUERIES_PATH: ${{ steps.getbin.outputs.queries }}
+      #  run: |
+      #    go test -tags dev "github.com/Checkmarx/kics/e2e" -timeout 1500s -v
+
+      # - name: Generate E2E Report
+      #  if: always()
+      #  run: |
+      #    CWD=$(pwd)
+      #    cd .github/scripts/report
+      #    go mod tidy
+      #    go build
+      #    ./e2e-report -test-path ${CWD} -test-name results.json -report-path ${CWD} -report-name e2e-report.html
+      
+      # - name: Archive test report
+      #  if: always()
+      #  uses: actions/upload-artifact@v2
+      #  with:
+      #    name: e2e-tests-${{ runner.os }}-${{ github.event.pull_request.head.sha }}
+      #    path: e2e-report.html
