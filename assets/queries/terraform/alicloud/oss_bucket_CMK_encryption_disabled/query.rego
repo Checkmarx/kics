@@ -7,7 +7,7 @@ CxPolicy[result] {
 
 	resource := input.document[i].resource.alicloud_oss_bucket[name]
     sser := resource.server_side_encryption_rule
-	not sser.kms_master_key_id
+	not common_lib.valid_key(sser, "kms_master_key_id")
 
     
 	result := {
@@ -23,7 +23,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 
 	resource := input.document[i].resource.alicloud_oss_bucket[name]
-    not resource.server_side_encryption_rule
+    not common_lib.valid_key(resource, "server_side_encryption_rule")
 	
     
 	result := {
