@@ -21,8 +21,8 @@ checkSeccompProfile(specInfo, container, containerType, document, metadata) = re
 
 # pod defines seccompProfile.type and container inherits this setting
 checkSeccompProfile(specInfo, container, containerType, document, metadata) = result {
-	containerCtx := object.get(container.securityContext, "seccompProfile", {})
-	not common_lib.valid_key(containerCtx, "type")
+	nested_info := common_lib.get_nested_values_info(container.securityContext, ["seccompProfile", "type"])
+	nested_info.valid == false
 
 	profile := specInfo.spec.securityContext.seccompProfile.type
 	not any([profile == "RuntimeDefault", profile == "Localhost"])
@@ -38,17 +38,15 @@ checkSeccompProfile(specInfo, container, containerType, document, metadata) = re
 
 # neither pod nor container define seccompProfile.type
 checkSeccompProfile(specInfo, container, containerType, document, metadata) = result {
-	specCtx := object.get(specInfo.spec, "securityContext", {})
-	specSeccompCtx := object.get(specCtx, "seccompProfile", {})
-	not common_lib.valid_key(specSeccompCtx, "type")
+	nested_info := common_lib.get_nested_values_info(specInfo.spec, ["securityContext", "seccompProfile", "type"])
+	nested_info.valid == false
 
-	common_lib.valid_key(container, "securityContext")
-	containerSeccompCtx := object.get(container.securityContext, "seccompProfile", {})
-	not common_lib.valid_key(containerSeccompCtx, "type")
+	nested_info2 := common_lib.get_nested_values_info(container.securityContext, ["seccompProfile", "type"])
+	nested_info2.valid == false
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext", [metadata.name, specInfo.path, containerType, container.name]),
+		"searchKey": common_lib.remove_last_point(sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.%s", [metadata.name, specInfo.path, containerType, container.name, nested_info2.searchKey])),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.seccompProfile.type should be defined", [metadata.name, specInfo.path, containerType, container.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.seccompProfile.type is undefined", [metadata.name, specInfo.path, containerType, container.name]),
