@@ -12,7 +12,6 @@ jobs:
       matrix:
         go-version: [1.17.x]
         os: [ubuntu-latest]
-        kics-docker: ["Dockerfile", "Dockerfile.debian", "Dockerfile.ubi8"]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Cancel Previous Runs
@@ -55,14 +54,25 @@ jobs:
         run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-8)" >> $GITHUB_ENV
       - name: Build
         id: docker_build
-        run: |
-          sudo docker build -t kics:e2e-tests-${{ github.sha }} -f ./${{ matrix.kics-docker }} .
+        uses: docker/build-push-action@v2.9.0
+        with:
+          load: true
+          context: ./
+          file: ./Dockerfile
+          builder: ${{ steps.buildx.outputs.name }}
+          push: false
+          tags: kics:e2e-tests
+          build-args: |
+            VERSION=${GITHUB_SHA_SHORT}
+            COMMIT=${GITHUB_SHA}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Run E2E Tests
         env:
-          E2E_KICS_DOCKER: kics:e2e-tests-${{ github.sha }}
+          E2E_KICS_DOCKER: kics:e2e-tests
           E2E_KICS_QUERIES_PATH: ${{ steps.getbin.outputs.queries }}
         run: |
-          sudo go test -tags dev "github.com/Checkmarx/kics/e2e" -timeout 1500s -v
+          go test -tags dev "github.com/Checkmarx/kics/e2e" -timeout 1500s -v
       - name: Generate E2E Report
         if: always()
         run: |
