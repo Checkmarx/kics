@@ -37,9 +37,3 @@ CxPolicy[result] {
 	}
 }
 
-is_equal(secure, target)
-{
-    secure == target
-}else {
-    secure[_]==target
-}
