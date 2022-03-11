@@ -263,7 +263,7 @@
 				
 				<option value="file103">github.com/Checkmarx/kics/pkg/scan/scan.go (3.5%)</option>
 				
-				<option value="file104">github.com/Checkmarx/kics/pkg/scan/utils.go (14.6%)</option>
+				<option value="file104">github.com/Checkmarx/kics/pkg/scan/utils.go (16.5%)</option>
 				
 				<option value="file105">github.com/Checkmarx/kics/pkg/scanner/scanner.go (56.4%)</option>
 				
@@ -2386,7 +2386,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2964,7 +2964,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="33">{
-        for _, a := range s </span><span class="cov8" title="98">{
+        for _, a := range s </span><span class="cov8" title="105">{
                 if a == e </span><span class="cov4" title="8">{
                         return true
                 }</span>
@@ -17958,22 +17958,22 @@ func (c *Client) preparePaths() error <span class="cov0" title="0">{
 func (c *Client) GetQueryPath() error <span class="cov10" title="3">{
         queriesPath := make([]string, 0)
         if c.ScanParams.ChangedDefaultQueryPath </span><span class="cov6" title="2">{
-                for _, queryPath := range c.ScanParams.QueriesPath </span><span class="cov6" title="2">{
+                for _, queryPath := range c.ScanParams.QueriesPath </span><span class="cov10" title="3">{
                         extractedQueriesPath, errExtractQueries := resolvePath(queryPath, "queries-path")
-                        if errExtractQueries != nil </span><span class="cov6" title="2">{
+                        if errExtractQueries != nil </span><span class="cov0" title="0">{
                                 return errExtractQueries
                         }</span>
-                        <span class="cov0" title="0">queriesPath = append(queriesPath, extractedQueriesPath)</span>
+                        <span class="cov10" title="3">queriesPath = append(queriesPath, extractedQueriesPath)</span>
                 }
         } else<span class="cov1" title="1"> {
                 log.Debug().Msgf("Looking for queries in executable path and in current work directory")
                 defaultQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(c.ScanParams.QueriesPath[0])
-                if errDefaultQueryPath != nil </span><span class="cov0" title="0">{
+                if errDefaultQueryPath != nil </span><span class="cov1" title="1">{
                         return errors.Wrap(errDefaultQueryPath, "unable to find queries")
                 }</span>
-                <span class="cov1" title="1">queriesPath = append(queriesPath, defaultQueryPath)</span>
+                <span class="cov0" title="0">queriesPath = append(queriesPath, defaultQueryPath)</span>
         }
-        <span class="cov1" title="1">c.ScanParams.QueriesPath = queriesPath
+        <span class="cov6" title="2">c.ScanParams.QueriesPath = queriesPath
         return nil</span>
 }
 
@@ -17989,15 +17989,15 @@ func (c *Client) getLibraryPath() error <span class="cov0" title="0">{
         <span class="cov0" title="0">return nil</span>
 }
 
-func resolvePath(flagContent, flagName string) (string, error) <span class="cov6" title="2">{
+func resolvePath(flagContent, flagName string) (string, error) <span class="cov10" title="3">{
         extractedPath, errExtractPath := provider.GetSources([]string{flagContent})
-        if errExtractPath != nil </span><span class="cov6" title="2">{
+        if errExtractPath != nil </span><span class="cov0" title="0">{
                 return "", errExtractPath
         }</span>
-        <span class="cov0" title="0">if len(extractedPath.Path) != 1 </span><span class="cov0" title="0">{
+        <span class="cov10" title="3">if len(extractedPath.Path) != 1 </span><span class="cov0" title="0">{
                 return "", fmt.Errorf("could not find a valid path (--%s) on %s", flagName, flagContent)
         }</span>
-        <span class="cov0" title="0">log.Debug().Msgf("Trying to load path (--%s) from %s", flagName, flagContent)
+        <span class="cov10" title="3">log.Debug().Msgf("Trying to load path (--%s) from %s", flagName, flagContent)
         return extractedPath.Path[0], nil</span>
 }
 
