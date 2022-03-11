@@ -45,11 +45,11 @@ func RunCommand(kicsDockerImage string, kicsArgs []string, useMock bool) (*CmdOu
 
 // GetKICSDockerImageName gets the kics docker image name
 func GetKICSDockerImageName() string {
-	var rtnPath = os.Getenv("E2E_KICS_DOCKER")
-	if rtnPath == "" {
-		rtnPath = "kics:e2e-tests"
+	var imageName = os.Getenv("E2E_KICS_DOCKER")
+	if imageName == "" {
+		imageName = "kics:e2e-tests"
 	}
-	return rtnPath
+	return imageName
 }
 
 // Contains returns if a string list contains an especific term

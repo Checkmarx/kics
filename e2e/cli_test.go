@@ -102,8 +102,7 @@ func Test_E2E_CLI(t *testing.T) {
 	}
 
 	t.Cleanup(func() {
-		//err := os.RemoveAll("output")
-		//require.NoError(t, err)
+		os.RemoveAll("output")
 		t.Logf("E2E tests ::ellapsed time:: %v", time.Since(scanStartTime))
 	})
 }
