@@ -7,7 +7,8 @@ assignees: ''
 
 ---
 
-Found a bug? You're welcome to join the [GitHub discussions](https://github.com/Checkmarx/kics/discussions)!
+Found a bug? You're welcome to [![GitHub Discussions](https://img.shields.io/badge/chat-discussions-blue.svg?style=flat-square)](https://github.com/Checkmarx/kics/discussions)
+
 
 - **Please make sure to:**
   - Describe in details what the problem is
