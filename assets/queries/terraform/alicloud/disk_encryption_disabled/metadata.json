@@ -1,6 +1,6 @@
 {
   "id": "39750e32-3fe9-453b-8c33-dd277acdb2cc",
-  "queryName": "Disk encryption disabled",
+  "queryName": "Disk Encryption Disabled",
   "severity": "HIGH",
   "category": "Encryption",
   "descriptionText": "Disks should have encryption enabled",
