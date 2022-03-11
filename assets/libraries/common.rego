@@ -212,6 +212,7 @@ tcpPortsMap = {
 	3020: "CIFS / SMB",
 	3306: "MySQL",
 	3389: "Remote Desktop",
+	4333: "MySQL",
 	4505: "SaltStack Master",
 	4506: "SaltStack Master",
 	5432: "PostgreSQL",
@@ -735,4 +736,11 @@ get_nested_values_info(object, array_vals) = return_value {
 		"valid": count(array_vals) == count(arr),
 		"searchKey": get_search_key(arr)
 	}
+}
+
+remove_last_point(searchKey) = sk {
+  endswith(searchKey, ".")
+  sk = substring(searchKey, 0, count(searchKey) -1)
+} else = sk {
+   sk := searchKey
 }

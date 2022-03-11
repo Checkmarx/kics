@@ -21,8 +21,9 @@ checkUser(specInfo, container, containerType, document, metadata) = result {
 
 # pod defines runAsUser and container inherits this setting
 checkUser(specInfo, container, containerType, document, metadata) = result {
-	containerCtx := object.get(container, "securityContext", {})
-	not common_lib.valid_key(containerCtx, "runAsUser")
+
+	nested_info := common_lib.get_nested_values_info(container, ["securityContext", "runAsUser"])
+	nested_info.valid == false
 
 	uid := specInfo.spec.securityContext.runAsUser
 	to_number(uid) < 10000
@@ -38,15 +39,15 @@ checkUser(specInfo, container, containerType, document, metadata) = result {
 
 # neither pod nor container define runAsUser
 checkUser(specInfo, container, containerType, document, metadata) = result {
-	specCtx := object.get(specInfo.spec, "securityContext", {})
-	not common_lib.valid_key(specCtx, "runAsUser")
+	nested_info := common_lib.get_nested_values_info(specInfo.spec, ["securityContext", "runAsUser"])
+	nested_info.valid == false
 
-	containerCtx := object.get(container, "securityContext", {})
-	not common_lib.valid_key(containerCtx, "runAsUser")
+	nested_info2 := common_lib.get_nested_values_info(container, ["securityContext", "runAsUser"])
+	nested_info2.valid == false
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext", [metadata.name, specInfo.path, containerType, container.name]),
+		"searchKey": common_lib.remove_last_point(sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.%s", [metadata.name, specInfo.path, containerType, container.name, nested_info2.searchKey])),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser should be defined", [metadata.name, specInfo.path, containerType, container.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser is undefined", [metadata.name, specInfo.path, containerType, container.name]),
