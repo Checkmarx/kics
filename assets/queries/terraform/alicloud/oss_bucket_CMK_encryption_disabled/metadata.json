@@ -1,6 +1,6 @@
 {
   "id": "f20e97f9-4919-43f1-9be9-f203cd339cdd",
-  "queryName": "OSS Bucket Encryption using CMK disabled",
+  "queryName": "OSS Bucket Encryption Using CMK Disabled",
   "severity": "MEDIUM",
   "category": "Encryption",
   "descriptionText": "OSS Bucket should have encryption enabled using Customer Master Key",
