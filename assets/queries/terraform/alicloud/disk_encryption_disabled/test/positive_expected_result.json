@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "Disk encryption disabled",
+    "queryName": "Disk Encryption Disabled",
     "severity": "HIGH",
     "line": 8,
     "fileName": "positive2.tf"
   },
   {
-    "queryName": "Disk encryption disabled",
+    "queryName": "Disk Encryption Disabled",
     "severity": "HIGH",
     "line": 1,
     "fileName": "positive1.tf"
