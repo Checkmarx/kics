@@ -98,5 +98,5 @@ Looking for more info? Explore KICS project in details:
 -   <a href="https://github.com/Checkmarx/kics/projects" target="_blank">Project plans</a>
 -   <a href="https://github.com/Checkmarx/kics/issues" target="_blank">Issues</a>
 
-Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a>.
+Join the <a href="https://github.com/Checkmarx/kics/discussions" target="_blank">GitHub discussions</a>.
 Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)

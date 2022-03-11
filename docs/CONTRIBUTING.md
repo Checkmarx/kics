@@ -134,7 +134,7 @@ The following templates will be used when [creating a new issue](https://github.
 - [Using Pull Requests](https://help.github.com/articles/about-pull-requests/)
 - [GitHub Help](https://help.github.com)
 
-Join the chat [on Gitter](https://gitter.im/kics-io/community).
+Join the [GitHub discussions](https://github.com/Checkmarx/kics/discussions).
 Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
 
 And become one of our top contributors!
