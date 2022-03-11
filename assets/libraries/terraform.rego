@@ -36,6 +36,11 @@ containsPort(rule, port) {
 	sublist := split(ports[var], "-")
 	to_number(trim(sublist[0], " ")) <= port
 	to_number(trim(sublist[1], " ")) >= port
+} else {
+	ports := split(rule.port_range, ",")
+	sublist := split(ports[var], "/")
+	to_number(trim(sublist[0], " ")) <= port
+	to_number(trim(sublist[1], " ")) >= port
 }
 
 # Gets the list of protocols

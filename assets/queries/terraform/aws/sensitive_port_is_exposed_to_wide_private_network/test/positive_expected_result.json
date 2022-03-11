@@ -974,6 +974,30 @@
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
     "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive8.tf"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Wide Private Network",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive8.tf"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Wide Private Network",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive9.tf"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Wide Private Network",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive9.tf"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Wide Private Network",
+    "severity": "MEDIUM",
     "line": 9,
     "filename": "positive9.tf"
   },

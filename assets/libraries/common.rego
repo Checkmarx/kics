@@ -212,6 +212,7 @@ tcpPortsMap = {
 	3020: "CIFS / SMB",
 	3306: "MySQL",
 	3389: "Remote Desktop",
+	4333: "MySQL",
 	4505: "SaltStack Master",
 	4506: "SaltStack Master",
 	5432: "PostgreSQL",
