@@ -3,7 +3,7 @@
   "queryName": "OSS Bucket Logging Disabled",
   "severity": "MEDIUM",
   "category": "Observability",
-  "descriptionText": "OSS Bucket should have logging enabled, provides visibility into request made to access bucket objects which can be useful in auditing and security workflows",
+  "descriptionText": "OSS Bucket should have logging enabled for all regions, for better visibility of resources and objects.",
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#logging",
   "platform": "Terraform",
   "descriptionID": "c4a5fdbb",
