@@ -78,6 +78,8 @@ jobs:
           go test -tags dev "github.com/Checkmarx/kics/e2e" -timeout 1500s -json > results.json
       - name: Generate E2E Report
         if: always()
+        env:
+          E2E_KICS_DOCKERFILE: ${{ matrix.kics-docker }}
         run: |
           CWD=$(pwd)
           cd .github/scripts/report
@@ -88,5 +90,5 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: e2e-tests-${{ runner.os }}-${{ github.event.pull_request.head.sha }}
+          name: e2e-tests-report-${{ matrix.kics-docker }}
           path: e2e-report.html

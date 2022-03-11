@@ -16,6 +16,7 @@ import (
 
 func Test_E2E_CLI(t *testing.T) {
 	kicsDockerImage := utils.GetKICSDockerImageName()
+	showDetailsCI := kicsDockerImage != "kics:e2e-tests"
 	scanStartTime := time.Now()
 
 	if testing.Short() {
@@ -44,10 +45,10 @@ func Test_E2E_CLI(t *testing.T) {
 				require.True(t, arg < len(tt.WantStatus),
 					"No status code associated to this test. Check the wantStatus of the test case.")
 
-				if tt.WantStatus[arg] != out.Status {
+				if showDetailsCI && tt.WantStatus[arg] != out.Status {
 					fmt.Println("")
 					for _, line := range out.Output {
-						fmt.Println("Error: ", line)
+						fmt.Println(line)
 					}
 					fmt.Println("")
 				}
