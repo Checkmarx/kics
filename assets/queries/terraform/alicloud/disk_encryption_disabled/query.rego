@@ -24,7 +24,7 @@ CxPolicy[result] {
 
 	resource := input.document[i].resource.alicloud_disk[name]
     not common_lib.valid_key(resource, "encrypted")
-  
+	not common_lib.valid_key(resource, "snapshot_id")
 
     
 	result := {
