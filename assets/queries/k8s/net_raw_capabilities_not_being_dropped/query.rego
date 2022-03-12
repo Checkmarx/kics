@@ -31,9 +31,8 @@ CxPolicy[result] {
 	specInfo = k8sLib.getSpecInfo(document)
 	container := specInfo.spec[types[x]][_]
 
-	containerCtx := object.get(container, "securityContext", {})
-	containerCapabilitiesCtx := object.get(containerCtx, "capabilities", {})
-	not common_lib.valid_key(containerCapabilitiesCtx, "drop")
+   nested_info := common_lib.get_nested_values_info(container, ["securityContext", "capabilities", "drop"])
+   nested_info.valid == false
 
 	result := {
 		"documentId": document.id,
