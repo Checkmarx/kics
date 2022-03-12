@@ -9,14 +9,14 @@ jobs:
   kics-scan:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Run KICS Scan
         uses: checkmarx/kics-action@v1.4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+#           token: ${{ secrets.GITHUB_TOKEN }}
           path: "./Dockerfile"
           ignore_on_exit: results
-          enable_comments: true
+#           enable_comments: true
           output_path: ./results
           output_formats: json,html
           type: dockerfile

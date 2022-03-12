@@ -13,7 +13,7 @@ jobs:
         with:
           access_token: ${{ github.token }}
       - name: Checkout project
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Get Godownloader
@@ -30,7 +30,7 @@ jobs:
             && chmod +x godownloader \
             && rm -vf $(basename "${FULL_URL}") \
             && cd "${PROJDIR}"
-      - uses: actions/setup-python@v2.3.2
+      - uses: actions/setup-python@v3
         with:
           python-version: "3.x"
       - name: Install dependencies
@@ -50,7 +50,7 @@ jobs:
       - name: Update install.sh
         run: ./.bin/godownloader --repo Checkmarx/kics <(echo ${{ steps.outputs.filter.goreleaser }}) > install.sh
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3.12.1
+        uses: peter-evans/create-pull-request@v3.14.0
         with:
           title: "chore(install): update install script"
           token: ${{ secrets.KICS_BOT_PAT }}

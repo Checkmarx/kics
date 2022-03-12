@@ -1,0 +1,12 @@
+{
+    "id": "2ae9d554-23fb-4065-bfd1-fe43d5f7c419",
+    "queryName": "Public Security Group Rule Sensitive Port",
+    "severity": "HIGH",
+    "category": "Networking and Firewall",
+    "descriptionText": "A sensitive port, such as port 23 or port 110, is open to the public in either TCP or UDP protocol",
+    "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/security_group_rule#port_range",
+    "platform": "Terraform",
+    "aggregation": 63,
+    "descriptionID": "717c49e0",
+    "cloudProvider": "alicloud"
+  }

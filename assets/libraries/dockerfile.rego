@@ -28,3 +28,13 @@ withVersion(pack) {
 arrayContains(array, list) {
 	contains(array[_], list[_])
 }
+
+check_multi_stage(imageName, images) {
+    unsortedIndex := {x |
+        images[name][i].Cmd == "from"
+        x := {"Name": name, "Line": images[name][i].EndLine}
+    }
+
+    sortedIndex := sort(unsortedIndex)
+    imageName == sortedIndex[minus(count(sortedIndex), 1)].Name
+} 

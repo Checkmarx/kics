@@ -1,20 +1,23 @@
 package Cx
 
+import data.generic.k8s as k8sLib
+
+types := {"initContainers", "containers"}
+
 CxPolicy[result] {
 	document := input.document[i]
-	spec := document.spec
-	types := {"initContainers", "containers"}
-	containers := spec[types[x]]
-
-	containers[c].securityContext.privileged == true
-
 	metadata := document.metadata
+
+	specInfo := k8sLib.getSpecInfo(document)
+	container := specInfo.spec[types[x]][_]
+
+	container.securityContext.privileged == true
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.securityContext.privileged", [metadata.name, types[x], containers[c].name]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.privileged", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("spec.%s.name={{%s}}.securityContext.privileged is false", [types[x], containers[c].name]),
-		"keyActualValue": sprintf("spec.%s.name={{%s}}.securityContext.privileged is true", [types[x], containers[c].name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.privileged is unset or false", [metadata.name, specInfo.path, types[x], container.name]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.privileged is true", [metadata.name, specInfo.path, types[x], container.name]),
 	}
 }

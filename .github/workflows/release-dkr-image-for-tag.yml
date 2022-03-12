@@ -18,7 +18,7 @@ jobs:
       DOCKER_CLI_EXPERIMENTAL: "enabled"
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.event.inputs.tag }}
       - uses: toko-bifrost/ms-teams-deploy-card@master
@@ -43,19 +43,19 @@ jobs:
           TAGS="${DOCKER_IMAGE}:${VERSION}"
           ALPINE_TAGS="${TAGS}-alpine"
           DEBIAN_TAGS="${TAGS}-debian"
-          UBI7_TAGS="${TAGS}-ubi7"
+          UBI8_TAGS="${TAGS}-ubi8"
 
           if [ "${{ github.event.inputs.latest }}" = "true" ]; then
             TAGS=${TAGS},${DOCKER_IMAGE}:latest
             ALPINE_TAGS="{ALPINE_TAGS},${DOCKER_IMAGE}:alpine"
             DEBIAN_TAGS="{DEBIAN_TAGS},${DOCKER_IMAGE}:debian"
-            UBI7_TAGS="{UBI7_TAGS},${DOCKER_IMAGE}:ubi7"
+            UBI8_TAGS="{UBI8_TAGS},${DOCKER_IMAGE}:ubi8"
           fi
 
           echo ::set-output name=tags::${TAGS}
           echo ::set-output name=alpine_tags::${ALPINE_TAGS}
           echo ::set-output name=debian_tags::${DEBIAN_TAGS}
-          echo ::set-output name=ubi7_tags::${UBI7_TAGS}
+          echo ::set-output name=ubi8_tags::${UBI8_TAGS}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
         with:
@@ -64,7 +64,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub
-        uses: docker/login-action@v1.13.0
+        uses: docker/login-action@v1.14.1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
@@ -95,16 +95,16 @@ jobs:
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
-      - name: Push ubi7 to Docker Hub
-        if: ${{ hashFiles('Dockerfile.ubi7') }} != ""
-        id: build_ubi7
+      - name: Push ubi8 to Docker Hub
+        if: ${{ hashFiles('Dockerfile.ubi8') }} != ""
+        id: build_ubi8
         uses: docker/build-push-action@v2.9.0
         with:
           context: .
-          file: ./Dockerfile.ubi7
+          file: ./Dockerfile.ubi8
           push: true
           platforms: linux/amd64
-          tags: ${{ steps.prep.outputs.ubi7_tags }}
+          tags: ${{ steps.prep.outputs.ubi8_tags }}
           build-args: |
             VERSION=${{ github.event.inputs.tag }}
             COMMIT=${{ github.sha }}
