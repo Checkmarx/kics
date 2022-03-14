@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "API Gateway API protocol Not HTTPS",
+        "severity": "HIGH",
+        "line": 14,
+        "fileName": "positive1.tf"
+    }
+]
