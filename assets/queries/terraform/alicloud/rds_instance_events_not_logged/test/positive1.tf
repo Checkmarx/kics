@@ -12,7 +12,7 @@ resource "alicloud_log_audit" "example" {
     "oss_access_ti_enabled" = "true",
     "oss_metering_enabled" = "true",
     "oss_metering_ttl" = "180",
-    "rds_enabled" = "true",
+    "rds_enabled" = "false",
     "rds_audit_collection_policy" = "",
     "rds_ttl" = "180",
     "rds_ti_enabled" = "true",

@@ -2,7 +2,7 @@
   {
     "queryName": "RDS Instance Events Not Logged",
     "severity": "HIGH",
-    "line": 105,
+    "line": 15,
     "fileName": "positive1.tf"
   },
   {
