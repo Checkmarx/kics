@@ -1,5 +1,7 @@
 package generic.k8s
 
+import data.generic.common as common_lib
+
 getSpecInfo(document) = specInfo { # this one can be also used for the result
 	templates := {"job_template", "jobTemplate"}
 	spec := document.spec[templates[t]].spec.template.spec
@@ -14,4 +16,10 @@ getSpecInfo(document) = specInfo { # this one can be also used for the result
 
 checkKind(currentKind, listKinds) {
 	currentKind == listKinds[i]
+}
+
+hasFlag(container, flag) {
+	common_lib.inArray(container.command, flag)
+} else {
+	common_lib.inArray(container.args, flag)
 }

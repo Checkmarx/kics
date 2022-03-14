@@ -11,7 +11,7 @@ CxPolicy[result] {
 	container := specInfo.spec[types[x]][j]
 
 	common_lib.inArray(container.command, "kubelet")
- 	not hasFlag(container, "--read-only-port=0")
+ 	not k8sLib.hasFlag(container, "--read-only-port=0")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -20,10 +20,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "--read-only-port flag to exists and to be '0' in container",
 		"keyActualValue": "--read-only-port flag does not exists or is not set to '0' in container",
 	}
-}
-
-hasFlag(container, flag) {
-	common_lib.inArray(container.command, flag)
-} else {
-	common_lib.inArray(container.args, flag)
 }
