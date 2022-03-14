@@ -14,6 +14,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s has logging enabled",[name]),
 		"keyActualValue": sprintf("%s does not have logging enabled",[name]),
-        "searchline":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name], []),
+        "searchLine":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name], []),
 	}
 }

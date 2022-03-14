@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].policy does not accept HTTP Requests",[name]),
 		"keyActualValue": sprintf("%s[%s].policy accepts HTTP Requests",[name]),
-        "searchline":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "policy"], []),
+        "searchLine":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "policy"], []),
 	}
 }
 
