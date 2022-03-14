@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("[%s].policy has kms master key id defined",[name]),
 		"keyActualValue": sprintf("[%s].policy does not kms master key id defined",[name]),
-        "searchline":common_lib.build_search_line(["resource", "alicloud_oss_bucket", "server_side_encryption_rule", name], []),
+        "searchLine":common_lib.build_search_line(["resource", "alicloud_oss_bucket", "server_side_encryption_rule", name], []),
 	}
 }
 
@@ -32,6 +32,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("[%s].policy has server side encryption rule and kms master key id defined",[name]),
 		"keyActualValue": sprintf("[%s].policy does not have server side encryption rule and kms master key id defined",[name]),
-        "searchline":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name], []),
+        "searchLine":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name], []),
 	}
 }

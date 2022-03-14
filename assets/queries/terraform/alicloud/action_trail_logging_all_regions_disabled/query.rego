@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s' is set.",[possibilities[p]]),
 		"keyActualValue": sprintf("'%s' is not set.",[possibilities[p]]),
-        "searchline": common_lib.build_search_line(["resource", "alicloud_actiontrail_trail", name], []),
+        "searchLine": common_lib.build_search_line(["resource", "alicloud_actiontrail_trail", name], []),
 	}
 }
 
@@ -33,6 +33,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' is set to All", [p[f]]),
 		"keyActualValue": sprintf("'%s' is not set to All", [p[f]]),
-        "searchline": common_lib.build_search_line(["resource", "alicloud_actiontrail_trail", name, p[f]], []),
+        "searchLine": common_lib.build_search_line(["resource", "alicloud_actiontrail_trail", name, p[f]], []),
 	}
 }

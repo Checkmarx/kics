@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("[%s].policy has restricted ip access",[name]),
 		"keyActualValue": sprintf("[%s].policy does not restrict access via ip",[name]),
-        "searchline":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "policy"], []),
+        "searchLine":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "policy"], []),
 	}
 }
 

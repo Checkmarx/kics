@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'lifecycle_rule' is set and enabled",
 		"keyActualValue": "'lifecycle_rule' is set but disabled",
-        "searchline":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "lifecycle_rule", "enabled"], []),
+        "searchLine":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "lifecycle_rule", "enabled"], []),
 	}
 }
 
@@ -30,6 +30,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'lifecycle_rule' is set and enabled",
 		"keyActualValue": "'lifecycle_rule' is not set",
-        "searchline":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name], []),
+        "searchLine":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name], []),
 	}
 }
