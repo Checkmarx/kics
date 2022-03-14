@@ -99,7 +99,7 @@
 				
 				<option value="file21">github.com/Checkmarx/kics/internal/tracker/ci.go (81.2%)</option>
 				
-				<option value="file22">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (87.7%)</option>
+				<option value="file22">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (87.9%)</option>
 				
 				<option value="file23">github.com/Checkmarx/kics/pkg/builder/engine/engine.go (71.8%)</option>
 				
@@ -191,7 +191,7 @@
 				
 				<option value="file67">github.com/Checkmarx/kics/pkg/parser/jsonfilter/parser/jsonfilter_tree_visitor.go (0.0%)</option>
 				
-				<option value="file68">github.com/Checkmarx/kics/pkg/parser/parser.go (91.2%)</option>
+				<option value="file68">github.com/Checkmarx/kics/pkg/parser/parser.go (91.3%)</option>
 				
 				<option value="file69">github.com/Checkmarx/kics/pkg/parser/terraform/comment/comment.go (96.8%)</option>
 				
@@ -275,11 +275,13 @@
 				
 				<option value="file109">github.com/Checkmarx/kics/pkg/terraformer/terraformer.go (72.1%)</option>
 				
-				<option value="file110">github.com/Checkmarx/kics/pkg/utils/map.go (100.0%)</option>
+				<option value="file110">github.com/Checkmarx/kics/pkg/utils/ansible_vault.go (88.9%)</option>
 				
-				<option value="file111">github.com/Checkmarx/kics/pkg/utils/random.go (100.0%)</option>
+				<option value="file111">github.com/Checkmarx/kics/pkg/utils/map.go (100.0%)</option>
 				
-				<option value="file112">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
+				<option value="file112">github.com/Checkmarx/kics/pkg/utils/random.go (100.0%)</option>
+				
+				<option value="file113">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
 				
 				</select>
 			</div>
@@ -2355,13 +2357,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="30">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov8" title="30">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2386,7 +2388,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2596,6 +2598,7 @@ import (
 
         "github.com/Checkmarx/kics/internal/metrics"
         "github.com/Checkmarx/kics/pkg/model"
+        "github.com/Checkmarx/kics/pkg/utils"
         "github.com/pkg/errors"
         "github.com/rs/zerolog/log"
 
@@ -2931,6 +2934,8 @@ func checkHelm(path string) bool <span class="cov3" title="6">{
 }
 
 func checkYamlPlatform(content []byte) string <span class="cov2" title="2">{
+        content = utils.DecryptAnsibleVault(content, os.Getenv("ANSIBLE_VAULT_PASSWORD_FILE"))
+
         var yamlContent model.Document
         if err := yamlParser.Unmarshal(content, &amp;yamlContent); err != nil </span><span class="cov0" title="0">{
                 log.Warn().Msgf("failed to parse yaml file: %s", err)
@@ -2964,7 +2969,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="12">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov6" title="33">{
-        for _, a := range s </span><span class="cov8" title="108">{
+        for _, a := range s </span><span class="cov8" title="90">{
                 if a == e </span><span class="cov4" title="8">{
                         return true
                 }</span>
@@ -4754,7 +4759,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5781,12 +5786,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="25489">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="25507">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="25489">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="25242">{
+                <span class="cov9" title="25507">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="25260">{
                         return skipFolder
                 }</span>
 
@@ -5853,24 +5858,24 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="246">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="25492">{
-        if info.IsDir() </span><span class="cov8" title="5656">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="25510">{
+        if info.IsDir() </span><span class="cov8" title="5660">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
                         return true, filepath.SkipDir
                 }</span>
-                <span class="cov8" title="5655">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
-                if err != nil || resolved </span><span class="cov8" title="5653">{
+                <span class="cov8" title="5659">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
+                if err != nil || resolved </span><span class="cov8" title="5657">{
                         return true, nil
                 }</span>
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="19836">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="19850">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="19836">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="19590">{
+        <span class="cov9" title="19850">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="19604">{
                 return true, nil
         }</span>
         <span class="cov5" title="246">return false, nil</span>
@@ -12814,10 +12819,12 @@ func (v *JSONFilterTreeVisitor) VisitLiteral(ctx *LiteralContext) interface{} <s
 
 import (
         "errors"
+        "os"
         "path/filepath"
         "strings"
 
         "github.com/Checkmarx/kics/pkg/model"
+        "github.com/Checkmarx/kics/pkg/utils"
         "github.com/rs/zerolog/log"
 )
 
@@ -12923,6 +12930,8 @@ func (c *Parser) CommentsCommands(filePath string, fileContent []byte) model.Com
 // Parse executes a parser on the fileContent and returns the file content as a Document, the file kind and
 // an error, if an error has occurred
 func (c *Parser) Parse(filePath string, fileContent []byte) (ParsedDocument, error) <span class="cov4" title="3">{
+        fileContent = utils.DecryptAnsibleVault(fileContent, os.Getenv("ANSIBLE_VAULT_PASSWORD_FILE"))
+
         if c.isValidExtension(filePath) </span><span class="cov4" title="3">{
                 resolved, err := c.parsers.Resolve(fileContent, filePath)
                 if err != nil </span><span class="cov0" title="0">{
@@ -18504,6 +18513,33 @@ func getProjects(pathInfo []string) []string <span class="cov1" title="1">{
 		
 		<pre class="file" id="file110" style="display: none">package utils
 
+import (
+        "regexp"
+
+        "github.com/rs/zerolog/log"
+        vault "github.com/sosedoff/ansible-vault-go"
+)
+
+// DecryptAnsibleVault verifies if the fileContent is encrypted by ansible-vault. If yes, the function decrypts it
+func DecryptAnsibleVault(fileContent []byte, secret string) []byte <span class="cov8" title="1">{
+        match, err := regexp.MatchString(`^\s*\$ANSIBLE_VAULT.*`, string(fileContent))
+        if err != nil </span><span class="cov0" title="0">{
+                return fileContent
+        }</span>
+        <span class="cov8" title="1">if secret != "" &amp;&amp; match </span><span class="cov8" title="1">{
+                content, err := vault.Decrypt(string(fileContent), secret)
+
+                if err == nil </span><span class="cov8" title="1">{
+                        log.Info().Msg("Decrypting Ansible Vault file")
+                        fileContent = []byte(content)
+                }</span>
+        }
+        <span class="cov8" title="1">return fileContent</span>
+}
+</pre>
+		
+		<pre class="file" id="file111" style="display: none">package utils
+
 import "sort"
 
 // SortedKeys returns a sorted slice with all map keys
@@ -18524,7 +18560,7 @@ func MergeMaps(map1, map2 map[string]interface{}) <span class="cov1" title="1">{
 }
 </pre>
 		
-		<pre class="file" id="file111" style="display: none">package utils
+		<pre class="file" id="file112" style="display: none">package utils
 
 import (
         "os"
@@ -18559,7 +18595,7 @@ func NextRandom() string <span class="cov10" title="2">{
 // ==============================================================================
 </pre>
 		
-		<pre class="file" id="file112" style="display: none">package test
+		<pre class="file" id="file113" style="display: none">package test
 
 import (
         "bytes"
@@ -18657,15 +18693,15 @@ func StringifyStruct(v interface{}) (string, error) <span class="cov0" title="0"
 }
 
 // MapToStringSlice extract slice of keys from a map[string]string
-func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov8" title="4193">{
+func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov8" title="4196">{
         keys := make([]string, len(stringKeyMap))
 
         i := 0
-        for k := range stringKeyMap </span><span class="cov10" title="41936">{
+        for k := range stringKeyMap </span><span class="cov10" title="41966">{
                 keys[i] = k
                 i++
         }</span>
-        <span class="cov8" title="4193">return keys</span>
+        <span class="cov8" title="4196">return keys</span>
 }
 
 var queryHigh = model.QueryResult{
