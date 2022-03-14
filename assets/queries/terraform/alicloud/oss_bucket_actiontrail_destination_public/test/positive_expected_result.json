@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "OSS Bucket Of Actiontrail Trail Destination Is Public",
+    "queryName": "ActionTrail Trail OSS Bucket is Publicly Accessible",
     "severity": "HIGH",
     "line": 9,
     "fileName": "positive2.tf"
   },
   {
-    "queryName": "OSS Bucket Of Actiontrail Trail Destination Is Public",
+    "queryName": "ActionTrail Trail OSS Bucket is Publicly Accessible",
     "severity": "HIGH",
     "line": 9,
     "fileName": "positive1.tf"

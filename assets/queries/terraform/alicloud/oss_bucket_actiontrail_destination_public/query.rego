@@ -8,6 +8,7 @@ CxPolicy[result] {
     possibilities:={"public-read", "public-read-write"}
     bucket.bucket == bucket_name
     bucket.acl == possibilities[p]
+    
     result := {
         "documentId": input.document[i].id,
         "searchKey": sprintf("alicloud_actiontrail_trail[%s].oss_bucket_name", [name]),
