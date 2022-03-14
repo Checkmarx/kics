@@ -17,12 +17,13 @@ type CmdOutput struct {
 func RunCommand(kicsDockerImage string, kicsArgs []string, useMock bool) (*CmdOutput, error) {
 	descriptionServer := "KICS_DESCRIPTIONS_ENDPOINT=http://kics.io"
 	if useMock {
-		descriptionServer = "KICS_DESCRIPTIONS_ENDPOINT=http://localhost:3000/kics-mock"
+		descriptionServer = "KICS_DESCRIPTIONS_ENDPOINT=http://host.docker.internal:3000/kics-mock"
 	}
 
 	cwd, _ := os.Getwd()
 	baseDir := filepath.Dir(cwd)
-	dockerArgs := []string{"run", "-v", baseDir + ":/path", kicsDockerImage}
+	dockerArgs := []string{"run", "-e", descriptionServer, "--add-host=host.docker.internal:host-gateway",
+		"-v", baseDir + ":/path", kicsDockerImage}
 	completeArgs := append(dockerArgs, kicsArgs...)
 
 	cmd := exec.Command("docker", completeArgs...) //nolint

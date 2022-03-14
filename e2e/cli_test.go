@@ -46,11 +46,7 @@ func Test_E2E_CLI(t *testing.T) {
 					"No status code associated to this test. Check the wantStatus of the test case.")
 
 				if showDetailsCI && tt.WantStatus[arg] != out.Status {
-					fmt.Println("")
-					for _, line := range out.Output {
-						fmt.Println(line)
-					}
-					fmt.Println("")
+					printTestDetails(out.Output)
 				}
 
 				require.Equalf(t, tt.WantStatus[arg], out.Status,
@@ -60,6 +56,9 @@ func Test_E2E_CLI(t *testing.T) {
 				if tt.Validation != nil {
 					fullString := strings.Join(out.Output, ";")
 					validation := tt.Validation(fullString)
+					if showDetailsCI && !validation {
+						printTestDetails(out.Output)
+					}
 					require.True(t, validation, "KICS CLI output doesn't match the regex validation.")
 				}
 
@@ -192,4 +191,13 @@ func loadTemplates(lines []string, templates testcases.TestTemplates) []string {
 	}
 
 	return strings.Split(builder.String(), "\n")
+}
+
+func printTestDetails(output []string) {
+	fmt.Println("\nKICS OUTPUT:")
+	fmt.Println("====== BEGIN ======")
+	for _, line := range output {
+		fmt.Println(line)
+	}
+	fmt.Println("======= END =======")
 }
