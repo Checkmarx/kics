@@ -1371,6 +1371,7 @@
 <p>KICS support scanning multiple technologies, in the next sections you will find more details about each technology.</p>
 <h2 id="ansible">Ansible<a class="headerlink" href="#ansible" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning Ansible files with <code>.yaml</code> extension.</p>
+<p>KICS can decrypt Ansible Vault files on the fly. For that, you need to define the environment variable <code>ANSIBLE_VAULT_PASSWORD_FILE</code>.</p>
 <h2 id="azure_resource_manager">Azure Resource Manager<a class="headerlink" href="#azure_resource_manager" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning Azure Resource Manager (ARM) templates with <code>.json</code> extension. To build ARM JSON templates from Bicep code check the <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-cli#build">official ARM documentation</a> and <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax">here</a> to understand the differences between ARM JSON templates and Bicep</p>
 <h2 id="buildah">Buildah<a class="headerlink" href="#buildah" title="Permanent link">&para;</a></h2>
