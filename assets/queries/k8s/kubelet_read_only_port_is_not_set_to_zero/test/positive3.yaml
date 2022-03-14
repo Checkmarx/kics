@@ -8,5 +8,5 @@ spec:
   containers:
     - name: command-demo-container
       image: joaodanielrufino/kubelet
-      command: ["kubelet"]
+      command: ["kubelet", "--read-only-port=1"]
   restartPolicy: OnFailure
