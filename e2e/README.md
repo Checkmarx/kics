@@ -4,34 +4,25 @@ The purpose of this docs is to describe KICS' E2E test suite
 
 ## Getting Started
 
-There are several ways to execute the E2E tests.
+Before Running the tests, you must start the script server (NodeJS) and keep it running.
+_Note: If you don't run this script, only the tests "031" and "052" must fail._
 
-### TLDR
-
-This steps will build the kics and then run the E2E using the built binary (placed by default under `${PWD}/bin/kics`)
-
+- Before running tests:
 ```bash
-make test-e2e
+cd kics_repository_folder/github/scripts/server-mock
+npm install
+npm start
 ```
 
-### Step by Step
-
-These steps will build the kics and then run the E2E using the built binary.
-
+- Running E2E Tests:
 ```bash
-go build -o ./bin/kics cmd/console/main.go
+
+cd kics_repository_folder
+go mod vendor
+docker build -t kics:e2e-tests -f .\Dockerfile .
+go test "github.com/Checkmarx/kics/e2e" -v -count=1 -tags dev
 ```
 
-If you want to provide a version:
-```bash
-go build -o ./bin/kics -ldflags "-X github.com/Checkmarx/kics/internal/constants.Version=$(git rev-parse --short HEAD) cmd/console/main.go
-```
-
-and then:
-
-```bash
-E2E_KICS_BINARY=./bin/kics go test "github.com/Checkmarx/kics/e2e" -parallel 12 -v
-```
 
 ## Test Structure
 

@@ -12,7 +12,7 @@ jobs:
       matrix:
         go-version: [1.17.x]
         os: [ubuntu-latest]
-        kics-docker: ["Dockerfile.ubi8"]
+        kics-docker: ["Dockerfile", "Dockerfile.ubi8"]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Cancel Previous Runs
@@ -70,6 +70,13 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+      - name: Display PWD / Files
+        run: |
+          pwd
+          ls
+      - name: Set Output Permissions
+        run: |
+          sudo chmod -R 777 ./e2e
       - name: Run E2E Tests
         env:
           E2E_KICS_DOCKER: kics:e2e-tests-${{ github.sha }}

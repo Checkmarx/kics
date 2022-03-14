@@ -7,14 +7,14 @@ func init() { //nolint
 		Name: "should not execute secret queries [E2E-CLI-045]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
+				[]string{"scan", "-p", "/path/e2e/fixtures/samples/terraform.tf",
 					"--include-queries", "487f4be7-3fd9-4506-a07a-eae252180c08"},
 
-				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
+				[]string{"scan", "-p", "/path/e2e/fixtures/samples/terraform.tf",
 					"--include-queries", "487f4be7-3fd9-4506-a07a-eae252180c08",
 					"--disable-secrets"},
 
-				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
+				[]string{"scan", "-p", "/path/e2e/fixtures/samples/terraform.tf",
 					"--include-queries", "487f4be7-3fd9-4506-a07a-eae252180c08,e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
 					"--disable-secrets"},
 			},
