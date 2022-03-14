@@ -8,7 +8,7 @@ These are our upcoming features:
 - Extend coverage of queries for GCP & Azure
 
 Have an idea?
-Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a> or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
+Join the <a href="https://github.com/Checkmarx/kics/discussions" target="_blank">GitHub discussions</a> or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
 
 ---
 
