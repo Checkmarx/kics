@@ -2,12 +2,10 @@ package Cx
 
 import data.generic.common as common_lib
 
-incorrect_values := {"Close"}
-
 CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_db_instance[name]
-	resource.ssl_action == incorrect_values[val]
+	resource.ssl_action == "Close"
 
 
 	result := {
@@ -15,7 +13,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("alicloud_db_instance[%s].ssl_action", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'ssl_action' value should be 'Open'",
-		"keyActualValue": sprintf("'ssl_action' value is '%s'", [val]),
+		"keyActualValue": "'ssl_action' value is 'Close'",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name, "ssl_action"], []),
 	}
 }

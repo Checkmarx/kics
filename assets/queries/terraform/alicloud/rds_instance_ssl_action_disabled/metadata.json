@@ -1,6 +1,6 @@
 {
     "id": "7a1ee8a9-71be-4b11-bb70-efb62d16863b",
-    "queryName": "RDS Instance SSL Action Not Open",
+    "queryName": "RDS Instance SSL Action Disabled",
     "severity": "High",
     "category": "Networking and Firewall",
     "descriptionText": "ssl_action parameter should be set to Open for RDS instances",
