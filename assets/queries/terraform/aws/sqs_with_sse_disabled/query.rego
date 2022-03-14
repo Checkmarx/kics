@@ -2,16 +2,42 @@ package Cx
 
 import data.generic.common as common_lib
 
+## two ways to activated SSE : kms_master_key_id OR sqs_managed_sse_enabled
+## https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue#server-side-encryption-sse
+sse_activated(obj) {
+    common_lib.valid_key(obj, "kms_master_key_id")
+} else {
+    common_lib.valid_key(obj, "sqs_managed_sse_enabled")
+} else = false {
+	true
+}
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_sqs_queue[name]
 	not common_lib.valid_key(resource, "kms_master_key_id")
+
+	resource.sqs_managed_sse_enabled == false
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_sqs_queue[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_sqs_queue.kms_master_key_id is defined and not null",
-		"keyActualValue": "aws_sqs_queue.kms_master_key_id is undefined or null",
+		"keyExpectedValue": sprintf("aws_sqs_queue[%s].sqs_managed_sse_enabled must be set to true", [name]),
+		"keyActualValue": sprintf("aws_sqs_queue[%s].sqs_managed_sse_enabled is set to false", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_sqs_queue", name, "sqs_managed_sse_enabled"], []),
+	}
+}
+
+CxPolicy[result] {
+	resource := input.document[i].resource.aws_sqs_queue[name]
+	sse_activated(resource) == false
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("aws_sqs_queue[%s]", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("aws_sqs_queue[%s].kms_master_key_id or aws_sqs_queue[%s].sqs_managed_sse_enabled are defined and not null", [name, name]),
+		"keyActualValue": sprintf("aws_sqs_queue[%s].kms_master_key_id and aws_sqs_queue[%s].sqs_managed_sse_enabled are undefined or null", [name, name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_sqs_queue", name], []),
 	}
 }
