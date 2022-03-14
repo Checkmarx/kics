@@ -64,8 +64,8 @@ jobs:
           push: false
           tags: kics:e2e-tests-${{ github.sha }}
           build-args: |
-            VERSION=${GITHUB_SHA_SHORT}
-            COMMIT=${GITHUB_SHA}
+            VERSION=development
+            COMMIT=${{ GITHUB_SHA }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Image digest
