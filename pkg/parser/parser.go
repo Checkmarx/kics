@@ -2,10 +2,12 @@ package parser
 
 import (
 	"errors"
+	"os"
 	"path/filepath"
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/rs/zerolog/log"
 )
 
@@ -111,6 +113,8 @@ func (c *Parser) CommentsCommands(filePath string, fileContent []byte) model.Com
 // Parse executes a parser on the fileContent and returns the file content as a Document, the file kind and
 // an error, if an error has occurred
 func (c *Parser) Parse(filePath string, fileContent []byte) (ParsedDocument, error) {
+	fileContent = utils.DecryptAnsibleVault(fileContent, os.Getenv("ANSIBLE_VAULT_PASSWORD_FILE"))
+
 	if c.isValidExtension(filePath) {
 		resolved, err := c.parsers.Resolve(fileContent, filePath)
 		if err != nil {
