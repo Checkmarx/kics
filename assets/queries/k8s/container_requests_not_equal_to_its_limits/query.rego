@@ -1,56 +1,24 @@
 package Cx
 
-import data.generic.common as common_lib
+import data.generic.k8s as k8sLib
 
 types := {"initContainers", "containers"}
 
 CxPolicy[result] {
 	document := input.document[i]
-	document.kind == "Pod"
-	container := document.spec[types[x]][c]
-	rec := {"requests", "limits"}
+	metadata := document.metadata
 
-	not common_lib.valid_key(container.resources[rec[t]], "memory")
+	specInfo := k8sLib.getSpecInfo(document)
+	container := specInfo.spec[types[x]][_]
 
-	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.resources.%s", [document.metadata.name, types[x], container.name, rec[t]]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("spec.%s[%s].resources.%s.memory is defined", [types[x], container.name, rec[t]]),
-		"keyActualValue": sprintf("spec.%s[%s].resources.%s.memory is not defined", [types[x], container.name, rec[t]]),
-	}
-}
-
-CxPolicy[result] {
-	document := input.document[i]
-	document.kind == "Pod"
-	container := document.spec[types[x]][c]
-	rec := {"requests", "limits"}
-
-	not common_lib.valid_key(container.resources[rec[t]], "cpu")
+	resourceTypes := {"cpu", "memory"}
+	container.resources.requests[resourceTypes[t]] != container.resources.limits[resourceTypes[t]]
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.resources.%s", [document.metadata.name, types[x], container.name, rec[t]]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("spec.%s[%s].resources.%s.cpu is defined", [types[x], container.name, rec[t]]),
-		"keyActualValue": sprintf("spec.%s[%s].resources.%s.cpu is not defined", [types[x], container.name, rec[t]]),
-	}
-}
-
-CxPolicy[result] {
-	document := input.document[i]
-	document.kind == "Pod"
-	container := document.spec[types[x]][c]
-	rec := {"cpu", "memory"}
-
-	container.resources.requests[rec[t]] != container.resources.limits[rec[t]]
-
-	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.resources", [document.metadata.name, types[x], container.name]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.resources", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("spec.%s[%s].resources.requests.%s is equal to spec.%s[%s].resources.limits.%s", [types[x], container.name, rec[t], types[x], container.name, rec[t]]),
-		"keyActualValue": sprintf("spec.%s[%s].resources.requests.%s is not equal to spec.%s[%s].resources.limits.%s", [types[x], container.name, rec[t], types[x], container.name, rec[t]]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.resources.requests.%s is equal to resources.limits.%s", [metadata.name, specInfo.path, types[x], container.name, resourceTypes[t], resourceTypes[t]]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.resources.requests.%s is not equal to resources.limits.%s", [metadata.name, specInfo.path, types[x], container.name, resourceTypes[t], resourceTypes[t]]),
 	}
 }
