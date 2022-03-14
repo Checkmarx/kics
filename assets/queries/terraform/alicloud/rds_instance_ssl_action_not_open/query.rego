@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 
-incorrect_values := {"Close","Update"}
+incorrect_values := {"Close"}
 
 CxPolicy[result] {
 	some i
