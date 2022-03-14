@@ -14,7 +14,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("alicloud_db_instance[%s].security_ips[%s]", [name,x]),
+		"searchKey": sprintf("alicloud_db_instance[%s].security_ips.%s", [name,x]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' should not be in 'security_ips' list", [sec_ip]),
 		"keyActualValue": sprintf("'%s' is in 'security_ips' list", [sec_ip]),
