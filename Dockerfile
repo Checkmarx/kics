@@ -1,4 +1,4 @@
-FROM golang:1.17.7-alpine as build_env
+FROM golang:1.17.8-alpine as build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
@@ -33,7 +33,7 @@ HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM alpine:3.14.3
+FROM alpine:3.15.0
 
 # Install Terraform and Terraform plugins
 RUN wget https://releases.hashicorp.com/terraform/1.1.3/terraform_1.1.3_linux_amd64.zip \
@@ -47,7 +47,7 @@ RUN wget https://releases.hashicorp.com/terraform/1.1.3/terraform_1.1.3_linux_am
     && unzip terraform-provider-aws_3.72.0_linux_amd64.zip && rm terraform-provider-aws_3.72.0_linux_amd64.zip \
     && mkdir ~/.terraform.d && mkdir ~/.terraform.d/plugins && mkdir ~/.terraform.d/plugins/linux_amd64 && mv terraform-provider-aws_v3.72.0_x5 terraform-provider-google_v4.10.0_x5 terraform-provider-azurerm_v2.95.0_x5 ~/.terraform.d/plugins/linux_amd64 \
     && apk add --no-cache \
-    git=2.32.0-r0
+    git=2.34.1-r0
 
 # Copy built binary to the runtime container
 # Vulnerability fixed in latest version of KICS remove when gh actions version is updated

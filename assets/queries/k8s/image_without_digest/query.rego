@@ -1,39 +1,23 @@
 package Cx
 
-import data.generic.common as common_lib
+import data.generic.k8s as k8sLib
 
 types := {"initContainers", "containers"}
 
 CxPolicy[result] {
 	document := input.document[i]
 	metadata := document.metadata
-	spec := document.spec
-	containers := spec[types[x]]
-	image := containers[c].image
-	not contains(image, "@")
+
+	specInfo := k8sLib.getSpecInfo(document)
+	container := specInfo.spec[types[x]][_]
+
+	not contains(container.image, "@")
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.image", [metadata.name, types[x], containers[c].name]),
+		"documentId": document.id,
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.image", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.image has '@'", [metadata.name, types[x], containers[c].name]),
-		"keyActualValue": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.image should have '@'", [metadata.name, types[x], containers[c].name]),
-	}
-}
-
-CxPolicy[result] {
-	document := input.document[i]
-	metadata := document.metadata
-	spec := document.spec
-	containers := spec[types[x]]
-	cont := containers[k]
-	not common_lib.valid_key(cont, "image")
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.%s", [metadata.name, types[x]]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.image is defined", [metadata.name, types[x], containers[c].name]),
-		"keyActualValue": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.image is undefined", [metadata.name, types[x], containers[c].name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.image should specify the image with a digest", [metadata.name, specInfo.path, types[x], container.name]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.image does not include an image digest", [metadata.name, specInfo.path, types[x], container.name]),
 	}
 }

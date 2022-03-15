@@ -13,11 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Check out the tag
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.event.inputs.version }}
       - name: Set up QEMU
@@ -28,7 +28,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub
-        uses: docker/login-action@v1.13.0
+        uses: docker/login-action@v1.14.1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
@@ -46,7 +46,7 @@ jobs:
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
       - name: Check out the repo
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Export Image Digests
@@ -56,7 +56,7 @@ jobs:
           DIGEST=${{ steps.build_gh_action.outputs.digest }}
 
           echo "${VERSION}-gh-actions,${DIGEST}" >> docs/docker/digests.csv
-      - uses: actions/setup-python@v2.3.2
+      - uses: actions/setup-python@v3
         with:
           python-version: 3.x
       - name: Generate .md table
@@ -64,7 +64,7 @@ jobs:
           pip install csvtomd
           csvtomd docs/docker/digests.csv > docs/docker/digests.md
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3.12.1
+        uses: peter-evans/create-pull-request@v3.14.0
         with:
           title: "docs(kicsbot): update images digest"
           token: ${{ secrets.KICS_BOT_PAT }}

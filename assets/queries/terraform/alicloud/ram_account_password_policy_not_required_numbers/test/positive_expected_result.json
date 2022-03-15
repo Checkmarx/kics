@@ -1,0 +1,8 @@
+[
+    {
+      "queryName": "Ram Account Password Policy Not Required Numbers",
+      "severity": "MEDIUM",
+      "line": 5,
+      "fileName": "positive1.tf"
+    }
+]

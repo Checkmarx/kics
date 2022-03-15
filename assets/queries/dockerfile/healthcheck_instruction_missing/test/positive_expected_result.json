@@ -2,6 +2,13 @@
 	{
 		"queryName": "Healthcheck Instruction Missing",
 		"severity": "LOW",
-		"line": 1
+		"line": 1,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Healthcheck Instruction Missing",
+		"severity": "LOW",
+		"line": 7,
+		"fileName": "positive2.dockerfile"
 	}
 ]

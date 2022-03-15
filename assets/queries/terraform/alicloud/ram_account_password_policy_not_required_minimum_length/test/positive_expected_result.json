@@ -1,0 +1,14 @@
+[
+    {
+      "queryName": "Ram Account Password Policy Not Required Minimum Length",
+      "severity": "HIGH",
+      "line": 2,
+      "fileName": "positive1.tf"
+    },
+    {
+        "queryName": "Ram Account Password Policy Not Required Minimum Length",
+        "severity": "HIGH",
+        "line": 1,
+        "fileName": "positive2.tf"
+      }
+  ]
