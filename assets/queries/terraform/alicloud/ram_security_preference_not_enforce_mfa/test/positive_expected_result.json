@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "RAM Security Preference Not Enforce MFA Login",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "RAM Security Preference Not Enforce MFA Login",
+    "severity": "HIGH",
+    "line": 14,
+    "fileName": "positive2.tf"
+  }
+]
