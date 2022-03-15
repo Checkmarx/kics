@@ -34,5 +34,11 @@
     "severity": "HIGH",
     "line": 1,
     "fileName": "positive6.tf"
+  },
+  {
+    "queryName": "SQS With SSE Disabled",
+    "severity": "HIGH",
+    "line": 3,
+    "fileName": "positive7.tf"
   }
 ]
