@@ -9,6 +9,7 @@ import (
 
 	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 
@@ -344,6 +345,8 @@ func checkHelm(path string) bool {
 }
 
 func checkYamlPlatform(content []byte) string {
+	content = utils.DecryptAnsibleVault(content, os.Getenv("ANSIBLE_VAULT_PASSWORD_FILE"))
+
 	var yamlContent model.Document
 	if err := yamlParser.Unmarshal(content, &yamlContent); err != nil {
 		log.Warn().Msgf("failed to parse yaml file: %s", err)

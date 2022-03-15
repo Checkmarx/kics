@@ -7,7 +7,8 @@ assignees: ''
 
 ---
 
-Found a bug? You're welcome to [![Gitter](https://badges.gitter.im/kics-io/community.svg)](https://gitter.im/kics-io/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+Found a bug? You're welcome to [![GitHub Discussions](https://img.shields.io/badge/chat-discussions-blue.svg?style=flat-square)](https://github.com/Checkmarx/kics/discussions)
+
 
 - **Please make sure to:**
   - Describe in details what the problem is

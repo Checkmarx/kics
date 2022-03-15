@@ -809,6 +809,16 @@
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
 	  "line": 111
+	},
+	{
+	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
+	  "severity": "MEDIUM",
+	  "line": 111
+	},
+	{
+	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
+	  "severity": "MEDIUM",
+	  "line": 111
 	}
   ]
   
