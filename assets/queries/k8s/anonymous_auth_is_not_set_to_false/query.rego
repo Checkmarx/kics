@@ -12,7 +12,7 @@ CxPolicy[result] {
 	container := specInfo.spec[types[x]][j]
 
 	common_lib.inArray(container.command, commands[_])
-	not hasFlag(container, "--anonymous-auth=false")
+	not k8sLib.hasFlag(container, "--anonymous-auth=false")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -21,10 +21,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "--anonymous-auth flag should be set to false",
 		"keyActualValue": "--anonymous-auth flag is not set to false",
 	}
-}
-
-hasFlag(container, flag) {
-	common_lib.inArray(container.command, flag)
-} else {
-	common_lib.inArray(container.args, flag)
 }
