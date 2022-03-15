@@ -8,5 +8,5 @@ spec:
   containers:
     - name: command-demo-container
       image: joaodanielrufino/kubelet
-      command: ["kubelet", "--anonymous-auth=true"]
+      command: ["kubelet", "--anonymous-auth=false"]
   restartPolicy: OnFailure

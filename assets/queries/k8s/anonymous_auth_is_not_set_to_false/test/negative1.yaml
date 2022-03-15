@@ -7,7 +7,6 @@ metadata:
 spec:
   containers:
     - name: command-demo-container
-      image: debian
-      command: ["printenv"]
-      args: ["HOSTNAME", "KUBERNETES_PORT"]
+      image: gcr.io/google_containers/kube-apiserver-amd64:v1.6.0
+      command: ["kube-apiserver", "--anonymous-auth=false"]
   restartPolicy: OnFailure

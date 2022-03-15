@@ -7,6 +7,7 @@ metadata:
 spec:
   containers:
     - name: command-demo-container
-      image: debian
+      image: gcr.io/google_containers/kube-apiserver-amd64:v1.6.0
       command: ["kube-apiserver"]
+      args: ["--anonymous-auth=true"]
   restartPolicy: OnFailure
