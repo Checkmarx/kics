@@ -2,11 +2,19 @@
 	{
 		"queryName": "Service Account Token Automount Not Disabled",
 		"severity": "MEDIUM",
-		"line": 5
+		"line": 5,
+    "fileName": "positive1.yaml"
   },
   {
 		"queryName": "Service Account Token Automount Not Disabled",
 		"severity": "MEDIUM",
-		"line": 28
+		"line": 28,
+    "fileName": "positive1.yaml"
+	},
+  {
+		"queryName": "Service Account Token Automount Not Disabled",
+		"severity": "MEDIUM",
+		"line": 5,
+    "fileName": "positive2.yaml"
 	}
 ]
