@@ -2,13 +2,13 @@
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 10,
+    "line": 8,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 25,
+    "line": 23,
     "fileName": "positive1.yaml"
   },
   {
