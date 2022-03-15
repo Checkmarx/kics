@@ -19,11 +19,11 @@ CxPolicy[result] {
     
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s.%s.policy_name",[pap, n]),
+		"searchKey": sprintf("%s[%s].policy_name",[attachment, n]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("alicloud_ram_policy[%s] does not give admin access to any user, group or role",[name]),
 		"keyActualValue": sprintf("alicloud_ram_policy[%s] is attached to a user, group or role and gives admin access",[name]),
-        "searchKey": sprintf("%s[%s].policy_name",[attachment, n]),
+        "searchline":common_lib.build_search_line([pap, n ,"policy_name"], []),
 	}
 }
 
