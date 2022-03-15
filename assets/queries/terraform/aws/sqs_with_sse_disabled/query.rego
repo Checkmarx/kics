@@ -20,8 +20,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_sqs_queue[%s]", [name]),
-		"issueType": "MissingAttribute",
+		"searchKey": sprintf("aws_sqs_queue[%s].sqs_managed_sse_enabled", [name]),
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_sqs_queue[%s].sqs_managed_sse_enabled must be set to true", [name]),
 		"keyActualValue": sprintf("aws_sqs_queue[%s].sqs_managed_sse_enabled is set to false", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_sqs_queue", name, "sqs_managed_sse_enabled"], []),
