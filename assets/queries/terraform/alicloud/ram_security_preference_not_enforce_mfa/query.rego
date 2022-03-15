@@ -7,7 +7,7 @@ CxPolicy[result] {
 	count(ram_users) > 0
     ram_user := ram_users[0]
     not has_preference(input.document) 
-	#resource alicloud_ram_user
+
 	result := {
     	"documentId": ram_user.id,
 		"searchKey": sprintf("alicloud_ram_user[%s]", [ram_user.name]),
@@ -30,6 +30,7 @@ CxPolicy[result] {
 	has_ram_user(input.document)
 	resource := input.document[id].resource.alicloud_ram_security_preference[name]
     not common_lib.valid_key(resource,"enforce_mfa_for_login")
+
 	result := {
     	"documentId": input.document[id].id,
 		"searchKey": sprintf("alicloud_ram_security_preference[%s]", [name]),
@@ -44,6 +45,7 @@ CxPolicy[result] {
 	has_ram_user(input.document)
 	resource := input.document[id].resource.alicloud_ram_security_preference[name]
     resource.enforce_mfa_for_login == false
+	
 	result := {
     	"documentId": input.document[id].id,
 		"searchKey": sprintf("alicloud_ram_security_preference[%s]", [name]),
