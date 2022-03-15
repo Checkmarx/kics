@@ -1,0 +1,11 @@
+{
+  "id": "f262118c-1ac6-4bb3-8495-cc48f1775b85",
+  "queryName": "Ecs Data Disk Kms Key Id Undefined",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Ecs Data Disk Kms Key Id should be set",
+  "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/disk#kms_key_id",
+  "platform": "Terraform",
+  "descriptionID": "04c57e20",
+  "cloudProvider": "alicloud"
+}
