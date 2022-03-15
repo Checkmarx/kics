@@ -42,4 +42,20 @@ isGREorICMPorALL("icmp") = true
 
 isGREorICMPorALL("gre") = true
 
-isGREorICMPorALL("all") = true
+
+CxPolicy[result] {
+	some i
+	resource := input.document[i].resource.alicloud_security_group_rule[name]
+	resource.cidr_ip == "0.0.0.0/0"
+	isALL(resource.ip_protocol)
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("alicloud_security_group_rule[%s].port_range", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "cidr_ip should not be '0.0.0.0/0' when protocol is equal to all",
+		"keyActualValue": "All ports are exposed for all protocols",
+		"searchLine": common_lib.build_search_line(["resource", "alicloud_security_group_rule", name, "cidr_ip"], []),
+	}
+}
+
+isALL("all") = true

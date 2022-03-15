@@ -3,7 +3,7 @@
     "queryName": "Public Security Group Rule All Ports or Protocols",
     "severity": "HIGH",
     "category": "Networking and Firewall",
-    "descriptionText": "All ports are open to the public in either TCP or UDP or ICMP or GRE or all the protocols mentioned",
+    "descriptionText": "Alicloud Security Group Rule should not allow all ports or all protocols to the public",
     "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/security_group_rule#cidr_ip",
     "platform": "Terraform",
     "descriptionID": "6dcb70e8",
