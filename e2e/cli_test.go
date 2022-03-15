@@ -102,7 +102,10 @@ func Test_E2E_CLI(t *testing.T) {
 	}
 
 	t.Cleanup(func() {
-		os.RemoveAll("output")
+		err := os.RemoveAll("output")
+		if err != nil {
+			t.Logf("\nError when trying to remove tests output folder\n")
+		}
 		t.Logf("E2E tests ::ellapsed time:: %v", time.Since(scanStartTime))
 	})
 }

@@ -20,7 +20,11 @@ func RunCommand(kicsDockerImage string, kicsArgs []string, useMock bool) (*CmdOu
 		descriptionServer = "KICS_DESCRIPTIONS_ENDPOINT=http://host.docker.internal:3000/kics-mock"
 	}
 
-	cwd, _ := os.Getwd()
+	cwd, cwdErr := os.Getwd()
+	if cwdErr != nil {
+		return &CmdOutput{}, cwdErr
+	}
+
 	baseDir := filepath.Dir(cwd)
 	dockerArgs := []string{"run", "-e", descriptionServer, "--add-host=host.docker.internal:host-gateway",
 		"-v", baseDir + ":/path", kicsDockerImage}
