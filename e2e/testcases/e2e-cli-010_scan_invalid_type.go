@@ -9,7 +9,7 @@ func init() { //nolint
 		Name: "should display an error message about unknown argument [E2E-CLI-010]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf", "-t", "xml", "--silent"},
+				[]string{"scan", "-p", "/path/e2e/fixtures/samples/terraform.tf", "-t", "xml", "--silent"},
 			},
 		},
 		Validation: func(outputText string) bool {

@@ -10,7 +10,7 @@ func init() { //nolint
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "--profiling", "MEM", "-v",
-					"--no-progress", "--no-color", "-q", "../assets/queries", "-p", "fixtures/samples/positive.dockerfile"},
+					"--no-progress", "--no-color", "-p", "/path/e2e/fixtures/samples/positive.dockerfile"},
 			},
 		},
 		Validation: func(outputText string) bool {

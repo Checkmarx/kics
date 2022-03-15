@@ -11,7 +11,7 @@ func init() { //nolint
 		Name: "should run a scan in multiple paths [E2E-CLI-019]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "-v", "-q", "../assets/queries", "-p", "fixtures/samples/positive.dockerfile,fixtures/samples/positive.yaml"},
+				[]string{"scan", "-v", "-p", "/path/e2e/fixtures/samples/positive.dockerfile,/path/e2e/fixtures/samples/positive.yaml"},
 			},
 		},
 		Validation: func(outputText string) bool {

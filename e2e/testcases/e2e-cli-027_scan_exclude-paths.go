@@ -9,8 +9,8 @@ func init() { //nolint
 		Name: " should exclude provided paths [E2E-CLI-027]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "--exclude-paths", "../test/fixtures/test_swagger/swaggerFileWithoutAuthorizer.yaml",
-					"-q", "../assets/queries", "-p", "../test/fixtures/test_swagger/"},
+				[]string{"scan", "--exclude-paths", "/path/test/fixtures/test_swagger/swaggerFileWithoutAuthorizer.yaml",
+					"-p", "/path/test/fixtures/test_swagger/"},
 			},
 		},
 		Validation: func(outputText string) bool {

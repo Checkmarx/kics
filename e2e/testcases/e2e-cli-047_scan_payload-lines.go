@@ -7,8 +7,8 @@ func init() { //nolint
 		Name: "should display line references in the payload file [E2E-CLI-047]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
-					"--payload-path", "output/E2E_CLI_047_PAYLOAD.json", "--payload-lines"},
+				[]string{"scan", "--silent", "-p", "/path/e2e/fixtures/samples/terraform.tf",
+					"--payload-path", "/path/e2e/output/E2E_CLI_047_PAYLOAD.json", "--payload-lines"},
 			},
 			ExpectedPayload: []string{
 				"E2E_CLI_047_PAYLOAD.json",

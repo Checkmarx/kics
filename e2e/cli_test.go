@@ -15,7 +15,8 @@ import (
 )
 
 func Test_E2E_CLI(t *testing.T) {
-	kicsPath := utils.GetKICSBinaryPath("")
+	kicsDockerImage := utils.GetKICSDockerImageName()
+	showDetailsCI := kicsDockerImage != "kics:e2e-tests"
 	scanStartTime := time.Now()
 
 	if testing.Short() {
@@ -36,13 +37,18 @@ func Test_E2E_CLI(t *testing.T) {
 					useMock = true
 				}
 
-				out, err := utils.RunCommand(append(kicsPath, tt.Args.Args[arg]...), useMock)
+				out, err := utils.RunCommand(kicsDockerImage, tt.Args.Args[arg], useMock)
 				// Check command Error
 				require.NoError(t, err, "Capture CLI output should not yield an error")
 
 				// Check exit status code (required)
 				require.True(t, arg < len(tt.WantStatus),
 					"No status code associated to this test. Check the wantStatus of the test case.")
+
+				if showDetailsCI && tt.WantStatus[arg] != out.Status {
+					printTestDetails(out.Output)
+				}
+
 				require.Equalf(t, tt.WantStatus[arg], out.Status,
 					"Actual KICS status code: %v\nExpected KICS status code: %v",
 					out.Status, tt.WantStatus[arg])
@@ -50,6 +56,9 @@ func Test_E2E_CLI(t *testing.T) {
 				if tt.Validation != nil {
 					fullString := strings.Join(out.Output, ";")
 					validation := tt.Validation(fullString)
+					if showDetailsCI && !validation {
+						printTestDetails(out.Output)
+					}
 					require.True(t, validation, "KICS CLI output doesn't match the regex validation.")
 				}
 
@@ -94,7 +103,9 @@ func Test_E2E_CLI(t *testing.T) {
 
 	t.Cleanup(func() {
 		err := os.RemoveAll("output")
-		require.NoError(t, err)
+		if err != nil {
+			t.Logf("\nError when trying to remove tests output folder\n")
+		}
 		t.Logf("E2E tests ::ellapsed time:: %v", time.Since(scanStartTime))
 	})
 }
@@ -183,4 +194,13 @@ func loadTemplates(lines []string, templates testcases.TestTemplates) []string {
 	}
 
 	return strings.Split(builder.String(), "\n")
+}
+
+func printTestDetails(output []string) {
+	fmt.Println("\nKICS OUTPUT:")
+	fmt.Println("====== BEGIN ======")
+	for _, line := range output {
+		fmt.Println(line)
+	}
+	fmt.Println("======= END =======")
 }

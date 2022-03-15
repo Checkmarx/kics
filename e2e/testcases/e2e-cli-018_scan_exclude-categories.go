@@ -8,7 +8,7 @@ func init() { //nolint
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "--exclude-categories", "Observability,Insecure Configurations,Networking and Firewall,Access Control", "-s",
-					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+					"-p", "/path/e2e/fixtures/samples/terraform-single.tf"},
 			},
 		},
 		WantStatus: []int{20},
