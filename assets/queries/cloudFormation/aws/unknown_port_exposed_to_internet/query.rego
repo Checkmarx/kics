@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d] doesn't open unknown ports to the Internet", [name, index]),
 		"keyActualValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d] opens unknown ports to the Internet", [name, index]),
-		"searchLine": commonLib.build_search_line(["Resources", name, "Properties", "SecurityGroupIngress"], []),
+		"searchLine": commonLib.build_search_line(["Resources", name, "Properties", "SecurityGroupIngress", index], []),
 	}
 }
 

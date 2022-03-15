@@ -13,8 +13,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("alicloud_security_group_rule[%s].port_range", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "port_range does not contain ports unknown and are not exposed to the entire Internet",
-		"keyActualValue": "port_range contains ports unknown and are exposed to the entire Internet",
+		"keyExpectedValue": "port_range does not contain unknown ports and are not exposed to the entire Internet",
+		"keyActualValue": "port_range contains unknown ports and are exposed to the entire Internet",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_security_group_rule", name, "port_range"], []),
 	}
 }

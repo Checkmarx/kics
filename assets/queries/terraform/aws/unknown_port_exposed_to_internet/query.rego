@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_security_group[%s].ingress ports are known", [name]),
 		"keyActualValue": sprintf("aws_security_group[%s].ingress ports are unknown and exposed to the entire Internet", [name]),
-		"searchLine": commonLib.build_search_line(["resource", "aws_security_group", name, "ingress","cidr_blocks"], []),
+		"searchLine": commonLib.build_search_line(["resource", "aws_security_group", name, "ingress", j, "cidr_blocks"], []),
 	}
 }
 
