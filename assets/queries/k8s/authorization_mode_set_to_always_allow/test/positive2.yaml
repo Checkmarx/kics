@@ -7,8 +7,6 @@ metadata:
 spec:
   containers:
     - name: command-demo-container
-      image: debian
-      command: ["kubelet"]
-      args:
-        ["--anonymous-auth=false", "--authorization-mode=MyMode,AlwaysAllow"]
+      image: gcr.io/google_containers/kube-apiserver-amd64:v1.6.0
+      command: ["kube-apiserver", "--authorization-mode=MyMode,AlwaysAllow"]
   restartPolicy: OnFailure
