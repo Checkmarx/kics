@@ -6,10 +6,10 @@
     region: eu-west-1
     rules:
       - proto: tcp
-        from_port: 800000000000
-        to_port: 80
+        from_port: 8001
+        to_port: 8002
         cidr_ip: 0.0.0.0/0
       - proto: tcp
-        from_port: 222222
-        to_port: 22
+        from_port: 2222
+        to_port: 2226
         cidr_ipv6: ::/0
