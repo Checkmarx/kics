@@ -65,7 +65,7 @@ jobs:
           tags: kics:e2e-tests-${{ github.sha }}
           build-args: |
             VERSION=development
-            COMMIT=${{ GITHUB_SHA }}
+            COMMIT=${{ github.sha }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Image digest
