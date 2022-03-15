@@ -29,16 +29,18 @@ CxPolicy[result] {
 	metadata := document.metadata
 
 	specInfo = k8sLib.getSpecInfo(document)
-	container := specInfo.spec[types[x]][_]
+	container := specInfo.spec[types[x]][c]
 
-  nested_info := common_lib.get_nested_values_info(container, ["securityContext", "capabilities", "drop"])
-  nested_info.valid == false
+	containerCtx := object.get(container, "securityContext", {})
+	containerCapabilitiesCtx := object.get(containerCtx, "capabilities", {})
+	not common_lib.valid_key(containerCapabilitiesCtx, "drop")
 
 	result := {
 		"documentId": document.id,
-		"searchKey": common_lib.remove_last_point(sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.%s", [metadata.name, specInfo.path, types[x], container.name, nested_info.searchKey])),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.capabilities.drop should be defined", [metadata.name, specInfo.path, types[x], container.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.capabilities.drop is undefined", [metadata.name, specInfo.path, types[x], container.name]),
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], c, "securityContext", "capabilities"])
 	}
 }
