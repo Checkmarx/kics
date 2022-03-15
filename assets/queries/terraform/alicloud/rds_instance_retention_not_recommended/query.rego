@@ -32,7 +32,6 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_db_instance[name]
-	resource.sql_collector_status == "Enabled"
 	not common_lib.valid_key(resource, "sql_collector_config_value")
 
 
@@ -48,7 +47,6 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_db_instance[name]
-	resource.sql_collector_status == "Enabled"
 	resource.sql_collector_config_value == 30
 
 	result := {
