@@ -6,18 +6,18 @@ import data.generic.common as commonLib
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_security_group[name]
 	ingress := getIngressList(resource.ingress)
-	currentPort := ingress[j].from_port
 	cidr := ingress[j].cidr_blocks
 
-	not knownPort(currentPort, commonLib.tcpPortsMap)
+	unknownPort(ingress[j].from_port, ingress[j].to_port)
 	isEntireNetwork(cidr)
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_security_group[%s].ingress.cidr_blocks", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_security_group[%s].ingress.from_port is known", [name]),
-		"keyActualValue": sprintf("aws_security_group[%s].ingress.from_port is unknown and is exposed to the entire Internet", [name]),
+		"keyExpectedValue": sprintf("aws_security_group[%s].ingress ports are known", [name]),
+		"keyActualValue": sprintf("aws_security_group[%s].ingress ports are unknown and exposed to the entire Internet", [name]),
+		"searchLine": commonLib.build_search_line(["resource", "aws_security_group", name, "ingress","cidr_blocks"], []),
 	}
 }
 
@@ -31,9 +31,9 @@ getIngressList(ingress) = list {
 	true
 }
 
-knownPort(port, knownPorts) {
-	some i
-	knownPorts[i][0] == port
+unknownPort(from_port,to_port) {
+	port := numbers.range(from_port, to_port)[i]
+	not commonLib.valid_key(commonLib.tcpPortsMap, port)
 }
 
 isEntireNetwork(cidr) = allow {

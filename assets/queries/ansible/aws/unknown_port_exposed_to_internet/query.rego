@@ -11,7 +11,7 @@ CxPolicy[result] {
 	ansLib.checkState(ec2_group)
 	rule := ec2_group.rules[index]
 
-	not portIsKnown(rule.from_port)
+	unknownPort(rule.from_port,rule.to_port)
 	isEntireNetwork(rule)
 
 	result := {
@@ -20,19 +20,14 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("ec2_group.rules[%d].from_port is known", [index]),
 		"keyActualValue": sprintf("ec2_group.rules[%d].from_port is unknown and is exposed to the entire Internet", [index]),
+		"searchLine": commonLib.build_search_line(["playbooks", t, modules[m], "rules"], []),
 	}
 }
 
-portIsKnown(port) {
-	knownPorts := [
-		0, 20, 21, 22, 23, 25, 53, 57, 80, 88, 110, 119, 123, 135, 143, 137, 138, 139,
-		161, 162, 163, 164, 194, 318, 443, 514, 563, 636, 989, 990, 1433, 1434,
-		2382, 2383, 2484, 3000, 3020, 3306, 3389, 4505, 4506, 5060, 5353, 5432,
-		5500, 5900, 7001, 8000, 8080, 8140, 9000, 9200, 9300, 11214, 11215, 27017,
-		27018, 61621,
-	]
 
-	commonLib.inArray(knownPorts, port)
+unknownPort(from_port,to_port) {
+	port := numbers.range(from_port, to_port)[i]
+	not commonLib.valid_key(commonLib.tcpPortsMap, port)
 }
 
 isEntireNetwork(rule) {
