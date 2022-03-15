@@ -3,7 +3,7 @@
   "queryName": "Kubelet Read Only Port Is Not Set To Zero",
   "severity": "MEDIUM",
   "category": "Networking and Firewall",
-  "descriptionText": "Disable the read-only port.",
+  "descriptionText": "When using the kubelet command, the read-only port should be set to zero (--read-only-port=0)",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/",
   "platform": "Kubernetes",
   "descriptionID": "8cedc17d"
