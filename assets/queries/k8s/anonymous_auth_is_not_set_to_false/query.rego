@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
 
 CxPolicy[result] {
@@ -40,6 +41,8 @@ CxPolicy[result] {
 	}
 }
 
-inArray(arr, value) {
-	arr[_] == value
+hasFlag(container, flag) {
+	common_lib.inArray(container.command, flag)
+} else {
+	common_lib.inArray(container.args, flag)
 }
