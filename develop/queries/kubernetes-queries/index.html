@@ -1277,7 +1277,7 @@
 <td>NET_RAW Capabilities Not Being Dropped<br/><sup><sub>dbbc6705-d541-43b0-b166-dd4be8208b54</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
-<td>Containers should drop 'NET_RAW' or 'ALL' capabilities</td>
+<td>Containers should drop 'ALL' or at least 'NET_RAW' capabilities</td>
 <td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -1319,7 +1319,7 @@
 <td>Cluster Allows Unsafe Sysctls<br/><sup><sub>9127f0d9-2310-42e7-866f-5fd9d20dcbad</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
-<td>A Kubernetes Cluster must not allow unsafe sysctls, to prevent a pod from having any influence on any other pod on the node, harming the node's health or gaining CPU or memory resources outside of the resource limits of a pod. This means the 'spec.securityContext.sysctls' must not have an unsafe sysctls and that the atrribute 'allowedUnsafeSysctls' must be undefined.</td>
+<td>A Kubernetes Cluster must not allow unsafe sysctls, to prevent a pod from having any influence on any other pod on the node, harming the node's health or gaining CPU or memory resources outside of the resource limits of a pod. This means 'spec.securityContext.sysctls' must not specify unsafe sysctls and the attribute 'allowedUnsafeSysctls' must be undefined.</td>
 <td><a href="https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -1358,11 +1358,25 @@
 <td><a href="https://kubernetes.io/docs/concepts/storage/volumes/">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Authorization Mode Set To Always Allow<br/><sup><sub>f1f4d8da-1ac4-47d0-b1aa-91e69d33f7d5</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>When using the kubelet command, the authorization-mode flag should not have 'AlwaysAllow' mode</td>
+<td><a href="https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>RBAC Roles with Read Secrets Permissions<br/><sup><sub>b7bca5c4-1dab-4c2c-8cbe-3050b9d59b14</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
 <td>Minimize access to secrets (RBAC)</td>
 <td><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Anonymous Auth Is Not Set To False<br/><sup><sub>1de5cc51-f376-4638-a940-20f2e85ae238</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>When using the kubelet or kube-apiserver command, the 'anonymous-auth' flag should be set to false (--anonymous-auth=false)</td>
+<td><a href="https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Readiness Probe Is Not Configured<br/><sup><sub>a659f3b5-9bf0-438a-bd9a-7d3a6427f1e3</sub></sup></td>
@@ -1540,6 +1554,13 @@
 <td><a href="https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Kubelet Read Only Port Is Not Set To Zero<br/><sup><sub>2940d48a-dc5e-4178-a3f8-bfbd80720b41</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>When using the kubelet command, the read-only port should be set to zero (--read-only-port=0)</td>
+<td><a href="https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Pod Misconfigured Network Policy<br/><sup><sub>0401f71b-9c1e-4821-ab15-a955caa621be</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
@@ -1564,7 +1585,7 @@
 <td>Memory Limits Not Defined<br/><sup><sub>b14d1bc4-a208-45db-92f0-e21f8e2588e9</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Resource Management</td>
-<td>Memory limits should be specified</td>
+<td>Memory limits should be defined for each container. This prevents potential resource exhaustion by ensuring that containers consume not more than the designated amount of memory</td>
 <td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -1578,7 +1599,7 @@
 <td>Memory Requests Not Defined<br/><sup><sub>229588ef-8fde-40c8-8756-f4f2b5825ded</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Resource Management</td>
-<td>Memory requests should be specified</td>
+<td>Memory requests should be defined for each container. This allows the kubelet to reserve the requested amount of system resources and prevents over-provisioning on individual nodes</td>
 <td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -1687,17 +1708,17 @@
 <td><a href="https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Root Container Not Mounted As Read-only<br/><sup><sub>a9c2f49d-0671-4fc9-9ece-f4e261e128d0</sub></sup></td>
+<td>Root Container Not Mounted Read-only<br/><sup><sub>a9c2f49d-0671-4fc9-9ece-f4e261e128d0</sub></sup></td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Build Process</td>
-<td>Check if the root container filesystem is not being mounted as read-only.</td>
+<td>Check if the root container filesystem is not being mounted read-only.</td>
 <td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Image Without Digest<br/><sup><sub>7c81d34c-8e5a-402b-9798-9f442630e678</sub></sup></td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Insecure Configurations</td>
-<td>Sees if Kubernetes image has digest on</td>
+<td>Images should be specified together with their digests to ensure integrity</td>
 <td><a href="https://kubernetes.io/docs/concepts/containers/images/#updating-images">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -1781,7 +1802,7 @@
 <td>Container Requests Not Equal To It's Limits<br/><sup><sub>aee3c7d2-a811-4201-90c7-11c028be9a46</sub></sup></td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Resource Management</td>
-<td>A Pod's Containers must have the same requests as limits set, which is recommended to avoid resource DDOS of the node during spikes. This means the 'requests.memory' and 'requests.cpu' must equal 'limits.memory' and 'limits.cpu', respectively, and all four must be defined.</td>
+<td>Containers must have the same resource requests set as limits. This is recommended to avoid resource DDoS of the node during spikes and means that 'requests.memory' and 'requests.cpu' must equal 'limits.memory' and 'limits.cpu', respectively</td>
 <td><a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/">Documentation</a><br/></td>
 </tr>
 <tr>
