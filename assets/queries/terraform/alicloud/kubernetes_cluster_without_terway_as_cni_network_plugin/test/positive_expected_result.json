@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Kubernetes Cluster Without Terway as CNI Network Plugin",
+    "severity": "MEDIUM",
+    "line": 15,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Kubernetes Cluster Without Terway as CNI Network Plugin",
+    "severity": "MEDIUM",
+    "line": 15,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Kubernetes Cluster Without Terway as CNI Network Plugin",
+    "severity": "MEDIUM",
+    "line": 15,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Kubernetes Cluster Without Terway as CNI Network Plugin",
+    "severity": "MEDIUM",
+    "line": 15,
+    "fileName": "positive3.tf"
+  }
+]

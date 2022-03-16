@@ -1,6 +1,6 @@
 {
     "id": "1b4565c0-4877-49ac-ab03-adebbccd42ae",
-    "queryName": "RDS Instance Publicly Acessible",
+    "queryName": "RDS Instance Publicly Accessible",
     "severity": "HIGH",
     "category": "Insecure Configurations",
     "descriptionText": "'0.0.0.0' or '0.0.0.0/0' should not be in 'security_ips' list",
