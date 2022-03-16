@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("alicloud_cs_kubernetes[%s].pod_vswitch_ids is defined and not null",[name]),
 		"keyActualValue": sprintf("alicloud_cs_kubernetes[%s].pod_vswitch_ids is undefined or  null",[name]),
-        "searchline": common_lib.build_search_line(["resource", "alicloud_cs_kubernetes", name], []),
+        "searchLine": common_lib.build_search_line(["resource", "alicloud_cs_kubernetes", name], []),
 	}
 }
 
@@ -28,7 +28,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("alicloud_cs_kubernetes[%s].addons specifies the terway-eniip",[name]),
 		"keyActualValue": sprintf("alicloud_cs_kubernetes[%s].addons does not specify the terway-eniip",[name]),
-        "searchline": common_lib.build_search_line(["resource", "alicloud_cs_kubernetes", name], []),
+        "searchLine": common_lib.build_search_line(["resource", "alicloud_cs_kubernetes", name], []),
 	}
 }
 
