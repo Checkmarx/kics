@@ -1,0 +1,1492 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Open source solution for static code analysis of Infrastructure as Code. Finding security vulnerabilities, compliance issues, and infrastructure misconfigurations during project development cycle.">
+      
+      
+      
+        <link rel="canonical" href="http://docs.kics.io/latest/docker/digests/">
+      
+      <link rel="icon" href="../../img/logo/kics-hat.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.5">
+    
+    
+      
+        <title>Digests - KICS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2d9f7617.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="kics" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-component="outdated" hidden>
+        <aside class="md-banner md-banner--warning">
+          
+        </aside>
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="KICS" class="md-header__button md-logo" aria-label="KICS" data-md-component="logo">
+      
+  <img src="../../img/logo/kics_hat_color_new.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KICS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Digests
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="kics" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Checkmarx/kics/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../getting-started/" class="md-tabs__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../queries/" class="md-tabs__link">
+        Queries
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../integrations/" class="md-tabs__link">
+        Integrations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../certifications/" class="md-tabs__link">
+      Certifications
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../roadmap/" class="md-tabs__link">
+        Project
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../CONTRIBUTING/" class="md-tabs__link">
+      Contribution
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../about/" class="md-tabs__link">
+      About
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="KICS" class="md-nav__button md-logo" aria-label="KICS" data-md-component="logo">
+      
+  <img src="../../img/logo/kics_hat_color_new.png" alt="logo">
+
+    </a>
+    KICS
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Checkmarx/kics/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration-file/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../commands/" class="md-nav__link">
+        Command Line Interface
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-kics/" class="md-nav__link">
+        Running KICS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../results/" class="md-nav__link">
+        Results
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        Architecture
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../platforms/" class="md-nav__link">
+        Platforms
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changes/" class="md-nav__link">
+        Changes in v1.3.0
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Queries
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Queries" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Queries
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../queries/" class="md-nav__link">
+        General Info
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../creating-queries/" class="md-nav__link">
+        Creating Queries
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../secrets/" class="md-nav__link">
+        Passwords And Secrets
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bom/" class="md-nav__link">
+        Bill of Materials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5" type="checkbox" id="__nav_2_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5">
+          Queries List
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Queries List" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Queries List
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../queries/all-queries/" class="md-nav__link">
+        All
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../queries/ansible-queries/" class="md-nav__link">
+        Ansible
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../queries/azureresourcemanager-queries/" class="md-nav__link">
+        Azure Resource Manager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../queries/cloudformation-queries/" class="md-nav__link">
+        CloudFormation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../queries/dockerfile-queries/" class="md-nav__link">
+        Dockerfile
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../queries/kubernetes-queries/" class="md-nav__link">
+        Kubernetes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../queries/terraform-queries/" class="md-nav__link">
+        Terraform
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../queries/openapi-queries/" class="md-nav__link">
+        OpenAPI
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Integrations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Integrations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Integrations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_azurepipelines/" class="md-nav__link">
+        Azure DevOps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_bamboo/" class="md-nav__link">
+        Bamboo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_bitbucketpipelines/" class="md-nav__link">
+        Bitbucket Pipelines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_circleci/" class="md-nav__link">
+        CircleCI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_ghactions/" class="md-nav__link">
+        Github Actions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_gitlabci/" class="md-nav__link">
+        Gitlab CI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_jenkins/" class="md-nav__link">
+        Jenkins
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_teamcity/" class="md-nav__link">
+        TeamCity
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_travisci/" class="md-nav__link">
+        Travis CI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integration_tfcloud/" class="md-nav__link">
+        Terraform Cloud
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cdk/" class="md-nav__link">
+        AWS CDK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_aws_codebuild/" class="md-nav__link">
+        AWS CodeBuild
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BADGE/" class="md-nav__link">
+        Badge
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_pre_commit/" class="md-nav__link">
+        Using pre-commit hooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_terraformer/" class="md-nav__link">
+        Terraformer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../certifications/" class="md-nav__link">
+        Certifications
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Project
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Project" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Project
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/" class="md-nav__link">
+        Roadmap
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Checkmarx/kics/projects" class="md-nav__link">
+        Plans
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Checkmarx/kics/issues" class="md-nav__link">
+        Issues
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/" class="md-nav__link">
+        Releases
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../performance/" class="md-nav__link">
+        Performance
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONTRIBUTING/" class="md-nav__link">
+        Contribution
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/Checkmarx/kics/edit/master/docs/docker/digests.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+
+  <h1>Digests</h1>
+
+<table>
+<thead>
+<tr>
+<th>TAG</th>
+<th>DIGEST</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1.0.0</td>
+<td>sha256:19dcbba1cfdf3c694655bd220388ec0259b917b1d8e2cfe5c9c2bcd2e622fac6</td>
+</tr>
+<tr>
+<td>v1.1.0</td>
+<td>sha256:c462502877759ad672a7ce23a8bb7a7919785ffc9c3c3e8080bd63527d3a1ffb</td>
+</tr>
+<tr>
+<td>v1.1.1</td>
+<td>sha256:c5bf326a66663c2e60de3e34281fb4b261f96f9eedc44ebeedc0cf5429c620ce</td>
+</tr>
+<tr>
+<td>v1.1.2</td>
+<td>sha256:0cd5432f46f03dd98152fd2fea2fee5217b9073962ff05e60271dfa2ad56e600</td>
+</tr>
+<tr>
+<td>v1.1.3</td>
+<td>sha256:f1ae5fd7b2aacb2e25197c730395fb856a06453e99c2a2975c21dad2cdcfbe4d</td>
+</tr>
+<tr>
+<td>v1.2.0</td>
+<td>sha256:ea69752d9933f828db1c6dee1fc77f351254019e6f5854cb7c881ec462a81cec</td>
+</tr>
+<tr>
+<td>v1.2.1</td>
+<td>sha256:4664defe259e6b5932f3588100c5eb579e9223ec4bb23ba210c2883798a8a907</td>
+</tr>
+<tr>
+<td>v1.2.1-alpine</td>
+<td>sha256:6a101e54da3c0fcd44880c661a20c8ee3aa184294ade64b1f50cb0a368006869</td>
+</tr>
+<tr>
+<td>v1.2.2</td>
+<td>sha256:5f4c4848bb97afa741beb66925657a2b0c76bdd854e6ad563fe5042d8cc94abb</td>
+</tr>
+<tr>
+<td>v1.2.2-alpine</td>
+<td>sha256:ba8190c91c29f9ec1b7076e380c8e95000eae9f62633eeb2a92babc89c40dd3b</td>
+</tr>
+<tr>
+<td>v1.2.3</td>
+<td>sha256:86da11359193a1917142d8cd0fd0f3145f8ee5c3626bff58a8693b74511a529a</td>
+</tr>
+<tr>
+<td>v1.2.3-alpine</td>
+<td>sha256:cdd53847672220aaf9eaf27164553cc5acf8057761f204a6a1d675aab2160adf</td>
+</tr>
+<tr>
+<td>v1.2.4</td>
+<td>sha256:8c27f27c944e252854e2fb69fe7d3ced4534b9813fe0be3e23044f93acda64c0</td>
+</tr>
+<tr>
+<td>v1.2.4-alpine</td>
+<td>sha256:ca544c0a5083457a5cb8c03a0c4fcc10d366c90bef92784d1fcd77dabced123d</td>
+</tr>
+<tr>
+<td>v1.3.0</td>
+<td>sha256:86be8c6531e864af672585b13fffb26d9f9836e2f995a231443dbd196374e220</td>
+</tr>
+<tr>
+<td>v1.3.0-alpine</td>
+<td>sha256:0e6f817b86ddf771c5dc4379bdcdd634a0491059692292bbbc3887903f1e4a7b</td>
+</tr>
+<tr>
+<td>v1.3.1</td>
+<td>sha256:4b5827fa71e78155f2080f4c4d23808c96a3497a96106dc58fc44291ed6e8e92</td>
+</tr>
+<tr>
+<td>v1.3.1-alpine</td>
+<td>sha256:0851c06f0a84a1a8e364c95f24f84371e94bef20738eb790341f27e79a6927af</td>
+</tr>
+<tr>
+<td>v1.3.2</td>
+<td>sha256:71015611084453102bf6f28594a55b24226ca09dbfc0f7dae802b72286f89ff6</td>
+</tr>
+<tr>
+<td>v1.3.2-alpine</td>
+<td>sha256:7d22988f6f7c4722248a491c9feb0a015683d0289eaab49ce473fc63e726f25e</td>
+</tr>
+<tr>
+<td>v1.3.2-debian</td>
+<td>sha256:aec9c374aaf03700439ffe2d65d08844c2ec3d9ca3e7a92e3a3337bec8e18736</td>
+</tr>
+<tr>
+<td>v1.3.3</td>
+<td>sha256:03f6698ac700ffcea28b2e59272f5eb9d8b3f71d74fbd028bef2e2eaf3fad950</td>
+</tr>
+<tr>
+<td>v1.3.3-alpine</td>
+<td>sha256:8abdfee866ea0b20811400964dbe75f78d29e4a613e0267306661d496c72b89e</td>
+</tr>
+<tr>
+<td>v1.3.3-debian</td>
+<td>sha256:f838d7d9037c915b2912dd91dada8f47e5a96548a27e7bd2341f1dbf71404616</td>
+</tr>
+<tr>
+<td>v1.3.4</td>
+<td>sha256:a35ecf5328ad9f0b02e2f656a2359ae4d04764023b3d2a202bcdf19f0947534d</td>
+</tr>
+<tr>
+<td>v1.3.4-alpine</td>
+<td>sha256:88497c60aa901d0037965882467e2305a65351bd5f97e8cdea5b9b95565a1106</td>
+</tr>
+<tr>
+<td>v1.3.4-debian</td>
+<td>sha256:2f9338d6101fdfc5deb31059faf4d06ac24c4be93cc0f904db90230a4266f57b</td>
+</tr>
+<tr>
+<td>v1.3.5</td>
+<td>sha256:a02efc07bfd0194b56f8ae7f25bdfec3c87e4715601d6e15f6a4c287578853a0</td>
+</tr>
+<tr>
+<td>v1.3.5-alpine</td>
+<td>sha256:10cecfec0fa5f75bdd78c55a70e9f355d5f5068e4dab59ee820aa09530790549</td>
+</tr>
+<tr>
+<td>v1.3.5-debian</td>
+<td>sha256:c4d1efb2adbca74213c378653f3704277e92ec14b732f793540e9812bd65f5cb</td>
+</tr>
+<tr>
+<td>v1.4.0</td>
+<td>sha256:69e022991c2c929549862e4a81702723f2fd008230bb4f0180345d9753fbd836</td>
+</tr>
+<tr>
+<td>v1.4.0-alpine</td>
+<td>sha256:69e022991c2c929549862e4a81702723f2fd008230bb4f0180345d9753fbd836</td>
+</tr>
+<tr>
+<td>v1.4.0-debian</td>
+<td>sha256:f70fb499cd30c0288f0c03e1eceb29ccbc391e42334e5ea563e8c0b93d48d8f3</td>
+</tr>
+<tr>
+<td>v1.4.1</td>
+<td>sha256:58d7f7077e1c5d5d322c9e7e8c9a6d67baa1e8bc04677eff2efc9a9b8e23e2af</td>
+</tr>
+<tr>
+<td>v1.4.1-alpine</td>
+<td>sha256:58d7f7077e1c5d5d322c9e7e8c9a6d67baa1e8bc04677eff2efc9a9b8e23e2af</td>
+</tr>
+<tr>
+<td>v1.4.1-debian</td>
+<td>sha256:7fc965cdd8ed288e2b284154744e6bea1fdb3fec53583db4b0e6cfa0a13045f0</td>
+</tr>
+<tr>
+<td>v1.4.2</td>
+<td>sha256:0e42b974003f780dffcaee4dfa7fdebcdebac3d7ecde4f453720c4f5571d4acc</td>
+</tr>
+<tr>
+<td>v1.4.2-alpine</td>
+<td>sha256:0e42b974003f780dffcaee4dfa7fdebcdebac3d7ecde4f453720c4f5571d4acc</td>
+</tr>
+<tr>
+<td>v1.4.2-debian</td>
+<td>sha256:50dd1df29a713cbb71760a9f749264f6f366fa7151722f0f5032df72ecc0a250</td>
+</tr>
+<tr>
+<td>v1.4.3</td>
+<td>sha256:b471d768cbd40385c77f52fbf3b00a0b1d73b71ea395482988ddf8029301c903</td>
+</tr>
+<tr>
+<td>v1.4.3-alpine</td>
+<td>sha256:b471d768cbd40385c77f52fbf3b00a0b1d73b71ea395482988ddf8029301c903</td>
+</tr>
+<tr>
+<td>v1.4.3-debian</td>
+<td>sha256:00dcc0bee775cfdeb8cd0c29cdc6c33595370cf876f2f4415e39a949b4909ca9</td>
+</tr>
+<tr>
+<td>v1.4.4</td>
+<td>sha256:758be1987c6bb99f49c4fcefe90f0568490e4d9e3d78baf36d4b47f4f05cf4d1</td>
+</tr>
+<tr>
+<td>v1.4.4-alpine</td>
+<td>sha256:758be1987c6bb99f49c4fcefe90f0568490e4d9e3d78baf36d4b47f4f05cf4d1</td>
+</tr>
+<tr>
+<td>v1.4.4-debian</td>
+<td>sha256:d802d4987c62abcfc04f2a3a30c5f1eb96aaef22fae94cb7904eed0685b00c49</td>
+</tr>
+<tr>
+<td>v1.4.5</td>
+<td>sha256:d0aa27f21d0a9f42c4a8991db1da34660e25ae87e1f113c757d3b67c8f4822de</td>
+</tr>
+<tr>
+<td>v1.4.5-alpine</td>
+<td>sha256:d0aa27f21d0a9f42c4a8991db1da34660e25ae87e1f113c757d3b67c8f4822de</td>
+</tr>
+<tr>
+<td>v1.4.5-debian</td>
+<td>sha256:a5ad43cb1e1a455109d4b9963f33ca38f0cf8dfb674fc6a6473aa585917c9928</td>
+</tr>
+<tr>
+<td>v1.4.5-ubi7</td>
+<td>sha256:29f7473ab2aa395fa4b84ed65c9c2ad24ca308d377992a8944291242d67ae4d8</td>
+</tr>
+<tr>
+<td>v1.4.6</td>
+<td>sha256:4ff21f073fa426e36031adc6a6753498ea95c7a5b9b0f72c4d134639e8363ce2</td>
+</tr>
+<tr>
+<td>v1.4.6-alpine</td>
+<td>sha256:4ff21f073fa426e36031adc6a6753498ea95c7a5b9b0f72c4d134639e8363ce2</td>
+</tr>
+<tr>
+<td>v1.4.6-debian</td>
+<td>sha256:05f3327ef3c009e1cc8ed09a8834143e52c2ac50ad9223e577db88fae3f8b953</td>
+</tr>
+<tr>
+<td>v1.4.6-ubi7</td>
+<td>sha256:bb78172235e1a22e320503fe3212cc442e87fd9d4fc6942cf2ece5f7728ea3d4</td>
+</tr>
+<tr>
+<td>v1.4.6-1</td>
+<td>sha256:6b94e3d980c098d35fed9fdcc4b6e9eec119713102faac5b2781615d8cc0ea3c</td>
+</tr>
+<tr>
+<td>v1.4.6-1-alpine</td>
+<td>sha256:6b94e3d980c098d35fed9fdcc4b6e9eec119713102faac5b2781615d8cc0ea3c</td>
+</tr>
+<tr>
+<td>v1.4.6-1-debian</td>
+<td>sha256:8bfbf74a249a7e4e92941e3c2f0972578a60a1bb331af507b112df0c5f7171b9</td>
+</tr>
+<tr>
+<td>v1.4.6-1-ubi7</td>
+<td>sha256:927a5531ad49b99d1452e1c39b1f6df1dcea9703a7a7677b80bfb6d3ab0a8e6c</td>
+</tr>
+<tr>
+<td>v1.4.7</td>
+<td>sha256:7fda9ab5f0fcd543111c434d874e38a650176866033ecd050cd2192924c06fbf</td>
+</tr>
+<tr>
+<td>v1.4.7-alpine</td>
+<td>sha256:7fda9ab5f0fcd543111c434d874e38a650176866033ecd050cd2192924c06fbf</td>
+</tr>
+<tr>
+<td>v1.4.7-debian</td>
+<td>sha256:5fc5b75c2baa0bdc9fc26f57c4eee36510f0fef3dacb5c4b64bfad71351af423</td>
+</tr>
+<tr>
+<td>v1.4.7-ubi7</td>
+<td>sha256:a3ecd0a980948b4aa16cda5fac2e68e37326a4d7cf38965716480d82fb6b4a9d</td>
+</tr>
+<tr>
+<td>v1.4.8</td>
+<td>sha256:d0d9d8c69e465fc28e19eb3db0c5018d5382a82ac3fc8c7a5129463faa68c2ca</td>
+</tr>
+<tr>
+<td>v1.4.8-alpine</td>
+<td>sha256:d0d9d8c69e465fc28e19eb3db0c5018d5382a82ac3fc8c7a5129463faa68c2ca</td>
+</tr>
+<tr>
+<td>v1.4.8-debian</td>
+<td>sha256:d6ef22c3847e0364afbc4347a99ffccb519677cd3ca652bad26c4dacf96b90fb</td>
+</tr>
+<tr>
+<td>v1.4.8-ubi7</td>
+<td>sha256:586d52b8ccb190e2a9823155d64c253094c5eadb18675b4d273187fc225cde8e</td>
+</tr>
+<tr>
+<td>v1.4.8-gh-actions</td>
+<td>sha256:94f02e50fa6841dc7fece3e69bb1482788e937c3c57b3daaa0731302aaa6e344</td>
+</tr>
+<tr>
+<td>v1.4.9</td>
+<td>sha256:2a02e0f5f94e7f7efc9ded83a3eec353b3876c9208275fb13e318fac2e2117dd</td>
+</tr>
+<tr>
+<td>v1.4.9-alpine</td>
+<td>sha256:2a02e0f5f94e7f7efc9ded83a3eec353b3876c9208275fb13e318fac2e2117dd</td>
+</tr>
+<tr>
+<td>v1.4.9-debian</td>
+<td>sha256:284d7f4e3f5a8923d4d9f6e054408b52b1d823e31ce291ed1ed16c6170b6b00e</td>
+</tr>
+<tr>
+<td>v1.4.9-ubi7</td>
+<td>sha256:837a2293c950483d6aad6562203214c297389f87bf2364ec57f79fd831eab6b4</td>
+</tr>
+<tr>
+<td>v1.5.1-gh-actions</td>
+<td>sha256:e3fe50f550df1330a5000d0dca1ef5ed84b510d1ec78ef1a94ddf0c03decf05e</td>
+</tr>
+<tr>
+<td>v1.5.2-gh-actions</td>
+<td>sha256:afc52ed100a3443e11372a08744d478c5d371bfe65512995f12c36c34f22b459</td>
+</tr>
+</tbody>
+</table>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2021 Checkmarx Ltd. All Rights Reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.bd0b6b67.min.js", "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.467223ff.min.js"></script>
+      
+        <script src="../../js/version-mike.js"></script>
+      
+        <script src="../../js/custom.js"></script>
+      
+    
+  </body>
+</html>
