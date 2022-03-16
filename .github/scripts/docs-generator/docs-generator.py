@@ -6,8 +6,8 @@ import argparse
 import json
 import copy
 
-severities = {'High': 'HIGH', 'Medium': 'MEDIUM', 'Low': 'LOW', 'Info': 'INFO'}
-colors = {'High': '#C00', 'Medium': '#C60', 'Low': '#CC0', 'Info': '#00C'}
+severities = {'High': 'HIGH', 'Medium': 'MEDIUM', 'Low': 'LOW', 'Info': 'INFO', 'Trace': 'TRACE'}
+colors = {'High': '#C00', 'Medium': '#C60', 'Low': '#CC0', 'Info': '#00C', 'Trace' : '#CCC'}
 template_dict = {}
 platforms = []
 
