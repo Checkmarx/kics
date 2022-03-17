@@ -21,3 +21,33 @@ CxPolicy[result] {
 		"keyActualValue": "--read-only-port flag does not exists or is not set to '0' in container",
 	}
 }
+
+CxPolicy[result] {
+	resource := input.document[i]
+	resource.kind == "KubeletConfiguration"
+
+	not common_lib.valid_key(resource, "readOnlyPort")
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": "kind",
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "readOnlyPort attribute to exists and have value of 0",
+		"keyActualValue": "readOnlyPort attribute does not exist",
+	}
+}
+
+CxPolicy[result] {
+	resource := input.document[i]
+	resource.kind == "KubeletConfiguration"
+
+	resource.readOnlyPort != 0
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": "readOnlyPort",
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "readOnlyPort attribute to have value of 0",
+		"keyActualValue": sprintf("readOnlyPort attribute has value of %d", [resource.readOnlyPort]),
+	}
+}

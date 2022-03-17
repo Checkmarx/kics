@@ -16,5 +16,17 @@
     "severity": "MEDIUM",
     "line": 11,
     "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Kubelet Read Only Port Is Not Set To Zero",
+    "severity": "MEDIUM",
+    "line": 2,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Kubelet Read Only Port Is Not Set To Zero",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive5.yaml"
   }
 ]
