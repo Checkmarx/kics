@@ -19,8 +19,9 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
-				"keyExpectedValue": sprintf( "TLS %s conenction setting should be set", [tls]),
+		"keyExpectedValue": sprintf( "TLS %s conenction setting should be set", [tls]),
 		"keyActualValue": sprintf("TLS %s connection not set", [tls]),
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
 	}
 }
 
