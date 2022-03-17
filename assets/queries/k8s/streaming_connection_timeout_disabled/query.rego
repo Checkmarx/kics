@@ -20,22 +20,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--streaming-connection-idle-timeout flag is not 0 or not set",
 		"keyActualValue": "--streaming-connection-idle-timeout flag is 0",
+		"searchLine": common_lib.build_search_line(["metadata", "name"], []),
 	}
-}
-
-hasFlagWithValue(container, flag, value) {
-	command := container.command
-	startswith(command[a], flag)
-	values := split(command[a], "=")[1]
-	hasValue(values, value)
-} else {
-	args := container.args
-	startswith(args[a], flag)
-	values := split(args[a], "=")[1]
-	hasValue(values, value)
-}
-
-hasValue(values, value) {
-	splittedValues := split(values, ",")
-	splittedValues[_] == value
 }
