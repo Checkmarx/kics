@@ -33,7 +33,6 @@ var (
 	cloudRegex                                      = regexp.MustCompile("\\s*\"?Resources\"?\\s*:")
 	k8sRegex                                        = regexp.MustCompile("\\s*\"?apiVersion\"?\\s*:")
 	k8sRegexKind                                    = regexp.MustCompile("\\s*\"?kind\"?\\s*:")
-	k8sRegexMetadata                                = regexp.MustCompile("\\s*\"?metadata\"?\\s*:")
 	ansibleVaultRegex                               = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
 	tfPlanRegexPV                                   = regexp.MustCompile("\\s*\"planned_values\"\\s*:")
 	tfPlanRegexRC                                   = regexp.MustCompile("\\s*\"resource_changes\"\\s*:")
@@ -101,7 +100,6 @@ var types = map[string]regexSlice{
 		regex: []*regexp.Regexp{
 			k8sRegex,
 			k8sRegexKind,
-			k8sRegexMetadata,
 		},
 	},
 	"cloudformation": {
