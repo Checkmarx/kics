@@ -12,7 +12,7 @@ CxPolicy[result] {
 	command := "kubelet"
 
 	common_lib.inArray(container.command, command)
-	k8sLib.hasFlag(container, "--make-iptables-util-chains=false")
+	not k8sLib.hasFlag(container, "--make-iptables-util-chains=true")
 
 	result := {
 		"documentId": input.document[i].id,
