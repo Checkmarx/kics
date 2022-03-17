@@ -19,7 +19,35 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--protect-kernel-defaults flag should not be set to false",
 		"keyActualValue": "--protect-kernel-defaults flag is set to false",
-		"searchLine":common_lib.build_search_line(split(specInfo.path, "."), ["command"] ),
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
+	}
+}
+
+CxPolicy[result] {
+	doc :=input.document[i]
+    doc.kind == "KubeletConfiguration"
+    not common_lib.valid_key(doc, "protectKernelDefaults")
+
+	result := {
+		"documentId": doc.id,
+		"searchKey": sprintf("kind={{%s}}", ["KubeletConfiguration"]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "protectKernelDefaults flag should defined to true",
+		"keyActualValue": "protectKernelDefaults flag is not defined",
+	}
+}
+
+CxPolicy[result] {
+	doc :=input.document[i]
+    doc.kind == "KubeletConfiguration"
+    doc.protectKernelDefaults == false
+
+	result := {
+		"documentId": doc.id,
+		"searchKey": sprintf("kind={{%s}}", ["KubeletConfiguration"]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "protectKernelDefaults flag should defined to true",
+		"keyActualValue": "protectKernelDefaults flag is set to false",
 	}
 }
 
