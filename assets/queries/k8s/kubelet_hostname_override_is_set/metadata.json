@@ -1,6 +1,6 @@
 {
     "id": "bf36b900-b5ef-4828-adb7-70eb543b7cfb",
-    "queryName": "Hostname Override Is Set",
+    "queryName": "Kubelet Hostname Override Is Set",
     "severity": "LOW",
     "category": "Insecure Configurations",
     "descriptionText": "Hostnames should not be overrided",
