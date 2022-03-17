@@ -1,0 +1,8 @@
+[
+    {
+      "queryName": "Kubelet Not Managing Ip Tables",
+      "severity": "MEDIUM",
+      "line": 11,
+      "filename": "positive1.yaml"
+    }
+  ]
