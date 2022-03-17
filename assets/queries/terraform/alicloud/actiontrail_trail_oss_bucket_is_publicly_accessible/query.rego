@@ -1,5 +1,7 @@
 package Cx
+
 import data.generic.common as common_lib
+
 CxPolicy[result] {
     some i
     actiontrail := input.document[i].resource.alicloud_actiontrail_trail[name]

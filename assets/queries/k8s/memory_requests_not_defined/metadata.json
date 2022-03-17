@@ -3,7 +3,7 @@
   "queryName": "Memory Requests Not Defined",
   "severity": "MEDIUM",
   "category": "Resource Management",
-  "descriptionText": "Memory requests should be specified",
+  "descriptionText": "Memory requests should be defined for each container. This allows the kubelet to reserve the requested amount of system resources and prevents over-provisioning on individual nodes",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/",
   "platform": "Kubernetes",
   "descriptionID": "3dcbd683"

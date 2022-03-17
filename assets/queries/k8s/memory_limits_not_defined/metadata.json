@@ -3,7 +3,7 @@
   "queryName": "Memory Limits Not Defined",
   "severity": "MEDIUM",
   "category": "Resource Management",
-  "descriptionText": "Memory limits should be specified",
+  "descriptionText": "Memory limits should be defined for each container. This prevents potential resource exhaustion by ensuring that containers consume not more than the designated amount of memory",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/",
   "platform": "Kubernetes",
   "descriptionID": "e0ba95cc"
