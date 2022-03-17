@@ -22,5 +22,17 @@
     "severity": "MEDIUM",
     "line": 11,
     "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Anonymous Auth Is Not Set To False",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive5.yaml"
+  },
+  {
+    "queryName": "Anonymous Auth Is Not Set To False",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive6.yaml"
   }
 ]
