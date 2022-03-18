@@ -33,6 +33,6 @@
     "queryName": "Authorization Mode Set To Always Allow",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive6.yaml"
+    "filename": "positive6.json"
   }
 ]
