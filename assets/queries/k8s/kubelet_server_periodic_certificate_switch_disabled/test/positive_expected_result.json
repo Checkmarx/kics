@@ -1,0 +1,20 @@
+[
+	{
+		"queryName": "Kubelet Server Periodic Certificate Switch Disabled",
+		"severity": "MEDIUM",
+		"line": 8,
+        "filename": "positive1.yaml"
+	},
+    {
+		"queryName": "Kubelet Server Periodic Certificate Switch Disabled",
+		"severity": "MEDIUM",
+		"line": 11,
+        "filename": "positive2.yaml"
+	},
+    {
+		"queryName": "Kubelet Server Periodic Certificate Switch Disabled",
+		"severity": "MEDIUM",
+		"line": 8,
+        "filename": "positive3.json"
+	}
+]
