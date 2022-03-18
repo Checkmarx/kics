@@ -27,41 +27,11 @@ CxPolicy[result] {
 	resource := input.document[i]
 	resource.kind == "KubeletConfiguration"
 
-	not common_lib.valid_key(resource, "authentication")
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": "kind",
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "authentication attribute to be different from null",
-		"keyActualValue": "authentication attribute does not exist",
-	}
-}
-
-CxPolicy[result] {
-	resource := input.document[i]
-	resource.kind == "KubeletConfiguration"
-
-	not common_lib.valid_key(resource.authentication, "anonymous")
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": "authentication",
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "authentication.anonymous attribute to be different from null",
-		"keyActualValue": "authentication.anonymous attribute does not exist",
-	}
-}
-
-CxPolicy[result] {
-	resource := input.document[i]
-	resource.kind == "KubeletConfiguration"
-
 	resource.authentication.anonymous.enabled != false
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": "authentication.anonymous.enabled",
+		"searchKey": "kind={{KubeletConfiguration}}.authentication.enabled",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "authentication.anonymous.enabled attribute should be false",
 		"keyActualValue": "authentication.anonymous.enabled attribute is true",

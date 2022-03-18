@@ -4,6 +4,3 @@ address: "192.168.0.8"
 port: 20250
 serializeImagePulls: false
 readOnlyPort: 0
-authentication:
-  anonymous:
-    enabled: false

@@ -26,13 +26,13 @@
   {
     "queryName": "Anonymous Auth Is Not Set To False",
     "severity": "MEDIUM",
-    "line": 5,
+    "line": 9,
     "filename": "positive5.yaml"
   },
   {
     "queryName": "Anonymous Auth Is Not Set To False",
     "severity": "MEDIUM",
-    "line": 9,
-    "filename": "positive6.yaml"
+    "line": 7,
+    "filename": "positive6.json"
   }
 ]
