@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("spec.command", []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "--rotate-certificates flag is true",
+		"keyExpectedValue": "--rotate-certificates flag to be true",
 		"keyActualValue": "--rotate-certificates flag is false",
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
 	}
@@ -32,7 +32,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": "kind={{KubeletConfiguration}}.rotateCertificates",
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "rotateCertificates is true",
+		"keyExpectedValue": "rotateCertificates to be true",
 		"keyActualValue": "rotateCertificates is false",
 	}
 }
@@ -46,7 +46,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": "kind={{KubeletConfiguration}}.rotateCertificates",
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "rotateCertificates is true",
+		"keyExpectedValue": "rotateCertificates to be true",
 		"keyActualValue": "rotateCertificates is not set (default is false)",
 	}
 }
