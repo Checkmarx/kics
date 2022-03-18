@@ -27,26 +27,11 @@ CxPolicy[result] {
 	resource := input.document[i]
 	resource.kind == "KubeletConfiguration"
 
-	not common_lib.valid_key(resource, "authorization")
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": "kind",
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "authorization attribute to be different from null",
-		"keyActualValue": "authorization attribute does not exist",
-	}
-}
-
-CxPolicy[result] {
-	resource := input.document[i]
-	resource.kind == "KubeletConfiguration"
-
 	resource.authorization.mode == "AlwaysAllow"
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": "authentication.mode",
+		"searchKey": "kind={{KubeletConfiguration}}.authorization.mode",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "authorization.mode attribute should not be 'AlwaysAllow'",
 		"keyActualValue": "authorization.mode attribute is equal to 'AlwaysAllow'",

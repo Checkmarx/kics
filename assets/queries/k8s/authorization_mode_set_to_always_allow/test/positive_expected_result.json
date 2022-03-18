@@ -26,13 +26,13 @@
   {
     "queryName": "Authorization Mode Set To Always Allow",
     "severity": "MEDIUM",
-    "line": 2,
+    "line": 11,
     "filename": "positive5.yaml"
   },
   {
     "queryName": "Authorization Mode Set To Always Allow",
     "severity": "MEDIUM",
-    "line": 11,
+    "line": 6,
     "filename": "positive6.yaml"
   }
 ]

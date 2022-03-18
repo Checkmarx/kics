@@ -7,3 +7,5 @@ readOnlyPort: 0
 authentication:
   anonymous:
     enabled: false
+authorization:
+  mode: AlwaysAllow
