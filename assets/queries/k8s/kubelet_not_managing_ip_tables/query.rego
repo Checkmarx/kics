@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--make-iptables-util-chains flag is true or not set",
 		"keyActualValue": "--make-iptables-util-chains= flag is false",
-		"searchLine": common_lib.build_search_line(["spec", "command"], []),
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
 	}
 }
 
@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("kind={{%s}}.makeIPTablesUtilChains", [resource.kind]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "makeIPTablesUtilChains is true or not set",
+		"keyExpectedValue": "makeIPTablesUtilChains is true",
 		"keyActualValue": "makeIPTablesUtilChains is false",
 	}
 }
