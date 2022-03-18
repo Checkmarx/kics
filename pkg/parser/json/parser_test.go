@@ -30,7 +30,7 @@ func TestParser_SupportedExtensions(t *testing.T) {
 // TestParser_SupportedExtensions tests the functions [SupportedTypes()] and all the methods called by them
 func TestParser_SupportedTypes(t *testing.T) {
 	p := &Parser{}
-	require.Equal(t, []string{"CloudFormation", "OpenAPI", "AzureResourceManager", "Terraform"}, p.SupportedTypes())
+	require.Equal(t, []string{"CloudFormation", "OpenAPI", "AzureResourceManager", "Terraform", "Kubernetes"}, p.SupportedTypes())
 }
 
 // TestParser_Parse tests the functions [Parse()] and all the methods called by them
