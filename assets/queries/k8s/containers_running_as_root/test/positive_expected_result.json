@@ -34,5 +34,17 @@
 		"severity": "MEDIUM",
 		"line": 13,
 		"fileName": "positive3.yaml"
+	},
+	{
+		"queryName": "Container Running As Root",
+		"severity": "MEDIUM",
+		"line": 7,
+		"fileName": "positive4.yaml"
+	},
+	{
+		"queryName": "Container Running As Root",
+		"severity": "MEDIUM",
+		"line": 12,
+		"fileName": "positive4.yaml"
 	}
 ]

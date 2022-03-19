@@ -15,7 +15,7 @@ runsAsRoot(ctx) {
 }
 
 # container defines runAsNonRoot or runAsUser
-checkRoot(specInfo, container, containerType, document, metadata) = result {
+checkRoot(specInfo, container, containerType, containerId, document, metadata) = result {
 	common_lib.valid_key(container.securityContext, options[_])
 	runsAsRoot(container.securityContext)
 
@@ -29,7 +29,7 @@ checkRoot(specInfo, container, containerType, document, metadata) = result {
 }
 
 # container inherits setting from pod
-checkRoot(specInfo, container, containerType, document, metadata) = result {
+checkRoot(specInfo, container, containerType, containerId, document, metadata) = result {
 	containerCtx := object.get(container, "securityContext", {})
 	not common_lib.valid_key(containerCtx, "runAsUser")
 	not common_lib.valid_key(containerCtx, "runAsNonRoot")
@@ -47,7 +47,7 @@ checkRoot(specInfo, container, containerType, document, metadata) = result {
 }
 
 # neither pod nor container define runAsNonRoot or runAsUser
-checkRoot(specInfo, container, containerType, document, metadata) = result {
+checkRoot(specInfo, container, containerType, containerId, document, metadata) = result {
 	specCtx := object.get(specInfo.spec, "securityContext", {})
 	not common_lib.valid_key(specCtx, "runAsUser")
 	not common_lib.valid_key(specCtx, "runAsNonRoot")
@@ -58,10 +58,11 @@ checkRoot(specInfo, container, containerType, document, metadata) = result {
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext", [metadata.name, specInfo.path, containerType, container.name]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}", [metadata.name, specInfo.path, containerType, container.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true", [metadata.name, specInfo.path, containerType, container.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser is 0 and 'runAsNonRoot' is false", [metadata.name, specInfo.path, containerType, container.name]),
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [containerType, containerId, "securityContext"])
 	}
 }
 
@@ -71,5 +72,5 @@ CxPolicy[result] {
 
 	specInfo := k8sLib.getSpecInfo(document)
 
-	result := checkRoot(specInfo, specInfo.spec[types[x]][_], types[x], document, metadata)
+	result := checkRoot(specInfo, specInfo.spec[types[x]][c], types[x], c, document, metadata)
 }
