@@ -2,7 +2,7 @@ Resources:
   MyEC2Instance:
     Type: AWS::EC2::Instance
     Properties:
-      InstanceType: m1.small
+      InstanceType: t2.small
       ImageId: "ami-79fd7eee"
       KeyName: "testkey"
       BlockDeviceMappings:
