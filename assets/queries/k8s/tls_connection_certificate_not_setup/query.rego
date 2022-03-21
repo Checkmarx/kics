@@ -13,13 +13,13 @@ CxPolicy[result] {
 	container := specInfo.spec[types[x]][j]
 	tls :=  tlsFlagList[_]
 	common_lib.inArray(container.command, "kube-apiserver")
-	not startWithFlag(container,tls)
+	not k8s_lib.startWithFlag(container,tls)
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf( "TLS %s conenction setting should be set", [tls]),
+		"keyExpectedValue": sprintf( "TLS %s connection setting should be set", [tls]),
 		"keyActualValue": sprintf("TLS %s connection not set", [tls]),
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
 	}
@@ -37,19 +37,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("kind={{%s}}", ["KubeletConfiguration"]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf( "TLS %s conenction setting should be set", [tls]),
+		"keyExpectedValue": sprintf( "TLS %s connection setting should be set", [tls]),
 		"keyActualValue": sprintf("TLS %s connection not set", [tls]),
 	}
-}
-
-
-startWithFlag(container, flag){
-	inArrayStartsWith(container.command, flag)
-} else {
-	inArrayStartsWith(container.args, flag)
-}
-
-inArrayStartsWith(list, item) {
-	some i
-    startswith(list[i], item)
 }
