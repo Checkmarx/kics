@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": "kind={{KubeletConfiguration}}.featureGates",
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "rotateCertificates to be true",
-		"keyActualValue": "rotateCertificates is false",
+		"keyExpectedValue": "RotateKubeletServerCertificates to be true",
+		"keyActualValue": "RotateKubeletServerCertificate is false",
 	}
 }
