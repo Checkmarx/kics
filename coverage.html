@@ -99,7 +99,7 @@
 				
 				<option value="file21">github.com/Checkmarx/kics/internal/tracker/ci.go (81.2%)</option>
 				
-				<option value="file22">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (87.9%)</option>
+				<option value="file22">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (87.4%)</option>
 				
 				<option value="file23">github.com/Checkmarx/kics/pkg/builder/engine/engine.go (71.8%)</option>
 				
@@ -137,7 +137,7 @@
 				
 				<option value="file40">github.com/Checkmarx/kics/pkg/engine/similarity/similarity_id.go (94.7%)</option>
 				
-				<option value="file41">github.com/Checkmarx/kics/pkg/engine/source/filesystem.go (73.4%)</option>
+				<option value="file41">github.com/Checkmarx/kics/pkg/engine/source/filesystem.go (73.0%)</option>
 				
 				<option value="file42">github.com/Checkmarx/kics/pkg/engine/source/source.go (67.9%)</option>
 				
@@ -149,7 +149,7 @@
 				
 				<option value="file46">github.com/Checkmarx/kics/pkg/kics/service.go (45.8%)</option>
 				
-				<option value="file47">github.com/Checkmarx/kics/pkg/kics/sink.go (50.0%)</option>
+				<option value="file47">github.com/Checkmarx/kics/pkg/kics/sink.go (45.0%)</option>
 				
 				<option value="file48">github.com/Checkmarx/kics/pkg/model/comment_yaml.go (75.0%)</option>
 				
@@ -191,7 +191,7 @@
 				
 				<option value="file67">github.com/Checkmarx/kics/pkg/parser/jsonfilter/parser/jsonfilter_tree_visitor.go (0.0%)</option>
 				
-				<option value="file68">github.com/Checkmarx/kics/pkg/parser/parser.go (91.3%)</option>
+				<option value="file68">github.com/Checkmarx/kics/pkg/parser/parser.go (90.2%)</option>
 				
 				<option value="file69">github.com/Checkmarx/kics/pkg/parser/terraform/comment/comment.go (96.8%)</option>
 				
@@ -277,11 +277,13 @@
 				
 				<option value="file110">github.com/Checkmarx/kics/pkg/utils/ansible_vault.go (88.9%)</option>
 				
-				<option value="file111">github.com/Checkmarx/kics/pkg/utils/map.go (100.0%)</option>
+				<option value="file111">github.com/Checkmarx/kics/pkg/utils/contains.go (100.0%)</option>
 				
-				<option value="file112">github.com/Checkmarx/kics/pkg/utils/random.go (100.0%)</option>
+				<option value="file112">github.com/Checkmarx/kics/pkg/utils/map.go (100.0%)</option>
 				
-				<option value="file113">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
+				<option value="file113">github.com/Checkmarx/kics/pkg/utils/random.go (100.0%)</option>
+				
+				<option value="file114">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
 				
 				</select>
 			</div>
@@ -1294,7 +1296,7 @@ func NewListPlatformsCmd() *cobra.Command <span class="cov10" title="12">{
                 Use:   "list-platforms",
                 Short: "List supported platforms",
                 RunE: func(cmd *cobra.Command, args []string) error </span><span class="cov1" title="1">{
-                        for _, v := range source.ListSupportedPlatforms() </span><span class="cov9" title="10">{
+                        for _, v := range source.ListSupportedPlatforms() </span><span class="cov9" title="11">{
                                 fmt.Fprintf(cmd.OutOrStdout(), "%s\n", v)
                         }</span>
                         <span class="cov1" title="1">return nil</span>
@@ -2007,6 +2009,7 @@ var (
                 "Ansible":                 "ansible",
                 "CloudFormation":          "cloudFormation",
                 "Dockerfile":              "dockerfile",
+                "DockerCompose":           "dockerCompose",
                 "Kubernetes":              "k8s",
                 "OpenAPI":                 "openAPI",
                 "Terraform":               "terraform",
@@ -2357,13 +2360,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="31">total += v
+                <span class="cov8" title="33">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2388,7 +2391,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2640,6 +2643,8 @@ var (
         blueprintpRegexTargetScope                      = regexp.MustCompile("\\s*\"?targetScope\"?\\s*:")
         blueprintpRegexProperties                       = regexp.MustCompile("\\s*\"?properties\"?\\s*:")
         buildahRegex                                    = regexp.MustCompile(`\s*buildah\s*from\s*\w+`)
+        dockerComposeVersionRegex                       = regexp.MustCompile(`\s*version\s*:`)
+        dockerComposeServicesRegex                      = regexp.MustCompile(`\s*services\s*:`)
 )
 
 var (
@@ -2752,6 +2757,12 @@ var types = map[string]regexSlice{
                         buildahRegex,
                 },
         },
+        "dockercompose": {
+                []*regexp.Regexp{
+                        dockerComposeVersionRegex,
+                        dockerComposeServicesRegex,
+                },
+        },
 }
 
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
@@ -2774,21 +2785,21 @@ func Analyze(paths []string) (model.AnalyzedPaths, error) <span class="cov4" tit
                 if _, err := os.Stat(path); err != nil </span><span class="cov1" title="1">{
                         return returnAnalyzedPaths, errors.Wrap(err, "failed to analyze path")
                 }</span>
-                <span class="cov4" title="7">if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov6" title="36">{
+                <span class="cov4" title="7">if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov6" title="37">{
                         if err != nil </span><span class="cov0" title="0">{
                                 return err
                         }</span>
 
-                        <span class="cov6" title="36">ext := filepath.Ext(path)
+                        <span class="cov6" title="37">ext := filepath.Ext(path)
                         if ext == "" </span><span class="cov4" title="10">{
                                 ext = filepath.Base(path)
                         }</span>
 
-                        <span class="cov6" title="36">if _, ok := possibleFileTypes[ext]; ok </span><span class="cov6" title="22">{
+                        <span class="cov6" title="37">if _, ok := possibleFileTypes[ext]; ok </span><span class="cov6" title="23">{
                                 files = append(files, path)
                         }</span>
 
-                        <span class="cov6" title="36">return nil</span>
+                        <span class="cov6" title="37">return nil</span>
                 }); err != nil <span class="cov0" title="0">{
                         log.Error().Msgf("failed to analize path %s: %s", path, err)
                 }</span>
@@ -2797,7 +2808,7 @@ func Analyze(paths []string) (model.AnalyzedPaths, error) <span class="cov4" tit
         // unwanted is the channel shared by the workers that contains the unwanted files that the parser will ignore
         <span class="cov3" title="6">unwanted := make(chan string, len(files))
 
-        for _, file := range files </span><span class="cov6" title="22">{
+        for _, file := range files </span><span class="cov6" title="23">{
                 wg.Add(1)
                 // analyze the files concurrently
                 go worker(file, results, unwanted, &amp;wg)
@@ -2824,13 +2835,13 @@ func Analyze(paths []string) (model.AnalyzedPaths, error) <span class="cov4" tit
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
 // writes the answer to the results channel
 // if no types were found, the worker will write the path of the file in the unwanted channel
-func worker(path string, results, unwanted chan&lt;- string, wg *sync.WaitGroup) <span class="cov6" title="22">{
+func worker(path string, results, unwanted chan&lt;- string, wg *sync.WaitGroup) <span class="cov6" title="23">{
         defer wg.Done()
         ext := filepath.Ext(path)
         if ext == "" </span><span class="cov2" title="2">{
                 ext = filepath.Base(path)
         }</span>
-        <span class="cov6" title="22">switch ext </span>{
+        <span class="cov6" title="23">switch ext </span>{
         // Dockerfile
         case ".dockerfile", "Dockerfile":<span class="cov2" title="2">
                 results &lt;- dockerfile</span>
@@ -2843,22 +2854,22 @@ func worker(path string, results, unwanted chan&lt;- string, wg *sync.WaitGroup)
         case ".sh":<span class="cov0" title="0">
                 checkContent(path, results, unwanted, ext)</span>
         // Cloud Formation, Ansible, OpenAPI
-        case yaml, yml, json:<span class="cov5" title="18">
+        case yaml, yml, json:<span class="cov5" title="19">
                 checkContent(path, results, unwanted, ext)</span>
         }
 }
 
 // overrides k8s match when all regexs passes for azureresourcemanager key and extension is set to json
-func needsOverride(check bool, returnType, key, ext string) bool <span class="cov9" title="187">{
-        if check &amp;&amp; returnType == kubernetes &amp;&amp; key == "azureresourcemanager" &amp;&amp; ext == json </span><span class="cov0" title="0">{
+func needsOverride(check bool, returnType, key, ext string) bool <span class="cov9" title="216">{
+        if check &amp;&amp; returnType == kubernetes &amp;&amp; key == arm &amp;&amp; ext == json </span><span class="cov0" title="0">{
                 return true
         }</span>
-        <span class="cov9" title="187">return false</span>
+        <span class="cov9" title="216">return false</span>
 }
 
 // checkContent will determine the file type by content when worker was unable to
 // determine by ext, if no type was determined checkContent adds it to unwanted channel
-func checkContent(path string, results, unwanted chan&lt;- string, ext string) <span class="cov5" title="18">{
+func checkContent(path string, results, unwanted chan&lt;- string, ext string) <span class="cov5" title="19">{
         // get file content
         content, err := os.ReadFile(path)
         if err != nil </span><span class="cov0" title="0">{
@@ -2866,33 +2877,33 @@ func checkContent(path string, results, unwanted chan&lt;- string, ext string) <
                 return
         }</span>
 
-        <span class="cov5" title="18">returnType := ""
+        <span class="cov5" title="19">returnType := ""
 
         // Sort map so that CloudFormation (type that as less requireds) goes last
         keys := make([]string, 0, len(types))
-        for k := range types </span><span class="cov9" title="198">{
+        for k := range types </span><span class="cov9" title="228">{
                 keys = append(keys, k)
         }</span>
 
-        <span class="cov5" title="18">sort.Sort(sort.Reverse(sort.StringSlice(keys)))
+        <span class="cov5" title="19">sort.Sort(sort.Reverse(sort.StringSlice(keys)))
 
-        for _, key := range keys </span><span class="cov9" title="198">{
+        for _, key := range keys </span><span class="cov9" title="228">{
                 check := true
-                for _, typeRegex := range types[key].regex </span><span class="cov10" title="226">{
-                        if !typeRegex.Match(content) </span><span class="cov9" title="187">{
+                for _, typeRegex := range types[key].regex </span><span class="cov10" title="261">{
+                        if !typeRegex.Match(content) </span><span class="cov9" title="216">{
                                 check = false
                                 break</span>
                         }
                 }
                 // If all regexs passed and there wasn't a type already assigned
-                <span class="cov9" title="198">if check &amp;&amp; returnType == "" </span><span class="cov4" title="11">{
+                <span class="cov9" title="228">if check &amp;&amp; returnType == "" </span><span class="cov5" title="12">{
                         returnType = key
-                }</span> else<span class="cov9" title="187"> if needsOverride(check, returnType, key, ext) </span><span class="cov0" title="0">{
+                }</span> else<span class="cov9" title="216"> if needsOverride(check, returnType, key, ext) </span><span class="cov0" title="0">{
                         returnType = key
                 }</span>
         }
-        <span class="cov5" title="18">returnType = checkReturnType(path, returnType, ext, content)
-        if returnType != "" </span><span class="cov5" title="17">{
+        <span class="cov5" title="19">returnType = checkReturnType(path, returnType, ext, content)
+        if returnType != "" </span><span class="cov5" title="18">{
                 results &lt;- returnType
                 return
         }</span>
@@ -2900,12 +2911,12 @@ func checkContent(path string, results, unwanted chan&lt;- string, ext string) <
         <span class="cov1" title="1">unwanted &lt;- path</span>
 }
 
-func checkReturnType(path, returnType, ext string, content []byte) string <span class="cov5" title="18">{
-        if returnType != "" </span><span class="cov4" title="11">{
+func checkReturnType(path, returnType, ext string, content []byte) string <span class="cov5" title="19">{
+        if returnType != "" </span><span class="cov5" title="12">{
                 if returnType == "cdkTf" </span><span class="cov0" title="0">{
                         return terraform
                 }</span>
-                <span class="cov4" title="11">if contains(armRegexTypes, returnType) </span><span class="cov0" title="0">{
+                <span class="cov5" title="12">if utils.Contains(returnType, armRegexTypes) </span><span class="cov0" title="0">{
                         return arm
                 }</span>
         } else<span class="cov4" title="7"> if ext == yaml || ext == yml </span><span class="cov3" title="6">{
@@ -2917,7 +2928,7 @@ func checkReturnType(path, returnType, ext string, content []byte) string <span 
                         return platform
                 }</span>
         }
-        <span class="cov5" title="12">return returnType</span>
+        <span class="cov5" title="13">return returnType</span>
 }
 
 func checkHelm(path string) bool <span class="cov3" title="6">{
@@ -2956,23 +2967,12 @@ func checkYamlPlatform(content []byte) string <span class="cov2" title="2">{
 // createSlice creates a slice from the channel given removing any duplicates
 func createSlice(chanel chan string) []string <span class="cov5" title="12">{
         slice := make([]string, 0)
-        for i := range chanel </span><span class="cov6" title="22">{
-                if !contains(slice, i) </span><span class="cov5" title="14">{
+        for i := range chanel </span><span class="cov6" title="23">{
+                if !utils.Contains(i, slice) </span><span class="cov5" title="15">{
                         slice = append(slice, i)
                 }</span>
         }
         <span class="cov5" title="12">return slice</span>
-}
-
-// contains is a simple method to check if a slice
-// contains an entry
-func contains(s []string, e string) bool <span class="cov6" title="33">{
-        for _, a := range s </span><span class="cov8" title="93">{
-                if a == e </span><span class="cov4" title="8">{
-                        return true
-                }</span>
-        }
-        <span class="cov6" title="25">return false</span>
 }
 </pre>
 		
@@ -5784,12 +5784,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="25863">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="25879">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="25863">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="25616">{
+                <span class="cov9" title="25879">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="25632">{
                         return skipFolder
                 }</span>
 
@@ -5856,24 +5856,24 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="246">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="25866">{
-        if info.IsDir() </span><span class="cov8" title="5728">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="25882">{
+        if info.IsDir() </span><span class="cov8" title="5734">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
                         return true, filepath.SkipDir
                 }</span>
-                <span class="cov8" title="5727">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
-                if err != nil || resolved </span><span class="cov8" title="5725">{
+                <span class="cov8" title="5733">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
+                if err != nil || resolved </span><span class="cov8" title="5731">{
                         return true, nil
                 }</span>
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="20138">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="20148">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="20138">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="19892">{
+        <span class="cov9" title="20148">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="19902">{
                 return true, nil
         }</span>
         <span class="cov5" title="246">return false, nil</span>
@@ -6590,7 +6590,7 @@ func NewFilesystemSource(source, types, cloudProviders []string, libraryPath str
 func ListSupportedPlatforms() []string <span class="cov1" title="1">{
         keys := make([]string, len(constants.AvailablePlatforms))
         i := 0
-        for k := range constants.AvailablePlatforms </span><span class="cov6" title="10">{
+        for k := range constants.AvailablePlatforms </span><span class="cov6" title="11">{
                 keys[i] = k
                 i++
         }</span>
@@ -6605,14 +6605,14 @@ func ListSupportedCloudProviders() []string <span class="cov1" title="1">{
 
 func getLibraryInDir(platform, libraryDirPath string) string <span class="cov2" title="2">{
         var libraryFilePath string
-        err := filepath.Walk(libraryDirPath, func(path string, info os.FileInfo, err error) error </span><span class="cov8" title="26">{
+        err := filepath.Walk(libraryDirPath, func(path string, info os.FileInfo, err error) error </span><span class="cov8" title="28">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
-                <span class="cov8" title="26">if strings.EqualFold(filepath.Base(path), platform+".rego") </span><span class="cov1" title="1">{ // try to find the library file &lt;platform&gt;.rego
+                <span class="cov8" title="28">if strings.EqualFold(filepath.Base(path), platform+".rego") </span><span class="cov1" title="1">{ // try to find the library file &lt;platform&gt;.rego
                         libraryFilePath = path
                 }</span>
-                <span class="cov8" title="26">return nil</span>
+                <span class="cov8" title="28">return nil</span>
         })
         <span class="cov2" title="2">if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msgf("Failed to analize path %s: %s", libraryDirPath, err)
@@ -6936,6 +6936,8 @@ func getPlatform(metadataPlatform string) string <span class="cov7" title="17">{
                 return "common"</span>
         case "Dockerfile":<span class="cov1" title="1">
                 return "dockerfile"</span>
+        case "DockerCompose":<span class="cov0" title="0">
+                return "dockerCompose"</span>
         case "Kubernetes":<span class="cov1" title="1">
                 return "k8s"</span>
         case "OpenAPI":<span class="cov1" title="1">
@@ -7522,6 +7524,7 @@ import (
         "github.com/Checkmarx/kics/pkg/model"
         "github.com/Checkmarx/kics/pkg/parser"
         "github.com/Checkmarx/kics/pkg/resolver"
+        "github.com/Checkmarx/kics/pkg/utils"
         "github.com/pkg/errors"
         "github.com/rs/zerolog/log"
 )
@@ -7701,7 +7704,7 @@ func prepareScanDocumentValue(bodyType map[string]interface{}, kind model.FileKi
                                 prepareScanDocumentRoot(indx, kind)
                         }</span>
                 case string:<span class="cov7" title="6">
-                        if field, ok := lines[kind]; ok &amp;&amp; contains(field, key) </span><span class="cov1" title="1">{
+                        if field, ok := lines[kind]; ok &amp;&amp; utils.Contains(key, field) </span><span class="cov1" title="1">{
                                 bodyType[key] = resolveJSONFilter(value)
                         }</span>
                 }
@@ -7786,16 +7789,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
         return errors.Wrap(err, "failed to save file content")</span>
 }
 
-func contains(strSlice []string, key string) bool <span class="cov10" title="6">{
-        for _, v := range strSlice </span><span class="cov10" title="6">{
-                if v == key </span><span class="cov1" title="1">{
-                        return true
-                }</span>
-        }
-        <span class="cov9" title="5">return false</span>
-}
-
-func resolveJSONFilter(jsonFilter string) string <span class="cov1" title="1">{
+func resolveJSONFilter(jsonFilter string) string <span class="cov8" title="1">{
         is := antlr.NewInputStream(jsonFilter)
 
         // lexer build
@@ -7819,14 +7813,14 @@ func resolveJSONFilter(jsonFilter string) string <span class="cov1" title="1">{
                 return jsonFilter
         }</span>
 
-        <span class="cov1" title="1">parsed := visitor.VisitAll(tree)
+        <span class="cov8" title="1">parsed := visitor.VisitAll(tree)
 
         parsedByte, err := json.Marshal(parsed)
         if err != nil </span><span class="cov0" title="0">{
                 return jsonFilter
         }</span>
 
-        <span class="cov1" title="1">return string(parsedByte)</span>
+        <span class="cov8" title="1">return string(parsedByte)</span>
 }
 </pre>
 		
@@ -9268,8 +9262,8 @@ func (p *Parser) SupportedExtensions() []string <span class="cov1" title="1">{
 }</span>
 
 // SupportedTypes returns types supported by this parser, which are Buildah
-func (p *Parser) SupportedTypes() []string <span class="cov1" title="1">{
-        return []string{"Buildah"}
+func (p *Parser) SupportedTypes() map[string]bool <span class="cov1" title="1">{
+        return map[string]bool{"buildah": true}
 }</span>
 
 // GetCommentToken return the comment token of Buildah - #
@@ -9481,8 +9475,8 @@ func (p *Parser) SupportedExtensions() []string <span class="cov1" title="1">{
 }</span>
 
 // SupportedTypes returns types supported by this parser, which are dockerfile
-func (p *Parser) SupportedTypes() []string <span class="cov1" title="1">{
-        return []string{"Dockerfile"}
+func (p *Parser) SupportedTypes() map[string]bool <span class="cov1" title="1">{
+        return map[string]bool{"dockerfile": true}
 }</span>
 
 // GetCommentToken return the comment token of Docker - #
@@ -10230,8 +10224,8 @@ func (p *Parser) SupportedExtensions() []string <span class="cov1" title="1">{
 }</span>
 
 // SupportedTypes returns types supported by this parser, which are dockerfile
-func (p *Parser) SupportedTypes() []string <span class="cov1" title="1">{
-        return []string{"grpc"}
+func (p *Parser) SupportedTypes() map[string]bool <span class="cov1" title="1">{
+        return map[string]bool{"grpc": true}
 }</span>
 
 // GetCommentToken return the comment token of Docker - #
@@ -10620,8 +10614,8 @@ func (p *Parser) GetKind() model.FileKind <span class="cov1" title="1">{
 }</span>
 
 // SupportedTypes returns types supported by this parser, which are cloudFormation
-func (p *Parser) SupportedTypes() []string <span class="cov1" title="1">{
-        return []string{"CloudFormation", "OpenAPI", "AzureResourceManager", "Terraform", "Kubernetes"}
+func (p *Parser) SupportedTypes() map[string]bool <span class="cov1" title="1">{
+        return map[string]bool{"cloudformation": true, "openapi": true, "azureresourcemanager": true, "terraform": true, "kubernetes": true}
 }</span>
 
 // GetCommentToken return an empty string, since JSON does not have comment token
@@ -12830,7 +12824,7 @@ type kindParser interface {
         GetKind() model.FileKind
         GetCommentToken() string
         SupportedExtensions() []string
-        SupportedTypes() []string
+        SupportedTypes() map[string]bool
         Parse(filePath string, fileContent []byte) ([]model.Document, []int, error)
         Resolve(fileContent []byte, filename string) (*[]byte, error)
         StringifyContent(content []byte) (string, error)
@@ -12848,7 +12842,7 @@ func NewBuilder() *Builder <span class="cov5" title="5">{
 }</span>
 
 // Add is a function that adds a new parser to the caller and returns it
-func (b *Builder) Add(p kindParser) *Builder <span class="cov8" title="11">{
+func (b *Builder) Add(p kindParser) *Builder <span class="cov7" title="11">{
         b.parsers = append(b.parsers, p)
         return b
 }</span>
@@ -12856,17 +12850,19 @@ func (b *Builder) Add(p kindParser) *Builder <span class="cov8" title="11">{
 // Build prepares parsers and associates a parser to its extension and returns it
 func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) <span class="cov5" title="5">{
         parserSlice := make([]*Parser, 0, len(b.parsers))
-        for _, parser := range b.parsers </span><span class="cov8" title="11">{
-                var parsers kindParser
-                extensions := make(model.Extensions, len(b.parsers))
-                platforms := parser.SupportedTypes()
-                if _, _, ok := contains(types, parser.SupportedTypes()); ok </span><span class="cov8" title="11">{
-                        parsers = parser
-                        for _, ext := range parser.SupportedExtensions() </span><span class="cov10" title="19">{
+        for _, parser := range b.parsers </span><span class="cov7" title="11">{
+                supportedTypes := parser.SupportedTypes()
+                if contains(types, supportedTypes) </span><span class="cov7" title="11">{
+                        extensions := make(model.Extensions, len(b.parsers))
+                        var platforms []string
+                        for _, ext := range parser.SupportedExtensions() </span><span class="cov8" title="19">{
                                 extensions[ext] = struct{}{}
                         }</span>
-                        <span class="cov8" title="11">parserSlice = append(parserSlice, &amp;Parser{
-                                parsers:    parsers,
+                        <span class="cov7" title="11">for key := range supportedTypes </span><span class="cov10" title="33">{
+                                platforms = append(platforms, key)
+                        }</span>
+                        <span class="cov7" title="11">parserSlice = append(parserSlice, &amp;Parser{
+                                parsers:    parser,
                                 extensions: extensions,
                                 Platform:   platforms,
                         })</span>
@@ -12901,16 +12897,16 @@ func (c *Parser) CommentsCommands(filePath string, fileContent []byte) model.Com
                 commentToken := c.parsers.GetCommentToken()
                 if commentToken != "" </span><span class="cov1" title="1">{
                         lines := strings.Split(string(fileContent), "\n")
-                        for _, line := range lines </span><span class="cov5" title="4">{
+                        for _, line := range lines </span><span class="cov4" title="4">{
                                 line = strings.TrimSpace(line)
                                 if line == "" </span><span class="cov1" title="1">{
                                         continue</span>
                                 }
-                                <span class="cov4" title="3">if !strings.HasPrefix(line, commentToken) </span><span class="cov1" title="1">{
+                                <span class="cov3" title="3">if !strings.HasPrefix(line, commentToken) </span><span class="cov1" title="1">{
                                         break</span>
                                 }
-                                <span class="cov3" title="2">fields := strings.Fields(strings.TrimSpace(strings.TrimPrefix(line, commentToken)))
-                                if len(fields) &gt; 1 &amp;&amp; fields[0] == "kics-scan" &amp;&amp; fields[1] != "" </span><span class="cov3" title="2">{
+                                <span class="cov2" title="2">fields := strings.Fields(strings.TrimSpace(strings.TrimPrefix(line, commentToken)))
+                                if len(fields) &gt; 1 &amp;&amp; fields[0] == "kics-scan" &amp;&amp; fields[1] != "" </span><span class="cov2" title="2">{
                                         commandParameters := strings.SplitN(fields[1], "=", 2) //nolint:gomnd
                                         if len(commandParameters) &gt; 1 </span><span class="cov1" title="1">{
                                                 commentsCommands[commandParameters[0]] = commandParameters[1]
@@ -12927,26 +12923,26 @@ func (c *Parser) CommentsCommands(filePath string, fileContent []byte) model.Com
 
 // Parse executes a parser on the fileContent and returns the file content as a Document, the file kind and
 // an error, if an error has occurred
-func (c *Parser) Parse(filePath string, fileContent []byte) (ParsedDocument, error) <span class="cov4" title="3">{
+func (c *Parser) Parse(filePath string, fileContent []byte) (ParsedDocument, error) <span class="cov3" title="3">{
         fileContent = utils.DecryptAnsibleVault(fileContent, os.Getenv("ANSIBLE_VAULT_PASSWORD_FILE"))
 
-        if c.isValidExtension(filePath) </span><span class="cov4" title="3">{
+        if c.isValidExtension(filePath) </span><span class="cov3" title="3">{
                 resolved, err := c.parsers.Resolve(fileContent, filePath)
                 if err != nil </span><span class="cov0" title="0">{
                         return ParsedDocument{}, err
                 }</span>
-                <span class="cov4" title="3">obj, igLines, err := c.parsers.Parse(filePath, *resolved)
+                <span class="cov3" title="3">obj, igLines, err := c.parsers.Parse(filePath, *resolved)
                 if err != nil </span><span class="cov0" title="0">{
                         return ParsedDocument{}, err
                 }</span>
 
-                <span class="cov4" title="3">cont, err := c.parsers.StringifyContent(fileContent)
+                <span class="cov3" title="3">cont, err := c.parsers.StringifyContent(fileContent)
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stringify original content: %s", err)
                         cont = string(fileContent)
                 }</span>
 
-                <span class="cov4" title="3">return ParsedDocument{
+                <span class="cov3" title="3">return ParsedDocument{
                         Docs:        obj,
                         Kind:        c.parsers.GetKind(),
                         Content:     cont,
@@ -12962,36 +12958,27 @@ func (c *Parser) Parse(filePath string, fileContent []byte) (ParsedDocument, err
 }
 
 // SupportedExtensions returns extensions supported by KICS
-func (c *Parser) SupportedExtensions() model.Extensions <span class="cov5" title="4">{
+func (c *Parser) SupportedExtensions() model.Extensions <span class="cov4" title="4">{
         return c.extensions
 }</span>
 
-func contains(types, supportedTypes []string) (invalidArgsRes []string, contRes, supportedRes bool) <span class="cov8" title="13">{
-        if types[0] == "" </span><span class="cov8" title="11">{
-                return []string{}, true, true
+func contains(types []string, supportedTypes map[string]bool) bool <span class="cov7" title="13">{
+        if types[0] == "" </span><span class="cov7" title="11">{
+                return true
         }</span>
-        <span class="cov3" title="2">set := make(map[string]struct{}, len(supportedTypes))
-        for _, s := range supportedTypes </span><span class="cov6" title="6">{
-                set[strings.ToUpper(s)] = struct{}{}
-        }</span>
-        <span class="cov3" title="2">cont := true
-        supported := false
-        var invalidArgs []string
-        for _, item := range types </span><span class="cov3" title="2">{
-                _, ok := set[strings.ToUpper(item)]
-                if !ok </span><span class="cov1" title="1">{
-                        cont = false
-                        invalidArgs = append(invalidArgs, item)
-                }</span> else<span class="cov1" title="1"> {
-                        supported = true
+
+        <span class="cov2" title="2">for _, t := range types </span><span class="cov2" title="2">{
+                if _, ok := supportedTypes[strings.ToLower(t)]; ok </span><span class="cov1" title="1">{
+                        return true
                 }</span>
         }
-        <span class="cov3" title="2">return invalidArgs, cont, supported</span>
+
+        <span class="cov1" title="1">return false</span>
 }
 
 func (c *Parser) isValidExtension(filePath string) bool <span class="cov6" title="7">{
         ext := filepath.Ext(filePath)
-        if ext == "" </span><span class="cov4" title="3">{
+        if ext == "" </span><span class="cov3" title="3">{
                 ext = filepath.Base(filePath)
         }</span>
         <span class="cov6" title="7">_, ok := c.extensions[ext]
@@ -14101,8 +14088,8 @@ func (p *Parser) SupportedExtensions() []string <span class="cov1" title="1">{
 }</span>
 
 // SupportedTypes returns types supported by this parser, which are terraform
-func (p *Parser) SupportedTypes() []string <span class="cov1" title="1">{
-        return []string{"Terraform"}
+func (p *Parser) SupportedTypes() map[string]bool <span class="cov1" title="1">{
+        return map[string]bool{"terraform": true}
 }</span>
 
 // GetKind returns Terraform kind parser
@@ -14520,8 +14507,15 @@ func (p *Parser) SupportedExtensions() []string <span class="cov1" title="1">{
 }</span>
 
 // SupportedTypes returns types supported by this parser, which are ansible, cloudFormation, k8s
-func (p *Parser) SupportedTypes() []string <span class="cov1" title="1">{
-        return []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "GoogleDeploymentManager"}
+func (p *Parser) SupportedTypes() map[string]bool <span class="cov1" title="1">{
+        return map[string]bool{
+                "ansible":                 true,
+                "cloudformation":          true,
+                "kubernetes":              true,
+                "openapi":                 true,
+                "googledeploymentmanager": true,
+                "dockercompose":           true,
+        }
 }</span>
 
 // GetKind returns YAML constant kind
@@ -17879,11 +17873,11 @@ import (
         "regexp"
         "strings"
 
-        "github.com/Checkmarx/kics/e2e/utils"
         consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
         "github.com/Checkmarx/kics/pkg/analyzer"
         "github.com/Checkmarx/kics/pkg/engine/provider"
         "github.com/Checkmarx/kics/pkg/model"
+        "github.com/Checkmarx/kics/pkg/utils"
         "github.com/pkg/errors"
         "github.com/rs/zerolog/log"
 )
@@ -18065,7 +18059,7 @@ func deleteExtractionFolder(extractionMap map[string]model.ExtractedPathObject) 
 }
 
 func contributionAppeal(printer *consoleHelpers.Printer, queriesPath []string) <span class="cov0" title="0">{
-        if utils.Contains(queriesPath, filepath.Join("assets", "queries")) </span><span class="cov0" title="0">{
+        if utils.Contains(filepath.Join("assets", "queries"), queriesPath) </span><span class="cov0" title="0">{
                 msg := "\nAre you using a custom query? If so, feel free to contribute to KICS!\n"
                 contributionPage := "Check out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md\n"
 
@@ -18538,6 +18532,26 @@ func DecryptAnsibleVault(fileContent []byte, secret string) []byte <span class="
 		
 		<pre class="file" id="file111" style="display: none">package utils
 
+import "reflect"
+
+// Contains if a function to check if list contains target
+func Contains(target, list interface{}) bool <span class="cov5" title="4">{
+        listVal := reflect.ValueOf(list)
+
+        if listVal.Kind() == reflect.Slice || listVal.Kind() == reflect.Array </span><span class="cov4" title="3">{
+                for i := 0; i &lt; listVal.Len(); i++ </span><span class="cov10" title="13">{
+                        if listVal.Index(i).Interface() == target </span><span class="cov3" title="2">{
+                                return true
+                        }</span>
+                }
+        }
+
+        <span class="cov3" title="2">return false</span>
+}
+</pre>
+		
+		<pre class="file" id="file112" style="display: none">package utils
+
 import "sort"
 
 // SortedKeys returns a sorted slice with all map keys
@@ -18558,7 +18572,7 @@ func MergeMaps(map1, map2 map[string]interface{}) <span class="cov1" title="1">{
 }
 </pre>
 		
-		<pre class="file" id="file112" style="display: none">package utils
+		<pre class="file" id="file113" style="display: none">package utils
 
 import (
         "os"
@@ -18593,7 +18607,7 @@ func NextRandom() string <span class="cov10" title="2">{
 // ==============================================================================
 </pre>
 		
-		<pre class="file" id="file113" style="display: none">package test
+		<pre class="file" id="file114" style="display: none">package test
 
 import (
         "bytes"
@@ -18691,15 +18705,15 @@ func StringifyStruct(v interface{}) (string, error) <span class="cov0" title="0"
 }
 
 // MapToStringSlice extract slice of keys from a map[string]string
-func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov8" title="4247">{
+func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov7" title="4250">{
         keys := make([]string, len(stringKeyMap))
 
         i := 0
-        for k := range stringKeyMap </span><span class="cov10" title="42476">{
+        for k := range stringKeyMap </span><span class="cov10" title="46755">{
                 keys[i] = k
                 i++
         }</span>
-        <span class="cov8" title="4247">return keys</span>
+        <span class="cov7" title="4250">return keys</span>
 }
 
 var queryHigh = model.QueryResult{
