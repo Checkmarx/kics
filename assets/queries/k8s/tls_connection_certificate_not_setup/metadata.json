@@ -4,7 +4,7 @@
     "severity": "HIGH",
     "category": "Networking and Firewall",
     "descriptionText": "TSL Connection Certificate files should be Setup",
-    "descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/service",
+    "descriptionUrl": "https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/",
     "platform": "Kubernetes",
     "descriptionID": "c8b75f30"
   }
