@@ -51,6 +51,8 @@ var (
 	blueprintpRegexTargetScope                      = regexp.MustCompile("\\s*\"?targetScope\"?\\s*:")
 	blueprintpRegexProperties                       = regexp.MustCompile("\\s*\"?properties\"?\\s*:")
 	buildahRegex                                    = regexp.MustCompile(`\s*buildah\s*from\s*\w+`)
+	dockerComposeVersionRegex                       = regexp.MustCompile(`\s*version\s*:`)
+	dockerComposeServicesRegex                      = regexp.MustCompile(`\s*services\s*:`)
 )
 
 var (
@@ -163,6 +165,12 @@ var types = map[string]regexSlice{
 			buildahRegex,
 		},
 	},
+	"dockercompose": {
+		[]*regexp.Regexp{
+			dockerComposeVersionRegex,
+			dockerComposeServicesRegex,
+		},
+	},
 }
 
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
@@ -261,7 +269,7 @@ func worker(path string, results, unwanted chan<- string, wg *sync.WaitGroup) {
 
 // overrides k8s match when all regexs passes for azureresourcemanager key and extension is set to json
 func needsOverride(check bool, returnType, key, ext string) bool {
-	if check && returnType == kubernetes && key == "azureresourcemanager" && ext == json {
+	if check && returnType == kubernetes && key == arm && ext == json {
 		return true
 	}
 	return false
@@ -316,7 +324,7 @@ func checkReturnType(path, returnType, ext string, content []byte) string {
 		if returnType == "cdkTf" {
 			return terraform
 		}
-		if contains(armRegexTypes, returnType) {
+		if utils.Contains(returnType, armRegexTypes) {
 			return arm
 		}
 	} else if ext == yaml || ext == yml {
@@ -368,20 +376,9 @@ func checkYamlPlatform(content []byte) string {
 func createSlice(chanel chan string) []string {
 	slice := make([]string, 0)
 	for i := range chanel {
-		if !contains(slice, i) {
+		if !utils.Contains(i, slice) {
 			slice = append(slice, i)
 		}
 	}
 	return slice
-}
-
-// contains is a simple method to check if a slice
-// contains an entry
-func contains(s []string, e string) bool {
-	for _, a := range s {
-		if a == e {
-			return true
-		}
-	}
-	return false
 }

@@ -75,15 +75,6 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 	return errors.Wrap(err, "failed to save file content")
 }
 
-func contains(strSlice []string, key string) bool {
-	for _, v := range strSlice {
-		if v == key {
-			return true
-		}
-	}
-	return false
-}
-
 func resolveJSONFilter(jsonFilter string) string {
 	is := antlr.NewInputStream(jsonFilter)
 
