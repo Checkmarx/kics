@@ -5,9 +5,7 @@
     },
     {
       "type": "object",
-      "required": [
-        "bill_of_materials"
-      ],
+      "required": ["bill_of_materials"],
       "properties": {
         "bill_of_materials": {
           "type": "array",
@@ -50,6 +48,7 @@
                   "CloudFormation",
                   "Common",
                   "Dockerfile",
+                  "DockerCompose",
                   "GRPC",
                   "GoogleDeploymentManager",
                   "Kubernetes",
@@ -126,10 +125,7 @@
                       "type": "string"
                     },
                     "value": {
-                      "type": [
-                        "string",
-                        "null"
-                      ]
+                      "type": ["string", "null"]
                     }
                   }
                 }

@@ -13,8 +13,8 @@ KICS can decrypt Ansible Vault files on the fly. For that, you need to define th
 KICS supports scanning Azure Resource Manager (ARM) templates with `.json` extension. To build ARM JSON templates from Bicep code check the [official ARM documentation](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-cli#build) and [here](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax) to understand the differences between ARM JSON templates and Bicep
 
 ## Buildah
-KICS supports scanning Buildah files with `.sh` extension.
 
+KICS supports scanning Buildah files with `.sh` extension.
 
 ## CloudFormation
 
@@ -23,6 +23,10 @@ KICS supports scanning CloudFormation templates with `.json` or `.yaml` extensio
 ## Docker
 
 KICS supports scanning Docker files named `Dockerfile` or with `.dockerfile` extension.
+
+## DockerCompose
+
+KICS supports scanning DockerCompose files with `.yaml` extension.
 
 ## Helm
 
@@ -72,20 +76,23 @@ KICS supports scanning terraform plans given in JSON. The `planned_values` will 
 Results will point to the plan file.
 
 To get terraform plan in JSON format simply run the command:
+
 ```
 terraform show -json plan-sample.tfplan > plan-sample.tfplan.json
 ```
 
 ### Terraform Modules
+
 KICS supports some official modules for AWS that can be found on [Terraform registry](https://registry.terraform.io/providers/hashicorp/aws/latest), you can see the supported modules list in the libraries folder [common.json file](https://github.com/Checkmarx/kics/blob/master/assets/libraries/common.json). This means KICS can find issues in verified modules listed on this json.
 
 Currently, KICS does not support unofficial or custom modules.
 
-### Cloud Development Kit for Terraform (CDKTF) 
+### Cloud Development Kit for Terraform (CDKTF)
 
 KICS supports scanning CDKTF output JSON. It recognizes it through the fields `metadata`, `stackName`, and `terraform`.
 
 To get your CDKTF output JSON, run the following command inside the directory that contains your app:
+
 ```
 cdktf synth
 ```
@@ -99,8 +106,8 @@ At the moment, KICS does not support a robust approach to identifying Ansible sa
 
 Thus, KICS recognize other YAML samples (that are not Ansible) as Ansible, e.g. GitHub Actions samples. However, you can ignore these samples by writing `#kics-scan ignore` on the top of the file. For more details, please read this [documentation](https://github.com/Checkmarx/kics/blob/25b6b703e924ed42067d9ab7772536864aee900b/docs/running-kics.md#using-commands-on-scanned-files-as-comments).
 
-
 #### Terraform
+
 Although KICS support variables and interpolations, KICS does not support functions and enviroment variables. In case of variables used as function parameters, it will parse as wrapped expression, so the following function call:
 
 ```hcl

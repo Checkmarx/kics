@@ -7,11 +7,11 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/Checkmarx/kics/e2e/utils"
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/pkg/analyzer"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -193,7 +193,7 @@ func deleteExtractionFolder(extractionMap map[string]model.ExtractedPathObject) 
 }
 
 func contributionAppeal(printer *consoleHelpers.Printer, queriesPath []string) {
-	if utils.Contains(queriesPath, filepath.Join("assets", "queries")) {
+	if utils.Contains(filepath.Join("assets", "queries"), queriesPath) {
 		msg := "\nAre you using a custom query? If so, feel free to contribute to KICS!\n"
 		contributionPage := "Check out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md\n"
 

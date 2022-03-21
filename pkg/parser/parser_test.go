@@ -136,14 +136,12 @@ func TestCommentsCommands(t *testing.T) {
 func TestParser_Contains(t *testing.T) {
 	type args struct {
 		types          []string
-		supportedTypes []string
+		supportedTypes map[string]bool
 	}
 	tests := []struct {
-		name               string
-		args               args
-		wantInvalidArgsRes []string
-		wantContRes        bool
-		wantSupportedRes   bool
+		name string
+		args args
+		want bool
 	}{
 		{
 			name: "test contains",
@@ -151,15 +149,13 @@ func TestParser_Contains(t *testing.T) {
 				types: []string{
 					"cloudformation",
 				},
-				supportedTypes: []string{
-					"cloudformation",
-					"terraform",
-					"ansible",
+				supportedTypes: map[string]bool{
+					"cloudformation": true,
+					"terraform":      true,
+					"ansible":        true,
 				},
 			},
-			wantInvalidArgsRes: nil,
-			wantContRes:        true,
-			wantSupportedRes:   true,
+			want: true,
 		},
 		{
 			name: "test contains invalid",
@@ -167,26 +163,20 @@ func TestParser_Contains(t *testing.T) {
 				types: []string{
 					"dockerfile",
 				},
-				supportedTypes: []string{
-					"cloudformation",
-					"terraform",
-					"ansible",
+				supportedTypes: map[string]bool{
+					"cloudformation": true,
+					"terraform":      true,
+					"ansible":        true,
 				},
 			},
-			wantInvalidArgsRes: []string{
-				"dockerfile",
-			},
-			wantContRes:      false,
-			wantSupportedRes: false,
+			want: false,
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			gotInv, gotCont, gotSup := contains(tt.args.types, tt.args.supportedTypes)
-			require.Equal(t, tt.wantInvalidArgsRes, gotInv)
-			require.Equal(t, tt.wantContRes, gotCont)
-			require.Equal(t, tt.wantSupportedRes, gotSup)
+			got := contains(tt.args.types, tt.args.supportedTypes)
+			require.Equal(t, tt.want, got)
 		})
 	}
 }
