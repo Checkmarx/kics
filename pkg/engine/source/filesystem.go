@@ -416,6 +416,8 @@ func getPlatform(metadataPlatform string) string {
 		return "common"
 	case "Dockerfile":
 		return "dockerfile"
+	case "DockerCompose":
+		return "dockerCompose"
 	case "Kubernetes":
 		return "k8s"
 	case "OpenAPI":

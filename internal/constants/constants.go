@@ -43,6 +43,7 @@ var (
 		"Ansible":                 "ansible",
 		"CloudFormation":          "cloudFormation",
 		"Dockerfile":              "dockerfile",
+		"DockerCompose":           "dockerCompose",
 		"Kubernetes":              "k8s",
 		"OpenAPI":                 "openAPI",
 		"Terraform":               "terraform",
