@@ -18,8 +18,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "--read-only-port flag to and to be '0' in container",
-		"keyActualValue": "--read-only-port flag is not set to '0' in container",
+		"keyExpectedValue": "--read-only-port flag to be '0'",
+		"keyActualValue": "--read-only-port flag is not set to '0'",
 	}
 }
 
