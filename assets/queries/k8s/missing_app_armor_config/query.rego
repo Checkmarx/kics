@@ -61,9 +61,10 @@ CxPolicy[result] {
 	annotationsPath := trim_left(sprintf("%s.annotations", [metadataInfo.path]), ".")
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("metadata.name={{%s}}.%s", [metadata.name, annotationsPath]),
+		"searchKey": trim_right(sprintf("metadata.name={{%s}}.%s", [metadata.name, metadataInfo.path]), "."),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s should specify an AppArmor profile for container {{%s}}", [metadata.name, annotationsPath, container]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s does not specify an AppArmor profile for container {{%s}}", [metadata.name, annotationsPath, container]),
+		"searchLine": common_lib.build_search_line(split(annotationsPath, "."), [])
 	}
 }
