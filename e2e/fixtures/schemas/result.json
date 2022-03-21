@@ -74,12 +74,7 @@
           },
           "severity": {
             "type": "string",
-            "enum": [
-              "HIGH",
-              "MEDIUM",
-              "LOW",
-              "INFO"
-            ]
+            "enum": ["HIGH", "MEDIUM", "LOW", "INFO"]
           },
           "platform": {
             "type": "string",
@@ -90,6 +85,7 @@
               "CloudFormation",
               "Common",
               "Dockerfile",
+              "DockerCompose",
               "GRPC",
               "GoogleDeploymentManager",
               "Kubernetes",
@@ -160,10 +156,7 @@
                   "minLength": 1
                 },
                 "value": {
-                  "type": [
-                    "string",
-                    "null"
-                  ]
+                  "type": ["string", "null"]
                 }
               }
             }
@@ -215,13 +208,7 @@
     },
     "severity_counters": {
       "type": "object",
-      "required": [
-        "HIGH",
-        "MEDIUM",
-        "LOW",
-        "INFO",
-        "TRACE"
-      ],
+      "required": ["HIGH", "MEDIUM", "LOW", "INFO", "TRACE"],
       "properties": {
         "HIGH": {
           "type": "integer",

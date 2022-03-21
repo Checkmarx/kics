@@ -42,6 +42,7 @@ var (
 		"../assets/queries/ansible/gcp":             {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
 		"../assets/queries/ansible/azure":           {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
 		"../assets/queries/dockerfile":              {FileKind: []model.FileKind{model.KindDOCKER}, Platform: "dockerfile"},
+		"../assets/queries/dockerCompose":           {FileKind: []model.FileKind{model.KindYAML}, Platform: "dockerCompose"},
 		"../assets/queries/openAPI/general":         {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
 		"../assets/queries/openAPI/3.0":             {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
 		"../assets/queries/openAPI/2.0":             {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
