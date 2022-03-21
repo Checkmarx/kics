@@ -1,21 +1,21 @@
 [
 	{
-		"queryName": "Missing App Armor Config",
+		"queryName": "Missing AppArmor Profile",
 		"severity": "LOW",
 		"line": 4
 	},
 	{
-		"queryName": "Missing App Armor Config",
+		"queryName": "Missing AppArmor Profile",
 		"severity": "LOW",
 		"line": 4
 	},
 	{
-		"queryName": "Missing App Armor Config",
+		"queryName": "Missing AppArmor Profile",
 		"severity": "LOW",
 		"line": 5
 	},
 	{
-		"queryName": "Missing App Armor Config",
+		"queryName": "Missing AppArmor Profile",
 		"severity": "LOW",
 		"line": 33
 	}
