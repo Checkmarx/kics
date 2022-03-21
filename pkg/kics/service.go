@@ -12,6 +12,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	"github.com/Checkmarx/kics/pkg/resolver"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -191,7 +192,7 @@ func prepareScanDocumentValue(bodyType map[string]interface{}, kind model.FileKi
 				prepareScanDocumentRoot(indx, kind)
 			}
 		case string:
-			if field, ok := lines[kind]; ok && contains(field, key) {
+			if field, ok := lines[kind]; ok && utils.Contains(key, field) {
 				bodyType[key] = resolveJSONFilter(value)
 			}
 		}
