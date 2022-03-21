@@ -1,0 +1,10 @@
+{
+    "address": "192.168.0.8",
+    "apiVersion": "kubelet.config.k8s.io/v1beta1",
+    "evictionHard": {
+        "memory.available": "200Mi"
+    },
+    "kind": "KubeletConfiguration",
+    "port": 20250,
+    "serializeImagePulls": false
+}

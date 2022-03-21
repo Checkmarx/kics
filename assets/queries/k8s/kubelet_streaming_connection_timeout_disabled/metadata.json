@@ -1,0 +1,10 @@
+{
+  "id": "ed89b97d-04e9-4fd4-919f-ee5b27e555e9",
+  "queryName": "Kubelet Streaming Connection Timeout Disabled",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "The flag --streaming-connection-idle-timeout should not be set to 0",
+  "descriptionUrl": "https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/",
+  "platform": "Kubernetes",
+  "descriptionID": "f0a2431d"
+}
