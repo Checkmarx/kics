@@ -23,6 +23,21 @@ CxPolicy[result] {
 	}
 }
 
+CxPolicy[result] {
+	resource := input.document[i]
+	resource.kind == "KubeletConfiguration"
+
+	resource.authorization.mode == "AlwaysAllow"
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": "kind={{KubeletConfiguration}}.authorization.mode",
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "authorization.mode attribute should not be 'AlwaysAllow'",
+		"keyActualValue": "authorization.mode attribute is equal to 'AlwaysAllow'",
+	}
+}
+
 hasFlagWithValue(container, flag, value) {
 	command := container.command
 	startswith(command[a], flag)
