@@ -1368,7 +1368,7 @@ Flags:
   -r, --secrets-regexes-path string   path to secrets regex rules configuration file
       --timeout int                   number of seconds the query has to execute before being canceled (default 60)
   -t, --type strings                  case insensitive list of platform types to scan
-                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, Dockerfile, GRPC, GoogleDeploymentManager, Kubernetes, OpenAPI, Terraform)
+                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Kubernetes, OpenAPI, Terraform)
 
 Global Flags:
       --ci                  display only log messages to CLI output (mutually exclusive with silent)
@@ -1388,7 +1388,7 @@ Global Flags:
 <h2 id="profiling">Profiling<a class="headerlink" href="#profiling" title="Permanent link">&para;</a></h2>
 <p>With the <code>--profiling</code> flag KICS will print resource consumption information in the logs.</p>
 <p>You can only enable one profiler at a time, CPU or MEM.</p>
-<p>📝   Please note that execution time may be impacted by enabling performance profiler due to sampling</p>
+<p>📝 Please note that execution time may be impacted by enabling performance profiler due to sampling</p>
 <h2 id="disable_crash_report">Disable Crash Report<a class="headerlink" href="#disable_crash_report" title="Permanent link">&para;</a></h2>
 <p>You can disable KICS crash report to <a href="https://sentry.io">sentry.io</a> with <code>DISABLE_CRASH_REPORT</code> environment variable set to <code>0</code> or <code>false</code> e.g:</p>
 <pre><code class="language-sh">DISABLE_CRASH_REPORT=0 ./bin/kics version

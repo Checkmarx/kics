@@ -1220,7 +1220,7 @@
 <pre><code class="language-sh">docker run -v {path_to_host_folder}/{filename}.{extention}:/path/{filename}.{extention} checkmarx/kics:latest scan -p &quot;/path&quot; -o &quot;/path/&quot;
 </code></pre>
 <p>This will generate a <code>results.json</code> file, for both examples, under <code>path</code>.</p>
-<p>ℹ️  <strong>UBI Based Images</strong></p>
+<p>ℹ️ <strong>UBI Based Images</strong></p>
 <p>When using <a href="https://catalog.redhat.com">UBI8</a> based image, the KICS process will run under the <code>kics</code> user and <code>kics</code> group with default UID=1000 and GID=1000, when using bind mount to share host files with the container, the UID and GID can be overriden to match current user with the <code>-u</code> flag that overrides the username:group or UID:GID. e.g:</p>
 <pre><code class="language-sh">docker run -it -u $UID:$GID -v $PWD:/path checkmarx/kics:ubi8 scan -p /path/assets/queries/dockerfile -o /path -v
 </code></pre>
@@ -1282,7 +1282,7 @@ Flags:
   -r, --secrets-regexes-path string   path to secrets regex rules configuration file
       --timeout int                   number of seconds the query has to execute before being canceled (default 60)
   -t, --type strings                  case insensitive list of platform types to scan
-                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, Dockerfile, GRPC, GoogleDeploymentManager, Kubernetes, OpenAPI, Terraform)
+                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Kubernetes, OpenAPI, Terraform)
 
 Global Flags:
       --ci                  display only log messages to CLI output (mutually exclusive with silent)
