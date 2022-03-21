@@ -6,6 +6,8 @@
   "cgroupDriver": "cgroupfs",
   "hairpinMode": "promiscuous-bridge",
   "serializeImagePulls": false,
+  "tlsCertFile": "someFile.txt",
+  "tlsPrivateKeyFile": "someFile.txt",
   "featureGates": {
     "RotateKubeletClientCertificate": true,
     "RotateKubeletServerCertificate": true
