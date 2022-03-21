@@ -14,7 +14,7 @@
 	{
 		"queryName": "Kubelet Protect Kernel Defaults Set To False",
 		"severity": "MEDIUM",
-		"line": 2,
+		"line": 5,
 		"fileName": "positive3.yaml"
 	},
 	{

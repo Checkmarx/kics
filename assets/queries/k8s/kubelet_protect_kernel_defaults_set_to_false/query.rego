@@ -44,7 +44,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("kind={{%s}}", ["KubeletConfiguration"]),
+		"searchKey": "kind={{KubeletConfiguration}}.protectKernelDefaults",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "protectKernelDefaults flag should defined to true",
 		"keyActualValue": "protectKernelDefaults flag is set to false",
