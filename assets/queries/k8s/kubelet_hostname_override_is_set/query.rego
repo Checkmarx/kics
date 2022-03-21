@@ -11,7 +11,7 @@ CxPolicy[result] {
 	container := specInfo.spec[types[x]][j]
 
 	common_lib.inArray(container.command, "kubelet")
-	startWithFlag(container, "--hostname-override=")
+	k8sLib.startWithFlag(container, "--hostname-override=")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -21,15 +21,4 @@ CxPolicy[result] {
 		"keyActualValue": "--hostname-override= flag is defined",
 		 "searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
 	}
-}
-
-startWithFlag(container, flag){
-	inArrayStartsWith(container.command, flag)
-} else {
-	inArrayStartsWith(container.args, flag)
-}
-
-inArrayStartsWith(list, item) {
-	some i
-    startswith(list[i], item)
 }

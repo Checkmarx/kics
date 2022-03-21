@@ -23,3 +23,16 @@ hasFlag(container, flag) {
 } else {
 	common_lib.inArray(container.args, flag)
 }
+
+#Used to see if a flag is present in the commands or args array
+startWithFlag(container, flag){
+	inArrayStartsWith(container.command, flag)
+} else {
+	inArrayStartsWith(container.args, flag)
+}
+
+#Used to see if a flag is present in the array regardless of its value
+inArrayStartsWith(list, item) {
+	some i
+    startswith(list[i], item)
+}
