@@ -273,12 +273,12 @@ func TestParser_SupportedTypes(t *testing.T) {
 	tests := []struct {
 		name string
 		p    *Parser
-		want []string
+		want map[string]bool
 	}{
 		{
 			name: "Buildah types",
 			p:    &Parser{},
-			want: []string{"Buildah"},
+			want: map[string]bool{"buildah": true},
 		},
 	}
 	for _, tt := range tests {

@@ -2,6 +2,7 @@ Ansible
 AzureResourceManager
 Buildah
 CloudFormation
+DockerCompose
 Dockerfile
 GRPC
 GoogleDeploymentManager

@@ -91,7 +91,7 @@ Flags:
   -r, --secrets-regexes-path string   path to secrets regex rules configuration file
       --timeout int                   number of seconds the query has to execute before being canceled (default 60)
   -t, --type strings                  case insensitive list of platform types to scan
-                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, Dockerfile, GRPC, GoogleDeploymentManager, Kubernetes, OpenAPI, Terraform)
+                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Kubernetes, OpenAPI, Terraform)
 
 Global Flags:
       --ci                  display only log messages to CLI output (mutually exclusive with silent)
@@ -120,7 +120,7 @@ With the `--profiling` flag KICS will print resource consumption information in 
 
 You can only enable one profiler at a time, CPU or MEM.
 
-📝   Please note that execution time may be impacted by enabling performance profiler due to sampling
+📝 Please note that execution time may be impacted by enabling performance profiler due to sampling
 
 ## Disable Crash Report
 
