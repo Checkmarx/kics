@@ -213,7 +213,7 @@
 				
 				<option value="file78">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (85.7%)</option>
 				
-				<option value="file79">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file79">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (90.9%)</option>
 				
 				<option value="file80">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -2360,13 +2360,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="35">total += v
+                <span class="cov8" title="32">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -4757,7 +4757,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5784,12 +5784,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="25887">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="25903">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="25887">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="25640">{
+                <span class="cov9" title="25903">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="25656">{
                         return skipFolder
                 }</span>
 
@@ -5856,7 +5856,7 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="246">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="25890">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="25906">{
         if info.IsDir() </span><span class="cov8" title="5734">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
@@ -5869,11 +5869,11 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="20156">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="20172">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="20156">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="19910">{
+        <span class="cov9" title="20172">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="19926">{
                 return true, nil
         }</span>
         <span class="cov5" title="246">return false, nil</span>
@@ -14697,7 +14697,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov1" title="1">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -14706,7 +14706,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov1" title="1">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
@@ -14718,14 +14718,14 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov1" title="1">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov1" title="1">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file80" style="display: none">package progress
