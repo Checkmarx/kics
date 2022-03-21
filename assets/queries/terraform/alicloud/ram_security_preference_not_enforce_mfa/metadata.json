@@ -1,0 +1,11 @@
+{
+    "id": "dcda2d32-e482-43ee-a926-75eaabeaa4e0",
+    "queryName": "RAM Security Preference Not Enforce MFA Login",
+    "severity": "HIGH",
+    "category": "Access Control",
+    "descriptionText": "RAM Security preferences should enforce MFA login for RAM users",
+    "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_security_preference#enforce_mfa_for_login",
+    "platform": "Terraform",
+    "descriptionID": "6131e90d",
+    "cloudProvider": "alicloud"
+  }

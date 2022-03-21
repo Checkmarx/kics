@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-deployment-neg
+  labels:
+    app: test-neg
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: test-neg
+  template:
+    metadata:
+      labels:
+        app: test-neg
+    spec:
+      containers:
+        - name:  pause
+          image: k8s.gcr.io/pause
+          resources:
+            limits:
+              cpu: 0.5
+              memory: 512Mi
+            requests:
+              cpu: 0.5
+              memory: 512Mi

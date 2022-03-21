@@ -2,12 +2,31 @@
 	{
 		"queryName": "Privilege Escalation Allowed",
 		"severity": "HIGH",
-		"line": 10
+		"line": 10,
+		"fileName": "positive1.yaml"
 	},
-
 	{
 		"queryName": "Privilege Escalation Allowed",
 		"severity": "HIGH",
-		"line": 21
+		"line": 21,
+		"fileName": "positive1.yaml"
+	},
+	{
+		"queryName": "Privilege Escalation Allowed",
+		"severity": "HIGH",
+		"line": 9,
+		"fileName": "positive2.yaml"
+	},
+	{
+		"queryName": "Privilege Escalation Allowed",
+		"severity": "HIGH",
+		"line": 13,
+		"fileName": "positive2.yaml"
+	},
+	{
+		"queryName": "Privilege Escalation Allowed",
+		"severity": "HIGH",
+		"line": 17,
+		"fileName": "positive2.yaml"
 	}
 ]

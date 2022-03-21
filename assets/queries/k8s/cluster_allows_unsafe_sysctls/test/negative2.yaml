@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-app-neg
+  labels:
+    app: test-app-neg
+spec:
+  selector:
+    matchLabels:
+      app: test-app-neg
+  template:
+    metadata:
+      labels:
+        app: test-app-neg
+    spec:
+      securityContext:
+        sysctls:
+        - name: kernel.shm_rmid_forced
+          value: "0"
+        - name: net/ipv4/tcp_syncookies
+          value: "1"
+      containers:
+      - name: test-ubuntu
+        image: ubuntu

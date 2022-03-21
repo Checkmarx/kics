@@ -349,11 +349,16 @@ func TestNewInspector(t *testing.T) { // nolint
 	}
 	contentByte, err := os.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/content_get_queries.rego"))
 	require.NoError(t, err)
+	contentByte2, err2 := os.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/common_query.rego"))
+	require.NoError(t, err2)
 
 	track := &tracker.CITracker{}
 	sources := &mockSource{
-		Source: []string{filepath.FromSlash("./test/fixtures/all_auth_users_get_read_access")},
-		Types:  []string{""},
+		Source: []string{
+			filepath.FromSlash("./test/fixtures/all_auth_users_get_read_access"),
+			filepath.FromSlash("./test/fixtures/common_query_test"),
+		},
+		Types: []string{""},
 	}
 	vbs := DefaultVulnerabilityBuilder
 	opaQueries := make([]*preparedQuery, 0, 1)
@@ -372,6 +377,25 @@ func TestNewInspector(t *testing.T) { // nolint
 				"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", // nolint
 				"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
 				"platform":        "Terraform",
+			},
+			Aggregation: 1,
+		},
+	})
+	opaQueries = append(opaQueries, &preparedQuery{
+		opaQuery: rego.PreparedEvalQuery{},
+		metadata: model.QueryMetadata{
+			Query:     "common_query_test",
+			Content:   string(contentByte2),
+			InputData: "{}",
+			Platform:  "common",
+			Metadata: map[string]interface{}{
+				"id":              "4a3aa2b5-9c87-452c-a3ea-f3e9e3573874",
+				"queryName":       "Common Query Test",
+				"severity":        model.SeverityHigh,
+				"category":        "Best Practices",
+				"descriptionText": "",
+				"descriptionUrl":  "",
+				"platform":        "Common",
 			},
 			Aggregation: 1,
 		},
@@ -432,12 +456,17 @@ func TestNewInspector(t *testing.T) { // nolint
 				t.Errorf("NewInspector() error: got = %v,\n wantErr = %v", err, tt.wantErr)
 				return
 			}
-			gotStrMetadata, err := test.StringifyStruct(got.queries[0].metadata)
-			require.Nil(t, err)
-			wantStrMetadata, err := test.StringifyStruct(tt.want.queries[0].metadata)
-			require.Nil(t, err)
-			if !reflect.DeepEqual(got.queries[0].metadata, tt.want.queries[0].metadata) {
-				t.Errorf("NewInspector() metadata: got = %v,\n want = %v", gotStrMetadata, wantStrMetadata)
+
+			require.Equal(t, len(tt.want.queries), len(got.queries))
+
+			for idx := 0; idx < len(tt.want.queries); idx++ {
+				gotStrMetadata, err := test.StringifyStruct(got.queries[idx].metadata)
+				require.Nil(t, err)
+				wantStrMetadata, err := test.StringifyStruct(tt.want.queries[idx].metadata)
+				require.Nil(t, err)
+				if !reflect.DeepEqual(got.queries[idx].metadata, tt.want.queries[idx].metadata) {
+					t.Errorf("NewInspector() metadata: got = %v,\n want = %v", gotStrMetadata, wantStrMetadata)
+				}
 			}
 
 			gotStrTracker, err := test.StringifyStruct(got.tracker)

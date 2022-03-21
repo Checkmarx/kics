@@ -1,0 +1,18 @@
+[
+    {
+        "queryName": "API Gateway API Protocol Not HTTPS",
+        "severity": "HIGH",
+        "line": 14,
+        "fileName": "positive1.tf"
+    },{
+        "queryName": "API Gateway API Protocol Not HTTPS",
+        "severity": "HIGH",
+        "line": 14,
+        "fileName": "positive2.tf"
+    },{
+        "queryName": "API Gateway API Protocol Not HTTPS",
+        "severity": "HIGH",
+        "line": 21,
+        "fileName": "positive2.tf"
+    }
+]

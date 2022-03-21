@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.k8s as k8sLib
+
 CxPolicy[result] {
 	document := input.document[i]
 	document.kind == "PodSecurityPolicy"
@@ -11,33 +13,37 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("metadata.name=%s.spec", [metadata.name]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.allowedUnsafeSysctls", [metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.allowedUnsafeSysctls is undefined", [metadata.name]),
-		"keyActualValue": sprintf("metadata.name=%s.spec.allowedUnsafeSysctls is defined", [metadata.name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.allowedUnsafeSysctls is undefined", [metadata.name]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.spec.allowedUnsafeSysctls is defined", [metadata.name]),
 	}
 }
 
 CxPolicy[result] {
 	document := input.document[i]
-	document.kind == "Pod"
-	spec := document.spec
-
-	sysctl := spec.securityContext.sysctls[_].name
-	check_unsafe(sysctl)
-
 	metadata := document.metadata
+
+	specInfo := k8sLib.getSpecInfo(document)
+	sysctl := specInfo.spec.securityContext.sysctls[_].name
+	check_unsafe(sysctl)
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("metadata.name=%s.spec.securityContext.sysctls", [metadata.name]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.securityContext.sysctls.name={{%s}}", [metadata.name, specInfo.path, sysctl]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.securityContext.sysctls does not have an unsafe sysctl", [metadata.name]),
-		"keyActualValue": sprintf("metadata.name=%s.spec.securityContext.sysctls has an unsafe sysctl", [metadata.name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.securityContext.sysctls.name={{%s}} is not used", [metadata.name, specInfo.path, sysctl]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.%s.securityContext.sysctls.name={{%s}} is an unsafe sysctl", [metadata.name, specInfo.path, sysctl]),
 	}
 }
 
 check_unsafe(sysctl) {
-	safeSysctls = {"kernel.shm_rmid_forced", "net.ipv4.ip_local_port_range", "net.ipv4.tcp_syncookies", "net.ipv4.ping_group_range"}
+	safeSysctls := {
+		"kernel.shm_rmid_forced", "kernel/shm_rmid_forced",
+		"net.ipv4.ip_local_port_range", "net/ipv4/ip_local_port_range",
+		"net.ipv4.ip_unprivileged_port_start", "net/ipv4/ip_unprivileged_port_start",
+		"net.ipv4.tcp_syncookies", "net/ipv4/tcp_syncookies",
+		"net.ipv4.ping_group_range", "net/ipv4/tcp_syncookies",
+	}
 	not safeSysctls[sysctl]
 }

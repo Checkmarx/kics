@@ -7,13 +7,13 @@ func init() { //nolint
 		Name: "should export the results based on different formats [E2E-CLI-031]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "--output-path", "output", "--output-name", "E2E_CLI_031_RESULT",
+				[]string{"scan", "--output-path", "/path/e2e/output", "--output-name", "E2E_CLI_031_RESULT",
 					"--report-formats", "json,SARIF,glsast,Html,SonarQUBE,Junit,cyclonedx,asff",
-					"-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml"},
+					"-p", "/path/e2e/fixtures/samples/positive.yaml"},
 
-				[]string{"scan", "--output-path", "output", "--output-name", "E2E_CLI_031_RESULT_CIS",
+				[]string{"scan", "--output-path", "/path/e2e/output", "--output-name", "E2E_CLI_031_RESULT_CIS",
 					"--report-formats", "json,JUnit", "--include-queries", "275a3217-ca37-40c1-a6cf-bb57d245ab32",
-					"-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml"},
+					"-p", "/path/e2e/fixtures/samples/positive.yaml"},
 			},
 			ExpectedResult: []ResultsValidation{
 				{

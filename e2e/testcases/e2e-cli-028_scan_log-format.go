@@ -11,7 +11,7 @@ func init() { //nolint
 			Args: []cmdArgs{
 
 				[]string{"scan", "--log-format", "json", "--verbose",
-					"-q", "../assets/queries", "-p", "fixtures/samples/single.dockerfile"},
+					"-p", "/path/e2e/fixtures/samples/single.dockerfile"},
 			},
 		},
 

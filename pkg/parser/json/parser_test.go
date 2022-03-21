@@ -35,6 +35,7 @@ func TestParser_SupportedTypes(t *testing.T) {
 		"openapi":              true,
 		"azureresourcemanager": true,
 		"terraform":            true,
+		"kubernetes":           true,
 	}, p.SupportedTypes())
 }
 

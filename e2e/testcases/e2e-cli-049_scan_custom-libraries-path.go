@@ -7,14 +7,14 @@ func init() { //nolint
 		Name: "should load libraries from the provided path [E2E-CLI-049]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf",
-					"--libraries-path", "fixtures/samples/libraries"},
+				[]string{"scan", "--silent", "-p", "/path/e2e/fixtures/samples/terraform-single.tf",
+					"--libraries-path", "/path/e2e/fixtures/samples/libraries"},
 
-				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml",
-					"--libraries-path", "fixtures/samples/libraries"},
+				[]string{"scan", "--silent", "-p", "/path/e2e/fixtures/samples/positive.yaml",
+					"--libraries-path", "/path/e2e/fixtures/samples/libraries"},
 
-				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml",
-					"--libraries-path", "fixtures/samples/not-exists-folder"},
+				[]string{"scan", "--silent", "-p", "/path/e2e/fixtures/samples/positive.yaml",
+					"--libraries-path", "/path/e2e/fixtures/samples/not-exists-folder"},
 			},
 		},
 		WantStatus: []int{0, 50, 126},

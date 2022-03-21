@@ -3,6 +3,7 @@ package utils
 import (
 	"os"
 	"os/exec"
+	"path/filepath"
 	"strings"
 )
 
@@ -13,12 +14,23 @@ type CmdOutput struct {
 }
 
 // RunCommand executes the kics in a terminal
-func RunCommand(args []string, useMock bool) (*CmdOutput, error) {
+func RunCommand(kicsDockerImage string, kicsArgs []string, useMock bool) (*CmdOutput, error) {
 	descriptionServer := "KICS_DESCRIPTIONS_ENDPOINT=http://kics.io"
 	if useMock {
-		descriptionServer = "KICS_DESCRIPTIONS_ENDPOINT=http://localhost:3000/kics-mock"
+		descriptionServer = "KICS_DESCRIPTIONS_ENDPOINT=http://host.docker.internal:3000/kics-mock"
 	}
-	cmd := exec.Command(args[0], args[1:]...) //nolint
+
+	cwd, cwdErr := os.Getwd()
+	if cwdErr != nil {
+		return &CmdOutput{}, cwdErr
+	}
+
+	baseDir := filepath.Dir(cwd)
+	dockerArgs := []string{"run", "-e", descriptionServer, "--add-host=host.docker.internal:host-gateway",
+		"-v", baseDir + ":/path", kicsDockerImage}
+	completeArgs := append(dockerArgs, kicsArgs...)
+
+	cmd := exec.Command("docker", completeArgs...) //nolint
 	cmd.Env = append(os.Environ(), descriptionServer)
 	stdOutput, err := cmd.CombinedOutput()
 	if err != nil {
@@ -36,15 +48,13 @@ func RunCommand(args []string, useMock bool) (*CmdOutput, error) {
 	}, nil
 }
 
-// GetKICSBinaryPath gets the kics binary complete path
-func GetKICSBinaryPath(path string) []string {
-	var rtnPath string
-	if path == "" {
-		rtnPath = os.Getenv("E2E_KICS_BINARY")
-	} else {
-		rtnPath = path
+// GetKICSDockerImageName gets the kics docker image name
+func GetKICSDockerImageName() string {
+	var imageName = os.Getenv("E2E_KICS_DOCKER")
+	if imageName == "" {
+		imageName = "kics:e2e-tests"
 	}
-	return []string{rtnPath}
+	return imageName
 }
 
 // Contains returns if a string list contains an especific term

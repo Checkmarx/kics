@@ -1,0 +1,11 @@
+{
+  "id": "f20e97f9-4919-43f1-9be9-f203cd339cdd",
+  "queryName": "OSS Bucket Encryption Using CMK Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "OSS Bucket should have encryption enabled using Customer Master Key",
+  "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#server_side_encryption_rule",
+  "platform": "Terraform",
+  "descriptionID": "5907ee8c",
+  "cloudProvider": "alicloud"
+}

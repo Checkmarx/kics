@@ -3,7 +3,7 @@
 # it does not define an ENTRYPOINT as this is a requirement described here:
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/process/container-phases?view=azure-devops#linux-based-containers
 #
-FROM golang:1.17.7-buster as build_env
+FROM golang:1.18.0-buster as build_env
 # Create a group and user
 RUN groupadd checkmarx && useradd -g checkmarx -M -s /bin/bash checkmarx
 USER checkmarx

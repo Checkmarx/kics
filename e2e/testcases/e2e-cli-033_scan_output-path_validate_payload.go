@@ -8,11 +8,11 @@ func init() { //nolint
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan",
-					"--output-path", "output",
+					"--output-path", "/path/e2e/output",
 					"--output-name", "E2E_CLI_033_RESULT",
 					"--report-formats", "json,sarif,glsast",
-					"--payload-path", "output/E2E_CLI_033_PAYLOAD.json",
-					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf",
+					"--payload-path", "/path/e2e/output/E2E_CLI_033_PAYLOAD.json",
+					"-p", "/path/e2e/fixtures/samples/terraform-single.tf",
 				},
 			},
 			ExpectedResult: []ResultsValidation{

@@ -1,0 +1,10 @@
+{
+  "id": "1de5cc51-f376-4638-a940-20f2e85ae238",
+  "queryName": "Anonymous Auth Is Not Set To False",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "When using the kubelet or kube-apiserver command, the 'anonymous-auth' flag should be set to false (--anonymous-auth=false)",
+  "descriptionUrl": "https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/",
+  "platform": "Kubernetes",
+  "descriptionID": "2e5b19cc"
+}

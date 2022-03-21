@@ -7,10 +7,14 @@ func init() { //nolint
 		Name: "should load and execute queries from a custom path [E2E-CLI-051]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "--queries-path", "fixtures/samples/queries/valid/single_query", "-p", "fixtures/samples/bom-positive.tf"},
-				[]string{"scan", "--queries-path", "fixtures/samples/queries/invalid/invalid_metadata", "-p", "fixtures/samples/bom-positive.tf"},
-				[]string{"scan", "--queries-path", "fixtures/samples/queries/invalid/missing_metadata", "-p", "fixtures/samples/bom-positive.tf"},
-				[]string{"scan", "--queries-path", "fixtures/samples/invalid_path", "-p", "fixtures/samples/bom-positive.tf"},
+				[]string{"scan", "--queries-path", "/path/e2e/fixtures/samples/queries/valid/single_query",
+					"-p", "/path/e2e/fixtures/samples/bom-positive.tf"},
+				[]string{"scan", "--queries-path", "/path/e2e/fixtures/samples/queries/invalid/invalid_metadata",
+					"-p", "/path/e2e/fixtures/samples/bom-positive.tf"},
+				[]string{"scan", "--queries-path", "/path/e2e/fixtures/samples/queries/invalid/missing_metadata", "-p",
+					"/path/e2e/fixtures/samples/bom-positive.tf"},
+				[]string{"scan", "--queries-path", "/path/e2e/fixtures/samples/invalid_path",
+					"-p", "/path/e2e/fixtures/samples/bom-positive.tf"},
 			},
 		},
 		WantStatus: []int{50, 0, 0, 126},

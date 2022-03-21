@@ -323,8 +323,8 @@ Gitlab SAST reports are sorted by severity (from high to info), following [Gitla
 
 ```json
 {
-	"schema": "https://gitlab.com/gitlab-org/security-products/security-report-schemas/-/raw/v13.1.0/dist/sast-report-format.json",
-	"version": "13.1.0",
+	"schema": "https://gitlab.com/gitlab-org/security-products/security-report-schemas/-/raw/v14.1.0/dist/sast-report-format.json",
+	"version": "14.1.0",
 	"scan": {
 		"start_time": "2021-05-26T17:22:13",
 		"end_time": "2021-05-26T17:22:13",

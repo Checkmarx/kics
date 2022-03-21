@@ -2,7 +2,7 @@
 
 1. Check for any `update-queries-docs` pull requests open, review and merge if any
 2. Prepare release (run prepare-release action)
-3. Use prepare release pull request to bump UBI7 image version label in the [Dockerfile.ubi7](https://github.com/Checkmarx/kics/blob/master/Dockerfile.ubi7)
+3. Use prepare release pull request to bump UBI8 image version label in the [Dockerfile.ubi8](https://github.com/Checkmarx/kics/blob/master/Dockerfile.ubi8)
 4. Review and merge prepare-release pull-request
 5. Create and push new version git tag
 6. Wait for goreleaser action to complete

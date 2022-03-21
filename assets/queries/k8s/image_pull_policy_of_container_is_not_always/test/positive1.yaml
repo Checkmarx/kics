@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: private-image-test-always
+spec:
+  containers:
+    - name: uses-private-image
+      image: $PRIVATE_IMAGE_NAME:1.2
+      imagePullPolicy: Never
+      command: [ "echo", "SUCCESS" ]

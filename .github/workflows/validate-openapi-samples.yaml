@@ -10,7 +10,7 @@ jobs:
   lint-yaml-samples:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3
         with:
           persist-credentials: false
       - name: yaml-lint
@@ -22,10 +22,10 @@ jobs:
   lint-json-samples:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v2.4.1
+      - uses: actions/setup-node@v3
         with:
           node-version: '14'
       - name: Installing jsonlint

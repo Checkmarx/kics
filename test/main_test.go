@@ -34,6 +34,7 @@ var (
 		"../assets/queries/terraform/github":        {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/kubernetes":    {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/general":       {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/alicloud":      {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/k8s":                     {FileKind: []model.FileKind{model.KindYAML}, Platform: "k8s"},
 		"../assets/queries/cloudFormation/aws":      {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
 		"../assets/queries/cloudFormation/aws_sam":  {FileKind: []model.FileKind{model.KindYAML}, Platform: "cloudFormation"},
@@ -119,10 +120,6 @@ func loadQueries(tb testing.TB) []queryEntry {
 	for queriesPath, queryConfig := range queriesPaths {
 		fs, err := os.ReadDir(queriesPath)
 		require.Nil(tb, err)
-
-		if model.FileKind(queryConfig.Platform) != "buildah" {
-			continue
-		}
 
 		for _, f := range fs {
 			f.Name()

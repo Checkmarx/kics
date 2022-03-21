@@ -7,8 +7,8 @@ func init() { //nolint
 		Name: "should export the result files to provided path [E2E-CLI-030]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "--output-path", "output",
-					"-q", "../assets/queries", "-p", "fixtures/samples/positive.dockerfile"},
+				[]string{"scan", "--output-path", "/path/e2e/output",
+					"-p", "/path/e2e/fixtures/samples/positive.dockerfile"},
 			},
 			ExpectedResult: []ResultsValidation{
 				{

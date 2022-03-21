@@ -1,0 +1,11 @@
+{
+    "id": "2bb13841-7575-439e-8e0a-cccd9ede2fa8",
+    "queryName": "Ram Account Password Policy Max Password Age Unrecommended",
+    "severity": "MEDIUM",
+    "category": "Secret Management",
+    "descriptionText": "Ram Account Password Policy Password 'max_password_age' should be higher than 0 and lower than 91",
+    "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#max_password_age",
+    "platform": "Terraform",
+    "descriptionID": "6056f5ca",
+    "cloudProvider": "alicloud"
+  }

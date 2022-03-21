@@ -8,7 +8,7 @@ func init() { //nolint
 		Name: "should hide all output text in CLI [E2E-CLI-008]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml"},
+				[]string{"scan", "--silent", "-p", "/path/e2e/fixtures/samples/positive.yaml"},
 			},
 			ExpectedOut: []string{"E2E_CLI_008"},
 		},

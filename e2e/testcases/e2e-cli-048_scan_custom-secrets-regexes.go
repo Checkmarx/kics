@@ -7,23 +7,23 @@ func init() { //nolint
 		Name: "should load custom secrets rules from provided path [E2E-CLI-048]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-secret.tf",
-					"--secrets-regexes-path", "fixtures/samples/secrets/regex_rules_48_valid.json"},
+				[]string{"scan", "--silent", "-p", "/path/e2e/fixtures/samples/terraform-secret.tf",
+					"--secrets-regexes-path", "/path/e2e/fixtures/samples/secrets/regex_rules_48_valid.json"},
 
-				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-secret.tf",
-					"--secrets-regexes-path", "fixtures/samples/secrets/regex_rules_48_valid.json",
+				[]string{"scan", "--silent", "-p", "/path/e2e/fixtures/samples/terraform-secret.tf",
+					"--secrets-regexes-path", "/path/e2e/fixtures/samples/secrets/regex_rules_48_valid.json",
 					"--exclude-queries", "487f4be7-3fd9-4506-a07a-eae252180c08"},
 
-				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-secret.tf",
-					"--secrets-regexes-path", "fixtures/samples/secrets/regex_rules_48_empty.json"},
+				[]string{"scan", "--silent", "-p", "/path/e2e/fixtures/samples/terraform-secret.tf",
+					"--secrets-regexes-path", "/path/e2e/fixtures/samples/secrets/regex_rules_48_empty.json"},
 
-				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-secret.tf",
-					"--secrets-regexes-path", "fixtures/samples/secrets/regex_rules_48_invalid_regex.json"},
+				[]string{"scan", "--silent", "-p", "/path/e2e/fixtures/samples/terraform-secret.tf",
+					"--secrets-regexes-path", "/path/e2e/fixtures/samples/secrets/regex_rules_48_invalid_regex.json"},
 
-				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
+				[]string{"scan", "--silent", "-p", "/path/e2e/fixtures/samples/terraform.tf",
 					"--secrets-regexes-path", "not-exists-folder"},
 
-				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
+				[]string{"scan", "--silent", "-p", "/path/e2e/fixtures/samples/terraform.tf",
 					"--secrets-regexes-path", "samples"},
 			},
 		},

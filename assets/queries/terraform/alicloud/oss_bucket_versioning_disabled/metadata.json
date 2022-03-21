@@ -1,0 +1,11 @@
+{
+    "id": "70919c0b-2548-4e6b-8d7a-3d84ab6dabba",
+    "queryName": "OSS Bucket Versioning Disabled",
+    "severity": "MEDIUM",
+    "category": "Backup",
+    "descriptionText": "OSS Bucket should have versioning enabled",
+    "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#versioning",
+    "platform": "Terraform",
+    "descriptionID": "749f1287",
+    "cloudProvider": "alicloud"
+  }

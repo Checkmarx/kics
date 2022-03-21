@@ -8,8 +8,8 @@
     </div>
     <div class="col-6 text-center">
         <br/><br/>
-        <h4>Version 1.5.2</h4>
-        <p style="font-size:8pt">2022.02.16<p>
+        <h4>Version 1.5.4</h4>
+        <p style="font-size:8pt">2022.03.16<p>
         <a class="btn btn-outline-success"  href="https://docs.kics.io/latest/CONTRIBUTING">Contribute!</a>
     </div>
 </div>
@@ -98,5 +98,5 @@ Looking for more info? Explore KICS project in details:
 -   <a href="https://github.com/Checkmarx/kics/projects" target="_blank">Project plans</a>
 -   <a href="https://github.com/Checkmarx/kics/issues" target="_blank">Issues</a>
 
-Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a>.
+Join the <a href="https://github.com/Checkmarx/kics/discussions" target="_blank">GitHub discussions</a>.
 Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)

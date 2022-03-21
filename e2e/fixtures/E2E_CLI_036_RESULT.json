@@ -19,7 +19,7 @@
 	"start": "2022-01-14T11:46:45.5316185Z",
 	"end": "2022-01-14T11:47:12.2883534Z",
 	"paths": [
-		"fixtures/samples/positive.yaml"
+		"/path/e2e/fixtures/samples/positive.yaml"
 	],
 	"queries": [
 		{

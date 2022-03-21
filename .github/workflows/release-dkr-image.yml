@@ -14,7 +14,7 @@ jobs:
       DOCKER_CLI_EXPERIMENTAL: "enabled"
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Get Release version
@@ -43,12 +43,12 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub
-        uses: docker/login-action@v1.12.0
+        uses: docker/login-action@v1.14.1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push alpine to Docker Hub
-        uses: docker/build-push-action@v2.9.0
+        uses: docker/build-push-action@v2.10.0
         id: build_alpine
         with:
           context: .
@@ -62,7 +62,7 @@ jobs:
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
       - name: Build and push debian to Docker Hub
         id: build_debian
-        uses: docker/build-push-action@v2.9.0
+        uses: docker/build-push-action@v2.10.0
         with:
           context: .
           file: ./Dockerfile.debian
@@ -74,14 +74,14 @@ jobs:
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
-      - name: Build and push ubi7 to Docker Hub
-        id: build_ubi7
-        uses: docker/build-push-action@v2.9.0
+      - name: Build and push ubi8 to Docker Hub
+        id: build_ubi8
+        uses: docker/build-push-action@v2.10.0
         with:
           context: .
-          file: ./Dockerfile.ubi7
+          file: ./Dockerfile.ubi8
           push: true
-          tags: checkmarx/kics:ubi7,checkmarx/kics:${{ steps.get-version.outputs.version }}-ubi7
+          tags: checkmarx/kics:ubi8,checkmarx/kics:${{ steps.get-version.outputs.version }}-ubi8
           platforms: linux/amd64
           build-args: |
             VERSION=${{ steps.get-version.outputs.version }}
@@ -106,13 +106,13 @@ jobs:
           DIGEST=${{ steps.build_alpine.outputs.digest }}
           ALPINE_DIGEST=${{ steps.build_alpine.outputs.digest }}
           DEBIAN_DIGEST=${{ steps.build_debian.outputs.digest }}
-          UBI7_DIGEST=${{ steps.build_ubi7.outputs.digest }}
+          UBI8_DIGEST=${{ steps.build_ubi8.outputs.digest }}
 
           echo "${VERSION},${DIGEST}" >> docs/docker/digests.csv
           echo "${VERSION}-alpine,${ALPINE_DIGEST}" >> docs/docker/digests.csv
           echo "${VERSION}-debian,${DEBIAN_DIGEST}" >> docs/docker/digests.csv
-          echo "${VERSION}-ubi7,${UBI7_DIGEST}" >> docs/docker/digests.csv
-      - uses: actions/setup-python@v2.3.2
+          echo "${VERSION}-ubi8,${UBI8_DIGEST}" >> docs/docker/digests.csv
+      - uses: actions/setup-python@v3
         with:
           python-version: 3.x
       - name: Generate .md table
@@ -120,7 +120,7 @@ jobs:
           pip install csvtomd
           csvtomd docs/docker/digests.csv > docs/docker/digests.md
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3.12.1
+        uses: peter-evans/create-pull-request@v3.14.0
         with:
           title: "docs(kicsbot): update images digest"
           token: ${{ secrets.KICS_BOT_PAT }}
