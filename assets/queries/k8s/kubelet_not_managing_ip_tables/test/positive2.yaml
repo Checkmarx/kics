@@ -4,5 +4,5 @@ address: "192.168.0.8"
 port: 20250
 serializeImagePulls: false
 evictionHard:
-  memory.available: "200Mi"
-readOnlyPort: 1
+    memory.available:  "200Mi"
+makeIPTablesUtilChains: false

@@ -12,13 +12,28 @@ CxPolicy[result] {
 	container := specInfo.spec[types[x]][j]
 
 	common_lib.inArray(container.command, commands[_])
-	not k8sLib.hasFlag(container, "--anonymous-auth=false")
+	k8sLib.hasFlag(container, "--anonymous-auth=true")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
-		"issueType": "MissingAttribute",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--anonymous-auth flag should be set to false",
-		"keyActualValue": "--anonymous-auth flag is not set to false",
+		"keyActualValue": "--anonymous-auth flag is set to true",
+	}
+}
+
+CxPolicy[result] {
+	resource := input.document[i]
+	resource.kind == "KubeletConfiguration"
+
+	resource.authentication.anonymous.enabled != false
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": "kind={{KubeletConfiguration}}.authentication.enabled",
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "authentication.anonymous.enabled attribute should be false",
+		"keyActualValue": "authentication.anonymous.enabled attribute is true",
 	}
 }

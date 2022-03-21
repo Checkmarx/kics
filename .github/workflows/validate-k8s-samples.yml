@@ -3,8 +3,8 @@ name: validate-k8s-samples
 on:
   pull_request:
     paths:
-    - "assets/queries/k8s/**/test/*.yaml"
-    - "assets/queries/k8s/**/test/*.yml"
+      - "assets/queries/k8s/**/test/*.yaml"
+      - "assets/queries/k8s/**/test/*.yml"
 
 jobs:
   validate-k8s-manifests:

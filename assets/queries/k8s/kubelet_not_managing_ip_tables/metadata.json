@@ -1,0 +1,10 @@
+{
+    "id": "5f89001f-6dd9-49ff-9b15-d8cd71b617f4",
+    "queryName": "Kubelet Not Managing Ip Tables",
+    "severity": "MEDIUM",
+    "category": "Networking and Firewall",
+    "descriptionText": "Kubelet argument --make-iptables-util-chains should be true",
+    "descriptionUrl": "https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/",
+    "platform": "Kubernetes",
+    "descriptionID": "1bd198ea"
+  }
