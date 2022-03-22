@@ -1,0 +1,11 @@
+{
+    "id": "fd0fc291-4084-4a28-be5e-ab9c21519941",
+    "queryName": "Rotate Kubelet Server Certificate Not Active",
+    "severity": "MEDIUM",
+    "category": "Secret Management",
+    "descriptionText": "Rotate Kubelet Server Certificate feature gate should be active Active",
+    "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/",
+    "platform": "Kubernetes",
+    "descriptionID": "414c2e6c"
+  }
+  
