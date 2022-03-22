@@ -29,6 +29,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue":  "TLS cipher suites should use strong ciphers",
 		"keyActualValue": "TLS cipher suites are not defined",
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
 	}
 }
 
@@ -50,6 +51,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue":  "TLS cipher suites should use strong ciphers",
 		"keyActualValue": "TLS cipher suites uses a weak cipher",
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
 	}
 }
 
