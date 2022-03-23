@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database
+spec:
+  selector:
+    matchLabels:
+      app: database
+      version: v1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: database
+        version: v1
+    spec:
+      serviceAccountName: database
+      containers:
+      - name: database
+        image: gcr.io/google_containers/kube-apiserver:certification
+        imagePullPolicy: IfNotPresent
+        command: ["etcd"]
+        args: ["--trusted-ca-file=/etc/env/valid3.pem"]
+      nodeSelector:
+        kubernetes.io/hostname: worker02  
+    restartPolicy: OnFailure
