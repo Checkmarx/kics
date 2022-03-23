@@ -72,6 +72,4 @@ CxPolicy[result] {
 get_instance_type(instanceProperties, instanceKey) = result {
 	common_lib.valid_key(instanceProperties, instanceKey)
 	result = instanceProperties[instanceKey]
-} else {
-	result = "m1.small"
 }
