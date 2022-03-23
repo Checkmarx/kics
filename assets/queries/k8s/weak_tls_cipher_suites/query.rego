@@ -69,7 +69,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("kind={{%s}}", ["KubeletConfiguration"]),
+		"searchKey": "kind={{KubeletConfiguration}}",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "TLS cipher suites should use strong ciphers",
 		"keyActualValue": "TLS cipher suites are not defined",
@@ -84,7 +84,7 @@ CxPolicy[result] {
 	 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("kind={{%s}}", ["KubeletConfiguration"]),
+		"searchKey": "kind={{KubeletConfiguration}}",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue":  "TLS cipher suites should use strong ciphers",
 		"keyActualValue": "TLS cipher suites uses a weak cipher",
