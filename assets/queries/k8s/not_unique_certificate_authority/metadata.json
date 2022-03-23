@@ -3,8 +3,8 @@
     "queryName": "Not Unique Certificate Authority",
     "severity": "MEDIUM",
     "category": "Secret Management",
-    "descriptionText": "Certificate Authority should be unique for etcd and apiserver",
-    "descriptionUrl": "https://kubernetes.io/docs/reference/using-api/deprecation-policy/",
+    "descriptionText": "Certificate Authority should be unique for etcd",
+    "descriptionUrl": "https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/",
     "platform": "Kubernetes",
     "descriptionID": "d2c6c9e8"
   }

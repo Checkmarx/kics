@@ -22,6 +22,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Trusted Certificate Authentication File should not be the same of a Client Certificate Authentication File",
 		"keyActualValue": "Trusted Certificate Authentication File is the same of a Client Certificate Authentication File",
+        "searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
 	}
 }
 
