@@ -6,8 +6,8 @@ metadata:
     purpose: demonstrate-command
 spec:
   containers:
-    - name: command-demo-container6
-      image: gcr.io/google_containers/kube-apiserver-amd64:v1.6.0
-      command: ["kube-apiserver"]
-      args: ["--feature-gates='RotateKubeletServerCertificate=false'"]
+    - name: command-demo-container
+      image: joaodanielrufino/kubelet
+      command: ["kubelet"]
+      args: ["--feature-gates=RotateKubeletServerCertificate=false"]
   restartPolicy: OnFailure

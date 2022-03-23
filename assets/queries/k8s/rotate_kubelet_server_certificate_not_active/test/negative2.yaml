@@ -6,8 +6,8 @@ metadata:
     purpose: demonstrate-command
 spec:
   containers:
-    - name: command-demo-container2
+    - name: command-demo-container
       image: joaodanielrufino/kubelet
       command: ["kubelet"]
-      args: []
+      args: ["--feature-gates=RotateKubeletServerCertificate=true"]
   restartPolicy: OnFailure
