@@ -39,9 +39,10 @@ CxPolicy[result] {
 	annotationsPath := trim_left(sprintf("%s.annotations", [metadataInfo.path]), ".")
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("metadata.name={{%s}}.%s[%s]", [metadata.name, annotationsPath, expectedKey]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s", [metadata.name, annotationsPath]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s[%s] should be set to 'runtime/default' or 'localhost'", [metadata.name, annotationsPath, expectedKey])
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s[%s] should be set to 'runtime/default' or 'localhost'", [metadata.name, annotationsPath, expectedKey]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.%s[%s] does not specify a valid AppArmor profile", [metadata.name, annotationsPath, expectedKey]),
 	}
 }
 

@@ -7,7 +7,7 @@
 	{
 		"queryName": "Missing AppArmor Profile",
 		"severity": "LOW",
-		"line": 4
+		"line": 5
 	},
 	{
 		"queryName": "Missing AppArmor Profile",
@@ -17,6 +17,6 @@
 	{
 		"queryName": "Missing AppArmor Profile",
 		"severity": "LOW",
-		"line": 33
+		"line": 36
 	}
 ]
