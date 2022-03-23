@@ -744,3 +744,20 @@ remove_last_point(searchKey) = sk {
 } else = sk {
    sk := searchKey
 }
+
+isOSDir(mountPath) = result {
+	hostSensitiveDir = {
+		"/bin", "/sbin", "/boot", "/cdrom",
+		"/dev", "/etc", "/home", "/lib",
+		"/media", "/proc", "/root", "/run",
+		"/seLinux", "/srv", "/usr", "/var",
+	}
+
+	result = listcontains(hostSensitiveDir, mountPath)
+} else = result {
+	result = mountPath == "/"
+}
+
+listcontains(dirs, elem) {
+	startswith(elem, dirs[_])
+}

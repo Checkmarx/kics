@@ -1,0 +1,14 @@
+[
+    {
+      "queryName": "Volume Has Sensitive Host Directory",
+      "severity": "HIGH",
+      "line": 6,
+      "filename": "positive1.yaml"
+    },
+    {
+        "queryName": "Volume Has Sensitive Host Directory",
+        "severity": "HIGH",
+        "line": 10,
+        "filename": "positive1.yaml"
+    }
+]
