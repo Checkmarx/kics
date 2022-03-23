@@ -9,5 +9,5 @@ spec:
     - name: command-demo-container
       image: joaodanielrufino/kubelet
       command: ["kubelet"]
-      args: ["--tls-cipher-suites=TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256"]
+      args: ["--tls-cipher-suites='TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256','TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256'"]
   restartPolicy: OnFailure

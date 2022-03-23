@@ -9,5 +9,5 @@ spec:
     - name: command-demo-container
       image: gcr.io/google_containers/kube-apiserver-amd64:v1.6.0
       command: ["kube-apiserver"]
-      args: ["--tls-cipher-suites=TLS_RSA_WITH_RC4_128_SHA"]
+      args: ["--tls-cipher-suites='TLS_RSA_WITH_RC4_128_SHA'"]
   restartPolicy: OnFailure
