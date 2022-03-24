@@ -6,6 +6,7 @@ import (
 	reportModel "github.com/Checkmarx/kics/pkg/report/model"
 )
 
+// PrintCSVReport prints the CSV report in the given path and filename with the given body
 func PrintCSVReport(path, filename string, body interface{}) error {
 	if !strings.HasSuffix(filename, ".csv") {
 		filename += ".csv"

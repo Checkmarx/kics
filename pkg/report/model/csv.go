@@ -2,10 +2,11 @@ package model
 
 import "github.com/Checkmarx/kics/pkg/model"
 
+// CSVReport struct contains all the info to create the csv report
 type CSVReport struct {
 	QueryName                   string `csv:"query_name"`
-	QueryId                     string `csv:"query_id"`
-	QueryUri                    string `csv:"query_uri"`
+	QueryID                     string `csv:"query_id"`
+	QueryURI                    string `csv:"query_uri"`
 	Severity                    string `csv:"severity"`
 	Platform                    string `csv:"platform"`
 	CloudProvider               string `csv:"cloud_provider"`
@@ -16,7 +17,7 @@ type CSVReport struct {
 	CISDescriptionTitle         string `csv:"cis_description_title"`
 	CISDescriptionTextFormatted string `csv:"cis_description_text"`
 	FileName                    string `csv:"file_name"`
-	SimilarityId                string `csv:"similarity_id"`
+	SimilarityID                string `csv:"similarity_id"`
 	Line                        int    `csv:"line"`
 	IssueType                   string `csv:"issue_type"`
 	SearchKey                   string `csv:"search_key"`
@@ -26,6 +27,7 @@ type CSVReport struct {
 	ActualValue                 string `csv:"actual_value"`
 }
 
+// BuildCSVReport builds the CSV report
 func BuildCSVReport(summary *model.Summary) []CSVReport {
 	csvReport := []CSVReport{}
 
@@ -33,8 +35,8 @@ func BuildCSVReport(summary *model.Summary) []CSVReport {
 		for _, file := range query.Files {
 			csvReport = append(csvReport, CSVReport{
 				QueryName:                   query.QueryName,
-				QueryId:                     query.QueryID,
-				QueryUri:                    query.QueryURI,
+				QueryID:                     query.QueryID,
+				QueryURI:                    query.QueryURI,
 				Severity:                    string(query.Severity),
 				Platform:                    query.Platform,
 				CloudProvider:               query.CloudProvider,
@@ -45,7 +47,7 @@ func BuildCSVReport(summary *model.Summary) []CSVReport {
 				CISDescriptionTitle:         query.CISDescriptionTitle,
 				CISDescriptionTextFormatted: query.CISDescriptionTextFormatted,
 				FileName:                    file.FileName,
-				SimilarityId:                file.SimilarityID,
+				SimilarityID:                file.SimilarityID,
 				Line:                        file.Line,
 				IssueType:                   string(file.IssueType),
 				SearchKey:                   file.SearchKey,
