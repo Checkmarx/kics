@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "Image Policy Webhook Not Defined",
+		"severity": "LOW",
+		"line": 3,
+		"fileName": "positive1.yaml"
+	}
+]
