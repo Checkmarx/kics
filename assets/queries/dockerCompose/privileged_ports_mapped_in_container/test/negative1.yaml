@@ -1,0 +1,21 @@
+services:
+  dhcpd:
+    image: networkboot/dhcpd:latest
+    container_name: dhcpd
+    ports:
+      - 6700:6700/udp
+    cap_drop:
+      - NET_BIND_SERVICE
+    networks:
+      - privnet
+  dhcp_client:
+    build: dhcp_client
+    container_name: dhcp_client
+    ports:
+      - 6800:6800/udp
+
+networks:
+  privnet:
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24
