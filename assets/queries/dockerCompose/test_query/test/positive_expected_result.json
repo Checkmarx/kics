@@ -1,8 +1,0 @@
-[
-  {
-    "queryName": "Test query docker compose",
-    "severity": "LOW",
-    "line": 3,
-    "filename": "positive1.yaml"
-  }
-]

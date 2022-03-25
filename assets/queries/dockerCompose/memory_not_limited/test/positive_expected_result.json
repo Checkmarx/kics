@@ -1,0 +1,14 @@
+[
+    {
+      "queryName": "Memory Not Limited",
+      "severity": "MEDIUM",
+      "line": 3,
+      "filename": "positive1.yaml"
+    },
+    {
+        "queryName": "Memory Not Limited",
+        "severity": "MEDIUM",
+        "line": 5,
+        "filename": "positive2.yaml"
+    }
+  ]
