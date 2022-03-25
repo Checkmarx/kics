@@ -18,6 +18,6 @@ CxPolicy[result] {
 	}
 }
 
-#Security_opt gets ignored when using docker in swarm mode (https://docs.docker.com/engine/swarm/), 
+#security_opt gets ignored when using docker in swarm mode (https://docs.docker.com/engine/swarm/), 
 #which enables the user to manage several docker engines at once
 #a docker engine (https://docs.docker.com/engine/) is an instance of docker installed in a host
