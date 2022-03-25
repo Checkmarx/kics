@@ -1,0 +1,10 @@
+{
+    "id": "77d3c3ed-9c6f-45e7-96d4-b688dd4842d8",
+    "queryName": "Cpus Not Limited",
+    "severity": "LOW",
+    "category": "Resource Management",
+    "descriptionText": "Check if theres is a cpu priority defined for containers in the docker compose document.",
+    "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources",
+    "platform": "DockerCompose",
+    "descriptionID": "abeed53f"
+}

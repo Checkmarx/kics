@@ -1,0 +1,14 @@
+[
+    {
+      "queryName": "Cpus Not Limited",
+      "severity": "LOW",
+      "line": 3,
+      "filename": "positive1.yaml"
+    },
+    {
+        "queryName": "Cpus Not Limited",
+        "severity": "LOW",
+        "line": 5,
+        "filename": "positive2.yaml"
+    }
+  ]

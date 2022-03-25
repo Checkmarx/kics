@@ -1,0 +1,17 @@
+version: "2.4"
+
+services:
+  # CRYPTO
+  crypto_padding_oracle:
+    build:
+      context: "./crypto/paddingoracle"
+    restart: "unless-stopped"
+    cpus: 0.25
+    mem_limit: 512m
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+
+      - FLAG=FLAG-TOO_MANY_ERRORS_TOO_MANY_DETAILS
+    ports:
+      - 11111:5000
