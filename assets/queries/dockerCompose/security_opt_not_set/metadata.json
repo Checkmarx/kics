@@ -3,7 +3,7 @@
     "queryName": "Security Opt Not Set",
     "severity": "MEDIUM",
     "category": "Resource Management",
-    "descriptionText": "Check if security_opt exists",
+    "descriptionText": "Security_opt should be defined.",
     "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt",
     "platform": "DockerCompose",
     "descriptionID": "83fb7a65"
