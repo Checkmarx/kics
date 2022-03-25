@@ -34,6 +34,10 @@
         {
           "description": "Avoiding TF resource access",
           "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
+        },
+        {
+          "description": "Avoiding Secrets Manager arn",
+          "regex": ":secretsmanager:[a-z0-9-]+:[0-9]+:secret:([A-Za-z0-9\/~^_!@&%()=?*+-]{10,})"
         }
       ]
     },
