@@ -25,6 +25,8 @@ type CITracker struct {
 	ScanSecrets        int
 	ScanPaths          int
 	lines              int
+	FoundCountLines    int
+	ParsedCountLines   int
 	Version            model.Version
 }
 
@@ -95,4 +97,14 @@ func (c *CITracker) TrackScanPath() {
 // TrackVersion - information if current version is latest
 func (c *CITracker) TrackVersion(retrievedVersion model.Version) {
 	c.Version = retrievedVersion
+}
+
+// TrackFileFoundCountLines - information about the lines of the scanned files
+func (c *CITracker) TrackFileFoundCountLines(countLines int) {
+	c.FoundCountLines += countLines
+}
+
+// TrackFileParserCountLines - information about the lines of the parsed files
+func (c *CITracker) TrackFileParseCountLines(countLines int) {
+	c.ParsedCountLines += countLines
 }
