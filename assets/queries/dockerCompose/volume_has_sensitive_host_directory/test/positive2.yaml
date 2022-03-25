@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  web:
+    image: nginx:alpine
+    volumes:
+      - type: volume
+        source: /var/lib/data
+        target: /data
+        volume:
+          nocopy: true
+      - type: bind
+        source: ./static
+        target: /opt/app/static

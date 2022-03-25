@@ -6,15 +6,37 @@ CxPolicy[result] {
 	resource := input.document[i]
 	service_parameters := resource.services[name]
     volumes := service_parameters.volumes
-    host_path := split(volumes[0] ,":")
-    host_path1 := host_path[1]
- 	common_lib.isOSDir(host_path1)
+    volume := volumes[v]
+    path := split(volume,":")
+    host_path := path[0]
+ 	common_lib.isOSDir(host_path)
     
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.volumes",[name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Docker compose file to have 'volumes' attribute not set to a sensitive directory",
-		"keyActualValue": "Docker compose file has 'volumes' attribute set to a sensitive directory",
+		"keyExpectedValue": "There is no sensitive directory mounted as a volume",
+		"keyActualValue": sprintf("There is a sensitive directory (%s) mounted as a volume", [host_path]),
+		"searchLine": common_lib.build_search_line(["services", name, "volumes", v], []),
+	}
+}
+
+CxPolicy[result] {
+	resource := input.document[i]
+	service_parameters := resource.services[name]
+    volumes := service_parameters.volumes
+    volume := volumes[v]
+    source := volume.source
+    path := split(source,":")
+    host_path := path[0]
+ 	common_lib.isOSDir(host_path)
+    
+	result := {
+		"documentId": sprintf("%s", [resource.id]),
+		"searchKey": sprintf("services.%s.volumes.source",[name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "There is no sensitive directory mounted as a volume",
+		"keyActualValue": sprintf("There is a sensitive directory (%s) mounted as a volume", [host_path]),
+		"searchLine": common_lib.build_search_line(["services", name, "volumes", "source"], []),
 	}
 }

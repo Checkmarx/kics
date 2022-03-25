@@ -751,6 +751,7 @@ isOSDir(mountPath) = result {
 		"/dev", "/etc", "/home", "/lib",
 		"/media", "/proc", "/root", "/run",
 		"/seLinux", "/srv", "/usr", "/var",
+		"/sys",
 	}
 
 	result = listcontains(hostSensitiveDir, mountPath)
