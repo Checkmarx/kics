@@ -31,30 +31,30 @@ type CSVReport struct {
 func BuildCSVReport(summary *model.Summary) []CSVReport {
 	csvReport := []CSVReport{}
 
-	for _, query := range summary.Queries {
-		for _, file := range query.Files {
+	for i := range summary.Queries {
+		for j := range summary.Queries[i].Files {
 			csvReport = append(csvReport, CSVReport{
-				QueryName:                   query.QueryName,
-				QueryID:                     query.QueryID,
-				QueryURI:                    query.QueryURI,
-				Severity:                    string(query.Severity),
-				Platform:                    query.Platform,
-				CloudProvider:               query.CloudProvider,
-				Category:                    query.Category,
-				DescriptionID:               query.DescriptionID,
-				Description:                 query.Description,
-				CISDescriptionIDFormatted:   query.CISDescriptionIDFormatted,
-				CISDescriptionTitle:         query.CISDescriptionTitle,
-				CISDescriptionTextFormatted: query.CISDescriptionTextFormatted,
-				FileName:                    file.FileName,
-				SimilarityID:                file.SimilarityID,
-				Line:                        file.Line,
-				IssueType:                   string(file.IssueType),
-				SearchKey:                   file.SearchKey,
-				SearchLine:                  file.SearchLine,
-				SearchValue:                 file.SearchValue,
-				ExpectedValue:               file.KeyExpectedValue,
-				ActualValue:                 file.KeyActualValue,
+				QueryName:                   summary.Queries[i].QueryName,
+				QueryID:                     summary.Queries[i].QueryID,
+				QueryURI:                    summary.Queries[i].QueryURI,
+				Severity:                    string(summary.Queries[i].Severity),
+				Platform:                    summary.Queries[i].Platform,
+				CloudProvider:               summary.Queries[i].CloudProvider,
+				Category:                    summary.Queries[i].Category,
+				DescriptionID:               summary.Queries[i].DescriptionID,
+				Description:                 summary.Queries[i].Description,
+				CISDescriptionIDFormatted:   summary.Queries[i].CISDescriptionIDFormatted,
+				CISDescriptionTitle:         summary.Queries[i].CISDescriptionTitle,
+				CISDescriptionTextFormatted: summary.Queries[i].CISDescriptionTextFormatted,
+				FileName:                    summary.Queries[i].Files[j].FileName,
+				SimilarityID:                summary.Queries[i].Files[j].SimilarityID,
+				Line:                        summary.Queries[i].Files[j].Line,
+				IssueType:                   string(summary.Queries[i].Files[j].IssueType),
+				SearchKey:                   summary.Queries[i].Files[j].SearchKey,
+				SearchLine:                  summary.Queries[i].Files[j].SearchLine,
+				SearchValue:                 summary.Queries[i].Files[j].SearchValue,
+				ExpectedValue:               summary.Queries[i].Files[j].KeyExpectedValue,
+				ActualValue:                 summary.Queries[i].Files[j].KeyActualValue,
 			})
 		}
 	}
