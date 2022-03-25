@@ -104,7 +104,7 @@ func (c *CITracker) TrackFileFoundCountLines(countLines int) {
 	c.FoundCountLines += countLines
 }
 
-// TrackFileParserCountLines - information about the lines of the parsed files
+// TrackFileParseCountLines - information about the lines of the parsed files
 func (c *CITracker) TrackFileParseCountLines(countLines int) {
 	c.ParsedCountLines += countLines
 }
