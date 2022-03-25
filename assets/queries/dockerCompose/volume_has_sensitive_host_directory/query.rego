@@ -26,9 +26,7 @@ CxPolicy[result] {
 	service_parameters := resource.services[name]
     volumes := service_parameters.volumes
     volume := volumes[v]
-    source := volume.source
-    path := split(source,":")
-    host_path := path[0]
+    host_path := volume.source
  	common_lib.isOSDir(host_path)
     
 	result := {
@@ -37,6 +35,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "There is no sensitive directory mounted as a volume",
 		"keyActualValue": sprintf("There is a sensitive directory (%s) mounted as a volume", [host_path]),
-		"searchLine": common_lib.build_search_line(["services", name, "volumes", "source"], []),
+		"searchLine": common_lib.build_search_line(["services", name, "volumes", v, "source"], []),
 	}
 }
