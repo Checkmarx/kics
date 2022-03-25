@@ -15,7 +15,7 @@ func TestPrintCSVReport(t *testing.T) {
 		caseTest jsonCaseTest
 	}{
 		{
-			name: "csv report",
+			name: "print csv report",
 			caseTest: jsonCaseTest{
 				summary:  test.SummaryMock,
 				path:     filepath.Join(os.TempDir(), "testdir"),
