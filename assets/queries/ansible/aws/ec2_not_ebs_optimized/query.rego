@@ -28,6 +28,8 @@ CxPolicy[result] {
 	ec2 := task[modules[m]]
 	ans_lib.checkState(ec2)
 
+	instanceType := get_instance_type(ec2)
+	not common_lib.is_aws_ebs_optimized_by_default(instanceType)
 	ec2.ebs_optimized == false
 
 	result := {
