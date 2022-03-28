@@ -2,8 +2,6 @@ version: "3"
 services:
     proxy:
         build: ./pyproxy
-        ports:
-          - 3000:3000
         deploy:
             mode: replicated
             placement:

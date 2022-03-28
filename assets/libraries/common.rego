@@ -761,6 +761,7 @@ isOSDir(mountPath) = result {
 
 listcontains(dirs, elem) {
 	startswith(elem, dirs[_])
+}
 # This function is based on this docs(https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html#describe-ebs-optimization)
 
 is_aws_ebs_optimized_by_default(instanceType) {
