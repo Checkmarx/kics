@@ -12,7 +12,7 @@ resource "aws_iam_policy" "s3-permission" {
         "cloudwatch:*"
       ],
       "Effect": "Allow",
-      "Resource": "*"
+      "Resource": "SomeResource"
     }
   ]
 }
