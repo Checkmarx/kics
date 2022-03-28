@@ -3,6 +3,12 @@
     "queryName": "IAM Policy Grants Full Permissions",
     "severity": "MEDIUM",
     "line": 20,
-    "fileName": "positive.tf"
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "IAM Policy Grants Full Permissions",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive2.tf"
   }
 ]

@@ -28,7 +28,7 @@ func RunCommand(kicsDockerImage string, kicsArgs []string, useMock bool) (*CmdOu
 	baseDir := filepath.Dir(cwd)
 	dockerArgs := []string{"run", "-e", descriptionServer, "--add-host=host.docker.internal:host-gateway",
 		"-v", baseDir + ":/path", kicsDockerImage}
-	completeArgs := append(dockerArgs, kicsArgs...)
+	completeArgs := append(dockerArgs, kicsArgs...) //nolint
 
 	cmd := exec.Command("docker", completeArgs...) //nolint
 	cmd.Env = append(os.Environ(), descriptionServer)
