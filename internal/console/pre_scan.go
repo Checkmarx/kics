@@ -9,9 +9,9 @@ import (
 
 	"github.com/Checkmarx/kics/internal/console/flags"
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
-	internalPrinter "github.com/Checkmarx/kics/internal/console/printer"
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/internal/metrics"
+	internalPrinter "github.com/Checkmarx/kics/pkg/printer"
 	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
