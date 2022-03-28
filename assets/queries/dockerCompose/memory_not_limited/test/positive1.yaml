@@ -10,5 +10,3 @@ services:
           cpus: '0.3'
         reservations:
           cpus: '0.1'
-    networks:
-      - afnet

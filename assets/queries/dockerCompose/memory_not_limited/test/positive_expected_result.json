@@ -2,7 +2,7 @@
     {
       "queryName": "Memory Not Limited",
       "severity": "MEDIUM",
-      "line": 3,
+      "line": 9,
       "filename": "positive1.yaml"
     },
     {

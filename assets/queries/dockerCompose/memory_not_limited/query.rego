@@ -13,11 +13,11 @@ CxPolicy[result] {
    
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
-		"searchKey": sprintf("services.%s",[name]),
+		"searchKey": sprintf("services.%s.deploy.resources.limits",[name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "There is a memory limit in deployed resources",
 		"keyActualValue": "There is no memory limit in deployed resources",
-		"searchLine": common_lib.build_search_line(["services", name], []),
+		"searchLine": common_lib.build_search_line(["services", name, "deploy", "resources", "limits"], []),
 	}
 }
 

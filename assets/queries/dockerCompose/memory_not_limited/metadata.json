@@ -3,7 +3,7 @@
     "queryName": "Memory Not Limited",
     "severity": "MEDIUM",
     "category": "Resource Management",
-    "descriptionText": "Check if theres is a memory limit for containers in the docker compose document.",
+    "descriptionText": "Memory limits should be defined for each container. This prevents potential resource exhaustion by ensuring that containers consume not more than the designated amount of memory",
     "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources",
     "platform": "DockerCompose",
     "descriptionID": "8fcb9f7d"
