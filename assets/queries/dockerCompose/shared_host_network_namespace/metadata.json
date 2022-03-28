@@ -1,9 +1,9 @@
 {
     "id": "071a71ff-f868-47a4-ac0b-3c59e4ab5443",
-    "queryName": "Network Mode Host Exists",
+    "queryName": "Shared Host Network Namespace",
     "severity": "MEDIUM",
     "category": "Networking and Firewall",
-    "descriptionText": "Check if network mode: host exists in the docker compose document.",
+    "descriptionText": "Container should not share the host network namespace",
     "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#network_mode",
     "platform": "DockerCompose",
     "descriptionID": "25acba10"
