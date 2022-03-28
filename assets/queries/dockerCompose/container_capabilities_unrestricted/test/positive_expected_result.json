@@ -1,30 +1,30 @@
 [
     {
-      "queryName": "Check Cap Add Cap Drop",
+      "queryName": "Container Capabilities Unrestricted",
       "severity": "LOW",
       "line": 13,
       "filename": "positive1.yaml"
     },
     {
-        "queryName": "Check Cap Add Cap Drop",
+        "queryName": "Container Capabilities Unrestricted",
         "severity": "LOW",
         "line": 3,
         "filename": "positive1.yaml"
     },
     {
-        "queryName": "Check Cap Add Cap Drop",
+        "queryName": "Container Capabilities Unrestricted",
         "severity": "LOW",
         "line": 13,
         "filename": "positive2.yaml"
     },
     {
-        "queryName": "Check Cap Add Cap Drop",
+        "queryName": "Container Capabilities Unrestricted",
         "severity": "LOW",
         "line": 13,
         "filename": "positive3.yaml"
     },
     {
-        "queryName": "Check Cap Add Cap Drop",
+        "queryName": "Container Capabilities Unrestricted",
         "severity": "LOW",
         "line": 3,
         "filename": "positive4.yaml"

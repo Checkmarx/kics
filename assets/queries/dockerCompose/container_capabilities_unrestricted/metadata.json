@@ -1,9 +1,9 @@
 {
     "id": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d",
-    "queryName": "Check Cap Add Cap Drop",
+    "queryName": "Container Capabilities Unrestricted",
     "severity": "LOW",
     "category": "Resource Management",
-    "descriptionText": "Check for cap add and cap drop, some capabilities are not needed in certain (or any) containers. Make sure that you only add capabilities that your container needs. Drop unnecessary capabilities as well.",
+    "descriptionText": "Some capabilities are not needed in certain (or any) containers. Make sure that you only add capabilities that your container needs. Drop unnecessary capabilities as well.",
     "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop",
     "platform": "DockerCompose",
     "descriptionID": "1ddab108"
