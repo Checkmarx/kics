@@ -3,22 +3,7 @@ package Cx
 import data.generic.common as common_lib
 
 # cap_drop net_bind_service missing, cap_drop itself missing is checked in another query
-CxPolicy[result] {
-	resource := input.document[i]
 
-	service_parameters := resource.services[name]
-    cap_drop := service_parameters.cap_drop
-    cap_drop[_] != "NET_BIND_SERVICE"
-
-	result := {
-		"documentId": sprintf("%s", [resource.id]),
-		"searchKey": "services",
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Docker compose file to have 'cap_drop: NET_BIND_SERVICE' attribute",
-		"keyActualValue": "Docker compose file doesn't have 'cap_drop: NET_BIND_SERVICE' attribute. Make sure your container only has necessary capabilities.",
-        "searchLine": common_lib.build_search_line(["services", name, "cap_drop"], []),
-	}
-}
 CxPolicy[result] {
 
 	resource := input.document[i]
@@ -26,7 +11,8 @@ CxPolicy[result] {
     ports := service_parameters.ports
     port := ports[v]
 	is_privileged_port(port)
-    
+    not has_cap_drop(service_parameters)
+
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.ports",[name]),
@@ -36,7 +22,9 @@ CxPolicy[result] {
         "searchLine": common_lib.build_search_line(["services", name, "ports"], []),
 	}
 }
-
+has_cap_drop(service_parameters) {
+     service_parameters.cap_drop[_] == "NET_BIND_SERVICE"
+}
 is_privileged_port(port)
 {	#COVERS "HOST" port from short syntax "HOST:CONTAINER" and "CONTAINER" syntax
 	both_ports := split(port,":")
