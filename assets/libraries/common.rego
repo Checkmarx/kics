@@ -754,12 +754,12 @@ isOSDir(mountPath) = result {
 		"/sys",
 	}
 
-	result = listcontains(hostSensitiveDir, mountPath)
+	result = list_contains(hostSensitiveDir, mountPath)
 } else = result {
 	result = mountPath == "/"
 }
 
-listcontains(dirs, elem) {
+list_contains(dirs, elem) {
 	startswith(elem, dirs[_])
 }
 # This function is based on this docs(https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html#describe-ebs-optimization)
