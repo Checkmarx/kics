@@ -4,9 +4,7 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i]
-
-	service_parameters := resource.services[name]
-	
+	service_parameters := resource.services[name]	
     common_lib.valid_key(service_parameters, "cap_add")
     
 	result := {
@@ -20,9 +18,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i]
-
-	service_parameters := resource.services[name]
-	
+	service_parameters := resource.services[name]	
     not common_lib.valid_key(service_parameters, "cap_drop")
     
 	result := {
