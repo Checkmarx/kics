@@ -25,6 +25,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s flag should be set",[flag]),
 		"keyActualValue": sprintf("%s flag is not set",[flag]),
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
 	}
 }
 
