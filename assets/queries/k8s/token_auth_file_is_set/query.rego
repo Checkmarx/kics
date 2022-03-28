@@ -11,7 +11,7 @@ CxPolicy[result] {
 	container := specInfo.spec[types[x]][j]
 
 	common_lib.inArray(container.command, "kube-apiserver")
-	not k8sLib.startWithFlag(container, "--token-auth-file")
+	k8sLib.startWithFlag(container, "--token-auth-file")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -19,6 +19,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--token-auth-file flag should not be set",
 		"keyActualValue": "--token-auth-file flag is set",
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
 	}
 }
 
