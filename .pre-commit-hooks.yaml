@@ -2,20 +2,20 @@
 # For use with pre-commit.
 # See usage instructions at http://pre-commit.com
 
-# - id: kics
-#   name: Checkmarx Kics
-#   description: This hook runs kics.
-#   entry: kics scan -p .
-#   language: golang
-#   pass_filenames: false
-#   always_run: false
-#   types_or:
-#     - terraform
-#     - dockerfile
-#     - yaml
-#     - json
-#   exclude: '^.*\.terraform.*$'
-#   require_serial: true
+- id: kics
+  name: Checkmarx Kics
+  description: This hook runs kics.
+  entry: kics scan -p .
+  language: golang
+  pass_filenames: false
+  always_run: false
+  types_or:
+    - terraform
+    - dockerfile
+    - yaml
+    - json
+  exclude: '^.*\.terraform.*$'
+  require_serial: true
 
 - id: kics-scan
   name: Checkmarx Kics Scan
