@@ -2,7 +2,7 @@
   {
     "queryName": "Security Opt Not Set",
     "severity": "MEDIUM",
-    "line": 3,
+    "line": 4,
     "filename": "positive1.yaml"
   }
 ]
