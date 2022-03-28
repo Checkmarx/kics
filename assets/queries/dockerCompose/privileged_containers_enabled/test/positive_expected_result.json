@@ -2,7 +2,7 @@
     {
       "queryName": "Privileged Containers Enabled",
       "severity": "HIGH",
-      "line": 13,
+      "line": 10,
       "filename": "positive1.yaml"
     },
     {
