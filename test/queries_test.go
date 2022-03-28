@@ -227,8 +227,8 @@ func validateQueryResultFields(tb testing.TB, vulnerabilies []model.Vulnerabilit
 			bomResult := make(map[string]string)
 			json.Unmarshal([]byte(*vulnerabilies[idx].Value), &bomResult)
 			bomOutputRequiredFields := map[string]bool{
-				"acl":                    false,
-				"is_default_password":    false,
+				"acl": false,
+				// "is_default_password":    false,
 				"policy":                 false,
 				"resource_type":          true,
 				"resource_name":          true,
@@ -236,8 +236,8 @@ func validateQueryResultFields(tb testing.TB, vulnerabilies []model.Vulnerabilit
 				"resource_accessibility": true,
 				"resource_vendor":        true,
 				"resource_category":      true,
-				"user_name":              false,
-				"resource_encryption":    true,
+				// "user_name":              false,
+				"resource_encryption": true,
 			}
 			for key := range bomOutputRequiredFields {
 				_, ok := bomResult[key]
