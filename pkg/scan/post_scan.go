@@ -9,9 +9,10 @@ import (
 	"time"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
-	consolePrinter "github.com/Checkmarx/kics/internal/console/printer"
 	"github.com/Checkmarx/kics/pkg/descriptions"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/printer"
+	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
 	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/pkg/report"
 	"github.com/rs/zerolog/log"
@@ -20,6 +21,8 @@ import (
 func (c *Client) getSummary(results []model.Vulnerability, end time.Time, pathParameters model.PathParameters) model.Summary {
 	counters := model.Counters{
 		ScannedFiles:           c.Tracker.FoundFiles,
+		ScannedFilesLines:      c.Tracker.FoundCountLines,
+		ParsedFilesLines:       c.Tracker.ParsedCountLines,
 		ParsedFiles:            c.Tracker.ParsedFiles,
 		TotalQueries:           c.Tracker.LoadedQueries,
 		FailedToExecuteQueries: c.Tracker.ExecutingQueries - c.Tracker.ExecutedQueries,
@@ -49,12 +52,12 @@ func (c *Client) resolveOutputs(
 	summary *model.Summary,
 	documents model.Documents,
 	failedQueries map[string]error,
-	printer *consoleHelpers.Printer,
+	printer *printer.Printer,
 	proBarBuilder progress.PbBuilder,
 ) error {
 	log.Debug().Msg("console.resolveOutputs()")
 
-	if err := consoleHelpers.PrintResult(summary, failedQueries, printer); err != nil {
+	if err := consolePrinter.PrintResult(summary, failedQueries, printer); err != nil {
 		return err
 	}
 	if c.ScanParams.PayloadPath != "" {

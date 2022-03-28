@@ -23,3 +23,13 @@ hasFlag(container, flag) {
 } else {
 	common_lib.inArray(container.args, flag)
 }
+
+startWithFlag(container, flag){
+	startsWithArray(container.command, flag)
+} else {
+	startsWithArray(container.args, flag)
+}
+
+startsWithArray(arr, item) {
+    startswith(arr[_], item)
+}

@@ -1,7 +1,9 @@
 {
 	"kics_version": "development",
 	"files_scanned": 1,
+	"lines_scanned": 5,
 	"files_parsed": 1,
+	"lines_parsed": 5,
 	"files_failed_to_scan": 0,
 	"queries_total": 855,
 	"queries_failed_to_execute": 0,

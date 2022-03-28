@@ -137,8 +137,8 @@ func (p *Parser) SupportedExtensions() []string {
 }
 
 // SupportedTypes returns types supported by this parser, which are terraform
-func (p *Parser) SupportedTypes() []string {
-	return []string{"Terraform"}
+func (p *Parser) SupportedTypes() map[string]bool {
+	return map[string]bool{"terraform": true}
 }
 
 // GetKind returns Terraform kind parser

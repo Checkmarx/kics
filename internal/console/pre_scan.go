@@ -9,9 +9,9 @@ import (
 
 	"github.com/Checkmarx/kics/internal/console/flags"
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
-	internalPrinter "github.com/Checkmarx/kics/internal/console/printer"
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/internal/metrics"
+	internalPrinter "github.com/Checkmarx/kics/pkg/printer"
 	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
@@ -114,7 +114,7 @@ func initializeConfig(cmd *cobra.Command) error {
 }
 
 type console struct {
-	Printer       *consoleHelpers.Printer
+	Printer       *internalPrinter.Printer
 	ProBarBuilder *progress.PbBuilder
 }
 
@@ -129,7 +129,7 @@ func (console *console) preScan() {
 		log.Warn().Msgf(warn)
 	}
 
-	printer := consoleHelpers.NewPrinter(flags.GetBoolFlag(flags.MinimalUIFlag))
+	printer := internalPrinter.NewPrinter(flags.GetBoolFlag(flags.MinimalUIFlag))
 	printer.Success.Printf("\n%s\n", banner)
 
 	versionMsg := fmt.Sprintf("\nScanning with %s\n\n", constants.GetVersion())

@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"bytes"
 	"errors"
 	"os"
 	"path/filepath"
@@ -15,7 +16,7 @@ type kindParser interface {
 	GetKind() model.FileKind
 	GetCommentToken() string
 	SupportedExtensions() []string
-	SupportedTypes() []string
+	SupportedTypes() map[string]bool
 	Parse(filePath string, fileContent []byte) ([]model.Document, []int, error)
 	Resolve(fileContent []byte, filename string) (*[]byte, error)
 	StringifyContent(content []byte) (string, error)
@@ -42,16 +43,18 @@ func (b *Builder) Add(p kindParser) *Builder {
 func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) {
 	parserSlice := make([]*Parser, 0, len(b.parsers))
 	for _, parser := range b.parsers {
-		var parsers kindParser
-		extensions := make(model.Extensions, len(b.parsers))
-		platforms := parser.SupportedTypes()
-		if _, _, ok := contains(types, parser.SupportedTypes()); ok {
-			parsers = parser
+		supportedTypes := parser.SupportedTypes()
+		if contains(types, supportedTypes) {
+			extensions := make(model.Extensions, len(b.parsers))
+			var platforms []string
 			for _, ext := range parser.SupportedExtensions() {
 				extensions[ext] = struct{}{}
 			}
+			for key := range supportedTypes {
+				platforms = append(platforms, key)
+			}
 			parserSlice = append(parserSlice, &Parser{
-				parsers:    parsers,
+				parsers:    parser,
 				extensions: extensions,
 				Platform:   platforms,
 			})
@@ -77,6 +80,7 @@ type ParsedDocument struct {
 	Kind        model.FileKind
 	Content     string
 	IgnoreLines []int
+	CountLines  int
 }
 
 // CommentsCommands gets commands on comments in the file beginning, before the code starts
@@ -136,6 +140,7 @@ func (c *Parser) Parse(filePath string, fileContent []byte) (ParsedDocument, err
 			Kind:        c.parsers.GetKind(),
 			Content:     cont,
 			IgnoreLines: igLines,
+			CountLines:  bytes.Count(*resolved, []byte{'\n'}) + 1,
 		}, nil
 	}
 	return ParsedDocument{
@@ -151,27 +156,18 @@ func (c *Parser) SupportedExtensions() model.Extensions {
 	return c.extensions
 }
 
-func contains(types, supportedTypes []string) (invalidArgsRes []string, contRes, supportedRes bool) {
+func contains(types []string, supportedTypes map[string]bool) bool {
 	if types[0] == "" {
-		return []string{}, true, true
+		return true
 	}
-	set := make(map[string]struct{}, len(supportedTypes))
-	for _, s := range supportedTypes {
-		set[strings.ToUpper(s)] = struct{}{}
-	}
-	cont := true
-	supported := false
-	var invalidArgs []string
-	for _, item := range types {
-		_, ok := set[strings.ToUpper(item)]
-		if !ok {
-			cont = false
-			invalidArgs = append(invalidArgs, item)
-		} else {
-			supported = true
+
+	for _, t := range types {
+		if _, ok := supportedTypes[strings.ToLower(t)]; ok {
+			return true
 		}
 	}
-	return invalidArgs, cont, supported
+
+	return false
 }
 
 func (c *Parser) isValidExtension(filePath string) bool {

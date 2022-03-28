@@ -33,7 +33,6 @@ var (
 	cloudRegex                                      = regexp.MustCompile("\\s*\"?Resources\"?\\s*:")
 	k8sRegex                                        = regexp.MustCompile("\\s*\"?apiVersion\"?\\s*:")
 	k8sRegexKind                                    = regexp.MustCompile("\\s*\"?kind\"?\\s*:")
-	k8sRegexMetadata                                = regexp.MustCompile("\\s*\"?metadata\"?\\s*:")
 	ansibleVaultRegex                               = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
 	tfPlanRegexPV                                   = regexp.MustCompile("\\s*\"planned_values\"\\s*:")
 	tfPlanRegexRC                                   = regexp.MustCompile("\\s*\"resource_changes\"\\s*:")
@@ -52,6 +51,8 @@ var (
 	blueprintpRegexTargetScope                      = regexp.MustCompile("\\s*\"?targetScope\"?\\s*:")
 	blueprintpRegexProperties                       = regexp.MustCompile("\\s*\"?properties\"?\\s*:")
 	buildahRegex                                    = regexp.MustCompile(`\s*buildah\s*from\s*\w+`)
+	dockerComposeVersionRegex                       = regexp.MustCompile(`\s*version\s*:`)
+	dockerComposeServicesRegex                      = regexp.MustCompile(`\s*services\s*:`)
 )
 
 var (
@@ -101,7 +102,6 @@ var types = map[string]regexSlice{
 		regex: []*regexp.Regexp{
 			k8sRegex,
 			k8sRegexKind,
-			k8sRegexMetadata,
 		},
 	},
 	"cloudformation": {
@@ -163,6 +163,12 @@ var types = map[string]regexSlice{
 	"buildah": {
 		[]*regexp.Regexp{
 			buildahRegex,
+		},
+	},
+	"dockercompose": {
+		[]*regexp.Regexp{
+			dockerComposeVersionRegex,
+			dockerComposeServicesRegex,
 		},
 	},
 }
@@ -263,7 +269,7 @@ func worker(path string, results, unwanted chan<- string, wg *sync.WaitGroup) {
 
 // overrides k8s match when all regexs passes for azureresourcemanager key and extension is set to json
 func needsOverride(check bool, returnType, key, ext string) bool {
-	if check && returnType == kubernetes && key == "azureresourcemanager" && ext == json {
+	if check && returnType == kubernetes && key == arm && ext == json {
 		return true
 	}
 	return false
@@ -318,7 +324,7 @@ func checkReturnType(path, returnType, ext string, content []byte) string {
 		if returnType == "cdkTf" {
 			return terraform
 		}
-		if contains(armRegexTypes, returnType) {
+		if utils.Contains(returnType, armRegexTypes) {
 			return arm
 		}
 	} else if ext == yaml || ext == yml {
@@ -370,20 +376,9 @@ func checkYamlPlatform(content []byte) string {
 func createSlice(chanel chan string) []string {
 	slice := make([]string, 0)
 	for i := range chanel {
-		if !contains(slice, i) {
+		if !utils.Contains(i, slice) {
 			slice = append(slice, i)
 		}
 	}
 	return slice
-}
-
-// contains is a simple method to check if a slice
-// contains an entry
-func contains(s []string, e string) bool {
-	for _, a := range s {
-		if a == e {
-			return true
-		}
-	}
-	return false
 }
