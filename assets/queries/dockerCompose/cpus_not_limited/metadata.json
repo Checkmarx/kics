@@ -3,7 +3,7 @@
     "queryName": "Cpus Not Limited",
     "severity": "LOW",
     "category": "Resource Management",
-    "descriptionText": "Check if theres is a cpu priority defined for containers in the docker compose document.",
+    "descriptionText": "CPU limits should be set because if the system has CPU time free, a container is guaranteed to be allocated as much CPU as it requests",
     "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources",
     "platform": "DockerCompose",
     "descriptionID": "abeed53f"

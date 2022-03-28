@@ -2,7 +2,7 @@
     {
       "queryName": "Cpus Not Limited",
       "severity": "LOW",
-      "line": 3,
+      "line": 9,
       "filename": "positive1.yaml"
     },
     {
