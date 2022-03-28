@@ -69,7 +69,7 @@
 				
 				<option value="file6">github.com/Checkmarx/kics/internal/console/helpers/exit_handler.go (100.0%)</option>
 				
-				<option value="file7">github.com/Checkmarx/kics/internal/console/helpers/helpers.go (81.2%)</option>
+				<option value="file7">github.com/Checkmarx/kics/internal/console/helpers/helpers.go (81.5%)</option>
 				
 				<option value="file8">github.com/Checkmarx/kics/internal/console/kics.go (79.4%)</option>
 				
@@ -97,7 +97,7 @@
 				
 				<option value="file20">github.com/Checkmarx/kics/internal/storage/memory.go (95.2%)</option>
 				
-				<option value="file21">github.com/Checkmarx/kics/internal/tracker/ci.go (81.2%)</option>
+				<option value="file21">github.com/Checkmarx/kics/internal/tracker/ci.go (72.2%)</option>
 				
 				<option value="file22">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (87.4%)</option>
 				
@@ -147,9 +147,9 @@
 				
 				<option value="file45">github.com/Checkmarx/kics/pkg/kics/resolver_sink.go (0.0%)</option>
 				
-				<option value="file46">github.com/Checkmarx/kics/pkg/kics/service.go (45.8%)</option>
+				<option value="file46">github.com/Checkmarx/kics/pkg/kics/service.go (42.2%)</option>
 				
-				<option value="file47">github.com/Checkmarx/kics/pkg/kics/sink.go (45.0%)</option>
+				<option value="file47">github.com/Checkmarx/kics/pkg/kics/sink.go (41.9%)</option>
 				
 				<option value="file48">github.com/Checkmarx/kics/pkg/model/comment_yaml.go (75.0%)</option>
 				
@@ -964,7 +964,9 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
         fmt.Printf("TOTAL: %d\n\n", summary.SeveritySummary.TotalCounter)
 
         log.Info().Msgf("Files scanned: %d", summary.ScannedFiles)
+        log.Info().Msgf("Lines scanned: %d", summary.ScannedFilesLines)
         log.Info().Msgf("Parsed files: %d", summary.ParsedFiles)
+        log.Info().Msgf("Lines parsed: %d", summary.ParsedFilesLines)
         log.Info().Msgf("Queries loaded: %d", summary.TotalQueries)
         log.Info().Msgf("Queries failed to execute: %d", summary.FailedToExecuteQueries)
         log.Info().Msg("Inspector stopped")
@@ -2360,13 +2362,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="32">total += v
+                <span class="cov8" title="34">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2391,7 +2393,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2517,6 +2519,8 @@ type CITracker struct {
         ScanSecrets        int
         ScanPaths          int
         lines              int
+        FoundCountLines    int
+        ParsedCountLines   int
         Version            model.Version
 }
 
@@ -2587,6 +2591,16 @@ func (c *CITracker) TrackScanPath() <span class="cov0" title="0">{
 // TrackVersion - information if current version is latest
 func (c *CITracker) TrackVersion(retrievedVersion model.Version) <span class="cov0" title="0">{
         c.Version = retrievedVersion
+}</span>
+
+// TrackFileFoundCountLines - information about the lines of the scanned files
+func (c *CITracker) TrackFileFoundCountLines(countLines int) <span class="cov0" title="0">{
+        c.FoundCountLines += countLines
+}</span>
+
+// TrackFileParseCountLines - information about the lines of the parsed files
+func (c *CITracker) TrackFileParseCountLines(countLines int) <span class="cov0" title="0">{
+        c.ParsedCountLines += countLines
 }</span>
 </pre>
 		
@@ -4558,7 +4572,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -4757,7 +4771,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -7440,6 +7454,7 @@ func getSeverity(severity string) model.Severity <span class="cov3" title="4">{
 		<pre class="file" id="file45" style="display: none">package kics
 
 import (
+        "bytes"
         "context"
         "encoding/json"
         "fmt"
@@ -7464,6 +7479,9 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 
         <span class="cov0" title="0">for _, rfile := range resFiles.File </span><span class="cov0" title="0">{
                 s.Tracker.TrackFileFound()
+                countLines := bytes.Count(rfile.Content, []byte{'\n'}) + 1
+                s.Tracker.TrackFileFoundCountLines(countLines)
+
                 documents, err := s.Parser.Parse(rfile.FileName, rfile.Content)
                 if err != nil </span><span class="cov0" title="0">{
                         if documents.Kind == "break" </span><span class="cov0" title="0">{
@@ -7504,7 +7522,8 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
                         }
                         s.saveToFile(ctx, &amp;file)</span>
                 }
-                <span class="cov0" title="0">s.Tracker.TrackFileParse()</span>
+                <span class="cov0" title="0">s.Tracker.TrackFileParse()
+                s.Tracker.TrackFileParseCountLines(documents.CountLines)</span>
         }
         <span class="cov0" title="0">return resFiles.Excluded, nil</span>
 }
@@ -7513,6 +7532,7 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 		<pre class="file" id="file46" style="display: none">package kics
 
 import (
+        "bytes"
         "context"
         "encoding/json"
         "io"
@@ -7551,6 +7571,8 @@ type Storage interface {
 type Tracker interface {
         TrackFileFound()
         TrackFileParse()
+        TrackFileFoundCountLines(countLines int)
+        TrackFileParseCountLines(countLines int)
 }
 
 // Service is a struct that contains a SourceProvider to receive sources, a storage to save and retrieve scanning informations
@@ -7623,17 +7645,30 @@ func (s *Service) StartScan(
         }</span>
 }
 
+// Content keeps the content of the file and the number of lines
+type Content struct {
+        Content    *[]byte
+        CountLines int
+}
+
 /*
    getContent will read the passed file 1MB at a time
    to prevent resource exhaustion and return its content
 */
-func getContent(rc io.Reader) (*[]byte, error) <span class="cov0" title="0">{
+func getContent(rc io.Reader) (*Content, error) <span class="cov0" title="0">{
         maxSizeMB := 5 // Max size of file in MBs
         var content []byte
+        countLines := 0
         data := make([]byte, mbConst)
+
+        c := &amp;Content{
+                Content:    &amp;[]byte{},
+                CountLines: 0,
+        }
+
         for </span><span class="cov0" title="0">{
                 if maxSizeMB &lt; 0 </span><span class="cov0" title="0">{
-                        return &amp;[]byte{}, errors.New("file size limit exceeded")
+                        return c, errors.New("file size limit exceeded")
                 }</span>
                 <span class="cov0" title="0">data = data[:cap(data)]
                 n, err := rc.Read(data)
@@ -7641,12 +7676,16 @@ func getContent(rc io.Reader) (*[]byte, error) <span class="cov0" title="0">{
                         if err == io.EOF </span><span class="cov0" title="0">{
                                 break</span>
                         }
-                        <span class="cov0" title="0">return &amp;[]byte{}, err</span>
+                        <span class="cov0" title="0">return c, err</span>
                 }
-                <span class="cov0" title="0">content = append(content, data[:n]...)
+                <span class="cov0" title="0">countLines += bytes.Count(data[:n], []byte{'\n'}) + 1
+                content = append(content, data[:n]...)
                 maxSizeMB--</span>
         }
-        <span class="cov0" title="0">return &amp;content, nil</span>
+        <span class="cov0" title="0">c.Content = &amp;content
+        c.CountLines = countLines
+
+        return c, nil</span>
 }
 
 // GetVulnerabilities returns a list of scan detected vulnerabilities
@@ -7741,7 +7780,12 @@ var (
 func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reader) error <span class="cov0" title="0">{
         s.Tracker.TrackFileFound()
 
-        content, err := getContent(rc)
+        c, err := getContent(rc)
+
+        content := c.Content
+
+        s.Tracker.TrackFileFoundCountLines(c.CountLines)
+
         if err != nil </span><span class="cov0" title="0">{
                 return errors.Wrapf(err, "failed to get file content: %s", filename)
         }</span>
@@ -7785,6 +7829,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
                 s.saveToFile(ctx, &amp;file)</span>
         }
         <span class="cov0" title="0">s.Tracker.TrackFileParse()
+        s.Tracker.TrackFileParseCountLines(documents.CountLines)
 
         return errors.Wrap(err, "failed to save file content")</span>
 }
@@ -8784,7 +8829,9 @@ type QueryResultSlice []QueryResult
 // and how many queries failed to execute
 type Counters struct {
         ScannedFiles           int `json:"files_scanned"`
+        ScannedFilesLines      int `json:"lines_scanned"`
         ParsedFiles            int `json:"files_parsed"`
+        ParsedFilesLines       int `json:"lines_parsed"`
         FailedToScanFiles      int `json:"files_failed_to_scan"`
         TotalQueries           int `json:"queries_total"`
         FailedToExecuteQueries int `json:"queries_failed_to_execute"`
@@ -12810,6 +12857,7 @@ func (v *JSONFilterTreeVisitor) VisitLiteral(ctx *LiteralContext) interface{} <s
 		<pre class="file" id="file68" style="display: none">package parser
 
 import (
+        "bytes"
         "errors"
         "os"
         "path/filepath"
@@ -12888,6 +12936,7 @@ type ParsedDocument struct {
         Kind        model.FileKind
         Content     string
         IgnoreLines []int
+        CountLines  int
 }
 
 // CommentsCommands gets commands on comments in the file beginning, before the code starts
@@ -12947,6 +12996,7 @@ func (c *Parser) Parse(filePath string, fileContent []byte) (ParsedDocument, err
                         Kind:        c.parsers.GetKind(),
                         Content:     cont,
                         IgnoreLines: igLines,
+                        CountLines:  bytes.Count(*resolved, []byte{'\n'}) + 1,
                 }, nil</span>
         }
         <span class="cov0" title="0">return ParsedDocument{
@@ -17478,6 +17528,8 @@ import (
 func (c *Client) getSummary(results []model.Vulnerability, end time.Time, pathParameters model.PathParameters) model.Summary <span class="cov0" title="0">{
         counters := model.Counters{
                 ScannedFiles:           c.Tracker.FoundFiles,
+                ScannedFilesLines:      c.Tracker.FoundCountLines,
+                ParsedFilesLines:       c.Tracker.ParsedCountLines,
                 ParsedFiles:            c.Tracker.ParsedFiles,
                 TotalQueries:           c.Tracker.LoadedQueries,
                 FailedToExecuteQueries: c.Tracker.ExecutingQueries - c.Tracker.ExecutedQueries,
