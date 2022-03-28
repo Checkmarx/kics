@@ -24,7 +24,9 @@ func CSVToJSON(t *testing.T, filename string) []byte {
 	reader.FieldsPerRecord = -1
 	csvData, err := reader.ReadAll()
 	require.NoError(t, err, "Error reading CSV file: %s", fullPath)
-	csvFile.Close()
+
+	err = csvFile.Close()
+	require.NoError(t, err, "Error when closing file: %s", fullPath)
 
 	var csvStruct CSVSchema
 	var csvItems []CSVSchema
