@@ -19,7 +19,9 @@ func CSVToJSON(t *testing.T, filename string) []byte {
 
 	csvFile, err := os.Open(fullPath)
 	require.NoError(t, err, "Error reading file: %s", fullPath)
-	defer csvFile.Close()
+
+	err = csvFile.Close()
+	require.NoError(t, err, "Error when closing file: %s", fullPath)
 
 	reader := csv.NewReader(csvFile)
 	reader.FieldsPerRecord = -1
@@ -30,10 +32,10 @@ func CSVToJSON(t *testing.T, filename string) []byte {
 	var csvItems []CSVSchema
 
 	for _, row := range csvData[1:] {
-		line, err := strconv.Atoi(row[14])
-		require.NoError(t, err, "Error when converting CSV: %s", fullPath)
-		searchLine, err := strconv.Atoi(row[17])
-		require.NoError(t, err, "Error when converting CSV: %s", fullPath)
+		line, lineErr := strconv.Atoi(row[14])
+		require.NoError(t, lineErr, "Error when converting CSV: %s", fullPath)
+		searchLine, searchErr := strconv.Atoi(row[17])
+		require.NoError(t, searchErr, "Error when converting CSV: %s", fullPath)
 
 		csvStruct.QueryName = row[0]
 		csvStruct.QueryID = row[1]
