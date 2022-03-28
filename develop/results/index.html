@@ -1228,16 +1228,19 @@
 
 
 <h1 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h1>
-<p>KICS can export results in multiple formats which can be seen on the following list:
-- ASFF (asff)
-- CycloneDX (cyclonedx)
-- Gitlab SAST (glsast)
-- HTML (html)
-- JSON (json)
-- JUnit (junit)
-- PDF (pdf)
-- SARIF (sarif)
-- SonarQube (sonarqube)</p>
+<p>KICS can export results in multiple formats which can be seen on the following list:</p>
+<ul>
+<li>ASFF (asff)</li>
+<li>CSV (csv)</li>
+<li>CycloneDX (cyclonedx)</li>
+<li>Gitlab SAST (glsast)</li>
+<li>HTML (html)</li>
+<li>JSON (json)</li>
+<li>JUnit (junit)</li>
+<li>PDF (pdf)</li>
+<li>SARIF (sarif)</li>
+<li>SonarQube (sonarqube)</li>
+</ul>
 <p>To export in JSON format in current directory, you can use the following command:</p>
 <pre><code class="language-bash">./kics scan -p &lt;path-of-your-project-to-scan&gt; -o ./
 </code></pre>
@@ -1637,7 +1640,6 @@ Gitlab SAST reports are sorted by severity (from high to info), following <a hre
         }
     ]
 }
-
 </code></pre>
 <h2 id="junit">JUnit<a class="headerlink" href="#junit" title="Permanent link">&para;</a></h2>
 <p>You can export JUnit report by using <code>--report-formats "junit"</code>.
@@ -1816,7 +1818,6 @@ SonarQube reports, follow <a href="https://docs.sonarqube.org/latest/analysis/ge
         }
     ]
 }
-
 </code></pre>
 <h2 id="html">HTML<a class="headerlink" href="#html" title="Permanent link">&para;</a></h2>
 <p>You can export html report by using <code>--report-formats "html"</code>.
@@ -1963,6 +1964,107 @@ PDF reports are sorted by severity (from high to info), the results will have qu
     }
 ]
 </code></pre>
+<h2 id="csv">CSV<a class="headerlink" href="#csv" title="Permanent link">&para;</a></h2>
+<p>You can export CSV report by using <code>--report-formats "csv"</code>.</p>
+<p>CSV reports follow the <a href="https://www.loc.gov/preservation/digital/formats/fdd/fdd000323.shtml#:~:text=CSV%20is%20a%20simple%20format,characters%20indicating%20a%20line%20break.">CSV structure</a>.</p>
+<table>
+<thead>
+<tr>
+<th>query_name</th>
+<th>query_id</th>
+<th>query_uri</th>
+<th>severity</th>
+<th>platform</th>
+<th>cloud_provider</th>
+<th>category</th>
+<th>description_id</th>
+<th>description</th>
+<th>cis_description_id</th>
+<th>cis_description_title</th>
+<th>cis_description_text</th>
+<th>file_name</th>
+<th>similarity_id</th>
+<th>line</th>
+<th>issue_type</th>
+<th>search_key</th>
+<th>search_line</th>
+<th>search_value</th>
+<th>expected_value</th>
+<th>actual_value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EC2 Sensitive Port Is Publicly Exposed</td>
+<td>494b03d3-bf40-4464-8524-7c56ad0700ed</td>
+<td>https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html</td>
+<td>HIGH</td>
+<td>CloudFormation</td>
+<td>AWS</td>
+<td>Networking and Firewall</td>
+<td>680b7e89</td>
+<td>The EC2 instance has a sensitive port connection exposed to the entire network</td>
+<td></td>
+<td></td>
+<td></td>
+<td>../../assets/queries/cloudFormation/aws/security_groups_with_unrestricted_access_to_ssh/test/positive2.json</td>
+<td>9730156b201b5098479a7b624d01931303a2f27c3991c7a786aeb2c10912894a</td>
+<td>27</td>
+<td>IncorrectValue</td>
+<td>Resources.InstanceSecurityGroup.SecurityGroupIngress</td>
+<td>0</td>
+<td>TCP,22</td>
+<td>SSH (TCP:22) should not be allowed in EC2 security group for instance Ec2Instance</td>
+<td>SSH (TCP:22) is allowed in EC2 security group for instance Ec2Instance</td>
+</tr>
+<tr>
+<td>EC2 Sensitive Port Is Publicly Exposed</td>
+<td>494b03d3-bf40-4464-8524-7c56ad0700ed</td>
+<td>https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html</td>
+<td>HIGH</td>
+<td>CloudFormation</td>
+<td>AWS</td>
+<td>Networking and Firewall</td>
+<td>680b7e89</td>
+<td>The EC2 instance has a sensitive port connection exposed to the entire network</td>
+<td></td>
+<td></td>
+<td></td>
+<td>../../assets/queries/cloudFormation/aws/security_groups_with_unrestricted_access_to_ssh/test/positive1.yaml</td>
+<td>a93a3f7320a60045c04cd950500a1c3cff5bc9a4aae7f1e0cde73033386e1242</td>
+<td>15</td>
+<td>IncorrectValue</td>
+<td>Resources.InstanceSecurityGroup.SecurityGroupIngress</td>
+<td>0</td>
+<td>TCP,22</td>
+<td>SSH (TCP:22) should not be allowed in EC2 security group for instance Ec2Instance</td>
+<td>SSH (TCP:22) is allowed in EC2 security group for instance Ec2Instance</td>
+</tr>
+<tr>
+<td>Security Group With Unrestricted Access To SSH</td>
+<td>6e856af2-62d7-4ba2-adc1-73b62cef9cc1</td>
+<td>https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html</td>
+<td>HIGH</td>
+<td>CloudFormation</td>
+<td>AWS</td>
+<td>Networking and Firewall</td>
+<td>d515d6dc</td>
+<td>Security Groups allows all traffic for SSH (port:22)</td>
+<td></td>
+<td></td>
+<td></td>
+<td>../../assets/queries/cloudFormation/aws/security_groups_with_unrestricted_access_to_ssh/test/positive1.yaml</td>
+<td>ca8ec85623eed6a5cb3d3b8c1b69d145778e28517d2adf5fb856a57f9870c430</td>
+<td>15</td>
+<td>IncorrectValue</td>
+<td>Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress</td>
+<td>0</td>
+<td></td>
+<td>None of the Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress has port 22</td>
+<td>One of the Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress has port 22</td>
+</tr>
+</tbody>
+</table>
 
               
             </article>
