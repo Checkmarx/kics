@@ -27,7 +27,7 @@ CxPolicy[result] {
     
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("kind={{Policy}}", []),
+		"searchKey": "kind={{Policy}}.rules",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue":sprintf("Resource '%s' is defined in the following levels '%s'",[resource_rule, levels]),
 		"keyActualValue": sprintf("Resource '%s' is not defined in the following levels '%s'",[resource_rule, levels]),

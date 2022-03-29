@@ -1,9 +1,9 @@
 {
   "id": "1828a670-5957-4bc5-9974-47da228f75e2",
-  "queryName": "Audit Policy Not Cover key Security Concerns",
+  "queryName": "Audit Policy Not Cover Key Security Concerns",
   "severity": "LOW",
   "category": "Observability",
-  "descriptionText": "Audit Policy should Cover key Security Concerns about the sersitive data logged in Kubernetes audit policies",
+  "descriptionText": "Audit Policy should cover key security concerns about the sensitive data logged in Kubernetes audit policies",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/debug-application-cluster/audit/",
   "platform": "Kubernetes",
   "descriptionID": "4a720a0c"
