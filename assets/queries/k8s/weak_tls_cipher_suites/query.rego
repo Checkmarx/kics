@@ -3,22 +3,15 @@ package Cx
 import data.generic.k8s as k8s_lib
 import data.generic.common as common_lib
 
-strongCiphers = [
-    "'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256'",
-    "'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256'",
-    "'TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305'",
-    "'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384'",
-    "'TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305'",
-    "'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384'"
-]
-
 strongCiphersConfig = [
     "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",
     "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",
     "TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305",
     "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",
     "TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305",
-    "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384"
+    "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
+	"TLS_RSA_WITH_AES_256_GCM_SHA384",
+	"TLS_RSA_WITH_AES_128_GCM_SHA256"
 ]
 
 CxPolicy[result] {
@@ -103,5 +96,13 @@ cipherSplit(arr,item){
     options := split(element, "=")
     ciphers := split(options[1], ",")
     cipher := ciphers[_]
-    not common_lib.inArray(strongCiphers,cipher)
+    not common_lib.inArray(strongCiphersConfig,cipher)
 }
+
+
+
+
+
+
+
+
