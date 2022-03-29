@@ -2,7 +2,6 @@ package Cx
 
 import data.generic.common as common_lib
 
-# cap_drop net_bind_service missing, cap_drop itself missing is checked in another query
 
 CxPolicy[result] {
 
@@ -22,9 +21,11 @@ CxPolicy[result] {
         "searchLine": common_lib.build_search_line(["services", name, "ports"], []),
 	}
 }
+
 has_cap_drop(service_parameters) {
      service_parameters.cap_drop[_] == "NET_BIND_SERVICE"
 }
+
 is_privileged_port(port)
 {	#COVERS "HOST" port from short syntax "HOST:CONTAINER" and "CONTAINER" syntax
 	both_ports := split(port,":")
