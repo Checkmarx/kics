@@ -34,8 +34,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue":  "TLS cipher suites should use strong ciphers",
-		"keyActualValue": "TLS cipher suites are not defined",
+		"keyExpectedValue":  "'--tls-cipher-suites' flag should be defined and use strong ciphers",
+		"keyActualValue": "'--tls-cipher-suites' flag is not defined",
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
 	}
 }
@@ -71,7 +71,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": "kind={{KubeletConfiguration}}",
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "TLS cipher suites should use strong ciphers",
+		"keyExpectedValue": "KubeletConfiguration should have 'tlsCipherSuites' attribute with strong ciphers defined",
 		"keyActualValue": "TLS cipher suites are not defined",
 	}
 }
