@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#bill_of_materials" class="md-skip">
+        <a href="#terraform_bill_of_materials" class="md-skip">
           Skip to content
         </a>
       
@@ -599,8 +599,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#bill_of_materials" class="md-nav__link">
-    Bill Of Materials
+  <a href="#terraform_bill_of_materials" class="md-nav__link">
+    [Terraform] Bill Of Materials
   </a>
   
 </li>
@@ -1197,8 +1197,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#bill_of_materials" class="md-nav__link">
-    Bill Of Materials
+  <a href="#terraform_bill_of_materials" class="md-nav__link">
+    [Terraform] Bill Of Materials
   </a>
   
 </li>
@@ -1223,24 +1223,100 @@
 
   <h1>Bill of Materials</h1>
 
-<h2 id="bill_of_materials">Bill Of Materials<a class="headerlink" href="#bill_of_materials" title="Permanent link">&para;</a></h2>
+<h2 id="terraform_bill_of_materials">[Terraform] Bill Of Materials<a class="headerlink" href="#terraform_bill_of_materials" title="Permanent link">&para;</a></h2>
 <p>This feature uses Rego queries to extract a list of used Terraform resources along with its metadata in the scanned IaC.</p>
 <p>Find the existing queries under: <a href="https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws_bom">assets/queries/terraform/aws_bom</a></p>
 <p>BoM queries extracts metadata about the resources and organizes it in the following structure:</p>
 <pre><code class="language-go">billOfMaterialsRequiredFields := map[string]bool{
     &quot;acl&quot;:                    false,
-    &quot;is_default_password&quot;:    false,
     &quot;policy&quot;:                 false,
-    &quot;resource_type&quot;:          true,
-    &quot;resource_name&quot;:          true,
-    &quot;resource_engine&quot;:        false,
     &quot;resource_accessibility&quot;: true,
-    &quot;resource_vendor&quot;:        true,
     &quot;resource_category&quot;:      true,
-    &quot;user_name&quot;:              false,
+    &quot;resource_encryption&quot;:    true,
+    &quot;resource_engine&quot;:        false,
+    &quot;resource_name&quot;:          true,
+    &quot;resource_type&quot;:          true,
+    &quot;resource_vendor&quot;:        true,
 }
 </code></pre>
-<p>After extracting the information, the query stores the stringified JSON structure inside the <code>value</code> field in the <code>result</code>:</p>
+<p>Observe more detailed information about it in the table below.</p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>Field</strong></th>
+<th align="center"><strong>Possible Values</strong></th>
+<th align="center"><strong>Required</strong></th>
+<th align="center"><strong>Resources</strong></th>
+<th align="center"><strong>Type</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">acl</td>
+<td align="center">private,<br /> public-read,<br /> public-read-write,<br /> aws-exec-read,<br /> authenticated-read,<br /> bucket-owner-read,<br /> bucket-owner-full-control,<br />  log-delivery-write</td>
+<td align="center">No</td>
+<td align="center"><code>aws_s3_bucket</code></td>
+<td align="center">string</td>
+</tr>
+<tr>
+<td align="center">policy</td>
+<td align="center">policy content (in case <code>resource_accessibility</code> equals hasPolicy)</td>
+<td align="center">No</td>
+<td align="center"><code>aws_efs_file_system</code>,<br /> <code>aws_s3_bucket</code>,<br /> <code>aws_sns_topic</code>,<br /> <code>aws_sqs_queue</code></td>
+<td align="center">JSON marshalled</td>
+</tr>
+<tr>
+<td align="center">resource_accessibility</td>
+<td align="center">public, private, hasPolicy or unknown for <code>aws_ebs_volume</code>, <code>aws_efs_file_system</code>, <code>aws_mq_broker</code>, <code>aws_msk_cluster</code>, <code>aws_s3_bucket</code>,  <code>aws_sns_topic</code>, and <code>aws_sqs_queue</code> <br /> <br /> at least one security group associated with the elasticache is unrestricted, all security groups associated with the elasticache are restricted or unknown for <code>aws_elasticache_cluster</code></td>
+<td align="center">Yes</td>
+<td align="center">all</td>
+<td align="center">string</td>
+</tr>
+<tr>
+<td align="center">resource_category</td>
+<td align="center">In Memory Data Structure for <code>aws_elasticache_cluster</code><br /><br />  Messaging for <code>aws_sns_topic</code><br /><br />  Queues for <code>aws_mq_broker</code> and <code>aws_sqs_queue</code><br /><br />  Storage for <code>aws_ebs_volume</code>, <code>aws_efs_file_system</code>, and <code>aws_s3_bucket</code><br /><br />  Streaming for <code>aws_msk_cluster</code></td>
+<td align="center">Yes</td>
+<td align="center">all</td>
+<td align="center">string</td>
+</tr>
+<tr>
+<td align="center">resource_encryption</td>
+<td align="center">encrypted,<br />  unencrypted,<br />  unknown</td>
+<td align="center">Yes</td>
+<td align="center">all</td>
+<td align="center">string</td>
+</tr>
+<tr>
+<td align="center">resource_engine</td>
+<td align="center">memcached, redis or unknown for <code>aws_elasticache_cluster</code><br /><br />  ActiveMQ or RabbitMQ for <code>aws_mq_broker</code></td>
+<td align="center">No</td>
+<td align="center"><code>aws_elasticache_cluster</code>, <br /> <code>aws_mq_broker</code></td>
+<td align="center">string</td>
+</tr>
+<tr>
+<td align="center">resource_name</td>
+<td align="center">anything (if the name is defined),<br /> unknown (if the name is not defined)</td>
+<td align="center">Yes</td>
+<td align="center">all</td>
+<td align="center">string</td>
+</tr>
+<tr>
+<td align="center">resource_type</td>
+<td align="center">aws_ebs_volume for <code>aws_ebs_volume</code>,<br /> aws_efs_file_system for <code>aws_efs_file_system</code>,<br /> aws_elasticache_cluster for <code>aws_elasticache_cluster</code>,<br /> aws_mq_broker for <code>aws_mq_broker</code>,<br /> aws_msk_cluster for <code>aws_msk_cluster</code>,<br /> aws_s3_bucket for <code>aws_s3_bucket</code>,<br /> aws_sns_topic for <code>aws_sns_topic</code>, aws_sqs_queue for <code>aws_sqs_queue</code></td>
+<td align="center">Yes</td>
+<td align="center">all</td>
+<td align="center">string</td>
+</tr>
+<tr>
+<td align="center">resource_vendor</td>
+<td align="center">AWS</td>
+<td align="center">Yes</td>
+<td align="center">all</td>
+<td align="center">string</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bom_query_example">BoM query example<a class="headerlink" href="#bom_query_example" title="Permanent link">&para;</a></h3>
 <pre><code class="language-rego">CxPolicy[result] {
     bucket_resource := input.document[i].resource.aws_s3_bucket[name]
 
