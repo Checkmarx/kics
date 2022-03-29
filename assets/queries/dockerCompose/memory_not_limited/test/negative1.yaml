@@ -1,9 +1,9 @@
 version: "3.7"
 services:
-  zipkin:
-    image: openzipkin/zipkin
+  zapzop:
+    image: openzapzop/zapzop
     ports:
-      - 9411:9411
+      - 6412:6412
     deploy:
       resources:
         limits:

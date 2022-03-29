@@ -5,8 +5,3 @@ services:
     ports:
       - 6412:6412
     deploy:
-      resources:
-        limits:
-          cpus: '0.3'
-        reservations:
-          cpus: '0.1'

@@ -8,7 +8,13 @@
     {
         "queryName": "Memory Not Limited",
         "severity": "MEDIUM",
-        "line": 5,
+        "line": 4,
         "filename": "positive2.yaml"
-    }
+    },
+    {
+      "queryName": "Memory Not Limited",
+      "severity": "MEDIUM",
+      "line": 7,
+      "filename": "positive3.yaml"
+  }
   ]
