@@ -12,7 +12,7 @@ CxPolicy[result] {
 	commands := ["kube-apiserver", "kubelet"]
 
 	common_lib.inArray(container.command, commands[_])
-	hasFlagWithValue(container, "--authorization-mode", "AlwaysAllow")
+	k8sLib.hasFlagWithValue(container, "--authorization-mode", "AlwaysAllow")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -38,19 +38,3 @@ CxPolicy[result] {
 	}
 }
 
-hasFlagWithValue(container, flag, value) {
-	command := container.command
-	startswith(command[a], flag)
-	values := split(command[a], "=")[1]
-	hasValue(values, value)
-} else {
-	args := container.args
-	startswith(args[a], flag)
-	values := split(args[a], "=")[1]
-	hasValue(values, value)
-}
-
-hasValue(values, value) {
-	splittedValues := split(values, ",")
-	splittedValues[_] == value
-}
