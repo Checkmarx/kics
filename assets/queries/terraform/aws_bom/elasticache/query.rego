@@ -28,7 +28,7 @@ CxPolicy[result] {
 }
 
 get_engine_type(aws_elasticache_cluster) = engine_type {
-	engine_type := aws_elasticache_cluster.engine_type
+	engine_type := aws_elasticache_cluster.engine
 } else = engine_type {
 	not aws_elasticache_cluster.replication_group_id
 	engine_type := "unknown"

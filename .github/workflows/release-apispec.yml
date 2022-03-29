@@ -182,7 +182,7 @@ jobs:
           pip install csvtomd
           csvtomd docs/docker/apispec.csv > docs/docker/apispec.md
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3.14.0
+        uses: peter-evans/create-pull-request@v4
         with:
           title: "docs(kicsbot): update images digest"
           token: ${{ secrets.KICS_BOT_PAT }}

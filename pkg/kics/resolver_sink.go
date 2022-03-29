@@ -1,6 +1,7 @@
 package kics
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -25,6 +26,9 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 
 	for _, rfile := range resFiles.File {
 		s.Tracker.TrackFileFound()
+		countLines := bytes.Count(rfile.Content, []byte{'\n'}) + 1
+		s.Tracker.TrackFileFoundCountLines(countLines)
+
 		documents, err := s.Parser.Parse(rfile.FileName, rfile.Content)
 		if err != nil {
 			if documents.Kind == "break" {
@@ -66,6 +70,7 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 			s.saveToFile(ctx, &file)
 		}
 		s.Tracker.TrackFileParse()
+		s.Tracker.TrackFileParseCountLines(documents.CountLines)
 	}
 	return resFiles.Excluded, nil
 }

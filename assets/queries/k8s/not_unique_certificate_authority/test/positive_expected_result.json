@@ -1,0 +1,8 @@
+[
+    {
+      "queryName": "Not Unique Certificate Authority",
+      "severity": "MEDIUM",
+      "line": 22,
+      "filename": "positive1.yaml"
+    }
+]

@@ -1,0 +1,10 @@
+{
+  "id": "32ecd76e-7bbf-402e-bf48-8b9485749558",
+  "queryName": "Token Auth File Is Set",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "When using kube-apiserver command, the 'token-auth-file' flag should not be set",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
+  "platform": "Kubernetes",
+  "descriptionID": "5aa79e60"
+}

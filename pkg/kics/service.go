@@ -1,6 +1,7 @@
 package kics
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"io"
@@ -39,6 +40,8 @@ type Storage interface {
 type Tracker interface {
 	TrackFileFound()
 	TrackFileParse()
+	TrackFileFoundCountLines(countLines int)
+	TrackFileParseCountLines(countLines int)
 }
 
 // Service is a struct that contains a SourceProvider to receive sources, a storage to save and retrieve scanning informations
@@ -111,17 +114,30 @@ func (s *Service) StartScan(
 	}
 }
 
+// Content keeps the content of the file and the number of lines
+type Content struct {
+	Content    *[]byte
+	CountLines int
+}
+
 /*
    getContent will read the passed file 1MB at a time
    to prevent resource exhaustion and return its content
 */
-func getContent(rc io.Reader) (*[]byte, error) {
+func getContent(rc io.Reader) (*Content, error) {
 	maxSizeMB := 5 // Max size of file in MBs
 	var content []byte
+	countLines := 0
 	data := make([]byte, mbConst)
+
+	c := &Content{
+		Content:    &[]byte{},
+		CountLines: 0,
+	}
+
 	for {
 		if maxSizeMB < 0 {
-			return &[]byte{}, errors.New("file size limit exceeded")
+			return c, errors.New("file size limit exceeded")
 		}
 		data = data[:cap(data)]
 		n, err := rc.Read(data)
@@ -129,12 +145,16 @@ func getContent(rc io.Reader) (*[]byte, error) {
 			if err == io.EOF {
 				break
 			}
-			return &[]byte{}, err
+			return c, err
 		}
+		countLines += bytes.Count(data[:n], []byte{'\n'}) + 1
 		content = append(content, data[:n]...)
 		maxSizeMB--
 	}
-	return &content, nil
+	c.Content = &content
+	c.CountLines = countLines
+
+	return c, nil
 }
 
 // GetVulnerabilities returns a list of scan detected vulnerabilities

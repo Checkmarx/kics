@@ -16,7 +16,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("spec.command", []),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--make-iptables-util-chains flag to be true",
 		"keyActualValue": "--make-iptables-util-chains= flag is false",
