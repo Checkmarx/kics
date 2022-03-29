@@ -15,8 +15,8 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy.resources.limits",[name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "There is a memory limit in deployed resources",
-		"keyActualValue": "There is no memory limit in deployed resources",
+		"keyExpectedValue": "'deploy.resources.limits.memory' is defined",
+		"keyActualValue": "'deploy.resources.limits.memory' is not defined",
 		"searchLine": common_lib.build_search_line(["services", name, "deploy", "resources", "limits"], []),
 	}
 }
@@ -30,10 +30,27 @@ CxPolicy[result] {
    
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
+		"searchKey": sprintf("services.%s",[name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "'deploy.resources.limits.memory' is defined",
+		"keyActualValue": "'deploy' is not defined",
+		"searchLine": common_lib.build_search_line(["services", name], []),
+	}
+}
+
+CxPolicy[result] {
+	resource := input.document[i]
+    version := resource.version
+    to_number(version) >= 3
+	service_parameters := resource.services[name]
+    not common_lib.valid_key(service_parameters.deploy, "resources")
+   
+	result := {
+		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy",[name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Resources are defined and memory is limited",
-		"keyActualValue": "Resources are not defined",
+		"keyExpectedValue": "'deploy.resources.limits.memory' is defined",
+		"keyActualValue":  "'deploy.resources' is not defined",
 		"searchLine": common_lib.build_search_line(["services", name, "deploy"], []),
 	}
 }
@@ -51,8 +68,8 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy.resources",[name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Limits being declared in deployed resources",
-		"keyActualValue": "No limits are declared in deployed resources",
+		"keyExpectedValue": "'deploy.resources.limits.memory' is defined",
+		"keyActualValue": "'deploy.resources.limits' is defined",
 		"searchLine": common_lib.build_search_line(["services", name, "deploy", "resources"], []),
     }
 }
