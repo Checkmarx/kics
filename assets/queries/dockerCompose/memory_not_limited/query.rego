@@ -14,8 +14,8 @@ CxPolicy[result] {
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy.resources.limits",[name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'deploy.resources.limits.memory' is defined",
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'deploy.resources.limits.memory' to be defined",
 		"keyActualValue": "'deploy.resources.limits.memory' is not defined",
 		"searchLine": common_lib.build_search_line(["services", name, "deploy", "resources", "limits"], []),
 	}
@@ -48,8 +48,8 @@ CxPolicy[result] {
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy",[name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'deploy.resources.limits.memory' is defined",
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'deploy.resources' to be defined",
 		"keyActualValue":  "'deploy.resources' is not defined",
 		"searchLine": common_lib.build_search_line(["services", name, "deploy"], []),
 	}
@@ -67,9 +67,9 @@ CxPolicy[result] {
     	"debug":sprintf("%s",[resources]),
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy.resources",[name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'deploy.resources.limits.memory' is defined",
-		"keyActualValue": "'deploy.resources.limits' is defined",
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'deploy.resources.limits' to be defined",
+		"keyActualValue": "'deploy.resources.limits' is not defined",
 		"searchLine": common_lib.build_search_line(["services", name, "deploy", "resources"], []),
     }
 }
@@ -85,7 +85,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s",[name]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": "For mem_limit to be declared.",
 		"keyActualValue": "There is no mem_limit declared.",
 		"searchLine": common_lib.build_search_line(["services", name], []),
