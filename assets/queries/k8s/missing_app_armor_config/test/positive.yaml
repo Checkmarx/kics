@@ -3,41 +3,39 @@ kind: Pod
 metadata:
   name: hello-apparmor-1
   annotations:
-    container.apparmor/hello1: localhost/k8s-apparmor-example-allow-write
+    container.apparmor.security.beta.kubernetes.io/hello1: dummy
+    container.apparmor.security.beta.kubernetes.io/hello2: dummy
 spec:
   containers:
   - name: hello1
     image: busybox
     command: [ "sh", "-c", "echo 'Hello AppArmor!' && sleep 1h" ]
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: hello-apparmor-2
-spec:
-  containers:
   - name: hello2
     image: busybox
     command: [ "sh", "-c", "echo 'Hello AppArmor!' && sleep 1h" ]
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: hello-apparmor4
-  annotations:
-    ingress-whitelist: "qa.acmecorp.internal.acmecorp.com"
-spec:
-  containers:
-  - name: hello4
+  - name: hello3
     image: busybox
     command: [ "sh", "-c", "echo 'Hello AppArmor!' && sleep 1h" ]
 ---
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: hello-apparmor5
+  name: ubuntu-test1
+  namespace: testns
+  labels:
+    deployment: ubuntu-1
 spec:
-  containers:
-  - name: hello5
-    image: busybox
-    command: [ "sh", "-c", "echo 'Hello AppArmor!' && sleep 1h" ]
+  replicas: 1
+  selector:
+    matchLabels:
+      container: ubuntu-1
+  template:
+    metadata:
+      labels:
+        container: ubuntu-1
+      annotations:
+        container.apparmor.security.beta.kubernetes.io/ubuntu-1-container: dummy
+    spec:
+      containers:
+      - name: ubuntu-1-container
+        image: 0x010/ubuntu-w-utils:latest
