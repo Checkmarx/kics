@@ -64,12 +64,11 @@ CxPolicy[result] {
     not common_lib.valid_key(resources, "limits")
 
 	result := {
-    	"debug":sprintf("%s",[resources]),
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy.resources",[name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'deploy.resources.limits' to be defined",
-		"keyActualValue": "'deploy.resources.limits' is not defined"
+		"keyActualValue": "'deploy.resources.limits' is not defined",
 		"searchLine": common_lib.build_search_line(["services", name, "deploy", "resources"], []),
     }
 }
