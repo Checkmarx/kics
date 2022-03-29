@@ -10,7 +10,7 @@ CxPolicy[result] {
 	types := {"initContainers", "containers"}
 	container := specInfo.spec[types[x]][j]
 	common_lib.inArray(container.command, "kube-apiserver")
-	hasFlagWithValue(container, "--enable-admission-plugins", "AlwaysAdmit")
+	k8sLib.hasFlagWithValue(container, "--enable-admission-plugins", "AlwaysAdmit")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -22,19 +22,3 @@ CxPolicy[result] {
 	}
 }
 
-hasFlagWithValue(container, flag, value) {
-	command := container.command
-	startswith(command[a], flag)
-	values := split(command[a], "=")[1]
-	hasValue(values, value)
-} else {
-	args := container.args
-	startswith(args[a], flag)
-	values := split(args[a], "=")[1]
-	hasValue(values, value)
-}
-
-hasValue(values, value) {
-	splittedValues := split(values, ",")
-	splittedValues[_] == value
-}
