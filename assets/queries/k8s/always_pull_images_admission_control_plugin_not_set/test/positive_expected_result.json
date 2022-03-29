@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Allways Pull Images Admission Control Plugin Not Set",
+		"queryName": "Always Pull Images Admission Control Plugin Not Set",
 		"severity": "MEDIUM",
 		"line": 11,
         "file": "positive1.yaml"
