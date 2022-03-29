@@ -38,6 +38,25 @@ CxPolicy[result] {
 	}
 }
 
+CxPolicy[result] {
+	resource := input.document[i]
+    version := resource.version
+    to_number(version) >= 3
+	service_parameters := resource.services[name]
+   	resources := service_parameters.deploy.resources
+    not common_lib.valid_key(resources, "limits")
+   
+	result := {
+    	"debug":sprintf("%s",[resources]),
+		"documentId": sprintf("%s", [resource.id]),
+		"searchKey": sprintf("services.%s.deploy.resources",[name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "Limits being declared in deployed resources",
+		"keyActualValue": "No limits are declared in deployed resources",
+		"searchLine": common_lib.build_search_line(["services", name, "deploy", "resources"], []),
+    }
+}
+
 #FOR VERSION 2
 CxPolicy[result] {
 	resource := input.document[i]
