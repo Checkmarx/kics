@@ -14,8 +14,8 @@ CxPolicy[result] {
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy.resources.limits",[name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'deploy.resources.limits.cpus' is defined",
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'deploy.resources.limits.cpus' to be defined",
 		"keyActualValue": "'deploy.resources.limits.cpus' is not defined",
 		"searchLine": common_lib.build_search_line(["services", name, "deploy", "resources", "limits"], []),
 	}
@@ -31,7 +31,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s",[name]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'deploy.resources.limits.cpus' is defined",
 		"keyActualValue": "'deploy' is not defined",
 		"searchLine": common_lib.build_search_line(["services", name], []),
@@ -48,8 +48,8 @@ CxPolicy[result] {
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy",[name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'deploy.resources.limits.cpus' is defined",
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'deploy.resources' to be defined",
 		"keyActualValue":  "'deploy.resources' is not defined",
 		"searchLine": common_lib.build_search_line(["services", name, "deploy"], []),
 	}
@@ -67,8 +67,8 @@ CxPolicy[result] {
     	"debug":sprintf("%s",[resources]),
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy.resources",[name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'deploy.resources.limits.cpus' is defined",
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'deploy.resources.limits' to be defined",
 		"keyActualValue": "'deploy.resources.limits' is defined",
 		"searchLine": common_lib.build_search_line(["services", name, "deploy", "resources"], []),
     }
@@ -85,7 +85,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s",[name]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": "For cpus priority to be declared.",
 		"keyActualValue": "There is no cpus priority declared.",
 		"searchLine": common_lib.build_search_line(["services", name], []),
