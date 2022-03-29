@@ -3,7 +3,7 @@
   "queryName": "Image Policy Webhook Not Defined",
   "severity": "LOW",
   "category": "Build Process",
-  "descriptionText": "Image Policy Webhook should be defined Defined",
+  "descriptionText": "Image Policy Webhook should be defined",
   "descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#imagepolicywebhook",
   "platform": "Kubernetes",
   "descriptionID": "7e7fe5b6"

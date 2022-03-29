@@ -11,7 +11,7 @@ CxPolicy[result] {
     
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("kind={{AdmissionConfiguration}}.plugins", []),
+		"searchKey": "kind={{AdmissionConfiguration}}.plugins",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'ImagePolicyWebhook' should be defined in the AdmissionConfiguration plugins",
 		"keyActualValue":  "'ImagePolicyWebhook' is not defined in the AdmissionConfiguration plugins",
