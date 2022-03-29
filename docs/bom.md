@@ -1,4 +1,4 @@
-## Bill Of Materials
+## [Terraform] Bill Of Materials
 
 This feature uses Rego queries to extract a list of used Terraform resources along with its metadata in the scanned IaC.
 
@@ -9,19 +9,33 @@ BoM queries extracts metadata about the resources and organizes it in the follow
 ```go
 billOfMaterialsRequiredFields := map[string]bool{
     "acl":                    false,
-    "is_default_password":    false,
     "policy":                 false,
-    "resource_type":          true,
-    "resource_name":          true,
-    "resource_engine":        false,
     "resource_accessibility": true,
-    "resource_vendor":        true,
     "resource_category":      true,
-    "user_name":              false,
+    "resource_encryption":    true,
+    "resource_engine":        false,
+    "resource_name":          true,
+    "resource_type":          true,
+    "resource_vendor":        true,
 }
 ```
 
-After extracting the information, the query stores the stringified JSON structure inside the `value` field in the `result`:
+Observe more detailed information about it in the table below.
+
+|        **Field**       |                                                                                                                                                      **Possible Values**                                                                                                                                                     | **Required** |                               **Resources**                              |     **Type**    |
+|:----------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------:|:------------------------------------------------------------------------:|:---------------:|
+|           acl          |                                                                                         private,<br /> public-read,<br /> public-read-write,<br /> aws-exec-read,<br /> authenticated-read,<br /> bucket-owner-read,<br /> bucket-owner-full-control,<br />  log-delivery-write                                                                                        |      No      |                              `aws_s3_bucket`                             |      string     |
+|         policy         |                                                                                                                                                        policy content (in case `resource_accessibility` equals hasPolicy)                                                                                                                                                        |      No      | `aws_efs_file_system`,<br /> `aws_s3_bucket`,<br /> `aws_sns_topic`,<br /> `aws_sqs_queue` | JSON marshalled |
+| resource_accessibility |                                                                                                                                              public, private, hasPolicy or unknown for `aws_ebs_volume`, `aws_efs_file_system`, `aws_mq_broker`, `aws_msk_cluster`, `aws_s3_bucket`,  `aws_sns_topic`, and `aws_sqs_queue` <br /> <br /> at least one security group associated with the elasticache is unrestricted, all security groups associated with the elasticache are restricted or unknown for `aws_elasticache_cluster`                                                                                                                                              |      Yes     |                                    all                                   |      string     |
+|    resource_category   |                                         In Memory Data Structure for `aws_elasticache_cluster`<br /><br />  Messaging for `aws_sns_topic`<br /><br />  Queues for `aws_mq_broker` and `aws_sqs_queue`<br /><br />  Storage for `aws_ebs_volume`, `aws_efs_file_system`, and `aws_s3_bucket`<br /><br />  Streaming for `aws_msk_cluster`                                         |      Yes     |                                    all                                   |      string     |
+|   resource_encryption  |                                                                                                                                                encrypted,<br />  unencrypted,<br />  unknown                                                                                                                                               |      Yes     |                                    all                                   |      string     |
+|     resource_engine    |                                                                                                              memcached, redis or unknown for `aws_elasticache_cluster`<br /><br />  ActiveMQ or RabbitMQ for `aws_mq_broker`                                                                                                              |      No      |               `aws_elasticache_cluster`, <br /> `aws_mq_broker`              |      string     |
+|      resource_name     |                                                                                                                            anything (if the name is defined),<br /> unknown (if the name is not defined)                                                                                                                           |      Yes     |                                    all                                   |      string     |
+|      resource_type     | aws_ebs_volume for `aws_ebs_volume`,<br /> aws_efs_file_system for `aws_efs_file_system`,<br /> aws_elasticache_cluster for `aws_elasticache_cluster`,<br /> aws_mq_broker for `aws_mq_broker`,<br /> aws_msk_cluster for `aws_msk_cluster`,<br /> aws_s3_bucket for `aws_s3_bucket`,<br /> aws_sns_topic for `aws_sns_topic`, aws_sqs_queue for `aws_sqs_queue` |      Yes     |                                    all                                   |      string     |
+|     resource_vendor    |                                                                                                                                                              AWS                                                                                                                                                             |      Yes     |                                    all                                   |      string     |
+
+
+### BoM query example
 
 ```rego
 CxPolicy[result] {
