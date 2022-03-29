@@ -21,6 +21,23 @@ CxPolicy[result] {
 	}
 }
 
+CxPolicy[result] {
+	resource := input.document[i]
+    version := resource.version
+    to_number(version) >= 3
+	service_parameters := resource.services[name]
+    not common_lib.valid_key(service_parameters, "deploy")
+   
+	result := {
+		"documentId": sprintf("%s", [resource.id]),
+		"searchKey": sprintf("services.%s.deploy",[name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "Resources are defined and cpus is limited",
+		"keyActualValue": "Resources are not defined",
+		"searchLine": common_lib.build_search_line(["services", name, "deploy"], []),
+	}
+}
+
 #FOR VERSION 2
 CxPolicy[result] {
 	resource := input.document[i]
