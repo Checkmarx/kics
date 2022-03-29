@@ -28,8 +28,8 @@ func CSVToJSON(t *testing.T, filename string) []byte {
 	err = csvFile.Close()
 	require.NoError(t, err, "Error when closing file: %s", fullPath)
 
-	var csvStruct CSVSchema
-	var csvItems []CSVSchema
+	var csvStruct csvSchema
+	var csvItems []csvSchema
 
 	for _, row := range csvData[1:] {
 		line, lineErr := strconv.Atoi(row[14])
@@ -67,7 +67,7 @@ func CSVToJSON(t *testing.T, filename string) []byte {
 	return jsondata
 }
 
-type CSVSchema struct {
+type csvSchema struct {
 	QueryName                   string
 	QueryID                     string
 	QueryURI                    string
