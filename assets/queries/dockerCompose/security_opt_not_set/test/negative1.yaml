@@ -1,4 +1,4 @@
-version: "2.0"
+version: "3.9"
 
 services:
   webapp:
@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile-alternate
       args:
         buildno: 1
-      ports:
-        - "8080:8080"
-        - "3000:3000"
+    ports:
+      - "8080:8080"
+      - "3000:3000"
+    security_opt:
+      - apparmor:unconfined
