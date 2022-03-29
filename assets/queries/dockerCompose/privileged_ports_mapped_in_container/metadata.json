@@ -1,0 +1,10 @@
+{
+    "id": "bc2908f3-f73c-40a9-8793-c1b7d5544f79",
+    "queryName": "Privileged Ports Mapped In Container",
+    "severity": "MEDIUM",
+    "category": "Networking and Firewall",
+    "descriptionText": "Privileged ports (1 to 1023) should not be mapped. Also you should drop net_bind_service linux capability from the container unless you absolutely need to use priviledged ports.",
+    "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop",
+    "platform": "DockerCompose",
+    "descriptionID": "686dd55f"
+  }

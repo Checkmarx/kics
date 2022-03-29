@@ -16,6 +16,11 @@ resource "aws_mq_broker" "positive2" {
     password = "111111111111"
   }
 
+   user {
+    username = "ExampleUser"
+    password = "MindTheGap"
+  }
+
   encryption_options {
     kms_key_id = var.encryption_options.kms_key_id
   }

@@ -1,0 +1,10 @@
+{
+  "id": "36a27826-1bf5-49da-aeb0-a60a30c0e834",
+  "queryName": "Kubelet Client Certificate Or Key Not Set",
+  "severity": "MEDIUM",
+  "category": "Secret Management",
+  "descriptionText": "When using kube-apiserver command, the 'kubelet-client-key' and 'kubelet-client-certificate' flags should be set",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
+  "platform": "Kubernetes",
+  "descriptionID": "0f0e2ae7"
+}
