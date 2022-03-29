@@ -1,0 +1,11 @@
+{
+    "id": "fa750c81-93c2-4fab-9c6d-d3fd3ce3b89f",
+    "queryName": "TSL Connection Certificate Not Setup",
+    "severity": "HIGH",
+    "category": "Networking and Firewall",
+    "descriptionText": "TSL Connection Certificate files should be Setup",
+    "descriptionUrl": "https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/",
+    "platform": "Kubernetes",
+    "descriptionID": "c8b75f30"
+  }
+  

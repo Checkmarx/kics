@@ -3,7 +3,7 @@
   "queryName": "Container Running As Root",
   "severity": "MEDIUM",
   "category": "Best Practices",
-  "descriptionText": "Check if containers are running as root unduly.",
+  "descriptionText": "Containers should only run as non-root user. This limits the exploitability of security misconfigurations and restricts an attacker's possibilities in case of compromise",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
   "platform": "Kubernetes",
   "descriptionID": "9d5b1d16"

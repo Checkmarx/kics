@@ -3,8 +3,8 @@ name: validate-k8s-samples
 on:
   pull_request:
     paths:
-    - "assets/queries/k8s/**/test/*.yaml"
-    - "assets/queries/k8s/**/test/*.yml"
+      - "assets/queries/k8s/**/test/*.yaml"
+      - "assets/queries/k8s/**/test/*.yml"
 
 jobs:
   validate-k8s-manifests:
@@ -28,6 +28,6 @@ jobs:
         run: |
           python3 -u .github/scripts/samples-linters/validate-syntax.py \
             "assets/queries/k8s/**/test/*.yaml" \
-            --extra ' --skip-kinds CustomResourceDefinition' \
+            --extra ' --skip-kinds CustomResourceDefinition,KubeletConfiguration' \
             --linter .bin/kubeval \
             --skip '.github/scripts/samples-linters/ignore-list/k8s' -v

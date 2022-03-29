@@ -1,5 +1,4 @@
-resource "aws_security_group" "positive2" {
-  count = min(var.haproxy_external_node_count + var.monitor_node_count, 1)
+resource "aws_security_group" "positive2" { 
 
   name        = "${var.prefix}-external-http-https"
   description = "Allow main HTTP / HTTPS"
