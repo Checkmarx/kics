@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "Event Rate Limit Admission Control Plugin Not Set",
+		"severity": "LOW",
+		"line": 11,
+        "file": "positive1.yaml"
+	}
+]

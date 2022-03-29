@@ -1,0 +1,9 @@
+[
+    {
+      "queryName": "Shared Host Network Namespace",
+      "severity": "MEDIUM",
+      "line": 11,
+      "filename": "positive1.yaml"
+    }
+  ]
+  

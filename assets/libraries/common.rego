@@ -338,13 +338,15 @@ find_selector_by_value(filter, str) = rtn {
 get_tag_name_if_exists(resource) = name {
 	name := resource.tags.Name
 } else = name {
-	name := ""
+	name := "unknown"
 }
 
 get_encryption_if_exists(resource) = encryption {
-	encryption := resource.encrypted
+	resource.encrypted == true
+	encryption := "encrypted"
 } else = encryption {
-	valid_key(resource.encryption_info, "encryption_at_rest_kms_key_arn")
+	options := {"encryption_at_rest_kms_key_arn", "encryption_in_transit"}
+	valid_key(resource.encryption_info, options[_])
 	encryption := "encrypted"
 } else = encryption {
 	fields := {"sqs_managed_sse_enabled", "kms_master_key_id", "encryption_options", "server_side_encryption_configuration"}
@@ -709,7 +711,6 @@ has_wildcard(statement, typeAction) {
 	check_actions(statement, typeAction)
 }
 
-
 # valid returns if all array_vals are nested in the object (array_vals should be sorted)
 # searchKey returns the searchKey possible
 #
@@ -733,6 +734,34 @@ get_nested_values_info(object, array_vals) = return_value {
 
 remove_last_point(searchKey) = sk {
 	sk := trim_right(searchKey, ".")
+}
+
+isOSDir(mountPath) = result {
+	hostSensitiveDir = {
+		"/bin", "/sbin", "/boot", "/cdrom",
+		"/dev", "/etc", "/home", "/lib",
+		"/media", "/proc", "/root", "/run",
+		"/seLinux", "/srv", "/usr", "/var",
+		"/sys",
+	}
+
+	result = list_contains(hostSensitiveDir, mountPath)
+} else = result {
+	result = mountPath == "/"
+}
+
+list_contains(dirs, elem) {
+	startswith(elem, dirs[_])
+}
+
+# if accessibility is "hasPolicy", bom_output should also display the policy content
+get_bom_output(bom_output, policy) = output {
+	bom_output.resource_accessibility == "hasPolicy"
+	out := {"policy": policy}
+
+	output := object.union(bom_output, out)
+} else = output {
+	output := bom_output
 }
 
 # This function is based on these docs: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html#describe-ebs-optimization

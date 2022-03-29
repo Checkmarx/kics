@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "Cpus Not Limited",
+    "severity": "LOW",
+    "line": 9,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Cpus Not Limited",
+    "severity": "LOW",
+    "line": 4,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Cpus Not Limited",
+    "severity": "LOW",
+    "line": 3,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Cpus Not Limited",
+    "severity": "LOW",
+    "line": 7,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Cpus Not Limited",
+    "severity": "LOW",
+    "line": 5,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Cpus Not Limited",
+    "severity": "LOW",
+    "line": 8,
+    "filename": "positive5.yaml"
+  }
+]

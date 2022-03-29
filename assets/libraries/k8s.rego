@@ -33,3 +33,20 @@ startWithFlag(container, flag){
 startsWithArray(arr, item) {
     startswith(arr[_], item)
 }
+
+hasFlagWithValue(container, flag, value) {
+	command := container.command
+	startswith(command[a], flag)
+	values := split(command[a], "=")[1]
+	hasValue(values, value)
+} else {
+	args := container.args
+	startswith(args[a], flag)
+	values := split(args[a], "=")[1]
+	hasValue(values, value)
+}
+
+hasValue(values, value) {
+	splittedValues := split(values, ",")
+	splittedValues[_] == value
+}
