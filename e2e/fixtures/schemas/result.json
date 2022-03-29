@@ -3,7 +3,9 @@
   "required": [
     "kics_version",
     "files_scanned",
+    "lines_scanned",
     "files_parsed",
+    "lines_parsed",
     "files_failed_to_scan",
     "queries_total",
     "queries_failed_to_execute",
@@ -24,7 +26,15 @@
       "type": "integer",
       "minimum": 0
     },
+    "lines_scanned": {
+      "type": "integer",
+      "minimum": 0
+    },
     "files_parsed": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "lines_parsed": {
       "type": "integer",
       "minimum": 0
     },
