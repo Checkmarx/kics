@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Create EFS system and Mount Targets for test VPC"
+Resources:
+    EFSFileSystem01:
+        Type: AWS::EFS::FileSystem
+        Properties:
+            BackupPolicy:
+              Status: ENABLED
+            Encrypted: false
+            LifecyclePolicies:
+              - TransitionToIA: AFTER_60_DAYS
+            PerformanceMode: generalPurpose
+            ThroughputMode: bursting
+            FileSystemTags:
+              - Key: Environment
+                Value: prod
+              - Key: Name
+                Value: test-VPC-EFS
+              - Key: Project
+                Value: ITEngineering
+  

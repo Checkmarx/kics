@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "BOM - AWS EFS",
+    "severity": "TRACE",
+    "line": 4,
+    "fileName": "positive1.yaml"
+  }
+]
