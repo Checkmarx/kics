@@ -37,6 +37,7 @@ var reportGenerators = map[string]func(path, filename string, body interface{}) 
 	"cyclonedx": report.PrintCycloneDxReport,
 	"junit":     report.PrintJUnitReport,
 	"asff":      report.PrintASFFReport,
+	"csv":       report.PrintCSVReport,
 }
 
 // Printer wil print console output with colors
@@ -124,7 +125,9 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 	fmt.Printf("TOTAL: %d\n\n", summary.SeveritySummary.TotalCounter)
 
 	log.Info().Msgf("Files scanned: %d", summary.ScannedFiles)
+	log.Info().Msgf("Lines scanned: %d", summary.ScannedFilesLines)
 	log.Info().Msgf("Parsed files: %d", summary.ParsedFiles)
+	log.Info().Msgf("Lines parsed: %d", summary.ParsedFilesLines)
 	log.Info().Msgf("Queries loaded: %d", summary.TotalQueries)
 	log.Info().Msgf("Queries failed to execute: %d", summary.FailedToExecuteQueries)
 	log.Info().Msg("Inspector stopped")

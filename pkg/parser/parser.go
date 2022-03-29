@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"bytes"
 	"errors"
 	"os"
 	"path/filepath"
@@ -79,6 +80,7 @@ type ParsedDocument struct {
 	Kind        model.FileKind
 	Content     string
 	IgnoreLines []int
+	CountLines  int
 }
 
 // CommentsCommands gets commands on comments in the file beginning, before the code starts
@@ -138,6 +140,7 @@ func (c *Parser) Parse(filePath string, fileContent []byte) (ParsedDocument, err
 			Kind:        c.parsers.GetKind(),
 			Content:     cont,
 			IgnoreLines: igLines,
+			CountLines:  bytes.Count(*resolved, []byte{'\n'}) + 1,
 		}, nil
 	}
 	return ParsedDocument{
