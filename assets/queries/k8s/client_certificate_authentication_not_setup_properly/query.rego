@@ -52,7 +52,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("kind={{%s}}", ["KubeletConfiguration"]),
+		"searchKey": "kind={{KubeletConfiguration}}",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue":  "Client Certification should be set",
 		"keyActualValue": "Client Certification is not set",
@@ -72,7 +72,7 @@ CxPolicy[result] {
 	 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("kind={{%s}}", ["KubeletConfiguration"]),
+		"searchKey": "kind={{KubeletConfiguration}}",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue":  "Client Certification should have a .pem file",
 		"keyActualValue":  "Client Certification is not properly set",
