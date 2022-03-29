@@ -27,7 +27,12 @@ var (
 func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reader) error {
 	s.Tracker.TrackFileFound()
 
-	content, err := getContent(rc)
+	c, err := getContent(rc)
+
+	content := c.Content
+
+	s.Tracker.TrackFileFoundCountLines(c.CountLines)
+
 	if err != nil {
 		return errors.Wrapf(err, "failed to get file content: %s", filename)
 	}
@@ -71,6 +76,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 		s.saveToFile(ctx, &file)
 	}
 	s.Tracker.TrackFileParse()
+	s.Tracker.TrackFileParseCountLines(documents.CountLines)
 
 	return errors.Wrap(err, "failed to save file content")
 }
