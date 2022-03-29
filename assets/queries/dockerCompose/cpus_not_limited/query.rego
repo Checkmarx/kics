@@ -15,8 +15,8 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy.resources.limits",[name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "There is a cpu priority defined in deployed resources",
-		"keyActualValue": "There is no cpu priority defined in deployed resources",
+		"keyExpectedValue": "'deploy.resources.limits.cpus' is defined",
+		"keyActualValue": "'deploy.resources.limits.cpus' is not defined",
 		"searchLine": common_lib.build_search_line(["services", name, "deploy", "resources", "limits"], []),
 	}
 }
@@ -27,15 +27,51 @@ CxPolicy[result] {
     to_number(version) >= 3
 	service_parameters := resource.services[name]
     not common_lib.valid_key(service_parameters, "deploy")
-   
+
+	result := {
+		"documentId": sprintf("%s", [resource.id]),
+		"searchKey": sprintf("services.%s",[name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "'deploy.resources.limits.cpus' is defined",
+		"keyActualValue": "'deploy' is not defined",
+		"searchLine": common_lib.build_search_line(["services", name], []),
+	}
+}
+
+CxPolicy[result] {
+	resource := input.document[i]
+    version := resource.version
+    to_number(version) >= 3
+	service_parameters := resource.services[name]
+    not common_lib.valid_key(service_parameters.deploy, "resources")
+
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy",[name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Resources are defined and cpus is limited",
-		"keyActualValue": "Resources are not defined",
+		"keyExpectedValue": "'deploy.resources.limits.cpus' is defined",
+		"keyActualValue":  "'deploy.resources' is not defined",
 		"searchLine": common_lib.build_search_line(["services", name, "deploy"], []),
 	}
+}
+
+CxPolicy[result] {
+	resource := input.document[i]
+    version := resource.version
+    to_number(version) >= 3
+	service_parameters := resource.services[name]
+   	resources := service_parameters.deploy.resources
+    not common_lib.valid_key(resources, "limits")
+
+	result := {
+    	"debug":sprintf("%s",[resources]),
+		"documentId": sprintf("%s", [resource.id]),
+		"searchKey": sprintf("services.%s.deploy.resources",[name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "'deploy.resources.limits.cpus' is defined",
+		"keyActualValue": "'deploy.resources.limits' is defined",
+		"searchLine": common_lib.build_search_line(["services", name, "deploy", "resources"], []),
+    }
 }
 
 #FOR VERSION 2

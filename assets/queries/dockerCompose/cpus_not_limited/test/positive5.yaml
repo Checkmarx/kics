@@ -6,7 +6,6 @@ services:
       - 6412:6412
     deploy:
       resources:
-        limits:
-          memory: 256M
         reservations:
           cpus: '0.1'
+          memory: 128M

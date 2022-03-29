@@ -1,16 +1,14 @@
 version: "2.4"
 
 services:
-  # CRYPTO
-  crypto_padding_oracle:
+  criwhat:
     build:
-      context: "./crypto/paddingoracle"
+      context: "./cri/what"
     restart: "unless-stopped"
     mem_limit: 512m
     environment:
       - NODE_ENV=production
       - PORT=5000
-
       - FLAG=FLAG-TOO_MANY_ERRORS_TOO_MANY_DETAILS
     ports:
-      - 11111:5000
+      - 12345:6000
