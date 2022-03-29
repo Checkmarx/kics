@@ -20,6 +20,8 @@ import (
 func (c *Client) getSummary(results []model.Vulnerability, end time.Time, pathParameters model.PathParameters) model.Summary {
 	counters := model.Counters{
 		ScannedFiles:           c.Tracker.FoundFiles,
+		ScannedFilesLines:      c.Tracker.FoundCountLines,
+		ParsedFilesLines:       c.Tracker.ParsedCountLines,
 		ParsedFiles:            c.Tracker.ParsedFiles,
 		TotalQueries:           c.Tracker.LoadedQueries,
 		FailedToExecuteQueries: c.Tracker.ExecutingQueries - c.Tracker.ExecutedQueries,

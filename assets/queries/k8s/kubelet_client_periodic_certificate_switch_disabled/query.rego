@@ -5,6 +5,7 @@ import data.generic.k8s as k8sLib
 
 CxPolicy[result] {
 	resource := input.document[i]
+	metadata := resource.metadata
 	specInfo := k8sLib.getSpecInfo(resource)
 	types := {"initContainers", "containers"}
 	container := specInfo.spec[types[x]][j]
@@ -15,7 +16,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("spec.command", []),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--rotate-certificates flag to be true",
 		"keyActualValue": "--rotate-certificates flag is false",
