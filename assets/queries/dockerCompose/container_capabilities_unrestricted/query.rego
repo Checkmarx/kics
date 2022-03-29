@@ -13,6 +13,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Make sure you only add the necessary capabilities to your container.",
 		"keyActualValue": "Docker compose file has 'cap_add' attribute.",
+		"searchLine": common_lib.build_search_line(["services", name, "cap_add"], []),
 	}
 }
 
@@ -23,9 +24,11 @@ CxPolicy[result] {
     
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
-		"searchKey": "services",
+		"searchKey": sprintf("services.%s",[name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Docker compose file to have 'cap_drop' attribute",
 		"keyActualValue": "Docker compose file doesn't have 'cap_drop' attribute. Make sure your container only has necessary capabilities.",
+		"searchLine": common_lib.build_search_line(["services", name], []),
+}
 	}
 }
