@@ -69,7 +69,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("services.%s.deploy.resources",[name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'deploy.resources.limits' to be defined",
-		"keyActualValue": "'deploy.resources.limits' is defined",
+		"keyActualValue": "'deploy.resources.limits' is not defined"
 		"searchLine": common_lib.build_search_line(["services", name, "deploy", "resources"], []),
     }
 }
