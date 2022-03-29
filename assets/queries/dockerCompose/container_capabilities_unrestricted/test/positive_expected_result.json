@@ -8,7 +8,7 @@
     {
         "queryName": "Container Capabilities Unrestricted",
         "severity": "LOW",
-        "line": 3,
+        "line": 4,
         "filename": "positive1.yaml"
     },
     {
@@ -26,7 +26,7 @@
     {
         "queryName": "Container Capabilities Unrestricted",
         "severity": "LOW",
-        "line": 3,
+        "line": 4,
         "filename": "positive4.yaml"
     }
 ]
