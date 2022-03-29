@@ -1,0 +1,47 @@
+version: "3"
+services:
+    proxy:
+        build: ./pyproxy
+        deploy:
+            mode: replicated
+            placement:
+                constraints: [node.role == manager]
+            replicas: 8
+        depends_on:
+          - storage-node-1
+          - storage-node-2
+          - storage-node-3
+          - storage-node-4
+          - storage-node-5
+          - storage-node-6
+          - storage-node-7
+          - storage-node-8
+          - storage-node-9
+          - storage-node-10
+          - storage-node-11
+          - storage-node-12
+          - storage-node-13
+          - storage-node-14
+          - storage-node-15
+          - storage-node-16
+    zoo1:
+        image: zookeeper
+        restart: always
+        ports:
+          - 2181:2181
+        environment:
+          - ZOO_MY_ID=1
+        deploy:
+            mode: replicated
+            placement:
+                constraints: [node.role == manager]
+
+    metadata:
+        image: redis:3.2.8
+        command: redis-server --appendonly yes
+        deploy:
+            mode: replicated
+            placement:
+                constraints: [node.role == manager]
+        volumes:
+          - ./volumes/metadata/:/data/

@@ -747,6 +747,25 @@ remove_last_point(searchKey) = sk {
    sk := searchKey
 }
 
+isOSDir(mountPath) = result {
+	hostSensitiveDir = {
+		"/bin", "/sbin", "/boot", "/cdrom",
+		"/dev", "/etc", "/home", "/lib",
+		"/media", "/proc", "/root", "/run",
+		"/seLinux", "/srv", "/usr", "/var",
+		"/sys",
+	}
+
+	result = list_contains(hostSensitiveDir, mountPath)
+} else = result {
+	result = mountPath == "/"
+}
+
+list_contains(dirs, elem) {
+	startswith(elem, dirs[_])
+}
+
+# This function is based on this docs(https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html#describe-ebs-optimization)
 # if accessibility is "hasPolicy", bom_output should also display the policy content
 get_bom_output(bom_output, policy) = output {
 	bom_output.resource_accessibility == "hasPolicy"

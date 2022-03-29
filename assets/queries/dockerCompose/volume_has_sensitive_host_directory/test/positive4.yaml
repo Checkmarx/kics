@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  yesno:
+    image: docker.encEx.com/yesno/yesno:v1.1
+    container_name: "yesno-${MODE}"
+    entrypoint: "/bin/sh"
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /etc/exercise
+        target: /etc/exercise
+      - type: volume
+        source: yesno-1
+        target: /var/www/yesno
+      - type: volume
+        source: yesno-2
+        target: /var/lib/exercise
+volumes:
+  yesno-1:
+    name: yesno-1
+  yesno-2:
+    name: yesno-2
