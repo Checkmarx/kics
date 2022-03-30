@@ -1,0 +1,3130 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Open source solution for static code analysis of Infrastructure as Code. Finding security vulnerabilities, compliance issues, and infrastructure misconfigurations during project development cycle.">
+      
+      
+      
+        <link rel="canonical" href="http://docs.kics.io/latest/queries/cloudformation-queries/">
+      
+      <link rel="icon" href="../../img/logo/kics-hat.ico">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
+    
+    
+      
+        <title>CloudFormation - KICS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.644de097.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="kics" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cloudformation_queries_list" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-component="outdated" hidden>
+        <aside class="md-banner md-banner--warning">
+          
+        </aside>
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="KICS" class="md-header__button md-logo" aria-label="KICS" data-md-component="logo">
+      
+  <img src="../../img/logo/kics_hat_color_new.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KICS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CloudFormation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="kics" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Checkmarx/kics/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../getting-started/" class="md-tabs__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
+        Queries
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../integrations/" class="md-tabs__link">
+        Integrations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../certifications/" class="md-tabs__link">
+      Certifications
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../roadmap/" class="md-tabs__link">
+        Project
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../CONTRIBUTING/" class="md-tabs__link">
+      Contribution
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../about/" class="md-tabs__link">
+      About
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="KICS" class="md-nav__button md-logo" aria-label="KICS" data-md-component="logo">
+      
+  <img src="../../img/logo/kics_hat_color_new.png" alt="logo">
+
+    </a>
+    KICS
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Checkmarx/kics/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration-file/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../commands/" class="md-nav__link">
+        Command Line Interface
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-kics/" class="md-nav__link">
+        Running KICS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../results/" class="md-nav__link">
+        Results
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        Architecture
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../platforms/" class="md-nav__link">
+        Platforms
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changes/" class="md-nav__link">
+        Changes in v1.3.0
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Queries
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Queries" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Queries
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        General Info
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../creating-queries/" class="md-nav__link">
+        Creating Queries
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../secrets/" class="md-nav__link">
+        Passwords And Secrets
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bom/" class="md-nav__link">
+        Bill of Materials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5" type="checkbox" id="__nav_2_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5">
+          Queries List
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Queries List" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Queries List
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../all-queries/" class="md-nav__link">
+        All
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansible-queries/" class="md-nav__link">
+        Ansible
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../azureresourcemanager-queries/" class="md-nav__link">
+        Azure Resource Manager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          CloudFormation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        CloudFormation
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cloudformation_queries_list" class="md-nav__link">
+    CloudFormation Queries List
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dockerfile-queries/" class="md-nav__link">
+        Dockerfile
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes-queries/" class="md-nav__link">
+        Kubernetes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../terraform-queries/" class="md-nav__link">
+        Terraform
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openapi-queries/" class="md-nav__link">
+        OpenAPI
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Integrations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Integrations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Integrations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_azurepipelines/" class="md-nav__link">
+        Azure DevOps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_bamboo/" class="md-nav__link">
+        Bamboo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_bitbucketpipelines/" class="md-nav__link">
+        Bitbucket Pipelines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_circleci/" class="md-nav__link">
+        CircleCI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_ghactions/" class="md-nav__link">
+        Github Actions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_gitlabci/" class="md-nav__link">
+        Gitlab CI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_jenkins/" class="md-nav__link">
+        Jenkins
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_teamcity/" class="md-nav__link">
+        TeamCity
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_travisci/" class="md-nav__link">
+        Travis CI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integration_tfcloud/" class="md-nav__link">
+        Terraform Cloud
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cdk/" class="md-nav__link">
+        AWS CDK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_aws_codebuild/" class="md-nav__link">
+        AWS CodeBuild
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BADGE/" class="md-nav__link">
+        Badge
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_pre_commit/" class="md-nav__link">
+        Using pre-commit hooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_terraformer/" class="md-nav__link">
+        Terraformer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../certifications/" class="md-nav__link">
+        Certifications
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Project
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Project" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Project
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/" class="md-nav__link">
+        Roadmap
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Checkmarx/kics/projects" class="md-nav__link">
+        Plans
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Checkmarx/kics/issues" class="md-nav__link">
+        Issues
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/" class="md-nav__link">
+        Releases
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../performance/" class="md-nav__link">
+        Performance
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONTRIBUTING/" class="md-nav__link">
+        Contribution
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cloudformation_queries_list" class="md-nav__link">
+    CloudFormation Queries List
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/Checkmarx/kics/edit/master/docs/queries/cloudformation-queries.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+
+  <h1>CloudFormation</h1>
+
+<h2 id="cloudformation_queries_list">CloudFormation Queries List<a class="headerlink" href="#cloudformation_queries_list" title="Permanent link">&para;</a></h2>
+<p>This page contains all queries from CloudFormation.</p>
+<h3 id="aws">AWS<a class="headerlink" href="#aws" title="Permanent link">&para;</a></h3>
+<p>Bellow are listed queries related with CloudFormation AWS:</p>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Severity</th>
+<th>Category</th>
+<th>Description</th>
+<th>Help</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S3 Bucket Allows Put Action From All Principals<br/><sup><sub>f6397a20-4cf1-4540-a997-1d363c25ef58</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>S3 Buckets must not allow Put Actions From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is Put, for all Principals.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket ACL Allows Read to Any Authenticated User<br/><sup><sub>835d5497-a526-4aea-a23f-98a9afd1635f</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>S3 Buckets sould not be readable and writable to all users</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket With All Permissions<br/><sup><sub>4ae8af91-5108-42cb-9471-3bdbe596eac9</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>S3 Buckets must not have all permissions, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is '*', for all Principals.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket ACL Allows Read Or Write to All Users<br/><sup><sub>07dda8de-d90d-469e-9b37-1aca53526ced</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>S3 Buckets sould not be readable and writable to all users</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket Allows List Action From All Principals<br/><sup><sub>faa8fddf-c0aa-4b2d-84ff-e993e233ebe9</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>S3 Buckets must not allow List Actions From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is List, for all Principals.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Policies With Full Privileges<br/><sup><sub>953b3cdb-ce13-428a-aa12-318726506661</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>IAM policies shouldn't allow full administrative privileges</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket Allows Restore Actions From All Principals<br/><sup><sub>456b00a3-1072-4149-9740-6b8bb60251b0</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>S3 Buckets must not allow Restore Actions From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is Restore, for all Principals.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Lambda Functions With Full Privileges<br/><sup><sub>a0ae0a4e-712b-4115-8112-51b9eeed9d69</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>AWS Lambda Functions should not have roles with policies granting full administrative privileges.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket Allows Get Action From All Principals<br/><sup><sub>f97b7d23-568f-4bcc-9ac9-02df0d57fbba</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>S3 Buckets must not allow Get Actions From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is Get, for all Principals.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket ACL Allows Read to All Users<br/><sup><sub>219f4c95-aa50-44e0-97de-cf71f4641170</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>S3 Buckets sould not be readable and writable to all users</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket Allows Delete Action From All Principals<br/><sup><sub>acc78859-765e-4011-a229-a65ea57db252</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>S3 Buckets must not allow Delete Actions From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is Delete, for all Principals.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket Access to Any Principal<br/><sup><sub>7772bb8c-c0f3-42d4-8e4e-f1b8939ad085</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>The S3 Bucket should not have the (accessPublicBlock empty or accessPublicBlock.ignorePublicAcls = false or accessPublicBlock.restrictPublicBuckets = false ) and ( policy.Statement contain [Effect='Allow' and (Principal='<em>' or Principal.AWS='</em>')])</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ECS Service Admin Role Is Present<br/><sup><sub>01986452-bdd8-4aaa-b5df-d6bf61d616ff</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>ECS Services must not have Admin roles, which means the attribute 'role' must not be an admin role</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Viewer Protocol Policy Allows HTTP<br/><sup><sub>31733ee2-fef0-4e87-9778-65da22a8ecf1</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Ensure that the Viewer Protocol is only HTTPS Compliant</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EFS Without KMS<br/><sup><sub>6d087495-2a42-4735-abf7-02ef5660a7e6</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Amazon Elastic Filesystem should have filesystem encryption enabled using KMS CMK customer-managed keys instead of AWS managed-keys</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>User Data Shell Script Is Encoded<br/><sup><sub>48c3bc58-6959-4f27-b647-4fedeace23be</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>User Data Shell Script must be encoded</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-userdata">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>RDS Storage Not Encrypted<br/><sup><sub>5beacce3-4020-4a3d-9e1d-a36f953df630</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>AWS RDS DB Instance should be encrypted</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ECS Task Definition Container With Plaintext Password<br/><sup><sub>f9b10cdb-eaab-4e39-9793-e12b94a582ad</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>It's not recommended to use plaintext environment variables for sensitive information, such as credential data.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-environment">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket Without SSL In Write Actions<br/><sup><sub>38c64e76-c71e-4d92-a337-60174d1de1c9</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>S3 Buckets should enforce encryption of data transfers using Secure Sockets Layer (SSL)</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Connection Between CloudFront Origin Not Encrypted<br/><sup><sub>a5366a50-932f-4085-896b-41402714a388</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Checks if the connection between the CloudFront and the origin server is encrypted</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CMK Unencrypted Storage<br/><sup><sub>ffee2785-c347-451e-89f3-11aeb08e5c84</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Ensure that storage is encrypted by KMS on instances that, based on their name, might host a database.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>User Data Contains Encoded Private Key<br/><sup><sub>568cc372-ca64-420d-9015-ee347d00d288</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>User Data Base64 contains an encoded RSA Private Key</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudFormation Specifying Credentials Not Safe<br/><sup><sub>9ecb6b21-18bc-4aa7-bd07-db20f1c746db</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Specifying credentials in the template itself is probably not safe to do.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-authentication.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket SSE Disabled<br/><sup><sub>64ab651b-f5b2-4af0-8c89-ddd03c4d0e61</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>If algorithm is AES256 then the master key is null, empty or undefined, otherwise the master key is required</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionbydefault.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket Without Server-side-encryption<br/><sup><sub>b2e8752c-3497-4255-98d2-e4ae5b46bbf5</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>S3 Buckets should have server-side encryption at rest enabled to protect sensitive data</td>
+<td><a href="https://docs.aws.amazon.com/AmazonS3/latest/user-guide/default-bucket-encryption.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Secure Ciphers Disabled<br/><sup><sub>be96849c-3df6-49c2-bc16-778a7be2519c</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Check if secure ciphers aren't used in CloudFront</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-viewercertificate.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>DynamoDB With Aws Owned CMK<br/><sup><sub>c8dee387-a2e6-4a73-a942-183c975549ac</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>AWS DynamoDb should be encrypted using AWS Managed CMK, instead of AWS-owned CMK. To verify this, SSEEnabled must be verified if false for AWS-owned CMK or true for AWS-Managed CMK. Default value is false.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-ssespecification.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudTrail Log Files Not Encrypted<br/><sup><sub>050a9ba8-d1cb-4c61-a5e8-8805a70d3b85</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Logs delivered by CloudTrail should be encrypted using KMS</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-kmskeyid">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ELB Using Insecure Protocols<br/><sup><sub>61a94903-3cd3-4780-88ec-fc918819b9c8</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>ELB Predefined or Custom Security Policies must not use insecure protocols, to reduce the risk of the SSL connection between the client and the load balancer being exploited. That means the ELB Listeners must not have Policies that posses Protocols that coincide with any of a predefined list of insecure protocols.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EFS Not Encrypted<br/><sup><sub>2ff8e83c-90e1-4d68-a300-6d652112e622</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Amazon Elastic Filesystem should have filesystem encryption enabled</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Redshift Cluster Without KMS CMK<br/><sup><sub>de76a0d6-66d5-45c9-9022-f05545b85c78</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>AWS Redshift Cluster should have KMS CMK defined</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>SageMaker Data Encryption Disabled<br/><sup><sub>709e6da6-fa1f-44cc-8f17-7f25f96dadbe</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Amazon SageMaker's Notebook Instance must have its Data Encryption enabled, which means the attribute 'KmsKeyId' must be defined not empty or null.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-notebookinstance.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Redshift Not Encrypted<br/><sup><sub>3b316b05-564c-44a7-9c3f-405bb95e211e</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>AWS Redshift Cluster should be encrypted</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>MSK Cluster Encryption Disabled<br/><sup><sub>a976d63f-af0e-46e8-b714-8c1a9c4bf768</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Ensure MSK Cluster encryption in rest and transit is enabled.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-cluster.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Kinesis SSE Not Configured<br/><sup><sub>7f65be75-90ab-4036-8c2a-410aef7bb650</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>AWS Kinesis Stream should have SSE (Server Side Encryption) defined</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-stream.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ElastiCache With Disabled at Rest Encryption<br/><sup><sub>e4ee3903-9225-4b6a-bdfb-e62dbadef821</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Ensure AWS ElastiCache Redis clusters have encryption for data at rest enabled</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html#cfn-elasticache-replicationgroup-atrestencryptionenabled">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ElastiCache With Disabled Transit Encryption<br/><sup><sub>3b02569b-fc6f-4153-b3a3-ba91022fed68</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Ensure AWS ElastiCache Redis clusters have encryption for data at transit enabled</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Database Auth Not Enabled<br/><sup><sub>9fcd0a0a-9b6f-4670-a215-d94e6bf3f184</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>IAM Database Auth Enabled must be configured to true</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-enableiamdatabaseauthentication">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ELB Without Secure Protocol<br/><sup><sub>80908a75-586b-4c61-ab04-490f4f4525b8</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Check if the ELB is setup with SSL or HTTPS for secure communication</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Memcached Disabled<br/><sup><sub>dd0971a6-09c3-4168-8474-a7ef8fbfd99d</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Check if the Memcached is disabled on the ElastiCache</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html#cfn-elasticache-cachecluster-engine">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ECS Cluster Not Encrypted At Rest<br/><sup><sub>6c131358-c54d-419b-9dd6-1f7dd41d180c</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Ensure that AWS ECS clusters are encrypted. Data encryption at rest, prevents unauthorized users from accessing sensitive data on your AWS ECS clusters and associated cache storage systems.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ELB Using Weak Ciphers<br/><sup><sub>809f77f8-d10e-4842-a84f-3be7b6ff1190</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>ELB Predefined or Custom Security Policies must not use insecure protocols, to reduce the risk of the SSL connection between the client and the load balancer being exploited. That means the ELB Listeners must not have Policies that posses Ciphers that coincide with any of a predefined list of weak ciphers.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>API Gateway Cache Encrypted Disabled<br/><sup><sub>37cca703-b74c-48ba-ac81-595b53398e9b</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>'API::Gateway::Deployment' should have 'CacheDataEncrypted' enabled when 'CachingEnabled' is set to true</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>DB Instance Publicly Accessible<br/><sup><sub>de38e1d5-54cb-4111-a868-6f7722695007</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>RDS must not be defined with public interface, which means the attribute 'PubliclyAccessible' must be set to false.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Root Account Has Active Access Keys<br/><sup><sub>4c137350-7307-4803-8c04-17c09a7a9fcf</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Check if the root user has any access keys associated to it.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ECS Task Definition Network Mode Not Recommended<br/><sup><sub>027a4b7a-8a59-4938-a04f-ed532512cf45</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Network_Mode should be 'awsvpc' in ecs_task_definition. AWS VPCs provides the controls to facilitate a formal process for approving and testing all network connections and changes to the firewall and router configurations</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html#cfn-ecs-taskdefinition-networkmode">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Redshift Publicly Accessible<br/><sup><sub>bdf8dcb4-75df-4370-92c4-606e4ae6c4d3</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>AWS Redshift Clusters must not be publicly accessible, which means the attribute 'PubliclyAccessible' must be set to false</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>API Gateway Without Security Policy<br/><sup><sub>8275fab0-68ec-4705-bbf4-86975edb170e</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>API Gateway should have a Security Policy defined and use TLS 1.2.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html#cfn-apigateway-domainname-securitypolicy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket with Unsecured CORS Rule<br/><sup><sub>3609d27c-3698-483a-9402-13af6ae80583</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>If the CORS (Cross-Origin Resource Sharing) rule is defined in an S3 bucket, it should be secure</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-cors.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>KMS Key With Vulnerable Policy<br/><sup><sub>da905474-7454-43c0-b8d2-5756ab951aba</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Checks if the policy is vulnerable and needs updating</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-keypolicy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Static Website Host Enabled<br/><sup><sub>90501b1b-cded-4cc1-9e8b-206b85cda317</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>It's dangerous disabling a block public access settings in bucket or writing a bucket policy that grants public read access</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-publicaccessblockconfiguration.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudFront Without Minimum Protocol TLS 1.2<br/><sup><sub>dc17ee4b-ddf2-4e23-96e8-7a36abad1303</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>CloudFront Minimum Protocol version should be at least TLS 1.2</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Batch Job Definition With Privileged Container Properties<br/><sup><sub>76ddf32c-85b1-4808-8935-7eef8030ab36</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Batch Job Definition should not have Privileged Container Properties</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Vulnerable Default SSL Certificate<br/><sup><sub>b4d9c12b-bfba-4aeb-9cb8-2358546d8041</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Defaults</td>
+<td>CloudFront web distributions should use custom (and not default) SSL certificates. Custom SSL certificates allow only defined users to access content by using an alternate domain name instead of the default one.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Permissive Web ACL Default Action<br/><sup><sub>6d64f311-3da6-45f3-80f1-14db9771ea40</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Defaults</td>
+<td>WebAcl DefaultAction should not be ALLOW</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-webacl.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EC2 Public Instance Exposed Through Subnet<br/><sup><sub>c44c95fc-ae92-4bb8-bdf8-bb9bc412004a</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>EC2 instances with public IP addresses shouldn't allow for unrestricted traffic to their subnets</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EKS node group remote access<br/><sup><sub>73d59e76-a12c-4b74-a3d8-d3e1e19c25b3</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>Ensure Amazon EKS Node group has implict SSH access</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-nodegroup.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Remote Desktop Port Open<br/><sup><sub>c9846969-d066-431f-9b34-8c4abafe422a</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>The Remote Desktop port is open in a Security Group</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EC2 Sensitive Port Is Publicly Exposed<br/><sup><sub>494b03d3-bf40-4464-8524-7c56ad0700ed</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>The EC2 instance has a sensitive port connection exposed to the entire network</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>HTTP Port Open<br/><sup><sub>ddfc4eaa-af23-409f-b96c-bf5c45dc4daa</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>The HTTP port is open in a Security Group</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Security Group With Unrestricted Access To SSH<br/><sup><sub>6e856af2-62d7-4ba2-adc1-73b62cef9cc1</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>Security Groups allows all traffic for SSH (port:22)</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Security Groups With Exposed Admin Ports<br/><sup><sub>cdbb0467-2957-4a77-9992-7b55b29df7b7</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>Security Groups should not have ports open in (20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389)</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>SageMaker Notebook Not Placed In VPC<br/><sup><sub>9c7028d9-04c2-45be-b8b2-1188ccaefb36</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>SageMaker Notebook must be placed in a VPC</td>
+<td><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/security_iam_id-based-policy-examples.html#sagemaker-condition-nbi-lockdown">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Default Security Groups With Unrestricted Traffic<br/><sup><sub>ea33fcf7-394b-4d11-a228-985c5d08f205</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>Security Groups set as default must be denied traffic.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Security Groups Allows Unrestricted Outbound Traffic<br/><sup><sub>66f2d8f9-a911-4ced-ae27-34f09690bb2c</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>No security group should allow unrestricted egress access</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EC2 Network ACL Overlapping Ports<br/><sup><sub>77b6f1e2-bde4-4a6a-ae7e-a40659ff1576</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>NetworkACL Entries are reusing or overlapping ports which may create ineffective rules</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-portrange.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ELB Sensitive Port Is Exposed To Entire Network<br/><sup><sub>78055456-f670-4d2e-94d5-392d1cf4f5e4</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>The load balancer of the application with a sensitive port connection is exposed to the entire internet.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Route53 Record Undefined<br/><sup><sub>24d932e1-91f0-46ea-836f-fdbd81694151</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>Route53 HostedZone must have the Record Set defined.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Security Groups With Meta IP<br/><sup><sub>adcd0082-e90b-4b63-862b-21899f6e6a48</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>Security Groups allows 0.0.0.0/0 for all ports and protocols.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ALB Listening on HTTP<br/><sup><sub>275a3217-ca37-40c1-a6cf-bb57d245ab32</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>All Application Load Balancers (ALB) should block connection requests over HTTP</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-listener.html#cfn-ec2-elb-listener-protocol">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>RDS Associated with Public Subnet<br/><sup><sub>4e88adee-a8eb-4605-a78d-9fb1096e3091</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>RDS should not run in public subnet</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-dbsubnetgroupname">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>DB Security Group Open To Large Scope<br/><sup><sub>0104165b-02d5-426f-abc9-91fb48189899</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>The IP address in a DB Security Group must not have more than 256 hosts.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Security Group Unrestricted Access To RDP<br/><sup><sub>3ae83918-7ec7-4cb8-80db-b91ef0f94002</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>Security Groups does not allow 0.0.0.0/0 for rdp (port:3389)</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Unknown Port Exposed To Internet<br/><sup><sub>829ce3b8-065c-41a3-ad57-e0accfea82d2</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>AWS Security Group should not have an unknown port exposed to the entire Internet</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>DB Security Group with Public Scope<br/><sup><sub>9564406d-e761-4e61-b8d7-5926e3ab8e79</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>The IP address in a DB Security Group must not be '0.0.0.0/0' (IPv4) or '::/0' (IPv6).</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Fully Open Ingress<br/><sup><sub>e415f8d3-fc2b-4f52-88ab-1129e8c8d3f5</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>ECS Service's security group should not allow unrestricted access to all ports from all IPv4 addresses</td>
+<td><a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/get-set-up-for-amazon-ecs.html#create-a-base-security-group">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Configuration Aggregator to All Regions Disabled<br/><sup><sub>9f3cf08e-72a2-4eb1-8007-e3b1b0e10d4d</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Observability</td>
+<td>AWS Config Configuration Aggregator All Regions must be set to True</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configurationaggregator.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CMK Rotation Disabled<br/><sup><sub>1c07bfaf-663c-4f6f-b22b-8e2d481e4df5</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Observability</td>
+<td>Customer Master Keys (CMK) must have rotation enabled, which means the attribute 'EnableKeyRotation' must be set to 'true' when the key is enabled.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudTrail Logging Disabled<br/><sup><sub>5c0b06d5-b7a4-484c-aeb0-75a836269ff0</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Observability</td>
+<td>Checks if logging is enabled for CloudTrail.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-islogging">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket CloudTrail Logging Disabled<br/><sup><sub>c3ce69fd-e3df-49c6-be78-1db3f802261c</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Observability</td>
+<td>Server Access Logging must be enabled on S3 Buckets so that all changes are logged and trackable when the Service used is CloudTrail</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-loggingconfig">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>API Gateway Without Configured Authorizer<br/><sup><sub>7fd0d461-5b8c-4815-898c-f2b4b117eb28</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>API Gateway REST API should have an API Gateway Authorizer</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-authorizer.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Access Analyzer Undefined<br/><sup><sub>8d29754a-2a18-460d-a1ba-9509f8d359da</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>IAM Access Analyzer should be defined to identify unintentional access</td>
+<td><a href="https://docs.amazonaws.cn/en_us/AWSCloudFormation/latest/UserGuide/aws-resource-accessanalyzer-analyzer.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EC2 Instance Has No IAM Role<br/><sup><sub>f914357d-8386-4d56-9ba6-456e5723f9a6</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Check if an EC2 instance refers to an IAM profile, which represents an IAM Role.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>SQS Policy With Public Access<br/><sup><sub>9b6a3f5b-5fd6-40ee-9bc0-ed604911212d</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Checks for dangerous permissions in Action statements in an SQS Queue Policy. This is deemed a potential security risk as it would allow various attacks to the queue</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-policy.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Elasticsearch Without IAM Authentication<br/><sup><sub>5c666ed9-b586-49ab-9873-c495a833b705</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>AWS Elasticsearch should ensure IAM Authentication</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html#cfn-elasticsearch-domain-accesspolicies">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ECR Repository Is Publicly Accessible<br/><sup><sub>75be209d-1948-41f6-a8c8-e22dd0121134</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Amazon ECR image repositories shouldn't have public access</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Empty Roles For ECS Cluster Task Definitions<br/><sup><sub>7f384a5f-b5a2-4d84-8ca3-ee0a5247becb</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Check if any ECS cluster has not defined proper roles for services' task definitions.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IoT Policy Allows Action as Wildcard<br/><sup><sub>4d32780f-43a4-424a-a06d-943c543576a5</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>IoT Policy should not allow Action to be set as *</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policy.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Policy On User<br/><sup><sub>e4239438-e639-44aa-adb8-866e400e3ade</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>IAM policies should be applied to groups and not to users</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>SQS Queue Policy Allows NotAction<br/><sup><sub>4fbfee74-8186-40d5-a24e-4baa76a855de</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>AWS SQS Queue Policy should not allow NotAction since the actions specified in this element are the only actions in that are limited</td>
+<td><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_notaction.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Neptune Cluster With IAM Database Authentication Disabled<br/><sup><sub>a3aa0087-8228-4e7e-b202-dc9036972d02</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Neptune Cluster should have IAM Database Authentication enabled</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbcluster.html#cfn-neptune-dbcluster-iamauthenabled">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>API Gateway Method Does Not Contains An API Key<br/><sup><sub>3641d5b4-d339-4bc2-bfb9-208fe8d3477f</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>An API Key should be required on a method request.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Lambda Permission Principal Is Wildcard<br/><sup><sub>1d6e16f1-5d8a-4379-bfb3-2dadd38ed5a7</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Lambda Permission Principal should not be wildcard.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Public Lambda via API Gateway<br/><sup><sub>57b12981-3816-4c31-b190-a1e614361dd2</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Allowing to run lambda function using public API Gateway</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>KMS Allows Wildcard Principal<br/><sup><sub>f6049677-ec4a-43af-8779-5190b6d03cba</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>KMS Should not allow Principal parameter to be set as *</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Cross-Account IAM Assume Role Policy Without ExternalId or MFA<br/><sup><sub>85138beb-ce7c-4ca3-a09f-e8fbcc57ddd7</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Cross-Account IAM Assume Role Policy should require external ID or MFA to protect cross-account access</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html#cfn-iam-role-assumerolepolicydocument">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>SQS Queue Policy Allows NotPrincipal<br/><sup><sub>4a8fc9a2-2b2f-4b3f-aa8d-401425872034</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Checks if an SQS Queue policy has an Allow and a NotPrincipal. AWS strongly recommends against using <code>NotPrincipal</code> in the same policy statement as <code>"Effect": "Allow"</code>.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-policy.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EC2 Network ACL Ineffective Denied Traffic<br/><sup><sub>2623d682-dccb-44cd-99d0-54d9fd62f8f2</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Ineffective deny rules. A deny rule should be applied to all IP addresses.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>SNS Topic Publicity Has Allow and NotAction Simultaneously<br/><sup><sub>818f38ed-8446-4132-9c03-474d49e10195</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>SNS topic Publicity Should not have Allow and NotAction at the same time, if it has Allow it should have Action</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-sns-policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IoT Policy Allows Wildcard Resource<br/><sup><sub>be5b230d-4371-4a28-a441-85dc760e2aa3</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>IoT Policy should not allow Resource to be set as *</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policy.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ElastiCache Nodes Not Created Across Multi AZ<br/><sup><sub>cfdef2e5-1fe4-4ef4-bea8-c56e08963150</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Availability</td>
+<td>Check if ElastiCache nodes are not being created across multi AZ</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Auto Scaling Group With No Associated ELB<br/><sup><sub>ad21e616-5026-4b9d-990d-5b007bfe679c</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Availability</td>
+<td>AWS Auto Scaling Groups must have associated ELBs to ensure high availability and improve application performance. This means the attribute 'LoadBalancerNames' must be defined and not empty.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CMK Is Unusable<br/><sup><sub>2844c749-bd78-4cd1-90e8-b179df827602</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Availability</td>
+<td>AWS Key Management Service (KMS) must only possess usable Customer Master Keys (CMK), which means the CMKs must have the attribute 'Enabled' set to true and the attribute 'PendingWindowInDays' must be undefined.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ECS Service Without Running Tasks<br/><sup><sub>79d745f0-d5f3-46db-9504-bef73e9fd528</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Availability</td>
+<td>ECS Service should have at least 1 task running</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-deploymentconfiguration">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EBS Volume Not Attached To Instances<br/><sup><sub>1819ac03-542b-4026-976b-f37addd59f3b</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Availability</td>
+<td>EBS Volumes that are unattached to instances may contain sensitive data</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volumeattachment.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Low RDS Backup Retention Period<br/><sup><sub>e649a218-d099-4550-86a4-1231e1fcb60d</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Backup</td>
+<td>AWS RDS backup retention policy should be at least 7 days</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>RDS With Backup Disabled<br/><sup><sub>8c415f6f-7b90-4a27-a44a-51047e1506f9</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Backup</td>
+<td>Make sure the AWS RDS configuration has automatic backup configured. If the retention period is equal to 0 there is no backup</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Stack Retention Disabled<br/><sup><sub>fe974ae9-858e-4991-bbd5-e040a834679f</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Backup</td>
+<td>Make sure that retain_stack is enabled to keep the Stack and it's associated resources during resource destruction</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-stackset-autodeployment.html#cfn-cloudformation-stackset-autodeployment-retainstacksonaccountremoval">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>RDS Multi-AZ Deployment Disabled<br/><sup><sub>2b1d4935-9acf-48a7-8466-10d18bf51a69</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Backup</td>
+<td>AWS RDS Instance should have a multi-az deployment</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>High Access Key Rotation Period<br/><sup><sub>800fa019-49dd-421b-9042-7331fdd83fa2</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Best Practices</td>
+<td>Check if there is a rule that enforces access keys to be rotated within 90 days.</td>
+<td><a href="https://docs.amazonaws.cn/en_us/config/latest/developerguide/access-keys-rotated.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Managed Policy Applied to a User<br/><sup><sub>0e5872b4-19a0-4165-8b2f-56d9e14b909f</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Best Practices</td>
+<td>Make sure that any managed IAM policies are implemented in a group and not in a user.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html#cfn-iam-managedpolicy-groups">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Password Without Lowercase Letter<br/><sup><sub>f4cf35d6-da92-48de-ab70-57be2b2e6497</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Best Practices</td>
+<td>IAM user resource Login Profile Password should have lowercase letter</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Password Without Symbol<br/><sup><sub>d72a7869-e8b9-4e12-bcd2-e8be10b39fa7</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Best Practices</td>
+<td>IAM user resource Login Profile Password should have at least one symbol</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Password Without Number<br/><sup><sub>839f238f-2e3a-4a72-b945-8abdf91af955</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Best Practices</td>
+<td>IAM user resource Login Profile Password should have at least one number</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Cognito UserPool Without MFA<br/><sup><sub>74a18d1a-cf02-4a31-8791-ed0967ad7fdc</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Best Practices</td>
+<td>AWS Cognito UserPool should have MFA (Multi-Factor Authentication) defined to users</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Password Without Uppercase Letter<br/><sup><sub>445020f6-b69e-4484-847f-02d4b7768902</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Best Practices</td>
+<td>IAM user resource Login Profile Password should have at least one uppercase letter</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ECS No Load Balancer Attached<br/><sup><sub>fb2b0ecf-1492-491a-a70d-ba1df579175d</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Best Practices</td>
+<td>Amazon ECS service should be configured to use Load Balancing to distribute traffic evenly across the tasks, which means there must exist at least one LoadBalancer.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM User Without Password Reset<br/><sup><sub>a964d6e3-8e1e-4d93-8120-61fa640dd55a</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Best Practices</td>
+<td>IAM User Login Profile should exist and have PasswordResetRequired property set to true</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user-loginprofile.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Password Without Minimum Length<br/><sup><sub>b1b20ae3-8fa7-4af5-a74d-a2145920fcb1</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Best Practices</td>
+<td>IAM user resource Login Profile Password should have at least 14 characters</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Automatic Minor Upgrades Disabled<br/><sup><sub>f0104061-8bfc-4b45-8a7d-630eb502f281</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Best Practices</td>
+<td>AWS RDS should have automatic minor upgrades enabled, which means the attribute 'AutoMinorVersionUpgrade' must be set to true.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Neptune Database Cluster Encryption Disabled<br/><sup><sub>bf4473f1-c8a2-4b1b-8134-bd32efabab93</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>Neptune database cluster storage should have encryption enabled</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbcluster.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>SageMaker EndPoint Config Should Specify KmsKeyId Attribute<br/><sup><sub>44034eda-1c3f-486a-831d-e09a7dd94354</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>KmsKeyId attribute should be defined</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-endpointconfig.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ElasticSearch Encryption With KMS Disabled<br/><sup><sub>d926aa95-0a04-4abc-b20c-acf54afe38a1</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>Check if any ElasticSearch domain isn't encrypted with KMS.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html#cfn-elasticsearch-domain-encryptionatrestoptions">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Group Inline Policies<br/><sup><sub>a58d1a2d-4078-4b80-855b-84cc3f7f4540</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>IAM Groups should not use inline policies and instead use managed policies. If a group is deleted, the inline policy is also deleted</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Unscanned ECR Image<br/><sup><sub>9025b2b3-e554-4842-ba87-db7aeec36d35</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>Checks if the ECR Image has been scanned</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html#cfn-ecr-repository-imagescanningconfiguration">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>KMS Key Rotation Disabled<br/><sup><sub>235ca980-eb71-48f4-9030-df0c371029eb</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>EnableKeyRotation should not be false or undefined</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Workspace Without Encryption<br/><sup><sub>89827c57-5a8a-49eb-9731-976a606d70db</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>Workspaces should have encryption enabled</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-workspace.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CodeBuild Not Encrypted<br/><sup><sub>d7467bb6-3ed1-4c82-8095-5e7a818d0aad</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>CodeBuild Should have EncryptionKey defined</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>RDS Storage Encryption Disabled<br/><sup><sub>65844ba3-03a1-40a8-b3dd-919f122e8c95</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>RDS DBCluster should have storage encrypted set to true</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html#cfn-rds-dbcluster-storageencrypted">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>AmazonMQ Broker Encryption Disabled<br/><sup><sub>316278b3-87ac-444c-8f8f-a733a28da60f</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>AmazonMQ Broker should have Encryption Options defined</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-broker.html#cfn-amazonmq-broker-encryptionoptions">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ElasticSearch Not Encrypted At Rest<br/><sup><sub>86a248ab-0e01-4564-a82a-878303e253bb</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>Check if ElasticSearch encryption is disabled at Rest</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html#cfn-elasticsearch-domain-encryptionatrestoptions">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Config Rule For Encrypted Volumes Disabled<br/><sup><sub>1b6322d9-c755-4f8c-b804-32c19250f2d9</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>Check if AWS config rules do not identify Encrypted Volumes as a source.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configrule.html#cfn-config-configrule-source">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EMR Security Configuration Encryption Disabled<br/><sup><sub>5b033ec8-f079-4323-b5c8-99d4620433a9</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>EMR SecurityConfiguration should enable and properly configure encryption at rest and in transit.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-securityconfiguration.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Alexa Skill Plaintext Client Secret Exposed<br/><sup><sub>3c3b7a58-b018-4d07-9444-d9ee7156e111</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>Alexa skills' client secrets should not be defined as a plaintext string. It should either use 'AWS Systems Manager Parameter Store' or 'AWS Secrets Manager' to retrieve sensitive information</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ask-skill.html#cfn-ask-skill-authenticationconfiguration">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EBS Volume Encryption Disabled<br/><sup><sub>80b7ac3f-d2b7-4577-9b10-df7913497162</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>EBS volumes should be encrypted</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>API Gateway Without Content Encoding<br/><sup><sub>d6653eee-2d4d-4e6a-976f-6794a497999a</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>Enable Content Encoding through the attribute 'MinimumCompressionSize'. This value should be greater than -1 and smaller than 10485760.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Inline Policies Are Attached To ECS Service<br/><sup><sub>9e8c89b3-7997-4d15-93e4-7911b9db99fd</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Check if any ECS service has inline policies attached, which are embedded directly into an entity (user, group,...), instead of the equivalent recommended managed policies.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>MQ Broker Is Publicly Accessible<br/><sup><sub>68b6a789-82f8-4cfd-85de-e95332fe6a61</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Check if any MQ Broker is not publicly accessible</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-broker.html#cfn-amazonmq-broker-publiclyaccessible">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>API Gateway With Open Access<br/><sup><sub>1056dfbb-5802-4762-bf2b-8b9b9684b1b0</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>API Gateway Method should restrict an authorization type, except for the HTTP OPTIONS method.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Lambda Function Without Tags<br/><sup><sub>8df8e857-bd59-44fa-9f4c-d77594b95b46</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>AWS Lambda Functions must have associated tags.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ECR Image Tag Not Immutable<br/><sup><sub>33f41d31-86b1-46a4-81f7-9c9a671f59ac</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>ECR should have an image tag be immutable</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EC2 Instance Has Public IP<br/><sup><sub>b3de4e4c-14be-4159-b99d-9ad194365e4c</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>EC2 Subnet should not have MapPublicIpOnLaunch set to true</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html#cfn-ec2-subnet-mappubliciponlaunch">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>GitHub Repository Set To Public<br/><sup><sub>5906092d-5f74-490d-9a03-78febe0f65e1</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Repositories must be set to private, which means the attribute 'visibility' must be set to 'private' and/or the attribute 'private' must be set to true (the attribute 'visibility' overrides 'private')</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codestar-githubrepository.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>API Gateway Without SSL Certificate<br/><sup><sub>ed4c48b8-eccc-4881-95c1-09fdae23db25</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>SSL Client Certificate should be enabled</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EMR Cluster Without Security Configuration<br/><sup><sub>48af92a5-c89b-4936-bc62-1086fe2bab23</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>EMR Cluster should have security configuration defined.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-securityconfiguration">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Instance With No VPC<br/><sup><sub>8a6d36cd-0bc6-42b7-92c4-67acc8576861</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>EC2 Instances should be configured under a VPC network. AWS VPCs provide the controls to facilitate a formal process for approving and testing all network connections and changes to the firewall and router configurations.</td>
+<td><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-vpc.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>SageMaker Enabling Internet Access<br/><sup><sub>88d55d94-315d-4564-beee-d2d725feab11</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>SageMaker must have disabled internet access and root access for Creating Notebook Instances.</td>
+<td><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/security_iam_id-based-policy-examples.html#sagemaker-condition-nbi-lockdown">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM User Has Too Many Access Keys<br/><sup><sub>48677914-6fdf-40ec-80c4-2b0e94079f54</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Any IAM User should not have more than one access key since it increases the risk of unauthorized access and compromise credentials</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM User LoginProfile Password Is In Plaintext<br/><sup><sub>06adef8c-c284-4de7-aad2-af43b07a8ca1</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>IAM User LoginProfile Password must not be a plaintext string</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Lambda Functions Without Unique IAM Roles<br/><sup><sub>ae03f542-1423-402f-9cef-c834e7ee9583</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>AWS Lambda Functions should not share IAM roles to ensure they will have the minimum privileges needed to perform the required tasks</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>RouterTable with Default Routing<br/><sup><sub>4f0908b9-eb66-433f-9145-134274e1e944</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Defaults</td>
+<td>NAT gateways are recommended, and not the default route which permits all traffic, in Route Tables.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route-table.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket Should Have Bucket Policy<br/><sup><sub>37fa8188-738b-42c8-bf82-6334ea567738</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Defaults</td>
+<td>Checks if S3 Bucket has the same name as a Bucket Policy, if it has, S3 Bucket has a Bucket Policy associated</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ELB With Security Group Without Inbound Rules<br/><sup><sub>e200a6f3-c589-49ec-9143-7421d4a2c845</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>An AWS Elastic Load Balancer (ELB) shouldn´t have security groups without outbound rules</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html#cfn-ec2-securitygroup-securitygroupingress">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Security Group Ingress With All Protocols<br/><sup><sub>1a427b25-2e9e-4298-9530-0499a55e736b</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>AWS Security Group Ingress should not specify all protocols to prevent allow traffic on all ports</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Security Group Egress With All Protocols<br/><sup><sub>ee464fc2-54a6-4e22-b10a-c6dcd2474d0c</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>AWS Security Group Egress should not specify all protocols to prevent allow traffic on all ports</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-security-group-egress.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>GameLift Fleet EC2 InboundPermissions With Port Range<br/><sup><sub>43356255-495d-4148-ad8d-f6af5eac09dd</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>AWS GameLift Fleet EC2InboundPermissions should have a single port</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Security Group Ingress With Port Range<br/><sup><sub>87482183-a8e7-4e42-a566-7a23ec231c16</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>AWS Security Group Ingress should have a single port</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ALB Is Not Integrated With WAF<br/><sup><sub>105ba098-1e34-48cd-b0f2-a8a43a51bf9b</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>All Application Load Balancers (ALB) must be protected with Web Application Firewall (WAF) service</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-webaclassociation.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>API Gateway without WAF<br/><sup><sub>fcbf9019-566c-4832-a65c-af00d8137d2b</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>API Gateway should have WAF (Web Application Firewall) enabled</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webaclassociation.html#cfn-wafv2-webaclassociation-resourcearn">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>VPC Without Network Firewall<br/><sup><sub>3e293410-d5b8-411f-85fd-7d26294f20c9</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>VPC should have a Network Firewall associated</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-firewall.html#cfn-networkfirewall-firewall-vpcid">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Unrestricted Security Group Ingress<br/><sup><sub>4a1e6b34-1008-4e61-a5f2-1f7c276f8d14</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>AWS Security Group Ingress CIDR should not be open to the world</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EC2 Permissive Network ACL Protocols<br/><sup><sub>03879981-efa2-47a0-a818-c843e1441b88</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>To avoid opening all ports for Allow rules, EC2 NetworkACL Entry Protocol should be either 6 (for TCP), 17 (for UDP), 1 (for ICMP), or 58 (for ICMPv6, which must include an IPv6 CIDR block, ICMP type, and code).</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Security Groups Without VPC Attached<br/><sup><sub>493d9591-6249-47bf-8dc0-5c10161cc558</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Security Groups must have a VPC.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ELB With Security Group Without Outbound Rules<br/><sup><sub>01d5a458-a6c4-452a-ac50-054d59275b7c</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>An AWS Elastic Load Balancer (ELB) shouldn´t have security groups without outbound rules</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html#cfn-ec2-securitygroup-securitygroupegress">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>API Gateway Endpoint Config is Not Private<br/><sup><sub>4a8daf95-709d-4a36-9132-d3e19878fa34</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>The API Endpoint type in API Gateway should be set to PRIVATE so it's not exposed to the public internet</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-restapi-endpointconfiguration.html#cfn-apigateway-restapi-endpointconfiguration-types">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>TCP/UDP Protocol Network ACL Entry Allows All Ports<br/><sup><sub>f57f849c-883b-4cb7-85e7-f7b199dff163</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>TCP/UDP protocol AWS Network ACL Entry should not allow all ports</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html#cfn-ec2-networkaclentry-portrange">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Security Group Egress CIDR Open To World<br/><sup><sub>1cc2fbd7-816c-4fbf-ad6d-38a4afa4312a</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>AWS Security Group Egress CIDR should not be open to the world</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-security-group-egress.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Security Group Egress With Port Range<br/><sup><sub>dae9c373-8287-462f-8746-6f93dad93610</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>AWS Security Group Egress should have a single port</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-security-group-egress.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ELBv2 ALB Access Log Disabled<br/><sup><sub>c62e8b7d-1fdf-4050-ac4c-76ba9e1d9621</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>ELBv2 ALBs should have access log enabled to capture detailed information about requests sent to your load balancer.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes.html#cfn-elasticloadbalancingv2-loadbalancer-loadbalancerattributes-key">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudTrail Not Integrated With CloudWatch<br/><sup><sub>65d07da5-9af5-44df-8983-52d2e6f24c44</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>CloudTrail should be integrated with CloudWatch</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ELB Access Log Disabled<br/><sup><sub>ee12ad32-2863-4c0f-b13f-28272d115028</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>ELB should have access log enabled</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-accessloggingpolicy.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudFront Logging Disabled<br/><sup><sub>de77cd9f-0e8b-46cc-b4a4-b6b436838642</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Make sure AWS CloudFront distribution has access log enabled</td>
+<td><a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/logging-and-monitoring.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudTrail Multi Region Disabled<br/><sup><sub>058ac855-989f-4378-ba4d-52d004020da7</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>AWS CloudTrail should have IsMultiRegionTrail set to true</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-ismultiregiontrail">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudWatch Logging Disabled<br/><sup><sub>0f0fb06b-0f2f-4374-8588-f2c7c348c7a0</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Check if CloudWatch logging is disabled for Route53 hosted zones</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone.html#cfn-route53-hostedzone-queryloggingconfig">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>API Gateway Deployment Without Access Log Setting<br/><sup><sub>06ec63e3-9f72-4fe2-a218-2eb9200b8db5</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>API Gateway Deployment should have access log setting defined when connected to an API Gateway Stage.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Redshift Cluster Logging Disabled<br/><sup><sub>3de2d4ff-fe53-4fc9-95d3-2f8a69bf90d6</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Make sure Logging is enabled for Redshift Cluster</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html#cfn-redshift-cluster-loggingproperties">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudWatch Metrics Disabled<br/><sup><sub>5d3c1807-acb3-4bb0-be4e-0440230feeaf</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Checks if CloudWatch Metrics is Enabled</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cw-alarm.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>MSK Cluster Logging Disabled<br/><sup><sub>fc7c2c15-f5d0-4b80-adb2-c89019f8f62b</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Ensure MSK Cluster Logging is enabled</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-cluster.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ElasticSearch Without Slow Logs<br/><sup><sub>086ea2eb-14a6-4fd4-914b-38e0bc8703e8</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Ensure that AWS Elasticsearch enables support for slow logs</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html#cfn-elasticsearch-domain-logpublishingoptions">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket Without Versioning<br/><sup><sub>a227ec01-f97a-4084-91a4-47b350c1db54</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>S3 bucket should have versioning enabled</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>MQ Broker Logging Disabled<br/><sup><sub>e519ed6a-8328-4b69-8eb7-8fa549ac3050</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Check if MQ Brokers don't have logging enabled in any of the two options possible (audit and general).</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-broker.html#cfn-amazonmq-broker-logs">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>API Gateway V2 Stage Access Logging Settings Not Defined<br/><sup><sub>80d45af4-4920-4236-a56e-b7ef419d1941</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>API Gateway V2 Stage should have Access Logging Settings defined.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-stage.html#cfn-apigatewayv2-stage-accesslogsettings">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudTrail SNS Topic Name Undefined<br/><sup><sub>3e09413f-471e-40f3-8626-990c79ae63f3</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Check if SNS topic name is set for CloudTrail</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-snstopicname">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>GuardDuty Detector Disabled<br/><sup><sub>a25cd877-375c-4121-a640-730929936fac</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Make sure that Amazon GuardDuty is Enabled.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-detector.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>API Gateway X-Ray Disabled<br/><sup><sub>4ab10c48-bedb-4deb-8f3b-ff12783b61de</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>X-Ray Tracing is not enabled</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html#cfn-apigateway-stage-tracingenabled">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Stack Notifications Disabled<br/><sup><sub>837e033c-4717-40bd-807e-6abaa30161b7</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Enable AWS CloudFormation Stack Notifications</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>SNS Topic Without KmsMasterKeyId<br/><sup><sub>9d13b150-a2ab-42a1-b6f4-142e41f81e52</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Secret Management</td>
+<td>KmsMasterKeyId attribute should not be undefined</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>DMS Endpoint Password Exposed<br/><sup><sub>5f700072-b7ce-4e84-b3f3-497bf1c24a4d</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Secret Management</td>
+<td>DMS Endpoint password must not be a plaintext string or a Ref to a Parameter with a Default value.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Directory Service Microsoft AD Password Set to Plaintext or Default Ref<br/><sup><sub>06b9f52a-8cd5-459b-bdc6-21a22521e1be</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Secret Management</td>
+<td>Directory Service Microsoft AD password must not be a plaintext string or a Ref to a Parameter with a Default value.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-microsoftad.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Hardcoded AWS Access Key In Lambda<br/><sup><sub>2564172f-c92b-4261-9acd-464aed511696</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Secret Management</td>
+<td>Lambda hardcoded AWS access/secret keys</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-environment">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Amplify App OAuth Token Exposed<br/><sup><sub>03b38885-8f4e-480c-a0e4-12c1affd15db</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Secret Management</td>
+<td>Amplify App OAuth Token must not be a plaintext string or a Ref to a Parameter with a Default value.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-app-basicauthconfig.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Amplify App Basic Auth Config Password Exposed<br/><sup><sub>71493c8b-3014-404c-9802-078b74496fb7</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Secret Management</td>
+<td>Amplify App BasicAuthConfig Password must not be a plaintext string or a Ref to a Parameter with a Default value.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-app-basicauthconfig.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>SQS with SSE disabled<br/><sup><sub>12726829-93ed-4d51-9cbe-13423f4299e1</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Secret Management</td>
+<td>AWS SQS Queue should have a KMS Master Key defined</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-kmsmasterkeyid">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EBS Volume Without KmsKeyId<br/><sup><sub>b7063015-6c31-4658-a8e7-14f98f37fd42</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Secret Management</td>
+<td>EBS Volume should specify a KmsKeyId value</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Directory Service Simple AD Password Exposed<br/><sup><sub>6685d912-d81f-4cfa-95ad-e316ea31c989</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Secret Management</td>
+<td>DirectoryService SimpleAD password must not be a plaintext string or a Ref to a Parameter with a Default value.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-simplead.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>DocDB Cluster Master Password In Plaintext<br/><sup><sub>39423ce4-9011-46cd-b6b1-009edcd9385d</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Secret Management</td>
+<td>DocDB DB Cluster master user password must not be in a plain text string or referenced in a parameter as a default value.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Secrets Manager Should Specify KmsKeyId<br/><sup><sub>c8ae9ba9-c2f7-4e5c-b32e-a4b7712d4d22</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Secret Management</td>
+<td>Secrets Manager Secret should explicitly specify KmsKeyId, this will allow the secret to be shared cross-account</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-secret.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>RefreshToken Is Exposed<br/><sup><sub>5b48c507-0d1f-41b0-a630-76817c6b4189</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Secret Management</td>
+<td>Alexa ASK Skill AuthenticationConfiguration RefreshToken should not be a plaintext string</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ask-skill.html#cfn-ask-skill-authenticationconfiguration">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Amplify App Access Token Exposed<br/><sup><sub>73980e43-f399-4fcc-a373-658228f7adf7</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Secret Management</td>
+<td>Amplify App Access Token must not be in a plain text string or referenced in a parameter as a default value.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-app.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Amplify Branch Basic Auth Config Password Exposed<br/><sup><sub>dfb56e5d-ee68-446e-b32a-657b62befe69</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Secret Management</td>
+<td>Amplify Branch BasicAuthConfig Password must not be a plaintext string or a Ref to a Parameter with a Default value.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-branch.html#cfn-amplify-branch-basicauthconfig">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>DMS Endpoint MongoDB Settings Password Exposed<br/><sup><sub>f988a17f-1139-46a3-8928-f27eafd8b024</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Secret Management</td>
+<td>DMS Endpoint MongoDbSettings Password must not be a plaintext string or a Ref to a Parameter with a Default value.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Role Allows All Principals To Assume<br/><sup><sub>f80e3aa7-7b34-4185-954e-440a6894dde6</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Access Control</td>
+<td>IAM role allows all services or principals to assume it</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html#cfn-iam-role-assumerolepolicydocument">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM User With No Group<br/><sup><sub>06933df4-0ea7-461c-b9b5-104d27390e0e</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Access Control</td>
+<td>A IAM user should belong to a group</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Policy Grants 'AssumeRole' Permission Across All Services<br/><sup><sub>e835bd0d-65da-49f7-b6d1-b646da8727e6</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Access Control</td>
+<td>Check if any IAM Policy grants 'AssumeRole' permission across all services.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Group Without Users<br/><sup><sub>8f957abd-9703-413d-87d3-c578950a753c</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Access Control</td>
+<td>IAM Group should have at least one user associated</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Support Has No Role Associated<br/><sup><sub>d71b5fd7-9020-4b2d-9ec8-b3839faa2744</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Access Control</td>
+<td>Check if any AWS Support policy does not have any role and users and group associated, which means that is not being managed.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Policy Grants Full Permissions<br/><sup><sub>f62aa827-4ade-4dc4-89e4-1433d384a368</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Access Control</td>
+<td>Check if an IAM policy is granting full permissions to resources from the get-go, instead of granting permissions gradually as necessary.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EC2 Instance Using Default Security Group<br/><sup><sub>08b81bb3-0985-4023-8602-b606ad81d279</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Access Control</td>
+<td>EC2 instances should not use default security group(s)</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-securitygroups">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>VPC Attached With Too Many Gateways<br/><sup><sub>97e94d17-e2c7-4109-a53b-6536ac1bb64e</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Availability</td>
+<td>The number of gateways approaches or goes beyond the limit in a particular VPC</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc-gateway-attachment.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>RDS With Deletion Protection Disabled<br/><sup><sub>2c161e58-cb52-454f-abea-6470c37b5e6e</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Backup</td>
+<td>RDS DBInstance should have deletion protection set to true</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-deletionprotection">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Security Group Rule Without Description<br/><sup><sub>5e6c9c68-8a82-408e-8749-ddad78cbb9c5</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Best Practices</td>
+<td>AWS Security Group Rule should have description defined</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Lambda Permission Misconfigured<br/><sup><sub>9b83114b-b2a1-4534-990d-06da015e47aa</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Best Practices</td>
+<td>Lambda permission may be misconfigured if the action field is not filled in by 'lambda: InvokeFunction'</td>
+<td><a href="https://docs.aws.amazon.com/pt_br/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Policies Without Groups<br/><sup><sub>5e7acff5-095b-40ac-9073-ac2e4ad8a512</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Best Practices</td>
+<td>IAM policy should not apply directly to users, should be with a group</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Security Group Ingress Has CIDR Not Recommended<br/><sup><sub>a3e4e39a-e5fc-4ee9-8cf5-700febfa86dd</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Best Practices</td>
+<td>AWS Security Group Ingress CIDR should not be /32 in case of IPV4 or /128 in case of IPV6</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Geo Restriction Disabled<br/><sup><sub>7f8843f0-9ea5-42b4-a02b-753055113195</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Best Practices</td>
+<td>Geo Restriction feature should be enabled, to restrict or allow users in specific locations accessing web application content</td>
+<td><a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/georestrictions.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Policies Attached To User<br/><sup><sub>edc95c10-7366-4f30-9b4b-f995c84eceb5</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Best Practices</td>
+<td>IAM User should embed managed policies instead of inline policies</td>
+<td><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CDN Configuration Is Missing<br/><sup><sub>e4f54ff4-d352-40e8-a096-5141073c37a2</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Best Practices</td>
+<td>Content Delivery Network (CDN) service is used within AWS account to secure and accelerate the delivery of websites. The use of a CDN can provide a layer of security between your origin content and the destination.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EFS Without Tags<br/><sup><sub>08e39832-5e42-4304-98a0-aa5b43393162</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Build Process</td>
+<td>Amazon Elastic Filesystem should have filesystem tags associated</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>DynamoDB With Not Recommented Table Billing Mode<br/><sup><sub>c333e906-8d8b-4275-b999-78b6318f8dc6</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Build Process</td>
+<td>Checks if DynamoDB Table Billing Mode is set to either PAY_PER_REQUEST or PROVISIONED</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-attributedef">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Open Access To Resources Through API<br/><sup><sub>60112997-8bd0-4c4c-9140-e5111706ea6f</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Insecure Configurations</td>
+<td>Open access to back-end resources through API</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Lambda Function Without Dead Letter Queue<br/><sup><sub>c2eae442-d3ba-4cb1-84ca-1db4f80eae3d</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Insecure Configurations</td>
+<td>AWS Lambda Function should be configured for a Dead Letter Queue(DLQ)</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-deadletterconfig">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Wildcard In ACM Certificate Domain Name<br/><sup><sub>cc8b294f-006f-4f8f-b5bb-0a9140c33131</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Insecure Configurations</td>
+<td>ACM Certificate should not use wildcards (*) in the domain name</td>
+<td><a href="https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>API Gateway Cache Cluster Disabled<br/><sup><sub>52790cad-d60d-41d5-8483-146f9f21208d</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Insecure Configurations</td>
+<td>AWS API Gateway should have cache clustering enabled</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html#cfn-apigateway-stage-cacheclusterenabled">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EC2 Network ACL Duplicate Rule<br/><sup><sub>045ddb54-cfc5-4abb-9e05-e427b2bc96fe</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>A Network ACL's rule numbers cannot be repeated unless one is egress and the other is ingress</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html#cfn-ec2-networkaclentry-rulenumber">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>RDS Using Default Port<br/><sup><sub>1fe9d958-ddce-4228-a124-05265a959a8b</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>RDS should not use the default port (an attacker can easily guess the port). For engines related to Aurora, MariaDB or MySQL, the default port is 3306. PostgreSQL default port is 5432, Oracle default port is 1521 and SQL Server default port is 1433</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-port">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EMR Without VPC<br/><sup><sub>bf89373a-be40-4c04-99f5-746742dfd7f3</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>Elastic MapReduce Cluster (EMR) should be launched in a Virtual Private Cloud (VPC)</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-jobflowinstancesconfig.html#cfn-elasticmapreduce-cluster-jobflowinstancesconfig-ec2subnetid">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudFront Without WAF<br/><sup><sub>0f139403-303f-467c-96bd-e717e6cfd62d</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>All AWS CloudFront distributions should be integrated with the Web Application Firewall (AWS WAF) service</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-webaclid">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ElastiCache Without VPC<br/><sup><sub>ba766c53-fe71-4bbb-be35-b6803f2ef13e</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>ElastiCache should be launched in a Virtual Private Cloud (VPC)</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html#cfn-elasticache-cachecluster-cachesubnetgroupname">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Redshift Using Default Port<br/><sup><sub>a478af30-8c3a-404d-aa64-0b673cee509a</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>Redshift should not use the default port (5439) because an attacker can easily guess the port</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html#cfn-redshift-cluster-port">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EC2 Instance Using Default VPC<br/><sup><sub>e42a3ef0-5325-4667-84bf-075ba1c9d58e</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>EC2 Instances should not be configured under a default VPC network</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-subnetid">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Shield Advanced Not In Use<br/><sup><sub>ad7444cf-817a-4765-a79e-2145f7981faf</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>AWS Shield Advanced should be used for Amazon Route 53 hosted zone, AWS Global Accelerator accelerator, Elastic IP Address, Elastic Load Balancing, and Amazon CloudFront Distribution to protect these resources against robust DDoS attacks</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fms-policy.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ElastiCache Using Default Port<br/><sup><sub>323db967-c68e-44e6-916c-a777f95af34b</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>ElastiCache should not use the default port (an attacker can easily guess the port). For engine set to Redis, the default port is 6379. The Memcached default port is 11211</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html#cfn-elasticache-replicationgroup-port">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>API Gateway Deployment Without API Gateway UsagePlan Associated<br/><sup><sub>783860a3-6dca-4c8b-81d0-7b62769ccbca</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Observability</td>
+<td>API Gateway Deployment should have API Gateway UsagePlan defined and associated.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket Logging Disabled<br/><sup><sub>4552b71f-0a2a-4bc4-92dd-ed7ec1b4674c</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Observability</td>
+<td>Server Access Logging must be enabled on S3 Buckets so that all changes are logged and trackable</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-loggingconfig">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Lambda Functions Without X-Ray Tracing<br/><sup><sub>9488c451-074e-4cd3-aee3-7db6104f542c</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Observability</td>
+<td>AWS Lambda functions should have TracingConfig enabled. For this, property 'tracingConfig.mode' should have the value 'Active'</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-tracingconfig.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>VPC FlowLogs Disabled<br/><sup><sub>f6d299d2-21eb-41cc-b1e1-fe12d857500b</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Observability</td>
+<td>VPC hasn't got any FlowLog associated</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>SNS Topic is Publicly Accessible For Subscription<br/><sup><sub>ae53ce91-42b5-46bf-a84f-9a13366a4f13</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Observability</td>
+<td>Ensure appropriate subscribers to each SNS topic</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html#cfn-sns-topic-subscription">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ECS Task Definition HealthCheck Missing<br/><sup><sub>d24389b4-b209-4ff0-8345-dc7a4569dcdd</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Observability</td>
+<td>Amazon ECS must have the HealthCheck property defined to give more control over monitoring the health of tasks</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-healthcheck.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudTrail Log File Validation Disabled<br/><sup><sub>2a3560fe-52ca-4443-b34f-bf0ed5eb74c8</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Observability</td>
+<td>CloudTrail log file validation should be enabled</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-enablelogfilevalidation">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>API Gateway Stage Without API Gateway UsagePlan Associated<br/><sup><sub>7f8f1b60-43df-4c28-aa21-fb836dbd8071</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Resource Management</td>
+<td>API Gateway Stage should have API Gateway UsagePlan defined and associated.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>VPC Without Attached Subnet<br/><sup><sub>3b3b4411-ad1f-40e7-b257-a78a6bb9673a</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Resource Management</td>
+<td>VPCs without attached subnets may indicate that they are not being used</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>SDB Domain Declared As A Resource<br/><sup><sub>6ea57c8b-f9c0-4ec7-bae3-bd75a9dee27d</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Resource Management</td>
+<td>SimpleDB Domain resource should not be declared</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-simpledb.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ECS Task Definition Invalid CPU or Memory<br/><sup><sub>f4c9b5f5-68b8-491f-9e48-4f96644a1d51</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Resource Management</td>
+<td>In ECS Task Definition of FARGATE launch type if you specify an invalid CPU or Memory value, you will receive an error</td>
+<td><a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-cpu-memory-error.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EC2 Not EBS Optimized<br/><sup><sub>8dd0ff1f-0da4-48df-9bb3-7f338ae36a40</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>It's considered a best practice for an EC2 instance to use an EBS optimized instance. This provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-ebsoptimized">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>### AWS_SAM</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Bellow are listed queries related with CloudFormation AWS_SAM:</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Severity</th>
+<th>Category</th>
+<th>Description</th>
+<th>Help</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Serverless Function Environment Variables Not Encrypted<br/><sup><sub>a7f8ac28-eed1-483d-87c8-4c325f022572</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>AWS Serverless Function should encrypt environment variables</td>
+<td><a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-kmskeyarn">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serverless API Without Content Encoding<br/><sup><sub>a2f2800e-614b-4bc8-89e6-fec8afd24800</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>AWS Serverless API should enable Content Encoding through the attribute 'MinimumCompressionSize'. This value should be greater than -1 and smaller than 10485760</td>
+<td><a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-api.html#sam-api-minimumcompressionsize">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serverless Function Without Unique IAM Role<br/><sup><sub>4ba74f01-aba5-4be2-83bc-be79ff1a3b92</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>AWS Serverless Function should not share IAM Role to ensure it will have the minimum privileges needed to perform the required tasks</td>
+<td><a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-role">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serverless Function Without Tags<br/><sup><sub>a71ecabe-03b6-456a-b3bc-d1a39aa20c98</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>AWS Serverless Function must have associated tags</td>
+<td><a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-tags">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serverless API Endpoint Config Not Private<br/><sup><sub>6b5b0313-771b-4319-ad7a-122ee78700ef</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>AWS Serverless API should set API Endpoint Config type to 'PRIVATE'. This way, it's not exposed to the public internet</td>
+<td><a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-api.html#sam-api-endpointconfiguration">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serverless API X-Ray Tracing Disabled<br/><sup><sub>c757c6a3-ac87-4b9d-b28d-e5a5add6a315</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>AWS Serverless API should have X-Ray Tracing enabled</td>
+<td><a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-api.html#sam-api-tracingenabled">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serverless API Access Logging Setting Undefined<br/><sup><sub>0a994e04-c6dc-471d-817e-d37451d18a3b</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>AWS Serverless API/AWS Serverless HTTP API should have Access Logging Setting(s) defined</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-accesslogsetting.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serverless Function Without Dead Letter Queue<br/><sup><sub>cb2f612b-ed42-4ff5-9fb9-255c73d39a18</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Insecure Configurations</td>
+<td>AWS Serverless Function should be configured for a Dead Letter Queue(DLQ)</td>
+<td><a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-deadletterqueue">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serverless API Cache Cluster Disabled<br/><sup><sub>60a05ede-0a68-4d0d-a58f-f538cf55ff79</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Insecure Configurations</td>
+<td>AWS Serverless API should have cache clustering enabled</td>
+<td><a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-api.html#sam-api-cacheclusterenabled">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serverless Function Without X-Ray Tracing<br/><sup><sub>dc1ab429-1481-4540-9b1d-280e3f15f1f8</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Observability</td>
+<td>AWS Serverless Function should have Tracing enabled. For this, property 'Tracing' should have the value 'Active'</td>
+<td><a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-tracing">Documentation</a><br/></td>
+</tr>
+</tbody>
+</table>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../azureresourcemanager-queries/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Azure Resource Manager" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Azure Resource Manager
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../dockerfile-queries/" class="md-footer__link md-footer__link--next" aria-label="Next: Dockerfile" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Dockerfile
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2021 Checkmarx Ltd. All Rights Reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c44cc438.min.js"></script>
+      
+        <script src="../../js/version-mike.js"></script>
+      
+        <script src="../../js/custom.js"></script>
+      
+    
+  </body>
+</html>
