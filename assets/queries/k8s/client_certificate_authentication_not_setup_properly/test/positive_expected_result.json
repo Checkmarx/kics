@@ -28,5 +28,11 @@
     "severity": "HIGH",
     "line": 2,
     "filename": "positive5.yaml"
+  },
+  {
+    "queryName": "Client Certificate Authentication Not Setup Properly",
+    "severity": "HIGH",
+    "line": 2,
+    "filename": "positive6.yaml"
   }
 ]

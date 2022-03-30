@@ -48,7 +48,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	doc :=input.document[i]
     doc.kind == "KubeletConfiguration"
-    notValidClientCAFile(doc.authentication)
+    notValidClientCAFile(doc)
 
 	result := {
 		"documentId": doc.id,
@@ -59,10 +59,12 @@ CxPolicy[result] {
 	}
 }
 
-notValidClientCAFile(authentication){
-	not common_lib.valid_key(authentication,"x509")
-}else{
-	not common_lib.valid_key(authentication.x509,"clientCAFile")
+notValidClientCAFile(doc){
+	not common_lib.valid_key(doc, "authentication")
+} else {
+	not common_lib.valid_key(doc.authentication,"x509")
+} else {
+	not common_lib.valid_key(doc.authentication.x509,"clientCAFile")
 }
 
 CxPolicy[result] {
