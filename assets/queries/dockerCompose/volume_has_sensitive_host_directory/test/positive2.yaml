@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  web:
+    image: nginx:alpine
+    volumes:
+      - type: volume
+        source: vol
+        target: /data
+        volume:
+          nocopy: true
+      - type: bind
+        source: ./static
+        target: /opt/app/static
+volumes:
+  vol:
+    driver: local
+    driver_opts:
+      device: /var/lib/backup/data
+      o: bind

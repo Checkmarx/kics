@@ -1,0 +1,10 @@
+{
+    "id": "bb9ac4f7-e13b-423d-a010-c74a1bfbe492",
+    "queryName": "Memory Not Limited",
+    "severity": "MEDIUM",
+    "category": "Resource Management",
+    "descriptionText": "Memory limits should be defined for each container. This prevents potential resource exhaustion by ensuring that containers consume not more than the designated amount of memory",
+    "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources",
+    "platform": "DockerCompose",
+    "descriptionID": "8fcb9f7d"
+}
