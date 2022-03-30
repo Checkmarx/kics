@@ -96,11 +96,3 @@ cipherSplit(arr,item){
     cipher := ciphers[_]
     not common_lib.inArray(strongCiphersConfig,cipher)
 }
-
-
-
-
-
-
-
-
