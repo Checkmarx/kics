@@ -75,7 +75,7 @@ CxPolicy[result] {
 	 
 	result := {
 		"documentId": doc.id,
-		"searchKey": "kind={{KubeletConfiguration}}",
+		"searchKey": "kind={{KubeletConfiguration}}.tlsCipherSuites",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue":  "TLS cipher suites should use strong ciphers",
 		"keyActualValue": "TLS cipher suites uses a weak cipher",

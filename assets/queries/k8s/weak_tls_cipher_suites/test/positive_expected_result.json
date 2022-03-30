@@ -14,7 +14,7 @@
     {
       "queryName": "Weak TLS Cipher Suites",
       "severity": "MEDIUM",
-      "line": 2,
+      "line": 9,
       "filename": "positive3.yaml"
     },
     {
