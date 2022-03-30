@@ -161,6 +161,17 @@ func checkExpectedOutput(t *testing.T, tt *testcases.TestCase, argIndex int) {
 		json := utils.XMLToJSON(t, filename, "cyclonedx")
 		utils.JSONSchemaValidationFromData(t, json, "result-cyclonedx.json")
 	}
+	// Check result file (CSV)
+	if utils.Contains(resultsFormats, "csv") || utils.Contains(resultsFormats, "csv-cis") {
+		filename := tt.Args.ExpectedResult[argIndex].ResultsFile + ".csv"
+		json := utils.CSVToJSON(t, filename)
+
+		if utils.Contains(resultsFormats, "csv-cis") {
+			utils.JSONSchemaValidationFromData(t, json, "result-csv-cis.json")
+		} else {
+			utils.JSONSchemaValidationFromData(t, json, "result-csv.json")
+		}
+	}
 }
 
 func prepareTemplates() testcases.TestTemplates {
