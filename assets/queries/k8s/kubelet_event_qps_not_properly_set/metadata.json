@@ -3,7 +3,7 @@
     "queryName": "Kubelet Event QPS Not Properly Set",
     "severity": "LOW",
     "category": "Observability",
-    "descriptionText": "--event-qps should be set to 0",
+    "descriptionText": "When using the kubelet command, the '--event-qps' should be set to 0",
     "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/",
     "platform": "Kubernetes",
     "descriptionID": "3163b76e"
