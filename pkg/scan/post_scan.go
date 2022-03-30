@@ -9,9 +9,9 @@ import (
 	"time"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
-	consolePrinter "github.com/Checkmarx/kics/internal/console/printer"
 	"github.com/Checkmarx/kics/pkg/descriptions"
 	"github.com/Checkmarx/kics/pkg/model"
+	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
 	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/pkg/report"
 	"github.com/rs/zerolog/log"
@@ -51,12 +51,12 @@ func (c *Client) resolveOutputs(
 	summary *model.Summary,
 	documents model.Documents,
 	failedQueries map[string]error,
-	printer *consoleHelpers.Printer,
+	printer *consolePrinter.Printer,
 	proBarBuilder progress.PbBuilder,
 ) error {
 	log.Debug().Msg("console.resolveOutputs()")
 
-	if err := consoleHelpers.PrintResult(summary, failedQueries, printer); err != nil {
+	if err := consolePrinter.PrintResult(summary, failedQueries, printer); err != nil {
 		return err
 	}
 	if c.ScanParams.PayloadPath != "" {

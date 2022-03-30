@@ -11,6 +11,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/analyzer"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/model"
+	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
 	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
@@ -192,21 +193,21 @@ func deleteExtractionFolder(extractionMap map[string]model.ExtractedPathObject) 
 	}
 }
 
-func contributionAppeal(printer *consoleHelpers.Printer, queriesPath []string) {
+func contributionAppeal(customPrint *consolePrinter.Printer, queriesPath []string) {
 	if utils.Contains(filepath.Join("assets", "queries"), queriesPath) {
 		msg := "\nAre you using a custom query? If so, feel free to contribute to KICS!\n"
 		contributionPage := "Check out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md\n"
 
-		fmt.Println(printer.ContributionMessage.Sprintf(msg + contributionPage))
+		fmt.Println(customPrint.ContributionMessage.Sprintf(msg + contributionPage))
 	}
 }
 
 // printVersionCheck - Prints and logs warning if not using KICS latest version
-func printVersionCheck(printer *consoleHelpers.Printer, s *model.Summary) {
+func printVersionCheck(customPrint *consolePrinter.Printer, s *model.Summary) {
 	if !s.LatestVersion.Latest {
 		message := fmt.Sprintf("A new version 'v%s' of KICS is available, please consider updating", s.LatestVersion.LatestVersionTag)
 
-		fmt.Println(printer.VersionMessage.Sprintf(message))
+		fmt.Println(customPrint.VersionMessage.Sprintf(message))
 		log.Warn().Msgf(message)
 	}
 }
