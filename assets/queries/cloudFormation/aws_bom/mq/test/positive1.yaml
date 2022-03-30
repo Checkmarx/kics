@@ -12,7 +12,7 @@ Resources:
       EngineType: ActiveMQ
       EngineVersion: "5.15.0"
       HostInstanceType: mq.t2.micro
-      PubliclyAccessible: false
+      PubliclyAccessible: true
       Users:
         -
           ConsoleAccess: "true"

@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terra_lib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	document := input.document
@@ -14,11 +14,9 @@ CxPolicy[result] {
 		# RabbitMQ or ActiveMQ
 		"resource_engine": mq.Properties.EngineType,
 		"resource_accessibility": check_publicly_accessible(mq),
-		"resource_encryption": get_encryption(mq),
+		"resource_encryption": cf_lib.get_encryption(mq),
 		"resource_vendor": "AWS",
 		"resource_category": "Queues",
-		"user_name": "TO DO",
-		"is_default_password": "TO DO", 
 	}
 
 	result := {
@@ -34,14 +32,7 @@ CxPolicy[result] {
 
 check_publicly_accessible(resource) = accessibility {
 	resource.Properties.PubliclyAccessible == true
-	accessibility := "private"
-} else = accessibility {
 	accessibility := "public"
-}
-
-get_encryption(mq) = encryption {
-	common_lib.valid_key(mq.Properties, "EncryptionOptions")
-	encryption := "encrypted"
-} else = encryption {
-	encryption := "unencrypted"
+} else = accessibility {
+	accessibility := "private"
 }

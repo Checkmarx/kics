@@ -11,7 +11,8 @@
             "Protocol": "email"
           }
         ],
-        "TopicName": "alarm-action"
+        "TopicName": "alarm-action",
+        "KmsMasterKeyId": "ididididid"
       }
     }
   }

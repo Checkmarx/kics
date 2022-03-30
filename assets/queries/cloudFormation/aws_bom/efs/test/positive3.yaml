@@ -7,21 +7,10 @@ Resources:
         AvailabilityZoneName: us-east-1a
         BackupPolicy:
           Status: ENABLED
-        Encrypted: true
+        Encrypted: false
         LifecyclePolicies:
           - TransitionToIA: AFTER_30_DAYS
         FileSystemTags:
           - Key: Name
             Value: TestFileSystem
-        FileSystemPolicy:
-          Version: "2012-10-17"
-          Statement:
-            - Effect: "Allow"
-              Action:
-                - "elasticfilesystem:ClientMount"
-              Principal:
-                  AWS: 'arn:aws:iam::111122223333:role/EfsReadOnly'
-        KmsKeyId: !GetAtt 
-          - key
-          - Arn
     

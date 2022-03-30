@@ -32,5 +32,7 @@ CxPolicy[result] {
 get_name(elasticache) = name {
 	name := elasticache.Properties.ClusterName
 } else = name {
+	name := common_lib.get_tag_name_if_exists(elasticache)
+} else = name {
 	name := "unknown"
 }

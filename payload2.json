@@ -1,0 +1,26 @@
+{
+	"document": [
+		{
+			"id": "3e7c27e9-b66e-4b48-987a-d9e9f7fabea0",
+			"resource": {
+				"aws_efs_file_system": {
+					"positive2": {
+						"creation_token": "my-product",
+						"encrypted": true,
+						"tags": {
+							"Name": "MyProduct"
+						}
+					}
+				},
+				"aws_efs_file_system_policy": {
+					"policy": {
+						"bypass_policy_lockout_safety_check": true,
+						"file_system_id": "${aws_efs_file_system.positive2.id}",
+						"policy": "{\r\n    \"Version\": \"2012-10-17\",\r\n    \"Id\": \"ExamplePolicy01\",\r\n    \"Statement\": [\r\n        {\r\n            \"Sid\": \"ExampleStatement01\",\r\n            \"Effect\": \"Allow\",\r\n            \"Principal\": {\r\n                \"AWS\": \"*\"\r\n            },\r\n            \"Resource\": \"${aws_efs_file_system.test.arn}\",\r\n            \"Action\": [\r\n                \"elasticfilesystem:ClientMount\",\r\n                \"elasticfilesystem:ClientWrite\"\r\n            ],\r\n            \"Condition\": {\r\n                \"Bool\": {\r\n                    \"aws:SecureTransport\": \"true\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}\r\n"
+					}
+				}
+			},
+			"file": "C:\\CxCode\\CxKICS\\kics\\assets\\queries\\terraform\\aws_bom\\efs\\test\\positive2.tf"
+		}
+	]
+}
