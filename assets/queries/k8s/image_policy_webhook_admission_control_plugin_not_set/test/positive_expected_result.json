@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "Image Policy Webhook Admission Control Plugin Not Set",
+		"severity": "LOW",
+		"line": 11,
+		"fileName": "positive1.yaml"
+	}
+]
