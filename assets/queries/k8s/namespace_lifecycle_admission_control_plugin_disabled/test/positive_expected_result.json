@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "Namespace Lifecycle Admission Control Plugin Disabled",
+		"severity": "LOW",
+		"line": 11,
+        "file": "positive1.yaml"
+	},
+	{
+		"queryName": "Namespace Lifecycle Admission Control Plugin Disabled",
+		"severity": "LOW",
+		"line": 11,
+        "file": "positive2.yaml"
+	}	
+]
