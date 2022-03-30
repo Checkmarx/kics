@@ -28,6 +28,6 @@ jobs:
         run: |
           python3 -u .github/scripts/samples-linters/validate-syntax.py \
             "assets/queries/k8s/**/test/*.yaml" \
-            --extra ' --skip-kinds CustomResourceDefinition,KubeletConfiguration, Policy' \
+            --extra ' --skip-kinds CustomResourceDefinition,KubeletConfiguration,Policy' \
             --linter .bin/kubeval \
             --skip '.github/scripts/samples-linters/ignore-list/k8s' -v
