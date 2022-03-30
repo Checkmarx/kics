@@ -1,6 +1,6 @@
 {
     "id": "1a07a446-8e61-4e4d-bc16-b0781fcb8211",
-    "queryName": "Kubelet Ecent QPS Not Properly Set",
+    "queryName": "Kubelet Event QPS Not Properly Set",
     "severity": "LOW",
     "category": "Observability",
     "descriptionText": "--event-qps should be set to 0",
