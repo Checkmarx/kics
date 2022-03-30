@@ -1,0 +1,32 @@
+[
+  {
+    "queryName": "Client Certificate Authentication Not Setup Properly",
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Client Certificate Authentication Not Setup Properly",
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Client Certificate Authentication Not Setup Properly",
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Client Certificate Authentication Not Setup Properly",
+    "severity": "HIGH",
+    "line": 2,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Client Certificate Authentication Not Setup Properly",
+    "severity": "HIGH",
+    "line": 2,
+    "filename": "positive5.yaml"
+  }
+]
