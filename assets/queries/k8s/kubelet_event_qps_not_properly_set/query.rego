@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--event-qps flag should be set to 0",
-		"keyActualValue": "--event-qps flag is set to 0",
+		"keyActualValue": "--event-qps flag is not set to 0",
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
 	}
 }
