@@ -76,6 +76,12 @@ kics-scan:
 
 #### Pipeline SAST report integration
 
+<br>
+
+> 📝 &nbsp; This feature requires [Gitlab Ultimate](https://docs.gitlab.com/ee/user/application_security/sast/#summary-of-features-per-tier).
+
+<br>
+
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_gitlab_pipeline_sast_report.png" width="850">
 
 <br>
