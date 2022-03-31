@@ -1,0 +1,31 @@
+{
+	"document": [
+		{
+			"id": "458b8d51-ec42-433b-9bad-0ec5f7545934",
+			"apiVersion": "v1",
+			"kind": "Pod",
+			"metadata": {
+				"labels": {
+					"purpose": "demonstrate-command"
+				},
+				"name": "command-demo"
+			},
+			"spec": {
+				"containers": [
+					{
+						"args": [
+							"--request-timeout=300s"
+						],
+						"command": [
+							"kube-apiserver"
+						],
+						"image": "gcr.io/google_containers/kube-apiserver-amd64:v1.6.0",
+						"name": "command-demo-container"
+					}
+				],
+				"restartPolicy": "OnFailure"
+			},
+			"file": "./assets/queries/k8s/request_timeout_not_properly_set/test/negative1.yaml"
+		}
+	]
+}
