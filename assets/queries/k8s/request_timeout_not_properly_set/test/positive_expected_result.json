@@ -4,5 +4,11 @@
 		"severity": "MEDIUM",
 		"line": 11,
         "file": "positive1.yaml"
+	},
+	{
+		"queryName": "Request Timeout Not Properly Set",
+		"severity": "MEDIUM",
+		"line": 11,
+        "file": "positive2.yaml"
 	}
 ]

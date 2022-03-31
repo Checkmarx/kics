@@ -23,6 +23,25 @@ CxPolicy[result] {
 	}
 }
 
+CxPolicy[result] {
+	resource := input.document[i]
+	metadata := resource.metadata
+	specInfo := k8sLib.getSpecInfo(resource)
+	types := {"initContainers", "containers"}
+	container := specInfo.spec[types[x]][j]
+	common_lib.inArray(container.command, "kube-apiserver")
+	k8sLib.startWithFlag(container, "--request-timeout")
+	not hasValidTimeValue(container, "--request-timeout")
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "--request-timeout flag should not be set to more than 300 seconds",
+		"keyActualValue": "--request-timeout flag has an invalid value",
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),
+	}
+}
 
 hasTimeGreaterThanValue(container, flag, value) {
 	command := container.command
@@ -64,4 +83,17 @@ getSeconds(time)=seconds{
 }else = seconds {
 	regex.match("^(\\d{1,3}[s])$", time)
     seconds := to_number(trim_suffix(time, "s"))   
+}
+
+hasValidTimeValue(container, flag) {
+	command := container.command
+	startswith(command[a], flag)
+	flag_value := split(command[a], "=")[1]
+	regex.match("^(\\d{1,3}[h])(\\d{1,3}[m])?(\\d{1,3}[s])?$|^(\\d{1,3}[m])(\\d{1,3}[s])?$|^(\\d{1,3}[s])$", flag_value)
+	
+} else {
+	args := container.args
+	startswith(args[a], flag)
+	flag_value := split(args[a], "=")[1]
+	regex.match("^(\\d{1,3}[h])(\\d{1,3}[m])?(\\d{1,3}[s])?$|^(\\d{1,3}[m])(\\d{1,3}[s])?$|^(\\d{1,3}[s])$", flag_value)
 }
