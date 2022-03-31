@@ -3,7 +3,7 @@
   "queryName": "Audit Log Maxbackup Not Properly Set",
   "severity": "LOW",
   "category": "Observability",
-  "descriptionText": "When using kube-apiserver command, the '--audit-log-maxbackup' flag should be difined and set to 10 or more files",
+  "descriptionText": "When using kube-apiserver command, the '--audit-log-maxbackup' flag should be defined and set to 10 or more files",
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
   "platform": "Kubernetes",
   "descriptionID": "eb8a6c2a"
