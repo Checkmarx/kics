@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "Audit Log Maxsize Not Properly Set",
+		"severity": "LOW",
+		"line": 11,
+        "file": "positive1.yaml"
+	},
+	{
+		"queryName": "Audit Log Maxsize Not Properly Set",
+		"severity": "LOW",
+		"line": 11,
+        "file": "positive2.yaml"
+	}
+]
