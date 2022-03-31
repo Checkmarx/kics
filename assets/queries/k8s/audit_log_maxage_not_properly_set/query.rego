@@ -17,8 +17,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "--audit-log-maxsize flag should be set to 30 or more days",
-		"keyActualValue": "--audit-log-maxsize flag is set to less than 30 days",
+		"keyExpectedValue": "--audit-log-maxage flag should be set to 30 or more days",
+		"keyActualValue": "--audit-log-maxage flag is set to less than 30 days",
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),
 	}
 }
@@ -36,8 +36,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "--audit-log-maxsize flag should be defined and set to 30 or more days",
-		"keyActualValue": "--audit-log-maxsize flag is not defined",
+		"keyExpectedValue": "--audit-log-maxage flag should be defined and set to 30 or more days",
+		"keyActualValue": "--audit-log-maxage flag is not defined",
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),
 	}
 }
