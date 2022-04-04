@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "Root CA File Not Defined",
+		"severity": "MEDIUM",
+		"line": 13,
+        "file": "positive1.yaml"
+	}
+]
