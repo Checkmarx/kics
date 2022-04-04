@@ -4,7 +4,7 @@
   "severity": "MEDIUM",
   "category": "Availability",
   "descriptionText": "When using kube-controller-manager commands, the '--terminated-pod-gc-threshold' should be set to 10",
-  "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/",
   "platform": "Kubernetes",
   "descriptionID": "19ea96ee"
 }
