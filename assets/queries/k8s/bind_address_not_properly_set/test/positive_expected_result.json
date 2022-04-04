@@ -10,5 +10,17 @@
 		"severity": "HIGH",
 		"line": 13,
         "file": "positive2.yaml"
+	},
+	{
+		"queryName": "Bind Address Not Properly Set",
+		"severity": "HIGH",
+		"line": 13,
+        "file": "positive3.yaml"
+	},
+	{
+		"queryName": "Bind Address Not Properly Set",
+		"severity": "HIGH",
+		"line": 13,
+        "file": "positive4.yaml"
 	}
 ]
