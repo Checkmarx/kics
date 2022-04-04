@@ -1,12 +1,12 @@
 [
 	{
-		"queryName": "ETCD TLS Certificate Files Not Properly Set",
+		"queryName": "Etcd TLS Certificate Files Not Properly Set",
 		"severity": "HIGH",
 		"line": 21,
         "file": "positive1.yaml"
 	},
 	{
-		"queryName": "ETCD TLS Certificate Files Not Properly Set",
+		"queryName": "Etcd TLS Certificate Files Not Properly Set",
 		"severity": "HIGH",
 		"line": 21,
         "file": "positive2.yaml"
