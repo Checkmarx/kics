@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "Bind Address Not Properly Set",
+		"severity": "HIGH",
+		"line": 13,
+        "file": "positive1.yaml"
+	},
+	{
+		"queryName": "Bind Address Not Properly Set",
+		"severity": "HIGH",
+		"line": 13,
+        "file": "positive2.yaml"
+	}
+]

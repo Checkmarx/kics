@@ -1,0 +1,15 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: kube-controller-manager
+  namespace: kube-system
+  labels:
+    tier: control-plane
+    k8s-app: kube-controller-manager
+spec:
+  containers:
+    - name: command-demo-container
+      image: gcr.io/google_containers/kube-controller-manager-amd64:v1.6.0
+      command: ["kube-controller-manager"]
+      args: ["--bind-address=127.0.0.1"]
+  restartPolicy: OnFailure
