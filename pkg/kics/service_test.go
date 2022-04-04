@@ -53,7 +53,11 @@ func TestService(t *testing.T) { //nolint
 		{
 			name: "service",
 			fields: fields{
-				Inspector:        &engine.Inspector{},
+				Inspector: &engine.Inspector{
+					QueryLoader: &engine.QueryLoader{
+						QueriesMetadata: make([]model.QueryMetadata, 0),
+					},
+				},
 				SecretsInspector: &secrets.Inspector{},
 				Parser:           mockParser,
 				Tracker:          &tracker.CITracker{},

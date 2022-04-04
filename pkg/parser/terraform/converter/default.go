@@ -133,18 +133,18 @@ func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Docume
 }
 
 // getArrLines will get line information for the array elements
-func (c *converter) getArrLines(expr hclsyntax.Expression) []map[string]model.LineObject {
-	arr := make([]map[string]model.LineObject, 0)
+func (c *converter) getArrLines(expr hclsyntax.Expression) []map[string]*model.LineObject {
+	arr := make([]map[string]*model.LineObject, 0)
 	if v, ok := expr.(*hclsyntax.TupleConsExpr); ok {
 		for _, ex := range v.Exprs {
-			arrEx := make(map[string]model.LineObject)
+			arrEx := make(map[string]*model.LineObject)
 			// set default line of array
-			arrEx["_kics__default"] = model.LineObject{
+			arrEx["_kics__default"] = &model.LineObject{
 				Line: ex.Range().Start.Line,
 			}
 			switch valType := ex.(type) {
 			case *hclsyntax.ObjectConsExpr:
-				arrEx["_kics__default"] = model.LineObject{
+				arrEx["_kics__default"] = &model.LineObject{
 					Line: ex.Range().Start.Line + 1,
 				}
 				// set lines for array elements
@@ -159,13 +159,13 @@ func (c *converter) getArrLines(expr hclsyntax.Expression) []map[string]model.Li
 						}, false)
 						return nil
 					}
-					arrEx["_kics_"+key] = model.LineObject{
+					arrEx["_kics_"+key] = &model.LineObject{
 						Line: item.KeyExpr.Range().Start.Line,
 					}
 				}
 			case *hclsyntax.TupleConsExpr:
 				// set lines for array elements if type is different than array, map/object
-				arrEx["_kics__default"] = model.LineObject{
+				arrEx["_kics__default"] = &model.LineObject{
 					Arr: c.getArrLines(valType),
 				}
 			}

@@ -201,8 +201,8 @@ func (e Extensions) Include(ext string) bool {
 
 // LineObject is the struct that will hold line information for each key
 type LineObject struct {
-	Line int                     `json:"_kics_line"`
-	Arr  []map[string]LineObject `json:"_kics_arr,omitempty"`
+	Line int                      `json:"_kics_line"`
+	Arr  []map[string]*LineObject `json:"_kics_arr,omitempty"`
 }
 
 // MatchedFilesRegex returns the regex rule to identify if an extension is supported or not

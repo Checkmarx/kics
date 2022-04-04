@@ -26,7 +26,6 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/open-policy-agent/opa/cover"
-	"github.com/open-policy-agent/opa/rego"
 )
 
 // TestInspector_EnableCoverageReport tests the functions [EnableCoverageReport()] and all the methods called by them
@@ -34,7 +33,7 @@ func TestInspector_EnableCoverageReport(t *testing.T) {
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: io.Discard})
 
 	type fields struct {
-		queries              []*preparedQuery
+		queryLoader          *QueryLoader
 		vb                   VulnerabilityBuilder
 		tracker              Tracker
 		enableCoverageReport bool
@@ -48,7 +47,7 @@ func TestInspector_EnableCoverageReport(t *testing.T) {
 		{
 			name: "enable_coverage_report_1",
 			fields: fields{
-				queries:              []*preparedQuery{},
+				queryLoader:          &QueryLoader{},
 				vb:                   DefaultVulnerabilityBuilder,
 				tracker:              &tracker.CITracker{},
 				enableCoverageReport: false,
@@ -60,7 +59,7 @@ func TestInspector_EnableCoverageReport(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			c := &Inspector{
-				queries:              tt.fields.queries,
+				QueryLoader:          tt.fields.queryLoader,
 				vb:                   tt.fields.vb,
 				tracker:              tt.fields.tracker,
 				enableCoverageReport: tt.fields.enableCoverageReport,
@@ -82,7 +81,7 @@ func TestInspector_GetCoverageReport(t *testing.T) {
 	}
 
 	type fields struct {
-		queries              []*preparedQuery
+		queryLoader          *QueryLoader
 		vb                   VulnerabilityBuilder
 		tracker              Tracker
 		enableCoverageReport bool
@@ -96,7 +95,7 @@ func TestInspector_GetCoverageReport(t *testing.T) {
 		{
 			name: "get_coverage_report_1",
 			fields: fields{
-				queries:              []*preparedQuery{},
+				queryLoader:          &QueryLoader{},
 				vb:                   DefaultVulnerabilityBuilder,
 				tracker:              &tracker.CITracker{},
 				enableCoverageReport: false,
@@ -108,7 +107,7 @@ func TestInspector_GetCoverageReport(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			c := &Inspector{
-				queries:              tt.fields.queries,
+				QueryLoader:          tt.fields.queryLoader,
 				vb:                   tt.fields.vb,
 				tracker:              tt.fields.tracker,
 				enableCoverageReport: tt.fields.enableCoverageReport,
@@ -127,38 +126,12 @@ func TestInspect(t *testing.T) { //nolint
 		Add(helm.DetectKindLine{}, model.KindHELM).
 		Add(docker.DetectKindLine{}, model.KindDOCKER)
 	ctx := context.Background()
-	opaQuery, _ := rego.New(
-		rego.Query(regoQuery),
-		rego.Module("add_instead_of_copy", `package Cx
-
-		CxPolicy [ result ] {
-		  resource := input.document[i].command[name][_]
-		  resource.Cmd == "add"
-		  not tarfileChecker(resource.Value, ".tar")
-		  not tarfileChecker(resource.Value, ".tar.")
-
-			result := {
-				"documentId": 		input.document[i].id,
-				"searchKey": 	    sprintf("{{%s}}", [resource.Original]),
-				"issueType":		"IncorrectValue",
-				"keyExpectedValue": sprintf("'COPY' %s", [resource.Value[0]]),
-				"keyActualValue": 	sprintf("'ADD' %s", [resource.Value[0]])
-			      }
-		}
-
-		tarfileChecker(cmdValue, elem) {
-		  contains(cmdValue[_], elem)
-		}`),
-		rego.UnsafeBuiltins(unsafeRegoFunctions),
-	).PrepareForEval(ctx)
-
-	opaQueries := make([]*preparedQuery, 0, 1)
-	opaQueries = append(opaQueries, &preparedQuery{
-		opaQuery: opaQuery,
-		metadata: model.QueryMetadata{
-			Query:     "add_instead_of_copy",
-			InputData: "{}",
-			Content: `package Cx
+	opaQueries := make([]model.QueryMetadata, 0, 1)
+	opaQueries = append(opaQueries, model.QueryMetadata{
+		Query:     "add_instead_of_copy",
+		Platform:  "Dockerfile",
+		InputData: "{}",
+		Content: `package Cx
 
 			CxPolicy [ result ] {
 			  resource := input.document[i].command[name][_]
@@ -178,7 +151,6 @@ func TestInspect(t *testing.T) { //nolint
 			tarfileChecker(cmdValue, elem) {
 			  contains(cmdValue[_], elem)
 			}`,
-		},
 	})
 
 	mockedFileMetadataDocument := map[string]interface{}{
@@ -202,7 +174,7 @@ func TestInspect(t *testing.T) { //nolint
 	}
 
 	type fields struct {
-		queries              []*preparedQuery
+		queryLoader          QueryLoader
 		vb                   VulnerabilityBuilder
 		tracker              Tracker
 		enableCoverageReport bool
@@ -224,7 +196,19 @@ func TestInspect(t *testing.T) { //nolint
 		{
 			name: "TestInspect",
 			fields: fields{
-				queries:              opaQueries,
+				queryLoader: QueryLoader{
+					QueriesMetadata: opaQueries,
+					commonLibrary: source.RegoLibraries{
+						LibraryCode:      "package generic.common",
+						LibraryInputData: "",
+					},
+					platformLibraries: map[string]source.RegoLibraries{
+						"Dockerfile": {
+							LibraryCode:      "package generic.dockerfile",
+							LibraryInputData: "",
+						},
+					},
+				},
 				vb:                   DefaultVulnerabilityBuilder,
 				tracker:              &tracker.CITracker{},
 				enableCoverageReport: true,
@@ -274,7 +258,19 @@ func TestInspect(t *testing.T) { //nolint
 		{
 			name: "TestInspectExcludeResult",
 			fields: fields{
-				queries:              opaQueries,
+				queryLoader: QueryLoader{
+					QueriesMetadata: opaQueries,
+					commonLibrary: source.RegoLibraries{
+						LibraryCode:      "package generic.common",
+						LibraryInputData: "",
+					},
+					platformLibraries: map[string]source.RegoLibraries{
+						"Dockerfile": {
+							LibraryCode:      "package generic.dockerfile",
+							LibraryInputData: "",
+						},
+					},
+				},
 				vb:                   DefaultVulnerabilityBuilder,
 				tracker:              &tracker.CITracker{},
 				enableCoverageReport: true,
@@ -305,12 +301,12 @@ func TestInspect(t *testing.T) { //nolint
 		currentQuery := make(chan int64)
 		wg.Add(1)
 		proBarBuilder := progress.InitializePbBuilder(true, true, true)
-		progressBar := proBarBuilder.BuildCounter("Executing queries: ", len(tt.fields.queries), wg, currentQuery)
+		progressBar := proBarBuilder.BuildCounter("Executing queries: ", len(tt.fields.queryLoader.QueriesMetadata), wg, currentQuery)
 
 		go progressBar.Start()
 		t.Run(tt.name, func(t *testing.T) {
 			c := &Inspector{
-				queries:              tt.fields.queries,
+				QueryLoader:          &tt.fields.queryLoader,
 				vb:                   tt.fields.vb,
 				tracker:              tt.fields.tracker,
 				enableCoverageReport: tt.fields.enableCoverageReport,
@@ -320,7 +316,7 @@ func TestInspect(t *testing.T) { //nolint
 				queryExecTimeout:     time.Duration(60) * time.Second,
 			}
 			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files,
-				[]string{filepath.FromSlash("assets/queries/")}, []string{""}, currentQuery)
+				[]string{filepath.FromSlash("assets/queries/")}, []string{"Dockerfile"}, currentQuery)
 			if tt.wantErr {
 				if err == nil {
 					t.Errorf("Inspector.Inspect() = %v,\nwant %v", err, tt.want)
@@ -361,44 +357,39 @@ func TestNewInspector(t *testing.T) { // nolint
 		Types: []string{""},
 	}
 	vbs := DefaultVulnerabilityBuilder
-	opaQueries := make([]*preparedQuery, 0, 1)
-	opaQueries = append(opaQueries, &preparedQuery{
-		opaQuery: rego.PreparedEvalQuery{},
-		metadata: model.QueryMetadata{
-			Query:     "all_auth_users_get_read_access",
-			Content:   string(contentByte),
-			InputData: "{}",
-			Platform:  "terraform",
-			Metadata: map[string]interface{}{
-				"id":              "57b9893d-33b1-4419-bcea-b828fb87e318",
-				"queryName":       "All Auth Users Get Read Access",
-				"severity":        model.SeverityHigh,
-				"category":        "Access Control",
-				"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", // nolint
-				"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
-				"platform":        "Terraform",
-			},
-			Aggregation: 1,
+	opaQueries := make([]model.QueryMetadata, 0, 1)
+	opaQueries = append(opaQueries, model.QueryMetadata{
+		Query:     "all_auth_users_get_read_access",
+		Content:   string(contentByte),
+		InputData: "{}",
+		Platform:  "terraform",
+		Metadata: map[string]interface{}{
+			"id":              "57b9893d-33b1-4419-bcea-b828fb87e318",
+			"queryName":       "All Auth Users Get Read Access",
+			"severity":        model.SeverityHigh,
+			"category":        "Access Control",
+			"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", // nolint
+			"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
+			"platform":        "Terraform",
 		},
+		Aggregation: 1,
 	})
-	opaQueries = append(opaQueries, &preparedQuery{
-		opaQuery: rego.PreparedEvalQuery{},
-		metadata: model.QueryMetadata{
-			Query:     "common_query_test",
-			Content:   string(contentByte2),
-			InputData: "{}",
-			Platform:  "common",
-			Metadata: map[string]interface{}{
-				"id":              "4a3aa2b5-9c87-452c-a3ea-f3e9e3573874",
-				"queryName":       "Common Query Test",
-				"severity":        model.SeverityHigh,
-				"category":        "Best Practices",
-				"descriptionText": "",
-				"descriptionUrl":  "",
-				"platform":        "Common",
-			},
-			Aggregation: 1,
+
+	opaQueries = append(opaQueries, model.QueryMetadata{
+		Query:     "common_query_test",
+		Content:   string(contentByte2),
+		InputData: "{}",
+		Platform:  "common",
+		Metadata: map[string]interface{}{
+			"id":              "4a3aa2b5-9c87-452c-a3ea-f3e9e3573874",
+			"queryName":       "Common Query Test",
+			"severity":        model.SeverityHigh,
+			"category":        "Best Practices",
+			"descriptionText": "",
+			"descriptionUrl":  "",
+			"platform":        "Common",
 		},
+		Aggregation: 1,
 	})
 	type args struct {
 		ctx              context.Context
@@ -437,7 +428,9 @@ func TestNewInspector(t *testing.T) { // nolint
 			want: &Inspector{
 				vb:      vbs,
 				tracker: track,
-				queries: opaQueries,
+				QueryLoader: &QueryLoader{
+					QueriesMetadata: opaQueries,
+				},
 			},
 			wantErr: false,
 		},
@@ -457,14 +450,14 @@ func TestNewInspector(t *testing.T) { // nolint
 				return
 			}
 
-			require.Equal(t, len(tt.want.queries), len(got.queries))
+			require.Equal(t, len(tt.want.QueryLoader.QueriesMetadata), len(got.QueryLoader.QueriesMetadata))
 
-			for idx := 0; idx < len(tt.want.queries); idx++ {
-				gotStrMetadata, err := test.StringifyStruct(got.queries[idx].metadata)
+			for idx := 0; idx < len(tt.want.QueryLoader.QueriesMetadata); idx++ {
+				gotStrMetadata, err := test.StringifyStruct(got.QueryLoader.QueriesMetadata[idx].Metadata)
 				require.Nil(t, err)
-				wantStrMetadata, err := test.StringifyStruct(tt.want.queries[idx].metadata)
+				wantStrMetadata, err := test.StringifyStruct(tt.want.QueryLoader.QueriesMetadata[idx].Metadata)
 				require.Nil(t, err)
-				if !reflect.DeepEqual(got.queries[idx].metadata, tt.want.queries[idx].metadata) {
+				if !reflect.DeepEqual(got.QueryLoader.QueriesMetadata[idx].Metadata, tt.want.QueryLoader.QueriesMetadata[idx].Metadata) {
 					t.Errorf("NewInspector() metadata: got = %v,\n want = %v", gotStrMetadata, wantStrMetadata)
 				}
 			}
@@ -754,6 +747,79 @@ func TestInspector_checkComment(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := checkComment(tt.line, tt.lines); got != tt.want {
 				t.Errorf("checkComment() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestInspector_prepareQueries(t *testing.T) {
+	type args struct {
+		queries           []model.QueryMetadata
+		commonLibrary     source.RegoLibraries
+		platformLibraries map[string]source.RegoLibraries
+		tracker           Tracker
+	}
+
+	tests := []struct {
+		name string
+		args args
+		want QueryLoader
+	}{
+		{
+			name: "test_prepareQueries",
+			args: args{
+				queries: []model.QueryMetadata{
+					{
+						Metadata: map[string]interface{}{
+							"id":          "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09",
+							"aggregation": 3,
+						},
+						Query:       `package main`,
+						Aggregation: 3,
+					},
+				},
+				commonLibrary: source.RegoLibraries{
+					LibraryCode:      "",
+					LibraryInputData: "{}",
+				},
+				platformLibraries: map[string]source.RegoLibraries{
+					"Dockerfile": {
+						LibraryCode:      "",
+						LibraryInputData: "{}",
+					},
+				},
+				tracker: &tracker.CITracker{},
+			},
+			want: QueryLoader{
+				QueriesMetadata: []model.QueryMetadata{
+					{
+						Metadata: map[string]interface{}{
+							"id":          "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09",
+							"aggregation": 3,
+						},
+						Query:       `package main`,
+						Aggregation: 3,
+					},
+				},
+				querySum: 3,
+				commonLibrary: source.RegoLibraries{
+					LibraryCode:      "",
+					LibraryInputData: "{}",
+				},
+				platformLibraries: map[string]source.RegoLibraries{
+					"Dockerfile": {
+						LibraryCode:      "",
+						LibraryInputData: "{}",
+					},
+				},
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := prepareQueries(tt.args.queries, tt.args.commonLibrary, tt.args.platformLibraries, tt.args.tracker); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("prepareQueries() = %v, want %v", got, tt.want)
 			}
 		})
 	}
