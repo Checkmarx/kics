@@ -121,7 +121,7 @@
 				
 				<option value="file32">github.com/Checkmarx/kics/pkg/detector/search_line_detector.go (95.0%)</option>
 				
-				<option value="file33">github.com/Checkmarx/kics/pkg/engine/inspector.go (82.1%)</option>
+				<option value="file33">github.com/Checkmarx/kics/pkg/engine/inspector.go (80.9%)</option>
 				
 				<option value="file34">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (79.5%)</option>
 				
@@ -211,7 +211,7 @@
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/printer/utils.go (82.4%)</option>
 				
-				<option value="file78">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (85.7%)</option>
+				<option value="file78">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (80.0%)</option>
 				
 				<option value="file79">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
@@ -1907,13 +1907,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="37">total += v
+                <span class="cov8" title="31">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -1938,7 +1938,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4316,7 +4316,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -4557,6 +4557,14 @@ var ErrNoResult = errors.New("query: not result")
 // ErrInvalidResult - error representing invalid result
 var ErrInvalidResult = errors.New("query: invalid result format")
 
+// QueryLoader is responsible for loading the queries for the inspector
+type QueryLoader struct {
+        commonLibrary     source.RegoLibraries
+        platformLibraries map[string]source.RegoLibraries
+        querySum          int
+        QueriesMetadata   []model.QueryMetadata
+}
+
 // VulnerabilityBuilder represents a function that will build a vulnerability
 type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{},
         detector *detector.DetectLine) (model.Vulnerability, error)
@@ -4569,7 +4577,7 @@ type preparedQuery struct {
 // Inspector represents a list of compiled queries, a builder for vulnerabilities, an information tracker
 // a flag to enable coverage and the coverage report if it is enabled
 type Inspector struct {
-        queries        []*preparedQuery
+        QueryLoader    *QueryLoader
         vb             VulnerabilityBuilder
         tracker        Tracker
         failedQueries  map[string]error
@@ -4627,16 +4635,15 @@ func NewInspector(
                 return nil, errors.Wrap(err, "failed to get library")
         }</span>
         <span class="cov5" title="4">platformLibraries := getPlatformLibraries(queriesSource, queries)
-        opaQueries := prepareQueries(ctx, queries, commonLibrary, platformLibraries, tracker)
+
+        queryLoader := prepareQueries(queries, commonLibrary, platformLibraries, tracker)
 
         failedQueries := make(map[string]error)
-
-        queriesNumber := sumAllAggregatedQueries(opaQueries)
 
         metrics.Metric.Stop()
 
         log.Info().
-                Msgf("Inspector initialized, number of queries=%d", queriesNumber)
+                Msgf("Inspector initialized, number of queries=%d", queryLoader.querySum)
 
         lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
                 Add(helm.DetectKindLine{}, model.KindHELM).
@@ -4647,7 +4654,7 @@ func NewInspector(
         log.Info().Msgf("Query execution timeout=%v", queryExecTimeout)
 
         return &amp;Inspector{
-                queries:          opaQueries,
+                QueryLoader:      &amp;queryLoader,
                 vb:               vb,
                 tracker:          tracker,
                 failedQueries:    failedQueries,
@@ -4659,7 +4666,7 @@ func NewInspector(
 
 func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.QueryMetadata) map[string]source.RegoLibraries <span class="cov5" title="4">{
         supportedPlatforms := make(map[string]string)
-        for _, query := range queries </span><span class="cov10" title="18">{
+        for _, query := range queries </span><span class="cov9" title="18">{
                 supportedPlatforms[query.Platform] = ""
         }</span>
         <span class="cov5" title="4">platformLibraries := make(map[string]source.RegoLibraries)
@@ -4677,14 +4684,6 @@ func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.Qu
                 <span class="cov7" title="9">platformLibraries[platform] = platformLibrary</span>
         }
         <span class="cov5" title="4">return platformLibraries</span>
-}
-
-func sumAllAggregatedQueries(opaQueries []*preparedQuery) int <span class="cov5" title="4">{
-        sum := 0
-        for _, query := range opaQueries </span><span class="cov8" title="10">{
-                sum += query.metadata.Aggregation
-        }</span>
-        <span class="cov5" title="4">return sum</span>
 }
 
 // Inspect scan files and return the a list of vulnerabilities found on the process
@@ -4705,8 +4704,19 @@ func (c *Inspector) Inspect(
 
         <span class="cov3" title="2">var vulnerabilities []model.Vulnerability
         vulnerabilities = make([]model.Vulnerability, 0)
-        for _, query := range c.getQueriesByPlat(platforms) </span><span class="cov3" title="2">{
+        queries := c.getQueriesByPlat(platforms)
+        for i, queryMeta := range queries </span><span class="cov3" title="2">{
                 currentQuery &lt;- 1
+
+                queryOpa, err := c.QueryLoader.loadQuery(ctx, &amp;queries[i])
+                if err != nil </span><span class="cov0" title="0">{
+                        continue</span>
+                }
+
+                <span class="cov3" title="2">query := &amp;preparedQuery{
+                        opaQuery: *queryOpa,
+                        metadata: queryMeta,
+                }
 
                 vuls, err := c.doRun(&amp;QueryContext{
                         ctx:           ctx,
@@ -4742,19 +4752,19 @@ func (c *Inspector) Inspect(
 // LenQueriesByPlat returns the number of queries by platforms
 func (c *Inspector) LenQueriesByPlat(platforms []string) int <span class="cov3" title="2">{
         count := 0
-        for _, query := range c.queries </span><span class="cov6" title="5">{
-                if contains(platforms, query.metadata.Platform) </span><span class="cov5" title="4">{
-                        c.tracker.TrackQueryExecuting(query.metadata.Aggregation)
+        for _, query := range c.QueryLoader.QueriesMetadata </span><span class="cov7" title="9">{
+                if contains(platforms, query.Platform) </span><span class="cov5" title="4">{
+                        c.tracker.TrackQueryExecuting(query.Aggregation)
                         count++
                 }</span>
         }
         <span class="cov3" title="2">return count</span>
 }
 
-func (c *Inspector) getQueriesByPlat(platforms []string) []*preparedQuery <span class="cov3" title="2">{
-        queries := make([]*preparedQuery, 0)
-        for _, query := range c.queries </span><span class="cov3" title="2">{
-                if contains(platforms, query.metadata.Platform) </span><span class="cov3" title="2">{
+func (c *Inspector) getQueriesByPlat(platforms []string) []model.QueryMetadata <span class="cov3" title="2">{
+        queries := make([]model.QueryMetadata, 0)
+        for _, query := range c.QueryLoader.QueriesMetadata </span><span class="cov3" title="2">{
+                if contains(platforms, query.Platform) </span><span class="cov3" title="2">{
                         queries = append(queries, query)
                 }</span>
         }
@@ -4892,19 +4902,19 @@ func checkComment(line int, ignoreLines []int) bool <span class="cov4" title="3"
 
 // contains is a simple method to check if a slice
 // contains an entry
-func contains(s []string, e string) bool <span class="cov8" title="11">{
+func contains(s []string, e string) bool <span class="cov9" title="15">{
         if e == "common" </span><span class="cov3" title="2">{
                 return true
         }</span>
-        <span class="cov7" title="9">if e == "k8s" </span><span class="cov1" title="1">{
+        <span class="cov8" title="13">if e == "k8s" </span><span class="cov1" title="1">{
                 e = "kubernetes"
         }</span>
-        <span class="cov7" title="9">for _, a := range s </span><span class="cov8" title="10">{
-                if strings.EqualFold(a, e) </span><span class="cov7" title="7">{
+        <span class="cov8" title="13">for _, a := range s </span><span class="cov9" title="14">{
+                if strings.EqualFold(a, e) </span><span class="cov6" title="7">{
                         return true
                 }</span>
         }
-        <span class="cov3" title="2">return false</span>
+        <span class="cov6" title="6">return false</span>
 }
 
 func isDisabled(queries, queryID string, output bool) bool <span class="cov5" title="4">{
@@ -4918,76 +4928,78 @@ func isDisabled(queries, queryID string, output bool) bool <span class="cov5" ti
 }
 
 // ShouldSkipVulnerability verifies if the vulnerability in question should be ignored through comment commands
-func ShouldSkipVulnerability(command model.CommentsCommands, queryID string) bool <span class="cov7" title="7">{
+func ShouldSkipVulnerability(command model.CommentsCommands, queryID string) bool <span class="cov6" title="7">{
         if queries, ok := command["enable"]; ok </span><span class="cov3" title="2">{
                 return isDisabled(queries, queryID, false)
         }</span>
-        <span class="cov6" title="5">if queries, ok := command["disable"]; ok </span><span class="cov3" title="2">{
+        <span class="cov5" title="5">if queries, ok := command["disable"]; ok </span><span class="cov3" title="2">{
                 return isDisabled(queries, queryID, true)
         }</span>
         <span class="cov4" title="3">return false</span>
 }
 
-func prepareQueries(
-        ctx context.Context,
-        queries []model.QueryMetadata,
-        commonLibrary source.RegoLibraries,
-        platformLibraries map[string]source.RegoLibraries,
-        tracker Tracker) []*preparedQuery <span class="cov5" title="4">{
-        opaQueries := make([]*preparedQuery, 0, len(queries))
-        for _, metadata := range queries </span><span class="cov10" title="18">{
-                platformGeneralQuery, ok := platformLibraries[metadata.Platform]
-                if !ok </span><span class="cov7" title="8">{
-                        log.Err(errors.New("failed to get platform library")).
-                                Msgf("Inspector failed to get library for query: %s, with platform: %s", metadata.Query, metadata.Platform)
-                        continue</span>
-                }
+func prepareQueries(queries []model.QueryMetadata, commonLibrary source.RegoLibraries,
+        platformLibraries map[string]source.RegoLibraries, tracker Tracker) QueryLoader <span class="cov5" title="5">{
+        // track queries loaded
+        sum := 0
+        for _, metadata := range queries </span><span class="cov10" title="19">{
+                tracker.TrackQueryLoad(metadata.Aggregation)
+                sum += metadata.Aggregation
+        }</span>
+        <span class="cov5" title="5">return QueryLoader{
+                commonLibrary:     commonLibrary,
+                platformLibraries: platformLibraries,
+                querySum:          sum,
+                QueriesMetadata:   queries,
+        }</span>
+}
 
-                <span class="cov8" title="10">select </span>{
-                case &lt;-ctx.Done():<span class="cov0" title="0">
-                        return nil</span>
-                default:<span class="cov8" title="10">
-                        var opaQuery rego.PreparedEvalQuery
-                        mergedInputData, err := source.MergeInputData(platformGeneralQuery.LibraryInputData, metadata.InputData)
-                        if err != nil </span><span class="cov0" title="0">{
-                                log.Debug().Msg("Could not merge platform library input data")
-                        }</span>
-                        <span class="cov8" title="10">mergedInputData, err = source.MergeInputData(commonLibrary.LibraryInputData, mergedInputData)
-                        if err != nil </span><span class="cov0" title="0">{
-                                log.Debug().Msg("Could not merge common library input data")
-                        }</span>
-                        <span class="cov8" title="10">store := inmem.NewFromReader(bytes.NewBufferString(mergedInputData))
-                        opaQuery, err = rego.New(
-                                rego.Query(regoQuery),
-                                rego.Module("Common", commonLibrary.LibraryCode),
-                                rego.Module("Generic", platformGeneralQuery.LibraryCode),
-                                rego.Module(metadata.Query, metadata.Content),
-                                rego.Store(store),
-                                rego.UnsafeBuiltins(unsafeRegoFunctions),
-                        ).PrepareForEval(ctx)
+// Load the querie into memory so it can be freed when not used anymore
+func (q QueryLoader) loadQuery(ctx context.Context, query *model.QueryMetadata) (*rego.PreparedEvalQuery, error) <span class="cov3" title="2">{
+        opaQuery := rego.PreparedEvalQuery{}
 
-                        if err != nil </span><span class="cov0" title="0">{
-                                sentryReport.ReportSentry(&amp;sentryReport.Report{
-                                        Message:  fmt.Sprintf("Inspector failed to prepare query for evaluation, query=%s", metadata.Query),
-                                        Err:      err,
-                                        Location: "func NewInspector()",
-                                        Query:    metadata.Query,
-                                        Metadata: metadata.Metadata,
-                                        Platform: metadata.Platform,
-                                }, true)
+        platformGeneralQuery, ok := q.platformLibraries[query.Platform]
+        if !ok </span><span class="cov0" title="0">{
+                return nil, errors.New("failed to get platform library")
+        }</span>
 
-                                continue</span>
-                        }
+        <span class="cov3" title="2">select </span>{
+        case &lt;-ctx.Done():<span class="cov0" title="0">
+                return nil, nil</span>
+        default:<span class="cov3" title="2">
+                mergedInputData, err := source.MergeInputData(platformGeneralQuery.LibraryInputData, query.InputData)
+                if err != nil </span><span class="cov0" title="0">{
+                        log.Debug().Msg("Could not merge platform library input data")
+                }</span>
+                <span class="cov3" title="2">mergedInputData, err = source.MergeInputData(q.commonLibrary.LibraryInputData, mergedInputData)
+                if err != nil </span><span class="cov0" title="0">{
+                        log.Debug().Msg("Could not merge common library input data")
+                }</span>
+                <span class="cov3" title="2">store := inmem.NewFromReader(bytes.NewBufferString(mergedInputData))
+                opaQuery, err = rego.New(
+                        rego.Query(regoQuery),
+                        rego.Module("Common", q.commonLibrary.LibraryCode),
+                        rego.Module("Generic", platformGeneralQuery.LibraryCode),
+                        rego.Module(query.Query, query.Content),
+                        rego.Store(store),
+                        rego.UnsafeBuiltins(unsafeRegoFunctions),
+                ).PrepareForEval(ctx)
 
-                        <span class="cov8" title="10">tracker.TrackQueryLoad(metadata.Aggregation)
+                if err != nil </span><span class="cov0" title="0">{
+                        sentryReport.ReportSentry(&amp;sentryReport.Report{
+                                Message:  fmt.Sprintf("Inspector failed to prepare query for evaluation, query=%s", query.Query),
+                                Err:      err,
+                                Location: "func NewInspector()",
+                                Query:    query.Query,
+                                Metadata: query.Metadata,
+                                Platform: query.Platform,
+                        }, true)
 
-                        opaQueries = append(opaQueries, &amp;preparedQuery{
-                                opaQuery: opaQuery,
-                                metadata: metadata,
-                        })</span>
-                }
+                        return nil, err
+                }</span>
+
+                <span class="cov3" title="2">return &amp;opaQuery, nil</span>
         }
-        <span class="cov5" title="4">return opaQueries</span>
 }
 </pre>
 		
@@ -7134,6 +7146,7 @@ type Service struct {
         files            model.FileMetadatas
 }
 
+// PrepareSources will prepare the sources to be scanned
 func (s *Service) PrepareSources(ctx context.Context, scanID string, wg *sync.WaitGroup, errCh chan&lt;- error) <span class="cov0" title="0">{
         defer wg.Done()
         // CxSAST query under review
@@ -7862,8 +7875,8 @@ func (e Extensions) Include(ext string) bool <span class="cov1" title="1">{
 
 // LineObject is the struct that will hold line information for each key
 type LineObject struct {
-        Line int                     `json:"_kics_line"`
-        Arr  []map[string]LineObject `json:"_kics_arr,omitempty"`
+        Line int                      `json:"_kics_line"`
+        Arr  []map[string]*LineObject `json:"_kics_arr,omitempty"`
 }
 
 // MatchedFilesRegex returns the regex rule to identify if an extension is supported or not
@@ -8219,13 +8232,13 @@ func unmarshal(val *yaml.Node) interface{} <span class="cov9" title="13">{
 
 // getLines creates the map containing the line information for the yaml Node
 // def is the line to be used as "_kics__default"
-func getLines(val *yaml.Node, def int) map[string]LineObject <span class="cov9" title="13">{
-        lineMap := make(map[string]LineObject)
+func getLines(val *yaml.Node, def int) map[string]*LineObject <span class="cov9" title="13">{
+        lineMap := make(map[string]*LineObject)
 
         // line information map
-        lineMap["_kics__default"] = LineObject{
+        lineMap["_kics__default"] = &amp;LineObject{
                 Line: def,
-                Arr:  []map[string]LineObject{},
+                Arr:  []map[string]*LineObject{},
         }
 
         // if yaml Node is an Array use func getSeqLines
@@ -8235,7 +8248,7 @@ func getLines(val *yaml.Node, def int) map[string]LineObject <span class="cov9" 
 
         // iterate two by two, since first iteration is the key and the second is the value
         <span class="cov9" title="12">for i := 0; i &lt; len(val.Content); i += 2 </span><span class="cov10" title="16">{
-                lineArr := make([]map[string]LineObject, 0)
+                lineArr := make([]map[string]*LineObject, 0)
                 // in case the value iteration is an array call getLines for each iteration of the array
                 if val.Content[i+1].Kind == yaml.SequenceNode </span><span class="cov3" title="2">{
                         for _, contentEntry := range val.Content[i+1].Content </span><span class="cov6" title="5">{
@@ -8250,7 +8263,7 @@ func getLines(val *yaml.Node, def int) map[string]LineObject <span class="cov9" 
                 }
 
                 // line information map of each key of the yaml Node
-                <span class="cov10" title="16">lineMap["_kics_"+val.Content[i].Value] = LineObject{
+                <span class="cov10" title="16">lineMap["_kics_"+val.Content[i].Value] = &amp;LineObject{
                         Line: val.Content[i].Line,
                         Arr:  lineArr,
                 }</span>
@@ -8261,9 +8274,9 @@ func getLines(val *yaml.Node, def int) map[string]LineObject <span class="cov9" 
 
 // getSeqLines iterates through the elements of an Array
 // creating a map with each iteration lines information
-func getSeqLines(val *yaml.Node, def int) map[string]LineObject <span class="cov1" title="1">{
-        lineMap := make(map[string]LineObject)
-        lineArr := make([]map[string]LineObject, 0)
+func getSeqLines(val *yaml.Node, def int) map[string]*LineObject <span class="cov1" title="1">{
+        lineMap := make(map[string]*LineObject)
+        lineArr := make([]map[string]*LineObject, 0)
 
         // get line information slice of every element in the array
         for _, cont := range val.Content </span><span class="cov3" title="2">{
@@ -8271,7 +8284,7 @@ func getSeqLines(val *yaml.Node, def int) map[string]LineObject <span class="cov
         }</span>
 
         // create line information of array with its line and elements line information
-        <span class="cov1" title="1">lineMap["_kics__default"] = LineObject{
+        <span class="cov1" title="1">lineMap["_kics__default"] = &amp;LineObject{
                 Line: def,
                 Arr:  lineArr,
         }
@@ -9232,7 +9245,7 @@ func Convert(nodes *proto.Proto) (file *JSONProto, linesIgnore []int) <span clas
         serviceLines := make(map[string]model.LineObject)
         importLines := make(map[string]model.LineObject)
 
-        defaultArr := make([]map[string]model.LineObject, 0)
+        defaultArr := make([]map[string]*model.LineObject, 0)
 
         for _, elem := range nodes.Elements </span><span class="cov8" title="19">{
                 switch element := elem.(type) </span>{
@@ -9241,14 +9254,14 @@ func Convert(nodes *proto.Proto) (file *JSONProto, linesIgnore []int) <span clas
                         jproto.Messages[element.Name] = jproto.convertMessage(element)
                         messageLines["_kics_"+element.Name] = model.LineObject{
                                 Line: element.Position.Line,
-                                Arr:  make([]map[string]model.LineObject, 0),
+                                Arr:  make([]map[string]*model.LineObject, 0),
                         }</span>
                 case *proto.Service:<span class="cov1" title="1">
                         jproto.processCommentProto(element.Comment, element.Position.Line, element)
                         jproto.convertService(element)
                         serviceLines["_kics_"+element.Name] = model.LineObject{
                                 Line: element.Position.Line,
-                                Arr:  make([]map[string]model.LineObject, 0),
+                                Arr:  make([]map[string]*model.LineObject, 0),
                         }</span>
                 case *proto.Package:<span class="cov3" title="3">
                         jproto.processCommentProto(element.Comment, element.Position.Line, element)
@@ -9263,12 +9276,12 @@ func Convert(nodes *proto.Proto) (file *JSONProto, linesIgnore []int) <span clas
                         }
                         importLines["_kics_"+element.Filename] = model.LineObject{
                                 Line: element.Position.Line,
-                                Arr:  make([]map[string]model.LineObject, 0),
+                                Arr:  make([]map[string]*model.LineObject, 0),
                         }</span>
                 case *proto.Option:<span class="cov1" title="1">
                         jproto.processCommentProto(element.Comment, element.Position.Line, element)
                         jproto.Options = append(jproto.Options, jproto.convertSingleOption(element))
-                        defaultArr = append(defaultArr, map[string]model.LineObject{
+                        defaultArr = append(defaultArr, map[string]*model.LineObject{
                                 element.Name: {
                                         Line: element.Position.Line,
                                 },
@@ -9278,7 +9291,7 @@ func Convert(nodes *proto.Proto) (file *JSONProto, linesIgnore []int) <span clas
                         jproto.Enum[element.Name] = jproto.convertEnum(element)
                         enumLines["_kics_"+element.Name] = model.LineObject{
                                 Line: element.Position.Line,
-                                Arr:  make([]map[string]model.LineObject, 0),
+                                Arr:  make([]map[string]*model.LineObject, 0),
                         }</span>
                 case *proto.Syntax:<span class="cov4" title="5">
                         jproto.processCommentProto(element.Comment, element.Position.Line, element)
@@ -9316,7 +9329,7 @@ func (j *JSONProto) convertMessage(n *proto.Message) Message <span class="cov5" 
                 Lines:        make(map[string]model.LineObject),
         }
 
-        defaultArr := make([]map[string]model.LineObject, 0)
+        defaultArr := make([]map[string]*model.LineObject, 0)
 
         for _, field := range n.Elements </span><span class="cov7" title="12">{
                 switch field := field.(type) </span>{
@@ -9338,7 +9351,7 @@ func (j *JSONProto) convertMessage(n *proto.Message) Message <span class="cov5" 
                 case *proto.Reserved:<span class="cov1" title="1">
                         j.processCommentProto(field.Comment, field.Position.Line, field)
                         message.Reserved = append(message.Reserved, j.convertReserved(field))
-                        defaultArr = append(defaultArr, map[string]model.LineObject{
+                        defaultArr = append(defaultArr, map[string]*model.LineObject{
                                 "Reserved": {
                                         Line: field.Position.Line,
                                 },
@@ -9403,7 +9416,7 @@ func (j *JSONProto) convertEnum(n *proto.Enum) Enum <span class="cov2" title="2"
                 Lines:     make(map[string]model.LineObject),
         }
 
-        defaultArr := make([]map[string]model.LineObject, 0)
+        defaultArr := make([]map[string]*model.LineObject, 0)
 
         for _, elem := range n.Elements </span><span class="cov4" title="5">{
                 switch elem := elem.(type) </span>{
@@ -9422,7 +9435,7 @@ func (j *JSONProto) convertEnum(n *proto.Enum) Enum <span class="cov2" title="2"
                 case *proto.Reserved:<span class="cov1" title="1">
                         j.processCommentProto(elem.Comment, elem.Position.Line, elem)
                         enum.Reserved = append(enum.Reserved, j.convertReserved(elem))
-                        defaultArr = append(defaultArr, map[string]model.LineObject{
+                        defaultArr = append(defaultArr, map[string]*model.LineObject{
                                 "Reserved": {
                                         Line: elem.Position.Line,
                                 },
@@ -9454,7 +9467,7 @@ func (j *JSONProto) convertOneOf(n *proto.Oneof) OneOf <span class="cov1" title=
         }
         oneof.Lines["_kics__default"] = model.LineObject{
                 Line: n.Position.Line,
-                Arr:  make([]map[string]model.LineObject, 0),
+                Arr:  make([]map[string]*model.LineObject, 0),
         }
         for _, elem := range n.Elements </span><span class="cov2" title="2">{
                 switch elem := elem.(type) </span>{
@@ -9504,7 +9517,7 @@ func (j *JSONProto) convertService(n *proto.Service) <span class="cov1" title="1
 
         service.Lines["_kics__default"] = model.LineObject{
                 Line: n.Position.Line,
-                Arr:  make([]map[string]model.LineObject, 0),
+                Arr:  make([]map[string]*model.LineObject, 0),
         }
 
         for _, rpc := range n.Elements </span><span class="cov1" title="1">{
@@ -10021,12 +10034,12 @@ func (j *jsonLine) setLineInfo(doc map[string]interface{}) map[string]interface{
 // def is the line of the key
 // index is used in case of an array, otherwhise should be 0
 // father is the path to the key
-func (j *jsonLine) setLine(val map[string]interface{}, def int, father string, pop bool) map[string]model.LineObject <span class="cov4" title="16">{
-        lineMap := make(map[string]model.LineObject)
+func (j *jsonLine) setLine(val map[string]interface{}, def int, father string, pop bool) map[string]*model.LineObject <span class="cov4" title="16">{
+        lineMap := make(map[string]*model.LineObject)
         // set the line information of val
-        lineMap["_kics__default"] = model.LineObject{
+        lineMap["_kics__default"] = &amp;model.LineObject{
                 Line: def,
-                Arr:  []map[string]model.LineObject{},
+                Arr:  []map[string]*model.LineObject{},
         }
 
         // iterate through the values of the object
@@ -10042,7 +10055,7 @@ func (j *jsonLine) setLine(val map[string]interface{}, def int, father string, p
                         continue</span>
                 }
 
-                <span class="cov4" title="17">lineArr := make([]map[string]model.LineObject, 0)
+                <span class="cov4" title="17">lineArr := make([]map[string]*model.LineObject, 0)
                 lineNr := line.(*fifo).head()
                 if pop </span><span class="cov1" title="1">{
                         lineNr = line.(*fifo).pop()
@@ -10054,10 +10067,10 @@ func (j *jsonLine) setLine(val map[string]interface{}, def int, father string, p
                         lineArr = j.setSeqLines(v, lineNr, father, key, lineArr)</span>
                 // value is an object and must setLines for each element of the object
                 case map[string]interface{}:<span class="cov3" title="6">
-                        v["_kics_lines"] = j.setLine(v, lineNr, father+"."+key, false)</span>
+                        v["_kics_lines"] = j.setLine(v, lineNr, fmt.Sprintf("%s.%s", father, key), false)</span>
                 default:<span class="cov3" title="6">
                         // value as no childs
-                        lineMap["_kics_"+key] = model.LineObject{
+                        lineMap[fmt.Sprintf("_kics_%s", key)] = &amp;model.LineObject{
                                 Line: lineNr,
                                 Arr:  lineArr,
                         }
@@ -10066,7 +10079,7 @@ func (j *jsonLine) setLine(val map[string]interface{}, def int, father string, p
 
                 // set line information of value with its default line and
                 // if present array elements line informations
-                <span class="cov3" title="11">lineMap["_kics_"+key] = model.LineObject{
+                <span class="cov3" title="11">lineMap[fmt.Sprintf("_kics_%s", key)] = &amp;model.LineObject{
                         Line: lineNr,
                         Arr:  lineArr,
                 }</span>
@@ -10076,7 +10089,7 @@ func (j *jsonLine) setLine(val map[string]interface{}, def int, father string, p
 
 // setSeqLines sets the elements lines information for value of type array
 func (j *jsonLine) setSeqLines(v []interface{}, def int, father, key string,
-        lineArr []map[string]model.LineObject) []map[string]model.LineObject <span class="cov2" title="5">{
+        lineArr []map[string]*model.LineObject) []map[string]*model.LineObject <span class="cov2" title="5">{
         // update father path with key
         fatherKey := father + "." + key
 
@@ -10094,11 +10107,11 @@ func (j *jsonLine) setSeqLines(v []interface{}, def int, father, key string,
                 default:<span class="cov3" title="9">
                         stringedCon := fmt.Sprint(con)
                         // check if element is present in line info map
-                        if lineStr, ok2 := j.LineInfo[stringedCon][father+"."+key]; ok2 </span><span class="cov3" title="9">{
+                        if lineStr, ok2 := j.LineInfo[stringedCon][fmt.Sprintf("%s.%s", father, key)]; ok2 </span><span class="cov3" title="9">{
                                 if len(lineStr.(*fifo).Value) == 0 </span><span class="cov0" title="0">{
                                         continue</span>
                                 }
-                                <span class="cov3" title="9">lineArr = append(lineArr, map[string]model.LineObject{
+                                <span class="cov3" title="9">lineArr = append(lineArr, map[string]*model.LineObject{
                                         "_kics__default": {
                                                 Line: lineStr.(*fifo).pop(),
                                         },
@@ -10158,6 +10171,7 @@ import (
         "encoding/json"
 
         "github.com/Checkmarx/kics/pkg/model"
+        "github.com/mailru/easyjson"
 )
 
 // Parser defines a parser type
@@ -10173,7 +10187,7 @@ func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) <
 // Parse parses json file and returns it as a Document
 func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, error) <span class="cov1" title="1">{
         r := model.Document{}
-        err := json.Unmarshal(fileContent, &amp;r)
+        err := easyjson.Unmarshal(fileContent, &amp;r)
         if err != nil </span><span class="cov0" title="0">{
                 r := []model.Document{}
                 err = json.Unmarshal(fileContent, &amp;r)
@@ -12885,18 +12899,18 @@ func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Docume
 }
 
 // getArrLines will get line information for the array elements
-func (c *converter) getArrLines(expr hclsyntax.Expression) []map[string]model.LineObject <span class="cov8" title="33">{
-        arr := make([]map[string]model.LineObject, 0)
+func (c *converter) getArrLines(expr hclsyntax.Expression) []map[string]*model.LineObject <span class="cov8" title="33">{
+        arr := make([]map[string]*model.LineObject, 0)
         if v, ok := expr.(*hclsyntax.TupleConsExpr); ok </span><span class="cov2" title="2">{
                 for _, ex := range v.Exprs </span><span class="cov5" title="7">{
-                        arrEx := make(map[string]model.LineObject)
+                        arrEx := make(map[string]*model.LineObject)
                         // set default line of array
-                        arrEx["_kics__default"] = model.LineObject{
+                        arrEx["_kics__default"] = &amp;model.LineObject{
                                 Line: ex.Range().Start.Line,
                         }
                         switch valType := ex.(type) </span>{
                         case *hclsyntax.ObjectConsExpr:<span class="cov3" title="3">
-                                arrEx["_kics__default"] = model.LineObject{
+                                arrEx["_kics__default"] = &amp;model.LineObject{
                                         Line: ex.Range().Start.Line + 1,
                                 }
                                 // set lines for array elements
@@ -12911,13 +12925,13 @@ func (c *converter) getArrLines(expr hclsyntax.Expression) []map[string]model.Li
                                                 }, false)
                                                 return nil
                                         }</span>
-                                        <span class="cov4" title="6">arrEx["_kics_"+key] = model.LineObject{
+                                        <span class="cov4" title="6">arrEx["_kics_"+key] = &amp;model.LineObject{
                                                 Line: item.KeyExpr.Range().Start.Line,
                                         }</span>
                                 }
                         case *hclsyntax.TupleConsExpr:<span class="cov0" title="0">
                                 // set lines for array elements if type is different than array, map/object
-                                arrEx["_kics__default"] = model.LineObject{
+                                arrEx["_kics__default"] = &amp;model.LineObject{
                                         Arr: c.getArrLines(valType),
                                 }</span>
                         }
@@ -14658,13 +14672,15 @@ func PrintScanDuration(elapsed time.Duration) <span class="cov10" title="2">{
 import (
         "fmt"
         "io"
+        "time"
 
         "github.com/Checkmarx/kics/internal/constants"
         "github.com/cheggaaa/pb/v3"
 )
 
 const (
-        barWidth = 0
+        barWidth     = 0
+        sleepTimeout = 100
 )
 
 // ProgressBar is a struct that holds the required feilds for
@@ -14700,6 +14716,8 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
 func (p ProgressBar) Start() <span class="cov0" title="0">{
         for </span><span class="cov0" title="0">{ // increment until the Close func is called
                 p.pBar.Increment()
+                // lower cpu usage from infinite loop
+                time.Sleep(time.Millisecond * sleepTimeout)
         }</span>
 }
 
