@@ -3,7 +3,7 @@
   "queryName": "Encryption Provider Not Properly Configured",
   "severity": "MEDIUM",
   "category": "Encryption",
-  "descriptionText": "The EncryptionConfiguration should configured to have at least one 'aescbc' provider",
+  "descriptionText": "The EncryptionConfiguration should be configured to have at least one 'aescbc' provider",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/#understanding-the-encryption-at-rest-configuration",
   "platform": "Kubernetes",
   "descriptionID": "c60a5ece"

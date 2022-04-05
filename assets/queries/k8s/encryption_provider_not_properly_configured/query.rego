@@ -6,7 +6,7 @@ import data.generic.k8s as k8sLib
 CxPolicy[result] {
 	resource := input.document[i]
 	resource.kind == "EncryptionConfiguration"
-	not conatainsProvider(resource, "aescbc")
+	not containsProvider(resource, "aescbc")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -17,7 +17,7 @@ CxPolicy[result] {
 	}
 }
 
-conatainsProvider(resource, providerToCheck){
+containsProvider(resource, providerToCheck){
 	innerResources := resource.resources[_]
 	providers := innerResources["providers"]
 	common_lib.valid_key(providers[_], providerToCheck)
