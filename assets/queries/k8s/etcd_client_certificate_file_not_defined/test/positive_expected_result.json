@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Etcd Client Certificate Not Defined",
+		"queryName": "Etcd Client Certificate File Not Defined",
 		"severity": "MEDIUM",
 		"line": 11,
         "file": "positive1.yaml"
