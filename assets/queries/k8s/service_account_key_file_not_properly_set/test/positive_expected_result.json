@@ -4,11 +4,5 @@
 		"severity": "MEDIUM",
 		"line": 11,
         "file": "positive1.yaml"
-	},
-	{
-		"queryName": "Service Account Key File Not Properly Set",
-		"severity": "MEDIUM",
-		"line": 11,
-        "file": "positive2.yaml"
 	}
 ]
