@@ -7,6 +7,13 @@ metadata:
   name: kube-scheduler
   namespace: kube-system
 spec:
+  selector:
+    matchLabels:
+      app: kube-controller-manager
+  template:
+    metadata:
+      labels:
+        app: kube-controller-manager
   containers:
     - name: command-demo-container
       image: k8s.gcr.io/kube-scheduler:v1.19.0
