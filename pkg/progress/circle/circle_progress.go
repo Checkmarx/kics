@@ -3,13 +3,15 @@ package circle
 import (
 	"fmt"
 	"io"
+	"time"
 
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/cheggaaa/pb/v3"
 )
 
 const (
-	barWidth = 0
+	barWidth     = 0
+	sleepTimeout = 100
 )
 
 // ProgressBar is a struct that holds the required feilds for
@@ -45,6 +47,8 @@ func NewProgressBar(label string, silent bool) ProgressBar {
 func (p ProgressBar) Start() {
 	for { // increment until the Close func is called
 		p.pBar.Increment()
+		// lower cpu usage from infinite loop
+		time.Sleep(time.Millisecond * sleepTimeout)
 	}
 }
 

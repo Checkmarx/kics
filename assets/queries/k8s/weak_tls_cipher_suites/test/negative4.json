@@ -1,0 +1,14 @@
+{
+    "kind": "KubeletConfiguration",
+    "apiVersion": "kubelet.config.k8s.io/v1beta1",
+    "port": 10250,
+    "readOnlyPort": 10255,
+    "cgroupDriver": "cgroupfs",
+    "hairpinMode": "promiscuous-bridge",
+    "serializeImagePulls": false,
+    "tlsCipherSuites": ["TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256","TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"],
+    "featureGates": {
+      "RotateKubeletClientCertificate": true,
+      "RotateKubeletServerCertificate": true
+    }
+  }

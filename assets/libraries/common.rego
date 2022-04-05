@@ -711,40 +711,29 @@ has_wildcard(statement, typeAction) {
 	check_actions(statement, typeAction)
 }
 
-
-get_search_key(arr) = sk {
-	sk := concat_path(arr[0].searchKey)
-} else = sk {
-  sk := ""
-}
-
-# valid returns if the array_vals are nested in the object (array_vals should be sorted)
+# valid returns if all array_vals are nested in the object (array_vals should be sorted)
 # searchKey returns the searchKey possible
 #
 # object := {"elem1": {"elem2": "elem3"}}
-# array_vals := ["elem2", "elem3", "elem4"]
+# array_vals := ["elem1", "elem2", "elem4"]
 #
-# return_value := {"valid": false, "searchKey": "elem2.elem3"}
+# return_value := {"valid": false, "searchKey": "elem1.elem2"}
 get_nested_values_info(object, array_vals) = return_value {
 	arr := [x |
-		some i, _ in array_vals;
-		[path, _] := walk(object)
-		path == array.slice(array_vals, 0, count(array_vals)-i)
-		x := {
-		   "searchKey": path
-		}
+		some i, _ in array_vals
+		path := array.slice(array_vals, 0, i+1)
+		walk(object, [path, _]) # evaluates to false if path is not in object
+		x := path[i]
 	]
+
 	return_value := {
 		"valid": count(array_vals) == count(arr),
-		"searchKey": get_search_key(arr)
+		"searchKey": concat(".", arr)
 	}
 }
 
 remove_last_point(searchKey) = sk {
-  endswith(searchKey, ".")
-  sk = substring(searchKey, 0, count(searchKey) -1)
-} else = sk {
-   sk := searchKey
+	sk := trim_right(searchKey, ".")
 }
 
 isOSDir(mountPath) = result {
@@ -765,19 +754,17 @@ list_contains(dirs, elem) {
 	startswith(elem, dirs[_])
 }
 
-# This function is based on this docs(https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html#describe-ebs-optimization)
 # if accessibility is "hasPolicy", bom_output should also display the policy content
 get_bom_output(bom_output, policy) = output {
 	bom_output.resource_accessibility == "hasPolicy"
-    
-    out := {"policy": policy}
-    
-    output := object.union(bom_output, out)
+	out := {"policy": policy}
+
+	output := object.union(bom_output, out)
 } else = output {
 	output := bom_output
 }
 
-# This function is based on this docs(https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html#describe-ebs-optimization)
+# This function is based on these docs: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html#describe-ebs-optimization
 is_aws_ebs_optimized_by_default(instanceType) {
 	inArray(data.common_lib.aws_ebs_optimized_by_default, instanceType)
 }
