@@ -3,7 +3,7 @@
   "queryName": "Service Account Key File Not Properly Set",
   "severity": "MEDIUM",
   "category": "Secret Management",
-  "descriptionText": "When using kube-apiserver command, the '--service-account-key-file' flag should be difined and set a PEM encoded file",
+  "descriptionText": "When using kube-apiserver command, the '--service-account-key-file' flag should be defined and set a PEM encoded file",
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
   "platform": "Kubernetes",
   "descriptionID": "2f3224e8"
