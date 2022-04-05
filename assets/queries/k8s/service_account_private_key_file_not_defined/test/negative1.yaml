@@ -7,7 +7,14 @@ metadata:
     tier: control-plane
     k8s-app: kube-controller-manager
 spec:
-  containers:
+  selector:
+    matchLabels:
+      app: kube-controller-manager
+  template:
+    metadata:
+      labels:
+        app: kube-controller-manager
+  containers:  
     - name: command-demo-container
       image: gcr.io/google_containers/kube-controller-manager-amd64:v1.6.0
       command: ["kube-controller-manager"]

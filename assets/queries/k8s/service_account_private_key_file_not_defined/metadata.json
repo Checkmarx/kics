@@ -3,7 +3,7 @@
   "queryName": "Service Account Private Key File Not Defined",
   "severity": "HIGH",
   "category": "Encryption",
-  "descriptionText": "When using kube-controller-manager commands, the '--terminated-pod-gc-threshold' should be set to 10",
+  "descriptionText": "When using kube-controller-manager commands, the '--service-account-private-key-file' should be defined",
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/",
   "platform": "Kubernetes",
   "descriptionID": "b2fc61b4"
