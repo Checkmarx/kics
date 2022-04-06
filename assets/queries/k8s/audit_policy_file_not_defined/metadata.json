@@ -3,7 +3,7 @@
   "queryName": "Audit Policy File Not Defined",
   "severity": "MEDIUM",
   "category": "Observability",
-  "descriptionText": "When using kube-apiserver command, the '--audit-policy-file' flag should be difined",
+  "descriptionText": "When using kube-apiserver command, the '--audit-policy-file' flag should be defined",
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
   "platform": "Kubernetes",
   "descriptionID": "7ae0f3cb"
