@@ -3,7 +3,7 @@
   "queryName": "Etcd Client Certificate Authentication Set To False",
   "severity": "MEDIUM",
   "category": "Secret Management",
-  "descriptionText": "When using etcd commands, the '--client-cert-auth' flag should be difined",
+  "descriptionText": "When using etcd commands, the '--client-cert-auth' flag should be defined",
   "descriptionUrl": "https://etcd.io/docs/v3.4/op-guide/security/",
   "platform": "Kubernetes",
   "descriptionID": "e79812fb"
