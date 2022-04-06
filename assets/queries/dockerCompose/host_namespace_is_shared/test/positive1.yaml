@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+
+  service_name_1:
+    image: not/a-real-image:latest
+    command: ["launch"]
+    ports:
+      - "8080:8080"
+    pid: "host" # Share Process ID Namespace
