@@ -10,5 +10,29 @@
 		"severity": "MEDIUM",
 		"line": 11,
         "file": "positive2.yaml"
+	},
+	{
+		"queryName": "Request Timeout Not Properly Set",
+		"severity": "MEDIUM",
+		"line": 11,
+        "file": "positive3.yaml"
+	},
+	{
+		"queryName": "Request Timeout Not Properly Set",
+		"severity": "MEDIUM",
+		"line": 11,
+        "file": "positive4.yaml"
+	},
+	{
+		"queryName": "Request Timeout Not Properly Set",
+		"severity": "MEDIUM",
+		"line": 11,
+        "file": "positive5.yaml"
+	},
+	{
+		"queryName": "Request Timeout Not Properly Set",
+		"severity": "MEDIUM",
+		"line": 11,
+        "file": "positive6.yaml"
 	}
 ]

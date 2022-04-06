@@ -9,5 +9,5 @@ spec:
     - name: command-demo-container
       image: gcr.io/google_containers/kube-apiserver-amd64:v1.6.0
       command: ["kube-apiserver"]
-      args: ["--request-timeout=1h0s"]
+      args: ["--request-timeout=400s"]
   restartPolicy: OnFailure
