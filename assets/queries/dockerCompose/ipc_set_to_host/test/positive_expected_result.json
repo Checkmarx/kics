@@ -1,0 +1,14 @@
+[
+    {
+      "queryName": "IPC Set To Host",
+      "severity": "MEDIUM",
+      "line": 10,
+      "filename": "positive1.yaml"
+    },
+    {
+      "queryName": "IPC Set To Host",
+      "severity": "MEDIUM",
+      "line": 13,
+      "filename": "positive2.yaml"
+    }
+]
