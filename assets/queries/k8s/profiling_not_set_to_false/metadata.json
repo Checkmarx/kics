@@ -3,7 +3,7 @@
   "queryName": "Profiling Not Set To False",
   "severity": "LOW",
   "category": "Observability",
-  "descriptionText": "When using kube-apiserver, kube-controller-manager or kube-scheduler  command, the '--profiling' flag should be defined and set to false",
+  "descriptionText": "When using kube-apiserver or kube-controller-manager or kube-scheduler command, the '--profiling' flag should be defined and set to false",
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
   "platform": "Kubernetes",
   "descriptionID": "622a1db7"

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: command-demo
+  name: command-demo-1
   labels:
     purpose: demonstrate-command
 spec:
@@ -9,5 +9,5 @@ spec:
     - name: command-demo-container
       image: gcr.io/google_containers/kube-apiserver-amd64:v1.6.0
       command: ["kube-apiserver"]
-      args: ["--profiling=true"]
+      args: []
   restartPolicy: OnFailure

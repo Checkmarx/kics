@@ -3,14 +3,14 @@ kind: Pod
 metadata:
   creationTimestamp: null
   labels:
-    component: kube-controller-manager
+    component: kube-scheduler
     tier: control-plane
-  name: kube-controller-manager-master-4
+  name: kube-scheduler-master-2
   namespace: kube-system
 spec:
   containers:
     - name: command-demo-container
-      image: gcr.io/google_containers/kube-controller-manager-master-4
-      command: ["kube-controller-manager"]
+      image: gcr.io/google_containers/kube-scheduler-master-2
+      command: ["kube-scheduler","--profiling=true"]
       args: []
   restartPolicy: OnFailure

@@ -1,36 +1,13 @@
-apiVersion: kubescheduler.config.k8s.io/v1alpha1
-kind: KubeSchedulerConfiguration
-algorithmSource:
-  provider: DefaultProvider
-percentageOfNodesToScore: 0
-schedulerName: default-scheduler
-bindTimeoutSeconds: 600
-clientConnection:
-  acceptContentTypes: ""
-  burst: 100
-  contentType: application/vnd.kubernetes.protobuf
-  kubeconfig: ""
-  qps: 50
-disablePreemption: false
-enableContentionProfiling: false
-hardPodAffinitySymmetricWeight: 1
-healthzBindAddress: 0.0.0.0:10251
-leaderElection:
-  leaderElect: true
-  leaseDuration: 15s
-  lockObjectName: kube-scheduler
-  lockObjectNamespace: kube-system
-  renewDeadline: 10s
-  resourceLock: endpoints
-  retryPeriod: 2s
-metricsBindAddress: 0.0.0.0:10251
-profiles:
-  - schedulerName: default-scheduler
-  - schedulerName: no-scoring-scheduler
-    plugins:
-      preScore:
-        disabled:
-        - name: '*'
-      score:
-        disabled:
-        - name: '*'
+apiVersion: v1
+kind: Pod
+metadata:
+  name: command-demo
+  labels:
+    purpose: demonstrate-command
+spec:
+  containers:
+    - name: command-demo-container
+      image: gcr.io/google_containers/kube-apiserver-amd64:v1.6.0
+      command: ["kube-apiserver"]
+      args: ["--profiling=true"]
+  restartPolicy: OnFailure
