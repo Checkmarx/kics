@@ -18,5 +18,5 @@ spec:
     - name: command-demo-container
       image: gcr.io/google_containers/kube-controller-manager-amd64:v1.6.0
       command: ["kube-controller-manager"]
-      args: []
+      args: ["--terminated-pod-gc-threshold=12501"]
   restartPolicy: OnFailure
