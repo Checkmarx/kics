@@ -1,0 +1,10 @@
+{
+  "id": "14007b45-bd59-44f2-9481-bf4a4d21bfdb",
+  "queryName": "Cluster Role With Create Priveleges",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Create priveleges should not be attributed the cluster roles",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+  "platform": "Kubernetes",
+  "descriptionID": "6538e851"
+}

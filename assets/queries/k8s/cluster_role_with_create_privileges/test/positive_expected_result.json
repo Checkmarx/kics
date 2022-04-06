@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "Cluster Role With Create Priveleges",
+		"severity": "MEDIUM",
+		"line": 6,
+        "file": "positive1.yaml"
+	}
+]
