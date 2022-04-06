@@ -15,7 +15,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": "--cert-file flag should be defined",
 		"keyActualValue": "--cert-file flag is not defined",
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),
@@ -34,7 +34,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": "--key-file flag should be defined",
 		"keyActualValue": "--key-file flag is not defined",
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),
