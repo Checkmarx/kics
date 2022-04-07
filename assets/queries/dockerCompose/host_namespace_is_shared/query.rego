@@ -28,8 +28,8 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s",[name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "There is no pid declared",
-		"keyActualValue": "There is a pid mode declared",
+		"keyExpectedValue": "There is a pid mode declared",
+		"keyActualValue": "There is no pid declared",
 		"searchLine": common_lib.build_search_line(["services", name], []),
 	}
 }
