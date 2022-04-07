@@ -1,0 +1,10 @@
+{
+  "id": "76300a45-04d7-46bb-a0c0-204f631d9019",
+  "queryName": "Default Service Account In Use",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "The ServiceAccount automountServiceAccountToken argument should be set to false",
+  "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
+  "platform": "Kubernetes",
+  "descriptionID": "19e3b05a981a96ee"
+}
