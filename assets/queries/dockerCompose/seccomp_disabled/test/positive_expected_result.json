@@ -6,9 +6,9 @@
       "filename": "positive1.yaml"
     },
     {
-        "queryName": "Seccomp Disabled",
-        "severity": "MEDIUM",
-        "line": 7,
-        "filename": "positive2.yaml"
+      "queryName": "Seccomp Disabled",
+      "severity": "MEDIUM",
+      "line": 7,
+      "filename": "positive2.yaml"
     }
 ]
