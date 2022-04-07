@@ -1,0 +1,26 @@
+[
+    {
+      "queryName": "Healthcheck Not Set",
+      "severity": "MEDIUM",
+      "line": 4,
+      "filename": "positive1.yaml"
+    },
+    {
+      "queryName": "Healthcheck Not Set",
+      "severity": "MEDIUM",
+      "line": 13,
+      "filename": "positive2.yaml"
+    },
+    {
+      "queryName": "Healthcheck Not Set",
+      "severity": "MEDIUM",
+      "line": 14,
+      "filename": "positive2.yaml"
+    },
+    {
+      "queryName": "Healthcheck Not Set",
+      "severity": "MEDIUM",
+      "line": 13,
+      "filename": "positive3.yaml"
+    }
+]
