@@ -1,0 +1,8 @@
+[
+    {
+      "queryName": "Docker Socket Mounted In Container",
+      "severity": "HIGH",
+      "line": 9,
+      "filename": "positive1.yaml"
+    }
+]
