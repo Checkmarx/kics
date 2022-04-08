@@ -6,17 +6,17 @@ on:
     - "assets/queries/**/metadata.json"
 
 jobs:
-  lint-samples:
+  validate-metadata:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           persist-credentials: false
-      - name: Run test metrics script
+      - name: Run queries metadata validation script
         env:
           KICS_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           KICS_PR_NUMBER: ${{ github.event.number }}
-        id: metrics
+        id: validator
         run: |
-          pip3 install -r .github/scripts/metrics/requirements.txt
-          python3 .github/scripts/metrics/get_metrics.py
+          pip3 install -r .github/scripts/queries-validator/requirements.txt
+          python3 .github/scripts/queries-validator/queries-validator.py
