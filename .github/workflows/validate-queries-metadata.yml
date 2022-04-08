@@ -17,6 +17,7 @@ jobs:
           KICS_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           KICS_PR_NUMBER: ${{ github.event.number }}
         id: validator
+        working-directory: .github/scripts/queries-validator/
         run: |
-          pip3 install -r .github/scripts/queries-validator/requirements.txt
-          python3 .github/scripts/queries-validator/queries-validator.py
+          pip3 install -r requirements.txt
+          python3 queries-validator.py
