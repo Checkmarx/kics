@@ -1,0 +1,139 @@
+{
+    "type": "object",
+    "additionalProperties": false,
+    "definitions": {
+        "query_id_pattern": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-4{1}[a-f0-9]{3}-[89ab]{1}[a-f0-9]{3}-[a-f0-9]{12}$"
+        },
+        "description_id_pattern": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[a-f0-9]{8}$"
+        }
+    },
+    "required": [
+        "id",
+        "queryName",
+        "severity",
+        "category",
+        "descriptionText",
+        "descriptionUrl",
+        "platform",
+        "descriptionID"
+    ],
+    "properties": {
+        "id": {
+            "$ref": "#/definitions/query_id_pattern"
+        },
+        "queryName": {
+            "type": "string",
+            "minLength": 8
+        },
+        "severity": {
+            "type": "string",
+            "enum": [
+                "TRACE",
+                "HIGH",
+                "MEDIUM",
+                "LOW",
+                "INFO"
+            ]
+        },
+        "category": {
+            "type": "string",
+            "enum": [
+                "Access Control",
+                "Availability",
+                "Backup",
+                "Best Practices",
+                "Build Process",
+                "Bill Of Materials",
+                "Encryption",
+                "Insecure Configurations",
+                "Insecure Defaults",
+                "Networking and Firewall",
+                "Observability",
+                "Resource Management",
+                "Secret Management",
+                "Supply-Chain",
+                "Structure and Semantics"
+            ]
+        },
+        "descriptionText": {
+            "type": "string",
+            "minLength": 16
+        },
+        "descriptionUrl": {
+            "type": "string",
+            "format": "uri"
+        },
+        "cloudProvider": {
+            "type": "string",
+            "enum": [
+                "alicloud",
+                "aws",
+                "azure",
+                "common",
+                "gcp"
+            ]
+        },
+        "platform": {
+            "type": "string",
+            "enum": [
+                "Ansible",
+                "AzureResourceManager",
+                "Buildah",
+                "CloudFormation",
+                "Common",
+                "Dockerfile",
+                "DockerCompose",
+                "GRPC",
+                "GoogleDeploymentManager",
+                "Kubernetes",
+                "OpenAPI",
+                "Terraform"
+            ]
+        },
+        "descriptionID": {
+            "$ref": "#/definitions/description_id_pattern"
+        },
+        "aggregation": {
+            "type": "number",
+            "minimum": 1
+        },
+        "override": {
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^\\d[\\.\\d]+$": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "id",
+                        "queryName",
+                        "descriptionUrl"
+                    ],
+                    "properties": {
+                        "id": {
+                            "$ref": "#/definitions/query_id_pattern"
+                        },
+                        "queryName": {
+                            "type": "string",
+                            "minLength": 8
+                        },
+                        "descriptionUrl": {
+                            "type": "string",
+                            "format": "uri"
+                        },
+                        "descriptionText": {
+                            "type": "string",
+                            "minLength": 16
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
