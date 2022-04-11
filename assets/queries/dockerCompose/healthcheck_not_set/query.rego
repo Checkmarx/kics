@@ -35,25 +35,15 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i]
 	service_parameters := resource.services[name]
-    hcheck := service_parameters.healthcheck
-    check_h_parameters(hcheck)
-    
+    test := service_parameters.healthcheck.test
+    test == ["NONE"]
+   
 	result := {
-    	"debug": sprintf("%s", [hcheck]),
 		"documentId": sprintf("%s", [resource.id]),
-		"searchKey": sprintf("services.%s.healthcheck",[name]),
+		"searchKey": sprintf("services.%s.healthcheck.test",[name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Healthcheck to be enabled and interval, timeout and retries to be defined.",
-		"keyActualValue": "Healthcheck doesnt have necessary parameters.",
-		"searchLine": common_lib.build_search_line(["services", name, "healthcheck"], []),
+		"keyExpectedValue": "Healthcheck to be enabled.",
+		"keyActualValue": "Healthcheck is disabled.",
+		"searchLine": common_lib.build_search_line(["services", name, "healthcheck", "test"], []),
 	}
-}
-
-check_h_parameters(hcheck)
-{
-    not common_lib.valid_key(hcheck,"interval")
-}else{
-    not common_lib.valid_key(hcheck,"timeout")
-}else{
-    not common_lib.valid_key(hcheck,"retries")
 }

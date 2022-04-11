@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
  lelele-service:
-    build: lelele-apigateway/
+    build: ./
     image: lelele-service
     restart: always
     container_name: lelele

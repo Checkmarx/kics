@@ -1,4 +1,4 @@
-version: '2.1'
+version: '3.1'
 
 services:
  lelele-service:
@@ -11,4 +11,5 @@ services:
     ports:
       - 8092:8092
     healthcheck:
-      disable: true
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      
