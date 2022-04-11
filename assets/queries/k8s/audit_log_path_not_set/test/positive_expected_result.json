@@ -3,6 +3,6 @@
     "queryName": "Audit Log Path Not Set",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml"
   }
 ]
