@@ -28,7 +28,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Healthcheck to be enabled.",
 		"keyActualValue": "Healthcheck is disabled.",
-		"searchLine": common_lib.build_search_line(["services", name, "healthcheck", "disabled"], []),
+		"searchLine": common_lib.build_search_line(["services", name, "healthcheck", "disable"], []),
 	}
 }
 
