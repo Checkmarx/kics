@@ -7,4 +7,5 @@ services:
     command: ["launch"]
     ports:
       - "8080:8080"
-    pid: "service:service_name_5"
+    pid: "container:service_name_4"
+    
