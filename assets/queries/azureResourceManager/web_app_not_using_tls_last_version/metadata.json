@@ -6,6 +6,6 @@
   "descriptionText": "Resources of type 'Microsoft.Web/sites' should define 'properties.siteConfig.minTlsVersion' with '1.2'",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteconfig-object",
   "platform": "AzureResourceManager",
-  "descriptionID": "b5c851d5a",
+  "descriptionID": "1a442064",
   "cloudProvider": "azure"
 }
