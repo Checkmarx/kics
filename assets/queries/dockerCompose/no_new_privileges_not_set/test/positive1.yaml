@@ -2,7 +2,7 @@ version: "3.4"
 services:
   service-service-service:
     build:
-      context: ./git-branches/
+      context: ./
       dockerfile: service.dockerfile
     ports:
       - "6969:8080"
@@ -11,8 +11,6 @@ services:
     restart: always
     security_opt:
       - no-new-privileges:false
-    depends_on:
-      - "service-service-front-fpm"
 
 networks:
   service-service-frontend:
