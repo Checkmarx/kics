@@ -1,12 +1,12 @@
 [
     {
-      "queryName": "Seccomp Disabled",
+      "queryName": "Default Seccomp Profile Disabled",
       "severity": "MEDIUM",
       "line": 12,
       "filename": "positive1.yaml"
     },
     {
-      "queryName": "Seccomp Disabled",
+      "queryName": "Default Seccomp Profile Disabled",
       "severity": "MEDIUM",
       "line": 9,
       "filename": "positive2.yaml"

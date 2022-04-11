@@ -15,6 +15,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Seccomp default profile is not being disabled.",
 		"keyActualValue": "Seccomp default profile is disabled.",
-		"searchLine": common_lib.build_search_line(["services", name, "security_opt"], []),
+		"searchLine": common_lib.build_search_line(["services", name, "security_opt", a], []),
 	}
 }
