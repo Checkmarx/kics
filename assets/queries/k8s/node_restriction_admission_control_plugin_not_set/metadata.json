@@ -1,0 +1,10 @@
+{
+  "id": "33fc6923-6553-4fe6-9d3a-4efa51eb874b",
+  "queryName": "Node Restriction Admission Control Plugin Not Set",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "When using kube-apiserver command, the --enable-admission-plugins flag should have 'NodeRestriction' plugin and the plugin should be correctly configured in AdmissionControl Config file",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
+  "platform": "Kubernetes",
+  "descriptionID": "2a03f1ec"
+}
