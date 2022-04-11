@@ -9,7 +9,6 @@ CxPolicy[result] {
     pid == "host"
    
 	result := {
-    	"debug":sprintf("%s",[pid]),
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.pid",[name]),
 		"issueType": "IncorrectValue",
