@@ -3,12 +3,12 @@
 		"queryName": "Audit Policy File Not Defined",
 		"severity": "MEDIUM",
 		"line": 11,
-        "file": "positive1.yaml"
+        "fileName": "positive1.yaml"
 	},
 	{
 		"queryName": "Audit Policy File Not Defined",
 		"severity": "MEDIUM",
 		"line": 11,
-        "file": "positive2.yaml"
+        "fileName": "positive2.yaml"
 	}
 ]
