@@ -11,7 +11,6 @@ CxPolicy[result] {
     check_ports(port)
 	
 	result := {
-    	"debug":sprintf("%s", [port]),
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.ports",[name]),
 		"issueType": "IncorrectValue",
