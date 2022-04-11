@@ -7,9 +7,6 @@
       "Properties": {
         "BrokerName": "MyBasicBroker",
         "DeploymentMode": "SINGLE_INSTANCE",
-        "EncryptionOptions": {
-          "UseAwsOwnedKey": true
-        },
         "EngineType": "ActiveMQ",
         "EngineVersion": "5.15.0",
         "HostInstanceType": "mq.t2.micro",

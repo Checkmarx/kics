@@ -10,5 +10,11 @@
     "severity": "TRACE",
     "line": 3,
     "fileName": "positive2.json"
+  },
+  {
+    "queryName": "BOM - AWS Elasticache",
+    "severity": "TRACE",
+    "line": 2,
+    "fileName": "positive3.yaml"
   }
 ]

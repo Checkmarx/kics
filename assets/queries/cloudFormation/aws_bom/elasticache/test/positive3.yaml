@@ -7,17 +7,17 @@ Resources:
       NumCacheNodes: '1'
       CacheSubnetGroupName: default
       CacheSecurityGroupNames:
-        - !Ref CacheSecurityGroup
-  CacheSecurityGroup:
+        - !Ref CacheSecurityGroup2
+  CacheSecurityGroup2:
     Type: AWS::ElastiCache::SecurityGroup
     Properties: 
       Description: My ElastiCache Security Group
-  SecurityGroupIngress:
+  SecurityGroupIngress2:
     Type: AWS::ElastiCache::SecurityGroupIngress
     Properties: 
-      CacheSecurityGroupName: !Ref CacheSecurityGroup
-      EC2SecurityGroupName: !Ref SecurityGroup
-  SecurityGroup:
+      CacheSecurityGroupName: !Ref CacheSecurityGroup2
+      EC2SecurityGroupName: !Ref SecurityGroup2
+  SecurityGroup2:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Allow http to client host
@@ -26,9 +26,4 @@ Resources:
         - IpProtocol: tcp
           FromPort: 80
           ToPort: 80
-          CidrIp: 0.0.0.0/0
-      SecurityGroupEgress:
-        - IpProtocol: tcp
-          FromPort: 80
-          ToPort: 80
-          CidrIp: 0.0.0.0/0
+          CidrIp: 1.2.3.4/28

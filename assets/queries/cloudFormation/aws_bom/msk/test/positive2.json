@@ -8,15 +8,6 @@
         "KafkaVersion": "2.2.1",
         "NumberOfBrokerNodes": 3,
         "EnhancedMonitoring": "PER_BROKER",
-        "EncryptionInfo": {
-          "EncryptionAtRest": {
-            "DataVolumeKMSKeyId": "ReplaceWithKmsKeyArn"
-          },
-          "EncryptionInTransit": {
-            "ClientBroker": "TLS",
-            "InCluster": true
-          }
-        },
         "OpenMonitoring": {
           "Prometheus": {
             "JmxExporter": {

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	document := input.document
@@ -11,7 +12,7 @@ CxPolicy[result] {
 		"resource_type": "AWS::MSK::Cluster",
 		"resource_name": msk.Properties.ClusterName,
 		"resource_accessibility": "unknown",
-		"resource_encryption": get_encryption(msk),
+		"resource_encryption": cf_lib.get_encryption(msk),
 		"resource_vendor": "AWS",
 		"resource_category": "Streaming",
 	}
@@ -25,11 +26,4 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["Resources", name], []),
 		"value": json.marshal(bom_output),
 	}
-}
-
-get_encryption(msk) = encryption {
-	common_lib.valid_key(msk.Properties, "EncryptionInfo")
-	encryption := "encrypted"
-} else = encryption {
-	encryption := "unencrypted"
 }
