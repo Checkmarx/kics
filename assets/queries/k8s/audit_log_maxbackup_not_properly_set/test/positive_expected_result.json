@@ -3,12 +3,12 @@
 		"queryName": "Audit Log Maxbackup Not Properly Set",
 		"severity": "LOW",
 		"line": 11,
-        "file": "positive1.yaml"
+        "fileName": "positive1.yaml"
 	},
 	{
 		"queryName": "Audit Log Maxbackup Not Properly Set",
 		"severity": "LOW",
 		"line": 11,
-        "file": "positive2.yaml"
+        "fileName": "positive2.yaml"
 	}
 ]
