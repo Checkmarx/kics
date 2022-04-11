@@ -2138,10 +2138,10 @@ github.com/tarm/serial v0.0.0-20180830185346-98f6abe2eb07/go.mod h1:kDXzergiv9cb
 github.com/tchap/go-patricia v2.2.6+incompatible/go.mod h1:bmLyhP68RS6kStMGxByiQ23RP/odRBOTVjwp2cDyi6I=
 github.com/tdakkota/asciicheck v0.0.0-20200416190851-d7f85be797a2/go.mod h1:yHp0ai0Z9gUljN3o0xMhYJnH/IcvkdTBOX2fmJ93JEM=
 github.com/tdakkota/asciicheck v0.0.0-20200416200610-e657995f937b/go.mod h1:yHp0ai0Z9gUljN3o0xMhYJnH/IcvkdTBOX2fmJ93JEM=
-github.com/tdewolff/minify/v2 v2.10.0 h1:ovVAHUcjfGrBDf1EIvsodRUVJiZK/28mMose08B7k14=
-github.com/tdewolff/minify/v2 v2.10.0/go.mod h1:6XAjcHM46pFcRE0eztigFPm0Q+Cxsw8YhEWT+rDkcZM=
-github.com/tdewolff/parse/v2 v2.5.27 h1:PL3LzzXaOpmdrknnOlIeO2muIBHAwiKp6TxN1RbU5gI=
-github.com/tdewolff/parse/v2 v2.5.27/go.mod h1:WzaJpRSbwq++EIQHYIRTpbYKNA3gn9it1Ik++q4zyho=
+github.com/tdewolff/minify/v2 v2.11.1 h1:x2IAGnHs3qBjulArA7g4dYGCpcMrM8H2sywfwr436RA=
+github.com/tdewolff/minify/v2 v2.11.1/go.mod h1:UkCTT2Sa8N7XNU0Z9Q+De6NvaxPlC7DGfSWDRowwXqY=
+github.com/tdewolff/parse/v2 v2.5.28 h1:QziFVLe+bfFIwnCWAJzMrzwltQXPT21Evl9Z4x25D+U=
+github.com/tdewolff/parse/v2 v2.5.28/go.mod h1:WzaJpRSbwq++EIQHYIRTpbYKNA3gn9it1Ik++q4zyho=
 github.com/tdewolff/test v1.0.6 h1:76mzYJQ83Op284kMT+63iCNCI7NEERsIN8dLM+RiKr4=
 github.com/tdewolff/test v1.0.6/go.mod h1:6DAvZliBAAnD7rhVgwaM7DE5/d9NMOAJ09SqYqeK4QE=
 github.com/tencentcloud/tencentcloud-sdk-go v3.0.82+incompatible/go.mod h1:0PfYow01SHPMhKY31xa+EFz2RStxIqj6JFAJS+IkCi4=
