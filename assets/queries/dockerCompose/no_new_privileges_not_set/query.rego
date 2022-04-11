@@ -6,8 +6,7 @@ CxPolicy[result] {
 	resource := input.document[i]
 	service_parameters := resource.services[name]
     sec_opt := service_parameters.security_opt
-    sec_opt[s] != "no-new-privileges:true"
-    sec_opt[s] != "no-new-privileges"
+    not no_new_privileges(sec_opt)
    
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
@@ -17,4 +16,8 @@ CxPolicy[result] {
 		"keyActualValue": "no-new-privileges is not set in security_opt",
 		"searchLine": common_lib.build_search_line(["services", name, "security_opt"], []),
 	}
+}
+
+no_new_privileges(sec_opt) {
+    sec_opt[_] == "no-new-privileges:true"
 }

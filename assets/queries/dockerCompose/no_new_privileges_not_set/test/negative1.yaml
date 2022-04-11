@@ -1,4 +1,4 @@
-version: "2.4"
+version: "3.4"
 services:
   service-service-service:
     build:
@@ -12,7 +12,7 @@ services:
     depends_on:
       - "service-service-front-fpm"
     security_opt:
-      - no-new-privileges
+      - no-new-privileges:true
 
 networks:
   service-service-frontend:
