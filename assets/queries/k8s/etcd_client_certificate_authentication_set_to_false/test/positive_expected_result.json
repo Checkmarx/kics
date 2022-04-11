@@ -3,12 +3,12 @@
 		"queryName": "Etcd Client Certificate Authentication Set To False",
 		"severity": "MEDIUM",
 		"line": 21,
-        "file": "positive1.yaml"
+        "fileName": "positive1.yaml"
 	},
 	{
 		"queryName": "Etcd Client Certificate Authentication Set To False",
 		"severity": "MEDIUM",
 		"line": 21,
-        "file": "positive2.yaml"
+        "fileName": "positive2.yaml"
 	}
 ]
