@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "keyExpectedValue": "--terminated-pod-gc-threshold flag should be set between 0 and 12501",
+		"keyExpectedValue": "--terminated-pod-gc-threshold flag should be set between 0 and 12501",
 		"keyActualValue": "--terminated-pod-gc-threshold flag is set to a incorrect value",
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),
 	}
