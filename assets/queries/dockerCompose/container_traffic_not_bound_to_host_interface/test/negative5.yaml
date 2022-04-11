@@ -3,7 +3,7 @@ version: '3.2'
 services:
   webapp:
     container_name: webapp
-    build: ./webapp
+    build: ./
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
