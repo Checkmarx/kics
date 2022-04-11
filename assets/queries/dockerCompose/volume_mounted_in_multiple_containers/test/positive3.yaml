@@ -1,6 +1,6 @@
 version: "3.2"
 services:
-  neo4j:
+  old8k:
     image: notreal
     container_name: "c3"
     restart: always
