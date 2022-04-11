@@ -33,4 +33,20 @@ hasClean(resourceValue, aptGet) {
 	startswith(listCommands[remove], "rm -rf")
 
 	install < remove
+} else {
+	res:= replace(resourceValue, "\t", "")
+	listCommands := split(res, "; ")
+
+	startswith(listCommands[install], aptGet)
+	startswith(listCommands[clean], "apt-get clean")
+
+	install < clean
+} else {
+	res:= replace(resourceValue, "\t", "")
+	listCommands := split(res, "; ")
+
+	startswith(listCommands[install], aptGet)
+	startswith(listCommands[remove], "rm -rf")
+
+	install < remove
 }

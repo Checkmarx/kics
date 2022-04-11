@@ -6,9 +6,35 @@ getPackages(commands, command) = output {
 
 	commandWithAll := substring(commands, len + index, count(commands))
 
+	contains(commandWithAll, "&&")
 	commandWithAllSplit := split(commandWithAll, "&&")
 
 	packages := split(commandWithAllSplit[0], " ")
+
+	output = packages
+}else = output {
+	index := indexof(commands, command[0])
+	len := count(command[0])
+
+	commandWithAll := substring(commands, len + index, count(commands))
+
+	contains(commandWithAll, ";")
+	commandWithAllNoTabs:= replace(commandWithAll, "\t", "")
+	commandWithAllSplit := split(commandWithAllNoTabs, ";")
+
+	packages := split(commandWithAllSplit[0], " ")
+
+	output = packages
+}else = output {
+	index := indexof(commands, command[0])
+	len := count(command[0])
+
+	commandWithAll := substring(commands, len + index, count(commands))
+
+	not contains(commandWithAll, ";")
+    not contains(commandWithAll, "&&")
+
+	packages := split(commandWithAll, " ")
 
 	output = packages
 }
