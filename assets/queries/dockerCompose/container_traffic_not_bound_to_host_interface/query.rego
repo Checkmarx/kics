@@ -15,8 +15,8 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.ports",[name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Docker compose file to have 'ports' attribute bound to a host IP address.",
-		"keyActualValue": "Docker compose file doesn't have 'ports' attribute bound to a host IP address.",
+		"keyExpectedValue": "Docker compose file to have 'ports' attribute bound to a specific host interface.",
+		"keyActualValue": "Docker compose file doesn't have 'ports' attribute bound to a specific host interface",
         "searchLine": common_lib.build_search_line(["services", name, "ports"], []),
 	}
 }

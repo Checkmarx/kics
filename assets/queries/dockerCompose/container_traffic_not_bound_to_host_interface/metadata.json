@@ -3,7 +3,7 @@
   "queryName": "Container Traffic Not Bound To Host Interface",
   "severity": "MEDIUM",
   "category": "Networking and Firewall",
-  "descriptionText": "Ports containing container traffic should be bound to a specific host IP address.",
+  "descriptionText": "Incoming container traffic should be bound to a specific host interface",
   "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#ports",
   "platform": "DockerCompose",
   "descriptionID": "909d1bcd"
