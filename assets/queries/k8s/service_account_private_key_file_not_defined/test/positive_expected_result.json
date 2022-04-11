@@ -3,6 +3,6 @@
 		"queryName": "Service Account Private Key File Not Defined",
 		"severity": "HIGH",
 		"line": 20,
-        "file": "positive1.yaml"
+        "fileName": "positive1.yaml"
 	}
 ]
