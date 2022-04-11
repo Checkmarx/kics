@@ -9,7 +9,7 @@ services:
   name_of_service:
     image: not_a_real_one
     container_name: container1
-    build: ./service_bridge
+    build: ./
     ports:
       - '5002:80'
     restart: on-failure:3

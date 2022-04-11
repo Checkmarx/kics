@@ -4,8 +4,6 @@ services:
   customer:
     image: whoa/hello
     restart: on-failure:5
-    depends_on:
-      - hellodb
     networks:
       - netnet
     expose:
