@@ -1,6 +1,6 @@
 {
   "id": "baa3890f-bed7-46f5-ab8f-1da8fc91c729",
-  "queryName": "IPC Set To Host",
+  "queryName": "Shared Host IPC Namespace",
   "severity": "MEDIUM",
   "category": "Resource Management",
   "descriptionText": "The host IPC namespace should not be shared.",
