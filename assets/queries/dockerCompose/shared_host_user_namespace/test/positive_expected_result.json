@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "Userns Set To Host",
+    "queryName": "Shared Host User Namespace",
     "severity": "MEDIUM",
     "line": 9,
     "filename": "positive1.yaml"
