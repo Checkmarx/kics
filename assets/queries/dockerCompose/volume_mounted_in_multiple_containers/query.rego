@@ -12,12 +12,11 @@ CxPolicy[result] {
     propagation == possibilities[p]
     
 	result := {
-    	"debug": sprintf("%s",[propagation]),
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.volumes.bind.propagation",[name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Volumes are not being mounted in multiple containers",
 		"keyActualValue": sprintf("Volumes are being mounted in multiple containers, mode: %s", [possibilities[p]]),
-		"searchLine": common_lib.build_search_line(["services", name, "volumes", "bind", "propagation"], []),
+		"searchLine": common_lib.build_search_line(["services", name, "volumes", v, "bind", "propagation"], []),
 	}
 }

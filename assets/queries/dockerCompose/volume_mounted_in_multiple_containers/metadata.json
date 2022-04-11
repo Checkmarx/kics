@@ -3,7 +3,7 @@
   "queryName": "Volume Mounted In Multiple Containers",
   "severity": "HIGH",
   "category": "Build Process",
-  "descriptionText": "Volume is mounted in multiple containers. Volume mounts should not be shared.",
+  "descriptionText": "Volume mounts should not be shared, which means that 'propagation' should not be set to 'shared', 'rshared', 'slave', or 'rslave'",
   "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes",
   "platform": "DockerCompose",
   "descriptionID": "1c7ca167"
