@@ -1,0 +1,14 @@
+version: "3.2"
+services:
+  old8k:
+    image: notreal
+    container_name: "c7"
+    restart: always
+    expose:
+      - 74746
+      - 76867
+    volumes:
+      - type: bind
+        source: $ENVVAR/.whew/path/datapath
+        target: "/data"
+        
