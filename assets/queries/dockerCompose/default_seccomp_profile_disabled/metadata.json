@@ -1,0 +1,10 @@
+{
+  "id": "404fde2c-bc4b-4371-9747-7054132ac953",
+  "queryName": "Default Seccomp Profile Disabled",
+  "severity": "MEDIUM",
+  "category": "Resource Management",
+  "descriptionText": "Seccomp offers a whitelist of common system calls, blocking all others. Having less kernel exposed to an app then increases security.",
+  "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt",
+  "platform": "DockerCompose",
+  "descriptionID": "3702d7fb"
+}
