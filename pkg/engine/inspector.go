@@ -43,6 +43,14 @@ var ErrNoResult = errors.New("query: not result")
 // ErrInvalidResult - error representing invalid result
 var ErrInvalidResult = errors.New("query: invalid result format")
 
+// QueryLoader is responsible for loading the queries for the inspector
+type QueryLoader struct {
+	commonLibrary     source.RegoLibraries
+	platformLibraries map[string]source.RegoLibraries
+	querySum          int
+	QueriesMetadata   []model.QueryMetadata
+}
+
 // VulnerabilityBuilder represents a function that will build a vulnerability
 type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{},
 	detector *detector.DetectLine) (model.Vulnerability, error)
@@ -55,7 +63,7 @@ type preparedQuery struct {
 // Inspector represents a list of compiled queries, a builder for vulnerabilities, an information tracker
 // a flag to enable coverage and the coverage report if it is enabled
 type Inspector struct {
-	queries        []*preparedQuery
+	QueryLoader    *QueryLoader
 	vb             VulnerabilityBuilder
 	tracker        Tracker
 	failedQueries  map[string]error
@@ -113,16 +121,15 @@ func NewInspector(
 		return nil, errors.Wrap(err, "failed to get library")
 	}
 	platformLibraries := getPlatformLibraries(queriesSource, queries)
-	opaQueries := prepareQueries(ctx, queries, commonLibrary, platformLibraries, tracker)
+
+	queryLoader := prepareQueries(queries, commonLibrary, platformLibraries, tracker)
 
 	failedQueries := make(map[string]error)
-
-	queriesNumber := sumAllAggregatedQueries(opaQueries)
 
 	metrics.Metric.Stop()
 
 	log.Info().
-		Msgf("Inspector initialized, number of queries=%d", queriesNumber)
+		Msgf("Inspector initialized, number of queries=%d", queryLoader.querySum)
 
 	lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
 		Add(helm.DetectKindLine{}, model.KindHELM).
@@ -133,7 +140,7 @@ func NewInspector(
 	log.Info().Msgf("Query execution timeout=%v", queryExecTimeout)
 
 	return &Inspector{
-		queries:          opaQueries,
+		QueryLoader:      &queryLoader,
 		vb:               vb,
 		tracker:          tracker,
 		failedQueries:    failedQueries,
@@ -165,14 +172,6 @@ func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.Qu
 	return platformLibraries
 }
 
-func sumAllAggregatedQueries(opaQueries []*preparedQuery) int {
-	sum := 0
-	for _, query := range opaQueries {
-		sum += query.metadata.Aggregation
-	}
-	return sum
-}
-
 // Inspect scan files and return the a list of vulnerabilities found on the process
 func (c *Inspector) Inspect(
 	ctx context.Context,
@@ -191,8 +190,19 @@ func (c *Inspector) Inspect(
 
 	var vulnerabilities []model.Vulnerability
 	vulnerabilities = make([]model.Vulnerability, 0)
-	for _, query := range c.getQueriesByPlat(platforms) {
+	queries := c.getQueriesByPlat(platforms)
+	for i, queryMeta := range queries {
 		currentQuery <- 1
+
+		queryOpa, err := c.QueryLoader.loadQuery(ctx, &queries[i])
+		if err != nil {
+			continue
+		}
+
+		query := &preparedQuery{
+			opaQuery: *queryOpa,
+			metadata: queryMeta,
+		}
 
 		vuls, err := c.doRun(&QueryContext{
 			ctx:           ctx,
@@ -228,19 +238,19 @@ func (c *Inspector) Inspect(
 // LenQueriesByPlat returns the number of queries by platforms
 func (c *Inspector) LenQueriesByPlat(platforms []string) int {
 	count := 0
-	for _, query := range c.queries {
-		if contains(platforms, query.metadata.Platform) {
-			c.tracker.TrackQueryExecuting(query.metadata.Aggregation)
+	for _, query := range c.QueryLoader.QueriesMetadata {
+		if contains(platforms, query.Platform) {
+			c.tracker.TrackQueryExecuting(query.Aggregation)
 			count++
 		}
 	}
 	return count
 }
 
-func (c *Inspector) getQueriesByPlat(platforms []string) []*preparedQuery {
-	queries := make([]*preparedQuery, 0)
-	for _, query := range c.queries {
-		if contains(platforms, query.metadata.Platform) {
+func (c *Inspector) getQueriesByPlat(platforms []string) []model.QueryMetadata {
+	queries := make([]model.QueryMetadata, 0)
+	for _, query := range c.QueryLoader.QueriesMetadata {
+		if contains(platforms, query.Platform) {
 			queries = append(queries, query)
 		}
 	}
@@ -414,64 +424,66 @@ func ShouldSkipVulnerability(command model.CommentsCommands, queryID string) boo
 	return false
 }
 
-func prepareQueries(
-	ctx context.Context,
-	queries []model.QueryMetadata,
-	commonLibrary source.RegoLibraries,
-	platformLibraries map[string]source.RegoLibraries,
-	tracker Tracker) []*preparedQuery {
-	opaQueries := make([]*preparedQuery, 0, len(queries))
+func prepareQueries(queries []model.QueryMetadata, commonLibrary source.RegoLibraries,
+	platformLibraries map[string]source.RegoLibraries, tracker Tracker) QueryLoader {
+	// track queries loaded
+	sum := 0
 	for _, metadata := range queries {
-		platformGeneralQuery, ok := platformLibraries[metadata.Platform]
-		if !ok {
-			log.Err(errors.New("failed to get platform library")).
-				Msgf("Inspector failed to get library for query: %s, with platform: %s", metadata.Query, metadata.Platform)
-			continue
-		}
-
-		select {
-		case <-ctx.Done():
-			return nil
-		default:
-			var opaQuery rego.PreparedEvalQuery
-			mergedInputData, err := source.MergeInputData(platformGeneralQuery.LibraryInputData, metadata.InputData)
-			if err != nil {
-				log.Debug().Msg("Could not merge platform library input data")
-			}
-			mergedInputData, err = source.MergeInputData(commonLibrary.LibraryInputData, mergedInputData)
-			if err != nil {
-				log.Debug().Msg("Could not merge common library input data")
-			}
-			store := inmem.NewFromReader(bytes.NewBufferString(mergedInputData))
-			opaQuery, err = rego.New(
-				rego.Query(regoQuery),
-				rego.Module("Common", commonLibrary.LibraryCode),
-				rego.Module("Generic", platformGeneralQuery.LibraryCode),
-				rego.Module(metadata.Query, metadata.Content),
-				rego.Store(store),
-				rego.UnsafeBuiltins(unsafeRegoFunctions),
-			).PrepareForEval(ctx)
-
-			if err != nil {
-				sentryReport.ReportSentry(&sentryReport.Report{
-					Message:  fmt.Sprintf("Inspector failed to prepare query for evaluation, query=%s", metadata.Query),
-					Err:      err,
-					Location: "func NewInspector()",
-					Query:    metadata.Query,
-					Metadata: metadata.Metadata,
-					Platform: metadata.Platform,
-				}, true)
-
-				continue
-			}
-
-			tracker.TrackQueryLoad(metadata.Aggregation)
-
-			opaQueries = append(opaQueries, &preparedQuery{
-				opaQuery: opaQuery,
-				metadata: metadata,
-			})
-		}
+		tracker.TrackQueryLoad(metadata.Aggregation)
+		sum += metadata.Aggregation
 	}
-	return opaQueries
+	return QueryLoader{
+		commonLibrary:     commonLibrary,
+		platformLibraries: platformLibraries,
+		querySum:          sum,
+		QueriesMetadata:   queries,
+	}
+}
+
+// Load the querie into memory so it can be freed when not used anymore
+func (q QueryLoader) loadQuery(ctx context.Context, query *model.QueryMetadata) (*rego.PreparedEvalQuery, error) {
+	opaQuery := rego.PreparedEvalQuery{}
+
+	platformGeneralQuery, ok := q.platformLibraries[query.Platform]
+	if !ok {
+		return nil, errors.New("failed to get platform library")
+	}
+
+	select {
+	case <-ctx.Done():
+		return nil, nil
+	default:
+		mergedInputData, err := source.MergeInputData(platformGeneralQuery.LibraryInputData, query.InputData)
+		if err != nil {
+			log.Debug().Msg("Could not merge platform library input data")
+		}
+		mergedInputData, err = source.MergeInputData(q.commonLibrary.LibraryInputData, mergedInputData)
+		if err != nil {
+			log.Debug().Msg("Could not merge common library input data")
+		}
+		store := inmem.NewFromReader(bytes.NewBufferString(mergedInputData))
+		opaQuery, err = rego.New(
+			rego.Query(regoQuery),
+			rego.Module("Common", q.commonLibrary.LibraryCode),
+			rego.Module("Generic", platformGeneralQuery.LibraryCode),
+			rego.Module(query.Query, query.Content),
+			rego.Store(store),
+			rego.UnsafeBuiltins(unsafeRegoFunctions),
+		).PrepareForEval(ctx)
+
+		if err != nil {
+			sentryReport.ReportSentry(&sentryReport.Report{
+				Message:  fmt.Sprintf("Inspector failed to prepare query for evaluation, query=%s", query.Query),
+				Err:      err,
+				Location: "func NewInspector()",
+				Query:    query.Query,
+				Metadata: query.Metadata,
+				Platform: query.Platform,
+			}, true)
+
+			return nil, err
+		}
+
+		return &opaQuery, nil
+	}
 }
