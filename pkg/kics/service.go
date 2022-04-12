@@ -58,6 +58,7 @@ type Service struct {
 	files            model.FileMetadatas
 }
 
+// PrepareSources will prepare the sources to be scanned
 func (s *Service) PrepareSources(ctx context.Context, scanID string, wg *sync.WaitGroup, errCh chan<- error) {
 	defer wg.Done()
 	// CxSAST query under review
