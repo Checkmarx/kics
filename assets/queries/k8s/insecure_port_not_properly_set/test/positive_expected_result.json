@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Insecure Port Not Properly Set",
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Insecure Port Not Properly Set",
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive2.yaml"
+  }
+]
