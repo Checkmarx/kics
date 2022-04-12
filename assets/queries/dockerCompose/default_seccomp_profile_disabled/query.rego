@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.security_opt",[name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Seccomp default profile is not being disabled.",
+		"keyExpectedValue": "Seccomp default profile to not be disabled.",
 		"keyActualValue": "Seccomp default profile is disabled.",
 		"searchLine": common_lib.build_search_line(["services", name, "security_opt", a], []),
 	}
