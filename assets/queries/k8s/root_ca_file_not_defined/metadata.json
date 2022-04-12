@@ -1,0 +1,10 @@
+{
+  "id": "05fb986f-ac73-4ebb-a5b2-7faafa93d882",
+  "queryName": "Root CA File Not Defined",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "When using kube-controller-manager commands, the '--root-ca-file' should be defined",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/",
+  "platform": "Kubernetes",
+  "descriptionID": "7d439960"
+}

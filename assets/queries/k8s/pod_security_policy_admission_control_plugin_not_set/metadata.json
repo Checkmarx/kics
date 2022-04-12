@@ -1,0 +1,10 @@
+{
+  "id": "afa36afb-39fe-4d94-b9b6-afb236f7a03d",
+  "queryName": "Pod Security Policy Admission Control Plugin Not Set",
+  "severity": "HIGH",
+  "category": "Build Process",
+  "descriptionText": "When using kube-apiserver command, the '--enable-admission-plugins' flag should have 'PodSecurityPolicy' plugin and the plugin should be correctly configured in AdmissionControl Config file",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
+  "platform": "Kubernetes",
+  "descriptionID": "5b3d44e9"
+}
