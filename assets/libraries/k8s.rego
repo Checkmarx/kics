@@ -51,6 +51,17 @@ hasValue(values, value) {
 	splittedValues[_] == value
 }
 
+startAndEndWithFlag(container, flag, ext){
+	startWithAndEndWithArray(container.command, flag,ext)
+} else {
+	startWithAndEndWithArray(container.args, flag, ext)
+}
+
+startWithAndEndWithArray(arr, item, ext) {
+    startswith(arr[_], item)
+    endswith(arr[_], ext)
+}
+
 hasFlagEqualOrGreaterThanValue(container, flag, value) {
 	command := container.command
 	startswith(command[a], flag)
