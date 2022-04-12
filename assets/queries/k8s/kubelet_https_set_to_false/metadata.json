@@ -1,0 +1,10 @@
+{
+  "id": "cdc8b54e-6b16-4538-a1b0-35849dbe29cf",
+  "queryName": "Kubelet HTTPS Set To False",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "When using kube-apiserver command, the '--kubelet-https' flag should not be set to false",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
+  "platform": "Kubernetes",
+  "descriptionID": "754a303a"
+}

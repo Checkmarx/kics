@@ -88,13 +88,13 @@ func unmarshal(val *yaml.Node) interface{} {
 
 // getLines creates the map containing the line information for the yaml Node
 // def is the line to be used as "_kics__default"
-func getLines(val *yaml.Node, def int) map[string]LineObject {
-	lineMap := make(map[string]LineObject)
+func getLines(val *yaml.Node, def int) map[string]*LineObject {
+	lineMap := make(map[string]*LineObject)
 
 	// line information map
-	lineMap["_kics__default"] = LineObject{
+	lineMap["_kics__default"] = &LineObject{
 		Line: def,
-		Arr:  []map[string]LineObject{},
+		Arr:  []map[string]*LineObject{},
 	}
 
 	// if yaml Node is an Array use func getSeqLines
@@ -104,7 +104,7 @@ func getLines(val *yaml.Node, def int) map[string]LineObject {
 
 	// iterate two by two, since first iteration is the key and the second is the value
 	for i := 0; i < len(val.Content); i += 2 {
-		lineArr := make([]map[string]LineObject, 0)
+		lineArr := make([]map[string]*LineObject, 0)
 		// in case the value iteration is an array call getLines for each iteration of the array
 		if val.Content[i+1].Kind == yaml.SequenceNode {
 			for _, contentEntry := range val.Content[i+1].Content {
@@ -119,7 +119,7 @@ func getLines(val *yaml.Node, def int) map[string]LineObject {
 		}
 
 		// line information map of each key of the yaml Node
-		lineMap["_kics_"+val.Content[i].Value] = LineObject{
+		lineMap["_kics_"+val.Content[i].Value] = &LineObject{
 			Line: val.Content[i].Line,
 			Arr:  lineArr,
 		}
@@ -130,9 +130,9 @@ func getLines(val *yaml.Node, def int) map[string]LineObject {
 
 // getSeqLines iterates through the elements of an Array
 // creating a map with each iteration lines information
-func getSeqLines(val *yaml.Node, def int) map[string]LineObject {
-	lineMap := make(map[string]LineObject)
-	lineArr := make([]map[string]LineObject, 0)
+func getSeqLines(val *yaml.Node, def int) map[string]*LineObject {
+	lineMap := make(map[string]*LineObject)
+	lineArr := make([]map[string]*LineObject, 0)
 
 	// get line information slice of every element in the array
 	for _, cont := range val.Content {
@@ -140,7 +140,7 @@ func getSeqLines(val *yaml.Node, def int) map[string]LineObject {
 	}
 
 	// create line information of array with its line and elements line information
-	lineMap["_kics__default"] = LineObject{
+	lineMap["_kics__default"] = &LineObject{
 		Line: def,
 		Arr:  lineArr,
 	}

@@ -1,0 +1,10 @@
+{
+  "id": "451d79dc-0588-476a-ad03-3c7f0320abb3",
+  "queryName": "Container Traffic Not Bound To Host Interface",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Incoming container traffic should be bound to a specific host interface",
+  "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#ports",
+  "platform": "DockerCompose",
+  "descriptionID": "909d1bcd"
+}
