@@ -1,0 +1,11 @@
+version: "3.1"
+
+services:
+  service1:
+    container_name: service
+    image: notareal/image:latest
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 8080:8080
