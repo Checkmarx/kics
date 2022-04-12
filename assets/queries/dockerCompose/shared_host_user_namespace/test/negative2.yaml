@@ -10,3 +10,6 @@ services:
     ports:
       - "8080:8080"
       - "3000:3000"
+    security_opt:
+      - apparmor:unconfined
+    userns_mode: anything_but_host
