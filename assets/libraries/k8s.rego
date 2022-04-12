@@ -51,6 +51,18 @@ hasValue(values, value) {
 	splittedValues[_] == value
 }
 
+hasFlagEqualOrGreaterThanValue(container, flag, value) {
+	command := container.command
+	startswith(command[a], flag)
+	flag_value := split(command[a], "=")[1]
+	to_number(flag_value)>= value
+} else {
+	args := container.args
+	startswith(args[a], flag)
+	flag_value := split(args[a], "=")[1]
+	to_number(flag_value)>= value
+}
+
 hasFlagBetweenValues(container, flag, higher, lower) {
 	command := container.command
 	startswith(command[a], flag)
@@ -66,14 +78,4 @@ hasFlagBetweenValues(container, flag, higher, lower) {
 betweenValues(value, higher, lower) {
 	to_number(value) > higher
 	to_number(value) < lower
-hasFlagEqualOrGreaterThanValue(container, flag, value) {
-	command := container.command
-	startswith(command[a], flag)
-	flag_value := split(command[a], "=")[1]
-	to_number(flag_value)>= value
-} else {
-	args := container.args
-	startswith(args[a], flag)
-	flag_value := split(args[a], "=")[1]
-	to_number(flag_value)>= value
 }
