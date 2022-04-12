@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.volumes",[name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "There is no docker socket named 'docker.sock' mounted in a volume",
+		"keyExpectedValue": "To not have docker socket named 'docker.sock' mounted in a volume",
 		"keyActualValue": "There is a docker socket named 'docker.sock' mounted in a volume",
 		"searchLine": common_lib.build_search_line(["services", name, "volumes", v], []),
 	}
