@@ -1,0 +1,15 @@
+version: '3.1'
+
+services:
+ lelele-service:
+    build: ./
+    image: lelele-service
+    restart: always
+    container_name: lelele
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8092:8092
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      

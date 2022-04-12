@@ -1,0 +1,10 @@
+{
+    "id": "27fcc7d6-c49b-46e0-98f1-6c082a6a2750",
+    "queryName": "No New Privileges Not Set",
+    "severity": "HIGH",
+    "category": "Resource Management",
+    "descriptionText": "Ensuring the process does not gain any new privileges lessens the risk associated with many operations.",
+    "descriptionUrl": "https://docs.docker.com/engine/reference/run/#security-configuration",
+    "platform": "DockerCompose",
+    "descriptionID": "be48e182"
+}

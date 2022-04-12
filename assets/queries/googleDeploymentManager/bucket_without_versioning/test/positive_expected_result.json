@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Bucket Without Versioning",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Bucket Without Versioning",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive2.yaml"
+  }
+]

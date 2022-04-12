@@ -1,0 +1,10 @@
+{
+  "id": "9587c890-0524-40c2-9ce2-663af7c2f063",
+  "queryName": "Namespace Lifecycle Admission Control Plugin Disabled",
+  "severity": "LOW",
+  "category": "Build Process",
+  "descriptionText": "When using kube-apiserver command, the '--disable-admission-plugins' flag should not have 'NamespaceLifecycle' plugin",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
+  "platform": "Kubernetes",
+  "descriptionID": "3649a726"
+}

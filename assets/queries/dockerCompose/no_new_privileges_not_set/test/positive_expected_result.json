@@ -1,0 +1,14 @@
+[
+    {
+      "queryName": "No New Privileges Not Set",
+      "severity": "HIGH",
+      "line": 12,
+      "filename": "positive1.yaml"
+    },
+    {
+      "queryName": "No New Privileges Not Set",
+      "severity": "HIGH",
+      "line": 12,
+      "filename": "positive2.yaml"
+    }
+]

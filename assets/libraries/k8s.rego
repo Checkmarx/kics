@@ -61,3 +61,20 @@ startWithAndEndWithArray(arr, item, ext) {
     startswith(arr[_], item)
     endswith(arr[_], ext)
 }
+
+hasFlagBetweenValues(container, flag, higher, lower) {
+	command := container.command
+	startswith(command[a], flag)
+	value := split(command[a], "=")[1]
+	betweenValues(value, higher, lower)
+} else {
+	args := container.args
+	startswith(args[a], flag)
+	value := split(args[a], "=")[1]
+	betweenValues(value, higher, lower)
+}
+
+betweenValues(value, higher, lower) {
+	to_number(value) > higher
+	to_number(value) < lower
+}
