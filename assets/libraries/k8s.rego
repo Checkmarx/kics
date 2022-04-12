@@ -62,6 +62,18 @@ startWithAndEndWithArray(arr, item, ext) {
     endswith(arr[_], ext)
 }
 
+hasFlagEqualOrGreaterThanValue(container, flag, value) {
+	command := container.command
+	startswith(command[a], flag)
+	flag_value := split(command[a], "=")[1]
+	to_number(flag_value)>= value
+} else {
+	args := container.args
+	startswith(args[a], flag)
+	flag_value := split(args[a], "=")[1]
+	to_number(flag_value)>= value
+}
+
 hasFlagBetweenValues(container, flag, higher, lower) {
 	command := container.command
 	startswith(command[a], flag)
