@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    component: kube-scheduler
+    tier: control-plane
+  name: kube-scheduler-master-3
+  namespace: kube-system
+spec:
+  containers:
+    - name: command-demo-container
+      image: gcr.io/google_containers/kube-scheduler-master-1
+      command: ["kube-scheduler","--profiling=false"]
+      args: []
+  restartPolicy: OnFailure
