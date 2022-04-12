@@ -1,0 +1,26 @@
+[
+    {
+      "queryName": "Volume Mounted In Multiple Containers",
+      "severity": "HIGH",
+      "line": 15,
+      "filename": "positive1.yaml"
+    },
+    {
+      "queryName": "Volume Mounted In Multiple Containers",
+      "severity": "HIGH",
+      "line": 15,
+      "filename": "positive2.yaml"
+    },
+    {
+      "queryName": "Volume Mounted In Multiple Containers",
+      "severity": "HIGH",
+      "line": 15,
+      "filename": "positive3.yaml"
+    },
+    {
+      "queryName": "Volume Mounted In Multiple Containers",
+      "severity": "HIGH",
+      "line": 15,
+      "filename": "positive4.yaml"
+    }
+]
