@@ -3,6 +3,6 @@
 		"queryName": "Always Admit Admission Control Plugin Set",
 		"severity": "HIGH",
 		"line": 11,
-        "file": "positive1.yaml"
+        "fileName": "positive1.yaml"
 	}
 ]

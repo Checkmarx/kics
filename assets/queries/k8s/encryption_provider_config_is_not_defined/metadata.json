@@ -1,0 +1,10 @@
+{
+  "id": "cbd2db69-0b21-4c14-8a40-7710a50571a9",
+  "queryName": "Encryption Provider Config Is Not Defined",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "When using kube-apiserver commands, the '--encryption-provider-config' flag should be defined and the encryption should be correctly configured in Encryption Configuration file",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
+  "platform": "Kubernetes",
+  "descriptionID": "c018594c"
+}

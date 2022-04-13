@@ -1,0 +1,11 @@
+apiVersion: kubescheduler.config.k8s.io/v1beta2
+kind: KubeSchedulerConfiguration
+profiles:
+  pluginConfig:
+    args:
+      scoringStrategy:
+        resources:
+          name: cpu
+          weight: 1
+        type: MostAllocated
+    name: NodeResourcesFit

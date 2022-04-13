@@ -1,0 +1,10 @@
+{
+  "id": "3f5ff8a7-5ad6-4d02-86f5-666307da1b20",
+  "queryName": "Etcd Client Certificate File Not Defined",
+  "severity": "MEDIUM",
+  "category": "Secret Management",
+  "descriptionText": "When using kube-apiserver commands, the '--etcd-cafile' flag should be defined",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
+  "platform": "Kubernetes",
+  "descriptionID": "f385527b"
+}
