@@ -53,14 +53,14 @@ def find_queries_in_files(files):
 
 def validate_queries_metadata(queries):
     errors = []
-    
+
     with open('metadata-schema.json') as fileSchema:
         schema = json.load(fileSchema)
         for i, query in enumerate(queries):
             print('[{}] Validating "{}" ...'.format(i,query))
 
             complete_path = os.path.abspath(os.path.join('..', '..', '..', Path(query)))
-            
+
             with open(complete_path) as f:
                 try:
                     data = json.load(f)
