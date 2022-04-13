@@ -1,0 +1,10 @@
+{
+  "id": "09bb9e96-8da3-4736-b89a-b36814acca60",
+  "queryName": "Etcd Peer TLS Certificate Files Not Properly Set",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "When using etcd commands, the '--peer-cert-file' and '--peer-key-file' should be defined",
+  "descriptionUrl": "https://etcd.io/docs/v3.4/op-guide/security/",
+  "platform": "Kubernetes",
+  "descriptionID": "f3bb5a8e"
+}

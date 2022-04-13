@@ -1,0 +1,10 @@
+{
+  "id": "b7d0181d-0a9b-4611-9d1c-1ad4f0b620ff",
+  "queryName": "Etcd Peer Client Certificate Authentication Set To False",
+  "severity": "MEDIUM",
+  "category": "Secret Management",
+  "descriptionText": "When using etcd commands, the '--peer-client-cert-auth' flag should be set to true",
+  "descriptionUrl": "https://etcd.io/docs/v3.4/op-guide/security/",
+  "platform": "Kubernetes",
+  "descriptionID": "00b0e7f2"
+}
