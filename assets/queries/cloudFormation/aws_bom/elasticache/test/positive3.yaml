@@ -1,0 +1,29 @@
+Resources:
+  ElasticacheCluster:
+    Type: 'AWS::ElastiCache::CacheCluster'
+    Properties:    
+      Engine: memcached
+      CacheNodeType: cache.t2.micro
+      NumCacheNodes: '1'
+      CacheSubnetGroupName: default
+      CacheSecurityGroupNames:
+        - !Ref CacheSecurityGroup2
+  CacheSecurityGroup2:
+    Type: AWS::ElastiCache::SecurityGroup
+    Properties: 
+      Description: My ElastiCache Security Group
+  SecurityGroupIngress2:
+    Type: AWS::ElastiCache::SecurityGroupIngress
+    Properties: 
+      CacheSecurityGroupName: !Ref CacheSecurityGroup2
+      EC2SecurityGroupName: !Ref SecurityGroup2
+  SecurityGroup2:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow http to client host
+      VpcId: !Ref myVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 1.2.3.4/28
