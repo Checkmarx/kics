@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  demo:
+    image: not/a/real/image
+    cap_add:
+      - SYS_PTRACE
+    volumes:
+      - type: volume
+        source: not-a-real-source-docker
+        target: /var/lib/docker
+    security_opt:
+      - label:seccomp:unconfined
+
+volumes:
+  not-a-real-source-docker:

@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+
+  service_name_3:
+    image: not/a-real-image:latest
+    command: ["launch"]
+    ports:
+      - "8080:8080"
