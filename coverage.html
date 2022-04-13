@@ -1907,13 +1907,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="31">total += v
+                <span class="cov8" title="34">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -1938,7 +1938,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4954,7 +4954,7 @@ func prepareQueries(queries []model.QueryMetadata, commonLibrary source.RegoLibr
         }</span>
 }
 
-// Load the querie into memory so it can be freed when not used anymore
+// Load the query into memory so it can be freed when not used anymore
 func (q QueryLoader) loadQuery(ctx context.Context, query *model.QueryMetadata) (*rego.PreparedEvalQuery, error) <span class="cov3" title="2">{
         opaQuery := rego.PreparedEvalQuery{}
 
@@ -4969,7 +4969,7 @@ func (q QueryLoader) loadQuery(ctx context.Context, query *model.QueryMetadata) 
         default:<span class="cov3" title="2">
                 mergedInputData, err := source.MergeInputData(platformGeneralQuery.LibraryInputData, query.InputData)
                 if err != nil </span><span class="cov0" title="0">{
-                        log.Debug().Msg("Could not merge platform library input data")
+                        log.Debug().Msgf("Could not merge %s library input data", query.Platform)
                 }</span>
                 <span class="cov3" title="2">mergedInputData, err = source.MergeInputData(q.commonLibrary.LibraryInputData, mergedInputData)
                 if err != nil </span><span class="cov0" title="0">{
@@ -6233,7 +6233,7 @@ func (s *FilesystemSource) GetQueryLibrary(platform string) (RegoLibraries, erro
                         log.Debug().Msg(err.Error())
                 }</span>
         } else<span class="cov5" title="7"> {
-                log.Debug().Msgf("Custom library not provided. Loading embedded library instead")
+                log.Debug().Msgf("Custom library %s not provided. Loading embedded library instead", platform)
         }</span>
         // getting embedded library
         <span class="cov5" title="7">embeddedLibraryCode, errGettingEmbeddedLibrary := assets.GetEmbeddedLibrary(strings.ToLower(platform))
