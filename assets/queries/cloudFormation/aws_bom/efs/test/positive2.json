@@ -1,0 +1,44 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "FileSystemResource": {
+      "Properties": {
+        "AvailabilityZoneName": "us-east-1a",
+        "BackupPolicy": {
+          "Status": "ENABLED"
+        },
+        "Encrypted": true,
+        "FileSystemPolicy": {
+          "Statement": [
+            {
+              "Action": [
+                "elasticfilesystem:ClientMount"
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": "arn:aws:iam::111122223333:role/EfsReadOnly"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "FileSystemTags": [
+          {
+            "Key": "Name",
+            "Value": "TestFileSystem"
+          }
+        ],
+        "KmsKeyId": [
+          "key",
+          "Arn"
+        ],
+        "LifecyclePolicies": [
+          {
+            "TransitionToIA": "AFTER_30_DAYS"
+          }
+        ]
+      },
+      "Type": "AWS::EFS::FileSystem"
+    }
+  }
+}

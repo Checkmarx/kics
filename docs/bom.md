@@ -41,13 +41,19 @@ Observe more detailed information about it in the table below.
 CxPolicy[result] {
 	bucket_resource := input.document[i].resource.aws_s3_bucket[name]
 
+	info := get_accessibility(bucket_resource, name)
+
 	bom_output = {
 		"resource_type": "aws_s3_bucket",
 		"resource_name": get_bucket_name(bucket_resource),
-		"resource_accessibility": get_accessibility(bucket_resource, name),
+		"resource_accessibility": info.accessibility,
+		"resource_encryption": common_lib.get_encryption_if_exists(bucket_resource),
 		"resource_vendor": "AWS",
 		"resource_category": "Storage",
+		"acl": get_bucket_acl(bucket_resource),
 	}
+
+	final_bom_output = common_lib.get_bom_output(bom_output, info.policy)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -56,7 +62,7 @@ CxPolicy[result] {
 		"keyExpectedValue": "",
 		"keyActualValue": "",
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name], []),
-		"value": json.marshal(bom_output),
+		"value": json.marshal(final_bom_output),
 	}
 }
 ```
@@ -69,31 +75,32 @@ Results will be found in the [JSON](results.md) output and placed separately und
 {
     // etc...
     "bill_of_materials": [
-        {
-            "query_name": "BOM - MSK",
-            "query_id": "051f2063-2517-4295-ad8e-ba88c1bf5cfc",
-            "query_url": "https://kics.io",
-            "severity": "TRACE",
-            "platform": "Terraform",
-            "category": "Bill Of Materials",
-            "description": "A list of MSK resources specified. Amazon Managed Streaming for Apache Kafka (Amazon MSK) is a fully managed service that enables you to build and run applications that use Apache Kafka to process streaming data.",
-            "description_id": "cf7ae008",
-            "files": [
-                {
-                    "file_name": "sample1.tf",
-                    "similarity_id": "9c1bd86b2367fd748ed66a86f72d637231be6e4ec04d68dd10a61f233187b777",
-                    "line": 1,
-                    "issue_type": "BillOfMaterials",
-                    "search_key": "aws_msk_cluster[example_msk1]",
-                    "search_line": 0,
-                    "search_value": "",
-                    "expected_value": "",
-                    "actual_value": "",
-                    "value": "{\"resource_accessibility\":\"encrypted\",\"resource_category\":\"Queues\",\"resource_name\":\"example\",\"resource_type\":\"aws_msk_cluster\",\"resource_vendor\":\"AWS\"}"
-                }
-            ]
-        },
-    ]
+		{
+			"query_name": "BOM - AWS S3 Buckets",
+			"query_id": "2d16c3fb-35ba-4ec0-b4e4-06ee3cbd4045",
+			"query_url": "https://kics.io",
+			"severity": "TRACE",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Bill Of Materials",
+			"description": "A list of S3 resources found. Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance.",
+			"description_id": "0bdf2341",
+			"files": [
+				{
+					"file_name": "assets\\queries\\terraform\\aws_bom\\s3_bucket\\test\\positive8.tf",
+					"similarity_id": "aaf7959a055b67a35369c2b02aad327f28e85cca02e2daff3d3e40e2b460f36a",
+					"line": 1,
+					"issue_type": "BillOfMaterials",
+					"search_key": "aws_s3_bucket[positive8]",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "",
+					"actual_value": "",
+					"value": "{\"acl\":\"public-read\",\"policy\":{\"Id\":\"MYBUCKETPOLICY\",\"Statement\":[{\"Action\":\"s3:GetObject\",\"Condition\":{\"IpAddress\":{\"aws:SourceIp\":\"8.8.8.8/32\"}},\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"arn:aws:iam::123456789012:root\",\"arn:aws:iam::555555555555:root\"]},\"Resource\":\"arn:aws:s3:::my_tf_test_bucket/*\",\"Sid\":\"IPAllow\"}],\"Version\":\"2012-10-17\"},\"resource_accessibility\":\"hasPolicy\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"my-tf-test-bucket\",\"resource_type\":\"aws_s3_bucket\",\"resource_vendor\":\"AWS\"}"
+				}
+			]
+		}
+	]
 }
 ```
 
@@ -103,3 +110,123 @@ To enable bill-of-materials in the results use the `--bom` flag.
 - `severity: "TRACE"`
 - `category: "Bill Of Materials"`
 - `issue_type: "BillOfMaterials"`
+
+
+## [CloudFormation] Bill Of Materials
+
+This feature uses Rego queries to extract a list of used CloudFormation resources along with its metadata in the scanned IaC.
+
+Find the existing queries under: [assets/queries/cloudFormation/aws_bom](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws_bom)
+
+BoM queries extracts metadata about the resources and organizes it in the following structure:
+
+```go
+billOfMaterialsRequiredFields := map[string]bool{
+    "acl":                    false,
+    "policy":                 false,
+    "resource_accessibility": true,
+    "resource_category":      true,
+    "resource_encryption":    true,
+    "resource_engine":        false,
+    "resource_name":          true,
+    "resource_type":          true,
+    "resource_vendor":        true,
+}
+```
+
+Observe more detailed information about it in the table below.
+
+|        **Field**       |                                                                                                                                                      **Possible Values**                                                                                                                                                     | **Required** |                               **Resources**                              |     **Type**    |
+|:----------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------:|:------------------------------------------------------------------------:|:---------------:|
+|           acl          |                                                                                         Private,<br /> PublicRead,<br /> PublicReadWrite,<br /> AuthenticatedRead,<br /> LogDeliveryWrite,<br /> BucketOwnerRead,<br /> BucketOwnerFullControl,<br /> AwsExecRead                                                                                        |      No      |                              `AWS::S3::Bucket`                             |      string     |
+|         policy         |                                                                                                                                                        policy content (in case `resource_accessibility` equals hasPolicy)                                                                                                                                                        |      No      | `AWS::EFS::FileSystem`,<br /> `AWS::S3::Bucket`,<br /> `AWS::SNS::Topic`,<br /> `AWS::SQS::Queue` | JSON marshalled |
+| resource_accessibility |                                                                                                                                              public, private, hasPolicy or unknown for `AWS::EC2::Volume`, `AWS::EFS::FileSystem`, `AWS::AmazonMQ::Broker`, `AWS::MSK::Cluster`, `AWS::S3::Bucket`,  `AWS::SNS::Topic`, and `AWS::SQS::Queue` <br /> <br /> at least one security group associated with the elasticache is unrestricted, all security groups associated with the elasticache are restricted or unknown for `AWS::ElastiCache::CacheCluster`                                                                                                                                              |      Yes     |                                    all                                   |      string     |
+|    resource_category   |                                         In Memory Data Structure for `AWS::ElastiCache::CacheCluster`<br /><br />  Messaging for `AWS::SNS::Topic`<br /><br />  Queues for `AWS::AmazonMQ::Broker` and `AWS::SQS::Queue`<br /><br />  Storage for `AWS::EC2::Volume`, `AWS::EFS::FileSystem`, and `AWS::S3::Bucket`<br /><br />  Streaming for `AWS::MSK::Cluster`                                         |      Yes     |                                    all                                   |      string     |
+|   resource_encryption  |                                                                                                                                                encrypted,<br />  unencrypted,<br />  unknown                                                                                                                                               |      Yes     |                                    all                                   |      string     |
+|     resource_engine    |                                                                                                              memcached, redis or unknown for `AWS::ElastiCache::CacheCluster`<br /><br />  ACTIVEMQ or RABBITMQ for `AWS::AmazonMQ::Broker`                                                                                                              |      No      |               `AWS::ElastiCache::CacheCluster`, <br /> `AWS::AmazonMQ::Broker`              |      string     |
+|      resource_name     |                                                                                                                            anything (if the name is defined),<br /> unknown (if the name is not defined)                                                                                                                           |      Yes     |                                    all                                   |      string     |
+|      resource_type     | AWS::EC2::Volume for `AWS::EC2::Volume`,<br /> AWS::EFS::FileSystem for `AWS::EFS::FileSystem`,<br /> AWS::ElastiCache::CacheCluster for `AWS::ElastiCache::CacheCluster`,<br /> AWS::AmazonMQ::Broker for `AWS::AmazonMQ::Broker`,<br /> AWS::MSK::Cluster for `AWS::MSK::Cluster`,<br /> AWS::S3::Bucket for `AWS::S3::Bucket`,<br /> AWS::SNS::Topic for `AWS::SNS::Topic`, AWS::SQS::Queue for `AWS::SQS::Queue` |      Yes     |                                    all                                   |      string     |
+|     resource_vendor    |                                                                                                                                                              AWS                                                                                                                                                             |      Yes     |                                    all                                   |      string     |
+
+
+### BoM query example
+```
+CxPolicy[result] {
+	document := input.document
+	bucket_resource := document[i].Resources[name]
+	bucket_resource.Type == "AWS::S3::Bucket"
+
+	info := get_resource_accessibility(bucket_resource, name)
+
+	bom_output = {
+		"resource_type": "AWS::S3::Bucket",
+		"resource_name": get_bucket_name(bucket_resource),
+		"resource_accessibility": info.accessibility,
+		"resource_encryption": cf_lib.get_encryption(bucket_resource),
+		"resource_vendor": "AWS",
+		"resource_category": "Storage",
+		"acl": get_bucket_acl(bucket_resource),
+	}
+
+	final_bom_output := common_lib.get_bom_output(bom_output, info.policy)
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("Resources.%s", [name]),
+		"issueType": "BillOfMaterials",
+		"keyExpectedValue": "",
+		"keyActualValue": "",
+		"searchLine": common_lib.build_search_line(["Resources", name], []),
+		"value": json.marshal(final_bom_output),
+	}
+}
+```
+
+### Results
+
+Results will be found in the [JSON](results.md) output and placed separately under `bill_of_materials` key:
+
+```json
+{ 
+    // etc...
+    "bill_of_materials": [
+            {
+                "query_name": "BOM - AWS S3 Buckets",
+                "query_id": "b5d6a2e0-8f15-4664-bd5b-68ec5c9bab83",
+                "query_url": "https://kics.io",
+                "severity": "TRACE",
+                "platform": "CloudFormation",
+                "cloud_provider": "AWS",
+                "category": "Bill Of Materials",
+                "description": "A list of S3 resources found. Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance.",
+                "description_id": "a46851fb",
+                "files": [
+                    {
+                        "file_name": "positive2.json",
+                        "similarity_id": "a307e0f377932f42880de350fc69f83084aa8451a2e1e2a37cc97fc4eae7cf94",
+                        "line": 5,
+                        "issue_type": "BillOfMaterials",
+                        "search_key": "Resources.JenkinsArtifacts03",
+                        "search_line": 0,
+                        "search_value": "",
+                        "expected_value": "",
+                        "actual_value": "",
+                        "value": "{\"acl\":\"BucketOwnerFullControl\",\"resource_accessibility\":\"BucketOwnerFullControl\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"jenkins-artifacts\",\"resource_type\":\"AWS::S3::Bucket\",\"resource_vendor\":\"AWS\"}"
+                    },
+                    {
+                        "file_name": "positive1.yaml",
+                        "similarity_id": "24a0036d2e94676f33c505c5cfd6686ef414072a14e576b08283e9a77596f7eb",
+                        "line": 4,
+                        "issue_type": "BillOfMaterials",
+                        "search_key": "Resources.MyBucket",
+                        "search_line": 0,
+                        "search_value": "",
+                        "expected_value": "",
+                        "actual_value": "",
+                        "value": "{\"acl\":\"BucketOwnerFullControl\",\"policy\":{\"Statement\":[{\"Action\":[\"s3:GetObject\"],\"Condition\":{\"StringLike\":{\"aws:Referer\":[\"http://www.example.com/*\",\"http://example.net/*\"]}},\"Effect\":\"Allow\",\"Principal\":\"*\",\"Resource\":[\"\",{\"playbooks\":[\"arn:aws:s3:::\",\"DOC-EXAMPLE-BUCKET\",\"/*\"]}]}],\"Version\":\"2012-10-17\"},\"resource_accessibility\":\"hasPolicy\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"jenkins-artifacts\",\"resource_type\":\"AWS::S3::Bucket\",\"resource_vendor\":\"AWS\"}"
+                    }
+                ]
+            }
+    ]
+}
+```
