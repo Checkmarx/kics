@@ -33,7 +33,7 @@ def fetch_pr_files():
         response = fetch(page, max_items)
         if response['status'] != 200:
             return exit_with_error('Failed to fetch PR files\n- status code: {}'.format(response['status']))
-        
+
         for obj in response['data']:
             files.append(obj['filename'])
 
@@ -56,8 +56,7 @@ def validate_queries_metadata(queries):
     
     with open('metadata-schema.json') as fileSchema:
         schema = json.load(fileSchema)
-        for i in range(0, len(queries)):
-            query = queries[i]
+        for i, query in enumerate(queries):
             print('[{}] Validating "{}" ...'.format(i,query))
 
             complete_path = os.path.abspath(os.path.join('..', '..', '..', Path(query)))
