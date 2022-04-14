@@ -199,7 +199,7 @@ func (c *Inspector) Inspect(
 			continue
 		}
 
-		log.Debug().Msgf("Starting to load query %s ", queryMeta.Query)
+		log.Debug().Msgf("Starting to load query %s", queryMeta.Query)
 		queryStartTime := time.Now()
 
 		query := &preparedQuery{
