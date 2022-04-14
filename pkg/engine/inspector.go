@@ -199,6 +199,9 @@ func (c *Inspector) Inspect(
 			continue
 		}
 
+		log.Debug().Msgf("Starting to load query %s ", queryMeta.Query)
+		queryStartTime := time.Now()
+
 		query := &preparedQuery{
 			opaQuery: *queryOpa,
 			metadata: queryMeta,
@@ -226,6 +229,8 @@ func (c *Inspector) Inspect(
 
 			continue
 		}
+
+		log.Debug().Msgf("Finishing to load query %s after %v", queryMeta.Query, time.Since(queryStartTime))
 
 		vulnerabilities = append(vulnerabilities, vuls...)
 

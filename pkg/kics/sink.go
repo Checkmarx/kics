@@ -26,6 +26,7 @@ var (
 
 func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reader) error {
 	s.Tracker.TrackFileFound()
+	log.Debug().Msgf("Starting to process file %s", filename)
 
 	c, err := getContent(rc)
 
@@ -76,6 +77,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 		s.saveToFile(ctx, &file)
 	}
 	s.Tracker.TrackFileParse()
+	log.Debug().Msgf("Finishing to process file %s", filename)
 	s.Tracker.TrackFileParseCountLines(documents.CountLines)
 
 	return errors.Wrap(err, "failed to save file content")
