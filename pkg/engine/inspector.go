@@ -230,7 +230,7 @@ func (c *Inspector) Inspect(
 			continue
 		}
 
-		log.Debug().Msgf("Finishing to load query %s after %v", queryMeta.Query, time.Since(queryStartTime))
+		log.Debug().Msgf("Finished to load query %s after %v", queryMeta.Query, time.Since(queryStartTime))
 
 		vulnerabilities = append(vulnerabilities, vuls...)
 
