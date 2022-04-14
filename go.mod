@@ -40,7 +40,7 @@ require (
 	github.com/zclconf/go-cty v1.10.0
 	golang.org/x/net v0.0.0-20220127200216-cd36cc0744dd
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
-	helm.sh/helm/v3 v3.8.1
+	helm.sh/helm/v3 v3.8.2
 	mvdan.cc/sh/v3 v3.4.3
 )
 
