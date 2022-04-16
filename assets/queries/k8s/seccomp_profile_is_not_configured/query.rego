@@ -5,6 +5,14 @@ import data.generic.k8s as k8sLib
 
 types := {"initContainers", "containers"}
 
+hasSeccompAnnotation(document) {
+	[path, value] = walk(document)
+	annotations := value.metadata.annotations
+
+	seccompAnnotation := "seccomp.security.alpha.kubernetes.io/defaultProfileName"
+	common_lib.valid_key(annotations, seccompAnnotation)
+}
+
 # container defines seccompProfile.type
 checkSeccompProfile(specInfo, container, containerType, document, metadata) = result {
 	profile := container.securityContext.seccompProfile.type
@@ -21,8 +29,8 @@ checkSeccompProfile(specInfo, container, containerType, document, metadata) = re
 
 # pod defines seccompProfile.type and container inherits this setting
 checkSeccompProfile(specInfo, container, containerType, document, metadata) = result {
-	nested_info := common_lib.get_nested_values_info(container.securityContext, ["seccompProfile", "type"])
-	nested_info.valid == false
+	containerSeccompType := common_lib.get_nested_values_info(container, ["securityContext", "seccompProfile", "type"])
+	containerSeccompType.valid == false
 
 	profile := specInfo.spec.securityContext.seccompProfile.type
 	not any([profile == "RuntimeDefault", profile == "Localhost"])
@@ -38,15 +46,17 @@ checkSeccompProfile(specInfo, container, containerType, document, metadata) = re
 
 # neither pod nor container define seccompProfile.type
 checkSeccompProfile(specInfo, container, containerType, document, metadata) = result {
-	nested_info := common_lib.get_nested_values_info(specInfo.spec, ["securityContext", "seccompProfile", "type"])
-	nested_info.valid == false
+	specSeccompType := common_lib.get_nested_values_info(specInfo.spec, ["securityContext", "seccompProfile", "type"])
+	specSeccompType.valid == false
 
-	nested_info2 := common_lib.get_nested_values_info(container.securityContext, ["seccompProfile", "type"])
-	nested_info2.valid == false
+	containerSeccompType := common_lib.get_nested_values_info(container, ["securityContext", "seccompProfile", "type"])
+	containerSeccompType.valid == false
+
+	not hasSeccompAnnotation(document)
 
 	result := {
 		"documentId": document.id,
-		"searchKey": common_lib.remove_last_point(sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.%s", [metadata.name, specInfo.path, containerType, container.name, nested_info2.searchKey])),
+		"searchKey": common_lib.remove_last_point(sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.%s", [metadata.name, specInfo.path, containerType, container.name, containerSeccompType.searchKey])),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.seccompProfile.type should be defined", [metadata.name, specInfo.path, containerType, container.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.seccompProfile.type is undefined", [metadata.name, specInfo.path, containerType, container.name]),
