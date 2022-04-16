@@ -3,7 +3,7 @@
   "queryName": "Pod or Container Without ResourceQuota",
   "severity": "LOW",
   "category": "Insecure Configurations",
-  "descriptionText": "Each namespace should have a ResourceQuota policy associated to limit the total amount of resources pods, containers and PersistentVolumeClaims can consume",
+  "descriptionText": "Each namespace should have a ResourceQuota policy associated to limit the total amount of resources Pods, Containers and PersistentVolumeClaims can consume",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/resource-quotas/",
   "platform": "Kubernetes",
   "descriptionID": "86499ed5"
