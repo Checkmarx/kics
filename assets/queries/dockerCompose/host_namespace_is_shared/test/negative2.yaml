@@ -1,0 +1,11 @@
+version: '2.1'
+
+services:
+
+  service_name_5:
+    image: not/a-real-image:latest
+    command: ["launch"]
+    ports:
+      - "8080:8080"
+    pid: "container:service_name_4"
+    

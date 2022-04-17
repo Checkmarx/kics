@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "Container Traffic Not Bound To Host Interface",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Container Traffic Not Bound To Host Interface",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Container Traffic Not Bound To Host Interface",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive3.yaml"
+  }
+]

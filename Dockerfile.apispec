@@ -1,4 +1,4 @@
-FROM golang:1.18.0-alpine as build_env
+FROM golang:1.18.1-alpine as build_env
 # Create a group and user
 RUN addgroup -S Checkmarx && adduser -S Checkmarx -G Checkmarx
 USER Checkmarx
@@ -29,7 +29,7 @@ USER Checkmarx
 #Healthcheck the container
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 #runtime image
-FROM alpine:3.15.2
+FROM alpine:3.15.4
 
 RUN addgroup -S Checkmarx && adduser -S Checkmarx -G Checkmarx
 
@@ -49,7 +49,7 @@ RUN mkdir ~/.terraform.d && mkdir ~/.terraform.d/plugins && mkdir ~/.terraform.d
 
 # Install Git
 RUN apk add --no-cache \
-  git=2.34.1-r0
+  git=2.34.2-r0
 
 COPY --from=build_env /app/bin/kics /app/bin/kics
 COPY --from=build_env /app/assets/libraries/common /app/bin/assets/libraries/common
