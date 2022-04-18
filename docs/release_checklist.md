@@ -2,13 +2,13 @@
 
 1. Check for any `update-queries-docs` pull requests open, review and merge if any
 2. Prepare release (run prepare-release action)
-3. Use prepare release pull request to bump UBI8 image version label in the [Dockerfile.ubi8](https://github.com/Checkmarx/kics/blob/master/Dockerfile.ubi8)
+3. Use prepare release pull request (`docs: preparing for release`) to bump UBI8 image version label in the [Dockerfile.ubi8](https://github.com/Checkmarx/kics/blob/master/Dockerfile.ubi8) and [index.md](https://github.com/Checkmarx/kics/blob/master/docs/index.md)
 4. Review and merge prepare-release pull-request
 5. Create and push new version git tag
-6. Wait for goreleaser action to complete
-7. Test pre-release manually on each platform
-8. Publish new version by updating changelog and removing pre-release flag
-9. Check if `update-docs-release` and `update-infra-version` workflow completed with success
-10. Trigger `release-docker-image` workflow
-11. Check if image is published in dockerhub / update hub documentation if changed.
-12. Check for dependabots PR's in KICS' [github action](https://github.com/Checkmarx/kics-github-action), merge them and add a new tag.
+    - Be sure you configure [commit signature verification](https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification)
+    - In the master branch, run `git tag <tag_version>` and `git push -u origin <tag_version>`
+       
+6. Test pre-release manually on each platform
+7. Check if `update-docs-release`, `update-infra-version`, and `release-docker-image` workflow completed with success
+8. Check if image is published in [dockerhub](https://hub.docker.com/r/checkmarx/kics) / update hub documentation if changed
+9. Push image to Red Hat

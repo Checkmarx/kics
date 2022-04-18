@@ -1,0 +1,23 @@
+name: validate-queries-metadata
+
+on:
+  pull_request:
+    paths:
+    - "assets/queries/**/metadata.json"
+
+jobs:
+  validate-metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - name: Run queries metadata validation script
+        env:
+          KICS_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          KICS_PR_NUMBER: ${{ github.event.number }}
+        id: validator
+        working-directory: .github/scripts/queries-validator/
+        run: |
+          pip3 install -r requirements.txt
+          python3 queries-validator.py
