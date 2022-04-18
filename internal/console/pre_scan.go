@@ -143,7 +143,7 @@ func (console *console) preScan() {
 
 	mem, err := memory.Get()
 	if err != nil {
-		log.Info().Msgf("%s\n", err)
+		log.Err(err)
 	} else {
 		log.Info().Msgf("Total memory: %s", bytefmt.ByteSize(mem.Total))
 	}
