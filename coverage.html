@@ -75,7 +75,7 @@
 				
 				<option value="file9">github.com/Checkmarx/kics/internal/console/list_platforms.go (100.0%)</option>
 				
-				<option value="file10">github.com/Checkmarx/kics/internal/console/pre_scan.go (82.9%)</option>
+				<option value="file10">github.com/Checkmarx/kics/internal/console/pre_scan.go (83.1%)</option>
 				
 				<option value="file11">github.com/Checkmarx/kics/internal/console/scan.go (73.2%)</option>
 				
@@ -121,7 +121,7 @@
 				
 				<option value="file32">github.com/Checkmarx/kics/pkg/detector/search_line_detector.go (95.0%)</option>
 				
-				<option value="file33">github.com/Checkmarx/kics/pkg/engine/inspector.go (80.9%)</option>
+				<option value="file33">github.com/Checkmarx/kics/pkg/engine/inspector.go (81.2%)</option>
 				
 				<option value="file34">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (79.5%)</option>
 				
@@ -143,7 +143,7 @@
 				
 				<option value="file43">github.com/Checkmarx/kics/pkg/kics/service.go (42.2%)</option>
 				
-				<option value="file44">github.com/Checkmarx/kics/pkg/kics/sink.go (41.9%)</option>
+				<option value="file44">github.com/Checkmarx/kics/pkg/kics/sink.go (40.0%)</option>
 				
 				<option value="file45">github.com/Checkmarx/kics/pkg/model/comment_yaml.go (75.0%)</option>
 				
@@ -267,7 +267,7 @@
 				
 				<option value="file105">github.com/Checkmarx/kics/pkg/scan/scan.go (3.5%)</option>
 				
-				<option value="file106">github.com/Checkmarx/kics/pkg/scan/utils.go (16.5%)</option>
+				<option value="file106">github.com/Checkmarx/kics/pkg/scan/utils.go (14.9%)</option>
 				
 				<option value="file107">github.com/Checkmarx/kics/pkg/scanner/scanner.go (56.4%)</option>
 				
@@ -1157,14 +1157,17 @@ import (
         "fmt"
         "os"
         "path/filepath"
+        "runtime"
         "strings"
 
+        "code.cloudfoundry.org/bytefmt"
         "github.com/Checkmarx/kics/internal/console/flags"
         consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
         "github.com/Checkmarx/kics/internal/constants"
         "github.com/Checkmarx/kics/internal/metrics"
         internalPrinter "github.com/Checkmarx/kics/pkg/printer"
         "github.com/Checkmarx/kics/pkg/progress"
+        "github.com/mackerelio/go-osstat/memory"
         "github.com/pkg/errors"
         "github.com/rs/zerolog/log"
         "github.com/spf13/cobra"
@@ -1287,6 +1290,18 @@ func (console *console) preScan() <span class="cov6" title="7">{
         versionMsg := fmt.Sprintf("\nScanning with %s\n\n", constants.GetVersion())
         fmt.Println(versionMsg)
         log.Info().Msgf(strings.ReplaceAll(versionMsg, "\n", ""))
+
+        log.Info().Msgf("Operating system: %s", runtime.GOOS)
+
+        mem, err := memory.Get()
+        if err != nil </span><span class="cov0" title="0">{
+                log.Err(err)
+        }</span> else<span class="cov6" title="7"> {
+                log.Info().Msgf("Total memory: %s", bytefmt.ByteSize(mem.Total))
+        }</span>
+
+        <span class="cov6" title="7">cpu := runtime.NumCPU()
+        log.Info().Msgf("CPU: %d", cpu)
 
         noProgress := flags.GetBoolFlag(flags.NoProgressFlag)
         if strings.EqualFold(flags.GetStrFlag(flags.LogLevelFlag), "debug") </span><span class="cov0" title="0">{
@@ -1938,7 +1953,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov6" title="12">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4117,7 +4132,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -4316,7 +4331,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -4713,7 +4728,10 @@ func (c *Inspector) Inspect(
                         continue</span>
                 }
 
-                <span class="cov3" title="2">query := &amp;preparedQuery{
+                <span class="cov3" title="2">log.Debug().Msgf("Starting to run query %s", queryMeta.Query)
+                queryStartTime := time.Now()
+
+                query := &amp;preparedQuery{
                         opaQuery: *queryOpa,
                         metadata: queryMeta,
                 }
@@ -4741,7 +4759,9 @@ func (c *Inspector) Inspect(
                         continue</span>
                 }
 
-                <span class="cov3" title="2">vulnerabilities = append(vulnerabilities, vuls...)
+                <span class="cov3" title="2">log.Debug().Msgf("Finished to run query %s after %v", queryMeta.Query, time.Since(queryStartTime))
+
+                vulnerabilities = append(vulnerabilities, vuls...)
 
                 c.tracker.TrackQueryExecution(query.metadata.Aggregation)</span>
         }
@@ -7337,6 +7357,7 @@ var (
 
 func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reader) error <span class="cov0" title="0">{
         s.Tracker.TrackFileFound()
+        log.Debug().Msgf("Starting to process file %s", filename)
 
         c, err := getContent(rc)
 
@@ -7387,6 +7408,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
                 s.saveToFile(ctx, &amp;file)</span>
         }
         <span class="cov0" title="0">s.Tracker.TrackFileParse()
+        log.Debug().Msgf("Finished to process file %s", filename)
         s.Tracker.TrackFileParseCountLines(documents.CountLines)
 
         return errors.Wrap(err, "failed to save file content")</span>
@@ -18089,6 +18111,8 @@ func (c *Client) prepareAndAnalyzePaths() (provider.ExtractedPath, error) <span 
 
         <span class="cov0" title="0">allPaths := combinePaths(terraformerExPaths, regularExPaths)
 
+        log.Info().Msgf("Total files in the project: %d", getTotalFiles(allPaths.Path))
+
         pathTypes, errAnalyze :=
                 analyzePaths(
                         allPaths.Path,
@@ -18260,6 +18284,26 @@ func printVersionCheck(customPrint *consolePrinter.Printer, s *model.Summary) <s
                 fmt.Println(customPrint.VersionMessage.Sprintf(message))
                 log.Warn().Msgf(message)
         }</span>
+}
+
+func getTotalFiles(paths []string) int <span class="cov0" title="0">{
+        files := 0
+        for _, path := range paths </span><span class="cov0" title="0">{
+                if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov0" title="0">{
+                        if err != nil </span><span class="cov0" title="0">{
+                                return err
+                        }</span>
+
+                        <span class="cov0" title="0">if !info.IsDir() </span><span class="cov0" title="0">{
+                                files++
+                        }</span>
+
+                        <span class="cov0" title="0">return nil</span>
+                }); err != nil <span class="cov0" title="0">{
+                        log.Error().Msgf("failed to walk path %s: %s", path, err)
+                }</span>
+        }
+        <span class="cov0" title="0">return files</span>
 }
 </pre>
 		
