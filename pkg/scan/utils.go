@@ -39,6 +39,8 @@ func (c *Client) prepareAndAnalyzePaths() (provider.ExtractedPath, error) {
 
 	allPaths := combinePaths(terraformerExPaths, regularExPaths)
 
+	log.Info().Msgf("Total files in the project: %d", getTotalFiles(allPaths.Path))
+
 	pathTypes, errAnalyze :=
 		analyzePaths(
 			allPaths.Path,
@@ -210,4 +212,24 @@ func printVersionCheck(customPrint *consolePrinter.Printer, s *model.Summary) {
 		fmt.Println(customPrint.VersionMessage.Sprintf(message))
 		log.Warn().Msgf(message)
 	}
+}
+
+func getTotalFiles(paths []string) int {
+	files := 0
+	for _, path := range paths {
+		if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
+			if err != nil {
+				return err
+			}
+
+			if !info.IsDir() {
+				files++
+			}
+
+			return nil
+		}); err != nil {
+			log.Error().Msgf("failed to walk path %s: %s", path, err)
+		}
+	}
+	return files
 }
