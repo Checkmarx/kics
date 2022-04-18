@@ -199,7 +199,7 @@ func (c *Inspector) Inspect(
 			continue
 		}
 
-		log.Debug().Msgf("Starting to load query %s", queryMeta.Query)
+		log.Debug().Msgf("Starting to run query %s", queryMeta.Query)
 		queryStartTime := time.Now()
 
 		query := &preparedQuery{
@@ -230,7 +230,7 @@ func (c *Inspector) Inspect(
 			continue
 		}
 
-		log.Debug().Msgf("Finished to load query %s after %v", queryMeta.Query, time.Since(queryStartTime))
+		log.Debug().Msgf("Finished to run query %s after %v", queryMeta.Query, time.Since(queryStartTime))
 
 		vulnerabilities = append(vulnerabilities, vuls...)
 
