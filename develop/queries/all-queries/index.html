@@ -5404,14 +5404,6 @@
 <td><a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Host Aliases Undefined Or Empty<br/><sup><sub>72b03514-20ae-4409-8842-2dd70c2e25aa</sub></sup></td>
-<td>Kubernetes</td>
-<td><span style="color:#C00">High</span></td>
-<td>Insecure Configurations</td>
-<td>A Pod should have Host Aliases defined as to prevent the container from modifying the file after a pod's containers have already been started. This means the attribute 'spec.hostAliases' must be defined and not empty or null.</td>
-<td><a href="https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Container Is Privileged<br/><sup><sub>dd29336b-fe57-445b-a26e-e6aa867ae609</sub></sup></td>
 <td>Kubernetes</td>
 <td><span style="color:#C00">High</span></td>
@@ -7506,14 +7498,6 @@
 <td>Insecure Configurations</td>
 <td>Check if Pod Security Policies allow containers to share the host network namespace.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#host_network">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Host Aliases Undefined Or Empty<br/><sup><sub>5d05ea11-ae3e-470e-9864-97e55fb2b2e0</sub></sup></td>
-<td>Terraform</td>
-<td><span style="color:#C00">High</span></td>
-<td>Insecure Configurations</td>
-<td>A Kubernetes Pod should have Host Aliases defined as to prevent the container from modifying the file after a pod's containers have already been started. This means the attribute 'spec.host_aliases' must be defined and not empty or null.</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#host_aliases">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Container Is Privileged<br/><sup><sub>87065ef8-de9b-40d8-9753-f4a4303e27a4</sub></sup></td>
