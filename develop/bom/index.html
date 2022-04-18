@@ -1554,43 +1554,43 @@
 <pre><code class="language-json">{ 
     // etc...
     &quot;bill_of_materials&quot;: [
-            {
-                &quot;query_name&quot;: &quot;BOM - AWS S3 Buckets&quot;,
-                &quot;query_id&quot;: &quot;b5d6a2e0-8f15-4664-bd5b-68ec5c9bab83&quot;,
-                &quot;query_url&quot;: &quot;https://kics.io&quot;,
-                &quot;severity&quot;: &quot;TRACE&quot;,
-                &quot;platform&quot;: &quot;CloudFormation&quot;,
-                &quot;cloud_provider&quot;: &quot;AWS&quot;,
-                &quot;category&quot;: &quot;Bill Of Materials&quot;,
-                &quot;description&quot;: &quot;A list of S3 resources found. Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance.&quot;,
-                &quot;description_id&quot;: &quot;a46851fb&quot;,
-                &quot;files&quot;: [
-                    {
-                        &quot;file_name&quot;: &quot;positive2.json&quot;,
-                        &quot;similarity_id&quot;: &quot;a307e0f377932f42880de350fc69f83084aa8451a2e1e2a37cc97fc4eae7cf94&quot;,
-                        &quot;line&quot;: 5,
-                        &quot;issue_type&quot;: &quot;BillOfMaterials&quot;,
-                        &quot;search_key&quot;: &quot;Resources.JenkinsArtifacts03&quot;,
-                        &quot;search_line&quot;: 0,
-                        &quot;search_value&quot;: &quot;&quot;,
-                        &quot;expected_value&quot;: &quot;&quot;,
-                        &quot;actual_value&quot;: &quot;&quot;,
-                        &quot;value&quot;: &quot;{\&quot;acl\&quot;:\&quot;BucketOwnerFullControl\&quot;,\&quot;resource_accessibility\&quot;:\&quot;BucketOwnerFullControl\&quot;,\&quot;resource_category\&quot;:\&quot;Storage\&quot;,\&quot;resource_encryption\&quot;:\&quot;unencrypted\&quot;,\&quot;resource_name\&quot;:\&quot;jenkins-artifacts\&quot;,\&quot;resource_type\&quot;:\&quot;AWS::S3::Bucket\&quot;,\&quot;resource_vendor\&quot;:\&quot;AWS\&quot;}&quot;
-                    },
-                    {
-                        &quot;file_name&quot;: &quot;positive1.yaml&quot;,
-                        &quot;similarity_id&quot;: &quot;24a0036d2e94676f33c505c5cfd6686ef414072a14e576b08283e9a77596f7eb&quot;,
-                        &quot;line&quot;: 4,
-                        &quot;issue_type&quot;: &quot;BillOfMaterials&quot;,
-                        &quot;search_key&quot;: &quot;Resources.MyBucket&quot;,
-                        &quot;search_line&quot;: 0,
-                        &quot;search_value&quot;: &quot;&quot;,
-                        &quot;expected_value&quot;: &quot;&quot;,
-                        &quot;actual_value&quot;: &quot;&quot;,
-                        &quot;value&quot;: &quot;{\&quot;acl\&quot;:\&quot;BucketOwnerFullControl\&quot;,\&quot;policy\&quot;:{\&quot;Statement\&quot;:[{\&quot;Action\&quot;:[\&quot;s3:GetObject\&quot;],\&quot;Condition\&quot;:{\&quot;StringLike\&quot;:{\&quot;aws:Referer\&quot;:[\&quot;http://www.example.com/*\&quot;,\&quot;http://example.net/*\&quot;]}},\&quot;Effect\&quot;:\&quot;Allow\&quot;,\&quot;Principal\&quot;:\&quot;*\&quot;,\&quot;Resource\&quot;:[\&quot;\&quot;,{\&quot;playbooks\&quot;:[\&quot;arn:aws:s3:::\&quot;,\&quot;DOC-EXAMPLE-BUCKET\&quot;,\&quot;/*\&quot;]}]}],\&quot;Version\&quot;:\&quot;2012-10-17\&quot;},\&quot;resource_accessibility\&quot;:\&quot;hasPolicy\&quot;,\&quot;resource_category\&quot;:\&quot;Storage\&quot;,\&quot;resource_encryption\&quot;:\&quot;encrypted\&quot;,\&quot;resource_name\&quot;:\&quot;jenkins-artifacts\&quot;,\&quot;resource_type\&quot;:\&quot;AWS::S3::Bucket\&quot;,\&quot;resource_vendor\&quot;:\&quot;AWS\&quot;}&quot;
-                    }
-                ]
-            }
+        {
+            &quot;query_name&quot;: &quot;BOM - AWS S3 Buckets&quot;,
+            &quot;query_id&quot;: &quot;b5d6a2e0-8f15-4664-bd5b-68ec5c9bab83&quot;,
+            &quot;query_url&quot;: &quot;https://kics.io&quot;,
+            &quot;severity&quot;: &quot;TRACE&quot;,
+            &quot;platform&quot;: &quot;CloudFormation&quot;,
+            &quot;cloud_provider&quot;: &quot;AWS&quot;,
+            &quot;category&quot;: &quot;Bill Of Materials&quot;,
+            &quot;description&quot;: &quot;A list of S3 resources found. Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance.&quot;,
+            &quot;description_id&quot;: &quot;a46851fb&quot;,
+            &quot;files&quot;: [
+                {
+                    &quot;file_name&quot;: &quot;positive2.json&quot;,
+                    &quot;similarity_id&quot;: &quot;a307e0f377932f42880de350fc69f83084aa8451a2e1e2a37cc97fc4eae7cf94&quot;,
+                    &quot;line&quot;: 5,
+                    &quot;issue_type&quot;: &quot;BillOfMaterials&quot;,
+                    &quot;search_key&quot;: &quot;Resources.JenkinsArtifacts03&quot;,
+                    &quot;search_line&quot;: 0,
+                    &quot;search_value&quot;: &quot;&quot;,
+                    &quot;expected_value&quot;: &quot;&quot;,
+                    &quot;actual_value&quot;: &quot;&quot;,
+                    &quot;value&quot;: &quot;{\&quot;acl\&quot;:\&quot;BucketOwnerFullControl\&quot;,\&quot;resource_accessibility\&quot;:\&quot;unknown\&quot;,\&quot;resource_category\&quot;:\&quot;Storage\&quot;,\&quot;resource_encryption\&quot;:\&quot;unencrypted\&quot;,\&quot;resource_name\&quot;:\&quot;jenkins-artifacts\&quot;,\&quot;resource_type\&quot;:\&quot;AWS::S3::Bucket\&quot;,\&quot;resource_vendor\&quot;:\&quot;AWS\&quot;}&quot;
+                },
+                {
+                    &quot;file_name&quot;: &quot;positive1.yaml&quot;,
+                    &quot;similarity_id&quot;: &quot;24a0036d2e94676f33c505c5cfd6686ef414072a14e576b08283e9a77596f7eb&quot;,
+                    &quot;line&quot;: 4,
+                    &quot;issue_type&quot;: &quot;BillOfMaterials&quot;,
+                    &quot;search_key&quot;: &quot;Resources.MyBucket&quot;,
+                    &quot;search_line&quot;: 0,
+                    &quot;search_value&quot;: &quot;&quot;,
+                    &quot;expected_value&quot;: &quot;&quot;,
+                    &quot;actual_value&quot;: &quot;&quot;,
+                    &quot;value&quot;: &quot;{\&quot;acl\&quot;:\&quot;BucketOwnerFullControl\&quot;,\&quot;policy\&quot;:{\&quot;Statement\&quot;:[{\&quot;Action\&quot;:[\&quot;s3:GetObject\&quot;],\&quot;Condition\&quot;:{\&quot;StringLike\&quot;:{\&quot;aws:Referer\&quot;:[\&quot;http://www.example.com/*\&quot;,\&quot;http://example.net/*\&quot;]}},\&quot;Effect\&quot;:\&quot;Allow\&quot;,\&quot;Principal\&quot;:\&quot;*\&quot;,\&quot;Resource\&quot;:[\&quot;\&quot;,{\&quot;playbooks\&quot;:[\&quot;arn:aws:s3:::\&quot;,\&quot;DOC-EXAMPLE-BUCKET\&quot;,\&quot;/*\&quot;]}]}],\&quot;Version\&quot;:\&quot;2012-10-17\&quot;},\&quot;resource_accessibility\&quot;:\&quot;hasPolicy\&quot;,\&quot;resource_category\&quot;:\&quot;Storage\&quot;,\&quot;resource_encryption\&quot;:\&quot;encrypted\&quot;,\&quot;resource_name\&quot;:\&quot;jenkins-artifacts\&quot;,\&quot;resource_type\&quot;:\&quot;AWS::S3::Bucket\&quot;,\&quot;resource_vendor\&quot;:\&quot;AWS\&quot;}&quot;
+                }
+            ]
+        }
     ]
 }
 </code></pre>
