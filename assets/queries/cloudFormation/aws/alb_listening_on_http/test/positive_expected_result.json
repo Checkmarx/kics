@@ -22,5 +22,11 @@
     "fileName": "positive2.json",
     "queryName": "ALB Listening on HTTP",
     "severity": "HIGH"
+  },
+  {
+    "queryName": "ALB Listening on HTTP",
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive3.yaml"
   }
 ]
