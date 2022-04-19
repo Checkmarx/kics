@@ -193,6 +193,13 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 		actualI.FailedToExecuteQueries = 0
 		expectI.FailedToExecuteQueries = 0
 
+		// Adapt path if running locally (dev)
+		if GetKICSDockerImageName() == "" {
+			for i, scanPath := range expectI.ScannedPaths {
+				expectI.ScannedPaths[i] = KicsDevPathAdapter(scanPath)
+			}
+		}
+
 		for i := range actualI.Queries {
 			actualQuery := actualI.Queries[i]
 			expectQuery := expectI.Queries[i]

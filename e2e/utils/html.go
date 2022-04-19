@@ -43,6 +43,11 @@ func HTMLValidation(t *testing.T, file string) {
 		expectedValue := getElementByID(expectedHTML, headerIds[arg])
 		actualValue := getElementByID(actualHTML, headerIds[arg])
 
+		// Adapt path if running locally (dev)
+		if GetKICSDockerImageName() == "" {
+			expectedValue.LastChild.Data = KicsDevPathAdapter(expectedValue.LastChild.Data)
+		}
+
 		require.NotNil(t, actualValue.LastChild,
 			"[%s] Invalid value in Element ID <%s>", file, headerIds[arg])
 
