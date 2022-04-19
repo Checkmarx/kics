@@ -2,21 +2,31 @@
   {
     "queryName": "Apt Get Install Lists Were Not Deleted",
     "severity": "INFO",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.dockerfile"
   },
   {
     "queryName": "Apt Get Install Lists Were Not Deleted",
     "severity": "INFO",
-    "line": 5
+    "line": 5,
+    "fileName": "positive.dockerfile"
   },
   {
     "queryName": "Apt Get Install Lists Were Not Deleted",
     "severity": "INFO",
-    "line": 8
+    "line": 8,
+    "fileName": "positive.dockerfile"
   },
   {
     "queryName": "Apt Get Install Lists Were Not Deleted",
     "severity": "INFO",
-    "line": 12
+    "line": 12,
+    "fileName": "positive.dockerfile"
+  },
+  {
+    "queryName": "Apt Get Install Lists Were Not Deleted",
+    "severity": "INFO",
+    "line": 2,
+    "fileName": "positive2.dockerfile"
   }
 ]
