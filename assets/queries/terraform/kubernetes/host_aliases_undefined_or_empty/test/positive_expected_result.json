@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "Host Aliases Undefined Or Empty",
-		"severity": "HIGH",
-		"line": 6
-	}
-]

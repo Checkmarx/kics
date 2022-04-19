@@ -5,12 +5,13 @@ go 1.16
 require (
 	cloud.google.com/go/iam v0.3.0 // indirect
 	cloud.google.com/go/monitoring v1.2.0 // indirect
+	code.cloudfoundry.org/bytefmt v0.0.0-20211005130812-5bb3c17173e5
 	github.com/BurntSushi/toml v1.1.0
 	github.com/GoogleCloudPlatform/terraformer v0.8.18
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20211114212643-ec144ca0d701
-	github.com/aws/aws-sdk-go v1.43.39
+	github.com/aws/aws-sdk-go v1.43.41
 	github.com/cheggaaa/pb/v3 v3.0.8
 	github.com/emicklei/proto v1.9.2
 	github.com/getsentry/sentry-go v0.13.0
@@ -24,10 +25,12 @@ require (
 	github.com/hashicorp/hcl/v2 v2.11.1
 	github.com/hashicorp/terraform-json v0.13.0
 	github.com/johnfercher/maroto v0.36.1
+	github.com/mackerelio/go-osstat v0.2.2
 	github.com/mailru/easyjson v0.7.7
 	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
 	github.com/moby/buildkit v0.10.1
 	github.com/open-policy-agent/opa v0.39.0
+	github.com/pbnjay/memory v0.0.0-20210728143218-7b4eea64cf58 // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.26.1
 	github.com/sosedoff/ansible-vault-go v0.1.1

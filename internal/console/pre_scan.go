@@ -5,14 +5,17 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strings"
 
+	"code.cloudfoundry.org/bytefmt"
 	"github.com/Checkmarx/kics/internal/console/flags"
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/internal/metrics"
 	internalPrinter "github.com/Checkmarx/kics/pkg/printer"
 	"github.com/Checkmarx/kics/pkg/progress"
+	"github.com/mackerelio/go-osstat/memory"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
@@ -135,6 +138,18 @@ func (console *console) preScan() {
 	versionMsg := fmt.Sprintf("\nScanning with %s\n\n", constants.GetVersion())
 	fmt.Println(versionMsg)
 	log.Info().Msgf(strings.ReplaceAll(versionMsg, "\n", ""))
+
+	log.Info().Msgf("Operating system: %s", runtime.GOOS)
+
+	mem, err := memory.Get()
+	if err != nil {
+		log.Err(err)
+	} else {
+		log.Info().Msgf("Total memory: %s", bytefmt.ByteSize(mem.Total))
+	}
+
+	cpu := runtime.NumCPU()
+	log.Info().Msgf("CPU: %d", cpu)
 
 	noProgress := flags.GetBoolFlag(flags.NoProgressFlag)
 	if strings.EqualFold(flags.GetStrFlag(flags.LogLevelFlag), "debug") {
