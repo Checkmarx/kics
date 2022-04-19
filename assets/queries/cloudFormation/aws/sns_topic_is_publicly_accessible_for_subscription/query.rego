@@ -20,5 +20,11 @@ CxPolicy[result] {
 has_aws_SNS_Sub(input_document, name_SNS){
 	resourceSNS := input_document.document[i].Resources
 	resourceSNS[j].Type == "AWS::SNS::Subscription"
-	resourceSNS[j].Properties.TopicArn.Ref == name_SNS
+	topic := get_topic(resourceSNS[j].Properties.TopicArn) 
+	topic == name_SNS
+}
+get_topic(topicArn) = topic {
+   topic := topicArn.Ref
+} else = topic {
+   topic := topicArn
 }
