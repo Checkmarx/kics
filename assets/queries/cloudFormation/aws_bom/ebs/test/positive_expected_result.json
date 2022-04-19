@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "BOM - AWS EBS",
+    "severity": "TRACE",
+    "line": 4,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "BOM - AWS EBS",
+    "severity": "TRACE",
+    "line": 5,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "BOM - AWS EBS",
+    "severity": "TRACE",
+    "line": 4,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "BOM - AWS EBS",
+    "severity": "TRACE",
+    "line": 5,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "BOM - AWS EBS",
+    "severity": "TRACE",
+    "line": 4,
+    "fileName": "positive5.yaml"
+  },
+  {
+    "queryName": "BOM - AWS EBS",
+    "severity": "TRACE",
+    "line": 5,
+    "fileName": "positive6.json"
+  }
+]

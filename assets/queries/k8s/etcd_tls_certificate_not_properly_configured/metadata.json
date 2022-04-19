@@ -1,0 +1,10 @@
+{
+  "id": "895a5a95-3756-4b04-9924-2f3bc93181bd",
+  "queryName": "Etcd TLS Certificate Not Properly Configured",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "When using kube-apiserver commands, the '--etcd-certfile' and '--etcd-keyfile' flags should be defined",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
+  "platform": "Kubernetes",
+  "descriptionID": "073667d8"
+}

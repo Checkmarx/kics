@@ -1,0 +1,20 @@
+[
+    {
+      "queryName": "Host Namespace is Shared",
+      "severity": "MEDIUM",
+      "line": 10,
+      "filename": "positive1.yaml"
+    },
+    {
+      "queryName": "Host Namespace is Shared",
+      "severity": "MEDIUM",
+      "line": 6,
+      "filename": "positive2.yaml"
+    },
+    {
+      "queryName": "Host Namespace is Shared",
+      "severity": "MEDIUM",
+      "line": 5,
+      "filename": "positive3.yaml"
+    }
+  ]

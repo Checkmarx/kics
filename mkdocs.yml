@@ -39,8 +39,9 @@ nav:
       - Command Line Interface: commands.md
       - Running KICS: running-kics.md
       - Results: results.md
-      - Architecture: architecture.md
       - Platforms: platforms.md
+      - Utilities: utilities.md
+      - Architecture: architecture.md
       - Changes in v1.3.0: changes.md
   - Queries:
       - General Info: queries.md
@@ -62,12 +63,13 @@ nav:
       - Bamboo: integrations_bamboo.md
       - Bitbucket Pipelines: integrations_bitbucketpipelines.md
       - CircleCI: integrations_circleci.md
+      - Codefresh: integrations_codefresh.md
       - Github Actions: integrations_ghactions.md
       - Gitlab CI: integrations_gitlabci.md
       - Jenkins: integrations_jenkins.md
       - TeamCity: integrations_teamcity.md
       - Travis CI: integrations_travisci.md
-      - Terraform Cloud: integration_tfcloud.md
+      - Terraform Cloud: integrations_tfcloud.md
       - AWS CDK: cdk.md
       - AWS CodeBuild: integrations_aws_codebuild.md
       - Badge: BADGE.md

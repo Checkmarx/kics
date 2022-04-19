@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Create EFS system and Mount Targets for test VPC"
+Resources:
+    FileSystemResource:
+      Type: 'AWS::EFS::FileSystem'
+      Properties:
+        AvailabilityZoneName: us-east-1a
+        BackupPolicy:
+          Status: ENABLED
+        Encrypted: false
+        LifecyclePolicies:
+          - TransitionToIA: AFTER_30_DAYS
+        FileSystemTags:
+          - Key: Name
+            Value: TestFileSystem
+    

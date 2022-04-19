@@ -1,0 +1,8 @@
+[
+    {
+      "queryName": "Cgroup Not Default",
+      "severity": "MEDIUM",
+      "line": 9,
+      "filename": "positive1.yaml"
+    }
+]

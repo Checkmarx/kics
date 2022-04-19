@@ -199,6 +199,9 @@ func (c *Inspector) Inspect(
 			continue
 		}
 
+		log.Debug().Msgf("Starting to run query %s", queryMeta.Query)
+		queryStartTime := time.Now()
+
 		query := &preparedQuery{
 			opaQuery: *queryOpa,
 			metadata: queryMeta,
@@ -226,6 +229,8 @@ func (c *Inspector) Inspect(
 
 			continue
 		}
+
+		log.Debug().Msgf("Finished to run query %s after %v", queryMeta.Query, time.Since(queryStartTime))
 
 		vulnerabilities = append(vulnerabilities, vuls...)
 
@@ -440,7 +445,7 @@ func prepareQueries(queries []model.QueryMetadata, commonLibrary source.RegoLibr
 	}
 }
 
-// Load the querie into memory so it can be freed when not used anymore
+// Load the query into memory so it can be freed when not used anymore
 func (q QueryLoader) loadQuery(ctx context.Context, query *model.QueryMetadata) (*rego.PreparedEvalQuery, error) {
 	opaQuery := rego.PreparedEvalQuery{}
 
@@ -455,7 +460,7 @@ func (q QueryLoader) loadQuery(ctx context.Context, query *model.QueryMetadata) 
 	default:
 		mergedInputData, err := source.MergeInputData(platformGeneralQuery.LibraryInputData, query.InputData)
 		if err != nil {
-			log.Debug().Msg("Could not merge platform library input data")
+			log.Debug().Msgf("Could not merge %s library input data", query.Platform)
 		}
 		mergedInputData, err = source.MergeInputData(q.commonLibrary.LibraryInputData, mergedInputData)
 		if err != nil {

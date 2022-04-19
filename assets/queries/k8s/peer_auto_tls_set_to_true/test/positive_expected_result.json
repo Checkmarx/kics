@@ -3,6 +3,6 @@
 		"queryName": "Peer Auto TLS Set To True",
 		"severity": "HIGH",
 		"line": 21,
-        "file": "positive1.yaml"
+        "fileName": "positive1.yaml"
 	}
 ]

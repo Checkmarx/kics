@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    component: kube-scheduler
+    tier: control-plane
+  name: kube-scheduler
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: kube-controller-manager
+  template:
+    metadata:
+      labels:
+        app: kube-controller-manager
+  containers:
+    - name: command-demo-container
+      image: k8s.gcr.io/kube-scheduler:v1.19.0
+      command: ["kube-scheduler","--bind-address=127.0.0.1"]
+      args: []
+  restartPolicy: OnFailure

@@ -1,0 +1,11 @@
+{
+  "id": "59a849c2-1127-4023-85a5-ef906dcd458c",
+  "queryName": "BOM - SQS",
+  "severity": "TRACE",
+  "category": "Bill Of Materials",
+  "descriptionText": "A list of SQS resources specified. Amazon Simple Queue Service (SQS) is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications.",
+  "descriptionUrl": "https://kics.io",
+  "platform": "CloudFormation",
+  "descriptionID": "c57e306b",
+  "cloudProvider": "aws"
+}
