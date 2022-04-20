@@ -211,7 +211,7 @@
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/printer/utils.go (82.4%)</option>
 				
-				<option value="file78">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
+				<option value="file78">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (80.0%)</option>
 				
 				<option value="file79">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
@@ -4132,7 +4132,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -4331,7 +4331,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5375,12 +5375,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="27495">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="27465">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="27495">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="27248">{
+                <span class="cov9" title="27465">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="27218">{
                         return skipFolder
                 }</span>
 
@@ -5447,24 +5447,24 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="246">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="27498">{
-        if info.IsDir() </span><span class="cov8" title="6048">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="27468">{
+        if info.IsDir() </span><span class="cov8" title="6040">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
                         return true, filepath.SkipDir
                 }</span>
-                <span class="cov8" title="6047">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
-                if err != nil || resolved </span><span class="cov8" title="6045">{
+                <span class="cov8" title="6039">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
+                if err != nil || resolved </span><span class="cov8" title="6037">{
                         return true, nil
                 }</span>
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="21450">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="21428">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="21450">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="21204">{
+        <span class="cov9" title="21428">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="21182">{
                 return true, nil
         }</span>
         <span class="cov5" title="246">return false, nil</span>
@@ -14735,8 +14735,8 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
 }
 
 // Start initializes the Circle Progress Bar
-func (p ProgressBar) Start() <span class="cov1" title="1">{
-        for </span><span class="cov1" title="1">{ // increment until the Close func is called
+func (p ProgressBar) Start() <span class="cov0" title="0">{
+        for </span><span class="cov0" title="0">{ // increment until the Close func is called
                 p.pBar.Increment()
                 // lower cpu usage from infinite loop
                 time.Sleep(time.Millisecond * sleepTimeout)
@@ -18934,15 +18934,15 @@ func StringifyStruct(v interface{}) (string, error) <span class="cov0" title="0"
 }
 
 // MapToStringSlice extract slice of keys from a map[string]string
-func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov8" title="4484">{
+func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov8" title="4478">{
         keys := make([]string, len(stringKeyMap))
 
         i := 0
-        for k := range stringKeyMap </span><span class="cov10" title="49329">{
+        for k := range stringKeyMap </span><span class="cov10" title="49263">{
                 keys[i] = k
                 i++
         }</span>
-        <span class="cov8" title="4484">return keys</span>
+        <span class="cov8" title="4478">return keys</span>
 }
 
 var queryHigh = model.QueryResult{
