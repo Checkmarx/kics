@@ -22,7 +22,7 @@ getPackages(commands, command) = output {
 	commandWithAllNoTabs:= replace(commandWithAll, "\t", "")
 	commandWithAllSplit := split(commandWithAllNoTabs, ";")
 
-	packages := split(commandWithAllSplit[0], " ")
+	packages := split(trim_space(commandWithAllSplit[0]), " ")
 
 	output = packages
 }else = output {
