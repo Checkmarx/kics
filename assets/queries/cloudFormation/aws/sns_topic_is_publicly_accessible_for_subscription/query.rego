@@ -6,6 +6,7 @@ CxPolicy[result] {
 	resourceSNS[nameSNS].Type == "AWS::SNS::Topic"
 
 	not resourceSNS[nameSNS].Properties.Subscription
+	not has_aws_SNS_Sub(input,nameSNS)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -14,4 +15,16 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.Subscription' is set", [nameSNS]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.Subscription' is not set", [nameSNS]),
 	}
+}
+
+has_aws_SNS_Sub(input_document, name_SNS){
+	resourceSNS := input_document.document[i].Resources
+	resourceSNS[j].Type == "AWS::SNS::Subscription"
+	topic := get_topic(resourceSNS[j].Properties.TopicArn) 
+	topic == name_SNS
+}
+get_topic(topicArn) = topic {
+   topic := topicArn.Ref
+} else = topic {
+   topic := topicArn
 }

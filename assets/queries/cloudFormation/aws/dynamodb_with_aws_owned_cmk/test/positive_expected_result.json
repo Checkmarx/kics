@@ -12,12 +12,6 @@
     "severity": "HIGH"
   },
   {
-    "fileName": "positive2.yaml",
-    "queryName": "DynamoDB With Aws Owned CMK",
-    "severity": "HIGH",
-    "line": 4
-  },
-  {
     "queryName": "DynamoDB With Aws Owned CMK",
     "severity": "HIGH",
     "line": 4,
@@ -28,12 +22,6 @@
     "severity": "HIGH",
     "line": 5,
     "fileName": "positive5.json"
-  },
-  {
-    "queryName": "DynamoDB With Aws Owned CMK",
-    "severity": "HIGH",
-    "line": 5,
-    "fileName": "positive6.json"
   },
   {
     "severity": "HIGH",
