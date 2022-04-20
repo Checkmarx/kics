@@ -368,7 +368,7 @@ func checkReturnType(path, returnType, ext string, content []byte) string {
 		if checkHelm(path) {
 			return kubernetes
 		}
-		platform := checkYamlPlatform(content)
+		platform := checkYamlPlatform(content, path)
 		if platform != "" {
 			return platform
 		}
@@ -387,12 +387,12 @@ func checkHelm(path string) bool {
 	return true
 }
 
-func checkYamlPlatform(content []byte) string {
+func checkYamlPlatform(content []byte, path string) string {
 	content = utils.DecryptAnsibleVault(content, os.Getenv("ANSIBLE_VAULT_PASSWORD_FILE"))
 
 	var yamlContent model.Document
 	if err := yamlParser.Unmarshal(content, &yamlContent); err != nil {
-		log.Warn().Msgf("failed to parse yaml file: %s", err)
+		log.Warn().Msgf("failed to parse yaml file (%s): %s", path, err)
 	}
 	// check if it is google deployment manager platform
 	for _, keyword := range listKeywordsGoogleDeployment {
