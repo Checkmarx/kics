@@ -50,7 +50,7 @@ func Test_E2E_CLI(t *testing.T) {
 					useMock = true
 				}
 
-				out, err := utils.RunCommand(tt.Args.Args[arg], useDocker, useMock)
+				out, err := utils.RunCommand(tt.Args.Args[arg], useDocker, useMock, kicsDockerImage)
 				// Check command Error
 				require.NoError(t, err, "Capture CLI output should not yield an error")
 

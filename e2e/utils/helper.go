@@ -15,14 +15,16 @@ type CmdOutput struct {
 	Status int
 }
 
+const windows_os = "windows"
+
 // RunCommand executes the kics in a terminal
-func RunCommand(kicsArgs []string, useDocker bool, useMock bool) (*CmdOutput, error) {
+func RunCommand(kicsArgs []string, useDocker, useMock bool, kicsDockerImage string) (*CmdOutput, error) {
 	descriptionServer := getDescriptionServer(useDocker, useMock)
 	var source string
 	var args []string
 
 	if useDocker {
-		source, args = runKicsDocker(kicsArgs, descriptionServer)
+		source, args = runKicsDocker(kicsArgs, descriptionServer, kicsDockerImage)
 	} else {
 		source, args = runKicsDev(kicsArgs)
 	}
@@ -50,7 +52,7 @@ func KicsDevPathAdapter(path string) string {
 	if path == "/path/e2e/fixtures/samples/config.json" {
 		path = strings.Replace(path, "config.json", "config-dev.json", -1)
 	}
-	regex := regexp.MustCompile(`/path\/\w+\/`)
+	regex := regexp.MustCompile(`/path/\w+/`)
 	matches := regex.FindString(path)
 	switch matches {
 	case "":
@@ -69,11 +71,10 @@ func GetKICSDockerImageName() string {
 
 // GetKICSLocalBin returns the kics local bin path
 func GetKICSLocalBin() string {
-	if runtime.GOOS == "windows" {
+	if runtime.GOOS == windows_os {
 		return filepath.Join("..", "bin", "kics.exe")
-	} else {
-		return filepath.Join("..", "bin", "kics")
 	}
+	return filepath.Join("..", "bin", "kics")
 }
 
 func runKicsDev(kicsArgs []string) (string, []string) {
@@ -85,8 +86,7 @@ func runKicsDev(kicsArgs []string) (string, []string) {
 	return kicsRun, formatArgs
 }
 
-func runKicsDocker(kicsArgs []string, descriptionServer string) (string, []string) {
-	kicsDockerImage := GetKICSDockerImageName()
+func runKicsDocker(kicsArgs []string, descriptionServer, kicsDockerImage string) (string, []string) {
 	cwd, cwdErr := os.Getwd()
 	if cwdErr != nil {
 		return "", []string{}
@@ -98,7 +98,7 @@ func runKicsDocker(kicsArgs []string, descriptionServer string) (string, []strin
 	return "docker", completeArgs
 }
 
-func getDescriptionServer(useDocker bool, useMock bool) string {
+func getDescriptionServer(useDocker, useMock bool) string {
 	descriptionServer := "KICS_DESCRIPTIONS_ENDPOINT=http://kics.io"
 	if useMock {
 		if useDocker {
