@@ -5,6 +5,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"sort"
+	"strings"
 	"sync"
 
 	"github.com/Checkmarx/kics/internal/metrics"
@@ -69,12 +70,23 @@ var (
 		".proto":      true,
 		".sh":         true,
 	}
+	supportedRegexes = map[string][]string{
+		"azureresourcemanager": armRegexTypes,
+		"buildah":              {"buildah"},
+		"cloudformation":       {"cloudformation"},
+		"dockercompose":        {"dockercompose"},
+		"dockerfile":           {".dockerfile", "Dockerfile"},
+		"kubernetes":           {"kubernetes"},
+		"openapi":              {"openapi"},
+		"terraform":            {"terraform", "cdkTf"},
+	}
 )
 
 const (
 	yml        = ".yml"
 	yaml       = ".yaml"
 	json       = ".json"
+	sh         = ".sh"
 	arm        = "azureresourcemanager"
 	kubernetes = "kubernetes"
 	terraform  = "terraform"
@@ -87,6 +99,11 @@ const (
 // regexSlice is a struct to contain a slice of regex
 type regexSlice struct {
 	regex []*regexp.Regexp
+}
+
+type analyzerInfo struct {
+	typesFlag []string
+	filePath  string
 }
 
 // types is a map that contains the regex by type
@@ -175,7 +192,7 @@ var types = map[string]regexSlice{
 
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
 // should be loaded based on the extension of the file and the content
-func Analyze(paths []string) (model.AnalyzedPaths, error) {
+func Analyze(paths, types []string) (model.AnalyzedPaths, error) {
 	// start metrics for file analyzer
 	metrics.Metric.Start("file_type_analyzer")
 	returnAnalyzedPaths := model.AnalyzedPaths{
@@ -216,10 +233,18 @@ func Analyze(paths []string) (model.AnalyzedPaths, error) {
 	// unwanted is the channel shared by the workers that contains the unwanted files that the parser will ignore
 	unwanted := make(chan string, len(files))
 
+	for i := range types {
+		types[i] = strings.ToLower(types[i])
+	}
+
 	for _, file := range files {
 		wg.Add(1)
 		// analyze the files concurrently
-		go worker(file, results, unwanted, &wg)
+		a := &analyzerInfo{
+			typesFlag: types,
+			filePath:  file,
+		}
+		go a.worker(results, unwanted, &wg)
 	}
 
 	go func() {
@@ -243,27 +268,33 @@ func Analyze(paths []string) (model.AnalyzedPaths, error) {
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
 // writes the answer to the results channel
 // if no types were found, the worker will write the path of the file in the unwanted channel
-func worker(path string, results, unwanted chan<- string, wg *sync.WaitGroup) {
+func (a *analyzerInfo) worker(results, unwanted chan<- string, wg *sync.WaitGroup) {
 	defer wg.Done()
-	ext := filepath.Ext(path)
+	ext := filepath.Ext(a.filePath)
 	if ext == "" {
-		ext = filepath.Base(path)
+		ext = filepath.Base(a.filePath)
 	}
+	typesFlag := a.typesFlag
+
 	switch ext {
 	// Dockerfile
 	case ".dockerfile", "Dockerfile":
-		results <- dockerfile
+		if (typesFlag[0] != "" && utils.Contains(dockerfile, typesFlag)) || typesFlag[0] == "" {
+			results <- dockerfile
+		}
 	// Terraform
 	case ".tf", "tfvars":
-		results <- terraform
+		if (typesFlag[0] != "" && utils.Contains(terraform, typesFlag)) || typesFlag[0] == "" {
+			results <- terraform
+		}
 	// GRPC
 	case ".proto":
-		results <- grpc
-	case ".sh":
-		checkContent(path, results, unwanted, ext)
-	// Cloud Formation, Ansible, OpenAPI
-	case yaml, yml, json:
-		checkContent(path, results, unwanted, ext)
+		if (typesFlag[0] != "" && utils.Contains(grpc, typesFlag)) || typesFlag[0] == "" {
+			results <- grpc
+		}
+	// Cloud Formation, Ansible, OpenAPI, Buildah
+	case yaml, yml, json, sh:
+		a.checkContent(results, unwanted, ext)
 	}
 }
 
@@ -277,9 +308,10 @@ func needsOverride(check bool, returnType, key, ext string) bool {
 
 // checkContent will determine the file type by content when worker was unable to
 // determine by ext, if no type was determined checkContent adds it to unwanted channel
-func checkContent(path string, results, unwanted chan<- string, ext string) {
+func (a *analyzerInfo) checkContent(results, unwanted chan<- string, ext string) {
+	typesFlag := a.typesFlag
 	// get file content
-	content, err := os.ReadFile(path)
+	content, err := os.ReadFile(a.filePath)
 	if err != nil {
 		log.Error().Msgf("failed to analyze file: %s", err)
 		return
@@ -291,6 +323,10 @@ func checkContent(path string, results, unwanted chan<- string, ext string) {
 	keys := make([]string, 0, len(types))
 	for k := range types {
 		keys = append(keys, k)
+	}
+
+	if typesFlag[0] != "" {
+		keys = getKeysFromTypesFlag(typesFlag)
 	}
 
 	sort.Sort(sort.Reverse(sort.StringSlice(keys)))
@@ -310,13 +346,15 @@ func checkContent(path string, results, unwanted chan<- string, ext string) {
 			returnType = key
 		}
 	}
-	returnType = checkReturnType(path, returnType, ext, content)
+	returnType = checkReturnType(a.filePath, returnType, ext, content)
 	if returnType != "" {
-		results <- returnType
-		return
+		if (typesFlag[0] != "" && utils.Contains(returnType, typesFlag)) || typesFlag[0] == "" {
+			results <- returnType
+			return
+		}
 	}
 	// No type was determined (ignore on parser)
-	unwanted <- path
+	unwanted <- a.filePath
 }
 
 func checkReturnType(path, returnType, ext string, content []byte) string {
@@ -381,4 +419,17 @@ func createSlice(chanel chan string) []string {
 		}
 	}
 	return slice
+}
+
+// getKeysFromTypesFlag gets all the regexes keys related to the types flag
+func getKeysFromTypesFlag(typesFlag []string) []string {
+	ks := make([]string, 0, len(types))
+	for i := range typesFlag {
+		t := typesFlag[i]
+
+		if regexes, ok := supportedRegexes[t]; ok {
+			ks = append(ks, regexes...)
+		}
+	}
+	return ks
 }
