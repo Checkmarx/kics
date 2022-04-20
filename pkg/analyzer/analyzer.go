@@ -71,11 +71,10 @@ var (
 		".sh":         true,
 	}
 	supportedRegexes = map[string][]string{
-		"azureresourcemanager": armRegexTypes,
+		"azureresourcemanager": append(armRegexTypes, arm),
 		"buildah":              {"buildah"},
 		"cloudformation":       {"cloudformation"},
 		"dockercompose":        {"dockercompose"},
-		"dockerfile":           {".dockerfile", "Dockerfile"},
 		"kubernetes":           {"kubernetes"},
 		"openapi":              {"openapi"},
 		"terraform":            {"terraform", "cdkTf"},
