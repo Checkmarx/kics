@@ -15,7 +15,7 @@ type CmdOutput struct {
 	Status int
 }
 
-const windows_os = "windows"
+const windowsOs = "windows"
 
 // RunCommand executes the kics in a terminal
 func RunCommand(kicsArgs []string, useDocker, useMock bool, kicsDockerImage string) (*CmdOutput, error) {
@@ -71,13 +71,13 @@ func GetKICSDockerImageName() string {
 
 // GetKICSLocalBin returns the kics local bin path
 func GetKICSLocalBin() string {
-	if runtime.GOOS == windows_os {
+	if runtime.GOOS == windowsOs {
 		return filepath.Join("..", "bin", "kics.exe")
 	}
 	return filepath.Join("..", "bin", "kics")
 }
 
-func runKicsDev(kicsArgs []string) (string, []string) {
+func runKicsDev(kicsArgs []string) (bin string, args []string) {
 	kicsRun := GetKICSLocalBin()
 	var formatArgs []string
 	for _, param := range kicsArgs {
@@ -86,7 +86,7 @@ func runKicsDev(kicsArgs []string) (string, []string) {
 	return kicsRun, formatArgs
 }
 
-func runKicsDocker(kicsArgs []string, descriptionServer, kicsDockerImage string) (string, []string) {
+func runKicsDocker(kicsArgs []string, descriptionServer, kicsDockerImage string) (docker string, args []string) {
 	cwd, cwdErr := os.Getwd()
 	if cwdErr != nil {
 		return "", []string{}

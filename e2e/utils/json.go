@@ -29,7 +29,7 @@ func prepareJSONPath(path string) string {
 	}
 
 	jsonPath := "file://" + filepath.Join(cwd, path)
-	if runtime.GOOS == windows_os {
+	if runtime.GOOS == windowsOs {
 		jsonPath = strings.Replace(jsonPath, `\`, "/", -1)
 	}
 	return jsonPath
