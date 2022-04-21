@@ -57,8 +57,8 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
 <div style="min-width:55;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
         <img alt="SAM" src="img/logo-sam.png"  width="55" style="min-width:55px">&nbsp;&nbsp;&nbsp;
 </div>
-<div style="min-width:100;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <img alt="Docker Compose" src="img/logo-dockercompose.png"  width="100" style="min-width:100px">&nbsp;&nbsp;&nbsp;
+<div style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="Docker Compose" src="img/logo-dockercompose.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
 </div>
 </div>
 
