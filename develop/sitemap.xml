@@ -31,11 +31,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>http://docs.kics.io/develop/cdk/</loc>
-         <lastmod>2022-04-21</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>http://docs.kics.io/develop/certifications-cis/</loc>
          <lastmod>2022-04-21</lastmod>
          <changefreq>daily</changefreq>
