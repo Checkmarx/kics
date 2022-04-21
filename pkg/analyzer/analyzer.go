@@ -9,6 +9,7 @@ import (
 	"sync"
 
 	"github.com/Checkmarx/kics/internal/metrics"
+	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/pkg/errors"
@@ -191,7 +192,7 @@ var types = map[string]regexSlice{
 
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
 // should be loaded based on the extension of the file and the content
-func Analyze(paths, types []string) (model.AnalyzedPaths, error) {
+func Analyze(paths, types, exc []string) (model.AnalyzedPaths, error) {
 	// start metrics for file analyzer
 	metrics.Metric.Start("file_type_analyzer")
 	returnAnalyzedPaths := model.AnalyzedPaths{
@@ -219,7 +220,7 @@ func Analyze(paths, types []string) (model.AnalyzedPaths, error) {
 				ext = filepath.Base(path)
 			}
 
-			if _, ok := possibleFileTypes[ext]; ok {
+			if _, ok := possibleFileTypes[ext]; ok && !isExcludedFile(path, exc) {
 				files = append(files, path)
 			}
 
@@ -431,4 +432,21 @@ func getKeysFromTypesFlag(typesFlag []string) []string {
 		}
 	}
 	return ks
+}
+
+// isExcludedFile verifies if the path is pointed in the --exclude-paths flag
+func isExcludedFile(path string, exc []string) bool {
+	for i := range exc {
+		exclude, err := provider.GetExcludePaths(exc[i])
+		if err != nil {
+			log.Err(err).Msg("failed to get exclude paths")
+		}
+		for j := range exclude {
+			if exclude[j] == path {
+				log.Info().Msgf("Excluded file %s from analyzer", path)
+				return true
+			}
+		}
+	}
+	return false
 }

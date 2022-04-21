@@ -147,7 +147,7 @@ func analyzePaths(paths, types, exclude []string) (model.AnalyzedPaths, error) {
 	var pathsFlag model.AnalyzedPaths
 	excluded := make([]string, 0)
 
-	pathsFlag, err = analyzer.Analyze(paths, types)
+	pathsFlag, err = analyzer.Analyze(paths, types, exclude)
 	if err != nil {
 		log.Err(err)
 		return model.AnalyzedPaths{}, err
