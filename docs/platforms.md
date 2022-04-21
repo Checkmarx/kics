@@ -10,23 +10,66 @@ KICS can decrypt Ansible Vault files on the fly. For that, you need to define th
 
 ## Azure Resource Manager
 
-KICS supports scanning Azure Resource Manager (ARM) templates with `.json` extension. To build ARM JSON templates from Bicep code check the [official ARM documentation](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-cli#build) and [here](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax) to understand the differences between ARM JSON templates and Bicep
+KICS supports scanning Azure Resource Manager (ARM) templates with `.json` extension. To build ARM JSON templates from Bicep code check the [official ARM documentation](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-cli#build) and [here](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax) to understand the differences between ARM JSON templates and Bicep.
 
-## Buildah
+## CDK
+[AWS Cloud Development Kit](https://docs.aws.amazon.com/cdk/latest/guide/home.html) is a software development framework for defining cloud infrastructure in code and provisioning it through AWS CloudFormation.
 
-KICS supports scanning Buildah files with `.sh` extension.
+It has all the advantages of using [AWS CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html).
+
+KICS currently support scanning AWS Cloudformation templates. In this guide, we will describe how to scan a simple CDK defined infrastructure following the [Working With the AWS CDK in Go](https://docs.aws.amazon.com/cdk/latest/guide/work-with-cdk-go.html) documentation.
+
+Make sure all [prerequisites](https://docs.aws.amazon.com/cdk/latest/guide/work-with-cdk-go.html#go-prerequisites) are met.
+
+### Create a project
+
+1. Create a new CDK project using the CLI. e.g:
+
+```bash
+mkdir test-cdk
+cd test-cdk
+cdk init app --language go
+```
+
+2. Download dependencies
+
+```bash
+go mod download
+```
+
+3. Synthetize CloudFormation template
+
+```bash
+cdk synth > cfn-stack.yaml
+```
+
+4. Execute KICS against the template and check the results. Note that KICS will recognized it as CloudFormation (for queries purpose).
+
+```bash
+docker run -v $PWD/cfn-stack.yaml:/path/cfn-stack.yaml -it checkmarx/kics:latest scan -p /path/cfn-stack.yaml
+```
 
 ## CloudFormation
 
 KICS supports scanning CloudFormation templates with `.json` or `.yaml` extension.
 
+## Azure Blueprints
+
+KICS supports scanning Azure Blueprints files, including Azure Blueprints Policy Assignment Artifacts, Azure Blueprints Role Assignment Artifacts, and Azure Blueprints Template Artifacts with `.json` extension.
+
+Note that KICS recognizes this technology as Azure Resource Manager (for queries purpose).
+
 ## Docker
 
 KICS supports scanning Docker files named `Dockerfile` or with `.dockerfile` extension.
 
-## DockerCompose
+## Docker Compose
 
 KICS supports scanning DockerCompose files with `.yaml` extension.
+
+## gRPC
+
+KICS supports scanning gRPC files with `.proto` extension.
 
 ## Helm
 
@@ -61,9 +104,9 @@ KICS supports scanning Swagger 2.0 and OpenAPI 3.0 specs with `.json` and `.yaml
 
 KICS supports scanning Google Deployment Manager files with `.yaml` extension.
 
-## gRPC
+## SAM
 
-KICS supports scanning gRPC files with `.proto` extension.
+KICS supports AWS Serverless Application Model (AWS SAM) files with `.yaml` extension. Note that KICS recognizes this technology as CloudFormation (for queries purpose).
 
 ## Terraform
 
