@@ -279,17 +279,17 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, wg *sync.WaitGrou
 	switch ext {
 	// Dockerfile
 	case ".dockerfile", "Dockerfile":
-		if (typesFlag[0] != "" && utils.Contains(dockerfile, typesFlag)) || typesFlag[0] == "" {
+		if typesFlag[0] == "" || utils.Contains(dockerfile, typesFlag) {
 			results <- dockerfile
 		}
 	// Terraform
 	case ".tf", "tfvars":
-		if (typesFlag[0] != "" && utils.Contains(terraform, typesFlag)) || typesFlag[0] == "" {
+		if typesFlag[0] == "" || utils.Contains(terraform, typesFlag) {
 			results <- terraform
 		}
 	// GRPC
 	case ".proto":
-		if (typesFlag[0] != "" && utils.Contains(grpc, typesFlag)) || typesFlag[0] == "" {
+		if typesFlag[0] == "" || utils.Contains(grpc, typesFlag) {
 			results <- grpc
 		}
 	// Cloud Formation, Ansible, OpenAPI, Buildah
@@ -348,7 +348,7 @@ func (a *analyzerInfo) checkContent(results, unwanted chan<- string, ext string)
 	}
 	returnType = checkReturnType(a.filePath, returnType, ext, content)
 	if returnType != "" {
-		if (typesFlag[0] != "" && utils.Contains(returnType, typesFlag)) || typesFlag[0] == "" {
+		if typesFlag[0] == "" || utils.Contains(returnType, typesFlag) {
 			results <- returnType
 			return
 		}
