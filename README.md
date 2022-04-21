@@ -42,6 +42,7 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <br>
 <img alt="Cloud Deployment Kit" src="docs/img/logo-cdk.png" width="150">&nbsp;&nbsp;&nbsp;
 <img alt="SAM" src="docs/img/logo-sam.png" width="55">&nbsp;&nbsp;&nbsp;
+<img alt="Docker Compose" src="docs/img/logo-dockercompose.png" width="100">&nbsp;&nbsp;&nbsp;
 
 Support of other solutions and additional cloud providers are on the [roadmap](docs/roadmap.md).
 
