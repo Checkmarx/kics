@@ -21,16 +21,14 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.edf004c2.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/main.edf004c2.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
         
-      
     
     
     
-      
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
@@ -60,7 +58,7 @@
   
     
     
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)</script>
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -448,16 +446,6 @@
               
   
   
-  
-
-  
-
-            
-          
-            
-              
-  
-  
     
   
   
@@ -508,8 +496,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#cdk" class="md-nav__link">
+    CDK
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cloudformation" class="md-nav__link">
     CloudFormation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure_blueprints" class="md-nav__link">
+    Azure Blueprints
   </a>
   
 </li>
@@ -541,7 +543,7 @@
   </a>
   
 </li>
-      
+            
         <li class="md-nav__item">
   <a href="#terraform" class="md-nav__link">
     Terraform
@@ -561,10 +563,10 @@
       <a href="../architecture/" class="md-nav__link">
         Architecture
       </a>
-    </li>      
-            
-              
+    </li>
   
+
+             
   
   
     <li class="md-nav__item">
@@ -712,6 +714,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../queries/common-queries/" class="md-nav__link">
+        Common
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../queries/ansible-queries/" class="md-nav__link">
         Ansible
       </a>
@@ -782,8 +798,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../queries/terraform-queries/" class="md-nav__link">
-        Terraform
+      <a href="../queries/openapi-queries/" class="md-nav__link">
+        OpenAPI
       </a>
     </li>
   
@@ -796,8 +812,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../queries/openapi-queries/" class="md-nav__link">
-        OpenAPI
+      <a href="../queries/terraform-queries/" class="md-nav__link">
+        Terraform
       </a>
     </li>
   
@@ -1026,7 +1042,7 @@
   
 
             
-          
+                   
         </ul>
       </nav>
     </li>
@@ -1223,8 +1239,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#cdk" class="md-nav__link">
+    CDK
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cloudformation" class="md-nav__link">
     CloudFormation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure_blueprints" class="md-nav__link">
+    Azure Blueprints
   </a>
   
 </li>
@@ -1235,7 +1265,7 @@
   </a>
   
 </li>
-      
+           
         <li class="md-nav__item">
   <a href="#helm" class="md-nav__link">
     Helm
@@ -1256,7 +1286,7 @@
   </a>
   
 </li>
-      
+           
         <li class="md-nav__item">
   <a href="#terraform" class="md-nav__link">
     Terraform
@@ -1276,9 +1306,9 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/Checkmarx/kics/edit/master/docs/platforms.md" title="Edit this page" class="md-content__button md-icon">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
-</a>
+  <a href="https://github.com/Checkmarx/kics/edit/master/docs/platforms.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+  </a>
 
 
 <h1 id="technologies">Technologies<a class="headerlink" href="#technologies" title="Permanent link">&para;</a></h1>
@@ -1286,9 +1316,40 @@
 <h2 id="ansible">Ansible<a class="headerlink" href="#ansible" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning Ansible files with <code>.yaml</code> extension.</p>
 <h2 id="azure_resource_manager">Azure Resource Manager<a class="headerlink" href="#azure_resource_manager" title="Permanent link">&para;</a></h2>
-<p>KICS supports scanning Azure Resource Manager (ARM) templates with <code>.json</code> extension. To build ARM JSON templates from Bicep code check the <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-cli#build">official ARM documentation</a> and <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax">here</a> to understand the differences between ARM JSON templates and Bicep</p>
+<p>KICS supports scanning Azure Resource Manager (ARM) templates with <code>.json</code> extension. To build ARM JSON templates from Bicep code check the <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-cli#build">official ARM documentation</a> and <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax">here</a> to understand the differences between ARM JSON templates and Bicep.</p>
+<h2 id="cdk">CDK<a class="headerlink" href="#cdk" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.aws.amazon.com/cdk/latest/guide/home.html">AWS Cloud Development Kit</a> is a software development framework for defining cloud infrastructure in code and provisioning it through AWS CloudFormation.</p>
+<p>It has all the advantages of using <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html">AWS CloudFormation</a>.</p>
+<p>KICS currently support scanning AWS Cloudformation templates. In this guide, we will describe how to scan a simple CDK defined infrastructure following the <a href="https://docs.aws.amazon.com/cdk/latest/guide/work-with-cdk-go.html">Working With the AWS CDK in Go</a> documentation.</p>
+<p>Make sure all <a href="https://docs.aws.amazon.com/cdk/latest/guide/work-with-cdk-go.html#go-prerequisites">prerequisites</a> are met.</p>
+<h3 id="create_a_project">Create a project<a class="headerlink" href="#create_a_project" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Create a new CDK project using the CLI. e.g:</li>
+</ol>
+<pre><code class="language-bash">mkdir test-cdk
+cd test-cdk
+cdk init app --language go
+</code></pre>
+<ol>
+<li>Download dependencies</li>
+</ol>
+<pre><code class="language-bash">go mod download
+</code></pre>
+<ol>
+<li>Synthetize CloudFormation template</li>
+</ol>
+<pre><code class="language-bash">cdk synth &gt; cfn-stack.yaml
+</code></pre>
+<ol>
+<li>Execute KICS against the template and check the results. Note that KICS will recognized it as CloudFormation (for queries purpose).</li>
+</ol>
+<pre><code class="language-bash">docker run -v $PWD/cfn-stack.yaml:/path/cfn-stack.yaml -it checkmarx/kics:latest scan -p /path/cfn-stack.yaml
+</code></pre>
 <h2 id="cloudformation">CloudFormation<a class="headerlink" href="#cloudformation" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning CloudFormation templates with <code>.json</code> or <code>.yaml</code> extension.</p>
+<h2 id="azure_blueprints">Azure Blueprints<a class="headerlink" href="#azure_blueprints" title="Permanent link">&para;</a></h2>
+<p>KICS supports scanning Azure Blueprints files, including Azure Blueprints Policy Assignment Artifacts, Azure Blueprints Role Assignment Artifacts, and Azure Blueprints Template Artifacts with <code>.json</code> extension.</p>
+<p>Note that KICS recognizes this technology as Azure Resource Manager (for queries purpose).</p>
 <h2 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning Docker files named <code>Dockerfile</code> or with <code>.dockerfile</code> extension.</p>
 <h2 id="helm">Helm<a class="headerlink" href="#helm" title="Permanent link">&para;</a></h2>
@@ -1309,7 +1370,7 @@ Platform: Kubernetes
 <h2 id="kubernetes">Kubernetes<a class="headerlink" href="#kubernetes" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning Kubernetes manifests with <code>.yaml</code> extension.</p>
 <h2 id="openapi">OpenAPI<a class="headerlink" href="#openapi" title="Permanent link">&para;</a></h2>
-<p>KICS supports scanning OpenAPI 3.0 specs with <code>.json</code> and <code>.yaml</code> extension.</p>
+<p>KICS supports scanning Swagger 2.0 and OpenAPI 3.0 specs with <code>.json</code> and <code>.yaml</code> extension.</p>
 <h2 id="terraform">Terraform<a class="headerlink" href="#terraform" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning Terraform's HCL files with <code>.tf</code> extension and input variables using <code>terraform.tfvars</code> or files with <code>.auto.tfvars</code> extension that are in same directory of <code>.tf</code> files.</p>
 <h3 id="terraform_plan">Terraform Plan<a class="headerlink" href="#terraform_plan" title="Permanent link">&para;</a></h3>
@@ -1323,8 +1384,8 @@ Platform: Kubernetes
 <p>Currently, KICS does not support unofficial or custom modules.</p>
 <h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
 <h4 id="ansible_1">Ansible<a class="headerlink" href="#ansible_1" title="Permanent link">&para;</a></h4>
-<p>At the moment, KICS does not support a robust approach to identifying Ansible samples. The identification of these samples is done through exclusion. When a YAML sample is not a CloudFormation, Helm, Kubernetes or OpenAPI sample, KICS recognize it as Ansible. </p>
-<p>Thus, KICS recognize other YAML samples (that are not Ansible) as Ansible, e.g. GitHub Actions samples. However, you can ignore these samples by writing <code>#kics-scan ignore</code> on the top of the file. For more details, please read this <a href="https://github.com/Checkmarx/kics/blob/25b6b703e924ed42067d9ab7772536864aee900b/docs/running-kics.md#using-commands-on-scanned-files-as-comments">documentation</a>. </p>
+<p>At the moment, KICS does not support a robust approach to identifying Ansible samples. The identification of these samples is done through exclusion. When a YAML sample is not a CloudFormation, Helm, Kubernetes or OpenAPI sample, KICS recognize it as Ansible.</p>
+<p>Thus, KICS recognize other YAML samples (that are not Ansible) as Ansible, e.g. GitHub Actions samples. However, you can ignore these samples by writing <code>#kics-scan ignore</code> on the top of the file. For more details, please read this <a href="https://github.com/Checkmarx/kics/blob/25b6b703e924ed42067d9ab7772536864aee900b/docs/running-kics.md#using-commands-on-scanned-files-as-comments">documentation</a>.</p>
 <h4 id="terraform_1">Terraform<a class="headerlink" href="#terraform_1" title="Permanent link">&para;</a></h4>
 <p>Although KICS support variables and interpolations, KICS does not support functions and enviroment variables. In case of variables used as function parameters, it will parse as wrapped expression, so the following function call:</p>
 <pre><code class="language-hcl">resource &quot;aws_launch_configuration&quot; &quot;example&quot; {
@@ -1355,7 +1416,7 @@ Platform: Kubernetes
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../architecture/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Architecture" rel="prev">
+        <a href="../results/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Results" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1364,28 +1425,14 @@ Platform: Kubernetes
               <span class="md-footer__direction">
                 Previous
               </span>
-              Architecture
+              Results
             </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../changes/" class="md-footer__link md-footer__link--next" aria-label="Next: Changes in v1.3.0" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Changes in v1.3.0
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
           </div>
         </a>
       
     </nav>
+        
+
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1414,7 +1461,7 @@ Platform: Kubernetes
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.0bbba5b5.min.js", "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.e1a181d9.min.js"></script>
+    <script src="../assets/javascripts/bundle.e1a181d9.min.js"></script>
       
         <script src="../js/version-mike.js"></script>
       

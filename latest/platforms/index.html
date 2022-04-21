@@ -499,8 +499,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#buildah" class="md-nav__link">
-    Buildah
+  <a href="#cdk" class="md-nav__link">
+    CDK
   </a>
   
 </li>
@@ -513,6 +513,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#azure_blueprints" class="md-nav__link">
+    Azure Blueprints
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#docker" class="md-nav__link">
     Docker
   </a>
@@ -520,8 +527,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dockercompose" class="md-nav__link">
-    DockerCompose
+  <a href="#docker_compose" class="md-nav__link">
+    Docker Compose
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grpc" class="md-nav__link">
+    gRPC
   </a>
   
 </li>
@@ -555,8 +569,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#grpc" class="md-nav__link">
-    gRPC
+  <a href="#sam" class="md-nav__link">
+    SAM
   </a>
   
 </li>
@@ -755,6 +769,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../queries/common-queries/" class="md-nav__link">
+        Common
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../queries/ansible-queries/" class="md-nav__link">
         Ansible
       </a>
@@ -811,6 +839,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../queries/dockercompose-queries/" class="md-nav__link">
+        Docker Compose
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../queries/kubernetes-queries/" class="md-nav__link">
         Kubernetes
       </a>
@@ -825,8 +867,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../queries/terraform-queries/" class="md-nav__link">
-        Terraform
+      <a href="../queries/openapi-queries/" class="md-nav__link">
+        OpenAPI
       </a>
     </li>
   
@@ -839,8 +881,36 @@
   
   
     <li class="md-nav__item">
-      <a href="../queries/openapi-queries/" class="md-nav__link">
-        OpenAPI
+      <a href="../queries/googledeploymentmanager-queries/" class="md-nav__link">
+        Google Deployment Manager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../queries/grpc-queries/" class="md-nav__link">
+        gRPC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../queries/terraform-queries/" class="md-nav__link">
+        Terraform
       </a>
     </li>
   
@@ -1322,8 +1392,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#buildah" class="md-nav__link">
-    Buildah
+  <a href="#cdk" class="md-nav__link">
+    CDK
   </a>
   
 </li>
@@ -1336,6 +1406,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#azure_blueprints" class="md-nav__link">
+    Azure Blueprints
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#docker" class="md-nav__link">
     Docker
   </a>
@@ -1343,8 +1420,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dockercompose" class="md-nav__link">
-    DockerCompose
+  <a href="#docker_compose" class="md-nav__link">
+    Docker Compose
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grpc" class="md-nav__link">
+    gRPC
   </a>
   
 </li>
@@ -1378,8 +1462,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#grpc" class="md-nav__link">
-    gRPC
+  <a href="#sam" class="md-nav__link">
+    SAM
   </a>
   
 </li>
@@ -1415,15 +1499,46 @@
 <p>KICS supports scanning Ansible files with <code>.yaml</code> extension.</p>
 <p>KICS can decrypt Ansible Vault files on the fly. For that, you need to define the environment variable <code>ANSIBLE_VAULT_PASSWORD_FILE</code>.</p>
 <h2 id="azure_resource_manager">Azure Resource Manager<a class="headerlink" href="#azure_resource_manager" title="Permanent link">&para;</a></h2>
-<p>KICS supports scanning Azure Resource Manager (ARM) templates with <code>.json</code> extension. To build ARM JSON templates from Bicep code check the <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-cli#build">official ARM documentation</a> and <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax">here</a> to understand the differences between ARM JSON templates and Bicep</p>
-<h2 id="buildah">Buildah<a class="headerlink" href="#buildah" title="Permanent link">&para;</a></h2>
-<p>KICS supports scanning Buildah files with <code>.sh</code> extension.</p>
+<p>KICS supports scanning Azure Resource Manager (ARM) templates with <code>.json</code> extension. To build ARM JSON templates from Bicep code check the <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-cli#build">official ARM documentation</a> and <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax">here</a> to understand the differences between ARM JSON templates and Bicep.</p>
+<h2 id="cdk">CDK<a class="headerlink" href="#cdk" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.aws.amazon.com/cdk/latest/guide/home.html">AWS Cloud Development Kit</a> is a software development framework for defining cloud infrastructure in code and provisioning it through AWS CloudFormation.</p>
+<p>It has all the advantages of using <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html">AWS CloudFormation</a>.</p>
+<p>KICS currently support scanning AWS Cloudformation templates. In this guide, we will describe how to scan a simple CDK defined infrastructure following the <a href="https://docs.aws.amazon.com/cdk/latest/guide/work-with-cdk-go.html">Working With the AWS CDK in Go</a> documentation.</p>
+<p>Make sure all <a href="https://docs.aws.amazon.com/cdk/latest/guide/work-with-cdk-go.html#go-prerequisites">prerequisites</a> are met.</p>
+<h3 id="create_a_project">Create a project<a class="headerlink" href="#create_a_project" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Create a new CDK project using the CLI. e.g:</li>
+</ol>
+<pre><code class="language-bash">mkdir test-cdk
+cd test-cdk
+cdk init app --language go
+</code></pre>
+<ol>
+<li>Download dependencies</li>
+</ol>
+<pre><code class="language-bash">go mod download
+</code></pre>
+<ol>
+<li>Synthetize CloudFormation template</li>
+</ol>
+<pre><code class="language-bash">cdk synth &gt; cfn-stack.yaml
+</code></pre>
+<ol>
+<li>Execute KICS against the template and check the results. Note that KICS will recognized it as CloudFormation (for queries purpose).</li>
+</ol>
+<pre><code class="language-bash">docker run -v $PWD/cfn-stack.yaml:/path/cfn-stack.yaml -it checkmarx/kics:latest scan -p /path/cfn-stack.yaml
+</code></pre>
 <h2 id="cloudformation">CloudFormation<a class="headerlink" href="#cloudformation" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning CloudFormation templates with <code>.json</code> or <code>.yaml</code> extension.</p>
+<h2 id="azure_blueprints">Azure Blueprints<a class="headerlink" href="#azure_blueprints" title="Permanent link">&para;</a></h2>
+<p>KICS supports scanning Azure Blueprints files, including Azure Blueprints Policy Assignment Artifacts, Azure Blueprints Role Assignment Artifacts, and Azure Blueprints Template Artifacts with <code>.json</code> extension.</p>
+<p>Note that KICS recognizes this technology as Azure Resource Manager (for queries purpose).</p>
 <h2 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning Docker files named <code>Dockerfile</code> or with <code>.dockerfile</code> extension.</p>
-<h2 id="dockercompose">DockerCompose<a class="headerlink" href="#dockercompose" title="Permanent link">&para;</a></h2>
+<h2 id="docker_compose">Docker Compose<a class="headerlink" href="#docker_compose" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning DockerCompose files with <code>.yaml</code> extension.</p>
+<h2 id="grpc">gRPC<a class="headerlink" href="#grpc" title="Permanent link">&para;</a></h2>
+<p>KICS supports scanning gRPC files with <code>.proto</code> extension.</p>
 <h2 id="helm">Helm<a class="headerlink" href="#helm" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning Helm by rendering charts and running Kubernetes queries against the rendered manifest.</p>
 <p>The charts file structure must be as explained by Helm: https://helm.sh/docs/topics/charts/#the-chart-file-structure.</p>
@@ -1445,8 +1560,8 @@ Platform: Kubernetes
 <p>KICS supports scanning Swagger 2.0 and OpenAPI 3.0 specs with <code>.json</code> and <code>.yaml</code> extension.</p>
 <h2 id="google_deployment_manager">Google Deployment Manager<a class="headerlink" href="#google_deployment_manager" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning Google Deployment Manager files with <code>.yaml</code> extension.</p>
-<h2 id="grpc">gRPC<a class="headerlink" href="#grpc" title="Permanent link">&para;</a></h2>
-<p>KICS supports scanning gRPC files with <code>.proto</code> extension.</p>
+<h2 id="sam">SAM<a class="headerlink" href="#sam" title="Permanent link">&para;</a></h2>
+<p>KICS supports AWS Serverless Application Model (AWS SAM) files with <code>.yaml</code> extension. Note that KICS recognizes this technology as CloudFormation (for queries purpose).</p>
 <h2 id="terraform">Terraform<a class="headerlink" href="#terraform" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning Terraform's HCL files with <code>.tf</code> extension and input variables using <code>terraform.tfvars</code> or files with <code>.auto.tfvars</code> extension that are in same directory of <code>.tf</code> files.</p>
 <h3 id="terraform_plan">Terraform Plan<a class="headerlink" href="#terraform_plan" title="Permanent link">&para;</a></h3>
