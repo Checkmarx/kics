@@ -12,7 +12,7 @@ CxPolicy[result] {
 	statement := st[_]
 	statement.Effect == "Allow"
     terra_lib.anyPrincipal(statement)
-    common_lib.containsOrInArrayContains(statement.Action, "deletebucket")
+    common_lib.containsOrInArrayContains(statement.Action, "delete")
 	
 	result := {
 		"documentId": input.document[i].id,
