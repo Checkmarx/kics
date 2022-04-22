@@ -1,17 +1,12 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as terra_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_sqs_queue_policy[name]
 
-	policy := common_lib.json_unmarshal(resource.policy)
-
-	st := common_lib.get_statement(policy)
-	statement := st[_]
-
-	common_lib.is_allow_effect(statement)
-	common_lib.equalsOrInArray(statement.Action, "*")
+	terra_lib.allows_action_from_all_principals(resource.policy, "*")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -27,13 +22,7 @@ CxPolicy[result] {
 	module := input.document[i].module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_sqs_queue_policy", "policy")
 
-	policy := common_lib.json_unmarshal(module[keyToCheck])
-
-	st := common_lib.get_statement(policy)
-	statement := st[_]
-
-	common_lib.is_allow_effect(statement)
-	common_lib.equalsOrInArray(statement.Action, "*")
+	terra_lib.allows_action_from_all_principals(module[keyToCheck], "*")
 
 	result := {
 		"documentId": input.document[i].id,
