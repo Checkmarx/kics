@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cluster-secrets
+data:
+  # Fill with your encoded base64 CA
+  certificate-authority-data: Cg==
+stringData:
+  # Fill with your string Token
+  bearerToken: "my-token"
+---
+apiVersion: external-secrets.io/v1beta1
+kind: SecretStore
+metadata:
+  name: example
+spec:
+  provider:
+      kubernetes: 
+        # If not remoteNamesapce is provided, default     namespace is used
+        remoteNamespace: remote-namespace
+        server: 
+          url: https://remote.kubernetes.api-server.address
+          # Add your encoded base64 to caBundle
+          caBundle: Cg==
+        auth:
+          # Adds referenced bearerToken
+          token:
+            bearerToken:
+              name: cluster-secrets
+              key: bearerToken
