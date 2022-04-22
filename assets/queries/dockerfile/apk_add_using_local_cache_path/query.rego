@@ -1,11 +1,13 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	command := input.document[i].command[name][_]
 	command.Cmd == "run"
 
 	# Split the commands (e.g., RUN command1 && command2 && command3)
-	runCommands := split(command.Value[0], "&&")
+	runCommands := dockerLib.getCommands(command.Value[0])
 	containsApkAddWithoutNoCache(runCommands)
 
 	result := {

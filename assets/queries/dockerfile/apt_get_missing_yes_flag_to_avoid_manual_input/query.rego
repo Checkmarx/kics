@@ -9,7 +9,7 @@ CxPolicy[result] {
 	count(resource.Value) == 1
 
 	commands := resource.Value[j]
-	command := split(commands, "&&")[_]
+	command := dockerLib.getCommands(commands)[_]
 	isAptGet(command)
 
 	not avoidManualInput(command)

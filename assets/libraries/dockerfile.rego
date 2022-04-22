@@ -39,6 +39,12 @@ getPackages(commands, command) = output {
 	output = packages
 }
 
+getCommands(commands) = output{
+	output := split(commands, "&&")
+} else = output{
+	output := split(commands, "; ")
+}
+
 withVersion(pack) {
 	regex.match("[A-Za-z0-9_-]+[-:][$](.+)", pack)
 }
