@@ -12,15 +12,14 @@ CxPolicy[result] {
 	statement := st[_]
 	statement.Effect == "Allow"
     terra_lib.anyPrincipal(statement)
-    action := statement.Action
-    contains(action[a],"DeleteBucket")
+    common_lib.containsOrInArrayContains(statement.Action, "deletebucket")
 	
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("alicloud_oss_bucket[%s].policy",[name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.policy to not accept delete action from all principals",[name]),
-		"keyActualValue": sprintf("%s.policy accepts delete action from all principals",[name]),
+		"keyExpectedValue": sprintf("alicloud_oss_bucket[%s].policy to not accept delete action from all principals",[name]),
+		"keyActualValue": sprintf("alicloud_oss_bucket[%s].policy accepts delete action from all principals",[name]),
         "searchLine":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "policy"], []),
 	}
 }
