@@ -7,12 +7,7 @@ CxPolicy[result] {
 
 	json_policy := input.document[i].resource.alicloud_oss_bucket[name].policy
     
-    policy := common_lib.json_unmarshal(json_policy)
-	st := common_lib.get_statement(policy)
-	statement := st[_]
-	statement.Effect == "Allow"
-    terra_lib.anyPrincipal(statement)
-    common_lib.containsOrInArrayContains(statement.Action, "delete")
+    terra_lib.allows_action_from_all_principals(json_policy, "delete")
 	
 	result := {
 		"documentId": input.document[i].id,
