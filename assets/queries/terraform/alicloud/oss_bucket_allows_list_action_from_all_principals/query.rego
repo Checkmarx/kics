@@ -13,8 +13,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("alicloud_oss_bucket[%s].policy",[name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("alicloud_oss_bucket[%s].policy to not accept delete action from all principals",[name]),
-		"keyActualValue": sprintf("alicloud_oss_bucket[%s].policy accepts delete action from all principals",[name]),
+		"keyExpectedValue": sprintf("alicloud_oss_bucket[%s].policy to not accept list action from all principals",[name]),
+		"keyActualValue": sprintf("alicloud_oss_bucket[%s].policy accepts list action from all principals",[name]),
         "searchLine":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "policy"], []),
 	}
 }
