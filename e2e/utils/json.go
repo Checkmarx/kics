@@ -196,6 +196,17 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 		for i := range actualI.Queries {
 			actualQuery := actualI.Queries[i]
 			expectQuery := expectI.Queries[i]
+
+			require.Equal(t, actualQuery.QueryName, expectQuery.QueryName,
+				"Expected Result queries doesn't match the actual result queries [in the index: %d]."+
+					"\nExpected File: 'fixtures/%s'.\nActual File: 'output/%s'.",
+				i, expectFileName, actualFileName)
+
+			require.Equal(t, len(actualQuery.Files), len(expectQuery.Files),
+				"Expected query results doesn't match the actual query results [query: %s]."+
+					"\nExpected File: 'fixtures/%s'.\nActual File: 'output/%s'.",
+				actualQuery.QueryName, expectFileName, actualFileName)
+
 			for j := range actualI.Queries[i].Files {
 				actualQuery.Files[j].FileName = ""
 				expectQuery.Files[j].FileName = ""
