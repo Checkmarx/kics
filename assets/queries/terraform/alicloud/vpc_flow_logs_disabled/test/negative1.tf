@@ -4,7 +4,7 @@ resource "alicloud_vpc" "main" {
 }
 
 resource "alicloud_vpc_flow_log" "default" {
-  depends_on     = ["alicloud_vpc.default"]
+  depends_on     = ["alicloud_vpc.main"]
   resource_id    = alicloud_vpc.main.id
   resource_type  = "VPC"
   traffic_type   = "All"

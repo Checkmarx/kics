@@ -19,17 +19,3 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_vpc", name_vpc], []),
 	}
 }
-
-CxPolicy[result] {
-	alicloudFlowLogsId := input.document[i].resource.alicloud_vpc_flow_log[name_logs]
-	not common_lib.valid_key(alicloudFlowLogsId, "resource_id")
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("alicloud_vpc_flow_log[%s]", [name_logs]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("alicloud_vpc_flow_log[%s].vpc_id is defined and not null", [name_logs]),
-		"keyActualValue": sprintf("alicloud_vpc_flow_log[%s].vpc_id is undefined or null", [name_logs]),
-		"searchLine": common_lib.build_search_line(["resource", "alicloud_vpc_flow_log", name_logs], []),
-	}
-}
