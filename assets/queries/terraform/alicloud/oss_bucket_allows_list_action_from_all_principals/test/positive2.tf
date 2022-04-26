@@ -1,5 +1,5 @@
-resource "alicloud_oss_bucket" "bucket-policy3" {
-  bucket = "bucket-3-policy"
+resource "alicloud_oss_bucket" "bucket-policy5" {
+  bucket = "bucket-5-policy"
   acl    = "private"
 
   policy = <<POLICY
