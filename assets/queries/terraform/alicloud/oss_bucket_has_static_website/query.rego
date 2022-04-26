@@ -13,8 +13,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("alicloud_oss_bucket[%s].website", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "For the resource 'website' to not be used.",
-		"keyActualValue": "The resource 'website' is being used.",
+		"keyExpectedValue": "'website' to not be used.",
+		"keyActualValue": "'website' is being used.",
         "searchLine":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "website"], []),
 	}
 }
