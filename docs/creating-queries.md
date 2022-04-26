@@ -293,7 +293,20 @@ If the **query.rego** file implements more than one query, the **metadata.json**
 Filling query.rego:
 
 - `documentId` id of the sample where the vulnerability occurs
-- `searchKey` should indicate where the breaking point occurs in the sample
+- `searchKey` uses Levenshtein distance to go through the original document. It should “include” as much information as possible so that the result is as accurate as possible. 
+
+    Note the following special chars:
+    - '='    -> value
+    - '.'    -> break line
+    - '{{ }}' -> ignore special chars
+    - '[ ]'   -> same line
+
+    As an example, take a look at the following sample:
+
+    ![image](https://user-images.githubusercontent.com/74001161/164218408-fd89bbc0-1bbc-40be-8d18-95b8216c9051.png)
+
+    If we want to point to the field 'Name' set as 'My.bucket' of 'tags', the searchKey should be set to `resource[positive].tags.Name={{My.bucket}}`
+
 - `issueType` pick one of the following:
     - IncorrectValue
     - MissingAttribute
