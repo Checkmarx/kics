@@ -3,7 +3,7 @@
   "queryName": "VPC Flow Logs Disabled",
   "severity": "MEDIUM",
   "category": "Observability",
-  "descriptionText": "Every VPC resource should have associated Flow Log",
+  "descriptionText": "Every VPC resource should have an associated Flow Log",
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/vpc_flow_log",
   "platform": "Terraform",
   "descriptionID": "2841dac6",
