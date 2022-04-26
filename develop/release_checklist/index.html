@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/release_checklist/">
       
       <link rel="icon" href="../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.9">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.120efc48.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.8c5ef100.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.9647289d.min.css">
@@ -1243,18 +1243,15 @@
 <li>Prepare release (run prepare-release action)</li>
 <li>Use prepare release pull request (<code>docs: preparing for release</code>) to bump UBI8 image version label in the <a href="https://github.com/Checkmarx/kics/blob/master/Dockerfile.ubi8">Dockerfile.ubi8</a> and <a href="https://github.com/Checkmarx/kics/blob/master/docs/index.md">index.md</a></li>
 <li>Review and merge prepare-release pull-request</li>
-<li>
-<p>Create and push new version git tag</p>
-<ul>
+<li>Create and push a new version git tag<ul>
 <li>Be sure you configure <a href="https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification">commit signature verification</a></li>
 <li>In the master branch, run <code>git tag &lt;tag_version&gt;</code> and <code>git push -u origin &lt;tag_version&gt;</code></li>
 </ul>
 </li>
-<li>
-<p>Test pre-release manually on each platform</p>
-</li>
+<li>Test pre-release manually on each platform</li>
+<li>In <a href="https://github.com/Checkmarx/kics/tags">Tags</a>, create the release for the target version. Do not forget to select "Create a discussion for this release" and check if it was created.</li>
 <li>Check if <code>update-docs-release</code>, <code>update-infra-version</code>, and <code>release-docker-image</code> workflow completed with success</li>
-<li>Check if image is published in <a href="https://hub.docker.com/r/checkmarx/kics">dockerhub</a> / update hub documentation if changed</li>
+<li>Check if the image is published in <a href="https://hub.docker.com/r/checkmarx/kics">dockerhub</a> / update hub documentation if changed</li>
 <li>Push image to Red Hat</li>
 </ol>
 
@@ -1294,7 +1291,7 @@
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.6e54b5cd.min.js"></script>
+      <script src="../assets/javascripts/bundle.748e2769.min.js"></script>
       
         <script src="../js/version-mike.js"></script>
       
