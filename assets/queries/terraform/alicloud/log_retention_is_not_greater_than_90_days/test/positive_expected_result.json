@@ -8,13 +8,7 @@
     {
       "queryName": "Log Retention Is Not Greater Than 90 Days",
       "severity": "MEDIUM",
-      "line": 1,
-      "fileName": "positive2.tf"
-    },
-    {
-      "queryName": "Log Retention Is Not Greater Than 90 Days",
-      "severity": "MEDIUM",
       "line": 9,
-      "fileName": "positive3.tf"
+      "fileName": "positive2.tf"
     }
   ]

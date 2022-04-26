@@ -30,21 +30,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("For a log storing resource to exist and have retetion period set to 90+ days.", [name]),
 		"keyActualValue": sprintf("The retention period for the resource %s is not over 90 days", [name]),
-        "searchLine": common_lib.build_search_line(["resource", "alicloud_disk", name, "encrypted"], []),
-	}
-}
-
-CxPolicy[result] {
-
-	resource := input.document[i].resource
-    not common_lib.valid_key(resource, "alicloud_log_store")
-    
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": "alicloud_log_store",
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "For a log storing resource to exist",
-		"keyActualValue": "There is no log storing resource",
-        "searchLine": common_lib.build_search_line(["resource"], []),
+        "searchLine": common_lib.build_search_line(["resource", "alicloud_log_store", name, "retention_period"], []),
 	}
 }
