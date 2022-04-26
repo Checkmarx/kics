@@ -590,3 +590,13 @@ has_relation(related_resource_id, related_resource_type, current_resource, curre
 	is_string(value)
 	regex.match(sprintf("\\${%v\\.%v\\.", [related_resource_type, related_resource_id]), value)
 }
+
+#Checks if an action is allowed for all principals
+allows_action_from_all_principals(json_policy, action) {
+ 	policy := common_lib.json_unmarshal(json_policy)
+	st := common_lib.get_statement(policy)
+	statement := st[_]
+	statement.Effect == "Allow"
+    anyPrincipal(statement)
+    common_lib.containsOrInArrayContains(statement.Action, action)
+}
