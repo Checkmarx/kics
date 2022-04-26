@@ -1,0 +1,11 @@
+{
+  "id": "67bfdff1-31ce-4525-b564-e94368735360",
+  "queryName": "NAS File System Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "NAS File System must be encrypted",
+  "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/nas_file_system#encrypt_type",
+  "platform": "Terraform",
+  "descriptionID": "fb3675d5",
+  "cloudProvider": "alicloud"
+}
