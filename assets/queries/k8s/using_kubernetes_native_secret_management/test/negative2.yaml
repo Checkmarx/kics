@@ -9,22 +9,24 @@ stringData:
   # Fill with your string Token
   bearerToken: "my-token"
 ---
-apiVersion: external-secrets.io/v1beta1
-kind: SecretStore
+apiVersion: secrets-store.csi.x-k8s.io/v1
+kind: SecretProviderClass
 metadata:
-  name: example
+  name: azure-kvname
+  namespace: myNameSpace
 spec:
-  provider:
-      kubernetes: 
-        # If not remoteNamesapce is provided, default     namespace is used
-        remoteNamespace: remote-namespace
-        server: 
-          url: https://remote.kubernetes.api-server.address
-          # Add your encoded base64 to caBundle
-          caBundle: Cg==
-        auth:
-          # Adds referenced bearerToken
-          token:
-            bearerToken:
-              name: cluster-secrets
-              key: bearerToken
+  provider: azure
+  parameters:
+    usePodIdentity: "true"              
+    keyvaultName: "<key Vault Name>"               
+    objects:  
+      array:
+        - {objectName: secret1, objectType: secret}
+        - {objectName: key1 , objectType: key}                                      
+    tenantId: "<tenant ID which the Key Vault sits under"            
+  secretObjects:                             
+  - secretName: appsecrets   
+    data:
+    - key: secret1                          
+      objectName: secret1                                        
+    type: Opaque  

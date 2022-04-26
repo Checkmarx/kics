@@ -8,26 +8,3 @@ data:
 stringData:
   # Fill with your string Token
   bearerToken: "my-token"
----
-apiVersion: external-secrets.io/v1beta1
-kind: SecretStore
-metadata:
-  name: example
-spec:
-  provider:
-      kubernetes: 
-        server: 
-          # referenced caProvider
-          caProvider: 
-            type: Secret
-            name : cluster-secrets
-            key: certificate-authority-data
-        auth:
-          # referenced client certificates
-          cert:
-            clientCert: 
-                name: cluster-secrets
-                key: certificate
-            clientKey: 
-                name: cluster-secrets
-                key: key

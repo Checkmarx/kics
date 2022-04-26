@@ -7,7 +7,6 @@ CxPolicy[result] {
 	kind := document.kind
 	kind == "Secret"
 	
-    not hasExternalStorageViaSecretStore(input)
     not hasExternalStorageSecretProviderClass(input)
 
 	result := {
@@ -18,13 +17,6 @@ CxPolicy[result] {
 		"keyActualValue": "External secret storage is not in use",
 		"searchLine": common_lib.build_search_line(["metadata", "name"], [])
 	}
-}
-
-hasExternalStorageViaSecretStore(input_data){
-	document := input_data.document[i]
-	document.kind == "SecretStore"
-	provider := document.spec.provider[_]		
-	common_lib.valid_key(provider.server, "url")
 }
 
 hasExternalStorageSecretProviderClass(input_data){
