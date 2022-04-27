@@ -750,11 +750,11 @@ CSV reports follow the [CSV structure](https://www.loc.gov/preservation/digital/
 | EC2 Sensitive Port Is Publicly Exposed         | 494b03d3-bf40-4464-8524-7c56ad0700ed | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html | HIGH     | CloudFormation | AWS            | Networking and Firewall | 680b7e89       | The EC2 instance has a sensitive port connection exposed to the entire network |                    |                       |                      | ../../assets/queries/cloudFormation/aws/security_groups_with_unrestricted_access_to_ssh/test/positive1.yaml | a93a3f7320a60045c04cd950500a1c3cff5bc9a4aae7f1e0cde73033386e1242 | 15   | IncorrectValue | Resources.InstanceSecurityGroup.SecurityGroupIngress            | 0           | TCP,22       | SSH (TCP:22) should not be allowed in EC2 security group for instance Ec2Instance       | SSH (TCP:22) is allowed in EC2 security group for instance Ec2Instance                 |
 | Security Group With Unrestricted Access To SSH | 6e856af2-62d7-4ba2-adc1-73b62cef9cc1 | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html | HIGH     | CloudFormation | AWS            | Networking and Firewall | d515d6dc       | Security Groups allows all traffic for SSH (port:22)                           |                    |                       |                      | ../../assets/queries/cloudFormation/aws/security_groups_with_unrestricted_access_to_ssh/test/positive1.yaml | ca8ec85623eed6a5cb3d3b8c1b69d145778e28517d2adf5fb856a57f9870c430 | 15   | IncorrectValue | Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress | 0           |              | None of the Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress has port 22 | One of the Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress has port 22 |
 
-## Code Quality
+## Code Climate
 
-You can export code quality report by using `--report-formats "codequality"`. The generated report file will have a prefix `codequality-`.
+You can export code quality report by using `--report-formats "codeclimate"`. The generated report file will have a prefix `codeclimate-`.
 
-Code quality report follow the [Code Quality Spec](https://github.com/codeclimate/platform/blob/master/spec/analyzers/SPEC.md).
+Code climate report follow the [Code Climate Spec](https://github.com/codeclimate/platform/blob/master/spec/analyzers/SPEC.md).
 
 ```json
 [

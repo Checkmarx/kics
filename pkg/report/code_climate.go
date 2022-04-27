@@ -6,9 +6,9 @@ import (
 	reportModel "github.com/Checkmarx/kics/pkg/report/model"
 )
 
-func PrintCodeQualityReport(path, filename string, body interface{}) error {
-	if !strings.HasPrefix(filename, "codequality") {
-		filename = "codequality-" + filename
+func PrintCodeClimateReport(path, filename string, body interface{}) error {
+	if !strings.HasPrefix(filename, "codeclimate") {
+		filename = "codeclimate-" + filename
 	}
 
 	if body != "" {
@@ -17,7 +17,7 @@ func PrintCodeQualityReport(path, filename string, body interface{}) error {
 			return err
 		}
 
-		body = reportModel.BuildCodeQualityReport(&summary)
+		body = reportModel.BuildCodeClimateReport(&summary)
 	}
 
 	return ExportJSONReport(path, filename, body)

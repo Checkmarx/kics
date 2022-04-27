@@ -31,7 +31,7 @@ var reportGenerators = map[string]func(path, filename string, body interface{}) 
 	"junit":       report.PrintJUnitReport,
 	"asff":        report.PrintASFFReport,
 	"csv":         report.PrintCSVReport,
-	"codequality": report.PrintCodeQualityReport,
+	"codeclimate": report.PrintCodeClimateReport,
 }
 
 // CustomConsoleWriter creates an output to print log in a files

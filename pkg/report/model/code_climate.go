@@ -11,7 +11,7 @@ type location struct {
 	Lines lines  `json:"lines"`
 }
 
-type CodeQualityReport struct {
+type CodeClimateReport struct {
 	Type        string   `json:"type"`
 	CheckName   string   `json:"check_name"`
 	Description string   `json:"description"`
@@ -29,12 +29,12 @@ var severityMap = map[string]string{
 	model.SeverityHigh:   "critical",
 }
 
-func BuildCodeQualityReport(summary *model.Summary) []CodeQualityReport {
-	var codeQualityReport []CodeQualityReport
+func BuildCodeClimateReport(summary *model.Summary) []CodeClimateReport {
+	var codeClimateReport []CodeClimateReport
 
 	for i := range summary.Queries {
 		for j := range summary.Queries[i].Files {
-			codeQualityReport = append(codeQualityReport, CodeQualityReport{
+			codeClimateReport = append(codeClimateReport, CodeClimateReport{
 				Type:        "issue",
 				CheckName:   summary.Queries[i].QueryName,
 				Description: summary.Queries[i].Description,
@@ -49,5 +49,5 @@ func BuildCodeQualityReport(summary *model.Summary) []CodeQualityReport {
 		}
 	}
 
-	return codeQualityReport
+	return codeClimateReport
 }
