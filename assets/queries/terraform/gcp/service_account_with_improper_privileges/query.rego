@@ -37,6 +37,6 @@ CxPolicy[result] {
 }
 
 has_improperly_privileges(role) {
-	privileges := {"admin", "owner", "viewer", "editor"}
+	privileges := {"admin", "owner", "editor"}
 	contains(lower(role), privileges[x])
 }

@@ -26,7 +26,7 @@ stages:
 kics-scan:
     stage: kics
     script:
-        - kics scan --no-progress -q /usr/bin/assets/queries -p ${PWD} -o ${PWD} --report-formats json --output-name kics-results
+        - kics scan --no-progress -p ${PWD} -o ${PWD} --report-formats json --output-name kics-results
     artifacts:
         name: kics-results.json
         paths:
@@ -65,7 +65,7 @@ stages:
 kics-scan:
     stage: kics
     script:
-        - kics scan -q /app/bin/assets/queries -p ${PWD} --ignore-on-exit all --report-formats glsast -o ${PWD} --output-name kics-results
+        - kics scan -p ${PWD} --ignore-on-exit all --report-formats glsast -o ${PWD} --output-name kics-results
     artifacts:
         reports:
             sast: gl-sast-kics-results.json

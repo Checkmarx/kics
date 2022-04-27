@@ -1,0 +1,25 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "",
+  "Resources": {
+    "mytopicF1111A24": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "mytopic"
+      }
+    },
+    "mytopictestexamplecomCB22222C3": {
+      "Type": "AWS::SNS::Subscription",
+      "Properties": {
+        "Protocol": "email",
+        "TopicArn": {
+          "Ref": "mytopicF1111A24"
+        },
+        "Endpoint": "test@example.com"
+      },
+      "Metadata": {
+        "aws:cdk:path": "stack-test/mytopic/test@example.com/Resource"
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "Add Instead of Copy",
-		"severity": "LOW",
-		"line": 8
-	}
+  {
+    "queryName": "Add Instead of Copy",
+    "severity": "MEDIUM",
+    "line": 8
+  }
 ]

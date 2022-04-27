@@ -37,7 +37,7 @@
 			"files": [
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
-					"similarity_id": "f9c0a2aed39f325f242beed63be5c53d938d2c02f243366523b2984fd10243de",
+					"similarity_id": "7d59e0095d8eda260b02394f129910d70d01b55dffb356780166354f9360d848",
 					"line": 104,
 					"issue_type": "IncorrectValue",
 					"search_key": "Resources.ALBListener.Properties.Protocol",

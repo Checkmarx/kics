@@ -16,5 +16,11 @@
 		"severity": "LOW",
 		"line": 5,
 		"fileName": "positive3.yaml"
+	},
+	{
+		"queryName": "Pod or Container Without ResourceQuota",
+		"severity": "LOW",
+		"line": 5,
+		"fileName": "positive4.yaml"
 	}
 ]
