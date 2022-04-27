@@ -1,35 +1,24 @@
 package Cx
 
-CxPolicy[result] {
-	resource := input.document[i]
-	readVerbs := ["get", "watch", "list"]
-
-	resource.kind == "Role"
-	resource.rules[ru].resources[r] == "secrets"
-	resource.rules[ru].verbs[j] == readVerbs[k]
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.rules", [resource.metadata.name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Roles should not be allowed to send read verbs to 'secrets' resources",
-		"keyActualValue": sprintf("Roles should not be allowed to send read verbs to 'secrets' resources, verbs found: [%v]", [concat(", ", resource.rules[ru].verbs)]),
-	}
-}
+import data.generic.common as common_lib
 
 CxPolicy[result] {
-	resource := input.document[i]
-	readVerbs := ["get", "watch", "list"]
+	document := input.document[i]
+	metadata := document.metadata
 
-	resource.kind == "ClusterRole"
-    resource.rules[ru].resources[r] == "secrets"
-	resource.rules[ru].verbs[j] == readVerbs[k]
+	kinds := {"Role", "ClusterRole"}
+	document.kind == kinds[_]
+
+	readVerbs := {"get", "watch", "list"}
+	document.rules[j].resources[_] == "secrets"
+	document.rules[j].verbs[_] == readVerbs[_]
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.rules", [resource.metadata.name]),
+		"documentId": document.id,
+		"searchKey": sprintf("metadata.name={{%s}}.rules", [metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "ClusterRoles should not be allowed to send read verbs to 'secrets' resources",
-		"keyActualValue": sprintf("ClusterRoles should not be allowed to send read verbs to 'secrets' resources, verbs found: [%v]", [concat(", ", resource.rules[ru].verbs)]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.rules[%d] should not be granted read access to Secrets objects", [metadata.name, j]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.rules[%d] is granted read access (verbs: %v) to Secrets objects", [metadata.name, j, concat(", ", document.rules[j].verbs)]),
+		"searchLine": common_lib.build_search_line(["rules", j], ["verbs"])
 	}
 }
