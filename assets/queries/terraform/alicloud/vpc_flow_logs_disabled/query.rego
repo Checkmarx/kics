@@ -13,9 +13,9 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("alicloud_vpc[%s]", [name_vpc]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("alicloud_vpc[%s] is the same as Flow Logs VPC resource id", [name_vpc]),
-		"keyActualValue": sprintf("alicloud_vpc[%s] is not the same as Flow Logs VPC resource id", [name_vpc]),
+		"issueType": "IncorrectValue",		
+		"keyActualValue": sprintf("alicloud_vpc[%s] is not associated with an 'alicloud_vpc_flow_log'", [name_vpc]),
+		"keyExpectedValue": sprintf("alicloud_vpc[%s] is associated with an 'alicloud_vpc_flow_log'", [name_vpc]),
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_vpc", name_vpc], []),
 	}
 }
