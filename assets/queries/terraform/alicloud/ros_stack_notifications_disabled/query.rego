@@ -24,7 +24,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("alicloud_ros_stack[%s]", [name]),
-		"issueType": "MissingAttribute",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": "stack 'notification_urls' should have urls",
 		"keyActualValue": "stack 'notification_urls' is empty",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_ros_stack", name, "notification_urls"], []),
