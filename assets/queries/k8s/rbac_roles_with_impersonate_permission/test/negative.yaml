@@ -1,0 +1,23 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: impersonator-role-neg
+  namespace: default
+rules:
+- apiGroups: [""]
+  resources: ["users", "groups", "serviceaccounts"]
+  verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: rbac-impersonate-binding
+subjects:
+- kind: ServiceAccount
+  name: impersonator-sa-neg
+  namespace: default
+  apiGroup: ""
+roleRef:
+  kind: ClusterRole
+  name: impersonator-role-neg
+  apiGroup: ""

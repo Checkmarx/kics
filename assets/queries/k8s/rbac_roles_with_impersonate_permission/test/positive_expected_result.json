@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "RBAC Roles with Impersonate Permission",
+    "severity": "MEDIUM",
+    "line": 9
+  }
+]
