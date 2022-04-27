@@ -11,7 +11,7 @@ type location struct {
 	Lines lines  `json:"lines"`
 }
 
-// CodeClimate report struct
+// CodeClimateReport struct contains all the info to create the code climate report
 type CodeClimateReport struct {
 	Type        string   `json:"type"`
 	CheckName   string   `json:"check_name"`
