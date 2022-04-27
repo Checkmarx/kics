@@ -1,24 +1,24 @@
 [
   {
-    "queryName": "RDS Instance TDE Status Disabled",
+    "queryName": "High KMS Key Rotation Period",
     "severity": "HIGH",
-    "line": 6,
-    "fileName": "positive1.tf"
+    "line": 5,
+    "fileName": "positive.tf"
   },
   {
-    "queryName": "RDS Instance TDE Status Disabled",
+    "queryName": "High KMS Key Rotation Period",
     "severity": "HIGH",
-    "line": 1,
+    "line": 6,
     "fileName": "positive2.tf"
   },
   {
-    "queryName": "RDS Instance TDE Status Disabled",
+    "queryName": "High KMS Key Rotation Period",
     "severity": "HIGH",
     "line": 6,
     "fileName": "positive3.tf"
   },
   {
-    "queryName": "RDS Instance TDE Status Disabled",
+    "queryName": "High KMS Key Rotation Period",
     "severity": "HIGH",
     "line": 1,
     "fileName": "positive4.tf"

@@ -1,11 +1,11 @@
 {
-    "id": "44d434ca-a9bf-4203-8828-4c81a8d5a598",
-    "queryName": "RDS Instance TDE Status Disabled",
+    "id": "cb319d87-b90f-485e-a7e7-f2408380f309",
+    "queryName": "High KMS Key Rotation Period",
     "severity": "HIGH",
     "category": "Encryption",
-    "descriptionText": "tde_status parameter should be Enabled for supported RDS instances",
-    "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#tde_status",
+    "descriptionText": "KMS Key should have automatic rotation enabled and the rotation period should not be higher than a year",
+    "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/kms_key",
     "platform": "Terraform",
-    "descriptionID": "ae8fb315",
+    "descriptionID": "7961c2d3",
     "cloudProvider": "alicloud"
   }
