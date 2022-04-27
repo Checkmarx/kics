@@ -11,6 +11,7 @@ type location struct {
 	Lines lines  `json:"lines"`
 }
 
+// CodeClimate report struct
 type CodeClimateReport struct {
 	Type        string   `json:"type"`
 	CheckName   string   `json:"check_name"`
@@ -29,6 +30,7 @@ var severityMap = map[string]string{
 	model.SeverityHigh:   "critical",
 }
 
+// BuildCodeClimateReport builds the code climate report
 func BuildCodeClimateReport(summary *model.Summary) []CodeClimateReport {
 	var codeClimateReport []CodeClimateReport
 

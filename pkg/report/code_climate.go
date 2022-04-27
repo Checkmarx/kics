@@ -6,6 +6,7 @@ import (
 	reportModel "github.com/Checkmarx/kics/pkg/report/model"
 )
 
+// PrintCodeClimateReport prints the code climate report in the given path and filename with the given body
 func PrintCodeClimateReport(path, filename string, body interface{}) error {
 	if !strings.HasPrefix(filename, "codeclimate") {
 		filename = "codeclimate-" + filename
