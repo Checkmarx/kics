@@ -4,28 +4,30 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource
-	stack := resource.aws_cloudformation_stack_set_instance[name]
-	not common_lib.valid_key(stack, "retain_stack")
+	stack := resource.alicloud_ros_stack_instance[name]
+	not common_lib.valid_key(stack, "retain_stacks")
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_cloudformation_stack_set_instance[%s]", [name]),
+		"searchKey": sprintf("alicloud_ros_stack_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_cloudformation_stack_set_instance[%s].retain_stack is defined and not null", [name]),
-		"keyActualValue": sprintf("aws_cloudformation_stack_set_instance[%s].retain_stack is undefined or null", [name]),
+		"keyExpectedValue": sprintf("alicloud_ros_stack_instance[%s].retain_stacks should be defined and not null", [name]),
+		"keyActualValue": sprintf("alicloud_ros_stack_instance[%s].retain_stacks is undefined", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "alicloud_ros_stack_instance", name], []),
 	}
 }
 
 CxPolicy[result] {
 	resource := input.document[i].resource
-	stack := resource.aws_cloudformation_stack_set_instance[name]
-	stack.retain_stack == false
+	stack := resource.alicloud_ros_stack_instance[name]
+	stack.retain_stacks == false
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_cloudformation_stack_set_instance[%s].retain_stack", [name]),
+		"searchKey": sprintf("alicloud_ros_stack_instance[%s].retain_stacks", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_cloudformation_stack_set_instance[%s].retain_stack is true ", [name]),
-		"keyActualValue": sprintf("aws_cloudformation_stack_set_instance[%s].retain_stack is false", [name]),
+		"keyExpectedValue": sprintf("alicloud_ros_stack_instance[%s].retain_stacks should be true ", [name]),
+		"keyActualValue": sprintf("alicloud_ros_stack_instance[%s].retain_stacks is false", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "alicloud_ros_stack_instance", name, "retain_stacks"], []),
 	}
 }
