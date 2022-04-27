@@ -1,37 +1,37 @@
 [
-	{
-		"queryName": "RBAC Wildcard In Rule",
-		"severity": "LOW",
-		"line": 6
-	},
-	{
-		"queryName": "RBAC Wildcard In Rule",
-		"severity": "LOW",
-		"line": 6
-	},
   {
     "queryName": "RBAC Wildcard In Rule",
-    "severity": "LOW",
-    "line": 17
+    "severity": "MEDIUM",
+    "line": 7
   },
   {
     "queryName": "RBAC Wildcard In Rule",
-    "severity": "LOW",
-    "line": 17
+    "severity": "MEDIUM",
+    "line": 9
   },
-	{
-		"queryName": "RBAC Wildcard In Rule",
-		"severity": "LOW",
-		"line": 17
-	},
   {
     "queryName": "RBAC Wildcard In Rule",
-    "severity": "LOW",
-    "line": 27
+    "severity": "MEDIUM",
+    "line": 18
   },
-	{
-		"queryName": "RBAC Wildcard In Rule",
-		"severity": "LOW",
-		"line": 27
-	}
+  {
+    "queryName": "RBAC Wildcard In Rule",
+    "severity": "MEDIUM",
+    "line": 19
+  },
+  {
+    "queryName": "RBAC Wildcard In Rule",
+    "severity": "MEDIUM",
+    "line": 20
+  },
+  {
+    "queryName": "RBAC Wildcard In Rule",
+    "severity": "MEDIUM",
+    "line": 29
+  },
+  {
+    "queryName": "RBAC Wildcard In Rule",
+    "severity": "MEDIUM",
+    "line": 31
+  }
 ]

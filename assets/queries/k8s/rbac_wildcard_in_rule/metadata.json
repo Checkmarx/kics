@@ -1,9 +1,9 @@
 {
   "id": "6b896afb-ca07-467a-b256-1a0077a1c08e",
   "queryName": "RBAC Wildcard In Rule",
-  "severity": "LOW",
+  "severity": "MEDIUM",
   "category": "Access Control",
-  "descriptionText": "Kubernetes Roles and ClusterRoles should not use wildcards in rules (objects or actions)",
+  "descriptionText": "Roles and ClusterRoles with wildcard RBAC permissions provide excessive rights to the Kubernetes API and should be avoided. The principle of least privilege recommends to specify only the set of needed objects and actions",
   "descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
   "platform": "Kubernetes",
   "descriptionID": "ccf4e279"
