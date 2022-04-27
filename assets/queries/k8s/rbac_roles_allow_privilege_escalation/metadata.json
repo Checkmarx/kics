@@ -1,0 +1,10 @@
+{
+  "id": "8320826e-7a9c-4b0b-9535-578333193432",
+  "queryName": "RBAC Roles Allow Privilege Escalation",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Roles or ClusterRoles with RBAC permissions 'bind' or 'escalate' allow subjects to create new bindings with other roles. This is dangerous, as users with these privileges can bind to roles that may exceed their own privileges",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/#restrictions-on-role-binding-creation-or-update",
+  "platform": "Kubernetes",
+  "descriptionID": "8320826e"
+}
