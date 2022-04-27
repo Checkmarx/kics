@@ -23,9 +23,9 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("alicloud_nas_file_system[%s]", [name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("alicloud_nas_file_system[%s].kms_key_id' should be set to 2'", [name]),
-		"keyActualValue": sprintf("alicloud_nas_file_system[%s].kms_key_id' is not set to 2  ", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("alicloud_nas_file_system[%s].encrypt_type' should be set to 2'", [name]),
+		"keyActualValue": sprintf("alicloud_nas_file_system[%s].encrypt_type' is not set to 2  ", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_nas_file_system", name, "encrypt_type"], []),
 	}
 }
