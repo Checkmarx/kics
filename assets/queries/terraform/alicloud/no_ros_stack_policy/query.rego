@@ -13,6 +13,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "The stack has the attribute 'stack_policy_body' or 'stack_policy_url' defined",
 		"keyActualValue": "The stack has neither 'stack_policy_body' nor 'stack_policy_url' defined",
+		"searchLine": common_lib.build_search_line(["resource", "alicloud_ros_stack", name], []),
 	}
 }
 
@@ -27,6 +28,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "The stack has the attribute 'stack_policy_during_update_body' or 'stack_policy_during_update_url' defined",
 		"keyActualValue": "The stack has neither 'stack_policy_during_update_body' nor 'stack_policy_during_update_url' defined",
+		"searchLine": common_lib.build_search_line(["resource", "alicloud_ros_stack", name], []),
 	}
 }
 
