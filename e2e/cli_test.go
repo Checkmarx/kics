@@ -16,7 +16,20 @@ import (
 
 func Test_E2E_CLI(t *testing.T) {
 	kicsDockerImage := utils.GetKICSDockerImageName()
-	showDetailsCI := kicsDockerImage != "kics:e2e-tests"
+	// In the CI environment the tests will be run in a Docker container.
+	// Locally, you are able to choose between running kics from docker or go (default)
+	useDocker := kicsDockerImage != ""
+	showDetailsCI := useDocker
+
+	if !useDocker {
+		kicsLocalBin := utils.GetKICSLocalBin()
+		// If you are not running kics e2e tests in a docker container
+		// you need to make sure that the kics binary is available.
+		if _, err := os.Stat(kicsLocalBin); os.IsNotExist(err) {
+			t.Skip("E2E Locally execution must have a kics binary in the 'bin' folder.\nPath not found: " + kicsLocalBin)
+		}
+	}
+
 	scanStartTime := time.Now()
 
 	if testing.Short() {
@@ -37,7 +50,7 @@ func Test_E2E_CLI(t *testing.T) {
 					useMock = true
 				}
 
-				out, err := utils.RunCommand(kicsDockerImage, tt.Args.Args[arg], useMock)
+				out, err := utils.RunCommand(tt.Args.Args[arg], useDocker, useMock, kicsDockerImage)
 				// Check command Error
 				require.NoError(t, err, "Capture CLI output should not yield an error")
 

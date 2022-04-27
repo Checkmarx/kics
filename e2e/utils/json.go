@@ -29,7 +29,7 @@ func prepareJSONPath(path string) string {
 	}
 
 	jsonPath := "file://" + filepath.Join(cwd, path)
-	if runtime.GOOS == "windows" {
+	if runtime.GOOS == windowsOs {
 		jsonPath = strings.Replace(jsonPath, `\`, "/", -1)
 	}
 	return jsonPath
@@ -192,6 +192,13 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 		expectI.Version = actualI.Version
 		actualI.FailedToExecuteQueries = 0
 		expectI.FailedToExecuteQueries = 0
+
+		// Adapt path if running locally (dev)
+		if GetKICSDockerImageName() == "" {
+			for i, scanPath := range expectI.ScannedPaths {
+				expectI.ScannedPaths[i] = KicsDevPathAdapter(scanPath)
+			}
+		}
 
 		for i := range actualI.Queries {
 			actualQuery := actualI.Queries[i]

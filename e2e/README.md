@@ -14,15 +14,44 @@ npm install
 npm start
 ```
 
-- Running E2E Tests:
-```bash
+- **Running E2E Tests from binary (faster) (used in dev/local):**
 
+Prepare
+```bash
 cd kics_repository_folder
 go mod vendor
-docker build -t kics:e2e-tests -f .\Dockerfile .
+```
+
+Build
+```bash
+LINUX/MAC: go build -tags dev -o ./bin/kics cmd/console/main.go
+WINDOWS: go build -tags dev -o ./bin/kics.exe cmd/console/main.go
+```
+
+Run
+```bash
 go test "github.com/Checkmarx/kics/e2e" -v -count=1 -tags dev
 ```
 
+- **Running E2E Tests from docker (slower) (used in CI):**
+
+Prepare
+```bash
+cd kics_repository_folder
+go mod vendor
+docker build -t kics:e2e-tests -f .\Dockerfile .
+```
+
+Run (linux/mac/bash):
+```bash
+E2E_KICS_DOCKER=kics:e2e-tests go test "github.com/Checkmarx/kics/e2e" -v -count=1 -tags dev
+```
+
+Run (windows)
+```powershell
+SET "E2E_KICS_DOCKER=kics:e2e-tests" (or set the variable using environment variables window)
+go test "github.com/Checkmarx/kics/e2e" -v -count=1 -tags dev
+```
 
 ## Test Structure
 
