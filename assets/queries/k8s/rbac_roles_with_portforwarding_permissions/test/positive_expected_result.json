@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "RBAC Roles with Port-Forwarding Permission",
+    "severity": "MEDIUM",
+    "line": 8
+  }
+]
