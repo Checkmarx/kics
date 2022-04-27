@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "NAS File System Without KMS",
+		"severity": "HIGH",
+		"line": 1,
+		"fileName": "positive.tf"
+	},
+	{
+		"queryName": "NAS File System Without KMS",
+		"severity": "HIGH",
+		"line": 5,
+		"fileName": "positive2.tf"
+	}
+]
