@@ -48,7 +48,6 @@ After the scanning process is done, If an internet connection is available, KICS
 
 In case of using KICS behind a corporate proxy, proxy configurations can be set with environment variables such as `HTTP_PROXY`, `HTTPS_PROXY`, `NO_PROXY`
 
-
 ## JSON
 
 The JSON report is the default report to be generate, if no arg is passed to `report-formats` flag, also you can explicitly use it with `--report-formats "json"`.
@@ -751,11 +750,78 @@ CSV reports follow the [CSV structure](https://www.loc.gov/preservation/digital/
 | EC2 Sensitive Port Is Publicly Exposed         | 494b03d3-bf40-4464-8524-7c56ad0700ed | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html | HIGH     | CloudFormation | AWS            | Networking and Firewall | 680b7e89       | The EC2 instance has a sensitive port connection exposed to the entire network |                    |                       |                      | ../../assets/queries/cloudFormation/aws/security_groups_with_unrestricted_access_to_ssh/test/positive1.yaml | a93a3f7320a60045c04cd950500a1c3cff5bc9a4aae7f1e0cde73033386e1242 | 15   | IncorrectValue | Resources.InstanceSecurityGroup.SecurityGroupIngress            | 0           | TCP,22       | SSH (TCP:22) should not be allowed in EC2 security group for instance Ec2Instance       | SSH (TCP:22) is allowed in EC2 security group for instance Ec2Instance                 |
 | Security Group With Unrestricted Access To SSH | 6e856af2-62d7-4ba2-adc1-73b62cef9cc1 | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html | HIGH     | CloudFormation | AWS            | Networking and Firewall | d515d6dc       | Security Groups allows all traffic for SSH (port:22)                           |                    |                       |                      | ../../assets/queries/cloudFormation/aws/security_groups_with_unrestricted_access_to_ssh/test/positive1.yaml | ca8ec85623eed6a5cb3d3b8c1b69d145778e28517d2adf5fb856a57f9870c430 | 15   | IncorrectValue | Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress | 0           |              | None of the Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress has port 22 | One of the Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress has port 22 |
 
+## Code Quality
+
+You can export code quality report by using `--report-formats "codequality"`. The generated report file will have a prefix `codequality-`.
+
+Code quality report follow the [Code Quality Spec](https://github.com/codeclimate/platform/blob/master/spec/analyzers/SPEC.md).
+
+```json
+[
+    {
+        "type": "issue",
+        "check_name": "Disk Encryption Disabled",
+        "description": "VM disks for critical VMs must be encrypted with Customer Supplied Encryption Keys (CSEK) or with Customer-managed encryption keys (CMEK), which means the attribute 'diskEncryptionKey' must be defined and its sub attributes 'rawKey' or 'kmsKeyName' must also be defined",
+        "categories": ["Security"],
+        "location": {
+            "path": "positive1.yaml",
+            "lines": {
+                "begin": 8
+            }
+        },
+        "severity": "major",
+        "fingerprint": "93b3ba78cf3f7aba06e480f40b10c754cb923118abb13e37106e56106406415f"
+    },
+    {
+        "type": "issue",
+        "check_name": "IP Forwarding Enabled",
+        "description": "Instances must not have IP forwarding enabled, which means the attribute 'canIpForward' must not be true",
+        "categories": ["Security"],
+        "location": {
+            "path": "positive1.yaml",
+            "lines": {
+                "begin": 16
+            }
+        },
+        "severity": "major",
+        "fingerprint": "ac9b7b7b621eeeaa28d50f5cb6a047dd53df706624b509bcc7db775e53de6db5"
+    },
+    {
+        "type": "issue",
+        "check_name": "Project-wide SSH Keys Are Enabled In VM Instances",
+        "description": "VM Instance should block project-wide SSH keys",
+        "categories": ["Security"],
+        "location": {
+            "path": "positive1.yaml",
+            "lines": {
+                "begin": 4
+            }
+        },
+        "severity": "major",
+        "fingerprint": "e84dabdbe179ec9bbe4fb5c0abe8fe8a0f8a3b679a8eef6cfc98d7e5403600ab"
+    },
+    {
+        "type": "issue",
+        "check_name": "Shielded VM Disabled",
+        "description": "Compute instances must be launched with Shielded VM enabled, which means the attribute 'shieldedInstanceConfig' must be defined and its sub attributes 'enableSecureBoot', 'enableVtpm' and 'enableIntegrityMonitoring' must be set to true",
+        "categories": ["Security"],
+        "location": {
+            "path": "positive1.yaml",
+            "lines": {
+                "begin": 4
+            }
+        },
+        "severity": "major",
+        "fingerprint": "1b9d4118a9e39702e46ce204115ae11fc9146c3cb0923a2fb232cabe1e8e103c"
+    }
+]
+```
+
 ## CLI Report
+
 KICS displays the results in CLI. For detailed information, you can use `-v --log-level DEBUG`.
 
 ![image](https://user-images.githubusercontent.com/74001161/161743565-f98cb076-e708-4754-8f9a-f1dbed82837b.png)
-
 
 # Exit Status Code
 

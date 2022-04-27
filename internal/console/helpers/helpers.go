@@ -21,16 +21,17 @@ import (
 )
 
 var reportGenerators = map[string]func(path, filename string, body interface{}) error{
-	"json":      report.PrintJSONReport,
-	"sarif":     report.PrintSarifReport,
-	"html":      report.PrintHTMLReport,
-	"glsast":    report.PrintGitlabSASTReport,
-	"pdf":       report.PrintPdfReport,
-	"sonarqube": report.PrintSonarQubeReport,
-	"cyclonedx": report.PrintCycloneDxReport,
-	"junit":     report.PrintJUnitReport,
-	"asff":      report.PrintASFFReport,
-	"csv":       report.PrintCSVReport,
+	"json":        report.PrintJSONReport,
+	"sarif":       report.PrintSarifReport,
+	"html":        report.PrintHTMLReport,
+	"glsast":      report.PrintGitlabSASTReport,
+	"pdf":         report.PrintPdfReport,
+	"sonarqube":   report.PrintSonarQubeReport,
+	"cyclonedx":   report.PrintCycloneDxReport,
+	"junit":       report.PrintJUnitReport,
+	"asff":        report.PrintASFFReport,
+	"csv":         report.PrintCSVReport,
+	"codequality": report.PrintCodeQualityReport,
 }
 
 // CustomConsoleWriter creates an output to print log in a files
