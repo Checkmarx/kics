@@ -23,7 +23,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("alicloud_launch_template[%s]", [name]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("alicloud_launch_template[%s] is true", [name]),
 		"keyActualValue": sprintf("alicloud_launch_template[%s] is false", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_launch_template", name], []),

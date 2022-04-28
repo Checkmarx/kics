@@ -3,7 +3,7 @@
   "queryName": "Launch Configuration Is Not Encrypted",
   "severity": "HIGH",
   "category": "Encryption",
-  "descriptionText": "Data stored in the Launch configuration EBS is not securely encrypted",
+  "descriptionText": "Launch Configuration EBS should have the data in the volumes encrypted. To encrypt the data, the 'encrypted' argument should be set to true in each volume block",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_configuration#encrypted",
   "platform": "Terraform",
   "descriptionID": "d11b3649",
