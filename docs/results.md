@@ -752,7 +752,7 @@ CSV reports follow the [CSV structure](https://www.loc.gov/preservation/digital/
 
 ## Code Climate
 
-You can export code quality report by using `--report-formats "codeclimate"`. The generated report file will have a prefix `codeclimate-`.
+You can export code climate report by using `--report-formats "codeclimate"`. The generated report file will have a prefix `codeclimate-`.
 
 Code climate report follow the [Code Climate Spec](https://github.com/codeclimate/platform/blob/master/spec/analyzers/SPEC.md).
 
