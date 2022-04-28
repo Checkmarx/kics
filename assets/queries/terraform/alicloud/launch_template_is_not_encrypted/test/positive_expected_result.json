@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Launch Template Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 36,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Launch Template Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive2.tf"
+  }
+]

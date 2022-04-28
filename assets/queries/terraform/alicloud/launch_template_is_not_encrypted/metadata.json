@@ -1,0 +1,11 @@
+{
+  "id": "1455cb21-1d48-46d6-8ae3-cef911b71fd5",
+  "queryName": "Launch Template Is Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "ECS Launch Template should have the data in the disk encrypted. To encrypt the data, the 'encrypted' argument should be set to true.",
+  "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/launch_template#encrypted",
+  "platform": "Terraform",
+  "descriptionID": "e9336717",
+  "cloudProvider": "alicloud"
+}

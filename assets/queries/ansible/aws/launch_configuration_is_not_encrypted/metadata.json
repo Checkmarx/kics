@@ -3,7 +3,7 @@
   "queryName": "Launch Configuration Is Not Encrypted",
   "severity": "HIGH",
   "category": "Encryption",
-  "descriptionText": "AWS Autoscaling Launch Configurations should have encryption enabled",
+  "descriptionText": "AWS Autoscaling Launch Configurations should have the data in the volumes encrypted. To encrypt the data, the 'encrypted' parameter should be set to true in each volume",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_lc_module.html",
   "platform": "Ansible",
   "descriptionID": "57b9aee0",
