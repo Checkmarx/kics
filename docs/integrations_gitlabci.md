@@ -103,12 +103,12 @@ stages:
 code_quality:
     stage: test
     script:
-        - kics --no-progress -p ${PWD} -o ${PWD} --report-formats codeclimate
+        - kics scan --no-progress -p ${PWD} -o ${PWD} --report-formats codeclimate --output-name codeclimate-result
     artifacts:
         paths:
-            - codeclimate.json
+            - codeclimate-result.json
         reports:
-            codequality: codeclimate.json
+            codequality: codeclimate-result.json
 ```
 
 ### Code Quality Report
