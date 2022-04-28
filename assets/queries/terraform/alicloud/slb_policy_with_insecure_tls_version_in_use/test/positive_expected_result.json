@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "SLB Policy With Insecure Tls Version In Use",
+    "severity": "MEDIUM",
+    "line": 3
+  }
+]
