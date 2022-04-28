@@ -3,7 +3,7 @@
   "queryName": "RBAC Roles with Read Secrets Permissions",
   "severity": "MEDIUM",
   "category": "Access Control",
-  "descriptionText": "Minimize access to secrets (RBAC)",
+  "descriptionText": "Roles and ClusterRoles with get/watch/list RBAC permissions on Kubernetes secrets are dangerous and should be avoided. In case of compromise, attackers could abuse these roles to access sensitive data, such as passwords, tokens and keys",
   "descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
   "platform": "Kubernetes",
   "descriptionID": "ca97f029"
