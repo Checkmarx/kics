@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "run"
@@ -33,7 +35,7 @@ CxPolicy[result] {
 }
 
 hasSudo(commands) {
-	commandsList = split(commands, "&&")
+	commandsList = dockerLib.getCommands(commands)
 
 	some i
 	instruction := commandsList[i]
