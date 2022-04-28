@@ -13,8 +13,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("alicloud_slb_tls_cipher_policy[%s].tls_versions", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("alicloud_slb_tls_cipher_policy[%s].tls_versions uses secure tls versions", [name]),
-		"keyActualValue": sprintf("alicloud_slb_tls_cipher_policy[%s].tls_versions uses insecure tls versions", [name]),
+		"keyExpectedValue": sprintf("alicloud_slb_tls_cipher_policy[%s].tls_versions uses secure TLS versions", [name]),
+		"keyActualValue": sprintf("alicloud_slb_tls_cipher_policy[%s].tls_versions uses insecure TLS versions", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_slb_tls_cipher_policy", name, "tls_versions"], []),
 	}
 }
