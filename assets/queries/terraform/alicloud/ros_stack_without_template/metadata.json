@@ -1,0 +1,12 @@
+{
+  "id": "92d65c51-5d82-4507-a2a1-d252e9706855",
+  "queryName": "ROS Stack Without Template",
+  "severity": "MEDIUM",
+  "category": "Build Process",
+  "descriptionText": "Alicloud ROS Stack should have a template defined through the attribute template_url or attribute template_body",
+  "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ros_stack",
+  "platform": "Terraform",
+  "descriptionID": "29378f62",
+  "cloudProvider": "aws"
+}
+  
