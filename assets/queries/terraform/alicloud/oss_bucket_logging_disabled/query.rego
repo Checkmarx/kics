@@ -17,3 +17,18 @@ CxPolicy[result] {
         "searchLine":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name], []),
 	}
 }
+
+CxPolicy[result] {
+
+	resource := input.document[i].resource.alicloud_oss_bucket[name]
+    resource.logging_isenable == false
+    
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("alicloud_oss_bucket[%s].logging_isenable", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("%s 'logging_isenable' argument should be set to true",[name]),
+		"keyActualValue": sprintf("%s 'logging_isenable' argument is set to false",[name]),
+        "searchLine":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "logging_isenable"], []),
+	}
+}
