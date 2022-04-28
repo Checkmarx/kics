@@ -7,7 +7,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_cs_kubernetes_node_pool[name]
 	
 	auto_repair := resource.management.auto_repair 
-    not is_equal(auto_repair, true)
+    auto_repair == false
 	
 	result := {
 		"documentId": input.document[i].id,
@@ -27,7 +27,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("alicloud_cs_kubernetes_node_pool[%s]",[name]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("For the resource alicloud_cs_kubernetes_node_pool[%s] to have a 'management' block containing 'auto_repair' set to true.", [name]),
 		"keyActualValue": sprintf("The resource alicloud_cs_kubernetes_node_pool[%s] does not have a 'management' block.", [name]),
         "searchLine":common_lib.build_search_line(["resource", "alicloud_cs_kubernetes_node_pool", name], []),
@@ -42,16 +42,9 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("alicloud_cs_kubernetes_node_pool[%s].management",[name]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("For the resource alicloud_cs_kubernetes_node_pool[%s] to have a 'management' block containing 'auto_repair' set to true.", [name]),
 		"keyActualValue": sprintf("The resource alicloud_cs_kubernetes_node_pool[%s] has a 'management' block but it doesn't contain 'auto_repair' ", [name]),
         "searchLine":common_lib.build_search_line(["resource", "alicloud_cs_kubernetes_node_pool", name, "management"], []),
 	}
-}
-
-is_equal(secure, target)
-{
-    secure == target
-}else {
-    secure[_]==target
 }
