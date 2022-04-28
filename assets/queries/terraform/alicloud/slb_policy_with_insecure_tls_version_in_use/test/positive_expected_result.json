@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "SLB Policy With Insecure Tls Version In Use",
+    "queryName": "SLB Policy With Insecure TLS Version In Use",
     "severity": "MEDIUM",
     "line": 3
   }
