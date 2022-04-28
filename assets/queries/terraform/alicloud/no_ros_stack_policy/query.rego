@@ -11,7 +11,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("alicloud_ros_stack[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "The stack has the attribute 'stack_policy_body' or 'stack_policy_url' defined",
+		"keyExpectedValue": "The stack should have the attribute 'stack_policy_body' or 'stack_policy_url' defined",
 		"keyActualValue": "The stack has neither 'stack_policy_body' nor 'stack_policy_url' defined",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_ros_stack", name], []),
 	}
@@ -26,7 +26,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("alicloud_ros_stack[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "The stack has the attribute 'stack_policy_during_update_body' or 'stack_policy_during_update_url' defined",
+		"keyExpectedValue": "The stack should have the attribute 'stack_policy_during_update_body' or 'stack_policy_during_update_url' defined",
 		"keyActualValue": "The stack has neither 'stack_policy_during_update_body' nor 'stack_policy_during_update_url' defined",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_ros_stack", name], []),
 	}
