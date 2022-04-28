@@ -1,0 +1,20 @@
+[
+	{
+		"queryName": "CS Kubernetes Node Pool Auto Repair Disabled",
+		"severity": "MEDIUM",
+		"line": 1,
+		"fileName": "positive1.tf"
+	},
+    {
+		"queryName": "CS Kubernetes Node Pool Auto Repair Disabled",
+		"severity": "MEDIUM",
+		"line": 17,
+		"fileName": "positive2.tf"
+	},
+    {
+		"queryName": "CS Kubernetes Node Pool Auto Repair Disabled",
+		"severity": "MEDIUM",
+		"line": 16,
+		"fileName": "positive3.tf"
+	}
+]
