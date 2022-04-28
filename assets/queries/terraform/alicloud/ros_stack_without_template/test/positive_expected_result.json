@@ -1,6 +1,6 @@
 [
     {
-      "queryName": "Ros Stack Without Template",
+      "queryName": "ROS Stack Without Template",
       "severity": "MEDIUM",
       "line": 1,
       "fileName": "positive1.tf"
