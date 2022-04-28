@@ -5,49 +5,25 @@
 	"files_parsed": 1,
 	"lines_parsed": 5,
 	"files_failed_to_scan": 0,
-	"queries_total": 855,
+	"queries_total": 972,
 	"queries_failed_to_execute": 0,
 	"queries_failed_to_compute_similarity_id": 0,
 	"scan_id": "console",
 	"severity_counters": {
 		"HIGH": 0,
 		"INFO": 1,
-		"LOW": 1,
-		"MEDIUM": 4,
+		"LOW": 2,
+		"MEDIUM": 3,
 		"TRACE": 0
 	},
 	"total_counter": 6,
 	"total_bom_resources": 0,
-	"start": "2022-01-19T11:56:40.4510238Z",
-	"end": "2022-01-19T11:56:52.7679418Z",
+	"start": "2022-04-28T10:34:34.6859506+01:00",
+	"end": "2022-04-28T10:35:15.440236+01:00",
 	"paths": [
 		"/path/e2e/fixtures/samples/terraform-single.tf"
 	],
 	"queries": [
-		{
-			"query_name": "IAM Access Analyzer Undefined",
-			"query_id": "e592a0c5-5bdb-414c-9066-5dba7cdea370",
-			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/accessanalyzer_analyzer",
-			"severity": "MEDIUM",
-			"platform": "Terraform",
-			"cloud_provider": "AWS",
-			"category": "Access Control",
-			"description": "IAM Access Analyzer should be defined to identify unintentional access",
-			"description_id": "d03e85ae",
-			"files": [
-				{
-					"file_name": "/path/e2e/fixtures/samples/terraform-single.tf",
-					"similarity_id": "aa346cd1642a83b40e221f96a43d88dbfacecdf1f8e5314c24145f8d35530197",
-					"line": 1,
-					"issue_type": "MissingAttribute",
-					"search_key": "resource",
-					"search_line": 0,
-					"search_value": "",
-					"expected_value": "'aws_accessanalyzer_analyzer' is set",
-					"actual_value": "'aws_accessanalyzer_analyzer' is undefined"
-				}
-			]
-		},
 		{
 			"query_name": "Redshift Cluster Logging Disabled",
 			"query_id": "15ffbacc-fa42-4f6f-a57d-2feac7365caa",
@@ -85,17 +61,6 @@
 			"files": [
 				{
 					"file_name": "/path/e2e/fixtures/samples/terraform-single.tf",
-					"similarity_id": "4aa3f159f39767de53b49ed871977b8b499bf19b3b0865b1631042aa830598aa",
-					"line": 1,
-					"issue_type": "MissingAttribute",
-					"search_key": "aws_redshift_cluster[default1]",
-					"search_line": 0,
-					"search_value": "cluster_subnet_group_name",
-					"expected_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is set",
-					"actual_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is undefined"
-				},
-				{
-					"file_name": "/path/e2e/fixtures/samples/terraform-single.tf",
 					"similarity_id": "83461a5eac8fed2264fac68a6d352d1ed752867a9b0a131afa9ba7e366159b59",
 					"line": 1,
 					"issue_type": "MissingAttribute",
@@ -104,6 +69,41 @@
 					"search_value": "vpc_security_group_ids",
 					"expected_value": "aws_redshift_cluster[default1].vpc_security_group_ids is set",
 					"actual_value": "aws_redshift_cluster[default1].vpc_security_group_ids is undefined"
+				},
+				{
+					"file_name": "/path/e2e/fixtures/samples/terraform-single.tf",
+					"similarity_id": "4aa3f159f39767de53b49ed871977b8b499bf19b3b0865b1631042aa830598aa",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_redshift_cluster[default1]",
+					"search_line": 0,
+					"search_value": "cluster_subnet_group_name",
+					"expected_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is set",
+					"actual_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is undefined"
+				}
+			]
+		},
+		{
+			"query_name": "IAM Access Analyzer Not Enabled",
+			"query_id": "e592a0c5-5bdb-414c-9066-5dba7cdea370",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/accessanalyzer_analyzer",
+			"severity": "LOW",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Best Practices",
+			"description": "IAM Access Analyzer should be enabled and configured to continuously monitor resource permissions",
+			"description_id": "d03e85ae",
+			"files": [
+				{
+					"file_name": "/path/e2e/fixtures/samples/terraform-single.tf",
+					"similarity_id": "aa346cd1642a83b40e221f96a43d88dbfacecdf1f8e5314c24145f8d35530197",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "resource",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'aws_accessanalyzer_analyzer' is set",
+					"actual_value": "'aws_accessanalyzer_analyzer' is undefined"
 				}
 			]
 		},
