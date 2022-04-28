@@ -1,0 +1,11 @@
+{
+  "id": "ee3b1557-9fb5-4685-a95d-93f1edf2a0d7",
+  "queryName": "ALB Listening on HTTP",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "Application Load Balancer (alb) Listener should not listen on HTTP",
+  "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/alb_listener",
+  "platform": "Terraform",
+  "descriptionID": "75d71dc8",
+  "cloudProvider": "alicloud"
+}
