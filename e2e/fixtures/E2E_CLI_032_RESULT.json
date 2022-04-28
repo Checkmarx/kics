@@ -5,21 +5,21 @@
 	"files_parsed": 1,
 	"lines_parsed": 278,
 	"files_failed_to_scan": 0,
-	"queries_total": 963,
+	"queries_total": 495,
 	"queries_failed_to_execute": 0,
 	"queries_failed_to_compute_similarity_id": 0,
 	"scan_id": "console",
 	"severity_counters": {
 		"HIGH": 4,
 		"INFO": 0,
-		"LOW": 5,
-		"MEDIUM": 12,
+		"LOW": 6,
+		"MEDIUM": 11,
 		"TRACE": 0
 	},
 	"total_counter": 21,
 	"total_bom_resources": 0,
-	"start": "2022-02-10T10:55:17.8212896Z",
-	"end": "2022-02-10T10:55:36.9746736Z",
+	"start": "2022-04-28T10:58:03.6352751+01:00",
+	"end": "2022-04-28T10:58:19.1128347+01:00",
 	"paths": [
 		"/path/e2e/fixtures/samples/positive.yaml"
 	],
@@ -252,30 +252,6 @@
 			]
 		},
 		{
-			"query_name": "IAM Access Analyzer Undefined",
-			"query_id": "8d29754a-2a18-460d-a1ba-9509f8d359da",
-			"query_url": "https://docs.amazonaws.cn/en_us/AWSCloudFormation/latest/UserGuide/aws-resource-accessanalyzer-analyzer.html",
-			"severity": "MEDIUM",
-			"platform": "CloudFormation",
-			"cloud_provider": "AWS",
-			"category": "Access Control",
-			"description": "IAM Access Analyzer should be defined to identify unintentional access",
-			"description_id": "24a6978e",
-			"files": [
-				{
-					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "304c64d5ddfd93593c8aa4e9f10b34fe7d2e7e3634c6e64465b3be292029775c",
-					"line": 9,
-					"issue_type": "MissingAttribute",
-					"search_key": "Resources",
-					"search_line": 0,
-					"search_value": "",
-					"expected_value": "'AWS::AccessAnalyzer::Analyzer' is set",
-					"actual_value": "'AWS::AccessAnalyzer::Analyzer' is undefined"
-				}
-			]
-		},
-		{
 			"query_name": "Security Group Ingress With Port Range",
 			"query_id": "87482183-a8e7-4e42-a566-7a23ec231c16",
 			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html",
@@ -334,17 +310,6 @@
 			"files": [
 				{
 					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "3c4976bcd6061315525a23a644cb6ed3bc4888794f21e8161a1cd38ea0495f30",
-					"line": 24,
-					"issue_type": "IncorrectValue",
-					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp",
-					"search_line": 0,
-					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is not open to the world (0.0.0.0/0)",
-					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is open to the world (0.0.0.0/0)"
-				},
-				{
-					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
 					"similarity_id": "f1f15967fd4bd2b39610dcbe3c2d641068dc1b409821142f41d179dbc360b3aa",
 					"line": 32,
 					"issue_type": "IncorrectValue",
@@ -353,6 +318,17 @@
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp is not open to the world (0.0.0.0/0)",
 					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp is open to the world (0.0.0.0/0)"
+				},
+				{
+					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
+					"similarity_id": "3c4976bcd6061315525a23a644cb6ed3bc4888794f21e8161a1cd38ea0495f30",
+					"line": 24,
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is not open to the world (0.0.0.0/0)",
+					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is open to the world (0.0.0.0/0)"
 				}
 			]
 		},
@@ -369,8 +345,8 @@
 			"files": [
 				{
 					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "7d931711c3ba34527d9a6660c82f06f4a2174812dcfbd69bb271187edec91a06",
-					"line": 51,
+					"similarity_id": "e08fb6aa0ab3e2ed98aa9d08d8813df89af2b0005acdbda809c86f4897715c78",
+					"line": 67,
 					"issue_type": "MissingAttribute",
 					"search_key": "Resources.TaskDefinition.Properties.ContainerDefinitions",
 					"search_line": 0,
@@ -380,14 +356,38 @@
 				},
 				{
 					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "e08fb6aa0ab3e2ed98aa9d08d8813df89af2b0005acdbda809c86f4897715c78",
-					"line": 67,
+					"similarity_id": "7d931711c3ba34527d9a6660c82f06f4a2174812dcfbd69bb271187edec91a06",
+					"line": 51,
 					"issue_type": "MissingAttribute",
 					"search_key": "Resources.TaskDefinition.Properties.ContainerDefinitions",
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' contains 'HealthCheck' property",
 					"actual_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property"
+				}
+			]
+		},
+		{
+			"query_name": "IAM Access Analyzer Not Enabled",
+			"query_id": "8d29754a-2a18-460d-a1ba-9509f8d359da",
+			"query_url": "https://docs.amazonaws.cn/en_us/AWSCloudFormation/latest/UserGuide/aws-resource-accessanalyzer-analyzer.html",
+			"severity": "LOW",
+			"platform": "CloudFormation",
+			"cloud_provider": "AWS",
+			"category": "Best Practices",
+			"description": "IAM Access Analyzer should be enabled and configured to continuously monitor resource permissions",
+			"description_id": "24a6978e",
+			"files": [
+				{
+					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
+					"similarity_id": "304c64d5ddfd93593c8aa4e9f10b34fe7d2e7e3634c6e64465b3be292029775c",
+					"line": 9,
+					"issue_type": "MissingAttribute",
+					"search_key": "Resources",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'AWS::AccessAnalyzer::Analyzer' is set",
+					"actual_value": "'AWS::AccessAnalyzer::Analyzer' is undefined"
 				}
 			]
 		},
@@ -404,14 +404,14 @@
 			"files": [
 				{
 					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "95883c9f983adb8f547c54e24837b6aa402978a00417be98441514959d4171d4",
-					"line": 27,
+					"similarity_id": "39fec612777f59fb4181dd2330ee465ec860c962acfebb07a4f1ee1f122d24e7",
+					"line": 35,
 					"issue_type": "MissingAttribute",
-					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
+					"search_key": "Resources.EcsSecurityGroupALBports.Properties",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is set",
-					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is undefined"
+					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.Description is set",
+					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.Description is undefined"
 				},
 				{
 					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
@@ -426,14 +426,14 @@
 				},
 				{
 					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "39fec612777f59fb4181dd2330ee465ec860c962acfebb07a4f1ee1f122d24e7",
-					"line": 35,
+					"similarity_id": "95883c9f983adb8f547c54e24837b6aa402978a00417be98441514959d4171d4",
+					"line": 27,
 					"issue_type": "MissingAttribute",
-					"search_key": "Resources.EcsSecurityGroupALBports.Properties",
+					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.Description is set",
-					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.Description is undefined"
+					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is set",
+					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is undefined"
 				}
 			]
 		}
