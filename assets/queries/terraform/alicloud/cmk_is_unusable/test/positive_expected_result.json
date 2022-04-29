@@ -1,0 +1,14 @@
+[
+    {
+        "queryName": "CMK Is Unusable",
+        "severity": "MEDIUM",
+        "line": 1,
+        "fileName": "positive1.tf"
+    },
+    {
+        "queryName": "CMK Is Unusable",
+        "severity": "MEDIUM",
+        "line": 5,
+        "fileName": "positive2.tf"
+    }
+]
