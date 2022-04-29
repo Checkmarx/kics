@@ -11,7 +11,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("alicloud_kms_key[%s].is_enabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("alicloud_kms_key[%s].is_enabled is set to true", [name]),
+		"keyExpectedValue": sprintf("alicloud_kms_key[%s].is_enabled to be set to true", [name]),
 		"keyActualValue": sprintf("alicloud_kms_key[%s].is_enabled is set to false", [name]),
         "searchLine": common_lib.build_search_line(["resource", "alicloud_kms_key", name, "is_enabled"], []),
 	}
@@ -26,7 +26,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("alicloud_kms_key[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("alicloud_kms_key[%s].is_enabled is set to true", [name]),
+		"keyExpectedValue": sprintf("alicloud_kms_key[%s].is_enabled to be set to true", [name]),
 		"keyActualValue": sprintf("alicloud_kms_key[%s].is_enabled is not set", [name]),
         "searchLine": common_lib.build_search_line(["resource", "alicloud_kms_key", name], []),
 	}
