@@ -17,8 +17,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "When running `dnf install`, `-y` or `--asumme-yes` switch is set to avoid build failure ",
-		"keyActualValue": sprintf("Command `FROM={{%s}}.RUN={{%s}}` doesn't have the `-y` or `--asumme-yes` switch set", [name, trim_space(commands[k])]),
+		"keyExpectedValue": "When running `dnf install`, `-y` or `--assume-yes` switch is set to avoid build failure ",
+		"keyActualValue": sprintf("Command `FROM={{%s}}.RUN={{%s}}` doesn't have the `-y` or `--assume-yes` switch set", [name, trim_space(commands[k])]),
 	}
 }
 
@@ -37,5 +37,5 @@ hasInstallCommandWithoutFlag(command) = c {
 }
 
 hasYesFlag(command) {
-	regex.match("\\b(dnf *install (-y|-[\\D]{1}y|-y[\\D]{1}|-yes|--asumme-yes))\\b [\\w\\W]*", command)
+	regex.match("\\b(dnf *install (-y|-[\\D]{1}y|-y[\\D]{1}|-yes|--assume-yes))\\b [\\w\\W]*", command)
 }
