@@ -25,7 +25,7 @@
       Statement:
       - Effect: Allow
         Action: Publish
-        Principal: ''
+        Principal: '*'
 
 - name: Create alarm SNS topic
   sns_topic:

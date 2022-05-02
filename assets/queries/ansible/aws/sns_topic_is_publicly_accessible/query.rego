@@ -3,8 +3,6 @@ package Cx
 import data.generic.ansible as ansLib
 import data.generic.common as common_lib
 
-notValidToken := {"*", ""}
-
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	modules := {"community.aws.sns_topic", "sns_topic"}
@@ -13,14 +11,14 @@ CxPolicy[result] {
 	policies := snsTopicCommunity.policy
 	statement := policies.Statement[i]
 	statement.Effect == "Allow"
-	statement.Principal == notValidToken[_]
+	common_lib.any_principal(statement)
 
 	result := {
 		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "sns_topic.subscriptions should be undefined",
-		"keyActualValue": "sns_topic.subscriptions is defined",
+		"keyExpectedValue": "sns_topic.policy does not allow actions from all principals",
+		"keyActualValue": "sns_topic.policy allows actions from all principals",
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}
 }
