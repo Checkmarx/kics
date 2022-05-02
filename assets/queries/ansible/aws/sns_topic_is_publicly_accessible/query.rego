@@ -21,5 +21,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "sns_topic.subscriptions should be undefined",
 		"keyActualValue": "sns_topic.subscriptions is defined",
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}
 }
