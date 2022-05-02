@@ -78,7 +78,9 @@ func TestAnalyzer_Analyze(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := Analyze(tt.paths)
+			types := []string{""}
+			exc := []string{""}
+			got, err := Analyze(tt.paths, types, exc)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Analyze = %v, wantErr = %v", err, tt.wantErr)
 			}

@@ -40,21 +40,6 @@ CxPolicy[result] {
 	resource := document.Resources[key]
 	resource.Type == "AWS::DynamoDB::Table"
 	properties := resource.Properties
-	not common_lib.valid_key(properties.SSESpecification, "SSEType")
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.properties;", [key]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.properties.SSESpecification.SSEType is set", [key]),
-		"keyActualValue": sprintf("Resources.%s.properties.SSESpecification.SSEType is undefined", [key]),
-	}
-}
-
-CxPolicy[result] {
-	document := input.document[i]
-	resource := document.Resources[key]
-	resource.Type == "AWS::DynamoDB::Table"
-	properties := resource.Properties
 
 	not common_lib.valid_key(properties.SSESpecification, "SSEEnabled")
 	result := {

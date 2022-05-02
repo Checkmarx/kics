@@ -9,7 +9,7 @@ CxPolicy[result] {
 	resourceType := pl[r]
 	resource := input.document[i].resource[resourceType][name]
 
-	delete_action_from_all_principals(resource.policy)
+	terra_lib.allows_action_from_all_principals(resource.policy, "delete")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -26,7 +26,7 @@ CxPolicy[result] {
 	resourceType := pl[r]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, resourceType, "policy")
 
-	delete_action_from_all_principals(module[keyToCheck])
+	terra_lib.allows_action_from_all_principals(module[keyToCheck], "delete")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -36,14 +36,4 @@ CxPolicy[result] {
 		"keyActualValue": "'policy.Statement.Action' is a 'Delete' action",
 		"searchLine": common_lib.build_search_line(["module", name, "policy"], []),
 	}
-}
-
-delete_action_from_all_principals(policyValue){
-	policy := common_lib.json_unmarshal(policyValue)
-	st := common_lib.get_statement(policy)
-	statement := st[_]
-
-	common_lib.is_allow_effect(statement)
-	terra_lib.anyPrincipal(statement)
-	common_lib.containsOrInArrayContains(statement.Action, "delete")
 }

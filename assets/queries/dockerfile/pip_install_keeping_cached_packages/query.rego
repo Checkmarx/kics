@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "run"
@@ -38,7 +40,7 @@ CxPolicy[result] {
 }
 
 hasCacheFlag(values) {
-	commands = split(values, "&&")
+	commands = dockerLib.getCommands(values)
 
 	some i
 	instruction := commands[i]

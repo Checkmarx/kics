@@ -3,7 +3,7 @@
   "queryName": "ECR Image Tag Not Immutable",
   "severity": "MEDIUM",
   "category": "Insecure Configurations",
-  "descriptionText": "ECR should have an image tag be immutable",
+  "descriptionText": "ECR should have an image tag be immutable. This prevents image tags from being overwritten.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository",
   "platform": "Terraform",
   "descriptionID": "1cc5d4e2",

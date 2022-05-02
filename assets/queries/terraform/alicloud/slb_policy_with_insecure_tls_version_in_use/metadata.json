@@ -1,0 +1,11 @@
+{
+  "id": "dbfc834a-56e5-4750-b5da-73fda8e73f70",
+  "queryName": "SLB Policy With Insecure TLS Version In Use",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "SLB Policy should not support insecure versions of TLS protocol",
+  "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/slb_tls_cipher_policy",
+  "platform": "Terraform",
+  "descriptionID": "dcc71406",
+  "cloudProvider": "alicloud"
+}
