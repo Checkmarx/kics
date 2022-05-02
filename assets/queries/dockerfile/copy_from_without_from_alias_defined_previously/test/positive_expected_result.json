@@ -2,6 +2,7 @@
 	{
 		"queryName": "COPY '--from' Without FROM Alias Defined Previously",
 		"severity": "MEDIUM",
-		"line": 11
+		"line": 10,
+		"filename": "positive1.dockerfile"
 	}
 ]

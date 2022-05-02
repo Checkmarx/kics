@@ -1,31 +1,21 @@
 package Cx
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
-	resource.Cmd == "copy"
 
-	contains(resource.Flags[x], "--from=")
-	resource.Flags[x] != "--from=0"
-	aux_split := split(resource.Flags[x], "=")
-
-	not isPreviousAlias(resource._kics_line, aux_split[1])
+	commands := input.document[i].command[name][_]
+	
+	commands.Cmd == "copy"
+    flags := commands.Flags
+    contains(flags[f], "--from=")
+    flag_split := split(flags[f], "=")
+    to_number(flag_split[1]) > -1
+	
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, commands.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "COPY '--from' references a previous defined FROM alias",
 		"keyActualValue": "COPY '--from' does not reference a previous defined FROM alias",
 	}
-}
-
-isPreviousAlias(startLine, currentAlias) = allow {
-	resource := input.document[i].command[name][_]
-	resource.Cmd == "from"
-	previousAlias := resource.Value[2]
-
-	previousAlias == currentAlias
-	resource.EndLine < startLine
-
-	allow = true
 }
