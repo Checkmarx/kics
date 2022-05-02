@@ -50,6 +50,6 @@
     policy:
       Version: '2022-05-02'
       Statement:
-      - Effect: Allow
-        Action: Publish
-        Principal: '*'
+        - Effect: Allow
+          Action: Publish
+          Principal: '*'
