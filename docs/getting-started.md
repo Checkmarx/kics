@@ -50,7 +50,7 @@ You can provide your own path to the queries directory with `-q` CLI option (see
 
 **Note**: KICS does not execute scan by default as of [version 1.3.0](https://github.com/Checkmarx/kics/releases/tag/v1.3.0).
 
-**Note**: KICS deprecated the availability of binaries in the GitHub releases assets as of (https://github.com/Checkmarx/kics/releases/tag/v1.5.2)[version 1.5.2], it is advised to update all systems (pipelines, integrations, etc.) to use the [KICS Docker Images](https://hub.docker.com/r/checkmarx/kics).
+**Note**: KICS deprecated the availability of binaries in the GitHub releases assets as of [version 1.5.2](https://github.com/Checkmarx/kics/releases/tag/v1.5.2), it is advised to update all systems (pipelines, integrations, etc.) to use the [KICS Docker Images](https://hub.docker.com/r/checkmarx/kics).
 
 ## Next Steps
 
