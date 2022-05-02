@@ -125,7 +125,7 @@
 				
 				<option value="file34">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (79.5%)</option>
 				
-				<option value="file35">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (79.4%)</option>
+				<option value="file35">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (78.6%)</option>
 				
 				<option value="file36">github.com/Checkmarx/kics/pkg/engine/secrets/inspector.go (83.4%)</option>
 				
@@ -275,7 +275,7 @@
 				
 				<option value="file109">github.com/Checkmarx/kics/pkg/scanner/scanner.go (56.4%)</option>
 				
-				<option value="file110">github.com/Checkmarx/kics/pkg/terraformer/aws/aws_cloud_provider.go (80.0%)</option>
+				<option value="file110">github.com/Checkmarx/kics/pkg/terraformer/aws/aws_cloud_provider.go (93.3%)</option>
 				
 				<option value="file111">github.com/Checkmarx/kics/pkg/terraformer/azure/azure_cloud_provider.go (92.9%)</option>
 				
@@ -1927,13 +1927,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="38">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="38">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -1958,7 +1958,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4404,7 +4404,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5402,7 +5402,8 @@ func GetExcludePaths(pathExpressions string) ([]string, error) <span class="cov1
         if strings.ContainsAny(pathExpressions, "*?[") </span><span class="cov1" title="1">{
                 info, err := filepath.Glob(pathExpressions)
                 if err != nil </span><span class="cov0" title="0">{
-                        return nil, errors.Wrap(err, "failed to open excluded file")
+                        log.Error().Msgf("failed to get exclude path %s: %s", pathExpressions, err)
+                        return []string{pathExpressions}, nil
                 }</span>
                 <span class="cov1" title="1">return info, nil</span>
         }
@@ -18615,7 +18616,7 @@ func (a CloudProvider) Import(ctx context.Context, options *importer.ImportOptio
                 }</span>(region)
         }
 
-        <span class="cov8" title="1">go func() </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">go func() </span><span class="cov8" title="1">{
                 defer close(done)
                 wg.Wait()
         }</span>()
