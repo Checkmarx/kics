@@ -71,7 +71,7 @@ func GetExcludePaths(pathExpressions string) ([]string, error) {
 	if strings.ContainsAny(pathExpressions, "*?[") {
 		info, err := filepath.Glob(pathExpressions)
 		if err != nil {
-			log.Error().Msgf("failed to glob expression %s: %s", pathExpressions, err)
+			log.Error().Msgf("failed to get exclude path %s: %s", pathExpressions, err)
 			return []string{pathExpressions}, nil
 		}
 		return info, nil
