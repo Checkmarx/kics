@@ -20,6 +20,12 @@
         protocol: "email"
       - endpoint: "my_mobile_number"
         protocol: "sms"
+    policy:
+      Version: '2022-05-02'
+      Statement:
+      - Effect: Allow
+        Action: Publish
+        Principal: ''
 
 - name: Create alarm SNS topic
   sns_topic:
@@ -42,3 +48,9 @@
         protocol: "email"
       - endpoint: "my_mobile_number"
         protocol: "sms"
+    policy:
+      Version: '2022-05-02'
+      Statement:
+      - Effect: Allow
+        Action: Publish
+        Principal: '*'
