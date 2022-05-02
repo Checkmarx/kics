@@ -1,18 +1,12 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as terra_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_ses_identity_policy[name]
 
-	policy := common_lib.json_unmarshal(resource.policy)
-
-	st := common_lib.get_statement(policy)
-	statement := st[_]
-
-	common_lib.is_allow_effect(statement)
-	common_lib.containsOrInArrayContains(statement.Action, "*")
-	common_lib.any_principal(statement)
+	terra_lib.allows_action_from_all_principals(resource.policy, "*")
 
 	result := {
 		"documentId": input.document[i].id,

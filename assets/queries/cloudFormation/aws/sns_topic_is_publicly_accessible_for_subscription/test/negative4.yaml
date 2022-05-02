@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: ''
+Resources:
+  MySNSTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: createProductTopic
+  MySubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      Endpoint: test@example.com
+      Protocol: email
+      TopicArn: !Ref MySNSTopic

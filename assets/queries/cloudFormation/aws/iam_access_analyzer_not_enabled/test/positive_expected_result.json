@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "IAM Access Analyzer Not Enabled",
+    "severity": "LOW",
+    "line": 3,
+    "fileName": "positive1.yaml"
+  }
+]

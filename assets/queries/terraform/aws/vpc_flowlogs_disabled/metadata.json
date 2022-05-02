@@ -3,7 +3,7 @@
   "queryName": "VPC FlowLogs Disabled",
   "severity": "MEDIUM",
   "category": "Observability",
-  "descriptionText": "VPC hasn't got any FlowLog associated",
+  "descriptionText": "Every VPC resource should have an associated Flow Log",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc",
   "platform": "Terraform",
   "descriptionID": "cdbdeb30",

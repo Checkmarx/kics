@@ -50,13 +50,17 @@ nav:
       - Bill of Materials: bom.md
       - Queries List:
           - All: queries/all-queries.md
+          - Common: queries/common-queries.md
           - Ansible: queries/ansible-queries.md
           - Azure Resource Manager: queries/azureresourcemanager-queries.md
           - CloudFormation: queries/cloudformation-queries.md
           - Dockerfile: queries/dockerfile-queries.md
+          - Docker Compose: queries/dockercompose-queries.md
           - Kubernetes: queries/kubernetes-queries.md
-          - Terraform: queries/terraform-queries.md
           - OpenAPI: queries/openapi-queries.md
+          - Google Deployment Manager: queries/googledeploymentmanager-queries.md
+          - gRPC: queries/grpc-queries.md
+          - Terraform: queries/terraform-queries.md
   - Integrations:
       - Overview: integrations.md
       - Azure DevOps: integrations_azurepipelines.md
@@ -70,7 +74,6 @@ nav:
       - TeamCity: integrations_teamcity.md
       - Travis CI: integrations_travisci.md
       - Terraform Cloud: integrations_tfcloud.md
-      - AWS CDK: cdk.md
       - AWS CodeBuild: integrations_aws_codebuild.md
       - Badge: BADGE.md
       - Using pre-commit hooks: integrations_pre_commit.md

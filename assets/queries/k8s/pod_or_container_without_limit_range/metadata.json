@@ -3,8 +3,8 @@
   "queryName": "Pod or Container Without LimitRange",
   "severity": "LOW",
   "category": "Insecure Configurations",
-  "descriptionText": "Pod or Container should have a LimitRange associated",
-  "descriptionUrl": "https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/cpu-constraint-namespace/#create-a-limitrange-and-a-pod",
+  "descriptionText": "Each namespace should have a LimitRange policy associated to ensure that resource allocations of Pods, Containers and PersistentVolumeClaims do not exceed the defined boundaries",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/limit-range/",
   "platform": "Kubernetes",
   "descriptionID": "142ed21f"
 }

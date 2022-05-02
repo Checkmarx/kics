@@ -334,5 +334,17 @@
     "severity": "HIGH",
     "line": 3,
     "fileName": "positive40.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - AWS Context-specific credential",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive41.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - AWS Certificate",
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive41.tf"
   }
 ]
