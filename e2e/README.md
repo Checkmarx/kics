@@ -9,7 +9,7 @@ _Note: If you don't run this script, only the tests "031" and "052" must fail._
 
 - Before running tests:
 ```bash
-cd kics_repository_folder/github/scripts/server-mock
+cd kics_repository_folder/.github/scripts/server-mock
 npm install
 npm start
 ```
@@ -39,7 +39,8 @@ Prepare
 ```bash
 cd kics_repository_folder
 go mod vendor
-docker build -t kics:e2e-tests -f .\Dockerfile .
+LINUX/MAC: docker build -t kics:e2e-tests -f ./Dockerfile .
+WINDOWS: docker build -t kics:e2e-tests -f .\Dockerfile .
 ```
 
 Run (linux/mac/bash):
