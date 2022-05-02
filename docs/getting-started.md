@@ -10,7 +10,7 @@ To scan a directory/file on your host you have to mount it as a volume to the co
 
 ```shell
 docker pull checkmarx/kics:latest
-docker run -v {​​​​path_to_host_folder_to_scan}​​​​:/path checkmarx/kics scan -p "/path" -o "/path/"
+docker run -v "{path_to_host_folder_to_scan}":/path checkmarx/kics scan -p "/path" -o "/path/"
 ```
 
 You can see the list of available tags in [dockerhub](https://hub.docker.com/r/checkmarx/kics/tags?page=1&ordering=-name)
@@ -24,24 +24,6 @@ docker run -it -u $UID:$GID -v $PWD:/path checkmarx/kics:ubi8 scan -p /path/asse
 ```
 
 Another option is [rebuilding the dockerfile](https://github.com/Checkmarx/kics/blob/master/Dockerfile.ubi8) providing build arguments e.g: `--build-arg UID=999 --build-arg GID=999 --build-arg KUSER=myuser --build-arg KUSER=mygroup`
-
-#### Homebrew
-
-KICS is avaiable on Checkmarx [homebrew-tap](https://github.com/Checkmarx/homebrew-tap). It can be used as follows:
-
-```
-brew install Checkmarx/tap/kics
-```
-
-To use KICS default queries add KICS_QUERIES_PATH env to your `~/.zshrc`, `~/.zprofile`:
-
-```
-echo 'export KICS_QUERIES_PATH=/usr/local/opt/kics/share/kics/assets/queries' >> ~/.zshrc
-```
-
-#### Custom Queries
-
-You can provide your own path to the queries directory with `-q` CLI option (see CLI Options section below), otherwise the default directory will be used The default _./assets/queries_ is built-in in the image. You can use this to provide a path to your own custom queries. Check [create a new query guide](creating-queries.md) to learn how to define your own queries.
 
 #### Build from Sources
 
@@ -60,9 +42,15 @@ You can provide your own path to the queries directory with `-q` CLI option (see
     ./bin/kics scan -p '<path-of-your-project-to-scan>' --report-formats json -o ./results
     ```
 
+#### Custom Queries
+
+You can provide your own path to the queries directory with `-q` CLI option (see CLI Options section below), otherwise the default directory will be used The default _./assets/queries_ is built-in in the image. You can use this to provide a path to your own custom queries. Check [create a new query guide](creating-queries.md) to learn how to define your own queries.
+
 ---
 
-**Note**: KICS does not execute scan by default anymore.
+**Note**: KICS does not execute scan by default as of (https://github.com/Checkmarx/kics/releases/tag/v1.3.0)[version 1.3.0].
+
+**Note**: KICS deprecated the availability of binaries in the GitHub releases assets as of (https://github.com/Checkmarx/kics/releases/tag/v1.5.2)[version 1.5.2], it is advised to update all systems (pipelines, integrations, etc.) to use the (https://hub.docker.com/r/checkmarx/kics)[KICS Docker Images].
 
 ## Next Steps
 
