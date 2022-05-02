@@ -8,8 +8,9 @@ CxPolicy[result] {
 	modules := {"community.aws.sns_topic", "sns_topic"}
 	snsTopicCommunity := task[modules[m]]
 	ansLib.checkState(snsTopicCommunity)
-	policies := snsTopicCommunity.policy
-	statement := policies.Statement[i]
+    st := common_lib.get_statement(common_lib.get_policy(snsTopicCommunity.policy))
+	statement := st[_]
+	
 	statement.Effect == "Allow"
 	common_lib.any_principal(statement)
 
