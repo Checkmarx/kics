@@ -10,7 +10,7 @@ func init() { //nolint
 				[]string{"scan",
 					"--output-path", "/path/e2e/output",
 					"--output-name", "E2E_CLI_033_RESULT",
-					"--report-formats", "json,sarif,glsast",
+					"--report-formats", "json,sarif,glsast,codeclimate",
 					"--payload-path", "/path/e2e/output/E2E_CLI_033_PAYLOAD.json",
 					"-p", "/path/e2e/fixtures/samples/terraform-single.tf",
 				},
@@ -18,7 +18,7 @@ func init() { //nolint
 			ExpectedResult: []ResultsValidation{
 				{
 					ResultsFile:    "E2E_CLI_033_RESULT",
-					ResultsFormats: []string{"json", "sarif", "glsast"},
+					ResultsFormats: []string{"json", "sarif", "glsast", "codeclimate"},
 				},
 			},
 			ExpectedPayload: []string{

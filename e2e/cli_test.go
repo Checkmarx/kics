@@ -154,6 +154,10 @@ func checkExpectedOutput(t *testing.T, tt *testcases.TestCase, argIndex int) {
 	if utils.Contains(resultsFormats, "asff") {
 		utils.JSONSchemaValidationFromFile(t, "asff-"+jsonFileName, "result-asff.json")
 	}
+	// Check result file (CODECLIMATE)
+	if utils.Contains(resultsFormats, "codeclimate") {
+		utils.JSONSchemaValidationFromFile(t, "codeclimate-"+jsonFileName, "result-codeclimate.json")
+	}
 	// Check result file (SARIF)
 	if utils.Contains(resultsFormats, "sarif") {
 		utils.JSONSchemaValidationFromFile(t, tt.Args.ExpectedResult[argIndex].ResultsFile+".sarif", "result-sarif.json")

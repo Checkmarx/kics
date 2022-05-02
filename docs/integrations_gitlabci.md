@@ -87,3 +87,30 @@ kics-scan:
 <br>
 
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_gitlab_pipeline_sast_report_result.png" width="850">
+
+## Code Quality integration
+
+It is possible to get code quality report with Kics scan, see the example:
+
+```yaml
+image:
+    name: checkmarx/kics:latest
+    entrypoint: [""]
+
+stages:
+    - test
+
+code_quality:
+    stage: test
+    script:
+        - kics scan --no-progress -p ${PWD} -o ${PWD} --report-formats codeclimate --output-name codeclimate-result
+    artifacts:
+        paths:
+            - codeclimate-result.json
+        reports:
+            codequality: codeclimate-result.json
+```
+
+### Code Quality Report
+
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_gitlab_code_quality_report.png" width="850">
