@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/results/">
       
       <link rel="icon" href="../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.13">
     
     
       
@@ -21,10 +21,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.e411adfe.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -543,6 +543,13 @@
         <li class="md-nav__item">
   <a href="#csv" class="md-nav__link">
     CSV
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code_climate" class="md-nav__link">
+    Code Climate
   </a>
   
 </li>
@@ -1427,6 +1434,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#code_climate" class="md-nav__link">
+    Code Climate
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cli_report" class="md-nav__link">
     CLI Report
   </a>
@@ -2237,6 +2251,68 @@ PDF reports are sorted by severity (from high to info), the results will have qu
 </tr>
 </tbody>
 </table>
+<h2 id="code_climate">Code Climate<a class="headerlink" href="#code_climate" title="Permanent link">&para;</a></h2>
+<p>You can export code climate report by using <code>--report-formats "codeclimate"</code>. The generated report file will have a prefix <code>codeclimate-</code>.</p>
+<p>Code climate report follow the <a href="https://github.com/codeclimate/platform/blob/master/spec/analyzers/SPEC.md">Code Climate Spec</a>.</p>
+<pre><code class="language-json">[
+    {
+        &quot;type&quot;: &quot;issue&quot;,
+        &quot;check_name&quot;: &quot;Disk Encryption Disabled&quot;,
+        &quot;description&quot;: &quot;VM disks for critical VMs must be encrypted with Customer Supplied Encryption Keys (CSEK) or with Customer-managed encryption keys (CMEK), which means the attribute 'diskEncryptionKey' must be defined and its sub attributes 'rawKey' or 'kmsKeyName' must also be defined&quot;,
+        &quot;categories&quot;: [&quot;Security&quot;],
+        &quot;location&quot;: {
+            &quot;path&quot;: &quot;positive1.yaml&quot;,
+            &quot;lines&quot;: {
+                &quot;begin&quot;: 8
+            }
+        },
+        &quot;severity&quot;: &quot;major&quot;,
+        &quot;fingerprint&quot;: &quot;93b3ba78cf3f7aba06e480f40b10c754cb923118abb13e37106e56106406415f&quot;
+    },
+    {
+        &quot;type&quot;: &quot;issue&quot;,
+        &quot;check_name&quot;: &quot;IP Forwarding Enabled&quot;,
+        &quot;description&quot;: &quot;Instances must not have IP forwarding enabled, which means the attribute 'canIpForward' must not be true&quot;,
+        &quot;categories&quot;: [&quot;Security&quot;],
+        &quot;location&quot;: {
+            &quot;path&quot;: &quot;positive1.yaml&quot;,
+            &quot;lines&quot;: {
+                &quot;begin&quot;: 16
+            }
+        },
+        &quot;severity&quot;: &quot;major&quot;,
+        &quot;fingerprint&quot;: &quot;ac9b7b7b621eeeaa28d50f5cb6a047dd53df706624b509bcc7db775e53de6db5&quot;
+    },
+    {
+        &quot;type&quot;: &quot;issue&quot;,
+        &quot;check_name&quot;: &quot;Project-wide SSH Keys Are Enabled In VM Instances&quot;,
+        &quot;description&quot;: &quot;VM Instance should block project-wide SSH keys&quot;,
+        &quot;categories&quot;: [&quot;Security&quot;],
+        &quot;location&quot;: {
+            &quot;path&quot;: &quot;positive1.yaml&quot;,
+            &quot;lines&quot;: {
+                &quot;begin&quot;: 4
+            }
+        },
+        &quot;severity&quot;: &quot;major&quot;,
+        &quot;fingerprint&quot;: &quot;e84dabdbe179ec9bbe4fb5c0abe8fe8a0f8a3b679a8eef6cfc98d7e5403600ab&quot;
+    },
+    {
+        &quot;type&quot;: &quot;issue&quot;,
+        &quot;check_name&quot;: &quot;Shielded VM Disabled&quot;,
+        &quot;description&quot;: &quot;Compute instances must be launched with Shielded VM enabled, which means the attribute 'shieldedInstanceConfig' must be defined and its sub attributes 'enableSecureBoot', 'enableVtpm' and 'enableIntegrityMonitoring' must be set to true&quot;,
+        &quot;categories&quot;: [&quot;Security&quot;],
+        &quot;location&quot;: {
+            &quot;path&quot;: &quot;positive1.yaml&quot;,
+            &quot;lines&quot;: {
+                &quot;begin&quot;: 4
+            }
+        },
+        &quot;severity&quot;: &quot;major&quot;,
+        &quot;fingerprint&quot;: &quot;1b9d4118a9e39702e46ce204115ae11fc9146c3cb0923a2fb232cabe1e8e103c&quot;
+    }
+]
+</code></pre>
 <h2 id="cli_report">CLI Report<a class="headerlink" href="#cli_report" title="Permanent link">&para;</a></h2>
 <p>KICS displays the results in CLI. For detailed information, you can use <code>-v --log-level DEBUG</code>.</p>
 <p><img alt="image" src="https://user-images.githubusercontent.com/74001161/161743565-f98cb076-e708-4754-8f9a-f1dbed82837b.png" /></p>
@@ -2363,7 +2439,7 @@ PDF reports are sorted by severity (from high to info), the results will have qu
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../assets/javascripts/bundle.ed9748b7.min.js"></script>
       
         <script src="../js/version-mike.js"></script>
       
