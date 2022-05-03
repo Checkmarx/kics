@@ -8,6 +8,7 @@ import (
 	"math"
 	"regexp"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/Checkmarx/kics/assets"
@@ -160,6 +161,7 @@ func NewInspector(
 	}, nil
 }
 
+// Inspect inspects the source code for passwords & secrets and returns the list of vulnerabilities
 func (c *Inspector) Inspect(ctx context.Context, basePaths []string,
 	files model.FileMetadatas, currentQuery chan<- int64) ([]model.Vulnerability, error) {
 	for i := range c.regexQueries {
@@ -558,13 +560,18 @@ func validateCustomSecretsQueriesID(allRegexQueries []RegexQuery) error {
 }
 
 func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.FileMetadatas) {
+	wg := &sync.WaitGroup{}
 	// check file content line by line
 	if c.regexQueries[i].Multiline == (MultilineResult{}) {
 		lines := c.detector.SplitLines(&files[idx])
-
 		for lineNumber, currentLine := range lines {
-			c.checkLineByLine(&c.regexQueries[i], basePaths, &files[idx], lineNumber, currentLine)
+			wg.Add(1)
+			go func(lineNumber int, currentLine string) {
+				defer wg.Done()
+				c.checkLineByLine(&c.regexQueries[i], basePaths, &files[idx], lineNumber, currentLine)
+			}(lineNumber, currentLine)
 		}
+		wg.Wait()
 		return
 	}
 
