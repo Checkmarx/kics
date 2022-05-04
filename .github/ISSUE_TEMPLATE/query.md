@@ -2,7 +2,7 @@
 name: Query
 about: Template to help create/update a query
 title: Add/Update \[QUERY_NAME\] query for \[PLATFORM\] (Terraform, Ansible, ..)
-labels: query
+labels: community, query
 assignees: ''
 
 ---
