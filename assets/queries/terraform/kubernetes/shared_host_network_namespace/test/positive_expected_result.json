@@ -1,7 +1,7 @@
 [
   {
     "queryName": "Shared Host Network Namespace",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 7
   }
 ]

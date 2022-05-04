@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: ''
+Resources:
+  snsPolicy:
+      Type: AWS::SNS::TopicPolicy
+      Properties:
+        PolicyDocument:
+          Statement: [
+            {
+              "Sid": "MyTopicPolicy",
+              "Effect": "Allow",
+              "Principal": "*",
+              "Action": ["sns:Publish"],
+              "Resource": "arn:aws:sns:MyTopic"
+            }]
