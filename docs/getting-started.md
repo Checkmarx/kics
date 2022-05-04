@@ -42,6 +42,20 @@ Another option is [rebuilding the dockerfile](https://github.com/Checkmarx/kics/
     ./bin/kics scan -p '<path-of-your-project-to-scan>' --report-formats json -o ./results
     ```
 
+#### [Deprecated] Homebrew
+
+KICS is available on Checkmarx [homebrew-tap](https://github.com/Checkmarx/homebrew-tap) only for versions until 1.5.1. It can be used as follows:
+
+```
+brew install Checkmarx/tap/kics
+```
+
+To use KICS default queries add the KICS_QUERIES_PATH environmental variable to your shell profile, e.g:
+
+```
+echo 'export KICS_QUERIES_PATH=/usr/local/opt/kics/share/kics/assets/queries' >> ~/.zshrc
+```
+
 #### Custom Queries
 
 You can provide your own path to the queries directory with `-q` CLI option (see CLI Options section below), otherwise the default directory will be used The default _./assets/queries_ is built-in in the image. You can use this to provide a path to your own custom queries. Check [create a new query guide](creating-queries.md) to learn how to define your own queries.
