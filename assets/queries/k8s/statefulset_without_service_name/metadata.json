@@ -3,7 +3,7 @@
   "queryName": "StatefulSet Without Service Name",
   "severity": "LOW",
   "category": "Availability",
-  "descriptionText": "Check if the StatefulSets have a headless 'serviceName'",
+  "descriptionText": "StatefulSets should have a headless 'serviceName'. The headless service labels should also be implemented on StatefulSets labels.",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/",
   "platform": "Kubernetes",
   "descriptionID": "2ce554f2"

@@ -11,7 +11,7 @@ CxPolicy[result] {
             	resource.spec.clusterIP == "None"; 
             	statefulset.metadata.namespace == resource.metadata.namespace; 
             	statefulset.spec.serviceName == resource.metadata.name; 
-            	not unmatchedLabels( resource.spec.selector, statefulset.spec.template.metadata.labels)
+            	match_labels( resource.spec.selector, statefulset.spec.template.metadata.labels)
             	}) == 0
 
 	metadata := statefulset.metadata.name
@@ -26,13 +26,6 @@ CxPolicy[result] {
 	}
 }
 
-unmatchedLabels(serviceLabels, statefulsetLabels){
-    value := serviceLabels[name]
-    notContain(value, name , statefulsetLabels)
-}
-
-notContain( value, name, list){
-	list[name] != value
-}else{
-	not common_lib.valid_key(list, name)
+match_labels(serviceLabels, statefulsetLabels) {
+    count({x | label := serviceLabels[x]; label == statefulsetLabels[x]}) == count(serviceLabels)
 }
