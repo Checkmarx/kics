@@ -1,18 +1,5 @@
 # Results
 
-KICS can export results in multiple formats which can be seen on the following list:
-
--   ASFF (asff)
--   CSV (csv)
--   CycloneDX (cyclonedx)
--   Gitlab SAST (glsast)
--   HTML (html)
--   JSON (json)
--   JUnit (junit)
--   PDF (pdf)
--   SARIF (sarif)
--   SonarQube (sonarqube)
-
 To export in JSON format in current directory, you can use the following command:
 
 ```bash
