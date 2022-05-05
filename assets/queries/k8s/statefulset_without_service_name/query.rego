@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name=%s.spec.serviceName", [metadata]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.serviceName refers to a Headless Service", [metadata]),
+		"keyExpectedValue": sprintf("metadata.name=%s.spec.serviceName should refer to a Headless Service", [metadata]),
 		"keyActualValue": sprintf("metadata.name=%s.spec.serviceName doesn't refers to a Headless Service", [metadata]),
 		"searchLine": common_lib.build_search_line(["spec", "serviceName"], [])
 	}

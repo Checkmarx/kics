@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("kubernetes_stateful_set[%s].spec.service_name", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_stateful_set[%s].spec.service_name refers to a Headless Service", [name]),
+		"keyExpectedValue": sprintf("kubernetes_stateful_set[%s].spec.service_name should refer to a Headless Service", [name]),
 		"keyActualValue": sprintf("kubernetes_stateful_set[%s].spec.service_name does not refer to a Headless Service", [name]),
 	}
 }
