@@ -57,7 +57,7 @@ jobs:
           echo ::set-output name=debian_tags::${DEBIAN_TAGS}
           echo ::set-output name=ubi8_tags::${UBI8_TAGS}
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
         with:
           image: tonistiigi/binfmt:latest
           platforms: linux/amd64,linux/arm64
