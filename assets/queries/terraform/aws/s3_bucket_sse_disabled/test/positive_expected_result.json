@@ -2,19 +2,19 @@
   {
     "queryName": "S3 Bucket SSE Disabled",
     "severity": "HIGH",
-    "line": 1,
+    "line": 14,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "S3 Bucket SSE Disabled",
     "severity": "HIGH",
-    "line": 13,
+    "line": 26,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "S3 Bucket SSE Disabled",
     "severity": "HIGH",
-    "line": 13,
+    "line": 26,
     "fileName": "positive3.tf"
   },
   {
@@ -50,7 +50,7 @@
   {
     "queryName": "S3 Bucket SSE Disabled",
     "severity": "HIGH",
-    "line": 15,
+    "line": 23,
     "fileName": "positive9.tf"
   },
   {

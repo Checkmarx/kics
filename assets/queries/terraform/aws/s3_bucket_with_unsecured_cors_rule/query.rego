@@ -4,8 +4,6 @@ import data.generic.common as common_lib
 import data.generic.terraform as terra_lib
 
 CxPolicy[result] {
-	terra_lib.is_deprecated_version(input.document)
-
 	bucket := input.document[i].resource.aws_s3_bucket[name]
 
 	rule := bucket.cors_rule
@@ -15,15 +13,13 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_s3_bucket[%s].cors_rule", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'cors_rule' does not allows all methods, all headers or several origins",
+		"keyExpectedValue": "'cors_rule' to not allow all methods, all headers or several origins",
 		"keyActualValue": "'cors_rule' allows all methods, all headers or several origins",
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name, "cors_rule"], []),
 	}
 }
 
 CxPolicy[result] {
-	terra_lib.is_deprecated_version(input.document)
-
 	bucket := input.document[i].resource.aws_s3_bucket[name]
 
 	rule := bucket.cors_rule[idx]
@@ -33,7 +29,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_s3_bucket[%s].cors_rule", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'cors_rule' does not allows all methods, all headers or several origins",
+		"keyExpectedValue": "'cors_rule' to not allow all methods, all headers or several origins",
 		"keyActualValue": "'cors_rule' allows all methods, all headers or several origins",
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name, "cors_rule", idx], []),
 	}
@@ -49,16 +45,14 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("module[%s].cors_rule", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'cors_rule' does not allows all methods, all headers or several origins",
+		"keyExpectedValue": "'cors_rule' to not allow all methods, all headers or several origins",
 		"keyActualValue": "'cors_rule' allows all methods, all headers or several origins",
 		"searchLine": common_lib.build_search_line(["module", name, keyToCheck, ruleIdx], []),
 	}
 }
 
 
-CxPolicy[result] {
-	not terra_lib.is_deprecated_version(input.document)
-	
+CxPolicy[result] {	
 	input.document[_].resource.aws_s3_bucket[bucketName]
 	
 	cors_configuration := input.document[i].resource.aws_s3_bucket_cors_configuration[name]
@@ -70,15 +64,13 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_s3_bucket_cors_configuration[%s].cors_rule", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'cors_rule' does not allows all methods, all headers or several origins",
+		"keyExpectedValue": "'cors_rule' to not allow all methods, all headers or several origins",
 		"keyActualValue": "'cors_rule' allows all methods, all headers or several origins",
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_cors_configuration", name, "cors_rule"], []),
 	}
 }
 
 CxPolicy[result] {
-	not terra_lib.is_deprecated_version(input.document)
-	
 	input.document[_].resource.aws_s3_bucket[bucketName]
 	
 	cors_configuration := input.document[i].resource.aws_s3_bucket_cors_configuration[name]
@@ -90,25 +82,24 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_s3_bucket_cors_configuration[%s].cors_rule", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'cors_rule' does not allows all methods, all headers or several origins",
+		"keyExpectedValue": "'cors_rule' to not allow all methods, all headers or several origins",
 		"keyActualValue": "'cors_rule' allows all methods, all headers or several origins",
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_cors_configuration", name, "cors_rule", idx], []),
 	}
 }
 
-CxPolicy[result] {
-	not terra_lib.is_deprecated_version(input.document)
-	
+CxPolicy[result] {	
 	input.document[i].resource.aws_s3_bucket[bucketName]
-	
+	resource := input.document[i].resource.aws_s3_bucket[bucketName]
 	not terra_lib.has_target_resource(bucketName, "aws_s3_bucket_cors_configuration")
+	not common_lib.valid_key(resource, "cors_rule")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_s3_bucket[%s]", [bucketName]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'aws_s3_bucket' has 'aws_s3_bucket_cors_configuration' associated",
-		"keyActualValue": "'aws_s3_bucket' does not have 'aws_s3_bucket_cors_configuration' associated",
+		"keyExpectedValue": "'aws_s3_bucket' to have 'cors' associated",
+		"keyActualValue": "'aws_s3_bucket' does not have 'cors' associated",
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", bucketName], []),
 	}
 }

@@ -2,7 +2,7 @@
   {
     "queryName": "CloudTrail Log Files S3 Bucket is Publicly Accessible",
     "severity": "HIGH",
-    "line": 12,
+    "line": 25,
     "filename": "positive1.tf"
   },
   {
