@@ -172,7 +172,11 @@ func GetNumCPU() (float32, error) {
 			return -1, err
 		}
 
-		defer f.Close()
+		defer func() {
+			if err := f.Close(); err != nil {
+				log.Err(err)
+			}
+		}()
 
 		scanner := bufio.NewScanner(f)
 		if scanner.Scan() {
