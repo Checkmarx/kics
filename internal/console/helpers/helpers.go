@@ -174,15 +174,15 @@ func GetNumCpu() (float32, error) {
 
 		scanner := bufio.NewScanner(f)
 		if scanner.Scan() {
-			divisionValue := float32(100000)
+			divisor := float32(100000)
 			text := scanner.Text()
 			cpus, err := strconv.Atoi(text)
 			if err != nil {
-				return float32(cpus) / divisionValue, err
+				return float32(cpus) / divisor, err
 			}
 
 			if cpus != -1 {
-				return float32(cpus) / divisionValue, nil
+				return float32(cpus) / divisor, nil
 			}
 
 			return float32(runtime.NumCPU()), nil
