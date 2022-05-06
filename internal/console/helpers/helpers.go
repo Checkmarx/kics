@@ -163,8 +163,8 @@ func ListReportFormats() []string {
 	return supportedFormats
 }
 
-// GetNumCpu return the number of cpus available
-func GetNumCpu() (float32, error) {
+// GetNumCPU return the number of cpus available
+func GetNumCPU() (float32, error) {
 	// Check if application is running inside docker
 	if _, err := os.Stat("/.dockerenv"); err == nil {
 		f, err := os.Open("/sys/fs/cgroup/cpu/cpu.cfs_quota_us")
