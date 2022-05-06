@@ -14,6 +14,7 @@
     <div class="results">
       <h2>E2E Tests Result: <span class="test-status {{ if eq .Result.Action "pass" }}pass{{else}}fail{{end}}">{{.Result.Action}}<span></h2>
       <h3>Time Elapsed: {{.Result.Elapsed}}s</h3>
+      <h4>Kics Docker Image: {{ getCurrentDockerImage }}</h4>
     </div>
     <hr class="separator"/>
     <h4>Filters</h4>

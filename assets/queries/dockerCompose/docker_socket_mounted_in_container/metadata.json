@@ -1,0 +1,10 @@
+{
+    "id": "d6355c88-1e8d-49e9-b2f2-f8a1ca12c75b",
+    "queryName": "Docker Socket Mounted In Container",
+    "severity": "HIGH",
+    "category": "Build Process",
+    "descriptionText": "Docker socket docker.sock should not be mounted on host. If the docker socket is mounted, it can allow its processes to execute docker commands.",
+    "descriptionUrl": "https://docs.docker.com/compose/compose-file/#volumes",
+    "platform": "DockerCompose",
+    "descriptionID": "8acc9d24"
+}

@@ -3,7 +3,7 @@
   "queryName": "Network Interfaces With Public IP",
   "severity": "MEDIUM",
   "category": "Networking and Firewall",
-  "descriptionText": "Network Interfaces must not be exposed with a public IP address",
+  "descriptionText": "Network Interfaces should not be exposed with a public IP address. If configured, additional security baselines should be followed (https://docs.microsoft.com/en-us/security/benchmark/azure/baselines/virtual-network-security-baseline, https://docs.microsoft.com/en-us/security/benchmark/azure/baselines/public-ip-security-baseline)",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface#public_ip_address_id",
   "platform": "Terraform",
   "descriptionID": "49907665",

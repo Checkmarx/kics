@@ -1,13 +1,13 @@
 [
   {
-    "queryName": "HTTP Port Open",
+    "queryName": "HTTP Port Open To Internet",
     "severity": "HIGH",
     "line": 8,
     "fileName": "positive1.yaml"
   },
   {
     "fileName": "positive2.json",
-    "queryName": "HTTP Port Open",
+    "queryName": "HTTP Port Open To Internet",
     "severity": "HIGH",
     "line": 10
   }

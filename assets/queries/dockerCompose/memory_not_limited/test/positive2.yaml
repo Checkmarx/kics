@@ -1,0 +1,14 @@
+version: "2.4"
+
+services:
+  criwhat:
+    build:
+      context: "./cri/what"
+    restart: "unless-stopped"
+    cpus: 0.25
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - FLAG=FLAG-TOO_MANY_ERRORS_TOO_MANY_DETAILS
+    ports:
+      - 12345:6000

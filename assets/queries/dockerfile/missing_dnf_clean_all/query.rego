@@ -1,7 +1,11 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
+	dockerLib.check_multi_stage(name, input.document[i].command)
+
 	resource.Cmd == "run"
 	command := resource.Value[0]
 

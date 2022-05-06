@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "No ROS Stack Policy",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive.tf"
+  },
+  {
+    "queryName": "No ROS Stack Policy",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive.tf"
+  },
+  {
+    "queryName": "No ROS Stack Policy",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "No ROS Stack Policy",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive3.tf"
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "id": "a77f4d07-c6e0-4a48-8b35-0eeb51576f4f",
+  "queryName": "Always Pull Images Admission Control Plugin Not Set",
+  "severity": "MEDIUM",
+  "category": "Build Process",
+  "descriptionText": "When using kube-apiserver command, the '--enable-admission-plugins' flag should have 'AlwaysPullImages' plugin and the plugin should be correctly configured in AdmissionControl Config file",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
+  "platform": "Kubernetes",
+  "descriptionID": "503bf412"
+}

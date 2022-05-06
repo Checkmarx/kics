@@ -7,9 +7,9 @@ func init() { //nolint
 		Name: "should export the results based on report formats [E2E-CLI-040]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "--output-path", "output", "--output-name", "E2E_CLI_040_RESULT",
+				[]string{"scan", "--output-path", "/path/e2e/output", "--output-name", "E2E_CLI_040_RESULT",
 					"--report-formats", "json,sarif,glsast,html,sonarqube",
-					"-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml"},
+					"-p", "/path/e2e/fixtures/samples/positive.yaml"},
 			},
 			ExpectedResult: []ResultsValidation{
 				{

@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::S3::Bucket"
@@ -37,9 +39,10 @@ checkPublicAccessBlockConfiguration(properties) {
 }
 
 checkWebsiteConfiguration(properties) {
-	properties.WebsiteConfiguration != null
+	common_lib.valid_key(properties, "WebsiteConfiguration") # ensure that is defined and not null
 }
 
 checkWebsiteConfiguration(properties) {
-	properties.AccessControl != null
+	common_lib.valid_key(properties, "AccessControl") # ensure that is defined and not null
+	properties.AccessControl != "Private"
 }

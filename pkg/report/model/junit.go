@@ -47,7 +47,7 @@ type JUnitReport interface {
 // NewJUnitReport creates a new JUnit report instance
 func NewJUnitReport(time string) JUnitReport {
 	return &junitTestSuites{
-		Name:       fmt.Sprintf("KICS v%s", constants.Version),
+		Name:       fmt.Sprintf("KICS %s", constants.Version),
 		Time:       time,
 		Failures:   "",
 		TestSuites: []junitTestSuite{},

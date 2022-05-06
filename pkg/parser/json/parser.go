@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/mailru/easyjson"
 )
 
 // Parser defines a parser type
@@ -20,7 +21,7 @@ func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
 // Parse parses json file and returns it as a Document
 func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, error) {
 	r := model.Document{}
-	err := json.Unmarshal(fileContent, &r)
+	err := easyjson.Unmarshal(fileContent, &r)
 	if err != nil {
 		r := []model.Document{}
 		err = json.Unmarshal(fileContent, &r)
@@ -53,8 +54,8 @@ func (p *Parser) GetKind() model.FileKind {
 }
 
 // SupportedTypes returns types supported by this parser, which are cloudFormation
-func (p *Parser) SupportedTypes() []string {
-	return []string{"CloudFormation", "OpenAPI", "AzureResourceManager", "Terraform"}
+func (p *Parser) SupportedTypes() map[string]bool {
+	return map[string]bool{"cloudformation": true, "openapi": true, "azureresourcemanager": true, "terraform": true, "kubernetes": true}
 }
 
 // GetCommentToken return an empty string, since JSON does not have comment token

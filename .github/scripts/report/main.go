@@ -54,6 +54,8 @@ func FindTest(tests []TestsData, testName string) (*TestsData, bool) {
 func main() {
 	var testPath, testName, reportPath, reportName string
 
+	fmt.Printf("Report generator\n")
+
 	flag.StringVar(&testPath, "test-path", "", "")
 	flag.StringVar(&testName, "test-name", "", "")
 	flag.StringVar(&reportPath, "report-path", "", "")
@@ -76,9 +78,16 @@ func main() {
 	// Parse Tests Status
 	hasFailures := false
 
+	fmt.Printf("Parsing tests data...\n")
+
 	for decoder.More() {
 		var log TestLog
-		decoder.Decode(&log)
+
+		err := decoder.Decode(&log)
+		if err != nil {
+			fmt.Printf("Error when trying to decode: %v\n", err)
+			fmt.Printf("Verify if the JSON File has UTF8 enconding")
+		}
 
 		if log.Action == "pass" || log.Action == "fail" {
 			if log.Test == "" {
@@ -128,6 +137,9 @@ func main() {
 		}
 	}
 
+	fmt.Printf("Parsing tests data... Done!\n")
+	fmt.Printf("Creating report...\n")
+
 	// Format & Sort Tests
 	counter := Counters{
 		CountPass:  0,
@@ -159,5 +171,9 @@ func main() {
 	reportError := generateE2EReport(filepath.ToSlash(reportPath), reportName, reportList)
 	if reportError != nil {
 		fmt.Println(reportError)
+		os.Exit(1)
 	}
+
+	fmt.Printf("Creating report... Done!\n")
+	fmt.Printf("Finished!\n")
 }

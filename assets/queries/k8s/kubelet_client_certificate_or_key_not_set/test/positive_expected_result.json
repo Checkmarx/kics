@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Kubelet Client Certificate Or Key Not Set",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Kubelet Client Certificate Or Key Not Set",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Kubelet Client Certificate Or Key Not Set",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Kubelet Client Certificate Or Key Not Set",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive3.yaml"
+  }
+]

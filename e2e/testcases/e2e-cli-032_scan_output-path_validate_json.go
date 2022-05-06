@@ -7,8 +7,8 @@ func init() { //nolint
 		Name: "should set the results output name [E2E-CLI-032]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "-o", "output", "--output-name", "E2E_CLI_032_RESULT",
-					"-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml",
+				[]string{"scan", "-o", "/path/e2e/output", "--output-name", "E2E_CLI_032_RESULT",
+					"-p", "/path/e2e/fixtures/samples/positive.yaml",
 				},
 			},
 			ExpectedResult: []ResultsValidation{

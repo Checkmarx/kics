@@ -1,41 +1,44 @@
 package Cx
 
-import data.generic.k8s as k8sLib
 import data.generic.common as common_lib
+import data.generic.k8s as k8sLib
 
 types := {"initContainers", "containers"}
 
 CxPolicy[result] {
 	document := input.document[i]
-	specInfo := k8sLib.getSpecInfo(document)
 	metadata := document.metadata
 
-	containers := specInfo.spec[types[x]]
+	specInfo := k8sLib.getSpecInfo(document)
+	container := specInfo.spec[types[x]][_]
 
-	not common_lib.valid_key(containers[index].securityContext, "allowPrivilegeEscalation")
+	container.securityContext.allowPrivilegeEscalation == true
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext", [metadata.name, specInfo.path, types[x], containers[index].name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s.%s[%s].securityContext.allowPrivilegeEscalation is set", [specInfo.path, types[x], containers[index].name]),
-		"keyActualValue": sprintf("%s.%s[%s].securityContext.allowPrivilegeEscalation is undefined", [specInfo.path, types[x], containers[index].name]),
+		"documentId": document.id,
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.allowPrivilegeEscalation", [metadata.name, specInfo.path, types[x], container.name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.allowPrivilegeEscalation is false", [metadata.name, specInfo.path, types[x], container.name]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.allowPrivilegeEscalation is true", [metadata.name, specInfo.path, types[x], container.name]),
 	}
 }
 
 CxPolicy[result] {
 	document := input.document[i]
-	specInfo := k8sLib.getSpecInfo(document)
 	metadata := document.metadata
 
-	containers := specInfo.spec[types[x]]
-	containers[index].securityContext.allowPrivilegeEscalation == true
+	specInfo := k8sLib.getSpecInfo(document)
+	container := specInfo.spec[types[x]][c]
+
+	containerCtx := object.get(container, "securityContext", {})
+	not common_lib.valid_key(containerCtx, "allowPrivilegeEscalation")
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.allowPrivilegeEscalation", [metadata.name, specInfo.path, types[x], containers[index].name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.%s[%s].securityContext.allowPrivilegeEscalation is false", [specInfo.path, types[x], containers[index].name]),
-		"keyActualValue": sprintf("%s.%s[%s].securityContext.allowPrivilegeEscalation is true", [specInfo.path, types[x], containers[index].name]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}", [metadata.name, specInfo.path, types[x], container.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.allowPrivilegeEscalation is set and is false", [metadata.name, specInfo.path, types[x], container.name]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.allowPrivilegeEscalation is undefined", [metadata.name, specInfo.path, types[x], container.name]),
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], c, "securityContext"])
 	}
 }

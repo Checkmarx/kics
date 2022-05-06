@@ -15,8 +15,8 @@ CxPolicy[result] {
 		"resource_encryption": common_lib.get_encryption_if_exists(aws_mq_broker_resource),
 		"resource_vendor": "AWS",
 		"resource_category": "Queues",
-		"user_name": aws_mq_broker_resource.user.username,
-		"is_default_password": terra_lib.is_default_password(aws_mq_broker_resource.user.password), 
+		# "user_name": aws_mq_broker_resource.user.username, # needs attention in the future
+		# "is_default_password": terra_lib.is_default_password(aws_mq_broker_resource.user.password), # needs attention in the future
 	}
 
 	result := {
@@ -31,7 +31,8 @@ CxPolicy[result] {
 }
 
 check_publicly_accessible(resource) = accessibility {
-	accessibility := resource.publicly_accessible
+	resource.publicly_accessible == true
+	accessibility := "public"
 } else = accessibility {
-	accessibility := false
+	accessibility := "private"
 }

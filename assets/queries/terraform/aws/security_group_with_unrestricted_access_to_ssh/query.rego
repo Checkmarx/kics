@@ -6,7 +6,7 @@ import data.generic.terraform as terra_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_security_group[name]
 
-	terra_lib.openPort(resource.ingress, 22)
+	terra_lib.portOpenToInternet(resource.ingress, 22)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -21,7 +21,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	module := input.document[i].module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", "ingress_cidr_blocks")
-	terra_lib.openPort(module.ingress, 22)
+	terra_lib.portOpenToInternet(module.ingress, 22)
 
 	result := {
 		"documentId": input.document[i].id,

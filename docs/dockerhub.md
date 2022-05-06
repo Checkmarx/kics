@@ -14,31 +14,33 @@ To scan a directory/file on your host you have to mount it as a volume to the co
 
 NOTE: from v1.3.0 KICS does not execute `scan` command by default anymore.
 
-
 ```sh
 docker pull checkmarx/kics:latest
 ```
 
 Scan a directory
+
 ```sh
 docker run -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan -p "/path" -o "/path/"
 ```
+
 Scan a single file
+
 ```sh
 docker run -v {path_to_host_folder}/{filename}.{extention}:/path/{filename}.{extention} checkmarx/kics:latest scan -p "/path" -o "/path/"
 ```
 
 This will generate a `results.json` file, for both examples, under `path`.
 
-ℹ️  **UBI Based Images**
+ℹ️ **UBI Based Images**
 
-When using [UBI7](https://catalog.redhat.com) based image, the KICS process will run under the `kics` user and `kics` group with default UID=1000 and GID=1000, when using bind mount to share host files with the container, the UID and GID can be overriden to match current user with the `-u` flag that overrides the username:group or UID:GID. e.g:
+When using [UBI8](https://catalog.redhat.com) based image, the KICS process will run under the `kics` user and `kics` group with default UID=1000 and GID=1000, when using bind mount to share host files with the container, the UID and GID can be overriden to match current user with the `-u` flag that overrides the username:group or UID:GID. e.g:
 
 ```sh
-docker run -it -u $UID:$GID -v $PWD:/path checkmarx/kics:ubi7 scan -p /path/assets/queries/dockerfile -o /path -v
+docker run -it -u $UID:$GID -v $PWD:/path checkmarx/kics:ubi8 scan -p /path/assets/queries/dockerfile -o /path -v
 ```
 
-Another option is [rebuilding the dockerfile](https://github.com/Checkmarx/kics/blob/master/Dockerfile.ubi7) providing build arguments e.g: `--build-arg UID=999 --build-arg GID=999 --build-arg KUSER=myuser --build-arg KUSER=mygroup`
+Another option is [rebuilding the dockerfile](https://github.com/Checkmarx/kics/blob/master/Dockerfile.ubi8) providing build arguments e.g: `--build-arg UID=999 --build-arg GID=999 --build-arg KUSER=myuser --build-arg KUSER=mygroup`
 
 ## CLI Options
 
@@ -96,11 +98,11 @@ Flags:
   -d, --payload-path string           path to store internal representation JSON file
       --preview-lines int             number of lines to be display in CLI results (min: 1, max: 30) (default 3)
   -q, --queries-path strings          paths to directory with queries (default [./assets/queries])
-      --report-formats strings        formats in which the results will be exported (all, asff, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])
+      --report-formats strings        formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])
   -r, --secrets-regexes-path string   path to secrets regex rules configuration file
       --timeout int                   number of seconds the query has to execute before being canceled (default 60)
   -t, --type strings                  case insensitive list of platform types to scan
-                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, Dockerfile, GRPC, GoogleDeploymentManager, Kubernetes, OpenAPI, Terraform)
+                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Kubernetes, OpenAPI, Terraform)
 
 Global Flags:
       --ci                  display only log messages to CLI output (mutually exclusive with silent)

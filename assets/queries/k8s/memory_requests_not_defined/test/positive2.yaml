@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-deployment2
+  labels:
+    app: test2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: test2
+  template:
+    metadata:
+      labels:
+        app: test2
+    spec:
+      containers:
+        - name:  pause
+          image: k8s.gcr.io/pause
+          resources:
+            limits:
+              cpu: 0.5
+              memory: 512Mi

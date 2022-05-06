@@ -1,10 +1,12 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_cloudformation_stack[name]
 
-	not resource.template_body
-	not resource.template_url
+	not common_lib.valid_key(resource, "template_body")
+    not common_lib.valid_key(resource, "template_url")
 
 	result := {
 		"documentId": input.document[i].id,

@@ -1,0 +1,11 @@
+{
+  "id": "8d29754a-2a18-460d-a1ba-9509f8d359da",
+  "queryName": "IAM Access Analyzer Not Enabled",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "IAM Access Analyzer should be enabled and configured to continuously monitor resource permissions",
+  "descriptionUrl": "https://docs.amazonaws.cn/en_us/AWSCloudFormation/latest/UserGuide/aws-resource-accessanalyzer-analyzer.html",
+  "platform": "CloudFormation",
+  "descriptionID": "24a6978e",
+  "cloudProvider": "aws"
+}

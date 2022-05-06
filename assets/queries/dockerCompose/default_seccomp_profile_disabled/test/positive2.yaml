@@ -1,0 +1,14 @@
+version: "3.9"
+
+networks:
+  backend:
+
+services:
+  example:
+    build: .
+    security_opt:
+      - seccomp:unconfined
+    networks:
+      - backend
+    ports:
+      - "5002:5002"

@@ -10,9 +10,9 @@ func init() { //nolint
 		Args: args{
 			Args: []cmdArgs{
 
-				[]string{"scan", "--log-path", "output/E2E_CLI_039_LOG",
+				[]string{"scan", "--log-path", "/path/e2e/output/E2E_CLI_039_LOG",
 					"--log-level", "Trace",
-					"-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml"},
+					"-p", "/path/e2e/fixtures/samples/positive.yaml"},
 			},
 
 			ExpectedLog: LogValidation{

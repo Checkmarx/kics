@@ -1,0 +1,11 @@
+{
+    "id": "44d434ca-a9bf-4203-8828-4c81a8d5a598",
+    "queryName": "RDS Instance TDE Status Disabled",
+    "severity": "HIGH",
+    "category": "Encryption",
+    "descriptionText": "tde_status parameter should be Enabled for supported RDS instances",
+    "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#tde_status",
+    "platform": "Terraform",
+    "descriptionID": "ae8fb315",
+    "cloudProvider": "alicloud"
+  }

@@ -1,0 +1,11 @@
+{
+  "id": "ae53ce91-42b5-46bf-a84f-9a13366a4f13",
+  "queryName": "SNS Topic is Publicly Accessible",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "SNS Topic Policy should not allow any principal to access",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html",
+  "platform": "CloudFormation",
+  "descriptionID": "93100b84",
+  "cloudProvider": "aws"
+}

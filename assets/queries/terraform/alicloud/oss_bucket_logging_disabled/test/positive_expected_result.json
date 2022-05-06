@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "OSS Bucket Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "OSS Bucket Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive2.tf"
+  }
+]

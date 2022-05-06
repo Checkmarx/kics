@@ -148,7 +148,7 @@ func Convert(nodes *proto.Proto) (file *JSONProto, linesIgnore []int) {
 	serviceLines := make(map[string]model.LineObject)
 	importLines := make(map[string]model.LineObject)
 
-	defaultArr := make([]map[string]model.LineObject, 0)
+	defaultArr := make([]map[string]*model.LineObject, 0)
 
 	for _, elem := range nodes.Elements {
 		switch element := elem.(type) {
@@ -157,14 +157,14 @@ func Convert(nodes *proto.Proto) (file *JSONProto, linesIgnore []int) {
 			jproto.Messages[element.Name] = jproto.convertMessage(element)
 			messageLines["_kics_"+element.Name] = model.LineObject{
 				Line: element.Position.Line,
-				Arr:  make([]map[string]model.LineObject, 0),
+				Arr:  make([]map[string]*model.LineObject, 0),
 			}
 		case *proto.Service:
 			jproto.processCommentProto(element.Comment, element.Position.Line, element)
 			jproto.convertService(element)
 			serviceLines["_kics_"+element.Name] = model.LineObject{
 				Line: element.Position.Line,
-				Arr:  make([]map[string]model.LineObject, 0),
+				Arr:  make([]map[string]*model.LineObject, 0),
 			}
 		case *proto.Package:
 			jproto.processCommentProto(element.Comment, element.Position.Line, element)
@@ -179,12 +179,12 @@ func Convert(nodes *proto.Proto) (file *JSONProto, linesIgnore []int) {
 			}
 			importLines["_kics_"+element.Filename] = model.LineObject{
 				Line: element.Position.Line,
-				Arr:  make([]map[string]model.LineObject, 0),
+				Arr:  make([]map[string]*model.LineObject, 0),
 			}
 		case *proto.Option:
 			jproto.processCommentProto(element.Comment, element.Position.Line, element)
 			jproto.Options = append(jproto.Options, jproto.convertSingleOption(element))
-			defaultArr = append(defaultArr, map[string]model.LineObject{
+			defaultArr = append(defaultArr, map[string]*model.LineObject{
 				element.Name: {
 					Line: element.Position.Line,
 				},
@@ -194,7 +194,7 @@ func Convert(nodes *proto.Proto) (file *JSONProto, linesIgnore []int) {
 			jproto.Enum[element.Name] = jproto.convertEnum(element)
 			enumLines["_kics_"+element.Name] = model.LineObject{
 				Line: element.Position.Line,
-				Arr:  make([]map[string]model.LineObject, 0),
+				Arr:  make([]map[string]*model.LineObject, 0),
 			}
 		case *proto.Syntax:
 			jproto.processCommentProto(element.Comment, element.Position.Line, element)
@@ -232,7 +232,7 @@ func (j *JSONProto) convertMessage(n *proto.Message) Message {
 		Lines:        make(map[string]model.LineObject),
 	}
 
-	defaultArr := make([]map[string]model.LineObject, 0)
+	defaultArr := make([]map[string]*model.LineObject, 0)
 
 	for _, field := range n.Elements {
 		switch field := field.(type) {
@@ -254,7 +254,7 @@ func (j *JSONProto) convertMessage(n *proto.Message) Message {
 		case *proto.Reserved:
 			j.processCommentProto(field.Comment, field.Position.Line, field)
 			message.Reserved = append(message.Reserved, j.convertReserved(field))
-			defaultArr = append(defaultArr, map[string]model.LineObject{
+			defaultArr = append(defaultArr, map[string]*model.LineObject{
 				"Reserved": {
 					Line: field.Position.Line,
 				},
@@ -319,7 +319,7 @@ func (j *JSONProto) convertEnum(n *proto.Enum) Enum {
 		Lines:     make(map[string]model.LineObject),
 	}
 
-	defaultArr := make([]map[string]model.LineObject, 0)
+	defaultArr := make([]map[string]*model.LineObject, 0)
 
 	for _, elem := range n.Elements {
 		switch elem := elem.(type) {
@@ -338,7 +338,7 @@ func (j *JSONProto) convertEnum(n *proto.Enum) Enum {
 		case *proto.Reserved:
 			j.processCommentProto(elem.Comment, elem.Position.Line, elem)
 			enum.Reserved = append(enum.Reserved, j.convertReserved(elem))
-			defaultArr = append(defaultArr, map[string]model.LineObject{
+			defaultArr = append(defaultArr, map[string]*model.LineObject{
 				"Reserved": {
 					Line: elem.Position.Line,
 				},
@@ -370,7 +370,7 @@ func (j *JSONProto) convertOneOf(n *proto.Oneof) OneOf {
 	}
 	oneof.Lines["_kics__default"] = model.LineObject{
 		Line: n.Position.Line,
-		Arr:  make([]map[string]model.LineObject, 0),
+		Arr:  make([]map[string]*model.LineObject, 0),
 	}
 	for _, elem := range n.Elements {
 		switch elem := elem.(type) {
@@ -420,7 +420,7 @@ func (j *JSONProto) convertService(n *proto.Service) {
 
 	service.Lines["_kics__default"] = model.LineObject{
 		Line: n.Position.Line,
-		Arr:  make([]map[string]model.LineObject, 0),
+		Arr:  make([]map[string]*model.LineObject, 0),
 	}
 
 	for _, rpc := range n.Elements {

@@ -1,0 +1,10 @@
+{
+    "id": "52d70f2e-3257-474c-b3dc-8ad9ba6a061a",
+    "queryName": "Kubelet Client Periodic Certificate Switch Disabled",
+    "severity": "MEDIUM",
+    "category": "Secret Management",
+    "descriptionText": "Kubelet argument --rotate-certificates should be true",
+    "descriptionUrl": "https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/",
+    "platform": "Kubernetes",
+    "descriptionID": "1a17c91a"
+}

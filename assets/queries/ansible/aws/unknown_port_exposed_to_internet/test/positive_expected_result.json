@@ -2,11 +2,11 @@
 	{
 		"queryName": "Unknown Port Exposed To Internet",
 		"severity": "HIGH",
-		"line": 7
+		"line": 9
 	},
 	{
 		"queryName": "Unknown Port Exposed To Internet",
 		"severity": "HIGH",
-		"line": 7
+		"line": 13
 	}
 ]

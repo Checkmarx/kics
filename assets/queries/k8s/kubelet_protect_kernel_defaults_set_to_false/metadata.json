@@ -1,0 +1,11 @@
+{
+    "id": "6cf42c97-facd-4fda-b8af-ea4529123355",
+    "queryName": "Kubelet Protect Kernel Defaults Set To False",
+    "severity": "MEDIUM",
+    "category": "Insecure Configurations",
+    "descriptionText": "--protect-kernel-defaults should be set to true",
+    "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/",
+    "platform": "Kubernetes",
+    "descriptionID": "e3a4b35d"
+  }
+  

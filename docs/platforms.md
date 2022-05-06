@@ -6,21 +6,70 @@ KICS support scanning multiple technologies, in the next sections you will find 
 
 KICS supports scanning Ansible files with `.yaml` extension.
 
+KICS can decrypt Ansible Vault files on the fly. For that, you need to define the environment variable `ANSIBLE_VAULT_PASSWORD_FILE`.
+
 ## Azure Resource Manager
 
-KICS supports scanning Azure Resource Manager (ARM) templates with `.json` extension. To build ARM JSON templates from Bicep code check the [official ARM documentation](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-cli#build) and [here](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax) to understand the differences between ARM JSON templates and Bicep
+KICS supports scanning Azure Resource Manager (ARM) templates with `.json` extension. To build ARM JSON templates from Bicep code check the [official ARM documentation](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-cli#build) and [here](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax) to understand the differences between ARM JSON templates and Bicep.
 
-## Buildah
-KICS supports scanning Buildah files with `.sh` extension.
+## CDK
+[AWS Cloud Development Kit](https://docs.aws.amazon.com/cdk/latest/guide/home.html) is a software development framework for defining cloud infrastructure in code and provisioning it through AWS CloudFormation.
 
+It has all the advantages of using [AWS CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html).
+
+KICS currently support scanning AWS Cloudformation templates. In this guide, we will describe how to scan a simple CDK defined infrastructure following the [Working With the AWS CDK in Go](https://docs.aws.amazon.com/cdk/latest/guide/work-with-cdk-go.html) documentation.
+
+Make sure all [prerequisites](https://docs.aws.amazon.com/cdk/latest/guide/work-with-cdk-go.html#go-prerequisites) are met.
+
+### Create a project
+
+1. Create a new CDK project using the CLI. e.g:
+
+```bash
+mkdir test-cdk
+cd test-cdk
+cdk init app --language go
+```
+
+2. Download dependencies
+
+```bash
+go mod download
+```
+
+3. Synthetize CloudFormation template
+
+```bash
+cdk synth > cfn-stack.yaml
+```
+
+4. Execute KICS against the template and check the results. Note that KICS will recognized it as CloudFormation (for queries purpose).
+
+```bash
+docker run -v $PWD/cfn-stack.yaml:/path/cfn-stack.yaml -it checkmarx/kics:latest scan -p /path/cfn-stack.yaml
+```
 
 ## CloudFormation
 
 KICS supports scanning CloudFormation templates with `.json` or `.yaml` extension.
 
+## Azure Blueprints
+
+KICS supports scanning Azure Blueprints files, including Azure Blueprints Policy Assignment Artifacts, Azure Blueprints Role Assignment Artifacts, and Azure Blueprints Template Artifacts with `.json` extension.
+
+Note that KICS recognizes this technology as Azure Resource Manager (for queries purpose).
+
 ## Docker
 
 KICS supports scanning Docker files named `Dockerfile` or with `.dockerfile` extension.
+
+## Docker Compose
+
+KICS supports scanning DockerCompose files with `.yaml` extension.
+
+## gRPC
+
+KICS supports scanning gRPC files with `.proto` extension.
 
 ## Helm
 
@@ -55,9 +104,9 @@ KICS supports scanning Swagger 2.0 and OpenAPI 3.0 specs with `.json` and `.yaml
 
 KICS supports scanning Google Deployment Manager files with `.yaml` extension.
 
-## gRPC
+## SAM
 
-KICS supports scanning gRPC files with `.proto` extension.
+KICS supports AWS Serverless Application Model (AWS SAM) files with `.yaml` extension. Note that KICS recognizes this technology as CloudFormation (for queries purpose).
 
 ## Terraform
 
@@ -70,20 +119,23 @@ KICS supports scanning terraform plans given in JSON. The `planned_values` will 
 Results will point to the plan file.
 
 To get terraform plan in JSON format simply run the command:
+
 ```
 terraform show -json plan-sample.tfplan > plan-sample.tfplan.json
 ```
 
 ### Terraform Modules
+
 KICS supports some official modules for AWS that can be found on [Terraform registry](https://registry.terraform.io/providers/hashicorp/aws/latest), you can see the supported modules list in the libraries folder [common.json file](https://github.com/Checkmarx/kics/blob/master/assets/libraries/common.json). This means KICS can find issues in verified modules listed on this json.
 
 Currently, KICS does not support unofficial or custom modules.
 
-### Cloud Development Kit for Terraform (CDKTF) 
+### Cloud Development Kit for Terraform (CDKTF)
 
 KICS supports scanning CDKTF output JSON. It recognizes it through the fields `metadata`, `stackName`, and `terraform`.
 
 To get your CDKTF output JSON, run the following command inside the directory that contains your app:
+
 ```
 cdktf synth
 ```
@@ -93,12 +145,12 @@ You can also run the command `cdktf synth --json` to display it in the terminal.
 ### Limitations
 
 #### Ansible
-At the moment, KICS does not support a robust approach to identifying Ansible samples. The identification of these samples is done through exclusion. When a YAML sample is not a CloudFormation, Helm, Kubernetes or OpenAPI sample, KICS recognize it as Ansible.
+At the moment, KICS does not support a robust approach to identifying Ansible samples. The identification of these samples is done through exclusion. When a YAML sample is not a CloudFormation, Google Deployment Manager, Helm, Kubernetes or OpenAPI sample, KICS recognize it as Ansible.
 
 Thus, KICS recognize other YAML samples (that are not Ansible) as Ansible, e.g. GitHub Actions samples. However, you can ignore these samples by writing `#kics-scan ignore` on the top of the file. For more details, please read this [documentation](https://github.com/Checkmarx/kics/blob/25b6b703e924ed42067d9ab7772536864aee900b/docs/running-kics.md#using-commands-on-scanned-files-as-comments).
 
-
 #### Terraform
+
 Although KICS support variables and interpolations, KICS does not support functions and enviroment variables. In case of variables used as function parameters, it will parse as wrapped expression, so the following function call:
 
 ```hcl

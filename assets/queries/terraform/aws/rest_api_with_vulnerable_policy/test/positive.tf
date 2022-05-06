@@ -22,12 +22,7 @@ resource "aws_api_gateway_rest_api_policy" "test" {
         "AWS": "*"
       },
       "Action": "execute-api:*",
-      "Resource": "${aws_api_gateway_rest_api.api_gw.arn}",
-      "Condition": {
-        "IpAddress": {
-          "aws:SourceIp": "123.123.123.123/32"
-        }
-      }
+      "Resource": "${aws_api_gateway_rest_api.api_gw.arn}"
     }
   ]
 }

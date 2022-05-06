@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "Service Account Lookup Set To False",
+		"severity": "HIGH",
+		"line": 11,
+        "fileName": "positive1.yaml"
+	}
+]

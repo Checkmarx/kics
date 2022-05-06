@@ -9,7 +9,7 @@ func init() { //nolint
 		Name: "should display minimal-ui [E2E-CLI-012]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/positive.dockerfile", "--minimal-ui"},
+				[]string{"scan", "-p", "/path/e2e/fixtures/samples/positive.dockerfile", "--minimal-ui"},
 			},
 		},
 		WantStatus: []int{50},

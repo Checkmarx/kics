@@ -1,46 +1,76 @@
 package Cx
 
-import data.generic.k8s as k8sLib
 import data.generic.common as common_lib
+import data.generic.k8s as k8sLib
 
 listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob"]
 
 CxPolicy[result] {
 	document := input.document[i]
-
-	kind := document.kind
-	k8sLib.checkKind(kind, listKinds)
-
+	k8sLib.checkKind(document.kind, listKinds)
 	metadata := document.metadata
+
 	specInfo := k8sLib.getSpecInfo(document)
-
-	not common_lib.valid_key(specInfo.spec, "automountServiceAccountToken")
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.%s", [metadata.name, specInfo.path]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'%s.automountServiceAccountToken' is false", [specInfo.path]),
-		"keyActualValue": sprintf("'%s.automountServiceAccountToken' is undefined", [specInfo.path]),
-	}
+	result := checkAutomount(specInfo, document, metadata)
 }
 
 CxPolicy[result] {
 	document := input.document[i]
-
-	kind := document.kind
-	k8sLib.checkKind(kind, listKinds)
-
+	k8sLib.checkKind(document.kind, listKinds)
 	metadata := document.metadata
+
 	specInfo := k8sLib.getSpecInfo(document)
 
+	not common_lib.valid_key(specInfo.spec, "automountServiceAccountToken")
+
+	serviceAccountName := object.get(specInfo.spec, "serviceAccountName", "default")
+	SAWithAutoMount := [x | res := input.document[_];
+		res.kind == "ServiceAccount";
+		res.metadata.name == serviceAccountName;
+		common_lib.valid_key(res, "automountServiceAccountToken")
+		x := res
+	]
+	count(SAWithAutoMount) == 0
+
+	result := {
+		"documentId": document.id,
+		"searchKey": sprintf("metadata.name={{%s}}.%s", [metadata.name, specInfo.path]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.automountServiceAccountToken is defined and set to false", [metadata.name, specInfo.path]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.%s.automountServiceAccountToken is undefined", [metadata.name, specInfo.path]),
+	}
+}
+
+# If automountServiceAccountToken is defined at pod level, it takes precedence over a SA definition
+checkAutomount(specInfo, document, metadata) = result {
 	specInfo.spec.automountServiceAccountToken == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.automountServiceAccountToken", [metadata.name, specInfo.path]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s.automountServiceAccountToken' is false", [specInfo.path]),
-		"keyActualValue": sprintf("'%s.automountServiceAccountToken' is true", [specInfo.path]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.automountServiceAccountToken is false", [metadata.name, specInfo.path]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.%s.automountServiceAccountToken is true", [metadata.name, specInfo.path]),
+	}
+}
+
+checkAutomount(specInfo, document, metadata) = result {
+	not common_lib.valid_key(specInfo.spec, "automountServiceAccountToken")
+	serviceAccountName := object.get(specInfo.spec, "serviceAccountName", "default")
+
+	SAWithAutoMount := [x | res := input.document[_];
+		res.kind == "ServiceAccount";
+		res.metadata.name == serviceAccountName;
+		res.automountServiceAccountToken == true;
+		x := res
+	]
+	count(SAWithAutoMount) > 0
+
+	result := {
+		"documentId": SAWithAutoMount[k].id,
+		"searchKey": sprintf("metadata.name={{%s}}.automountServiceAccountToken", [SAWithAutoMount[k].metadata.name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.automountServiceAccountToken is false", [SAWithAutoMount[k].metadata.name]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.automountServiceAccountToken is true", [SAWithAutoMount[k].metadata.name]),
 	}
 }

@@ -17,6 +17,7 @@ queries_path = {
     'terraform': os.path.join(queries_basepath, 'terraform', '**', '*'),
     'grpc': os.path.join(queries_basepath, 'grpc', '*'),
     'gdm': os.path.join(queries_basepath, 'googleDeploymentManager', '*'),
+    'dockerCompose': os.path.join(queries_basepath, 'dockerCompose', '*'),
 }
 samples_ext = {
     'azureresourcemanager': ['json'],
@@ -29,6 +30,7 @@ samples_ext = {
     'terraform': ['tf'],
     'grpc': ['proto'],
     'gdm': ['yaml'],
+    'dockerCompose': ['dockerCompose'],
 
 }
 summary = {

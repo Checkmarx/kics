@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Security Opt Not Set",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive1.yaml"
+  }
+]

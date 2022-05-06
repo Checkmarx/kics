@@ -8,13 +8,13 @@ func init() { //nolint
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan",
-					"-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml"},
+					"-p", "/path/e2e/fixtures/samples/positive.yaml"},
 
 				[]string{"scan", "--exclude-categories",
 					"Access Control,Availability,Backup,Best Practices,Build Process,Encryption," +
 						"Insecure Configurations,Insecure Defaults,Networking and Firewall,Observability," +
 						"Resource Management,Secret Management,Supply-Chain,Structure and Semantics",
-					"-q", "../assets/queries", "-p", "../test/fixtures/all_auth_users_get_read_access/test/positive.tf"},
+					"-p", "/path/test/fixtures/all_auth_users_get_read_access/test/positive.tf"},
 			},
 		},
 		WantStatus: []int{50, 0},

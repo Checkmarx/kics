@@ -1,17 +1,12 @@
 [
   {
-    "queryName": "Invalid Image",
+    "queryName": "Invalid Image Tag",
     "severity": "LOW",
     "line": 8
   },
   {
-    "queryName": "Invalid Image",
+    "queryName": "Invalid Image Tag",
     "severity": "LOW",
-    "line": 18
-  },
-  {
-    "queryName": "Invalid Image",
-    "severity": "LOW",
-    "line": 30
+    "line": 19
   }
 ]

@@ -3,7 +3,7 @@
   "queryName": "Container Is Privileged",
   "severity": "HIGH",
   "category": "Insecure Configurations",
-  "descriptionText": "Do not allow container to be privileged.",
+  "descriptionText": "Privileged containers lack essential security restrictions and should be avoided by removing the 'privileged' flag or by changing its value to false",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/pods/#privileged-mode-for-containers",
   "platform": "Kubernetes",
   "descriptionID": "55f59030"

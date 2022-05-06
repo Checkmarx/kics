@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: command-demo
+  labels:
+    purpose: demonstrate-command
+spec:
+  containers:
+    - name: command-demo-container
+      image: joaodanielrufino/kubelet
+      command: ["kubelet"]
+      args: ["--event-qps=0"]
+  restartPolicy: OnFailure

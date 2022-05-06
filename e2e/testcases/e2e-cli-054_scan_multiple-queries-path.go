@@ -9,9 +9,9 @@ func init() { //nolint
 		Name: "should load and execute queries from multiple paths [E2E-CLI-054]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "--queries-path", "fixtures/samples/queries/valid/single_query," +
-					"fixtures/samples/queries/valid/multiple_query",
-					"-p", "fixtures/samples/bom-positive.tf"},
+				[]string{"scan", "--queries-path", "/path/e2e/fixtures/samples/queries/valid/single_query," +
+					"/path/e2e/fixtures/samples/queries/valid/multiple_query",
+					"-p", "/path/e2e/fixtures/samples/bom-positive.tf"},
 			},
 		},
 		Validation: func(outputText string) bool {

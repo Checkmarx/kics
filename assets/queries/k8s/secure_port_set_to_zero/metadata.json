@@ -1,0 +1,10 @@
+{
+  "id": "3d24b204-b73d-42cb-b0bf-1a5438c5f71e",
+  "queryName": "Secure Port Set To Zero",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "When using kube-apiserver command, the --secure-port flag should not be 0",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
+  "platform": "Kubernetes",
+  "descriptionID": "adf24d20"
+}

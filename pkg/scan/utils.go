@@ -7,11 +7,12 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/Checkmarx/kics/e2e/utils"
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/pkg/analyzer"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/model"
+	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -37,6 +38,8 @@ func (c *Client) prepareAndAnalyzePaths() (provider.ExtractedPath, error) {
 	}
 
 	allPaths := combinePaths(terraformerExPaths, regularExPaths)
+
+	log.Info().Msgf("Total files in the project: %d", getTotalFiles(allPaths.Path))
 
 	pathTypes, errAnalyze :=
 		analyzePaths(
@@ -144,16 +147,19 @@ func analyzePaths(paths, types, exclude []string) (model.AnalyzedPaths, error) {
 	var pathsFlag model.AnalyzedPaths
 	excluded := make([]string, 0)
 
-	if types[0] == "" { // if '--type' flag was given skip file analyzing
-		pathsFlag, err = analyzer.Analyze(paths)
-		if err != nil {
-			log.Err(err)
-			return model.AnalyzedPaths{}, err
-		}
-		logLoadingQueriesType(pathsFlag.Types)
-	} else {
+	pathsFlag, err = analyzer.Analyze(paths, types, exclude)
+	if err != nil {
+		log.Err(err)
+		return model.AnalyzedPaths{}, err
+	}
+
+	// flag -t was passed but KICS did not find any matching file
+	if types[0] != "" && len(pathsFlag.Types) == 0 {
 		pathsFlag.Types = append(pathsFlag.Types, types...)
 	}
+
+	logLoadingQueriesType(pathsFlag.Types)
+
 	excluded = append(excluded, exclude...)
 	excluded = append(excluded, pathsFlag.Exc...)
 	pathsFlag.Exc = excluded
@@ -192,21 +198,41 @@ func deleteExtractionFolder(extractionMap map[string]model.ExtractedPathObject) 
 	}
 }
 
-func contributionAppeal(printer *consoleHelpers.Printer, queriesPath []string) {
-	if utils.Contains(queriesPath, filepath.Join("assets", "queries")) {
+func contributionAppeal(customPrint *consolePrinter.Printer, queriesPath []string) {
+	if utils.Contains(filepath.Join("assets", "queries"), queriesPath) {
 		msg := "\nAre you using a custom query? If so, feel free to contribute to KICS!\n"
 		contributionPage := "Check out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md\n"
 
-		fmt.Println(printer.ContributionMessage.Sprintf(msg + contributionPage))
+		fmt.Println(customPrint.ContributionMessage.Sprintf(msg + contributionPage))
 	}
 }
 
 // printVersionCheck - Prints and logs warning if not using KICS latest version
-func printVersionCheck(printer *consoleHelpers.Printer, s *model.Summary) {
+func printVersionCheck(customPrint *consolePrinter.Printer, s *model.Summary) {
 	if !s.LatestVersion.Latest {
 		message := fmt.Sprintf("A new version 'v%s' of KICS is available, please consider updating", s.LatestVersion.LatestVersionTag)
 
-		fmt.Println(printer.VersionMessage.Sprintf(message))
+		fmt.Println(customPrint.VersionMessage.Sprintf(message))
 		log.Warn().Msgf(message)
 	}
+}
+
+func getTotalFiles(paths []string) int {
+	files := 0
+	for _, path := range paths {
+		if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
+			if err != nil {
+				return err
+			}
+
+			if !info.IsDir() {
+				files++
+			}
+
+			return nil
+		}); err != nil {
+			log.Error().Msgf("failed to walk path %s: %s", path, err)
+		}
+	}
+	return files
 }

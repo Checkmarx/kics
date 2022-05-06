@@ -1,0 +1,8 @@
+[
+    {
+      "queryName": "OSS Bucket Allows All Actions From All Principals",
+      "severity": "HIGH",
+      "line": 5,
+      "fileName": "positive1.tf"
+    }
+]

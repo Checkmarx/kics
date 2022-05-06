@@ -34,13 +34,16 @@ var (
 		"../assets/queries/terraform/github":        {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/kubernetes":    {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/general":       {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
-		"../assets/queries/k8s":                     {FileKind: []model.FileKind{model.KindYAML}, Platform: "k8s"},
+		"../assets/queries/terraform/alicloud":      {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/k8s":                     {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "k8s"},
 		"../assets/queries/cloudFormation/aws":      {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
+		"../assets/queries/cloudFormation/aws_bom":  {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
 		"../assets/queries/cloudFormation/aws_sam":  {FileKind: []model.FileKind{model.KindYAML}, Platform: "cloudFormation"},
 		"../assets/queries/ansible/aws":             {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
 		"../assets/queries/ansible/gcp":             {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
 		"../assets/queries/ansible/azure":           {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
 		"../assets/queries/dockerfile":              {FileKind: []model.FileKind{model.KindDOCKER}, Platform: "dockerfile"},
+		"../assets/queries/dockerCompose":           {FileKind: []model.FileKind{model.KindYAML}, Platform: "dockerCompose"},
 		"../assets/queries/openAPI/general":         {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
 		"../assets/queries/openAPI/3.0":             {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
 		"../assets/queries/openAPI/2.0":             {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
@@ -118,10 +121,6 @@ func loadQueries(tb testing.TB) []queryEntry {
 	for queriesPath, queryConfig := range queriesPaths {
 		fs, err := os.ReadDir(queriesPath)
 		require.Nil(tb, err)
-
-		if model.FileKind(queryConfig.Platform) != "buildah" {
-			continue
-		}
 
 		for _, f := range fs {
 			f.Name()

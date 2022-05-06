@@ -1,0 +1,11 @@
+{
+  "id": "6107c530-7178-464a-88bc-df9cdd364ac8",
+  "queryName": "OSS Bucket Ip Restriction Disabled",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "OSS Bucket should have ip restricted access",
+  "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#policy",
+  "platform": "Terraform",
+  "descriptionID": "93cebe21",
+  "cloudProvider": "alicloud"
+}

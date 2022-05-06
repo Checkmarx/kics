@@ -1,40 +1,47 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.k8s as k8sLib
 
 types := {"initContainers", "containers"}
 
 CxPolicy[result] {
-	resource := input.document[i]
-	containers := resource.spec[types[x]]
-	volumeMounts := containers[_].volumeMounts
+	document := input.document[i]
+	metadata := document.metadata
 
+	specInfo := k8sLib.getSpecInfo(document)
+	container := specInfo.spec[types[x]][_]
+
+	volumeMounts := container.volumeMounts
 	is_os_dir(volumeMounts[v].mountPath)
 	volumeMounts[v].readOnly == false
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.volumeMounts.name={{%s}}.readyOnly", [resource.metadata.name, types[x], volumeMounts[v].name]),
+		"documentId": document.id,
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}}.readOnly", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("spec.%s.volumeMounts[%s].readOnly is true", [types[x], volumeMounts[v].name]),
-		"keyActualValue": sprintf("spec.%s.volumeMounts[%s].readOnly is false", [types[x], volumeMounts[v].name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}}.readOnly is true", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}}.readOnly is false", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
-	containers := resource.spec[types[x]]
-	volumeMounts := containers[_].volumeMounts
+	document := input.document[i]
+	metadata := document.metadata
 
+	specInfo := k8sLib.getSpecInfo(document)
+	container := specInfo.spec[types[x]][_]
+
+	volumeMounts := container.volumeMounts
 	is_os_dir(volumeMounts[v].mountPath)
 	not common_lib.valid_key(volumeMounts[v], "readOnly")
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.volumeMounts.name=%s", [resource.metadata.name, types[x], volumeMounts[v].name]),
+		"documentId": document.id,
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}}", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("spec.%s.volumeMounts[%s].readOnly is set", [types[x], volumeMounts[v].name]),
-		"keyActualValue": sprintf("spec.%s.volumeMounts[%s].readOnly is undefined", [types[x], volumeMounts[v].name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}}.readOnly is defined and set to true", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}}.readOnly is undefined", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
 	}
 }
 

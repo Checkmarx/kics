@@ -1,20 +1,28 @@
 package Cx
 
-CxPolicy[result] {
-	document := input.document
-	metadata := document[i].metadata
-	spec := document[i].spec
-	types := {"initContainers", "containers"}
-	containers := spec[types[x]]
-	containers[c].imagePullPolicy != "Always"
+import data.generic.k8s as k8sLib
 
-	not contains(containers[c].image, ":latest")
+types := {"initContainers", "containers"}
+
+CxPolicy[result] {
+	document := input.document[i]
+	metadata := document.metadata
+
+	specInfo := k8sLib.getSpecInfo(document)
+	container := specInfo.spec[types[x]][_]
+
+	imagePullPolicy := object.get(container, "imagePullPolicy", {})
+	imagePullPolicy != "Always"
+
+	not contains(container.image, "@") # digest
+	not contains(container.image, ":latest") # image with latest tag
+	contains(container.image, ":") # any tag
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.imagePullPolicy", [metadata.name, types[x], containers[c].name]),
+		"documentId": document.id,
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.imagePullPolicy", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.imagePullPolicy should be Always", [metadata.name, types[x], containers[c].name]),
-		"keyActualValue": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.imagePullPolicy is incorrect", [metadata.name, types[x], containers[c].name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.imagePullPolicy should be set to 'Always'", [metadata.name, specInfo.path, types[x], container.name]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.imagePullPolicy relies on mutable images in cache", [metadata.name, specInfo.path, types[x], container.name]),
 	}
 }

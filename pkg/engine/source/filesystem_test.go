@@ -638,6 +638,7 @@ func TestListSupportedPlatforms(t *testing.T) {
 		"Buildah",
 		"CloudFormation",
 		"Dockerfile",
+		"DockerCompose",
 		"GRPC",
 		"GoogleDeploymentManager",
 		"Kubernetes",

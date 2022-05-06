@@ -39,8 +39,9 @@ nav:
       - Command Line Interface: commands.md
       - Running KICS: running-kics.md
       - Results: results.md
-      - Architecture: architecture.md
       - Platforms: platforms.md
+      - Utilities: utilities.md
+      - Architecture: architecture.md
       - Changes in v1.3.0: changes.md
   - Queries:
       - General Info: queries.md
@@ -49,26 +50,30 @@ nav:
       - Bill of Materials: bom.md
       - Queries List:
           - All: queries/all-queries.md
+          - Common: queries/common-queries.md
           - Ansible: queries/ansible-queries.md
           - Azure Resource Manager: queries/azureresourcemanager-queries.md
           - CloudFormation: queries/cloudformation-queries.md
           - Dockerfile: queries/dockerfile-queries.md
+          - Docker Compose: queries/dockercompose-queries.md
           - Kubernetes: queries/kubernetes-queries.md
-          - Terraform: queries/terraform-queries.md
           - OpenAPI: queries/openapi-queries.md
+          - Google Deployment Manager: queries/googledeploymentmanager-queries.md
+          - gRPC: queries/grpc-queries.md
+          - Terraform: queries/terraform-queries.md
   - Integrations:
       - Overview: integrations.md
       - Azure DevOps: integrations_azurepipelines.md
       - Bamboo: integrations_bamboo.md
       - Bitbucket Pipelines: integrations_bitbucketpipelines.md
       - CircleCI: integrations_circleci.md
+      - Codefresh: integrations_codefresh.md
       - Github Actions: integrations_ghactions.md
       - Gitlab CI: integrations_gitlabci.md
       - Jenkins: integrations_jenkins.md
       - TeamCity: integrations_teamcity.md
       - Travis CI: integrations_travisci.md
-      - Terraform Cloud: integration_tfcloud.md
-      - AWS CDK: cdk.md
+      - Terraform Cloud: integrations_tfcloud.md
       - AWS CodeBuild: integrations_aws_codebuild.md
       - Badge: BADGE.md
       - Using pre-commit hooks: integrations_pre_commit.md

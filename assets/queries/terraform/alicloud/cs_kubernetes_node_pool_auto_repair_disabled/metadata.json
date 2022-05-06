@@ -1,0 +1,12 @@
+{
+  "id": "81ce9394-013d-4731-8fcc-9d229b474073",
+  "queryName": "CS Kubernetes Node Pool Auto Repair Disabled",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Verifies if Alicloud Container Service Node Pool Auto Repair is Enabled. This service periodically checks for failing nodes and repairs them to ensure a smooth running state.",
+  "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/cs_kubernetes_node_pool#auto_repair",
+  "platform": "Terraform",
+  "descriptionID": "3096639c",
+  "cloudProvider": "alicloud"
+}
+  

@@ -17,7 +17,7 @@ func TestNewJUnitReport(t *testing.T) {
 	now := time.Now().String()
 	got := NewJUnitReport(now).(*junitTestSuites)
 	require.Equal(t, now, got.Time)
-	require.Equal(t, fmt.Sprintf("KICS v%s", constants.Version), got.Name)
+	require.Equal(t, fmt.Sprintf("KICS %s", constants.Version), got.Name)
 	require.Equal(t, "", got.Failures)
 	require.Len(t, got.TestSuites, 0)
 }
@@ -35,7 +35,7 @@ var junitTests = []junitTest{
 		vq:   []model.QueryResult{},
 		file: model.VulnerableFile{},
 		want: &junitTestSuites{
-			Name:       "KICS v" + constants.Version,
+			Name:       "KICS " + constants.Version,
 			Time:       now,
 			Failures:   "0",
 			TestSuites: make([]junitTestSuite, 0),
@@ -65,7 +65,7 @@ var junitTests = []junitTest{
 		},
 		want: &junitTestSuites{
 			XMLName:  xml.Name{Space: "", Local: ""},
-			Name:     "KICS v" + constants.Version,
+			Name:     "KICS " + constants.Version,
 			Time:     now,
 			Failures: "1",
 			TestSuites: []junitTestSuite{

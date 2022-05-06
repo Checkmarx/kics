@@ -183,12 +183,12 @@ func (j *jsonLine) setLineInfo(doc map[string]interface{}) map[string]interface{
 // def is the line of the key
 // index is used in case of an array, otherwhise should be 0
 // father is the path to the key
-func (j *jsonLine) setLine(val map[string]interface{}, def int, father string, pop bool) map[string]model.LineObject {
-	lineMap := make(map[string]model.LineObject)
+func (j *jsonLine) setLine(val map[string]interface{}, def int, father string, pop bool) map[string]*model.LineObject {
+	lineMap := make(map[string]*model.LineObject)
 	// set the line information of val
-	lineMap["_kics__default"] = model.LineObject{
+	lineMap["_kics__default"] = &model.LineObject{
 		Line: def,
-		Arr:  []map[string]model.LineObject{},
+		Arr:  []map[string]*model.LineObject{},
 	}
 
 	// iterate through the values of the object
@@ -204,7 +204,7 @@ func (j *jsonLine) setLine(val map[string]interface{}, def int, father string, p
 			continue
 		}
 
-		lineArr := make([]map[string]model.LineObject, 0)
+		lineArr := make([]map[string]*model.LineObject, 0)
 		lineNr := line.(*fifo).head()
 		if pop {
 			lineNr = line.(*fifo).pop()
@@ -216,10 +216,10 @@ func (j *jsonLine) setLine(val map[string]interface{}, def int, father string, p
 			lineArr = j.setSeqLines(v, lineNr, father, key, lineArr)
 		// value is an object and must setLines for each element of the object
 		case map[string]interface{}:
-			v["_kics_lines"] = j.setLine(v, lineNr, father+"."+key, false)
+			v["_kics_lines"] = j.setLine(v, lineNr, fmt.Sprintf("%s.%s", father, key), false)
 		default:
 			// value as no childs
-			lineMap["_kics_"+key] = model.LineObject{
+			lineMap[fmt.Sprintf("_kics_%s", key)] = &model.LineObject{
 				Line: lineNr,
 				Arr:  lineArr,
 			}
@@ -228,7 +228,7 @@ func (j *jsonLine) setLine(val map[string]interface{}, def int, father string, p
 
 		// set line information of value with its default line and
 		// if present array elements line informations
-		lineMap["_kics_"+key] = model.LineObject{
+		lineMap[fmt.Sprintf("_kics_%s", key)] = &model.LineObject{
 			Line: lineNr,
 			Arr:  lineArr,
 		}
@@ -238,7 +238,7 @@ func (j *jsonLine) setLine(val map[string]interface{}, def int, father string, p
 
 // setSeqLines sets the elements lines information for value of type array
 func (j *jsonLine) setSeqLines(v []interface{}, def int, father, key string,
-	lineArr []map[string]model.LineObject) []map[string]model.LineObject {
+	lineArr []map[string]*model.LineObject) []map[string]*model.LineObject {
 	// update father path with key
 	fatherKey := father + "." + key
 
@@ -256,11 +256,11 @@ func (j *jsonLine) setSeqLines(v []interface{}, def int, father, key string,
 		default:
 			stringedCon := fmt.Sprint(con)
 			// check if element is present in line info map
-			if lineStr, ok2 := j.LineInfo[stringedCon][father+"."+key]; ok2 {
+			if lineStr, ok2 := j.LineInfo[stringedCon][fmt.Sprintf("%s.%s", father, key)]; ok2 {
 				if len(lineStr.(*fifo).Value) == 0 {
 					continue
 				}
-				lineArr = append(lineArr, map[string]model.LineObject{
+				lineArr = append(lineArr, map[string]*model.LineObject{
 					"_kics__default": {
 						Line: lineStr.(*fifo).pop(),
 					},

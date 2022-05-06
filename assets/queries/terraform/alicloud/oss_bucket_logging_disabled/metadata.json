@@ -1,0 +1,11 @@
+{
+  "id": "05db341e-de7d-4972-a106-3e2bd5ee53e1",
+  "queryName": "OSS Bucket Logging Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "OSS Bucket should have logging enabled, for better visibility of resources and objects.",
+  "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#logging",
+  "platform": "Terraform",
+  "descriptionID": "c4a5fdbb",
+  "cloudProvider": "alicloud"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "ed6e3ba0-278f-47b6-a1f5-173576b40b7e",
+  "queryName": "CMK Is Unusable",
+  "severity": "MEDIUM",
+  "category": "Availability",
+  "descriptionText": "Alicloud KMS must only possess usable Customer Master Keys (CMK), which means the CMKs must have the attribute 'is_enabled' set to true",
+  "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/kms_key#is_enabled",
+  "platform": "Terraform",
+  "descriptionID": "52a5ea7c",
+  "cloudProvider": "alicloud"
+}

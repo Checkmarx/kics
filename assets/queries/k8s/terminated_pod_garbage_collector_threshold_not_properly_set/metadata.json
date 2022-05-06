@@ -1,0 +1,10 @@
+{
+  "id": "49113af4-29ca-458e-b8d4-724c01a4a24f",
+  "queryName": "Terminated Pod Garbage Collector Threshold Not Properly Set",
+  "severity": "MEDIUM",
+  "category": "Availability",
+  "descriptionText": "When using kube-controller-manager commands, the '--terminated-pod-gc-threshold' should be set between 0 and 12501",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/",
+  "platform": "Kubernetes",
+  "descriptionID": "19ea96ee"
+}

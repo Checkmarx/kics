@@ -1,0 +1,10 @@
+{
+    "id": "ae5b6871-7f45-42e0-bb4c-ab300c4d2026",
+    "queryName": "Privileged Containers Enabled",
+    "severity": "HIGH",
+    "category": "Resource Management",
+    "descriptionText": "Privileged containers should be used with extreme caution, they have all of the capabilities that the linux kernel offers for docker.",
+    "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir",
+    "platform": "DockerCompose",
+    "descriptionID": "029f6145"
+  }

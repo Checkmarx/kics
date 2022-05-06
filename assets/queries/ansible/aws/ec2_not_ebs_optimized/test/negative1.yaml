@@ -1,0 +1,9 @@
+- name: example4
+  amazon.aws.ec2:
+    key_name: mykey
+    image: ami-123456
+    wait: yes
+    group: my_sg
+    count: 3
+    vpc_subnet_id: subnet-29e63245
+    ebs_optimized: true

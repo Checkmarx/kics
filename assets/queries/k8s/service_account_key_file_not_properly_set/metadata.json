@@ -1,0 +1,10 @@
+{
+  "id": "dab4ec72-ce2e-4732-b7c3-1757dcce01a1",
+  "queryName": "Service Account Key File Not Properly Set",
+  "severity": "MEDIUM",
+  "category": "Secret Management",
+  "descriptionText": "When using kube-apiserver command, the '--service-account-key-file' flag should be defined",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
+  "platform": "Kubernetes",
+  "descriptionID": "2f3224e8"
+}

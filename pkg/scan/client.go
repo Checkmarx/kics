@@ -4,10 +4,10 @@ import (
 	"context"
 	"time"
 
-	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/descriptions"
+	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
 	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/rs/zerolog/log"
 )
@@ -50,12 +50,12 @@ type Client struct {
 	Tracker           *tracker.CITracker
 	Storage           *storage.MemoryStorage
 	ExcludeResultsMap map[string]bool
-	Printer           *consoleHelpers.Printer
+	Printer           *consolePrinter.Printer
 	ProBarBuilder     *progress.PbBuilder
 }
 
 // NewClient initializes the client with all the required parameters
-func NewClient(params *Parameters, proBarBuilder *progress.PbBuilder, printer *consoleHelpers.Printer) (*Client, error) {
+func NewClient(params *Parameters, proBarBuilder *progress.PbBuilder, customPrint *consolePrinter.Printer) (*Client, error) {
 	t, err := tracker.NewTracker(params.PreviewLines)
 	if err != nil {
 		log.Err(err)
@@ -74,7 +74,7 @@ func NewClient(params *Parameters, proBarBuilder *progress.PbBuilder, printer *c
 		ProBarBuilder:     proBarBuilder,
 		Storage:           store,
 		ExcludeResultsMap: excludeResultsMap,
-		Printer:           printer,
+		Printer:           customPrint,
 	}, nil
 }
 

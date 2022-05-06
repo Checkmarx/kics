@@ -1,0 +1,11 @@
+{
+    "id": "88541597-6f88-42c8-bac6-7e0b855e8ff6",
+    "queryName": "OSS Bucket Allows List Action From All Principals",
+    "severity": "HIGH",
+    "category": "Access Control",
+    "descriptionText": "OSS Bucket should not allow list action from all principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering/deletion. This means the 'Effect' must not be 'Allow' when the 'Action' contains 'List', for all Principals.",
+    "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#policy",
+    "platform": "Terraform",
+    "descriptionID": "b22a7d83",
+    "cloudProvider": "alicloud"
+  }
