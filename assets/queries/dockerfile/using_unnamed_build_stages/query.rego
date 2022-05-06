@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, commands.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "COPY '--from' references a previous defined FROM alias",
-		"keyActualValue": "COPY '--from' does not reference a previous defined FROM alias",
+		"keyExpectedValue": "COPY '--from' should reference a previously defined FROM alias",
+		"keyActualValue": "COPY '--from' does not reference a previously defined FROM alias",
 	}
 }

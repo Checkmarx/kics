@@ -6,13 +6,19 @@ CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "run"
     value := resource.Value
-	contains(value[v], "/bin/bash")
+	shell_possibilities := {"/bin/bash", "/bin/tcsh", " /bin/ksh", "/bin/csh", "/bin/dash" , "etc/shells", "/zsh", "/bin/fish", "/bin/tmux", "/bin/rbash"}
+	contains(value[v], shell_possibilities[p])
+	run_values := split(value[v], " ")
+	command := run_values[0]
+	command_possibilities := {"mv", "chsh", "usermod", "ln"}
+	command == command_possibilities[cp] 
 
 	result := {
+    	"debug": sprintf("%s", [value[v]]),
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("FROM={{%s}}.{{%s}} uses the SHELL command to change the default shell", [name, resource.Original]),
+		"keyExpectedValue": sprintf("FROM={{%s}}.{{%s}} should use the SHELL command to change the default shell", [name, resource.Original]),
 		"keyActualValue": sprintf("FROM={{%s}}.{{%s}} uses the RUN command to change the default shell", [name, resource.Original]),
 	}
 }
@@ -21,13 +27,15 @@ CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "run"
     value := resource.Value
-	contains(value[v], "powershell")
+	run_values := split(value[v], " ")
+	command := run_values[0]
+	contains(command, "powershell")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("FROM={{%s}}.{{%s}} uses the SHELL command to change the default shell", [name, resource.Original]),
+		"keyExpectedValue": sprintf("FROM={{%s}}.{{%s}} should use the SHELL command to change the default shell", [name, resource.Original]),
 		"keyActualValue": sprintf("FROM={{%s}}.{{%s}} uses the RUN command to change the default shell", [name, resource.Original]),
 	}
 }

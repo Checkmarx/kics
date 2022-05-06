@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "COPY '--from' Without FROM Alias Defined Previously",
+		"queryName": "Using Unnamed Build Stages",
 		"severity": "MEDIUM",
 		"line": 10,
 		"filename": "positive1.dockerfile"
