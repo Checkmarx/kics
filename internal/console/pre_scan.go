@@ -148,7 +148,7 @@ func (console *console) preScan() {
 		log.Info().Msgf("Total memory: %s", bytefmt.ByteSize(mem.Total))
 	}
 
-	cpu, err := consoleHelpers.GetNumCpu()
+	cpu, err := consoleHelpers.GetNumCPU()
 	if err != nil {
 		log.Err(err)
 	} else {
