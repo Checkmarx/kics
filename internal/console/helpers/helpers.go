@@ -23,6 +23,8 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+const divisor = float32(100000)
+
 var reportGenerators = map[string]func(path, filename string, body interface{}) error{
 	"json":        report.PrintJSONReport,
 	"sarif":       report.PrintSarifReport,
@@ -174,7 +176,6 @@ func GetNumCpu() (float32, error) {
 
 		scanner := bufio.NewScanner(f)
 		if scanner.Scan() {
-			divisor := float32(100000)
 			text := scanner.Text()
 			cpus, err := strconv.Atoi(text)
 			if err != nil {
