@@ -1,13 +1,16 @@
 package helpers
 
 import (
+	"bufio"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
 	"os"
 	"path/filepath"
+	"runtime"
 	"sort"
+	"strconv"
 	"strings"
 
 	"github.com/BurntSushi/toml"
@@ -156,4 +159,37 @@ func ListReportFormats() []string {
 	}
 	sort.Strings(supportedFormats)
 	return supportedFormats
+}
+
+// GetNumCpu return the number of cpus available
+func GetNumCpu() (float32, error) {
+	// Check if application is running inside docker
+	if _, err := os.Stat("/.dockerenv"); err == nil {
+		f, err := os.Open("/sys/fs/cgroup/cpu/cpu.cfs_quota_us")
+		if err != nil {
+			return -1, err
+		}
+
+		defer f.Close()
+
+		scanner := bufio.NewScanner(f)
+		if scanner.Scan() {
+			divisionValue := float32(100000)
+			text := scanner.Text()
+			cpus, err := strconv.Atoi(text)
+			if err != nil {
+				return float32(cpus) / divisionValue, err
+			}
+
+			if cpus != -1 {
+				return float32(cpus) / divisionValue, nil
+			}
+
+			return float32(runtime.NumCPU()), nil
+		}
+
+		return float32(runtime.NumCPU()), nil
+	}
+
+	return float32(runtime.NumCPU()), nil
 }
