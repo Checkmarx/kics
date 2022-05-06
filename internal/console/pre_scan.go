@@ -51,20 +51,14 @@ func preRun(cmd *cobra.Command) error {
 func setupConfigFile() (bool, error) {
 	if flags.GetStrFlag(flags.ConfigFlag) == "" {
 		path := flags.GetMultiStrFlag(flags.PathFlag)
-		if len(path) == 0 {
-			return true, nil
-		}
 		if len(path) > 1 {
 			warnings = append(warnings, "Any kics.config file will be ignored, please use --config if kics.config is wanted")
 			return true, nil
 		}
-		configPath := path[0]
-		info, err := os.Stat(configPath)
+
+		configPath, err := os.Getwd()
 		if err != nil {
 			return true, nil
-		}
-		if !info.IsDir() {
-			configPath = filepath.Dir(configPath)
 		}
 		_, err = os.Stat(filepath.ToSlash(filepath.Join(configPath, constants.DefaultConfigFilename)))
 		if err != nil {

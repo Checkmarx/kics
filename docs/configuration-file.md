@@ -196,9 +196,9 @@ docker run -v {​​​​path_to_kics_config}​​​​:/kics -v {path_to_ho
 
 #### Configuration as Code
 
-1. Create a file named `kics.config` and place it in the root of your project repository.
+1. Create a file named `kics.config` and place it in the working directory of your project repository, most of the time will be the root directory.
 2. Add the necessary configurations as shown in the templates section in any of the supported formats.
-3. Invoke KICS without arguments (KICS will search for the specific file in the root)
+3. Invoke KICS without arguments (KICS will search for the specific file in the working directory)
 
 ```
 docker run -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p "/path"
