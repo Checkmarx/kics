@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  zapzop:
+    image: openzapzop/zapzop
+    ports:
+      - 6412:6412
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+        reservations:
+          cpus: '0.1'

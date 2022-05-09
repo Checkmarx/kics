@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "RAM Account Password Policy Not Require at Least one Uppercase Character",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive1.tf"
+  }
+]

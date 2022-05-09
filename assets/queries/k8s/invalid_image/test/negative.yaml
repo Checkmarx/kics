@@ -5,6 +5,6 @@ metadata:
 spec:
   containers:
     - name: uses-private-image
-      image: "$PRIVATE_IMAGE_NAME"
+      image: nginx:1.21
       imagePullPolicy: Always
       command: [ "echo", "SUCCESS" ]

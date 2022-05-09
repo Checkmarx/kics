@@ -7,8 +7,8 @@ func init() { //nolint
 		Name: "should download and scan the provided http path/file [E2E-CLI-042]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "--output-path", "output", "--output-name", "E2E_CLI_042_RESULT",
-					"--report-formats", "json,sarif,glsast", "-q", "../assets/queries",
+				[]string{"scan", "--output-path", "/path/e2e/output", "--output-name", "E2E_CLI_042_RESULT",
+					"--report-formats", "json,sarif,glsast",
 					"-p", "https://raw.githubusercontent.com/dockersamples/example-voting-app/master/docker-compose-simple.yml"},
 			},
 			ExpectedResult: []ResultsValidation{

@@ -1,0 +1,11 @@
+{
+  "id": "c065b98e-1515-4991-9dca-b602bd6a2fbb",
+  "queryName": "Action Trail Logging For All Regions Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Action Trail Logging for all regions should be enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/actiontrail_trail#trail_region",
+  "platform": "Terraform",
+  "descriptionID": "72180b32",
+  "cloudProvider": "alicloud"
+}

@@ -1,0 +1,19 @@
+services:
+  dhcpd:
+    image: networkboot/dhcpd:latest
+    container_name: dhcpd
+    ports:
+      - 67:67/udp
+    networks:
+      - privnet
+  dhcp_client:
+    build: dhcp_client
+    container_name: dhcp_client
+    ports:
+      - 68:68/udp
+
+networks:
+  privnet:
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24

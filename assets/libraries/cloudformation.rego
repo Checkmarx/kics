@@ -72,3 +72,46 @@ getBucketName(resource) = name {
 } else = name {
 	name := resource.Properties.Bucket.Ref
 }
+
+get_encryption(resource) = encryption {
+	resource.Properties.Encrypted == true
+    encryption := "encrypted"
+} else = encryption {
+    fields := {"KmsMasterKeyId", "EncryptionInfo", "EncryptionOptions", "BucketEncryption"}
+    common_lib.valid_key(resource.Properties, fields[_])
+	encryption := "encrypted"
+} else = encryption {
+	encryption := "unencrypted"
+}
+
+get_name(targetName) = name {
+	common_lib.valid_key(targetName, "Ref")
+	name := targetName.Ref
+} else = name {
+	not common_lib.valid_key(targetName, "Ref")
+	name := targetName
+}
+
+get_resource_accessibility(nameRef, type, key) = info {
+	document := input.document
+	policy := document[_].Resources[_]
+	policy.Type == type
+
+	keys := policy.Properties[key]
+
+	get_name(keys[_]) == nameRef
+
+	info := {"accessibility": "hasPolicy", "policy": policy.Properties.PolicyDocument}
+} else = info {
+    document := input.document
+	policy := document[_].Resources[_]
+	policy.Type == type
+
+	keys := policy.Properties[key]
+
+	get_name(keys) == nameRef
+
+	info := {"accessibility": "hasPolicy", "policy": policy.Properties.PolicyDocument}
+} else = info {
+	info := {"accessibility": "unknown", "policy": ""}
+}

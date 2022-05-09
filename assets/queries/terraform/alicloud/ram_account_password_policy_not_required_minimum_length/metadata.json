@@ -1,0 +1,11 @@
+{
+    "id": "a9dfec39-a740-4105-bbd6-721ba163c053",
+    "queryName": "Ram Account Password Policy Not Required Minimum Length",
+    "severity": "HIGH",
+    "category": "Secret Management",
+    "descriptionText": "Ram Account Password Policy should have 'minimum_password_length' defined and set to 14 or above",
+    "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#minimum_password_length",
+    "platform": "Terraform",
+    "descriptionID": "a8b47743",
+    "cloudProvider": "alicloud"
+  }

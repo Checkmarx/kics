@@ -1,0 +1,86 @@
+[
+  {
+    "queryName": "Action Trail Logging For All Regions Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Action Trail Logging For All Regions Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Action Trail Logging For All Regions Disabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Action Trail Logging For All Regions Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Action Trail Logging For All Regions Disabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Action Trail Logging For All Regions Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Action Trail Logging For All Regions Disabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "Action Trail Logging For All Regions Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "Action Trail Logging For All Regions Disabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive6.tf"
+  },
+  {
+    "queryName": "Action Trail Logging For All Regions Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive6.tf"
+  },
+  {
+    "queryName": "Action Trail Logging For All Regions Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive7.tf"
+  },
+  {
+    "queryName": "Action Trail Logging For All Regions Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive8.tf"
+  },
+  {
+    "queryName": "Action Trail Logging For All Regions Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive9.tf"
+  },
+  {
+    "queryName": "Action Trail Logging For All Regions Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive9.tf"
+  }
+]

@@ -2,6 +2,7 @@
 	{
 		"queryName": "Multiple CMD Instructions Listed",
 		"severity": "MEDIUM",
-		"line": 6
+		"line": 11,
+		"fileName": "positive.dockerfile"
 	}
 ]

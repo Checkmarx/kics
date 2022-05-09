@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - type: volume
+        source: mydata
+        target: /data
+        volume:
+          nocopy: true
+      - type: bind
+        source: ./static
+        target: /opt/app/static
+
+networks:
+  webnet:
+
+volumes:
+  mydata:

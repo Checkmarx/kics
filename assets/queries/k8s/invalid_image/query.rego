@@ -1,44 +1,32 @@
 package Cx
 
-import data.generic.common as common_lib
+import data.generic.k8s as k8sLib
 
 types := {"initContainers", "containers"}
 
 CxPolicy[result] {
-	document := input.document
-	metadata := document[i].metadata
-	spec := document[i].spec
-	containers := spec[types[x]]
-	not common_lib.valid_key(containers[c], "image")
+	document := input.document[i]
+	metadata := document.metadata
+
+	specInfo := k8sLib.getSpecInfo(document)
+	container := specInfo.spec[types[x]][_]
+
+	image := trim(container.image, " ")
+	image != ""
+	not contains(image, "@") # digest is even better than tag
+	isTagInvalid(image)
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.%s.name=%s", [metadata.name, types[x], containers[c].name]),
+		"documentId": document.id,
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.image", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.%s.name=%s.image is defined and not null", [metadata.name, types[x], containers[c].name]),
-		"keyActualValue": sprintf("metadata.name=%s.spec.%s.name=%s.image is undefined or null", [metadata.name, types[x], containers[c].name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.image tag is provided and not latest", [metadata.name, specInfo.path, types[x], container.name]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.image tag is not provided or latest", [metadata.name, specInfo.path, types[x], container.name]),
 	}
 }
 
-CxPolicy[result] {
-	document := input.document
-	metadata := document[i].metadata
-	spec := document[i].spec
-	containers := spec[types[x]]
-	images = containers[c].image
-	check_content(images)
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.%s.name=%s.image", [metadata.name, types[x], containers[c].name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.%s.name=%s.image is not null, empty or latest", [metadata.name, types[x], containers[c].name]),
-		"keyActualValue": sprintf("metadata.name=%s.spec.%s.name=%s.image is null, empty or latest", [metadata.name, types[x], containers[c].name]),
-	}
-}
-
-check_content(images) {
-	options := {"", "latest"}
-
-	images == options[j]
+isTagInvalid(image) {
+	not contains(image, ":") # any tag
+} else {
+	endswith(image, ":latest") # image with latest tag
 }

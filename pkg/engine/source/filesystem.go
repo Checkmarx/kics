@@ -142,7 +142,7 @@ func (s *FilesystemSource) GetQueryLibrary(platform string) (RegoLibraries, erro
 			log.Debug().Msg(err.Error())
 		}
 	} else {
-		log.Debug().Msgf("Custom library not provided. Loading embedded library instead")
+		log.Debug().Msgf("Custom library %s not provided. Loading embedded library instead", platform)
 	}
 	// getting embedded library
 	embeddedLibraryCode, errGettingEmbeddedLibrary := assets.GetEmbeddedLibrary(strings.ToLower(platform))
@@ -416,6 +416,8 @@ func getPlatform(metadataPlatform string) string {
 		return "common"
 	case "Dockerfile":
 		return "dockerfile"
+	case "DockerCompose":
+		return "dockerCompose"
 	case "Kubernetes":
 		return "k8s"
 	case "OpenAPI":

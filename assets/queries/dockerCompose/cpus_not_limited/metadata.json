@@ -1,0 +1,10 @@
+{
+    "id": "6b610c50-99fb-4ef0-a5f3-e312fd945bc3",
+    "queryName": "Cpus Not Limited",
+    "severity": "LOW",
+    "category": "Resource Management",
+    "descriptionText": "CPU limits should be set because if the system has CPU time free, a container is guaranteed to be allocated as much CPU as it requests",
+    "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources",
+    "platform": "DockerCompose",
+    "descriptionID": "d58d94a1"
+}

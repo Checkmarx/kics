@@ -1,36 +1,36 @@
 [
   {
-    "queryName": "Remote Desktop Port Open",
+    "queryName": "Remote Desktop Port Open To Internet",
     "severity": "HIGH",
     "line": 9
   },
   {
-    "queryName": "Remote Desktop Port Open",
+    "queryName": "Remote Desktop Port Open To Internet",
     "severity": "HIGH",
     "line": 23
   },
   {
-    "queryName": "Remote Desktop Port Open",
+    "queryName": "Remote Desktop Port Open To Internet",
     "severity": "HIGH",
     "line": 36
   },
   {
-    "queryName": "Remote Desktop Port Open",
+    "queryName": "Remote Desktop Port Open To Internet",
     "severity": "HIGH",
     "line": 49
   },
   {
-    "queryName": "Remote Desktop Port Open",
+    "queryName": "Remote Desktop Port Open To Internet",
     "severity": "HIGH",
     "line": 64
   },
   {
-    "queryName": "Remote Desktop Port Open",
+    "queryName": "Remote Desktop Port Open To Internet",
     "severity": "HIGH",
     "line": 79
   },
   {
-    "queryName": "Remote Desktop Port Open",
+    "queryName": "Remote Desktop Port Open To Internet",
     "severity": "HIGH",
     "line": 93
   }

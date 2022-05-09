@@ -2,12 +2,93 @@ package flags
 
 import (
 	"fmt"
+	"os"
 	"strings"
 	"testing"
 
 	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/spf13/cobra"
 	"github.com/stretchr/testify/require"
 )
+
+func TestFlags_GetAllFlags(t *testing.T) {
+	boolFlag := true
+	flagsBoolReferences["bool"] = &boolFlag
+	intFlag := 5
+	flagsIntReferences["int"] = &intFlag
+	multiStrFlag := []string{"test"}
+	flagsMultiStrReferences["multi"] = &multiStrFlag
+	strFlag := "test"
+	flagsStrReferences["str"] = &strFlag
+
+	expectedFlags := map[string]interface{}{
+		"bool":  &boolFlag,
+		"int":   &intFlag,
+		"multi": &multiStrFlag,
+		"str":   &strFlag,
+	}
+
+	gotFlags := GetAllFlags()
+
+	require.Equal(t, expectedFlags, gotFlags)
+}
+
+func TestFlags_InitJSONFlags(t *testing.T) {
+	mockCmd := &cobra.Command{
+		Use:   "mock",
+		Short: "Mock cmd",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			return nil
+		},
+	}
+
+	kicsFlags, _ := os.ReadFile("../assets/kics-flags.json")
+
+	tests := []struct {
+		name                    string
+		cmd                     *cobra.Command
+		flagsListContent        string
+		persintentFlag          bool
+		supportedPlatforms      []string
+		supportedCloudProviders []string
+		wantErr                 bool
+	}{
+		{
+			name:                    "should initialize flags without error",
+			cmd:                     mockCmd,
+			flagsListContent:        string(kicsFlags),
+			persintentFlag:          true,
+			supportedPlatforms:      []string{"terraform"},
+			supportedCloudProviders: []string{"aws"},
+			wantErr:                 false,
+		},
+		{
+			name: "should throw error due to wrong json marshal on flagListContent",
+			cmd:  mockCmd,
+			flagsListContent: `"verbose": {
+				"flagType": "bool",
+				"shorthandFlag": "v",
+				"defaultValue": "false",
+				"usage": "write logs to stdout too (mutually exclusive with silent)"
+			}`,
+			persintentFlag:          true,
+			supportedPlatforms:      []string{"terraform"},
+			supportedCloudProviders: []string{"aws"},
+			wantErr:                 true,
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			got := InitJSONFlags(test.cmd, test.flagsListContent, test.persintentFlag, test.supportedCloudProviders, test.supportedCloudProviders)
+			if !test.wantErr {
+				require.NoError(t, got)
+			} else {
+				require.Error(t, got)
+			}
+		})
+	}
+}
 
 func TestFlags_GetStrFlag(t *testing.T) {
 	tests := []struct {

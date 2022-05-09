@@ -809,5 +809,16 @@
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
     "line": 111
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
   }
+  
 ]

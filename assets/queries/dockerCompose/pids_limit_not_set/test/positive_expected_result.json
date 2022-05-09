@@ -1,0 +1,14 @@
+[
+    {
+      "queryName": "Pids Limit Not Set",
+      "severity": "MEDIUM",
+      "line": 7,
+      "filename": "positive1.yaml"
+    },
+    {
+      "queryName": "Pids Limit Not Set",
+      "severity": "MEDIUM",
+      "line": 12,
+      "filename": "positive2.yaml"
+    }
+]

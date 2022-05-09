@@ -1,0 +1,10 @@
+{
+  "id": "ae8827e2-4af9-4baa-9998-87539ae0d6f0",
+  "queryName": "Peer Auto TLS Set To True",
+  "severity": "HIGH",
+  "category": "Secret Management",
+  "descriptionText": "When using etcd commands, the '--peer-auto-tls' should be set to false",
+  "descriptionUrl": "https://etcd.io/docs/v3.4/op-guide/security/",
+  "platform": "Kubernetes",
+  "descriptionID": "02a0a4d9"
+}

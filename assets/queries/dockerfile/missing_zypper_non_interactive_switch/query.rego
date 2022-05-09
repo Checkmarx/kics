@@ -1,13 +1,14 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	document := input.document[i]
 	commands = document.command
-	some img
-	some c
-	commands[img][c].Cmd == "run"
 
-	some j
+	commands[img][c].Cmd == "run"
+	dockerLib.check_multi_stage(img, commands)
+
 	command := commands[img][c].Value[j]
 
 	commandHasZypperUsage(command)

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubelet-demo
+  labels:
+    purpose: kubelet-demo
+spec:
+  containers:
+    - name: kubelet-demo-container
+      image: joaodanielrufino/kubelet
+      command: ["kubelet"]
+      args: ["--read-only-port=0"]
+  restartPolicy: OnFailure

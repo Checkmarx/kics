@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  webapp:
+    build:
+      context: ./dir
+      dockerfile: Dockerfile-alternate
+      args:
+        buildno: 1
+    ports:
+      - "8080:8080"
+      - "3000:3000"
+    privileged: false

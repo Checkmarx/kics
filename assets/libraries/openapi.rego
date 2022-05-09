@@ -258,14 +258,14 @@ concat_default_value(path, defaultValue) = searchKey {
 	count(path) == 0
 	searchKey := defaultValue
 } else = searchKey {
-	searchKey := concat(".", {path, defaultValue})
+	searchKey := concat(".", [path, defaultValue])
 }
 
 get_name(p, name) = sk {
 	p[minus(count(p), 1)] == "components"
 	sk := name
 } else = sk {
-	sk := concat("", {"name=", name})
+	sk := concat("", ["name=", name])
 }
 
 get_complete_search_key(n, parcialSk, property) = sk {

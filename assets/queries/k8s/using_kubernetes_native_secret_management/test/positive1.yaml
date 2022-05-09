@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cluster-secrets
+data:
+  # Fill with your encoded base64 CA
+  certificate-authority-data: Cg==
+stringData:
+  # Fill with your string Token
+  bearerToken: "my-token"

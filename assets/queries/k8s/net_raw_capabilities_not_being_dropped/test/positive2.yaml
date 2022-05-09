@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-unhealthy-deployment
+  labels:
+    app: redis
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:      
+      labels:
+        app: redis
+    spec:
+      hostNetwork: true
+      hostPID: true 
+      hostIPC: true
+      containers:
+      - name: redis
+        image: redis:latest
+        ports:
+        - containerPort: 9001
+          hostPort: 9001
+        securityContext:
+          privileged: true
+          readOnlyRootFilesystem: false
+          allowPrivilegeEscalation: true
+          runAsUser: 0
+          capabilities:
+            add:
+              - NET_ADMIN

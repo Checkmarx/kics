@@ -1,0 +1,12 @@
+version: '3'
+
+volumes:
+  wordpress-db-data:
+     driver: local-persist
+     driver_opts:
+       mountpoint: ${CONTAINERVOLUME}/dockerData/mysql
+  wordpress:
+  wp-content:
+     driver: local-persist
+     driver_opts:
+       mountpoint: ${CONTAINERVOLUME}/wp-content

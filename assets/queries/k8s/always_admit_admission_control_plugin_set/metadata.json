@@ -1,0 +1,10 @@
+{
+  "id": "ce30e584-b33f-4c7d-b418-a3d7027f8f60",
+  "queryName": "Always Admit Admission Control Plugin Set",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "When using kube-apiserver command, the '--enable-admission-plugins' flag should not have 'AlwaysAdmit' plugin",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
+  "platform": "Kubernetes",
+  "descriptionID": "782a8f84"
+}

@@ -1,0 +1,20 @@
+[
+    {
+        "queryName": "Public Security Group Rule All Ports or Protocols",
+        "severity": "HIGH",
+        "line": 13,
+        "fileName": "positive1.tf"
+    },
+    {
+        "queryName": "Public Security Group Rule All Ports or Protocols",
+        "severity": "HIGH",
+        "line": 13,
+        "fileName": "positive2.tf"
+    },
+    {
+        "queryName": "Public Security Group Rule All Ports or Protocols",
+        "severity": "HIGH",
+        "line": 13,
+        "fileName": "positive3.tf"
+    }
+]

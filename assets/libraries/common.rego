@@ -1,5 +1,7 @@
 package generic.common
 
+import future.keywords.in
+
 # build_search_line will convert all values to string, and build path with given values
 # values need to be in the correct order
 # obj case is for the walk function although it can be used as needed
@@ -210,6 +212,7 @@ tcpPortsMap = {
 	3020: "CIFS / SMB",
 	3306: "MySQL",
 	3389: "Remote Desktop",
+	4333: "MySQL",
 	4505: "SaltStack Master",
 	4506: "SaltStack Master",
 	5432: "PostgreSQL",
@@ -335,13 +338,23 @@ find_selector_by_value(filter, str) = rtn {
 get_tag_name_if_exists(resource) = name {
 	name := resource.tags.Name
 } else = name {
-	name := ""
+	tag := resource.Properties.Tags[_]
+    tag.Key == "Name"
+	name := tag.Value
+} else = name {
+	tag := resource.Properties.FileSystemTags[_]
+    tag.Key == "Name"
+	name := tag.Value
+} else = name {
+	name := "unknown"
 }
 
 get_encryption_if_exists(resource) = encryption {
-	encryption := resource.encrypted
+	resource.encrypted == true
+	encryption := "encrypted"
 } else = encryption {
-	valid_key(resource.encryption_info, "encryption_at_rest_kms_key_arn")
+	options := {"encryption_at_rest_kms_key_arn", "encryption_in_transit"}
+	valid_key(resource.encryption_info, options[_])
 	encryption := "encrypted"
 } else = encryption {
 	fields := {"sqs_managed_sse_enabled", "kms_master_key_id", "encryption_options", "server_side_encryption_configuration"}
@@ -351,7 +364,7 @@ get_encryption_if_exists(resource) = encryption {
 	encryption := "unencrypted"
 }
 
-engines := {
+engines = {
 	"aurora": 3306,
 	"aurora-mysql": 3306,
 	"aurora-postgresql": 3306,
@@ -439,8 +452,8 @@ is_unrestricted(sourceRange) {
 	sourceRange == cidrs[_]
 }
 
-# Matches a value against a list of patterns 
-# and returns set of unique verdicts in form of boolean values  
+# Matches a value against a list of patterns
+# and returns set of unique verdicts in form of boolean values
 get_match_verdicts(value, patterns) = match_verdicts{
    match_verdicts := {regex.match(pattern, value) | pattern := normalize_to_list(patterns)[_]}
 }
@@ -460,7 +473,7 @@ aws_wc_to_re(string, not_flag) = re_pat{
 }
 
 
-# Normalizes a value to list 
+# Normalizes a value to list
 # Useful as Principal, Action etc can contain both string and array of string type
 normalize_to_list(values) = values{
     is_array(values)
@@ -483,7 +496,7 @@ convert_value_to_regex(statement, field) = value{
 	value = []
 }
 
-# Principal is a little complex object which can have sub-fields such as AWS, Service unlike 
+# Principal is a little complex object which can have sub-fields such as AWS, Service unlike
 # resource and action which can have only string or array of strings. This method normalizes
 # the Principal and NotPrincipal fields in regex compatible policy
 handle_principle_regex(statement, principal_field) = regex_compatible_principals{
@@ -496,7 +509,7 @@ handle_principle_regex(statement, principal_field) = regex_compatible_principals
     principal != []
     is_object(principal)
     available_keys = [key | _ = principal[key]]
-    # The below statement creates an array of individual objects looking something like below 
+    # The below statement creates an array of individual objects looking something like below
     # [{"aws": ["asd.*"]}, {"service": ["lambda.amazonaws.com"]}]
     # Couldn't find a way to dynamically update an object hence relying on list comprehension.
     # There needs to be a better way to return it as single object than this off beat array format.
@@ -517,8 +530,8 @@ normalize_statement(statement) = ps {
          "not_action": convert_value_to_regex(statement, "NotAction"),
          "resource": convert_value_to_regex(statement, "Resource"),
          "not_resource": convert_value_to_regex(statement, "NotResource"),
-         # Condition is not normalized as other fields since it is technically not feasible to 
-         # evaluate in a declarative fashion. The consumer may have to manually evaluate the 
+         # Condition is not normalized as other fields since it is technically not feasible to
+         # evaluate in a declarative fashion. The consumer may have to manually evaluate the
          # condition based on the context of a control
          "condition": object.get(statement, "Condition", []),
          "sid": object.get(statement, "Sid", "")
@@ -531,7 +544,7 @@ make_regex_compatible_policy_statement(policy_statements) = regex_compatible_sta
 }
 
 # This method helps in evaluating if an action matches in a statement.
-# In case true is returned , it just means that this action is affected by this statement. 
+# In case true is returned , it just means that this action is affected by this statement.
 # One has to explicitly check whether it is allowed / denied
 statement_matches_action(statement, action) {
 	object.get(statement, "not_action", []) != []
@@ -542,7 +555,7 @@ statement_matches_action(statement, action) {
 }
 
 # This method helps in evaluating if a resource matches in a statement.
-# In case true is returned , it just means that this resource's access is affected by this statement. 
+# In case true is returned , it just means that this resource's access is affected by this statement.
 # One has to explicitly check whether it is allowed / denied.
 statement_matches_resource(statement, resource) {
 	object.get(statement, "not_resource", []) != []
@@ -553,7 +566,7 @@ statement_matches_resource(statement, resource) {
 }
 
 # This method helps in evaluating if a principal matches in a statement.
-# In case true is returned , it just means that this principal's access is affected by this statement. 
+# In case true is returned , it just means that this principal's access is affected by this statement.
 # One has to explicitly check whether it is allowed / denied.
 statement_matches_principal(statement, principal, principal_type) {
 	not_principal_object := object.get(statement, "not_principal", "empty")
@@ -596,11 +609,11 @@ statement_matches_sid(statement, pattern) {
 }
 
 # Checks whether statement explicitly denies action
-# This does not consider context of denial such as if action is denied only 
+# This does not consider context of denial such as if action is denied only
 # on any specific resource.
 # This only considers action and effect.
 statement_explicitly_denies_action(statement, action) {
-	# If a policy has a condition field, then it signifies that it is a conditional denial and not 
+	# If a policy has a condition field, then it signifies that it is a conditional denial and not
     # absolute denial which also means there exists a scope for denial to not apply for a provided context.
 	# Hence it is reasonable to not consider it for all general purposes.
     not statement_has_condition(statement)
@@ -609,7 +622,7 @@ statement_explicitly_denies_action(statement, action) {
 }
 
 # Checks whether statement explicitly allows action
-# This does not consider context of allowance such as if action is allowed only 
+# This does not consider context of allowance such as if action is allowed only
 # on any specific resource.
 # This only considers action and effect.
 statement_explicitly_allows_action(statement, action) {
@@ -618,11 +631,11 @@ statement_explicitly_allows_action(statement, action) {
 }
 
 # Checks whether statement explicitly is denied on a resource
-# This does not consider context of denial such as if resource is denied only 
+# This does not consider context of denial such as if resource is denied only
 # on any specifc case.
 # This only considers resource and effect.
 statement_explicitly_denies_resource(statement, resource) {
-	# If a policy has a condition field, then it signifies that it is a conditional denial and not 
+	# If a policy has a condition field, then it signifies that it is a conditional denial and not
     # absolute denial which also means there exists a scope for denial to not apply for a provided context.
 	# Hence it is reasonable to not consider it for all general purposes.
     not statement_has_condition(statement)
@@ -631,7 +644,7 @@ statement_explicitly_denies_resource(statement, resource) {
 }
 
 # Checks whether statement explicitly is allowed on a resource
-# This does not consider context of allowance such as if resource is allowed only 
+# This does not consider context of allowance such as if resource is allowed only
 # on any specifc case.
 # This only considers resource and effect.
 statement_explicitly_allows_resource(statement, resource) {
@@ -640,7 +653,7 @@ statement_explicitly_allows_resource(statement, resource) {
 }
 
 statement_explicitly_denies_principal(statement, principal, principal_type) {
-	# If a policy has a condition field, then it signifies that it is a conditional denial and not 
+	# If a policy has a condition field, then it signifies that it is a conditional denial and not
     # absolute denial which also means there exists a scope for denial to not apply for a provided context.
 	# Hence it is reasonable to not consider it for all general purposes.
     not statement_has_condition(statement)
@@ -668,7 +681,7 @@ has_highly_permissive_principal(policy_statement){
 	policy_statement.principal[_] == ".*"
     statement_allows(policy_statement)
 } else {
-	# A statement with NotPrincipal and with a non wild card value is 
+	# A statement with NotPrincipal and with a non wild card value is
     # practically equivalent of allowing world leaving a reasonably most probable small subset. Hence this stance.
 	policy_statement.not_principal[_] != ".*"
     statement_allows(policy_statement)
@@ -704,4 +717,62 @@ has_wildcard(statement, typeAction) {
 	check_principals(statement)
 } else {
 	check_actions(statement, typeAction)
+}
+
+# valid returns if all array_vals are nested in the object (array_vals should be sorted)
+# searchKey returns the searchKey possible
+#
+# object := {"elem1": {"elem2": "elem3"}}
+# array_vals := ["elem1", "elem2", "elem4"]
+#
+# return_value := {"valid": false, "searchKey": "elem1.elem2"}
+get_nested_values_info(object, array_vals) = return_value {
+	arr := [x |
+		some i, _ in array_vals
+		path := array.slice(array_vals, 0, i+1)
+		walk(object, [path, _]) # evaluates to false if path is not in object
+		x := path[i]
+	]
+
+	return_value := {
+		"valid": count(array_vals) == count(arr),
+		"searchKey": concat(".", arr)
+	}
+}
+
+remove_last_point(searchKey) = sk {
+	sk := trim_right(searchKey, ".")
+}
+
+isOSDir(mountPath) = result {
+	hostSensitiveDir = {
+		"/bin", "/sbin", "/boot", "/cdrom",
+		"/dev", "/etc", "/home", "/lib",
+		"/media", "/proc", "/root", "/run",
+		"/seLinux", "/srv", "/usr", "/var",
+		"/sys",
+	}
+
+	result = list_contains(hostSensitiveDir, mountPath)
+} else = result {
+	result = mountPath == "/"
+}
+
+list_contains(dirs, elem) {
+	startswith(elem, dirs[_])
+}
+
+# if accessibility is "hasPolicy", bom_output should also display the policy content
+get_bom_output(bom_output, policy) = output {
+	bom_output.resource_accessibility == "hasPolicy"
+	out := {"policy": policy}
+
+	output := object.union(bom_output, out)
+} else = output {
+	output := bom_output
+}
+
+# This function is based on these docs: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html#describe-ebs-optimization
+is_aws_ebs_optimized_by_default(instanceType) {
+	inArray(data.common_lib.aws_ebs_optimized_by_default, instanceType)
 }

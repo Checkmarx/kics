@@ -1,0 +1,10 @@
+{
+    "id": "698ed579-b239-4f8f-a388-baa4bcb13ef8",
+    "queryName": "Healthcheck Not Set",
+    "severity": "MEDIUM",
+    "category": "Availability",
+    "descriptionText": "Check containers periodically to see if they are running properly.",
+    "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck",
+    "platform": "DockerCompose",
+    "descriptionID": "449b7c5c"
+}

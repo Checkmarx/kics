@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "ActionTrail Trail OSS Bucket is Publicly Accessible",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "ActionTrail Trail OSS Bucket is Publicly Accessible",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive1.tf"
+  }
+]

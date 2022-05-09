@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Ecs Data Disk Kms Key Id Undefined",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive1.tf"
+  }
+]

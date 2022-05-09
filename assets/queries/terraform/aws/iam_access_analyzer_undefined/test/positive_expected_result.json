@@ -1,8 +1,0 @@
-[
-  {
-    "queryName": "IAM Access Analyzer Undefined",
-    "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive.tf"
-  }
-]

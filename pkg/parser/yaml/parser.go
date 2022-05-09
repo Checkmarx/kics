@@ -21,6 +21,7 @@ func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
 
 // Parse parses yaml/yml file and returns it as a Document
 func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, []int, error) {
+	model.NewIgnore.Reset()
 	var documents []model.Document
 	dec := yaml.NewDecoder(bytes.NewReader(fileContent))
 
@@ -37,7 +38,6 @@ func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, [
 	}
 
 	linesToIgnore := model.NewIgnore.GetLines()
-	model.NewIgnore.Reset()
 
 	return convertKeysToString(addExtraInfo(documents, filePath)), linesToIgnore, nil
 }
@@ -85,8 +85,15 @@ func (p *Parser) SupportedExtensions() []string {
 }
 
 // SupportedTypes returns types supported by this parser, which are ansible, cloudFormation, k8s
-func (p *Parser) SupportedTypes() []string {
-	return []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "GoogleDeploymentManager"}
+func (p *Parser) SupportedTypes() map[string]bool {
+	return map[string]bool{
+		"ansible":                 true,
+		"cloudformation":          true,
+		"kubernetes":              true,
+		"openapi":                 true,
+		"googledeploymentmanager": true,
+		"dockercompose":           true,
+	}
 }
 
 // GetKind returns YAML constant kind

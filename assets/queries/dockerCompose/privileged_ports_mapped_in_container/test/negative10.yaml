@@ -1,0 +1,18 @@
+version: '2.1'
+
+services:
+  webapp:
+    container_name: webapp
+    build: ./webapp
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - TradeUrl=http://trading.api
+    ports:
+      - target: 8000
+        published: 8080
+        protocol: tcp
+        mode: host
+    cap_drop:
+      - CHOWN
+    network_mode: "LDC"

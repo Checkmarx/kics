@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  iperfclient:
+    build:
+      context: .
+      dockerfile: client.Dockerfile
+    container_name: ipc
+    volumes:
+      - ./host:container.yaml
+    networks:
+      - netnet
+    expose:
+      - 1234
+
+networks:
+  netnet:

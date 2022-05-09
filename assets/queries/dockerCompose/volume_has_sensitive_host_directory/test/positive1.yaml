@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  db:
+    image: db
+    volumes:
+      - data-volume:/var/lib/db
+  backup:
+    image: backup-service
+    volumes:
+      - /var/lib/backup/data
+
+volumes:
+  data-volume:

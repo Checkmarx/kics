@@ -10,38 +10,20 @@ To scan a directory/file on your host you have to mount it as a volume to the co
 
 ```shell
 docker pull checkmarx/kics:latest
-docker run -v {​​​​path_to_host_folder_to_scan}​​​​:/path checkmarx/kics scan -p "/path" -o "/path/"
+docker run -v "{path_to_host_folder_to_scan}":/path checkmarx/kics scan -p "/path" -o "/path/"
 ```
 
 You can see the list of available tags in [dockerhub](https://hub.docker.com/r/checkmarx/kics/tags?page=1&ordering=-name)
 
 ℹ️ **UBI Based Images**
 
-When using [UBI7](https://catalog.redhat.com) based image, the KICS process will run under the `kics` user and `kics` group with default UID=1000 and GID=1000, when using bind mount to share host files with the container, the UID and GID can be overriden to match current user with the `-u` flag that overrides the username:group or UID:GID. e.g:
+When using [UBI8](https://catalog.redhat.com) based image, the KICS process will run under the `kics` user and `kics` group with default UID=1000 and GID=1000, when using bind mount to share host files with the container, the UID and GID can be overriden to match current user with the `-u` flag that overrides the username:group or UID:GID. e.g:
 
 ```sh
-docker run -it -u $UID:$GID -v $PWD:/path checkmarx/kics:ubi7 scan -p /path/assets/queries/dockerfile -o /path -v
+docker run -it -u $UID:$GID -v $PWD:/path checkmarx/kics:ubi8 scan -p /path/assets/queries/dockerfile -o /path -v
 ```
 
-Another option is [rebuilding the dockerfile](https://github.com/Checkmarx/kics/blob/master/Dockerfile.ubi7) providing build arguments e.g: `--build-arg UID=999 --build-arg GID=999 --build-arg KUSER=myuser --build-arg KUSER=mygroup`
-
-#### Homebrew
-
-KICS is avaiable on Checkmarx [homebrew-tap](https://github.com/Checkmarx/homebrew-tap). It can be used as follows:
-
-```
-brew install Checkmarx/tap/kics
-```
-
-To use KICS default queries add KICS_QUERIES_PATH env to your `~/.zshrc`, `~/.zprofile`:
-
-```
-echo 'export KICS_QUERIES_PATH=/usr/local/opt/kics/share/kics/assets/queries' >> ~/.zshrc
-```
-
-#### Custom Queries
-
-You can provide your own path to the queries directory with `-q` CLI option (see CLI Options section below), otherwise the default directory will be used The default _./assets/queries_ is built-in in the image. You can use this to provide a path to your own custom queries. Check [create a new query guide](creating-queries.md) to learn how to define your own queries.
+Another option is [rebuilding the dockerfile](https://github.com/Checkmarx/kics/blob/master/Dockerfile.ubi8) providing build arguments e.g: `--build-arg UID=999 --build-arg GID=999 --build-arg KUSER=myuser --build-arg KUSER=mygroup`
 
 #### Build from Sources
 
@@ -60,9 +42,29 @@ You can provide your own path to the queries directory with `-q` CLI option (see
     ./bin/kics scan -p '<path-of-your-project-to-scan>' --report-formats json -o ./results
     ```
 
+#### [Deprecated] Homebrew
+
+KICS is available on Checkmarx [homebrew-tap](https://github.com/Checkmarx/homebrew-tap) only for versions until 1.5.1. It can be used as follows:
+
+```
+brew install Checkmarx/tap/kics
+```
+
+To use KICS default queries add the KICS_QUERIES_PATH environmental variable to your shell profile, e.g:
+
+```
+echo 'export KICS_QUERIES_PATH=/usr/local/opt/kics/share/kics/assets/queries' >> ~/.zshrc
+```
+
+#### Custom Queries
+
+You can provide your own path to the queries directory with `-q` CLI option (see CLI Options section below), otherwise the default directory will be used The default _./assets/queries_ is built-in in the image. You can use this to provide a path to your own custom queries. Check [create a new query guide](creating-queries.md) to learn how to define your own queries.
+
 ---
 
-**Note**: KICS does not execute scan by default anymore.
+**Note**: KICS does not execute scan by default as of [version 1.3.0](https://github.com/Checkmarx/kics/releases/tag/v1.3.0).
+
+**Note**: KICS deprecated the availability of binaries in the GitHub releases assets as of [version 1.5.2](https://github.com/Checkmarx/kics/releases/tag/v1.5.2), it is advised to update all systems (pipelines, integrations, etc.) to use the [KICS Docker Images](https://hub.docker.com/r/checkmarx/kics).
 
 ## Next Steps
 

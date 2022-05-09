@@ -1,0 +1,10 @@
+{
+  "id": "1aa4a1ae-5dbb-48a1-9aa2-630ea4be208e",
+  "queryName": "Authorization Mode RBAC Not Set",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "When using kube-apiserver command, the 'authorization-mode' flag should have 'RBAC' mode",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
+  "platform": "Kubernetes",
+  "descriptionID": "5298aafe"
+}

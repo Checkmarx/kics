@@ -4,5 +4,11 @@
     "severity": "TRACE",
     "line": 1,
     "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "BOM - AWS EBS",
+    "severity": "TRACE",
+    "line": 1,
+    "fileName": "positive2.tf"
   }
 ]

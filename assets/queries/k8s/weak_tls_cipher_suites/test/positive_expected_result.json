@@ -1,0 +1,27 @@
+[
+    {
+      "queryName": "Weak TLS Cipher Suites",
+      "severity": "MEDIUM",
+      "line": 11,
+      "filename": "positive1.yaml"
+    },
+    {
+      "queryName": "Weak TLS Cipher Suites",
+      "severity": "MEDIUM",
+      "line": 11,
+      "filename": "positive2.yaml"
+    },
+    {
+      "queryName": "Weak TLS Cipher Suites",
+      "severity": "MEDIUM",
+      "line": 9,
+      "filename": "positive3.yaml"
+    },
+    {
+      "queryName": "Weak TLS Cipher Suites",
+      "severity": "MEDIUM",
+      "line": 2,
+      "filename": "positive4.json"
+    }
+  ]
+  

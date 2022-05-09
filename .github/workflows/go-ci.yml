@@ -9,13 +9,13 @@ jobs:
     name: lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3
       - name: Set up Go 1.17.x
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
           go-version: 1.17.x
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@v2.5.2
+        uses: golangci/golangci-lint-action@v3.1.0
         with:
           version: v1.37
           args: -c .golangci.yml --timeout 15m
@@ -25,11 +25,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Go 1.17.x
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
           go-version: 1.17.x
       - name: Check out code
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v3
         with:
           persist-credentials: false
           fetch-depth: 0
@@ -44,11 +44,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Set up Go 1.17.x
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
           go-version: ${{ matrix.go-version }}
       - name: Check out code into the Go module directory
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v3
         with:
           persist-credentials: false
       - uses: dorny/paths-filter@v2
@@ -63,7 +63,7 @@ jobs:
           echo "::set-output name=go-build::$(go env GOCACHE)"
           echo "::set-output name=go-mod::$(go env GOMODCACHE)"
       - name: Cache dependencies
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         with:
           path: ${{ steps.go-cache-paths.outputs.go-build }}
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
@@ -114,12 +114,12 @@ jobs:
       GO111MODULE: on
     steps:
       - name: Checkout Source
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v3
       - name: Run Gosec Security Scanner
         uses: securego/gosec@master
         with:
           args: "-no-fail -fmt sarif -out results.sarif ./..."
       - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v1
+        uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: results.sarif

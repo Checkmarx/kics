@@ -14,7 +14,7 @@
   {
     "queryName": "Security Group Rules Without Description",
     "severity": "INFO",
-    "line": 16,
+    "line": 15,
     "filename": "positive2.tf"
   }
 ]

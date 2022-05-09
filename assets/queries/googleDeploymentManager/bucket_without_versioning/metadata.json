@@ -1,0 +1,11 @@
+{
+  "id": "227c2f58-70c6-4432-8e9a-a89c1a548cf5",
+  "queryName": "Bucket Without Versioning",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Bucket should have versioning enabled",
+  "descriptionUrl": "https://cloud.google.com/storage/docs/json_api/v1/buckets",
+  "platform": "GoogleDeploymentManager",
+  "descriptionID": "97c49cde",
+  "cloudProvider": "gcp"
+}

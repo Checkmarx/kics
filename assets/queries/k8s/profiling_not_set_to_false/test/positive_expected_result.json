@@ -1,0 +1,44 @@
+[
+	{
+		"queryName": "Profiling Not Set To False",
+		"severity": "LOW",
+		"line": 11,
+		"fileName": "positive1.yaml"
+	},
+	{
+		"queryName": "Profiling Not Set To False",
+		"severity": "LOW",
+		"line": 11,
+		"fileName": "positive2.yaml"
+	},
+	{
+		"queryName": "Profiling Not Set To False",
+		"severity": "LOW",
+		"line": 21,
+		"fileName": "positive3.yaml"
+	},
+	{
+		"queryName": "Profiling Not Set To False",
+		"severity": "LOW",
+		"line": 21,
+		"fileName": "positive4.yaml"
+	},
+	{
+		"queryName": "Profiling Not Set To False",
+		"severity": "LOW",
+		"line": 2,
+		"fileName": "positive5.yaml"
+	},
+	{
+		"queryName": "Profiling Not Set To False",
+		"severity": "LOW",
+		"line": 3,
+		"fileName": "positive6.yaml"
+	},
+	{
+		"queryName": "Profiling Not Set To False",
+		"severity": "LOW",
+		"line": 14,
+		"fileName": "positive7.yaml"
+	}
+]

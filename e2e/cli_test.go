@@ -15,7 +15,21 @@ import (
 )
 
 func Test_E2E_CLI(t *testing.T) {
-	kicsPath := utils.GetKICSBinaryPath("")
+	kicsDockerImage := utils.GetKICSDockerImageName()
+	// In the CI environment the tests will be run in a Docker container.
+	// Locally, you are able to choose between running kics from docker or go (default)
+	useDocker := kicsDockerImage != ""
+	showDetailsCI := useDocker
+
+	if !useDocker {
+		kicsLocalBin := utils.GetKICSLocalBin()
+		// If you are not running kics e2e tests in a docker container
+		// you need to make sure that the kics binary is available.
+		if _, err := os.Stat(kicsLocalBin); os.IsNotExist(err) {
+			t.Skip("E2E Locally execution must have a kics binary in the 'bin' folder.\nPath not found: " + kicsLocalBin)
+		}
+	}
+
 	scanStartTime := time.Now()
 
 	if testing.Short() {
@@ -36,13 +50,18 @@ func Test_E2E_CLI(t *testing.T) {
 					useMock = true
 				}
 
-				out, err := utils.RunCommand(append(kicsPath, tt.Args.Args[arg]...), useMock)
+				out, err := utils.RunCommand(tt.Args.Args[arg], useDocker, useMock, kicsDockerImage)
 				// Check command Error
 				require.NoError(t, err, "Capture CLI output should not yield an error")
 
 				// Check exit status code (required)
 				require.True(t, arg < len(tt.WantStatus),
 					"No status code associated to this test. Check the wantStatus of the test case.")
+
+				if showDetailsCI && tt.WantStatus[arg] != out.Status {
+					printTestDetails(out.Output)
+				}
+
 				require.Equalf(t, tt.WantStatus[arg], out.Status,
 					"Actual KICS status code: %v\nExpected KICS status code: %v",
 					out.Status, tt.WantStatus[arg])
@@ -50,6 +69,9 @@ func Test_E2E_CLI(t *testing.T) {
 				if tt.Validation != nil {
 					fullString := strings.Join(out.Output, ";")
 					validation := tt.Validation(fullString)
+					if showDetailsCI && !validation {
+						printTestDetails(out.Output)
+					}
 					require.True(t, validation, "KICS CLI output doesn't match the regex validation.")
 				}
 
@@ -94,7 +116,9 @@ func Test_E2E_CLI(t *testing.T) {
 
 	t.Cleanup(func() {
 		err := os.RemoveAll("output")
-		require.NoError(t, err)
+		if err != nil {
+			t.Logf("\nError when trying to remove tests output folder\n")
+		}
 		t.Logf("E2E tests ::ellapsed time:: %v", time.Since(scanStartTime))
 	})
 }
@@ -130,6 +154,10 @@ func checkExpectedOutput(t *testing.T, tt *testcases.TestCase, argIndex int) {
 	if utils.Contains(resultsFormats, "asff") {
 		utils.JSONSchemaValidationFromFile(t, "asff-"+jsonFileName, "result-asff.json")
 	}
+	// Check result file (CODECLIMATE)
+	if utils.Contains(resultsFormats, "codeclimate") {
+		utils.JSONSchemaValidationFromFile(t, "codeclimate-"+jsonFileName, "result-codeclimate.json")
+	}
 	// Check result file (SARIF)
 	if utils.Contains(resultsFormats, "sarif") {
 		utils.JSONSchemaValidationFromFile(t, tt.Args.ExpectedResult[argIndex].ResultsFile+".sarif", "result-sarif.json")
@@ -149,6 +177,17 @@ func checkExpectedOutput(t *testing.T, tt *testcases.TestCase, argIndex int) {
 		filename := "cyclonedx-" + tt.Args.ExpectedResult[argIndex].ResultsFile + ".xml"
 		json := utils.XMLToJSON(t, filename, "cyclonedx")
 		utils.JSONSchemaValidationFromData(t, json, "result-cyclonedx.json")
+	}
+	// Check result file (CSV)
+	if utils.Contains(resultsFormats, "csv") || utils.Contains(resultsFormats, "csv-cis") {
+		filename := tt.Args.ExpectedResult[argIndex].ResultsFile + ".csv"
+		json := utils.CSVToJSON(t, filename)
+
+		if utils.Contains(resultsFormats, "csv-cis") {
+			utils.JSONSchemaValidationFromData(t, json, "result-csv-cis.json")
+		} else {
+			utils.JSONSchemaValidationFromData(t, json, "result-csv.json")
+		}
 	}
 }
 
@@ -183,4 +222,13 @@ func loadTemplates(lines []string, templates testcases.TestTemplates) []string {
 	}
 
 	return strings.Split(builder.String(), "\n")
+}
+
+func printTestDetails(output []string) {
+	fmt.Println("\nKICS OUTPUT:")
+	fmt.Println("====== BEGIN ======")
+	for _, line := range output {
+		fmt.Println(line)
+	}
+	fmt.Println("======= END =======")
 }

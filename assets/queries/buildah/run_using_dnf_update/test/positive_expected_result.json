@@ -1,8 +1,0 @@
-[
-	{
-		"queryName": "Run Using Dnf Update",
-		"severity": "HIGH",
-		"line": 3,
-		"fileName": "positive.sh"
-	}
-]

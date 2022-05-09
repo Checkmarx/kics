@@ -1,7 +1,9 @@
 {
 	"kics_version": "development",
 	"files_scanned": 1,
+	"lines_scanned": 278,
 	"files_parsed": 1,
+	"lines_parsed": 278,
 	"files_failed_to_scan": 0,
 	"queries_total": 1,
 	"queries_failed_to_execute": 0,
@@ -19,7 +21,7 @@
 	"start": "2022-01-14T11:46:40.1476103Z",
 	"end": "2022-01-14T11:46:54.4954162Z",
 	"paths": [
-		"fixtures/samples/positive.yaml"
+		"/path/e2e/fixtures/samples/positive.yaml"
 	],
 	"queries": [
 		{

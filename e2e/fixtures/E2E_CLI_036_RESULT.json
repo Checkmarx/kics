@@ -1,25 +1,27 @@
 {
 	"kics_version": "development",
 	"files_scanned": 1,
+	"lines_scanned": 278,
 	"files_parsed": 1,
+	"lines_parsed": 278,
 	"files_failed_to_scan": 0,
 	"queries_total": 13,
 	"queries_failed_to_execute": 0,
 	"queries_failed_to_compute_similarity_id": 0,
 	"scan_id": "console",
 	"severity_counters": {
-		"HIGH": 4,
+		"HIGH": 6,
 		"INFO": 0,
 		"LOW": 5,
-		"MEDIUM": 11,
+		"MEDIUM": 9,
 		"TRACE": 0
 	},
 	"total_counter": 20,
 	"total_bom_resources": 0,
-	"start": "2022-01-14T11:46:45.5316185Z",
-	"end": "2022-01-14T11:47:12.2883534Z",
+	"start": "2022-05-03T10:09:59.560176214+01:00",
+	"end": "2022-05-03T10:09:59.95332487+01:00",
 	"paths": [
-		"fixtures/samples/positive.yaml"
+		"/path/e2e/fixtures/samples/positive.yaml"
 	],
 	"queries": [
 		{
@@ -35,7 +37,7 @@
 			"files": [
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
-					"similarity_id": "f9c0a2aed39f325f242beed63be5c53d938d2c02f243366523b2984fd10243de",
+					"similarity_id": "7d59e0095d8eda260b02394f129910d70d01b55dffb356780166354f9360d848",
 					"line": 104,
 					"issue_type": "IncorrectValue",
 					"search_key": "Resources.ALBListener.Properties.Protocol",
@@ -83,17 +85,6 @@
 			"files": [
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
-					"similarity_id": "5f39aa8e63613a7e8bfd7641ccfb931fa0225e95b3449bc1210b50329d65d713",
-					"line": 32,
-					"issue_type": "IncorrectValue",
-					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp",
-					"search_line": 0,
-					"search_value": "",
-					"expected_value": "Resource name 'EcsSecurityGroupSSHinbound' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from all IPv4 adresses and to all available ports",
-					"actual_value": "Resource name 'EcsSecurityGroupSSHinbound' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from CIDR 0.0.0.0/0 to all available ports"
-				},
-				{
-					"file_name": "fixtures\\samples\\positive.yaml",
 					"similarity_id": "88653ab159ca0a15095afc685f98da24685fa547bb5f1ca7c95ef468f209387c",
 					"line": 24,
 					"issue_type": "IncorrectValue",
@@ -102,6 +93,52 @@
 					"search_value": "",
 					"expected_value": "Resource name 'EcsSecurityGroupHTTPinbound02' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from all IPv4 adresses and to all available ports",
 					"actual_value": "Resource name 'EcsSecurityGroupHTTPinbound02' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from CIDR 0.0.0.0/0 to all available ports"
+				},
+				{
+					"file_name": "fixtures\\samples\\positive.yaml",
+					"similarity_id": "5f39aa8e63613a7e8bfd7641ccfb931fa0225e95b3449bc1210b50329d65d713",
+					"line": 32,
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Resource name 'EcsSecurityGroupSSHinbound' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from all IPv4 adresses and to all available ports",
+					"actual_value": "Resource name 'EcsSecurityGroupSSHinbound' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from CIDR 0.0.0.0/0 to all available ports"
+				}
+			]
+		},
+		{
+			"query_name": "Unrestricted Security Group Ingress",
+			"query_id": "4a1e6b34-1008-4e61-a5f2-1f7c276f8d14",
+			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html",
+			"severity": "HIGH",
+			"platform": "CloudFormation",
+			"cloud_provider": "AWS",
+			"category": "Networking and Firewall",
+			"description": "AWS Security Group Ingress CIDR should not be open to the world",
+			"description_id": "08256d31",
+			"files": [
+				{
+					"file_name": "fixtures\\samples\\positive.yaml",
+					"similarity_id": "3c4976bcd6061315525a23a644cb6ed3bc4888794f21e8161a1cd38ea0495f30",
+					"line": 24,
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is not open to the world (0.0.0.0/0)",
+					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is open to the world (0.0.0.0/0)"
+				},
+				{
+					"file_name": "fixtures\\samples\\positive.yaml",
+					"similarity_id": "f1f15967fd4bd2b39610dcbe3c2d641068dc1b409821142f41d179dbc360b3aa",
+					"line": 32,
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp is not open to the world (0.0.0.0/0)",
+					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp is open to the world (0.0.0.0/0)"
 				}
 			]
 		},
@@ -296,41 +333,6 @@
 			]
 		},
 		{
-			"query_name": "Unrestricted Security Group Ingress",
-			"query_id": "4a1e6b34-1008-4e61-a5f2-1f7c276f8d14",
-			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html",
-			"severity": "MEDIUM",
-			"platform": "CloudFormation",
-			"cloud_provider": "AWS",
-			"category": "Networking and Firewall",
-			"description": "AWS Security Group Ingress CIDR should not be open to the world",
-			"description_id": "08256d31",
-			"files": [
-				{
-					"file_name": "fixtures\\samples\\positive.yaml",
-					"similarity_id": "f1f15967fd4bd2b39610dcbe3c2d641068dc1b409821142f41d179dbc360b3aa",
-					"line": 32,
-					"issue_type": "IncorrectValue",
-					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp",
-					"search_line": 0,
-					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp is not open to the world (0.0.0.0/0)",
-					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp is open to the world (0.0.0.0/0)"
-				},
-				{
-					"file_name": "fixtures\\samples\\positive.yaml",
-					"similarity_id": "3c4976bcd6061315525a23a644cb6ed3bc4888794f21e8161a1cd38ea0495f30",
-					"line": 24,
-					"issue_type": "IncorrectValue",
-					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp",
-					"search_line": 0,
-					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is not open to the world (0.0.0.0/0)",
-					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is open to the world (0.0.0.0/0)"
-				}
-			]
-		},
-		{
 			"query_name": "ECS Task Definition HealthCheck Missing",
 			"query_id": "d24389b4-b209-4ff0-8345-dc7a4569dcdd",
 			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-healthcheck.html",
@@ -378,17 +380,6 @@
 			"files": [
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
-					"similarity_id": "39fec612777f59fb4181dd2330ee465ec860c962acfebb07a4f1ee1f122d24e7",
-					"line": 35,
-					"issue_type": "MissingAttribute",
-					"search_key": "Resources.EcsSecurityGroupALBports.Properties",
-					"search_line": 0,
-					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.Description is set",
-					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.Description is undefined"
-				},
-				{
-					"file_name": "fixtures\\samples\\positive.yaml",
 					"similarity_id": "e96cf20cc6e1e11dce2d40d9e2b37446a00f00c3f541aa7dd13861059f6fcce8",
 					"line": 19,
 					"issue_type": "MissingAttribute",
@@ -408,6 +399,17 @@
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is set",
 					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is undefined"
+				},
+				{
+					"file_name": "fixtures\\samples\\positive.yaml",
+					"similarity_id": "39fec612777f59fb4181dd2330ee465ec860c962acfebb07a4f1ee1f122d24e7",
+					"line": 35,
+					"issue_type": "MissingAttribute",
+					"search_key": "Resources.EcsSecurityGroupALBports.Properties",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.Description is set",
+					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.Description is undefined"
 				}
 			]
 		}

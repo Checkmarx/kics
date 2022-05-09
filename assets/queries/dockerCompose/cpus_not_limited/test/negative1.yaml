@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - 9411:9411
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 128M

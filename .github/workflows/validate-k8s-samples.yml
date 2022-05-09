@@ -3,14 +3,14 @@ name: validate-k8s-samples
 on:
   pull_request:
     paths:
-    - "assets/queries/k8s/**/test/*.yaml"
-    - "assets/queries/k8s/**/test/*.yml"
+      - "assets/queries/k8s/**/test/*.yaml"
+      - "assets/queries/k8s/**/test/*.yml"
 
 jobs:
   validate-k8s-manifests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3
         with:
           persist-credentials: false
       - name: Get Kubeval
@@ -28,6 +28,6 @@ jobs:
         run: |
           python3 -u .github/scripts/samples-linters/validate-syntax.py \
             "assets/queries/k8s/**/test/*.yaml" \
-            --extra ' --skip-kinds CustomResourceDefinition' \
+            --extra ' --skip-kinds CustomResourceDefinition,KubeletConfiguration,Policy,EncryptionConfiguration,KubeSchedulerConfiguration,SecretProviderClass' \
             --linter .bin/kubeval \
             --skip '.github/scripts/samples-linters/ignore-list/k8s' -v

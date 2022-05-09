@@ -15,8 +15,9 @@ CxPolicy[result] {
 		"resource_encryption": common_lib.get_encryption_if_exists(aws_sqs_queue_resource),
 		"resource_vendor": "AWS",
 		"resource_category": "Queues",
-		"policy": info.policy,
 	}
+
+	final_bom_output := common_lib.get_bom_output(bom_output, info.policy)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -25,7 +26,7 @@ CxPolicy[result] {
 		"keyExpectedValue": "",
 		"keyActualValue": "",
 		"searchLine": common_lib.build_search_line(["resource", "aws_sqs_queue", name], []),
-		"value": json.marshal(bom_output),
+		"value": json.marshal(final_bom_output),
 	}
 }
 
@@ -34,5 +35,5 @@ get_queue_name(aws_sqs_queue_resource) = name {
 } else = name {
 	name := sprintf("%s<unknown-sufix>", [aws_sqs_queue_resource.name_prefix])
 } else = name {
-	name := "unknown"
+	name := common_lib.get_tag_name_if_exists(aws_sqs_queue_resource)
 }

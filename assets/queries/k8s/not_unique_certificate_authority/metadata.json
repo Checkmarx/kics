@@ -1,0 +1,11 @@
+{
+    "id": "cb7e695d-6a85-495c-b15f-23aed2519303",
+    "queryName": "Not Unique Certificate Authority",
+    "severity": "MEDIUM",
+    "category": "Secret Management",
+    "descriptionText": "Certificate Authority should be unique for etcd",
+    "descriptionUrl": "https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/",
+    "platform": "Kubernetes",
+    "descriptionID": "d2c6c9e8"
+  }
+  

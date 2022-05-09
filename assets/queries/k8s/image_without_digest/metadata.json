@@ -3,7 +3,7 @@
   "queryName": "Image Without Digest",
   "severity": "LOW",
   "category": "Insecure Configurations",
-  "descriptionText": "Sees if Kubernetes image has digest on",
+  "descriptionText": "Images should be specified together with their digests to ensure integrity",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/containers/images/#updating-images",
   "platform": "Kubernetes",
   "descriptionID": "3f9f8d78"

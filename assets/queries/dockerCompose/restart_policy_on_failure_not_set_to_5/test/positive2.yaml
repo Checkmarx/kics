@@ -1,0 +1,17 @@
+version: '3.6'
+
+networks:
+  name_of_network:
+    name: name_of_network
+    driver: overlay
+
+services:
+  name_of_service:
+    image: not_a_real_one
+    container_name: container1
+    build: ./
+    ports:
+      - '5002:80'
+    restart: on-failure:3
+    networks:
+      - name_of_network

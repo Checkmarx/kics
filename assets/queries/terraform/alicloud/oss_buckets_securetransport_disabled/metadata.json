@@ -1,0 +1,11 @@
+{
+    "id": "c01d10de-c468-4790-b3a0-fc887a56f289",
+    "queryName": "OSS Buckets Secure Transport Disabled",
+    "severity": "HIGH",
+    "category": "Networking and Firewall",
+    "descriptionText": "OSS Buckets should have secure transport enabled",
+    "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#policy",
+    "platform": "Terraform",
+    "descriptionID": "2b43b0a7",
+    "cloudProvider": "alicloud"
+  }

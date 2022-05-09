@@ -419,12 +419,12 @@ func TestParser_SupportedTypes(t *testing.T) {
 	tests := []struct {
 		name string
 		p    *Parser
-		want []string
+		want map[string]bool
 	}{
 		{
 			name: "grpc types",
 			p:    &Parser{},
-			want: []string{"grpc"},
+			want: map[string]bool{"grpc": true},
 		},
 	}
 	for _, tt := range tests {

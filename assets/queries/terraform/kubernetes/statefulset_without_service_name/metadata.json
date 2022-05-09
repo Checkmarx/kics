@@ -3,7 +3,7 @@
   "queryName": "StatefulSet Without Service Name",
   "severity": "LOW",
   "category": "Availability",
-  "descriptionText": "Check if the StatefulSet have a headless 'serviceName'",
+  "descriptionText": "StatefulSets should have an existing headless 'serviceName'. The headless service labels should also be implemented on StatefulSets labels.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/stateful_set#selector",
   "platform": "Terraform",
   "descriptionID": "a0d17b18"

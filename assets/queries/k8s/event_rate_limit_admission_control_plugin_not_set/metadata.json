@@ -1,0 +1,10 @@
+{
+  "id": "e0099af2-fe17-411f-9991-0de28fe15f3c",
+  "queryName": "Event Rate Limit Admission Control Plugin Not Set",
+  "severity": "LOW",
+  "category": "Availability",
+  "descriptionText": "When using kube-apiserver command, the --enable-admission-plugins flag should have 'EventRateLimit' plugin and the plugin should be correctly configured in AdmissionControl Config file",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
+  "platform": "Kubernetes",
+  "descriptionID": "3cc9eca8"
+}

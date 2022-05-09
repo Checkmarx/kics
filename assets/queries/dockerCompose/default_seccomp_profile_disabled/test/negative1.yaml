@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  webapp:
+    build:
+      context: ./
+      dockerfile: Dockerfile-alternate
+      args:
+        buildno: 1

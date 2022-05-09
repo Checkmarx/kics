@@ -1,0 +1,10 @@
+{
+  "id": "b9c83569-459b-4110-8f79-6305aa33cb37",
+  "queryName": "Using Kubernetes Native Secret Management",
+  "severity": "INFO",
+  "category": "Secret Management",
+  "descriptionText": "Kubernetes External Secret Storage and Management System usage should be considered if you have more complex secret management needs, rather than using Kubernetes Secrets directly. Additionally, ensure that access to secrets is carefully limited",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/configuration/secret/",
+  "platform": "Kubernetes",
+  "descriptionID": "3d7b569c"
+}

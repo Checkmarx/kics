@@ -1,0 +1,11 @@
+{
+  "id": "69b5d7da-a5db-4db9-a42e-90b65d0efb0b",
+  "queryName": "ActionTrail Trail OSS Bucket is Publicly Accessible",
+  "severity": "HIGH",
+  "category": "Observability",
+  "descriptionText": "ActionTrail Trail OSS Bucket should not be publicly accessible",
+  "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/actiontrail_trail",
+  "platform": "Terraform",
+  "descriptionID": "0b91a8b5",
+  "cloudProvider": "alicloud"
+}

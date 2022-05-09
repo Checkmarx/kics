@@ -1,0 +1,11 @@
+{
+  "id": "5f670f9d-b1b4-4c90-8618-2288f1ab9676",
+  "queryName": "NAS File System Without KMS",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "NAS File System should have encryption provided by user KMS ",
+  "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/nas_file_system#kms_key_id",
+  "platform": "Terraform",
+  "descriptionID": "5fb1326b",
+  "cloudProvider": "alicloud"
+}

@@ -1,5 +1,7 @@
 resource "aws_sns_topic" "positive5" {
-  name = "user-updates-topic"
+   tags = {
+    Name = "SNS Topic"
+  }
 
   kms_master_key_id = "alias/aws/sns"
 

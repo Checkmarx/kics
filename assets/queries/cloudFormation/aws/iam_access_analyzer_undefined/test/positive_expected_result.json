@@ -1,8 +1,0 @@
-[
-  {
-    "queryName": "IAM Access Analyzer Undefined",
-    "severity": "MEDIUM",
-    "line": 3,
-    "fileName": "positive1.yaml"
-  }
-]

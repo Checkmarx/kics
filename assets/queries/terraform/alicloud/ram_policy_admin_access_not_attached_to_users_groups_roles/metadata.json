@@ -1,0 +1,11 @@
+{
+  "id": "e8e62026-da63-4904-b402-65adfe3ca975",
+  "queryName": "Ram Policy Admin Access Not Attached to Users Groups Roles",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Ram policies with admin access should not be associated to users, groups or roles",
+  "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_policy",
+  "platform": "Terraform",
+  "descriptionID": "d529825f",
+  "cloudProvider": "alicloud"
+}

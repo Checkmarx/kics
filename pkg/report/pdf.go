@@ -37,6 +37,7 @@ const (
 	colTen          = 10
 	colFullPage     = 12
 	colRuneSlitter  = 20
+	textSize        = 10
 )
 
 var (
@@ -45,10 +46,6 @@ var (
 	vulnImageBase64 string
 	//go:embed assets/checkmarx-logo
 	checkmarxLogo string
-)
-
-const (
-	textSize = 10
 )
 
 func createQueryEntryMetadataField(m pdf.Maroto, label, value string, textSize int) {
@@ -201,9 +198,10 @@ func createCISRows(m pdf.Maroto, query *model.QueryResult) {
 }
 
 func getRowLength(value string) float64 {
-	length := len(value)
-	result := length/colRuneSlitter + 1
-	return float64(result)
+	length := float64(len(value))
+	x := 2.5
+	result := ((length / x) / colRuneSlitter) + 1
+	return result
 }
 
 func createResultsTable(m pdf.Maroto, query *model.QueryResult) {
@@ -261,7 +259,7 @@ func createHeaderArea(m pdf.Maroto) {
 			})
 		})
 		m.Col(colSix, func() {
-			m.Text(fmt.Sprintf("v%s ", constants.Version), props.Text{
+			m.Text(fmt.Sprintf("%s ", constants.Version), props.Text{
 				Size:        25,
 				Style:       consts.Bold,
 				Align:       consts.Right,

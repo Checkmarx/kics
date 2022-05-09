@@ -9,13 +9,13 @@ check_cidr(rule) {
 }
 
 # Checks if a TCP port is open in a rule
-openPort(rule, port) {
+portOpenToInternet(rule, port) {
 	check_cidr(rule)
 	rule.protocol == "tcp"
 	containsPort(rule, port)
 }
 
-openPort(rules, port) {
+portOpenToInternet(rules, port) {
 	rule := rules[_]
 	check_cidr(rule)
 	rule.protocol == "tcp"
@@ -34,6 +34,11 @@ containsPort(rule, port) {
 } else {
 	ports := split(rule.destination_port_range, ",")
 	sublist := split(ports[var], "-")
+	to_number(trim(sublist[0], " ")) <= port
+	to_number(trim(sublist[1], " ")) >= port
+} else {
+	ports := split(rule.port_range, ",")
+	sublist := split(ports[var], "/")
 	to_number(trim(sublist[0], " ")) <= port
 	to_number(trim(sublist[1], " ")) >= port
 }
@@ -60,6 +65,10 @@ getProtocolList(protocol) = protocols {
 # Checks if any principal are allowed in a policy
 anyPrincipal(statement) {
 	contains(statement.Principal, "*")
+}
+
+anyPrincipal(statement) {
+	contains(statement.Principal[_], "*")
 }
 
 anyPrincipal(statement) {
@@ -445,13 +454,7 @@ is_publicly_accessible(policy) {
 
 get_accessibility(resource, name, resourcePolicyName, resourceTarget) = info {
 	policy := common_lib.json_unmarshal(resource.policy)
-	is_publicly_accessible(policy)
-	info = {"accessibility": "public", "policy": policy}
-} else = info {
-	policy := common_lib.json_unmarshal(resource.policy)
-	not is_publicly_accessible(policy)
-
-	info = {"accessibility": "restrict", "policy": policy}
+	info = {"accessibility": "hasPolicy", "policy": policy}
 } else = info {
 	not common_lib.valid_key(resource, "policy")
 
@@ -459,18 +462,7 @@ get_accessibility(resource, name, resourcePolicyName, resourceTarget) = info {
 	split(resourcePolicy[resourceTarget], ".")[1] == name
 
 	policy := common_lib.json_unmarshal(resourcePolicy.policy)
-	is_publicly_accessible(policy)
-
-	info = {"accessibility": "public", "policy": policy}
-} else = info {
-	not common_lib.valid_key(resource, "policy")
-
-	resourcePolicy := input.document[_].resource[resourcePolicyName][_]
-	split(resourcePolicy[resourceTarget], ".")[1] == name
-
-	policy := common_lib.json_unmarshal(resourcePolicy.policy)
-	not is_publicly_accessible(policy)
-	info = {"accessibility": "restrict", "policy": policy}
+	info = {"accessibility": "hasPolicy", "policy": policy}
 } else = info {
 	info = {"accessibility": "unknown", "policy": ""}
 }
@@ -599,14 +591,18 @@ has_relation(related_resource_id, related_resource_type, current_resource, curre
 	regex.match(sprintf("\\${%v\\.%v\\.", [related_resource_type, related_resource_id]), value)
 }
 
-is_deprecated_version(docs){
-	version := docs[_].terraform.required_providers.aws.version
-
-	regex.match("^(~>|<|<=|=)?\\s*[0123].", version)
-}
-
 has_target_resource(bucketName, resourceName) {
 	resource := input.document[i].resource[resourceName][_]
 
 	split(resource.bucket, ".")[1] == bucketName
+}
+
+#Checks if an action is allowed for all principals
+allows_action_from_all_principals(json_policy, action) {
+ 	policy := common_lib.json_unmarshal(json_policy)
+	st := common_lib.get_statement(policy)
+	statement := st[_]
+	statement.Effect == "Allow"
+    anyPrincipal(statement)
+    common_lib.containsOrInArrayContains(statement.Action, action)
 }

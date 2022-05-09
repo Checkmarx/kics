@@ -1,0 +1,10 @@
+{
+  "id": "221e0658-cb2a-44e3-b08a-db96a341d6fa",
+  "queryName": "Pids Limit Not Set",
+  "severity": "MEDIUM",
+  "category": "Resource Management",
+  "descriptionText": "'pids_limit' should be set and different than -1",
+  "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir",
+  "platform": "DockerCompose",
+  "descriptionID": "2d241407"
+}

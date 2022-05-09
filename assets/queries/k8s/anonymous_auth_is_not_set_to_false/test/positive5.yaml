@@ -1,0 +1,9 @@
+apiVersion: kubelet.config.k8s.io/v1beta1
+kind: KubeletConfiguration
+address: "192.168.0.8"
+port: 20250
+serializeImagePulls: false
+readOnlyPort: 0
+authentication:
+  anonymous:
+    enabled: true

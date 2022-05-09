@@ -19,18 +19,18 @@ CxPolicy[result] {
 	}
 }
 
+options := {"&& ", "; "}
+
 hasClean(resourceValue, aptGet) {
-	listCommands := split(resourceValue, "&& ")
-
-	startswith(listCommands[install], aptGet)
-	startswith(listCommands[clean], "apt-get clean")
-
+	res := replace(resourceValue, "\t", "")
+	listCommands := split(res, options[_])
+	startswith(trim_space(listCommands[install]), aptGet)
+	startswith(trim_space(listCommands[clean]),  "apt-get clean")
 	install < clean
 } else {
-	listCommands := split(resourceValue, "&& ")
-
-	startswith(listCommands[install], aptGet)
-	startswith(listCommands[remove], "rm -rf")
-
+	res := replace(resourceValue, "\t", "")
+	listCommands := split(res, options[_])
+	startswith(trim_space(listCommands[install]), aptGet)
+	startswith(trim_space(listCommands[remove]),  "rm -rf")
 	install < remove
 }

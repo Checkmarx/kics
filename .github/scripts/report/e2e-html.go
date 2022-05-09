@@ -34,9 +34,14 @@ func getCurrentTime() string {
 	return fmt.Sprint(dt.Format("01/02/2006 15:04"))
 }
 
+func getCurrentDockerImage() string {
+	return os.Getenv("E2E_KICS_DOCKERFILE")
+}
+
 var (
 	templateFuncs = template.FuncMap{
-		"getCurrentTime": getCurrentTime,
+		"getCurrentTime":        getCurrentTime,
+		"getCurrentDockerImage": getCurrentDockerImage,
 	}
 )
 

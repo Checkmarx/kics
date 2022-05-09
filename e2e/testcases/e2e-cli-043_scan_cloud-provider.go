@@ -7,13 +7,13 @@ func init() { //nolint
 		Name: "should execute only queries of specific cloud provider [E2E-CLI-043]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "-q", "../assets/queries", "", "fixtures/samples/positive.yaml",
+				[]string{"scan", "", "/path/e2e/fixtures/samples/positive.yaml",
 					"--cloud-provider", "none"},
 
-				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml",
+				[]string{"scan", "-p", "/path/e2e/fixtures/samples/positive.yaml",
 					"--cloud-provider"},
 
-				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml",
+				[]string{"scan", "-p", "/path/e2e/fixtures/samples/positive.yaml",
 					"--cloud-provider", "aWs"},
 			},
 		},

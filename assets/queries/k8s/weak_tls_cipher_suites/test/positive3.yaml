@@ -1,0 +1,11 @@
+apiVersion: kubelet.config.k8s.io/v1beta1
+kind: KubeletConfiguration
+address: "192.168.0.8"
+port: 20250
+protectKernelDefaults: false
+serializeImagePulls: false
+tlsCertFile: "someFile.txt"
+tlsPrivateKeyFile: "someFile.txt"
+tlsCipherSuites: ["TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256","TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256"]
+evictionHard:
+    memory.available:  "200Mi"

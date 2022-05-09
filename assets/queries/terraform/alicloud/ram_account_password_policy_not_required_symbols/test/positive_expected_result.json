@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "RAM Account Password Policy Not Required Symbols",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive1.tf"
+  }
+]

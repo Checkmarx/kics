@@ -1,0 +1,12 @@
+version: '2'
+
+volumes:
+  dhcp-leases:
+    external: false
+
+services:
+
+  mongo: # 27017
+    image: mongo:latest
+    network_mode: "host"
+    privileged: true
