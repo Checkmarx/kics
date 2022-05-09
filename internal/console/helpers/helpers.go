@@ -174,7 +174,7 @@ func GetNumCPU() (float32, error) {
 
 		defer func() {
 			if err := f.Close(); err != nil {
-				log.Err(err)
+				log.Err(err).Msg("failed to close '/sys/fs/cgroup/cpu/cpu.cfs_quota_us'")
 			}
 		}()
 

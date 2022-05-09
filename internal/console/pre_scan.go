@@ -150,7 +150,7 @@ func (console *console) preScan() {
 
 	cpu, err := consoleHelpers.GetNumCPU()
 	if err != nil {
-		log.Err(err)
+		log.Err(err).Msg("failed to get CPU")
 	} else {
 		log.Info().Msgf("CPU: %.1f", cpu)
 	}
