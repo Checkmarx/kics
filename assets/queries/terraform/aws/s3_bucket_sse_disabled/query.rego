@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as terra_lib
 
-# version before TF AWS 1.4.0
+# version before TF AWS 4.0
 CxPolicy[result] {
 	bucket := input.document[i].resource.aws_s3_bucket[name]
 	sse := bucket.server_side_encryption_configuration.rule.apply_server_side_encryption_by_default
@@ -41,7 +41,7 @@ CxPolicy[result] {
 	}
 }
 
-# version before TF AWS 1.4.0
+# version before TF AWS 4.0
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_s3_bucket[name]
 	ssec := resource.server_side_encryption_configuration
@@ -100,8 +100,8 @@ CxPolicy[result] {
 	
 	bucket := input.document[i].resource.aws_s3_bucket[bucketName]
 	
-	not terra_lib.has_target_resource(bucketName, "aws_s3_bucket_server_side_encryption_configuration") # version after TF AWS 1.4.0
-	not common_lib.valid_key(bucket, "server_side_encryption_configuration") # version before TF AWS 1.4.0
+	not terra_lib.has_target_resource(bucketName, "aws_s3_bucket_server_side_encryption_configuration") # version after TF AWS 4.0
+	not common_lib.valid_key(bucket, "server_side_encryption_configuration") # version before TF AWS 4.0
 	
 
 	result := {
@@ -114,7 +114,7 @@ CxPolicy[result] {
 	}
 }
 
-# version after TF AWS 1.4.0
+# version after TF AWS 4.0
 CxPolicy[result] {
 	
 	input.document[_].resource.aws_s3_bucket[bucketName]
@@ -133,7 +133,7 @@ CxPolicy[result] {
 	}
 }
 
-# version after TF AWS 1.4.0
+# version after TF AWS 4.0
 CxPolicy[result] {
 	
 	input.document[_].resource.aws_s3_bucket[bucketName]
@@ -154,7 +154,7 @@ CxPolicy[result] {
 	}
 }
 
-# version after TF AWS 1.4.0
+# version after TF AWS 4.0
 CxPolicy[result] {
 
 	input.document[_].resource.aws_s3_bucket[bucketName]

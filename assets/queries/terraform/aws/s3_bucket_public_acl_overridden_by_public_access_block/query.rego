@@ -5,11 +5,11 @@ import data.generic.terraform as terra_lib
 
 CxPolicy[result] {
 
-	# version before TF AWS 1.4.0
+	# version before TF AWS 4.0
 	resource := input.document[i].resource.aws_s3_bucket[name]
 	publicAccessACL(resource.acl)
 
-	# version after TF AWS 1.4.0
+	# version after TF AWS 4.0
 	publicBlockACL := input.document[_].resource.aws_s3_bucket_public_access_block[blockName]
 
 	split(publicBlockACL.bucket, ".")[1] == name
@@ -48,7 +48,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	# version before TF AWS 1.4.0
+	# version before TF AWS 4.0
 	input.document[_].resource.aws_s3_bucket[bucketName]
 
 	acl := input.document[i].resource.aws_s3_bucket_acl[name]
@@ -56,7 +56,7 @@ CxPolicy[result] {
 
 	publicAccessACL(acl.acl)
 
-	# version after TF AWS 1.4.0
+	# version after TF AWS 4.0
 	publicBlockACL := input.document[_].resource.aws_s3_bucket_public_access_block[blockName]
 	split(publicBlockACL.bucket, ".")[1] == bucketName
 

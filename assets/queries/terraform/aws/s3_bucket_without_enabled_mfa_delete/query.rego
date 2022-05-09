@@ -5,11 +5,11 @@ import data.generic.terraform as terra_lib
 
 CxPolicy[result] {
 	bucket := input.document[i].resource.aws_s3_bucket[name]
-	# version before TF AWS 1.4.0
+	# version before TF AWS 4.0
 	not common_lib.valid_key(bucket, "lifecycle_rule")
 	not common_lib.valid_key(bucket, "versioning")
 	
-	# version after TF AWS 1.4.0
+	# version after TF AWS 4.0
 	not terra_lib.has_target_resource(name, "aws_s3_bucket_lifecycle_configuration")
 	not terra_lib.has_target_resource(name, "aws_s3_bucket_versioning")
 
@@ -28,7 +28,7 @@ checkedFields = {
 	"mfa_delete"
 }
 
-# version before TF AWS 1.4.0
+# version before TF AWS 4.0
 CxPolicy[result] {
 	bucket := input.document[i].resource.aws_s3_bucket[name]
 	not common_lib.valid_key(bucket, "lifecycle_rule")
@@ -44,7 +44,7 @@ CxPolicy[result] {
 	}
 }
 
-# version before TF AWS 1.4.0
+# version before TF AWS 4.0
 CxPolicy[result] {
 	bucket := input.document[i].resource.aws_s3_bucket[name]
 	not common_lib.valid_key(bucket, "lifecycle_rule")
@@ -111,7 +111,7 @@ CxPolicy[result] {
 	}
 }
 
-# version after TF AWS 1.4.0
+# version after TF AWS 4.0
 CxPolicy[result] {
 	input.document[_].resource.aws_s3_bucket[bucketName]
 
@@ -131,7 +131,7 @@ CxPolicy[result] {
 	}
 }
 
-# version after TF AWS 1.4.0
+# version after TF AWS 4.0
 CxPolicy[result] {
 	
 	input.document[_].resource.aws_s3_bucket[bucketName]

@@ -6,8 +6,8 @@ import data.generic.terraform as terra_lib
 CxPolicy[result] {
     s3 := input.document[i].resource.aws_s3_bucket[bucketName]
 
-    not common_lib.valid_key(s3, "logging")  # version before TF AWS 1.4.0
-    not terra_lib.has_target_resource(bucketName, "aws_s3_bucket_logging") # version after TF AWS 1.4.0
+    not common_lib.valid_key(s3, "logging")  # version before TF AWS 4.0
+    not terra_lib.has_target_resource(bucketName, "aws_s3_bucket_logging") # version after TF AWS 4.0
 
     result := {
         "documentId": input.document[i].id,
