@@ -39,7 +39,7 @@ jobs:
         uses: goreleaser/goreleaser-action@v2.9.1
         with:
           version: v0.160.0
-          args: release --rm-dist --snapshot --skip-validate --config="./.goreleaser-apispec.yml"
+          args: release --rm-dist --snapshot --skip-validate --config="./release/.goreleaser-apispec.yml"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
@@ -141,7 +141,7 @@ jobs:
         with:
           context: .
           push: true
-          file: ./Dockerfile.apispec
+          file: ./docker/Dockerfile.apispec
           tags: checkmarx/kics:apispec,checkmarx/kics:apispec-alpine
           build-args: |
             VERSION=apipsec-${{ steps.shorthash.outputs.sha8 }}
@@ -153,7 +153,7 @@ jobs:
         uses: docker/build-push-action@v3.0.0
         with:
           context: .
-          file: ./Dockerfile.apispec.debian
+          file: ./docker/Dockerfile.apispec.debian
           push: true
           tags: checkmarx/kics:apispec-debian,checkmarx/kics:apispec-debian-latest
           build-args: |
