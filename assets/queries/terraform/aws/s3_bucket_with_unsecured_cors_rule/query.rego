@@ -89,7 +89,6 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {	
-	input.document[i].resource.aws_s3_bucket[bucketName]
 	resource := input.document[i].resource.aws_s3_bucket[bucketName]
 	not terra_lib.has_target_resource(bucketName, "aws_s3_bucket_cors_configuration")
 	not common_lib.valid_key(resource, "cors_rule")
