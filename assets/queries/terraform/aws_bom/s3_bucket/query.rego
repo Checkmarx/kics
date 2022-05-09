@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"resource_type": "aws_s3_bucket",
 		"resource_name": get_bucket_name(bucket_resource),
 		"resource_accessibility": info.accessibility,
-		"resource_encryption": common_lib.get_encryption_if_exists(bucket_resource),
+		"resource_encryption": get_encryption_if_exists(bucket_resource, name),
 		"resource_vendor": "AWS",
 		"resource_category": "Storage",
 		"acl": get_bucket_acl(bucket_resource, name),
@@ -32,19 +32,32 @@ CxPolicy[result] {
 }
 
 get_bucket_acl(bucket_resource, s3BucketName) = acl {
-	terra_lib.is_deprecated_version(input.document)
+	# version before TF AWS 1.4.0
 	acl := bucket_resource.acl
-} else = acl {
-	terra_lib.is_deprecated_version(input.document)
-	acl := "private"
-} else = acl {
-	not terra_lib.is_deprecated_version(input.document)
+} else = acl { 
+	# version after TF AWS 1.4.0
 	bucketAcl := input.document[_].resource.aws_s3_bucket_acl[_]
 	split(bucketAcl.bucket, ".")[1] == s3BucketName
 	acl := bucketAcl.acl
-} else = acl {
+} else = acl { 
+	# version after TF AWS 1.4.0
+	bucketAcl := input.document[_].resource.aws_s3_bucket_acl[_]
+	split(bucketAcl.bucket, ".")[1] == s3BucketName
+	not common_lib.valid_key(bucketAcl, "acl")
+	not common_lib.valid_key(bucketAcl, "access_control_policy")
 	acl := "unknown"
+} else = acl { 
+	# version after TF AWS 1.4.0
+	bucketAcl := input.document[_].resource.aws_s3_bucket_acl[_]
+	split(bucketAcl.bucket, ".")[1] == s3BucketName
+	not common_lib.valid_key(bucketAcl, "acl")
+	common_lib.valid_key(bucketAcl, "access_control_policy")
+	acl := "unknown"
+} else = acl {
+	# version after TF AWS 1.4.0
+	acl := "private"
 }
+
 
 get_bucket_name(bucket_resource) = name {
 	name := bucket_resource.bucket
@@ -70,17 +83,13 @@ get_accessibility(bucket, bucketName) = accessibility {
     
     accessibility = {"accessibility": "hasPolicy", "policy": acc.policy}   
 } else = accessibility {
-<<<<<<< HEAD
-	# last cases: acl definition
-	accessibility := get_bucket_acl(bucket, bucketName)
+	accessibility = {"accessibility": "unknown", "policy": ""}
 }
 
 get_encryption_if_exists(bucket_resource, s3BucketName) = encryption {
-	terra_lib.is_deprecated_version(input.document)
 	common_lib.valid_key(bucket_resource, "server_side_encryption_configuration")
 	encryption := "encrypted"
 } else = encryption {
-	not terra_lib.is_deprecated_version(input.document)
 	bucketAcl := input.document[_].resource.aws_s3_bucket_acl[_]
 	split(bucketAcl.bucket, ".")[1] == s3BucketName
 	terra_lib.has_target_resource(s3BucketName, "aws_s3_bucket_server_side_encryption_configuration")
@@ -88,7 +97,3 @@ get_encryption_if_exists(bucket_resource, s3BucketName) = encryption {
 } else = encryption {
 	encryption := "unencrypted"
 }
-=======
-	accessibility = {"accessibility": "unknown", "policy": ""}
-}
->>>>>>> master
