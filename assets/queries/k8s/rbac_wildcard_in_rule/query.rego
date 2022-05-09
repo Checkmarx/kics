@@ -1,60 +1,25 @@
 package Cx
 
-import data.generic.k8s as k8s
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document[i]
 	metadata := document.metadata
-    kind := document.kind
-    listKinds := ["Role", "ClusterRole"]
-	k8s.checkKind(kind, listKinds)
-	metadata.name
-	notExpectedKey := "*"
-	document.rules[r].apiGroups[j] == notExpectedKey
+
+	kinds := {"Role", "ClusterRole"}
+	document.kind == kinds[_]
+
+	attr := {"apiGroups", "resources", "verbs"}
+	common_lib.valid_key(document.rules[j], attr[k])
+
+	document.rules[j][k][_] == "*"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("metadata.name={{%s}}.rules", [metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.rules[%d].apiGroups shouldn't contain value: '%s'", [metadata.name, r, notExpectedKey]),
-		"keyActualValue": sprintf("metadata.name={{%s}}.rules[%d].apiGroups contains value: '%s'", [metadata.name, r, notExpectedKey]),
-	}
-}
-
-CxPolicy[result] {
-	document := input.document[i]
-	metadata := document.metadata
-	kind := document.kind
-    listKinds := ["Role", "ClusterRole"]
-	k8s.checkKind(kind, listKinds)
-	metadata.name
-	notExpectedKey := "*"
-	document.rules[r].resources[j] == notExpectedKey
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.rules", [metadata.name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.rules[%d].resources shouldn't contain value: '%s'", [metadata.name, r, notExpectedKey]),
-		"keyActualValue": sprintf("metadata.name={{%s}}.rules[%d].resources contains value: '%s'", [metadata.name, r, notExpectedKey]),
-	}
-}
-
-CxPolicy[result] {
-	document := input.document[i]
-	metadata := document.metadata
-	kind := document.kind
-    listKinds := ["Role", "ClusterRole"]
-	k8s.checkKind(kind, listKinds)
-	metadata.name
-	notExpectedKey := "*"
-	document.rules[r].verbs[j] == notExpectedKey
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.rules", [metadata.name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.rules[%d].verbs shouldn't contain value: '%s'", [metadata.name, r, notExpectedKey]),
-		"keyActualValue": sprintf("metadata.name={{%s}}.rules[%d].verbs contains value: '%s'", [metadata.name, r, notExpectedKey]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.rules[%d].%s should list the minimal set of needed objects or actions", [metadata.name, j, k]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.rules[%d].%s uses wildcards to specify objects or actions", [metadata.name, j, k]),
+		"searchLine": common_lib.build_search_line(["rules", j], [k])
 	}
 }
