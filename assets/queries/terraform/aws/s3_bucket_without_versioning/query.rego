@@ -36,6 +36,7 @@ CxPolicy[result] {
     }
 }
 #default of enabled is false
+# version before TF AWS 1.4.0
 CxPolicy[result] {
 
     bucket := input.document[i].resource.aws_s3_bucket[name]
@@ -67,6 +68,7 @@ CxPolicy[result] {
     }
 }
 
+# version before TF AWS 1.4.0
 CxPolicy[result] {
 
     bucket := input.document[i].resource.aws_s3_bucket[name]
@@ -98,6 +100,7 @@ CxPolicy[result] {
     }
 }
 
+# version after TF AWS 1.4.0
 CxPolicy[result] {
 
     input.document[_].resource.aws_s3_bucket[bucketName]
