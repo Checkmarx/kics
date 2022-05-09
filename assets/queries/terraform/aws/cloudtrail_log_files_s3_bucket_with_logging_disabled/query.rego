@@ -8,8 +8,8 @@ CxPolicy[result] {
 	cloudtrail := input.document[_].resource.aws_cloudtrail[name]
 	s3BucketName := split(cloudtrail.s3_bucket_name, ".")[1]
 	bucket := input.document[i].resource.aws_s3_bucket[s3BucketName]
-	not common_lib.valid_key(bucket, "logging")
-	not terra_lib.has_target_resource(s3BucketName, "aws_s3_bucket_logging")
+	not common_lib.valid_key(bucket, "logging") # version before TF AWS 1.4.0
+	not terra_lib.has_target_resource(s3BucketName, "aws_s3_bucket_logging") # version after TF AWS 1.4.0
 
 	result := {
 		"documentId": input.document[i].id,

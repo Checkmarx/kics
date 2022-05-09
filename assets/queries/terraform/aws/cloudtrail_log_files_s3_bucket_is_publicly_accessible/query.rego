@@ -5,6 +5,7 @@ import data.generic.terraform as terra_lib
 
 publicAcl := {"public-read", "public-read-write"}
 
+# version before TF AWS 1.4.0
 CxPolicy[result] {
 
 	cloudtrail := input.document[_].resource.aws_cloudtrail[name]
@@ -35,6 +36,7 @@ CxPolicy[result] {
 	}
 }
 
+# version after TF AWS 1.4.0
 CxPolicy[result] {
 
 	cloudtrail := input.document[_].resource.aws_cloudtrail[name]

@@ -3,6 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as terra_lib
 
+# version before TF AWS 1.4.0
 CxPolicy[result] {
 
 	resource := input.document[i].resource.aws_s3_bucket[name]
@@ -34,6 +35,7 @@ CxPolicy[result] {
 	}
 }
 
+# version after TF AWS 1.4.0
 CxPolicy[result] {	
 	input.document[i].resource.aws_s3_bucket[bucketName]
 	

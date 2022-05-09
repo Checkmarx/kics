@@ -3,6 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as terra_lib
 
+# version before TF AWS 1.4.0
 CxPolicy[result] {
 	bucket := input.document[i].resource.aws_s3_bucket[name]
 
@@ -19,6 +20,7 @@ CxPolicy[result] {
 	}
 }
 
+# version before TF AWS 1.4.0
 CxPolicy[result] {
 	bucket := input.document[i].resource.aws_s3_bucket[name]
 
@@ -51,7 +53,7 @@ CxPolicy[result] {
 	}
 }
 
-
+# version after TF AWS 1.4.0
 CxPolicy[result] {	
 	input.document[_].resource.aws_s3_bucket[bucketName]
 	
@@ -70,6 +72,7 @@ CxPolicy[result] {
 	}
 }
 
+# version after TF AWS 1.4.0
 CxPolicy[result] {
 	input.document[_].resource.aws_s3_bucket[bucketName]
 	
@@ -88,6 +91,7 @@ CxPolicy[result] {
 	}
 }
 
+# version after TF AWS 1.4.0
 CxPolicy[result] {	
 	resource := input.document[i].resource.aws_s3_bucket[bucketName]
 	not terra_lib.has_target_resource(bucketName, "aws_s3_bucket_cors_configuration")
