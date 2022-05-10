@@ -169,13 +169,16 @@ func (c *Inspector) Inspect(ctx context.Context, basePaths []string,
 
 		timeoutCtx, cancel := context.WithTimeout(ctx, c.queryExecutionTimeout*time.Second)
 		defer cancel()
-		for idx := range files {
-			if _, ok := files[idx].Commands["ignore"]; !ok {
+
+		cleanFiles := cleanFiles(files)
+
+		for idx := range cleanFiles {
+			if _, ok := cleanFiles[idx].Commands["ignore"]; !ok {
 				select {
 				case <-timeoutCtx.Done():
 					return c.vulnerabilities, timeoutCtx.Err()
 				default:
-					c.checkContent(i, idx, basePaths, files)
+					c.checkContent(i, idx, basePaths, cleanFiles)
 				}
 			}
 		}
@@ -586,4 +589,21 @@ func ignoreLine(lineNumber int, linesIgnore []int) bool {
 		}
 	}
 	return false
+}
+
+// cleanFiles keeps one file per filePath
+func cleanFiles(files model.FileMetadatas) model.FileMetadatas {
+	keys := make(map[string]bool)
+
+	cleanFiles := model.FileMetadatas{}
+
+	for i := range files {
+		filePath := files[i].FilePath
+		if _, value := keys[filePath]; !value {
+			keys[filePath] = true
+			cleanFiles = append(cleanFiles, files[i])
+		}
+	}
+
+	return cleanFiles
 }
