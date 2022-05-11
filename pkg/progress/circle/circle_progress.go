@@ -25,7 +25,7 @@ type ProgressBar struct {
 // NewProgressBar creates a new instance of a Circle Progress Bar
 func NewProgressBar(label string, silent bool) ProgressBar {
 	newPb := pb.New64(constants.MaxInteger)
-	tmp := fmt.Sprintf(`{{ %q }} {{(cycle . "\\" "-" "|" "/" "-" "|" )}}`, label)
+	tmp := fmt.Sprintf(`{{ "%s" }} {{(cycle . "\\" "-" "|" "/" "-" "|" )}}`, label)
 	newPb.SetWidth(barWidth)
 	newPb.SetTemplateString(tmp)
 	if silent {
