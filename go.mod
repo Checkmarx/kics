@@ -44,7 +44,7 @@ require (
 	golang.org/x/net v0.0.0-20220412020605-290c469a71a5
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
 	helm.sh/helm/v3 v3.8.2
-	mvdan.cc/sh/v3 v3.4.3
+	mvdan.cc/sh/v3 v3.5.0
 )
 
 replace (
