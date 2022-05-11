@@ -1,0 +1,10 @@
+{
+  "id": "c589f42c-7924-4871-aee2-1cede9bc7cbc",
+  "queryName": "RBAC Roles with Exec Permission",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Roles or ClusterRoles with RBAC permissions to run commands in containers via 'kubectl exec' could be abused by attackers to execute malicious code in case of compromise. To prevent this, the 'pods/exec' verb should not be used in production environments",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+  "platform": "Kubernetes",
+  "descriptionID": "c589f42c"
+}

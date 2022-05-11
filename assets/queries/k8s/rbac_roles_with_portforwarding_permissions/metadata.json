@@ -1,0 +1,10 @@
+{
+  "id": "38fa11ef-dbcc-4da8-9680-7e1fd855b6fb",
+  "queryName": "RBAC Roles with Port-Forwarding Permission",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Roles or ClusterRoles with RBAC permissions to port-forward into pods can open socket-level communication channels to containers. In case of compromise, attackers may abuse this for direct communication that bypasses network security restrictions",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+  "platform": "Kubernetes",
+  "descriptionID": "38fa11ef"
+}
