@@ -1,12 +1,12 @@
 [
   {
     "queryName": "Automatic Minor Upgrades Disabled",
-    "severity": "HIGH",
+    "severity": "LOW",
     "line": 10
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
-    "severity": "HIGH",
+    "severity": "LOW",
     "line": 12
   }
 ]

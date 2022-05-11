@@ -2,7 +2,7 @@
 name: 'New Feature '
 about: Add a new feature to the project
 title: ''
-labels: feature
+labels: community, feature
 assignees: ''
 
 ---

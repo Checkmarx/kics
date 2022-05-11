@@ -12,6 +12,8 @@ CxPolicy[result] {
 	protocol := terraLib.getProtocolList(resource.protocol)[_]
 
 	upper(resource.access) == "ALLOW"
+	upper(resource.direction) == "INBOUND"
+	
 	endswith(resource.source_address_prefix, "/0")
 	terraLib.containsPort(resource, portNumber)
 	isTCPorUDP(protocol)
