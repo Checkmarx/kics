@@ -20,7 +20,7 @@ resource "aws_network_acl" "negative2" {
 }
 
 resource "aws_network_acl_rule" "negative2" {
-  network_acl_id = aws_network_acl.positive1.id
+  network_acl_id = aws_network_acl.negative2.id
   rule_number    = 100
   egress         = false
   protocol       = "tcp"

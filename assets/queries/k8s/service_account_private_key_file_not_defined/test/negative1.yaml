@@ -1,20 +1,11 @@
-apiVersion: apps/v1beta2
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
-  name: kube-controller-manager
-  namespace: kube-system
+  name: command-demo
   labels:
-    tier: control-plane
-    k8s-app: kube-controller-manager
+    purpose: demonstrate-command
 spec:
-  selector:
-    matchLabels:
-      app: kube-controller-manager
-  template:
-    metadata:
-      labels:
-        app: kube-controller-manager
-  containers:  
+  containers:
     - name: command-demo-container
       image: gcr.io/google_containers/kube-controller-manager-amd64:v1.6.0
       command: ["kube-controller-manager"]

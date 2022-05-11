@@ -1,13 +1,16 @@
 package helpers
 
 import (
+	"bufio"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
 	"os"
 	"path/filepath"
+	"runtime"
 	"sort"
+	"strconv"
 	"strings"
 
 	"github.com/BurntSushi/toml"
@@ -19,6 +22,8 @@ import (
 	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"
 )
+
+const divisor = float32(100000)
 
 var reportGenerators = map[string]func(path, filename string, body interface{}) error{
 	"json":        report.PrintJSONReport,
@@ -156,4 +161,40 @@ func ListReportFormats() []string {
 	}
 	sort.Strings(supportedFormats)
 	return supportedFormats
+}
+
+// GetNumCPU return the number of cpus available
+func GetNumCPU() (float32, error) {
+	// Check if application is running inside docker
+	if _, err := os.Stat("/.dockerenv"); err == nil {
+		f, err := os.Open("/sys/fs/cgroup/cpu/cpu.cfs_quota_us")
+		if err != nil {
+			return -1, err
+		}
+
+		defer func() {
+			if err := f.Close(); err != nil {
+				log.Err(err).Msg("failed to close '/sys/fs/cgroup/cpu/cpu.cfs_quota_us'")
+			}
+		}()
+
+		scanner := bufio.NewScanner(f)
+		if scanner.Scan() {
+			text := scanner.Text()
+			cpus, err := strconv.Atoi(text)
+			if err != nil {
+				return float32(cpus) / divisor, err
+			}
+
+			if cpus != -1 {
+				return float32(cpus) / divisor, nil
+			}
+
+			return float32(runtime.NumCPU()), nil
+		}
+
+		return float32(runtime.NumCPU()), nil
+	}
+
+	return float32(runtime.NumCPU()), nil
 }

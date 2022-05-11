@@ -9,13 +9,13 @@ check_cidr(rule) {
 }
 
 # Checks if a TCP port is open in a rule
-openPort(rule, port) {
+portOpenToInternet(rule, port) {
 	check_cidr(rule)
 	rule.protocol == "tcp"
 	containsPort(rule, port)
 }
 
-openPort(rules, port) {
+portOpenToInternet(rules, port) {
 	rule := rules[_]
 	check_cidr(rule)
 	rule.protocol == "tcp"

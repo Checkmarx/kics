@@ -1,0 +1,55 @@
+---
+- name: Create alarm SNS topic community
+  community.aws.sns_topic:
+    name: "alarms"
+    state: present
+    display_name: "alarm SNS topic"
+    delivery_policy:
+      http:
+        defaultHealthyRetryPolicy:
+          minDelayTarget: 2
+          maxDelayTarget: 4
+          numRetries: 3
+          numMaxDelayRetries: 5
+          backoffFunction: "<linear|arithmetic|geometric|exponential>"
+        disableSubscriptionOverrides: True
+        defaultThrottlePolicy:
+          maxReceivesPerSecond: 10
+    subscriptions:
+      - endpoint: "my_email_address@example.com"
+        protocol: "email"
+      - endpoint: "my_mobile_number"
+        protocol: "sms"
+    policy:
+      Version: '2022-05-02'
+      Statement:
+        - Action: Publish
+          Effect: Allow
+          Principal: "*"
+- name: Create alarm SNS topic
+  sns_topic:
+    name: "alarms"
+    state: present
+    display_name: "alarm SNS topic"
+    delivery_policy:
+      http:
+        defaultHealthyRetryPolicy:
+          minDelayTarget: 2
+          maxDelayTarget: 4
+          numRetries: 3
+          numMaxDelayRetries: 5
+          backoffFunction: "<linear|arithmetic|geometric|exponential>"
+        disableSubscriptionOverrides: True
+        defaultThrottlePolicy:
+          maxReceivesPerSecond: 10
+    subscriptions:
+      - endpoint: "my_email_address@example.com"
+        protocol: "email"
+      - endpoint: "my_mobile_number"
+        protocol: "sms"
+    policy:
+      Version: '2022-05-02'
+      Statement:
+        - Effect: Allow
+          Action: Publish
+          Principal: '*'
