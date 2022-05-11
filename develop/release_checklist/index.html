@@ -1253,6 +1253,17 @@
 <li>Check if <code>update-docs-release</code>, <code>update-infra-version</code>, and <code>release-docker-image</code> workflow completed with success</li>
 <li>Check if the image is published in <a href="https://hub.docker.com/r/checkmarx/kics">dockerhub</a> / update hub documentation if changed</li>
 <li>Push image to Red Hat</li>
+<li>Update integrations tag:<ul>
+<li>git checkout integrations</li>
+<li>git checkout -b ${new_branch}</li>
+<li>git merge ${latest_tag} // update internal/constants/constants.go version to latest</li>
+<li>git push -u origin HEAD // create PR and merge ${new_branch} with integrations branch !! Warning !! Make sure that branch is being merged with integrations and not master</li>
+<li>git checkout integrations</li>
+<li>git tag ${latest_tag}-integrations</li>
+<li>git push origin ${latest_tag}-integrations
+NOTE: make sure that <code>pkg/terraformer</code> only has <code>terraformer_alt.go</code> without build tags</li>
+</ul>
+</li>
 </ol>
 
               
