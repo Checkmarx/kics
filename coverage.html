@@ -69,13 +69,13 @@
 				
 				<option value="file6">github.com/Checkmarx/kics/internal/console/helpers/exit_handler.go (100.0%)</option>
 				
-				<option value="file7">github.com/Checkmarx/kics/internal/console/helpers/helpers.go (79.7%)</option>
+				<option value="file7">github.com/Checkmarx/kics/internal/console/helpers/helpers.go (62.2%)</option>
 				
 				<option value="file8">github.com/Checkmarx/kics/internal/console/kics.go (79.4%)</option>
 				
 				<option value="file9">github.com/Checkmarx/kics/internal/console/list_platforms.go (100.0%)</option>
 				
-				<option value="file10">github.com/Checkmarx/kics/internal/console/pre_scan.go (83.1%)</option>
+				<option value="file10">github.com/Checkmarx/kics/internal/console/pre_scan.go (82.4%)</option>
 				
 				<option value="file11">github.com/Checkmarx/kics/internal/console/scan.go (73.2%)</option>
 				
@@ -849,13 +849,16 @@ func ShowError(kind string) bool <span class="cov5" title="4">{
 		<pre class="file" id="file7" style="display: none">package helpers
 
 import (
+        "bufio"
         "encoding/json"
         "errors"
         "fmt"
         "io"
         "os"
         "path/filepath"
+        "runtime"
         "sort"
+        "strconv"
         "strings"
 
         "github.com/BurntSushi/toml"
@@ -867,6 +870,8 @@ import (
         "github.com/rs/zerolog/log"
         "gopkg.in/yaml.v3"
 )
+
+const divisor = float32(100000)
 
 var reportGenerators = map[string]func(path, filename string, body interface{}) error{
         "json":        report.PrintJSONReport,
@@ -1004,6 +1009,42 @@ func ListReportFormats() []string <span class="cov1" title="1">{
         }</span>
         <span class="cov1" title="1">sort.Strings(supportedFormats)
         return supportedFormats</span>
+}
+
+// GetNumCPU return the number of cpus available
+func GetNumCPU() (float32, error) <span class="cov0" title="0">{
+        // Check if application is running inside docker
+        if _, err := os.Stat("/.dockerenv"); err == nil </span><span class="cov0" title="0">{
+                f, err := os.Open("/sys/fs/cgroup/cpu/cpu.cfs_quota_us")
+                if err != nil </span><span class="cov0" title="0">{
+                        return -1, err
+                }</span>
+
+                <span class="cov0" title="0">defer func() </span><span class="cov0" title="0">{
+                        if err := f.Close(); err != nil </span><span class="cov0" title="0">{
+                                log.Err(err).Msg("failed to close '/sys/fs/cgroup/cpu/cpu.cfs_quota_us'")
+                        }</span>
+                }()
+
+                <span class="cov0" title="0">scanner := bufio.NewScanner(f)
+                if scanner.Scan() </span><span class="cov0" title="0">{
+                        text := scanner.Text()
+                        cpus, err := strconv.Atoi(text)
+                        if err != nil </span><span class="cov0" title="0">{
+                                return float32(cpus) / divisor, err
+                        }</span>
+
+                        <span class="cov0" title="0">if cpus != -1 </span><span class="cov0" title="0">{
+                                return float32(cpus) / divisor, nil
+                        }</span>
+
+                        <span class="cov0" title="0">return float32(runtime.NumCPU()), nil</span>
+                }
+
+                <span class="cov0" title="0">return float32(runtime.NumCPU()), nil</span>
+        }
+
+        <span class="cov0" title="0">return float32(runtime.NumCPU()), nil</span>
 }
 </pre>
 		
@@ -1305,10 +1346,14 @@ func (console *console) preScan() <span class="cov6" title="7">{
                 log.Info().Msgf("Total memory: %s", bytefmt.ByteSize(mem.Total))
         }</span>
 
-        <span class="cov6" title="7">cpu := runtime.NumCPU()
-        log.Info().Msgf("CPU: %d", cpu)
+        <span class="cov6" title="7">cpu, err := consoleHelpers.GetNumCPU()
+        if err != nil </span><span class="cov0" title="0">{
+                log.Err(err).Msg("failed to get CPU")
+        }</span> else<span class="cov6" title="7"> {
+                log.Info().Msgf("CPU: %.1f", cpu)
+        }</span>
 
-        noProgress := flags.GetBoolFlag(flags.NoProgressFlag)
+        <span class="cov6" title="7">noProgress := flags.GetBoolFlag(flags.NoProgressFlag)
         if strings.EqualFold(flags.GetStrFlag(flags.LogLevelFlag), "debug") </span><span class="cov0" title="0">{
                 noProgress = true
         }</span>
@@ -1927,13 +1972,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="30">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="33">total += v
+                <span class="cov8" title="30">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
