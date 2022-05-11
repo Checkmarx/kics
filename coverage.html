@@ -127,7 +127,7 @@
 				
 				<option value="file35">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (78.6%)</option>
 				
-				<option value="file36">github.com/Checkmarx/kics/pkg/engine/secrets/inspector.go (83.4%)</option>
+				<option value="file36">github.com/Checkmarx/kics/pkg/engine/secrets/inspector.go (84.5%)</option>
 				
 				<option value="file37">github.com/Checkmarx/kics/pkg/engine/similarity/similarity_id.go (94.7%)</option>
 				
@@ -594,7 +594,7 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) <span c
                         paramSlice = append(paramSlice, param.(string))
                 }</span>
                 <span class="cov1" title="1">valStr := strings.Join(paramSlice, ",")
-                if err := cmd.Flags().Set(flagName, fmt.Sprintf("%v", valStr)); err != nil </span><span class="cov0" title="0">{
+                if err := cmd.Flags().Set(flagName, valStr); err != nil </span><span class="cov0" title="0">{
                         log.Err(err).Msg("Failed to set Viper flags")
                 }</span>
         default:<span class="cov1" title="1">
@@ -1927,13 +1927,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov8" title="33">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -1958,7 +1958,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -3554,7 +3554,7 @@ func (c *Client) CheckConnection() error <span class="cov0" title="0">{
         }</span>
 
         <span class="cov0" title="0">endpointURL := fmt.Sprintf("%s/api/", baseURL)
-        req, err := http.NewRequest(http.MethodGet, endpointURL, nil)
+        req, err := http.NewRequest(http.MethodGet, endpointURL, http.NoBody)
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
@@ -5565,6 +5565,7 @@ import (
         "math"
         "regexp"
         "strings"
+        "sync"
         "time"
 
         "github.com/Checkmarx/kics/assets"
@@ -5717,6 +5718,7 @@ func NewInspector(
         }, nil</span>
 }
 
+// Inspect inspects the source code for passwords &amp; secrets and returns the list of vulnerabilities
 func (c *Inspector) Inspect(ctx context.Context, basePaths []string,
         files model.FileMetadatas, currentQuery chan&lt;- int64) ([]model.Vulnerability, error) <span class="cov2" title="8">{
         for i := range c.regexQueries </span><span class="cov5" title="264">{
@@ -5724,13 +5726,16 @@ func (c *Inspector) Inspect(ctx context.Context, basePaths []string,
 
                 timeoutCtx, cancel := context.WithTimeout(ctx, c.queryExecutionTimeout*time.Second)
                 defer cancel()
-                for idx := range files </span><span class="cov5" title="264">{
-                        if _, ok := files[idx].Commands["ignore"]; !ok </span><span class="cov5" title="231">{
+
+                cleanFiles := cleanFiles(files)
+
+                for idx := range cleanFiles </span><span class="cov5" title="264">{
+                        if _, ok := cleanFiles[idx].Commands["ignore"]; !ok </span><span class="cov5" title="231">{
                                 select </span>{
                                 case &lt;-timeoutCtx.Done():<span class="cov0" title="0">
                                         return c.vulnerabilities, timeoutCtx.Err()</span>
                                 default:<span class="cov5" title="231">
-                                        c.checkContent(i, idx, basePaths, files)</span>
+                                        c.checkContent(i, idx, basePaths, cleanFiles)</span>
                                 }
                         }
                 }
@@ -6115,14 +6120,19 @@ func validateCustomSecretsQueriesID(allRegexQueries []RegexQuery) error <span cl
 }
 
 func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.FileMetadatas) <span class="cov5" title="231">{
+        wg := &amp;sync.WaitGroup{}
         // check file content line by line
         if c.regexQueries[i].Multiline == (MultilineResult{}) </span><span class="cov5" title="210">{
                 lines := c.detector.SplitLines(&amp;files[idx])
-
                 for lineNumber, currentLine := range lines </span><span class="cov7" title="2850">{
-                        c.checkLineByLine(&amp;c.regexQueries[i], basePaths, &amp;files[idx], lineNumber, currentLine)
-                }</span>
-                <span class="cov5" title="210">return</span>
+                        wg.Add(1)
+                        go func(lineNumber int, currentLine string) </span><span class="cov7" title="2850">{
+                                defer wg.Done()
+                                c.checkLineByLine(&amp;c.regexQueries[i], basePaths, &amp;files[idx], lineNumber, currentLine)
+                        }</span>(lineNumber, currentLine)
+                }
+                <span class="cov5" title="210">wg.Wait()
+                return</span>
         }
 
         // check file content as a whole
@@ -6136,6 +6146,23 @@ func ignoreLine(lineNumber int, linesIgnore []int) bool <span class="cov2" title
                 }</span>
         }
         <span class="cov1" title="3">return false</span>
+}
+
+// cleanFiles keeps one file per filePath
+func cleanFiles(files model.FileMetadatas) model.FileMetadatas <span class="cov5" title="264">{
+        keys := make(map[string]bool)
+
+        cleanFiles := model.FileMetadatas{}
+
+        for i := range files </span><span class="cov5" title="264">{
+                filePath := files[i].FilePath
+                if _, value := keys[filePath]; !value </span><span class="cov5" title="264">{
+                        keys[filePath] = true
+                        cleanFiles = append(cleanFiles, files[i])
+                }</span>
+        }
+
+        <span class="cov5" title="264">return cleanFiles</span>
 }
 </pre>
 		
@@ -15058,7 +15085,7 @@ func getSeverities(severity string) model.Severity <span class="cov5" title="4">
 
 func getCurrentTime() string <span class="cov1" title="1">{
         dt := time.Now()
-        return fmt.Sprint(dt.Format("01/02/2006 15:04"))
+        return dt.Format("01/02/2006 15:04")
 }</span>
 
 func fileCreationReport(path, filename string) <span class="cov10" title="13">{
@@ -18748,8 +18775,8 @@ package terraformer
 import (
         "context"
         "fmt"
+        "io"
         "io/fs"
-        "io/ioutil"
         "os"
         "path/filepath"
         "strings"
@@ -18807,7 +18834,7 @@ func (t *Path) createTfOptions(destination, region string, projects []string) *i
 // Import imports the terraformer resources into the destination using terraformer
 func Import(terraformerPath, destinationPath string) (string, error) <span class="cov10" title="2">{
         log.Info().Msg("importing terraformer resources")
-        tfLogger.SetOutput(ioutil.Discard)
+        tfLogger.SetOutput(io.Discard)
         pathOptions, err := extractTerraformerOptions(terraformerPath)
         if err != nil </span><span class="cov1" title="1">{
                 return "", errors.Wrap(err, "wrong terraformer path syntax")
@@ -19003,6 +19030,7 @@ func NextRandom() string <span class="cov10" title="2">{
 import (
         "bytes"
         "encoding/json"
+        "errors"
         "fmt"
         "io"
         "os"
@@ -19033,14 +19061,14 @@ func CaptureOutput(funcToExec execute) (string, error) <span class="cov0" title=
 
         go func() </span><span class="cov0" title="0">{
                 var buf bytes.Buffer
-                if _, errors := io.Copy(&amp;buf, r); errors != nil </span><span class="cov0" title="0">{ // nolint
+                if _, errs := io.Copy(&amp;buf, r); errs != nil </span><span class="cov0" title="0">{
                         return
                 }</span>
                 <span class="cov0" title="0">outC &lt;- buf.String()</span>
         }()
 
-        <span class="cov0" title="0">if errors := w.Close(); errors != nil </span><span class="cov0" title="0">{
-                return "", errors
+        <span class="cov0" title="0">if errs := w.Close(); errs != nil </span><span class="cov0" title="0">{
+                return "", errs
         }</span>
         <span class="cov0" title="0">os.Stdout = old
         out := &lt;-outC
@@ -19064,10 +19092,10 @@ func ChangeCurrentDir(desiredDir string) error <span class="cov0" title="0">{
                 if err == nil </span><span class="cov0" title="0">{
                         if err = os.Chdir(".."); err != nil </span><span class="cov0" title="0">{
                                 fmt.Print(formatCurrentDirError(err))
-                                return fmt.Errorf(formatCurrentDirError(err))
+                                return errors.New(formatCurrentDirError(err))
                         }</span>
                 } else<span class="cov0" title="0"> {
-                        return fmt.Errorf(formatCurrentDirError(err))
+                        return errors.New(formatCurrentDirError(err))
                 }</span>
         }
         <span class="cov0" title="0">return nil</span>
