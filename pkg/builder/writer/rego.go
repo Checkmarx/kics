@@ -111,7 +111,7 @@ func condition(r Block, c build.Condition) string {
 	}
 
 	if reg, ok := c.Attr("regex"); ok {
-		return fmt.Sprintf("re_match(\"%s\", %s)", reg, key)
+		return fmt.Sprintf("re_match(%q, %s)", reg, key)
 	}
 
 	condition := "=="
