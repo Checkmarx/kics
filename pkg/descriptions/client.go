@@ -72,7 +72,7 @@ func (c *Client) CheckConnection() error {
 	}
 
 	endpointURL := fmt.Sprintf("%s/api/", baseURL)
-	req, err := http.NewRequest(http.MethodGet, endpointURL, nil)
+	req, err := http.NewRequest(http.MethodGet, endpointURL, http.NoBody)
 	if err != nil {
 		return err
 	}
