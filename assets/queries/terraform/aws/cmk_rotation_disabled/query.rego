@@ -7,6 +7,7 @@ CxPolicy[result] {
 
 	not key_set_to_false(resource)
 	not common_lib.valid_key(resource, "enable_key_rotation")
+    resource.customer_master_key_spec != "SYMMETRIC_DEFAULT"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -21,7 +22,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_kms_key[name]
 
 	not key_set_to_false(resource)
-	resource.enable_key_rotation == false
+	(resource.enable_key_rotation == false && resource.customer_master_key_spec == "SYMMETRIC_DEFAULT")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -29,6 +30,21 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_kms_key[%s].enable_key_rotation is set to true", [name]),
 		"keyActualValue": sprintf("aws_kms_key[%s].enable_key_rotation is set to false", [name]),
+	}
+}
+
+CxPolicy[result] {
+	resource := input.document[i].resource.aws_kms_key[name]
+
+	not key_set_to_false(resource)
+	(resource.enable_key_rotation == true && resource.customer_master_key_spec != "SYMMETRIC_DEFAULT")
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("aws_kms_key[%s].enable_key_rotation", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("aws_kms_key[%s].enable_key_rotation is set to false", [name]),
+		"keyActualValue": sprintf("aws_kms_key[%s].enable_key_rotation is set to true", [name]),
 	}
 }
 
