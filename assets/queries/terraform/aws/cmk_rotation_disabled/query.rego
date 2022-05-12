@@ -7,7 +7,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_kms_key[name]
 
 	not key_set_to_false(resource)
-    (not common_lib.valid_key(resource, "enable_key_rotation") && (not common_lib.valid_key(resource, "customer_master_key_spec") || resource.customer_master_key_spec == "SYMMETRIC_DEFAULT" ))
+    not common_lib.valid_key(resource, "enable_key_rotation") && customer_master_key_spec_set_symmetric_or_set_symmetric_by_default(resource)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -22,7 +22,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_kms_key[name]
 
 	not key_set_to_false(resource)
-	( resource.enable_key_rotation == false && ( not common_lib.valid_key(resource, "customer_master_key_spec") || resource.customer_master_key_spec == "SYMMETRIC_DEFAULT" ) )
+	resource.enable_key_rotation == false && customer_master_key_spec_set_symmetric_or_set_symmetric_by_default(resource)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -37,7 +37,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_kms_key[name]
 
 	not key_set_to_false(resource)
-	( resource.enable_key_rotation == true && resource.customer_master_key_spec != "SYMMETRIC_DEFAULT" )
+	resource.enable_key_rotation == true && resource.customer_master_key_spec != "SYMMETRIC_DEFAULT"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -48,6 +48,9 @@ CxPolicy[result] {
 	}
 }
 
+customer_master_key_spec_set_symmetric_or_set_symmetric_by_default(resource) {
+    not common_lib.valid_key(resource, "customer_master_key_spec") || resource.customer_master_key_spec == "SYMMETRIC_DEFAULT"
+}
 key_set_to_false(resource) {
 	resource.is_enabled == false
 }
