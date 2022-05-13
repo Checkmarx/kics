@@ -16,5 +16,17 @@
     "severity": "HIGH",
     "line": 5,
     "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "CMK Rotation Disabled",
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "CMK Rotation Disabled",
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive5.tf"
   }
 ]
