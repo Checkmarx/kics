@@ -8,6 +8,7 @@ import (
 	"math"
 	"regexp"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/Checkmarx/kics/assets"
@@ -160,6 +161,7 @@ func NewInspector(
 	}, nil
 }
 
+// Inspect inspects the source code for passwords & secrets and returns the list of vulnerabilities
 func (c *Inspector) Inspect(ctx context.Context, basePaths []string,
 	files model.FileMetadatas, currentQuery chan<- int64) ([]model.Vulnerability, error) {
 	for i := range c.regexQueries {
@@ -167,13 +169,16 @@ func (c *Inspector) Inspect(ctx context.Context, basePaths []string,
 
 		timeoutCtx, cancel := context.WithTimeout(ctx, c.queryExecutionTimeout*time.Second)
 		defer cancel()
-		for idx := range files {
-			if _, ok := files[idx].Commands["ignore"]; !ok {
+
+		cleanFiles := cleanFiles(files)
+
+		for idx := range cleanFiles {
+			if _, ok := cleanFiles[idx].Commands["ignore"]; !ok {
 				select {
 				case <-timeoutCtx.Done():
 					return c.vulnerabilities, timeoutCtx.Err()
 				default:
-					c.checkContent(i, idx, basePaths, files)
+					c.checkContent(i, idx, basePaths, cleanFiles)
 				}
 			}
 		}
@@ -558,13 +563,18 @@ func validateCustomSecretsQueriesID(allRegexQueries []RegexQuery) error {
 }
 
 func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.FileMetadatas) {
+	wg := &sync.WaitGroup{}
 	// check file content line by line
 	if c.regexQueries[i].Multiline == (MultilineResult{}) {
 		lines := c.detector.SplitLines(&files[idx])
-
 		for lineNumber, currentLine := range lines {
-			c.checkLineByLine(&c.regexQueries[i], basePaths, &files[idx], lineNumber, currentLine)
+			wg.Add(1)
+			go func(lineNumber int, currentLine string) {
+				defer wg.Done()
+				c.checkLineByLine(&c.regexQueries[i], basePaths, &files[idx], lineNumber, currentLine)
+			}(lineNumber, currentLine)
 		}
+		wg.Wait()
 		return
 	}
 
@@ -579,4 +589,21 @@ func ignoreLine(lineNumber int, linesIgnore []int) bool {
 		}
 	}
 	return false
+}
+
+// cleanFiles keeps one file per filePath
+func cleanFiles(files model.FileMetadatas) model.FileMetadatas {
+	keys := make(map[string]bool)
+
+	cleanFiles := model.FileMetadatas{}
+
+	for i := range files {
+		filePath := files[i].FilePath
+		if _, value := keys[filePath]; !value {
+			keys[filePath] = true
+			cleanFiles = append(cleanFiles, files[i])
+		}
+	}
+
+	return cleanFiles
 }

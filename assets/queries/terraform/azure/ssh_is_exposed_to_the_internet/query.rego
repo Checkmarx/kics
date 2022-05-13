@@ -3,6 +3,7 @@ package Cx
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_network_security_rule[var0]
 	upper(resource.access) == "ALLOW"
+	upper(resource.direction) == "INBOUND"
 
 	isRelevantProtocol(resource.protocol)
 	isRelevantPort(resource.destination_port_range)
