@@ -148,8 +148,12 @@ func (console *console) preScan() {
 		log.Info().Msgf("Total memory: %s", bytefmt.ByteSize(mem.Total))
 	}
 
-	cpu := runtime.NumCPU()
-	log.Info().Msgf("CPU: %d", cpu)
+	cpu, err := consoleHelpers.GetNumCPU()
+	if err != nil {
+		log.Err(err).Msg("failed to get CPU")
+	} else {
+		log.Info().Msgf("CPU: %.1f", cpu)
+	}
 
 	noProgress := flags.GetBoolFlag(flags.NoProgressFlag)
 	if strings.EqualFold(flags.GetStrFlag(flags.LogLevelFlag), "debug") {

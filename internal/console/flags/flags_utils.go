@@ -63,7 +63,7 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
 			paramSlice = append(paramSlice, param.(string))
 		}
 		valStr := strings.Join(paramSlice, ",")
-		if err := cmd.Flags().Set(flagName, fmt.Sprintf("%v", valStr)); err != nil {
+		if err := cmd.Flags().Set(flagName, valStr); err != nil {
 			log.Err(err).Msg("Failed to set Viper flags")
 		}
 	default:
