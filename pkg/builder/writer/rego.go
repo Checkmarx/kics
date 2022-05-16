@@ -71,7 +71,7 @@ func NewRegoWriter() (*RegoWriter, error) {
 				}
 				format = fmt.Sprintf(format, conditionKey(r.Block, condition, false, true))
 
-				return template.HTML(fmt.Sprintf("sprintf(\"%s\", [%s])", format, strings.Join(vars, ", "))) // nolint:gosec
+				return template.HTML(fmt.Sprintf("sprintf(\"%s\", [%s])", format, strings.Join(vars, ", "))) // nolint
 			},
 		}).
 		ParseFiles("./pkg/builder/writer/template.gorego")
@@ -111,7 +111,7 @@ func condition(r Block, c build.Condition) string {
 	}
 
 	if reg, ok := c.Attr("regex"); ok {
-		return fmt.Sprintf("re_match(\"%s\", %s)", reg, key)
+		return fmt.Sprintf("re_match(%q, %s)", reg, key)
 	}
 
 	condition := "=="
