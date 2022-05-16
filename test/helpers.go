@@ -3,6 +3,7 @@ package test
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -33,14 +34,14 @@ func CaptureOutput(funcToExec execute) (string, error) {
 
 	go func() {
 		var buf bytes.Buffer
-		if _, errors := io.Copy(&buf, r); errors != nil { // nolint
+		if _, errs := io.Copy(&buf, r); errs != nil {
 			return
 		}
 		outC <- buf.String()
 	}()
 
-	if errors := w.Close(); errors != nil {
-		return "", errors
+	if errs := w.Close(); errs != nil {
+		return "", errs
 	}
 	os.Stdout = old
 	out := <-outC
@@ -64,10 +65,10 @@ func ChangeCurrentDir(desiredDir string) error {
 		if err == nil {
 			if err = os.Chdir(".."); err != nil {
 				fmt.Print(formatCurrentDirError(err))
-				return fmt.Errorf(formatCurrentDirError(err))
+				return errors.New(formatCurrentDirError(err))
 			}
 		} else {
-			return fmt.Errorf(formatCurrentDirError(err))
+			return errors.New(formatCurrentDirError(err))
 		}
 	}
 	return nil
