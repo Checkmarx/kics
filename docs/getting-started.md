@@ -60,6 +60,10 @@ echo 'export KICS_QUERIES_PATH=/usr/local/opt/kics/share/kics/assets/queries' >>
 
 You can provide your own path to the queries directory with `-q` CLI option (see CLI Options section below), otherwise the default directory will be used The default _./assets/queries_ is built-in in the image. You can use this to provide a path to your own custom queries. Check [create a new query guide](creating-queries.md) to learn how to define your own queries.
 
+
+#### Password and Secrets
+Since the Password and Secrets mechanism uses generic regexes, we advise you to tweak the rules of the secret to your context. Please, see the [Password and Secrets documentation](https://github.com/Checkmarx/kics/blob/master/docs/secrets.md#new-rules-addition) to know how you can use your own rules.
+
 ---
 
 **Note**: KICS does not execute scan by default as of [version 1.3.0](https://github.com/Checkmarx/kics/releases/tag/v1.3.0).
