@@ -1,0 +1,30 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "FileSystemResource": {
+      "Properties": {
+        "AvailabilityZoneName": "us-east-1a",
+        "BackupPolicy": {
+          "Status": "ENABLED"
+        },
+        "Encrypted": false,
+        "FileSystemTags": [
+          {
+            "Key": "Name",
+            "Value": "TestFileSystem"
+          }
+        ],
+        "KmsKeyId": [
+          "key",
+          "Arn"
+        ],
+        "LifecyclePolicies": [
+          {
+            "TransitionToIA": "AFTER_30_DAYS"
+          }
+        ]
+      },
+      "Type": "AWS::EFS::FileSystem"
+    }
+  }
+}

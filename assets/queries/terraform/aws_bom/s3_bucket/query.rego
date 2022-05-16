@@ -61,11 +61,5 @@ get_accessibility(bucket, bucketName) = accessibility {
     
     accessibility = {"accessibility": "hasPolicy", "policy": acc.policy}   
 } else = accessibility {
-	# last cases: acl definition
-	accessibility = {"accessibility": bucket.acl, "policy": ""}
-} else = accessibility {
-	# last cases: acl definition
-	not common_lib.valid_key(bucket, "acl")
-	accessibility = {"accessibility": "private", "policy": ""}
+	accessibility = {"accessibility": "unknown", "policy": ""}
 }
-

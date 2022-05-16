@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "Etcd Peer Client Certificate Authentication Set To False",
+		"severity": "MEDIUM",
+		"line": 21,
+        "fileName": "positive1.yaml"
+	},
+	{
+		"queryName": "Etcd Peer Client Certificate Authentication Set To False",
+		"severity": "MEDIUM",
+		"line": 21,
+        "fileName": "positive2.yaml"
+	}
+]

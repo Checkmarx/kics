@@ -1,0 +1,10 @@
+{
+  "id": "ce14a68b-1668-41a0-ab7d-facd9f784742",
+  "queryName": "Networks Not Set",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Setting networks in services ensures you are not using dockers default bridge (docker0), which shares traffic bewteen all containers.",
+  "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#networks",
+  "platform": "DockerCompose",
+  "descriptionID": "3743a217"
+}

@@ -3,8 +3,8 @@
   "queryName": "Seccomp Profile Is Not Configured",
   "severity": "MEDIUM",
   "category": "Insecure Configurations",
-  "descriptionText": "Check if any resource does not configure Seccomp default profile properly",
-  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/#seccomp",
+  "descriptionText": "Containers should be configured with a secure Seccomp profile to restrict potentially dangerous syscalls",
+  "descriptionUrl": "https://kubernetes.io/docs/tutorials/security/seccomp/#create-pod-that-uses-the-container-runtime-default-seccomp-profile",
   "platform": "Kubernetes",
   "descriptionID": "d943c7e7"
 }

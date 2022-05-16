@@ -33,7 +33,7 @@ CxPolicy[result] {
     cmd := command[_]
 	common_lib.inArray(container.command, cmd)
     k8sLib.startWithFlag(container,"--client-ca-file")
-	not correctExtention(container,"--client-ca-file", ".pem")
+	not k8sLib.startAndEndWithFlag(container,"--client-ca-file", ".pem")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -79,15 +79,4 @@ CxPolicy[result] {
 		"keyExpectedValue":  "Client Certification should have a .pem file",
 		"keyActualValue":  "Client Certification is not properly set",
 	}
-}
-
-correctExtention(container, flag, ext){
-	startsWithAndEndsWithArray(container.command, flag,ext)
-} else {
-	startsWithAndEndsWithArray(container.args, flag, ext)
-}
-
-startsWithAndEndsWithArray(arr, item, ext) {
-    startswith(arr[_], item)
-    endswith(arr[_], ext)
 }

@@ -8,7 +8,7 @@ func init() { //nolint
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "--output-path", "/path/e2e/output", "--output-name", "E2E_CLI_031_RESULT",
-					"--report-formats", "json,SARIF,glsast,Html,SonarQUBE,Junit,cyclonedx,asff,csv",
+					"--report-formats", "json,SARIF,glsast,Html,SonarQUBE,Junit,cyclonedx,asff,csv,CodeClimate",
 					"-p", "/path/e2e/fixtures/samples/positive.yaml"},
 
 				[]string{"scan", "--output-path", "/path/e2e/output", "--output-name", "E2E_CLI_031_RESULT_CIS",
@@ -18,7 +18,7 @@ func init() { //nolint
 			ExpectedResult: []ResultsValidation{
 				{
 					ResultsFile:    "E2E_CLI_031_RESULT",
-					ResultsFormats: []string{"json", "sarif", "glsast", "html", "sonarqube", "junit", "cyclonedx", "asff", "csv"},
+					ResultsFormats: []string{"json", "sarif", "glsast", "html", "sonarqube", "junit", "cyclonedx", "asff", "csv", "codeclimate"},
 				},
 				{
 					ResultsFile:    "E2E_CLI_031_RESULT_CIS",

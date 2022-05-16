@@ -56,7 +56,7 @@ func getSeverities(severity string) model.Severity {
 
 func getCurrentTime() string {
 	dt := time.Now()
-	return fmt.Sprint(dt.Format("01/02/2006 15:04"))
+	return dt.Format("01/02/2006 15:04")
 }
 
 func fileCreationReport(path, filename string) {

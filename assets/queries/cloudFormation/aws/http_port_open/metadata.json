@@ -1,9 +1,9 @@
 {
   "id": "ddfc4eaa-af23-409f-b96c-bf5c45dc4daa",
-  "queryName": "HTTP Port Open",
+  "queryName": "HTTP Port Open To Internet",
   "severity": "HIGH",
   "category": "Networking and Firewall",
-  "descriptionText": "The HTTP port is open in a Security Group",
+  "descriptionText": "The HTTP port is open to the internet in a Security Group",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
   "platform": "CloudFormation",
   "descriptionID": "a39efd21",

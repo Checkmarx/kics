@@ -19,6 +19,7 @@ CxPolicy[result] {
 	protocol := getProtocolList(resource.protocol)[_]
 
 	upper(resource.access) == "ALLOW"
+	inbound_direction(resource)
 	endswith(resource.source_address_prefix, "/0")
 	containsDestinationPort(portNumber, resource)
 	isTCPorUDP(protocol)
@@ -78,4 +79,10 @@ else = containing {
 
 isTCPorUDP(protocol) = is {
 	is := upper(protocol) != "ICMP"
+}
+
+inbound_direction(resource){
+	upper(resource.direction) == "INBOUND"
+}else{
+	not commonLib.valid_key(resource,"direction")
 }

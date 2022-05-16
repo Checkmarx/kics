@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	_ "embed" // used for embedding report static files
-	"fmt"
 	"html/template"
 	"os"
 	"path/filepath"
@@ -31,7 +30,7 @@ const (
 
 func getCurrentTime() string {
 	dt := time.Now()
-	return fmt.Sprint(dt.Format("01/02/2006 15:04"))
+	return dt.Format("01/02/2006 15:04")
 }
 
 func getCurrentDockerImage() string {

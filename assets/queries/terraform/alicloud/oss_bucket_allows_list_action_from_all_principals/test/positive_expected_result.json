@@ -1,0 +1,14 @@
+[
+    {
+      "queryName": "OSS Bucket Allows List Action From All Principals",
+      "severity": "HIGH",
+      "line": 5,
+      "fileName": "positive1.tf"
+    },
+    {
+      "queryName": "OSS Bucket Allows List Action From All Principals",
+      "severity": "HIGH",
+      "line": 5,
+      "fileName": "positive2.tf"
+    }
+]

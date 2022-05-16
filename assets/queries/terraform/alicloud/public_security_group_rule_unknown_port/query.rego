@@ -5,6 +5,7 @@ import data.generic.terraform as terraform_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_security_group_rule[name]
+	resource.type == "ingress"
 	resource.cidr_ip == "0.0.0.0/0"
 	isTCPorUDP(resource.ip_protocol)
     containsUnknownPort(resource)	
@@ -26,6 +27,7 @@ isTCPorUDP("udp") = true
 
 CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_security_group_rule[name]
+	resource.type == "ingress"
 	resource.cidr_ip == "0.0.0.0/0"
 	resource.ip_protocol == "all"
 	resource.port_range == "-1/-1"

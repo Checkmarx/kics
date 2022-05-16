@@ -1,18 +1,5 @@
 # Results
 
-KICS can export results in multiple formats which can be seen on the following list:
-
--   ASFF (asff)
--   CSV (csv)
--   CycloneDX (cyclonedx)
--   Gitlab SAST (glsast)
--   HTML (html)
--   JSON (json)
--   JUnit (junit)
--   PDF (pdf)
--   SARIF (sarif)
--   SonarQube (sonarqube)
-
 To export in JSON format in current directory, you can use the following command:
 
 ```bash
@@ -47,8 +34,6 @@ This will generate an HTML and Gitlab SAST reports on output folder, with `kics-
 After the scanning process is done, If an internet connection is available, KICS will try to fetch CIS Proprietary vulnerability descriptions from a HTTP endpoint, this can be disabled with `--disable-cis-descriptions`. If used in offline mode or no internet connection is available, KICS should use the default descriptions.
 
 In case of using KICS behind a corporate proxy, proxy configurations can be set with environment variables such as `HTTP_PROXY`, `HTTPS_PROXY`, `NO_PROXY`
-
-# Report examples
 
 ## JSON
 
@@ -644,25 +629,6 @@ PDF reports are sorted by severity (from high to info), the results will have qu
 
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/pdf-report.png" width="850">
 
-# Exit Status Code
-
-## Results Status Code
-
-| Code | Description                |
-| ---- | -------------------------- |
-| `0`  | No Results were Found      |
-| `50` | Found any `HIGH` Results   |
-| `40` | Found any `MEDIUM` Results |
-| `30` | Found any `LOW` Results    |
-| `20` | Found any `INFO` Results   |
-
-## Error Status Code
-
-| Code  | Description      |
-| ----- | ---------------- |
-| `126` | Engine Error     |
-| `130` | Signal-Interrupt |
-
 ## CycloneDX
 
 Now, the CycloneDX report is only available in XML format since the vulnerability schema extension is not currently available in JSON. The guidelines used to build the CycloneDX report were the [bom schema 1.3](http://cyclonedx.org/schema/bom/1.3) and [vulnerability schema 1.0](https://github.com/CycloneDX/specification/blob/master/schema/ext/vulnerability-1.0.xsd).
@@ -770,3 +736,95 @@ CSV reports follow the [CSV structure](https://www.loc.gov/preservation/digital/
 | EC2 Sensitive Port Is Publicly Exposed         | 494b03d3-bf40-4464-8524-7c56ad0700ed | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html | HIGH     | CloudFormation | AWS            | Networking and Firewall | 680b7e89       | The EC2 instance has a sensitive port connection exposed to the entire network |                    |                       |                      | ../../assets/queries/cloudFormation/aws/security_groups_with_unrestricted_access_to_ssh/test/positive2.json | 9730156b201b5098479a7b624d01931303a2f27c3991c7a786aeb2c10912894a | 27   | IncorrectValue | Resources.InstanceSecurityGroup.SecurityGroupIngress            | 0           | TCP,22       | SSH (TCP:22) should not be allowed in EC2 security group for instance Ec2Instance       | SSH (TCP:22) is allowed in EC2 security group for instance Ec2Instance                 |
 | EC2 Sensitive Port Is Publicly Exposed         | 494b03d3-bf40-4464-8524-7c56ad0700ed | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html | HIGH     | CloudFormation | AWS            | Networking and Firewall | 680b7e89       | The EC2 instance has a sensitive port connection exposed to the entire network |                    |                       |                      | ../../assets/queries/cloudFormation/aws/security_groups_with_unrestricted_access_to_ssh/test/positive1.yaml | a93a3f7320a60045c04cd950500a1c3cff5bc9a4aae7f1e0cde73033386e1242 | 15   | IncorrectValue | Resources.InstanceSecurityGroup.SecurityGroupIngress            | 0           | TCP,22       | SSH (TCP:22) should not be allowed in EC2 security group for instance Ec2Instance       | SSH (TCP:22) is allowed in EC2 security group for instance Ec2Instance                 |
 | Security Group With Unrestricted Access To SSH | 6e856af2-62d7-4ba2-adc1-73b62cef9cc1 | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html | HIGH     | CloudFormation | AWS            | Networking and Firewall | d515d6dc       | Security Groups allows all traffic for SSH (port:22)                           |                    |                       |                      | ../../assets/queries/cloudFormation/aws/security_groups_with_unrestricted_access_to_ssh/test/positive1.yaml | ca8ec85623eed6a5cb3d3b8c1b69d145778e28517d2adf5fb856a57f9870c430 | 15   | IncorrectValue | Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress | 0           |              | None of the Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress has port 22 | One of the Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress has port 22 |
+
+## Code Climate
+
+You can export code climate report by using `--report-formats "codeclimate"`. The generated report file will have a prefix `codeclimate-`.
+
+Code climate report follow the [Code Climate Spec](https://github.com/codeclimate/platform/blob/master/spec/analyzers/SPEC.md).
+
+```json
+[
+    {
+        "type": "issue",
+        "check_name": "Disk Encryption Disabled",
+        "description": "VM disks for critical VMs must be encrypted with Customer Supplied Encryption Keys (CSEK) or with Customer-managed encryption keys (CMEK), which means the attribute 'diskEncryptionKey' must be defined and its sub attributes 'rawKey' or 'kmsKeyName' must also be defined",
+        "categories": ["Security"],
+        "location": {
+            "path": "positive1.yaml",
+            "lines": {
+                "begin": 8
+            }
+        },
+        "severity": "major",
+        "fingerprint": "93b3ba78cf3f7aba06e480f40b10c754cb923118abb13e37106e56106406415f"
+    },
+    {
+        "type": "issue",
+        "check_name": "IP Forwarding Enabled",
+        "description": "Instances must not have IP forwarding enabled, which means the attribute 'canIpForward' must not be true",
+        "categories": ["Security"],
+        "location": {
+            "path": "positive1.yaml",
+            "lines": {
+                "begin": 16
+            }
+        },
+        "severity": "major",
+        "fingerprint": "ac9b7b7b621eeeaa28d50f5cb6a047dd53df706624b509bcc7db775e53de6db5"
+    },
+    {
+        "type": "issue",
+        "check_name": "Project-wide SSH Keys Are Enabled In VM Instances",
+        "description": "VM Instance should block project-wide SSH keys",
+        "categories": ["Security"],
+        "location": {
+            "path": "positive1.yaml",
+            "lines": {
+                "begin": 4
+            }
+        },
+        "severity": "major",
+        "fingerprint": "e84dabdbe179ec9bbe4fb5c0abe8fe8a0f8a3b679a8eef6cfc98d7e5403600ab"
+    },
+    {
+        "type": "issue",
+        "check_name": "Shielded VM Disabled",
+        "description": "Compute instances must be launched with Shielded VM enabled, which means the attribute 'shieldedInstanceConfig' must be defined and its sub attributes 'enableSecureBoot', 'enableVtpm' and 'enableIntegrityMonitoring' must be set to true",
+        "categories": ["Security"],
+        "location": {
+            "path": "positive1.yaml",
+            "lines": {
+                "begin": 4
+            }
+        },
+        "severity": "major",
+        "fingerprint": "1b9d4118a9e39702e46ce204115ae11fc9146c3cb0923a2fb232cabe1e8e103c"
+    }
+]
+```
+
+## CLI Report
+
+KICS displays the results in CLI. For detailed information, you can use `-v --log-level DEBUG`.
+
+![image](https://user-images.githubusercontent.com/74001161/161743565-f98cb076-e708-4754-8f9a-f1dbed82837b.png)
+
+# Exit Status Code
+
+## Results Status Code
+
+| Code | Description                |
+| ---- | -------------------------- |
+| `0`  | No Results were Found      |
+| `50` | Found any `HIGH` Results   |
+| `40` | Found any `MEDIUM` Results |
+| `30` | Found any `LOW` Results    |
+| `20` | Found any `INFO` Results   |
+
+## Error Status Code
+
+| Code  | Description      |
+| ----- | ---------------- |
+| `126` | Engine Error     |
+| `130` | Signal-Interrupt |

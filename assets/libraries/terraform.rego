@@ -9,13 +9,13 @@ check_cidr(rule) {
 }
 
 # Checks if a TCP port is open in a rule
-openPort(rule, port) {
+portOpenToInternet(rule, port) {
 	check_cidr(rule)
 	rule.protocol == "tcp"
 	containsPort(rule, port)
 }
 
-openPort(rules, port) {
+portOpenToInternet(rules, port) {
 	rule := rules[_]
 	check_cidr(rule)
 	rule.protocol == "tcp"
@@ -589,4 +589,14 @@ has_relation(related_resource_id, related_resource_type, current_resource, curre
 	value != "empty"
 	is_string(value)
 	regex.match(sprintf("\\${%v\\.%v\\.", [related_resource_type, related_resource_id]), value)
+}
+
+#Checks if an action is allowed for all principals
+allows_action_from_all_principals(json_policy, action) {
+ 	policy := common_lib.json_unmarshal(json_policy)
+	st := common_lib.get_statement(policy)
+	statement := st[_]
+	statement.Effect == "Allow"
+    anyPrincipal(statement)
+    common_lib.containsOrInArrayContains(statement.Action, action)
 }

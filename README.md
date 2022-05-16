@@ -42,6 +42,7 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <br>
 <img alt="Cloud Deployment Kit" src="docs/img/logo-cdk.png" width="150">&nbsp;&nbsp;&nbsp;
 <img alt="SAM" src="docs/img/logo-sam.png" width="55">&nbsp;&nbsp;&nbsp;
+<img alt="Docker Compose" src="docs/img/logo-dockercompose.png" width="80">&nbsp;&nbsp;&nbsp;
 
 Support of other solutions and additional cloud providers are on the [roadmap](docs/roadmap.md).
 
@@ -84,6 +85,7 @@ Examples:
 
 
 ## Meet us at conferences
+
 -   [AWS re:Invent 2021: AWS On Air](https://youtu.be/9ZKldJeBHl4) ([video](https://youtu.be/9ZKldJeBHl4))
 -   [OWASP Bristol & Suffolk Chapter - Meetup](https://www.meetup.com/OWASP-Bristol/events/281869377/) ([video](https://youtu.be/KKZJEJF6I0M))
 -   [OWASP Canberra Chapter - Meetup](https://www.meetup.com/OWASP-Canberra-Chapter/events/281946376/)

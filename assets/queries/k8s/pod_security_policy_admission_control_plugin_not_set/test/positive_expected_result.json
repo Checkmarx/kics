@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "Pod Security Policy Admission Control Plugin Not Set",
+		"severity": "HIGH",
+		"line": 11,
+        "fileName": "positive1.yaml"
+	}
+]

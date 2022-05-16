@@ -1,0 +1,10 @@
+{
+  "id": "9587c890-0524-40c2-9ce2-663af7c2f063",
+  "queryName": "Service Account Admission Control Plugin Disabled",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "When using kube-apiserver command, the '--disable-admission-plugins' flag should not have 'ServiceAccount' plugin",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
+  "platform": "Kubernetes",
+  "descriptionID": "3649a726"
+}

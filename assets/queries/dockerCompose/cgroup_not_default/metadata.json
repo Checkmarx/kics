@@ -1,0 +1,10 @@
+{
+  "id": "4d9f44c6-2f4a-4317-9bb5-267adbea0232",
+  "queryName": "Cgroup Not Default",
+  "severity": "MEDIUM",
+  "category": "Build Process",
+  "descriptionText": "Control groups restrict the access processes and containers have to system resources such as CPU, RAM, IOPS and network. Not having a cgroup well configured may prove to be a security fault.",
+  "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cgroup_parent",
+  "platform": "DockerCompose",
+  "descriptionID": "b3657456"
+}

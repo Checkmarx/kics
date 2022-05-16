@@ -21,15 +21,17 @@ func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
 
 // Parse parses yaml/yml file and returns it as a Document
 func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, []int, error) {
+	model.NewIgnore.Reset()
 	var documents []model.Document
 	dec := yaml.NewDecoder(bytes.NewReader(fileContent))
 
-	doc := &model.Document{}
+	doc := emptyDocument()
 	for dec.Decode(doc) == nil {
-		if doc != nil {
+		if len(*doc) > 0 {
 			documents = append(documents, *doc)
 		}
-		doc = &model.Document{}
+
+		doc = emptyDocument()
 	}
 
 	if len(documents) == 0 {
@@ -37,7 +39,6 @@ func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, [
 	}
 
 	linesToIgnore := model.NewIgnore.GetLines()
-	model.NewIgnore.Reset()
 
 	return convertKeysToString(addExtraInfo(documents, filePath)), linesToIgnore, nil
 }
@@ -171,4 +172,8 @@ func (p *Parser) GetCommentToken() string {
 // StringifyContent converts original content into string formated version
 func (p *Parser) StringifyContent(content []byte) (string, error) {
 	return string(content), nil
+}
+
+func emptyDocument() *model.Document {
+	return &model.Document{}
 }

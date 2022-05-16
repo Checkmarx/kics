@@ -9,7 +9,7 @@ CxPolicy[result] {
 	count(resource.Value) == 1
 	commands := resource.Value[0]
 
-	commandsSplit = split(commands, "&&")
+	commandsSplit = dockerLib.getCommands(commands)
 
 	some j
 	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install", commandsSplit[j]) == true

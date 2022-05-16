@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "SNS Topic is Publicly Accessible",
+		"severity": "HIGH",
+		"line": 23,
+		"fileName": "positive.yaml"
+	},
+	{
+		"queryName": "SNS Topic is Publicly Accessible",
+		"severity": "HIGH",
+		"line": 50,
+		"fileName": "positive.yaml"
+	}
+]

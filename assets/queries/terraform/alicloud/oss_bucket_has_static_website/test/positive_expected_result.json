@@ -1,0 +1,8 @@
+[
+    {
+      "queryName": "OSS Bucket Has Static Website",
+      "severity": "HIGH",
+      "line": 4,
+      "fileName": "positive1.tf"
+    }
+]

@@ -3,6 +3,6 @@
 		"queryName": "Security Context Deny Admission Control Plugin Not Set",
 		"severity": "MEDIUM",
 		"line": 11,
-        "file": "positive1.yaml"
+        "fileName": "positive1.yaml"
 	}
 ]

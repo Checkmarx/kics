@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  customer:
+    image: whoa/hello
+    restart: on-failure:5
+    networks:
+      - netnet
+    expose:
+     - 8080
+    ports:
+     - 8082:8080
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+        window: 120s
+
+networks:
+  netnet:
+

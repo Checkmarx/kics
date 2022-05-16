@@ -1,0 +1,9 @@
+version: "2.4"
+services:
+  service_name_2:
+    build: ./
+    restart: always
+    pid: "host"
+    entrypoint: node /app/directory.js
+    volumes:
+      - "./directory:/app"

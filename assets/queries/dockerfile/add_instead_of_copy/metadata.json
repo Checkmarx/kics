@@ -1,9 +1,9 @@
 {
   "id": "9513a694-aa0d-41d8-be61-3271e056f36b",
   "queryName": "Add Instead of Copy",
-  "severity": "LOW",
-  "category": "Build Process",
-  "descriptionText": "Should use COPY instead of ADD unless, running a tar file",
+  "severity": "MEDIUM",
+  "category": "Supply-Chain",
+  "descriptionText": "Using ADD to load external installation scripts could lead to an evil web server leveraging this and loading a malicious script.",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#add",
   "platform": "Dockerfile",
   "descriptionID": "0aedd324"

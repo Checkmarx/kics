@@ -29,6 +29,7 @@ spec:
     metadata:
       labels:
         app: nginx2
+        foo: bar
     spec:
       terminationGracePeriodSeconds: 10
       containers:

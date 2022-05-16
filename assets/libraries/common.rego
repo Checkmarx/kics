@@ -338,6 +338,14 @@ find_selector_by_value(filter, str) = rtn {
 get_tag_name_if_exists(resource) = name {
 	name := resource.tags.Name
 } else = name {
+	tag := resource.Properties.Tags[_]
+    tag.Key == "Name"
+	name := tag.Value
+} else = name {
+	tag := resource.Properties.FileSystemTags[_]
+    tag.Key == "Name"
+	name := tag.Value
+} else = name {
 	name := "unknown"
 }
 

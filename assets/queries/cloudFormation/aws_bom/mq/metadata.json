@@ -1,0 +1,11 @@
+{
+  "id": "209189f3-c879-48a7-9703-fbcfa96d0cef",
+  "queryName": "BOM - AWS MQ",
+  "severity": "TRACE",
+  "category": "Bill Of Materials",
+  "descriptionText": "A list of MQ resources found. Amazon MQ is a managed message broker service for Apache ActiveMQ and RabbitMQ that makes it easy to set up and operate message brokers on AWS.",
+  "descriptionUrl": "https://kics.io",
+  "platform": "CloudFormation",
+  "descriptionID": "93a9e162",
+  "cloudProvider": "aws"
+}

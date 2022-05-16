@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "Secure Port Set To Zero",
+		"severity": "HIGH",
+		"line": 11,
+        "fileName": "positive1.yaml"
+	}
+]

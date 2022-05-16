@@ -36,7 +36,7 @@ func NewFileSystemSourceProvider(paths, excludes []string) (*FileSystemSourcePro
 		excludes: ex,
 	}
 	for _, exclude := range excludes {
-		excludePaths, err := getExcludePaths(exclude)
+		excludePaths, err := GetExcludePaths(exclude)
 		if err != nil {
 			return nil, err
 		}
@@ -66,11 +66,13 @@ func (s *FileSystemSourceProvider) AddExcluded(excludePaths []string) error {
 	return nil
 }
 
-func getExcludePaths(pathExpressions string) ([]string, error) {
+// GetExcludePaths gets all the files that should be excluded
+func GetExcludePaths(pathExpressions string) ([]string, error) {
 	if strings.ContainsAny(pathExpressions, "*?[") {
 		info, err := filepath.Glob(pathExpressions)
 		if err != nil {
-			return nil, errors.Wrap(err, "failed to open excluded file")
+			log.Error().Msgf("failed to get exclude path %s: %s", pathExpressions, err)
+			return []string{pathExpressions}, nil
 		}
 		return info, nil
 	}

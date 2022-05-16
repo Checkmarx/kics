@@ -1,0 +1,10 @@
+{
+    "id": "8af7162d-6c98-482f-868e-0d33fb675ca8",
+    "queryName": "Shared Host User Namespace",
+    "severity": "MEDIUM",
+    "category": "Resource Management",
+    "descriptionText": "The host's user namespace should not be shared.",
+    "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#userns_mode",
+    "platform": "DockerCompose",
+    "descriptionID": "b7859ec8"
+}

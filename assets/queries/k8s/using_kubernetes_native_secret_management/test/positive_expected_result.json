@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Using Kubernetes Native Secret Management",
+    "severity": "INFO",
+    "line": 4,
+    "filename": "positive1.yaml"
+  }
+]

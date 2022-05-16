@@ -1,19 +1,19 @@
 [
   {
     "queryName": "Automatic Minor Upgrades Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 58,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 82,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 58,
     "fileName": "positive2.json"
   },
@@ -21,6 +21,6 @@
     "line": 85,
     "fileName": "positive2.json",
     "queryName": "Automatic Minor Upgrades Disabled",
-    "severity": "MEDIUM"
+    "severity": "LOW"
   }
 ]

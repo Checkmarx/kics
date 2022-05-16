@@ -1,0 +1,32 @@
+[
+  {
+    "queryName": "Restart Policy On Failure Not Set To 5",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Restart Policy On Failure Not Set To 5",
+    "severity": "MEDIUM",
+    "line": 17,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Restart Policy On Failure Not Set To 5",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Restart Policy On Failure Not Set To 5",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Restart Policy On Failure Not Set To 5",
+    "severity": "MEDIUM",
+    "line": 17,
+    "filename": "positive4.yaml"
+  }
+]

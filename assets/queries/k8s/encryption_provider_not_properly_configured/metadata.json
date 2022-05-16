@@ -1,0 +1,10 @@
+{
+  "id": "10efce34-5af6-4d83-b414-9e096d5a06a9",
+  "queryName": "Encryption Provider Not Properly Configured",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "The EncryptionConfiguration should be configured to have at least one 'aescbc', 'kms' or 'secretbox' provider",
+  "descriptionUrl": "https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/#understanding-the-encryption-at-rest-configuration",
+  "platform": "Kubernetes",
+  "descriptionID": "c60a5ece"
+}

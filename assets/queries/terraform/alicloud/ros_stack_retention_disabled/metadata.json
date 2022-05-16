@@ -1,0 +1,11 @@
+{
+  "id": "4bb06fa1-2114-4a00-b7b5-6aeab8b896f0",
+  "queryName": "ROS Stack Retention Disabled",
+  "severity": "MEDIUM",
+  "category": "Backup",
+  "descriptionText": "The retain_stacks should be enabled to keep the Stack upon deleting the stack instance from the stack group",
+  "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ros_stack_instance#retain_stacks",
+  "platform": "Terraform",
+  "descriptionID": "7d4885db",
+  "cloudProvider": "alicloud"
+}

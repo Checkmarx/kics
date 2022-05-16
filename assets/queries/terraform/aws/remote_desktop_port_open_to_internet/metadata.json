@@ -1,0 +1,11 @@
+{
+  "id": "151187cb-0efc-481c-babd-ad24e3c9bc22",
+  "queryName": "Remote Desktop Port Open To Internet",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "The Remote Desktop port is open to the internet in a Security Group",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group",
+  "platform": "Terraform",
+  "descriptionID": "aea02d46",
+  "cloudProvider": "aws"
+}

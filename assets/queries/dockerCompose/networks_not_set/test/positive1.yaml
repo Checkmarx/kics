@@ -1,0 +1,14 @@
+version: '2.2'
+
+volumes:
+  front_build:
+
+services:
+  auth:
+    build:
+      context: .
+      dockerfile: docker_config/Dockerfile
+    restart: on-failure
+    pids_limit: 10
+    cpus: 0.25
+    mem_limit: 500M
