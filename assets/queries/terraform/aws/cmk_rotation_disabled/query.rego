@@ -31,7 +31,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_kms_key[%s]", [name]),
-		"issueType": "MissingAttribute",
+        "issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_kms_key[%s].enable_key_rotation is set to false", [name]),
 		"keyActualValue": sprintf("aws_kms_key[%s].enable_key_rotation is true", [name]),
 	}
