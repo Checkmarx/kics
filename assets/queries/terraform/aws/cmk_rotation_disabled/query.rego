@@ -76,6 +76,8 @@ CxPolicy[result] {
 
 customer_master_key_spec_set_to_symmetric(resource) {
      resource.customer_master_key_spec == "SYMMETRIC_DEFAULT"
+} else {
+     not common_lib.valid_key(resource, "customer_master_key_spec")
 }
 
 key_set_to_false(resource) {
