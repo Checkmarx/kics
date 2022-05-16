@@ -10,24 +10,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Go 1.17.x
+      - name: Set up Go 1.18.x
         uses: actions/setup-go@v3
         with:
-          go-version: 1.17.x
+          go-version: 1.18.x
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3.2.0
         with:
-          version: v1.37
+          version: v1.46.1
           args: -c .golangci.yml --timeout 15m
-          skip-go-installation: true
   go-generate:
     name: go-generate
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Go 1.17.x
+      - name: Set up Go 1.18.x
         uses: actions/setup-go@v3
         with:
-          go-version: 1.17.x
+          go-version: 1.18.x
       - name: Check out code
         uses: actions/checkout@v3
         with:
@@ -39,11 +38,11 @@ jobs:
     name: unit-tests
     strategy:
       matrix:
-        go-version: [1.17.x]
+        go-version: [1.18.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - name: Set up Go 1.17.x
+      - name: Set up Go 1.18.x
         uses: actions/setup-go@v3
         with:
           go-version: ${{ matrix.go-version }}

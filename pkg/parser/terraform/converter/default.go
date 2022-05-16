@@ -485,10 +485,10 @@ func createEntryInputVar(path []string, defaultValue string) (cty.Value, error) 
 	closeMap := "}"
 	for idx, key := range path {
 		if idx+1 < len(path) {
-			mapJSON += fmt.Sprintf("\"%s\":{", key)
+			mapJSON += fmt.Sprintf("%q:{", key)
 			closeMap += "}"
 		} else {
-			mapJSON += fmt.Sprintf("\"%s\": \"%s\"", key, defaultValue)
+			mapJSON += fmt.Sprintf("%q: %q", key, defaultValue)
 		}
 	}
 	mapJSON += closeMap
