@@ -5,6 +5,7 @@ import (
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser/utils"
+	"github.com/Checkmarx/kics/pkg/resolver/file"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"
@@ -16,7 +17,9 @@ type Parser struct {
 
 // Resolve - replace or modifies in-memory content before parsing
 func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
-	return &fileContent, nil
+	// Resolve files passed as arguments with file resolver (e.g. file://)
+	res := file.NewResolver(filename, yaml.Unmarshal, yaml.Marshal)
+	return res.Resolve(fileContent), nil
 }
 
 // Parse parses yaml/yml file and returns it as a Document

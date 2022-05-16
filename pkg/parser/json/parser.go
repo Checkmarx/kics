@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/resolver/file"
 	"github.com/mailru/easyjson"
 )
 
@@ -15,7 +16,9 @@ type Parser struct {
 
 // Resolve - replace or modifies in-memory content before parsing
 func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
-	return &fileContent, nil
+	// Resolve files passed as arguments with file resolver (e.g. file://)
+	res := file.NewResolver(filename, json.Unmarshal, json.Marshal)
+	return res.Resolve(fileContent), nil
 }
 
 // Parse parses json file and returns it as a Document
