@@ -29,7 +29,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("module[%s].acl", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'acl' is private",
+		"keyExpectedValue": "'acl' to be private",
 		"keyActualValue": "'acl' is authenticated-read",
 		"searchLine": common_lib.build_search_line(["module", name, "acl"], []),
 	}
@@ -47,7 +47,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_s3_bucket_acl[%s].acl", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_s3_bucket_acl[%s].acl is private", [name]),
+		"keyExpectedValue": sprintf("aws_s3_bucket_acl[%s].acl to be private", [name]),
 		"keyActualValue": sprintf("aws_s3_bucket_acl[%s].acl is authenticated-read", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_acl", name, "acl"], []),
 	}

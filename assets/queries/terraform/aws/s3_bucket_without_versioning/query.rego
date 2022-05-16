@@ -14,7 +14,7 @@ CxPolicy[result] {
         "documentId": input.document[i].id,
         "searchKey": sprintf("aws_s3_bucket[%s]", [bucketName]),
         "issueType": "MissingAttribute",
-        "keyExpectedValue": "'versioning' is set to true",
+        "keyExpectedValue": "'versioning' to be true",
         "keyActualValue": "'versioning' is undefined or null",
         "searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", bucketName], []),
     }
@@ -30,7 +30,7 @@ CxPolicy[result] {
         "documentId": input.document[i].id,
         "searchKey": sprintf("module[%s]", [name]),
         "issueType": "MissingAttribute",
-        "keyExpectedValue": "'versioning' is set to true",
+        "keyExpectedValue": "'versioning' to be true",
         "keyActualValue": "'versioning' is undefined or null",
         "searchLine": common_lib.build_search_line(["module", name], []),
     }
@@ -46,7 +46,7 @@ CxPolicy[result] {
         "documentId": input.document[i].id,
         "searchKey": sprintf("aws_s3_bucket[%s].versioning", [name]),
         "issueType": "MissingAttribute",
-        "keyExpectedValue": "'versioning.enabled' is set to true",
+        "keyExpectedValue": "'versioning.enabled' to be true",
         "keyActualValue": "'versioning.enabled' is undefined or null",
         "searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name, "versioning"], []),
     }
@@ -62,7 +62,7 @@ CxPolicy[result] {
         "documentId": input.document[i].id,
         "searchKey": sprintf("module[%s].versioning", [name]),
         "issueType": "MissingAttribute",
-        "keyExpectedValue": "'versioning.enabled' is set to true",
+        "keyExpectedValue": "'versioning.enabled' to be true",
         "keyActualValue": "'versioning.enabled' is undefined or null",
         "searchLine": common_lib.build_search_line(["module", name, "versioning"], []),
     }
@@ -78,7 +78,7 @@ CxPolicy[result] {
         "documentId": input.document[i].id,
         "searchKey": sprintf("aws_s3_bucket[%s].versioning.enabled", [name]),
         "issueType": "IncorrectValue",
-        "keyExpectedValue": "'versioning.enabled' is set to true",
+        "keyExpectedValue": "'versioning.enabled' to be true",
         "keyActualValue": "'versioning.enabled' is set to false",
         "searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name, "versioning", "enabled"], []),
     }
@@ -94,7 +94,7 @@ CxPolicy[result] {
         "documentId": input.document[i].id,
         "searchKey": sprintf("module[%s].versioning.enabled", [name]),
         "issueType": "IncorrectValue",
-        "keyExpectedValue": "'versioning.enabled' is set to true",
+        "keyExpectedValue": "'versioning.enabled' to be true",
         "keyActualValue": "'versioning.enabled' is set to false",
         "searchLine": common_lib.build_search_line(["module", name, "versioning", "enabled"], []),
     }
@@ -112,7 +112,7 @@ CxPolicy[result] {
         "documentId": input.document[i].id,
         "searchKey": sprintf("aws_s3_bucket_versioning[%s].versioning_configuration.status", [name]),
         "issueType": "IncorrectValue",
-        "keyExpectedValue": "'versioning_configuration.status' is set to 'Enabled'",
+        "keyExpectedValue": "'versioning_configuration.status' to be set to 'Enabled'",
         "keyActualValue": "'versioning_configuration.status' is set to 'Suspended'",
         "searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_versioning", name, "versioning_configuration", "status"], []),
     }

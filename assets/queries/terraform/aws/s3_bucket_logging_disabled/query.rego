@@ -13,7 +13,7 @@ CxPolicy[result] {
         "documentId": input.document[i].id,
         "searchKey": sprintf("aws_s3_bucket[%s]", [bucketName]),
         "issueType": "MissingAttribute",
-        "keyExpectedValue": "'logging' is defined and not null",
+        "keyExpectedValue": "'logging' to be defined and not null",
         "keyActualValue": "'logging' is undefined or null",
         "searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", bucketName], []),
     }
@@ -29,7 +29,7 @@ CxPolicy[result] {
         "documentId": input.document[i].id,
         "searchKey": sprintf("module[%s]", [name]),
         "issueType": "MissingAttribute",
-        "keyExpectedValue": "'logging' is defined and not null",
+        "keyExpectedValue": "'logging' to be defined and not null",
         "keyActualValue": "'logging' is undefined or null",
         "searchLine": common_lib.build_search_line(["module", name], []),
     }
