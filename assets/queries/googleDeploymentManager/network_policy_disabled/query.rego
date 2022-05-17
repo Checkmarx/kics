@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'networkPolicy' to be defined and not null",
@@ -26,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.networkPolicy", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'networkPolicy.enabled' to be defined and not null",
@@ -42,6 +46,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.networkPolicy.enabled", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'networkPolicy.enabled' to be true",
@@ -58,6 +64,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'addonsConfig' to be defined and not null",
@@ -74,6 +82,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.addonsConfig", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'addonsConfig.networkPolicyConfig' to be defined and not null",
@@ -90,6 +100,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.addonsConfig.networkPolicyConfig", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'addonsConfig.networkPolicyConfig.disabled' to be defined and not null",
@@ -106,6 +118,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.addonsConfig.networkPolicyConfig.disabled", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'addonsConfig.networkPolicyConfig.disabled' to be false",

@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'ipAllocationPolicy' to be defined and not null",
@@ -26,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.ipAllocationPolicy", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'ipAllocationPolicy.useIpAliases' to be defined and not null",
@@ -42,6 +46,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.ipAllocationPolicy.useIpAliases", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'ipAllocationPolicy.useIpAliases' to be true",

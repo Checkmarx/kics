@@ -39,6 +39,11 @@ var (
 		"keyActualValue",
 	}
 
+	requiredQueryResultExtraProperties = []string{
+		"resourceType",
+		"resourceName",
+	}
+
 	searchValueAllowedQueriesPath = []string{
 		"../assets/queries/ansible/azure/sensitive_port_is_exposed_to_entire_network",
 		"../assets/queries/cloudFormation/aws/ec2_sensitive_port_is_publicly_exposed",
@@ -196,7 +201,17 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
 			m, ok := v.(map[string]interface{})
 			require.True(t, ok)
 
-			for _, requiredProperty := range requiredQueryResultProperties {
+			platformsWithResourceInfo := []string{"googleDeploymentManager"}
+			requiredProperties := requiredQueryResultProperties
+
+			for i := range platformsWithResourceInfo {
+				if entry.platform == platformsWithResourceInfo[i] {
+					requiredProperties = append(requiredProperties, requiredQueryResultExtraProperties...)
+
+				}
+			}
+
+			for _, requiredProperty := range requiredProperties {
 				_, ok := m[requiredProperty]
 				require.True(t, ok, fmt.Sprintf(
 					"query '%s' doesn't include parameter '%s' in response",
