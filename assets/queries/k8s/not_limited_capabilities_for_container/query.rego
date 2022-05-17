@@ -17,6 +17,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.capabilities.drop", [metadata.name, specInfo.path, types[x], containers[c].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("In metadata.name={{%s}}s.%s.%s.name={{%s}}.securityContext.capabilities.drop, 'ALL' should be listed ", [metadata.name, specInfo.path, types[x], containers[c].name]),

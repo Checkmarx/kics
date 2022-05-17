@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec", [metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'spec.allowedHostPaths' is defined and not null",
@@ -29,6 +31,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.allowedHostPaths", [metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'spec.allowedHostPaths[%d].readOnly' is set to true", [idx]),
@@ -47,6 +51,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.allowedHostPaths.readOnly", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'spec.allowedHostPaths[%d].readOnly' is set to true", [idx]),

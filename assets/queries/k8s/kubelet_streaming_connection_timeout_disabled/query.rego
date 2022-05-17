@@ -16,6 +16,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--streaming-connection-idle-timeout flag not to be 0",
@@ -31,6 +33,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": "unknown",
 		"searchKey": "kind={{KubeletConfiguration}}.streamingConnectionIdleTimeout",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "streamingConnectionIdleTimeout not to be 0s",

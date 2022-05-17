@@ -16,6 +16,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--authorization-mode flag to not have 'AlwaysAllow' mode",
@@ -31,6 +33,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": "unknown",
 		"searchKey": "kind={{KubeletConfiguration}}.authorization.mode",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "authorization.mode attribute should not be 'AlwaysAllow'",

@@ -40,6 +40,8 @@ CxPolicy[result] {
 	common_lib.valid_key(recommendedVersions[document.apiVersion], document.kind)
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("apiVersion={{%s}}", [document.apiVersion]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.apiVersion should be {{%s}}", [metadata.name, recommendedVersions[document.apiVersion][document.kind]]),
