@@ -1,0 +1,11 @@
+{
+  "id": "e52395b4-250b-4c60-81d5-2e58c1d37abc",
+  "queryName": "Default KMS Key Usage",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Ensure that storage is encrypted by KMS on instances that, based on their name, might host a database. ",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html",
+  "platform": "CloudFormation",
+  "descriptionID": "d479130b",
+  "cloudProvider": "aws"
+}
