@@ -20,6 +20,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": children.type,
+		"resourceName": children.name,
 		"searchKey": sprintf("%s.name=%s.properties.value", [common_lib.concat_path(childrenArr[c].path), children.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource '%s' has an 'auditingsettings' resource enabled", [value.name]),
@@ -43,6 +45,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("resource '%s' has an 'auditingsettings' resource enabled", [value.name]),
