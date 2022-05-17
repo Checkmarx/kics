@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": "community.aws.aws_kms",
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{community.aws.aws_kms}}.enabled", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "community.aws.aws_kms.enabled is set to true",
@@ -27,6 +29,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": "community.aws.aws_kms",
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{community.aws.aws_kms}}.pending_window", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "community.aws.aws_kms.pending_window is undefined",

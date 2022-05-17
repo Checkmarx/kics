@@ -156,6 +156,8 @@ type Vulnerability struct {
 	Severity         Severity   `json:"severity"`
 	Line             int        `json:"line"`
 	VulnLines        []CodeLine `json:"vulnLines"`
+	ResourceType     string     `db:"resource_type" json:"resourceType"`
+	ResourceName     string     `db:"resource_name" json:"resourceName"`
 	IssueType        IssueType  `db:"issue_type" json:"issueType"`
 	SearchKey        string     `db:"search_key" json:"searchKey"`
 	SearchLine       int        `db:"search_line" json:"searchLine"`

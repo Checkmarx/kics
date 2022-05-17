@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.publicly_accessible", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "redshift.publicly_accessible is false",

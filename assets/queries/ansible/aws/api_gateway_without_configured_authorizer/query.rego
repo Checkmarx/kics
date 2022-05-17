@@ -18,6 +18,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.%s", [task.name, modules[m], content_info.attribute]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s.%s' has a authorizer set", [modules[m], content_info.attribute]),
@@ -37,6 +39,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.swagger_text", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s.swagger_text' has a authorizer set", [modules[m]]),
@@ -54,6 +58,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' has swagger_file, swagger_text or swagger_dict set", [modules[m]]),
