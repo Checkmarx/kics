@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": k,
 		"searchKey": sprintf("Resources.%s.Properties.Role", [k]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Each AWS Lambda Function has a unique role",

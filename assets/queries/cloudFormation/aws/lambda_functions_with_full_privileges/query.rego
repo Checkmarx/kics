@@ -19,6 +19,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.Policies.PolicyDocument", [role]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.Policies[%s].PolicyDocument does not give admin privileges to Resources.%s ", [role, policy.PolicyName, name]),

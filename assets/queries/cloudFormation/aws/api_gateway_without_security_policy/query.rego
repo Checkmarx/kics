@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.SecurityPolicy", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityPolicy is not defined", [name]),
@@ -29,6 +31,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.SecurityPolicy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityPolicy is %s", [name, tls]),

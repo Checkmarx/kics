@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.Policies", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.Policies' is undefined or empty", [name]),
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.ManagedPoliciesArns", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.ManagedPoliciesArns' is undefined or empty", [name]),

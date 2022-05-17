@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.IsLogging", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.IsLogging' is true", [name]),

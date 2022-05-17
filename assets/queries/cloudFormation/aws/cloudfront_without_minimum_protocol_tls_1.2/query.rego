@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate' is defined", [name]),
@@ -27,6 +29,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion' is TLSv1.2_x", [name]),

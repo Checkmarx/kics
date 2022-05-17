@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.Listeners", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Listeners.%s' is set to 'SSL' or 'HTTPS'", [name, protocol]),

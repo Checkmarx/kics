@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Project.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Project.Properties", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Project.Properties.EncryptionKey' is defined and not null", [name]),

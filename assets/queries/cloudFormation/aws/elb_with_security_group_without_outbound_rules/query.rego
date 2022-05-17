@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties%s", [securityGroup, value.path]),
 		"issueType": value.issue,
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.SecurityGroupEgress' is %s", [securityGroup, value.expected]),

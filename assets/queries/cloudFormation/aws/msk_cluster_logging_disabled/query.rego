@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resources.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.LoggingInfo is defined", [name]),
@@ -31,6 +33,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.LoggingInfo.BrokerLogs", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.LoggingInfo.BrokerLogs should have at least one of the following keys: 'CloudWatchLogs', 'Firehose' or 'S3'", [name]),
@@ -49,6 +53,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.LoggingInfo.BrokerLogs.%s.Enabled", [name, log]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.LoggingInfo.BrokerLogs is enabled", [name]),

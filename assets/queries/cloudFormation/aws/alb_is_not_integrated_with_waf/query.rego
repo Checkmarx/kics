@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'Resources.%s' does not have an 'internal' scheme and has a 'WebACLAssociation' associated", [name]),

@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.Resources[webAclName].Type,
+		"resourceName": webAclName,
 		"searchKey": sprintf("Resources.%s.Properties.DefaultAction.Type", [webAclName]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.DefaultAction.Type should not be ALLOW", [webAclName]),

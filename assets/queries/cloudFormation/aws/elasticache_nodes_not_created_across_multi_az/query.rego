@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.AZMode", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.AZMode is 'cross-az'", [name]),
@@ -30,6 +32,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.AZMode is defined and is 'cross-az'", [name]),

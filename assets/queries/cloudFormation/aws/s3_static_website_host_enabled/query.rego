@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.PublicAccessBlockConfiguration", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.PublicAccessBlockConfiguration' is set and configuration has value true", [name]),
@@ -24,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.WebsiteConfiguration' and 'Resources.%s.Properties.AcessControl' are undefined", [name]),

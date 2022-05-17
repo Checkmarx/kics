@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'Resources.%s.IsPrivate' is set", [name]),
@@ -27,6 +29,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.IsPrivate", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.IsPrivate' is set to true", [name]),

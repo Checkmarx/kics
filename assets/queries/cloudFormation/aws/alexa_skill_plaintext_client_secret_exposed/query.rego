@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.AuthenticationConfiguration.ClientSecret", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.ClientSecret' should be a string", [name]),
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.AuthenticationConfiguration.ClientSecret", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.ClientSecret' should start with '{{resolve:secretsmanager:' or '{{resolve:ssm-secure:'", [name]),

@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resources.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupEgress[%d]", [name, j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupEgress[%d] must have different IpProtocol from 'ALL' and CidrIp from '0.0.0.0/0'.", [name, j]),

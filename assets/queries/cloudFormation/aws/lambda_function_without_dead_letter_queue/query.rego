@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.DeadLetterConfig' is defined and not null", [name]),
@@ -29,6 +31,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.DeadLetterConfig", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.DeadLetterConfig.TargetArn' is defined and not null", [name]),

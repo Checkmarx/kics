@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": resources[resource].Type,
+		"resourceName": bucketName,
 		"searchKey": sprintf("Resources.%s.Properties", [bucketName]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.BucketEncryption.ServerSideEncryptionConfiguration is defined and not empty", [bucketName]),

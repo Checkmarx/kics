@@ -19,6 +19,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": key,
 		"searchKey": sprintf("Parameters.%s.Default", [paramName]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Parameters.%s.Default is defined", [paramName]),
@@ -43,6 +45,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": key,
 		"searchKey": sprintf("Resources.%s.Properties.AccessToken", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.AccessToken must not be in plain text string", [key]),
@@ -66,6 +70,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": key,
 		"searchKey": sprintf("Resources.%s.Properties.AccessToken", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.AccessToken must not be in plain text string", [key]),

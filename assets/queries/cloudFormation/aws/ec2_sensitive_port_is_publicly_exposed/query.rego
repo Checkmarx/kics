@@ -67,6 +67,8 @@ CxPolicy[result] {
 	#############	Result
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "AWS::EC2::SecurityGroup",
+		"resourceName": secGroup.name,
 		"searchKey": sprintf("Resources.%s.SecurityGroupIngress", [secGroup.name]),
 		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
 		"issueType": "IncorrectValue",

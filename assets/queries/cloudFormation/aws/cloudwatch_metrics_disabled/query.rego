@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": key,
 		"searchKey": sprintf("Resources.%s.Properties", [key]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.MethodSettings should be defined", [key]),
@@ -32,6 +34,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": key,
 		"searchKey": sprintf("Resources.%s.Properties.MethodSettings", [key]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.MethodSettings[%d].MetricsEnabled should be set to true", [key, idx]),
@@ -51,6 +55,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": key,
 		"searchKey": sprintf("Resources.%s.Properties.MethodSettings", [key]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.MethodSettings[%d].MetricsEnabled should be set to true", [key, idx]),

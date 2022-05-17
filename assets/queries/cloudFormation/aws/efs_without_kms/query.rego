@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("EFS resource '%s' should have encryption enabled using KMS CMK customer-managed keys instead of AWS managed-keys", [name]),

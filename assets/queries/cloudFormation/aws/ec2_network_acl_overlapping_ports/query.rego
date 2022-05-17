@@ -23,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": prop1.Type,
+		"resourceName": name1,
 		"searchKey": sprintf("Resources.%s.Properties.PortRange", [name1]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.PortRange should be configured with a different unused port range to avoid overlapping'", [name1]),

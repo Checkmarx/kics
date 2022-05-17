@@ -11,6 +11,8 @@ CxPolicy[result] {
 
     result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'Resources.Properties should contain Groups",
@@ -26,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.Groups", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'Resources.Properties.Groups' should contain groups",

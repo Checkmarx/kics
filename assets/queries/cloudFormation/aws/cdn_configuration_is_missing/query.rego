@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig.Enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.Enabled is 'true'", [name]),
@@ -29,6 +31,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig contains an 'Origins' object", [name]),

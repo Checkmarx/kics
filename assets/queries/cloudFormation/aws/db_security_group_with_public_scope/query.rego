@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": res.Type,
+		"resourceName": j,
 		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress", [j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.SecurityGroupIngress' should not be '0.0.0.0/0'.", [j]),
@@ -33,6 +35,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": res.Type,
+		"resourceName": j,
 		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress", [j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.SecurityGroupIngress' should not be '0.0.0.0/0'.", [j]),
@@ -52,6 +56,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": res.Type,
+		"resourceName": j,
 		"searchKey": sprintf("Resources.%s.Properties.DBSecurityGroupIngress", [j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.DBSecurityGroupIngress' should not be '0.0.0.0/0'.", [j]),

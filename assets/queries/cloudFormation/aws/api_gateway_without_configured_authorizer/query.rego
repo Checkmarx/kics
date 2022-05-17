@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "API Gateway REST API is associated with an API Gateway Authorizer",

@@ -25,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[indexBucket].id,
+		"resourceType": resourceBucket.Type,
+		"resourceName": nameBucket,
 		"searchKey": sprintf("Resources.%s.Properties.PublicAccessBlockConfiguration.%s", [nameBucket, targets[t]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.Properties.PublicAccessBlockConfiguration.%s' is set to true", [targets[t]]),

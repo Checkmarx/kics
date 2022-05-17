@@ -21,6 +21,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.DBSubnetGroupName", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "RDS is not running in a public subnet",

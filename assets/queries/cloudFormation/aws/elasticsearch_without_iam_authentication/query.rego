@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.AccessPolicies.Statement", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Elasticsearch Domain ensure IAM Authentication",

@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": key,
 		"searchKey": sprintf("Resources.%s.Properties.Encrypted", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("EFS resource '%s' should have encryption enabled", [key]),

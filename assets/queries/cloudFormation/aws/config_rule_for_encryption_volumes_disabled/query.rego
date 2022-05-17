@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+        "resourceType": firstRule.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "There is a ConfigRule for encrypted volumes.",

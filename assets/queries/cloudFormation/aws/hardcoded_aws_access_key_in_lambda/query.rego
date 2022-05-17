@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": key,
 		"searchKey": sprintf("Resources.%s.Properties.Environment.Variables", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.Environment.Variables doesn't contain access key", [key]),

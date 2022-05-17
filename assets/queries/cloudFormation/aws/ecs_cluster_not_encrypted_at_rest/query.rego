@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": elem.Type,
+		"resourceName": key,
 		"searchKey": sprintf("Resources.%s.Properties.Volumes", [taskdefinitionkey]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption should be enabled", [taskdefinitionkey, j]),
@@ -32,6 +34,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": elem.Type,
+		"resourceName": key,
 		"searchKey": sprintf("Resources.%s", [taskdefinitionkey]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s should be defined", [taskdefinitionkey]),

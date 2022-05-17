@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": deployment.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.StageDescription", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.StageDescription.CacheDataEncrypted' is defined and not null", [name]),
@@ -31,6 +33,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": deployment.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.StageDescription.CacheDataEncrypted", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.StageDescription.CacheDataEncrypted' is set to true", [name]),

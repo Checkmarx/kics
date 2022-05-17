@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": ecc.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.Engine", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.Engine is 'memcached'", [name]),

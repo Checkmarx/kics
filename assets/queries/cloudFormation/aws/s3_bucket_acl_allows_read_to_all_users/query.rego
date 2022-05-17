@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.AccessControl", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "S3 bucket should not have a public readable ACL",

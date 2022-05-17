@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.MinimumCompressionSize", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Resources.%s.Properties.MinimumCompressionSize to be greater than -1 and smaller than 10485760",
@@ -30,6 +32,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.MinimumCompressionSize", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Resources.%s.Properties.MinimumCompressionSize to be greater than -1 and smaller than 10485760",
@@ -48,6 +52,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.MinimumCompressionSize to be defined", [name]),

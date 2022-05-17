@@ -24,6 +24,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": j,
 		"searchKey": sprintf("Resources.%s", [subnetName]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s is a private subnet", [subnetName]),

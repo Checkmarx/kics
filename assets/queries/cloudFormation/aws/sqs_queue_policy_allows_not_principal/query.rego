@@ -17,6 +17,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.Resources[queuePolicyName],
+		"resourceName": queuePolicyName,
 		"searchKey": sprintf("Resources.%s.Properties.PolicyDocument", [queuePolicyName]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement.NotPrincipal should never be used when Effect=Allow", [queuePolicyName]),

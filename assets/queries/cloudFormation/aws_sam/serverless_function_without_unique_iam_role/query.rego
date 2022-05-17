@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": k,
 		"searchKey": sprintf("Resources.%s.Properties.Role", [k]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resource.%s.Properties.Role is only assigned to the function in question", [k]),

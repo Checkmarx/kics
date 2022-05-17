@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resources.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("None of the Resources.%s.Properties.SecurityGroupIngress has port %d", [name, port]),

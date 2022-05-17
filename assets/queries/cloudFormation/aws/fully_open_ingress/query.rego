@@ -28,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": doc.Resources[k].Type,
+		"resourceName": k,
 		"searchKey": sprintf("Resources.%s.Properties.CidrIp", [k]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resource name '%s' of type '%s' should not accept ingress connections from all IPv4 adresses and to all available ports", [

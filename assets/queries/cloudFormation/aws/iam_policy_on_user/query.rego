@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.Resources[policyName].Type,
+		"resourceName": policyName,
 		"searchKey": sprintf("Resources.%s.Properties.Users", [policyName]),
 		"issueType": "IncorrectValue", #"MissingAttribute" / "RedundantAttribute"
 		"keyExpectedValue": sprintf("Resources.%s is assigned to a set of users", [policyName]),

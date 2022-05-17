@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.Policies.Users", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'Resources.Properties.Policies.Users should be replaced by Groups",

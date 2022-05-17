@@ -17,6 +17,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.Resources[queuePolicyName].Type,
+		"resourceName": queuePolicyName,
 		"searchKey": sprintf("Resources.%s.Properties.PolicyDocument", [queuePolicyName]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement.Principal should not have wildcards when Effect=Allow and Action contains one of [SQS:AddPermission, SQS:CreateQueue, SQS:DeleteQueue, SQS:RemovePermission, SQS:TagQueue, SQS:UnTagQueue]", [queuePolicyName]),

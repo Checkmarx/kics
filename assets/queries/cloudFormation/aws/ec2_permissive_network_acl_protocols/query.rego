@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.Protocol", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.Protocol' should be hould be either 6 (for TCP), 17 (for UDP), 1 (for ICMP), or 58 (for ICMPv6, which must include an IPv6 CIDR block, ICMP type, and code)", [name]),

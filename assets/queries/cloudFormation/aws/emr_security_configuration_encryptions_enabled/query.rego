@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": key,
 		"searchKey": sprintf("Resources.%s.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption should be true", [key]),
@@ -29,6 +31,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": key,
 		"searchKey": sprintf("Resources.%s.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption should be true", [key]),
@@ -46,6 +50,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": key,
 		"searchKey": sprintf("Resources.%s.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption should be true", [key]),
@@ -64,6 +70,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": key,
 		"searchKey": sprintf("Resources.%s.Properties.SecurityConfiguration", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.SecurityConfiguration.EncryptionConfiguration must be defined", [key]),
@@ -81,6 +89,8 @@ CxPolicy[result] {
 	not common_lib.valid_key(localDiskEncryptionConfiguration, "EncryptionKeyProviderType")
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": key,
 		"searchKey": sprintf("Resources.%s.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EncryptionKeyProviderType must be defined", [key]),

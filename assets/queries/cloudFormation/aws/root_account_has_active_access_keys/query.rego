@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": accessKey.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.UserName", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.UserName' is not asssociated to root account.", [name]),

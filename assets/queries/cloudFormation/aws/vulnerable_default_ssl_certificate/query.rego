@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig.CloudfrontDefaultCertificate", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.CloudfrontDefaultCertificate is 'false' or not defined.", [name]),
@@ -32,6 +34,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.%s is defined", [name, attr[a]]),

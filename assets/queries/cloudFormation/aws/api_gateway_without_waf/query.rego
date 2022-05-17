@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.StageName", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "API Gateway Stage is associated with a Web Application Firewall",

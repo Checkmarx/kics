@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resources.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.EnableKeyRotation", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.EnableKeyRotation is not 'true'", [name]),
@@ -25,6 +27,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resources.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.EnableKeyRotation", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.EnableKeyRotation is defined", [name]),

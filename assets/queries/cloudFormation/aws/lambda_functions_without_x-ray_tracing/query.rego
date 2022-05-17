@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.TracingConfig.Mode", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "TracingConfig.Mode is set to 'Active'",
@@ -27,6 +29,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Property 'TracingConfig' is defined",

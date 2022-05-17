@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": name,
 		"searchKey": sprintf("Resources.%s.Properties.CidrBlock", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Traffic denial is effective (Action is 'Deny' when CidrBlock is '0.0.0.0/0')", [name]),
