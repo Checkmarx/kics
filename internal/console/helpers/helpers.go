@@ -164,33 +164,73 @@ func ListReportFormats() []string {
 }
 
 // GetNumCPU return the number of cpus available
-func GetNumCPU() (float32, error) {
+func GetNumCPU() float32 {
 	// Check if application is running inside docker
 	if _, err := os.Stat("/.dockerenv"); err == nil {
-		f, err := os.Open("/sys/fs/cgroup/cpu/cpu.cfs_quota_us")
+		if numCPU, err := getCPUFromQuotaUS(); err == nil {
+			return numCPU
+		}
+		if numCPU, err := getCPUFromCPUMax(); err == nil {
+			return numCPU
+		}
+	}
+
+	return float32(runtime.NumCPU())
+}
+
+func getCPUFromQuotaUS() (float32, error) {
+	f, err := os.Open("/sys/fs/cgroup/cpu/cpu.cfs_quota_us")
+	if err != nil {
+		return -1, err
+	}
+
+	defer func() {
+		if err := f.Close(); err != nil {
+			log.Err(err).Msg("failed to close '/sys/fs/cgroup/cpu/cpu.cfs_quota_us'")
+		}
+	}()
+
+	scanner := bufio.NewScanner(f)
+	if scanner.Scan() {
+		text := scanner.Text()
+		cpus, err := strconv.Atoi(text)
 		if err != nil {
-			return -1, err
+			return float32(cpus) / divisor, err
 		}
 
-		defer func() {
-			if err := f.Close(); err != nil {
-				log.Err(err).Msg("failed to close '/sys/fs/cgroup/cpu/cpu.cfs_quota_us'")
-			}
-		}()
+		if cpus != -1 {
+			return float32(cpus) / divisor, nil
+		}
 
-		scanner := bufio.NewScanner(f)
-		if scanner.Scan() {
-			text := scanner.Text()
-			cpus, err := strconv.Atoi(text)
-			if err != nil {
-				return float32(cpus) / divisor, err
-			}
+		return float32(runtime.NumCPU()), nil
+	}
 
-			if cpus != -1 {
-				return float32(cpus) / divisor, nil
-			}
+	return float32(runtime.NumCPU()), nil
+}
 
-			return float32(runtime.NumCPU()), nil
+func getCPUFromCPUMax() (float32, error) {
+	f, err := os.Open("/sys/fs/cgroup/cpu.max")
+	if err != nil {
+		return -1, err
+	}
+
+	defer func() {
+		if err := f.Close(); err != nil {
+			log.Err(err).Msg("failed to close '/sys/fs/cgroup/cpu.max'")
+		}
+	}()
+
+	scanner := bufio.NewScanner(f)
+	if scanner.Scan() {
+		text := scanner.Text()
+		stringCpus := strings.Split(text, " ")[0]
+		cpus, err := strconv.Atoi(stringCpus)
+		if err != nil {
+			return float32(cpus) / divisor, err
+		}
+
+		if cpus != -1 {
+			return float32(cpus) / divisor, nil
 		}
 
 		return float32(runtime.NumCPU()), nil
