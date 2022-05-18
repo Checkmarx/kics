@@ -20,6 +20,7 @@ type kindParser interface {
 	Parse(filePath string, fileContent []byte) ([]model.Document, []int, error)
 	Resolve(fileContent []byte, filename string) (*[]byte, error)
 	StringifyContent(content []byte) (string, error)
+	GetResolvedFiles() map[string]*[]byte
 }
 
 // Builder is a representation of parsers that will be construct
@@ -76,11 +77,12 @@ type Parser struct {
 
 // ParsedDocument is a struct containing data retrieved from parsing
 type ParsedDocument struct {
-	Docs        []model.Document
-	Kind        model.FileKind
-	Content     string
-	IgnoreLines []int
-	CountLines  int
+	Docs          []model.Document
+	Kind          model.FileKind
+	Content       string
+	IgnoreLines   []int
+	CountLines    int
+	ResolvedFiles map[string]*[]byte
 }
 
 // CommentsCommands gets commands on comments in the file beginning, before the code starts
@@ -136,11 +138,12 @@ func (c *Parser) Parse(filePath string, fileContent []byte) (ParsedDocument, err
 		}
 
 		return ParsedDocument{
-			Docs:        obj,
-			Kind:        c.parsers.GetKind(),
-			Content:     cont,
-			IgnoreLines: igLines,
-			CountLines:  bytes.Count(*resolved, []byte{'\n'}) + 1,
+			Docs:          obj,
+			Kind:          c.parsers.GetKind(),
+			Content:       cont,
+			IgnoreLines:   igLines,
+			CountLines:    bytes.Count(*resolved, []byte{'\n'}) + 1,
+			ResolvedFiles: c.parsers.GetResolvedFiles(),
 		}, nil
 	}
 	return ParsedDocument{

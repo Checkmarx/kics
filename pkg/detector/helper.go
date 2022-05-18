@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	nameRegex       = regexp.MustCompile(`^([A-Za-z0-9-_]+)\[([A-Za-z0-9-_{}]+)]$`)
+	nameRegex       = regexp.MustCompile(`^([A-Za-z\d-_]+)\[([A-Za-z\d-_{}]+)]$`)
 	nameRegexDocker = regexp.MustCompile(`{{(.*?)}}`)
 )
 
@@ -21,6 +21,13 @@ const (
 	namePartsLength  = 3
 	valuePartsLength = 2
 )
+
+type DefaultDetectLineResponse struct {
+	CurrentLine     int
+	IsBreak         bool
+	FoundAtLeastOne bool
+	Lines           []string
+}
 
 // GetBracketValues gets values inside "{{ }}" ignoring any "{{" or "}}" inside
 func GetBracketValues(expr string, list [][]string, restOfString string) [][]string {
@@ -88,7 +95,7 @@ func getKeyWithCurlyBrackets(key string, extractedString [][]string, parts []str
 		for idx, key := range parts {
 			if extractedPart[0] == key {
 				switch idx {
-				case (len(parts) - 2):
+				case len(parts) - 2:
 					i, err := strconv.Atoi(extractedPart[1])
 					if err != nil {
 						log.Error().Msgf("failed to extract curly brackets substring")
@@ -122,14 +129,14 @@ func getKeyWithCurlyBrackets(key string, extractedString [][]string, parts []str
 	return substr1, substr2
 }
 
-func generateSubstr(substr string, parts []string, leng int) string {
+func generateSubstr(substr string, parts []string, length int) string {
 	if substr == "" {
-		substr = parts[len(parts)-leng]
+		substr = parts[len(parts)-length]
 	}
 	return substr
 }
 
-// GetAdjacentVulnLines is used to get the lines adjecent to the line that contains the vulnerability
+// GetAdjacentVulnLines is used to get the lines adjacent to the line that contains the vulnerability
 // adj is the amount of lines wanted
 func GetAdjacentVulnLines(idx, adj int, lines []string) []model.CodeLine {
 	var endPos int
@@ -162,7 +169,7 @@ func GetAdjacentVulnLines(idx, adj int, lines []string) []model.CodeLine {
 		// case vulnerability is the last line of the file
 		return createVulnLines(startPos+1, lines[len(lines)-adj:])
 	default:
-		// case vulnerability is in the midle of the file
+		// case vulnerability is in the middle of the file
 		return createVulnLines(startPos+1, lines[startPos:endPos])
 	}
 }
@@ -240,9 +247,9 @@ func removeExtras(result string, start, end int) string {
 	return result[start+1 : end]
 }
 
-// DetectCurrentLine uses levenshtein distance to find the most acurate line for the vulnerability
+// DetectCurrentLine uses levenshtein distance to find the most accurate line for the vulnerability
 func DetectCurrentLine(lines []string, str1, str2 string,
-	curLine int, foundOne bool) (foundRes bool, lineRes int, breakRes bool) {
+	curLine int, foundOne bool, resolvedFiles map[string][]string) DefaultDetectLineResponse {
 	distances := make(map[int]int)
 	for i := curLine; i < len(lines); i++ {
 		if str1 != "" && str2 != "" {
@@ -254,6 +261,11 @@ func DetectCurrentLine(lines []string, str1, str2 string,
 				}
 			}
 		} else if str1 != "" {
+			resFile := checkResolvedFile(lines[i], str1, str2, resolvedFiles)
+			if resFile.FoundAtLeastOne {
+				// looking at resolved file
+				return resFile
+			}
 			if strings.Contains(lines[i], str1) {
 				distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(lines[i], str1, false), str1)
 			}
@@ -261,8 +273,31 @@ func DetectCurrentLine(lines []string, str1, str2 string,
 	}
 
 	if len(distances) == 0 {
-		return foundOne, curLine, true
+		return DefaultDetectLineResponse{
+			FoundAtLeastOne: foundOne,
+			CurrentLine:     curLine,
+			IsBreak:         true,
+			Lines:           lines,
+		}
 	}
 
-	return true, SelectLineWithMinimumDistance(distances, curLine), false
+	return DefaultDetectLineResponse{
+		CurrentLine:     SelectLineWithMinimumDistance(distances, curLine),
+		IsBreak:         false,
+		FoundAtLeastOne: true,
+		Lines:           lines,
+	}
+}
+
+func checkResolvedFile(line, str1, st2 string, resolvedFiles map[string][]string) DefaultDetectLineResponse {
+	for key, content := range resolvedFiles {
+		if strings.Contains(line, key) {
+			return DetectCurrentLine(content, str1, st2, 0, false, resolvedFiles)
+		}
+	}
+	return DefaultDetectLineResponse{
+		CurrentLine:     0,
+		IsBreak:         false,
+		FoundAtLeastOne: false,
+	}
 }

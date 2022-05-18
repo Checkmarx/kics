@@ -155,3 +155,7 @@ func (p *Parser) GetCommentToken() string {
 func (p *Parser) StringifyContent(content []byte) (string, error) {
 	return string(content), nil
 }
+
+func (p *Parser) GetResolvedFiles() map[string]*[]byte {
+	return make(map[string]*[]byte)
+}

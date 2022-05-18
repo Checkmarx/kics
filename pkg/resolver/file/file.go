@@ -8,33 +8,32 @@ import (
 
 // Resolver - replace or modifies in-memory content before parsing
 type Resolver struct {
-	unmarshler func(fileContent []byte, v interface{}) error
-	marshler   func(v interface{}) ([]byte, error)
-	filepath   string
+	unmarshler    func(fileContent []byte, v any) error
+	marshler      func(v any) ([]byte, error)
+	ResolvedFiles map[string]*[]byte
 }
 
 // NewResolver returns a new Resolver
 func NewResolver(
-	filepath string,
-	unmarshler func(fileContent []byte, v interface{}) error,
-	marshler func(v interface{}) ([]byte, error)) *Resolver {
+	unmarshler func(fileContent []byte, v any) error,
+	marshler func(v any) ([]byte, error)) *Resolver {
 	return &Resolver{
-		unmarshler: unmarshler,
-		marshler:   marshler,
-		filepath:   filepath,
+		unmarshler:    unmarshler,
+		marshler:      marshler,
+		ResolvedFiles: make(map[string]*[]byte),
 	}
 }
 
 // Resolve - replace or modifies in-memory content before parsing
-func (r *Resolver) Resolve(fileContent []byte) *[]byte {
-	var obj interface{}
+func (r *Resolver) Resolve(fileContent []byte, path string) *[]byte {
+	var obj any
 	err := r.unmarshler(fileContent, &obj)
 	if err != nil {
 		return &fileContent
 	}
 
 	// resolve the paths
-	obj = r.walk(&obj)
+	obj, _ = r.walk(obj, path)
 
 	b, err := r.marshler(obj)
 	if err != nil {
@@ -44,40 +43,46 @@ func (r *Resolver) Resolve(fileContent []byte) *[]byte {
 	return &b
 }
 
-func (r *Resolver) walk(value interface{}) interface{} {
+func (r *Resolver) walk(value any, path string) (any, bool) {
 	// go over the value and replace paths with the real content
 	switch typedValue := value.(type) {
 	case string:
-		return r.resolvePath(typedValue)
-	case []interface{}:
+		return r.resolvePath(typedValue, path)
+	case []any:
 		for i, v := range typedValue {
-			typedValue[i] = r.walk(v)
+			typedValue[i], _ = r.walk(v, path)
 		}
-		return typedValue
-	case map[string]interface{}:
-		for k, v := range typedValue {
-			typedValue[k] = r.walk(v)
-		}
-		return typedValue
-	case interface{}:
-		return typedValue
+		return typedValue, false
+	case map[string]any:
+		return r.handleMap(typedValue, path)
+	default:
+		return value, false
 	}
+}
 
-	return value
+func (r *Resolver) handleMap(value map[string]interface{}, path string) (any, bool) {
+	for k, v := range value {
+		val, res := r.walk(v, path)
+		if res {
+			return val, false
+		}
+		value[k] = val
+	}
+	return value, false
 }
 
 // isPath returns true if the value is a valid path
-func (r *Resolver) resolvePath(value string) interface{} {
-	path := filepath.Join(filepath.Dir(r.filepath), value)
+func (r *Resolver) resolvePath(value string, filePath string) (any, bool) {
+	path := filepath.Join(filepath.Dir(filePath), value)
 	_, err := os.Stat(path)
 	if err != nil {
-		return value
+		return value, false
 	}
 
 	// open the file with the content to replace
 	file, err := os.Open(path)
 	if err != nil {
-		return value
+		return value, false
 	}
 
 	defer file.Close()
@@ -85,15 +90,19 @@ func (r *Resolver) resolvePath(value string) interface{} {
 	// read the content
 	fileContent, err := ioutil.ReadAll(file)
 	if err != nil {
-		return value
+		return value, false
 	}
+
+	resolvedFile := r.Resolve(fileContent, path)
 
 	// parse the content
-	var obj interface{}
-	err = r.unmarshler(fileContent, &obj)
+	var obj any
+	err = r.unmarshler(*resolvedFile, &obj)
 	if err != nil {
-		return value
+		return value, false
 	}
 
-	return obj
+	r.ResolvedFiles[value] = resolvedFile
+
+	return obj, true
 }

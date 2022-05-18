@@ -51,7 +51,7 @@ const (
 )
 
 // Resolve - replace or modifies in-memory content before parsing
-func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
+func (p *Parser) Resolve(fileContent []byte, _ string) (*[]byte, error) {
 	return &fileContent, nil
 }
 
@@ -216,4 +216,8 @@ func (p *Parser) GetCommentToken() string {
 // StringifyContent converts original content into string formated version
 func (p *Parser) StringifyContent(content []byte) (string, error) {
 	return string(content), nil
+}
+
+func (p *Parser) GetResolvedFiles() map[string]*[]byte {
+	return make(map[string]*[]byte)
 }

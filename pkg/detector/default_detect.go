@@ -17,11 +17,12 @@ type defaultDetectLine struct {
 
 // DetectLine searches vulnerability line if kindDetectLine is not in detectors
 func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string,
-	logWithFields *zerolog.Logger, outputLines int) model.VulnerabilityLines {
+	_ *zerolog.Logger, outputLines int) model.VulnerabilityLines {
 	lines := d.SplitLines(file.OriginalData)
-	var isBreak bool
+	resFiles := d.prepareResolvedFiles(file.ResolvedFiles)
 	foundAtLeastOne := false
 	currentLine := 0
+	adjLines := make([]string, 0)
 	var extractedString [][]string
 	extractedString = GetBracketValues(searchKey, extractedString, "")
 	sanitizedSubstring := searchKey
@@ -32,9 +33,12 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 	for _, key := range strings.Split(sanitizedSubstring, ".") {
 		substr1, substr2 := GenerateSubstrings(key, extractedString)
 
-		foundAtLeastOne, currentLine, isBreak = DetectCurrentLine(lines, substr1, substr2, currentLine, foundAtLeastOne)
+		response := DetectCurrentLine(lines, substr1, substr2, currentLine, foundAtLeastOne, resFiles)
+		currentLine = response.CurrentLine
+		foundAtLeastOne = response.FoundAtLeastOne
+		adjLines = response.Lines
 
-		if isBreak {
+		if response.IsBreak {
 			break
 		}
 	}
@@ -42,7 +46,7 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 	if foundAtLeastOne {
 		return model.VulnerabilityLines{
 			Line:      currentLine + 1,
-			VulnLines: GetAdjacentVulnLines(currentLine, outputLines, lines),
+			VulnLines: GetAdjacentVulnLines(currentLine, outputLines, adjLines),
 		}
 	}
 
@@ -55,4 +59,12 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 func (d defaultDetectLine) SplitLines(content string) []string {
 	text := strings.ReplaceAll(content, "\r", "")
 	return strings.Split(text, "\n")
+}
+
+func (d defaultDetectLine) prepareResolvedFiles(resFiles map[string]*[]byte) map[string][]string {
+	resolvedFiles := make(map[string][]string)
+	for file, content := range resFiles {
+		resolvedFiles[file] = d.SplitLines(string(*content))
+	}
+	return resolvedFiles
 }

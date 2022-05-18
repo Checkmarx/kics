@@ -13,13 +13,16 @@ import (
 
 // Parser defines a parser type
 type Parser struct {
+	resolvedFiles map[string]*[]byte
 }
 
 // Resolve - replace or modifies in-memory content before parsing
 func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
 	// Resolve files passed as arguments with file resolver (e.g. file://)
-	res := file.NewResolver(filename, yaml.Unmarshal, yaml.Marshal)
-	return res.Resolve(fileContent), nil
+	res := file.NewResolver(yaml.Unmarshal, yaml.Marshal)
+	resolved := res.Resolve(fileContent, filename)
+	p.resolvedFiles = res.ResolvedFiles
+	return resolved, nil
 }
 
 // Parse parses yaml/yml file and returns it as a Document
@@ -179,4 +182,8 @@ func (p *Parser) StringifyContent(content []byte) (string, error) {
 
 func emptyDocument() *model.Document {
 	return &model.Document{}
+}
+
+func (p *Parser) GetResolvedFiles() map[string]*[]byte {
+	return p.resolvedFiles
 }

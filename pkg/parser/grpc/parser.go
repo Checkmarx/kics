@@ -68,3 +68,7 @@ func (p *Parser) StringifyContent(content []byte) (string, error) {
 func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
 	return &fileContent, nil
 }
+
+func (p *Parser) GetResolvedFiles() map[string]*[]byte {
+	return make(map[string]*[]byte)
+}

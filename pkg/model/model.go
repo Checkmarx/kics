@@ -124,6 +124,7 @@ type FileMetadata struct {
 	IDInfo           map[int]interface{}
 	Commands         CommentsCommands
 	LinesIgnore      []int
+	ResolvedFiles    map[string]*[]byte
 }
 
 // QueryMetadata is a representation of general information about a query
