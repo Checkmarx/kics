@@ -197,8 +197,9 @@ func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int 
 // ExtractLineFragment will prepare substr for line detection
 func ExtractLineFragment(line, substr string, key bool) string {
 	// If detecting line by keys only
-	if key {
-		return line[:strings.Index(line, ":")]
+	idx := strings.Index(line, ":")
+	if key && idx >= 0 {
+		return line[:idx]
 	}
 	start := strings.Index(line, substr)
 	end := start + len(substr)
