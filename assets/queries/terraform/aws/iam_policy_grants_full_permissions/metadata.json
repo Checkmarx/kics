@@ -1,7 +1,7 @@
 {
   "id": "575a2155-6af1-4026-b1af-d5bc8fe2a904",
   "queryName": "IAM Policy Grants Full Permissions",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "IAM policies allow all ('*') in a statement action",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy",

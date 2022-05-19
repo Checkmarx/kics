@@ -1,7 +1,7 @@
 {
   "id": "f83121ea-03da-434f-9277-9cd247ab3047",
   "queryName": "VPC FlowLogs Disabled",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Observability",
   "descriptionText": "Every VPC resource should have an associated Flow Log",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc",

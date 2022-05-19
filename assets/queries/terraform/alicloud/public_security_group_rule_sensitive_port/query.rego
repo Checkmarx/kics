@@ -6,6 +6,7 @@ import data.generic.terraform as terraform_lib
 CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_security_group_rule[name]
+	resource.type == "ingress"
 	resource.cidr_ip == "0.0.0.0/0"
 	isTCPorUDP(resource.ip_protocol)
 	portContent := common_lib.tcpPortsMap[port]

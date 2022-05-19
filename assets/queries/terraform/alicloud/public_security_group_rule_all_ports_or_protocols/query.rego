@@ -5,6 +5,7 @@ import data.generic.common as common_lib
 CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_security_group_rule[name]
+	resource.type == "ingress"
 	resource.cidr_ip == "0.0.0.0/0"
 	isTCPorUDP(resource.ip_protocol)
 	resource.port_range == "1/65535" 
@@ -25,6 +26,7 @@ isTCPorUDP("udp") = true
 CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_security_group_rule[name]
+	resource.type == "ingress"
 	resource.cidr_ip == "0.0.0.0/0"
 	isGREorICMP(resource.ip_protocol)
 	resource.port_range == "-1/-1" 
@@ -46,6 +48,7 @@ isGREorICMP("gre") = true
 CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_security_group_rule[name]
+	resource.type == "ingress"
 	resource.cidr_ip == "0.0.0.0/0"
 	resource.ip_protocol == "all"
 	result := {

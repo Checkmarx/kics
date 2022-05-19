@@ -6,8 +6,8 @@ package terraformer
 import (
 	"context"
 	"fmt"
+	"io"
 	"io/fs"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -65,7 +65,7 @@ func (t *Path) createTfOptions(destination, region string, projects []string) *i
 // Import imports the terraformer resources into the destination using terraformer
 func Import(terraformerPath, destinationPath string) (string, error) {
 	log.Info().Msg("importing terraformer resources")
-	tfLogger.SetOutput(ioutil.Discard)
+	tfLogger.SetOutput(io.Discard)
 	pathOptions, err := extractTerraformerOptions(terraformerPath)
 	if err != nil {
 		return "", errors.Wrap(err, "wrong terraformer path syntax")

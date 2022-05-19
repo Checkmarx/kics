@@ -4,12 +4,12 @@ The purpose of this docs is to describe KICS' E2E test suite
 
 ## Getting Started
 
-Before Running the tests, you must start the script server (NodeJS) and keep it running.
+Before running the tests, you must start the script server (NodeJS) and keep it running.
 _Note: If you don't run this script, only the tests "031" and "052" must fail._
 
 - Before running tests:
 ```bash
-cd kics_repository_folder/github/scripts/server-mock
+cd kics_repository_folder/.github/scripts/server-mock
 npm install
 npm start
 ```
@@ -39,7 +39,8 @@ Prepare
 ```bash
 cd kics_repository_folder
 go mod vendor
-docker build -t kics:e2e-tests -f .\Dockerfile .
+LINUX/MAC: docker build -t kics:e2e-tests -f ./Dockerfile .
+WINDOWS: docker build -t kics:e2e-tests -f .\Dockerfile .
 ```
 
 Run (linux/mac/bash):
@@ -206,7 +207,7 @@ In this case, the validation function will receive the log file data as its inpu
 
 The example below generates an output file called: <i>"E2E_CLI_038_LOG"</i> and creates a validation function expecting 3 matches in the generated log file content.
 
-In addition, it is necessary to remove files generated during the test, adding them to `removeFiles` (required only for test cases that generates files from results/payloads/logs).
+In addition, it is necessary to remove files generated during the test, adding them to `removeFiles` (required only for test cases that generate files from results/payloads/logs).
 
 ```go
 // E2E-CLI-038 - KICS scan command with --log-path
@@ -255,10 +256,10 @@ func Test_E2E_CLI(t *testing.T) {
 
 <b>runCommand:</b> This function is intended to run kics with the input arguments sent by the test
 
-<b>readFixture & readFile:</b> These functions reads a file (from its folder and name). The folders used are always: fixtures or output.
+<b>readFixture & readFile:</b> These functions read a file (from its folder and name). The folders used are always: fixtures or output.
 
 <b>prepareExpected:</b> This function prepares the file to be compared, avoiding errors in reading and formatting.
 
 <b>checkLine & checkJSONLog:</b> These functions are used to check the Kics output generated in the CLI and compare it with the <b>expectedOutput</b> file.
 
-<b>fileCheck & setFields:</b> TThese functions read and compare the expected files with the files provided during the test. This function compares files from <b>expectedPayload</b> and <b>expectedResult</b>.
+<b>fileCheck & setFields:</b> These functions read and compare the expected files with the files provided during the test. This function compares files from <b>expectedPayload</b> and <b>expectedResult</b>.
