@@ -2,7 +2,7 @@
     "id": "e84eaf4d-2f45-47b2-abe8-e581b06deb66",
     "queryName": "Ensure Administrative Boundaries Between Resources",
     "severity": "INFO",
-    "category": "Best Practices",
+    "category": "Access Control",
     "descriptionText": "Administrative Boundaries should be created Between Resources. You can create additional namespaces and attach resources and users to them. You can use Kubernetes Authorization plugins to create policies that segregate access to namespace resources between different users",
     "descriptionUrl": "https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
     "platform": "Kubernetes",
