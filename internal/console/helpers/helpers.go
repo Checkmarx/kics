@@ -166,11 +166,14 @@ func ListReportFormats() []string {
 // GetNumCPU return the number of cpus available
 func GetNumCPU() float32 {
 	// Check if application is running inside docker
-	if _, err := os.Stat("/.dockerenv"); err == nil {
-		if numCPU, err := getCPUFromQuotaUS(); err == nil {
+	_, err := os.Stat("/.dockerenv")
+	if err == nil {
+		numCPU, err := getCPUFromQuotaUS()
+		if err == nil {
 			return numCPU
 		}
-		if numCPU, err := getCPUFromCPUMax(); err == nil {
+		numCPU, err = getCPUFromCPUMax()
+		if err == nil {
 			return numCPU
 		}
 	}
