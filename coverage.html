@@ -135,7 +135,7 @@
 				
 				<option value="file39">github.com/Checkmarx/kics/pkg/engine/source/source.go (67.9%)</option>
 				
-				<option value="file40">github.com/Checkmarx/kics/pkg/engine/vulnerability_builder.go (85.3%)</option>
+				<option value="file40">github.com/Checkmarx/kics/pkg/engine/vulnerability_builder.go (86.5%)</option>
 				
 				<option value="file41">github.com/Checkmarx/kics/pkg/engine/vulnerability_utils.go (84.1%)</option>
 				
@@ -1972,13 +1972,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="31">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2003,7 +2003,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4449,7 +4449,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -6927,21 +6927,21 @@ var DefaultVulnerabilityBuilder = func(ctx *QueryContext, tracker Tracker,
                 logWithFields.Error().Msg("Saving result. failed to detect line")
         }</span>
 
-        <span class="cov10" title="5">searchLineCalc := &amp;searchLineCalculator{
-                lineNr:               -1,
-                vObj:                 vObj,
-                file:                 file,
-                detector:             detector,
-                similarityIDLineInfo: similarityIDLineInfo,
-                linesVulne:           linesVulne,
-        }
-        // calculate search Line if possible (default uses values of search key)
-        searchLineCalc.calculate()
-        lineNumber := searchLineCalc.lineNr
-        similarityIDLineInfo = searchLineCalc.similarityIDLineInfo
-        linesVulne = searchLineCalc.linesVulne
+        <span class="cov10" title="5">lineNumber := 0
+        if file.Kind != model.KindHELM </span><span class="cov10" title="5">{
+                searchLineCalc := &amp;searchLineCalculator{
+                        lineNr:               -1,
+                        vObj:                 vObj,
+                        file:                 file,
+                        detector:             detector,
+                        similarityIDLineInfo: similarityIDLineInfo,
+                        linesVulne:           linesVulne,
+                }
+                // calculate search Line if possible (default uses values of search key)
+                lineNumber, similarityIDLineInfo, linesVulne = calculeSearchLine(searchLineCalc)
+        }</span>
 
-        if linesVulne.Line == -1 </span><span class="cov10" title="5">{
+        <span class="cov10" title="5">if linesVulne.Line == -1 </span><span class="cov10" title="5">{
                 logWithFields.Warn().Msgf("Failed to detect line, query response %s", searchKey)
                 linesVulne.Line = 1
         }</span>
@@ -6958,28 +6958,9 @@ var DefaultVulnerabilityBuilder = func(ctx *QueryContext, tracker Tracker,
 
         <span class="cov10" title="5">queryID := getStringFromMap("id", DefaultQueryID, overrideKey, vObj, &amp;logWithFields)
 
-        var severity model.Severity = model.SeverityInfo
-        var s *string
+        severity := getResolvedSeverity(vObj, &amp;logWithFields, overrideKey)
 
-        if s, err = mapKeyToString(vObj, "severity", false); err == nil </span><span class="cov7" title="3">{
-                sev := getSeverity(strings.ToUpper(*s))
-                if sev == "" </span><span class="cov0" title="0">{
-                        logWithFields.Warn().Str("severity", *s).Msg("Saving result. invalid severity constant value")
-                }</span> else<span class="cov7" title="3"> {
-                        severity = sev
-                        overrideValue := tryOverride(overrideKey, "severity", vObj)
-                        if overrideValue != nil </span><span class="cov1" title="1">{
-                                sev = getSeverity(strings.ToUpper(*overrideValue))
-                                if sev != "" </span><span class="cov1" title="1">{
-                                        severity = sev
-                                }</span>
-                        }
-                }
-        } else<span class="cov4" title="2"> {
-                logWithFields.Info().Msg("Saving result. failed to detect severity")
-        }</span>
-
-        <span class="cov10" title="5">issueType := DefaultIssueType
+        issueType := DefaultIssueType
         if v := mustMapKeyToString(vObj, "issueType"); v != nil </span><span class="cov10" title="5">{
                 issueType = model.IssueType(*v)
         }</span>
@@ -7029,6 +7010,41 @@ func getCloudProvider(platform, overrideKey string, vObj map[string]interface{},
         }</span>
 
         <span class="cov10" title="5">return cloudProvider</span>
+}
+
+// calculate search Line if possible (default uses values of search key)
+func calculeSearchLine(searchLineCalc *searchLineCalculator) (lineNumber int,
+        similarityIDLineInfo string, linesVulne model.VulnerabilityLines) <span class="cov10" title="5">{
+        searchLineCalc.calculate()
+        lineNumber = searchLineCalc.lineNr
+        similarityIDLineInfo = searchLineCalc.similarityIDLineInfo
+        linesVulne = searchLineCalc.linesVulne
+
+        return lineNumber, similarityIDLineInfo, linesVulne
+}</span>
+
+func getResolvedSeverity(vObj map[string]interface{}, logWithFields *zerolog.Logger, overrideKey string) model.Severity <span class="cov10" title="5">{
+        var severity model.Severity = model.SeverityInfo
+        s, err := mapKeyToString(vObj, "severity", false)
+        if err == nil </span><span class="cov7" title="3">{
+                sev := getSeverity(strings.ToUpper(*s))
+                if sev == "" </span><span class="cov0" title="0">{
+                        logWithFields.Warn().Str("severity", *s).Msg("Saving result. invalid severity constant value")
+                }</span> else<span class="cov7" title="3"> {
+                        severity = sev
+                        overrideValue := tryOverride(overrideKey, "severity", vObj)
+                        if overrideValue != nil </span><span class="cov1" title="1">{
+                                sev = getSeverity(strings.ToUpper(*overrideValue))
+                                if sev != "" </span><span class="cov1" title="1">{
+                                        severity = sev
+                                }</span>
+                        }
+                }
+        } else<span class="cov4" title="2"> {
+                logWithFields.Info().Msg("Saving result. failed to detect severity")
+        }</span>
+
+        <span class="cov10" title="5">return severity</span>
 }
 </pre>
 		
