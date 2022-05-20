@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_oss_bucket",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_oss_bucket[%s].versioning.status", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'versioning.status' is enabled",
@@ -26,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_oss_bucket",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_oss_bucket[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'versioning.status' is defined and set to enabled",

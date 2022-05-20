@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_kms_key",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_kms_key[%s].is_enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("alicloud_kms_key[%s].is_enabled to be set to true", [name]),
@@ -24,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_kms_key",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_kms_key[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("alicloud_kms_key[%s].is_enabled to be set to true", [name]),

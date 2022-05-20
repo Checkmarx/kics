@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_ros_stack",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_ros_stack[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "stack 'notification_urls' should be defined",
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_ros_stack",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_ros_stack[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "stack 'notification_urls' should have urls",

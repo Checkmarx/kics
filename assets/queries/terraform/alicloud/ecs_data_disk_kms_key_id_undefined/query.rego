@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_disk",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_disk[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("[%s] has kms key id defined", [name]),

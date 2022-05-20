@@ -9,6 +9,8 @@ CxPolicy[result] {
     
     result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_ram_account_password_policy",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_ram_account_password_policy[%s].max_login_attempts", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'max_login_attempts' is set to 5 or less",

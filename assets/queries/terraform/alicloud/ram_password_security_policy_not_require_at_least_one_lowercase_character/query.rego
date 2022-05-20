@@ -9,6 +9,8 @@ CxPolicy[result] {
     
     result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_ram_account_password_policy",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_ram_account_password_policy[%s].require_lowercase_characters", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'require_lowercase_characters' is defined and set to true",

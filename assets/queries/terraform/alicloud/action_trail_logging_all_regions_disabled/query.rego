@@ -11,6 +11,8 @@ CxPolicy[result] {
     
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_actiontrail_trail",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_actiontrail_trail[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s' is set.",[possibilities[p]]),
@@ -29,6 +31,8 @@ CxPolicy[result] {
     
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_actiontrail_trail",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_actiontrail_trail[%s].%s", [name, p[f]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' is set to All", [p[f]]),

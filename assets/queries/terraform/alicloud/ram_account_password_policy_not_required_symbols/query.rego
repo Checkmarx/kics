@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": "alicloud_ram_account_password_policy",
+		"resourceName": name,
 		"searchKey": sprintf("resource.alicloud_ram_account_password_policy[%s].require_symbols", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource.alicloud_ram_account_password_policy[%s].require_symbols is set to 'true'", [name]),

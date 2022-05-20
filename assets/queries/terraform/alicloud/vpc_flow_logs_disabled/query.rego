@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_vpc",
+		"resourceName": name_vpc,
 		"searchKey": sprintf("alicloud_vpc[%s]", [name_vpc]),
 		"issueType": "IncorrectValue",		
 		"keyActualValue": sprintf("alicloud_vpc[%s] is not associated with an 'alicloud_vpc_flow_log'", [name_vpc]),

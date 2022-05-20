@@ -13,6 +13,8 @@ CxPolicy[result] {
     
     result := {
         "documentId": input.document[i].id,
+        "resourceType": "alicloud_actiontrail_trail",
+		"resourceName": name,
         "searchKey": sprintf("alicloud_actiontrail_trail[%s].oss_bucket_name", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": sprintf("'alicloud_actiontrail_trail[%s].oss_bucket_name' is private", [name]),

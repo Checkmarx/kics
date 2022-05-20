@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_db_instance",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_db_instance[%s].parameters[%d].value", [name, parameter]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'log_duration' parameter value should be 'ON'",
@@ -25,6 +27,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_db_instance",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_db_instance[%s]]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'log_duration' parameter is defined and value should be 'ON'",

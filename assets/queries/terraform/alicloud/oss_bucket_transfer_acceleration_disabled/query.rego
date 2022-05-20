@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_oss_bucket",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_oss_bucket[%s].transfer_acceleration.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'transfer_acceleration.enabled' is defined and set to true",
@@ -26,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_oss_bucket",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_oss_bucket[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'transfer_acceleration.enabled' is defined and set to true",

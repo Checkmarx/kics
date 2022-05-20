@@ -19,6 +19,8 @@ CxPolicy[result] {
     
 	result := {
 		"documentId": input.document[i].id,
+        "resourceType": attachment,
+		"resourceName": n,
         "searchKey": sprintf("%s[%s].policy_name",[attachment, n]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("alicloud_ram_policy[%s] does not give admin access to any user, group or role",[name]),

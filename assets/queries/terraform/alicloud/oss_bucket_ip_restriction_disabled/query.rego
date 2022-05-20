@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_oss_bucket",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_oss_bucket[%s].policy",[name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("[%s].policy has restricted ip access",[name]),

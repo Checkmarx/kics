@@ -34,7 +34,7 @@ var (
 		"../assets/queries/terraform/github":     {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/kubernetes": {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/general":    {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
-		// "../assets/queries/terraform/alicloud":      {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/alicloud":   {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		// "../assets/queries/k8s":                     {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "k8s"},
 		// "../assets/queries/cloudFormation/aws":      {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
 		// "../assets/queries/cloudFormation/aws_bom":  {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},

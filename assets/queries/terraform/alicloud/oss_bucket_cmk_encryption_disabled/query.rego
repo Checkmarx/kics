@@ -12,6 +12,8 @@ CxPolicy[result] {
     
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_oss_bucket",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_oss_bucket[%s].server_side_encryption_rule",[name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("[%s].policy has kms master key id defined",[name]),
@@ -28,6 +30,8 @@ CxPolicy[result] {
     
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_oss_bucket",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_oss_bucket[%s]",[name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("[%s].policy has server side encryption rule and kms master key id defined",[name]),

@@ -8,10 +8,11 @@ CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_disk[name]
     resource.encrypted == false
   
-
-    
+  
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_disk",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_disk[%s].encrypted", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("[%s] has encryption set to true", [name]),
@@ -29,6 +30,8 @@ CxPolicy[result] {
     
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_disk",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_disk[%s]",[name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("[%s] has encryption enabled",[name]),

@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_db_instance",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_db_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
@@ -22,6 +24,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_db_instance",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_db_instance[%s].sql_collector_status", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
@@ -37,6 +41,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_db_instance",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_db_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
@@ -51,6 +57,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_db_instance",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_db_instance[%s].sql_collector_config_value", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",

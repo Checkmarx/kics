@@ -10,6 +10,8 @@ CxPolicy[result] {
     
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_oss_bucket",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_oss_bucket[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s has logging enabled",[name]),
@@ -25,6 +27,8 @@ CxPolicy[result] {
     
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_oss_bucket",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_oss_bucket[%s].logging_isenable", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s 'logging_isenable' argument should be set to true",[name]),

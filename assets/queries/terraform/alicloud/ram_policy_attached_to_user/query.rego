@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_ram_user_policy_attachment",
+		"resourceName": a,
         "searchKey": sprintf("alicloud_ram_user_policy_attachment[%s]",[a]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("alicloud_ram_user_policy_attachment[%s] should be undefined",[a]),

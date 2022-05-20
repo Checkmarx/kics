@@ -9,8 +9,9 @@ CxPolicy[result] {
     common_lib.valid_key(resource, "website")
 
 	result := {
-    	"debug": sprintf("%s", [resource]),
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_oss_bucket",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_oss_bucket[%s].website", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'website' to not be used.",

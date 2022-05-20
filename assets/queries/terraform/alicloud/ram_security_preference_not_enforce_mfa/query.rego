@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
     	"documentId": ram_user.id,
+		"resourceType": "alicloud_ram_user",
+		"resourceName": ram_user.name,
 		"searchKey": sprintf("alicloud_ram_user[%s]", [ram_user.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "alicloud_ram_security_preference resource should be defined",
@@ -33,6 +35,8 @@ CxPolicy[result] {
 
 	result := {
     	"documentId": input.document[id].id,
+		"resourceType": "alicloud_ram_security_preference",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_ram_security_preference[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'enforce_mfa_for_login' should be defined and set to true",
@@ -48,6 +52,8 @@ CxPolicy[result] {
 	
 	result := {
     	"documentId": input.document[id].id,
+		"resourceType": "alicloud_ram_security_preference",
+		"resourceName": name,
 		"searchKey": sprintf("alicloud_ram_security_preference[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'enforce_mfa_for_login' should be set to true",
