@@ -18,5 +18,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.KmsKeyId should be defined with AWS-Managed CMK", [key]),
 		"keyActualValue": sprintf("Resources.%s.Properties.KmsKeyId is undefined", [key]),
+		"searchLine": common_lib.build_search_line(["Resources", key, "Properties"], []),
 	}
 }
