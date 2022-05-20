@@ -3,7 +3,7 @@
   "queryName": "Default KMS Key Usage",
   "severity": "MEDIUM",
   "category": "Encryption",
-  "descriptionText": "When `StorageEncrypted is set to true, `KmsKeyId` should be defined, to avoid the use of the default KMS Key",
+  "descriptionText": "When `StorageEncrypted` is set to true, `KmsKeyId` should be defined, to avoid the use of the default KMS Key",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html",
   "platform": "CloudFormation",
   "descriptionID": "d479130b",
