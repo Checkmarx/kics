@@ -12,6 +12,8 @@ CxPolicy[result] {
 	not common_lib.valid_key(path.port, "host_port")
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": x,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.port", [x, name, resource_prefix]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'host_port' is defined and not null",

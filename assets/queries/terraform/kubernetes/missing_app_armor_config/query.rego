@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_pod",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_pod[%s].metadata.annotations", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("kubernetes_pod[%s].metadata.annotations should contain AppArmor profile config: '%s'", [name, expectedKey]),
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_pod",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_pod[%s].metadata", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("kubernetes_pod[%s].metadata should include annotations for AppArmor profile config", [name]),

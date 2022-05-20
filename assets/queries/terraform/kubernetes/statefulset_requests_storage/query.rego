@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_stateful_set",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_stateful_set[%s].spec.volume_claim_template.spec.resources.requests.storage", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("kubernetes_stateful_set[%s].spec.volume_claim_template.spec.resources.requests.storage should not be set", [name]),

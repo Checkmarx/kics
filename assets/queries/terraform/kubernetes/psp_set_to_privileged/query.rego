@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_pod_security_policy",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_pod_security_policy[%s].spec.privileged", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("kubernetes_pod_security_policy[%s].spec.privileged is set to false", [name]),

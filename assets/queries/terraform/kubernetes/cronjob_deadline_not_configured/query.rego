@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_cron_job",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_cron_job[%s].spec", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("kubernetes_cron_job[%s].spec.starting_deadline_seconds is set", [name]),

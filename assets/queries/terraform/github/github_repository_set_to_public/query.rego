@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "github_repository",
+		"resourceName": example,
 		"searchKey": sprintf("github_repository[%s]", [example]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'private' or Attribute 'visibility' are defined and not null",
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "github_repository",
+		"resourceName": example,
 		"searchKey": sprintf("github_repository[%s].private", [example]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'private' is true",
@@ -36,6 +40,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "github_repository",
+		"resourceName": example,
 		"searchKey": sprintf("github_repository[%s].visibility", [example]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'visibility' is 'private'",

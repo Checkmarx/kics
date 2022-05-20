@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].metadata.labels", [resourceType, name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].metada.labels[%s] has valid label", [resourceType, name, key]),

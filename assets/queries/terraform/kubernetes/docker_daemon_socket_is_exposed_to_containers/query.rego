@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_pod",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_pod[%s].spec.volume", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("spec.volume[%d].host_path.path is not '/var/run/docker.sock'", [c]),
@@ -31,6 +33,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": kind,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].spec.template.spec.volume", [kind, name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("spec.template.spec.volume[%d].host_path.path is not '/var/run/docker.sock'", [c]),
@@ -45,6 +49,8 @@ CxPolicy[result] {
 	volumes[c].host_path.path == "/var/run/docker.sock"
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_cron_job",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_cron_job[%s].spec.job_template.spec.template.spec.volume", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("spec.job_template.spec.template.spec.volume[%d].host_path.path is not '/var/run/docker.sock'", [c]),

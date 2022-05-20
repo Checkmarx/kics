@@ -18,6 +18,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].image is set", [resourceType, name, specInfo.path, types[x], containerTypes]),
@@ -37,6 +39,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].image is not empty or latest", [resourceType, name, specInfo.path, types[x], y]),
@@ -55,6 +59,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.image is set", [resourceType, name, specInfo.path, types[x]]),
@@ -74,6 +80,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s.image", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.image is not empty or latest", [resourceType, name, specInfo.path, types[x]]),

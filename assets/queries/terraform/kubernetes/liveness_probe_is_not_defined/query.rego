@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": x,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s", [x, name, resource_prefix]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'livenessProbe' is defined and not null",

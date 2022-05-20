@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_service_account",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_service_account[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("kubernetes_service_account[%s].automount_service_account_token is set", [name]),
@@ -27,6 +29,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_service_account",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_service_account[%s].automount_service_account_token", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("kubernetes_service_account[%s].automount_service_account_token is set to false", [name]),

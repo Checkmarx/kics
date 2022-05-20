@@ -18,6 +18,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].env.value_from.secret_key_ref is undefined", [resourceType, name, specInfo.path, types[x]]),
@@ -38,6 +40,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s.env", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.env.value_from.secret_key_ref is undefined", [resourceType, name, specInfo.path, types[x]]),
@@ -58,6 +62,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].env_from.secret_ref is undefined", [resourceType, name, specInfo.path, types[x], y]),
@@ -78,6 +84,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s.env_from", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.env_from.secret_ref is undefined", [resourceType, name, specInfo.path, types[x]]),

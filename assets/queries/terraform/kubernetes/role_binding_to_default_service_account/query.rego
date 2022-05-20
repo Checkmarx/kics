@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_role_binding",
+		"resourceName": name,
 		"searchKey": sprintf("resource.kubernetes_role_binding[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource.kubernetes_role_binding[%s].subject[%d].name is not default", [name, k]),

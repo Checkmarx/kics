@@ -16,6 +16,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities.add is undefined", [resourceType, name, specInfo.path, types[x], y]),
@@ -34,6 +36,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s.security_context.capabilities.add", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context.capabilities.add is undefined", [resourceType, name, specInfo.path, types[x]]),

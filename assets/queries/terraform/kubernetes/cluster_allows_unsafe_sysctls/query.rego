@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_pod_security_policy",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_pod_security_policy[%s].spec.allowed_unsafe_sysctls", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("kubernetes_pod_security_policy[%s].spec.allowed_unsafe_sysctls is undefined", [name]),
@@ -24,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_pod",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_pod[%s].spec.security_context.sysctl", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.security_context.sysctl[%s].name does not have an unsafe sysctl", [name, x]),

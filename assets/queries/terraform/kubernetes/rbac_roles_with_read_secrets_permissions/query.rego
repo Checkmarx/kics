@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceTypes[t],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].rule", [resourceTypes[t], name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Rules don't give access to 'secrets' resources",

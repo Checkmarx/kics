@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceTypes[t],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, create]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].rule.verbs should not contain the value 'create' when %s[%s].rule.resources contains the value 'pods'", [resourceTypes[t], name, resourceTypes[t], name]),
@@ -27,6 +29,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceTypes[t],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, create]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].rule.verbs should not contain the value 'create' when %s[%s].rule.resources contains a wildcard value", [resourceTypes[t], name, resourceTypes[t], name]),
@@ -41,6 +45,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceTypes[t],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, resource.rule[ru].verbs[l]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].rule.verbs should not contain a wildcard value when %s[%s].rule.resources contains the value 'pods'", [resourceTypes[t], name, resourceTypes[t], name]),
@@ -55,6 +61,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceTypes[t],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, resource.rule[ru].verbs[l]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].rule.verbs should not contain a wildcard value when %s[%s].rule.resources contains a wildcard value", [resourceTypes[t], name, resourceTypes[t], name]),
@@ -69,6 +77,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceTypes[t],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, create]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].rule.verbs should not contain the value 'create' when %s[%s].rule.resources contains the value 'pods'", [resourceTypes[t], name, resourceTypes[t], name]),
@@ -83,6 +93,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceTypes[t],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, create]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].rule.verbs should not contain the value 'create' when %s[%s].rule.resources contains a wildcard value", [resourceTypes[t], name, resourceTypes[t], name]),
@@ -97,6 +109,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceTypes[t],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, resource.rule.verbs[l]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].rule.verb should not contain a wildcard value when %s[%s].rule.resources contains the value 'pods'", [resourceTypes[t], name, resourceTypes[t], name]),
@@ -111,6 +125,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceTypes[t],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, resource.rule.verbs[l]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].rule.verbs should not contain a wildcard value when %s[%s].rule.resources contains a wildcard value", [resourceTypes[t], name, resourceTypes[t], name]),

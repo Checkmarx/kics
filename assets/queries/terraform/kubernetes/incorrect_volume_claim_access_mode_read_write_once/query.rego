@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_stateful_set",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_stateful_set[%s].spec.volume_claim_template", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("kubernetes_stateful_set[%s].spec.volume_claim_template has one template with a 'ReadWriteOnce'", [name]),
@@ -25,6 +27,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_stateful_set",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_stateful_set[%s].spec.volume_claim_template", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("kubernetes_stateful_set[%s].spec.volume_claim_template has only one template with a 'ReadWriteOnce'", [name]),

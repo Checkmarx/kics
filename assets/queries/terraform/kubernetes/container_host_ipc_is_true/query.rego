@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.host_ipc", [resourceType, name, specInfo.path]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'host_ipc' is undefined or false",

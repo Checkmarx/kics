@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_service",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_service[%s].spec.type", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("kubernetes_service[%s].spec.type is not 'NodePort'", [name]),

@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_pod_security_policy",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_pod_security_policy[%s].spec", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("kubernetes_pod_security_policy[%s].spec.allow_privilege_escalation is set", [name]),
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_pod_security_policy",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_pod_security_policy[%s].spec.allow_privilege_escalation", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("kubernetes_pod_security_policy[%s].spec.allow_privilege_escalation is set to false", [name]),

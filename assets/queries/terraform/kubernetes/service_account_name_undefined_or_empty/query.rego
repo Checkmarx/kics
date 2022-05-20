@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_pod",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_pod[%s].spec", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.service_account_name is defined and not null", [name]),
@@ -25,6 +27,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_pod",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_pod[%s].spec.service_account_name", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.service_account_name is correct", [name]),

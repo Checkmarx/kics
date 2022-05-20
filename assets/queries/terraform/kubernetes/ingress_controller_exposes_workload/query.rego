@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_ingress",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_ingress[%s].spec.rule.http.path.backend", [name]),
 	    "issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("kubernetes_ingress[%s] is not exposing the workload", [name]),

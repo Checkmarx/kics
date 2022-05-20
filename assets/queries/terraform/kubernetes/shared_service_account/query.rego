@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.service_account_name", [resourceType, name, specInfo.path]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.service_account_name is not shared with other workloads", [resourceType, name, specInfo.path]),

@@ -18,6 +18,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities.drop is set", [resourceType, name, specInfo.path, types[x], containerCapabilities]),
@@ -39,6 +41,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities.drop is ALL or NET_RAW", [resourceType, name, specInfo.path, types[x], y]),
@@ -59,6 +63,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities is set", [resourceType, name, specInfo.path, types[x], containerSecurity]),
@@ -79,6 +85,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context is set", [resourceType, name, specInfo.path, types[x], containersType]),
@@ -97,6 +105,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s.security_context.capabilities", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context.capabilities.drop is set", [resourceType, name, specInfo.path, types[x]]),
@@ -117,6 +127,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s.security_context.capabilities.drop", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context.capabilities.drop is ALL or NET_RAW", [resourceType, name, specInfo.path, types[x]]),
@@ -135,6 +147,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s.security_context", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context.capabilities is set", [resourceType, name, specInfo.path, types[x]]),
@@ -153,6 +167,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context is set", [resourceType, name, specInfo.path, types[x]]),

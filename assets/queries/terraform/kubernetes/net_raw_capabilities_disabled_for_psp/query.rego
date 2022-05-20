@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_pod_security_policy",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_pod_security_policy[%s].spec.required_drop_capabilities", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "spec.required_drop_capabilities 'is ALL or NET_RAW'",

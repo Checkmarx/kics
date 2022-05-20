@@ -6,6 +6,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_cluster_role_binding",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_cluster_role_binding[%s].role_ref.name", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resource name '%s' isn't binding 'cluster-admin' role with superuser permissions", [name]),

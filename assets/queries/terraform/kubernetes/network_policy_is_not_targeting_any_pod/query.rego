@@ -16,6 +16,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_network_policy",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_network_policy[%s].spec.pod_selector.match_labels", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("kubernetes_network_policy[%s].spec.pod_selector.match_labels is targeting at least a pod", [name]),

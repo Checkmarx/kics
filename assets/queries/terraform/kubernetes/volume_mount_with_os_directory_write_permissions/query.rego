@@ -20,6 +20,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].volume_mount.read_only is set to true", [resourceType, name, specInfo.path, types[x], y]),
@@ -42,6 +44,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].volume_mount[%d].read_only is set to true", [resourceType, name, specInfo.path, types[x], y, j]),
@@ -64,6 +68,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s.volume_mount", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.volume_mount.read_only is set to true", [resourceType, name, specInfo.path, types[x]]),
@@ -86,6 +92,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s.volume_mount", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.volume_mount[%d].read_only is set to true", [resourceType, name, specInfo.path, types[x], j]),
@@ -109,6 +117,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].volume_mount.read_only is set", [resourceType, name, specInfo.path, types[x], y]),
@@ -133,6 +143,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].volume_mount[%d].read_only is set", [resourceType, name, specInfo.path, types[x], y, volumeMountTypes]),
@@ -156,6 +168,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s.volume_mount", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.volume_mount.read_only is set", [resourceType, name, specInfo.path, types[x]]),
@@ -180,6 +194,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].%s.%s.volume_mount", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.volume_mount[%d].read_only is set", [resourceType, name, specInfo.path, types[x], volumeMountTypes]),

@@ -7,6 +7,8 @@ CxPolicy[result] {
 	isOSDir(volumes[j].path)
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_pod",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_pod[%s].spec.volume.host_path.path", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Workload name '%s' should not mount a host sensitive OS directory '%s' with host_path", [
@@ -27,6 +29,8 @@ CxPolicy[result] {
 	isOSDir(volumes[j].path)
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_persistent_volume",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_persistent_volume[%s].spec.volume.host_path.path", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Workload name '%s' should not mount a host sensitive OS directory '%s' with host_path", [

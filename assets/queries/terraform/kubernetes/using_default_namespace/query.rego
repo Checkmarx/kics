@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": listKinds[x],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].metadata", [listKinds[x], name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].metadata is set", [listKinds[x], name]),
@@ -29,6 +31,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": listKinds[x],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].metadata.namespace", [listKinds[x], name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].metadata.namespace is not set to 'default'", [listKinds[x], name]),

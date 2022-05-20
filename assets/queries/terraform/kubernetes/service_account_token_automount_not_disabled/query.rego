@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_pod",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_pod[%s].spec", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.automount_service_account_token is set", [name]),
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_pod",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_pod[%s].spec.automount_service_account_token", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.automount_service_account_token is set to false", [name]),
@@ -41,6 +45,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": listKinds[x],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].spec.template.spec", [listKinds[x], name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].spec.template.spec.automount_service_account_token is set", [listKinds[x], name]),
@@ -55,6 +61,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": listKinds[x],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].spec.template.spec.automount_service_account_token", [listKinds[x], name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].spec.template.spec.automount_service_account_token is set to false", [listKinds[x], name]),
@@ -69,6 +77,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_cron_job",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_cron_job[%s].spec.jobTemplate.spec.template.spec", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("kubernetes_cron_job[%s].spec.job_template.spec.template.spec.automount_service_account_token is set", [name]),
@@ -83,6 +93,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_cron_job",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_cron_job[%s].spec.job_template.spec.template.spec.automount_service_account_token", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("kubernetes_cron_job[%s].spec.job_template.spec.template.spec.automount_service_account_token is set to false", [name]),

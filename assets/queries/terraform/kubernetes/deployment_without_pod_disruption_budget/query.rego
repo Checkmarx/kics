@@ -18,6 +18,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_deployment",
+		"resourceName": name,
 		"searchKey": sprintf("kubernetes_deployment[%s].spec.selector.match_labels", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("kubernetes_deployment[%s].spec.selector.match_labels is targeted by a PodDisruptionBudget", [name]),
