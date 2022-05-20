@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_iam_policy",
+		"resourceName": name,
 		"searchKey": sprintf("google_iam_policy[%s].binding.role", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_iam_policy[%s].binding.role does not have admin, editor, owner, or write privileges for service account member", [name]),
@@ -28,6 +30,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_iam_policy",
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].role", [resources[idx], name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].role does not have admin, editor, owner, or write privileges for service account member", [resources[idx], name]),

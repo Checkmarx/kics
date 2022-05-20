@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_project",
+		"resourceName": name,
 		"searchKey": sprintf("google_project[%s].auto_create_network", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_project[%s].auto_create_network is false", [name]),
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_project",
+		"resourceName": name,
 		"searchKey": sprintf("google_project[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("google_project[%s].auto_create_network is false", [name]),

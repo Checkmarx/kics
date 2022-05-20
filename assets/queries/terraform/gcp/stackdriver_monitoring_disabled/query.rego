@@ -6,6 +6,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_container_cluster",
+		"resourceName": primary,
 		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'monitoring_service' is defined",
@@ -19,6 +21,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_container_cluster",
+		"resourceName": primary,
 		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'monitoring_service' is not 'none'",

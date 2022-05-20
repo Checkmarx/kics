@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_container_cluster",
+		"resourceName": primary,
 		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attributes 'ip_allocation_policy' and 'networking_mode' are defined",
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_container_cluster",
+		"resourceName": primary,
 		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'ip_allocation_policy' is defined",
@@ -35,6 +39,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_container_cluster",
+		"resourceName": primary,
 		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'networking_mode' is VPC_NATIVE",

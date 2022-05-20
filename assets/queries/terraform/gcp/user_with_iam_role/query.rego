@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_iam_policy",
+		"resourceName": name,
 		"searchKey": sprintf("google_iam_policy[%s].binding.role", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_iam_policy[%s].binding.role is not set", [name]),
@@ -30,6 +32,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resources[idx],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].role", [resources[idx], name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].role is not set", [resources[idx], name]),

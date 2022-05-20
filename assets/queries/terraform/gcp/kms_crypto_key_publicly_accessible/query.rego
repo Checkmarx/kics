@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_kms_crypto_key_iam_policy",
+		"resourceName": name,
 		"searchKey": sprintf("google_kms_crypto_key_iam_policy[%s].policy_data", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "KMS crypto key is not publicly accessible",

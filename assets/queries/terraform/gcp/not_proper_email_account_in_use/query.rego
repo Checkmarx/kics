@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_project_iam_binding",
+		"resourceName": name,
 		"searchKey": sprintf("google_project_iam_binding[%s].members.%s", [name, mail]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'members' cannot contain Gmail account addresses",

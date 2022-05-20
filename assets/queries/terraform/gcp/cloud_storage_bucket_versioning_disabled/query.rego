@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_storage_bucket",
+		"resourceName": name,
 		"searchKey": sprintf("google_storage_bucket[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'versioning' is defined and not null",
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_storage_bucket",
+		"resourceName": name,
 		"searchKey": sprintf("google_storage_bucket[%s].versioning.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'versioning.enabled' is true",

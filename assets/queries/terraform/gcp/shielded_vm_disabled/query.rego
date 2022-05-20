@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_compute_instance",
+		"resourceName": appserver,
 		"searchKey": sprintf("google_compute_instance[%s]", [appserver]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'shielded_instance_config' is defined and not null",
@@ -26,6 +28,8 @@ CxPolicy[result] {
 	not common_lib.valid_key(compute_instance.shielded_instance_config, fieldTypes)
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_compute_instance",
+		"resourceName": appserver,
 		"searchKey": sprintf("google_compute_instance[%s].shielded_instance_config", [appserver]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Attribute 'shielded_instance_config.%s' is defined", [fieldTypes]),
@@ -40,6 +44,8 @@ CxPolicy[result] {
 	compute_instance.shielded_instance_config[fields[j]] == false
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_compute_instance",
+		"resourceName": appserver,
 		"searchKey": sprintf("google_compute_instance[%s].shielded_instance_config.%s", [appserver, fields[j]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Attribute 'shielded_instance_config.%s' is true", [fields[j]]),

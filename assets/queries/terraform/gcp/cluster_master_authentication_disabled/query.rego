@@ -6,6 +6,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_container_cluster",
+		"resourceName": primary,
 		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'master_auth' is defined",
@@ -20,6 +22,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_container_cluster",
+		"resourceName": primary,
 		"searchKey": sprintf("google_container_cluster[%s].master_auth", [primary]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'master_auth.username' is defined and Attribute 'master_auth.password' is defined",
@@ -35,6 +39,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_container_cluster",
+		"resourceName": primary,
 		"searchKey": sprintf("google_container_cluster[%s].master_auth", [primary]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'master_auth.username' is not empty and Attribute 'master_auth.password' is not empty",

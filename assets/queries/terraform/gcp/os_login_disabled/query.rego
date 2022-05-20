@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_compute_project_metadata",
+		"resourceName": name,
 		"searchKey": sprintf("google_compute_project_metadata[%s].metadata", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_compute_project_metadata[%s].metadata['enable-oslogin'] is true", [name]),
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_compute_project_metadata",
+		"resourceName": name,
 		"searchKey": sprintf("google_compute_project_metadata[%s].metadata", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("google_compute_project_metadata[%s].metadata['enable-oslogin'] is true", [name]),

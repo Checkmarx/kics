@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_project_iam_member",
+		"resourceName": name,
 		"searchKey": sprintf("google_project_iam_member[%s].role", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_project_iam_member[%s].role is Service Account Token Creator", [name]),
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_project_iam_member",
+		"resourceName": name,
 		"searchKey": sprintf("google_project_iam_member[%s].role", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_project_iam_member[%s].role is Service Account Token Creator", [name]),
@@ -35,6 +39,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_project_iam_member",
+		"resourceName": name,
 		"searchKey": sprintf("google_project_iam_member[%s].role", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_project_iam_member[%s].role is Service Account User", [name]),
@@ -49,6 +55,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_project_iam_member",
+		"resourceName": name,
 		"searchKey": sprintf("google_project_iam_member[%s].role", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_project_iam_member[%s].role is Service Account User", [name]),

@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_container_cluster",
+		"resourceName": primary,
 		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'private_cluster_config' is defined and not null",
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_container_cluster",
+		"resourceName": primary,
 		"searchKey": sprintf("google_container_cluster[%s].private_cluster_config", [primary]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'private_cluster_config.enable_private_endpoint' is defined and Attribute 'private_cluster_config.enable_private_nodes' is defined",
@@ -38,6 +42,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_container_cluster",
+		"resourceName": primary,
 		"searchKey": sprintf("google_container_cluster[%s].private_cluster_config", [primary]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'private_cluster_config.enable_private_endpoint' is true and Attribute 'private_cluster_config.enable_private_nodes' is true",

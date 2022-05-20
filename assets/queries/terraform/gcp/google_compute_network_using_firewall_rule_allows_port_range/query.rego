@@ -15,6 +15,8 @@ CxPolicy[result] {
 	
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_compute_network",
+		"resourceName": name,
 		"searchKey": sprintf("google_compute_network[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'google_compute_network[%s]' is not using a firewall rule that allows access to port range", [name]),

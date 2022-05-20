@@ -7,6 +7,8 @@ CxPolicy[result] {
 	not common_lib.valid_key(resource, "management")
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_container_node_pool",
+		"resourceName": name,
 		"searchKey": sprintf("google_container_node_pool[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "google_container_node_pool.management is defined and not null",
@@ -19,6 +21,8 @@ CxPolicy[result] {
 	not common_lib.valid_key(management, "auto_upgrade")
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_container_node_pool",
+		"resourceName": name,
 		"searchKey": sprintf("google_container_node_pool[%s].management", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "management.auto_upgrade is defined and not null",
@@ -31,6 +35,8 @@ CxPolicy[result] {
 	management.auto_upgrade == false
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_container_node_pool",
+		"resourceName": name,
 		"searchKey": sprintf("google_container_node_pool[%s].management.auto_upgrade", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "management.auto_upgrade is true",

@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_compute_firewall",
+		"resourceName": name,
 		"searchKey": sprintf("google_compute_firewall[%s].allow.ports=%s", [name, ports]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'google_compute_firewall[%s].allow.ports' does not include SSH port 22", [name]),

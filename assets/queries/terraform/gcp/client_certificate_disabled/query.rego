@@ -6,6 +6,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_container_cluster",
+		"resourceName": primary,
 		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'master_auth' is defined",
@@ -20,6 +22,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_container_cluster",
+		"resourceName": primary,
 		"searchKey": sprintf("google_container_cluster[%s].master_auth", [primary]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'client_certificate_config' in 'master_auth' is defined",
@@ -34,6 +38,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_container_cluster",
+		"resourceName": primary,
 		"searchKey": sprintf("google_container_cluster[%s].master_auth.client_certificate_config", [primary]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'issue_client_certificate' in 'client_certificate_config' is true",

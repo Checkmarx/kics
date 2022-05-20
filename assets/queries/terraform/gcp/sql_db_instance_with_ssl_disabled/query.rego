@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_sql_database_instance",
+		"resourceName": name,
 		"searchKey": sprintf("google_sql_database_instance[%s].settings", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'settings.ip_configuration' is defined and not null",
@@ -24,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_sql_database_instance",
+		"resourceName": name,
 		"searchKey": sprintf("google_sql_database_instance[%s].settings.ip_configuration", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'settings.ip_configuration.require_ssl' is defined and not null",
@@ -38,6 +42,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_sql_database_instance",
+		"resourceName": name,
 		"searchKey": sprintf("google_sql_database_instance[%s].settings.ip_configuration.require_ssl", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'settings.ip_configuration.require_ssl' is true",

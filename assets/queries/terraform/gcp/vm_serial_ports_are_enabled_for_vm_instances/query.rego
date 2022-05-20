@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_compute_instance",
+		"resourceName": name,
 		"searchKey": sprintf("google_compute_instance[%s].metadata.serial-port-enable", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_compute_instance[%s].metadata.serial-port-enable is false or undefined", [name]),
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_compute_project_metadata",
+		"resourceName": name,
 		"searchKey": sprintf("google_compute_project_metadata[%s].metadata.serial-port-enable", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_compute_project_metadata[%s].metadata.serial-port-enable is false or undefined", [name]),
@@ -38,6 +42,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_compute_project_metadata_item",
+		"resourceName": name,
 		"searchKey": sprintf("google_compute_project_metadata_item[%s].value", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_compute_project_metadata[%s].value is false", [name]),

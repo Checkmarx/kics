@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_compute_disk",
+		"resourceName": name,
 		"searchKey": sprintf("google_compute_disk[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'google_compute_disk[%s].disk_encryption_key' is defined and not null", [name]),
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_compute_disk",
+		"resourceName": name,
 		"searchKey": sprintf("google_compute_disk[%s].disk_encryption_key", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'google_compute_disk[%s].disk_encryption_key.raw_key' or 'google_compute_disk[%s].disk_encryption_key.kms_key_self_link' is defined and not null", [name]),
@@ -36,6 +40,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_compute_disk",
+		"resourceName": name,
 		"searchKey": sprintf("google_compute_disk[%s].disk_encryption_key.%s", [name, key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'google_compute_disk[%s].disk_encryption_key.%s' is not empty or null", [name, key]),

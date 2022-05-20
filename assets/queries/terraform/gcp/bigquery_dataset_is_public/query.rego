@@ -6,6 +6,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_bigquery_dataset",
+		"resourceName": name,
 		"searchKey": sprintf("google_bigquery_dataset[%s].access.special_group", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'access.special_group' is not equal to 'allAuthenticatedUsers'",

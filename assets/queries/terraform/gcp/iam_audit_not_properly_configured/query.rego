@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_project_iam_audit_config",
+		"resourceName": name,
 		"searchKey": sprintf("google_project_iam_audit_config[%s].service", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'service' must be 'allServices'",
@@ -26,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_project_iam_audit_config",
+		"resourceName": name,
 		"searchKey": sprintf("google_project_iam_audit_config[%s].audit_log_config.log_type", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'log_type' must be one of 'DATA_READ', 'DATA_WRITE', or 'ADMIN_READ'",
@@ -42,6 +46,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_project_iam_audit_config",
+		"resourceName": name,
 		"searchKey": sprintf("google_project_iam_audit_config[%s].audit_log_config.exempted_members", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'exempted_members' is empty",

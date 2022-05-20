@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_storage_bucket",
+		"resourceName": name,
 		"searchKey": sprintf("google_storage_bucket[%s].uniform_bucket_level_access", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_storage_bucket[%s].uniform_bucket_level_access is true", [name]),
@@ -22,6 +24,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_storage_bucket",
+		"resourceName": name,
 		"searchKey": sprintf("google_storage_bucket[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("google_storage_bucket[%s].uniform_bucket_level_access is defined and not null", [name]),

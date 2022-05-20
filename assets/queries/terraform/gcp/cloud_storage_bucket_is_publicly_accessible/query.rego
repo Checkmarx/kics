@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_storage_bucket_iam_member",
+		"resourceName": name,
 		"searchKey": sprintf("google_storage_bucket_iam_member[%s].member", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'member' not equal to 'allUsers' nor 'allAuthenticatedUsers'",
@@ -26,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_storage_bucket_iam_member",
+		"resourceName": name,
 		"searchKey": sprintf("google_storage_bucket_iam_member[%s].members", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "None of the 'members' equal to 'allUsers' nor 'allAuthenticatedUsers'",

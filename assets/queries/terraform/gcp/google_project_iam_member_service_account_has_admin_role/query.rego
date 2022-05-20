@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_project_iam_member",
+		"resourceName": name,
 		"searchKey": sprintf("google_project_iam_member[%s].role", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_project_iam_member[%s].role is not admin", [name]),
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_project_iam_member",
+		"resourceName": name,
 		"searchKey": sprintf("google_project_iam_member[%s].role", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_project_iam_member[%s].role is not admin", [name]),

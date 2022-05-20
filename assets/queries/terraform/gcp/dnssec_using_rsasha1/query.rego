@@ -5,6 +5,8 @@ CxPolicy[result] {
 	dnssec_config.default_key_specs.algorithm == "rsasha1"
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_dns_managed_zone",
+		"resourceName": name,
 		"searchKey": sprintf("google_dns_managed_zone[%s].dnssec_config.default_key_specs.algorithm", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "dnssec_config.default_key_specs.algorithm isn't 'rsasha1'",

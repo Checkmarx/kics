@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_kms_crypto_key",
+		"resourceName": name,
 		"searchKey": sprintf("resource.google_kms_crypto_key[%s].rotation_period", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'google_kms_crypto_key.rotation_period' is less or equal to 7776000",
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_kms_crypto_key",
+		"resourceName": name,
 		"searchKey": sprintf("resource.google_kms_crypto_key[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'google_kms_crypto_key.rotation_period' is set",

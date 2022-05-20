@@ -6,6 +6,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_compute_instance",
+		"resourceName": appserver,
 		"searchKey": sprintf("google_compute_instance[%s]", [appserver]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'can_ip_forward' is false or Attribute 'can_ip_forward' is undefined",

@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_compute_subnetwork",
+		"resourceName": name,
 		"searchKey": sprintf("google_compute_subnetwork[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'google_compute_subnetwork[%s].log_config' is defined and not null", [name]),

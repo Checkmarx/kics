@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_storage_bucket",
+		"resourceName": name,
 		"searchKey": sprintf("google_storage_bucket[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'google_storage_bucket.logging' is set",

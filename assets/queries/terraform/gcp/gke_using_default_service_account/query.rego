@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_container_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("google_container_cluster[%s].node_config", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'service_account' is not default",
@@ -24,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_container_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("google_container_cluster[%s].node_config.service_account", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'service_account' is not default",

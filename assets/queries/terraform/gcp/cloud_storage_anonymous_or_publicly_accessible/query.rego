@@ -6,6 +6,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_storage_bucket_iam_binding",
+		"resourceName": name,
 		"searchKey": sprintf("google_storage_bucket_iam_binding[%s].members", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'google_storage_bucket_iam_binding[%s].members' is not null", [name]),
@@ -20,6 +22,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_storage_bucket_iam_binding",
+		"resourceName": name,
 		"searchKey": sprintf("google_storage_bucket_iam_binding[%s].members", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'google_storage_bucket_iam_binding[%s].members' does not have 'allUsers'", [name]),
@@ -34,6 +38,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_storage_bucket_iam_binding",
+		"resourceName": name,
 		"searchKey": sprintf("google_storage_bucket_iam_binding[%s].members", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'google_storage_bucket_iam_binding[%s].members' does not have 'allAuthenticatedUsers'", [name]),
