@@ -1,62 +1,14 @@
 [
   {
-    "severity": "MEDIUM",
-    "line": 36,
-    "fileName": "positive3.yaml",
-    "queryName": "Default KMS Key Usage"
-  },
-  {
-    "queryName": "Default KMS Key Usage",
-    "severity": "MEDIUM",
-    "line": 54,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "Default KMS Key Usage",
-    "severity": "MEDIUM",
-    "line": 54,
-    "fileName": "positive1.yaml"
-  },
-  {
     "queryName": "Default KMS Key Usage",
     "severity": "MEDIUM",
     "line": 24,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "severity": "MEDIUM",
-    "line": 24,
-    "fileName": "positive3.yaml",
-    "queryName": "Default KMS Key Usage"
-  },
-  {
-    "severity": "MEDIUM",
-    "line": 58,
-    "fileName": "positive4.json",
-    "queryName": "Default KMS Key Usage"
-  },
-  {
-    "queryName": "Default KMS Key Usage",
-    "severity": "MEDIUM",
-    "line": 58,
-    "fileName": "positive4.json"
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Default KMS Key Usage",
     "severity": "MEDIUM",
     "line": 25,
-    "fileName": "positive5.json"
-  },
-  {
-    "queryName": "Default KMS Key Usage",
-    "severity": "MEDIUM",
-    "line": 37,
-    "fileName": "positive6.json"
-  },
-  {
-    "fileName": "positive6.json",
-    "queryName": "Default KMS Key Usage",
-    "severity": "MEDIUM",
-    "line": 27
+    "fileName": "positive2.json"
   }
 ]
