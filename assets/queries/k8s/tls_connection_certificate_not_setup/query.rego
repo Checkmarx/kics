@@ -38,7 +38,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"resourceType": doc.kind,
-		"resourceName": "unknown",
+		"resourceName": "n/a",
 		"searchKey": sprintf("kind={{%s}}", ["KubeletConfiguration"]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf( "TLS %s connection setting should be set", [tls]),

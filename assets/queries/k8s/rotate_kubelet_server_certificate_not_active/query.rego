@@ -38,7 +38,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
-		"resourceName": "unknown",
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}.featureGates",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "RotateKubeletServerCertificates to be true",

@@ -65,7 +65,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"resourceType": doc.kind,
-		"resourceName": "unknown",
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "KubeletConfiguration should have 'tlsCipherSuites' attribute with strong ciphers defined",
@@ -82,7 +82,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"resourceType": doc.kind,
-		"resourceName": "unknown",
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}.tlsCipherSuites",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue":  "TLS cipher suites should use strong ciphers",

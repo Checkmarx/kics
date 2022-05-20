@@ -34,7 +34,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
-		"resourceName": "unknown",
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}.streamingConnectionIdleTimeout",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "streamingConnectionIdleTimeout not to be 0s",

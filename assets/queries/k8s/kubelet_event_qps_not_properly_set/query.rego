@@ -34,7 +34,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"resourceType": doc.kind,
-		"resourceName": "unknown",
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "eventRecordQPS flag should set to 0",
@@ -50,7 +50,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"resourceType": doc.kind,
-		"resourceName": "unknown",
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}.eventRecordQPS",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "eventRecordQPS flag should set to 0",

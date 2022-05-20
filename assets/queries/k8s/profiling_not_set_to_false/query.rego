@@ -58,7 +58,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": document.kind,
-		"resourceName": "unknown",
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeSchedulerConfiguration}}.enableProfiling",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "enableProfiling argument flag should be set to false",
@@ -74,7 +74,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": document.kind,
-		"resourceName": "unknown",
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeSchedulerConfiguration}}",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "enableProfiling argument flag should be defined and set to false",

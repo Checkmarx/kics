@@ -34,7 +34,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
-		"resourceName": "unknown",
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}.makeIPTablesUtilChains",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "makeIPTablesUtilChains to be true",

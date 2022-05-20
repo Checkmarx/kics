@@ -33,7 +33,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"resourceType": doc.kind,
-		"resourceName": "unknown",
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "protectKernelDefaults flag should defined to true",
@@ -49,7 +49,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"resourceType": doc.kind,
-		"resourceName": "unknown",
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}.protectKernelDefaults",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "protectKernelDefaults flag should defined to true",

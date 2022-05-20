@@ -34,7 +34,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
-		"resourceName": "unknown",
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}.rotateCertificates",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "rotateCertificates to be true",
@@ -50,7 +50,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
-		"resourceName": "unknown",
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}.rotateCertificates",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "rotateCertificates to be true",
