@@ -1972,13 +1972,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov8" title="31">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -4308,7 +4308,7 @@ func GetBracketValues(expr string, list [][]string, restOfString string) [][]str
                 <span class="cov7" title="18">if t == 0 &amp;&amp; restOfString == "" </span><span class="cov5" title="9">{
                         return list // if there is no more string to read from return value of list
                 }</span>
-                <span class="cov5" title="9">if t &gt; 0 </span><span class="cov5" title="8">{
+                <span class="cov5" title="9">if t &gt; 0 &amp;&amp; firstOpen+2 &lt;= firstClose </span><span class="cov5" title="8">{
                         list = GetBracketValues(expr[firstOpen+2:firstClose], list, expr[firstClose+2:])
                 }</span> else<span class="cov1" title="1"> {
                         list = GetBracketValues(restOfString, list, "") // recursive call to the rest of the string
@@ -4449,7 +4449,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
