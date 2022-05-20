@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_function_app",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_function_app[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_function_app[%s].auth_settings' is defined and not null", [name]),
@@ -24,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_function_app",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_function_app[%s].auth_settings.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_function_app[%s].auth_settings.enabled' is set to true", [name]),

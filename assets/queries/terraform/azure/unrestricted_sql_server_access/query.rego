@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_sql_firewall_rule",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_sql_firewall_rule[%s].start_ip_address", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_sql_firewall_rule[%s].start_ip_address' The difference between the value of the 'end_ip_address' and of 'start_ip_address' is lesser than 256", [name]),

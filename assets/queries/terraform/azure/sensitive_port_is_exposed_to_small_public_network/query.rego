@@ -20,6 +20,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_network_security_rule",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_network_security_rule[%s].destination_port_range", [name]),
 		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
 		"issueType": "IncorrectValue",

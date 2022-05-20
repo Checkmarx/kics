@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_managed_disk",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_managed_disk[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("azurerm_managed_disk[%s].encryption_settings is defined and not null", [name]),
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_managed_disk",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_managed_disk[%s].encryption_settings.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("azurerm_managed_disk[%s].encryption_settings.enabled is true ", [name]),

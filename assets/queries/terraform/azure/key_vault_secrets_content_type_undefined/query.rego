@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_key_vault_secret",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_key_vault_secret[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_key_vault_secret[%s].content_type' is defined and not null", [name]),

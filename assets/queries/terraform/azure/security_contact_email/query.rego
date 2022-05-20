@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_security_center_contact",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_security_center_contact[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_security_center_contact[%s].email' is defined and not null", [name]),

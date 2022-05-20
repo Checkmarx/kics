@@ -8,6 +8,8 @@ CxPolicy[result] {
 	network_rules.ip_rules[l] == "0.0.0.0/0"
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_storage_account",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_storage_account[%s].network_rules.ip_rules", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'network_rules.ip_rules' does not contain 0.0.0.0/0",
@@ -22,6 +24,8 @@ CxPolicy[result] {
 	network_rules.default_action == "Allow"
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_storage_account",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_storage_account[%s].network_rules", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'network_rules.ip_rules' is defined and not null",
@@ -36,6 +40,8 @@ CxPolicy[result] {
 	rules.ip_rules[l] == "0.0.0.0/0"
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_storage_account_network_rules",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_storage_account_network_rules[%s].ip_rules", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("ip_rules[%d] does not contain 0.0.0.0/0", [l]),
@@ -50,6 +56,8 @@ CxPolicy[result] {
 	rules.default_action == "Allow"
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_storage_account_network_rules",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_storage_account_network_rules[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'ip_rules' is defined and not null",
@@ -65,6 +73,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_storage_account",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_storage_account[%s].allow_blob_public_access", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'allow_blob_public_access' is set to false or undefined",

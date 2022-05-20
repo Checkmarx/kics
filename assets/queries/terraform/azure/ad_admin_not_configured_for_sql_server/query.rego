@@ -5,6 +5,8 @@ CxPolicy[result] {
 	not adAdminExists(sql_server.name, sql_server.resource_group_name, name)
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_sql_server",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_sql_server[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("A 'azurerm_sql_active_directory_administrator' is defined for 'azurerm_sql_server[%s]'", [name]),

@@ -5,6 +5,8 @@ CxPolicy[result] {
 	role_assign.role_definition_name == "Guest"
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_role_assignment",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_role_assignment[%s].role_definition_name", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("azurerm_role_assignment[%s].role_definition_name not equal to 'Guest'", [name]),

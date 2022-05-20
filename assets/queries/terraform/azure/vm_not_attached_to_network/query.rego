@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_virtual_machine",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_virtual_machine[%s].network_interface_ids", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_virtual_machine[%s].network_interface_ids' list is not empty", [name]),

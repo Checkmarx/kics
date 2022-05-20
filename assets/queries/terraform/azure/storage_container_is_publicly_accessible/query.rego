@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_storage_container",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_storage_container[%s].container_access_type", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'container_access_type' is equal to 'private'",

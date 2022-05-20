@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_frontdoor",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_frontdoor[%s].frontend_endpoint", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_frontdoor[%s].frontend_endpoint.web_application_firewall_policy_link_id' is defined and not null", [name]),

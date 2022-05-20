@@ -7,6 +7,8 @@ CxPolicy[result] {
 	networkRules.default_action == "Allow"
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_storage_account",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_storage_account[%s].network_rules.default_action", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Expected 'default_action' to be set to 'Deny'",
@@ -20,6 +22,8 @@ CxPolicy[result] {
 	networkRules.default_action == "Allow"
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_storage_account_network_rules",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_storage_account_network_rules[%s].default_action", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Expected 'default_action' to be set to 'Deny'",

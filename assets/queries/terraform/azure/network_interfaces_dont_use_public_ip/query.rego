@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_network_interface",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_network_interface[%s].ip_configuration.public_ip_address_id", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_network_interface[%s].ip_configuration.public_ip_address_id' is undefined", [name]),

@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azure_virtual_network",
+		"resourceName": name,
 		"searchKey": sprintf("azure_virtual_network[%s].subnet", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azure_virtual_network[%s].subnet.security_group' is defined and not null", [name]),
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azure_virtual_network",
+		"resourceName": name,
 		"searchKey": sprintf("azure_virtual_network[%s].subnet.security_group", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azure_virtual_network[%s].subnet.security_group' is not empty", [name]),

@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": "azurerm_mssql_server",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_mysql_server[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_mysql_server[%s].public_network_access_enabled' is defined", [name]),
@@ -25,6 +27,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": "azurerm_mssql_server",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_mysql_server[%s].public_network_access_enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_mysql_server[%s].public_network_access_enabled' is set to false", [name]),

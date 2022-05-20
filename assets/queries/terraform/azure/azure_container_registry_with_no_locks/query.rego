@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_container_registry",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_container_registry[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_container_registry[%s] scope' contains azurerm_management_lock'", [name]),

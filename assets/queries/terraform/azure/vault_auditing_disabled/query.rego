@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_key_vault",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_key_vault[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'azurerm_key_vault' is associated with 'azurerm_monitor_diagnostic_setting'",

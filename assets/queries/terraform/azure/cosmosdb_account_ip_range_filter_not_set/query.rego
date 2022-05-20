@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_cosmosdb_account",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_cosmosdb_account[%s].ip_range_filter", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_cosmosdb_account[%s].ip_range_filter' is set", [name]),

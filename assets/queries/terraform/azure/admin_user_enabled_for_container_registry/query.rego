@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_container_registry",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_container_registry[%s].admin_enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'admin_enabled' equal 'false'",

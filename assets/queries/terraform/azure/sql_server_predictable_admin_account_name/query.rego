@@ -6,6 +6,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_sql_server",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_sql_server[%s].administrator_login", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_sql_server[%s].administrator_login' is not empty'", [name]),
@@ -19,6 +21,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_sql_server",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_sql_server[%s].administrator_login", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_sql_server[%s].administrator_login' is not predictable'", [name]),

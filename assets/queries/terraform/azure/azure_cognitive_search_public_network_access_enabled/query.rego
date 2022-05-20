@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_search_service",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_search_service[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_search_service[%s].public_network_access_enabled' is defined and set to false", [name]),
@@ -24,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_search_service",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_search_service[%s].public_network_access_enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_search_service[%s].public_network_access_enabled' is set to false", [name]),

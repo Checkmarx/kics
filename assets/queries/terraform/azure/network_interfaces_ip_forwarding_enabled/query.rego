@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_network_interface",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_network_interface[%s].enable_ip_forwarding", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_network_interface[%s].enable_ip_forwarding' is set to false or undefined", [name]),

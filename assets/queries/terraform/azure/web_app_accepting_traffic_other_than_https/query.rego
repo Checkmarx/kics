@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_app_service",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_app_service[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_app_service[%s].https_only' is set", [name]),
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_app_service",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_app_service[%s].https_only", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_app_service[%s].https_only' is set to true", [name]),

@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_kubernetes_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s].network_profile.network_policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].network_profile.network_policy' is either 'azure' or 'calico'", [name]),
@@ -25,6 +27,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_kubernetes_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s].network_profile", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].network_profile.network_policy' is set and is either 'azure' or 'calico'", [name]),
@@ -38,6 +42,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_kubernetes_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].network_profile' is set", [name]),

@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_kubernetes_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].disk_encryption_set_id' is defined and not null", [name]),

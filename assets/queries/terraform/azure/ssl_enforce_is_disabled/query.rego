@@ -6,6 +6,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_postgresql_server",
+		"resourceName": var0,
 		"searchKey": sprintf("azurerm_postgresql_server[%s].ssl_enforcement_enabled", [var0]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_postgresql_server.%s.ssl_enforcement_enabled' is equal 'true'", [var0]),

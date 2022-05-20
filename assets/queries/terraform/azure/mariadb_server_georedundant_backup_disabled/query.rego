@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_mariadb_server",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_mariadb_server[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_mariadb_server[%s].geo_redundant_backup_enabled' is defined and set to true", [name]),
@@ -24,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_mariadb_server",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_mariadb_server[%s].geo_redundant_backup_enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_mariadb_server[%s].geo_redundant_backup_enabled' is set to true", [name]),

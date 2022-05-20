@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_app_service",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_app_service[%s].site_config.min_tls_version", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_app_service[%s].site_config.min_tls_version' is set to '1.2'", [name]),

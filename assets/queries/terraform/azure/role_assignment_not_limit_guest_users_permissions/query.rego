@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_role_assignment",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_role_assignment[%s].role_definition_id", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("azurerm_role_assignment[%s].role_definition_id limits guest user permissions", [name]),

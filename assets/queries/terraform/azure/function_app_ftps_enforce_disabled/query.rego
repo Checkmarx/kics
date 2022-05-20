@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_function_app",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_function_app[%s].site_config'", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_function_app[%s].site_config.ftps_state' is defined and not null", [name]),
@@ -24,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_function_app",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_function_app[%s].site_config.ftps_state", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_function_app[%s].site_config.ftps_state' is not set to 'AllAllowed'", [name]),

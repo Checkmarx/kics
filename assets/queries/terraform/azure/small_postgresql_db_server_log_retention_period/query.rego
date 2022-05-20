@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_postgresql_configuration",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_postgresql_configuration[%s].value", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_postgresql_configuration[%s].value' is greater than 3 and less than 8", [name]),

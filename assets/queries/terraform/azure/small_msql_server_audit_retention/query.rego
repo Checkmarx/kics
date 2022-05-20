@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource_type[t],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].extended_auditing_policy.retention_in_days", [resource_type[t], name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s.extended_auditing_policy.retention_in_days' is bigger than 90", [name]),

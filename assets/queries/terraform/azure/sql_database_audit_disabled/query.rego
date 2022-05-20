@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_sql_database",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_sql_database[%s].threat_detection_policy", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'threat_detection_policy' exists",
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_sql_database",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_sql_database[%s].threat_detection_policy.state", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'threat_detection_policy.state' equal 'Enabled'",

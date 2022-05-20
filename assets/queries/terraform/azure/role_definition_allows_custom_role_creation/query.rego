@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_role_definition",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_role_definition[%s].permissions.actions", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("azurerm_role_definition[%s].permissions.actions does not allow custom role creation", [name]),

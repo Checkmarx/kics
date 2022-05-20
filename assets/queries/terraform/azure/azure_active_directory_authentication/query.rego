@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_service_fabric_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_service_fabric_cluster[%s].azure_active_directory", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_service_fabric_cluster[%s].azure_active_directory.tenant_id' is defined and not null", [name]),
@@ -24,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_service_fabric_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_service_fabric_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_service_fabric_cluster[%s].azure_active_directory' is defined and not null", [name]),

@@ -6,6 +6,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_storage_account_network_rules",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_storage_account_network_rules[%s].default_action", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_storage_account_network_rules[%s].default_action' is set to 'Deny'", [name]),

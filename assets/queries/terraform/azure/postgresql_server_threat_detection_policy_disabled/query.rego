@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_postgresql_server",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_postgresql_server[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_postgresql_server[%s].threat_detection_policy' is a defined object", [name]),
@@ -24,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_postgresql_server",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_postgresql_server[%s].threat_detection_policy.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_postgresql_server[%s].threat_detection_policy.enabled' is set to true", [name]),

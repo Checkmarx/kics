@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_storage_table",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_storage_table[%s].acl.permissions", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("azurerm_storage_table[%s].acl.permissions does not allow all ACL permissions", [name]),

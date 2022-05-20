@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_postgresql_configuration",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_postgresql_configuration[%s].value", [x]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_postgresql_configuration.%s.value' is 'ON'", [x]),

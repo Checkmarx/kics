@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_storage_account",
+		"resourceName": var0,
 		"searchKey": sprintf("azurerm_storage_account[%s]", [var0]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_storage_account.%s.enable_https_traffic_only' equals 'true'", [var0]),
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_storage_account",
+		"resourceName": var0,
 		"searchKey": sprintf("azurerm_storage_account[%s].enable_https_traffic_only", [var0]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_storage_account.%s.enable_https_traffic_only' equals 'true'", [var0]),

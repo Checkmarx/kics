@@ -6,6 +6,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_network_watcher_flow_log",
+		"resourceName": name,
 		"searchKey": sprintf("azurerm_network_watcher_flow_log[%s].enable", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "azurerm_network_watcher_flow_log.enabled is true",
