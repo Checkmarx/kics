@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.engine", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "elasticache.engine enables Memcached",
+		"keyExpectedValue": "elasticache.engine to have Memcached enabled",
 		"keyActualValue": "elasticache.engine doesn't enable Memcached",
 	}
 }
