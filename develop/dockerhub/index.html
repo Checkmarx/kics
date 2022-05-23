@@ -1294,7 +1294,7 @@
 <p>When using <a href="https://catalog.redhat.com">UBI8</a> based image, the KICS process will run under the <code>kics</code> user and <code>kics</code> group with default UID=1000 and GID=1000, when using bind mount to share host files with the container, the UID and GID can be overriden to match current user with the <code>-u</code> flag that overrides the username:group or UID:GID. e.g:</p>
 <pre><code class="language-sh">docker run -it -u $UID:$GID -v $PWD:/path checkmarx/kics:ubi8 scan -p /path/assets/queries/dockerfile -o /path -v
 </code></pre>
-<p>Another option is <a href="https://github.com/Checkmarx/kics/blob/master/Dockerfile.ubi8">rebuilding the dockerfile</a> providing build arguments e.g: <code>--build-arg UID=999 --build-arg GID=999 --build-arg KUSER=myuser --build-arg KUSER=mygroup</code></p>
+<p>Another option is <a href="https://github.com/Checkmarx/kics/blob/master/docker/Dockerfile.ubi8">rebuilding the dockerfile</a> providing build arguments e.g: <code>--build-arg UID=999 --build-arg GID=999 --build-arg KUSER=myuser --build-arg KUSER=mygroup</code></p>
 <h2 id="cli_options">CLI Options<a class="headerlink" href="#cli_options" title="Permanent link">&para;</a></h2>
 <p>Usage:</p>
 <pre><code class="language-txt">Executes a scan analysis
