@@ -25,7 +25,6 @@ CxPolicy[result] {
 
 	not key_set_to_false(resource)
     resource.enable_key_rotation == true
-    common_lib.valid_key(resource, "customer_master_key_spec")
     not customer_master_key_spec_set_to_symmetric(resource)
 
 	result := {
