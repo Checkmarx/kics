@@ -14,8 +14,9 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"searchKey": sprintf("plugins", []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Plugins should not contain a plugin that does not support Network Policies", []),
-		"keyActualValue": sprintf("Plugins contains a plugin that does not support Network Policies", []),
+		"keyExpectedValue": "Plugins should not contain a plugin that does not support Network Policies",
+		"keyActualValue": "Plugins contains a plugin that does not support Network Policies",
+		"searchLine": common_lib.build_search_line(["plugins", j, "type"], []),
 	}
 }
 
@@ -31,8 +32,8 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"searchKey": sprintf("data.cni-conf.json", []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Plugins should not contain a plugin that does not support Network Policies", []),
-		"keyActualValue": sprintf("Plugins contains a plugin that does not support Network Policies", []),
+		"keyExpectedValue": "Plugins should not contain a plugin that does not support Network Policies",
+		"keyActualValue": "Plugins contains a plugin that does not support Network Policies",
 		"searchLine": common_lib.build_search_line(["data", "cni-conf.json"], []),
 	}
 }
