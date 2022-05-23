@@ -13,7 +13,6 @@ jobs:
         go-version: [1.18.x]
         os: [ubuntu-latest]
         kics-docker: ["Dockerfile", "docker/Dockerfile.ubi8"]
-        kics-docker-name: ["Dockerfile", "Dockerfile.ubi8"]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Cancel Previous Runs
@@ -98,5 +97,5 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: e2e-tests-report-${{ matrix.kics-docker-name }}
+          name: e2e-tests-report-${{ matrix.kics-docker////_ }}
           path: e2e-report.html
