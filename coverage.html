@@ -69,13 +69,13 @@
 				
 				<option value="file6">github.com/Checkmarx/kics/internal/console/helpers/exit_handler.go (100.0%)</option>
 				
-				<option value="file7">github.com/Checkmarx/kics/internal/console/helpers/helpers.go (62.2%)</option>
+				<option value="file7">github.com/Checkmarx/kics/internal/console/helpers/helpers.go (48.1%)</option>
 				
 				<option value="file8">github.com/Checkmarx/kics/internal/console/kics.go (79.4%)</option>
 				
 				<option value="file9">github.com/Checkmarx/kics/internal/console/list_platforms.go (100.0%)</option>
 				
-				<option value="file10">github.com/Checkmarx/kics/internal/console/pre_scan.go (82.4%)</option>
+				<option value="file10">github.com/Checkmarx/kics/internal/console/pre_scan.go (83.1%)</option>
 				
 				<option value="file11">github.com/Checkmarx/kics/internal/console/scan.go (73.2%)</option>
 				
@@ -1012,34 +1012,77 @@ func ListReportFormats() []string <span class="cov1" title="1">{
 }
 
 // GetNumCPU return the number of cpus available
-func GetNumCPU() (float32, error) <span class="cov0" title="0">{
+func GetNumCPU() float32 <span class="cov0" title="0">{
         // Check if application is running inside docker
-        if _, err := os.Stat("/.dockerenv"); err == nil </span><span class="cov0" title="0">{
-                f, err := os.Open("/sys/fs/cgroup/cpu/cpu.cfs_quota_us")
+        _, err := os.Stat("/.dockerenv")
+        if err == nil </span><span class="cov0" title="0">{
+                numCPU, err := getCPUFromQuotaUS()
+                if err == nil </span><span class="cov0" title="0">{
+                        return numCPU
+                }</span>
+                <span class="cov0" title="0">numCPU, err = getCPUFromCPUMax()
+                if err == nil </span><span class="cov0" title="0">{
+                        return numCPU
+                }</span>
+        }
+
+        <span class="cov0" title="0">return float32(runtime.NumCPU())</span>
+}
+
+func getCPUFromQuotaUS() (float32, error) <span class="cov0" title="0">{
+        f, err := os.Open("/sys/fs/cgroup/cpu/cpu.cfs_quota_us")
+        if err != nil </span><span class="cov0" title="0">{
+                return -1, err
+        }</span>
+
+        <span class="cov0" title="0">defer func() </span><span class="cov0" title="0">{
+                if err := f.Close(); err != nil </span><span class="cov0" title="0">{
+                        log.Err(err).Msg("failed to close '/sys/fs/cgroup/cpu/cpu.cfs_quota_us'")
+                }</span>
+        }()
+
+        <span class="cov0" title="0">scanner := bufio.NewScanner(f)
+        if scanner.Scan() </span><span class="cov0" title="0">{
+                text := scanner.Text()
+                cpus, err := strconv.Atoi(text)
                 if err != nil </span><span class="cov0" title="0">{
-                        return -1, err
+                        return float32(cpus) / divisor, err
                 }</span>
 
-                <span class="cov0" title="0">defer func() </span><span class="cov0" title="0">{
-                        if err := f.Close(); err != nil </span><span class="cov0" title="0">{
-                                log.Err(err).Msg("failed to close '/sys/fs/cgroup/cpu/cpu.cfs_quota_us'")
-                        }</span>
-                }()
+                <span class="cov0" title="0">if cpus != -1 </span><span class="cov0" title="0">{
+                        return float32(cpus) / divisor, nil
+                }</span>
 
-                <span class="cov0" title="0">scanner := bufio.NewScanner(f)
-                if scanner.Scan() </span><span class="cov0" title="0">{
-                        text := scanner.Text()
-                        cpus, err := strconv.Atoi(text)
-                        if err != nil </span><span class="cov0" title="0">{
-                                return float32(cpus) / divisor, err
-                        }</span>
+                <span class="cov0" title="0">return float32(runtime.NumCPU()), nil</span>
+        }
 
-                        <span class="cov0" title="0">if cpus != -1 </span><span class="cov0" title="0">{
-                                return float32(cpus) / divisor, nil
-                        }</span>
+        <span class="cov0" title="0">return float32(runtime.NumCPU()), nil</span>
+}
 
-                        <span class="cov0" title="0">return float32(runtime.NumCPU()), nil</span>
-                }
+func getCPUFromCPUMax() (float32, error) <span class="cov0" title="0">{
+        f, err := os.Open("/sys/fs/cgroup/cpu.max")
+        if err != nil </span><span class="cov0" title="0">{
+                return -1, err
+        }</span>
+
+        <span class="cov0" title="0">defer func() </span><span class="cov0" title="0">{
+                if err := f.Close(); err != nil </span><span class="cov0" title="0">{
+                        log.Err(err).Msg("failed to close '/sys/fs/cgroup/cpu.max'")
+                }</span>
+        }()
+
+        <span class="cov0" title="0">scanner := bufio.NewScanner(f)
+        if scanner.Scan() </span><span class="cov0" title="0">{
+                text := scanner.Text()
+                stringCpus := strings.Split(text, " ")[0]
+                cpus, err := strconv.Atoi(stringCpus)
+                if err != nil </span><span class="cov0" title="0">{
+                        return float32(cpus) / divisor, err
+                }</span>
+
+                <span class="cov0" title="0">if cpus != -1 </span><span class="cov0" title="0">{
+                        return float32(cpus) / divisor, nil
+                }</span>
 
                 <span class="cov0" title="0">return float32(runtime.NumCPU()), nil</span>
         }
@@ -1346,14 +1389,10 @@ func (console *console) preScan() <span class="cov6" title="7">{
                 log.Info().Msgf("Total memory: %s", bytefmt.ByteSize(mem.Total))
         }</span>
 
-        <span class="cov6" title="7">cpu, err := consoleHelpers.GetNumCPU()
-        if err != nil </span><span class="cov0" title="0">{
-                log.Err(err).Msg("failed to get CPU")
-        }</span> else<span class="cov6" title="7"> {
-                log.Info().Msgf("CPU: %.1f", cpu)
-        }</span>
+        <span class="cov6" title="7">cpu := consoleHelpers.GetNumCPU()
+        log.Info().Msgf("CPU: %.1f", cpu)
 
-        <span class="cov6" title="7">noProgress := flags.GetBoolFlag(flags.NoProgressFlag)
+        noProgress := flags.GetBoolFlag(flags.NoProgressFlag)
         if strings.EqualFold(flags.GetStrFlag(flags.LogLevelFlag), "debug") </span><span class="cov0" title="0">{
                 noProgress = true
         }</span>
@@ -2003,7 +2042,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="16">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
