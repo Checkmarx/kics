@@ -1,6 +1,7 @@
 package terraform
 
 import (
+	"github.com/Checkmarx/kics/pkg/resolver/file"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -156,6 +157,6 @@ func (p *Parser) StringifyContent(content []byte) (string, error) {
 	return string(content), nil
 }
 
-func (p *Parser) GetResolvedFiles() map[string]*[]byte {
-	return make(map[string]*[]byte)
+func (p *Parser) GetResolvedFiles() map[string]file.ResolvedFile {
+	return make(map[string]file.ResolvedFile)
 }

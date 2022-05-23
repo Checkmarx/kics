@@ -1,6 +1,7 @@
 package detector
 
 import (
+	"github.com/Checkmarx/kics/pkg/resolver/file"
 	"strconv"
 	"strings"
 
@@ -22,7 +23,8 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 	resFiles := d.prepareResolvedFiles(file.ResolvedFiles)
 	foundAtLeastOne := false
 	currentLine := 0
-	adjLines := make([]string, 0)
+	adjLines := lines
+	resolvedFile := file.FilePath
 	var extractedString [][]string
 	extractedString = GetBracketValues(searchKey, extractedString, "")
 	sanitizedSubstring := searchKey
@@ -33,10 +35,12 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 	for _, key := range strings.Split(sanitizedSubstring, ".") {
 		substr1, substr2 := GenerateSubstrings(key, extractedString)
 
-		response := DetectCurrentLine(lines, substr1, substr2, currentLine, foundAtLeastOne, resFiles)
+		response := DetectCurrentLine(adjLines, substr1, substr2, currentLine, foundAtLeastOne, resFiles, resolvedFile)
+
 		currentLine = response.CurrentLine
 		foundAtLeastOne = response.FoundAtLeastOne
 		adjLines = response.Lines
+		resolvedFile = response.ResolvedFile
 
 		if response.IsBreak {
 			break
@@ -45,14 +49,16 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 
 	if foundAtLeastOne {
 		return model.VulnerabilityLines{
-			Line:      currentLine + 1,
-			VulnLines: GetAdjacentVulnLines(currentLine, outputLines, adjLines),
+			Line:         currentLine + 1,
+			VulnLines:    GetAdjacentVulnLines(currentLine, outputLines, adjLines),
+			ResolvedFile: resolvedFile,
 		}
 	}
 
 	return model.VulnerabilityLines{
-		Line:      undetectedVulnerabilityLine,
-		VulnLines: []model.CodeLine{},
+		Line:         undetectedVulnerabilityLine,
+		VulnLines:    []model.CodeLine{},
+		ResolvedFile: resolvedFile,
 	}
 }
 
@@ -61,10 +67,13 @@ func (d defaultDetectLine) SplitLines(content string) []string {
 	return strings.Split(text, "\n")
 }
 
-func (d defaultDetectLine) prepareResolvedFiles(resFiles map[string]*[]byte) map[string][]string {
-	resolvedFiles := make(map[string][]string)
-	for file, content := range resFiles {
-		resolvedFiles[file] = d.SplitLines(string(*content))
+func (d defaultDetectLine) prepareResolvedFiles(resFiles map[string]file.ResolvedFile) map[string]model.ResolvedFileSplit {
+	resolvedFiles := make(map[string]model.ResolvedFileSplit)
+	for f, res := range resFiles {
+		resolvedFiles[f] = model.ResolvedFileSplit{
+			Path:  res.Path,
+			Lines: d.SplitLines(string(res.Content)),
+		}
 	}
 	return resolvedFiles
 }

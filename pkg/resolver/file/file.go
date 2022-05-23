@@ -10,7 +10,12 @@ import (
 type Resolver struct {
 	unmarshler    func(fileContent []byte, v any) error
 	marshler      func(v any) ([]byte, error)
-	ResolvedFiles map[string]*[]byte
+	ResolvedFiles map[string]ResolvedFile
+}
+
+type ResolvedFile struct {
+	Path    string
+	Content []byte
 }
 
 // NewResolver returns a new Resolver
@@ -20,7 +25,7 @@ func NewResolver(
 	return &Resolver{
 		unmarshler:    unmarshler,
 		marshler:      marshler,
-		ResolvedFiles: make(map[string]*[]byte),
+		ResolvedFiles: make(map[string]ResolvedFile),
 	}
 }
 
@@ -102,7 +107,10 @@ func (r *Resolver) resolvePath(value string, filePath string) (any, bool) {
 		return value, false
 	}
 
-	r.ResolvedFiles[value] = resolvedFile
+	r.ResolvedFiles[value] = ResolvedFile{
+		Content: fileContent,
+		Path:    path,
+	}
 
 	return obj, true
 }

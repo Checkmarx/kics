@@ -2,6 +2,7 @@
 package model
 
 import (
+	"github.com/Checkmarx/kics/pkg/resolver/file"
 	"regexp"
 	"sort"
 	"strings"
@@ -80,6 +81,7 @@ type VulnerabilityLines struct {
 	Line                 int
 	VulnLines            []CodeLine
 	LineWithVulnerabilty string
+	ResolvedFile         string
 }
 
 // CommentCommand represents a command given from a comment
@@ -124,7 +126,7 @@ type FileMetadata struct {
 	IDInfo           map[int]interface{}
 	Commands         CommentsCommands
 	LinesIgnore      []int
-	ResolvedFiles    map[string]*[]byte
+	ResolvedFiles    map[string]file.ResolvedFile
 }
 
 // QueryMetadata is a representation of general information about a query
@@ -271,4 +273,9 @@ func (m FileMetadatas) Combine(lineInfo bool) Documents {
 type AnalyzedPaths struct {
 	Types []string
 	Exc   []string
+}
+
+type ResolvedFileSplit struct {
+	Path  string
+	Lines []string
 }

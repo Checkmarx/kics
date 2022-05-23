@@ -27,6 +27,7 @@ type DefaultDetectLineResponse struct {
 	IsBreak         bool
 	FoundAtLeastOne bool
 	Lines           []string
+	ResolvedFile    string
 }
 
 // GetBracketValues gets values inside "{{ }}" ignoring any "{{" or "}}" inside
@@ -248,8 +249,7 @@ func removeExtras(result string, start, end int) string {
 }
 
 // DetectCurrentLine uses levenshtein distance to find the most accurate line for the vulnerability
-func DetectCurrentLine(lines []string, str1, str2 string,
-	curLine int, foundOne bool, resolvedFiles map[string][]string) DefaultDetectLineResponse {
+func DetectCurrentLine(lines []string, str1 string, str2 string, curLine int, foundOne bool, resolvedFiles map[string]model.ResolvedFileSplit, resolvedFile string) DefaultDetectLineResponse {
 	distances := make(map[int]int)
 	for i := curLine; i < len(lines); i++ {
 		if str1 != "" && str2 != "" {
@@ -278,6 +278,7 @@ func DetectCurrentLine(lines []string, str1, str2 string,
 			CurrentLine:     curLine,
 			IsBreak:         true,
 			Lines:           lines,
+			ResolvedFile:    resolvedFile,
 		}
 	}
 
@@ -286,13 +287,14 @@ func DetectCurrentLine(lines []string, str1, str2 string,
 		IsBreak:         false,
 		FoundAtLeastOne: true,
 		Lines:           lines,
+		ResolvedFile:    resolvedFile,
 	}
 }
 
-func checkResolvedFile(line, str1, st2 string, resolvedFiles map[string][]string) DefaultDetectLineResponse {
-	for key, content := range resolvedFiles {
+func checkResolvedFile(line, str1, st2 string, resolvedFiles map[string]model.ResolvedFileSplit) DefaultDetectLineResponse {
+	for key, r := range resolvedFiles {
 		if strings.Contains(line, key) {
-			return DetectCurrentLine(content, str1, st2, 0, false, resolvedFiles)
+			return DetectCurrentLine(r.Lines, str1, st2, 0, false, resolvedFiles, r.Path)
 		}
 	}
 	return DefaultDetectLineResponse{

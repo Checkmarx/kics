@@ -3,6 +3,7 @@ package parser
 import (
 	"bytes"
 	"errors"
+	"github.com/Checkmarx/kics/pkg/resolver/file"
 	"os"
 	"path/filepath"
 	"strings"
@@ -20,7 +21,7 @@ type kindParser interface {
 	Parse(filePath string, fileContent []byte) ([]model.Document, []int, error)
 	Resolve(fileContent []byte, filename string) (*[]byte, error)
 	StringifyContent(content []byte) (string, error)
-	GetResolvedFiles() map[string]*[]byte
+	GetResolvedFiles() map[string]file.ResolvedFile
 }
 
 // Builder is a representation of parsers that will be construct
@@ -82,7 +83,7 @@ type ParsedDocument struct {
 	Content       string
 	IgnoreLines   []int
 	CountLines    int
-	ResolvedFiles map[string]*[]byte
+	ResolvedFiles map[string]file.ResolvedFile
 }
 
 // CommentsCommands gets commands on comments in the file beginning, before the code starts

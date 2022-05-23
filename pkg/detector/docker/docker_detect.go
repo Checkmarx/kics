@@ -42,7 +42,7 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 		substr1, substr2 := detector.GenerateSubstrings(key, extractedString)
 
 		response := detector.DetectCurrentLine(lines, substr1, substr2,
-			currentLine, foundAtLeastOne, make(map[string][]string))
+			currentLine, foundAtLeastOne, make(map[string]model.ResolvedFileSplit), file.FilePath)
 
 		currentLine = response.CurrentLine
 		foundAtLeastOne = response.FoundAtLeastOne

@@ -13,7 +13,7 @@ import (
 
 // Parser defines a parser type
 type Parser struct {
-	resolvedFiles map[string]*[]byte
+	resolvedFiles map[string]file.ResolvedFile
 }
 
 // Resolve - replace or modifies in-memory content before parsing
@@ -184,6 +184,6 @@ func emptyDocument() *model.Document {
 	return &model.Document{}
 }
 
-func (p *Parser) GetResolvedFiles() map[string]*[]byte {
+func (p *Parser) GetResolvedFiles() map[string]file.ResolvedFile {
 	return p.resolvedFiles
 }

@@ -12,7 +12,7 @@ import (
 // Parser defines a parser type
 type Parser struct {
 	shouldIdent   bool
-	resolvedFiles map[string]*[]byte
+	resolvedFiles map[string]file.ResolvedFile
 }
 
 // Resolve - replace or modifies in-memory content before parsing
@@ -29,7 +29,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 	r := model.Document{}
 	err := easyjson.Unmarshal(fileContent, &r)
 	if err != nil {
-		r := []model.Document{}
+		var r []model.Document
 		err = json.Unmarshal(fileContent, &r)
 		return r, []int{}, err
 	}
@@ -82,6 +82,6 @@ func (p *Parser) StringifyContent(content []byte) (string, error) {
 	return string(content), nil
 }
 
-func (p *Parser) GetResolvedFiles() map[string]*[]byte {
+func (p *Parser) GetResolvedFiles() map[string]file.ResolvedFile {
 	return p.resolvedFiles
 }
