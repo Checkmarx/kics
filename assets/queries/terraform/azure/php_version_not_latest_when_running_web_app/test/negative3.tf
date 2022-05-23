@@ -22,7 +22,7 @@ resource "azurerm_linux_web_app" "example3" {
 
   site_config{
     application_stack{
-      php_version = "8.0"
+      php_version = "8.1"
     }    
   }
 }
