@@ -4,11 +4,5 @@
 		"severity": "INFO",
 		"line": 5,
         "fileName": "positive.yaml"
-	},
-	{
-		"queryName": "Ensure Administrative Boundaries Between Resources",
-		"severity": "INFO",
-		"line": 36,
-        "fileName": "positive.yaml"
 	}
 ]

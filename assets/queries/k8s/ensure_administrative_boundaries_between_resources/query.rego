@@ -6,21 +6,20 @@ import data.generic.k8s as k8sLib
 listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob", "Service", "Secret", "ServiceAccount", "Role", "RoleBinding", "ConfigMap", "Ingress"]
 
 CxPolicy[result] {
-	resource := input.document[i]
-	metadata := resource.metadata
+    nsSearch := [nsSearch |res = input.document[_];
+					res.kind == listKinds[_]; 
+					nspace := res.metadata.namespace;
+                    nsSearch := {"namespace": nspace,"res": res.id}]
 
-    resource.kind == listKinds[_]
-    namespace := metadata.namespace
-
-    c := count({j | res = input.document[j]; res.kind == listKinds[_]; res.metadata.namespace == namespace})
-    c > 1
+    namespaces := {ns | ns:=nsSearch[_].namespace }
+    namespacesContac:= concat(", ",namespaces)
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.namespace={{%s}}", [metadata.namespace]),
+		"documentId": nsSearch[0].res,
+		"searchKey": sprintf("metadata.namespace={{%s}}", [nsSearch[0].namespace]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "consider using diffrent namespace",
-		"keyActualValue": "same namaspace is used used multiple times",
+		"keyExpectedValue": "ensure that these namespaces are the ones you need and are adequately administered as per your requirements.",
+		"keyActualValue": sprintf("namespaces in use: %s", [namespacesContac]),
 		"searchLine": common_lib.build_search_line(["metadata", "namespace"], []),
 	}
 }
