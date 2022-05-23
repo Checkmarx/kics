@@ -30,7 +30,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"resourceType": "google_iam_policy",
+		"resourceType": resources[idx],
 		"resourceName": name,
 		"searchKey": sprintf("%s[%s].role", [resources[idx], name]),
 		"issueType": "IncorrectValue",
