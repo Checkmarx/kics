@@ -1,18 +1,18 @@
 [
   {
-    "queryName": "Php Version Not Latest When Running Web App",
+    "queryName": "PHP Version Not Latest When Running Web App",
     "severity": "MEDIUM",
     "line": 11,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "Php Version Not Latest When Running Web App",
+    "queryName": "PHP Version Not Latest When Running Web App",
     "severity": "MEDIUM",
     "line": 25,
     "fileName": "positive2.tf"
   },
   {
-    "queryName": "Php Version Not Latest When Running Web App",
+    "queryName": "PHP Version Not Latest When Running Web App",
     "severity": "MEDIUM",
     "line": 26,
     "fileName": "positive3.tf"
