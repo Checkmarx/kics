@@ -93,9 +93,12 @@ jobs:
           go mod tidy
           go build
           ./e2e-report -test-path ${CWD} -test-name results.json -report-path ${CWD} -report-name e2e-report.html
+      - name: Get docker name
+        run: |
+          DOCKER_NAME=$(echo ${{ matrix.kics-docker }} | sed 's/\//-/')
       - name: Archive test report
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: e2e-tests-report-${{ matrix.kics-docker////_ }}
+          name: e2e-tests-report-$DOCKER_NAME
           path: e2e-report.html
