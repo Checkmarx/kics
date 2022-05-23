@@ -6,6 +6,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_db_security_group",
+		"resourceName": name,
 		"searchKey": sprintf("aws_default_security_group[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "ingress.cidr_blocks or egress.cidr_blocks diferent from '0.0.0.0/0' and '::/0'",

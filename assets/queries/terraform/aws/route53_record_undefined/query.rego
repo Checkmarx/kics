@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_route53_record",
+		"resourceName": name,
 		"searchKey": sprintf("aws_route53_record[%s].records", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_route53_record.records is defined",

@@ -6,6 +6,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_eks_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_eks_cluster[%s].vpc_config.endpoint_public_access", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'vpc_config.endpoint_public_access' is equal 'false'",

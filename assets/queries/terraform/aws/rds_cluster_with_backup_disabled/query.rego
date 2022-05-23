@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_rds_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_rds_cluster[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_rds_cluster.backup_retention_period is defined and not null",

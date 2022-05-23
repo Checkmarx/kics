@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": lb[idx],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s]", [lb[idx], name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s[%s]' is not 'internal' and has a 'aws_wafregional_web_acl_association' associated", [lb[idx], name]),

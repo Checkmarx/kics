@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_secretsmanager_secret",
+		"resourceName": name,
 		"searchKey": sprintf("aws_secretsmanager_secret[%s].kms_key_id", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Secrets Manager secret is not encrypted with AWS managed key",

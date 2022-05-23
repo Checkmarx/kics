@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_instance",
+		"resourceName": name,
 		"searchKey": sprintf("aws_instance[%s].user_data", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'user_data' doesn't contain hardcoded access key",
@@ -24,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].user_data", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'user_data' doesn't contain hardcoded access key",

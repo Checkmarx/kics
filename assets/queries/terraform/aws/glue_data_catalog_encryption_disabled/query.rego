@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_glue_data_catalog_encryption_settings",
+		"resourceName": name,
 		"searchKey": sprintf("aws_glue_data_catalog_encryption_settings[%s].data_catalog_encryption_settings.encryption_at_rest.catalog_encryption_mode", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'catalog_encryption_mode' is set to 'SSE-KMS'",
@@ -24,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_glue_data_catalog_encryption_settings",
+		"resourceName": name,
 		"searchKey": sprintf("aws_glue_data_catalog_encryption_settings[%s].data_catalog_encryption_settings.encryption_at_rest", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'sse_aws_kms_key_id' is defined and not null",
@@ -39,6 +43,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_glue_data_catalog_encryption_settings",
+		"resourceName": name,
 		"searchKey": sprintf("aws_glue_data_catalog_encryption_settings[%s].data_catalog_encryption_settings.connection_password_encryption.return_connection_password_encrypted", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'return_connection_password_encrypted' is set to true",
@@ -54,6 +60,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_glue_data_catalog_encryption_settings",
+		"resourceName": name,
 		"searchKey": sprintf("aws_glue_data_catalog_encryption_settings[%s].data_catalog_encryption_settings.connection_password_encryption", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'aws_kms_key_id' is defined and not null",

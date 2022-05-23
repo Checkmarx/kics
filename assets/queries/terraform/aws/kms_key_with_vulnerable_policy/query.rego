@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_kms_key",
+		"resourceName": name,
 		"searchKey": sprintf("aws_kms_key[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_kms_key[%s].policy does not have wildcard in 'Action' and 'Principal'", [name]),
@@ -30,6 +32,8 @@ CxPolicy[result] {
 	
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_kms_key",
+		"resourceName": name,
 		"searchKey": sprintf("aws_kms_key[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_kms_key[%s].policy is defined and not null", [name]),

@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_db_instance",
+		"resourceName": name,
 		"searchKey": sprintf("aws_db_instance[%s].ca_cert_identifier", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'aws_db_instance.ca_cert_identifier' is 'rds-ca-2019'",
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].ca_cert_identifier", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'ca_cert_identifier' is 'rds-ca-2019'",

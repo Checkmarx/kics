@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_launch_configuration",
+		"resourceName": name,
 		"searchKey": sprintf("aws_launch_configuration[%s].user_data_base64", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_launch_configuration[%s].user_data_base64 doesn't contain RSA Private Key", [name]),
@@ -32,6 +34,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].user_data_base64", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'user_data_base64' doesn't contain RSA Private Key",

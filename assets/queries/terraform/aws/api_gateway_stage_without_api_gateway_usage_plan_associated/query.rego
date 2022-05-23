@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_api_gateway_stage",
+		"resourceName": name,
 		"searchKey": sprintf("aws_api_gateway_stage[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_api_gateway_stage[%s] has a 'aws_api_gateway_usage_plan' resource associated. ", [name]),

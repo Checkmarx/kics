@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_db_instance",
+		"resourceName": name,
 		"searchKey": sprintf("aws_db_instance[%s].auto_minor_version_upgrade", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'auto_minor_version_upgrade' is set to true",
@@ -24,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].auto_minor_version_upgrade", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'auto_minor_version_upgrade' is set to true",

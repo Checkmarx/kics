@@ -27,8 +27,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"resourceType": "module",
-		"resourceName": name,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module.%s", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "All names should be on snake case pattern",

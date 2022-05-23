@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_eks_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_eks_cluster[%s].enabled_cluster_log_types", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'enabled_cluster_log_types' has all log types",

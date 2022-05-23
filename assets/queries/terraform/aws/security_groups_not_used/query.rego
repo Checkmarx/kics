@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_security_group",
+		"resourceName": securityGroupName,
 		"searchKey": sprintf("aws_security_group[%s]", [securityGroupName]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'aws_security_group[%s]' is used", [securityGroupName]),

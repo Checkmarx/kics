@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket",
+		"resourceName": s3BucketName,
 		"searchKey": sprintf("aws_s3_bucket[%s]", [s3BucketName]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_s3_bucket[%s] has 'logging' defined", [s3BucketName]),
@@ -29,6 +31,8 @@ CxPolicy[result] {
 	not common_lib.valid_key(doc, keyToCheck)
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [moduleName]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'logging' is defined",

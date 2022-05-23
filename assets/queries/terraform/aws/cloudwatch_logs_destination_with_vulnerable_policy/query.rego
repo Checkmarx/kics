@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_cloudwatch_log_destination_policy",
+		"resourceName": name,
 		"searchKey": sprintf("aws_cloudwatch_log_destination_policy[%s].access_policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_cloudwatch_log_destination_policy[%s].access_policy does not have wildcard in 'principals' and 'actions'", [name]),

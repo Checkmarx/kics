@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_role",
+		"resourceName": name,
 		"searchKey": sprintf("aws_iam_role[%s].assume_role_policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "assume_role_policy.Statement.Action is not equal to, nor does it contain '*'",

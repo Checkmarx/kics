@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_kinesis_stream",
+		"resourceName": name,
 		"searchKey": sprintf("aws_kinesis_stream[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_kinesis_stream[%s].encryption_type is set", [name]),
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_kinesis_stream",
+		"resourceName": name,
 		"searchKey": sprintf("aws_kinesis_stream[%s].encryption_type", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_kinesis_stream[%s].encryption_type is set and not NONE", [name]),
@@ -37,6 +41,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_kinesis_stream",
+		"resourceName": name,
 		"searchKey": sprintf("aws_kinesis_stream[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_kinesis_stream[%s].kms_key_id is set", [name]),

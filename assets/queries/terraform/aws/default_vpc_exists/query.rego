@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_default_vpc",
+		"resourceName": name,
 		"searchKey": sprintf("aws_default_vpc[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'aws_default_vpc' should not exist",
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("%s.%s", [name, keyToCheck]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'aws_default_vpc' should not exist",

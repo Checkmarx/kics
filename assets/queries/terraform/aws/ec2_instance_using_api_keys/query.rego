@@ -22,6 +22,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": "aws_instance",
+		"resourceName": name,
 		"searchKey": sprintf("aws_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_instance[%s] should be using iam_instance_profile to assign a role with permissions", [name]),
@@ -38,6 +40,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": "aws_instance",
+		"resourceName": name,
 		"searchKey": sprintf("aws_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_instance[%s] should be using iam_instance_profile to assign a role with permissions", [name]),
@@ -54,6 +58,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": "aws_instance",
+		"resourceName": name,
 		"searchKey": sprintf("aws_instance[%s].provisioner", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_instance[%s].provisioner.remote-exec is being used to configure AWS API keys", [name]),
@@ -70,6 +76,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": "aws_instance",
+		"resourceName": name,
 		"searchKey": sprintf("aws_instance[%s].provisioner", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_instance[%s].provisioner.file is being used to configure AWS API keys", [name]),
@@ -87,6 +95,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("module[%s] should be using iam_instance_profile to assign a role with permissions", [name]),
@@ -104,6 +114,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("module[%s] should be using iam_instance_profile to assign a role with permissions", [name]),

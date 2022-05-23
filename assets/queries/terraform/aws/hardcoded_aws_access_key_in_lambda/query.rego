@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_lambda_function",
+		"resourceName": name,
 		"searchKey": sprintf("aws_lambda_function[%s].environment.variables", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'environment.variables' doesn't contain access key",

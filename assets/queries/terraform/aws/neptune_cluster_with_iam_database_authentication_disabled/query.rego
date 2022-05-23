@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_neptune_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_neptune_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'iam_database_authentication_enabled' is set to true",
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_neptune_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_neptune_cluster[%s].iam_database_authentication_enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'iam_database_authentication_enabled' is set to true",

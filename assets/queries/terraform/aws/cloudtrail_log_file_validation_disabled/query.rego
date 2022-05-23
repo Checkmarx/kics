@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_cloudtrail",
+		"resourceName": name,
 		"searchKey": sprintf("aws_cloudtrail[%s].enable_log_file_validation", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'aws_cloudtrail[%s].enable_log_file_validation' is true", [name]),
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_cloudtrail",
+		"resourceName": name,
 		"searchKey": sprintf("aws_cloudtrail[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'aws_cloudtrail[%s].enable_log_file_validation' is set", [name]),

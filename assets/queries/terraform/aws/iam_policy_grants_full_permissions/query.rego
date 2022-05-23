@@ -16,6 +16,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType[idx],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].policy", [resourceType[idx], name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy.Statement.Resource' not equal '*'",

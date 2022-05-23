@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_security_group",
+		"resourceName": name,
 		"searchKey": sprintf("aws_security_group[{{%s}}].%s", [name, types[y]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_security_group[{{%s}}].%s description is defined and not null", [name, types[y]]),
@@ -29,6 +31,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_security_group",
+		"resourceName": name,
 		"searchKey": sprintf("aws_security_group[{{%s}}].%s", [name, types[y]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_security_group[{{%s}}].%s description is defined and not null", [name, types[y]]),

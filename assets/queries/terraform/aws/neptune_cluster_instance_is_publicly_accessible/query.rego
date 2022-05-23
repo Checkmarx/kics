@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_neptune_cluster_instance",
+		"resourceName": name,
 		"searchKey": sprintf("aws_neptune_cluster_instance[%s].publicly_accessible", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_neptune_cluster_instance[%s].publicly_accessible is set to false", [name]),

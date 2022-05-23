@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_instance",
+		"resourceName": name,
 		"searchKey": sprintf("aws_instance[%s].iam_instance_profile", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Public and private instances do not share the same role",
@@ -33,6 +35,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].iam_instance_profile", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Public and private instances do not share the same role",

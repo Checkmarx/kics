@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_cloudfront_distribution",
+		"resourceName": name,
 		"searchKey": sprintf("aws_cloudfront_distribution[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_cloudfront_distribution[%s].logging_config is defined", [name]),

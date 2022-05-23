@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceValue,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].policy.Action", [resourceValue, name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy.Statement.Action' doesn't contain '*' when 'policy.Statement.Principal' contains '*'",
@@ -30,6 +32,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy.Statement.Action' doesn't contain '*' when 'policy.Statement.Principal' contains '*'",

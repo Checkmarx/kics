@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_db_security_group",
+		"resourceName": name,
 		"searchKey": sprintf("aws_db_security_group[%s].ingress.cidr", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'aws_db_security_group.ingress.cidr' > 24",

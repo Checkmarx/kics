@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_instance",
+		"resourceName": name,
 		"searchKey": sprintf("aws_instance[{{%s}}].ebs_optimized", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'ebs_optimized' is set to true",
@@ -30,6 +32,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].ebs_optimized", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'ebs_optimized' is set to true",
@@ -47,6 +51,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_instance",
+		"resourceName": name,
 		"searchKey": sprintf("aws_instance[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'ebs_optimized' is set to true",
@@ -66,6 +72,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'ebs_optimized' is set to true",

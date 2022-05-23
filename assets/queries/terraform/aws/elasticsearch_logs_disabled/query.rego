@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticsearch_domain",
+		"resourceName": name,
 		"searchKey": sprintf("aws_elasticsearch_domain[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'log_publishing_options' is defined and not null",
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticsearch_domain",
+		"resourceName": name,
 		"searchKey": sprintf("aws_elasticsearch_domain[{{%s}}].log_publishing_options.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'log_publishing_options.enabled' is true",

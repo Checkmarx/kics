@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": "aws_cloudtrail",
+		"resourceName": name,
 		"searchKey": sprintf("aws_cloudtrail[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_cloudtrail[%s].%s is defined and not null", [name, attribute]),

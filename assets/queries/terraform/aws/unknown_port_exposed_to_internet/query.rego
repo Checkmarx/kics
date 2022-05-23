@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_security_group",
+		"resourceName": name,
 		"searchKey": sprintf("aws_security_group[%s].ingress.cidr_blocks", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_security_group[%s].ingress ports are known", [name]),

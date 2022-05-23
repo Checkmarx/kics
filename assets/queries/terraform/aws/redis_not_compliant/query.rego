@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticache_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_elasticache_cluster[%s].engine_version", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_elasticache_cluster[%s].engine_version is compliant with the requirements", [name]),

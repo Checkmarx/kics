@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": "aws_cloudfront_distribution",
+		"resourceName": name,
 		"searchKey": sprintf("resource.aws_cloudfront_distribution[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("resource.aws_cloudfront_distribution[%s].enabled is set to 'true'", [name]),
@@ -25,6 +27,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": "aws_cloudfront_distribution",
+		"resourceName": name,
 		"searchKey": sprintf("resource.aws_cloudfront_distribution[%s].enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource.aws_cloudfront_distribution[%s].enabled is set to 'true'", [name]),
@@ -40,6 +44,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": "aws_cloudfront_distribution",
+		"resourceName": name,
 		"searchKey": sprintf("resource.aws_cloudfront_distribution[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("resource.aws_cloudfront_distribution[%s].origin is defined", [name]),

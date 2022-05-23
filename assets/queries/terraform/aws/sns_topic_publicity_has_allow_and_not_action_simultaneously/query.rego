@@ -18,6 +18,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": resources[r],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].policy", [resources[r], name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].policy doesn't have 'Effect: Allow' and 'NotAction' simultaneously", [resources[r], name]),
@@ -43,6 +45,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("module[%s].policy doesn't have 'Effect: Allow' and 'NotAction' simultaneously", [name]),

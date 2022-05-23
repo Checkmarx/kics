@@ -6,6 +6,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_cloudtrail",
+		"resourceName": name,
 		"searchKey": sprintf("aws_cloudtrail.%s.enable_logging", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_cloudtrail.%s.enable_logging is true", [name]),

@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elb",
+		"resourceName": name,
 		"searchKey": sprintf("aws_elb[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'aws_elb[{{%s}}].access_logs' is defined and not null", [name]),
@@ -22,6 +24,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elb",
+		"resourceName": name,
 		"searchKey": sprintf("aws_elb[{{%s}}].access_logs.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'aws_elb[{{%s}}].access_logs.enabled' is true", [name]),
@@ -37,6 +41,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'access_logs' is defined and not null",
@@ -53,6 +59,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].access_logs.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'access_logs.enabled' is true",

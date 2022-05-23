@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_ecr_repository",
+		"resourceName": name,
 		"searchKey": sprintf("aws_ecr_repository[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'encryption_configuration' is defined with 'KMS' as encryption type and a KMS key ARN",
@@ -24,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_ecr_repository",
+		"resourceName": name,
 		"searchKey": sprintf("aws_ecr_repository[%s].encryption_configuration", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'encryption_configuration.encryption_type' is set to 'KMS' and 'encryption_configuration.kms_key' specifies a KMS key ARN",

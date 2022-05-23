@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_dax_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_dax_cluster[{{%s}}].server_side_encryption.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "aws_dax_cluster.server_side_encryption.enabled is set to true",
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_dax_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_dax_cluster[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_dax_cluster.server_side_encryption.enabled is set to true",
@@ -34,6 +38,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_dax_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_dax_cluster[{{%s}}].server_side_encryption", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_dax_cluster.server_side_encryption.enabled is set to true",

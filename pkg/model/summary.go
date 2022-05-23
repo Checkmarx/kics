@@ -25,8 +25,8 @@ type VulnerableFile struct {
 	SimilarityID     string     `json:"similarity_id"`
 	Line             int        `json:"line"`
 	VulnLines        []CodeLine `json:"-"`
-	ResourceType     string     `json:"resource_type"`
-	ResourceName     string     `json:"resource_name"`
+	ResourceType     string     `json:"resource_type,omitempty"`
+	ResourceName     string     `json:"resource_name,omitempty"`
 	IssueType        IssueType  `json:"issue_type"`
 	SearchKey        string     `json:"search_key"`
 	SearchLine       int        `json:"search_line"`

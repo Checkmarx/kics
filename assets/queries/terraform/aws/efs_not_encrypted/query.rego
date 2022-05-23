@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_efs_file_system",
+		"resourceName": name,
 		"searchKey": sprintf("aws_efs_file_system[%s].encrypted", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_efs_file_system[%s].encrypted' is true", [name]),
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_efs_file_system",
+		"resourceName": name,
 		"searchKey": sprintf("aws_efs_file_system[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_efs_file_system[%s].encrypted' is defined and not null", [name]),

@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": "aws_mq_broker",
+		"resourceName": name,
 		"searchKey": sprintf("resource.aws_mq_broker[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("resource.aws_mq_broker[%s].encryption_options is defined", [name]),

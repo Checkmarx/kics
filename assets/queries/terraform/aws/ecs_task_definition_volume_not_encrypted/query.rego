@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_ecs_task_definition",
+		"resourceName": name,
 		"searchKey": sprintf("aws_ecs_task_definition[{{%s}}].volume.efs_volume_configuration.transit_encryption", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value is 'ENABLED'",
@@ -22,6 +24,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_ecs_task_definition",
+		"resourceName": name,
 		"searchKey": sprintf("aws_ecs_task_definition[{{%s}}].volume.efs_volume_configuration", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value is 'ENABLED'",

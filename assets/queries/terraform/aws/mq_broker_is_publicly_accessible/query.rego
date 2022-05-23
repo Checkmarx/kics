@@ -6,6 +6,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_mq_broker",
+		"resourceName": name,
 		"searchKey": sprintf("aws_mq_broker[%s].publicly_accessible", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'publicly_accessible' is undefined or set to false",

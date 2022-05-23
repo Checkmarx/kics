@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_guardduty_detector",
+		"resourceName": name,
 		"searchKey": sprintf("aws_guardduty_detector[%s].enable", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "GuardDuty Detector should be Enabled",

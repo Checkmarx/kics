@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_account_password_policy",
+		"resourceName": name,
 		"searchKey": sprintf("aws_iam_account_password_policy[%s].allow_users_to_change_password", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'allow_users_to_change_password' is equal 'true'",

@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket_public_access_block",
+		"resourceName": name,
 		"searchKey": sprintf("aws_s3_bucket_public_access_block[%s].ignore_public_acls", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'ignore_public_acls' is equal 'true'",
@@ -22,6 +24,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket_public_access_block",
+		"resourceName": name,
 		"searchKey": sprintf("aws_s3_bucket_public_access_block[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'ignore_public_acls' is equal 'true'",
@@ -38,6 +42,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket_public_access_block",
+		"resourceName": name,
 		"searchKey": sprintf("aws_s3_bucket_public_access_block[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'ignore_public_acls' is equal 'true'",
@@ -54,6 +60,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].ignore_public_acls", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'ignore_public_acls' is equal 'true'",

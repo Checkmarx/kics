@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticache_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_elasticache_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_elasticache_cluster.port is defined and not null",
@@ -27,6 +29,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticache_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_elasticache_cluster[%s].port", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'port' is not set to %d", [enginePort]),

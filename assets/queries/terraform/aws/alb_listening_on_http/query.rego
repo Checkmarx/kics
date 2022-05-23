@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": lb[idx],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].default_action.redirect", [lb[idx], name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'default_action.redirect.protocol' is equal to 'HTTPS'",
@@ -29,6 +31,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": lb[idx],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].default_action.redirect.protocol", [lb[idx], name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'default_action.redirect.protocol' is equal to 'HTTPS'",

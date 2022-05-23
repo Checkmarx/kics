@@ -17,6 +17,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket",
+		"resourceName": name,
 		"searchKey": sprintf("aws_s3_bucket[%s].acl", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "S3 Bucket public ACL is not overridden by S3 bucket Public Access Block",
@@ -38,6 +40,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].acl", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "S3 Bucket public ACL is not overridden by public access block",

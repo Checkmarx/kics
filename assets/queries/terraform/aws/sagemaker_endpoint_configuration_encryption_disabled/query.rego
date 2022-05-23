@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_sagemaker_endpoint_configuration",
+		"resourceName": name,
 		"searchKey": sprintf("aws_sagemaker_endpoint_configuration[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_sagemaker_endpoint_configuration[%s] is defined and not null", [name]),

@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_vpc_endpoint",
+		"resourceName": name,
 		"searchKey": sprintf("aws_vpc_endpoint[%s].vpc_id", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'enable_dns_support' is set to true or undefined",
@@ -31,6 +33,8 @@ CxPolicy[result] {
 	
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].enable_dns_support", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'enable_dns_support' is set to true or undefined",

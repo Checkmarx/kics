@@ -16,6 +16,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_role",
+		"resourceName": name,
 		"searchKey": sprintf("aws_iam_role[%s].assume_role_policy.Principal.AWS", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'assume_role_policy.Statement.Principal.AWS' does not contain ':root'",

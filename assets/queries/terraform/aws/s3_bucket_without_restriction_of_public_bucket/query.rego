@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket_public_access_block",
+		"resourceName": name,
 		"searchKey": sprintf("aws_s3_bucket_public_access_block[%s].restrict_public_buckets", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'restrict_public_buckets' is equal 'true'",
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket_public_access_block",
+		"resourceName": name,
 		"searchKey": sprintf("aws_s3_bucket_public_access_block[%s].restrict_public_buckets", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'restrict_public_buckets' is equal 'true'",
@@ -38,6 +42,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'restrict_public_buckets' is equal 'true'",
@@ -53,6 +59,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].restrict_public_buckets", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'restrict_public_buckets' is equal 'true'",

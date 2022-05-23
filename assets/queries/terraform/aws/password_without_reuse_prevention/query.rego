@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_account_password_policy",
+		"resourceName": name,
 		"searchKey": sprintf("aws_iam_account_password_policy[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'password_reuse_prevention' should be set with value 24",
@@ -22,6 +24,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_account_password_policy",
+		"resourceName": name,
 		"searchKey": sprintf("aws_iam_account_password_policy[%s].password_reuse_prevention", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'password_reuse_prevention' should be 24",

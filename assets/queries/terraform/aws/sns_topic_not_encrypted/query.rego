@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_sns_topic",
+		"resourceName": name,
 		"searchKey": sprintf("aws_sns_topic[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "SNS Topic is encrypted",
@@ -24,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_sns_topic",
+		"resourceName": name,
 		"searchKey": sprintf("aws_sns_topic[%s].kms_master_key_id", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "SNS Topic is encrypted",

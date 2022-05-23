@@ -8,7 +8,9 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("cloudwatch_log_group[%s]", [name]),
+		"resourceType": "aws_cloudwatch_log_group",
+		"resourceName": name,
+		"searchKey": sprintf("aws_cloudwatch_log_group[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'kms_key_id' is set",
 		"keyActualValue": "Attribute 'kms_key_id' is undefined",

@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket",
+		"resourceName": name,
 		"searchKey": sprintf("aws_s3_bucket[%s].acl", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_s3_bucket[%s].acl is private", [name]),
@@ -24,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].acl", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'acl' is private",

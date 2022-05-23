@@ -6,6 +6,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_account_password_policy",
+		"resourceName": name,
 		"searchKey": sprintf("aws_iam_account_password_policy[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'minimum_password_length' is set and no less than 14",
@@ -20,6 +22,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_account_password_policy",
+		"resourceName": name,
 		"searchKey": sprintf("aws_iam_account_password_policy[%s].minimum_password_length", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'minimum_password_length' is set and no less than 14",

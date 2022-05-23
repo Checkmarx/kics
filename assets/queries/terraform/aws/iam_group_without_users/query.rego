@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_group",
+		"resourceName": name,
 		"searchKey": sprintf("aws_iam_group[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_iam_group[%s] is associated with an aws_iam_group_membership that has at least one user set", [name]),

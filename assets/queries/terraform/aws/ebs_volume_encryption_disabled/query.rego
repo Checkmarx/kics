@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": "aws_ebs_volume",
+		"resourceName": name,
 		"searchKey": sprintf("aws_ebs_volume[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "One of 'aws_ebs_volume.encrypted' is defined",
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": "aws_ebs_volume",
+		"resourceName": name,
 		"searchKey": sprintf("aws_ebs_volume[%s].encrypted", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "One of 'aws_ebs_volume.encrypted' is 'true'",

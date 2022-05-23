@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_redshift_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_redshift_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_redshift_cluster.port is defined and not null",
@@ -22,6 +24,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_redshift_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_redshift_cluster[%s].port", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "aws_redshift_cluster.port is not set to 5439",

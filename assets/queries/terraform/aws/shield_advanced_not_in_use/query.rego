@@ -19,6 +19,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resources[idx],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s]", [resources[idx], name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s has shield advanced associated", [resources[idx]]),

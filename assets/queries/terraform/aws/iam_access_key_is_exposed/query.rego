@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_access_key",
+		"resourceName": name,
 		"searchKey": sprintf("aws_iam_access_key[%s].user", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'aws_iam_access_key[%s].user' is 'root' for an active access key", [name]),

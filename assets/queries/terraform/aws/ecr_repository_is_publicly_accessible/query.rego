@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_ecr_repository_policy",
+		"resourceName": name,
 		"searchKey": sprintf("aws_ecr_repository_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'Statement.Principal' doesn't contain '*'",

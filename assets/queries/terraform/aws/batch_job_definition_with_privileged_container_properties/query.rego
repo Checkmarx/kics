@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_batch_job_definition",
+		"resourceName": name,
 		"searchKey": sprintf("aws_batch_job_definition[%s].container_properties.privileged", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_batch_job_definition[%s].container_properties.privileged is 'false' or not set", [name]),

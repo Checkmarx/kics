@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_config_configuration_aggregator",
+		"resourceName": name,
 		"searchKey": sprintf("aws_config_configuration_aggregator[%s].%s.all_regions", [name, type]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'aws_config_configuration_aggregator[%s].%s.all_regions' is set to true", [name, type]),
@@ -26,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_config_configuration_aggregator",
+		"resourceName": name,
 		"searchKey": sprintf("aws_config_configuration_aggregator[%s].%s", [name, type]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'aws_config_configuration_aggregator[%s].%s.all_regions' is set to true", [name, type]),

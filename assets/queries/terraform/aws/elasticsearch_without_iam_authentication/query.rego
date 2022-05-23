@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticsearch_domain",
+		"resourceName": name,
 		"searchKey": sprintf("aws_elasticsearch_domain[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Elasticsearch Domain has a policy associated",
@@ -24,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticsearch_domain",
+		"resourceName": name,
 		"searchKey": sprintf("aws_elasticsearch_domain[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Elasticsearch Domain ensure IAM Authentication",

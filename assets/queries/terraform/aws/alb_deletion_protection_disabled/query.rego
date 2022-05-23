@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": loadBalancer,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s]", [loadBalancer, name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'enable_deletion_protection' is defined and set to true",
@@ -28,6 +30,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": loadBalancer,
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].enable_deletion_protection", [loadBalancer, name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'enable_deletion_protection' is set to true",
@@ -44,6 +48,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'enable_deletion_protection' is defined and set to true",
@@ -60,6 +66,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].enable_deletion_protection", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'enable_deletion_protection' is set to true",

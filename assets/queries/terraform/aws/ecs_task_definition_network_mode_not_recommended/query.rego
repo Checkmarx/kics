@@ -6,6 +6,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_ecs_task_definition",
+		"resourceName": name,
 		"searchKey": sprintf("aws_ecs_task_definition[%s].network_mode", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'network_mode' is equal to 'awsvpc'",

@@ -18,6 +18,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_glue_security_configuration",
+		"resourceName": name,
 		"searchKey": sprintf("aws_glue_security_configuration[%s].%s", [name, configKey]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_glue_security_configuration[%s].%s has '%s' defined and not null", [name, configKey, configValue]),
@@ -39,6 +41,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_glue_security_configuration",
+		"resourceName": name,
 		"searchKey": sprintf("aws_glue_security_configuration[%s].encryption_configuration.%s", [name, config]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_glue_security_configuration[%s].encryption_configuration.%s has 'kms_key_arn' defined and not null", [name, config]),
@@ -54,6 +58,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_glue_security_configuration",
+		"resourceName": name,
 		"searchKey": sprintf("aws_glue_security_configuration[%s].%s", [name, searchKeyInfo.path]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": searchKeyInfo.keyExpectedValue,

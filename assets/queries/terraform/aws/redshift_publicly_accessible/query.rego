@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_redshift_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_redshift_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_redshift_cluster.publicly_accessible is defined and not null",
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_redshift_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_redshift_cluster[%s].publicly_accessible", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "aws_redshift_cluster.publicly_accessible is false",

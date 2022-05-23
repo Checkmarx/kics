@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_api_gateway_rest_api_policy",
+		"resourceName": name,
 		"searchKey": sprintf("aws_api_gateway_rest_api_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_api_gateway_rest_api_policy[%s].policy does not have wildcard in 'Action' and 'Principal'", [name]),

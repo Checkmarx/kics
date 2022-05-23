@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket",
+		"resourceName": name,
 		"searchKey": sprintf("aws_s3_bucket[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_s3_bucket[%s].versioning is defined and not null", [name]),
@@ -29,6 +31,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket",
+		"resourceName": name,
 		"searchKey": sprintf("aws_s3_bucket[%s].versioning", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s' is set to true", [checkedFields[j]]),
@@ -44,6 +48,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket",
+		"resourceName": name,
 		"searchKey": sprintf("aws_s3_bucket[%s].versioning.%s", [name, checkedFields[j]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' is set to true", [checkedFields[j]]),
@@ -61,6 +67,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'versioning' is defined and not null",
@@ -78,6 +86,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].versioning", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s' is set to true", [checkedFields[c]]),
@@ -95,6 +105,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].versioning.%s", [name, checkedFields[c]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' is set to true", [checkedFields[c]]),

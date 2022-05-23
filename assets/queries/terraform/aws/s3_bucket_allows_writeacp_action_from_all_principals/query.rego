@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": pl[r],
+		"resourceName": name,
 		"searchKey": sprintf("%s[%s].policy", [pl[r], name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "No Action is set to 'Write_ACP'",
@@ -28,6 +30,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "No Action is set to 'Write_ACP'",

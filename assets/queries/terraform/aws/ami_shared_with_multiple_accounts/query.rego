@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_ami_launch_permission",
+		"resourceName": name,
 		"searchKey": sprintf("aws_ami_launch_permission[%s].image_id", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'aws_ami_launch_permission[%s].image_id' is not shared with multiple accounts", [name]),

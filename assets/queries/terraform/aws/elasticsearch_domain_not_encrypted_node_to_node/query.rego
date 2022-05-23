@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticsearch_domain",
+		"resourceName": name,
 		"searchKey": sprintf("aws_elasticsearch_domain[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "The attribute 'node_to_node_encryption' is set to true",
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticsearch_domain",
+		"resourceName": name,
 		"searchKey": sprintf("aws_elasticsearch_domain[{{%s}}].node_to_node_encryption.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "The attribute 'node_to_node_encryption' is set to true",

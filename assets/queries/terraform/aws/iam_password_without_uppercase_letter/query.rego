@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_account_password_policy",
+		"resourceName": name,
 		"searchKey": sprintf("aws_iam_account_password_policy[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'require_uppercase_characters' should be set with true value",
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_account_password_policy",
+		"resourceName": name,
 		"searchKey": sprintf("aws_iam_account_password_policy[%s].require_uppercase_characters", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'require_uppercase_characters' should be true",

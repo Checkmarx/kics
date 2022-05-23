@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": "aws_instance",
+		"resourceName": name,
 		"searchKey": sprintf("aws_instance[%s].%s", [name, sgs[s]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_instance[%s].%s is not using default security group", [name, s]),

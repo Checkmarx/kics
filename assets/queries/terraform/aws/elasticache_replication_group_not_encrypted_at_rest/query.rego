@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticache_replication_group",
+		"resourceName": name,
 		"searchKey": sprintf("aws_elasticache_replication_group[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "The attribute 'at_rest_encryption_enabled' is set to true",
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticache_replication_group",
+		"resourceName": name,
 		"searchKey": sprintf("aws_elasticache_replication_group[%s].at_rest_encryption_enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "The attribute 'at_rest_encryption_enabled' is set to true",

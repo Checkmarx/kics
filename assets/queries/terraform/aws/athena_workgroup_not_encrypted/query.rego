@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_athena_workgroup",
+		"resourceName": name,
 		"searchKey": sprintf("aws_athena_workgroup[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_athena_workgroup[{{%s}}].configuration.result_configuration.encryption_configuration is defined", [name]),
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_athena_workgroup",
+		"resourceName": name,
 		"searchKey": sprintf("aws_athena_workgroup[{{%s}}].configuration", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_athena_workgroup[{{%s}}].configuration.result_configuration.encryption_configuration is defined", [name]),
@@ -34,6 +38,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_athena_workgroup",
+		"resourceName": name,
 		"searchKey": sprintf("aws_athena_workgroup[{{%s}}].configuration.result_configuration", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_athena_workgroup[{{%s}}].configuration.result_configuration.encryption_configuration is defined", [name]),

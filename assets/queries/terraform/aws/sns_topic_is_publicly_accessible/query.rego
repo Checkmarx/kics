@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_sns_topic",
+		"resourceName": name,
 		"searchKey": sprintf("aws_sns_topic[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'Statement.Principal.AWS' doesn't contain '*'",

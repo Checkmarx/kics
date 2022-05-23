@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_lambda_function",
+		"resourceName": name,
 		"searchKey": sprintf("aws_lambda_function[%s].tracing_config.mode", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_lambda_function[%s].tracing_config.mode is set to 'Active'", [name]),
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_lambda_function",
+		"resourceName": name,
 		"searchKey": sprintf("aws_lambda_function[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_lambda_function[%s].tracing_config is defined and not null", [name]),

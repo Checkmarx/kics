@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_organizations_organization",
+		"resourceName": name,
 		"searchKey": sprintf("aws_organizations_organization[%s].feature_set", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'feature_set' is set to 'ALL' or undefined",

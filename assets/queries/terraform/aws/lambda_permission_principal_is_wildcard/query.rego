@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": "aws_lambda_permission",
+		"resourceName": name,
 		"searchKey": sprintf("aws_lambda_permission[%s].principal", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_lambda_permission[%s].principal doesn't contain a wildcard", [name]),

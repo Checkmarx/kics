@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_db_instance",
+		"resourceName": name,
 		"searchKey": sprintf("aws_db_instance[%s].iam_database_authentication_enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'iam_database_authentication_enabled' is set to true",
@@ -24,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].iam_database_authentication_enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'iam_database_authentication_enabled' is set to true",
@@ -38,6 +42,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_db_instance",
+		"resourceName": name,
 		"searchKey": sprintf("aws_db_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'iam_database_authentication_enabled' is set to true",
@@ -54,6 +60,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'iam_database_authentication_enabled' is set to true",

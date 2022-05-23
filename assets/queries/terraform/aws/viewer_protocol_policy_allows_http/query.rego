@@ -6,6 +6,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_cloudfront_distribution",
+		"resourceName": name,
 		"searchKey": sprintf("resource.aws_cloudfront_distribution[%s].default_cache_behavior.viewer_protocol_policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource.aws_cloudfront_distribution[%s].default_cache_behavior.viewer_protocol_policy is 'https-only' or 'redirect-to-https'", [name]),
@@ -19,6 +21,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_cloudfront_distribution",
+		"resourceName": name,
 		"searchKey": sprintf("resource.aws_cloudfront_distribution[%s].ordered_cache_behavior.{{%s}}.viewer_protocol_policy", [name, path[_].path_pattern]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource.aws_cloudfront_distribution[%s].ordered_cache_behavior.viewer_protocol_policy is 'https-only' or 'redirect-to-https'", [name]),

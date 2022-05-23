@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticsearch_domain_policy",
+		"resourceName": name,
 		"searchKey": sprintf("aws_elasticsearch_domain_policy[%s].access_policies", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_elasticsearch_domain_policy[%s].access_policies does not have wildcard in 'Action' and 'Principal'", [name]),

@@ -6,6 +6,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_ebs_encryption_by_default",
+		"resourceName": name,
 		"searchKey": sprintf("aws_ebs_encryption_by_default[%s].enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'aws_ebs_encryption_by_default.encrypted' is true",

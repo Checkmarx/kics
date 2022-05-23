@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_ecs_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_ecs_cluster[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'aws_ecs_cluster[%s].setting.name' is set to 'containerInsights' and 'aws_ecs_cluster[%s].setting.value' is set to 'enabled'", [name, name]),

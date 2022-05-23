@@ -31,6 +31,8 @@ CxPolicy[result] {
 	matching_actions != set()
 	result := {
 		"documentId": document[l].id,
+		"resourceType": "aws_lambda_function",
+		"resourceName": function_id,
 		"searchKey": sprintf("aws_lambda_function[%s].role", [function_id]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_lambda_function[%s].role has no privileged permissions through attached inline policy.", [function_id]),
@@ -56,6 +58,8 @@ CxPolicy[result] {
 	matching_actions != set()
 	result := {
 		"documentId": document[l].id,
+		"resourceType": "aws_lambda_function",
+		"resourceName": function_id,
 		"searchKey": sprintf("aws_lambda_function[%s].role", [function_id]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_lambda_function[%s].role has no privileged permissions through attached managed policy", [function_id]),
@@ -76,6 +80,8 @@ CxPolicy[result] {
 	regex.match(sprintf("arn:aws.*:iam::policy/%s", [data.common_lib.aws_privilege_escalation_policy_names[_]]), attached_customer_managed_policy_id)
 	result := {
 		"documentId": document[l].id,
+		"resourceType": "aws_lambda_function",
+		"resourceName": function_id,
 		"searchKey": sprintf("aws_lambda_function[%s].role", [function_id]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_lambda_function[%s].role has no privileged permissions", [function_id]),

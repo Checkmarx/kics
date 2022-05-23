@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_db_instance",
+		"resourceName": name,
 		"searchKey": sprintf("aws_db_instance[%s].port", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_db_instance[%s].port is not set to %d", [name, enginePort]),

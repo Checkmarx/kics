@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_eks_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_eks_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'encryption_config' is defined and not null",
@@ -26,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_eks_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_eks_cluster[%s].encryption_config.resources", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'secrets' is defined",

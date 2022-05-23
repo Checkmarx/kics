@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": "aws_cloudtrail",
+		"resourceName": name,
 		"searchKey": sprintf("aws_cloudtrail[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_cloudtrail[%s].is_multi_region_trail is defined and not null", [name]),
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": "aws_cloudtrail",
+		"resourceName": name,
 		"searchKey": sprintf("aws_cloudtrail[%s].is_multi_region_trail", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_cloudtrail[%s].is_multi_region_trail is set to true", [name]),
@@ -37,6 +41,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": "aws_cloudtrail",
+		"resourceName": name,
 		"searchKey": sprintf("aws_cloudtrail[%s].include_global_service_events", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_cloudtrail[%s].include_global_service_events undefined or is set to true", [name]),

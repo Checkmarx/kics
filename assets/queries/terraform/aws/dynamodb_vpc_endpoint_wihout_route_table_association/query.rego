@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_vpc_endpoint",
+		"resourceName": name,
 		"searchKey": sprintf("aws_vpc_endpoint[%s].vpc_id", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Dynamodb VPC Endpoint is associated with Route Table Association",

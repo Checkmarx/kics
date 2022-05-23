@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticsearch_domain",
+		"resourceName": name,
 		"searchKey": sprintf("aws_elasticsearch_domain[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'encrypt_at_rest' is set and enabled",
@@ -22,6 +24,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticsearch_domain",
+		"resourceName": name,
 		"searchKey": sprintf("aws_elasticsearch_domain[%s].encrypt_at_rest.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'encrypt_at_rest.enabled' is true",

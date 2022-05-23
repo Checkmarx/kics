@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": "aws_ebs_volume",
+		"resourceName": snapName,
 		"searchKey": sprintf("aws_ebs_volume[%s].encrypted", [snapName]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'aws_ebs_volume[%s].encrypted' associated with aws_ebs_snapshot[%s] is true", [volName, snapName]),
@@ -31,6 +33,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": "aws_ebs_snapshot",
+		"resourceName": snapName,
 		"searchKey": sprintf("aws_ebs_snapshot[%s]", [snapName]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'aws_ebs_volume[%s].encrypted' associated with aws_ebs_snapshot[%s] is set", [volName, snapName]),

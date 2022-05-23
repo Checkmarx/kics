@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket",
+		"resourceName": s3BucketName,
 		"searchKey": sprintf("aws_s3_bucket[%s].acl", [s3BucketName]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_s3_bucket[%s] is not publicly accessible", [s3BucketName]),
@@ -29,6 +31,8 @@ CxPolicy[result] {
 	module[keyToCheck] == publicAcl[_]
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].acl", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("module[%s] is not publicly accessible", [name]),

@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": "aws_api_gateway_method",
+		"resourceName": name,
 		"searchKey": sprintf("resource.aws_api_gateway_method[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("resource.aws_api_gateway_method[%s].api_key_required is defined", [name]),
@@ -25,6 +27,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": "aws_api_gateway_method",
+		"resourceName": name,
 		"searchKey": sprintf("resource.aws_api_gateway_method[%s].api_key_required", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource.aws_api_gateway_method[%s].api_key_required is 'true'", [name]),

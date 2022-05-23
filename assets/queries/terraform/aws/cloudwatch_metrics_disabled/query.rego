@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_api_gateway_method_settings",
+		"resourceName": name,
 		"searchKey": sprintf("aws_api_gateway_method_settings[%s].settings.metrics_enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_api_gateway_method_settings[%s].settings.metrics_enabled is true", [name]),
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_api_gateway_method_settings",
+		"resourceName": name,
 		"searchKey": sprintf("aws_api_gateway_method_settings[%s].settings", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_api_gateway_method_settings[%s].settings.metrics_enabled is defined and not null", [name]),

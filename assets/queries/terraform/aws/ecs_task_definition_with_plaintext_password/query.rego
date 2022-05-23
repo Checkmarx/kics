@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_ecs_task_definition",
+		"resourceName": name,
 		"searchKey": sprintf("%s", [env.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'container_definitions.environment.name' doesn't have password value",

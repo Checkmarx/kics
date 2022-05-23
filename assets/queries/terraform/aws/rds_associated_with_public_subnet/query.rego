@@ -19,6 +19,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_db_instance",
+		"resourceName": name,
 		"searchKey": sprintf("aws_db_instance[%s].db_subnet_group_name", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "RDS is not running in a public subnet",

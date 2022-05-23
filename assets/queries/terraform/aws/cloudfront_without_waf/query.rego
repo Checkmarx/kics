@@ -6,6 +6,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_cloudfront_distribution",
+		"resourceName": name,
 		"searchKey": sprintf("aws_cloudfront_distribution[%s].web_acl_id", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'web_acl_id' exists",

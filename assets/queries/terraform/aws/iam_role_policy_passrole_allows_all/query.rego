@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_role_policy",
+		"resourceName": name,
 		"searchKey": sprintf("aws_iam_role_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'aws_iam_role_policy.policy.Statement.Action' iam:passrole doesn't have Resource '*'",

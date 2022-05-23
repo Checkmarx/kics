@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_network_acl",
+		"resourceName": name,
 		"searchKey": sprintf("aws_network_acl[%s].ingress", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_network_acl[%s].ingress[%d] 'RDP' (TCP:3389) is not public", [name, idx]),
@@ -30,6 +32,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": "aws_network_acl_rule",
+		"resourceName": netAclRuleName,
 		"searchKey": sprintf("aws_network_acl_rule[%s]", [netAclRuleName]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_network_acl[%s] 'RDP' (TCP:3389) is not public", [netAclRuleName]),
@@ -47,6 +51,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": "aws_network_acl",
+		"resourceName": name,
 		"searchKey": sprintf("aws_network_acl[%s].ingress", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_network_acl[%s].ingress 'RDP' (TCP:3389) is not public", [name]),
@@ -65,6 +71,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].%s", [name, keyToCheck]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("module[%s].%s[%d] 'RDP' (TCP:3389) is not public", [name, keyToCheck, idx]),

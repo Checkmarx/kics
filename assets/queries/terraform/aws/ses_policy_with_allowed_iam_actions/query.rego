@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_ses_identity_policy",
+		"resourceName": name,
 		"searchKey": sprintf("aws_ses_identity_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy' does not allow IAM actions to all principals",

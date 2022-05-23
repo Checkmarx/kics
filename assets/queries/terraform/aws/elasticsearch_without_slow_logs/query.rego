@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticsearch_domain",
+		"resourceName": name,
 		"searchKey": sprintf("aws_elasticsearch_domain[{{%s}}].log_publishing_options.log_type", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'log_publishing_options.log_type' is not INDEX_SLOW_LOGS or SEARCH_SLOW_LOGS  ",

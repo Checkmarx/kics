@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_athena_database",
+		"resourceName": name,
 		"searchKey": sprintf("aws_athena_database[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_athena_database[{{%s}}] encryption_configuration is defined", [name]),

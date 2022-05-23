@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_rds_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_rds_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_rds_cluster.storage_encrypted is set to true",
@@ -24,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_rds_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_rds_cluster[%s].storage_encrypted", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "aws_rds_cluster.storage_encrypted is set to true",

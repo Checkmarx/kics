@@ -23,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": "resource",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'aws_accessanalyzer_analyzer' is set",

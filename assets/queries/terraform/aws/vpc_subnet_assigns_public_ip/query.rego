@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_subnet",
+		"resourceName": name,
 		"searchKey": sprintf("aws_subnet[%s].map_public_ip_on_launch", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_subnet[%s].map_public_ip_on_launch is set to false or undefined", [name]),
@@ -25,6 +27,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("%s.%s", [name, keyToCheck]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s.%s is set to false", [name, keyToCheck]),
@@ -41,6 +45,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("%s", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s.map_public_ip_on_launch is set to false", [name]),

@@ -6,6 +6,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_api_gateway_rest_api",
+		"resourceName": name,
 		"searchKey": sprintf("aws_api_gateway_rest_api[%s].endpoint_configuration", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'aws_api_gateway_rest_api.aws_api_gateway_rest_api.types' is 'PRIVATE'.",

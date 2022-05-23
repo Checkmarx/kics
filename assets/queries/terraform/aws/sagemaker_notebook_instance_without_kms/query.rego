@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_sagemaker_notebook_instance",
+		"resourceName": name,
 		"searchKey": sprintf("aws_sagemaker_notebook_instance[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_sagemaker_notebook_instance.kms_key_id is defined and not null",

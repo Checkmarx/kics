@@ -7,6 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_user_login_profile",
+		"resourceName": name,
 		"searchKey": sprintf("aws_iam_user_login_profile[%s].password_reset_required", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'password_reset_required' is true",
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_user_login_profile",
+		"resourceName": name,
 		"searchKey": sprintf("aws_iam_user_login_profile[%s].password_length", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'password_length' is 14 or grater",

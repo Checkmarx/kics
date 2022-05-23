@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_secretsmanager_secret",
+		"resourceName": name,
 		"searchKey": sprintf("aws_secretsmanager_secret[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_secretsmanager_secret.kms_key_id is defined and not null",

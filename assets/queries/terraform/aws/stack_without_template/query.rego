@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_cloudformation_stack",
+		"resourceName": name,
 		"searchKey": sprintf("aws_cloudformation_stack[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'template_body' or Attribute 'template_url' is set",

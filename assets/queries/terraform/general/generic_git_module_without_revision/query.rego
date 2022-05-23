@@ -7,8 +7,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"resourceType": "module",
-		"resourceName": moduleName,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module.{{%s}}.source", [moduleName]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Module 'source' field should have a reference",

@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_dynamodb_table",
+		"resourceName": name,
 		"searchKey": sprintf("aws_dynamodb_table[{{%s}}].server_side_encryption.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "aws_dynamodb_table.server_side_encryption.enabled is set to true",
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_dynamodb_table",
+		"resourceName": name,
 		"searchKey": sprintf("aws_dynamodb_table[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_dynamodb_table.server_side_encryption.enabled is set to true",

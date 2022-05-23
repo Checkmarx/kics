@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket_object",
+		"resourceName": name,
 		"searchKey": sprintf("aws_s3_bucket_object[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_s3_bucket_object.server_side_encryption is defined and not null",

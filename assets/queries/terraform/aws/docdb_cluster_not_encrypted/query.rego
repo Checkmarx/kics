@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_docdb_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_docdb_cluster[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_docdb_cluster.storage_encrypted is set to true",
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_docdb_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_docdb_cluster[{{%s}}].storage_encrypted", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "aws_docdb_cluster.storage_encrypted is set to true",

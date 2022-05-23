@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_api_gateway_rest_api",
+		"resourceName": name,
 		"searchKey": sprintf("aws_api_gateway_rest_api[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'minimum_compression_size' to be set and have a value greater than -1 and smaller than 10485760",
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_api_gateway_rest_api",
+		"resourceName": name,
 		"searchKey": sprintf("aws_api_gateway_rest_api[%s].minimum_compression_size", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'minimum_compression_size' to be greater than -1 and smaller than 10485760",

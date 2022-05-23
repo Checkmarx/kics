@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticache_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_elasticache_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'az_mode' is set and must be 'cross-az' in multi nodes cluster",
@@ -25,6 +27,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticache_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_elasticache_cluster[%s].az_mode", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'az_mode' is 'cross-az' in multi nodes cluster",

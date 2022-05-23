@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_neptune_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_neptune_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'storage_encrypted' should be set with value true",
@@ -21,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_neptune_cluster",
+		"resourceName": name,
 		"searchKey": sprintf("aws_neptune_cluster[%s].storage_encrypted", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'storage_encrypted' should be true",
