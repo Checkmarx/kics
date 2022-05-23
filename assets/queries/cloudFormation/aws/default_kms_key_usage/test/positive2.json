@@ -33,6 +33,7 @@
           "MaxCapacity": 32,
           "SecondsUntilAutoPause": 1000
         },
+        "StorageEncrypted": true,
         "MasterUsername": "DBUsername",
         "MasterUserPassword": "DBPassword"
       }
