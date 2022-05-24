@@ -9,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "metadata.name does not contain 'tiller'",
@@ -27,6 +29,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "metadata.labels does not have values that contain 'tiller'",
@@ -46,6 +50,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.selector.%s", [metadata.name, j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "spec.selector does not have values that contain 'tiller'",

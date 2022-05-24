@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.properties.publicAccess", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' doesn't have 'publicAccess' property set to 'Container' or 'Blob'",
@@ -35,6 +37,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.resources.name=%s.properties.publicAccess", [common_lib.concat_path(path), value.name, childValue.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "resource with type 'containers' doesn't have 'publicAccess' property set to 'Container' or 'Blob'",
@@ -56,6 +60,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
         "searchKey": sprintf("%s.name=%s.resources.name=%s.properties.publicAccess", [common_lib.concat_path(path), value.name, childValue.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "resource with type 'blobServices/containers' doesn't have 'publicAccess' property set to 'Container' or 'Blob'",

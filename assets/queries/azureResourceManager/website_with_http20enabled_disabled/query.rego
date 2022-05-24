@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' has the 'siteConfig' property defined",
@@ -28,6 +30,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.siteConfig", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' has the 'http20Enabled' property defined",
@@ -45,6 +49,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.siteConfig.http20Enabled", [common_lib.concat_path(path), value.name]),
 		"searchKey": "resources.type={{Microsoft.Web/sites}}.properties.siteConfig.http20Enabled",
 		"issueType": "IncorrectValue",

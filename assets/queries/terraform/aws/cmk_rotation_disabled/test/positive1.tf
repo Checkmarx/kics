@@ -1,3 +1,3 @@
-resource "aws_kms_key" "a" {
-  description             = "KMS key 1"
+resource "aws_kms_key" "positive1" {
+  description = "KMS key 1"
 }

@@ -11,7 +11,7 @@ import (
 func TestMetrics_InitializeMetrics(t *testing.T) {
 	type args struct {
 		metric string
-		ci     string
+		ci     bool
 	}
 	tests := []struct {
 		name    string
@@ -23,7 +23,7 @@ func TestMetrics_InitializeMetrics(t *testing.T) {
 			name: "test_initialize_metrics_cpu",
 			args: args{
 				metric: "cpu",
-				ci:     "true",
+				ci:     true,
 			},
 			wantErr: false,
 			disable: false,
@@ -32,7 +32,7 @@ func TestMetrics_InitializeMetrics(t *testing.T) {
 			name: "test_initialize_metrics_mem",
 			args: args{
 				metric: "mem",
-				ci:     "true",
+				ci:     true,
 			},
 			wantErr: false,
 			disable: false,
@@ -41,7 +41,7 @@ func TestMetrics_InitializeMetrics(t *testing.T) {
 			name: "test_initialize_metrics_empty",
 			args: args{
 				metric: "",
-				ci:     "true",
+				ci:     true,
 			},
 			wantErr: false,
 			disable: true,
@@ -50,7 +50,7 @@ func TestMetrics_InitializeMetrics(t *testing.T) {
 			name: "test_initialize_metrics_unknown",
 			args: args{
 				metric: "unknown",
-				ci:     "true",
+				ci:     true,
 			},
 			wantErr: true,
 			disable: true,
@@ -205,12 +205,12 @@ func TestMetrics_Start_Stop(t *testing.T) {
 	type fields struct {
 		value      string
 		allocation []string
-		ci         string
+		ci         bool
 	}
 	tests := []struct {
 		name     string
 		args     args
-		feilds   fields
+		fields   fields
 		disabled bool
 	}{
 		{
@@ -218,10 +218,10 @@ func TestMetrics_Start_Stop(t *testing.T) {
 			args: args{
 				location: "test_location",
 			},
-			feilds: fields{
+			fields: fields{
 				value:      "cpu",
 				allocation: []string{"1", "2", "3"},
-				ci:         "false",
+				ci:         false,
 			},
 			disabled: false,
 		},
@@ -230,9 +230,9 @@ func TestMetrics_Start_Stop(t *testing.T) {
 			args: args{
 				location: "test_location",
 			},
-			feilds: fields{
+			fields: fields{
 				value: "mem",
-				ci:    "false",
+				ci:    false,
 				allocation: []string{
 					"1", "2", "3", "4", "5",
 					"6", "7", "8", "9", "10",
@@ -247,9 +247,9 @@ func TestMetrics_Start_Stop(t *testing.T) {
 			args: args{
 				location: "test_location",
 			},
-			feilds: fields{
+			fields: fields{
 				value:      "",
-				ci:         "false",
+				ci:         false,
 				allocation: []string{"1", "2", "3"},
 			},
 			disabled: true,
@@ -258,9 +258,9 @@ func TestMetrics_Start_Stop(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := InitializeMetrics(tt.feilds.value, tt.feilds.ci)
+			err := InitializeMetrics(tt.fields.value, tt.fields.ci)
 			require.NoError(t, err)
-			metricFunc(tt.feilds.allocation, tt.args.location)
+			metricFunc(tt.fields.allocation, tt.args.location)
 		})
 	}
 }

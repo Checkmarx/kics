@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'masterAuth' to be defined and not null",
@@ -27,6 +29,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.masterAuth", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'masterAuth.username' to be defined and Attribute 'masterAuth.password' to be defined",
@@ -44,6 +48,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.masterAuth", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'masterAuth.username' to be not empty and attribute 'masterAuth.password' to be not empty",
