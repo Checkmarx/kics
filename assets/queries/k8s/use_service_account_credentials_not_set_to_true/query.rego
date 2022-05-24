@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--use-service-account-credentials flag should be set to true",
@@ -34,6 +36,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "--use-service-account-credentials flag should be defined and set to true",

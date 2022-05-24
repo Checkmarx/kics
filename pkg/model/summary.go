@@ -25,6 +25,8 @@ type VulnerableFile struct {
 	SimilarityID     string     `json:"similarity_id"`
 	Line             int        `json:"line"`
 	VulnLines        []CodeLine `json:"-"`
+	ResourceType     string     `json:"resource_type,omitempty"`
+	ResourceName     string     `json:"resource_name,omitempty"`
 	IssueType        IssueType  `json:"issue_type"`
 	SearchKey        string     `json:"search_key"`
 	SearchLine       int        `json:"search_line"`
@@ -209,6 +211,8 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 			SimilarityID:     item.SimilarityID,
 			Line:             item.Line,
 			VulnLines:        item.VulnLines,
+			ResourceType:     item.ResourceType,
+			ResourceName:     item.ResourceName,
 			IssueType:        item.IssueType,
 			SearchKey:        item.SearchKey,
 			SearchValue:      item.SearchValue,
