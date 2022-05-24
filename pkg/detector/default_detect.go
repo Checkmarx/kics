@@ -1,7 +1,6 @@
 package detector
 
 import (
-	"github.com/Checkmarx/kics/pkg/resolver/file"
 	"strconv"
 	"strings"
 
@@ -18,13 +17,16 @@ type defaultDetectLine struct {
 
 // DetectLine searches vulnerability line if kindDetectLine is not in detectors
 func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string,
-	_ *zerolog.Logger, outputLines int) model.VulnerabilityLines {
-	lines := d.SplitLines(file.OriginalData)
-	resFiles := d.prepareResolvedFiles(file.ResolvedFiles)
-	foundAtLeastOne := false
-	currentLine := 0
-	adjLines := lines
-	resolvedFile := file.FilePath
+	outputLines int, logwithfields *zerolog.Logger) model.VulnerabilityLines {
+	detector := &DefaultDetectLineResponse{
+		CurrentLine:     0,
+		IsBreak:         false,
+		FoundAtLeastOne: false,
+		Lines:           d.SplitLines(file.OriginalData),
+		ResolvedFile:    file.FilePath,
+		ResolvedFiles:   d.prepareResolvedFiles(file.ResolvedFiles),
+	}
+
 	var extractedString [][]string
 	extractedString = GetBracketValues(searchKey, extractedString, "")
 	sanitizedSubstring := searchKey
@@ -35,30 +37,27 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 	for _, key := range strings.Split(sanitizedSubstring, ".") {
 		substr1, substr2 := GenerateSubstrings(key, extractedString)
 
-		response := DetectCurrentLine(adjLines, substr1, substr2, currentLine, foundAtLeastOne, resFiles, resolvedFile)
+		detector = detector.DetectCurrentLine(substr1, substr2)
 
-		currentLine = response.CurrentLine
-		foundAtLeastOne = response.FoundAtLeastOne
-		adjLines = response.Lines
-		resolvedFile = response.ResolvedFile
-
-		if response.IsBreak {
+		if detector.IsBreak {
 			break
 		}
 	}
 
-	if foundAtLeastOne {
+	if detector.FoundAtLeastOne {
 		return model.VulnerabilityLines{
-			Line:         currentLine + 1,
-			VulnLines:    GetAdjacentVulnLines(currentLine, outputLines, adjLines),
-			ResolvedFile: resolvedFile,
+			Line:         detector.CurrentLine + 1,
+			VulnLines:    GetAdjacentVulnLines(detector.CurrentLine, outputLines, detector.Lines),
+			ResolvedFile: detector.ResolvedFile,
 		}
 	}
+
+	logwithfields.Warn().Msgf("Failed to detect line, query response %s", searchKey)
 
 	return model.VulnerabilityLines{
 		Line:         undetectedVulnerabilityLine,
 		VulnLines:    []model.CodeLine{},
-		ResolvedFile: resolvedFile,
+		ResolvedFile: detector.ResolvedFile,
 	}
 }
 
@@ -67,7 +66,7 @@ func (d defaultDetectLine) SplitLines(content string) []string {
 	return strings.Split(text, "\n")
 }
 
-func (d defaultDetectLine) prepareResolvedFiles(resFiles map[string]file.ResolvedFile) map[string]model.ResolvedFileSplit {
+func (d defaultDetectLine) prepareResolvedFiles(resFiles map[string]model.ResolvedFile) map[string]model.ResolvedFileSplit {
 	resolvedFiles := make(map[string]model.ResolvedFileSplit)
 	for f, res := range resFiles {
 		resolvedFiles[f] = model.ResolvedFileSplit{

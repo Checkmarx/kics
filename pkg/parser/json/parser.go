@@ -12,15 +12,18 @@ import (
 // Parser defines a parser type
 type Parser struct {
 	shouldIdent   bool
-	resolvedFiles map[string]file.ResolvedFile
+	resolvedFiles map[string]model.ResolvedFile
 }
 
 // Resolve - replace or modifies in-memory content before parsing
-func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
+func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) {
 	// Resolve files passed as arguments with file resolver (e.g. file://)
 	res := file.NewResolver(json.Unmarshal, json.Marshal)
 	resolved := res.Resolve(fileContent, filename)
 	p.resolvedFiles = res.ResolvedFiles
+	if len(res.ResolvedFiles) == 0 {
+		return fileContent, nil
+	}
 	return resolved, nil
 }
 
@@ -82,6 +85,7 @@ func (p *Parser) StringifyContent(content []byte) (string, error) {
 	return string(content), nil
 }
 
-func (p *Parser) GetResolvedFiles() map[string]file.ResolvedFile {
+// GetResolvedFiles returns resolved files
+func (p *Parser) GetResolvedFiles() map[string]model.ResolvedFile {
 	return p.resolvedFiles
 }

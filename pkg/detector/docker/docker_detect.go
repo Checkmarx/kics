@@ -26,11 +26,16 @@ var (
 
 // DetectLine searches vulnerability line in docker files
 func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
-	logWithFields *zerolog.Logger, outputLines int) model.VulnerabilityLines {
-	text := d.SplitLines(file.OriginalData)
-	lines := prepareDockerFileLines(text)
-	foundAtLeastOne := false
-	currentLine := 0
+	outputLines int, logwithfields *zerolog.Logger) model.VulnerabilityLines {
+	det := &detector.DefaultDetectLineResponse{
+		CurrentLine:     0,
+		IsBreak:         false,
+		FoundAtLeastOne: false,
+		Lines:           prepareDockerFileLines(d.SplitLines(file.OriginalData)),
+		ResolvedFile:    file.FilePath,
+		ResolvedFiles:   make(map[string]model.ResolvedFileSplit),
+	}
+
 	var extractedString [][]string
 	extractedString = detector.GetBracketValues(searchKey, extractedString, "")
 	sKey := searchKey
@@ -41,31 +46,29 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	for _, key := range strings.Split(sKey, ".") {
 		substr1, substr2 := detector.GenerateSubstrings(key, extractedString)
 
-		response := detector.DetectCurrentLine(lines, substr1, substr2,
-			currentLine, foundAtLeastOne, make(map[string]model.ResolvedFileSplit), file.FilePath)
+		det = det.DetectCurrentLine(substr1, substr2)
 
-		currentLine = response.CurrentLine
-		foundAtLeastOne = response.FoundAtLeastOne
-
-		if response.IsBreak {
+		if det.IsBreak {
 			break
 		}
 	}
 
 	unchangedText := d.SplitLines(file.OriginalData)
 
-	if foundAtLeastOne {
+	if det.FoundAtLeastOne {
 		return model.VulnerabilityLines{
-			Line:      currentLine + 1,
-			VulnLines: detector.GetAdjacentVulnLines(currentLine, outputLines, unchangedText),
+			Line:         det.CurrentLine + 1,
+			VulnLines:    detector.GetAdjacentVulnLines(det.CurrentLine, outputLines, unchangedText),
+			ResolvedFile: file.FilePath,
 		}
 	}
 
-	logWithFields.Warn().Msgf("Failed to detect Docker line, query response %s", searchKey)
+	logwithfields.Warn().Msgf("Failed to detect Docker line, query response %s", sKey)
 
 	return model.VulnerabilityLines{
-		Line:      undetectedVulnerabilityLine,
-		VulnLines: []model.CodeLine{},
+		Line:         undetectedVulnerabilityLine,
+		VulnLines:    []model.CodeLine{},
+		ResolvedFile: file.FilePath,
 	}
 }
 

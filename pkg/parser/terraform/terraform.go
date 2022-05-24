@@ -1,7 +1,6 @@
 package terraform
 
 import (
-	"github.com/Checkmarx/kics/pkg/resolver/file"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -37,10 +36,10 @@ func NewDefault() *Parser {
 }
 
 // Resolve - replace or modifies in-memory content before parsing
-func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
+func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) {
 	getInputVariables(filepath.Dir(filename))
 	getDataSourcePolicy(filepath.Dir(filename))
-	return &fileContent, nil
+	return fileContent, nil
 }
 
 func processContent(elements model.Document, content, path string) {
@@ -157,6 +156,7 @@ func (p *Parser) StringifyContent(content []byte) (string, error) {
 	return string(content), nil
 }
 
-func (p *Parser) GetResolvedFiles() map[string]file.ResolvedFile {
-	return make(map[string]file.ResolvedFile)
+// GetResolvedFiles returns the files that are resolved
+func (p *Parser) GetResolvedFiles() map[string]model.ResolvedFile {
+	return make(map[string]model.ResolvedFile)
 }

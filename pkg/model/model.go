@@ -2,12 +2,11 @@
 package model
 
 import (
-	"github.com/Checkmarx/kics/pkg/resolver/file"
 	"regexp"
 	"sort"
 	"strings"
 
-	_ "github.com/mailru/easyjson/gen" //nolint
+	_ "github.com/mailru/easyjson/gen" // easyjson unmarshaler
 	"github.com/rs/zerolog/log"
 )
 
@@ -126,7 +125,7 @@ type FileMetadata struct {
 	IDInfo           map[int]interface{}
 	Commands         CommentsCommands
 	LinesIgnore      []int
-	ResolvedFiles    map[string]file.ResolvedFile
+	ResolvedFiles    map[string]ResolvedFile
 }
 
 // QueryMetadata is a representation of general information about a query
@@ -178,12 +177,12 @@ type QueryConfig struct {
 
 // ResolvedFiles keeps the information of all file/template resolved
 type ResolvedFiles struct {
-	File     []ResolvedFile
+	File     []ResolvedHelm
 	Excluded []string
 }
 
-// ResolvedFile keeps the information of a file/template resolved
-type ResolvedFile struct {
+// ResolvedHelm keeps the information of a file/template resolved
+type ResolvedHelm struct {
 	FileName     string
 	Content      []byte
 	OriginalData []byte
@@ -275,7 +274,14 @@ type AnalyzedPaths struct {
 	Exc   []string
 }
 
+// ResolvedFileSplit is a struct that contains the information of a resolved file, the path and the lines of the file
 type ResolvedFileSplit struct {
 	Path  string
 	Lines []string
+}
+
+// ResolvedFile is a struct that contains the information of a resolved file, the path and the content in bytes of the file
+type ResolvedFile struct {
+	Path    string
+	Content []byte
 }

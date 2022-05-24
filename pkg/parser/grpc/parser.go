@@ -3,7 +3,6 @@ package grpc
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/Checkmarx/kics/pkg/resolver/file"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser/grpc/converter"
@@ -60,16 +59,17 @@ func (p *Parser) GetCommentToken() string {
 	return "//"
 }
 
-// StringifyContent converts original content into string formated version
+// StringifyContent converts original content into string formatted version
 func (p *Parser) StringifyContent(content []byte) (string, error) {
 	return string(content), nil
 }
 
 // Resolve resolves proto files variables
-func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
-	return &fileContent, nil
+func (p *Parser) Resolve(fileContent []byte, _ string) ([]byte, error) {
+	return fileContent, nil
 }
 
-func (p *Parser) GetResolvedFiles() map[string]file.ResolvedFile {
-	return make(map[string]file.ResolvedFile)
+// GetResolvedFiles returns the list of files that are resolved
+func (p *Parser) GetResolvedFiles() map[string]model.ResolvedFile {
+	return make(map[string]model.ResolvedFile)
 }

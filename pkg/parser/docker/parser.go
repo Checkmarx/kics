@@ -3,7 +3,6 @@ package docker
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/Checkmarx/kics/pkg/resolver/file"
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -34,8 +33,8 @@ type Command struct {
 }
 
 // Resolve - replace or modifies in-memory content before parsing
-func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
-	return &fileContent, nil
+func (p *Parser) Resolve(fileContent []byte, _ string) ([]byte, error) {
+	return fileContent, nil
 }
 
 // Parse - parses dockerfile to Json
@@ -136,6 +135,7 @@ func (p *Parser) StringifyContent(content []byte) (string, error) {
 	return string(content), nil
 }
 
-func (p *Parser) GetResolvedFiles() map[string]file.ResolvedFile {
-	return make(map[string]file.ResolvedFile)
+// GetResolvedFiles returns the list of files that are resolved
+func (p *Parser) GetResolvedFiles() map[string]model.ResolvedFile {
+	return make(map[string]model.ResolvedFile)
 }

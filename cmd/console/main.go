@@ -8,7 +8,7 @@ import (
 	"github.com/Checkmarx/kics/internal/constants"
 )
 
-func main() { // nolint:funlen,gocyclo
+func main() {
 	if err := console.Execute(); err != nil {
 		if helpers.ShowError("errors") {
 			os.Exit(constants.EngineErrorCode)
