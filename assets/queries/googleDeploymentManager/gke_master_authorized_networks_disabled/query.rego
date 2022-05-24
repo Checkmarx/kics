@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'masterAuthorizedNetworksConfig' to be defined and not null",
@@ -26,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.masterAuthorizedNetworksConfig", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'masterAuthorizedNetworksConfig.enabled' to be defined and not null",
@@ -42,6 +46,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.masterAuthorizedNetworksConfig.enabled", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'masterAuthorizedNetworksConfig.enabled' to be true",

@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.allowed[%d].ports=%s", [resource.name, ports]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'allowed[%d].ports' to not include SSH port 22", [a]),
