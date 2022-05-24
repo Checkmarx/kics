@@ -505,6 +505,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#resource_type_and_resource_name" class="md-nav__link">
+    RESOURCE TYPE AND RESOURCE NAME
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1279,6 +1286,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#resource_type_and_resource_name" class="md-nav__link">
+    RESOURCE TYPE AND RESOURCE NAME
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1305,6 +1319,21 @@
 <p><img alt="image" src="https://user-images.githubusercontent.com/74001161/161734278-b834bdb3-2696-4331-b045-bf3ec6e7fedf.png" /></p>
 <h5 id="example_in_which_kics_scans_and_not_parses_the_file">Example in which KICS scans and not parses the file<a class="headerlink" href="#example_in_which_kics_scans_and_not_parses_the_file" title="Permanent link">&para;</a></h5>
 <p><img alt="image" src="https://user-images.githubusercontent.com/74001161/161734076-f6cfcf33-6096-4712-80b5-02d367ae73e0.png" /></p>
+<h2 id="resource_type_and_resource_name">RESOURCE TYPE AND RESOURCE NAME<a class="headerlink" href="#resource_type_and_resource_name" title="Permanent link">&para;</a></h2>
+<p>KICS presents the resource type and the resource name fields in the JSON result of each query. These fields are available for the following platforms: Ansible, Azure Resource Manager, Kubernetes, and Google Deployment Manager.</p>
+<pre><code>{
+    &quot;file_name&quot;: &quot;assets/queries/azureResourceManager/account_admins_not_notified_by_email/test/positive3.json&quot;,
+    &quot;similarity_id&quot;: &quot;4db29b15c254f0d6b2226a9bea87e1db9098ba24ceab992646536cd33061d03f&quot;,
+    &quot;line&quot;: 16,
+    &quot;resource_type&quot;: &quot;Microsoft.Sql/servers/databases/securityAlertPolicies&quot;,
+    &quot;resource_name&quot;: &quot;sample/server/default&quot;,
+    &quot;issue_type&quot;: &quot;IncorrectValue&quot;,
+    &quot;search_key&quot;: &quot;properties.template.resources.name={{sample/server/default}}.properties.emailAccountAdmins&quot;,
+    &quot;search_line&quot;: 0,
+    &quot;search_value&quot;: &quot;&quot;,
+    &quot;expected_value&quot;: &quot;securityAlertPolicies.properties.emailAccountAdmins is set to true&quot;,
+}
+</code></pre>
 
               
             </article>
