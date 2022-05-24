@@ -201,11 +201,11 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
 			m, ok := v.(map[string]interface{})
 			require.True(t, ok)
 
-			platformsWithResourceInfo := []string{"azureResourceManager", "k8s", "googleDeploymentManager"}
+			platformsWithResourceInfo := []string{"ansible", "azureResourceManager", "k8s", "googleDeploymentManager"}
 			requiredProperties := requiredQueryResultProperties
 
 			for i := range platformsWithResourceInfo {
-				if entry.platform == platformsWithResourceInfo[i] {
+				if entry.platform == platformsWithResourceInfo[i] && !strings.Contains(entry.dir, "aws_bom") {
 					requiredProperties = append(requiredProperties, requiredQueryResultExtraProperties...)
 
 				}

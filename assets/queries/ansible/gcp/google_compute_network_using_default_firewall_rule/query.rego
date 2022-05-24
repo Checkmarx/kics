@@ -20,6 +20,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modulesCompute[m],
+		"resourceName": tk.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [tk.name, modulesCompute[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' is not using a default firewall rule", [modulesCompute[m]]),

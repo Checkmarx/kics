@@ -18,6 +18,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.%s", [task.name, modules[m], sgs[s]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' is not using default security group", [sgs[s]]),
@@ -41,6 +43,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.%s", [task.name, modules[m], sgs[s]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' is not using default security group", [sgs[s]]),

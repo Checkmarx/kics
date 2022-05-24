@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "gcp_container_cluster.private_cluster_config is defined",
@@ -32,6 +34,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.private_cluster_config", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("gcp_container_cluster.private_cluster_config.%s is defined", [fields[f]]),
@@ -49,6 +53,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.private_cluster_config.%s", [task.name, modules[m], fields[f]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("gcp_container_cluster.private_cluster_config.%s is true", [fields[f]]),

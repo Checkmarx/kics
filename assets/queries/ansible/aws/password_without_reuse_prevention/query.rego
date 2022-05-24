@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}%s", [task.name, modules[m], searchKey]),
 		"issueType": issueType(searchKey),
 		"keyExpectedValue": "iam_password_policy should have the property 'password_reuse_prevent' greater than 0",

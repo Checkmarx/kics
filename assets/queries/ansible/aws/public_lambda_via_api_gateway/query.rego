@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.source_arn", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "lambda_policy.source_arn should not be equal to '/*/*'",
