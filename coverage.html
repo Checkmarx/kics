@@ -1282,7 +1282,7 @@ func preRun(cmd *cobra.Command) error <span class="cov6" title="8">{
         if err != nil </span><span class="cov0" title="0">{
                 return errors.New(initError + err.Error())
         }</span>
-        <span class="cov6" title="7">err = metrics.InitializeMetrics(flags.GetStrFlag(flags.ProfilingFlag), flags.GetStrFlag(flags.CIFlag))
+        <span class="cov6" title="7">err = metrics.InitializeMetrics(flags.GetStrFlag(flags.ProfilingFlag), flags.GetBoolFlag(flags.CIFlag))
         if err != nil </span><span class="cov0" title="0">{
                 return errors.New(initError + err.Error())
         }</span>
@@ -1904,7 +1904,6 @@ import (
         "bytes"
         "fmt"
         "math"
-        "strconv"
         "strings"
 
         "github.com/google/pprof/profile"
@@ -1941,7 +1940,7 @@ type Metrics struct {
 }
 
 // InitializeMetrics - creates a new instance of a Metrics based on the type of metrics specified
-func InitializeMetrics(metric, ci string) error <span class="cov5" title="7">{
+func InitializeMetrics(metric string, ci bool) error <span class="cov5" title="7">{
         var err error
         switch strings.ToLower(metric) </span>{
         case "cpu":<span class="cov2" title="2">
@@ -1964,7 +1963,7 @@ func InitializeMetrics(metric, ci string) error <span class="cov5" title="7">{
         // Create temporary dir to keep pprof file
         <span class="cov5" title="7">if !Metric.Disable </span><span class="cov4" title="4">{
                 Metric.metricsID = metric
-                Metric.ci, _ = strconv.ParseBool(ci)
+                Metric.ci = ci
         }</span>
 
         <span class="cov5" title="7">return err</span>
@@ -2011,13 +2010,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="38">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="38">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2042,7 +2041,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4501,7 +4500,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
