@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("plugins", []),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Plugins should not contain a plugin that does not support Network Policies",
@@ -30,6 +32,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": "ConfigMap",
+		"resourceName": document.metadata.name,
 		"searchKey": sprintf("data.cni-conf.json", []),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Plugins should not contain a plugin that does not support Network Policies",

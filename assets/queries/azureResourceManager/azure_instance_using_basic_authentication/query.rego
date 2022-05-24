@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, issue.sk]),
 		"issueType": issue.issueType,
 		"keyExpectedValue": "'disablePasswordAuthentication' is set to true",
@@ -30,6 +32,8 @@ is_windows(resource) {
 prepare_issue(resource) = issue {
 	resource.properties.osProfile.linuxConfiguration.disablePasswordAuthentication == false
 	issue := {
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"issueType": "IncorrectValue",
 		"keyActualValue": "'disablePasswordAuthentication' is set to false",
 		"sk": ".properties.osProfile.linuxConfiguration.disablePasswordAuthentication",
@@ -37,6 +41,8 @@ prepare_issue(resource) = issue {
 	}
 } else = issue {
 	issue := {
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"issueType": "MissingAttribute",
 		"keyActualValue": "'disablePasswordAuthentication' is undefined",
 		"sk": "",

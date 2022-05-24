@@ -9,13 +9,15 @@ CxPolicy[result] {
     nsSearch := [nsSearch |res = input.document[_];
 					res.kind == listKinds[_]; 
 					nspace := res.metadata.namespace;
-                    nsSearch := {"namespace": nspace,"res": res.id}]
+                    nsSearch := {"namespace": nspace,"res": res.id, "name": res.metadata.name}]
 
     namespaces := {ns | ns:=nsSearch[_].namespace }
     namespacesContac:= concat(", ",namespaces)
 
 	result := {
 		"documentId": nsSearch[0].res,
+		"resourceType": "ConfigMap",
+		"resourceName": nsSearch[0].name,
 		"searchKey": sprintf("metadata.namespace={{%s}}", [nsSearch[0].namespace]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "ensure that these namespaces are the ones you need and are adequately administered as per your requirements.",
