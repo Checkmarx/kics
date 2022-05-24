@@ -17,6 +17,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf( "TLS %s connection setting should be set", [tls]),
@@ -35,6 +37,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": doc.kind,
+		"resourceName": "n/a",
 		"searchKey": sprintf("kind={{%s}}", ["KubeletConfiguration"]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf( "TLS %s connection setting should be set", [tls]),

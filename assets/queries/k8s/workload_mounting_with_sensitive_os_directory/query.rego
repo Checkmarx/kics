@@ -10,6 +10,8 @@ CxPolicy[result] {
 	common_lib.isOSDir(volumes[j].hostPath.path)
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.volumes.name={{%s}}.hostPath.path", [metadata.name, volumes[j].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Workload name '%s' of kind '%s' should not mount a host sensitive OS directory '%s' with hostPath", [
@@ -34,6 +36,8 @@ CxPolicy[result] {
 	common_lib.isOSDir(volumes[j].hostPath.path)
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.volumes.name={{%s}}.hostPath.path", [metadata.name, volumes[j].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Workload name '%s' of kind '%s' should not mount a host sensitive OS directory '%s' with hostPath", [
@@ -57,6 +61,8 @@ CxPolicy[result] {
 	common_lib.isOSDir(hostPath.path)
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.spec.hostPath.path", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("PersistentVolume name '%s' of kind '%s' should not mount a host sensitive OS directory '%s' with hostPath", [

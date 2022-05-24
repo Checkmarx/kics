@@ -25,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.rules", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("The metadata.name={{%s}}.rules.verbs should not contain the following verbs: [%s]", [metadata.name, rules]),

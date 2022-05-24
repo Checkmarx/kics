@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue":  "Client Certification should be set",
@@ -33,13 +35,16 @@ CxPolicy[result] {
     cmd := command[_]
 	common_lib.inArray(container.command, cmd)
     k8sLib.startWithFlag(container,"--client-ca-file")
-	not k8sLib.startAndEndWithFlag(container,"--client-ca-file", ".pem")
+	not	k8sLib.startAndEndWithFlag(container,"--client-ca-file", ".crt")
+	not	k8sLib.startAndEndWithFlag(container,"--client-ca-file", ".pem")
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue":  "Client Certification should have a .pem file",
+		"keyExpectedValue":  "Client Certification should have a .pem or .crt file",
 		"keyActualValue": "Client Certification is not properly set",
         "searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
 	}
@@ -52,6 +57,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": doc.kind,
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue":  "Client Certification should be set",
@@ -71,12 +78,15 @@ CxPolicy[result] {
 	doc :=input.document[i]
     doc.kind == "KubeletConfiguration"
     not endswith(doc.authentication.x509.clientCAFile, ".pem")
+    not endswith(doc.authentication.x509.clientCAFile, ".crt")
 	 
 	result := {
 		"documentId": doc.id,
+		"resourceType": doc.kind,
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}",
 		"issueType": "IncorrectValue",
-		"keyExpectedValue":  "Client Certification should have a .pem file",
+		"keyExpectedValue":  "Client Certification should have a .pem or .crt file",
 		"keyActualValue":  "Client Certification is not properly set",
 	}
 }

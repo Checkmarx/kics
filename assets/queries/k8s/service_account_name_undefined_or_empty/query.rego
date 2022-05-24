@@ -16,6 +16,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec", [metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("metadata.name=%s.spec.serviceAccountName is defined", [metadata.name]),
@@ -36,6 +38,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.serviceAccountName", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name=%s.spec.serviceAccountName is not empty", [metadata.name]),
