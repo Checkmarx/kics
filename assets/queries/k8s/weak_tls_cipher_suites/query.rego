@@ -23,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue":  "'--tls-cipher-suites' flag should be defined and use strong ciphers",
@@ -45,6 +47,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue":  "TLS cipher suites should use strong ciphers",
@@ -60,6 +64,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": doc.kind,
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "KubeletConfiguration should have 'tlsCipherSuites' attribute with strong ciphers defined",
@@ -75,6 +81,8 @@ CxPolicy[result] {
 	 
 	result := {
 		"documentId": doc.id,
+		"resourceType": doc.kind,
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}.tlsCipherSuites",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue":  "TLS cipher suites should use strong ciphers",

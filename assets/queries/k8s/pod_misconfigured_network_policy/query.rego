@@ -20,6 +20,8 @@ CxPolicy[result] {
 
     result := {
 		"documentId": pod.id,
+		"resourceType": pod.kind,
+		"resourceName": pod.metadata.name,
 		"searchKey": sprintf("metadata.name=%s", [pod.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Pod %s should have ingress and egress rules in matching NetworkPolicy", [pod.metadata.name]),
@@ -49,6 +51,8 @@ CxPolicy[result] {
 
     result := {
 		"documentId": pod.id,
+		"resourceType": pod.kind,
+		"resourceName": pod.metadata.name,
 		"searchKey": sprintf("metadata.name=%s", [pod.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Pod %s should have ingress and egress rules in matching NetworkPolicy", [pod.metadata.name]),

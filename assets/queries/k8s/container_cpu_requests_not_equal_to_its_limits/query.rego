@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": document.metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.resources.%s", [document.metadata.name, types[x], container.name, rec[t]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("spec.%s[%s].resources.%s.cpu is defined", [types[x], container.name, rec[t]]),
@@ -30,6 +32,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": document.metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.resources", [document.metadata.name, types[x], container.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("spec.%s[%s].resources.requests.cpu is equal to spec.%s[%s].resources.limits.cpu", [types[x], container.name, types[x], container.name]),

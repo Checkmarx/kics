@@ -8,7 +8,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("resource.aws_elasticache_cluster[%s].engine", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("resource.aws_elasticache_cluster[%s].engine enables Memcached", [name]),
+		"keyExpectedValue": sprintf("resource.aws_elasticache_cluster[%s].engine to have Memcached enabled", [name]),
 		"keyActualValue": sprintf("resource.aws_elasticache_cluster[%s].engine doesn't enable Memcached", [name]),
 	}
 }
