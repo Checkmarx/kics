@@ -52,7 +52,7 @@ func GetBracketValues(expr string, list [][]string, restOfString string) [][]str
 		if t == 0 && restOfString == "" {
 			return list // if there is no more string to read from return value of list
 		}
-		if t > 0 {
+		if t > 0 && firstOpen+2 <= firstClose {
 			list = GetBracketValues(expr[firstOpen+2:firstClose], list, expr[firstClose+2:])
 		} else {
 			list = GetBracketValues(restOfString, list, "") // recursive call to the rest of the string

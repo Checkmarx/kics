@@ -55,6 +55,9 @@ var (
 	buildahRegex                                    = regexp.MustCompile(`\s*buildah\s*from\s*\w+`)
 	dockerComposeVersionRegex                       = regexp.MustCompile(`\s*version\s*:`)
 	dockerComposeServicesRegex                      = regexp.MustCompile(`\s*services\s*:`)
+	cniK8sNameRegex                                 = regexp.MustCompile("\\s*\"?name\"?\\s*:")
+	cniK8sVersionRegex                              = regexp.MustCompile("\\s*\"?cniVersion\"?\\s*:")
+	cniK8sPluginsRegex                              = regexp.MustCompile("\\s*\"?plugins\"?\\s*:")
 )
 
 var (
@@ -76,7 +79,7 @@ var (
 		"buildah":              {"buildah"},
 		"cloudformation":       {"cloudformation"},
 		"dockercompose":        {"dockercompose"},
-		"kubernetes":           {"kubernetes"},
+		"kubernetes":           {"kubernetes", "cniK8s"},
 		"openapi":              {"openapi"},
 		"terraform":            {"terraform", "cdkTf"},
 	}
@@ -186,6 +189,13 @@ var types = map[string]regexSlice{
 		[]*regexp.Regexp{
 			dockerComposeVersionRegex,
 			dockerComposeServicesRegex,
+		},
+	},
+	"cniK8s": {
+		regex: []*regexp.Regexp{
+			cniK8sNameRegex,
+			cniK8sVersionRegex,
+			cniK8sPluginsRegex,
 		},
 	},
 }
@@ -361,6 +371,9 @@ func checkReturnType(path, returnType, ext string, content []byte) string {
 	if returnType != "" {
 		if returnType == "cdkTf" {
 			return terraform
+		}
+		if returnType == "cniK8s" {
+			return kubernetes
 		}
 		if utils.Contains(returnType, armRegexTypes) {
 			return arm
