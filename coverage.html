@@ -117,7 +117,7 @@
 				
 				<option value="file30">github.com/Checkmarx/kics/pkg/detector/helm/helm_detect.go (88.2%)</option>
 				
-				<option value="file31">github.com/Checkmarx/kics/pkg/detector/helper.go (93.1%)</option>
+				<option value="file31">github.com/Checkmarx/kics/pkg/detector/helper.go (92.4%)</option>
 				
 				<option value="file32">github.com/Checkmarx/kics/pkg/detector/search_line_detector.go (95.0%)</option>
 				
@@ -137,7 +137,7 @@
 				
 				<option value="file40">github.com/Checkmarx/kics/pkg/engine/vulnerability_builder.go (86.5%)</option>
 				
-				<option value="file41">github.com/Checkmarx/kics/pkg/engine/vulnerability_utils.go (84.1%)</option>
+				<option value="file41">github.com/Checkmarx/kics/pkg/engine/vulnerability_utils.go (84.4%)</option>
 				
 				<option value="file42">github.com/Checkmarx/kics/pkg/kics/resolver_sink.go (0.0%)</option>
 				
@@ -255,7 +255,7 @@
 				
 				<option value="file99">github.com/Checkmarx/kics/pkg/report/sonarqube.go (90.9%)</option>
 				
-				<option value="file100">github.com/Checkmarx/kics/pkg/resolver/file/file.go (82.6%)</option>
+				<option value="file100">github.com/Checkmarx/kics/pkg/resolver/file/file.go (81.2%)</option>
 				
 				<option value="file101">github.com/Checkmarx/kics/pkg/resolver/helm/helm.go (88.5%)</option>
 				
@@ -1731,6 +1731,9 @@ const (
 
         // LogFormatPretty - print log more readable
         LogFormatPretty = "pretty"
+
+        // MaxResolvedFiles - max files kics will resolve to prevent circular cycles
+        MaxResolvedFiles = 50
 )
 
 // GetRelease - returns the current release in the format 'kics@version' to be used by sentry
@@ -3915,7 +3918,7 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
         <span class="cov5" title="3">for _, key := range strings.Split(sanitizedSubstring, ".") </span><span class="cov7" title="5">{
                 substr1, substr2 := GenerateSubstrings(key, extractedString)
 
-                detector = detector.DetectCurrentLine(substr1, substr2)
+                detector = detector.DetectCurrentLine(substr1, substr2, 0)
 
                 if detector.IsBreak </span><span class="cov1" title="1">{
                         break</span>
@@ -4079,7 +4082,7 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
         <span class="cov3" title="3">for _, key := range strings.Split(sKey, ".") </span><span class="cov5" title="6">{
                 substr1, substr2 := detector.GenerateSubstrings(key, extractedString)
 
-                det = det.DetectCurrentLine(substr1, substr2)
+                det = det.DetectCurrentLine(substr1, substr2, 0)
 
                 if det.IsBreak </span><span class="cov0" title="0">{
                         break</span>
@@ -4535,7 +4538,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="11">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="11">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -4591,11 +4594,11 @@ func removeExtras(result string, start, end int) string <span class="cov5" title
 }
 
 // DetectCurrentLine uses levenshtein distance to find the most accurate line for the vulnerability
-func (d *DefaultDetectLineResponse) DetectCurrentLine(str1, str2 string) *DefaultDetectLineResponse <span class="cov4" title="6">{
+func (d *DefaultDetectLineResponse) DetectCurrentLine(str1, str2 string, recurseCount int) *DefaultDetectLineResponse <span class="cov4" title="6">{
         distances := make(map[int]int)
 
         for i := d.CurrentLine; i &lt; len(d.Lines); i++ </span><span class="cov9" title="56">{
-                if res := d.checkResolvedFile(d.Lines[i], str1, str2); res.FoundAtLeastOne </span><span class="cov0" title="0">{
+                if res := d.checkResolvedFile(d.Lines[i], str1, str2, recurseCount); res.FoundAtLeastOne </span><span class="cov0" title="0">{
                         return res
                 }</span>
                 <span class="cov9" title="56">distances = d.checkLine(str1, str2, distances, i)</span>
@@ -4636,11 +4639,14 @@ func (d *DefaultDetectLineResponse) checkLine(str1, str2 string, distances map[i
         <span class="cov9" title="56">return distances</span>
 }
 
-func (d *DefaultDetectLineResponse) checkResolvedFile(line, str1, st2 string) *DefaultDetectLineResponse <span class="cov10" title="57">{
+func (d *DefaultDetectLineResponse) checkResolvedFile(line, str1, st2 string, recurseCount int) *DefaultDetectLineResponse <span class="cov10" title="57">{
         for key, r := range d.ResolvedFiles </span><span class="cov4" title="4">{
                 if strings.Contains(line, key) </span><span class="cov1" title="1">{
-                        return d.restore(r.Lines, r.Path).DetectCurrentLine(str1, st2)
-                }</span>
+                        if recurseCount &gt; constants.MaxResolvedFiles </span><span class="cov0" title="0">{
+                                break</span>
+                        }
+                        <span class="cov1" title="1">return d.restore(r.Lines, r.Path).DetectCurrentLine(str1, st2, recurseCount+1)</span>
+                }
         }
         <span class="cov9" title="56">return &amp;DefaultDetectLineResponse{
                 CurrentLine:     0,
@@ -7188,6 +7194,7 @@ import (
 
         dec "github.com/Checkmarx/kics/pkg/detector"
         "github.com/Checkmarx/kics/pkg/model"
+        "github.com/Checkmarx/kics/pkg/utils"
         "github.com/rs/zerolog"
         "github.com/rs/zerolog/log"
 )
@@ -7218,36 +7225,30 @@ func (s *searchLineCalculator) calculate() <span class="cov4" title="7">{
                 }</span>
         }
 }
-
 func mergeWithMetadata(base, additional map[string]interface{}) map[string]interface{} <span class="cov4" title="7">{
         for k, v := range additional </span><span class="cov6" title="19">{
                 if _, ok := base[k]; ok </span><span class="cov1" title="1">{
                         continue</span>
                 }
-
                 <span class="cov6" title="18">base[k] = v</span>
         }
-
         <span class="cov4" title="7">return base</span>
 }
-
 func mustMapKeyToString(m map[string]interface{}, key string) *string <span class="cov7" title="31">{
         res, err := mapKeyToString(m, key, true)
-        if err != nil &amp;&amp; key != "value" </span><span class="cov6" title="16">{
+        excludedFields := []string{"value", "resourceName", "resourceType"}
+        if err != nil &amp;&amp; !utils.Contains(key, excludedFields) </span><span class="cov4" title="6">{
                 log.Warn().
                         Str("reason", err.Error()).
                         Msgf("Failed to get key %s in map", key)
         }</span>
-
         <span class="cov7" title="31">return res</span>
 }
-
 func mapKeyToString(m map[string]interface{}, key string, allowNil bool) (*string, error) <span class="cov10" title="93">{
         v, ok := m[key]
         if !ok </span><span class="cov9" title="67">{
                 return nil, fmt.Errorf("key '%s' not found in map", key)
         }</span>
-
         <span class="cov7" title="26">switch vv := v.(type) </span>{
         case json.Number:<span class="cov0" title="0">
                 return stringToPtrString(vv.String()), nil</span>
@@ -7267,17 +7268,13 @@ func mapKeyToString(m map[string]interface{}, key string, allowNil bool) (*strin
         case bool:<span class="cov1" title="1">
                 return stringToPtrString(fmt.Sprintf("%v", vv)), nil</span>
         }
-
         <span class="cov0" title="0">log.Debug().
                 Msg("Detecting line. can't format item to string")
-
         if allowNil </span><span class="cov0" title="0">{
                 return nil, nil
         }</span>
-
         <span class="cov0" title="0">return stringToPtrString(""), nil</span>
 }
-
 func stringToPtrString(v string) *string <span class="cov7" title="26">{
         return &amp;v
 }</span>
@@ -7289,7 +7286,6 @@ func PtrStringToString(v *string) string <span class="cov7" title="27">{
         }</span>
         <span class="cov5" title="10">return *v</span>
 }
-
 func tryOverride(overrideKey, vulnParam string, vObj map[string]interface{}) *string <span class="cov3" title="4">{
         if overrideKey != "" </span><span class="cov3" title="3">{
                 if override, ok := vObj["override"].(map[string]interface{}); ok </span><span class="cov3" title="3">{
@@ -7307,7 +7303,6 @@ func tryOverride(overrideKey, vulnParam string, vObj map[string]interface{}) *st
         }
         <span class="cov2" title="2">return nil</span>
 }
-
 func getStringFromMap(vulnParam, defaultParam, overrideKey string, vObj map[string]interface{}, logWithFields *zerolog.Logger) string <span class="cov8" title="40">{
         ts, err := mapKeyToString(vObj, vulnParam, false)
         if err != nil </span><span class="cov8" title="39">{
@@ -7321,7 +7316,6 @@ func getStringFromMap(vulnParam, defaultParam, overrideKey string, vObj map[stri
         }</span>
         <span class="cov1" title="1">return *ts</span>
 }
-
 func getSeverity(severity string) model.Severity <span class="cov3" title="4">{
         for _, si := range model.AllSeverities </span><span class="cov6" title="13">{
                 if severity == string(si) </span><span class="cov3" title="4">{
@@ -10548,7 +10542,7 @@ type Parser struct {
 func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) <span class="cov1" title="1">{
         // Resolve files passed as arguments with file resolver (e.g. file://)
         res := file.NewResolver(json.Unmarshal, json.Marshal)
-        resolved := res.Resolve(fileContent, filename)
+        resolved := res.Resolve(fileContent, filename, 0)
         p.resolvedFiles = res.ResolvedFiles
         if len(res.ResolvedFiles) == 0 </span><span class="cov1" title="1">{
                 return fileContent, nil
@@ -14346,7 +14340,7 @@ type Parser struct {
 func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) <span class="cov1" title="1">{
         // Resolve files passed as arguments with file resolver (e.g. file://)
         res := file.NewResolver(yaml.Unmarshal, yaml.Marshal)
-        resolved := res.Resolve(fileContent, filename)
+        resolved := res.Resolve(fileContent, filename, 0)
         p.resolvedFiles = res.ResolvedFiles
         if len(res.ResolvedFiles) == 0 </span><span class="cov1" title="1">{
                 return fileContent, nil
@@ -17548,6 +17542,8 @@ import (
         "path/filepath"
         "strings"
 
+        "github.com/Checkmarx/kics/internal/constants"
+
         "github.com/Checkmarx/kics/pkg/model"
         "github.com/rs/zerolog/log"
 )
@@ -17571,7 +17567,7 @@ func NewResolver(
 }</span>
 
 // Resolve - replace or modifies in-memory content before parsing
-func (r *Resolver) Resolve(fileContent []byte, path string) []byte <span class="cov4" title="4">{
+func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int) []byte <span class="cov4" title="4">{
         var obj any
         err := r.unmarshler(fileContent, &amp;obj)
         if err != nil </span><span class="cov0" title="0">{
@@ -17579,7 +17575,7 @@ func (r *Resolver) Resolve(fileContent []byte, path string) []byte <span class="
         }</span>
 
         // resolve the paths
-        <span class="cov4" title="4">obj, _ = r.walk(obj, path)
+        <span class="cov4" title="4">obj, _ = r.walk(obj, path, resolveCount)
 
         b, err := r.marshler(obj)
         if err != nil </span><span class="cov0" title="0">{
@@ -17589,26 +17585,26 @@ func (r *Resolver) Resolve(fileContent []byte, path string) []byte <span class="
         <span class="cov4" title="4">return b</span>
 }
 
-func (r *Resolver) walk(value any, path string) (any, bool) <span class="cov10" title="24">{
+func (r *Resolver) walk(value any, path string, resolveCount int) (any, bool) <span class="cov10" title="24">{
         // go over the value and replace paths with the real content
         switch typedValue := value.(type) </span>{
         case string:<span class="cov7" title="11">
-                return r.resolvePath(typedValue, path)</span>
+                return r.resolvePath(typedValue, path, resolveCount)</span>
         case []any:<span class="cov1" title="1">
                 for i, v := range typedValue </span><span class="cov2" title="2">{
-                        typedValue[i], _ = r.walk(v, path)
+                        typedValue[i], _ = r.walk(v, path, resolveCount)
                 }</span>
                 <span class="cov1" title="1">return typedValue, false</span>
         case map[string]any:<span class="cov8" title="12">
-                return r.handleMap(typedValue, path)</span>
+                return r.handleMap(typedValue, path, resolveCount)</span>
         default:<span class="cov0" title="0">
                 return value, false</span>
         }
 }
 
-func (r *Resolver) handleMap(value map[string]interface{}, path string) (any, bool) <span class="cov8" title="12">{
+func (r *Resolver) handleMap(value map[string]interface{}, path string, resolveCount int) (any, bool) <span class="cov8" title="12">{
         for k, v := range value </span><span class="cov9" title="18">{
-                val, res := r.walk(v, path)
+                val, res := r.walk(v, path, resolveCount)
                 // check if it is a ref than everything needs to be changed
                 if res &amp;&amp; strings.Contains(strings.ToLower(k), "ref") </span><span class="cov4" title="3">{
                         return val, false
@@ -17619,8 +17615,11 @@ func (r *Resolver) handleMap(value map[string]interface{}, path string) (any, bo
 }
 
 // isPath returns true if the value is a valid path
-func (r *Resolver) resolvePath(value, filePath string) (any, bool) <span class="cov7" title="11">{
-        path := filepath.Join(filepath.Dir(filePath), value)
+func (r *Resolver) resolvePath(value, filePath string, resolveCount int) (any, bool) <span class="cov7" title="11">{
+        if resolveCount &gt; constants.MaxResolvedFiles </span><span class="cov0" title="0">{
+                return value, false
+        }</span>
+        <span class="cov7" title="11">path := filepath.Join(filepath.Dir(filePath), value)
         _, err := os.Stat(path)
         if err != nil </span><span class="cov6" title="8">{
                 return value, false
@@ -17645,7 +17644,7 @@ func (r *Resolver) resolvePath(value, filePath string) (any, bool) <span class="
                 return value, false
         }</span>
 
-        <span class="cov4" title="3">resolvedFile := r.Resolve(fileContent, path)
+        <span class="cov4" title="3">resolvedFile := r.Resolve(fileContent, path, resolveCount+1)
 
         // parse the content
         var obj any
