@@ -18,7 +18,7 @@ type Parser struct {
 // Resolve - replace or modifies in-memory content before parsing
 func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) {
 	// Resolve files passed as arguments with file resolver (e.g. file://)
-	res := file.NewResolver(json.Unmarshal, json.Marshal)
+	res := file.NewResolver(json.Unmarshal, json.Marshal, p.SupportedExtensions())
 	resolved := res.Resolve(fileContent, filename, 0)
 	p.resolvedFiles = res.ResolvedFiles
 	if len(res.ResolvedFiles) == 0 {
