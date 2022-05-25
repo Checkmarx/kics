@@ -12,7 +12,7 @@ CxPolicy[result] {
 	ansLib.checkState(apiGateway)
 
 	content_info := get_content(apiGateway)
-    
+
 	securityScheme := content_info.content.components.securitySchemes[x]
 	not common_lib.valid_key(securityScheme, "x-amazon-apigateway-authorizer")
 
@@ -74,7 +74,7 @@ without_authorizer(apiGateway) {
 }
 
 get_content(apiGateway) = content_info {
-	content := apiGateway.swagger_file.content
+	content := apiGateway.swagger_file
 	content_info := {"content": content, "attribute": "swagger_file"}
 } else = content_info {
 	content := apiGateway.swagger_dict

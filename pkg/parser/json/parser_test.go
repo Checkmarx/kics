@@ -1,19 +1,14 @@
 package json
 
 import (
+	"reflect"
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/stretchr/testify/require"
 )
 
-var have = `
-{
-	"martin": {
-		"name": "Martin D'vloper"
-	}
-}
-`
+var have = `{"martin":{"name":"Martin D'vloper"}}`
 
 // TestParser_GetKind tests the functions [GetKind()] and all the methods called by them
 func TestParser_GetKind(t *testing.T) {
@@ -55,7 +50,7 @@ func Test_Resolve(t *testing.T) {
 
 	resolved, err := parser.Resolve([]byte(have), "test.json")
 	require.NoError(t, err)
-	require.Equal(t, []byte(have), *resolved)
+	require.Equal(t, have, string(resolved))
 }
 
 // Test_GetCommentToken must get the token that represents a comment
@@ -115,6 +110,46 @@ func TestJSON_StringifyContent(t *testing.T) {
 			got, err := tt.fields.parser.StringifyContent(tt.args.content)
 			require.Equal(t, tt.wantErr, (err != nil))
 			require.Equal(t, tt.want, got)
+		})
+	}
+}
+
+func TestParser_GetResolvedFiles(t *testing.T) {
+	type fields struct {
+		shouldIdent   bool
+		resolvedFiles map[string]model.ResolvedFile
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		want   map[string]model.ResolvedFile
+	}{
+		{
+			name: "test get resolved files",
+			fields: fields{
+				shouldIdent: true,
+				resolvedFiles: map[string]model.ResolvedFile{
+					"test.json": {
+						Content: []byte(`{"key":"value"}`),
+					},
+				},
+			},
+			want: map[string]model.ResolvedFile{
+				"test.json": {
+					Content: []byte(`{"key":"value"}`),
+				},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			p := &Parser{
+				shouldIdent:   tt.fields.shouldIdent,
+				resolvedFiles: tt.fields.resolvedFiles,
+			}
+			if got := p.GetResolvedFiles(); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("GetResolvedFiles() = %v, want %v", got, tt.want)
+			}
 		})
 	}
 }

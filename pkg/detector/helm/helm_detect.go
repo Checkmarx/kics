@@ -37,7 +37,7 @@ const (
 // it looks only at the keys of the template and will make use of the auxiliary added
 // lines (ex: "# KICS_HELM_ID_")
 func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
-	logWithFields *zerolog.Logger, outputLines int) model.VulnerabilityLines {
+	outputLines int, logWithFields *zerolog.Logger) model.VulnerabilityLines {
 	searchKey = fmt.Sprintf("%s.%s", strings.TrimRight(strings.TrimLeft(file.HelmID, "# "), ":"), searchKey)
 	lines := d.SplitLines(file.OriginalData)
 	curLineRes := detectCurlLine{

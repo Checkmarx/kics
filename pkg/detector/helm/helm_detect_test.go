@@ -184,7 +184,7 @@ spec:
 	for _, tt := range tests {
 		detector := DetectKindLine{}
 		t.Run(tt.name, func(t *testing.T) {
-			got := detector.DetectLine(tt.args.file, tt.args.searchKey, tt.args.logWithFields, tt.args.outputLines)
+			got := detector.DetectLine(tt.args.file, tt.args.searchKey, tt.args.outputLines, tt.args.logWithFields)
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("detectHelmLine() = %v, want = %v", got, tt.want)
 			}

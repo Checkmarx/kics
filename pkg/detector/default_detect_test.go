@@ -143,13 +143,52 @@ func Test_detectLine(t *testing.T) { //nolint
 	for _, tt := range tests {
 		detector := NewDetectLine(tt.feilds.outputLines)
 		t.Run(tt.name, func(t *testing.T) {
-			got := detector.defaultDetector.DetectLine(tt.args.file, tt.args.searchKey, &zerolog.Logger{}, 3)
+			got := detector.defaultDetector.DetectLine(tt.args.file, tt.args.searchKey, 3, &zerolog.Logger{})
 			gotStrVulnerabilities, err := test.StringifyStruct(got)
 			require.Nil(t, err)
 			wantStrVulnerabilities, err := test.StringifyStruct(tt.want)
 			require.Nil(t, err)
 			if !reflect.DeepEqual(gotStrVulnerabilities, wantStrVulnerabilities) {
 				t.Errorf("detectLine() = %v, want %v", gotStrVulnerabilities, wantStrVulnerabilities)
+			}
+		})
+	}
+}
+
+func Test_defaultDetectLine_prepareResolvedFiles(t *testing.T) {
+	type args struct {
+		resFiles map[string]model.ResolvedFile
+	}
+	tests := []struct {
+		name string
+		args args
+		want map[string]model.ResolvedFileSplit
+	}{
+		{
+			name: "prepare_resolved_files",
+			args: args{
+				resFiles: map[string]model.ResolvedFile{
+					"file1": {
+						Content: []byte(
+							`content1
+content2`),
+						Path: "testing/file1",
+					},
+				},
+			},
+			want: map[string]model.ResolvedFileSplit{
+				"file1": {
+					Path:  "testing/file1",
+					Lines: []string{"content1", "content2"},
+				},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			d := defaultDetectLine{}
+			if got := d.prepareResolvedFiles(tt.args.resFiles); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("prepareResolvedFiles() = %v, want %v", got, tt.want)
 			}
 		})
 	}
