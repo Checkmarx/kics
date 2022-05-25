@@ -17,16 +17,19 @@ type Resolver struct {
 	unmarshler    func(fileContent []byte, v any) error
 	marshler      func(v any) ([]byte, error)
 	ResolvedFiles map[string]model.ResolvedFile
+	Extension     []string
 }
 
 // NewResolver returns a new Resolver
 func NewResolver(
 	unmarshler func(fileContent []byte, v any) error,
-	marshler func(v any) ([]byte, error)) *Resolver {
+	marshler func(v any) ([]byte, error),
+	ext []string) *Resolver {
 	return &Resolver{
 		unmarshler:    unmarshler,
 		marshler:      marshler,
 		ResolvedFiles: make(map[string]model.ResolvedFile),
+		Extension:     ext,
 	}
 }
 
@@ -89,6 +92,10 @@ func (r *Resolver) resolvePath(value, filePath string, resolveCount int) (any, b
 		return value, false
 	}
 
+	if !contains(filepath.Ext(path), r.Extension) {
+		return value, false
+	}
+
 	// open the file with the content to replace
 	file, err := os.Open(filepath.Clean(path))
 	if err != nil {
@@ -128,4 +135,13 @@ func (r *Resolver) resolvePath(value, filePath string, resolveCount int) (any, b
 	}
 
 	return obj, true
+}
+
+func contains(elem string, list []string) bool {
+	for _, e := range list {
+		if elem == e {
+			return true
+		}
+	}
+	return false
 }

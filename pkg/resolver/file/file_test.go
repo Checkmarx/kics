@@ -31,7 +31,7 @@ func TestResolver_Resolve(t *testing.T) {
 		{
 			name: "test",
 			fields: fields{
-				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal),
+				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}),
 			},
 			args: args{
 				path: filepath.ToSlash("test/fixtures/unresolved_openapi/responses/_index.yaml"),
@@ -62,6 +62,7 @@ func TestResolver_Resolve(t *testing.T) {
 				unmarshler:    tt.fields.unmarshler,
 				marshler:      tt.fields.marshler,
 				ResolvedFiles: tt.fields.ResolvedFiles,
+				Extension:     tt.fields.Extension,
 			}
 
 			cont, err := getFileContent(tt.args.path)
