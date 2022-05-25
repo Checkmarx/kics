@@ -255,7 +255,7 @@
 				
 				<option value="file99">github.com/Checkmarx/kics/pkg/report/sonarqube.go (90.9%)</option>
 				
-				<option value="file100">github.com/Checkmarx/kics/pkg/resolver/file/file.go (81.2%)</option>
+				<option value="file100">github.com/Checkmarx/kics/pkg/resolver/file/file.go (79.6%)</option>
 				
 				<option value="file101">github.com/Checkmarx/kics/pkg/resolver/helm/helm.go (88.5%)</option>
 				
@@ -2011,13 +2011,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov8" title="32">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2042,7 +2042,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -7063,7 +7063,7 @@ var DefaultVulnerabilityBuilder = func(ctx *QueryContext, tracker Tracker,
         }</span>
 
         <span class="cov10" title="5">lineNumber := 0
-        if file.Kind != model.KindHELM || linesVulne.ResolvedFile == file.FilePath </span><span class="cov10" title="5">{
+        if file.Kind != model.KindHELM &amp;&amp; len(file.ResolvedFiles) == 0 </span><span class="cov10" title="5">{
                 searchLineCalc := &amp;searchLineCalculator{
                         lineNr:               -1,
                         vObj:                 vObj,
@@ -10541,7 +10541,7 @@ type Parser struct {
 // Resolve - replace or modifies in-memory content before parsing
 func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) <span class="cov1" title="1">{
         // Resolve files passed as arguments with file resolver (e.g. file://)
-        res := file.NewResolver(json.Unmarshal, json.Marshal)
+        res := file.NewResolver(json.Unmarshal, json.Marshal, p.SupportedExtensions())
         resolved := res.Resolve(fileContent, filename, 0)
         p.resolvedFiles = res.ResolvedFiles
         if len(res.ResolvedFiles) == 0 </span><span class="cov1" title="1">{
@@ -10576,7 +10576,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 }
 
 // SupportedExtensions returns extensions supported by this parser, which is json extension
-func (p *Parser) SupportedExtensions() []string <span class="cov1" title="1">{
+func (p *Parser) SupportedExtensions() []string <span class="cov10" title="2">{
         return []string{".json"}
 }</span>
 
@@ -14339,7 +14339,7 @@ type Parser struct {
 // Resolve - replace or modifies in-memory content before parsing
 func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) <span class="cov1" title="1">{
         // Resolve files passed as arguments with file resolver (e.g. file://)
-        res := file.NewResolver(yaml.Unmarshal, yaml.Marshal)
+        res := file.NewResolver(yaml.Unmarshal, yaml.Marshal, p.SupportedExtensions())
         resolved := res.Resolve(fileContent, filename, 0)
         p.resolvedFiles = res.ResolvedFiles
         if len(res.ResolvedFiles) == 0 </span><span class="cov1" title="1">{
@@ -14411,7 +14411,7 @@ func convert(value interface{}) interface{} <span class="cov10" title="15">{
 }
 
 // SupportedExtensions returns extensions supported by this parser, which are yaml and yml extension
-func (p *Parser) SupportedExtensions() []string <span class="cov1" title="1">{
+func (p *Parser) SupportedExtensions() []string <span class="cov3" title="2">{
         return []string{".yaml", ".yml"}
 }</span>
 
@@ -17553,16 +17553,19 @@ type Resolver struct {
         unmarshler    func(fileContent []byte, v any) error
         marshler      func(v any) ([]byte, error)
         ResolvedFiles map[string]model.ResolvedFile
+        Extension     []string
 }
 
 // NewResolver returns a new Resolver
 func NewResolver(
         unmarshler func(fileContent []byte, v any) error,
-        marshler func(v any) ([]byte, error)) *Resolver <span class="cov1" title="1">{
+        marshler func(v any) ([]byte, error),
+        ext []string) *Resolver <span class="cov1" title="1">{
         return &amp;Resolver{
                 unmarshler:    unmarshler,
                 marshler:      marshler,
                 ResolvedFiles: make(map[string]model.ResolvedFile),
+                Extension:     ext,
         }
 }</span>
 
@@ -17625,6 +17628,10 @@ func (r *Resolver) resolvePath(value, filePath string, resolveCount int) (any, b
                 return value, false
         }</span>
 
+        <span class="cov4" title="3">if !contains(filepath.Ext(path), r.Extension) </span><span class="cov0" title="0">{
+                return value, false
+        }</span>
+
         // open the file with the content to replace
         <span class="cov4" title="3">file, err := os.Open(filepath.Clean(path))
         if err != nil </span><span class="cov0" title="0">{
@@ -17664,6 +17671,15 @@ func (r *Resolver) resolvePath(value, filePath string, resolveCount int) (any, b
         }</span>
 
         <span class="cov4" title="3">return obj, true</span>
+}
+
+func contains(elem string, list []string) bool <span class="cov4" title="3">{
+        for _, e := range list </span><span class="cov6" title="6">{
+                if elem == e </span><span class="cov4" title="3">{
+                        return true
+                }</span>
+        }
+        <span class="cov0" title="0">return false</span>
 }
 </pre>
 		
