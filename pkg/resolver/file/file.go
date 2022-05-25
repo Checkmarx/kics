@@ -6,6 +6,8 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/Checkmarx/kics/internal/constants"
+
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/rs/zerolog/log"
 )
@@ -29,7 +31,7 @@ func NewResolver(
 }
 
 // Resolve - replace or modifies in-memory content before parsing
-func (r *Resolver) Resolve(fileContent []byte, path string) []byte {
+func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int) []byte {
 	var obj any
 	err := r.unmarshler(fileContent, &obj)
 	if err != nil {
@@ -37,7 +39,7 @@ func (r *Resolver) Resolve(fileContent []byte, path string) []byte {
 	}
 
 	// resolve the paths
-	obj, _ = r.walk(obj, path)
+	obj, _ = r.walk(obj, path, resolveCount)
 
 	b, err := r.marshler(obj)
 	if err != nil {
@@ -47,26 +49,26 @@ func (r *Resolver) Resolve(fileContent []byte, path string) []byte {
 	return b
 }
 
-func (r *Resolver) walk(value any, path string) (any, bool) {
+func (r *Resolver) walk(value any, path string, resolveCount int) (any, bool) {
 	// go over the value and replace paths with the real content
 	switch typedValue := value.(type) {
 	case string:
-		return r.resolvePath(typedValue, path)
+		return r.resolvePath(typedValue, path, resolveCount)
 	case []any:
 		for i, v := range typedValue {
-			typedValue[i], _ = r.walk(v, path)
+			typedValue[i], _ = r.walk(v, path, resolveCount)
 		}
 		return typedValue, false
 	case map[string]any:
-		return r.handleMap(typedValue, path)
+		return r.handleMap(typedValue, path, resolveCount)
 	default:
 		return value, false
 	}
 }
 
-func (r *Resolver) handleMap(value map[string]interface{}, path string) (any, bool) {
+func (r *Resolver) handleMap(value map[string]interface{}, path string, resolveCount int) (any, bool) {
 	for k, v := range value {
-		val, res := r.walk(v, path)
+		val, res := r.walk(v, path, resolveCount)
 		// check if it is a ref than everything needs to be changed
 		if res && strings.Contains(strings.ToLower(k), "ref") {
 			return val, false
@@ -77,7 +79,10 @@ func (r *Resolver) handleMap(value map[string]interface{}, path string) (any, bo
 }
 
 // isPath returns true if the value is a valid path
-func (r *Resolver) resolvePath(value, filePath string) (any, bool) {
+func (r *Resolver) resolvePath(value, filePath string, resolveCount int) (any, bool) {
+	if resolveCount > constants.MaxResolvedFiles {
+		return value, false
+	}
 	path := filepath.Join(filepath.Dir(filePath), value)
 	_, err := os.Stat(path)
 	if err != nil {
@@ -103,7 +108,7 @@ func (r *Resolver) resolvePath(value, filePath string) (any, bool) {
 		return value, false
 	}
 
-	resolvedFile := r.Resolve(fileContent, path)
+	resolvedFile := r.Resolve(fileContent, path, resolveCount+1)
 
 	// parse the content
 	var obj any

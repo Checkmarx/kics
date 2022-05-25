@@ -492,7 +492,7 @@ func TestDefaultDetectLineResponse_checkResolvedFile(t *testing.T) {
 				ResolvedFile:    tt.fields.ResolvedFile,
 				ResolvedFiles:   tt.fields.ResolvedFiles,
 			}
-			if got := d.checkResolvedFile(tt.args.line, tt.args.str1, tt.args.st2); !reflect.DeepEqual(got, tt.want) {
+			if got := d.checkResolvedFile(tt.args.line, tt.args.str1, tt.args.st2, 0); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("checkResolvedFile() = %v, want %v", got, tt.want)
 			}
 		})
