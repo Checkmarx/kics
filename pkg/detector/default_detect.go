@@ -37,7 +37,7 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 	for _, key := range strings.Split(sanitizedSubstring, ".") {
 		substr1, substr2 := GenerateSubstrings(key, extractedString)
 
-		detector = detector.DetectCurrentLine(substr1, substr2)
+		detector = detector.DetectCurrentLine(substr1, substr2, 0)
 
 		if detector.IsBreak {
 			break
