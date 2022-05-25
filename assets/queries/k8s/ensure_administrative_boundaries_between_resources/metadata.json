@@ -1,0 +1,11 @@
+{
+    "id": "e84eaf4d-2f45-47b2-abe8-e581b06deb66",
+    "queryName": "Ensure Administrative Boundaries Between Resources",
+    "severity": "INFO",
+    "category": "Access Control",
+    "descriptionText": "As a best practice, ensure that is made the correct use of namespaces to adequately administer your resources. Kubernetes Authorization plugins can also be used to create policies that segregate user access to namespaces.",
+    "descriptionUrl": "https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+    "platform": "Kubernetes",
+    "descriptionID": "8182d7cf"
+  }
+  

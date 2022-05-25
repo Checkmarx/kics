@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.%s.all_aws_regions", [task.name, modules[m], fields[f]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'aws_config_aggregator.%s' should have all_aws_regions set to true", [fields[f]]),

@@ -9,7 +9,7 @@ import (
 
 var (
 	// Version - current KICS version
-	Version = "1.5.8"
+	Version = "1.5.9"
 	// SCMCommit - Source control management commit identifier
 	SCMCommit = "NOCOMMIT"
 	// SentryDSN - sentry DSN, unset for disabling
@@ -116,6 +116,9 @@ const (
 
 	// LogFormatPretty - print log more readable
 	LogFormatPretty = "pretty"
+
+	// MaxResolvedFiles - max files kics will resolve to prevent circular cycles
+	MaxResolvedFiles = 50
 )
 
 // GetRelease - returns the current release in the format 'kics@version' to be used by sentry

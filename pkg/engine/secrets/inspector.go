@@ -161,26 +161,36 @@ func NewInspector(
 	}, nil
 }
 
+func (c *Inspector) inspectQuery(ctx context.Context, basePaths []string,
+	files model.FileMetadatas, i int) ([]model.Vulnerability, error) {
+	timeoutCtx, cancel := context.WithTimeout(ctx, c.queryExecutionTimeout*time.Second)
+	defer cancel()
+
+	cleanFiles := cleanFiles(files)
+
+	for idx := range cleanFiles {
+		if _, ok := cleanFiles[idx].Commands["ignore"]; !ok {
+			select {
+			case <-timeoutCtx.Done():
+				return c.vulnerabilities, timeoutCtx.Err()
+			default:
+				c.checkContent(i, idx, basePaths, cleanFiles)
+			}
+		}
+	}
+	return c.vulnerabilities, nil
+}
+
 // Inspect inspects the source code for passwords & secrets and returns the list of vulnerabilities
 func (c *Inspector) Inspect(ctx context.Context, basePaths []string,
 	files model.FileMetadatas, currentQuery chan<- int64) ([]model.Vulnerability, error) {
 	for i := range c.regexQueries {
 		currentQuery <- 1
 
-		timeoutCtx, cancel := context.WithTimeout(ctx, c.queryExecutionTimeout*time.Second)
-		defer cancel()
+		vulns, err := c.inspectQuery(ctx, basePaths, files, i)
 
-		cleanFiles := cleanFiles(files)
-
-		for idx := range cleanFiles {
-			if _, ok := cleanFiles[idx].Commands["ignore"]; !ok {
-				select {
-				case <-timeoutCtx.Done():
-					return c.vulnerabilities, timeoutCtx.Err()
-				default:
-					c.checkContent(i, idx, basePaths, cleanFiles)
-				}
-			}
+		if err != nil {
+			return vulns, err
 		}
 	}
 	return c.vulnerabilities, nil
@@ -410,7 +420,9 @@ func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadat
 	return lineVulneInfoSlice
 }
 
-func (c *Inspector) checkLineByLine(query *RegexQuery, basePaths []string, file *model.FileMetadata, lineNumber int, currentLine string) {
+func (c *Inspector) checkLineByLine(wg *sync.WaitGroup, query *RegexQuery,
+	basePaths []string, file *model.FileMetadata, lineNumber int, currentLine string) {
+	defer wg.Done()
 	isSecret, groups := c.isSecret(currentLine, query)
 	if !isSecret {
 		return
@@ -569,10 +581,7 @@ func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.Fil
 		lines := c.detector.SplitLines(&files[idx])
 		for lineNumber, currentLine := range lines {
 			wg.Add(1)
-			go func(lineNumber int, currentLine string) {
-				defer wg.Done()
-				c.checkLineByLine(&c.regexQueries[i], basePaths, &files[idx], lineNumber, currentLine)
-			}(lineNumber, currentLine)
+			go c.checkLineByLine(wg, &c.regexQueries[i], basePaths, &files[idx], lineNumber, currentLine)
 		}
 		wg.Wait()
 		return

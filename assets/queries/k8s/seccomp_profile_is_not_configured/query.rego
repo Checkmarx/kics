@@ -20,6 +20,8 @@ checkSeccompProfile(specInfo, container, containerType, document, metadata) = re
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.seccompProfile.type=%s", [metadata.name, specInfo.path, containerType, container.name, profile]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.seccompProfile.type should be set to 'RuntimeDefault' or 'Localhost'", [metadata.name, specInfo.path, containerType, container.name]),
@@ -37,6 +39,8 @@ checkSeccompProfile(specInfo, container, containerType, document, metadata) = re
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.securityContext.seccompProfile.type=%s", [metadata.name, specInfo.path, profile]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.securityContext.seccompProfile.type should be set to 'RuntimeDefault' or 'Localhost'", [metadata.name, specInfo.path]),
@@ -56,6 +60,8 @@ checkSeccompProfile(specInfo, container, containerType, document, metadata) = re
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": common_lib.remove_last_point(sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.%s", [metadata.name, specInfo.path, containerType, container.name, containerSeccompType.searchKey])),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.seccompProfile.type should be defined", [metadata.name, specInfo.path, containerType, container.name]),
@@ -91,6 +97,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s", [metadata.name, seccompAnnotationPath]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s is 'runtime/default'", [metadata.name, seccompAnnotationPath]),

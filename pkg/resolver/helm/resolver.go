@@ -40,7 +40,7 @@ func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) {
 	}
 	for _, split := range *splits {
 		origpath := filepath.Join(filepath.Dir(filePath), split.path)
-		rfiles.File = append(rfiles.File, model.ResolvedFile{
+		rfiles.File = append(rfiles.File, model.ResolvedHelm{
 			FileName:     origpath,
 			Content:      split.content,
 			OriginalData: split.original,
@@ -74,7 +74,7 @@ func renderHelm(path string) (*[]splitManifest, []string, error) {
 func splitManifestYAML(template *release.Release) (*[]splitManifest, error) {
 	sources := make([]*chart.File, 0)
 	sources = updateName(sources, template.Chart, template.Chart.Name())
-	splitedManifest := []splitManifest{}
+	var splitedManifest []splitManifest
 	splitedSource := strings.Split(template.Manifest, "---") // split manifest by '---'
 	origData := toMap(sources)
 	for _, splited := range splitedSource {
@@ -85,7 +85,7 @@ func splitManifestYAML(template *release.Release) (*[]splitManifest, error) {
 				break
 			}
 		}
-		path := strings.Split(strings.TrimLeft(splited, "\n# Source:"), "\n") // get source of splitted yaml
+		path := strings.Split(strings.TrimLeft(splited, "\n# Source:"), "\n") // get source of split yaml
 		// ignore auxiliary files used to render chart
 		if path[0] == "" {
 			continue
@@ -117,7 +117,7 @@ func toMap(files []*chart.File) map[string][]byte {
 	return mapFiles
 }
 
-// updateName will update the templates name as well as its dependecies
+// updateName will update the templates name as well as its dependencies
 func updateName(template []*chart.File, charts *chart.Chart, name string) []*chart.File {
 	if name != charts.Name() {
 		name = filepath.Join(name, charts.Name())
