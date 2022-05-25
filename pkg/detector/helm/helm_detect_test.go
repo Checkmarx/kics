@@ -63,6 +63,7 @@ spec:
 					},
 				},
 				LineWithVulnerabilty: "  containers:",
+				ResolvedFile:         "test-connection.yaml",
 			},
 		},
 		{
@@ -116,6 +117,7 @@ spec:
 					},
 				},
 				LineWithVulnerabilty: "spec:",
+				ResolvedFile:         "test-dup_values.yaml",
 			},
 		},
 		{
@@ -177,6 +179,7 @@ spec:
 					},
 				},
 				LineWithVulnerabilty: "  containers:",
+				ResolvedFile:         "test-dups.yaml",
 			},
 		},
 	}
