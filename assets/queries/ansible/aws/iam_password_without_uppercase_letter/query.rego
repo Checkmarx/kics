@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.require_uppercase", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "iam_password_policy.require_uppercase set and true",
@@ -30,6 +32,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.require_uppercase", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "iam_password_policy.require_uppercase is true",

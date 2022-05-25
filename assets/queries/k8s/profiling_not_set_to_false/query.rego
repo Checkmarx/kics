@@ -18,6 +18,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--profiling flag should be set to false",
@@ -38,6 +40,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "--profiling flag should be defined and set to false",
@@ -53,6 +57,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeSchedulerConfiguration}}.enableProfiling",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "enableProfiling argument flag should be set to false",
@@ -67,6 +73,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeSchedulerConfiguration}}",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "enableProfiling argument flag should be defined and set to false",

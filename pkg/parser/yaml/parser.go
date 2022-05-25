@@ -3,8 +3,10 @@ package json
 import (
 	"bytes"
 
-	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser/utils"
+
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/resolver/file"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"
@@ -12,11 +14,20 @@ import (
 
 // Parser defines a parser type
 type Parser struct {
+	resolvedFiles map[string]model.ResolvedFile
 }
 
 // Resolve - replace or modifies in-memory content before parsing
-func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
-	return &fileContent, nil
+func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) {
+	// Resolve files passed as arguments with file resolver (e.g. file://)
+	res := file.NewResolver(yaml.Unmarshal, yaml.Marshal, p.SupportedExtensions())
+	resolved := res.Resolve(fileContent, filename, 0)
+	p.resolvedFiles = res.ResolvedFiles
+	if len(res.ResolvedFiles) == 0 {
+		return fileContent, nil
+	}
+
+	return resolved, nil
 }
 
 // Parse parses yaml/yml file and returns it as a Document
@@ -25,12 +36,13 @@ func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, [
 	var documents []model.Document
 	dec := yaml.NewDecoder(bytes.NewReader(fileContent))
 
-	doc := &model.Document{}
+	doc := emptyDocument()
 	for dec.Decode(doc) == nil {
-		if doc != nil {
+		if len(*doc) > 0 {
 			documents = append(documents, *doc)
 		}
-		doc = &model.Document{}
+
+		doc = emptyDocument()
 	}
 
 	if len(documents) == 0 {
@@ -101,13 +113,6 @@ func (p *Parser) GetKind() model.FileKind {
 	return model.KindYAML
 }
 
-func processSwaggerContent(elements map[string]interface{}, filePath string) {
-	swaggerInfo := utils.AddSwaggerInfo(filePath, elements["swagger_file"].(string))
-	if swaggerInfo != nil {
-		elements["swagger_file"] = swaggerInfo
-	}
-}
-
 func processCertContent(elements map[string]interface{}, content, filePath string) {
 	var certInfo map[string]interface{}
 	if content != "" {
@@ -121,9 +126,6 @@ func processCertContent(elements map[string]interface{}, content, filePath strin
 func processElements(elements map[string]interface{}, filePath string) {
 	if elements["certificate"] != nil {
 		processCertContent(elements, utils.CheckCertificate(elements["certificate"].(string)), filePath)
-	}
-	if elements["swagger_file"] != nil {
-		processSwaggerContent(elements, filePath)
 	}
 }
 
@@ -171,4 +173,13 @@ func (p *Parser) GetCommentToken() string {
 // StringifyContent converts original content into string formated version
 func (p *Parser) StringifyContent(content []byte) (string, error) {
 	return string(content), nil
+}
+
+func emptyDocument() *model.Document {
+	return &model.Document{}
+}
+
+// GetResolvedFiles returns resolved files
+func (p *Parser) GetResolvedFiles() map[string]model.ResolvedFile {
+	return p.resolvedFiles
 }

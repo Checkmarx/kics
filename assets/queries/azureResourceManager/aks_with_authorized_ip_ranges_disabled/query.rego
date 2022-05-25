@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.apiVersion", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'apiVersion' is '2019-02-01' or newer",
@@ -35,6 +37,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, issue.sk]),
 		"issueType": issue.issueType,
 		"keyExpectedValue": "'apiServerAuthorizedIPRanges' is a defined as an array",
@@ -59,6 +63,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, issue.sk]),
 		"issueType": issue.issueType,
 		"keyExpectedValue": "'apiServerAccessProfile.authorizedIPRanges' is defined as an array",
@@ -96,6 +102,8 @@ is_modern_ip_range_implemented(value) {
 prepare_issue_old_api(resource) = issue {
 	common_lib.valid_key(resource.properties, "apiServerAuthorizedIPRanges")
 	issue := {
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"issueType": "IncorrectValue",
 		"keyActualValue": "'apiServerAuthorizedIPRanges' is empty",
 		"sk": ".properties.apiServerAuthorizedIPRanges",
@@ -103,6 +111,8 @@ prepare_issue_old_api(resource) = issue {
 	}
 } else = issue {
 	issue := {
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"issueType": "MissingAttribute",
 		"keyActualValue": "'apiServerAuthorizedIPRanges' is undefined",
 		"sk": "",
@@ -114,6 +124,8 @@ prepare_issue_new_api(value) = issue {
 	common_lib.valid_key(value.properties, "apiServerAccessProfile")
 	common_lib.valid_key(value.properties.apiServerAccessProfile, "authorizedIPRanges")
 	issue := {
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"issueType": "IncorrectValue",
 		"keyActualValue": "'apiServerAccessProfile.authorizedIPRanges' is empty",
 		"sk": ".properties.apiServerAccessProfile.authorizedIPRanges",
@@ -121,6 +133,8 @@ prepare_issue_new_api(value) = issue {
 	}
 } else = issue {
 	issue := {
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"issueType": "MissingAttribute",
 		"keyActualValue": "'apiServerAccessProfile.authorizedIPRanges' is undefined",
 		"sk": "",

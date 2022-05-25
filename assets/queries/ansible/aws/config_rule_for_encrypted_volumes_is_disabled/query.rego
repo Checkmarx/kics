@@ -10,8 +10,12 @@ CxPolicy[result] {
 
 	not checkSource(configRules, "ENCRYPTED_VOLUMES")
 
+	configRules[0][modules[m]]
+
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": configRules[0].name,
 		"searchKey": sprintf("name={{%s}}", [configRules[0].name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "There should be a aws_config_rule with source.identifier equal to 'ENCRYPTED_VOLUMES'",

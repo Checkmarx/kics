@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}%s", [task.name, modules[m], path.defined]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("gcp_sql_instance.%s is defined", [path.undefined]),
@@ -30,6 +32,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.settings.ip_configuration.require_ssl", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "gcp_sql_instance.settings.ip_configuration.require_ssl is true",

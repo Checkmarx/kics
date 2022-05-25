@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.%s.viewer_protocol_policy", [task.name, modules[m], fields[f]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("cloudfront_distribution.%s.viewer_protocol_policy is 'https-only' or 'redirect-to-https'", [fields[f]]),

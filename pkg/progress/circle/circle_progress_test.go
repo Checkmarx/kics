@@ -38,7 +38,7 @@ func TestCircle_NewProgressBar(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			newPb := pb.New64(constants.MaxInteger)
-			tmp := fmt.Sprintf(`{{ "%s" }} {{(cycle . "↖" "↗" "↘" "↙" )}}`, tt.args.label)
+			tmp := fmt.Sprintf(`{{ %q }} {{(cycle . "↖" "↗" "↘" "↙" )}}`, tt.args.label)
 			newPb.SetWidth(barWidth)
 			newPb.SetTemplateString(tmp)
 

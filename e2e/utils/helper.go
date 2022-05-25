@@ -29,7 +29,7 @@ func RunCommand(kicsArgs []string, useDocker, useMock bool, kicsDockerImage stri
 		source, args = runKicsDev(kicsArgs)
 	}
 
-	cmd := exec.Command(source, args...) //nolint
+	cmd := exec.Command(source, args...)
 	cmd.Env = append(os.Environ(), descriptionServer)
 	stdOutput, err := cmd.CombinedOutput()
 	if err != nil {

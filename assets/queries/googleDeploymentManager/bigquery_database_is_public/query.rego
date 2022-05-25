@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.access[%d].specialGroup", [resource.name, j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'access[%d].specialGroup' to be not equal to 'allAuthenticatedUsers'", [j]),

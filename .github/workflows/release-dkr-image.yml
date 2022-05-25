@@ -65,7 +65,7 @@ jobs:
         uses: docker/build-push-action@v3.0.0
         with:
           context: .
-          file: ./Dockerfile.debian
+          file: ./docker/Dockerfile.debian
           push: true
           platforms: linux/amd64,linux/arm64
           tags: checkmarx/kics:debian,checkmarx/kics:${{ steps.get-version.outputs.version }}-debian
@@ -79,7 +79,7 @@ jobs:
         uses: docker/build-push-action@v3.0.0
         with:
           context: .
-          file: ./Dockerfile.ubi8
+          file: ./docker/Dockerfile.ubi8
           push: true
           tags: checkmarx/kics:ubi8,checkmarx/kics:${{ steps.get-version.outputs.version }}-ubi8
           platforms: linux/amd64
