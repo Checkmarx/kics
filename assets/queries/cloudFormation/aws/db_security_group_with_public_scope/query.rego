@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.cloudformation as cf_lib
+
 CxPolicy[result] {
 	not input.document[i].Resources[name].Type == "AWS::RDS::DBSecurityGroup"
 	resource := input.document[i].Resources[name]
@@ -14,7 +16,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": res.Type,
-		"resourceName": j,
+		"resourceName": cf_lib.get_resource_name(res, j),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress", [j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.SecurityGroupIngress' should not be '0.0.0.0/0'.", [j]),
@@ -36,7 +38,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": res.Type,
-		"resourceName": j,
+		"resourceName": cf_lib.get_resource_name(res, j),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress", [j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.SecurityGroupIngress' should not be '0.0.0.0/0'.", [j]),
@@ -57,7 +59,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": res.Type,
-		"resourceName": j,
+		"resourceName": cf_lib.get_resource_name(res, j),
 		"searchKey": sprintf("Resources.%s.Properties.DBSecurityGroupIngress", [j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.DBSecurityGroupIngress' should not be '0.0.0.0/0'.", [j]),

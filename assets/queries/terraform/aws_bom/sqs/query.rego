@@ -36,4 +36,6 @@ get_queue_name(aws_sqs_queue_resource) = name {
 	name := sprintf("%s<unknown-sufix>", [aws_sqs_queue_resource.name_prefix])
 } else = name {
 	name := common_lib.get_tag_name_if_exists(aws_sqs_queue_resource)
+} else = name {
+	name := "unknown"
 }

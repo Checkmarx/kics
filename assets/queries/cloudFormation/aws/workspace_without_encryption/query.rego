@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -14,7 +15,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": document.id,
 		"resourceType": document.Resources[workspaceName].Type,
-		"resourceName": workspaceName,
+		"resourceName": cf_lib.get_resource_name(document.Resources[workspaceName], workspaceName),
 		"searchKey": sprintf("Resources.%s.Properties.UserVolumeEncryptionEnabled", [workspaceName]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.UserVolumeEncryptionEnabled should be set to true", [workspaceName]),
@@ -34,7 +35,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": document.id,
 		"resourceType": document.Resources[workspaceName].Type,
-		"resourceName": workspaceName,
+		"resourceName": cf_lib.get_resource_name(document.Resources[workspaceName], workspaceName),
 		"searchKey": sprintf("Resources.%s.Properties", [workspaceName]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties should have the property UserVolumeEncryptionEnabled set to true", [workspaceName]),

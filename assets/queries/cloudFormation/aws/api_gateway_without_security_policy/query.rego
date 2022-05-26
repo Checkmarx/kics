@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	document := input.document
@@ -13,7 +14,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
-		"resourceName": name,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityPolicy", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityPolicy is not defined", [name]),
@@ -32,7 +33,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
-		"resourceName": name,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityPolicy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityPolicy is %s", [name, tls]),

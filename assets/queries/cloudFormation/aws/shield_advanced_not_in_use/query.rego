@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
 
 resources := {
 	"AWS::CloudFront::Distribution",
@@ -19,7 +20,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
-		"resourceName": name,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s has shield advanced associated", [name]),

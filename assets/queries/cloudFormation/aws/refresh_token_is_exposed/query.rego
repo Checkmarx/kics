@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.cloudformation as cf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "Alexa::ASK::Skill"
@@ -8,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
-		"resourceName": name,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.AuthenticationConfiguration.RefreshToken", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.RefreshToken' is string", [name]),
@@ -26,7 +28,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
-		"resourceName": name,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.AuthenticationConfiguration.RefreshToken", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.RefreshToken' starts with '{{resolve:secretsmanager:' or starts with '{{resolve:ssm-secure:'", [name]),

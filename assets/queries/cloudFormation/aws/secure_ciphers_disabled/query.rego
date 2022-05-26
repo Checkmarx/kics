@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as commonLib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
@@ -10,7 +11,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
-		"resourceName": name,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.ViewerCertificate.MinimumProtocolVersion", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.ViewerCertificate.MinimumProtocolVersion is TLSv1.1 or TLSv1.2", [name]),

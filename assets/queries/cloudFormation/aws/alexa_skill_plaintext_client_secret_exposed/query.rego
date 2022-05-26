@@ -1,5 +1,8 @@
 package Cx
 
+import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "Alexa::ASK::Skill"
@@ -8,7 +11,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
-		"resourceName": name,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.AuthenticationConfiguration.ClientSecret", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.ClientSecret' should be a string", [name]),
@@ -26,7 +29,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
-		"resourceName": name,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.AuthenticationConfiguration.ClientSecret", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.ClientSecret' should start with '{{resolve:secretsmanager:' or '{{resolve:ssm-secure:'", [name]),

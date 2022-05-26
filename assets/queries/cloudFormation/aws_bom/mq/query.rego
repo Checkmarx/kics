@@ -10,7 +10,7 @@ CxPolicy[result] {
 
 	bom_output = {
 		"resource_type": "AWS::AmazonMQ::Broker",
-		"resource_name": mq.Properties.BrokerName,
+		"resource_name": cf_lib.get_resource_name(mq, name),
 		# RabbitMQ or ActiveMQ
 		"resource_engine": mq.Properties.EngineType,
 		"resource_accessibility": check_publicly_accessible(mq),

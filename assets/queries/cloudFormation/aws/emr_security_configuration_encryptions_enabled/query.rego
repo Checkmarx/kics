@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -13,7 +14,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
-		"resourceName": key,
+		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption should be true", [key]),
@@ -32,7 +33,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
-		"resourceName": key,
+		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption should be true", [key]),
@@ -51,7 +52,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
-		"resourceName": key,
+		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption should be true", [key]),
@@ -71,7 +72,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
-		"resourceName": key,
+		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityConfiguration", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.SecurityConfiguration.EncryptionConfiguration must be defined", [key]),
@@ -90,7 +91,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
-		"resourceName": key,
+		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EncryptionKeyProviderType must be defined", [key]),

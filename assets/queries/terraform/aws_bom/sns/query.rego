@@ -36,4 +36,6 @@ get_topic_name(aws_sns_topic_resource) = name {
 	name := sprintf("%s<unknown-sufix>", [aws_sns_topic_resource.name_prefix])
 } else = name {
 	name := common_lib.get_tag_name_if_exists(aws_sns_topic_resource)
+} else = name {
+	name := "unknown"
 }

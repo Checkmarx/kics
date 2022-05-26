@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as commonLib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
@@ -23,7 +24,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
-		"resourceName": name,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": searchkey,
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.ContainerDefinitions.Memory' doesn't have incorrect values", [name2]),
@@ -45,7 +46,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
-		"resourceName": name,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": searchkey,
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.ContainerDefinitions.Cpu' doesn't have incorrect values", [name2]),

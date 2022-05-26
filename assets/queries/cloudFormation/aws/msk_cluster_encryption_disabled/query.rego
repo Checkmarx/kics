@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -13,7 +14,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
-		"resourceName": key,
+		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties", [key]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.EncryptionInfo is defined", [key]),
@@ -32,7 +33,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
-		"resourceName": key,
+		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.EncryptionInfo.EncryptionInTransit.ClientBroker", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.EncryptionInfo.EncryptionInTransit.ClientBroker is 'TLS'", [key]),
@@ -51,7 +52,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
-		"resourceName": key,
+		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.EncryptionInfo.EncryptionInTransit.InCluster", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.EncryptionInfo.EncryptionInTransit.InCluster is 'true'", [key]),
