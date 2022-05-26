@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"issueType": "IncorrectValue",
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.capabilities.add", [metadata.name, specInfo.path, types[x], containers[index].name]),
 		"keyExpectedValue": sprintf("%s.%s.name=%s does not use CAP_SYS_ADMIN Linux capability", [specInfo.path, types[x], containers[index].name]),

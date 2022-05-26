@@ -16,6 +16,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.properties", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'auditingSettings.properties.retentionDays' is defined and above 90 days",
@@ -36,6 +38,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.retentionDays", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'auditingSettings.properties.retentionDays' is defined and above 90 days",

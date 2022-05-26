@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'nodePools' to be defined and not null",
@@ -26,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.nodePools", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'nodePools.management' to be defined and not null",
@@ -42,6 +46,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.nodePools.management", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'nodePools.management.autoUpgrade' to be defined and not null",
@@ -58,6 +64,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.nodePools.management.autoUpgrade", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'nodePools.management.autoUpgrade' to be true",

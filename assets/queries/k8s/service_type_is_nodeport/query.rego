@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.type", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "spec.type is not 'NodePort'",

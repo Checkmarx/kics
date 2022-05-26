@@ -1,7 +1,10 @@
 package terraform
 
 import (
+	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
+	"github.com/hashicorp/hcl/v2"
 	"path/filepath"
+	"reflect"
 	"strings"
 	"testing"
 
@@ -99,7 +102,7 @@ func Test_Resolve(t *testing.T) {
 
 	resolved, err := parser.Resolve([]byte(have), "test.tf")
 	require.NoError(t, err)
-	require.Equal(t, []byte(have), *resolved)
+	require.Equal(t, []byte(have), resolved)
 }
 
 func TestTerraform_ProcessContent(t *testing.T) {
@@ -193,7 +196,7 @@ resource "aws_s3_bucket" "b" {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := tt.fields.parser.StringifyContent(tt.args.content)
-			require.Equal(t, tt.wantErr, (err != nil))
+			require.Equal(t, tt.wantErr, err != nil)
 			require.Equal(t, tt.want, got)
 		})
 	}
@@ -291,6 +294,39 @@ data "aws_iam_policy_document" "test_destination_policy" {
 			} else {
 				require.NoError(t, err)
 				require.Equal(t, tt.want, strings.ReplaceAll(string(parsedFile.Bytes), "\r", ""))
+			}
+		})
+	}
+}
+
+func TestParser_GetResolvedFiles(t *testing.T) {
+	type fields struct {
+		convertFunc  Converter
+		numOfRetries int
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		want   map[string]model.ResolvedFile
+	}{
+		{
+			name: "Should get resolved files",
+			fields: fields{
+				convertFunc: func(file *hcl.File, inputVariables converter.VariableMap) (model.Document, error) {
+					return nil, nil
+				},
+			},
+			want: map[string]model.ResolvedFile{},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			p := &Parser{
+				convertFunc:  tt.fields.convertFunc,
+				numOfRetries: tt.fields.numOfRetries,
+			}
+			if got := p.GetResolvedFiles(); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("GetResolvedFiles() = %v, want %v", got, tt.want)
 			}
 		})
 	}

@@ -17,6 +17,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"issueType": "MissingAttribute",
 		"searchKey": sprintf("kind={{%s}}.metadata.name={{%s}}", [kind, metadata.name]),
 		"keyExpectedValue": "metadata.namespace is defined and not null",
@@ -38,6 +40,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"issueType": "IncorrectValue",
 		"searchKey": sprintf("metadata.name={{%s}}.namespace", [metadata.name]),
 		"keyExpectedValue": "'metadata.namespace' is not set to default, kube-system or kube-public",

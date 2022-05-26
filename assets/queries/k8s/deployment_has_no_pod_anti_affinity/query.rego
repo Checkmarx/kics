@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": deployment.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec", [metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'spec.template.spec.affinity' is set",
@@ -33,6 +35,8 @@ CxPolicy[result] {
 	metadata := deployment.metadata
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": deployment.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.affinity", [metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'spec.template.spec.affinity.podAntiAffinity' is set",
@@ -57,6 +61,8 @@ CxPolicy[result] {
 	metadata := deployment.metadata
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": deployment.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.affinity.podAntiAffinity", [metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'spec.template.spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution' and/or 'spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution' are/is set",
@@ -84,6 +90,8 @@ CxPolicy[result] {
 	metadata := deployment.metadata
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": deployment.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution.podAffinityTerm", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'spec.template.spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[%s].podAffinityTerm.topologyKey' is set and is 'kubernetes.io/hostname'", [j]),
@@ -116,6 +124,8 @@ CxPolicy[result] {
 	metadata := deployment.metadata
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": deployment.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution.podAffinityTerm.labelSelector.matchLabels", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'spec.template.spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[%d].podAffinityTerm.labelSelector.matchLabels' match any label on template metadata", [j]),
@@ -143,6 +153,8 @@ CxPolicy[result] {
 	metadata := deployment.metadata
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": deployment.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[%d].topologyKey' is set and is 'kubernetes.io/hostname'", [j]),
@@ -175,6 +187,8 @@ CxPolicy[result] {
 	metadata := deployment.metadata
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": deployment.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution.labelSelector.matchLabels", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[%d].labelSelector.matchLabels' match any label on template metadata", [j]),

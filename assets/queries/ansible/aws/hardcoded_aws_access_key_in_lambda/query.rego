@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.aws_access_key", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "lambda.aws_access_key should not be in plaintext",

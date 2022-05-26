@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.volumeClaimTemplates.spec.resources.requests.storage=%s", [metadata.name, volumeClaimTemplates[j].spec.resources.requests.storage]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.volumeClaimTemplates.spec.resources.requests.storage should not be set", [metadata.name]),

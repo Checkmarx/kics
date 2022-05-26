@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.assign_public_ip", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "ec2.assign_public_ip is false, 'no' or undefined",
@@ -34,6 +36,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.network_interfaces.associate_public_ip_address", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "ec2_launch_template.network_interfaces.associate_public_ip_address is false, 'no' or undefined",
@@ -54,6 +58,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.network.assign_public_ip", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "ec2_instance.network.assign_public_ip is false, 'no' or undefined",

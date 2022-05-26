@@ -51,7 +51,7 @@ func ignoreCommentsYAML(node *yaml.Node) {
 	// check if comment is in the content
 	for i, content := range node.Content {
 		if content.FootComment != "" && i+2 < len(node.Content) {
-			linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&content.FootComment), i+2, node, node.Kind, true)...) //nolint
+			linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&content.FootComment), i+2, node, node.Kind, true)...)
 		}
 		if content.HeadComment == "" {
 			continue
