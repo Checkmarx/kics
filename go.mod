@@ -37,6 +37,7 @@ require (
 	github.com/tdewolff/minify/v2 v2.11.5
 	github.com/tidwall/gjson v1.14.1
 	github.com/xeipuuv/gojsonschema v1.2.0
+	github.com/yargevad/filepathx v1.0.0
 	github.com/zclconf/go-cty v1.10.0
 	golang.org/x/net v0.0.0-20220412020605-290c469a71a5
 	golang.org/x/text v0.3.7

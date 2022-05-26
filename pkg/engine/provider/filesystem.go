@@ -11,6 +11,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
+	"github.com/yargevad/filepathx"
 )
 
 // FileSystemSourceProvider provides a path to be scanned
@@ -69,7 +70,7 @@ func (s *FileSystemSourceProvider) AddExcluded(excludePaths []string) error {
 // GetExcludePaths gets all the files that should be excluded
 func GetExcludePaths(pathExpressions string) ([]string, error) {
 	if strings.ContainsAny(pathExpressions, "*?[") {
-		info, err := filepath.Glob(pathExpressions)
+		info, err := filepathx.Glob(pathExpressions)
 		if err != nil {
 			log.Error().Msgf("failed to get exclude path %s: %s", pathExpressions, err)
 			return []string{pathExpressions}, nil
