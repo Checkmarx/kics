@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.apiVersion", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'apiVersion' is not '2017-08-03'",
@@ -33,6 +35,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, issue.sk]),
 		"issueType": issue.issueType,
 		"keyExpectedValue": "'addonProfiles.kubeDashboard.enabled' is defined and false",
@@ -52,6 +56,8 @@ dashboard_is_disabled(resource) {
 prepare_issue(resource) = issue {
 	_ = resource.properties.addonProfiles.kubeDashboard.enabled
 	issue := {
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"issueType": "IncorrectValue",
 		"keyActualValue": "'addonProfiles.kubeDashboard.enabled' is false",
 		"sk": ".properties.addonProfiles.kubeDashboard.enabled",
@@ -59,6 +65,8 @@ prepare_issue(resource) = issue {
 	}
 } else = issue {
 	issue := {
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"issueType": "MissingAttribute",
 		"keyActualValue": "'addonProfiles.kubeDashboard.enabled' is undefined",
 		"sk": "",

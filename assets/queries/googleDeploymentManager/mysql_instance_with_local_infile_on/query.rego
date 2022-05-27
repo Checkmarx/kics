@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.settings.databaseFlags[%d]", [resource.name, f]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'settings.databaseFlags[%d]' to be 'off'", [f]),

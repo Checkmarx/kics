@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue":  "Client Certification should be set",
@@ -38,6 +40,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue":  "Client Certification should have a .pem or .crt file",
@@ -53,6 +57,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": doc.kind,
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue":  "Client Certification should be set",
@@ -76,6 +82,8 @@ CxPolicy[result] {
 	 
 	result := {
 		"documentId": doc.id,
+		"resourceType": doc.kind,
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue":  "Client Certification should have a .pem or .crt file",

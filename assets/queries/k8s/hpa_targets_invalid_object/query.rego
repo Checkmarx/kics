@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": input.document[i].kind,
+		"resourceName": input.document[i].metadata.name,
 		"searchKey": "spec.metrics",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("spec.metrics[%d] is a valid object ", [index]),

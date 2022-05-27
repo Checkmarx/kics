@@ -51,8 +51,8 @@ const (
 )
 
 // Resolve - replace or modifies in-memory content before parsing
-func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
-	return &fileContent, nil
+func (p *Parser) Resolve(fileContent []byte, _ string) ([]byte, error) {
+	return fileContent, nil
 }
 
 // Parse - parses Buildah file to Json
@@ -216,4 +216,9 @@ func (p *Parser) GetCommentToken() string {
 // StringifyContent converts original content into string formated version
 func (p *Parser) StringifyContent(content []byte) (string, error) {
 	return string(content), nil
+}
+
+// GetResolvedFiles returns the resolved files
+func (p *Parser) GetResolvedFiles() map[string]model.ResolvedFile {
+	return make(map[string]model.ResolvedFile)
 }

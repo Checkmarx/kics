@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.canIpForward", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'canIpForward' is not set to true",

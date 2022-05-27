@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.iam_type", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "iam_policy.iam_type should be configured with group or role",

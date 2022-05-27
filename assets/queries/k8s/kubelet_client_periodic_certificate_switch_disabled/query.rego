@@ -16,6 +16,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--rotate-certificates flag to be true",
@@ -31,6 +33,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}.rotateCertificates",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "rotateCertificates to be true",
@@ -45,6 +49,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}.rotateCertificates",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "rotateCertificates to be true",

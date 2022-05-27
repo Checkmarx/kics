@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "CNI Plugin Does Not Support Network Policies",
+    "severity": "MEDIUM",
+    "line": 6,
+		"fileName": "positive.json"
+  },
+  {
+    "queryName": "CNI Plugin Does Not Support Network Policies",
+    "severity": "MEDIUM",
+    "line": 10,
+		"fileName": "positive2.yaml"
+  }
+]

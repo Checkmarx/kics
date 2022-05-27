@@ -6,14 +6,15 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/agnivade/levenshtein"
+
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/agnivade/levenshtein"
 	"github.com/rs/zerolog/log"
 )
 
 var (
-	nameRegex       = regexp.MustCompile(`^([A-Za-z0-9-_]+)\[([A-Za-z0-9-_{}]+)]$`)
+	nameRegex       = regexp.MustCompile(`^([A-Za-z\d-_]+)\[([A-Za-z\d-_{}]+)]$`)
 	nameRegexDocker = regexp.MustCompile(`{{(.*?)}}`)
 )
 
@@ -21,6 +22,16 @@ const (
 	namePartsLength  = 3
 	valuePartsLength = 2
 )
+
+// DefaultDetectLineResponse is the default response for struct DetectLine
+type DefaultDetectLineResponse struct {
+	CurrentLine     int
+	IsBreak         bool
+	FoundAtLeastOne bool
+	Lines           []string
+	ResolvedFile    string
+	ResolvedFiles   map[string]model.ResolvedFileSplit
+}
 
 // GetBracketValues gets values inside "{{ }}" ignoring any "{{" or "}}" inside
 func GetBracketValues(expr string, list [][]string, restOfString string) [][]string {
@@ -88,7 +99,7 @@ func getKeyWithCurlyBrackets(key string, extractedString [][]string, parts []str
 		for idx, key := range parts {
 			if extractedPart[0] == key {
 				switch idx {
-				case (len(parts) - 2):
+				case len(parts) - 2:
 					i, err := strconv.Atoi(extractedPart[1])
 					if err != nil {
 						log.Error().Msgf("failed to extract curly brackets substring")
@@ -122,14 +133,14 @@ func getKeyWithCurlyBrackets(key string, extractedString [][]string, parts []str
 	return substr1, substr2
 }
 
-func generateSubstr(substr string, parts []string, leng int) string {
+func generateSubstr(substr string, parts []string, length int) string {
 	if substr == "" {
-		substr = parts[len(parts)-leng]
+		substr = parts[len(parts)-length]
 	}
 	return substr
 }
 
-// GetAdjacentVulnLines is used to get the lines adjecent to the line that contains the vulnerability
+// GetAdjacentVulnLines is used to get the lines adjacent to the line that contains the vulnerability
 // adj is the amount of lines wanted
 func GetAdjacentVulnLines(idx, adj int, lines []string) []model.CodeLine {
 	var endPos int
@@ -162,7 +173,7 @@ func GetAdjacentVulnLines(idx, adj int, lines []string) []model.CodeLine {
 		// case vulnerability is the last line of the file
 		return createVulnLines(startPos+1, lines[len(lines)-adj:])
 	default:
-		// case vulnerability is in the midle of the file
+		// case vulnerability is in the middle of the file
 		return createVulnLines(startPos+1, lines[startPos:endPos])
 	}
 }
@@ -240,29 +251,75 @@ func removeExtras(result string, start, end int) string {
 	return result[start+1 : end]
 }
 
-// DetectCurrentLine uses levenshtein distance to find the most acurate line for the vulnerability
-func DetectCurrentLine(lines []string, str1, str2 string,
-	curLine int, foundOne bool) (foundRes bool, lineRes int, breakRes bool) {
+// DetectCurrentLine uses levenshtein distance to find the most accurate line for the vulnerability
+func (d *DefaultDetectLineResponse) DetectCurrentLine(str1, str2 string, recurseCount int) *DefaultDetectLineResponse {
 	distances := make(map[int]int)
-	for i := curLine; i < len(lines); i++ {
-		if str1 != "" && str2 != "" {
-			if strings.Contains(lines[i], str1) {
-				restLine := lines[i][strings.Index(lines[i], str1)+len(str1):]
-				if strings.Contains(restLine, str2) {
-					distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(lines[i], str1, false), str1)
-					distances[i] += levenshtein.ComputeDistance(ExtractLineFragment(restLine, str2, false), str2)
-				}
-			}
-		} else if str1 != "" {
-			if strings.Contains(lines[i], str1) {
-				distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(lines[i], str1, false), str1)
-			}
+
+	for i := d.CurrentLine; i < len(d.Lines); i++ {
+		if res := d.checkResolvedFile(d.Lines[i], str1, str2, recurseCount); res.FoundAtLeastOne {
+			return res
 		}
+		distances = d.checkLine(str1, str2, distances, i)
 	}
 
 	if len(distances) == 0 {
-		return foundOne, curLine, true
+		return &DefaultDetectLineResponse{
+			FoundAtLeastOne: d.FoundAtLeastOne,
+			CurrentLine:     d.CurrentLine,
+			IsBreak:         true,
+			Lines:           d.Lines,
+			ResolvedFile:    d.ResolvedFile,
+			ResolvedFiles:   d.ResolvedFiles,
+		}
 	}
 
-	return true, SelectLineWithMinimumDistance(distances, curLine), false
+	return &DefaultDetectLineResponse{
+		CurrentLine:     SelectLineWithMinimumDistance(distances, d.CurrentLine),
+		IsBreak:         false,
+		FoundAtLeastOne: true,
+		Lines:           d.Lines,
+		ResolvedFile:    d.ResolvedFile,
+		ResolvedFiles:   d.ResolvedFiles,
+	}
+}
+
+func (d *DefaultDetectLineResponse) checkLine(str1, str2 string, distances map[int]int, i int) map[int]int {
+	if str1 != "" && str2 != "" && strings.Contains(d.Lines[i], str1) {
+		restLine := d.Lines[i][strings.Index(d.Lines[i], str1)+len(str1):]
+		if strings.Contains(restLine, str2) {
+			distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(d.Lines[i], str1, false), str1)
+			distances[i] += levenshtein.ComputeDistance(ExtractLineFragment(restLine, str2, false), str2)
+		}
+	} else if str1 != "" && strings.Contains(d.Lines[i], str1) {
+		distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(d.Lines[i], str1, false), str1)
+	}
+
+	return distances
+}
+
+func (d *DefaultDetectLineResponse) checkResolvedFile(line, str1, st2 string, recurseCount int) *DefaultDetectLineResponse {
+	for key, r := range d.ResolvedFiles {
+		if strings.Contains(line, key) {
+			if recurseCount > constants.MaxResolvedFiles {
+				break
+			}
+			return d.restore(r.Lines, r.Path).DetectCurrentLine(str1, st2, recurseCount+1)
+		}
+	}
+	return &DefaultDetectLineResponse{
+		CurrentLine:     0,
+		IsBreak:         false,
+		FoundAtLeastOne: false,
+	}
+}
+
+func (d *DefaultDetectLineResponse) restore(lines []string, file string) *DefaultDetectLineResponse {
+	return &DefaultDetectLineResponse{
+		CurrentLine:     0,
+		IsBreak:         d.IsBreak,
+		FoundAtLeastOne: false,
+		Lines:           lines,
+		ResolvedFile:    file,
+		ResolvedFiles:   d.ResolvedFiles,
+	}
 }

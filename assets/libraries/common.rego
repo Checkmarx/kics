@@ -345,8 +345,6 @@ get_tag_name_if_exists(resource) = name {
 	tag := resource.Properties.FileSystemTags[_]
     tag.Key == "Name"
 	name := tag.Value
-} else = name {
-	name := "unknown"
 }
 
 get_encryption_if_exists(resource) = encryption {

@@ -16,6 +16,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.env.name={{%s}}.valueFrom.secretKeyRef", [metadata.name, specInfo.path, containers[c], env_name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s.%s.name={{%s}}.env.name={{%s}}.valueFrom.secretKeyRef' is undefined", [specInfo.path, containers[c], container_name, env_name]),
@@ -34,6 +36,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.envFrom", [metadata.name, specInfo.path, containers[c], container_name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s.%s.name={{%s}}.envFrom.secretRef' is undefined", [specInfo.path, containers[c], container_name]),

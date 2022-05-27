@@ -12,7 +12,7 @@ CxPolicy[result] {
 
 	bom_output = {
 		"resource_type": "AWS::EFS::FileSystem",
-		"resource_name": common_lib.get_tag_name_if_exists(efs_file_system),
+		"resource_name": get_name(efs_file_system),
 		"resource_accessibility": info.accessibility,
 		"resource_encryption": cf_lib.get_encryption(efs_file_system),
 		"resource_vendor": "AWS",
@@ -36,4 +36,10 @@ get_resource_accessibility(resource) = info {
 	info := {"accessibility": "hasPolicy", "policy": resource.Properties.FileSystemPolicy}
 } else = info {
 	info := {"accessibility": "unknown", "policy": ""}
+}
+
+get_name(efs_file_system) = name {
+  name := common_lib.get_tag_name_if_exists(efs_file_system)
+} else = name {
+	name := "unknown"
 }

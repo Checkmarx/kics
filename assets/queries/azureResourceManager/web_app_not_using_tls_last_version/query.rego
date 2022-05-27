@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, issue.sk]),
 		"issueType": issue.issueType,
 		"keyExpectedValue": "'siteConfig.minTlsVersion' is 1.2",
@@ -31,6 +33,8 @@ prepare_issue(resource) = issue {
 	common_lib.valid_key(resource.properties, "siteConfig")
 	common_lib.valid_key(resource.properties.siteConfig, "minTlsVersion")
 	issue := {
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"issueType": "IncorrectValue",
 		"keyActualValue": "'minTlsVersion' is not 1.2",
 		"sk": ".properties.siteConfig.minTlsVersion",
@@ -38,6 +42,8 @@ prepare_issue(resource) = issue {
 	}
 } else = issue {
 	issue := {
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"issueType": "MissingAttribute",
 		"keyActualValue": "'siteConfig.minTlsVersion' is undefined",
 		"sk": "",

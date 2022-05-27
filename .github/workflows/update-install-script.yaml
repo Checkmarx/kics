@@ -41,7 +41,7 @@ jobs:
         run: |
           #!/usr/bin/env python3
           import ruamel.yaml
-          with open('.goreleaser.yml', 'r') as file:
+          with open('./docker/.goreleaser.yml', 'r') as file:
             file_obj = ruamel.yaml.load(file, Loader=ruamel.yaml.RoundTripLoader)
             del file_obj['brews']
             file_content = ruamel.yaml.dump(file_obj, Dumper=ruamel.yaml.RoundTripDumper)

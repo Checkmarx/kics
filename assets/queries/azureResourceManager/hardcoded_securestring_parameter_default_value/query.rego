@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("parameters.%s.defaultValue", [p]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("parameters.%s.defaultValue is not hardcoded", [p]),
