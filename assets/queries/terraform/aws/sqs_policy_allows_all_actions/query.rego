@@ -1,17 +1,17 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terra_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_sqs_queue_policy[name]
 
-	terra_lib.allows_action_from_all_principals(resource.policy, "*")
+	tf_lib.allows_action_from_all_principals(resource.policy, "*")
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_sqs_queue_policy",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_sqs_queue_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy.Statement.Action' is not equal '*'",
@@ -24,7 +24,7 @@ CxPolicy[result] {
 	module := input.document[i].module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_sqs_queue_policy", "policy")
 
-	terra_lib.allows_action_from_all_principals(module[keyToCheck], "*")
+	tf_lib.allows_action_from_all_principals(module[keyToCheck], "*")
 
 	result := {
 		"documentId": input.document[i].id,

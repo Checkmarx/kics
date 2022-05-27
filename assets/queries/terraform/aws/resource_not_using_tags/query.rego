@@ -1,11 +1,11 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terraform_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource[res][name]
-	terraform_lib.check_resource_tags(res)
+	tf_lib.check_resource_tags(res)
 
 	check_default_tags == false
 	not common_lib.valid_key(resource, "tags")
@@ -13,7 +13,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": res,
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[{{%s}}]", [res, name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[{{%s}}].tags is defined and not null", [res, name]),
@@ -23,7 +23,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource[res][name]
-	terraform_lib.check_resource_tags(res)
+	tf_lib.check_resource_tags(res)
 
 	check_default_tags == false
 	not check_different_tag(resource.tags)
@@ -31,7 +31,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": res,
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[{{%s}}].tags", [res, name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[{{%s}}].tags has tags defined other than 'Name'", [res, name]),

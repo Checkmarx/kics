@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -10,7 +11,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": document.id,
 		"resourceType": "alicloud_ram_account_password_policy",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("resource.alicloud_ram_account_password_policy[%s].require_symbols", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource.alicloud_ram_account_password_policy[%s].require_symbols is set to 'true'", [name]),

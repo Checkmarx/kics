@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_sql_database_instance[name]
@@ -15,7 +16,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_sql_database_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_sql_database_instance[%s].settings.ip_configuration.authorized_networks.value=%s", [name, authorized_network[j].value]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'authorized_network' address is trusted",
@@ -34,7 +35,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_sql_database_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_sql_database_instance[%s].settings.ip_configuration.ipv4_enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'ipv4_enabled' is disabled and 'private_network' is defined when there are no authorized networks",
@@ -54,7 +55,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_sql_database_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_sql_database_instance[%s].settings.ip_configuration", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'ipv4_enabled' is disabled and 'privatenetwork' is defined when there are no authorized networks",
@@ -71,7 +72,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_sql_database_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_sql_database_instance[%s].settings", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'ip_configuration' is defined and allow only trusted networks",

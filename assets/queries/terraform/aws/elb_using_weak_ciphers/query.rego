@@ -1,14 +1,17 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
-	protocol := input.document[i].resource.aws_load_balancer_policy[name].policy_attribute.name
+	resource := input.document[i].resource.aws_load_balancer_policy[name]
+	protocol := resource.policy_attribute.name
 
 	weakCipher(protocol)
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_load_balancer_policy",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_load_balancer_policy[%s].policy_attribute.name", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s].name' is not a weak cipher", [name, protocol]),
@@ -26,7 +29,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_load_balancer_policy",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(policy, name),
 		"searchKey": sprintf("aws_load_balancer_policy[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s].name' is not a weak cipher", [name, protocol]),

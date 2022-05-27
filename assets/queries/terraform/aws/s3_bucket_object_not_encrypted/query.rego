@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_s3_bucket_object[name]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_s3_bucket_object",
-		"resourceName": name,
+		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_s3_bucket", name),
 		"searchKey": sprintf("aws_s3_bucket_object[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_s3_bucket_object.server_side_encryption is defined and not null",

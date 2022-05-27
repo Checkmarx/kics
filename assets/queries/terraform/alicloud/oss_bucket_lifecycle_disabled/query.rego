@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	some i
@@ -11,7 +12,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_oss_bucket",
-		"resourceName": name,
+		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_oss_bucket", name),
 		"searchKey": sprintf("alicloud_oss_bucket[%s].lifecycle_rule.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'lifecycle_rule' is set and enabled",
@@ -29,7 +30,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_oss_bucket",
-		"resourceName": name,
+		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_oss_bucket", name),
 		"searchKey": sprintf("alicloud_oss_bucket[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'lifecycle_rule' is set and enabled",

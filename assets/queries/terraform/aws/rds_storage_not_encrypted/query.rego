@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	cluster := input.document[i].resource.aws_rds_cluster[name]
@@ -11,7 +12,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_rds_cluster",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("aws_rds_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_rds_cluster.storage_encrypted is set to true",
@@ -27,7 +28,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_rds_cluster",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("aws_rds_cluster[%s].storage_encrypted", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "aws_rds_cluster.storage_encrypted is set to true",

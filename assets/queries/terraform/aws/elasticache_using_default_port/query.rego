@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_elasticache_cluster[name]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_elasticache_cluster",
-		"resourceName": name,
+		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_elasticache_cluster", name),
 		"searchKey": sprintf("aws_elasticache_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_elasticache_cluster.port is defined and not null",
@@ -30,7 +31,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_elasticache_cluster",
-		"resourceName": name,
+		"resourceName": tf_lib.get_specific_resource_name(cluster, "aws_elasticache_cluster", name),
 		"searchKey": sprintf("aws_elasticache_cluster[%s].port", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'port' is not set to %d", [enginePort]),

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_subnet[name]
@@ -10,7 +11,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_subnet",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_subnet[%s].map_public_ip_on_launch", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_subnet[%s].map_public_ip_on_launch is set to false or undefined", [name]),

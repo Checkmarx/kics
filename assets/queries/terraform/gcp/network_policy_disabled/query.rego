@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.google_container_cluster[primary]
 
@@ -8,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_container_cluster",
-		"resourceName": primary,
+		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'network_policy' is defined and Attribute 'addons_config' is defined",
@@ -25,7 +27,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_container_cluster",
-		"resourceName": primary,
+		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s].addons_config", [primary]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'addons_config.network_policy_config' is defined",
@@ -40,7 +42,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_container_cluster",
-		"resourceName": primary,
+		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s].network_policy", [primary]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'network_policy.enabled' is true",
@@ -56,7 +58,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_container_cluster",
-		"resourceName": primary,
+		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s].addons_config.network_policy_config", [primary]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'addons_config.network_policy_config.disabled' is false",

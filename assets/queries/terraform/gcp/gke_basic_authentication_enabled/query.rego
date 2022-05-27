@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.google_container_cluster[primary]
 	not resource.master_auth
@@ -7,7 +9,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_container_cluster",
-		"resourceName": primary,
+		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'master_auth' is defined",
@@ -23,7 +25,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_container_cluster",
-		"resourceName": primary,
+		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s].master_auth", [primary]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Both attribute 'master_auth.username' and 'master_auth.password' are defined and empty",
@@ -40,7 +42,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_container_cluster",
-		"resourceName": primary,
+		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s].master_auth", [primary]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Both attribute 'master_auth.username' and 'master_auth.password' are defined and empty",

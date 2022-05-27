@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	db := input.document[i].resource.aws_db_instance[name]
@@ -10,7 +11,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_db_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(db, name),
 		"searchKey": sprintf("aws_db_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'enabled_cloudwatch_logs_exports' is defined",
@@ -27,7 +28,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_db_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(db, name),
 		"searchKey": sprintf("aws_db_instance[%s].enabled_cloudwatch_logs_exports", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'enabled_cloudwatch_logs_exports' has one or more values",

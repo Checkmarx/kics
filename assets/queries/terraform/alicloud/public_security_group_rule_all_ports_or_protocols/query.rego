@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	some i
@@ -12,7 +13,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_security_group_rule",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_security_group_rule[%s].cidr_ip", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "cidr_ip should not be '0.0.0.0/0' for the specified protocol",
@@ -35,7 +36,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_security_group_rule",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_security_group_rule[%s].cidr_ip", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "cidr_ip should not be '0.0.0.0/0' for the specified protocol",
@@ -58,7 +59,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_security_group_rule",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_security_group_rule[%s].cidr_ip", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "cidr_ip should not be '0.0.0.0/0' when ip_protocol is equal to all",

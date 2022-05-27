@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 publicAcl := {"public-read", "public-read-write"}
 
@@ -16,7 +17,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_s3_bucket",
-		"resourceName": s3BucketName,
+		"resourceName": tf_lib.get_resource_name(bucket, s3BucketName),
 		"searchKey": sprintf("aws_s3_bucket[%s].acl", [s3BucketName]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_s3_bucket[%s] is not publicly accessible", [s3BucketName]),

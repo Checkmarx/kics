@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 
@@ -20,7 +21,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
         "resourceType": attachment,
-		"resourceName": n,
+		"resourceName": tf_lib.get_resource_name(attachment, n),
         "searchKey": sprintf("%s[%s].policy_name",[attachment, n]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("alicloud_ram_policy[%s] does not give admin access to any user, group or role",[name]),

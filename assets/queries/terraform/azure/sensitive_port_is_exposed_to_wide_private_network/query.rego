@@ -1,6 +1,6 @@
 package Cx
 
-import data.generic.terraform as terraLib
+import data.generic.terraform as tf_lib
 import data.generic.common as commonLib
 
 CxPolicy[result] {
@@ -9,19 +9,19 @@ CxPolicy[result] {
 	portContent := commonLib.tcpPortsMap[port]
 	portNumber = port
 	portName = portContent
-	protocol := terraLib.getProtocolList(resource.protocol)[_]
+	protocol := tf_lib.getProtocolList(resource.protocol)[_]
 
 	upper(resource.access) == "ALLOW"
 	upper(resource.direction) == "INBOUND"
 	
 	commonLib.isPrivateIP(resource.source_address_prefix)
-	terraLib.containsPort(resource, portNumber)
+	tf_lib.containsPort(resource, portNumber)
 	isTCPorUDP(protocol)
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_network_security_rule",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_network_security_rule[%s].destination_port_range", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),

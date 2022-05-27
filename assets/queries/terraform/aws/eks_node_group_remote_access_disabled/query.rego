@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -13,7 +14,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"resourceType": "aws_eks_node_group",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(eksNodeGroup, name),
 		"searchKey": sprintf("aws_eks_node_group[%s].remote_access", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'aws_eks_node_group[%s].remote_access.source_security_groups_ids' is defined and not null", [name]),

@@ -1,6 +1,6 @@
 package Cx
 
-import data.generic.terraform as terraLib
+import data.generic.terraform as tf_lib
 import data.generic.common as commonLib
 
 CxPolicy[result] {
@@ -14,7 +14,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_security_group",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_security_group[%s].ingress.cidr_blocks", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_security_group[%s].ingress ports are known", [name]),

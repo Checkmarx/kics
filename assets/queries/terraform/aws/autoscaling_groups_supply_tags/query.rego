@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	auto := input.document[i].resource.aws_autoscaling_group[name]
@@ -10,7 +11,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_autoscaling_group",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(auto, name),
 		"searchKey": sprintf("aws_autoscaling_group[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'tags' or 'tag' are defined and not null",

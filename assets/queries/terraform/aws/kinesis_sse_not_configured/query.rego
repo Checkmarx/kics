@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_kinesis_firehose_delivery_stream[name]
 
@@ -10,7 +12,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_kinesis_firehose_delivery_stream",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kinesis_firehose_delivery_stream[%s].server_side_encryption.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'server_side_encryption' is enabled and attribute 'kinesis_source_configuration' is undefined",
@@ -27,7 +29,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_kinesis_firehose_delivery_stream",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kinesis_firehose_delivery_stream[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'server_side_encryption' is set",
@@ -46,7 +48,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_kinesis_firehose_delivery_stream",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kinesis_firehose_delivery_stream[%s].server_side_encryption.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'server_side_encryption' is enabled",
@@ -68,7 +70,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_kinesis_firehose_delivery_stream",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kinesis_firehose_delivery_stream[%s].server_side_encryption.key_type", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'key_type' is valid",
@@ -92,7 +94,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_kinesis_firehose_delivery_stream",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kinesis_firehose_delivery_stream[%s].server_side_encryption", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'key_type' is CUSTOMER_MANAGED_CMK and attribute 'key_arn' is set",

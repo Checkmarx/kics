@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 supported_mysql_engines := {"5.6", "5.7", "8"}
 supported_sql_engines := { "08r2_ent_ha", "2012_ent_ha", "2016_ent_ha", "2017_ent", "2019_std_ha", "2019_ent"}
@@ -15,7 +16,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_db_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_db_instance[%s].tde_status", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'tde_status' value should be 'Enabled'",
@@ -34,7 +35,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_db_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_db_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'tde_status' value should be 'Enabled'",
@@ -53,7 +54,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_db_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_db_instance[%s].tde_status", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'tde_status' value should be 'Enabled'",
@@ -72,7 +73,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_db_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_db_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'tde_status' value should be 'Enabled'",

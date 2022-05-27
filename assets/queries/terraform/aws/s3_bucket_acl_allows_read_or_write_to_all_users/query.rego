@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_s3_bucket[name]
@@ -9,8 +10,8 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_s3_bucket",
-		"resourceName": name,
-		"searchKey": sprintf("aws_s3_bucket[%s].acl=%s", [name, resource.acl]),
+		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_s3_bucket", name),
+		"searchKey": sprintf("aws_s3_bucket[%s].acl=%s", [name, resource.acl]),	
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'acl' is equal 'private'",
 		"keyActualValue": sprintf("'acl' is equal '%s'", [resource.acl]),

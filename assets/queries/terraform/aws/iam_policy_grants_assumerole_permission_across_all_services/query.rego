@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terra_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_iam_role[name]
@@ -12,12 +12,12 @@ CxPolicy[result] {
 	statement := st[_]
 
 	common_lib.is_allow_effect(statement)
-	terra_lib.anyPrincipal(statement)
+	tf_lib.anyPrincipal(statement)
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_iam_role",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_iam_role[%s].assume_role_policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'assume_role_policy.Statement.Principal' doesn't contain '*'",

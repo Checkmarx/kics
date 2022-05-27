@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	some i
@@ -11,7 +12,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_db_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_db_instance[%s].ssl_action", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'ssl_action' value should be 'Open'",
@@ -28,7 +29,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_db_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_db_instance[%s]]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'ssl_action' value should be 'Open'",

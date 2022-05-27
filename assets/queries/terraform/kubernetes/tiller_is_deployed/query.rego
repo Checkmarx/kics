@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 
@@ -8,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resourceType,
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].metadata", [resourceType, name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].metadata does not refer any to a Tiller resource", [resourceType, name]),
@@ -31,7 +33,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resourceType,
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.%s", [resourceType, name, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].spec.%s[%d].image doesn't have any Tiller containers", [resourceType, name, types[x], y]),
@@ -51,7 +53,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resourceType,
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.%s.image", [resourceType, name, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].spec.%s.image doesn't have any Tiller containers", [resourceType, name, types[x]]),
@@ -69,7 +71,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resourceType,
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.template.metadata", [resourceType, name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].spec.template.metadata does not refer to any Tiller resource", [resourceType, name]),
@@ -90,7 +92,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resourceType,
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.template.spec.%s.image", [resourceType, name, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].spec.template.spec.%s.image doesn't have any Tiller containers", [resourceType, name, types[x]]),
@@ -111,7 +113,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resourceType,
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.template.%s", [resourceType, name, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].spec.template.spec.%s[%d].image doesn't have any Tiller containers", [resourceType, name, types[x], y]),

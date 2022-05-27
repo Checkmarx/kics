@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	some i
@@ -10,7 +11,7 @@ CxPolicy[result] {
     result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_ram_account_password_policy",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_ram_account_password_policy[%s].minimum_password_length", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'minimum_password_length' is defined and set to 14 or above",
@@ -29,7 +30,7 @@ CxPolicy[result] {
     result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_ram_account_password_policy",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_ram_account_password_policy[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'minimum_password_length' is defined and set to 14 or above ",

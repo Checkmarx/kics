@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	db := input.document[i].resource.aws_db_instance[name]
@@ -10,7 +11,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_db_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(db, name),
 		"searchKey": sprintf("aws_db_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'backup_retention_period' exists",
@@ -44,7 +45,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_db_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(db, name),
 		"searchKey": sprintf("aws_db_instance[%s].backup_retention_period", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'backup_retention_period' is not equal '0'",

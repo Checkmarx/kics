@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_config_configuration_aggregator[name]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_config_configuration_aggregator",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_config_configuration_aggregator[%s].%s.all_regions", [name, type]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'aws_config_configuration_aggregator[%s].%s.all_regions' is set to true", [name, type]),
@@ -29,7 +30,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_config_configuration_aggregator",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_config_configuration_aggregator[%s].%s", [name, type]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'aws_config_configuration_aggregator[%s].%s.all_regions' is set to true", [name, type]),

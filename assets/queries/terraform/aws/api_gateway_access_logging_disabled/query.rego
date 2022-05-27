@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	api := input.document[i].resource.aws_api_gateway_stage[name]
 
@@ -8,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_api_gateway_stage",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(api, name),
 		"searchKey": sprintf("aws_api_gateway_stage[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'access_log_settings' is defined",
@@ -24,7 +26,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_apigatewayv2_stage",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(api, name),
 		"searchKey": sprintf("aws_apigatewayv2_stage[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'access_log_settings' is defined",

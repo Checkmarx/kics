@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -11,7 +12,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": document.id,
 		"resourceType": "aws_cloudfront_distribution",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("resource.aws_cloudfront_distribution[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate' is defined and not null", [name]),
@@ -29,7 +30,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": document.id,
 		"resourceType": "aws_cloudfront_distribution",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate.cloudfront_default_certificate", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate.cloudfront_default_certificate' is 'false'", [name]),
@@ -50,7 +51,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": document.id,
 		"resourceType": "aws_cloudfront_distribution",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate.minimum_protocol_version", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate.minimum_protocol_version' is TLSv1.2_x", [name]),
@@ -69,7 +70,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": document.id,
 		"resourceType": "aws_cloudfront_distribution",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate.minimum_protocol_version' is defined and not null", [name]),

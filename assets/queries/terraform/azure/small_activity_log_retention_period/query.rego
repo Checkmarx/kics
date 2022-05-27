@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	monitor := input.document[i].resource.azurerm_monitor_log_profile[name]
@@ -11,7 +12,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_monitor_log_profile",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(monitor, name),
 		"searchKey": sprintf("azurerm_monitor_log_profile[%s].retention_policy", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_monitor_log_profile[%s].retention_policy.days' is defined and not null", [name]),
@@ -27,7 +28,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_monitor_log_profile",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(monitor, name),
 		"searchKey": sprintf("azurerm_monitor_log_profile[%s].retention_policy.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_monitor_log_profile[%s].retention_policy.enabled' is set to true", [name]),
@@ -45,7 +46,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_monitor_log_profile",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(monitor, name),
 		"searchKey": sprintf("azurerm_monitor_log_profile[%s].retention_policy.days", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_monitor_log_profile[%s].retention_policy.days' is greater than or equal to 365 days or 0 (indefinitely)", [name]),

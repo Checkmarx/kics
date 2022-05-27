@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_elb[name]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_elb",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_elb[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'aws_elb[{{%s}}].access_logs' is defined and not null", [name]),
@@ -19,13 +20,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	logsEnabled := input.document[i].resource.aws_elb[name].access_logs.enabled
+	resource := input.document[i].resource.aws_elb[name]
+	logsEnabled := resource.access_logs.enabled
 	logsEnabled == false
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_elb",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_elb[{{%s}}].access_logs.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'aws_elb[{{%s}}].access_logs.enabled' is true", [name]),

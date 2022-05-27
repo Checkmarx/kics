@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	msk_cluster := input.document[i].resource.aws_msk_cluster[name]
 	problems := checkEncryption(msk_cluster)
@@ -8,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_msk_cluster",
-		"resourceName": name,
+		"resourceName": tf_lib.get_specific_resource_name(msk_cluster, "aws_msk_cluster", name),
 		"searchKey": getSearchKey(problems, name),
 		"issueType": getIssueType(problems),
 		"keyExpectedValue": "Should have 'rule.encryption_info' and, if 'rule.encryption_info.encryption_in_transit' is assigned, 'in_cluster' should be 'true' and 'client_broker' should be TLS",

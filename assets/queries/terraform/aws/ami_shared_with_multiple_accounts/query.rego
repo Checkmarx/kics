@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	launch_permissions := input.document[i].resource.aws_ami_launch_permission
 
@@ -11,7 +13,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_ami_launch_permission",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(launch_permissions[name], name),
 		"searchKey": sprintf("aws_ami_launch_permission[%s].image_id", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'aws_ami_launch_permission[%s].image_id' is not shared with multiple accounts", [name]),

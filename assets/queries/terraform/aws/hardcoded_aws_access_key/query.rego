@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	instance := input.document[i].resource.aws_instance[name]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(instance, name),
 		"searchKey": sprintf("aws_instance[%s].user_data", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'user_data' doesn't contain hardcoded access key",

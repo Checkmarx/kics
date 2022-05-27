@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	search := input.document[i].resource.azurerm_search_service[name]
@@ -10,7 +11,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_search_service",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(search, name),
 		"searchKey": sprintf("azurerm_search_service[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_search_service[%s].public_network_access_enabled' is defined and set to false", [name]),
@@ -27,7 +28,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_search_service",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(search, name),
 		"searchKey": sprintf("azurerm_search_service[%s].public_network_access_enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_search_service[%s].public_network_access_enabled' is set to false", [name]),

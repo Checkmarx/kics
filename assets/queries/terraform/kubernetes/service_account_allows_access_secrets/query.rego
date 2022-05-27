@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as commonLib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resources_types := ["kubernetes_role", "kubernetes_cluster_role"]
@@ -15,7 +16,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resources_types[type],
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].rule", [resources_types[type], name]),
 	    "issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].rule.verbs should not contain the following verbs: %s", [resources_types[type], name, ruleTaint]),

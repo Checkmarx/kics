@@ -1,15 +1,17 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	network_rules := input.document[i].resource.azurerm_storage_account[name].network_rules
 
 	network_rules.ip_rules[l] == "0.0.0.0/0"
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_storage_account",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(input.document[i].resource.azurerm_storage_account[name], name),
 		"searchKey": sprintf("azurerm_storage_account[%s].network_rules.ip_rules", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'network_rules.ip_rules' does not contain 0.0.0.0/0",
@@ -25,7 +27,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_storage_account",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(input.document[i].resource.azurerm_storage_account[name], name),
 		"searchKey": sprintf("azurerm_storage_account[%s].network_rules", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'network_rules.ip_rules' is defined and not null",
@@ -41,7 +43,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_storage_account_network_rules",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(rules, name),
 		"searchKey": sprintf("azurerm_storage_account_network_rules[%s].ip_rules", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("ip_rules[%d] does not contain 0.0.0.0/0", [l]),
@@ -57,7 +59,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_storage_account_network_rules",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(rules, name),
 		"searchKey": sprintf("azurerm_storage_account_network_rules[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'ip_rules' is defined and not null",
@@ -74,7 +76,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_storage_account",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(storage, name),
 		"searchKey": sprintf("azurerm_storage_account[%s].allow_blob_public_access", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'allow_blob_public_access' is set to false or undefined",

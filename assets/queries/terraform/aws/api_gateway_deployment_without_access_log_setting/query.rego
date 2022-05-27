@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -11,7 +12,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": document.id,
 		"resourceType": "aws_api_gateway_deployment",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(deployment, name),
 		"searchKey": sprintf("aws_api_gateway_deployment[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_api_gateway_deployment[%s] has a 'aws_api_gateway_stage' resource associated", [name]),
@@ -30,7 +31,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": document.id,
 		"resourceType": "aws_api_gateway_deployment",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(deployment, name),
 		"searchKey": sprintf("aws_api_gateway_deployment[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_api_gateway_deployment[%s] has a 'aws_api_gateway_stage' resource associated with 'access_log_settings' set", [name]),
@@ -51,7 +52,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": document.id,
 		"resourceType": "aws_api_gateway_deployment",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(deployment, name),
 		"searchKey": sprintf("aws_api_gateway_deployment[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_api_gateway_deployment[%s].stage_description is set", [name]),

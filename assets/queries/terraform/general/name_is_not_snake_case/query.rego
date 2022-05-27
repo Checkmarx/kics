@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -11,7 +12,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": type,
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(res_type, name),
 		"searchKey": sprintf("resource.%s.%s", [type, name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "All names should be on snake case pattern",

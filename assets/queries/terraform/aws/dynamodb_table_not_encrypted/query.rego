@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_dynamodb_table[name]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_dynamodb_table",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_dynamodb_table[{{%s}}].server_side_encryption.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "aws_dynamodb_table.server_side_encryption.enabled is set to true",
@@ -24,7 +25,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_dynamodb_table",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_dynamodb_table[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_dynamodb_table.server_side_encryption.enabled is set to true",

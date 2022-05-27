@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -11,7 +12,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"resourceType": "azurerm_mssql_server",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_mssql_server[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_mssql_server[%s].public_network_access_enabled' is defined and not null", [name]),
@@ -29,7 +30,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"resourceType": "azurerm_mssql_server",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_mssql_server[%s].public_network_access_enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_mssql_server[%s].public_network_access_enabled' is set to false", [name]),

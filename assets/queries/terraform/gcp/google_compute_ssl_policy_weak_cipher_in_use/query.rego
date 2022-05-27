@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	sslPolicy := input.document[i].resource.google_compute_ssl_policy[name]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_compute_ssl_policy",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(sslPolicy, name),
 		"searchKey": sprintf("google_compute_ssl_policy[%s].min_tls_version", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_compute_ssl_policy[%s].min_tls_version is TLS_1_2", [name]),
@@ -24,7 +25,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_compute_ssl_policy",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(sslPolicy, name),
 		"searchKey": sprintf("google_compute_ssl_policy[%s].min_tls_version", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("google_compute_ssl_policy[%s].min_tls_version is TLS_1_2", [name]),

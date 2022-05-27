@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource
@@ -10,7 +11,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_ros_stack_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_ros_stack_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("alicloud_ros_stack_instance[%s].retain_stacks should be defined and not null", [name]),
@@ -27,7 +28,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_ros_stack_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_ros_stack_instance[%s].retain_stacks", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("alicloud_ros_stack_instance[%s].retain_stacks should be true ", [name]),

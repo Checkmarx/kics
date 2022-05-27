@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 #default of block_public_acls is false
 CxPolicy[result] {
@@ -10,7 +11,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_s3_bucket_public_access_block",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(pubACL, name),
 		"searchKey": sprintf("aws_s3_bucket_public_access_block[%s].block_public_acls", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'block_public_acls' is equal 'true'",
@@ -26,7 +27,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_s3_bucket_public_access_block",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(pubACL, name),
 		"searchKey": sprintf("aws_s3_bucket_public_access_block[%s].block_public_acls", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'block_public_acls' is equal 'true'",

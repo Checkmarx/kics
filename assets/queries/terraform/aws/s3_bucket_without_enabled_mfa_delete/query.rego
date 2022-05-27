@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	bucket := input.document[i].resource.aws_s3_bucket[name]
@@ -10,7 +11,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_s3_bucket",
-		"resourceName": name,
+		"resourceName": tf_lib.get_specific_resource_name(bucket, "aws_s3_bucket", name),
 		"searchKey": sprintf("aws_s3_bucket[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_s3_bucket[%s].versioning is defined and not null", [name]),
@@ -32,7 +33,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_s3_bucket",
-		"resourceName": name,
+		"resourceName": tf_lib.get_specific_resource_name(bucket, "aws_s3_bucket", name),
 		"searchKey": sprintf("aws_s3_bucket[%s].versioning", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s' is set to true", [checkedFields[j]]),
@@ -49,7 +50,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_s3_bucket",
-		"resourceName": name,
+		"resourceName": tf_lib.get_specific_resource_name(bucket, "aws_s3_bucket", name),
 		"searchKey": sprintf("aws_s3_bucket[%s].versioning.%s", [name, checkedFields[j]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' is set to true", [checkedFields[j]]),

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	bucket := input.document[i].resource.aws_s3_bucket[name]
@@ -11,7 +12,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_s3_bucket",
-		"resourceName": name,
+		"resourceName": tf_lib.get_specific_resource_name(bucket, "aws_s3_bucket", name),
 		"searchKey": sprintf("aws_s3_bucket[%s].cors_rule", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'cors_rule' does not allows all methods, all headers or several origins",

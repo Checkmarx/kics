@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod[name]
 	metadata := resource.metadata
@@ -8,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "kubernetes_pod",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod[%s].spec.volume.host_path.path", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Workload name '%s' should not mount a host sensitive OS directory '%s' with host_path", [
@@ -30,7 +32,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "kubernetes_persistent_volume",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_persistent_volume[%s].spec.volume.host_path.path", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Workload name '%s' should not mount a host sensitive OS directory '%s' with host_path", [

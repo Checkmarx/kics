@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_api_gateway_stage[name]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_api_gateway_stage",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_api_gateway_stage[%s].xray_tracing_enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'aws_api_gateway_stage[%s].xray_tracing_enabled' is true", [name]),
@@ -24,7 +25,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_api_gateway_stage",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_api_gateway_stage[%s].xray_tracing_enabled", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'aws_api_gateway_stage[%s].xray_tracing_enabled' is set", [name]),

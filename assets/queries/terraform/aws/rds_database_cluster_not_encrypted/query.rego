@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	rds := input.document[i].resource.aws_db_cluster_snapshot[name]
@@ -12,7 +13,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_db_cluster_snapshot",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(rds, name),
 		"searchKey": sprintf("aws_db_cluster_snapshot[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "aws_db_cluster_snapshot.db_cluster_identifier' is encrypted",

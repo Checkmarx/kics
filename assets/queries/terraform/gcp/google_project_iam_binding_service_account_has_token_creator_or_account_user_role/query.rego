@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	projectIam := input.document[i].resource.google_project_iam_binding[name]
 	startswith(projectIam.member, "serviceAccount:")
@@ -8,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_project_iam_binding",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(projectIam, name),
 		"searchKey": sprintf("google_project_iam_binding[%s].role", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_project_iam_binding[%s].role is not Service Account Token Creator", [name]),
@@ -24,7 +26,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_project_iam_binding",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(projectIam, name),
 		"searchKey": sprintf("google_project_iam_binding[%s].role", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_project_iam_binding[%s].role is not Service Account Token Creator", [name]),
@@ -40,7 +42,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_project_iam_binding",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(projectIam, name),
 		"searchKey": sprintf("google_project_iam_binding[%s].role", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_project_iam_binding[%s].role is not Service Account User", [name]),
@@ -56,7 +58,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_project_iam_binding",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(projectIam, name),
 		"searchKey": sprintf("google_project_iam_binding[%s].role", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_project_iam_binding[%s].role is not Service Account User", [name]),

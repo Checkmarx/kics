@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	settings := input.document[i].resource.google_sql_database_instance[name].settings
@@ -10,7 +11,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_sql_database_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(input.document[i].resource.google_sql_database_instance[name].settings, name),
 		"searchKey": sprintf("google_sql_database_instance[%s].settings", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'settings.ip_configuration' is defined and not null",
@@ -27,7 +28,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_sql_database_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(input.document[i].resource.google_sql_database_instance[name].settings, name),
 		"searchKey": sprintf("google_sql_database_instance[%s].settings.ip_configuration", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'settings.ip_configuration.require_ssl' is defined and not null",
@@ -43,7 +44,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_sql_database_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(input.document[i].resource.google_sql_database_instance[name].settings, name),
 		"searchKey": sprintf("google_sql_database_instance[%s].settings.ip_configuration.require_ssl", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'settings.ip_configuration.require_ssl' is true",

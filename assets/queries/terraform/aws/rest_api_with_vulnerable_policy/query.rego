@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_api_gateway_rest_api_policy[name]
@@ -16,7 +17,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_api_gateway_rest_api_policy",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_api_gateway_rest_api_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_api_gateway_rest_api_policy[%s].policy does not have wildcard in 'Action' and 'Principal'", [name]),

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 blocks := {"ingress", "egress"}
 
@@ -14,7 +15,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_default_security_group",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_default_security_group[{{%s}}].%s", [name, block]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_default_security_group[{{%s}}] does not have '%s' defined", [name, block]),
@@ -42,7 +43,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_default_security_group",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_default_security_group[{{%s}}].%s.%s", [name, block, cidrs[c]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' is undefined", [block]),

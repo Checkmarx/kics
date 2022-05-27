@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	domain := input.document[i].resource.aws_elasticsearch_domain[name]
 
@@ -8,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_elasticsearch_domain",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(domain, name),
 		"searchKey": sprintf("aws_elasticsearch_domain[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'encrypt_at_rest' is set and enabled",
@@ -25,7 +27,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_elasticsearch_domain",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(domain, name),
 		"searchKey": sprintf("aws_elasticsearch_domain[%s].encrypt_at_rest.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'encrypt_at_rest.enabled' is true",

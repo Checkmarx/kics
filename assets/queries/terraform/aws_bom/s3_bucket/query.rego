@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terra_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	bucket_resource := input.document[i].resource.aws_s3_bucket[name]
@@ -10,7 +10,7 @@ CxPolicy[result] {
 
 	bom_output = {
 		"resource_type": "aws_s3_bucket",
-		"resource_name": get_bucket_name(bucket_resource),
+		"resource_name": tf_lib.get_specific_resource_name(bucket_resource, "aws_s3_bucket", name),
 		"resource_accessibility": info.accessibility,
 		"resource_encryption": common_lib.get_encryption_if_exists(bucket_resource),
 		"resource_vendor": "AWS",
@@ -37,12 +37,6 @@ get_bucket_acl(bucket_resource) = acl {
 	acl := "private"
 }
 
-get_bucket_name(bucket_resource) = name {
-	name := bucket_resource.bucket
-} else = name {
-	name := "unknown"
-}
-
 is_public_access_blocked(s3BucketPublicAccessBlock) {
 	s3BucketPublicAccessBlock.block_public_acls == true
     s3BucketPublicAccessBlock.block_public_policy == true
@@ -56,7 +50,7 @@ get_accessibility(bucket, bucketName) = accessibility {
 	accessibility = {"accessibility": "private", "policy": ""}
 } else = accessibility {
 	# cases when there is a unrestriced policy
-	acc := terra_lib.get_accessibility(bucket, bucketName, "aws_s3_bucket_policy", "bucket")
+	acc := tf_lib.get_accessibility(bucket, bucketName, "aws_s3_bucket_policy", "bucket")
     acc.accessibility == "hasPolicy"   
     
     accessibility = {"accessibility": "hasPolicy", "policy": acc.policy}   

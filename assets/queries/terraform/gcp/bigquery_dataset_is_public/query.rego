@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.google_bigquery_dataset[name]
 	publiclyAccessible(resource.access)
@@ -7,7 +9,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_bigquery_dataset",
-		"resourceName": name,
+		"resourceName": tf_lib.get_specific_resource_name(resource, "google_bigquery_dataset", name),
 		"searchKey": sprintf("google_bigquery_dataset[%s].access.special_group", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'access.special_group' is not equal to 'allAuthenticatedUsers'",

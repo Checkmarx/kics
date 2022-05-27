@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	nodePool := input.document[i].resource.google_container_node_pool[name]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_container_node_pool",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(nodePool, name),
 		"searchKey": sprintf("google_container_node_pool[%s].management.auto_repair", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_container_node_pool[%s].management.auto_repair is true", [name]),
@@ -24,7 +25,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_container_node_pool",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(nodePool, name),
 		"searchKey": sprintf("google_container_node_pool[%s].management", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("google_container_node_pool[%s].management.auto_repair is defined and not null", [name]),

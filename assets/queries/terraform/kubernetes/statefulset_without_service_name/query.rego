@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	stateful := input.document[i].resource.kubernetes_stateful_set[name]
 
@@ -12,7 +14,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "kubernetes_stateful_set",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(stateful, name),
 		"searchKey": sprintf("kubernetes_stateful_set[%s].spec.service_name", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("kubernetes_stateful_set[%s].spec.service_name should refer to a Headless Service", [name]),

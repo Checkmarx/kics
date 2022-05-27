@@ -1,16 +1,16 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terra_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	efs_file_system := input.document[i].resource.aws_efs_file_system[name]
 
-	info := terra_lib.get_accessibility(efs_file_system, name, "aws_efs_file_system_policy", "file_system_id")
+	info := tf_lib.get_accessibility(efs_file_system, name, "aws_efs_file_system_policy", "file_system_id")
 
 	bom_output = {
 		"resource_type": "aws_efs_file_system",
-		"resource_name": common_lib.get_tag_name_if_exists(efs_file_system),
+		"resource_name": tf_lib.get_resource_name(efs_file_system, name),
 		"resource_accessibility": info.accessibility, 
 		"resource_encryption": common_lib.get_encryption_if_exists(efs_file_system),
 		"resource_vendor": "AWS",

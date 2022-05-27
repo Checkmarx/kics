@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terra_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 
@@ -11,7 +11,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_oss_bucket",
-		"resourceName": name,
+		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_oss_bucket", name),
 		"searchKey": sprintf("alicloud_oss_bucket[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s has logging enabled",[name]),
@@ -28,7 +28,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_oss_bucket",
-		"resourceName": name,
+		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_oss_bucket", name),
 		"searchKey": sprintf("alicloud_oss_bucket[%s].logging_isenable", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s 'logging_isenable' argument should be set to true",[name]),

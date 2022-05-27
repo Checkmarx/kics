@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	vm := input.document[i].resource.azurerm_virtual_machine[name]
 
@@ -8,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_virtual_machine",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(vm, name),
 		"searchKey": sprintf("azurerm_virtual_machine[%s].network_interface_ids", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_virtual_machine[%s].network_interface_ids' list is not empty", [name]),

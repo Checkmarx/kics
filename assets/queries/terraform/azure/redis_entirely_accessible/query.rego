@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	firewall_rule := input.document[i].resource.azurerm_redis_firewall_rule[name]
 
@@ -9,7 +11,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_redis_firewall_rule",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(firewall_rule, name),
 		"searchKey": sprintf("azurerm_redis_firewall_rule[%s].start_ip", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_redis_firewall_rule[%s]' start_ip and end_ip are not equal to '0.0.0.0'", [name]),

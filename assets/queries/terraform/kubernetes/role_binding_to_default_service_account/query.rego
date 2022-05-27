@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_role_binding[name]
 
@@ -10,7 +12,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "kubernetes_role_binding",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("resource.kubernetes_role_binding[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource.kubernetes_role_binding[%s].subject[%d].name is not default", [name, k]),

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	compute := input.document[i].resource.google_compute_instance[name]
@@ -11,7 +12,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_compute_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(compute, name),
 		"searchKey": sprintf("google_compute_instance[%s].metadata.block-project-ssh-keys", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_compute_instance[%s].metadata.block-project-ssh-keys is true", [name]),
@@ -26,7 +27,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_compute_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(compute, name),
 		"searchKey": sprintf("google_compute_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("google_compute_instance[%s].metadata is set", [name]),
@@ -41,7 +42,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_compute_instance",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(compute, name),
 		"searchKey": sprintf("google_compute_instance[%s].metadata", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("google_compute_instance[%s].metadata.block-project-ssh-keys is set", [name]),

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	cluster := input.document[i].resource.aws_eks_cluster[name]
@@ -10,7 +11,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_eks_cluster",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("aws_eks_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'encryption_config' is defined and not null",
@@ -29,7 +30,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_eks_cluster",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("aws_eks_cluster[%s].encryption_config.resources", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'secrets' is defined",

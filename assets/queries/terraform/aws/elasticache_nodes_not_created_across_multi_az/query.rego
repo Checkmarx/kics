@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	cluster := input.document[i].resource.aws_elasticache_cluster[name]
 
@@ -10,7 +12,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_elasticache_cluster",
-		"resourceName": name,
+		"resourceName": tf_lib.get_specific_resource_name(cluster, "aws_elasticache_cluster", name),
 		"searchKey": sprintf("aws_elasticache_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'az_mode' is set and must be 'cross-az' in multi nodes cluster",
@@ -28,7 +30,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_elasticache_cluster",
-		"resourceName": name,
+		"resourceName": tf_lib.get_specific_resource_name(cluster, "aws_elasticache_cluster", name),
 		"searchKey": sprintf("aws_elasticache_cluster[%s].az_mode", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'az_mode' is 'cross-az' in multi nodes cluster",

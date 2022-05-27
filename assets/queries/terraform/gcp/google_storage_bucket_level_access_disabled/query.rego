@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	storageBucket := input.document[i].resource.google_storage_bucket[name]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_storage_bucket",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(storageBucket, name),
 		"searchKey": sprintf("google_storage_bucket[%s].uniform_bucket_level_access", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_storage_bucket[%s].uniform_bucket_level_access is true", [name]),
@@ -25,7 +26,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_storage_bucket",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(storageBucket, name),
 		"searchKey": sprintf("google_storage_bucket[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("google_storage_bucket[%s].uniform_bucket_level_access is defined and not null", [name]),

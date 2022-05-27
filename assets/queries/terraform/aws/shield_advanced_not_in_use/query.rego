@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 resources := {
 	"aws_cloudfront_distribution",
@@ -14,13 +15,12 @@ resources := {
 CxPolicy[result] {
 	target := input.document[i].resource[resources[idx]][name]
 
-
 	not has_shield_advanced(name)
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resources[idx],
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(target, name),
 		"searchKey": sprintf("%s[%s]", [resources[idx], name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s has shield advanced associated", [resources[idx]]),

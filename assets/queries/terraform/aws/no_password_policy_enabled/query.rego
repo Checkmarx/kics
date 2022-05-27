@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_iam_user_login_profile[name]
 
@@ -8,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_iam_user_login_profile",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_iam_user_login_profile[%s].password_reset_required", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'password_reset_required' is true",
@@ -24,7 +26,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_iam_user_login_profile",
-		"resourceName": name,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_iam_user_login_profile[%s].password_length", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'password_length' is 14 or grater",
