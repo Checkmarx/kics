@@ -4,7 +4,7 @@
     name: myTestRole
     scope: /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/myresourceGroup
     permissions:
-        - actions:
-            - "Microsoft.Authorization/roleDefinitions/write"
+      - actions:
+          - "Microsoft.Authorization/roleDefinitions/write"
     assignable_scopes:
-        - "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+      - "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
