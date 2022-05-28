@@ -12,7 +12,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].policy", [resourceType, name]),
+		"searchKey": sprintf("%s[%s].policy ------------- %s", [resourceType, name, resource.policy]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].policy does not accept HTTP Requests", [resourceType, name]),
 		"keyActualValue": sprintf("%s[%s].policy accepts HTTP Requests", [resourceType, name]),
@@ -31,21 +31,12 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("module[%s].policy", [name]),
+		"searchKey": sprintf("module[%s].policy ....  %s ", [name,policy]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy' does not accept HTTP Requests",
 		"keyActualValue": "'policy' accepts HTTP Requests",
 		"searchLine": common_lib.build_search_line(["module", name, "policy"], []),
 	}
-}
-
-validActions := {"*", "s3:*", "s3:GetObject"}
-
-check_action(action) {
-	is_string(action)
-	action == validActions[x]
-} else {
-	action[a] == validActions[x]
 }
 
 is_equal(secure, target)
@@ -54,18 +45,17 @@ is_equal(secure, target)
 }else {
     secure[_]==target
 }
+
 deny_http_requests(policyValue) {
     policy := common_lib.json_unmarshal(policyValue)
     st := common_lib.get_statement(policy)
     statement := st[_]
-    check_action(statement.Action)
     statement.Effect == "Deny"
     is_equal(statement.Condition.Bool["aws:SecureTransport"], "false")
 } else {
     policy := common_lib.json_unmarshal(policyValue)
     st := common_lib.get_statement(policy)
     statement := st[_]
-    check_action(statement.Action)
     statement.Effect == "Allow"
     is_equal(statement.Condition.Bool["aws:SecureTransport"], "true")
 }
