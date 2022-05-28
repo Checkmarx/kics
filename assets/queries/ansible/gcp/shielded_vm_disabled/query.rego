@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "gcp_compute_instance.shielded_instance_config is defined",
@@ -32,6 +34,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.shielded_instance_config", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("gcp_compute_instance.shielded_instance_config.%s is defined", [attributes[j]]),
@@ -49,6 +53,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.shielded_instance_config.%s", [task.name, modules[m], attributes[j]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("gcp_compute_instance.shielded_instance_config.%s is true", [attributes[j]]),

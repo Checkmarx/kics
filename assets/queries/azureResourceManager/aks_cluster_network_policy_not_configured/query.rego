@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, issue.sk]),
 		"issueType": issue.issueType,
 		"keyExpectedValue": "'networkProfile.networkPolicy' is defined and not empty",
@@ -29,6 +31,8 @@ is_filled(value) {
 prepare_issue(resource) = issue {
 	resource.properties.networkProfile.networkPolicy == ""
 	issue := {
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"issueType": "IncorrectValue",
 		"keyActualValue": "'networkProfile.networkPolicy' is empty",
 		"sk": ".properties.networkProfile.networkPolicy",
@@ -36,6 +40,8 @@ prepare_issue(resource) = issue {
 	}
 } else = issue {
 	issue := {
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"issueType": "MissingAttribute",
 		"keyActualValue": "'networkProfile.networkPolicy' is undefined",
 		"sk": "",

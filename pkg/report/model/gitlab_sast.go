@@ -7,6 +7,8 @@ import (
 
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/model"
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 const timeFormat = "2006-01-02T15:04:05" // YYYY-MM-DDTHH:MM:SS a.k.a ISO8601
@@ -115,7 +117,7 @@ func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.QueryRes
 		vulnerability := gitlabSASTVulnerability{
 			ID:       file.SimilarityID,
 			Category: "sast",
-			Severity: strings.Title(strings.ToLower(string(issue.Severity))),
+			Severity: cases.Title(language.Und).String(strings.ToLower(string(issue.Severity))),
 			CVE:      file.SimilarityID,
 			Scanner: gitlabSASTVulnerabilityScanner{
 				ID:   "keeping_infrastructure_as_code_secure",

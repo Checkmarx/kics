@@ -18,6 +18,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": statefulset.kind,
+		"resourceName": metadata,
 		"searchKey": sprintf("metadata.name=%s.spec.serviceName", [metadata]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name=%s.spec.serviceName should refer to a Headless Service", [metadata]),

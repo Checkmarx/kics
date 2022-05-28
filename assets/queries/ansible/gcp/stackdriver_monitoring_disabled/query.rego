@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "gcp_container_cluster.monitoring_service is defined",
@@ -31,6 +33,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.monitoring_service", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "gcp_container_cluster.monitoring_service is different from 'none'",

@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.debug_botocore_endpoint_logs", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "s3_bucket.debug_botocore_endpoint_logs is true",
@@ -30,6 +32,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "s3_bucket.debug_botocore_endpoint_logs is defined",

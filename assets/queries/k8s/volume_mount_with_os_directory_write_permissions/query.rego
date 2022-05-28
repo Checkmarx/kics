@@ -18,6 +18,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}}.readOnly", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}}.readOnly is true", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
@@ -38,6 +40,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}}", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}}.readOnly is defined and set to true", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),

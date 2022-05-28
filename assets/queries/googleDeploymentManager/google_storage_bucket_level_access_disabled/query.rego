@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.iamConfiguration.uniformBucketLevelAccess.enabled", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'enabled' is set to true",

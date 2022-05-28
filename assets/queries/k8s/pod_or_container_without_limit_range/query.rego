@@ -17,6 +17,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"issueType": "MissingAttribute",
 		"searchKey": sprintf("metadata.name={{%s}}", [metadata.name]),
 		"keyExpectedValue": sprintf("metadata.name={{%s}} has a 'LimitRange' policy associated", [metadata.name]),

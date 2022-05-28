@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'versioning' to be defined and not null",
@@ -26,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.versioning", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'versioning.enabled' to be defined and not null",
@@ -42,6 +46,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.versioning.enabled", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'versioning.enabled' to be true",

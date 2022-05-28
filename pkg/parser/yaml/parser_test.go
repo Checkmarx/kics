@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"path/filepath"
+	"reflect"
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -385,7 +386,7 @@ func Test_Resolve(t *testing.T) {
 
 	resolved, err := parser.Resolve([]byte(have), "test.yaml")
 	require.NoError(t, err)
-	require.Equal(t, []byte(have), *resolved)
+	require.Equal(t, []byte(have), resolved)
 }
 
 func TestYaml_processElements(t *testing.T) {
@@ -515,6 +516,43 @@ martin2:
 			got, err := tt.fields.parser.StringifyContent(tt.args.content)
 			require.Equal(t, tt.wantErr, (err != nil))
 			require.Equal(t, tt.want, got)
+		})
+	}
+}
+
+func TestParser_GetResolvedFiles(t *testing.T) {
+	type fields struct {
+		resolvedFiles map[string]model.ResolvedFile
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		want   map[string]model.ResolvedFile
+	}{
+		{
+			name: "test get resolved files",
+			fields: fields{
+				resolvedFiles: map[string]model.ResolvedFile{
+					"test": {
+						Content: []byte(`1`),
+					},
+				},
+			},
+			want: map[string]model.ResolvedFile{
+				"test": {
+					Content: []byte(`1`),
+				},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			p := &Parser{
+				resolvedFiles: tt.fields.resolvedFiles,
+			}
+			if got := p.GetResolvedFiles(); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("GetResolvedFiles() = %v, want %v", got, tt.want)
+			}
 		})
 	}
 }

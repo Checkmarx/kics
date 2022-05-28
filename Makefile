@@ -172,7 +172,7 @@ dkr-compose: ## build docker image and runs docker-compose up
 
 .PHONY: dkr-build-antlr
 dkr-build-antlr: ## build ANTLRv4 docker image and generate parser based on given grammar
-	@docker build -t antlr4-generator:dev -f Dockerfile.antlr .
+	@docker build -t antlr4-generator:dev -f ./docker/Dockerfile.antlr .
 	@docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v $(pwd)/pkg/parser/jsonfilter:/work -it antlr4-generator:dev
 
 .PHONY: release

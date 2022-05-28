@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.enable_iam_database_authentication", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "rds_instance.enable_iam_database_authentication should be enabled",
@@ -30,6 +32,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "rds_instance.enable_iam_database_authentication should be defined",

@@ -39,7 +39,7 @@ func setInputVariablesDefaultValues(filename string) (converter.VariableMap, err
 			continue
 		}
 		attr, _ := block.Body.JustAttributes()
-		if attr == nil || len(attr) == 0 {
+		if len(attr) == 0 {
 			continue
 		}
 		if defaultValue, exists := attr["default"]; exists {

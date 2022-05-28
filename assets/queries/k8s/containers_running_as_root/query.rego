@@ -21,6 +21,8 @@ checkRoot(specInfo, container, containerType, containerId, document, metadata) =
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser", [metadata.name, specInfo.path, containerType, container.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true", [metadata.name, specInfo.path, containerType, container.name]),
@@ -39,6 +41,8 @@ checkRoot(specInfo, container, containerType, containerId, document, metadata) =
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.securityContext.runAsUser", [metadata.name, specInfo.path]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true", [metadata.name, specInfo.path]),
@@ -58,6 +62,8 @@ checkRoot(specInfo, container, containerType, containerId, document, metadata) =
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}", [metadata.name, specInfo.path, containerType, container.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true", [metadata.name, specInfo.path, containerType, container.name]),

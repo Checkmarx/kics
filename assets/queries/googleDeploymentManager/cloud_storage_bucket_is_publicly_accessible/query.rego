@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.entity", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'entity' is not equal to 'allUsers' or 'allAuthenticatedUsers'",

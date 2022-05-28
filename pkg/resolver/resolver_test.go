@@ -73,7 +73,7 @@ func TestResolver_Resolve(t *testing.T) {
 				kind:     model.KindHELM,
 			},
 			want: model.ResolvedFiles{
-				File: []model.ResolvedFile{
+				File: []model.ResolvedHelm{
 					{
 						SplitID:  "# KICS_HELM_ID_0:",
 						FileName: filepath.FromSlash("../../test/fixtures/test_helm/templates/service.yaml"),

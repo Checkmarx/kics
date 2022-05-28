@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.admin_user_enabled", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "azure_rm_containerregistry.admin_user_enabled should be false or undefined (defaults to false)",
