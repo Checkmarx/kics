@@ -45,7 +45,6 @@ is_equal(secure, target)
 }else {
     secure[_]==target
 }
-
 deny_http_requests(policyValue) {
     policy := common_lib.json_unmarshal(policyValue)
     st := common_lib.get_statement(policy)
