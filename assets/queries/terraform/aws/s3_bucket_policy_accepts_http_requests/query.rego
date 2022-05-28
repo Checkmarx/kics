@@ -12,7 +12,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].policy ------------- %s", [resourceType, name, resource.policy]),
+		"searchKey": sprintf("%s[%s].policy", [resourceType, name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].policy does not accept HTTP Requests", [resourceType, name]),
 		"keyActualValue": sprintf("%s[%s].policy accepts HTTP Requests", [resourceType, name]),
@@ -31,7 +31,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("module[%s].policy ....  %s ", [name,policy]),
+		"searchKey": sprintf("module[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy' does not accept HTTP Requests",
 		"keyActualValue": "'policy' accepts HTTP Requests",
