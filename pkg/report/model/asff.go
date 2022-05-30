@@ -3,6 +3,7 @@ package model
 import (
 	"fmt"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -132,8 +133,13 @@ func (a *AwsAccountInfo) getFinding(query *model.QueryResult, file *model.Vulner
 
 		Remediation: Remediation{
 			Recommendation: AsffRecommendation{
-				Text: *aws.String(fmt.Sprintf("In line %d of file %s, a result was found. %s, but %s",
-					file.Line, file.FileName, file.KeyActualValue, file.KeyExpectedValue)),
+				Text: *aws.String(fmt.Sprintf(
+					"In line %d of file %s, a result was found. Expected value: %s. Actual value: %s.",
+					file.Line,
+					file.FileName,
+					strings.TrimRight(file.KeyExpectedValue, "."),
+					strings.TrimRight(file.KeyExpectedValue, "."),
+				)),
 			},
 		},
 		Compliance: Compliance{Status: *aws.String("FAILED")},

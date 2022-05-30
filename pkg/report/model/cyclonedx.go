@@ -182,8 +182,12 @@ func getVulnerabilitiesByFile(query *model.QueryResult, fileName, purl string) [
 				Description: getDescription(query, "cyclonedx"),
 				Recommendations: []Recommendation{
 					{
-						Recommendation: fmt.Sprintf("In line %d, a result was found. '%s', but '%s'",
-							file.Line, file.KeyActualValue, file.KeyExpectedValue),
+						Recommendation: fmt.Sprintf(
+							"In line %d, a result was found. Expected value: %s. Actual value: %s.",
+							file.Line,
+							strings.TrimRight(file.KeyExpectedValue, "."),
+							strings.TrimRight(file.KeyExpectedValue, "."),
+						),
 					},
 				},
 			}
