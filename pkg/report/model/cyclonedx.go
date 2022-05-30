@@ -186,7 +186,7 @@ func getVulnerabilitiesByFile(query *model.QueryResult, fileName, purl string) [
 							"Problem found in line %d. Expected value: %s. Actual value: %s.",
 							file.Line,
 							strings.TrimRight(file.KeyExpectedValue, "."),
-							strings.TrimRight(file.KeyExpectedValue, "."),
+							strings.TrimRight(file.KeyActualValue, "."),
 						),
 					},
 				},

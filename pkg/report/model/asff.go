@@ -138,7 +138,7 @@ func (a *AwsAccountInfo) getFinding(query *model.QueryResult, file *model.Vulner
 					file.FileName,
 					file.Line,
 					strings.TrimRight(file.KeyExpectedValue, "."),
-					strings.TrimRight(file.KeyExpectedValue, "."),
+					strings.TrimRight(file.KeyActualValue, "."),
 				)),
 			},
 		},
