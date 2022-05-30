@@ -39,22 +39,40 @@ CxPolicy[result] {
 	}
 }
 
+validActions := {"*", "s3:*", "s3:GetObject"}
+
+check_action(st) {
+	is_string(st.Action)
+	st.Action == validActions[x]
+} else {
+	st.Action[a] == validActions[x]
+} else {
+	is_string(st.Actions)
+	st.Actions == validActions[x]
+}
+else {
+	st.Actions[a] == validActions[x]
+}
+
 is_equal(secure, target)
 {
     secure == target
 }else {
     secure[_]==target
 }
+
 deny_http_requests(policyValue) {
     policy := common_lib.json_unmarshal(policyValue)
     st := common_lib.get_statement(policy)
     statement := st[_]
+    check_action(statement)
     statement.Effect == "Deny"
     is_equal(statement.Condition.Bool["aws:SecureTransport"], "false")
 } else {
     policy := common_lib.json_unmarshal(policyValue)
     st := common_lib.get_statement(policy)
     statement := st[_]
+    check_action(statement)
     statement.Effect == "Allow"
     is_equal(statement.Condition.Bool["aws:SecureTransport"], "true")
 }
