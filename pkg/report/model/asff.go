@@ -134,9 +134,9 @@ func (a *AwsAccountInfo) getFinding(query *model.QueryResult, file *model.Vulner
 		Remediation: Remediation{
 			Recommendation: AsffRecommendation{
 				Text: *aws.String(fmt.Sprintf(
-					"In line %d of file %s, a result was found. Expected value: %s. Actual value: %s.",
-					file.Line,
+					"Problem found on '%s' file in line %d. Expected value: %s. Actual value: %s.",
 					file.FileName,
+					file.Line,
 					strings.TrimRight(file.KeyExpectedValue, "."),
 					strings.TrimRight(file.KeyExpectedValue, "."),
 				)),

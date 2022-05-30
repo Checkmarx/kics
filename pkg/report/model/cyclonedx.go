@@ -183,7 +183,7 @@ func getVulnerabilitiesByFile(query *model.QueryResult, fileName, purl string) [
 				Recommendations: []Recommendation{
 					{
 						Recommendation: fmt.Sprintf(
-							"In line %d, a result was found. Expected value: %s. Actual value: %s.",
+							"Problem found in line %d. Expected value: %s. Actual value: %s.",
 							file.Line,
 							strings.TrimRight(file.KeyExpectedValue, "."),
 							strings.TrimRight(file.KeyExpectedValue, "."),
