@@ -58,14 +58,14 @@ deny_http_requests(policyValue) {
     policy := common_lib.json_unmarshal(policyValue)
     st := common_lib.get_statement(policy)
     statement := st[_]
-    check_action(statement.Action)
+    ( check_action(statement.Action) || check_action(statement.actions) )
     statement.Effect == "Deny"
     is_equal(statement.Condition.Bool["aws:SecureTransport"], "false")
 } else {
     policy := common_lib.json_unmarshal(policyValue)
     st := common_lib.get_statement(policy)
     statement := st[_]
-    check_action(statement.Action)
+    check_action(statement.Action) || check_action(statement.actions)
     statement.Effect == "Allow"
     is_equal(statement.Condition.Bool["aws:SecureTransport"], "true")
 }
