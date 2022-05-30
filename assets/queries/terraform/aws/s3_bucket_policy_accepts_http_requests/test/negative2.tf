@@ -1,7 +1,7 @@
 resource "aws_s3_bucket" "b2" {
   bucket = "my-tf-test-bucket"
 
-   policy = <<EOF
+  policy = <<EOF
 {
     "Version": "2012-10-17",
     "Id": "MYBUCKETPOLICY",
