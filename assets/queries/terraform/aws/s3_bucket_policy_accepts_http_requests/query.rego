@@ -49,8 +49,7 @@ check_action(st) {
 } else {
 	is_string(st.Actions)
 	st.Actions == validActions[x]
-}
-else {
+} else {
 	st.Actions[a] == validActions[x]
 }
 
