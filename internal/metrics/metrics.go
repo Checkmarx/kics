@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"math"
-	"strconv"
 	"strings"
 
 	"github.com/google/pprof/profile"
@@ -41,7 +40,7 @@ type Metrics struct {
 }
 
 // InitializeMetrics - creates a new instance of a Metrics based on the type of metrics specified
-func InitializeMetrics(metric, ci string) error {
+func InitializeMetrics(metric string, ci bool) error {
 	var err error
 	switch strings.ToLower(metric) {
 	case "cpu":
@@ -64,7 +63,7 @@ func InitializeMetrics(metric, ci string) error {
 	// Create temporary dir to keep pprof file
 	if !Metric.Disable {
 		Metric.metricsID = metric
-		Metric.ci, _ = strconv.ParseBool(ci)
+		Metric.ci = ci
 	}
 
 	return err

@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.port", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "redshift.port is not set to 5439",

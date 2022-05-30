@@ -36,10 +36,10 @@ func NewDefault() *Parser {
 }
 
 // Resolve - replace or modifies in-memory content before parsing
-func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
+func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) {
 	getInputVariables(filepath.Dir(filename))
 	getDataSourcePolicy(filepath.Dir(filename))
-	return &fileContent, nil
+	return fileContent, nil
 }
 
 func processContent(elements model.Document, content, path string) {
@@ -154,4 +154,9 @@ func (p *Parser) GetCommentToken() string {
 // StringifyContent converts original content into string formated version
 func (p *Parser) StringifyContent(content []byte) (string, error) {
 	return string(content), nil
+}
+
+// GetResolvedFiles returns the files that are resolved
+func (p *Parser) GetResolvedFiles() map[string]model.ResolvedFile {
+	return make(map[string]model.ResolvedFile)
 }

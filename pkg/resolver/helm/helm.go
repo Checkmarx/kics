@@ -99,13 +99,13 @@ func newClient() *action.Install {
 // setID will add auxiliary lines for each template as well as its dependencies
 func setID(chartReq *chart.Chart) *chart.Chart {
 	for _, temp := range chartReq.Templates {
-		temp = addID(temp) //nolint
+		temp = addID(temp)
 		if temp != nil {
 			continue
 		}
 	}
 	for _, dep := range chartReq.Dependencies() {
-		dep = setID(dep) //nolint
+		dep = setID(dep)
 		if dep != nil {
 			continue
 		}

@@ -18,6 +18,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": service.id,
+		"resourceType": service.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.ports.port={{%d}}", [metadata.name, servicePorts.port]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.ports.port={{%d}} has a Pod port", [metadata.name, servicePorts.port]),
@@ -37,6 +39,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": service.id,
+		"resourceType": service.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.selector", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.selector label refers to a Pod label", [metadata.name]),

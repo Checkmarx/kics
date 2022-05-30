@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.requiredDropCapabilities", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "spec.requiredDropCapabilities 'is ALL or NET_RAW'",

@@ -40,7 +40,7 @@ When using [UBI8](https://catalog.redhat.com) based image, the KICS process will
 docker run -it -u $UID:$GID -v $PWD:/path checkmarx/kics:ubi8 scan -p /path/assets/queries/dockerfile -o /path -v
 ```
 
-Another option is [rebuilding the dockerfile](https://github.com/Checkmarx/kics/blob/master/Dockerfile.ubi8) providing build arguments e.g: `--build-arg UID=999 --build-arg GID=999 --build-arg KUSER=myuser --build-arg KUSER=mygroup`
+Another option is [rebuilding the dockerfile](https://github.com/Checkmarx/kics/blob/master/docker/Dockerfile.ubi8) providing build arguments e.g: `--build-arg UID=999 --build-arg GID=999 --build-arg KUSER=myuser --build-arg KUSER=mygroup`
 
 ## CLI Options
 

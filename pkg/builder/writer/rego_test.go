@@ -305,7 +305,7 @@ func TestCondition(t *testing.T) {
 					"regex":    "\\w",
 				},
 			},
-			expectedResult: "re_match(\"\\w\", block[blockType][name].values[key])",
+			expectedResult: fmt.Sprintf("re_match(%q, block[blockType][name].values[key])", "\\w"),
 		},
 		{
 			block: blockElement,

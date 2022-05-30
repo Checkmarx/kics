@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.disks", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'diskEncryptionKey' is defined and not null",
@@ -29,6 +31,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.disks.diskEncryptionKey", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'disk_encryption_key.rawKey' or 'disk_encryption_key.kmsKeyName' is defined and not null",
@@ -48,6 +52,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.disks.diskEncryptionKey.%s", [resource.name, fields[f]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'diskEncryptionKey.%s' is not empty", [fields[f]]),

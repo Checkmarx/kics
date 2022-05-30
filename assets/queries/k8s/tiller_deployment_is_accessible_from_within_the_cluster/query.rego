@@ -18,6 +18,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name=%s.spec.%s", [metadata.name, types[x]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'spec.%s[%s].args' is set", [types[x], container.name]),
@@ -41,6 +43,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name=%s.spec.%s.args", [metadata.name, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'spec.%s[%s].args' sets the container to listen to localhost", [types[x], container.name]),
@@ -61,6 +65,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name=%s.spec.template.spec.%s", [metadata.name, types[x]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'spec.template.spec.%s[%s].args' is set", [types[x], container.name]),
@@ -81,6 +87,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name=%s.spec.template.spec.%s.args", [metadata.name, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'spec.template.spec.%s[%s].args' sets the container to listen to localhost", [types[x], container.name]),

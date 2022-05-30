@@ -1,6 +1,7 @@
 package docker
 
 import (
+	"reflect"
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -122,7 +123,7 @@ func Test_Resolve(t *testing.T) {
 
 	resolved, err := parser.Resolve([]byte(have), "Dockerfile")
 	require.NoError(t, err)
-	require.Equal(t, []byte(have), *resolved)
+	require.Equal(t, []byte(have), resolved)
 }
 
 // Test_GetCommentToken must get the token that represents a comment
@@ -183,6 +184,26 @@ ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 			got, err := tt.fields.parser.StringifyContent(tt.args.content)
 			require.Equal(t, tt.wantErr, (err != nil))
 			require.Equal(t, tt.want, got)
+		})
+	}
+}
+
+func TestParser_GetResolvedFiles(t *testing.T) {
+	tests := []struct {
+		name string
+		want map[string]model.ResolvedFile
+	}{
+		{
+			name: "test get resolved files",
+			want: map[string]model.ResolvedFile{},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			p := &Parser{}
+			if got := p.GetResolvedFiles(); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("GetResolvedFiles() = %v, want %v", got, tt.want)
+			}
 		})
 	}
 }
