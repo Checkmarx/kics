@@ -49,8 +49,11 @@ func RunCommand(kicsArgs []string, useDocker, useMock bool, kicsDockerImage stri
 
 // KicsDevPathAdapter adapts the path to enable kics locally execution
 func KicsDevPathAdapter(path string) string {
+	// [e2e-029] and [e2e-056] config tests
 	if path == "/path/e2e/fixtures/samples/config.json" {
 		path = strings.Replace(path, "config.json", "config-dev.json", -1)
+	} else if path == "/path/e2e/fixtures/samples/config.yaml" {
+		path = strings.Replace(path, "config.yaml", "config-dev.yaml", -1)
 	}
 	regex := regexp.MustCompile(`/path/\w+/`)
 	matches := regex.FindString(path)
