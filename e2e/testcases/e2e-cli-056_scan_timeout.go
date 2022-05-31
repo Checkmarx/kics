@@ -11,7 +11,7 @@ func init() { //nolint
 		Name: "should timeout queries when reaching the timeout limit [E2E-CLI-056]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "--config", "/path/e2e/fixtures/samples/config.yaml", "-v"},
+				[]string{"scan", "--config", "/path/e2e/fixtures/samples/configs/config.yaml", "-v"},
 				[]string{"scan", "-p", "/path/e2e/fixtures/samples/positive.dockerfile", "--timeout", "1", "-v"},
 				[]string{"scan", "-p", "/path/e2e/fixtures/samples/positive.dockerfile", "--timeout", "0", "-v"},
 			},
