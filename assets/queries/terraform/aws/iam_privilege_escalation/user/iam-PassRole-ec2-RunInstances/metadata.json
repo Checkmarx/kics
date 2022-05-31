@@ -1,0 +1,11 @@
+{
+  "id": "89561b03-cb35-44a9-a7e9-8356e71606f4",
+  "queryName": "User with privilege escalation by actions 'ec2:RunInstances' and 'iam:PassRole'",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "User with privilege escalation by actions 'ec2:RunInstances' and 'iam:PassRole' and Resource set to '*'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user",
+  "platform": "Terraform",
+  "descriptionID": "05f5544f",
+  "cloudProvider": "aws"
+}

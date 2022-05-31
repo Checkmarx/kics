@@ -1,0 +1,11 @@
+{
+  "id": "5b4d4aee-ac94-4810-9611-833636e5916d",
+  "queryName": "Role with privilege escalation by actions 'iam:CreateAccessKey'",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Role with privilege escalation by actions 'iam:CreateAccessKey' and Resource set to '*'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role",
+  "platform": "Terraform",
+  "descriptionID": "0d94441c",
+  "cloudProvider": "aws"
+}

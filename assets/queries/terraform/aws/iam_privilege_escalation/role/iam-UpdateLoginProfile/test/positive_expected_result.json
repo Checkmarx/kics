@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Role with privilege escalation by actions 'iam:UpdateLoginProfile'",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  }
+]

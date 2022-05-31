@@ -1,0 +1,11 @@
+{
+  "id": "9b877bd8-94b4-4c10-a060-8e0436cc09fa",
+  "queryName": "User with privilege escalation by actions 'glue:UpdateDevEndpoint'",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "User with privilege escalation by actions 'glue:UpdateDevEndpoint' and Resource set to '*'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user",
+  "platform": "Terraform",
+  "descriptionID": "1a48ac37",
+  "cloudProvider": "aws"
+}

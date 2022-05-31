@@ -1,0 +1,11 @@
+{
+  "id": "b69247e5-7e73-464e-ba74-ec9b715c6e12",
+  "queryName": "User with privilege escalation by actions 'lambda:UpdateFunctionCode'",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "User with privilege escalation by actions 'lambda:UpdateFunctionCode' and Resource set to '*'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user",
+  "platform": "Terraform",
+  "descriptionID": "f5d372a0",
+  "cloudProvider": "aws"
+}

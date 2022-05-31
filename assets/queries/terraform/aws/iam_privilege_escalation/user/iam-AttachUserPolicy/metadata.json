@@ -1,0 +1,11 @@
+{
+  "id": "70cb518c-d990-46f6-bc05-44a5041493d6",
+  "queryName": "User with privilege escalation by actions 'iam:AttachUserPolicy'",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "User with privilege escalation by actions 'iam:AttachUserPolicy' and Resource set to '*'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user",
+  "platform": "Terraform",
+  "descriptionID": "98aa676c",
+  "cloudProvider": "aws"
+}

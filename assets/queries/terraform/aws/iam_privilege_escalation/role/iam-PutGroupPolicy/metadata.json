@@ -1,0 +1,11 @@
+{
+  "id": "d6047119-a0b2-4b59-a4f2-127a36fb685b",
+  "queryName": "Role with privilege escalation by actions 'iam:PutGroupPolicy'",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Role with privilege escalation by actions 'iam:PutGroupPolicy' and Resource set to '*'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role",
+  "platform": "Terraform",
+  "descriptionID": "ce1bbaeb",
+  "cloudProvider": "aws"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "0a592060-8166-49f5-8e65-99ac6dce9871",
+  "queryName": "Role with privilege escalation by actions 'glue:CreateDevEndpoint' and 'iam:PassRole'",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Role with privilege escalation by actions 'glue:CreateDevEndpoint' and 'iam:PassRole' and Resource set to '*'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role",
+  "platform": "Terraform",
+  "descriptionID": "0bc279fe",
+  "cloudProvider": "aws"
+}

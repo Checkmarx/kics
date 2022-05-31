@@ -1,0 +1,11 @@
+{
+  "id": "ee49557d-750c-4cc1-aa95-94ab36cbefde",
+  "queryName": "Role with privilege escalation by actions 'iam:CreatePolicyVersion'",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Role with privilege escalation by actions 'iam:CreatePolicyVersion' and Resource set to '*'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role",
+  "platform": "Terraform",
+  "descriptionID": "fe987a1d",
+  "cloudProvider": "aws"
+}
