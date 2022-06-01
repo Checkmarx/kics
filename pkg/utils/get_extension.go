@@ -29,6 +29,16 @@ func GetExtension(path string) string {
 }
 
 func isTextFile(path string) bool {
+	info, err := os.Stat(path)
+	if err != nil {
+		log.Error().Msgf("failed to get file info: %s", err)
+		return false
+	}
+
+	if info.IsDir() {
+		return false
+	}
+
 	content, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
 		log.Error().Msgf("failed to analyze file: %s", err)
