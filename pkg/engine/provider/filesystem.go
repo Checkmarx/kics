@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"sync"
 
 	sentryReport "github.com/Checkmarx/kics/internal/sentry"
 	"github.com/Checkmarx/kics/pkg/model"
@@ -18,6 +19,7 @@ import (
 type FileSystemSourceProvider struct {
 	paths    []string
 	excludes map[string][]os.FileInfo
+	mu       sync.RWMutex
 }
 
 // ErrNotSupportedFile - error representing when a file format is not supported by KICS
@@ -58,10 +60,12 @@ func (s *FileSystemSourceProvider) AddExcluded(excludePaths []string) error {
 			}
 			return errors.Wrap(err, "failed to open excluded file")
 		}
+		s.mu.Lock()
 		if _, ok := s.excludes[info.Name()]; !ok {
 			s.excludes[info.Name()] = make([]os.FileInfo, 0)
 		}
 		s.excludes[info.Name()] = append(s.excludes[info.Name()], info)
+		s.mu.Unlock()
 	}
 	return nil
 }
@@ -192,6 +196,8 @@ func closeFile(file *os.File, info os.FileInfo) {
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
 	path string, resolved bool) (bool, error) {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
 	if info.IsDir() {
 		if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
 			log.Info().Msgf("Directory ignored: %s", path)
