@@ -133,7 +133,7 @@ ENTRYPOINT ["kubectl"]`,
 	for i, testCase := range testCases {
 		detector := DetectKindLine{}
 		t.Run(fmt.Sprintf("detectDockerLine-%d", i), func(t *testing.T) {
-			v := detector.DetectLine(testCase.file, testCase.searchKey, &zerolog.Logger{}, 3)
+			v := detector.DetectLine(testCase.file, testCase.searchKey, 3, &zerolog.Logger{})
 			require.Equal(t, testCase.expected, v)
 		})
 	}

@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name=%s.spec.%s.name=%s.ports", [metadata.name, types[x], containers[c].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("spec[%s].%s[%s].ports[%s].hostPort is not Defined", [metadata.name, types[x], containers[c].name, ports[k].hostIP]),
@@ -31,6 +33,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name=%s.spec.template.spec.%s.name=%s.ports", [metadata.name, types[x], containers[c].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("spec[%s].template.spec.%s[%s].ports[%s].hostPort is not Defined", [metadata.name, types[x], containers[c].name, ports[k].hostIP]),

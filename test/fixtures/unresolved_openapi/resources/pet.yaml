@@ -1,0 +1,17 @@
+get:
+  summary: Detail
+  operationId: showPetById
+  description: Info for a specific pet
+  tags:
+    - pets
+  parameters:
+    - $ref: "../parameters/path/petId.yaml"
+  responses:
+    '200':
+      description: Expected response to a valid request
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/Pet.yaml"
+    default:
+      $ref: "../responses/UnexpectedError.yaml"

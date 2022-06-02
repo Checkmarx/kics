@@ -17,15 +17,13 @@ type mockkindDetectLine struct {
 type mockDefaultDetector struct {
 }
 
-func (m mockkindDetectLine) DetectLine(file *model.FileMetadata, searchKey string,
-	logWithFields *zerolog.Logger, outputLines int) model.VulnerabilityLines {
+func (m mockkindDetectLine) DetectLine(file *model.FileMetadata, searchKey string, outputLines int, logWithFields *zerolog.Logger) model.VulnerabilityLines {
 	return model.VulnerabilityLines{
 		Line: 1,
 	}
 }
 
-func (m mockDefaultDetector) DetectLine(file *model.FileMetadata, searchKey string,
-	logWithFields *zerolog.Logger, outputLines int) model.VulnerabilityLines {
+func (m mockDefaultDetector) DetectLine(file *model.FileMetadata, searchKey string, outputLines int, logWithFields *zerolog.Logger) model.VulnerabilityLines {
 	return model.VulnerabilityLines{
 		Line: 5,
 	}
@@ -153,7 +151,7 @@ func TestDetector_DetectLine(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := det.DetectLine(tt.args.file, tt.args.searchKey)
+			got := det.DetectLine(tt.args.file, tt.args.searchKey, &zerolog.Logger{})
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("DetectLine() = %v, want = %v", got, tt.want)
 			}

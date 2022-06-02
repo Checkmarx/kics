@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.dnssecConfig.defaultKeySpecs", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'algorithm' is not equal to 'rsasha1'",

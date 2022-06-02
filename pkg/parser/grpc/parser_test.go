@@ -511,7 +511,7 @@ func TestParser_Resolve(t *testing.T) {
 		name    string
 		p       *Parser
 		args    args
-		want    *[]byte
+		want    []byte
 		wantErr bool
 	}{
 		{
@@ -521,7 +521,7 @@ func TestParser_Resolve(t *testing.T) {
 				fileContent: []byte(``),
 				filename:    "test.proto",
 			},
-			want: &[]byte{},
+			want: []byte{},
 		},
 	}
 	for _, tt := range tests {
@@ -534,6 +534,26 @@ func TestParser_Resolve(t *testing.T) {
 			}
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("Parser.Resolve() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestParser_GetResolvedFiles(t *testing.T) {
+	tests := []struct {
+		name string
+		want map[string]model.ResolvedFile
+	}{
+		{
+			name: "grpc get resolved files",
+			want: map[string]model.ResolvedFile{},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			p := &Parser{}
+			if got := p.GetResolvedFiles(); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("GetResolvedFiles() = %v, want %v", got, tt.want)
 			}
 		})
 	}
