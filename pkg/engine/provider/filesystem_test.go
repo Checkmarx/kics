@@ -470,6 +470,18 @@ func TestProvider_getExcludePaths(t *testing.T) {
 			want:    []string{"install.sh"},
 			wantErr: false,
 		},
+		{
+			name: "test_getExludedPaths with double start",
+			args: args{
+				pathExpressions: filepath.Join("test", "fixtures", "analyzer_test", "**", "*.json"),
+			},
+			want: []string{
+				"test/fixtures/analyzer_test/azureResourceManager.json",
+				"test/fixtures/analyzer_test/openAPI.json",
+				"test/fixtures/analyzer_test/openAPI_test/openAPI.json",
+			},
+			wantErr: false,
+		},
 	}
 
 	for _, tt := range tests {
