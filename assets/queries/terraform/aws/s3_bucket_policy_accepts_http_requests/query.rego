@@ -39,7 +39,7 @@ CxPolicy[result] {
 	}
 }
 
-validActions := {"*", "s3:*", "s3:GetObject"}
+validActions := {"*", "s3:*"}
 
 check_action(st) {
 	is_string(st.Action)
