@@ -133,6 +133,26 @@ CxPolicy[result] {
 
 # version after TF AWS 4.0
 CxPolicy[result] {
+	input.document[_].resource.aws_s3_bucket[bucketName]
+
+	not terra_lib.has_target_resource(bucketName, "aws_s3_bucket_lifecycle_configuration")
+
+	bucket_versioning := input.document[i].resource.aws_s3_bucket_versioning[name]
+	split(bucket_versioning.bucket, ".")[1] == bucketName
+	bucket_versioning.versioning_configuration.status != "Enabled"
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("aws_s3_bucket_versioning[%s].versioning_configuration.status", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "'versioning_configuration.status' to be set to 'Enabled'",
+		"keyActualValue": "'versioning_configuration.status' is set to 'Disabled'",
+		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_versioning", name, "versioning_configuration", "status"], []),
+	}
+}
+
+# version after TF AWS 4.0
+CxPolicy[result] {
 	
 	input.document[_].resource.aws_s3_bucket[bucketName]
 

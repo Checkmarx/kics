@@ -24,6 +24,7 @@ resource "aws_s3_bucket_versioning" "example" {
   bucket = aws_s3_bucket.bbb.id
 
   versioning_configuration {
-    status = "Enabled"
+    status = "Disabled"
+    mfa_delete = "Enabled"
   }
 }
