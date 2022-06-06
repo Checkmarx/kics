@@ -9,6 +9,7 @@ import (
 
 	sentryReport "github.com/Checkmarx/kics/internal/sentry"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -168,7 +169,9 @@ func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string,
 }
 
 func openScanFile(scanPath string, extensions model.Extensions) (*os.File, error) {
-	if !extensions.Include(filepath.Ext(scanPath)) && !extensions.Include(filepath.Base(scanPath)) {
+	ext := utils.GetExtension(scanPath)
+
+	if !extensions.Include(ext) {
 		return nil, ErrNotSupportedFile
 	}
 
@@ -208,7 +211,9 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 		log.Trace().Msgf("File ignored: %s", path)
 		return true, nil
 	}
-	if !extensions.Include(filepath.Ext(path)) && !extensions.Include(filepath.Base(path)) {
+	ext := utils.GetExtension(path)
+	if !extensions.Include(ext) {
+		log.Trace().Msgf("File ignored: %s", path)
 		return true, nil
 	}
 	return false, nil
