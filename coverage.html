@@ -93,7 +93,7 @@
 				
 				<option value="file18">github.com/Checkmarx/kics/internal/tracker/ci.go (72.2%)</option>
 				
-				<option value="file19">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (81.5%)</option>
+				<option value="file19">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (73.4%)</option>
 				
 				<option value="file20">github.com/Checkmarx/kics/pkg/builder/engine/engine.go (71.8%)</option>
 				
@@ -125,7 +125,7 @@
 				
 				<option value="file34">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (79.5%)</option>
 				
-				<option value="file35">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (78.6%)</option>
+				<option value="file35">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (79.2%)</option>
 				
 				<option value="file36">github.com/Checkmarx/kics/pkg/engine/secrets/inspector.go (84.2%)</option>
 				
@@ -185,7 +185,7 @@
 				
 				<option value="file64">github.com/Checkmarx/kics/pkg/parser/jsonfilter/parser/jsonfilter_tree_visitor.go (0.0%)</option>
 				
-				<option value="file65">github.com/Checkmarx/kics/pkg/parser/parser.go (90.2%)</option>
+				<option value="file65">github.com/Checkmarx/kics/pkg/parser/parser.go (89.8%)</option>
 				
 				<option value="file66">github.com/Checkmarx/kics/pkg/parser/terraform/comment/comment.go (96.8%)</option>
 				
@@ -285,11 +285,13 @@
 				
 				<option value="file114">github.com/Checkmarx/kics/pkg/utils/contains.go (100.0%)</option>
 				
-				<option value="file115">github.com/Checkmarx/kics/pkg/utils/map.go (100.0%)</option>
+				<option value="file115">github.com/Checkmarx/kics/pkg/utils/get_extension.go (77.3%)</option>
 				
-				<option value="file116">github.com/Checkmarx/kics/pkg/utils/random.go (100.0%)</option>
+				<option value="file116">github.com/Checkmarx/kics/pkg/utils/map.go (100.0%)</option>
 				
-				<option value="file117">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
+				<option value="file117">github.com/Checkmarx/kics/pkg/utils/random.go (100.0%)</option>
+				
+				<option value="file118">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
 				
 				</select>
 			</div>
@@ -2011,13 +2013,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="35">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2042,7 +2044,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2319,15 +2321,18 @@ var (
         listKeywordsGoogleDeployment = []string{"resources"}
         armRegexTypes                = []string{"blueprint", "templateArtifact", "roleAssignmentArtifact", "policyAssignmentArtifact"}
         possibleFileTypes            = map[string]bool{
-                ".yml":        true,
-                ".yaml":       true,
-                ".json":       true,
-                ".dockerfile": true,
-                "Dockerfile":  true,
-                ".tf":         true,
-                "tfvars":      true,
-                ".proto":      true,
-                ".sh":         true,
+                ".yml":               true,
+                ".yaml":              true,
+                ".json":              true,
+                ".dockerfile":        true,
+                "Dockerfile":         true,
+                "possibleDockerfile": true,
+                ".debian":            true,
+                ".ubi8":              true,
+                ".tf":                true,
+                "tfvars":             true,
+                ".proto":             true,
+                ".sh":                true,
         }
         supportedRegexes = map[string][]string{
                 "azureresourcemanager": append(armRegexTypes, arm),
@@ -2480,12 +2485,9 @@ func Analyze(paths, types, exc []string) (model.AnalyzedPaths, error) <span clas
                                 return err
                         }</span>
 
-                        <span class="cov6" title="37">ext := filepath.Ext(path)
-                        if ext == "" </span><span class="cov4" title="10">{
-                                ext = filepath.Base(path)
-                        }</span>
+                        <span class="cov6" title="37">ext := utils.GetExtension(path)
 
-                        <span class="cov6" title="37">if _, ok := possibleFileTypes[ext]; ok &amp;&amp; !isExcludedFile(path, exc) </span><span class="cov5" title="23">{
+                        if _, ok := possibleFileTypes[ext]; ok &amp;&amp; !isExcludedFile(path, exc) </span><span class="cov5" title="23">{
                                 files = append(files, path)
                         }</span>
 
@@ -2535,16 +2537,20 @@ func Analyze(paths, types, exc []string) (model.AnalyzedPaths, error) <span clas
 // if no types were found, the worker will write the path of the file in the unwanted channel
 func (a *analyzerInfo) worker(results, unwanted chan&lt;- string, wg *sync.WaitGroup) <span class="cov5" title="23">{
         defer wg.Done()
-        ext := filepath.Ext(a.filePath)
-        if ext == "" </span><span class="cov2" title="2">{
-                ext = filepath.Base(a.filePath)
-        }</span>
-        <span class="cov5" title="23">typesFlag := a.typesFlag
+
+        ext := utils.GetExtension(a.filePath)
+
+        typesFlag := a.typesFlag
 
         switch ext </span>{
-        // Dockerfile
+        // Dockerfile (direct identification)
         case ".dockerfile", "Dockerfile":<span class="cov2" title="2">
                 if typesFlag[0] == "" || utils.Contains(dockerfile, typesFlag) </span><span class="cov2" title="2">{
+                        results &lt;- dockerfile
+                }</span>
+        // Dockerfile (indirect identification)
+        case "possibleDockerfile", ".ubi8", ".debian":<span class="cov0" title="0">
+                if (typesFlag[0] == "" || utils.Contains(dockerfile, typesFlag)) &amp;&amp; isDockerfile(a.filePath) </span><span class="cov0" title="0">{
                         results &lt;- dockerfile
                 }</span>
         // Terraform
@@ -2561,6 +2567,30 @@ func (a *analyzerInfo) worker(results, unwanted chan&lt;- string, wg *sync.WaitG
         case yaml, yml, json, sh:<span class="cov5" title="19">
                 a.checkContent(results, unwanted, ext)</span>
         }
+}
+
+func isDockerfile(path string) bool <span class="cov0" title="0">{
+        content, err := os.ReadFile(filepath.Clean(path))
+        if err != nil </span><span class="cov0" title="0">{
+                log.Error().Msgf("failed to analyze file: %s", err)
+                return false
+        }</span>
+
+        <span class="cov0" title="0">regexes := []*regexp.Regexp{
+                regexp.MustCompile(`\s*FROM\s*`),
+                regexp.MustCompile(`\s*RUN\s*`),
+        }
+
+        check := true
+
+        for _, regex := range regexes </span><span class="cov0" title="0">{
+                if !regex.Match(content) </span><span class="cov0" title="0">{
+                        check = false
+                        break</span>
+                }
+        }
+
+        <span class="cov0" title="0">return check</span>
 }
 
 // overrides k8s match when all regexs passes for azureresourcemanager key and extension is set to json
@@ -4540,7 +4570,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="11">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5523,6 +5553,7 @@ import (
 
         sentryReport "github.com/Checkmarx/kics/internal/sentry"
         "github.com/Checkmarx/kics/pkg/model"
+        "github.com/Checkmarx/kics/pkg/utils"
         "github.com/pkg/errors"
         "github.com/rs/zerolog/log"
 )
@@ -5633,12 +5664,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="27985">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="28043">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="27985">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="27718">{
+                <span class="cov9" title="28043">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="27776">{
                         return skipFolder
                 }</span>
 
@@ -5682,7 +5713,9 @@ func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string,
 }
 
 func openScanFile(scanPath string, extensions model.Extensions) (*os.File, error) <span class="cov1" title="1">{
-        if !extensions.Include(filepath.Ext(scanPath)) &amp;&amp; !extensions.Include(filepath.Base(scanPath)) </span><span class="cov0" title="0">{
+        ext := utils.GetExtension(scanPath)
+
+        if !extensions.Include(ext) </span><span class="cov0" title="0">{
                 return nil, ErrNotSupportedFile
         }</span>
 
@@ -5705,7 +5738,7 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="266">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="27988">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="28046">{
         if info.IsDir() </span><span class="cov8" title="6156">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
@@ -5718,11 +5751,13 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="21832">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="21890">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="21832">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="21566">{
+        <span class="cov9" title="21890">ext := utils.GetExtension(path)
+        if !extensions.Include(ext) </span><span class="cov9" title="21624">{
+                log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
         <span class="cov5" title="266">return false, nil</span>
@@ -9425,7 +9460,7 @@ func (p *Parser) GetKind() model.FileKind <span class="cov1" title="1">{
 
 // SupportedExtensions returns Dockerfile extensions
 func (p *Parser) SupportedExtensions() []string <span class="cov1" title="1">{
-        return []string{"Dockerfile", ".dockerfile"}
+        return []string{"Dockerfile", ".dockerfile", ".ubi8", ".debian", "possibleDockerfile"}
 }</span>
 
 // SupportedTypes returns types supported by this parser, which are dockerfile
@@ -12792,7 +12827,6 @@ import (
         "bytes"
         "errors"
         "os"
-        "path/filepath"
         "strings"
 
         "github.com/Checkmarx/kics/pkg/model"
@@ -12836,7 +12870,7 @@ func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) <span
                 if contains(types, supportedTypes) </span><span class="cov7" title="11">{
                         extensions := make(model.Extensions, len(b.parsers))
                         var platforms []string
-                        for _, ext := range parser.SupportedExtensions() </span><span class="cov8" title="19">{
+                        for _, ext := range parser.SupportedExtensions() </span><span class="cov9" title="31">{
                                 extensions[ext] = struct{}{}
                         }</span>
                         <span class="cov7" title="11">for key := range supportedTypes </span><span class="cov10" title="33">{
@@ -12962,13 +12996,10 @@ func contains(types []string, supportedTypes map[string]bool) bool <span class="
 }
 
 func (c *Parser) isValidExtension(filePath string) bool <span class="cov6" title="7">{
-        ext := filepath.Ext(filePath)
-        if ext == "" </span><span class="cov3" title="3">{
-                ext = filepath.Base(filePath)
-        }</span>
-        <span class="cov6" title="7">_, ok := c.extensions[ext]
-        return ok</span>
-}
+        ext := utils.GetExtension(filePath)
+        _, ok := c.extensions[ext]
+        return ok
+}</span>
 </pre>
 		
 		<pre class="file" id="file66" style="display: none">package comment
@@ -19294,22 +19325,77 @@ func DecryptAnsibleVault(fileContent []byte, secret string) []byte <span class="
 import "reflect"
 
 // Contains if a function to check if list contains target
-func Contains(target, list interface{}) bool <span class="cov5" title="4">{
+func Contains(target, list interface{}) bool <span class="cov6" title="6">{
         listVal := reflect.ValueOf(list)
 
-        if listVal.Kind() == reflect.Slice || listVal.Kind() == reflect.Array </span><span class="cov4" title="3">{
-                for i := 0; i &lt; listVal.Len(); i++ </span><span class="cov10" title="13">{
-                        if listVal.Index(i).Interface() == target </span><span class="cov3" title="2">{
+        if listVal.Kind() == reflect.Slice || listVal.Kind() == reflect.Array </span><span class="cov6" title="5">{
+                for i := 0; i &lt; listVal.Len(); i++ </span><span class="cov10" title="16">{
+                        if listVal.Index(i).Interface() == target </span><span class="cov4" title="3">{
                                 return true
                         }</span>
                 }
         }
 
-        <span class="cov3" title="2">return false</span>
+        <span class="cov4" title="3">return false</span>
 }
 </pre>
 		
 		<pre class="file" id="file115" style="display: none">package utils
+
+import (
+        "bytes"
+        "os"
+        "path/filepath"
+
+        "github.com/rs/zerolog/log"
+        "golang.org/x/tools/godoc/util"
+)
+
+// GetExtension gets the extension of a file path
+func GetExtension(path string) string <span class="cov10" title="3">{
+        targets := []string{"Dockerfile", "tfvars"}
+
+        ext := filepath.Ext(path)
+
+        if ext == "" </span><span class="cov6" title="2">{
+                base := filepath.Base(path)
+
+                if Contains(base, targets) </span><span class="cov1" title="1">{
+                        ext = base
+                }</span> else<span class="cov1" title="1"> if isTextFile(path) </span><span class="cov1" title="1">{
+                        ext = "possibleDockerfile"
+                }</span>
+        }
+
+        <span class="cov10" title="3">return ext</span>
+}
+
+func isTextFile(path string) bool <span class="cov1" title="1">{
+        info, err := os.Stat(path)
+        if err != nil </span><span class="cov0" title="0">{
+                log.Error().Msgf("failed to get file info: %s", err)
+                return false
+        }</span>
+
+        <span class="cov1" title="1">if info.IsDir() </span><span class="cov0" title="0">{
+                return false
+        }</span>
+
+        <span class="cov1" title="1">content, err := os.ReadFile(filepath.Clean(path))
+        if err != nil </span><span class="cov0" title="0">{
+                log.Error().Msgf("failed to analyze file: %s", err)
+                return false
+        }</span>
+
+        <span class="cov1" title="1">content = bytes.Replace(content, []byte("\r"), []byte(""), -1)
+
+        isText := util.IsText(content)
+
+        return isText</span>
+}
+</pre>
+		
+		<pre class="file" id="file116" style="display: none">package utils
 
 import "sort"
 
@@ -19331,7 +19417,7 @@ func MergeMaps(map1, map2 map[string]interface{}) <span class="cov1" title="1">{
 }
 </pre>
 		
-		<pre class="file" id="file116" style="display: none">package utils
+		<pre class="file" id="file117" style="display: none">package utils
 
 import (
         "os"
@@ -19366,7 +19452,7 @@ func NextRandom() string <span class="cov10" title="2">{
 // ==============================================================================
 </pre>
 		
-		<pre class="file" id="file117" style="display: none">package test
+		<pre class="file" id="file118" style="display: none">package test
 
 import (
         "bytes"
