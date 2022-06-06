@@ -35,6 +35,8 @@ HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 # kics-scan ignore-line
 FROM alpine:3.16.0
 
+ENV TERM xterm-256color
+
 # Install Terraform and Terraform plugins
 RUN wget https://releases.hashicorp.com/terraform/1.1.3/terraform_1.1.3_linux_amd64.zip \
     && unzip terraform_1.1.3_linux_amd64.zip && rm terraform_1.1.3_linux_amd64.zip \
