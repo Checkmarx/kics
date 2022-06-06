@@ -90,19 +90,3 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_cors_configuration", name, "cors_rule", idx], []),
 	}
 }
-
-# version after TF AWS 4.0
-CxPolicy[result] {	
-	resource := input.document[i].resource.aws_s3_bucket[bucketName]
-	not terra_lib.has_target_resource(bucketName, "aws_s3_bucket_cors_configuration")
-	not common_lib.valid_key(resource, "cors_rule")
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_s3_bucket[%s]", [bucketName]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'aws_s3_bucket' to have 'cors' associated",
-		"keyActualValue": "'aws_s3_bucket' does not have 'cors' associated",
-		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", bucketName], []),
-	}
-}

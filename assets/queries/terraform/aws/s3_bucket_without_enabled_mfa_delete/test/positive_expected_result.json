@@ -69,7 +69,7 @@
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
     "severity": "HIGH",
-    "line": 26,
+    "line": 27,
     "fileName": "positive10.tf"
   }
 ]
