@@ -83,7 +83,7 @@ var junitTests = []junitTest{
 							Failures: []junitFailure{
 								{
 									Type:    "test description",
-									Message: "A problem was found on 'test.tf' file in line 1, expected, but actual.",
+									Message: "[Severity: HIGH, Query description: test description] Problem found on 'test.tf' file in line 1. Expected value: expected. Actual value: actual.",
 								},
 							},
 						},

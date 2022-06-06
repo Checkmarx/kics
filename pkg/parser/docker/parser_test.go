@@ -17,7 +17,7 @@ func TestParser_GetKind(t *testing.T) {
 // TestParser_SupportedExtensions tests the functions [SupportedExtensions()] and all the methods called by them
 func TestParser_SupportedExtensions(t *testing.T) {
 	p := &Parser{}
-	require.Equal(t, []string{"Dockerfile", ".dockerfile"}, p.SupportedExtensions())
+	require.Equal(t, []string{"Dockerfile", ".dockerfile", ".ubi8", ".debian", "possibleDockerfile"}, p.SupportedExtensions())
 }
 
 // TestParser_SupportedExtensions tests the functions [SupportedTypes()] and all the methods called by them

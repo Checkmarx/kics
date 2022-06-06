@@ -591,6 +591,12 @@ has_relation(related_resource_id, related_resource_type, current_resource, curre
 	regex.match(sprintf("\\${%v\\.%v\\.", [related_resource_type, related_resource_id]), value)
 }
 
+has_target_resource(bucketName, resourceName) {
+	resource := input.document[i].resource[resourceName][_]
+
+	split(resource.bucket, ".")[1] == bucketName
+}
+
 #Checks if an action is allowed for all principals
 allows_action_from_all_principals(json_policy, action) {
  	policy := common_lib.json_unmarshal(json_policy)
