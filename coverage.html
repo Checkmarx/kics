@@ -207,7 +207,7 @@
 				
 				<option value="file75">github.com/Checkmarx/kics/pkg/printer/utils.go (82.4%)</option>
 				
-				<option value="file76">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
+				<option value="file76">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (80.0%)</option>
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
@@ -2011,13 +2011,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="33">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2042,7 +2042,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -15014,8 +15014,8 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
 }
 
 // Start initializes the Circle Progress Bar
-func (p ProgressBar) Start() <span class="cov1" title="1">{
-        for </span><span class="cov1" title="1">{ // increment until the Close func is called
+func (p ProgressBar) Start() <span class="cov0" title="0">{
+        for </span><span class="cov0" title="0">{ // increment until the Close func is called
                 p.pBar.Increment()
                 // lower cpu usage from infinite loop
                 time.Sleep(time.Millisecond * sleepTimeout)
@@ -15644,6 +15644,7 @@ func PrintJUnitReport(path, filename string, body interface{}) error <span class
 import (
         "fmt"
         "os"
+        "strings"
         "time"
 
         "github.com/Checkmarx/kics/pkg/model"
@@ -15773,8 +15774,13 @@ func (a *AwsAccountInfo) getFinding(query *model.QueryResult, file *model.Vulner
 
                 Remediation: Remediation{
                         Recommendation: AsffRecommendation{
-                                Text: *aws.String(fmt.Sprintf("In line %d of file %s, a result was found. %s, but %s",
-                                        file.Line, file.FileName, file.KeyActualValue, file.KeyExpectedValue)),
+                                Text: *aws.String(fmt.Sprintf(
+                                        "Problem found on '%s' file in line %d. Expected value: %s. Actual value: %s.",
+                                        file.FileName,
+                                        file.Line,
+                                        strings.TrimRight(file.KeyExpectedValue, "."),
+                                        strings.TrimRight(file.KeyActualValue, "."),
+                                )),
                         },
                 },
                 Compliance: Compliance{Status: *aws.String("FAILED")},
@@ -16115,8 +16121,12 @@ func getVulnerabilitiesByFile(query *model.QueryResult, fileName, purl string) [
                                 Description: getDescription(query, "cyclonedx"),
                                 Recommendations: []Recommendation{
                                         {
-                                                Recommendation: fmt.Sprintf("In line %d, a result was found. '%s', but '%s'",
-                                                        file.Line, file.KeyActualValue, file.KeyExpectedValue),
+                                                Recommendation: fmt.Sprintf(
+                                                        "Problem found in line %d. Expected value: %s. Actual value: %s.",
+                                                        file.Line,
+                                                        strings.TrimRight(file.KeyExpectedValue, "."),
+                                                        strings.TrimRight(file.KeyActualValue, "."),
+                                                ),
                                         },
                                 },
                         }
@@ -16364,6 +16374,7 @@ func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.QueryRes
 import (
         "encoding/xml"
         "fmt"
+        "strings"
 
         "github.com/Checkmarx/kics/internal/constants"
         "github.com/Checkmarx/kics/pkg/model"
@@ -16434,11 +16445,13 @@ func (jUnit *junitTestSuites) GenerateTestEntry(query *model.QueryResult) <span 
                 failedTest := junitFailure{
                         Type: queryDescription,
                         Message: fmt.Sprintf(
-                                "A problem was found on '%s' file in line %d, %s, but %s.",
+                                "[Severity: %s, Query description: %s] Problem found on '%s' file in line %d. Expected value: %s. Actual value: %s.",
+                                query.Severity,
+                                queryDescription,
                                 query.Files[idx].FileName,
                                 query.Files[idx].Line,
-                                query.Files[idx].KeyExpectedValue,
-                                query.Files[idx].KeyActualValue,
+                                strings.TrimRight(query.Files[idx].KeyExpectedValue, "."),
+                                strings.TrimRight(query.Files[idx].KeyActualValue, "."),
                         ),
                 }
 
