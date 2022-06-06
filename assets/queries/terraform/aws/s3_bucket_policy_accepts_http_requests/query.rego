@@ -39,18 +39,19 @@ CxPolicy[result] {
 	}
 }
 
-validActions := {"*", "s3:*"}
-
+any_s3_action(action) {
+	any([action == "*", startswith(action, "s3:")])
+}
 check_action(st) {
 	is_string(st.Action)
-	st.Action == validActions[x]
+	any_s3_action(st.Action)
 } else {
-	st.Action[a] == validActions[x]
+	any_s3_action(st.Action[a])
 } else {
 	is_string(st.Actions)
-	st.Actions == validActions[x]
+	any_s3_action(st.Actions)
 } else {
-	st.Actions[a] == validActions[x]
+	any_s3_action(st.Actions[a])
 }
 
 is_equal(secure, target)
