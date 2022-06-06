@@ -12,10 +12,10 @@ CxPolicy[result] {
 		"resource_type": "aws_s3_bucket",
 		"resource_name": get_bucket_name(bucket_resource),
 		"resource_accessibility": info.accessibility,
-		"resource_encryption": common_lib.get_encryption_if_exists(bucket_resource),
+		"resource_encryption": get_encryption_if_exists(bucket_resource, name),
 		"resource_vendor": "AWS",
 		"resource_category": "Storage",
-		"acl": get_bucket_acl(bucket_resource),
+		"acl": get_bucket_acl(bucket_resource, name),
 	}
 
 	final_bom_output = common_lib.get_bom_output(bom_output, info.policy)
@@ -31,11 +31,34 @@ CxPolicy[result] {
 	}
 }
 
-get_bucket_acl(bucket_resource) = acl {
+get_bucket_acl(bucket_resource, s3BucketName) = acl {
+	# version before TF AWS 4.0
 	acl := bucket_resource.acl
+} else = acl { 
+	# version after TF AWS 4.0
+	bucketAcl := input.document[_].resource.aws_s3_bucket_acl[_]
+	split(bucketAcl.bucket, ".")[1] == s3BucketName
+	acl := bucketAcl.acl
+} else = acl { 
+	# version after TF AWS 4.0
+	bucketAcl := input.document[_].resource.aws_s3_bucket_acl[_]
+	split(bucketAcl.bucket, ".")[1] == s3BucketName
+	not common_lib.valid_key(bucketAcl, "acl")
+	not common_lib.valid_key(bucketAcl, "access_control_policy")
+	acl := "unknown"
+} else = acl { 
+	# version after TF AWS 4.0
+	bucketAcl := input.document[_].resource.aws_s3_bucket_acl[_]
+	split(bucketAcl.bucket, ".")[1] == s3BucketName
+	not common_lib.valid_key(bucketAcl, "acl")
+	common_lib.valid_key(bucketAcl, "access_control_policy")
+	acl := "unknown"
 } else = acl {
+	# version before TF AWS 4.0
+	not terra_lib.has_target_resource(s3BucketName, "aws_s3_bucket_acl")
 	acl := "private"
 }
+
 
 get_bucket_name(bucket_resource) = name {
 	name := bucket_resource.bucket
@@ -57,9 +80,23 @@ get_accessibility(bucket, bucketName) = accessibility {
 } else = accessibility {
 	# cases when there is a unrestriced policy
 	acc := terra_lib.get_accessibility(bucket, bucketName, "aws_s3_bucket_policy", "bucket")
-    acc.accessibility == "hasPolicy"   
+    acc.accessibility == "hasPolicy"
     
     accessibility = {"accessibility": "hasPolicy", "policy": acc.policy}   
 } else = accessibility {
 	accessibility = {"accessibility": "unknown", "policy": ""}
+}
+
+get_encryption_if_exists(bucket_resource, s3BucketName) = encryption {
+	# version before TF AWS 4.0
+	common_lib.valid_key(bucket_resource, "server_side_encryption_configuration")
+	encryption := "encrypted"
+} else = encryption {
+	# version after TF AWS 4.0
+	bucketAcl := input.document[_].resource.aws_s3_bucket_acl[_]
+	split(bucketAcl.bucket, ".")[1] == s3BucketName
+	terra_lib.has_target_resource(s3BucketName, "aws_s3_bucket_server_side_encryption_configuration")
+	encryption := "encrypted"
+} else = encryption {
+	encryption := "unencrypted"
 }
