@@ -163,7 +163,7 @@ func NewInspector(
 
 func (c *Inspector) inspectQuery(ctx context.Context, basePaths []string,
 	files model.FileMetadatas, i int) ([]model.Vulnerability, error) {
-	timeoutCtx, cancel := context.WithTimeout(ctx, c.queryExecutionTimeout*time.Second)
+	timeoutCtx, cancel := context.WithTimeout(ctx, c.queryExecutionTimeout)
 	defer cancel()
 
 	cleanFiles := cleanFiles(files)

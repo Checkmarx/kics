@@ -1,0 +1,3 @@
+path: /path/e2e/fixtures/samples/positive.dockerfile
+queries-path: /path/assets/queries
+timeout: 12
