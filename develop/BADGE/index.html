@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/BADGE/">
       
       <link rel="icon" href="../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.16">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.2">
     
     
       
@@ -21,11 +21,12 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.1c3799f8.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.5d38496d.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.cc9b2e1e.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
         
+      
       
     
     
@@ -1299,7 +1300,7 @@
 <p>Let's assume a manual CLI process using docker:</p>
 <pre><code class="language-bash">#!/usr/bin/env bash
 echo &quot;running KICS in the current dir and writing results.json&quot;
-docker run -v $PWD:/path checkmarx/kics:latest scan -p &quot;/path&quot; -o &quot;/path/&quot;
+docker run -t -v $PWD:/path checkmarx/kics:latest scan -p &quot;/path&quot; -o &quot;/path/&quot;
 </code></pre>
 <p>This will generate a results.json file under <code>path</code>.
 Parse the <code>results.json</code> and request a badge to img.shields.io.</p>
@@ -1326,6 +1327,7 @@ curl -sL &quot;https://img.shields.io/badge/KICS-${MESSAGE}-${COLOR}.svg&quot; &
 
               
             </article>
+            
           </div>
         </div>
         
@@ -1333,7 +1335,8 @@ curl -sL &quot;https://img.shields.io/badge/KICS-${MESSAGE}-${COLOR}.svg&quot; &
       
         <footer class="md-footer">
   
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
         <a href="../integrations_aws_codebuild/" class="md-footer__link md-footer__link--prev" aria-label="Previous: AWS CodeBuild" rel="prev">
@@ -1392,10 +1395,10 @@ curl -sL &quot;https://img.shields.io/badge/KICS-${MESSAGE}-${COLOR}.svg&quot; &
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../assets/javascripts/workers/search.b028fd86.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.3a4b43e5.min.js"></script>
+      <script src="../assets/javascripts/bundle.7f366e99.min.js"></script>
       
         <script src="../js/version-mike.js"></script>
       

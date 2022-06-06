@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/getting-started/">
       
       <link rel="icon" href="../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.16">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.2">
     
     
       
@@ -21,11 +21,12 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.1c3799f8.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.5d38496d.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.cc9b2e1e.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
         
+      
       
     
     
@@ -1313,7 +1314,7 @@
 <p>KICS is available as a <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">Docker image</a> and can be used as follows:</p>
 <p>To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the -p KICS parameter (see Scan Command Options section below)</p>
 <pre><code class="language-shell">docker pull checkmarx/kics:latest
-docker run -v &quot;{path_to_host_folder_to_scan}&quot;:/path checkmarx/kics scan -p &quot;/path&quot; -o &quot;/path/&quot;
+docker run -t -v &quot;{path_to_host_folder_to_scan}&quot;:/path checkmarx/kics scan -p &quot;/path&quot; -o &quot;/path/&quot;
 </code></pre>
 <p>You can see the list of available tags in <a href="https://hub.docker.com/r/checkmarx/kics/tags?page=1&amp;ordering=-name">dockerhub</a></p>
 <p>ℹ️ <strong>UBI Based Images</strong></p>
@@ -1362,6 +1363,7 @@ docker run -v &quot;{path_to_host_folder_to_scan}&quot;:/path checkmarx/kics sca
 
               
             </article>
+            
           </div>
         </div>
         
@@ -1369,7 +1371,8 @@ docker run -v &quot;{path_to_host_folder_to_scan}&quot;:/path checkmarx/kics sca
       
         <footer class="md-footer">
   
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
       
         
@@ -1413,10 +1416,10 @@ docker run -v &quot;{path_to_host_folder_to_scan}&quot;:/path checkmarx/kics sca
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../assets/javascripts/workers/search.b028fd86.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.3a4b43e5.min.js"></script>
+      <script src="../assets/javascripts/bundle.7f366e99.min.js"></script>
       
         <script src="../js/version-mike.js"></script>
       

@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/configuration-file/">
       
       <link rel="icon" href="../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.16">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.2">
     
     
       
@@ -21,11 +21,12 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.1c3799f8.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.5d38496d.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.cc9b2e1e.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
         
+      
       
     
     
@@ -1513,7 +1514,7 @@ disable-full-descriptions = &quot;disable request for full descriptions and use 
 <li>Add the necessary configurations as shown in the templates section in any of the supported formats.</li>
 <li>Pass the configuration file as argument:</li>
 </ol>
-<pre><code>docker run -v {​​​​path_to_kics_config}​​​​:/kics -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p &quot;/path&quot; --config /kics/kics-config.json
+<pre><code>docker run -t -v {​​​​path_to_kics_config}​​​​:/kics -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p &quot;/path&quot; --config /kics/kics-config.json
 </code></pre>
 <h4 id="configuration_as_code">Configuration as Code<a class="headerlink" href="#configuration_as_code" title="Permanent link">&para;</a></h4>
 <ol>
@@ -1521,7 +1522,7 @@ disable-full-descriptions = &quot;disable request for full descriptions and use 
 <li>Add the necessary configurations as shown in the templates section in any of the supported formats.</li>
 <li>Invoke KICS without arguments (KICS will search for the specific file in the root)</li>
 </ol>
-<pre><code>docker run -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p &quot;/path&quot;
+<pre><code>docker run -t -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p &quot;/path&quot;
 </code></pre>
 <p><strong>Note</strong>: If more than one path is given, KICS will warn that <code>--config</code> must be used to explicit decide.</p>
 <h4 id="environment_variables">Environment variables<a class="headerlink" href="#environment_variables" title="Permanent link">&para;</a></h4>
@@ -1540,6 +1541,7 @@ disable-full-descriptions = &quot;disable request for full descriptions and use 
 
               
             </article>
+            
           </div>
         </div>
         
@@ -1547,7 +1549,8 @@ disable-full-descriptions = &quot;disable request for full descriptions and use 
       
         <footer class="md-footer">
   
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
         <a href="../getting-started/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation" rel="prev">
@@ -1606,10 +1609,10 @@ disable-full-descriptions = &quot;disable request for full descriptions and use 
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../assets/javascripts/workers/search.b028fd86.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.3a4b43e5.min.js"></script>
+      <script src="../assets/javascripts/bundle.7f366e99.min.js"></script>
       
         <script src="../js/version-mike.js"></script>
       
