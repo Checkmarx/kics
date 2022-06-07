@@ -3,7 +3,7 @@
   "queryName": "IAM Password Without Minimum Length",
   "severity": "MEDIUM",
   "category": "Best Practices",
-  "descriptionText": "Check if IAM account password has the required minimum length",
+  "descriptionText": "IAM password should have the required minimum length",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user",
   "platform": "CloudFormation",
   "descriptionID": "46859482",
