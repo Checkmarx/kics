@@ -1629,8 +1629,8 @@ github.com/subosito/gotenv v1.3.0/go.mod h1:YzJjq/33h7nrwdY+iHMhEOEEbW0ovIz0tB6t
 github.com/svanharmelen/jsonapi v0.0.0-20180618144545-0c0828c3f16d/go.mod h1:BSTlc8jOjh0niykqEGVXOLXdi9o0r0kR8tCYiMvjFgw=
 github.com/syndtr/gocapability v0.0.0-20200815063812-42c35b437635/go.mod h1:hkRG7XYTFWNJGYcbNJQlaLq0fg1yr4J4t/NcTQtrfww=
 github.com/tchap/go-patricia v2.2.6+incompatible/go.mod h1:bmLyhP68RS6kStMGxByiQ23RP/odRBOTVjwp2cDyi6I=
-github.com/tdewolff/minify/v2 v2.11.8 h1:nR/IUsJF8cJwYADP3djtHta4JANcxXEfkdNej0P+OXw=
-github.com/tdewolff/minify/v2 v2.11.8/go.mod h1:XHKhaRF/vTa3EP4JX8oZ2CO4crGEtVOiSoqUED953wM=
+github.com/tdewolff/minify/v2 v2.11.9 h1:1q5728c0QICKlp2X1n7OiaiiFFzCzsq7uxAkv+eykT8=
+github.com/tdewolff/minify/v2 v2.11.9/go.mod h1:XHKhaRF/vTa3EP4JX8oZ2CO4crGEtVOiSoqUED953wM=
 github.com/tdewolff/parse/v2 v2.5.33 h1:D75KlhAeCSQg4Na8cWKehJdPJoZxwdpRbTZw7lZFWNQ=
 github.com/tdewolff/parse/v2 v2.5.33/go.mod h1:WzaJpRSbwq++EIQHYIRTpbYKNA3gn9it1Ik++q4zyho=
 github.com/tdewolff/test v1.0.6 h1:76mzYJQ83Op284kMT+63iCNCI7NEERsIN8dLM+RiKr4=
