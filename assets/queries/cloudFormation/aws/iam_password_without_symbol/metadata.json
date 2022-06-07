@@ -3,7 +3,7 @@
   "queryName": "IAM Password Without Symbol",
   "severity": "MEDIUM",
   "category": "Best Practices",
-  "descriptionText": "IAM user resource Login Profile Password should have at least one symbol",
+  "descriptionText": "Check if IAM account password has the required symbols",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user",
   "platform": "CloudFormation",
   "descriptionID": "7ec4df0d",

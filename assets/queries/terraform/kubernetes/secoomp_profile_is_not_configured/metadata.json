@@ -3,7 +3,7 @@
   "queryName": "Seccomp Profile Is Not Configured",
   "severity": "MEDIUM",
   "category": "Insecure Configurations",
-  "descriptionText": "Check if any resource does not configure Seccomp default profile properly",
+  "descriptionText": "Containers should be configured with a secure Seccomp profile to restrict potentially dangerous syscalls",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#annotations",
   "platform": "Terraform",
   "descriptionID": "ad5436a1"

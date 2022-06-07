@@ -3,7 +3,7 @@
   "queryName": "Container Is Privileged",
   "severity": "HIGH",
   "category": "Insecure Configurations",
-  "descriptionText": "Do not allow container to be privileged.",
+  "descriptionText": "Privileged containers lack essential security restrictions and should be avoided by removing the 'privileged' flag or by changing its value to false",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#privileged",
   "platform": "Terraform",
   "descriptionID": "e2be4ab9"
