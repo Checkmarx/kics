@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terra_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	bucket := input.document[i].resource.aws_s3_bucket[name]
@@ -10,11 +10,13 @@ CxPolicy[result] {
 	not common_lib.valid_key(bucket, "versioning")
 	
 	# version after TF AWS 4.0
-	not terra_lib.has_target_resource(name, "aws_s3_bucket_lifecycle_configuration")
-	not terra_lib.has_target_resource(name, "aws_s3_bucket_versioning")
+	not tf_lib.has_target_resource(name, "aws_s3_bucket_lifecycle_configuration")
+	not tf_lib.has_target_resource(name, "aws_s3_bucket_versioning")
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket",
+		"resourceName": tf_lib.get_specific_resource_name(bucket, "aws_s3_bucket", name),
 		"searchKey": sprintf("aws_s3_bucket[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "versioning to be defined and not null",
@@ -36,6 +38,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket",
+		"resourceName": tf_lib.get_specific_resource_name(bucket, "aws_s3_bucket", name),
 		"searchKey": sprintf("aws_s3_bucket[%s].versioning", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s' to be set to true", [checkedFields[j]]),
@@ -52,6 +56,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket",
+		"resourceName": tf_lib.get_specific_resource_name(bucket, "aws_s3_bucket", name),
 		"searchKey": sprintf("aws_s3_bucket[%s].versioning.%s", [name, checkedFields[j]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' to be set to true", [checkedFields[j]]),
@@ -69,6 +75,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'versioning' to be defined and not null",
@@ -86,6 +94,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].versioning", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s' to be set to true", [checkedFields[c]]),
@@ -103,6 +113,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].versioning.%s", [name, checkedFields[c]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' to be set to true", [checkedFields[c]]),
@@ -115,7 +127,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	input.document[_].resource.aws_s3_bucket[bucketName]
 
-	not terra_lib.has_target_resource(bucketName, "aws_s3_bucket_lifecycle_configuration")
+	not tf_lib.has_target_resource(bucketName, "aws_s3_bucket_lifecycle_configuration")
 
 	bucket_versioning := input.document[i].resource.aws_s3_bucket_versioning[name]
 	split(bucket_versioning.bucket, ".")[1] == bucketName
@@ -123,6 +135,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket_versioning",
+		"resourceName": tf_lib.get_resource_name(bucket_versioning, name),
 		"searchKey": sprintf("aws_s3_bucket_versioning[%s].versioning_configuration.mfa_delete", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'versioning_configuration.mfa_delete' to be set to 'Enabled'",
@@ -135,7 +149,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	input.document[_].resource.aws_s3_bucket[bucketName]
 
-	not terra_lib.has_target_resource(bucketName, "aws_s3_bucket_lifecycle_configuration")
+	not tf_lib.has_target_resource(bucketName, "aws_s3_bucket_lifecycle_configuration")
 
 	bucket_versioning := input.document[i].resource.aws_s3_bucket_versioning[name]
 	split(bucket_versioning.bucket, ".")[1] == bucketName
@@ -143,6 +157,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket_versioning",
+		"resourceName": tf_lib.get_resource_name(bucket_versioning, name),
 		"searchKey": sprintf("aws_s3_bucket_versioning[%s].versioning_configuration.status", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'versioning_configuration.status' to be set to 'Enabled'",
@@ -156,13 +172,15 @@ CxPolicy[result] {
 	
 	input.document[_].resource.aws_s3_bucket[bucketName]
 
-	not terra_lib.has_target_resource(bucketName, "aws_s3_bucket_lifecycle_configuration")
+	not tf_lib.has_target_resource(bucketName, "aws_s3_bucket_lifecycle_configuration")
 	bucket_versioning := input.document[i].resource.aws_s3_bucket_versioning[name]
 	split(bucket_versioning.bucket, ".")[1] == bucketName
 	not common_lib.valid_key(bucket_versioning.versioning_configuration, "mfa_delete")
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket_versioning",
+		"resourceName": tf_lib.get_resource_name(bucket_versioning, name),
 		"searchKey": sprintf("aws_s3_bucket_versioning[%s].versioning_configuration", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'versioning_configuration.mfa_delete' to be defined and not null",

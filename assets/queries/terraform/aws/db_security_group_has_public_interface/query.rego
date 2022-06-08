@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_db_security_group[name]
@@ -12,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_db_security_group",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_db_security_group[%s].ingress.cidr", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'aws_db_security_group[%s].ingress.cidr' is not '0.0.0.0/0' or '::/0'", [name]),
@@ -30,6 +33,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_db_security_group",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_db_security_group[%s].ingress.cidr", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'aws_db_security_group[%s].ingress[%d].cidr' is not '0.0.0.0/0' or '::/0'", [name, idx]),

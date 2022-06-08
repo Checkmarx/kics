@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 ## two ways to activated SSE : kms_master_key_id OR sqs_managed_sse_enabled
 ## https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue#server-side-encryption-sse
@@ -20,6 +21,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_sqs_queue",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_sqs_queue[%s].sqs_managed_sse_enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_sqs_queue[%s].sqs_managed_sse_enabled must be set to true", [name]),
@@ -34,6 +37,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_sqs_queue",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_sqs_queue[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_sqs_queue[%s].kms_master_key_id or aws_sqs_queue[%s].sqs_managed_sse_enabled are defined and not null", [name, name]),
@@ -50,6 +55,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'kms_master_key_id' is defined and not null",
@@ -64,6 +71,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_sqs_queue",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_sqs_queue[%s].kms_master_key_id", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "aws_sqs_queue.kms_master_key_id is not ''",
@@ -80,6 +89,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'kms_master_key_id' is not empty",

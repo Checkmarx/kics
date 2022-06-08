@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 # for deprecated version (before AzureRM 3.0)
 CxPolicy[result] {
@@ -10,6 +11,8 @@ CxPolicy[result] {
     
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_app_service",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_app_service[%s].site_config.php_version", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "for the attribute 'php_version' to be the latest avaliable stable version (8.1)",
@@ -26,6 +29,8 @@ CxPolicy[result] {
     
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_windows_web_app",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_windows_web_app[%s].site_config.application_stack.php_version", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "for the attribute 'php_version' to be the latest avaliable stable version (8.1)",
@@ -42,6 +47,8 @@ CxPolicy[result] {
     
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_linux_web_app",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_linux_web_app[%s].site_config.application_stack.php_version", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "for the attribute 'php_version' to be the latest avaliable stable version (8.1)",

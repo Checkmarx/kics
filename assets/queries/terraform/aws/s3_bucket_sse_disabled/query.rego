@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terra_lib
+import data.generic.terraform as tf_lib
 
 # version before TF AWS 4.0
 CxPolicy[result] {
@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket",
+		"resourceName": tf_lib.get_specific_resource_name(bucket, "aws_s3_bucket", name),
 		"searchKey": sprintf("aws_s3_bucket[%s].server_side_encryption_configuration.rule.apply_server_side_encryption_by_default.sse_algorithm", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'sse_algorithm' to be AES256 when key is null",
@@ -33,6 +35,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].server_side_encryption_configuration.rule.apply_server_side_encryption_by_default.sse_algorithm", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'sse_algorithm' to be AES256 when key is null",
@@ -52,6 +56,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket",
+		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_s3_bucket", name),
 		"searchKey": sprintf("aws_s3_bucket[%s].server_side_encryption_configuration.rule.apply_server_side_encryption_by_default.kms_master_key_id", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'kms_master_key_id' to be null when algorithm is 'AES256'",
@@ -72,6 +78,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].server_side_encryption_configuration.rule.apply_server_side_encryption_by_default.kms_master_key_id", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'kms_master_key_id' to be null when algorithm is 'AES256'",
@@ -88,6 +96,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'server_side_encryption_configuration' to be defined and not null",
@@ -100,12 +110,14 @@ CxPolicy[result] {
 	
 	bucket := input.document[i].resource.aws_s3_bucket[bucketName]
 	
-	not terra_lib.has_target_resource(bucketName, "aws_s3_bucket_server_side_encryption_configuration") # version after TF AWS 4.0
+	not tf_lib.has_target_resource(bucketName, "aws_s3_bucket_server_side_encryption_configuration") # version after TF AWS 4.0
 	not common_lib.valid_key(bucket, "server_side_encryption_configuration") # version before TF AWS 4.0
 	
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket",
+		"resourceName": tf_lib.get_specific_resource_name(bucket, "aws_s3_bucket", bucketName),
 		"searchKey": sprintf("aws_s3_bucket[%s]", [bucketName]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'aws_s3_bucket' to have 'server_side_encryption_configuration' associated",
@@ -125,6 +137,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket_server_side_encryption_configuration",
+		"resourceName": tf_lib.get_resource_name(sse, name),
 		"searchKey": sprintf("aws_s3_bucket_server_side_encryption_configuration[%s].rule", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'apply_server_side_encryption_by_default' to be defined and not null",
@@ -146,6 +160,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket_server_side_encryption_configuration",
+		"resourceName": tf_lib.get_resource_name(sse, name),
 		"searchKey": sprintf("aws_s3_bucket_server_side_encryption_configuration[%s].rule.apply_server_side_encryption_by_default.kms_master_key_id", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'kms_master_key_id' to be null when algorithm is 'AES256'",
@@ -168,6 +184,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket_server_side_encryption_configuration",
+		"resourceName": tf_lib.get_resource_name(sse, name),
 		"searchKey": sprintf("aws_s3_bucket_server_side_encryption_configuration[%s].rule.apply_server_side_encryption_by_default.sse_algorithm", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'sse_algorithm' to be AES256 when key is null",

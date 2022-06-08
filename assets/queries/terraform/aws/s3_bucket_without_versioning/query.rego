@@ -1,17 +1,19 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terra_lib
+import data.generic.terraform as tf_lib
 
 #default of versioning is false
 CxPolicy[result] {
 
     bucket := input.document[i].resource.aws_s3_bucket[bucketName]
     not common_lib.valid_key(bucket, "versioning")  # version before TF AWS 4.0
-    not terra_lib.has_target_resource(bucketName, "aws_s3_bucket_versioning")  # version after TF AWS 4.0
+    not tf_lib.has_target_resource(bucketName, "aws_s3_bucket_versioning")  # version after TF AWS 4.0
 	
     result := {
         "documentId": input.document[i].id,
+        "resourceType": "aws_s3_bucket",
+		"resourceName": tf_lib.get_specific_resource_name(bucket, "aws_s3_bucket", bucketName),
         "searchKey": sprintf("aws_s3_bucket[%s]", [bucketName]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'versioning' to be true",
@@ -28,6 +30,8 @@ CxPolicy[result] {
 
     result := {
         "documentId": input.document[i].id,
+        "resourceType": "n/a",
+		"resourceName": "n/a",
         "searchKey": sprintf("module[%s]", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'versioning' to be true",
@@ -35,6 +39,7 @@ CxPolicy[result] {
         "searchLine": common_lib.build_search_line(["module", name], []),
     }
 }
+
 #default of enabled is false
 # version before TF AWS 4.0
 CxPolicy[result] {
@@ -44,6 +49,8 @@ CxPolicy[result] {
 
     result := {
         "documentId": input.document[i].id,
+        "resourceType": "aws_s3_bucket",
+		"resourceName": tf_lib.get_specific_resource_name(bucket, "aws_s3_bucket", name),
         "searchKey": sprintf("aws_s3_bucket[%s].versioning", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'versioning.enabled' to be true",
@@ -60,6 +67,8 @@ CxPolicy[result] {
 
     result := {
         "documentId": input.document[i].id,
+        "resourceType": "n/a",
+		"resourceName": "n/a",
         "searchKey": sprintf("module[%s].versioning", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'versioning.enabled' to be true",
@@ -76,6 +85,8 @@ CxPolicy[result] {
 
     result := {
         "documentId": input.document[i].id,
+        "resourceType": "aws_s3_bucket",
+		"resourceName": tf_lib.get_specific_resource_name(bucket, "aws_s3_bucket", name),
         "searchKey": sprintf("aws_s3_bucket[%s].versioning.enabled", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'versioning.enabled' to be true",
@@ -92,6 +103,8 @@ CxPolicy[result] {
 
     result := {
         "documentId": input.document[i].id,
+        "resourceType": "n/a",
+		"resourceName": "n/a",
         "searchKey": sprintf("module[%s].versioning.enabled", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'versioning.enabled' to be true",
@@ -110,6 +123,8 @@ CxPolicy[result] {
 
     result := {
         "documentId": input.document[i].id,
+       "resourceType": "aws_s3_bucket_versioning",
+		"resourceName": tf_lib.get_resource_name(bucket_versioning, name),
         "searchKey": sprintf("aws_s3_bucket_versioning[%s].versioning_configuration.status", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'versioning_configuration.status' to be set to 'Enabled'",

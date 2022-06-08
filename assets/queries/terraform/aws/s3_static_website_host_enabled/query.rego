@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terra_lib
+import data.generic.terraform as tf_lib
 
 # version before TF AWS 4.0
 CxPolicy[result] {
@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket",
+		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_s3_bucket", name),
 		"searchKey": sprintf("resource.aws_s3_bucket[%s].website", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource.aws_s3_bucket[%s].website to not have static websites inside", [name]),
@@ -27,6 +29,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].website", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'website' to not have static websites inside",
@@ -37,12 +41,14 @@ CxPolicy[result] {
 
 # version after TF AWS 4.0
 CxPolicy[result] {	
-	input.document[i].resource.aws_s3_bucket[bucketName]
+	resource := input.document[i].resource.aws_s3_bucket[bucketName]
 	
-	terra_lib.has_target_resource(bucketName, "aws_s3_bucket_website_configuration")
+	tf_lib.has_target_resource(bucketName, "aws_s3_bucket_website_configuration")
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket",
+		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_s3_bucket", bucketName),
 		"searchKey": sprintf("aws_s3_bucket[%s]", [bucketName]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'aws_s3_bucket' to not have 'aws_s3_bucket_website_configuration' associated",

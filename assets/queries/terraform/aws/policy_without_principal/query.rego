@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	doc := input.document[i].resource
@@ -15,6 +16,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": path[0],
+		"resourceName": path[1],
 		"searchKey": sprintf("%s[%s].policy", [path[0], path[1]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'Principal' is defined",

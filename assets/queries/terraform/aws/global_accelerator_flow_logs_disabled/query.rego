@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -10,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": "aws_globalaccelerator_accelerator",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_globalaccelerator_accelerator[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled is defined and not null", [name]),
@@ -25,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": "aws_globalaccelerator_accelerator",
+		"resourceName": tf_lib.get_resource_name(document.resource.aws_globalaccelerator_accelerator[name], name),
 		"searchKey": sprintf("aws_globalaccelerator_accelerator[{{%s}}].attributes", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled is defined and not null", [name]),
@@ -40,6 +45,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": "aws_globalaccelerator_accelerator",
+		"resourceName": tf_lib.get_resource_name(document.resource.aws_globalaccelerator_accelerator[name], name),
 		"searchKey": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled is true", [name]),

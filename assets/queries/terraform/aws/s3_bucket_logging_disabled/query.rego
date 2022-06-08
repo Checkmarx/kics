@@ -1,16 +1,18 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terra_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
     s3 := input.document[i].resource.aws_s3_bucket[bucketName]
 
     not common_lib.valid_key(s3, "logging")  # version before TF AWS 4.0
-    not terra_lib.has_target_resource(bucketName, "aws_s3_bucket_logging") # version after TF AWS 4.0
+    not tf_lib.has_target_resource(bucketName, "aws_s3_bucket_logging") # version after TF AWS 4.0
 
     result := {
         "documentId": input.document[i].id,
+        "resourceType": "aws_s3_bucket",
+		"resourceName": tf_lib.get_specific_resource_name(s3, "aws_s3_bucket", bucketName),
         "searchKey": sprintf("aws_s3_bucket[%s]", [bucketName]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'logging' to be defined and not null",
@@ -27,6 +29,8 @@ CxPolicy[result] {
 	
     result := {
         "documentId": input.document[i].id,
+        "resourceType": "n/a",
+		"resourceName": "n/a",
         "searchKey": sprintf("module[%s]", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'logging' to be defined and not null",

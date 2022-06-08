@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terra_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	
@@ -9,11 +9,13 @@ CxPolicy[result] {
 	
 	firewall := input.document[_].resource.google_compute_firewall[_]
 	
-	terra_lib.matches(firewall.network, name)
+	tf_lib.matches(firewall.network, name)
 	contains(firewall.name, "default")
 	
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_compute_network",
+		"resourceName": tf_lib.get_resource_name(computeNetwork, name),
 		"searchKey": sprintf("google_compute_network[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'google_compute_network[%s]' is not using a default firewall rule", [name]),
