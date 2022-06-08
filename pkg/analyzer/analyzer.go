@@ -82,15 +82,6 @@ var (
 		"buildah":              {"buildah"},
 		"cloudformation":       {"cloudformation"},
 		"dockercompose":        {"dockercompose"},
-		"kubernetes":           {"kubernetes"},
-		"openapi":              {"openapi"},
-		"terraform":            {"terraform", "cdkTf"},
-	}
-	supportedRegexes = map[string][]string{
-		"azureresourcemanager": append(armRegexTypes, arm),
-		"buildah":              {"buildah"},
-		"cloudformation":       {"cloudformation"},
-		"dockercompose":        {"dockercompose"},
 		"kubernetes":           {"kubernetes", "cniK8s"},
 		"openapi":              {"openapi"},
 		"terraform":            {"terraform", "cdkTf"},
