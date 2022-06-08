@@ -3,7 +3,7 @@
   "queryName": "Containers With Added Capabilities",
   "severity": "MEDIUM",
   "category": "Insecure Configurations",
-  "descriptionText": "Kubernetes Pod should not have extra capabilities allowed",
+  "descriptionText": "Containers should not have extra capabilities allowed",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#capabilities-1",
   "platform": "Terraform",
   "descriptionID": "4422c052"

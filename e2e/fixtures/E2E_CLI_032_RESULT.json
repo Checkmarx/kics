@@ -32,7 +32,7 @@
 			"platform": "CloudFormation",
 			"cloud_provider": "AWS",
 			"category": "Networking and Firewall",
-			"description": "All Application Load Balancers (ALB) should block connection requests over HTTP",
+			"description": "AWS Application Load Balancer (alb) should not listen on HTTP",
 			"description_id": "55f05412",
 			"files": [
 				{

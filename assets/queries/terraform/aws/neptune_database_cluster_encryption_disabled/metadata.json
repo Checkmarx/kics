@@ -3,7 +3,7 @@
   "queryName": "Neptune Database Cluster Encryption Disabled",
   "severity": "MEDIUM",
   "category": "Encryption",
-  "descriptionText": "Check if Neptune Cluster Storage is securely encrypted",
+  "descriptionText": "Neptune database cluster storage should have encryption enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/neptune_cluster#storage_encrypted",
   "platform": "Terraform",
   "descriptionID": "06036045",
