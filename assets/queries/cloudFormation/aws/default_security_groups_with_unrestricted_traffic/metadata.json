@@ -3,7 +3,7 @@
   "queryName": "Default Security Groups With Unrestricted Traffic",
   "severity": "HIGH",
   "category": "Networking and Firewall",
-  "descriptionText": "Security Groups set as default must be denied traffic.",
+  "descriptionText": "Check if default security group does not restrict all inbound and outbound traffic.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
   "platform": "CloudFormation",
   "descriptionID": "50b0269e",

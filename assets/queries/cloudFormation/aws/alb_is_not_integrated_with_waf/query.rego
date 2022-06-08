@@ -1,16 +1,19 @@
 package Cx
 
-import data.generic.cloudformation as cloudFormationLib
+import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 
-	cloudFormationLib.isLoadBalancer(resource)
+	cf_lib.isLoadBalancer(resource)
 	not internal_alb(resource)
 	not associated_waf(name)
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'Resources.%s' does not have an 'internal' scheme and has a 'WebACLAssociation' associated", [name]),

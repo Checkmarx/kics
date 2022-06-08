@@ -55,31 +55,31 @@ var (
 	buildahRegex                                    = regexp.MustCompile(`\s*buildah\s*from\s*\w+`)
 	dockerComposeVersionRegex                       = regexp.MustCompile(`\s*version\s*:`)
 	dockerComposeServicesRegex                      = regexp.MustCompile(`\s*services\s*:`)
-	cniK8sNameRegex                                 = regexp.MustCompile("\\s*\"?name\"?\\s*:")
-	cniK8sVersionRegex                              = regexp.MustCompile("\\s*\"?cniVersion\"?\\s*:")
-	cniK8sPluginsRegex                              = regexp.MustCompile("\\s*\"?plugins\"?\\s*:")
 )
 
 var (
 	listKeywordsGoogleDeployment = []string{"resources"}
 	armRegexTypes                = []string{"blueprint", "templateArtifact", "roleAssignmentArtifact", "policyAssignmentArtifact"}
 	possibleFileTypes            = map[string]bool{
-		".yml":        true,
-		".yaml":       true,
-		".json":       true,
-		".dockerfile": true,
-		"Dockerfile":  true,
-		".tf":         true,
-		"tfvars":      true,
-		".proto":      true,
-		".sh":         true,
+		".yml":               true,
+		".yaml":              true,
+		".json":              true,
+		".dockerfile":        true,
+		"Dockerfile":         true,
+		"possibleDockerfile": true,
+		".debian":            true,
+		".ubi8":              true,
+		".tf":                true,
+		"tfvars":             true,
+		".proto":             true,
+		".sh":                true,
 	}
 	supportedRegexes = map[string][]string{
 		"azureresourcemanager": append(armRegexTypes, arm),
 		"buildah":              {"buildah"},
 		"cloudformation":       {"cloudformation"},
 		"dockercompose":        {"dockercompose"},
-		"kubernetes":           {"kubernetes", "cniK8s"},
+		"kubernetes":           {"kubernetes"},
 		"openapi":              {"openapi"},
 		"terraform":            {"terraform", "cdkTf"},
 	}
@@ -191,13 +191,6 @@ var types = map[string]regexSlice{
 			dockerComposeServicesRegex,
 		},
 	},
-	"cniK8s": {
-		regex: []*regexp.Regexp{
-			cniK8sNameRegex,
-			cniK8sVersionRegex,
-			cniK8sPluginsRegex,
-		},
-	},
 }
 
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
@@ -225,10 +218,7 @@ func Analyze(paths, types, exc []string) (model.AnalyzedPaths, error) {
 				return err
 			}
 
-			ext := filepath.Ext(path)
-			if ext == "" {
-				ext = filepath.Base(path)
-			}
+			ext := utils.GetExtension(path)
 
 			if _, ok := possibleFileTypes[ext]; ok && !isExcludedFile(path, exc) {
 				files = append(files, path)
@@ -280,16 +270,20 @@ func Analyze(paths, types, exc []string) (model.AnalyzedPaths, error) {
 // if no types were found, the worker will write the path of the file in the unwanted channel
 func (a *analyzerInfo) worker(results, unwanted chan<- string, wg *sync.WaitGroup) {
 	defer wg.Done()
-	ext := filepath.Ext(a.filePath)
-	if ext == "" {
-		ext = filepath.Base(a.filePath)
-	}
+
+	ext := utils.GetExtension(a.filePath)
+
 	typesFlag := a.typesFlag
 
 	switch ext {
-	// Dockerfile
+	// Dockerfile (direct identification)
 	case ".dockerfile", "Dockerfile":
 		if typesFlag[0] == "" || utils.Contains(dockerfile, typesFlag) {
+			results <- dockerfile
+		}
+	// Dockerfile (indirect identification)
+	case "possibleDockerfile", ".ubi8", ".debian":
+		if (typesFlag[0] == "" || utils.Contains(dockerfile, typesFlag)) && isDockerfile(a.filePath) {
 			results <- dockerfile
 		}
 	// Terraform
@@ -306,6 +300,30 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, wg *sync.WaitGrou
 	case yaml, yml, json, sh:
 		a.checkContent(results, unwanted, ext)
 	}
+}
+
+func isDockerfile(path string) bool {
+	content, err := os.ReadFile(filepath.Clean(path))
+	if err != nil {
+		log.Error().Msgf("failed to analyze file: %s", err)
+		return false
+	}
+
+	regexes := []*regexp.Regexp{
+		regexp.MustCompile(`\s*FROM\s*`),
+		regexp.MustCompile(`\s*RUN\s*`),
+	}
+
+	check := true
+
+	for _, regex := range regexes {
+		if !regex.Match(content) {
+			check = false
+			break
+		}
+	}
+
+	return check
 }
 
 // overrides k8s match when all regexs passes for azureresourcemanager key and extension is set to json
@@ -371,9 +389,6 @@ func checkReturnType(path, returnType, ext string, content []byte) string {
 	if returnType != "" {
 		if returnType == "cdkTf" {
 			return terraform
-		}
-		if returnType == "cniK8s" {
-			return kubernetes
 		}
 		if utils.Contains(returnType, armRegexTypes) {
 			return arm

@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "All names should be on snake case pattern",
 		"keyActualValue": sprintf("'%s' is not in snake case", [name]),
-		"searchLine": common_lib.build_search_line(["resources", type, name], []),
+		"searchLine": common_lib.build_search_line(["resource", type, name], []),
 	}
 }
 

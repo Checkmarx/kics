@@ -1,0 +1,11 @@
+{
+  "id": "96fe318e-d631-4156-99fa-9080d57280ae",
+  "queryName": "App Service Without Latest PHP Version",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "Periodically newer versions are released for PHP software either due to security flaws or to include additional functionality. Using the latest PHP version for web apps is recommended in order to take advantage of security fixes, if any, and/or additional functionalities of the newer version.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#php_version",
+  "platform": "Terraform",
+  "descriptionID": "0054cbe3",
+  "cloudProvider": "azure"
+}

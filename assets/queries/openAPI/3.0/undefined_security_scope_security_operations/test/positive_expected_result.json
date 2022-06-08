@@ -8,7 +8,7 @@
   {
     "queryName": "Undefined Scope 'securityScheme' On 'security' Field On Operations",
     "severity": "LOW",
-    "line": 12,
+    "line": 14,
     "filename": "positive2.json"
   },
   {
@@ -20,7 +20,7 @@
   {
     "queryName": "Undefined Scope 'securityScheme' On 'security' Field On Operations",
     "severity": "LOW",
-    "line": 10,
+    "line": 11,
     "filename": "positive4.yaml"
   }
 ]

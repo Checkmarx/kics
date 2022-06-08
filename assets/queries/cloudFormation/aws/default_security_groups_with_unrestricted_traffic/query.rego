@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.cloudformation as cf_lib
+
 CxPolicy[result] {
 	document := input.document
 	resources := document[i].Resources[name]
@@ -7,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resources.Type,
+		"resourceName": cf_lib.get_resource_name(resources, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.GroupName is defined as default and the inbound and outbound rules are empty.", [name]),

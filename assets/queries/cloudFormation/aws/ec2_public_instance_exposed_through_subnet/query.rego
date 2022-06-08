@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.cloudformation as cf_lib
+
 CxPolicy[result] {
 	resources := input.document[i].Resources
 	resource := resources[j]
@@ -24,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, j),
 		"searchKey": sprintf("Resources.%s", [subnetName]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s is a private subnet", [subnetName]),

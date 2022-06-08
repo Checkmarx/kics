@@ -96,7 +96,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 		Description: "[Terraform].[Resource Not Using Tags]: AWS services resource tags are an essential part of managing components",
 		Recommendations: []Recommendation{
 			{
-				Recommendation: "In line 1, a result was found. 'aws_guardduty_detector[{{positive1}}].tags is undefined or null', but 'aws_guardduty_detector[{{positive1}}].tags is defined and not null'",
+				Recommendation: "Problem found in line 1. Expected value: aws_guardduty_detector[{{positive1}}].tags is defined and not null. Actual value: aws_guardduty_detector[{{positive1}}].tags is undefined or null.",
 			},
 		},
 	}
@@ -117,7 +117,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 		Description: "[Terraform].[GuardDuty Detector Disabled]: Make sure that Amazon GuardDuty is Enabled",
 		Recommendations: []Recommendation{
 			{
-				Recommendation: "In line 2, a result was found. 'GuardDuty Detector is not Enabled', but 'GuardDuty Detector should be Enabled'",
+				Recommendation: "Problem found in line 2. Expected value: GuardDuty Detector should be Enabled. Actual value: GuardDuty Detector is not Enabled.",
 			},
 		},
 	}
@@ -138,7 +138,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 		Description: "[Terraform].[Resource Not Using Tags]: AWS services resource tags are an essential part of managing components",
 		Recommendations: []Recommendation{
 			{
-				Recommendation: "In line 1, a result was found. 'aws_guardduty_detector[{{negative1}}].tags is undefined or null', but 'aws_guardduty_detector[{{negative1}}].tags is defined and not null'",
+				Recommendation: "Problem found in line 1. Expected value: aws_guardduty_detector[{{negative1}}].tags is defined and not null. Actual value: aws_guardduty_detector[{{negative1}}].tags is undefined or null.",
 			},
 		},
 	}

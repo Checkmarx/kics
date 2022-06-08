@@ -29,4 +29,3 @@ CxPolicy[result] {
 		"value": json.marshal(final_bom_output),
 	}
 }
-

@@ -16,5 +16,17 @@
     "severity": "MEDIUM",
     "line": 12,
     "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "S3 Bucket Policy Accepts HTTP Requests",
+    "severity": "MEDIUM",
+    "line": 32,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "S3 Bucket Policy Accepts HTTP Requests",
+    "severity": "MEDIUM",
+    "line": 32,
+    "fileName": "positive5.tf"
   }
 ]

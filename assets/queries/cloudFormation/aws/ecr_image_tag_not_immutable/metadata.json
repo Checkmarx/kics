@@ -3,7 +3,7 @@
   "queryName": "ECR Image Tag Not Immutable",
   "severity": "MEDIUM",
   "category": "Insecure Configurations",
-  "descriptionText": "ECR should have an image tag be immutable",
+  "descriptionText": "ECR should have an image tag be immutable. This prevents image tags from being overwritten.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html",
   "platform": "CloudFormation",
   "descriptionID": "a4ed2a4f",

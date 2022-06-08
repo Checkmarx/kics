@@ -1,6 +1,6 @@
 package Cx
 
-import data.generic.cloudformation as cloudFormationLib
+import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
 
 CxPolicy[result] {
@@ -15,10 +15,12 @@ CxPolicy[result] {
 	defaultToken := document.Parameters[paramName].Default
 
 	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
-	not cloudFormationLib.hasSecretManager(defaultToken, document.Resources)
+	not cf_lib.hasSecretManager(defaultToken, document.Resources)
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("Parameters.%s.Default", [paramName]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Parameters.%s.Default is defined", [paramName]),
@@ -40,10 +42,12 @@ CxPolicy[result] {
 	defaultToken := paramName
 
 	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
-	not cloudFormationLib.hasSecretManager(defaultToken, document.Resources)
+	not cf_lib.hasSecretManager(defaultToken, document.Resources)
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.BasicAuthConfig.Password", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.BasicAuthConfig.Password must not be in plain text string", [key]),
@@ -64,10 +68,12 @@ CxPolicy[result] {
 	defaultToken := paramName
 
 	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
-	not cloudFormationLib.hasSecretManager(defaultToken, document.Resources)
+	not cf_lib.hasSecretManager(defaultToken, document.Resources)
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.BasicAuthConfig.Password", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.BasicAuthConfig.Password must not be in plain text string", [key]),
