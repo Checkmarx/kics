@@ -1,13 +1,14 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	elasticache := input.document[i].resource.aws_elasticache_cluster[name]
 
 	bom_output = {
 		"resource_type": "aws_elasticache_cluster",
-		"resource_name": elasticache.cluster_id,
+		"resource_name": tf_lib.get_specific_resource_name(elasticache, "aws_elasticache_cluster", name),
 		# memcached or redis
 		"resource_engine": get_engine_type(elasticache),
 		"resource_accessibility": get_accessibility(elasticache),

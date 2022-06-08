@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terra_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_security_group[name]
@@ -9,14 +9,16 @@ CxPolicy[result] {
 	portContent := common_lib.tcpPortsMap[port]
 	portNumber = port
 	portName = portContent
-	protocol := terra_lib.getProtocolList(resource.ingress.protocol)[_]
+	protocol := tf_lib.getProtocolList(resource.ingress.protocol)[_]
 
 	isPrivateNetwork(resource)
-	terra_lib.containsPort(resource.ingress, portNumber)
+	tf_lib.containsPort(resource.ingress, portNumber)
 	isTCPorUDP(protocol)
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_security_group",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_security_group[%s].ingress", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),
@@ -35,14 +37,16 @@ CxPolicy[result] {
 	portName = portContent
 
 	ingress := module[ingressKey][idx]
-	protocol := terra_lib.getProtocolList(ingress.protocol)[_]
+	protocol := tf_lib.getProtocolList(ingress.protocol)[_]
 
 	common_lib.isPrivateIP(ingress.cidr_blocks[_])
-	terra_lib.containsPort(ingress, portNumber)
+	tf_lib.containsPort(ingress, portNumber)
 	isTCPorUDP(protocol)
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].%s", [name, ingressKey]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),

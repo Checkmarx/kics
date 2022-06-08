@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
@@ -10,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.BackupRetentionPeriod", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("The RDS DBCluster '%s' resource has a minimum backup retention period of at least 7 days", [name]),
@@ -25,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("The RDS DBCluster '%s' resource has a minimum backup retention period of at least 7 days", [name]),
@@ -48,6 +53,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("The RDS DBInstance '%s' resource has a minimum backup retention period of at least 7 days", [name]),
@@ -71,6 +78,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.BackupRetentionPeriod", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("The RDS DBInstance '%s' resource has a minimum backup retention period of at least 7 days", [name]),

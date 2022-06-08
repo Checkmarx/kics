@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -17,6 +18,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.Resources[queuePolicyName],
+		"resourceName": cf_lib.get_resource_name(document.Resources[queuePolicyName], queuePolicyName),
 		"searchKey": sprintf("Resources.%s.Properties.PolicyDocument", [queuePolicyName]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement.NotPrincipal should never be used when Effect=Allow", [queuePolicyName]),

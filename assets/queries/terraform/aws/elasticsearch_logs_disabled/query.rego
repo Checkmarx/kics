@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	awsElasticsearchDomain := input.document[i].resource.aws_elasticsearch_domain[name]
@@ -8,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticsearch_domain",
+		"resourceName": tf_lib.get_resource_name(awsElasticsearchDomain, name),
 		"searchKey": sprintf("aws_elasticsearch_domain[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'log_publishing_options' is defined and not null",
@@ -21,6 +24,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticsearch_domain",
+		"resourceName": tf_lib.get_resource_name(awsElasticsearchDomain, name),
 		"searchKey": sprintf("aws_elasticsearch_domain[{{%s}}].log_publishing_options.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'log_publishing_options.enabled' is true",

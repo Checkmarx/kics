@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_storage_share_file[name]
 
@@ -12,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_storage_share",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_storage_share[%s].acl.access_policy.permissions", [storageShareName]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("azurerm_storage_share[%s].acl.access_policy.permissions does not allow all ACL permissions", [storageShareName]),

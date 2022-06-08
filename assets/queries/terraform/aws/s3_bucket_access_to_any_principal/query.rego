@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terra_lib
+import data.generic.terraform as tf_lib
 
 pl := {"aws_s3_bucket_policy", "aws_s3_bucket"}
 
@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_s3_bucket", name),
 		"searchKey": sprintf("%s[%s].policy", [resourceType, name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].policy.Principal is not equal to, nor does it contain '*'", [resourceType, name]),
@@ -30,6 +32,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy.Principal' is not equal to, nor does it contain '*'", 
@@ -44,5 +48,5 @@ access_to_any_principal(policyValue) {
 	statement := st[_]
 
 	common_lib.is_allow_effect(statement)
-	terra_lib.anyPrincipal(statement)
+	tf_lib.anyPrincipal(statement)
 }

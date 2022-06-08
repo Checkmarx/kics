@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_instance[name]
@@ -12,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_instance",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_instance[%s].iam_instance_profile", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Public and private instances do not share the same role",
@@ -33,6 +36,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].iam_instance_profile", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Public and private instances do not share the same role",

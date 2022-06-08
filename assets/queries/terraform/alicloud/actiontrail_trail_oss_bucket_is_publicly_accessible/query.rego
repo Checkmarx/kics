@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
     some i
@@ -13,6 +14,8 @@ CxPolicy[result] {
     
     result := {
         "documentId": input.document[i].id,
+        "resourceType": "alicloud_actiontrail_trail",
+		"resourceName": tf_lib.get_specific_resource_name(actiontrail, "alicloud_actiontrail_trail", name),
         "searchKey": sprintf("alicloud_actiontrail_trail[%s].oss_bucket_name", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": sprintf("'alicloud_actiontrail_trail[%s].oss_bucket_name' is private", [name]),

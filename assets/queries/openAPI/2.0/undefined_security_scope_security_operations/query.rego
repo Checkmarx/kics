@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -8,14 +9,17 @@ CxPolicy[result] {
 
 	operationObject := doc.paths[path][operation]
 	not is_array(operationObject.security)
-	opScheme := openapi_lib.check_schemes(doc, operationObject.security, "2.0")
+
+	scope := operationObject.security[schemeKey][_]
+	openapi_lib.check_scheme(doc, schemeKey, scope, "2.0")
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("paths.{{%s}}.{{%s}}.security.{{%s}}", [path, operation, opScheme]),
+		"searchKey": sprintf("paths.{{%s}}.{{%s}}.security.{{%s}}", [path, operation, schemeKey]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Scope should be defined on 'securityDefinitions'",
-		"keyActualValue": "Using an undefined scope",
+		"keyExpectedValue": sprintf("scope %s should be defined on 'securityDefinitions'", [scope]),
+		"keyActualValue": sprintf("scope %s is not defined on 'securityDefinitions'", [scope]),
+		"searchLine": common_lib.build_search_line(["paths", path, operation, "security", schemeKey], []),
 	}
 }
 
@@ -26,14 +30,15 @@ CxPolicy[result] {
 	operationObject := doc.paths[path][operation]
 	is_array(operationObject.security)
 
-	operationSecuritiesScheme := operationObject.security[_]
-	opScheme := openapi_lib.check_schemes(doc, operationSecuritiesScheme, "2.0")
+	scope := operationObject.security[s][schemeKey][_]
+	openapi_lib.check_scheme(doc, schemeKey, scope, "2.0")
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.security", [path, operation]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Scope should be defined on 'securityDefinitions'",
-		"keyActualValue": "Using an undefined scope",
+		"keyExpectedValue": sprintf("scope %s should be defined on 'securityDefinitions'", [scope]),
+		"keyActualValue": sprintf("scope %s is not defined on 'securityDefinitions'", [scope]),
+		"searchLine": common_lib.build_search_line(["paths", path, operation, "security", s, schemeKey], []),
 	}
 }

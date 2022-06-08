@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	kms := input.document[i].resource.google_kms_crypto_key[name]
 	rotation_period := substring(kms.rotation_period, 0, count(kms.rotation_period) - 1)
@@ -9,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_kms_crypto_key",
+		"resourceName": tf_lib.get_resource_name(kms, name),
 		"searchKey": sprintf("google_kms_crypto_key[%s].rotation_period", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'rotation_period' must be at most 31536000s",
@@ -23,6 +27,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_kms_crypto_key",
+		"resourceName": tf_lib.get_resource_name(kms, name),
 		"searchKey": sprintf("google_kms_crypto_key[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'rotation_period' is set and is at most 31536000 seconds",

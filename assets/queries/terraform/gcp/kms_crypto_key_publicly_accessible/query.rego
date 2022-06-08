@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	kmsPolicy := input.document[i].resource.google_kms_crypto_key_iam_policy[name]
@@ -11,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_kms_crypto_key_iam_policy",
+		"resourceName": tf_lib.get_resource_name(kmsPolicy, name),
 		"searchKey": sprintf("google_kms_crypto_key_iam_policy[%s].policy_data", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "KMS crypto key is not publicly accessible",

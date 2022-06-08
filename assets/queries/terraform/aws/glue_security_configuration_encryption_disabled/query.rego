@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_glue_security_configuration[name]
@@ -18,6 +19,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_glue_security_configuration",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_glue_security_configuration[%s].%s", [name, configKey]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_glue_security_configuration[%s].%s has '%s' defined and not null", [name, configKey, configValue]),
@@ -39,6 +42,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_glue_security_configuration",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_glue_security_configuration[%s].encryption_configuration.%s", [name, config]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_glue_security_configuration[%s].encryption_configuration.%s has 'kms_key_arn' defined and not null", [name, config]),
@@ -54,6 +59,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_glue_security_configuration",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_glue_security_configuration[%s].%s", [name, searchKeyInfo.path]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": searchKeyInfo.keyExpectedValue,

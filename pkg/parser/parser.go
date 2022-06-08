@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"errors"
 	"os"
-	"path/filepath"
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -174,10 +173,7 @@ func contains(types []string, supportedTypes map[string]bool) bool {
 }
 
 func (c *Parser) isValidExtension(filePath string) bool {
-	ext := filepath.Ext(filePath)
-	if ext == "" {
-		ext = filepath.Base(filePath)
-	}
+	ext := utils.GetExtension(filePath)
 	_, ok := c.extensions[ext]
 	return ok
 }

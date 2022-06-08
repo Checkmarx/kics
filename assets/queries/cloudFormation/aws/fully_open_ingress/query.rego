@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as commonLib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -28,6 +29,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": doc.Resources[k].Type,
+		"resourceName": cf_lib.get_resource_name(doc.Resources[k], k),
 		"searchKey": sprintf("Resources.%s.Properties.CidrIp", [k]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resource name '%s' of type '%s' should not accept ingress connections from all IPv4 adresses and to all available ports", [

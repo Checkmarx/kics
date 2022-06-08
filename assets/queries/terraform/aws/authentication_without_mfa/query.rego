@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -15,6 +16,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_user_policy",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_iam_user_policy[%s].policy", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "The attributes 'policy.Statement.Condition', 'policy.Statement.Condition.BoolIfExists', and 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' are defined and not null",
@@ -36,6 +39,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_user_policy",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_iam_user_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 	    "keyExpectedValue": "'policy.Statement.Principal.AWS' contains ':mfa/' or 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' is set to true",

@@ -1,5 +1,7 @@
 package Cx
+
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_api_gateway_api[name]
@@ -8,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_api_gateway_api",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_api_gateway_api[%s].request_config.protocol", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'protocol' value should be 'HTTPS'",
@@ -24,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_api_gateway_api",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_api_gateway_api[%s].request_config.protocol", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'protocol' value should be 'HTTPS'",

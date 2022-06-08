@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_postgresql_server[var0]
@@ -8,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_postgresql_server",
+		"resourceName": tf_lib.get_resource_name(resource, var0),
 		"searchKey": sprintf("azurerm_postgresql_server[%s]", [var0]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_postgresql_server.%s.geo_redundant_backup_enabled' is set", [var0]),
@@ -21,6 +24,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_postgresql_server",
+		"resourceName": tf_lib.get_resource_name(resource, var0),
 		"searchKey": sprintf("azurerm_postgresql_server[%s].geo_redundant_backup_enabled", [var0]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_postgresql_server.%s.geo_redundant_backup_enabled' is true", [var0]),

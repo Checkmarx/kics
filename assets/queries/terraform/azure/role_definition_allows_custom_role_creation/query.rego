@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_role_definition[name]
 
@@ -9,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_role_definition",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_role_definition[%s].permissions.actions", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("azurerm_role_definition[%s].permissions.actions does not allow custom role creation", [name]),

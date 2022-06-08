@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	ami := input.document[i].resource.aws_ami[name]
 	ami.ebs_block_device
@@ -7,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_ami",
+		"resourceName": tf_lib.get_resource_name(ami, name),
 		"searchKey": sprintf("aws_ami[%s].ebs_block_device", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "One of 'rule.ebs_block_device.encrypted' is 'true'",
@@ -20,6 +24,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_ami",
+		"resourceName": tf_lib.get_resource_name(ami, name),
 		"searchKey": sprintf("aws_ami[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "One of 'rule.ebs_block_device.encrypted' is 'true'",

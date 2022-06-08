@@ -3,7 +3,7 @@
   "queryName": "RDS With Backup Disabled",
   "severity": "MEDIUM",
   "category": "Backup",
-  "descriptionText": "RDS configured without backup",
+  "descriptionText": "Make sure the AWS RDS configuration has automatic backup configured. If the retention period is equal to 0 there is no backup",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance",
   "platform": "Terraform",
   "descriptionID": "73fdfe55",

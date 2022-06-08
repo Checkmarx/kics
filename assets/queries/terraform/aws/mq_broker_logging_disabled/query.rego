@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	broker := input.document[i].resource.aws_mq_broker[name]
 	logs := broker.logs
@@ -12,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_mq_broker",
+		"resourceName": tf_lib.get_specific_resource_name(broker, "aws_mq_broker", name),
 		"searchKey": sprintf("aws_mq_broker[%s].logs.%s", [name, type]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'general' and 'audit' logging are set to true",
@@ -31,6 +35,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_mq_broker",
+		"resourceName": tf_lib.get_specific_resource_name(broker, "aws_mq_broker", name),
 		"searchKey": sprintf("aws_mq_broker[%s].logs", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'general' and 'audit' logging are set to true",
@@ -45,6 +51,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_mq_broker",
+		"resourceName": tf_lib.get_specific_resource_name(broker, "aws_mq_broker", name),
 		"searchKey": sprintf("aws_mq_broker[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'logs' is set and enabling general AND audit logging",

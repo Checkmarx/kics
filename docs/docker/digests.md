@@ -78,3 +78,4 @@ v1.5.4-debian      |  sha256:9c6232e228520e5d6ba26975be9f509e3fd230714ef219dadff
 v1.5.4-ubi8        |  sha256:4871c63055945e929cececc6139b8028145d537aa19c75c6d79cd0d65d250df0
 v1.5.6-gh-actions  |  sha256:f0232875171f3ef272ed3374a4f4e649fcddc9cc4fea3825d6ff103b91ffcc63
 v1.5.8-gh-actions  |  sha256:61a2d50c83f15acbcf536f56bebc114ba19eecfe5a356580ed931c4a01f341fd
+v1.5.9-gh-actions  |  sha256:015eebbaeb31e8a9ea0909df089bed06442d8aabe60ac3e6afcdc00c269c0f41

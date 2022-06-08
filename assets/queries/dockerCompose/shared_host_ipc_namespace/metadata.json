@@ -3,7 +3,7 @@
   "queryName": "Shared Host IPC Namespace",
   "severity": "MEDIUM",
   "category": "Resource Management",
-  "descriptionText": "The host IPC namespace should not be shared.",
+  "descriptionText": "Container should not share the host IPC namespace",
   "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir",
   "platform": "DockerCompose",
   "descriptionID": "987dc2d7"

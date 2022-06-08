@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": resources[resourceName].Type,
+		"resourceName": cf_lib.get_resource_name(resources[resourceName], resourceName),
 		"searchKey": sprintf("Resources.%s", [bucketName]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s bucket has a policy that enforces SSL", [bucketName]),
@@ -36,6 +38,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": resources[resourceName].Type,
+		"resourceName": cf_lib.get_resource_name(resources[resourceName], resourceName),
 		"searchKey": sprintf("Resources.%s", [bucketName]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s bucket has a policy that enforces SSL", [bucketName]),
