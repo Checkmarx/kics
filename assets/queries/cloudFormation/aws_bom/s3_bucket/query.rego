@@ -12,7 +12,7 @@ CxPolicy[result] {
 
 	bom_output = {
 		"resource_type": "AWS::S3::Bucket",
-		"resource_name": get_bucket_name(bucket_resource),
+		"resource_name": cf_lib.get_resource_name(bucket_resource, name),
 		"resource_accessibility": info.accessibility,
 		"resource_encryption": cf_lib.get_encryption(bucket_resource),
 		"resource_vendor": "AWS",
@@ -37,14 +37,6 @@ get_bucket_acl(bucket_resource) = acl {
 	acl := bucket_resource.Properties.AccessControl
 } else = acl {
 	acl := "Private"
-}
-
-get_bucket_name(bucket_resource) = name {
-	name := bucket_resource.Properties.BucketName
-} else = name {
-	name := common_lib.get_tag_name_if_exists(bucket_resource)
-} else = name {
-	name := "unknown"
 }
 
 is_public_access_blocked(properties) {

@@ -346,7 +346,9 @@ get_tag_name_if_exists(resource) = name {
     tag.Key == "Name"
 	name := tag.Value
 } else = name {
-	name := "unknown"
+	tag := resource.Properties.Tags[key]
+	key == "Name"
+	name := tag
 }
 
 get_encryption_if_exists(resource) = encryption {
@@ -776,3 +778,4 @@ get_bom_output(bom_output, policy) = output {
 is_aws_ebs_optimized_by_default(instanceType) {
 	inArray(data.common_lib.aws_ebs_optimized_by_default, instanceType)
 }
+

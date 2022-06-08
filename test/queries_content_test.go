@@ -201,7 +201,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
 			m, ok := v.(map[string]interface{})
 			require.True(t, ok)
 
-			platformsWithResourceInfo := []string{"ansible", "azureResourceManager", "k8s", "googleDeploymentManager"}
+			platformsWithResourceInfo := []string{"ansible", "azureResourceManager", "cloudFormation", "k8s", "googleDeploymentManager"}
 			requiredProperties := requiredQueryResultProperties
 
 			for i := range platformsWithResourceInfo {

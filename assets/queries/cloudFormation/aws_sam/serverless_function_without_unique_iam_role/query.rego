@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	resources := input.document[i].Resources
@@ -13,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, k),
 		"searchKey": sprintf("Resources.%s.Properties.Role", [k]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resource.%s.Properties.Role is only assigned to the function in question", [k]),

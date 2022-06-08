@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	entry1 := input.document[i].Resources[name]
@@ -22,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": entry1.Type,
+		"resourceName": cf_lib.get_resource_name(entry1, name),
 		"searchKey": sprintf("Resources.%s.Properties.RuleNumber", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s' has not the same rule number as other entry for the same NetworkACL", [name]),

@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.cloudformation as cf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	restrictionType := input.document[i].Resources[name].Properties[j].Restrictions.GeoRestriction.RestrictionType
@@ -7,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Restrictions.GeoRestriction.RestrictionType", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.Restrictions.GeoRestriction.RestrictionType should be enabled with whitelist or blacklist", [name]),

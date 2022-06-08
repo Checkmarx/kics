@@ -10,7 +10,7 @@ CxPolicy[result] {
 
 	bom_output = {
 		"resource_type": "AWS::MSK::Cluster",
-		"resource_name": msk.Properties.ClusterName,
+		"resource_name": cf_lib.get_resource_name(msk, name),
 		"resource_accessibility": "unknown",
 		"resource_encryption": cf_lib.get_encryption(msk),
 		"resource_vendor": "AWS",
