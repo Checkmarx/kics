@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -14,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": "aws_instance",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_instance[%s].%s", [name, sgs[s]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_instance[%s].%s is not using default security group", [name, s]),

@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_network_watcher_flow_log[name]
 
@@ -8,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_network_watcher_flow_log",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_network_watcher_flow_log[%s].retention_policy.days", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s.retention_policy.days' is bigger than 90)", [name]),
@@ -22,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_network_watcher_flow_log",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_network_watcher_flow_log[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s.retention_policy' exists)", [name]),
@@ -38,6 +44,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_network_watcher_flow_log",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_network_watcher_flow_log[%s].retention_policy.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s.retention_policy' should be enabled)", [name]),

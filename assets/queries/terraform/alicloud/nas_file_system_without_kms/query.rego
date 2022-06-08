@@ -1,6 +1,10 @@
 package Cx
 
 import data.generic.common as common_lib
+<<<<<<< HEAD
+=======
+import data.generic.terraform as tf_lib
+>>>>>>> v1.5.10
 
 CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_nas_file_system[name]
@@ -8,6 +12,11 @@ CxPolicy[result] {
 	
 	result := {
 		"documentId": input.document[i].id,
+<<<<<<< HEAD
+=======
+		"resourceType": "alicloud_nas_file_system",
+		"resourceName": tf_lib.get_resource_name(resource, name),
+>>>>>>> v1.5.10
 		"searchKey": sprintf("alicloud_nas_file_system[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("alicloud_nas_file_system[%s].encrypt_type' should be defined and set to 2'", [name]),
@@ -22,6 +31,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+<<<<<<< HEAD
+=======
+		"resourceType": "alicloud_nas_file_system",
+		"resourceName": tf_lib.get_resource_name(resource, name),
+>>>>>>> v1.5.10
 		"searchKey": sprintf("alicloud_nas_file_system[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("alicloud_nas_file_system[%s].encrypt_type' should be set to 2'", [name]),

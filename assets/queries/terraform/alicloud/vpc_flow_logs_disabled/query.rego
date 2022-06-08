@@ -1,6 +1,10 @@
 package Cx
 
 import data.generic.common as common_lib
+<<<<<<< HEAD
+=======
+import data.generic.terraform as tf_lib
+>>>>>>> v1.5.10
 
 CxPolicy[result] {
 	resources := input.document[i].resource
@@ -12,6 +16,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+<<<<<<< HEAD
+=======
+		"resourceType": "alicloud_vpc",
+		"resourceName": name_vpc,
+>>>>>>> v1.5.10
 		"searchKey": sprintf("alicloud_vpc[%s]", [name_vpc]),
 		"issueType": "IncorrectValue",		
 		"keyActualValue": sprintf("alicloud_vpc[%s] is not associated with an 'alicloud_vpc_flow_log'", [name_vpc]),

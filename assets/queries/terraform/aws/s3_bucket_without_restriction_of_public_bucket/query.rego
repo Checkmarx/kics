@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 #default of restrict_public_buckets is false
 CxPolicy[result] {
@@ -9,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket_public_access_block",
+		"resourceName": tf_lib.get_resource_name(pubACL, name),
 		"searchKey": sprintf("aws_s3_bucket_public_access_block[%s].restrict_public_buckets", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'restrict_public_buckets' is equal 'true'",
@@ -23,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_s3_bucket_public_access_block",
+		"resourceName": tf_lib.get_resource_name(pubACL, name),
 		"searchKey": sprintf("aws_s3_bucket_public_access_block[%s].restrict_public_buckets", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'restrict_public_buckets' is equal 'true'",
@@ -38,6 +43,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'restrict_public_buckets' is equal 'true'",
@@ -53,6 +60,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].restrict_public_buckets", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'restrict_public_buckets' is equal 'true'",

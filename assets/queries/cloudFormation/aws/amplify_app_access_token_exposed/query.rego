@@ -1,6 +1,6 @@
 package Cx
 
-import data.generic.cloudformation as cloudFormationLib
+import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
 
 CxPolicy[result] {
@@ -15,10 +15,12 @@ CxPolicy[result] {
 
 	#Access Token is a JWT token from following docs: https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-with-identity-providers.html#amazon-cognito-user-pools-using-the-access-token
 	regex.match(`^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$`, defaultToken)
-	not cloudFormationLib.hasSecretManager(defaultToken, document.Resources)
+	not cf_lib.hasSecretManager(defaultToken, document.Resources)
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("Parameters.%s.Default", [paramName]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Parameters.%s.Default is defined", [paramName]),
@@ -39,10 +41,12 @@ CxPolicy[result] {
 	defaultToken := paramName
 	count(defaultToken) > 50
 	regex.match(`^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$*`, defaultToken)
-	not cloudFormationLib.hasSecretManager(defaultToken, document.Resources)
+	not cf_lib.hasSecretManager(defaultToken, document.Resources)
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.AccessToken", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.AccessToken must not be in plain text string", [key]),
@@ -62,10 +66,12 @@ CxPolicy[result] {
 	defaultToken := paramName
 	count(defaultToken) > 50
 	regex.match(`^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$*`, defaultToken)
-	not cloudFormationLib.hasSecretManager(defaultToken, document.Resources)
+	not cf_lib.hasSecretManager(defaultToken, document.Resources)
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.AccessToken", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.AccessToken must not be in plain text string", [key]),

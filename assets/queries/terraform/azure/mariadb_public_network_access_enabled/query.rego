@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	mariadbServer := input.document[i].resource.azurerm_mariadb_server[name]
@@ -9,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_mariadb_server",
+		"resourceName": tf_lib.get_resource_name(mariadbServer, name),
 		"searchKey": sprintf("azurerm_mariadb_server[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_mariadb_server[%s].public_network_access_enabled' is defined and not null", [name]),
@@ -23,6 +26,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_mariadb_server",
+		"resourceName": tf_lib.get_resource_name(mariadbServer, name),
 		"searchKey": sprintf("azurerm_mariadb_server[%s].public_network_access_enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_mariadb_server[%s].public_network_access_enabled.enabled' is set to false", [name]),

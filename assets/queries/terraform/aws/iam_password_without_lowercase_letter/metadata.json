@@ -3,7 +3,11 @@
   "queryName": "IAM Password Without Lowercase Letter",
   "severity": "MEDIUM",
   "category": "Best Practices",
+<<<<<<< HEAD
   "descriptionText": "Check if IAM account password has at least one lowercase letter",
+=======
+  "descriptionText": "IAM Password should have at least one lowercase letter",
+>>>>>>> v1.5.10
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy",
   "platform": "Terraform",
   "descriptionID": "726cd448",

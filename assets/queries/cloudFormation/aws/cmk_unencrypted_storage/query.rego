@@ -1,6 +1,6 @@
 package Cx
 
-import data.generic.cloudformation as cldLib
+import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
 
 CxPolicy[result] { #Resource Type DB  and StorageEncrypted is False
@@ -9,10 +9,12 @@ CxPolicy[result] { #Resource Type DB  and StorageEncrypted is False
     common_lib.inArray({"AWS::DocDB::DBCluster", "AWS::Neptune::DBCluster", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance", "AWS::RDS::GlobalCluster"}, resource.Type)
 
     properties := resource.Properties
-	cldLib.isCloudFormationFalse(properties.StorageEncrypted)
+	cf_lib.isCloudFormationFalse(properties.StorageEncrypted)
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.StorageEncrypted", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.StorageEncrypted should be true", [key]),
@@ -30,6 +32,8 @@ CxPolicy[result] { # DBTypes any DB, but without storage encrypted is undefined
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties", [key]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.StorageEncrypted should be defined", [key]),
@@ -47,6 +51,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties", [key]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.Encrypted should be defined", [key]),
@@ -58,10 +64,12 @@ CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
 	resource.Type == "AWS::Redshift::Cluster"
-	cldLib.isCloudFormationFalse(resource.Properties.Encrypted)
+	cf_lib.isCloudFormationFalse(resource.Properties.Encrypted)
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.Encrypted", [key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.Encrypted should be true", [key]),

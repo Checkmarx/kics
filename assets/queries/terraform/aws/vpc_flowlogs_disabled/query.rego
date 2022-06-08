@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource
@@ -12,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_vpc",
+		"resourceName": name_vpc,
 		"searchKey": sprintf("aws_vpc[%s]", [name_vpc]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_vpc[%s] is the same as Flow Logs VPC id", [name_vpc]),
@@ -26,6 +29,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_flow_log",
+		"resourceName": name_logs,
 		"searchKey": sprintf("aws_flow_log[%s]", [name_logs]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_flow_log[%s].vpc_id is defined and not null", [name_logs]),
@@ -42,6 +47,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("%s.%s", [name, keyToCheck]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s.%s is set to true", [name, keyToCheck]),
@@ -58,6 +65,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("%s", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s.%s is set to true", [name, keyToCheck]),

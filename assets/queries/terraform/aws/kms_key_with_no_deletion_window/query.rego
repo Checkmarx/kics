@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_kms_key[name]
 
@@ -11,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_kms_key",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kms_key[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_kms_key[%s].deletion_window_in_days is set and valid", [name]),
@@ -29,6 +33,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_kms_key",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kms_key[%s].deletion_window_in_days", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_kms_key[%s].deletion_window_in_days is set and valid", [name]),

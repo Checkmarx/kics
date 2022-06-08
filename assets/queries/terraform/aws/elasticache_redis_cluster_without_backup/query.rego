@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	cluster := input.document[i].resource.aws_elasticache_cluster[name]
@@ -10,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticache_cluster",
+		"resourceName": tf_lib.get_specific_resource_name(cluster, "aws_elasticache_cluster", name),
 		"searchKey": sprintf("aws_elasticache_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'snapshot_retention_limit' is higher than 0",
@@ -25,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticache_cluster",
+		"resourceName": tf_lib.get_specific_resource_name(cluster, "aws_elasticache_cluster", name),
 		"searchKey": sprintf("aws_elasticache_cluster[%s].snapshot_retention_limit", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'snapshot_retention_limit' is higher than 0",

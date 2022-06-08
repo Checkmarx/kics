@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 lb := {"aws_alb_listener", "aws_lb_listener"}
 
@@ -13,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": lb[idx],
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].default_action.redirect", [lb[idx], name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'default_action.redirect.protocol' is equal to 'HTTPS'",
@@ -29,6 +32,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": lb[idx],
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].default_action.redirect.protocol", [lb[idx], name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'default_action.redirect.protocol' is equal to 'HTTPS'",

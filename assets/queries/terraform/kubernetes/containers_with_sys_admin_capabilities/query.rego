@@ -1,13 +1,13 @@
 package Cx
 
-import data.generic.terraform as terraLib
+import data.generic.terraform as tf_lib
 
 types := {"init_container", "container"}
 
 CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 
-	specInfo := terraLib.getSpecInfo(resource[name])
+	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
 	is_array(containers) == true
@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities.add does not have 'SYS_ADMIN'", [resourceType, name, specInfo.path, types[x], y]),
@@ -25,7 +27,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 
-	specInfo := terraLib.getSpecInfo(resource[name])
+	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
 	is_object(containers) == true
@@ -33,6 +35,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.security_context.capabilities.add", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context.capabilities.add does not have 'SYS_ADMIN'", [resourceType, name, specInfo.path, types[x]]),

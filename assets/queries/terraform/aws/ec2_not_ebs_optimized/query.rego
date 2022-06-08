@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_instance[name]
@@ -11,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_instance",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_instance[{{%s}}].ebs_optimized", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'ebs_optimized' is set to true",
@@ -30,6 +33,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].ebs_optimized", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'ebs_optimized' is set to true",
@@ -47,6 +52,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_instance",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_instance[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'ebs_optimized' is set to true",
@@ -66,6 +73,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'ebs_optimized' is set to true",

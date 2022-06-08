@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_eks_cluster[name]
 
@@ -8,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_eks_cluster",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_eks_cluster[%s].vpc_config.public_access_cidrs", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "One of 'vpc_config.public_access_cidrs' not equal '0.0.0.0/0'",
@@ -24,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_eks_cluster",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_eks_cluster[%s].vpc_config.public_access_cidrs", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'vpc_config.public_access_cidrs' exists",

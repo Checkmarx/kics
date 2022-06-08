@@ -34,12 +34,14 @@ expressionArr := [
 CxPolicy[result] {
 	doc := input.document[i]
 	resources := doc.resource.aws_cloudwatch_log_metric_filter
-
+	
 	allPatternsCount := count([x | [path, value] := walk(resources); filter := commonLib.json_unmarshal(value.pattern); x = filter])
 	count([x | [path, value] := walk(resources); filter := commonLib.json_unmarshal(value.pattern); not check_expression_missing(path[0], filter, doc); x = filter]) == allPatternsCount
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_cloudwatch_log_metric_filter",
+		"resourceName": "unknown",
 		"searchKey": "resource",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventName = CreateTrail) || ($.eventName = UpdateTrail) || ($.eventName = DeleteTrail) || ($.eventName = StartLogging) || ($.eventName = StopLogging) } and be associated an aws_cloudwatch_metric_alarm",

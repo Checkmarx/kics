@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	password_policy := input.document[i].resource.aws_iam_account_password_policy[name]
@@ -8,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_account_password_policy",
+		"resourceName": tf_lib.get_resource_name(password_policy, name),
 		"searchKey": sprintf("aws_iam_account_password_policy[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'password_reuse_prevention' should be set with value 24",
@@ -22,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_account_password_policy",
+		"resourceName": tf_lib.get_resource_name(password_policy, name),
 		"searchKey": sprintf("aws_iam_account_password_policy[%s].password_reuse_prevention", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'password_reuse_prevention' should be 24",

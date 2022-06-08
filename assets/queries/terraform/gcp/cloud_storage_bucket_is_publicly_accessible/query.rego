@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	iam_member := input.document[i].resource.google_storage_bucket_iam_member[name]
 	public_access_users := ["allUsers", "allAuthenticatedUsers"]
@@ -10,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_storage_bucket_iam_member",
+		"resourceName": tf_lib.get_resource_name(iam_member, name),
 		"searchKey": sprintf("google_storage_bucket_iam_member[%s].member", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'member' not equal to 'allUsers' nor 'allAuthenticatedUsers'",
@@ -26,6 +30,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_storage_bucket_iam_member",
+		"resourceName": tf_lib.get_resource_name(iam_member, name),
 		"searchKey": sprintf("google_storage_bucket_iam_member[%s].members", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "None of the 'members' equal to 'allUsers' nor 'allAuthenticatedUsers'",

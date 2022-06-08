@@ -12,7 +12,7 @@ CxPolicy[result] {
 
 	bom_output = {
 		"resource_type": "AWS::SQS::Queue",
-		"resource_name": get_queue_name(sqs_queue),
+		"resource_name": cf_lib.get_resource_name(sqs_queue, name),
 		"resource_accessibility": info.accessibility,
 		"resource_encryption": cf_lib.get_encryption(sqs_queue),
 		"resource_vendor": "AWS",
@@ -30,12 +30,4 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["Resources", name], []),
 		"value": json.marshal(final_bom_output),
 	}
-}
-
-get_queue_name(sqs_queue) = name {
-	name := sqs_queue.Properties.QueueName
-} else = name {
-	name := common_lib.get_tag_name_if_exists(sqs_queue)
-} else = name {
-	name := "unknown"
 }

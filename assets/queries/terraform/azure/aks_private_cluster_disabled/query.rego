@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	cluster := input.document[i].resource.azurerm_kubernetes_cluster[name]
@@ -9,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_kubernetes_cluster",
+		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].private_cluster_enabled' is defined and set to true", [name]),
@@ -24,6 +27,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_kubernetes_cluster",
+		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s].private_cluster_enabled", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].private_cluster_enabled' is set to true", [name]),

@@ -1,5 +1,7 @@
 package Cx
+
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	some i
@@ -11,6 +13,8 @@ CxPolicy[result] {
     
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_actiontrail_trail",
+		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_actiontrail_trail", name),
 		"searchKey": sprintf("alicloud_actiontrail_trail[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s' is set.",[possibilities[p]]),
@@ -29,6 +33,8 @@ CxPolicy[result] {
     
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_actiontrail_trail",
+		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_actiontrail_trail", name),
 		"searchKey": sprintf("alicloud_actiontrail_trail[%s].%s", [name, p[f]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' is set to All", [p[f]]),

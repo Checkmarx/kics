@@ -591,6 +591,12 @@ has_relation(related_resource_id, related_resource_type, current_resource, curre
 	regex.match(sprintf("\\${%v\\.%v\\.", [related_resource_type, related_resource_id]), value)
 }
 
+has_target_resource(bucketName, resourceName) {
+	resource := input.document[i].resource[resourceName][_]
+
+	split(resource.bucket, ".")[1] == bucketName
+}
+
 #Checks if an action is allowed for all principals
 allows_action_from_all_principals(json_policy, action) {
  	policy := common_lib.json_unmarshal(json_policy)
@@ -599,4 +605,37 @@ allows_action_from_all_principals(json_policy, action) {
 	statement.Effect == "Allow"
     anyPrincipal(statement)
     common_lib.containsOrInArrayContains(statement.Action, action)
+}
+
+resourceFieldName = {
+	"google_bigquery_dataset": "friendly_name",
+	"alicloud_actiontrail_trail": "trail_name",
+	"alicloud_ros_stack": "stack_name",
+	"alicloud_oss_bucket": "bucket",
+	"aws_s3_bucket": "bucket",
+	"aws_msk_cluster": "cluster_name",
+	"aws_mq_broker": "broker_name",
+	"aws_elasticache_cluster": "cluster_id",
+}
+
+get_resource_name(resource, resourceDefinitionName) = name {
+	possibleNames := {"name", "display_name"}
+	targetName := possibleNames[_]
+	name := resource[targetName]
+} else = name {
+	name := resource.metadata.name
+} else = name {
+	prefix := resource.name_prefix
+	name := sprintf("%s<unknown-sufix>", [prefix])
+} else = name {
+	name := common_lib.get_tag_name_if_exists(resource)
+} else = name {
+	name := resourceDefinitionName
+}
+
+get_specific_resource_name(resource, resourceType, resourceDefinitionName) = name {
+	field := resourceFieldName[resourceType]
+	name := resource[field]
+} else = name {
+	name := get_resource_name(resource, resourceDefinitionName)
 }

@@ -1,17 +1,18 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terra_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 
 	resource := input.document[i].resource.alicloud_disk[name]
     resource.encrypted == false
   
-
-    
+  
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_disk",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_disk[%s].encrypted", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("[%s] has encryption set to true", [name]),
@@ -29,6 +30,8 @@ CxPolicy[result] {
     
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_disk",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_disk[%s]",[name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("[%s] has encryption enabled",[name]),

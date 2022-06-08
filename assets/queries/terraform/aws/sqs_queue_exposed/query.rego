@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terra_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_sqs_queue[name]
@@ -10,6 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_sqs_queue",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_sqs_queue[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource.aws_sqs_queue[%s].policy.Principal doesn't get the queue publicly accessible", [name]),
@@ -26,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy.Principal' doesn't get the queue publicly accessible",
@@ -40,5 +44,5 @@ exposed(policyValue) {
 	statement := st[_]
 
 	common_lib.is_allow_effect(statement)
-	terra_lib.anyPrincipal(statement)
+	tf_lib.anyPrincipal(statement)
 }

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_db_instance[name]
@@ -8,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_db_instance",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_db_instance[%s].publicly_accessible", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'publicly_accessible' is set to false or undefined",
@@ -24,6 +27,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].publicly_accessible", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'publicly_accessible' is set to false or undefined",

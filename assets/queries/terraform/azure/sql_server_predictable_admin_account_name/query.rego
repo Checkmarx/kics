@@ -1,11 +1,15 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_sql_server[name]
 	count(resource.administrator_login) == 0
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_sql_server",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_sql_server[%s].administrator_login", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_sql_server[%s].administrator_login' is not empty'", [name]),
@@ -19,6 +23,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_sql_server",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_sql_server[%s].administrator_login", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_sql_server[%s].administrator_login' is not predictable'", [name]),
