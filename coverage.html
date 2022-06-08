@@ -125,7 +125,7 @@
 				
 				<option value="file34">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (79.5%)</option>
 				
-				<option value="file35">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (79.2%)</option>
+				<option value="file35">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (80.0%)</option>
 				
 				<option value="file36">github.com/Checkmarx/kics/pkg/engine/secrets/inspector.go (84.2%)</option>
 				
@@ -277,7 +277,7 @@
 				
 				<option value="file110">github.com/Checkmarx/kics/pkg/terraformer/azure/azure_cloud_provider.go (92.9%)</option>
 				
-				<option value="file111">github.com/Checkmarx/kics/pkg/terraformer/gcp/gcp_cloud_provider.go (93.8%)</option>
+				<option value="file111">github.com/Checkmarx/kics/pkg/terraformer/gcp/gcp_cloud_provider.go (81.2%)</option>
 				
 				<option value="file112">github.com/Checkmarx/kics/pkg/terraformer/terraformer.go (72.1%)</option>
 				
@@ -2013,13 +2013,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="40">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="28">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="40">total += v
+                <span class="cov8" title="28">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2044,7 +2044,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="15">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -5550,6 +5550,7 @@ import (
         "os"
         "path/filepath"
         "strings"
+        "sync"
 
         sentryReport "github.com/Checkmarx/kics/internal/sentry"
         "github.com/Checkmarx/kics/pkg/model"
@@ -5564,6 +5565,7 @@ import (
 type FileSystemSourceProvider struct {
         paths    []string
         excludes map[string][]os.FileInfo
+        mu       sync.RWMutex
 }
 
 // ErrNotSupportedFile - error representing when a file format is not supported by KICS
@@ -5604,10 +5606,12 @@ func (s *FileSystemSourceProvider) AddExcluded(excludePaths []string) error <spa
                         }
                         <span class="cov0" title="0">return errors.Wrap(err, "failed to open excluded file")</span>
                 }
-                <span class="cov1" title="1">if _, ok := s.excludes[info.Name()]; !ok </span><span class="cov1" title="1">{
+                <span class="cov1" title="1">s.mu.Lock()
+                if _, ok := s.excludes[info.Name()]; !ok </span><span class="cov1" title="1">{
                         s.excludes[info.Name()] = make([]os.FileInfo, 0)
                 }</span>
-                <span class="cov1" title="1">s.excludes[info.Name()] = append(s.excludes[info.Name()], info)</span>
+                <span class="cov1" title="1">s.excludes[info.Name()] = append(s.excludes[info.Name()], info)
+                s.mu.Unlock()</span>
         }
         <span class="cov2" title="4">return nil</span>
 }
@@ -5740,6 +5744,8 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="266">{
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
         path string, resolved bool) (bool, error) <span class="cov10" title="28072">{
+        s.mu.RLock()
+        defer s.mu.RUnlock()
         if info.IsDir() </span><span class="cov8" title="6160">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
@@ -19129,7 +19135,7 @@ func (a CloudProvider) Import(ctx context.Context, options *importer.ImportOptio
                 }
         }
 
-        <span class="cov8" title="1">go func() </span><span class="cov8" title="1">{
+        <span class="cov8" title="1">go func() </span><span class="cov0" title="0">{
                 defer close(done)
                 wg.Wait()
         }</span>()
