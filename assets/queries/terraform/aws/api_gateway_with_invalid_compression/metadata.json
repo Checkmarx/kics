@@ -3,7 +3,7 @@
   "queryName": "API Gateway With Invalid Compression",
   "severity": "MEDIUM",
   "category": "Encryption",
-  "descriptionText": "Attribute 'minimum_compression_size' should be set and it's value should be greater than -1 and smaller than 10485760.",
+  "descriptionText": "API Gateway should have valid compression, which means attribute 'minimum_compression_size' should be set and it's value should be greater than -1 and smaller than 10485760.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_rest_api",
   "platform": "Terraform",
   "descriptionID": "fc02b8db",
