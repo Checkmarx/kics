@@ -41,7 +41,7 @@ require (
 	github.com/zclconf/go-cty v1.10.0
 	golang.org/x/net v0.0.0-20220520000938-2e3eb7b945c2
 	golang.org/x/text v0.3.7
-	golang.org/x/tools v0.1.10
+	golang.org/x/tools v0.1.11
 	gopkg.in/yaml.v3 v3.0.1
 	helm.sh/helm/v3 v3.9.0
 	mvdan.cc/sh/v3 v3.5.1
