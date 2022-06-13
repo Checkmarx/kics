@@ -67,7 +67,14 @@ func setupConfigFile() (bool, error) {
 				return true, nil
 			}
 		}
-		_, err := os.Stat(filepath.ToSlash(filepath.Join(configPath, constants.DefaultConfigFilename)))
+		info, err := os.Stat(configPath)
+		if err != nil {
+			return true, nil
+		}
+		if !info.IsDir() {
+			configPath = filepath.Dir(configPath)
+		}
+		_, err = os.Stat(filepath.ToSlash(filepath.Join(configPath, constants.DefaultConfigFilename)))
 		if err != nil {
 			if os.IsNotExist(err) {
 				return true, nil
