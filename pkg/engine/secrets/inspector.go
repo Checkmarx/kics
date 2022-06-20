@@ -350,7 +350,6 @@ func (c *Inspector) checkFileContent(query *RegexQuery, basePaths []string, file
 				file,
 				query,
 				lineVuln.lineNumber,
-				lineVuln.lineContent,
 			)
 		}
 
@@ -372,7 +371,6 @@ func (c *Inspector) checkFileContent(query *RegexQuery, basePaths []string, file
 						file,
 						query,
 						lineVuln.lineNumber,
-						lineVuln.lineContent,
 					)
 				}
 			}
@@ -434,7 +432,6 @@ func (c *Inspector) checkLineByLine(wg *sync.WaitGroup, query *RegexQuery,
 			file,
 			query,
 			lineNumber,
-			currentLine,
 		)
 	}
 
@@ -458,13 +455,12 @@ func (c *Inspector) checkLineByLine(wg *sync.WaitGroup, query *RegexQuery,
 				file,
 				query,
 				lineNumber,
-				currentLine,
 			)
 		}
 	}
 }
 
-func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadata, query *RegexQuery, lineNumber int, issueLine string) {
+func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadata, query *RegexQuery, lineNumber int) {
 	if engine.ShouldSkipVulnerability(file.Commands, query.ID) {
 		log.Debug().Msgf("Skipping vulnerability in file %s for query '%s':%s", file.FilePath, query.Name, query.ID)
 		return
@@ -490,7 +486,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 				FileID:           file.ID,
 				FileName:         file.FilePath,
 				Line:             linesVuln.Line,
-				VulnLines:        linesVuln.VulnLines,
+				VulnLines:        hideSecret(linesVuln.VulnLines),
 				IssueType:        "RedundantAttribute",
 				Platform:         SecretsQueryMetadata["platform"],
 				Severity:         model.SeverityHigh,
@@ -499,7 +495,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 				Description:      SecretsQueryMetadata["descriptionText"],
 				DescriptionID:    SecretsQueryMetadata["descriptionID"],
 				KeyExpectedValue: "Hardcoded secret key should not appear in source",
-				KeyActualValue:   fmt.Sprintf("'%s' contains a secret", issueLine),
+				KeyActualValue:   "Hardcoded secret key appears in source",
 				CloudProvider:    SecretsQueryMetadata["cloudProvider"],
 			}
 			c.vulnerabilities = append(c.vulnerabilities, vuln)
@@ -615,4 +611,11 @@ func cleanFiles(files model.FileMetadatas) model.FileMetadatas {
 	}
 
 	return cleanFiles
+}
+
+func hideSecret(vulnLines []model.CodeLine) []model.CodeLine {
+	for idx := range vulnLines {
+		vulnLines[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
+	}
+	return vulnLines
 }
