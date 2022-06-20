@@ -48,6 +48,7 @@ RUN wget https://releases.hashicorp.com/terraform/1.1.3/terraform_1.1.3_linux_am
     && unzip terraform-provider-google_4.10.0_linux_amd64.zip && rm terraform-provider-google_4.10.0_linux_amd64.zip \
     && unzip terraform-provider-aws_3.72.0_linux_amd64.zip && rm terraform-provider-aws_3.72.0_linux_amd64.zip \
     && mkdir ~/.terraform.d && mkdir ~/.terraform.d/plugins && mkdir ~/.terraform.d/plugins/linux_amd64 && mv terraform-provider-aws_v3.72.0_x5 terraform-provider-google_v4.10.0_x5 terraform-provider-azurerm_v2.95.0_x5 ~/.terraform.d/plugins/linux_amd64 \
+    && apk upgrade --no-cache pcre2 \
     && apk add --no-cache \
     git=2.36.1-r0
 
