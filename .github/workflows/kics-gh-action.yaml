@@ -2,7 +2,7 @@ name: kics-github-action
 
 on:
   pull_request:
-    branches: [master]
+    branches: [master, release/1.6]
   workflow_dispatch:
 
 jobs:

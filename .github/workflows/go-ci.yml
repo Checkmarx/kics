@@ -2,7 +2,7 @@ name: go-ci
 
 on:
   pull_request:
-    branches: [master]
+    branches: [master, release/1.6]
 
 jobs:
   lint:
