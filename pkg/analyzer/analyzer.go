@@ -14,6 +14,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
+	ignore "github.com/sabhiram/go-gitignore"
 
 	yamlParser "gopkg.in/yaml.v3"
 )
@@ -195,7 +196,7 @@ var types = map[string]regexSlice{
 
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
 // should be loaded based on the extension of the file and the content
-func Analyze(paths, types, exc []string) (model.AnalyzedPaths, error) {
+func Analyze(paths, types, exc []string, gitIgnoreFileName string) (model.AnalyzedPaths, error) {
 	// start metrics for file analyzer
 	metrics.Metric.Start("file_type_analyzer")
 	returnAnalyzedPaths := model.AnalyzedPaths{
@@ -207,6 +208,8 @@ func Analyze(paths, types, exc []string) (model.AnalyzedPaths, error) {
 	var wg sync.WaitGroup
 	// results is the channel shared by the workers that contains the types found
 	results := make(chan string)
+	ignoreFiles := make([]string, 0)
+	hasGitIgnoreFile, gitIgnore := shouldConsiderGitIgnoreFile(paths[0], gitIgnoreFileName, exc)
 
 	// get all the files inside the given paths
 	for _, path := range paths {
@@ -219,6 +222,11 @@ func Analyze(paths, types, exc []string) (model.AnalyzedPaths, error) {
 			}
 
 			ext := utils.GetExtension(path)
+
+			if hasGitIgnoreFile && gitIgnore.MatchesPath(path) {
+				ignoreFiles = append(ignoreFiles, path)
+				exc = append(exc, path)
+			}
 
 			if _, ok := possibleFileTypes[ext]; ok && !isExcludedFile(path, exc) {
 				files = append(files, path)
@@ -258,6 +266,7 @@ func Analyze(paths, types, exc []string) (model.AnalyzedPaths, error) {
 
 	availableTypes := createSlice(results)
 	unwantedPaths := createSlice(unwanted)
+	unwantedPaths = append(unwantedPaths, ignoreFiles...)
 	returnAnalyzedPaths.Types = availableTypes
 	returnAnalyzedPaths.Exc = unwantedPaths
 	// stop metrics for file analyzer
@@ -477,4 +486,19 @@ func isExcludedFile(path string, exc []string) bool {
 		}
 	}
 	return false
+}
+
+// shouldConsiderGitIgnoreFile verifies if the scan should exclude the files according to the .gitignore file
+func shouldConsiderGitIgnoreFile(path, gitIgnore string, exc []string) (bool, *ignore.GitIgnore) {
+	gitIgnorePath := filepath.ToSlash(filepath.Join(path, gitIgnore))
+	_, err := os.Stat(gitIgnorePath)
+
+	if !utils.Contains("withoutGitIgnore", exc) && err == nil {
+		gitIgnore, _ := ignore.CompileIgnoreFile(gitIgnorePath)
+		if gitIgnore != nil {
+			log.Info().Msgf(".gitignore file was found in '%s' and it will be used to automatically exclude paths", path)
+			return true, gitIgnore
+		}
+	}
+	return false, nil
 }
