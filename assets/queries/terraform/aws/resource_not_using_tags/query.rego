@@ -34,8 +34,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[{{%s}}].tags", [res, name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[{{%s}}].tags has tags defined other than 'Name'", [res, name]),
-		"keyActualValue": sprintf("%s[{{%s}}].tags has no tags defined", [res, name]),
+		"keyExpectedValue": sprintf("%s[{{%s}}].tags has additional tags defined other than 'Name'", [res, name]),
+		"keyActualValue": sprintf("%s[{{%s}}].tags does not have additional tags defined other than 'Name'", [res, name]),
 	}
 }
 
