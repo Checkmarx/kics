@@ -106,6 +106,9 @@ Global Flags:
 
 The other commands have no further options.
 
+## Exclude Paths
+By default, KICS now automatically excludes paths according to the .gitignore file. If you want to disable this behavior, you should set "withoutGitIgnore" in the -e flag (`-e "withoutGitIgnore"`).
+
 ## Library Flag Usage
 
 As mentioned above, the library flag (`-b` or `--libraries-path`) refers to the directory with libraries. The functions need to be grouped by platform and the library file name should follow the format: `<platform>.rego` to be loaded by KICS. It doesn't matter your directory structure. In other words, for example, if you want to indicate a directory that contains a library for your terraform queries, you should group your functions (used in your terraform queries) in a file named `terraform.rego` wherever you want.
