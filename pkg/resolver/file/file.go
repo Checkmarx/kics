@@ -42,7 +42,7 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int) []
 	}
 
 	// resolve the paths
-	obj, _ = r.walk("", obj, path, resolveCount)
+	obj, _ = r.walk(obj, path, resolveCount)
 
 	b, err := r.marshler(obj)
 	if err != nil {
@@ -52,18 +52,18 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int) []
 	return b
 }
 
-func (r *Resolver) walk(key string, value any, path string, resolveCount int) (any, bool) {
+func (r *Resolver) walk(value any, path string, resolveCount int) (any, bool) {
 	// go over the value and replace paths with the real content
 	switch typedValue := value.(type) {
 	case string:
-		if key != "Value" { // exclude CF tags values
+		if filepath.Base(path) != typedValue {
 			return r.resolvePath(typedValue, path, resolveCount)
 		} else {
 			return value, false
 		}
 	case []any:
 		for i, v := range typedValue {
-			typedValue[i], _ = r.walk(key, v, path, resolveCount)
+			typedValue[i], _ = r.walk(v, path, resolveCount)
 		}
 		return typedValue, false
 	case map[string]any:
@@ -75,7 +75,7 @@ func (r *Resolver) walk(key string, value any, path string, resolveCount int) (a
 
 func (r *Resolver) handleMap(value map[string]interface{}, path string, resolveCount int) (any, bool) {
 	for k, v := range value {
-		val, res := r.walk(k, v, path, resolveCount)
+		val, res := r.walk(v, path, resolveCount)
 		// check if it is a ref than everything needs to be changed
 		if res && strings.Contains(strings.ToLower(k), "ref") {
 			return val, false
