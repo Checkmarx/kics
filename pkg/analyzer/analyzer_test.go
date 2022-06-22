@@ -16,7 +16,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 		wantExclude       []string
 		wantErr           bool
 		gitIgnoreFileName string
-		exc               []string
+		addGitIgnore      bool
 	}{
 		{
 			name:              "analyze_test_dir_single_path",
@@ -25,7 +25,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			wantExclude:       []string{},
 			wantErr:           false,
 			gitIgnoreFileName: "",
-			exc:               []string{},
+			addGitIgnore:      false,
 		},
 		{
 			name:              "analyze_test_helm_single_path",
@@ -34,7 +34,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			wantExclude:       []string{},
 			wantErr:           false,
 			gitIgnoreFileName: "",
-			exc:               []string{},
+			addGitIgnore:      false,
 		},
 		{
 			name: "analyze_test_multiple_path",
@@ -45,7 +45,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			wantExclude:       []string{},
 			wantErr:           false,
 			gitIgnoreFileName: "",
-			exc:               []string{},
+			addGitIgnore:      false,
 		},
 		{
 			name: "analyze_test_multi_checks_path",
@@ -55,7 +55,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			wantExclude:       []string{},
 			wantErr:           false,
 			gitIgnoreFileName: "",
-			exc:               []string{},
+			addGitIgnore:      false,
 		},
 		{
 			name: "analyze_test_error_path",
@@ -66,7 +66,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			wantExclude:       []string{},
 			wantErr:           true,
 			gitIgnoreFileName: "",
-			exc:               []string{},
+			addGitIgnore:      false,
 		},
 		{
 			name: "analyze_test_unwanted_path",
@@ -77,7 +77,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			wantExclude:       []string{filepath.FromSlash("../../test/fixtures/type-test01/template01/metadata.json")},
 			wantErr:           false,
 			gitIgnoreFileName: "",
-			exc:               []string{},
+			addGitIgnore:      false,
 		},
 		{
 			name: "analyze_test_tfplan",
@@ -88,7 +88,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			wantExclude:       []string{},
 			wantErr:           false,
 			gitIgnoreFileName: "",
-			exc:               []string{},
+			addGitIgnore:      false,
 		},
 		{
 			name: "analyze_test_considering_ignore_file",
@@ -100,7 +100,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 				filepath.FromSlash("../../test/fixtures/gitignore/secrets.tf")},
 			wantErr:           false,
 			gitIgnoreFileName: "gitignore",
-			exc:               []string{},
+			addGitIgnore:      false,
 		},
 		{
 			name: "analyze_test_not_considering_ignore_file",
@@ -111,14 +111,24 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			wantExclude:       []string{},
 			wantErr:           false,
 			gitIgnoreFileName: "gitignore",
-			exc:               []string{"withoutGitIgnore"},
+			addGitIgnore:      true,
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			types := []string{""}
-			got, err := Analyze(tt.paths, types, tt.exc, tt.gitIgnoreFileName)
+			exc := []string{""}
+
+			analyzer := &Analyzer{
+				Paths:             tt.paths,
+				Types:             types,
+				Exc:               exc,
+				AddGitIgnore:      tt.addGitIgnore,
+				GitIgnoreFileName: tt.gitIgnoreFileName,
+			}
+
+			got, err := Analyze(analyzer)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Analyze = %v, wantErr = %v", err, tt.wantErr)
 			}

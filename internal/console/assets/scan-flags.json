@@ -185,5 +185,11 @@
     "defaultValue": "",
     "usage": "case insensitive list of platform types to scan\n(${supportedPlatforms})",
     "validation": "validateMultiStrEnum"
+  },
+  "add-gitignore": {
+    "flagType": "bool",
+    "shorthandFlag": "",
+    "defaultValue": "false",
+    "usage": "disables the usage of .gitignore file to automatically exclude paths"
   }
 }

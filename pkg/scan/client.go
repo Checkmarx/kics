@@ -41,6 +41,7 @@ type Parameters struct {
 	ChangedDefaultLibrariesPath bool
 	ScanID                      string
 	BillOfMaterials             bool
+	AddGitIgnore                bool
 }
 
 // Client represents a scan client

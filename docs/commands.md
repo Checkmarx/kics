@@ -42,6 +42,7 @@ Usage:
   kics scan [flags]
 
 Flags:
+      --add-gitignore                 disables the usage of .gitignore file to automatically exclude paths
   -m, --bom                           include bill of materials (BoM) in results output
       --cloud-provider strings        list of cloud providers to scan (aws, azure, gcp)
       --config string                 path to configuration file
@@ -107,7 +108,7 @@ Global Flags:
 The other commands have no further options.
 
 ## Exclude Paths
-By default, KICS now automatically excludes paths according to the .gitignore file. If you want to disable this behavior, you should set "withoutGitIgnore" in the -e flag (`-e "withoutGitIgnore"`).
+By default, KICS now automatically excludes paths according to the .gitignore file. If you want to disable this behavior, you use the flag `--add-gitignore`.
 
 ## Library Flag Usage
 
