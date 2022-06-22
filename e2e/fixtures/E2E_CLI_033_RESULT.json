@@ -149,7 +149,7 @@
 			"platform": "Terraform",
 			"cloud_provider": "AWS",
 			"category": "Best Practices",
-			"description": "AWS services resource tags are an essential part of managing components",
+			"description": "AWS services resource tags are an essential part of managing components. As a best practice, the field 'tags' should have additional tags defined other than 'Name'",
 			"description_id": "09db2d52",
 			"files": [
 				{

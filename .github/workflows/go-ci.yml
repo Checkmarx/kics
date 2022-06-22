@@ -2,7 +2,7 @@ name: go-ci
 
 on:
   pull_request:
-    branches: [master]
+    branches: [master, release/1.6]
 
 jobs:
   lint:
@@ -18,7 +18,7 @@ jobs:
         uses: golangci/golangci-lint-action@v3.2.0
         with:
           version: v1.46.1
-          args: -c .golangci.yml --timeout 15m
+          args: -c .golangci.yml --timeout 20m
   go-generate:
     name: go-generate
     runs-on: ubuntu-latest
