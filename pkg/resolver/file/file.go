@@ -58,9 +58,8 @@ func (r *Resolver) walk(value any, path string, resolveCount int) (any, bool) {
 	case string:
 		if filepath.Base(path) != typedValue {
 			return r.resolvePath(typedValue, path, resolveCount)
-		} else {
-			return value, false
 		}
+		return value, false
 	case []any:
 		for i, v := range typedValue {
 			typedValue[i], _ = r.walk(v, path, resolveCount)
