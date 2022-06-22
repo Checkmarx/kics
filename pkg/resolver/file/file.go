@@ -56,7 +56,7 @@ func (r *Resolver) walk(key string, value any, path string, resolveCount int) (a
 	// go over the value and replace paths with the real content
 	switch typedValue := value.(type) {
 	case string:
-		if key != "Value" { // Exclude CF tags values
+		if key != "Value" { // exclude CF tags values
 			return r.resolvePath(typedValue, path, resolveCount)
 		} else {
 			return value, false
