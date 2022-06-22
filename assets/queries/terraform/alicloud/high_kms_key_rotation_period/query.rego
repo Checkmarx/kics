@@ -1,10 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
-<<<<<<< HEAD
-=======
 import data.generic.terraform as tf_lib
->>>>>>> v1.5.10
 
 CxPolicy[result] {
 	some i
@@ -14,11 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-<<<<<<< HEAD
-=======
 		"resourceType": "alicloud_kms_key",
 		"resourceName": tf_lib.get_resource_name(resource, name),
->>>>>>> v1.5.10
 		"searchKey": sprintf("alicloud_kms_key[%s].rotation_interval", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'rotation_interval' value should not be higher than a year",
@@ -34,11 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-<<<<<<< HEAD
-=======
 		"resourceType": "alicloud_kms_key",
 		"resourceName": tf_lib.get_resource_name(resource, name),
->>>>>>> v1.5.10
 		"searchKey": sprintf("alicloud_kms_key[%s].rotation_interval", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'automatic_rotation' should be defined and set to Enabled",
@@ -54,11 +45,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-<<<<<<< HEAD
-=======
 		"resourceType": "alicloud_kms_key",
 		"resourceName": tf_lib.get_resource_name(resource, name),
->>>>>>> v1.5.10
 		"searchKey": sprintf("alicloud_kms_key[%s].rotation_interval", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'automatic_rotation' should be set to Enabled",

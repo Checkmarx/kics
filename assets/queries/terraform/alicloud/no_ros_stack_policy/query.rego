@@ -1,10 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
-<<<<<<< HEAD
-=======
 import data.generic.terraform as tf_lib
->>>>>>> v1.5.10
 
 CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_ros_stack[name]
@@ -13,11 +10,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-<<<<<<< HEAD
-=======
 		"resourceType": "alicloud_ros_stack",
 		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_ros_stack", name),
->>>>>>> v1.5.10
 		"searchKey": sprintf("alicloud_ros_stack[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "The stack should have the attribute 'stack_policy_body' or 'stack_policy_url' defined",
@@ -33,11 +27,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-<<<<<<< HEAD
-=======
 		"resourceType": "alicloud_ros_stack",
 		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_ros_stack", name),
->>>>>>> v1.5.10
 		"searchKey": sprintf("alicloud_ros_stack[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "The stack should have the attribute 'stack_policy_during_update_body' or 'stack_policy_during_update_url' defined",
@@ -57,4 +48,3 @@ hasPolicyDuringUpdate(resource){
 }else{
 	common_lib.valid_key(resource, "stack_policy_during_update_url")
 }
-

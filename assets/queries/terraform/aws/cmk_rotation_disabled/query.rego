@@ -1,4 +1,3 @@
-
 package Cx
 
 import data.generic.common as common_lib
@@ -32,11 +31,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-<<<<<<< HEAD
-=======
 		"resourceType": "aws_kms_key",
 		"resourceName": tf_lib.get_resource_name(resource, name),
->>>>>>> v1.5.10
 		"searchKey": sprintf("aws_kms_key[%s]", [name]),
         "issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_kms_key[%s].enable_key_rotation is set to false", [name]),
@@ -54,11 +50,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-<<<<<<< HEAD
-=======
 		"resourceType": "aws_kms_key",
 		"resourceName": tf_lib.get_resource_name(resource, name),
->>>>>>> v1.5.10
 		"searchKey": sprintf("aws_kms_key[%s]", [name]),
         "issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_kms_key[%s].enable_key_rotation is set to true", [name]),

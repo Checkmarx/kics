@@ -1,10 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
-<<<<<<< HEAD
-=======
 import data.generic.terraform as tf_lib
->>>>>>> v1.5.10
 
 CxPolicy[result] {
 	storage := input.document[i].resource.azurerm_storage_account[name]

@@ -3,11 +3,7 @@
   "queryName": "SQS with SSE disabled",
   "severity": "MEDIUM",
   "category": "Encryption",
-<<<<<<< HEAD
-  "descriptionText": "AWS SQS Queue should have a KMS Master Key defined",
-=======
   "descriptionText": "Amazon Simple Queue Service (SQS) queue is not protecting the contents of their messages using Server-Side Encryption (SSE)",
->>>>>>> v1.5.10
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-kmsmasterkeyid",
   "platform": "CloudFormation",
   "descriptionID": "7c3c1b44",

@@ -9,11 +9,7 @@ CxPolicy[result] {
 	resourceValue := pl[r]
 	resource := input.document[i].resource[resourceValue][name]
 
-<<<<<<< HEAD
-	terra_lib.allows_action_from_all_principals(resource.policy, "*")
-=======
 	tf_lib.allows_action_from_all_principals(resource.policy, "*")
->>>>>>> v1.5.10
 
 	result := {
 		"documentId": input.document[i].id,
@@ -32,11 +28,7 @@ CxPolicy[result] {
 	resourceValue := pl[r]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, resourceValue, "policy")
 
-<<<<<<< HEAD
-	terra_lib.allows_action_from_all_principals(module[keyToCheck], "*")
-=======
 	tf_lib.allows_action_from_all_principals(module[keyToCheck], "*")
->>>>>>> v1.5.10
 
 	result := {
 		"documentId": input.document[i].id,

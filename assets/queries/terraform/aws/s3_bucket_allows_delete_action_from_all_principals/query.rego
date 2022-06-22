@@ -9,11 +9,7 @@ CxPolicy[result] {
 	resourceType := pl[r]
 	resource := input.document[i].resource[resourceType][name]
 
-<<<<<<< HEAD
-	terra_lib.allows_action_from_all_principals(resource.policy, "delete")
-=======
 	tf_lib.allows_action_from_all_principals(resource.policy, "delete")
->>>>>>> v1.5.10
 
 	result := {
 		"documentId": input.document[i].id,
@@ -32,11 +28,7 @@ CxPolicy[result] {
 	resourceType := pl[r]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, resourceType, "policy")
 
-<<<<<<< HEAD
-	terra_lib.allows_action_from_all_principals(module[keyToCheck], "delete")
-=======
 	tf_lib.allows_action_from_all_principals(module[keyToCheck], "delete")
->>>>>>> v1.5.10
 
 	result := {
 		"documentId": input.document[i].id,
