@@ -8,11 +8,7 @@ CxPolicy[result] {
 	resource := doc.resource.aws_network_acl[name]
 
 	is_array(resource.ingress)
-<<<<<<< HEAD
-	terra_lib.portOpenToInternet(resource.ingress[idx], 3389)
-=======
 	tf_lib.portOpenToInternet(resource.ingress[idx], 3389)
->>>>>>> v1.5.10
 
 	result := {
 		"documentId": input.document[i].id,
@@ -32,11 +28,7 @@ CxPolicy[result] {
 	net_acl_rule := doc.resource.aws_network_acl_rule[netAclRuleName]
 	split(net_acl_rule.network_acl_id, ".")[1] == netAclName
 
-<<<<<<< HEAD
-	terra_lib.portOpenToInternet(net_acl_rule, 3389)
-=======
 	tf_lib.portOpenToInternet(net_acl_rule, 3389)
->>>>>>> v1.5.10
 
 	result := {
 		"documentId": doc.id,
@@ -55,11 +47,7 @@ CxPolicy[result] {
 	resource := doc.resource.aws_network_acl[name]
 
 	not is_array(resource.ingress)
-<<<<<<< HEAD
-	terra_lib.portOpenToInternet(resource.ingress, 3389)
-=======
 	tf_lib.portOpenToInternet(resource.ingress, 3389)
->>>>>>> v1.5.10
 
 	result := {
 		"documentId": doc.id,
@@ -79,11 +67,7 @@ CxPolicy[result] {
 	common_lib.valid_key(module, keyToCheck)
 	rule := module[keyToCheck][idx]
 
-<<<<<<< HEAD
-	terra_lib.portOpenToInternet(rule, 3389)
-=======
 	tf_lib.portOpenToInternet(rule, 3389)
->>>>>>> v1.5.10
 
 	result := {
 		"documentId": input.document[i].id,

@@ -3,7 +3,7 @@
   "queryName": "CloudTrail Multi Region Disabled",
   "severity": "MEDIUM",
   "category": "Observability",
-  "descriptionText": "AWS CloudTrail should have IsMultiRegionTrail set to true",
+  "descriptionText": "CloudTrail multi region should be enabled, which means attribute 'IsMultiRegionTrail' should be set to true",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-ismultiregiontrail",
   "platform": "CloudFormation",
   "descriptionID": "34ddc2cb",

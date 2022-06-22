@@ -27,11 +27,8 @@ CxPolicy[result] {
     
 	result := {
 		"documentId": input.document[i].id,
-<<<<<<< HEAD
-=======
 		"resourceType": "alicloud_oss_bucket",
 		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_oss_bucket", name),
->>>>>>> v1.5.10
 		"searchKey": sprintf("alicloud_oss_bucket[%s].logging_isenable", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s 'logging_isenable' argument should be set to true",[name]),

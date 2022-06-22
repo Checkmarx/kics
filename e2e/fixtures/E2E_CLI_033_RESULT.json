@@ -151,6 +151,32 @@
 			]
 		},
 		{
+			"query_name": "IAM Access Analyzer Not Enabled",
+			"query_id": "e592a0c5-5bdb-414c-9066-5dba7cdea370",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/accessanalyzer_analyzer",
+			"severity": "LOW",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Best Practices",
+			"description": "IAM Access Analyzer should be enabled and configured to continuously monitor resource permissions",
+			"description_id": "d03e85ae",
+			"files": [
+				{
+					"file_name": "/path/e2e/fixtures/samples/terraform-single.tf",
+					"similarity_id": "aa346cd1642a83b40e221f96a43d88dbfacecdf1f8e5314c24145f8d35530197",
+					"line": 1,
+					"resource_type": "n/a",
+					"resource_name": "n/a",
+					"issue_type": "MissingAttribute",
+					"search_key": "resource",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'aws_accessanalyzer_analyzer' is set",
+					"actual_value": "'aws_accessanalyzer_analyzer' is undefined"
+				}
+			]
+		},
+		{
 			"query_name": "Redshift Using Default Port",
 			"query_id": "41abc6cc-dde1-4217-83d3-fb5f0cc09d8f",
 			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#port",
@@ -184,7 +210,7 @@
 			"platform": "Terraform",
 			"cloud_provider": "AWS",
 			"category": "Best Practices",
-			"description": "AWS services resource tags are an essential part of managing components",
+			"description": "AWS services resource tags are an essential part of managing components. As a best practice, the field 'tags' should have additional tags defined other than 'Name'",
 			"description_id": "09db2d52",
 			"files": [
 				{

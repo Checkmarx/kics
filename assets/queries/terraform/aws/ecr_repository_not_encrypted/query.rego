@@ -27,11 +27,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-<<<<<<< HEAD
-=======
 		"resourceType": "aws_ecr_repository",
 		"resourceName": tf_lib.get_resource_name(resource, name),
->>>>>>> v1.5.10
 		"searchKey": sprintf("aws_ecr_repository[%s].encryption_configuration", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'encryption_configuration.encryption_type' is set to 'KMS' and 'encryption_configuration.kms_key' specifies a KMS key ARN",

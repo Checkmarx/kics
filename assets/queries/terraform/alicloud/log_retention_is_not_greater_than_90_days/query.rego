@@ -1,11 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
-<<<<<<< HEAD
-import data.generic.terraform as terra_lib
-=======
 import data.generic.terraform as tf_lib
->>>>>>> v1.5.10
 
 CxPolicy[result] {
 
@@ -14,11 +10,8 @@ CxPolicy[result] {
     
 	result := {
 		"documentId": input.document[i].id,
-<<<<<<< HEAD
-=======
 		"resourceType": "alicloud_log_store",
 		"resourceName": tf_lib.get_resource_name(resource, name),
->>>>>>> v1.5.10
 		"searchKey": sprintf("alicloud_log_store[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "For attribute 'retention_period' to be set and over 90 days.",
@@ -35,11 +28,8 @@ CxPolicy[result] {
     
 	result := {
 		"documentId": input.document[i].id,
-<<<<<<< HEAD
-=======
 		"resourceType": "alicloud_log_store",
 		"resourceName": tf_lib.get_resource_name(resource, name),
->>>>>>> v1.5.10
 		"searchKey": sprintf("alicloud_log_store[%s].retention_period", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "For the attribite 'retention_period' to be set to 90+ days",

@@ -3,7 +3,7 @@
   "queryName": "Automatic Minor Upgrades Disabled",
   "severity": "LOW",
   "category": "Best Practices",
-  "descriptionText": "RDS instance auto minor version upgrade feature must be true",
+  "descriptionText": "RDS instance should have automatic minor upgrades enabled, which means the attribute 'auto_minor_version_upgrade' must be set to true.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-auto_minor_version_upgrade",
   "platform": "Ansible",
   "descriptionID": "7734a8b1",

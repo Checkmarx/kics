@@ -82,7 +82,7 @@ var (
 		"buildah":              {"buildah"},
 		"cloudformation":       {"cloudformation"},
 		"dockercompose":        {"dockercompose"},
-		"kubernetes":           {"kubernetes", "cniK8s"},
+		"kubernetes":           {"kubernetes"},
 		"openapi":              {"openapi"},
 		"terraform":            {"terraform", "cdkTf"},
 	}
@@ -295,6 +295,8 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, wg *sync.WaitGrou
 	case "possibleDockerfile", ".ubi8", ".debian":
 		if (typesFlag[0] == "" || utils.Contains(dockerfile, typesFlag)) && isDockerfile(a.filePath) {
 			results <- dockerfile
+		} else {
+			unwanted <- a.filePath
 		}
 	// Terraform
 	case ".tf", "tfvars":

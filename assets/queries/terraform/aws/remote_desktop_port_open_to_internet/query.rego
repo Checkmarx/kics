@@ -5,11 +5,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_security_group[name]
 
-<<<<<<< HEAD
-	terraLib.portOpenToInternet(resource.ingress, 3389)
-=======
 	tf_lib.portOpenToInternet(resource.ingress, 3389)
->>>>>>> v1.5.10
 
 	result := {
 		"documentId": input.document[i].id,
