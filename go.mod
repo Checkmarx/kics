@@ -9,7 +9,7 @@ require (
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20211114212643-ec144ca0d701
-	github.com/aws/aws-sdk-go v1.44.39
+	github.com/aws/aws-sdk-go v1.44.40
 	github.com/cheggaaa/pb/v3 v3.0.8
 	github.com/emicklei/proto v1.10.0
 	github.com/getsentry/sentry-go v0.13.0
@@ -20,7 +20,7 @@ require (
 	github.com/gookit/color v1.5.1
 	github.com/hashicorp/go-getter v1.6.2
 	github.com/hashicorp/hcl v1.0.0
-	github.com/hashicorp/hcl/v2 v2.12.0
+	github.com/hashicorp/hcl/v2 v2.13.0
 	github.com/hashicorp/terraform-json v0.14.0
 	github.com/johnfercher/maroto v0.37.0
 	github.com/mackerelio/go-osstat v0.2.2
@@ -34,7 +34,7 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.12.0
 	github.com/stretchr/testify v1.7.4
-	github.com/tdewolff/minify/v2 v2.11.10
+	github.com/tdewolff/minify/v2 v2.11.11
 	github.com/tidwall/gjson v1.14.1
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/yargevad/filepathx v1.0.0
@@ -386,7 +386,7 @@ require (
 	go.mongodb.org/mongo-driver v1.5.1 // indirect
 	go.opencensus.io v0.23.0 // indirect
 	go.starlark.net v0.0.0-20200306205701-8dd3e2ee1dd5 // indirect
-	golang.org/x/crypto v0.0.0-20220411220226-7b82a4e95df4 // indirect
+	golang.org/x/crypto v0.0.0-20220517005047-85d78b3ac167 // indirect
 	golang.org/x/oauth2 v0.0.0-20220411215720-9780585627b5 // indirect
 	golang.org/x/sync v0.0.0-20220513210516-0976fa681c29 // indirect
 	golang.org/x/sys v0.0.0-20220520151302-bc2c85ada10a // indirect
