@@ -4,7 +4,7 @@
   "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "Group with privilege escalation by actions 'glue:UpdateDevEndpoint' and Resource set to '*'",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy",
   "platform": "Terraform",
   "descriptionID": "10f17e18",
   "cloudProvider": "aws"
