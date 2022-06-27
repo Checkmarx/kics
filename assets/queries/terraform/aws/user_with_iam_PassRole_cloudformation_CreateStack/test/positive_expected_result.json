@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "User with privilege escalation by actions 'cloudformation:CreateStack' and 'iam:PassRole'",
+    "queryName": "User With Privilege Escalation By Actions 'cloudformation:CreateStack' And 'iam:PassRole'",
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive1.tf"

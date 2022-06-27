@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "Role with privilege escalation by actions 'iam:AttachGroupPolicy'",
+    "queryName": "Role With Privilege Escalation By Actions 'iam:AttachGroupPolicy'",
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive1.tf"

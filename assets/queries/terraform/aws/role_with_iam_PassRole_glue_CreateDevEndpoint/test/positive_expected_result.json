@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "Role with privilege escalation by actions 'glue:CreateDevEndpoint' and 'iam:PassRole'",
+    "queryName": "Role With Privilege Escalation By Actions 'glue:CreateDevEndpoint' And 'iam:PassRole'",
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive1.tf"

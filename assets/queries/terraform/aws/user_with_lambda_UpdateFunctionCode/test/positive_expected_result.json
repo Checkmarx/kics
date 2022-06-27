@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "User with privilege escalation by actions 'lambda:UpdateFunctionCode'",
+    "queryName": "User With Privilege Escalation By Actions 'lambda:UpdateFunctionCode'",
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive1.tf"

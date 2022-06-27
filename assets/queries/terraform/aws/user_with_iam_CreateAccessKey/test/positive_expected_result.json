@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "User with privilege escalation by actions 'iam:CreateAccessKey'",
+    "queryName": "User With Privilege Escalation By Actions 'iam:CreateAccessKey'",
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive1.tf"
