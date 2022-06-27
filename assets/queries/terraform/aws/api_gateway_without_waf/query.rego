@@ -22,7 +22,7 @@ CxPolicy[result] {
 }
 
 has_waf_associated(apiGatewayName) {
-    targetResources := {"aws_wafregional_web_acl_association", "aws_wafv2_web_acl_association")
+    targetResources := {"aws_wafregional_web_acl_association", "aws_wafv2_web_acl_association"}
 
     waf := targetResources[_]
 
