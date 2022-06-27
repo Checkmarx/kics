@@ -1,6 +1,6 @@
 {
   "id": "35ccf766-0e4d-41ed-9ec4-2dab155082b4",
-  "queryName": "Role with privilege escalation by actions 'iam:UpdateLoginProfile'",
+  "queryName": "Role With Privilege Escalation By Actions 'iam:UpdateLoginProfile'",
   "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "Role with privilege escalation by actions 'iam:UpdateLoginProfile' and Resource set to '*'",

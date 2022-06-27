@@ -1,6 +1,6 @@
 {
   "id": "0c10d7da-85c4-4d62-b2a8-d6c104f1bd77",
-  "queryName": "User with privilege escalation by actions 'iam:PutUserPolicy'",
+  "queryName": "User With Privilege Escalation By Actions 'iam:PutUserPolicy'",
   "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "User with privilege escalation by actions 'iam:PutUserPolicy' and Resource set to '*'",

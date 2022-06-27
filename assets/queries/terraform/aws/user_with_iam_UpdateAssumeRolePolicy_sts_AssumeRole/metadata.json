@@ -1,6 +1,6 @@
 {
   "id": "33627268-1445-4385-988a-318fd9d1a512",
-  "queryName": "User with privilege escalation by actions 'iam:UpdateAssumeRolePolicy' and 'sts:AssumeRole'",
+  "queryName": "User With Privilege Escalation By Actions 'iam:UpdateAssumeRolePolicy' And 'sts:AssumeRole'",
   "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "User with privilege escalation by actions 'iam:UpdateAssumeRolePolicy' and 'sts:AssumeRole' and Resource set to '*'",

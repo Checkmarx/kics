@@ -1,6 +1,6 @@
 {
   "id": "19ffbe31-9d72-4379-9768-431195eae328",
-  "queryName": "User with privilege escalation by actions 'cloudformation:CreateStack' and 'iam:PassRole'",
+  "queryName": "User With Privilege Escalation By Actions 'cloudformation:CreateStack' And 'iam:PassRole'",
   "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "User with privilege escalation by actions 'cloudformation:CreateStack' and 'iam:PassRole' and Resource set to '*'",

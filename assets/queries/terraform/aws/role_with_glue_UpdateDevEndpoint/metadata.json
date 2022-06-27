@@ -1,6 +1,6 @@
 {
   "id": "eda48c88-2b7d-4e34-b6ca-04c0194aee17",
-  "queryName": "Role with privilege escalation by actions 'glue:UpdateDevEndpoint'",
+  "queryName": "Role With Privilege Escalation By Actions 'glue:UpdateDevEndpoint'",
   "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "Role with privilege escalation by actions 'glue:UpdateDevEndpoint' and Resource set to '*'",

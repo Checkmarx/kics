@@ -1,6 +1,6 @@
 {
   "id": "f906113d-cdc0-415a-ba60-609cc6daaf4d",
-  "queryName": "Role with privilege escalation by actions 'iam:AttachGroupPolicy'",
+  "queryName": "Role With Privilege Escalation By Actions 'iam:AttachGroupPolicy'",
   "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "Role with privilege escalation by actions 'iam:AttachGroupPolicy' and Resource set to '*'",

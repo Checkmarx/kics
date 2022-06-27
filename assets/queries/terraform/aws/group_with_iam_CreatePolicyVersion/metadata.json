@@ -1,6 +1,6 @@
 {
   "id": "ec49cbfd-fae4-45f3-81b1-860526d66e3f",
-  "queryName": "Group with privilege escalation by actions 'iam:CreatePolicyVersion'",
+  "queryName": "Group With Privilege Escalation By Actions 'iam:CreatePolicyVersion'",
   "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "Group with privilege escalation by actions 'iam:CreatePolicyVersion' and Resource set to '*'",

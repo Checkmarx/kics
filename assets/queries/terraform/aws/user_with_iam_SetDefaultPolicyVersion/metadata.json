@@ -1,6 +1,6 @@
 {
   "id": "43a41523-386a-4cb1-becb-42af6b414433",
-  "queryName": "User with privilege escalation by actions 'iam:SetDefaultPolicyVersion'",
+  "queryName": "User With Privilege Escalation By Actions 'iam:SetDefaultPolicyVersion'",
   "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "User with privilege escalation by actions 'iam:SetDefaultPolicyVersion' and Resource set to '*'",

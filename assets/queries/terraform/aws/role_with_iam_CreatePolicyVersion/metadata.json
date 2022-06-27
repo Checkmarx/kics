@@ -1,6 +1,6 @@
 {
   "id": "ee49557d-750c-4cc1-aa95-94ab36cbefde",
-  "queryName": "Role with privilege escalation by actions 'iam:CreatePolicyVersion'",
+  "queryName": "Role With Privilege Escalation By Actions 'iam:CreatePolicyVersion'",
   "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "Role with privilege escalation by actions 'iam:CreatePolicyVersion' and Resource set to '*'",

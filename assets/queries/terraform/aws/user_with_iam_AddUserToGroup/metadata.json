@@ -1,6 +1,6 @@
 {
   "id": "bf9d42c7-c2f9-4dfe-942c-c8cc8249a081",
-  "queryName": "User with privilege escalation by actions 'iam:AddUserToGroup'",
+  "queryName": "User With Privilege Escalation By Actions 'iam:AddUserToGroup'",
   "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "User with privilege escalation by actions 'iam:AddUserToGroup' and Resource set to '*'",
