@@ -3,7 +3,7 @@
   "queryName": "CosmosDB Account IP Range Filter Not Set",
   "severity": "HIGH",
   "category": "Networking and Firewall",
-  "descriptionText": "The Ip Range Must Contain Ips",
+  "descriptionText": "The IP range filter should be defined",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cosmosdb_account#ip_range_filter",
   "platform": "Terraform",
   "descriptionID": "fd34a2d6",

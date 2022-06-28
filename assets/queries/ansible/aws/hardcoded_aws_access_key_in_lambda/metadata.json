@@ -3,7 +3,7 @@
   "queryName": "Hardcoded AWS Access Key In Lambda",
   "severity": "MEDIUM",
   "category": "Secret Management",
-  "descriptionText": "Lambda access key should not be in plaintext.",
+  "descriptionText": "Lambda hardcoded AWS access/secret keys",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/lambda_module.html",
   "platform": "Ansible",
   "descriptionID": "fc78f6de",

@@ -3,7 +3,7 @@
   "queryName": "Serial Ports Are Enabled For VM Instances",
   "severity": "MEDIUM",
   "category": "Insecure Configurations",
-  "descriptionText": "Check if VM instance enables serial ports",
+  "descriptionText": "Check if serial ports are enabled in Google Compute Engine VM instances",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance",
   "platform": "Terraform",
   "descriptionID": "2967cde6",

@@ -3,7 +3,7 @@
   "queryName": "Role Definition Allows Custom Role Creation",
   "severity": "MEDIUM",
   "category": "Access Control",
-  "descriptionText": "Role Definition should not allow custom role creation",
+  "descriptionText": "Role Definition should not allow custom role creation (Microsoft.Authorization/roleDefinitions/write)",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_definition#actions",
   "platform": "Terraform",
   "descriptionID": "a96dc1b9",

@@ -3,7 +3,7 @@
   "queryName": "Google Compute Subnetwork with Private Google Access Disabled",
   "severity": "LOW",
   "category": "Networking and Firewall",
-  "descriptionText": "Google Compute Subnetwork should have 'private_ip_google_access' set to yes",
+  "descriptionText": "Google Compute Subnetwork should have Private Google Access enabled.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_subnetwork_module.html#parameter-private_ip_google_access",
   "platform": "Ansible",
   "descriptionID": "f5dece39",
