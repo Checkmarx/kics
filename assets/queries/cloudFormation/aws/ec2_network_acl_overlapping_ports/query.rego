@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.cloudformation as cf_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	prop1 := document.Resources[name1]
@@ -23,6 +25,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": prop1.Type,
+		"resourceName": cf_lib.get_resource_name(prop1, name1),
 		"searchKey": sprintf("Resources.%s.Properties.PortRange", [name1]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.PortRange should be configured with a different unused port range to avoid overlapping'", [name1]),

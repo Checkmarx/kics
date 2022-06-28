@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.cloudformation as cf_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	some policyName
@@ -10,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.Resources[policyName].Type,
+		"resourceName": cf_lib.get_resource_name(document.Resources[policyName], policyName),
 		"searchKey": sprintf("Resources.%s.Properties.Users", [policyName]),
 		"issueType": "IncorrectValue", #"MissingAttribute" / "RedundantAttribute"
 		"keyExpectedValue": sprintf("Resources.%s is assigned to a set of users", [policyName]),

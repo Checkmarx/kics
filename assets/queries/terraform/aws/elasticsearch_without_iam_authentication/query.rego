@@ -1,14 +1,17 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-	input.document[i].resource.aws_elasticsearch_domain[name]
+	resource := input.document[i].resource.aws_elasticsearch_domain[name]
 
 	not has_policy(name)
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticsearch_domain",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_elasticsearch_domain[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Elasticsearch Domain has a policy associated",
@@ -18,12 +21,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	input.document[i].resource.aws_elasticsearch_domain[name]
+	resource := input.document[i].resource.aws_elasticsearch_domain[name]
 
 	without_iam_auth(name)
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticsearch_domain",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_elasticsearch_domain[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Elasticsearch Domain ensure IAM Authentication",

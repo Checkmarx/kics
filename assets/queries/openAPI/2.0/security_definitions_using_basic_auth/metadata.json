@@ -3,7 +3,7 @@
   "queryName": "Security Definitions Using Basic Auth",
   "severity": "LOW",
   "category": "Access Control",
-  "descriptionText": "Security Defenition Object should not use basic authentication",
+  "descriptionText": "Security Definition Object should not use basic authentication",
   "descriptionUrl": "https://swagger.io/specification/v2/#securitySchemeObject",
   "platform": "OpenAPI",
   "descriptionID": "80ec8e6a"

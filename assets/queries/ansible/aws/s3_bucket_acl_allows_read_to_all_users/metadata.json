@@ -3,7 +3,7 @@
   "queryName": "S3 Bucket ACL Allows Read to All Users",
   "severity": "HIGH",
   "category": "Access Control",
-  "descriptionText": "It's not recommended to allow read access for all user groups.",
+  "descriptionText": "S3 Buckets should not be readable to all users",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/aws_s3_module.html#parameter-permission",
   "platform": "Ansible",
   "descriptionID": "446af0d8",

@@ -3,7 +3,7 @@
   "queryName": "Lambda Permission Principal Is Wildcard",
   "severity": "MEDIUM",
   "category": "Access Control",
-  "descriptionText": "Lambda Permission Principal should not be wildcard.",
+  "descriptionText": "Lambda Permission Principal should not contain a wildcard.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html",
   "platform": "CloudFormation",
   "descriptionID": "cfa9120c",

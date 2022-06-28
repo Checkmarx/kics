@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -10,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": "aws_cloudfront_distribution",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cloudfront_distribution[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_cloudfront_distribution[%s].viewer_certificate is defined and not null", [name]),
@@ -25,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": "aws_cloudfront_distribution",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cloudfront_distribution[%s].viewer_certificate", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'cloudfront_default_certificate' is 'false' or not defined",
@@ -44,6 +49,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": "aws_cloudfront_distribution",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cloudfront_distribution[%s].viewer_certificate", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attributes 'ssl_support_method' and 'minimum_protocol_version' are defined when one of 'acm_certificate_arn' or 'iam_certificate_id' is declared.",

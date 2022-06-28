@@ -10,7 +10,7 @@ To scan a directory/file on your host you have to mount it as a volume to the co
 
 ```shell
 docker pull checkmarx/kics:latest
-docker run -v "{path_to_host_folder_to_scan}":/path checkmarx/kics scan -p "/path" -o "/path/"
+docker run -t -v "{path_to_host_folder_to_scan}":/path checkmarx/kics scan -p "/path" -o "/path/"
 ```
 
 You can see the list of available tags in [dockerhub](https://hub.docker.com/r/checkmarx/kics/tags?page=1&ordering=-name)
@@ -60,8 +60,8 @@ echo 'export KICS_QUERIES_PATH=/usr/local/opt/kics/share/kics/assets/queries' >>
 
 You can provide your own path to the queries directory with `-q` CLI option (see CLI Options section below), otherwise the default directory will be used The default _./assets/queries_ is built-in in the image. You can use this to provide a path to your own custom queries. Check [create a new query guide](creating-queries.md) to learn how to define your own queries.
 
-
 #### Password and Secrets
+
 Since the Password and Secrets mechanism uses generic regexes, we advise you to tweak the rules of the secret to your context. Please, see the [Password and Secrets documentation](https://github.com/Checkmarx/kics/blob/master/docs/secrets.md#new-rules-addition) to know how you can use your own rules.
 
 ---

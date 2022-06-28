@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
 
 # return every bucket as result if there are no policies defined
 CxPolicy[result] {
@@ -15,6 +16,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": resources[resource].Type,
+		"resourceName": cf_lib.get_resource_name(resources[resource], resource),
 		"searchKey": sprintf("Resources.%s.Properties", [resource]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.BucketEncryption is set", [resource]),
@@ -35,6 +38,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": resources[resource].Type,
+		"resourceName": cf_lib.get_resource_name(resources[resource], resource),
 		"searchKey": sprintf("Resources.%s.Properties.BucketEncryption.ServerSideEncryptionConfiguration", [resource]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.BucketEncryption.ServerSideEncryptionConfiguration has at least one ServerSideEncryptionByDefault rule", [resource]),
@@ -61,6 +66,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": resources[resource].Type,
+		"resourceName": cf_lib.get_resource_name(resources[resource], resource),
 		"searchKey": sprintf("Resources.%s.Properties.BucketEncryption.ServerSideEncryptionConfiguration.ServerSideEncryptionByDefault.SSEAlgorithm", [resource]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.BucketEncryption.ServerSideEncryptionConfiguration.ServerSideEncryptionByDefault.SSEAlgorithm is 'AES256'", [resource]),
@@ -87,6 +94,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": resources[resource].Type,
+		"resourceName": cf_lib.get_resource_name(resources[resource], resource),
 		"searchKey": sprintf("Resources.%s.Properties.BucketEncryption.ServerSideEncryptionConfiguration.ServerSideEncryptionByDefault.KMSMasterKeyID", [resource]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.BucketEncryption.ServerSideEncryptionConfiguration.ServerSideEncryptionByDefault.KMSMasterKeyID is undefined", [resource]),

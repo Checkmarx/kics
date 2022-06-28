@@ -1,12 +1,12 @@
 package Cx
 
-import data.generic.cloudformation as cloudFormationLib
+import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 
-	cloudFormationLib.isLoadBalancer(resource)
+	cf_lib.isLoadBalancer(resource)
 	securityGroups := resource.Properties.SecurityGroups
 
 	some sg
@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties%s", [securityGroup, value.path]),
 		"issueType": value.issue,
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.SecurityGroupIngress' is %s", [securityGroup, value.expected]),

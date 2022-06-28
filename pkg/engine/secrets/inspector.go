@@ -41,6 +41,7 @@ type Inspector struct {
 	vulnerabilities       []model.Vulnerability
 	queryExecutionTimeout time.Duration
 	foundLines            []int
+	mu                    sync.RWMutex
 }
 
 type Entropy struct {
@@ -163,7 +164,7 @@ func NewInspector(
 
 func (c *Inspector) inspectQuery(ctx context.Context, basePaths []string,
 	files model.FileMetadatas, i int) ([]model.Vulnerability, error) {
-	timeoutCtx, cancel := context.WithTimeout(ctx, c.queryExecutionTimeout*time.Second)
+	timeoutCtx, cancel := context.WithTimeout(ctx, c.queryExecutionTimeout)
 	defer cancel()
 
 	cleanFiles := cleanFiles(files)
@@ -480,6 +481,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 		log.Error().Msg("unable to compute similarity ID")
 	}
 
+	c.mu.Lock()
 	if _, ok := c.excludeResults[engine.PtrStringToString(simID)]; !ok {
 		linesVuln := c.detector.GetAdjecent(file, lineNumber+1)
 		if !ignoreLine(linesVuln.Line, file.LinesIgnore) {
@@ -505,6 +507,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 			c.vulnerabilities = append(c.vulnerabilities, vuln)
 		}
 	}
+	c.mu.Unlock()
 }
 
 // CheckEntropyInterval - verifies if a given token's entropy is within expected bounds

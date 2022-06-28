@@ -3,7 +3,7 @@
   "queryName": "Redshift Publicly Accessible",
   "severity": "HIGH",
   "category": "Insecure Configurations",
-  "descriptionText": "Check if 'publicly_accessible' field is true (default is false)",
+  "descriptionText": "AWS Redshift Clusters must not be publicly accessible. Check if 'publicly_accessible' field is true (default is false)",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/redshift_module.html",
   "platform": "Ansible",
   "descriptionID": "ffdc02cc",

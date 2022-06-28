@@ -346,7 +346,9 @@ get_tag_name_if_exists(resource) = name {
     tag.Key == "Name"
 	name := tag.Value
 } else = name {
-	name := "unknown"
+	tag := resource.Properties.Tags[key]
+	key == "Name"
+	name := tag
 }
 
 get_encryption_if_exists(resource) = encryption {

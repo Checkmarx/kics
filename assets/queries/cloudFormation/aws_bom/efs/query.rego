@@ -12,7 +12,7 @@ CxPolicy[result] {
 
 	bom_output = {
 		"resource_type": "AWS::EFS::FileSystem",
-		"resource_name": common_lib.get_tag_name_if_exists(efs_file_system),
+		"resource_name": cf_lib.get_resource_name(efs_file_system, name),
 		"resource_accessibility": info.accessibility,
 		"resource_encryption": cf_lib.get_encryption(efs_file_system),
 		"resource_vendor": "AWS",

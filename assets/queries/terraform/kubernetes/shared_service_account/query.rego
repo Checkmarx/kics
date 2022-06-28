@@ -1,11 +1,11 @@
 package Cx
 
-import data.generic.terraform as terraLib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 
-	specInfo := terraLib.getSpecInfo(resource[name])
+	specInfo := tf_lib.getSpecInfo(resource[name])
 
 	service_account_name := specInfo.spec.service_account_name
 
@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.service_account_name", [resourceType, name, specInfo.path]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.service_account_name is not shared with other workloads", [resourceType, name, specInfo.path]),

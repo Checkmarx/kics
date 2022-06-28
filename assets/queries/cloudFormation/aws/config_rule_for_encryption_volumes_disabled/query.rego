@@ -1,10 +1,10 @@
 package Cx
 
-import data.generic.cloudformation as cfLib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	resources := input.document[i].Resources
-    configRules := cfLib.getResourcesByType(resources, "AWS::Config::ConfigRule")
+    configRules := cf_lib.getResourcesByType(resources, "AWS::Config::ConfigRule")
 
     count(configRules) > 0
     not hasEncryptedVolsRule(configRules)
@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+        "resourceType": firstRule.Type,
+		"resourceName": cf_lib.get_resource_name(firstRule, name),
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "There is a ConfigRule for encrypted volumes.",

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_route[name]
@@ -11,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_route",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_route[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_route[%s] restricts CIDR", [name]),
@@ -25,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_route",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_route[%s].route", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_route[%s].route restricts CIDR", [name]),
