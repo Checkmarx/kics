@@ -1,0 +1,26 @@
+[
+    {
+      "queryName": "Lambda IAM InkoveFunction misconfigured",
+      "severity": "LOW",
+      "line": 17,
+      "filename": "positive1.tf"
+    },
+    {
+      "queryName": "Lambda IAM InkoveFunction misconfigured",
+      "severity": "LOW",
+      "line": 17,
+      "filename": "positive2.tf"
+    },
+    {
+      "queryName": "Lambda IAM InkoveFunction misconfigured",
+      "severity": "LOW",
+      "line": 17,
+      "filename": "positive3.tf"
+    },
+    {
+      "queryName": "Lambda IAM InkoveFunction misconfigured",
+      "severity": "LOW",
+      "line": 17,
+      "filename": "positive4.tf"
+    }
+  ]

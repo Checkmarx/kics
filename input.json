@@ -1,0 +1,60 @@
+{
+	"document": [
+		{
+			"id": "108ebd29-e925-43d0-b666-81d32bd20904",
+			"resource": {
+				"aws_iam_policy": {
+					"negativepolicy": {
+						"description": "Negative Policy",
+						"name": "negativepolicy",
+						"path": "/",
+						"policy": "  {\n    Version = \"2012-10-17\"\n    Statement = [\n      {\n        Action = [\n          \"lambda:InvokeFunction\",\n        ]\n        Effect   = \"Allow\"\n        Resource = [\n            \"arn:aws:lambda:*:*:function:negative\",\n            \"arn:aws:lambda:*:*:function:negative:*\"\n        ]\n      },\n    ]\n  }\n"
+					}
+				}
+			},
+			"file": "/home/jeremyplanckeel/git_public/kics/assets/queries/terraform/aws/lambda_iam_invokefunction_misconfigured/test/negative.tf"
+		},
+		{
+			"id": "9d051044-9f8d-4200-8572-16649cc12f0f",
+			"resource": {
+				"aws_iam_policy": {
+					"positive1policy": {
+						"description": "Positive1 Policy",
+						"name": "positive1policy",
+						"path": "/",
+						"policy": "  {\n    Version = \"2012-10-17\"\n    Statement = [\n      {\n        Action = [\n          \"lambda:InvokeFunction\",\n        ]\n        Effect   = \"Allow\"\n        Resource = [\n            \"arn:aws:lambda:*:*:function:positive1\"\n        ]\n      },\n    ]\n  }\n"
+					}
+				}
+			},
+			"file": "/home/jeremyplanckeel/git_public/kics/assets/queries/terraform/aws/lambda_iam_invokefunction_misconfigured/test/positive1.tf"
+		},
+		{
+			"id": "91ac809d-af3b-4c36-9f77-d408f47ca18e",
+			"resource": {
+				"aws_iam_policy": {
+					"positive2policy": {
+						"description": "Positive2 Policy",
+						"name": "positive2policy",
+						"path": "/",
+						"policy": "  {\n    Version = \"2022-20-27\"\n    Statement = [\n      {\n        Action = [\n          \"lambda:InvokeFunction\",\n        ]\n        Effect   = \"Allow\"\n        Resource = [\n            \"arn:aws:lambda:*:*:function:positive2*:*\"\n        ]\n      },\n    ]\n  }\n"
+					}
+				}
+			},
+			"file": "/home/jeremyplanckeel/git_public/kics/assets/queries/terraform/aws/lambda_iam_invokefunction_misconfigured/test/positive2.tf"
+		},
+		{
+			"file": "/home/jeremyplanckeel/git_public/kics/assets/queries/terraform/aws/lambda_iam_invokefunction_misconfigured/test/positive3.tf",
+			"id": "f1f90c30-92d0-4b72-8e65-0ae7f9552233",
+			"resource": {
+				"aws_iam_policy": {
+					"positive3policy": {
+						"description": "positive3 Policy",
+						"name": "positive3policy",
+						"path": "/",
+						"policy": "{\n  Version = \"2022-20-27\"\n  Statement = [\n    {\n      Action = [\n        \"lambda:InvokeFunction\",\n      ]\n      Effect   = \"Allow\"\n      Resource = [\n          \"arn:aws:lambda:*:*:function:*:*\"\n      ]\n    },\n  ]\n}\n"
+					}
+				}
+			}
+		}
+	]
+}

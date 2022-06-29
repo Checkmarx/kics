@@ -1,0 +1,89 @@
+{
+	"document": [
+		{
+			"id": "33a75fdd-6e97-4150-ac9c-1d8d78cdb719",
+			"resource": {
+				"aws_iam_policy": {
+					"negativepolicy": {
+						"description": "Negative Policy",
+						"name": "negativepolicy",
+						"path": "/",
+						"policy": "{\"Statement\":[{\"Action\":[\"lambda:InvokeFunction\"],\"Effect\":\"Allow\",\"Resource\":[\"arn:aws:lambda:*:*:function:negative\",\"arn:aws:lambda:*:*:function:negative:*\"]}],\"Version\":\"2012-10-17\"}"
+					}
+				}
+			},
+			"file": "/home/jeremyplanckeel/git_public/kics/assets/queries/terraform/aws/lambda_iam_invokefunction_misconfigured/test/negative.tf"
+		},
+		{
+			"id": "0137da80-43cc-4fd4-ab82-198e0369bc19",
+			"resource": {
+				"aws_iam_policy": {
+					"positive1policy": {
+						"description": "Positive1 Policy",
+						"name": "positive1policy",
+						"path": "/",
+						"policy": "{\"Statement\":[{\"Action\":[\"lambda:InvokeFunction\"],\"Effect\":\"Allow\",\"Resource\":[\"arn:aws:lambda:*:*:function:positive1\"]}],\"Version\":\"2012-10-17\"}"
+					}
+				}
+			},
+			"file": "/home/jeremyplanckeel/git_public/kics/assets/queries/terraform/aws/lambda_iam_invokefunction_misconfigured/test/positive1.tf"
+		},
+		{
+			"file": "/home/jeremyplanckeel/git_public/kics/assets/queries/terraform/aws/lambda_iam_invokefunction_misconfigured/test/positive2.tf",
+			"id": "88c9888e-22d8-4651-9954-b03ed1a62d83",
+			"resource": {
+				"aws_iam_policy": {
+					"positive2policy": {
+						"description": "Positive2 Policy",
+						"name": "positive2policy",
+						"path": "/",
+						"policy": "{\"Statement\":[{\"Action\":[\"lambda:InvokeFunction\"],\"Effect\":\"Allow\",\"Resource\":[\"arn:aws:lambda:*:*:function:positive2*:*\"]}],\"Version\":\"2022-20-27\"}"
+					}
+				}
+			}
+		},
+		{
+			"file": "/home/jeremyplanckeel/git_public/kics/assets/queries/terraform/aws/lambda_iam_invokefunction_misconfigured/test/positive3.tf",
+			"id": "95ede0bf-051e-4296-b8ce-3d355ae3bd94",
+			"resource": {
+				"aws_iam_policy": {
+					"positive3policy": {
+						"description": "positive3 Policy",
+						"name": "positive3policy",
+						"path": "/",
+						"policy": "{\"Statement\":[{\"Action\":[\"lambda:InvokeFunction\"],\"Effect\":\"Allow\",\"Resource\":[\"arn:aws:lambda:*:*:function:*:*\"]}],\"Version\":\"2022-20-27\"}"
+					}
+				}
+			}
+		},
+		{
+			"id": "0be2cce5-ddaa-43d6-97bd-20cff6ff0f53",
+			"data": {
+				"aws_iam_policy_document": {
+					"datapositive4policy": {
+						"statement": {
+							"action": [
+								"lambda:InvokeFunction"
+							],
+							"effect": "Allow",
+							"resource": [
+								"arn:aws:lambda:*:*:function:*:*"
+							]
+						}
+					}
+				}
+			},
+			"resource": {
+				"aws_iam_policy": {
+					"positive4policy": {
+						"description": "positive4 Policy",
+						"name": "positive4policy",
+						"path": "/",
+						"policy": ""
+					}
+				}
+			},
+			"file": "/home/jeremyplanckeel/git_public/kics/assets/queries/terraform/aws/lambda_iam_invokefunction_misconfigured/test/postive.4.tf"
+		}
+	]
+}
