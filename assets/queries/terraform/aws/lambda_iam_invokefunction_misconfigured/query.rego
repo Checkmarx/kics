@@ -17,9 +17,9 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_iam_policy[{{%s}}]", [name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_iam_policy[%s] is set and not null", [name]),
-		"keyActualValue": sprintf("aws_iam_policy[%s] is missing or null", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("aws_iam_policy[%s].statement.ressource is misconfigured", [name]),
+		"keyActualValue": sprintf("aws_iam_policy[%s].statement.ressource allow access to function (unqualified ARN) and its sub-resources, add another statement with ":*" to function name", [name])
 	}
 }
 
@@ -32,9 +32,9 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_iam_policy[{{%s}}]", [name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_iam_policy[%s] is set and not null", [name]),
-		"keyActualValue": sprintf("aws_iam_policy[%s] is missing or null", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("aws_iam_policy[%s].statement.ressource is misconfigured", [name]),
+		"keyActualValue": sprintf("aws_iam_policy[%s].statement.ressource allow access to function (unqualified ARN) and its sub-resources, add another statement with ":*" to function name", [name]),
 	}
 }
 
