@@ -125,7 +125,7 @@
 				
 				<option value="file34">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (79.5%)</option>
 				
-				<option value="file35">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (80.0%)</option>
+				<option value="file35">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (71.8%)</option>
 				
 				<option value="file36">github.com/Checkmarx/kics/pkg/engine/secrets/inspector.go (84.4%)</option>
 				
@@ -2013,13 +2013,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="28">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="28">total += v
+                <span class="cov9" title="37">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2044,7 +2044,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4349,7 +4349,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -4559,7 +4559,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="11">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="11">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5623,6 +5623,24 @@ func (s *FileSystemSourceProvider) GetBasePaths() []string <span class="cov1" ti
         return s.paths
 }</span>
 
+// ignoreDamagedFiles checks whether we should ignore a damaged file from a scan or not.
+func ignoreDamagedFiles(path string) bool <span class="cov0" title="0">{
+        shouldIgnoreFile := false
+        fileInfo, err := os.Lstat(path)
+        if err != nil </span><span class="cov0" title="0">{
+                log.Warn().Msgf("Failed getting the file info for file '%s'", path)
+                return shouldIgnoreFile
+        }</span>
+        <span class="cov0" title="0">log.Info().Msgf("No mode type bits are set( is a regular file ) for file '%s' : %t ", path, fileInfo.Mode().IsRegular())
+
+        if fileInfo.Mode()&amp;os.ModeSymlink == os.ModeSymlink </span><span class="cov0" title="0">{
+                log.Warn().Msgf("File '%s' is a symbolic link - but seems not to be accessible", path)
+                shouldIgnoreFile = true
+        }</span>
+
+        <span class="cov0" title="0">return shouldIgnoreFile</span>
+}
+
 // GetSources tries to open file or directory and execute sink function on it
 func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
         extensions model.Extensions, sink Sink, resolverSink ResolverSink) error <span class="cov2" title="7">{
@@ -5636,7 +5654,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
                 <span class="cov2" title="4">if !fileInfo.IsDir() </span><span class="cov1" title="1">{
                         c, openFileErr := openScanFile(scanPath, extensions)
                         if openFileErr != nil </span><span class="cov0" title="0">{
-                                if openFileErr == ErrNotSupportedFile </span><span class="cov0" title="0">{
+                                if openFileErr == ErrNotSupportedFile || ignoreDamagedFiles(scanPath) </span><span class="cov0" title="0">{
                                         continue</span>
                                 }
                                 <span class="cov0" title="0">return openFileErr</span>
@@ -5689,8 +5707,11 @@ func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string,
 
                 <span class="cov5" title="266">c, err := os.Open(filepath.Clean(path))
                 if err != nil </span><span class="cov0" title="0">{
-                        return errors.Wrap(err, "failed to open file")
-                }</span>
+                        if ignoreDamagedFiles(filepath.Clean(path)) </span><span class="cov0" title="0">{
+                                return nil
+                        }</span>
+                        <span class="cov0" title="0">return errors.Wrap(err, "failed to open file")</span>
+                }
                 <span class="cov5" title="266">defer closeFile(c, info)
 
                 err = sink(ctx, strings.ReplaceAll(path, "\\", "/"), c)
