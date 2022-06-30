@@ -1,21 +1,20 @@
-resource "aws_iam_policy" "negativepolicy" {
-  name        = "negativepolicy"
+resource "aws_iam_policy" "positive6policy" {
+  name        = "positive6policy"
   path        = "/"
-  description = "Negative Policy"
+  description = "positive6 Policy"
 
   # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.
   policy = jsonencode({
-    Version = "2012-10-17"
+    Version = "2022-20-27"
     Statement = [
       {
         Action = [
-          "lambda:InvokeFunction",
+          "lambda:*",
         ]
         Effect   = "Allow"
         Resource = [
-            "arn:aws:lambda:*:*:function:negative",
-            "arn:aws:lambda:*:*:function:negative:*"
+            "arn:aws:lambda:*:*:function:*:*"
         ]
       },
     ]

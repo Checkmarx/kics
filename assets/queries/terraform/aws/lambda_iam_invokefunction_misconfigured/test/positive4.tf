@@ -9,11 +9,11 @@ resource "aws_iam_policy" "positive4policy" {
 data "aws_iam_policy_document" "datapositive4policy" {
   statement {
     effect = "Allow"
-    action = [
+    actions = [
       "lambda:InvokeFunction"
     ]
 
-    resource = [
+    resources = [
       "arn:aws:lambda:*:*:function:*:*"
     ]
   }

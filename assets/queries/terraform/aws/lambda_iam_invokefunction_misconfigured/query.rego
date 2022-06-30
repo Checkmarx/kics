@@ -5,46 +5,24 @@ import data.generic.terraform as tf_lib
 
 #CxPolicy for ressource iam policy
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_iam_policy[name]
-
+	resourceType := {"aws_iam_role_policy", "aws_iam_user_policy", "aws_iam_group_policy", "aws_iam_policy"}
+	resource := input.document[i].resource[resourceType[idx]][name]
 	policy := common_lib.json_unmarshal(resource.policy)
-
 	st := common_lib.get_statement(policy)
 	statement := st[_]
 
-	check_lambda_invoke(statement) == false
+
+	check_iam_action(statement) == true
+	not check_iam_ressource(statement)
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_iam_policy[{{%s}}]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_iam_policy[%s].statement.ressource is misconfigured", [name]),
-		"keyActualValue": sprintf("aws_iam_policy[%s].statement.ressource allow access to function (unqualified ARN) and its sub-resources, add another statement with ":*" to function name", [name])
+		"keyActualValue": sprintf("aws_iam_policy[%s].statement.ressource allow access to function (unqualified ARN) and its sub-resources, add another statement with :* to function name", [name])
 	}
 }
-
-#CxPolicy for data iam policy document
-CxPolicy[result] {
-	ressource := input.document[i].data.aws_iam_policy_document[name]
-
-	check_lambda_invoke(ressource.statement[_]) == false
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_iam_policy[{{%s}}]", [name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_iam_policy[%s].statement.ressource is misconfigured", [name]),
-		"keyActualValue": sprintf("aws_iam_policy[%s].statement.ressource allow access to function (unqualified ARN) and its sub-resources, add another statement with ":*" to function name", [name]),
-	}
-}
-
-check_lambda_invoke(statement) {
-	check_iam_ressource(statement)
-	check_iam_action(statement)
-} else = false {
-	true
-}
-
 
 check_iam_ressource(statement) {
 	is_string(statement.Resource)
@@ -57,9 +35,13 @@ check_iam_ressource(statement) {
 }
 
 check_iam_action(statement) {
-	is_string(statement.Action)
-	regex.match("(^lambda:InvokeFunction$)", statement.Action)
+	any([regex.match("(^lambda:InvokeFunction$|^lambda:[*]$)", statement.actions[_]), statement.actions[_] == "*"])
+} else {
+	any([regex.match("(^lambda:InvokeFunction$|^lambda:[*]$)", statement.Actions[_]), statement.Actions[_] == "*"])
 } else {
 	is_array(statement.Action)
-	regex.match("(^lambda:InvokeFunction$)", statement.Action[_])
+	any([regex.match("(^lambda:InvokeFunction$|^lambda:[*]$)", statement.Action[_]), statement.Action[_] == "*"])
+} else {
+	is_string(statement.Action)
+	any([regex.match("(^lambda:InvokeFunction$|^lambda:[*]$)", statement.Action), statement.Action == "*"])
 }
