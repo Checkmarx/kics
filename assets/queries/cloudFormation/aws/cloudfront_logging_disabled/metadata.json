@@ -1,6 +1,6 @@
 {
   "id": "de77cd9f-0e8b-46cc-b4a4-b6b436838642",
-  "queryName": "Cloudfront Logging Disabled",
+  "queryName": "CloudFront Logging Disabled",
   "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "AWS Cloudfront distributions must have logging enabled, which means the attribute 'DistributionConfig.Logging' must be defined",

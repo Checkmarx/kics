@@ -3,7 +3,7 @@
   "queryName": "Hardcoded AWS Access Key",
   "severity": "LOW",
   "category": "Secret Management",
-  "descriptionText": "Check if the user data in the EC2 instance has the access key hardcoded",
+  "descriptionText": "AWS Access Key should not be hardcoded",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_instance_module.html",
   "platform": "Ansible",
   "descriptionID": "d764256e",

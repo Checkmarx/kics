@@ -3,7 +3,7 @@
   "queryName": "Hardcoded AWS Access Key",
   "severity": "LOW",
   "category": "Secret Management",
-  "descriptionText": "Check if the user data in the EC2 instance has the access key hardcoded",
+  "descriptionText": "AWS Access Key should not be hardcoded",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance",
   "platform": "Terraform",
   "descriptionID": "9e8cbdfb",

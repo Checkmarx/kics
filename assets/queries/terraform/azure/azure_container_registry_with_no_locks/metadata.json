@@ -3,7 +3,7 @@
   "queryName": "Azure Container Registry With No Locks",
   "severity": "HIGH",
   "category": "Insecure Configurations",
-  "descriptionText": "Azurerm Container Registry Should Contain Associated Locks",
+  "descriptionText": "Azurerm Container Registry should contain associated locks",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_registry",
   "platform": "Terraform",
   "descriptionID": "adb235b6",
