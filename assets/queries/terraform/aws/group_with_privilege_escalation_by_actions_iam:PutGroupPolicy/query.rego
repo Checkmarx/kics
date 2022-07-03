@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_group",
+        "resourceName": tf_lib.get_resource_name(group, targetGroup),
 		"searchKey": sprintf("aws_iam_group[%s]", [targetGroup]),
 		"issueType": "IncorrectValue",
         "keyExpectedValue": sprintf("group %s is not associated with a policy that has Action set to 'iam:PutGroupPolicy' and Resource set to '*'", [targetGroup]),

@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_role",
+        "resourceName": tf_lib.get_resource_name(role, targetRole),
 		"searchKey": sprintf("aws_iam_role[%s]", [targetRole]),
 		"issueType": "IncorrectValue",
         "keyExpectedValue": sprintf("role %s is not associated with a policy that has Action set to 'iam:UpdateLoginProfile' and Resource set to '*'", [targetRole]),
