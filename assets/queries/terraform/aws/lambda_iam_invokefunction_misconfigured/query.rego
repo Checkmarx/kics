@@ -15,12 +15,14 @@ CxPolicy[result] {
 	check_iam_action(statement) == true
 	not check_iam_ressource(statement)
 
-	result := {
+    result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_iam_policy[{{%s}}]", [name]),
+		"resourceType": resourceType[idx],
+		"resourceName": tf_lib.get_resource_name(resource, name),
+		"searchKey": sprintf("%s[%s].policy", [resourceType[idx], name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_iam_policy[%s].statement.ressource is misconfigured", [name]),
-		"keyActualValue": sprintf("aws_iam_policy[%s].statement.ressource allow access to function (unqualified ARN) and its sub-resources, add another statement with :* to function name", [name])
+		"keyExpectedValue": sprintf("%s[%s].policy is misconfigured", [name]),
+		"keyActualValue": sprintf("%s[%s].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name", [name])
 	}
 }
 
