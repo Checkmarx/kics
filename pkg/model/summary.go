@@ -34,6 +34,8 @@ type VulnerableFile struct {
 	KeyExpectedValue string     `json:"expected_value"`
 	KeyActualValue   string     `json:"actual_value"`
 	Value            *string    `json:"value,omitempty"`
+	Remediation      string     `json:"remediation,omitempty"`
+	RemediationType  string     `json:"remediation_type,omitempty"`
 }
 
 // QueryResult contains a query that tested positive ID, name, severity and a list of files that tested vulnerable
@@ -219,6 +221,8 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 			KeyExpectedValue: item.KeyExpectedValue,
 			KeyActualValue:   item.KeyActualValue,
 			Value:            item.Value,
+			Remediation:      item.Remediation,
+			RemediationType:  item.RemediationType,
 		})
 
 		filePaths[resolvedPath] = item.FileName

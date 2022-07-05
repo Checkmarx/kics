@@ -9,7 +9,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::Serverless::Api"
 	properties := resource.Properties
 
-	unrecommended_minimum_compression_size(properties.MinimumCompressionSize )
+	unrecommended_minimum_compression_size(properties.MinimumCompressionSize)
 
 	result := {
 		"documentId": input.document[i].id,

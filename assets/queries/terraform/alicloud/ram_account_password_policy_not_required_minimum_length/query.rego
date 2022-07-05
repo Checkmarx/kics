@@ -17,6 +17,8 @@ CxPolicy[result] {
 		"keyExpectedValue": "'minimum_password_length' is defined and set to 14 or above",
 		"keyActualValue": "'minimum_password_length' is lower than 14",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_ram_account_password_policy", name, "minimum_password_length"], []),
+		"remediation": "minimum_password_length = 14",
+		"remediation_type": "replacement",
 		
 	}
 }
@@ -35,6 +37,8 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'minimum_password_length' is defined and set to 14 or above ",
 		"keyActualValue": "'minimum_password_length' is not difined",
-		"searchLine": common_lib.build_search_line(["resource", "alicloud_ram_account_password_policy", name], []),		
+		"searchLine": common_lib.build_search_line(["resource", "alicloud_ram_account_password_policy", name], []),
+		"remediation": "minimum_password_length = 14",
+		"remediation_type": "addition",		
 	}
 }

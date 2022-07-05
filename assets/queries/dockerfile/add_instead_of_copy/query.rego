@@ -14,5 +14,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'COPY' %s", [resource.Value[0]]),
 		"keyActualValue": sprintf("'ADD' %s", [resource.Value[0]]),
+		"remediation": sprintf("COPY %s", [concat(" ", resource.Value)]),
+		"remediation_type": "replacement",
 	}
 }
