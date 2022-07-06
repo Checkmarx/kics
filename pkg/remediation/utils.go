@@ -1,6 +1,7 @@
 package remediation
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -113,6 +114,7 @@ func removedSimilarityID(results []model.Vulnerability, similarity string) bool 
 		result := results[i]
 
 		if result.SimilarityID == similarity {
+			fmt.Println(similarity)
 			log.Info().Msgf("failed to remediate '%s'", similarity)
 			return false
 		}
