@@ -1,6 +1,7 @@
 package remediation
 
 import (
+	"path/filepath"
 	"reflect"
 	"testing"
 
@@ -9,7 +10,8 @@ import (
 
 func Test_GetFixs(t *testing.T) {
 
-	filePath := "assets\\queries\\terraform\\alicloud\\ram_account_password_policy_not_required_symbols\\test\\negative1.tf"
+	filePath := filepath.Join("assets", "queries", "terraform", "alicloud",
+		"ram_account_password_policy_not_required_symbols", "test", "negative1.tf")
 
 	file1 := &File{
 		FilePath:        filePath,
@@ -22,7 +24,7 @@ func Test_GetFixs(t *testing.T) {
 	file2 := &File{
 		FilePath:        filePath,
 		Line:            5,
-		Remediation:     "require_symbols = true",
+		Remediation:     "{\"after\":\"true\",\"before\":\"false\"}",
 		RemediationType: "replacement",
 		SimilarityID:    "87abbee5d0ec977ba193371c702dca2c040ea902d2e606806a63b66119ff89bc",
 	}
@@ -43,7 +45,7 @@ func Test_GetFixs(t *testing.T) {
 
 	replacement := &Remediation{
 		Line:         5,
-		Remediation:  "require_symbols = true",
+		Remediation:  "{\"after\":\"true\",\"before\":\"false\"}",
 		SimilarityID: "87abbee5d0ec977ba193371c702dca2c040ea902d2e606806a63b66119ff89bc",
 		QueryID:      "41a38329-d81b-4be4-aef4-55b2615d3282",
 	}

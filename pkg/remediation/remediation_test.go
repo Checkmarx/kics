@@ -13,7 +13,8 @@ import (
 )
 
 func Test_RemediateFile(t *testing.T) {
-	filePath := "../../test/fixtures/kics_auto_remediation/terraform.tf"
+
+	filePath := filepath.Join("..", "..", "test", "fixtures", "kics_auto_remediation", "terraform.tf")
 
 	type args struct {
 		fix Fix
@@ -21,7 +22,7 @@ func Test_RemediateFile(t *testing.T) {
 
 	replacement := &Remediation{
 		Line:         5,
-		Remediation:  "require_symbols = true",
+		Remediation:  "{\"after\":\"true\",\"before\":\"false\"}",
 		SimilarityID: "87abbee5d0ec977ba193371c702dca2c040ea902d2e606806a63b66119ff89bc",
 		QueryID:      "41a38329-d81b-4be4-aef4-55b2615d3282",
 	}
@@ -41,7 +42,7 @@ func Test_RemediateFile(t *testing.T) {
 
 	wrongReplacement := &Remediation{
 		Line:         5,
-		Remediation:  "require_symbols = false",
+		Remediation:  "{\"after\":\"false\",\"before\":\"false\"}",
 		SimilarityID: "87abbee5d0ec977ba193371c702dca2c040ea902d2e606806a63b66119ff89bc",
 		QueryID:      "41a38329-d81b-4be4-aef4-55b2615d3282",
 	}

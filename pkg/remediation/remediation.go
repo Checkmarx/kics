@@ -1,6 +1,7 @@
 package remediation
 
 import (
+	"encoding/json"
 	"os"
 	"sort"
 	"strings"
@@ -78,18 +79,30 @@ func (s *Summary) RemediateFile(filePath string, fix Fix) error {
 	return nil
 }
 
+type ReplacementInfo struct {
+	Before string `json:"before"`
+	After  string `json:"after"`
+}
+
 func replacement(r Remediation, lines []string) []string {
 	originalLine := lines[r.Line-1]
 
-	if strings.Contains(originalLine, r.Remediation) {
+	var replacement ReplacementInfo
+	err := json.Unmarshal([]byte(r.Remediation), &replacement)
+
+	if err != nil || replacement == (ReplacementInfo{}) {
+		return []string{}
+	}
+
+	remediated := strings.Replace(lines[r.Line-1], replacement.Before, replacement.After, 1)
+
+	if strings.Contains(originalLine, remediated) {
 		log.Info().Msgf("remediation '%s' is already done", r.SimilarityID)
 		return []string{}
 	}
 
-	before := getBefore(originalLine)
-
 	// replace the original line with remediation
-	lines[r.Line-1] = before + r.Remediation
+	lines[r.Line-1] = remediated
 
 	return lines
 }

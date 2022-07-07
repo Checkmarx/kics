@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"keyActualValue": "'max_password_age' is not defined",
         "searchLine": common_lib.build_search_line(["resource", "alicloud_ram_account_password_policy", name], []),
         "remediation": "max_password_age = 12",
-		"remediation_type": "addition",
+		"remediationType": "addition",
 	}
 }
 
