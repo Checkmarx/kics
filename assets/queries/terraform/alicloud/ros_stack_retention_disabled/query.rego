@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("alicloud_ros_stack_instance[%s].retain_stacks is undefined", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_ros_stack_instance", name], []),
 		"remediation": "retain_stacks = true",
-		"remediation_type": "addition",	
+		"remediationType": "addition",	
 	}
 }
 
@@ -36,7 +36,10 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("alicloud_ros_stack_instance[%s].retain_stacks should be true ", [name]),
 		"keyActualValue": sprintf("alicloud_ros_stack_instance[%s].retain_stacks is false", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_ros_stack_instance", name, "retain_stacks"], []),
-		"remediation": "retain_stacks = true",
-		"remediation_type": "replacement",	
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",	
 	}
 }

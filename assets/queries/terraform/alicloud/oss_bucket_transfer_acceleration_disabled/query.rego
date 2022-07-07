@@ -18,8 +18,11 @@ CxPolicy[result] {
 		"keyExpectedValue": "'transfer_acceleration.enabled' is defined and set to true",
 		"keyActualValue": "'transfer_acceleration.enabled' is false",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "transfer_acceleration", "enabled"], []),
-		"remediation": "enabled = true",
-		"remediation_type": "replacement",
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -39,6 +42,6 @@ CxPolicy[result] {
 		"keyActualValue": "'transfer_acceleration' is missing",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_oss_bucket", name], []),
 		"remediation": "transfer_acceleration{\n\t\tenabled = true\n\t}",
-		"remediation_type": "addition",
+		"remediationType": "addition",
 	}
 }

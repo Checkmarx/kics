@@ -18,8 +18,11 @@ CxPolicy[result] {
 		"keyExpectedValue": "'lifecycle_rule' is set and enabled",
 		"keyActualValue": "'lifecycle_rule' is set but disabled",
         "searchLine":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "lifecycle_rule", "enabled"], []),
-		"remediation": "enabled = true",
-		"remediation_type": "replacement",
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
 

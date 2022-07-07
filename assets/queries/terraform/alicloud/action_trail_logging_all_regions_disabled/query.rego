@@ -39,7 +39,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("'%s' is not set.",[possibilities[p]]),
         "searchLine": common_lib.build_search_line(["resource", "alicloud_actiontrail_trail", name], []),
 		"remediation": sprintf("%s= \"ALL\"", [p]),
-		"remediation_type": "addition",
+		"remediationType": "addition",
 	}
 }
 
@@ -50,7 +50,7 @@ CxPolicy[result] {
     p := {"event_rw", "trail_region"}
     resource[p[f]] != "All"
     
-    
+    remediation := {"before":resource[p[f]] , "after": "All" }
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_actiontrail_trail",
@@ -60,7 +60,7 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'%s' is set to All", [p[f]]),
 		"keyActualValue": sprintf("'%s' is not set to All", [p[f]]),
         "searchLine": common_lib.build_search_line(["resource", "alicloud_actiontrail_trail", name, p[f]], []),
-		"remediation": sprintf("%s= \"ALL\"", [f]),
-		"remediation_type": "replacement",
+		"remediation": json.marshal(remediation),
+		"remediationType": "replacement",
 	}
 }

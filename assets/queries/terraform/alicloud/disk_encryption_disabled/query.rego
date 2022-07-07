@@ -17,8 +17,11 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("[%s] has encryption set to true", [name]),
 		"keyActualValue": sprintf("[%s] has encryption set to false", [name]),
         "searchLine":common_lib.build_search_line(["resource", "alicloud_disk", name, "encrypted"], []),
-		"remediation": "encrypted = true",
-		"remediation_type": "replacement",
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -38,7 +41,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("[%s] does not have encryption enabled",[name]),
         "searchLine":common_lib.build_search_line(["resource", "alicloud_disk", name], []),
 		"remediation": "encrypted = true",
-		"remediation_type": "addition",		
+		"remediationType": "addition",		
 	}
 }
 
