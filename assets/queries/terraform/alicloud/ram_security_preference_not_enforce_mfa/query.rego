@@ -44,6 +44,8 @@ CxPolicy[result] {
 		"keyExpectedValue": "'enforce_mfa_for_login' should be defined and set to true",
 		"keyActualValue": "'enforce_mfa_for_login' is not defined",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_ram_security_preference", name], []),
+		"remediation": "enforce_mfa_for_login = true",
+		"remediation_type": "addition",	
 	}
 }
 
@@ -61,5 +63,7 @@ CxPolicy[result] {
 		"keyExpectedValue": "'enforce_mfa_for_login' should be set to true",
 		"keyActualValue": "'enforce_mfa_for_login' is set to 'false'",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_ram_security_preference", name, "enforce_mfa_for_login" ], []),
+		"remediation": "enforce_mfa_for_login = true",
+		"remediation_type": "replacement",	
 	}
 }

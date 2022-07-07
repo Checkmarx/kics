@@ -34,5 +34,7 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("%s 'logging_isenable' argument should be set to true",[name]),
 		"keyActualValue": sprintf("%s 'logging_isenable' argument is set to false",[name]),
         "searchLine":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "logging_isenable"], []),
+		"remediation": "logging_isenable = true",
+		"remediation_type": "replacement",
 	}
 }

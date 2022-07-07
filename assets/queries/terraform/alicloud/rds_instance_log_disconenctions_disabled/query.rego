@@ -18,6 +18,8 @@ CxPolicy[result] {
 		"keyExpectedValue": "'log_disconnections' parameter value should be 'ON'",
 		"keyActualValue": "'log_disconnections' parameter value is 'OFF'",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name, "parameters", parameter, "value"], []),
+		"remediation": "value = \"ON\"",
+		"remediation_type": "replacement",	
 	}
 }
 

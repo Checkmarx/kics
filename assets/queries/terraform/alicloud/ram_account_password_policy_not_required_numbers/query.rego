@@ -17,5 +17,7 @@ CxPolicy[result] {
 		"keyExpectedValue": "'require_numbers' is defined and set to true",
 		"keyActualValue": "'require_numbers' is false",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_ram_account_password_policy", name, "require_numbers"], []),
+		"remediation": "require_numbers = true",
+		"remediation_type": "replacement",
 	}
 }

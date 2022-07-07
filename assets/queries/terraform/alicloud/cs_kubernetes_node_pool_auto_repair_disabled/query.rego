@@ -19,6 +19,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("For the resource alicloud_cs_kubernetes_node_pool[%s] to have 'auto_repair' set to true.", [name]),
 		"keyActualValue": sprintf("The resource alicloud_cs_kubernetes_node_pool[%s] has 'auto_repair' set to false.", [name]),
         "searchLine":common_lib.build_search_line(["resource", "alicloud_cs_kubernetes_node_pool", name, "management", "auto_repair"], []),
+		"remediation": "auto_repair = true",
+		"remediation_type": "replacement",
 	}
 }
 
@@ -53,5 +55,7 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("For the resource alicloud_cs_kubernetes_node_pool[%s] to have a 'management' block containing 'auto_repair' set to true.", [name]),
 		"keyActualValue": sprintf("The resource alicloud_cs_kubernetes_node_pool[%s] has a 'management' block but it doesn't contain 'auto_repair' ", [name]),
         "searchLine":common_lib.build_search_line(["resource", "alicloud_cs_kubernetes_node_pool", name, "management"], []),
+		"remediation": "auto_repair = true",
+		"remediation_type": "addition",
 	}
 }

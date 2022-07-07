@@ -6,8 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 
 	resource := input.document[i].resource.alicloud_disk[name]
-    resource.encrypted == false
-  
+    resource.encrypted == false  
   
 	result := {
 		"documentId": input.document[i].id,
@@ -18,6 +17,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("[%s] has encryption set to true", [name]),
 		"keyActualValue": sprintf("[%s] has encryption set to false", [name]),
         "searchLine":common_lib.build_search_line(["resource", "alicloud_disk", name, "encrypted"], []),
+		"remediation": "encrypted = true",
+		"remediation_type": "replacement",
 	}
 }
 
@@ -26,7 +27,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_disk[name]
     not common_lib.valid_key(resource, "encrypted")
 	not common_lib.valid_key(resource, "snapshot_id")
-
     
 	result := {
 		"documentId": input.document[i].id,
@@ -37,6 +37,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("[%s] has encryption enabled",[name]),
 		"keyActualValue": sprintf("[%s] does not have encryption enabled",[name]),
         "searchLine":common_lib.build_search_line(["resource", "alicloud_disk", name], []),
+		"remediation": "encrypted = true",
+		"remediation_type": "addition",		
 	}
 }
 

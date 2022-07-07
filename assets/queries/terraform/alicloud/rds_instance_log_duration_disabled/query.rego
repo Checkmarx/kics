@@ -18,13 +18,15 @@ CxPolicy[result] {
 		"keyExpectedValue": "'log_duration' parameter value should be 'ON'",
 		"keyActualValue": "'log_duration' parameter value is 'OFF'",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name, "parameters", parameter, "value"], []),
+		"remediation": "value = \"ON\"",
+		"remediation_type": "replacement",	
 	}
 }
 
 CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_db_instance[name]
-	not has_log_disconn(resource)
+	not has_log_duration(resource)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -38,7 +40,7 @@ CxPolicy[result] {
 	}
 }
 
-has_log_disconn(resource){
+has_log_duration(resource){
 	parameter := resource.parameters[j]
 	parameter.name == "log_duration"
 }

@@ -22,6 +22,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'%s' parameter value should be 'true'", [log]),
 		"keyActualValue": sprintf("'%s' parameter is not defined", [log]),
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_log_audit", name, "variable_map"], []),
+		"remediation": sprintf("%s = true",[log]),
+		"remediation_type": "addition",	
 	}
 }
 
@@ -40,6 +42,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'%s' parameter value should be 'true'", [log]),
 		"keyActualValue": sprintf("'%s' parameter value is 'false'", [log]),
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_log_audit", name, "variable_map", log], []),
+		"remediation": sprintf("%s = true",[log]),
+		"remediation_type": "replacement",	
 	}
 }
 

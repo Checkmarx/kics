@@ -6,8 +6,26 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_actiontrail_trail[name]
+    not common_lib.valid_key(resource, "oss_bucket_name")
     
-    possibilities := {"event_rw", "oss_bucket_name", "trail_region"}
+    
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": "alicloud_actiontrail_trail",
+		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_actiontrail_trail", name),
+		"searchKey": sprintf("alicloud_actiontrail_trail[%s]", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "oss_bucket_name is set.",
+		"keyActualValue": "oss_bucket_name is not set.",
+        "searchLine": common_lib.build_search_line(["resource", "alicloud_actiontrail_trail", name], []),
+	}
+}
+
+CxPolicy[result] {
+	some i
+	resource := input.document[i].resource.alicloud_actiontrail_trail[name]
+    
+    possibilities := {"event_rw", "trail_region"}
     not common_lib.valid_key(resource, possibilities[p])
     
     
@@ -20,6 +38,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'%s' is set.",[possibilities[p]]),
 		"keyActualValue": sprintf("'%s' is not set.",[possibilities[p]]),
         "searchLine": common_lib.build_search_line(["resource", "alicloud_actiontrail_trail", name], []),
+		"remediation": sprintf("%s= \"ALL\"", [p]),
+		"remediation_type": "addition",
 	}
 }
 
@@ -40,5 +60,7 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'%s' is set to All", [p[f]]),
 		"keyActualValue": sprintf("'%s' is not set to All", [p[f]]),
         "searchLine": common_lib.build_search_line(["resource", "alicloud_actiontrail_trail", name, p[f]], []),
+		"remediation": sprintf("%s= \"ALL\"", [f]),
+		"remediation_type": "replacement",
 	}
 }

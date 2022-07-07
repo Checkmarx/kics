@@ -18,6 +18,8 @@ CxPolicy[result] {
 		"keyExpectedValue": "'log_connections' parameter value should be 'ON'",
 		"keyActualValue": "'log_connections' parameter value is 'OFF'",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name, "parameters", parameter, "value"], []),
+		"remediation": "value = \"ON\"",
+		"remediation_type": "replacement",	
 	}
 }
 
@@ -30,7 +32,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_db_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("alicloud_db_instance[%s]]", [name]),
+		"searchKey": sprintf("alicloud_db_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'log_connections' parameter is defined value should be 'ON'",
 		"keyActualValue": "'log_connections' parameter is not defined",
