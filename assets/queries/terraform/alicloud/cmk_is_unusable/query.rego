@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	resource.is_enabled == false
 
+	remediation := {"before": "false", "after": "true"}
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_kms_key",
@@ -17,8 +19,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("alicloud_kms_key[%s].is_enabled to be set to true", [name]),
 		"keyActualValue": sprintf("alicloud_kms_key[%s].is_enabled is set to false", [name]),
         "searchLine": common_lib.build_search_line(["resource", "alicloud_kms_key", name, "is_enabled"], []),
-		"remediation": "is_enabled = true",
-		"remediation_type": "replacement",
+		"remediation": json.marshal(remediation),
+		"remediationType": "replacement",
 	}
 }
 
@@ -37,6 +39,6 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("alicloud_kms_key[%s].is_enabled is not set", [name]),
         "searchLine": common_lib.build_search_line(["resource", "alicloud_kms_key", name], []),
 		"remediation": "is_enabled = true",
-		"remediation_type": "addition",
+		"remediationType": "addition",
 	}
 }

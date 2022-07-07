@@ -7,6 +7,8 @@ CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_ram_account_password_policy[name]
     resource.minimum_password_length < 14
+
+	remediation := {"before": resource.minimum_password_length, "after": "14"}
     
     result := {
 		"documentId": input.document[i].id,
@@ -17,9 +19,8 @@ CxPolicy[result] {
 		"keyExpectedValue": "'minimum_password_length' is defined and set to 14 or above",
 		"keyActualValue": "'minimum_password_length' is lower than 14",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_ram_account_password_policy", name, "minimum_password_length"], []),
-		"remediation": "minimum_password_length = 14",
-		"remediation_type": "replacement",
-		
+		"remediation": json.marshal(remediation),
+		"remediationType": "replacement",
 	}
 }
 
@@ -39,6 +40,6 @@ CxPolicy[result] {
 		"keyActualValue": "'minimum_password_length' is not difined",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_ram_account_password_policy", name], []),
 		"remediation": "minimum_password_length = 14",
-		"remediation_type": "addition",		
+		"remediationType": "addition",		
 	}
 }
