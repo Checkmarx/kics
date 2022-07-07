@@ -17,6 +17,11 @@ CxPolicy[result] {
 		"keyExpectedValue": "'protocol' value should be 'HTTPS'",
 		"keyActualValue": "'protocol' value is 'HTTP' or 'HTTP,HTTPS'",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_api_gateway_api", name, "request_config","protocol"], []),
+		"remediation": json.marshal({
+			"before": request_config.protocol,
+			"after": "HTTPS"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -34,5 +39,10 @@ CxPolicy[result] {
 		"keyExpectedValue": "'protocol' value should be 'HTTPS'",
 		"keyActualValue": "'protocol' value is 'HTTP' or 'HTTP,HTTPS'",	
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_api_gateway_api", name, "request_config", index, "protocol" ], []),
+		"remediation": json.marshal({
+			"before": request_config.protocol,
+			"after": "HTTPS"
+		}),
+		"remediationType": "replacement",
 	}
 }
