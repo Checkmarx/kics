@@ -275,7 +275,7 @@
 				
 				<option value="file109">github.com/Checkmarx/kics/pkg/terraformer/aws/aws_cloud_provider.go (93.3%)</option>
 				
-				<option value="file110">github.com/Checkmarx/kics/pkg/terraformer/azure/azure_cloud_provider.go (92.9%)</option>
+				<option value="file110">github.com/Checkmarx/kics/pkg/terraformer/azure/azure_cloud_provider.go (78.6%)</option>
 				
 				<option value="file111">github.com/Checkmarx/kics/pkg/terraformer/gcp/gcp_cloud_provider.go (93.8%)</option>
 				
@@ -2013,13 +2013,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="38">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="38">total += v
+                <span class="cov8" title="34">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -19094,7 +19094,7 @@ func (a CloudProvider) Import(ctx context.Context, options *importer.ImportOptio
                 done &lt;- ImporterFunc(provider, *options, []string{options.ResourceGroup})
         }</span>()
 
-        <span class="cov8" title="1">go func() </span><span class="cov8" title="1">{
+        <span class="cov8" title="1">go func() </span><span class="cov0" title="0">{
                 defer close(done)
                 wg.Wait()
         }</span>()
