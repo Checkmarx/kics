@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/Checkmarx/kics/internal/console/flags"
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
@@ -77,6 +78,8 @@ func preFix(cmd *cobra.Command) error {
 func fix(cmd *cobra.Command) error {
 	resultsPath := flags.GetStrFlag(flags.Results)
 	include := flags.GetMultiStrFlag(flags.IncludeIds)
+
+	filepath.Clean(resultsPath)
 
 	content, err := os.ReadFile(resultsPath)
 	if err != nil {

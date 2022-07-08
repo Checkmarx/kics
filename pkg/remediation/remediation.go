@@ -3,6 +3,7 @@ package remediation
 import (
 	"encoding/json"
 	"os"
+	"path/filepath"
 	"sort"
 	"strings"
 
@@ -45,6 +46,7 @@ type Fix struct {
 
 // RemediateFile remediates the replacements first and secondly, the additions sorted down
 func (s *Summary) RemediateFile(filePath string, fix Fix) error {
+	filepath.Clean(filePath)
 	content, err := os.ReadFile(filePath)
 
 	if err != nil {

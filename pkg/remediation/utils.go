@@ -129,6 +129,8 @@ func removedSimilarityID(results []model.Vulnerability, similarity string) bool 
 
 // CreateTempFile creates a temporary file with the content as the file pointed in the filePathCopyFrom
 func CreateTempFile(filePathCopyFrom, tmpFilePath string) string {
+	filepath.Clean(filePathCopyFrom)
+	filepath.Clean(tmpFilePath)
 	f, err := os.OpenFile(tmpFilePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
 
 	if err != nil {
