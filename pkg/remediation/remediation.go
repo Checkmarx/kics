@@ -3,21 +3,25 @@ package remediation
 import (
 	"encoding/json"
 	"os"
+	"path/filepath"
 	"sort"
 	"strings"
 
 	"github.com/rs/zerolog/log"
 )
 
-type Result struct {
+// Report includes all query results
+type Report struct {
 	Queries []Query `json:"queries"`
 }
 
+// Query includes all the files that presents a result related to the queryID
 type Query struct {
 	Files   []File `json:"files"`
 	QueryID string `json:"query_id"`
 }
 
+// File presents the result information related to the file
 type File struct {
 	FilePath        string `json:"file_name"`
 	Line            int    `json:"line"`
@@ -26,6 +30,7 @@ type File struct {
 	SimilarityID    string `json:"similarity_id"`
 }
 
+// Remediation presents all the relevant information for the fix
 type Remediation struct {
 	Line         int
 	Remediation  string
@@ -33,6 +38,7 @@ type Remediation struct {
 	QueryID      string
 }
 
+// Fix includes all the replacements and additions related to a file
 type Fix struct {
 	Replacement []Remediation
 	Addition    []Remediation
@@ -40,6 +46,7 @@ type Fix struct {
 
 // RemediateFile remediates the replacements first and secondly, the additions sorted down
 func (s *Summary) RemediateFile(filePath string, fix Fix) error {
+	filepath.Clean(filePath)
 	content, err := os.ReadFile(filePath)
 
 	if err != nil {
@@ -55,7 +62,7 @@ func (s *Summary) RemediateFile(filePath string, fix Fix) error {
 			r := fix.Replacement[i]
 			remediatedLines := replacement(r, lines)
 			if len(remediatedLines) > 0 && willRemediate(remediatedLines, filePath, &r) {
-				lines = s.writeRemediations(remediatedLines, lines, filePath, r.SimilarityID)
+				lines = s.writeRemediation(remediatedLines, lines, filePath, r.SimilarityID)
 			}
 		}
 	}
@@ -71,7 +78,7 @@ func (s *Summary) RemediateFile(filePath string, fix Fix) error {
 			a := fix.Addition[i]
 			remediatedLines := addition(a, &lines)
 			if len(remediatedLines) > 0 && willRemediate(remediatedLines, filePath, &a) {
-				lines = s.writeRemediations(remediatedLines, lines, filePath, a.SimilarityID)
+				lines = s.writeRemediation(remediatedLines, lines, filePath, a.SimilarityID)
 			}
 		}
 	}
@@ -79,6 +86,7 @@ func (s *Summary) RemediateFile(filePath string, fix Fix) error {
 	return nil
 }
 
+// ReplacementInfo presents the relevant information to do the replacement
 type ReplacementInfo struct {
 	Before string `json:"before"`
 	After  string `json:"after"`
@@ -118,6 +126,7 @@ func addition(r Remediation, lines *[]string) []string {
 		log.Info().Msgf("remediation '%s' is already done", r.SimilarityID)
 		return []string{}
 	}
+
 	begin := make([]string, len(*lines))
 	end := make([]string, len(*lines))
 
@@ -136,7 +145,7 @@ func addition(r Remediation, lines *[]string) []string {
 	return remediation
 }
 
-func (s *Summary) writeRemediations(remediatedLines, lines []string, filePath, similarityID string) []string {
+func (s *Summary) writeRemediation(remediatedLines, lines []string, filePath, similarityID string) []string {
 	remediated := []byte(strings.Join(remediatedLines, "\n"))
 
 	if err := os.WriteFile(filePath, remediated, os.ModePerm); err != nil {
@@ -145,7 +154,7 @@ func (s *Summary) writeRemediations(remediatedLines, lines []string, filePath, s
 	}
 
 	log.Info().Msgf("file '%s' was remediated with '%s'", filePath, similarityID)
-	s.ActualRemediationsDoneNumber++
+	s.ActualRemediationDoneNumber++
 
 	return remediatedLines
 }
