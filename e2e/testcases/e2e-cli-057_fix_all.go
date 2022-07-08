@@ -13,13 +13,23 @@ import (
 // E2E-CLI-057 - Kics fix command
 // should fix all remediation found
 func init() { // nolint
-	if err := os.MkdirAll("./fixtures/tmp-kics-ar", os.ModePerm); err != nil {
+	cwd, err := os.Getwd()
+
+	if err != nil {
+		log.Error().Msgf("failed to get wd: %s", err)
+	}
+
+	tmpFolderPath := filepath.Join(cwd, "fixtures", "tmp-kics-ar")
+
+	if err := os.MkdirAll(tmpFolderPath, os.ModePerm); err != nil {
 		log.Error().Msgf("failed to mkdir: %s", err)
 	}
 
-	filePathCopyFrom := "./fixtures/samples/kics-auto-remediation/terraform.tf"
-	tmpFilePath := "./fixtures/tmp-kics-ar/temporary-remediation" + utils.NextRandom() + filepath.Ext(filePathCopyFrom)
-	jsonPath := "./fixtures/tmp-kics-ar"
+	filePathCopyFrom := filepath.Join(cwd, "fixtures", "samples", "kics-auto-remediation", "terraform.tf")
+
+	tmpFilePath := filepath.Join(cwd, "fixtures", "tmp-kics-ar", "temporary-remediation-"+utils.NextRandom()+filepath.Ext(filePathCopyFrom))
+
+	jsonPath := tmpFolderPath
 
 	// create a temporary file with the same content as filePathCopyFrom
 	tmpFile := remediation.CreateTempFile(filePathCopyFrom, tmpFilePath)
