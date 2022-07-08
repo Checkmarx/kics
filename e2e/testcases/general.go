@@ -31,6 +31,7 @@ type args struct {
 type TestTemplates struct {
 	Help     string
 	ScanHelp string
+	FixHelp  string
 }
 
 type cmdArgs []string

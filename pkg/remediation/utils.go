@@ -1,7 +1,6 @@
 package remediation
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -12,13 +11,14 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+// Summary represents the information about the number of selected remediation and remediation done
 type Summary struct {
-	SelectedRemediationsNumber   int
-	ActualRemediationsDoneNumber int
+	SelectedRemediationNumber   int
+	ActualRemediationDoneNumber int
 }
 
 // GetFixs collects all the replacements and additions per file
-func (s *Summary) GetFixs(results Result, include []string) map[string]interface{} {
+func (s *Summary) GetFixs(results Report, include []string) map[string]interface{} {
 	fixs := make(map[string]interface{})
 
 	for i := range results.Queries {
@@ -30,7 +30,7 @@ func (s *Summary) GetFixs(results Result, include []string) map[string]interface
 			var fix Fix
 
 			if shouldRemediate(&file, include) {
-				s.SelectedRemediationsNumber++
+				s.SelectedRemediationNumber++
 
 				r := &Remediation{
 					Line:         file.Line,
@@ -79,6 +79,7 @@ func getBefore(line string) string {
 	return string(before[0])
 }
 
+// willRemediate verifies if the remediation actually removes the result
 func willRemediate(remediated []string, originalFileName string, remediation *Remediation) bool {
 	// create temporary file
 	tmpFile := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+filepath.Ext(originalFileName))
@@ -86,15 +87,20 @@ func willRemediate(remediated []string, originalFileName string, remediation *Re
 
 	if err != nil {
 		log.Error().Msgf("failed to open temporary file for remediation '%s': %s", remediation.SimilarityID, err)
-		f.Close()
 		return false
 	}
 
 	content := []byte(strings.Join(remediated, "\n"))
 
+	defer func(f *os.File) {
+		err = f.Close()
+		if err != nil {
+			log.Err(err).Msgf("failed to close file: %s", tmpFile)
+		}
+	}(f)
+
 	if _, err = f.Write(content); err != nil {
 		log.Error().Msgf("failed to write temporary file for remediation '%s': %s", remediation.SimilarityID, err)
-		f.Close()
 		return false
 	}
 
@@ -114,10 +120,42 @@ func removedSimilarityID(results []model.Vulnerability, similarity string) bool 
 		result := results[i]
 
 		if result.SimilarityID == similarity {
-			fmt.Println(similarity)
 			log.Info().Msgf("failed to remediate '%s'", similarity)
 			return false
 		}
 	}
 	return true
+}
+
+// CreateTempFile creates a temporary file with the content as the file pointed in the filePathCopyFrom
+func CreateTempFile(filePathCopyFrom, tmpFilePath string) string {
+	filepath.Clean(filePathCopyFrom)
+	filepath.Clean(tmpFilePath)
+	f, err := os.OpenFile(tmpFilePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
+
+	if err != nil {
+		log.Error().Msgf("failed to open file '%s': %s", tmpFilePath, err)
+		return ""
+	}
+
+	content, err := os.ReadFile(filePathCopyFrom)
+
+	defer func(f *os.File) {
+		err = f.Close()
+		if err != nil {
+			log.Err(err).Msgf("failed to close file: %s", tmpFilePath)
+		}
+	}(f)
+
+	if err != nil {
+		log.Error().Msgf("failed to read file '%s': %s", filePathCopyFrom, err)
+		return ""
+	}
+
+	if _, err = f.Write(content); err != nil {
+		log.Error().Msgf("failed to write file '%s': %s", tmpFilePath, err)
+		return ""
+	}
+
+	return tmpFilePath
 }
