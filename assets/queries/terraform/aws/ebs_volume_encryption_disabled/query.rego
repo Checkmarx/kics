@@ -13,9 +13,12 @@ CxPolicy[result] {
 		"resourceType": "aws_ebs_volume",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_ebs_volume[%s]", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_ebs_volume", name], []),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "One of 'aws_ebs_volume.encrypted' is defined",
 		"keyActualValue": "One of 'aws_ebs_volume.encrypted' is undefined",
+		"remediation": "point_in_time_recovery {\n\t\t enabled = true \n\t}",
+		"remediationType": "addition",
 	}
 }
 
@@ -29,8 +32,14 @@ CxPolicy[result] {
 		"resourceType": "aws_ebs_volume",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_ebs_volume[%s].encrypted", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_ebs_volume", name, "encrypted"], []),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "One of 'aws_ebs_volume.encrypted' is 'true'",
 		"keyActualValue": "One of 'aws_ebs_volume.encrypted' is 'false'",
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
