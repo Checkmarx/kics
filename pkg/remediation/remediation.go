@@ -9,15 +9,18 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type Result struct {
+// Report includes all query results
+type Report struct {
 	Queries []Query `json:"queries"`
 }
 
+// Query includes all the files that presents a result related to the queryID
 type Query struct {
 	Files   []File `json:"files"`
 	QueryID string `json:"query_id"`
 }
 
+// File presents the result information related to the file
 type File struct {
 	FilePath        string `json:"file_name"`
 	Line            int    `json:"line"`
@@ -26,6 +29,7 @@ type File struct {
 	SimilarityID    string `json:"similarity_id"`
 }
 
+// Remediation presents all the relevant information for the fix
 type Remediation struct {
 	Line         int
 	Remediation  string
@@ -33,6 +37,7 @@ type Remediation struct {
 	QueryID      string
 }
 
+// Fix includes all the replacements and additions related to a file
 type Fix struct {
 	Replacement []Remediation
 	Addition    []Remediation

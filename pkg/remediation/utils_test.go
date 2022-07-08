@@ -40,7 +40,7 @@ func Test_GetFixs(t *testing.T) {
 		QueryID: "41a38329-d81b-4be4-aef4-55b2615d3282",
 	}
 
-	res := &Result{
+	res := &Report{
 		Queries: []Query{*query1, *query2},
 	}
 
@@ -71,7 +71,7 @@ func Test_GetFixs(t *testing.T) {
 	want2[filePath] = fix2
 
 	type args struct {
-		res     *Result
+		res     *Report
 		include []string
 	}
 

@@ -55,6 +55,7 @@ type QueryLoader struct {
 type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{},
 	detector *detector.DetectLine) (model.Vulnerability, error)
 
+// PreparedQuery includes the opaQuery and its metadata
 type PreparedQuery struct {
 	OpaQuery rego.PreparedEvalQuery
 	Metadata model.QueryMetadata

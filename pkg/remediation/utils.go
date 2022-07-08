@@ -11,13 +11,14 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+// Summary represents the information about the number of selected remediation and remediation done
 type Summary struct {
 	SelectedRemediationNumber   int
 	ActualRemediationDoneNumber int
 }
 
 // GetFixs collects all the replacements and additions per file
-func (s *Summary) GetFixs(results Result, include []string) map[string]interface{} {
+func (s *Summary) GetFixs(results Report, include []string) map[string]interface{} {
 	fixs := make(map[string]interface{})
 
 	for i := range results.Queries {
