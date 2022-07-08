@@ -87,15 +87,20 @@ func willRemediate(remediated []string, originalFileName string, remediation *Re
 
 	if err != nil {
 		log.Error().Msgf("failed to open temporary file for remediation '%s': %s", remediation.SimilarityID, err)
-		f.Close()
 		return false
 	}
 
 	content := []byte(strings.Join(remediated, "\n"))
 
+	defer func(f *os.File) {
+		err = f.Close()
+		if err != nil {
+			log.Err(err).Msgf("failed to close file: %s", tmpFile)
+		}
+	}(f)
+
 	if _, err = f.Write(content); err != nil {
 		log.Error().Msgf("failed to write temporary file for remediation '%s': %s", remediation.SimilarityID, err)
-		f.Close()
 		return false
 	}
 
@@ -127,25 +132,28 @@ func CreateTempFile(filePathCopyFrom, tmpFilePath string) string {
 	f, err := os.OpenFile(tmpFilePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
 
 	if err != nil {
-		f.Close()
 		log.Error().Msgf("failed to open file '%s': %s", tmpFilePath, err)
 		return ""
 	}
 
 	content, err := os.ReadFile(filePathCopyFrom)
 
+	defer func(f *os.File) {
+		err = f.Close()
+		if err != nil {
+			log.Err(err).Msgf("failed to close file: %s", tmpFilePath)
+		}
+	}(f)
+
 	if err != nil {
-		f.Close()
 		log.Error().Msgf("failed to read file '%s': %s", filePathCopyFrom, err)
 		return ""
 	}
 
 	if _, err = f.Write(content); err != nil {
-		f.Close()
 		log.Error().Msgf("failed to write file '%s': %s", tmpFilePath, err)
 		return ""
 	}
 
-	f.Close()
 	return tmpFilePath
 }
