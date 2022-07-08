@@ -116,27 +116,27 @@ func Test_GetFixs(t *testing.T) {
 }
 
 func Test_CreateTempFile(t *testing.T) {
-	filePath := filepath.Join("..", "..", "test", "fixtures", "kics_auto_remediation", "terraform.tf")
+	filePathCopyFrom := filepath.Join("..", "..", "test", "fixtures", "kics_auto_remediation", "terraform.tf")
 
-	tmpFile := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+filepath.Ext(filePath))
+	tmpFile := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+filepath.Ext(filePathCopyFrom))
 
 	tests := []struct {
-		name     string
-		filePath string
-		tmpFile  string
-		want     string
+		name             string
+		filePathCopyFrom string
+		tmpFile          string
+		want             string
 	}{
 		{
-			name:     "create a temporary file with same content as the input",
-			filePath: filePath,
-			tmpFile:  tmpFile,
-			want:     tmpFile,
+			name:             "create a temporary file with same content as the input",
+			filePathCopyFrom: filePathCopyFrom,
+			tmpFile:          tmpFile,
+			want:             tmpFile,
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := CreateTempFile(tt.filePath, tt.tmpFile)
+			got := CreateTempFile(tt.filePathCopyFrom, tt.tmpFile)
 			require.Equal(t, got, tt.want)
 		})
 	}

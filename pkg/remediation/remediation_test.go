@@ -14,7 +14,7 @@ import (
 
 func Test_RemediateFile(t *testing.T) {
 
-	filePath := filepath.Join("..", "..", "test", "fixtures", "kics_auto_remediation", "terraform.tf")
+	filePathCopyFrom := filepath.Join("..", "..", "test", "fixtures", "kics_auto_remediation", "terraform.tf")
 
 	type args struct {
 		fix Fix
@@ -102,8 +102,6 @@ func Test_RemediateFile(t *testing.T) {
 		source.ListSupportedCloudProviders(),
 	)
 
-	flags.SetMultiStrFlag(flags.QueriesPath, []string{"../../assets/queries"})
-
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := &Summary{
@@ -111,8 +109,8 @@ func Test_RemediateFile(t *testing.T) {
 				ActualRemediationDoneNumber: 0,
 			}
 
-			tmpFileName := filepath.Join(os.TempDir(), "temporary-remediation"+utils.NextRandom()+filepath.Ext(filePath))
-			tmpFile := CreateTempFile(filePath, tmpFileName)
+			tmpFileName := filepath.Join(os.TempDir(), "temporary-remediation"+utils.NextRandom()+filepath.Ext(filePathCopyFrom))
+			tmpFile := CreateTempFile(filePathCopyFrom, tmpFileName)
 			s.RemediateFile(tmpFile, tt.args.fix)
 
 			os.Remove(tmpFile)

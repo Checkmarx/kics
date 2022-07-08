@@ -121,8 +121,8 @@ func removedSimilarityID(results []model.Vulnerability, similarity string) bool 
 	return true
 }
 
-// CreateTempFile creates a temporary file with the content as the file pointed in the input
-func CreateTempFile(filePath, tmpFilePath string) string {
+// CreateTempFile creates a temporary file with the content as the file pointed in the filePathCopyFrom
+func CreateTempFile(filePathCopyFrom, tmpFilePath string) string {
 	f, err := os.OpenFile(tmpFilePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
 
 	if err != nil {
@@ -131,11 +131,11 @@ func CreateTempFile(filePath, tmpFilePath string) string {
 		return ""
 	}
 
-	content, err := os.ReadFile(filePath)
+	content, err := os.ReadFile(filePathCopyFrom)
 
 	if err != nil {
 		f.Close()
-		log.Error().Msgf("failed to read file '%s': %s", filePath, err)
+		log.Error().Msgf("failed to read file '%s': %s", filePathCopyFrom, err)
 		return ""
 	}
 

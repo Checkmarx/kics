@@ -17,12 +17,12 @@ func init() { // nolint
 		log.Error().Msgf("failed to mkdir: %s", err)
 	}
 
-	filePath := "./fixtures/samples/kics-auto-remediation/terraform.tf"
-	tmpFilePath := "./fixtures/tmp-kics-ar/temporary-remediation" + utils.NextRandom() + filepath.Ext(filePath)
+	filePathCopyFrom := "./fixtures/samples/kics-auto-remediation/terraform.tf"
+	tmpFilePath := "./fixtures/tmp-kics-ar/temporary-remediation" + utils.NextRandom() + filepath.Ext(filePathCopyFrom)
 	jsonPath := "./fixtures/tmp-kics-ar"
 
-	// create a temporary file with the same content as filePath
-	tmpFile := remediation.CreateTempFile(filePath, tmpFilePath)
+	// create a temporary file with the same content as filePathCopyFrom
+	tmpFile := remediation.CreateTempFile(filePathCopyFrom, tmpFilePath)
 
 	// create JSON results with remediation
 	generateReport(tmpFile, jsonPath)
