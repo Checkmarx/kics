@@ -1,17 +1,18 @@
 package remediation
 
 import (
+	"os"
 	"path/filepath"
 	"reflect"
 	"testing"
 
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/stretchr/testify/require"
 )
 
 func Test_GetFixs(t *testing.T) {
 
-	filePath := filepath.Join("assets", "queries", "terraform", "alicloud",
-		"ram_account_password_policy_not_required_symbols", "test", "negative1.tf")
+	filePath := filepath.Join("..", "..", "test", "fixtures", "kics_auto_remediation", "terraform.tf")
 
 	file1 := &File{
 		FilePath:        filePath,
@@ -75,10 +76,10 @@ func Test_GetFixs(t *testing.T) {
 	}
 
 	tests := []struct {
-		name                       string
-		args                       args
-		selectedRemediationsNumber int
-		want                       map[string]interface{}
+		name                      string
+		args                      args
+		selectedRemediationNumber int
+		want                      map[string]interface{}
 	}{
 		{
 			name: "include all similarityID",
@@ -86,8 +87,8 @@ func Test_GetFixs(t *testing.T) {
 				res:     res,
 				include: []string{"all"},
 			},
-			want:                       want,
-			selectedRemediationsNumber: 2,
+			want:                      want,
+			selectedRemediationNumber: 2,
 		},
 		{
 			name: "include specific similarityID",
@@ -95,21 +96,48 @@ func Test_GetFixs(t *testing.T) {
 				res:     res,
 				include: []string{"87abbee5d0ec977ba193371c702dca2c040ea902d2e606806a63b66119ff89bc"},
 			},
-			want:                       want2,
-			selectedRemediationsNumber: 1,
+			want:                      want2,
+			selectedRemediationNumber: 1,
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := &Summary{
-				SelectedRemediationsNumber:   0,
-				ActualRemediationsDoneNumber: 0,
+				SelectedRemediationNumber:   0,
+				ActualRemediationDoneNumber: 0,
 			}
 			if got := s.GetFixs(*tt.args.res, tt.args.include); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("GetFixs() = %v, want %v", got, tt.want)
 			}
-			require.Equal(t, s.SelectedRemediationsNumber, tt.selectedRemediationsNumber)
+			require.Equal(t, s.SelectedRemediationNumber, tt.selectedRemediationNumber)
+		})
+	}
+}
+
+func Test_CreateTempFile(t *testing.T) {
+	filePath := filepath.Join("..", "..", "test", "fixtures", "kics_auto_remediation", "terraform.tf")
+
+	tmpFile := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+filepath.Ext(filePath))
+
+	tests := []struct {
+		name     string
+		filePath string
+		tmpFile  string
+		want     string
+	}{
+		{
+			name:     "create a temporary file with same content as the input",
+			filePath: filePath,
+			tmpFile:  tmpFile,
+			want:     tmpFile,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := CreateTempFile(tt.filePath, tt.tmpFile)
+			require.Equal(t, got, tt.want)
 		})
 	}
 }

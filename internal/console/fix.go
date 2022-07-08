@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/Checkmarx/kics/internal/console/flags"
+	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	sentryReport "github.com/Checkmarx/kics/internal/sentry"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	internalPrinter "github.com/Checkmarx/kics/pkg/printer"
@@ -92,10 +93,11 @@ func fix(cmd *cobra.Command) error {
 	}
 
 	summary := &remediation.Summary{
-		SelectedRemediationsNumber:   0,
-		ActualRemediationsDoneNumber: 0,
+		SelectedRemediationNumber:   0,
+		ActualRemediationDoneNumber: 0,
 	}
 
+	// get all the fixs related to each filePath
 	fixs := summary.GetFixs(results, include)
 
 	for filePath := range fixs {
@@ -106,8 +108,13 @@ func fix(cmd *cobra.Command) error {
 		}
 	}
 
-	fmt.Printf("\nSelected remediations: %d\n", summary.SelectedRemediationsNumber)
-	fmt.Printf("Remediations done: %d\n", summary.ActualRemediationsDoneNumber)
+	fmt.Printf("\nSelected remediation: %d\n", summary.SelectedRemediationNumber)
+	fmt.Printf("Remediation done: %d\n", summary.ActualRemediationDoneNumber)
+
+	exitCode := consoleHelpers.FixExitCode(summary.SelectedRemediationNumber, summary.ActualRemediationDoneNumber)
+	if exitCode != 0 {
+		os.Exit(exitCode)
+	}
 
 	return nil
 }

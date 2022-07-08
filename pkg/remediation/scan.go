@@ -10,6 +10,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/scan"
 	"github.com/open-policy-agent/opa/topdown"
 
 	"github.com/Checkmarx/kics/internal/console/flags"
@@ -35,6 +36,7 @@ type runQueryInfo struct {
 	files     model.FileMetadatas
 }
 
+// scanTmpFile scans a temporary file against a specific query
 func scanTmpFile(tmpFile, queryID string, remediated []byte) ([]model.Vulnerability, error) {
 	// get payload
 	files, err := getPayload(tmpFile, remediated)
@@ -76,6 +78,7 @@ func scanTmpFile(tmpFile, queryID string, remediated []byte) ([]model.Vulnerabil
 	return runQuery(info), nil
 }
 
+// getPayload gets the payload of a file
 func getPayload(filePath string, content []byte) (model.FileMetadatas, error) {
 	ext := utils.GetExtension(filePath)
 	var p []*parser.Parser
@@ -140,6 +143,7 @@ func getPayload(filePath string, content []byte) (model.FileMetadatas, error) {
 	return files, nil
 }
 
+// runQuery runs a query and returns its results
 func runQuery(r *runQueryInfo) []model.Vulnerability {
 	queryExecTimeout := time.Duration(flags.GetIntFlag(flags.QueryExecTimeoutFlag)) * time.Second
 
@@ -177,11 +181,31 @@ func runQuery(r *runQueryInfo) []model.Vulnerability {
 }
 
 func initScan(queryID string) (*engine.Inspector, error) {
+	scanParams := &scan.Parameters{
+		QueriesPath:      flags.GetMultiStrFlag(flags.QueriesPath),
+		Platform:         flags.GetMultiStrFlag(flags.TypeFlag),
+		CloudProvider:    flags.GetMultiStrFlag(flags.CloudProviderFlag),
+		LibrariesPath:    flags.GetStrFlag(flags.LibrariesPath),
+		PreviewLines:     flags.GetIntFlag(flags.PreviewLinesFlag),
+		QueryExecTimeout: flags.GetIntFlag(flags.QueryExecTimeoutFlag),
+	}
+
+	c := &scan.Client{
+		ScanParams: scanParams,
+	}
+
+	err := c.GetQueryPath()
+
+	if err != nil {
+		log.Err(err)
+		return &engine.Inspector{}, err
+	}
+
 	queriesSource := source.NewFilesystemSource(
-		flags.GetMultiStrFlag(flags.QueriesPath),
-		flags.GetMultiStrFlag(flags.TypeFlag),
-		flags.GetMultiStrFlag(flags.CloudProviderFlag),
-		flags.GetStrFlag(flags.LibrariesPath))
+		c.ScanParams.QueriesPath,
+		c.ScanParams.Platform,
+		c.ScanParams.CloudProvider,
+		c.ScanParams.LibrariesPath)
 
 	includeQueries := source.IncludeQueries{
 		ByIDs: []string{queryID},
@@ -191,7 +215,7 @@ func initScan(queryID string) (*engine.Inspector, error) {
 		IncludeQueries: includeQueries,
 	}
 
-	t, err := tracker.NewTracker(flags.GetIntFlag(flags.PreviewLinesFlag))
+	t, err := tracker.NewTracker(c.ScanParams.PreviewLines)
 	if err != nil {
 		log.Err(err)
 		return &engine.Inspector{}, err
@@ -205,7 +229,7 @@ func initScan(queryID string) (*engine.Inspector, error) {
 		t,
 		&queryFilter,
 		make(map[string]bool),
-		flags.GetIntFlag(flags.QueryExecTimeoutFlag),
+		c.ScanParams.QueryExecTimeout,
 		false,
 	)
 

@@ -50,37 +50,37 @@ func Test_RemediateFile(t *testing.T) {
 	fix3.Replacement = append(fix3.Replacement, *wrongReplacement)
 
 	tests := []struct {
-		name                         string
-		args                         args
-		actualRemediationsDoneNumber int
+		name                        string
+		args                        args
+		actualRemediationDoneNumber int
 	}{
 		{
 			name: "remediate a file with a replacement",
 			args: args{
 				fix: fix1,
 			},
-			actualRemediationsDoneNumber: 1,
+			actualRemediationDoneNumber: 1,
 		},
 		{
 			name: "remediate a file with a replacement and addition",
 			args: args{
 				fix: fix2,
 			},
-			actualRemediationsDoneNumber: 2,
+			actualRemediationDoneNumber: 2,
 		},
 		{
 			name: "remediate a file without any remediation",
 			args: args{
 				fix: Fix{},
 			},
-			actualRemediationsDoneNumber: 0,
+			actualRemediationDoneNumber: 0,
 		},
 		{
 			name: "remediate a file with a wrong remediation",
 			args: args{
 				fix: fix3,
 			},
-			actualRemediationsDoneNumber: 0,
+			actualRemediationDoneNumber: 0,
 		},
 	}
 
@@ -107,38 +107,17 @@ func Test_RemediateFile(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := &Summary{
-				SelectedRemediationsNumber:   0,
-				ActualRemediationsDoneNumber: 0,
+				SelectedRemediationNumber:   0,
+				ActualRemediationDoneNumber: 0,
 			}
 
-			tmpFile := createTempFile(filePath)
+			tmpFileName := filepath.Join(os.TempDir(), "temporary-remediation"+utils.NextRandom()+filepath.Ext(filePath))
+			tmpFile := CreateTempFile(filePath, tmpFileName)
 			s.RemediateFile(tmpFile, tt.args.fix)
 
 			os.Remove(tmpFile)
-			require.Equal(t, s.ActualRemediationsDoneNumber, tt.actualRemediationsDoneNumber)
+			require.Equal(t, s.ActualRemediationDoneNumber, tt.actualRemediationDoneNumber)
 
 		})
 	}
-}
-
-func createTempFile(filePath string) string {
-	// create temporary file
-	tmpFile := filepath.Join(os.TempDir(), "temporary-remediation"+utils.NextRandom()+filepath.Ext(filePath))
-	f, err := os.OpenFile(tmpFile, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
-
-	if err != nil {
-		f.Close()
-		return ""
-	}
-
-	content, err := os.ReadFile(filePath)
-	if err != nil {
-		return ""
-	}
-
-	if _, err = f.Write(content); err != nil {
-		f.Close()
-		return ""
-	}
-	return tmpFile
 }

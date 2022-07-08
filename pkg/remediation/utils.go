@@ -1,7 +1,6 @@
 package remediation
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -13,8 +12,8 @@ import (
 )
 
 type Summary struct {
-	SelectedRemediationsNumber   int
-	ActualRemediationsDoneNumber int
+	SelectedRemediationNumber   int
+	ActualRemediationDoneNumber int
 }
 
 // GetFixs collects all the replacements and additions per file
@@ -30,7 +29,7 @@ func (s *Summary) GetFixs(results Result, include []string) map[string]interface
 			var fix Fix
 
 			if shouldRemediate(&file, include) {
-				s.SelectedRemediationsNumber++
+				s.SelectedRemediationNumber++
 
 				r := &Remediation{
 					Line:         file.Line,
@@ -79,6 +78,7 @@ func getBefore(line string) string {
 	return string(before[0])
 }
 
+// willRemediate verifies if the remediation actually removes the result
 func willRemediate(remediated []string, originalFileName string, remediation *Remediation) bool {
 	// create temporary file
 	tmpFile := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+filepath.Ext(originalFileName))
@@ -114,10 +114,37 @@ func removedSimilarityID(results []model.Vulnerability, similarity string) bool 
 		result := results[i]
 
 		if result.SimilarityID == similarity {
-			fmt.Println(similarity)
 			log.Info().Msgf("failed to remediate '%s'", similarity)
 			return false
 		}
 	}
 	return true
+}
+
+// CreateTempFile creates a temporary file with the content as the file pointed in the input
+func CreateTempFile(filePath, tmpFilePath string) string {
+	f, err := os.OpenFile(tmpFilePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
+
+	if err != nil {
+		f.Close()
+		log.Error().Msgf("failed to open file '%s': %s", tmpFilePath, err)
+		return ""
+	}
+
+	content, err := os.ReadFile(filePath)
+
+	if err != nil {
+		f.Close()
+		log.Error().Msgf("failed to read file '%s': %s", filePath, err)
+		return ""
+	}
+
+	if _, err = f.Write(content); err != nil {
+		f.Close()
+		log.Error().Msgf("failed to write file '%s': %s", tmpFilePath, err)
+		return ""
+	}
+
+	f.Close()
+	return tmpFilePath
 }

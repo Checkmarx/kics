@@ -55,7 +55,7 @@ func (s *Summary) RemediateFile(filePath string, fix Fix) error {
 			r := fix.Replacement[i]
 			remediatedLines := replacement(r, lines)
 			if len(remediatedLines) > 0 && willRemediate(remediatedLines, filePath, &r) {
-				lines = s.writeRemediations(remediatedLines, lines, filePath, r.SimilarityID)
+				lines = s.writeRemediation(remediatedLines, lines, filePath, r.SimilarityID)
 			}
 		}
 	}
@@ -71,7 +71,7 @@ func (s *Summary) RemediateFile(filePath string, fix Fix) error {
 			a := fix.Addition[i]
 			remediatedLines := addition(a, &lines)
 			if len(remediatedLines) > 0 && willRemediate(remediatedLines, filePath, &a) {
-				lines = s.writeRemediations(remediatedLines, lines, filePath, a.SimilarityID)
+				lines = s.writeRemediation(remediatedLines, lines, filePath, a.SimilarityID)
 			}
 		}
 	}
@@ -118,6 +118,7 @@ func addition(r Remediation, lines *[]string) []string {
 		log.Info().Msgf("remediation '%s' is already done", r.SimilarityID)
 		return []string{}
 	}
+
 	begin := make([]string, len(*lines))
 	end := make([]string, len(*lines))
 
@@ -136,7 +137,7 @@ func addition(r Remediation, lines *[]string) []string {
 	return remediation
 }
 
-func (s *Summary) writeRemediations(remediatedLines, lines []string, filePath, similarityID string) []string {
+func (s *Summary) writeRemediation(remediatedLines, lines []string, filePath, similarityID string) []string {
 	remediated := []byte(strings.Join(remediatedLines, "\n"))
 
 	if err := os.WriteFile(filePath, remediated, os.ModePerm); err != nil {
@@ -145,7 +146,7 @@ func (s *Summary) writeRemediations(remediatedLines, lines []string, filePath, s
 	}
 
 	log.Info().Msgf("file '%s' was remediated with '%s'", filePath, similarityID)
-	s.ActualRemediationsDoneNumber++
+	s.ActualRemediationDoneNumber++
 
 	return remediatedLines
 }
