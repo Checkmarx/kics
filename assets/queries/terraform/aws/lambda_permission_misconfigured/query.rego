@@ -22,5 +22,6 @@ CxPolicy[result] {
 			"before": sprintf("%s", [resource.action]),
 			"after": "lambda:InvokeFunction"
 		}),
-		"remediationType": "replacement",	}
+		"remediationType": "replacement",	
+	}
 }
