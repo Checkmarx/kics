@@ -15,6 +15,8 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_redshift_cluster.publicly_accessible is defined and not null",
 		"keyActualValue": "aws_redshift_cluster.publicly_accessible is undefined or null",
+		"remediation": "publicly_accessible = false",
+		"remediationType": "addition",
 	}
 }
 
@@ -30,5 +32,10 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "aws_redshift_cluster.publicly_accessible is false",
 		"keyActualValue": "aws_redshift_cluster.publicly_accessible is true",
+		"remediation": json.marshal({
+			"before": "true",
+			"after": "false"
+		}),
+		"remediationType": "replacement",
 	}
 }
