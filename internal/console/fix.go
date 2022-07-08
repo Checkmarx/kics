@@ -84,7 +84,7 @@ func fix(cmd *cobra.Command) error {
 		return err
 	}
 
-	results := remediation.Result{}
+	results := remediation.Report{}
 
 	err = json.Unmarshal(content, &results)
 	if err != nil {

@@ -84,6 +84,7 @@ func (s *Summary) RemediateFile(filePath string, fix Fix) error {
 	return nil
 }
 
+// ReplacementInfo presents the relevant information to do the replacement
 type ReplacementInfo struct {
 	Before string `json:"before"`
 	After  string `json:"after"`
