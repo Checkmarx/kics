@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s].enable_legacy_abac", [primary]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Attribute 'enable_legacy_abac' is false",
+		"keyExpectedValue": "Attribute 'enable_legacy_abac' should be set to false",
 		"keyActualValue": "Attribute 'enable_legacy_abac' is true",
 	}
 }

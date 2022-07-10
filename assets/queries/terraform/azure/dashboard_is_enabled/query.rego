@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s].addon_profile.kube_dashboard.enabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].addon_profile.kube_dashboard.enabled' is false or undefined", [name]),
+		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].addon_profile.kube_dashboard.enabled' should be set to false or undefined", [name]),
 		"keyActualValue": sprintf("'azurerm_kubernetes_cluster[%s].addon_profile.kube_dashboard.enabled' is true", [name]),
 	}
 }
