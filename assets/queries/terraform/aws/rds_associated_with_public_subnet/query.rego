@@ -24,7 +24,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(db, name),
 		"searchKey": sprintf("aws_db_instance[%s].db_subnet_group_name", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "RDS is not running in a public subnet",
+		"keyExpectedValue": "RDS should not be running in a public subnet",
 		"keyActualValue": "RDS is running in a public subnet",
 		"searchLine": common_lib.build_search_line(["resource", "aws_db_instance", name, "db_subnet_group_name"], []),
 	}

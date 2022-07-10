@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_service[%s].spec.type", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_service[%s].spec.type is not 'NodePort'", [name]),
+		"keyExpectedValue": sprintf("kubernetes_service[%s].spec.type should not be 'NodePort'", [name]),
 		"keyActualValue": sprintf("kubernetes_service[%s].spec.type is 'NodePort'", [name]),
 	}
 }

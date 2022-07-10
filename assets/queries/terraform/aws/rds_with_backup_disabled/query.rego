@@ -48,7 +48,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(db, name),
 		"searchKey": sprintf("aws_db_instance[%s].backup_retention_period", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'backup_retention_period' is not equal '0'",
+		"keyExpectedValue": "'backup_retention_period' should not be equal '0'",
 		"keyActualValue": "'backup_retention_period' is equal '0'",
 		"searchLine": common_lib.build_search_line(["resource", "aws_db_instance", name, "backup_retention_period"], []),
 	}
@@ -66,7 +66,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].backup_retention_period", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'backup_retention_period' is not equal '0'",
+		"keyExpectedValue": "'backup_retention_period' should not be equal '0'",
 		"keyActualValue": "'backup_retention_period' is equal '0'",
 		"searchLine": common_lib.build_search_line(["module", name, "backup_retention_period"], []),
 	}

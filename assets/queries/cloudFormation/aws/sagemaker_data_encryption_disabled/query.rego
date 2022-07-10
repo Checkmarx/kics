@@ -31,7 +31,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.KmsKeyId", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.KmsKeyId' is not empty", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.KmsKeyId' should not be empty", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.KmsKeyId' is empty", [name]),
 	}
 }

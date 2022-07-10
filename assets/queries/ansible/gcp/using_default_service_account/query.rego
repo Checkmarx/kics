@@ -40,7 +40,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.service_account_email", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_compute_instance.service_account_email is not empty",
+		"keyExpectedValue": "gcp_compute_instance.service_account_email should not be empty",
 		"keyActualValue": "gcp_compute_instance.service_account_email is empty",
 	}
 }
@@ -82,7 +82,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.service_account_email", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_compute_instance.service_account_email is not a default Google Compute Engine service account",
+		"keyExpectedValue": "gcp_compute_instance.service_account_email should not be a default Google Compute Engine service account",
 		"keyActualValue": "gcp_compute_instance.service_account_email is a default Google Compute Engine service account",
 	}
 }

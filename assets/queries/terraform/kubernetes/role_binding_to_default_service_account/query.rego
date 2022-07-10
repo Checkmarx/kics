@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("resource.kubernetes_role_binding[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("resource.kubernetes_role_binding[%s].subject[%d].name is not default", [name, k]),
+		"keyExpectedValue": sprintf("resource.kubernetes_role_binding[%s].subject[%d].name should not be default", [name, k]),
 		"keyActualValue": sprintf("resource.kubernetes_role_binding[%s].subject[%d].name is default", [name, k]),
 	}
 }

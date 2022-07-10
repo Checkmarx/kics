@@ -56,7 +56,7 @@ CxPolicy[result] {
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.disks.diskEncryptionKey.%s", [resource.name, fields[f]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'diskEncryptionKey.%s' is not empty", [fields[f]]),
+		"keyExpectedValue": sprintf("'diskEncryptionKey.%s' should not be empty", [fields[f]]),
 		"keyActualValue": sprintf("'diskEncryptionKey.%s' is empty", [fields[f]]),
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "disks", d, "diskEncryptionKey", fields[f]], []),
 	}
