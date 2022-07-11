@@ -31,7 +31,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_redshift_cluster[%s].publicly_accessible", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_redshift_cluster.publicly_accessible is false",
+		"keyExpectedValue": "aws_redshift_cluster.publicly_accessible should be set to false",
 		"keyActualValue": "aws_redshift_cluster.publicly_accessible is true",
 	}
 }

@@ -272,8 +272,8 @@ github.com/aws/aws-sdk-go v1.25.3/go.mod h1:KmX6BPdI08NWTb3/sm4ZGu5ShLoqVDhKgpiN
 github.com/aws/aws-sdk-go v1.30.12/go.mod h1:5zCpMtNQVjRREroY7sYe8lOMRSxkhG6MZveU8YkpAk0=
 github.com/aws/aws-sdk-go v1.34.28/go.mod h1:H7NKnBqNVzoTJpGfLrQkkD+ytBA93eiDYi/+8rV9s48=
 github.com/aws/aws-sdk-go v1.43.16/go.mod h1:y4AeaBuwd2Lk+GepC1E9v0qOiTws0MIWAX4oIKwKHZo=
-github.com/aws/aws-sdk-go v1.44.48 h1:jLDC9RsNoYMLFlKpB8LdqUnoDdC2yvkS4QbuyPQJ8+M=
-github.com/aws/aws-sdk-go v1.44.48/go.mod h1:y4AeaBuwd2Lk+GepC1E9v0qOiTws0MIWAX4oIKwKHZo=
+github.com/aws/aws-sdk-go v1.44.51 h1:jO9hoLynZOrMM4dj0KjeKIK+c6PA+HQbKoHOkAEye2Y=
+github.com/aws/aws-sdk-go v1.44.51/go.mod h1:y4AeaBuwd2Lk+GepC1E9v0qOiTws0MIWAX4oIKwKHZo=
 github.com/aws/aws-sdk-go-v2 v1.3.0/go.mod h1:hTQc/9pYq5bfFACIUY9tc/2SYWd9Vnmw+testmuQeRY=
 github.com/aws/aws-sdk-go-v2 v1.3.1/go.mod h1:5SmWRTjN6uTRFNCc7rR69xHsdcUJnthmaRHGDsYhpTE=
 github.com/aws/aws-sdk-go-v2 v1.3.2/go.mod h1:7OaACgj2SX3XGWnrIjGlJM22h6yD6MEWKvm7levnnM8=
@@ -1424,8 +1424,8 @@ github.com/onsi/gomega v1.13.0/go.mod h1:lRk9szgn8TxENtWd0Tp4c3wjlRfMTMH27I+3Je4
 github.com/onsi/gomega v1.15.0/go.mod h1:cIuvLEne0aoVhAgh/O6ac0Op8WWw9H6eYCriF+tEHG0=
 github.com/onsi/gomega v1.16.0 h1:6gjqkI8iiRHMvdccRJM8rVKjCWk6ZIm6FTm3ddIe4/c=
 github.com/onsi/gomega v1.16.0/go.mod h1:HnhC7FXeEQY45zxNK3PPoIUhzk/80Xly9PcubAlGdZY=
-github.com/open-policy-agent/opa v0.42.0 h1:CTJ240+A+sZEYSuLDYiT5l8Q3lcQf2eZc53jCbWNjZE=
-github.com/open-policy-agent/opa v0.42.0/go.mod h1:MrmoTi/BsKWT58kXlVayBb+rYVeaMwuBm3nYAN3923s=
+github.com/open-policy-agent/opa v0.42.1 h1:5R5hVrxgLFK3lxPAcel7iWz3TzbumAZj8qunOIx6fhk=
+github.com/open-policy-agent/opa v0.42.1/go.mod h1:MrmoTi/BsKWT58kXlVayBb+rYVeaMwuBm3nYAN3923s=
 github.com/opencontainers/go-digest v1.0.0 h1:apOUWs51W5PlhuyGyz9FCeeBIOUDA/6nW8Oi/yOhh5U=
 github.com/opencontainers/go-digest v1.0.0/go.mod h1:0JzlMkj0TRzQZfJkVvzbP0HBR3IKzErnv2BNG4W4MAM=
 github.com/opencontainers/image-spec v1.0.2 h1:9yCKha/T5XdGtO0q9Q9a6T5NUCsTn/DrBg0D7ufOcFM=
@@ -1633,10 +1633,10 @@ github.com/subosito/gotenv v1.3.0/go.mod h1:YzJjq/33h7nrwdY+iHMhEOEEbW0ovIz0tB6t
 github.com/svanharmelen/jsonapi v0.0.0-20180618144545-0c0828c3f16d/go.mod h1:BSTlc8jOjh0niykqEGVXOLXdi9o0r0kR8tCYiMvjFgw=
 github.com/syndtr/gocapability v0.0.0-20200815063812-42c35b437635/go.mod h1:hkRG7XYTFWNJGYcbNJQlaLq0fg1yr4J4t/NcTQtrfww=
 github.com/tchap/go-patricia v2.2.6+incompatible/go.mod h1:bmLyhP68RS6kStMGxByiQ23RP/odRBOTVjwp2cDyi6I=
-github.com/tdewolff/minify/v2 v2.11.11 h1:f8Ux7FpWSYckQQaFLOLrgMGMuyTfzTyA57I46bgJ7c0=
-github.com/tdewolff/minify/v2 v2.11.11/go.mod h1:NiPwIL/9TtJIYFYOkuz8HUJ/KuRg/kUb21tTp9Baz3k=
-github.com/tdewolff/parse/v2 v2.6.0 h1:f2D7w32JtqjCv6SczWkfwK+m15et42qEtDnZXHoNY70=
-github.com/tdewolff/parse/v2 v2.6.0/go.mod h1:WzaJpRSbwq++EIQHYIRTpbYKNA3gn9it1Ik++q4zyho=
+github.com/tdewolff/minify/v2 v2.11.12 h1:LwC0+ayfFkLwIwpeun2T35FeUaO3f6XS2bus/QWAnC0=
+github.com/tdewolff/minify/v2 v2.11.12/go.mod h1:8mvf+KglD7XurfvvFZDUYvVURy6bA/r0oTvmakXMnyg=
+github.com/tdewolff/parse/v2 v2.6.1 h1:RIfy1erADkO90ynJWvty8VIkqqKYRzf2iLp8ObG174I=
+github.com/tdewolff/parse/v2 v2.6.1/go.mod h1:WzaJpRSbwq++EIQHYIRTpbYKNA3gn9it1Ik++q4zyho=
 github.com/tdewolff/test v1.0.6/go.mod h1:6DAvZliBAAnD7rhVgwaM7DE5/d9NMOAJ09SqYqeK4QE=
 github.com/tdewolff/test v1.0.7 h1:8Vs0142DmPFW/bQeHRP3MV19m1gvndjUb1sn8yy74LM=
 github.com/tdewolff/test v1.0.7/go.mod h1:6DAvZliBAAnD7rhVgwaM7DE5/d9NMOAJ09SqYqeK4QE=

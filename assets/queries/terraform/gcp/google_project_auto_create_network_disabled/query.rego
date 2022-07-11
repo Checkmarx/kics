@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(project, name),
 		"searchKey": sprintf("google_project[%s].auto_create_network", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("google_project[%s].auto_create_network is false", [name]),
+		"keyExpectedValue": sprintf("google_project[%s].auto_create_network should be set to false", [name]),
 		"keyActualValue": sprintf("google_project[%s].auto_create_network is true", [name]),
 	}
 }
@@ -28,7 +28,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(project, name),
 		"searchKey": sprintf("google_project[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("google_project[%s].auto_create_network is false", [name]),
+		"keyExpectedValue": sprintf("google_project[%s].auto_create_network should be set to false", [name]),
 		"keyActualValue": sprintf("google_project[%s].auto_create_network is undefined", [name]),
 	}
 }

@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.purge_stacks", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "cloudformation_stack_set.purge_stacks is false",
+		"keyExpectedValue": "cloudformation_stack_set.purge_stacks should be set to false",
 		"keyActualValue": "cloudformation_stack_set.purge_stacks is true",
 	}
 }
