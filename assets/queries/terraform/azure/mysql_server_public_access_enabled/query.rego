@@ -17,6 +17,9 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_mysql_server[%s].public_network_access_enabled' is defined", [name]),
 		"keyActualValue": sprintf("'azurerm_mysql_server[%s].public_network_access_enabled' is undefined", [name]),
+		"searchLine": common_lib.build_search_line(["resource","azurerm_mysql_server" ,name], []),
+		"remediation": "public_network_access_enabled = false",
+		"remediationType": "addition",
 	}
 }
 
@@ -34,5 +37,11 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_mysql_server[%s].public_network_access_enabled' is set to false", [name]),
 		"keyActualValue": sprintf("'azurerm_mysql_server[%s].public_network_access_enabled' is set to true", [name]),
+		"searchLine": common_lib.build_search_line(["resource","azurerm_mysql_server" ,name, "public_network_access_enabled"], []),
+		"remediation": json.marshal({
+			"before": "true",
+			"after": "false"
+		}),
+		"remediationType": "replacement",
 	}
 }

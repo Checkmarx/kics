@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_security_center_contact[name]
@@ -15,5 +16,11 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_security_center_contact.%s.alert_notifications' is true", [name]),
 		"keyActualValue": sprintf("'azurerm_security_center_contact.%s.alert_notifications' is false", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_security_center_contact", name, "alert_notifications"], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
