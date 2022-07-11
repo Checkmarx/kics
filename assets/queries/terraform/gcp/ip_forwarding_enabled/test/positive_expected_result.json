@@ -2,6 +2,6 @@
   {
     "queryName": "IP Forwarding Enabled",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 5
   }
 ]
