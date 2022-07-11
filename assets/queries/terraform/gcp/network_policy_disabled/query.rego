@@ -61,7 +61,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s].addons_config.network_policy_config", [primary]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Attribute 'addons_config.network_policy_config.disabled' is false",
+		"keyExpectedValue": "Attribute 'addons_config.network_policy_config.disabled' should be set to false",
 		"keyActualValue": "Attribute 'addons_config.network_policy_config.disabled' is true",
 	}
 }

@@ -49,7 +49,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_instance.%s.associate_public_ip_address", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'associate_public_ip_address' is false",
+		"keyExpectedValue": "'associate_public_ip_address' should be set to false",
 		"keyActualValue": "'associate_public_ip_address' is true",
 		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name, "associate_public_ip_address"], []),
 	}
@@ -67,7 +67,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].associate_public_ip_address", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'associate_public_ip_address' is false",
+		"keyExpectedValue": "'associate_public_ip_address' should be set to false",
 		"keyActualValue": "'associate_public_ip_address' is true",
 		"searchLine": common_lib.build_search_line(["module", name, "associate_public_ip_address"], []),
 	}
