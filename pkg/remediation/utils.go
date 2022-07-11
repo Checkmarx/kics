@@ -81,6 +81,7 @@ func getBefore(line string) string {
 
 // willRemediate verifies if the remediation actually removes the result
 func willRemediate(remediated []string, originalFileName string, remediation *Remediation) bool {
+	filepath.Clean(originalFileName)
 	// create temporary file
 	tmpFile := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+filepath.Ext(originalFileName))
 	f, err := os.OpenFile(tmpFile, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
