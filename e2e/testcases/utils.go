@@ -1,12 +1,18 @@
 package testcases
 
 import (
+	"os"
+	"path/filepath"
+
+	u "github.com/Checkmarx/kics/e2e/utils"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/remediation"
 	"github.com/Checkmarx/kics/pkg/report"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/rs/zerolog/log"
 )
 
-func generateReport(tmpFile, jsonPath string) { // nolint
+func generateReport(tmpFile, jsonPath, reportName string) { // nolint
 	var queryHigh = model.QueryResult{
 		QueryName:                   "Ram Account Password Policy Not Required Minimum Length",
 		QueryID:                     "a9dfec39-a740-4105-bbd6-721ba163c053",
@@ -167,9 +173,43 @@ func generateReport(tmpFile, jsonPath string) { // nolint
 	}
 
 	// create JSON report
-	err := report.PrintJSONReport(jsonPath, "results", summary)
+	err := report.PrintJSONReport(jsonPath, reportName, summary)
 
 	if err != nil {
 		log.Error().Msgf("failed to create JSON report: %s", err)
 	}
+}
+
+func generateResults(reportName string) {
+	cwd, err := os.Getwd()
+
+	if err != nil {
+		log.Error().Msgf("failed to get wd: %s", err)
+	}
+
+	tmpFolderPath := filepath.Join(cwd, "fixtures", "tmp-kics-ar")
+
+	if err := os.MkdirAll(tmpFolderPath, os.ModePerm); err != nil {
+		log.Error().Msgf("failed to mkdir: %s", err)
+	}
+
+	filePathCopyFrom := filepath.Join(cwd, "fixtures", "samples", "kics-auto-remediation", "terraform.tf")
+
+	tmpFileName := "temporary-remediation-" + utils.NextRandom() + filepath.Ext(filePathCopyFrom)
+	tmpFilePath := filepath.Join(cwd, "fixtures", "tmp-kics-ar", tmpFileName)
+
+	jsonPath := tmpFolderPath
+
+	// create a temporary file with the same content as filePathCopyFrom
+	tmpFile := remediation.CreateTempFile(filePathCopyFrom, tmpFilePath)
+
+	kicsDockerImage := u.GetKICSDockerImageName()
+	useDocker := kicsDockerImage != ""
+
+	if useDocker {
+		tmpFile = "/path/e2e/fixtures/tmp-kics-ar/" + tmpFileName
+	}
+
+	// create JSON results with remediation
+	generateReport(tmpFile, jsonPath, reportName)
 }
