@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.host_pid", [resourceType, name, specInfo.path]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Attribute 'host_pid' is undefined or false",
+		"keyExpectedValue": "Attribute 'host_pid' should be undefined or false",
 		"keyActualValue": "Attribute 'host_pid' is true",
 	}
 }

@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.allowedUnsafeSysctls", [metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.allowedUnsafeSysctls is undefined", [metadata.name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.allowedUnsafeSysctls should be undefined", [metadata.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.spec.allowedUnsafeSysctls is defined", [metadata.name]),
 	}
 }

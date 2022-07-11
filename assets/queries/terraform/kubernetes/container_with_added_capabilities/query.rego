@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities.add is undefined", [resourceType, name, specInfo.path, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities.add should be undefined", [resourceType, name, specInfo.path, types[x], y]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities.add is set", [resourceType, name, specInfo.path, types[x], y]),
 	}
 }
@@ -40,7 +40,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.security_context.capabilities.add", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context.capabilities.add is undefined", [resourceType, name, specInfo.path, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context.capabilities.add should be undefined", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("k%s[%s].%s.%s.security_context.capabilities.add is set", [resourceType, name, specInfo.path, types[x]]),
 	}
 }
