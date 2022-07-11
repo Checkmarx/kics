@@ -9,7 +9,7 @@ require (
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20211114212643-ec144ca0d701
-	github.com/aws/aws-sdk-go v1.44.50
+	github.com/aws/aws-sdk-go v1.44.51
 	github.com/cheggaaa/pb/v3 v3.0.8
 	github.com/emicklei/proto v1.11.0
 	github.com/getsentry/sentry-go v0.13.0
@@ -26,7 +26,7 @@ require (
 	github.com/mackerelio/go-osstat v0.2.2
 	github.com/mailru/easyjson v0.7.7
 	github.com/moby/buildkit v0.10.3
-	github.com/open-policy-agent/opa v0.42.0
+	github.com/open-policy-agent/opa v0.42.1
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.26.1
 	github.com/sosedoff/ansible-vault-go v0.1.1

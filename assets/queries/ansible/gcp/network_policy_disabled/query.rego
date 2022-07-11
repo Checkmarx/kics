@@ -75,7 +75,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.addons_config.network_policy_config.disabled", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_container_cluster.addons_config.network_policy_config.disabled is false",
+		"keyExpectedValue": "gcp_container_cluster.addons_config.network_policy_config.disabled should be set to false",
 		"keyActualValue": "gcp_container_cluster.addons_config.network_policy_config.disabled is true",
 	}
 }

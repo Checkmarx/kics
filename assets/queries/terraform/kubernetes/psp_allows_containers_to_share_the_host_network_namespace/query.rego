@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod_security_policy[%s].spec.host_network", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'spec.hostNetwork' is false or undefined",
+		"keyExpectedValue": "'spec.hostNetwork' should be set to false or undefined",
 		"keyActualValue": "'spec.hostNetwork' is true",
 	}
 }

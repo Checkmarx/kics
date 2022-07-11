@@ -28,7 +28,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("aws_redshift_cluster[%s].encrypted", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_redshift_cluster.encrypted is false",
+		"keyExpectedValue": "aws_redshift_cluster.encrypted should be set to false",
 		"keyActualValue": "aws_redshift_cluster.encrypted is true",
 	}
 }
