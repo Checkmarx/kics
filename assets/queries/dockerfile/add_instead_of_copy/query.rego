@@ -8,15 +8,11 @@ CxPolicy[result] {
 
 	not dockerLib.arrayContains(resource.Value, {".tar", ".tar."})
 
-	remediation := {"before": "ADD", "after": "COPY"}
-
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'COPY' %s", [resource.Value[0]]),
 		"keyActualValue": sprintf("'ADD' %s", [resource.Value[0]]),
-		"remediation": json.marshal(remediation),
-		"remediationType": "replacement",
 	}
 }
