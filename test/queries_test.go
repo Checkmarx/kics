@@ -93,16 +93,26 @@ func testRemediationQuery(t testing.TB, entry queryEntry, vulnerabilities []mode
 			temporaryFixs[tmpFile] = fixs[k]
 		}
 
+		wg := &sync.WaitGroup{}
+
 		for filePath := range temporaryFixs {
+			wg.Add(1)
 			fix := temporaryFixs[filePath].(remediation.Fix)
 
-			err = summary.RemediateFile(filePath, fix)
-			os.Remove(filePath)
-			require.NoError(t, err)
+			go func(filePath string) {
+				defer wg.Done()
+				err = summary.RemediateFile(filePath, fix)
+				os.Remove(filePath)
+				if err != nil {
+					require.NoError(t, err)
+				}
+			}(filePath)
 		}
+		wg.Wait()
 
 		require.Equal(t, summary.SelectedRemediationNumber, summary.ActualRemediationDoneNumber,
 			"'SelectedRemediationNumber' is different from 'ActualRemediationDoneNumber'")
+
 	}
 }
 
