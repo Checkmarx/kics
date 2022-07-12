@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_security_group[%s].ingress.cidr_blocks", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_security_group[%s] 'SSH' (Port:22) is not public", [name]),
+		"keyExpectedValue": sprintf("aws_security_group[%s] 'SSH' (Port:22) should not be public", [name]),
 		"keyActualValue": sprintf("aws_security_group[%s] 'SSH' (Port:22) is public", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress.cidr_blocks"], []),
 	}
@@ -31,7 +31,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].ingress.cidr_blocks", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'SSH' (Port:22) is not public",
+		"keyExpectedValue": "'SSH' (Port:22) should not be public",
 		"keyActualValue": "'SSH' (Port:22) is public",
 		"searchLine": common_lib.build_search_line(["module", name, "ingress", "cidr_blocks"], []),
 	}

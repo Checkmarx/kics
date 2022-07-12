@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.%s", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "The path template is not empty",
+		"keyExpectedValue": "The path template should not be empty",
 		"keyActualValue": "The path template is empty",
 		"overrideKey": version,
 	}

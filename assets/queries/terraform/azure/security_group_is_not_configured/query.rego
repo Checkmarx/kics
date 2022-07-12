@@ -28,7 +28,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azure_virtual_network[%s].subnet.security_group", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azure_virtual_network[%s].subnet.security_group' is not empty", [name]),
+		"keyExpectedValue": sprintf("'azure_virtual_network[%s].subnet.security_group' should not be empty", [name]),
 		"keyActualValue": sprintf("'azure_virtual_network[%s].subnet.security_group' is empty", [name]),
 	}
 }

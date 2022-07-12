@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.securityContext.sysctls.name={{%s}}", [metadata.name, specInfo.path, sysctl]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.securityContext.sysctls.name={{%s}} is not used", [metadata.name, specInfo.path, sysctl]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.securityContext.sysctls.name={{%s}} should not be used", [metadata.name, specInfo.path, sysctl]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.securityContext.sysctls.name={{%s}} is an unsafe sysctl", [metadata.name, specInfo.path, sysctl]),
 	}
 }

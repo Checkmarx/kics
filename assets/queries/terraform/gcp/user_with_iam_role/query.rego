@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_iam_policy[%s].binding.role", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("google_iam_policy[%s].binding.role is not set", [name]),
+		"keyExpectedValue": sprintf("google_iam_policy[%s].binding.role should not be set", [name]),
 		"keyActualValue": sprintf("google_iam_policy[%s].binding.role is set", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "google_iam_policy", name, "binding", "role"], []),
 	}
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].role", [resources[idx], name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].role is not set", [resources[idx], name]),
+		"keyExpectedValue": sprintf("%s[%s].role should not be set", [resources[idx], name]),
 		"keyActualValue": sprintf("%s[%s].role is set", [resources[idx], name]),
 		"searchLine": common_lib.build_search_line(["resource", resources[idx], name, "role"], [])
 	}

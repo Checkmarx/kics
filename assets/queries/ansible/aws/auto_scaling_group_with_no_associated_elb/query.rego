@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.load_balancers", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.load_balancers is not empty", [modules[m]]),
+		"keyExpectedValue": sprintf("%s.load_balancers should not be empty", [modules[m]]),
 		"keyActualValue": sprintf("%s.load_balancers is empty", [modules[m]]),
 	}
 }
