@@ -46,7 +46,9 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "'aws_redshift_cluster.logging' is true",
-					"actual_value": "'aws_redshift_cluster.logging' is undefined"
+					"actual_value": "'aws_redshift_cluster.logging' is undefined",
+					"remediation": "logging {\n\t\tenable = true \n\t}",
+					"remediation_type": "addition"
 				}
 			]
 		},
