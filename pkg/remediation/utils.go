@@ -5,6 +5,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
+	"sync"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/utils"
@@ -15,6 +16,7 @@ import (
 type Summary struct {
 	SelectedRemediationNumber   int
 	ActualRemediationDoneNumber int
+	mu                          sync.RWMutex
 }
 
 // GetFixs collects all the replacements and additions per file
@@ -71,8 +73,12 @@ func willRemediate(remediated []string, originalFileName string, remediation *Re
 		return false
 	}
 
+	m := sync.RWMutex{}
+
+	m.Lock()
 	// scan the temporary file to verify if the remediation removed the result
 	results, err := scanTmpFile(tmpFile, remediation.QueryID, content)
+	m.Unlock()
 
 	if err != nil {
 		log.Error().Msgf("failed to get results of query %s: %s", remediation.QueryID, err)
@@ -145,7 +151,9 @@ func (s *Summary) GetFixsFromVulns(vulnerabilities []model.Vulnerability, includ
 		var fix Fix
 
 		if shouldRemediate(&file, include) {
+			s.mu.Lock()
 			s.SelectedRemediationNumber++
+			s.mu.Unlock()
 			r := &Remediation{
 				Line:         file.Line,
 				Remediation:  file.Remediation,
