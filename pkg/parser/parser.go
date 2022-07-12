@@ -5,6 +5,7 @@ import (
 	"errors"
 	"os"
 	"strings"
+	"sync"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/utils"
@@ -72,6 +73,7 @@ type Parser struct {
 	parsers    kindParser
 	extensions model.Extensions
 	Platform   []string
+	Mu         sync.RWMutex
 }
 
 // ParsedDocument is a struct containing data retrieved from parsing
