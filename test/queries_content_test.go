@@ -236,6 +236,22 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
 				))
 			}
 
+			if _, ok := m["remediation"]; ok {
+				_, ok := m["remediationType"]
+				require.True(t, ok, fmt.Sprintf(
+					"query '%s' doesn't include parameter 'remediationType' in response",
+					path.Base(entry.dir)))
+
+			}
+
+			if _, ok := m["remediationType"]; ok {
+				_, ok := m["remediation"]
+				require.True(t, ok, fmt.Sprintf(
+					"query '%s' doesn't include parameter 'remediation' in response",
+					path.Base(entry.dir)))
+
+			}
+
 			return model.Vulnerability{}, nil
 		},
 		trk,

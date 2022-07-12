@@ -8,7 +8,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_ram_account_password_policy[name]
     resource.minimum_password_length < 14
 
-	remediation := {"before": resource.minimum_password_length, "after": "14"}
+	remediation := {"before": format_int(resource.minimum_password_length, 10), "after": "14"}
     
     result := {
 		"documentId": input.document[i].id,

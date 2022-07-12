@@ -21,51 +21,17 @@ type Summary struct {
 func (s *Summary) GetFixs(results Report, include []string) map[string]interface{} {
 	fixs := make(map[string]interface{})
 
-	for i := range results.Queries {
-		query := results.Queries[i]
+	vulns := getVulns(results)
 
-		for j := range query.Files {
-			file := query.Files[j]
-
-			var fix Fix
-
-			if shouldRemediate(&file, include) {
-				s.SelectedRemediationNumber++
-
-				r := &Remediation{
-					Line:         file.Line,
-					Remediation:  file.Remediation,
-					SimilarityID: file.SimilarityID,
-					QueryID:      query.QueryID,
-				}
-				if file.RemediationType == "replacement" {
-					fix.Replacement = append(fix.Replacement, *r)
-				}
-
-				if file.RemediationType == "addition" {
-					fix.Addition = append(fix.Addition, *r)
-				}
-
-				if _, ok := fixs[file.FilePath]; !ok {
-					fixs[file.FilePath] = fix
-					continue
-				}
-
-				updatedFix := fixs[file.FilePath].(Fix)
-
-				updatedFix.Addition = append(updatedFix.Addition, fix.Addition...)
-				updatedFix.Replacement = append(updatedFix.Replacement, fix.Replacement...)
-
-				fixs[file.FilePath] = updatedFix
-			}
-		}
+	if len(vulns) > 0 {
+		fixs = s.GetFixsFromVulns(vulns, include)
 	}
 
 	return fixs
 }
 
 func shouldRemediate(file *File, include []string) bool {
-	if len(file.Remediation) > 0 && (include[0] == "all" || utils.Contains(file.SimilarityID, include)) {
+	if len(file.Remediation) > 0 && len(file.RemediationType) > 0 && (include[0] == "all" || utils.Contains(file.SimilarityID, include)) {
 		return true
 	}
 
@@ -159,4 +125,75 @@ func CreateTempFile(filePathCopyFrom, tmpFilePath string) string {
 	}
 
 	return tmpFilePath
+}
+
+func (s *Summary) GetFixsFromVulns(vulnerabilities []model.Vulnerability, include []string) map[string]interface{} {
+	fixs := make(map[string]interface{})
+
+	for i := range vulnerabilities {
+		vuln := vulnerabilities[i]
+
+		file := File{
+			FilePath:        vuln.FileName,
+			Line:            vuln.Line,
+			Remediation:     vuln.Remediation,
+			RemediationType: vuln.RemediationType,
+			SimilarityID:    vuln.SimilarityID,
+		}
+
+		var fix Fix
+
+		if shouldRemediate(&file, include) {
+			s.SelectedRemediationNumber++
+			r := &Remediation{
+				Line:         file.Line,
+				Remediation:  file.Remediation,
+				SimilarityID: file.SimilarityID,
+				QueryID:      vuln.QueryID,
+			}
+
+			if file.RemediationType == "replacement" {
+				fix.Replacement = append(fix.Replacement, *r)
+			}
+
+			if file.RemediationType == "addition" {
+				fix.Addition = append(fix.Addition, *r)
+			}
+
+			if _, ok := fixs[file.FilePath]; !ok {
+				fixs[file.FilePath] = fix
+				continue
+			}
+
+			updatedFix := fixs[file.FilePath].(Fix)
+
+			updatedFix.Addition = append(updatedFix.Addition, fix.Addition...)
+			updatedFix.Replacement = append(updatedFix.Replacement, fix.Replacement...)
+
+			fixs[file.FilePath] = updatedFix
+		}
+	}
+	return fixs
+}
+
+func getVulns(results Report) []model.Vulnerability {
+	vulns := []model.Vulnerability{}
+	for i := range results.Queries {
+		query := results.Queries[i]
+
+		for j := range query.Files {
+			file := query.Files[j]
+			vuln := &model.Vulnerability{
+				FileName:        file.FilePath,
+				Line:            file.Line,
+				Remediation:     file.Remediation,
+				RemediationType: file.RemediationType,
+				SimilarityID:    file.SimilarityID,
+				QueryID:         query.QueryID,
+			}
+
+			vulns = append(vulns, *vuln)
+		}
+	}
+	return vulns
 }
