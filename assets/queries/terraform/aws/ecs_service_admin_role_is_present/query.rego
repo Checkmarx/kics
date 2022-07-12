@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_ecs_service[%s].iam_role", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'aws_ecs_service[%s].iam_role' is not equal to 'admin'", [name]),
+		"keyExpectedValue": sprintf("'aws_ecs_service[%s].iam_role' should not be equal to 'admin'", [name]),
 		"keyActualValue": sprintf("'aws_ecs_service[%s].iam_role' is equal to 'admin'", [name]),
 	}
 }

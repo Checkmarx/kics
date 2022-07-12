@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("security.{{%s}}", [key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'security' is not using 'password' flow in OAuth2 authentication",
+		"keyExpectedValue": "'security' should not be using 'password' flow in OAuth2 authentication",
 		"keyActualValue": "'security' is using 'password' flow in OAuth2 authentication",
 	}
 }

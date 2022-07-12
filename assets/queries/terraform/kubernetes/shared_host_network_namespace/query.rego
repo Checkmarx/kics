@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.host_network", [resourceType, name, specInfo.path]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.host_network is undefined or set to false", [resourceType, name, specInfo.path]),
+		"keyExpectedValue": sprintf("%s[%s].%s.host_network should be undefined or set to false", [resourceType, name, specInfo.path]),
 		"keyActualValue": sprintf("%s[%s].%s.host_network is set to true", [resourceType, name, specInfo.path]),
 	}
 }

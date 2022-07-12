@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "google_bigquery_dataset", name),
 		"searchKey": sprintf("google_bigquery_dataset[%s].access.special_group", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'access.special_group' is not equal to 'allAuthenticatedUsers'",
+		"keyExpectedValue": "'access.special_group' should not be equal to 'allAuthenticatedUsers'",
 		"keyActualValue": "'access.special_group' is equal to 'allAuthenticatedUsers'",
 	}
 }

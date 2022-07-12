@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), multiSchemas.kind]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'additionalProperties' is not false",
+		"keyExpectedValue": "'additionalProperties' should not be false",
 		"keyActualValue": "'additionalProperties' is false",
 	}
 }
@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.allOf", [openapi_lib.concat_path(path)]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'additionalProperties' is not false",
+		"keyExpectedValue": "'additionalProperties' should not be false",
 		"keyActualValue": "'additionalProperties' is false",
 	}
 }

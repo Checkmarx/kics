@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(policy, name),
 		"searchKey": sprintf("aws_load_balancer_policy[%s].policy_attribute.name", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s]' is not an insecure protocol", [name, protocol]),
+		"keyExpectedValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s]' should not be an insecure protocol", [name, protocol]),
 		"keyActualValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s]' is an insecure protocol", [name, protocol]),
 	}
 }
@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(policy, name),
 		"searchKey": sprintf("aws_load_balancer_policy[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s]' is not an insecure protocol", [name, protocol]),
+		"keyExpectedValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s]' should not be an insecure protocol", [name, protocol]),
 		"keyActualValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s]' is an insecure protocol", [name, protocol]),
 	}
 }

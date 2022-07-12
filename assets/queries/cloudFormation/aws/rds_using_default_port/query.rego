@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Port", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.Port' is not set to %d", [name, enginePort]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.Port' should not be set to %d", [name, enginePort]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.Port' is set to %d", [name, enginePort]),
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "Port"], []),
 	}
