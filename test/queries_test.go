@@ -12,6 +12,7 @@ import (
 	"sync"
 	"testing"
 
+	"github.com/Checkmarx/kics/internal/console/flags"
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine"
@@ -19,9 +20,12 @@ import (
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/progress"
+	"github.com/Checkmarx/kics/pkg/remediation"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/golang/mock/gomock"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
+	"github.com/spf13/cobra"
 	"github.com/stretchr/testify/require"
 )
 
@@ -47,6 +51,58 @@ func TestQueries(t *testing.T) {
 	queries := loadQueries(t)
 	for _, entry := range queries {
 		testPositiveAndNegativeQueries(t, entry)
+	}
+}
+
+func testRemediationQuery(t testing.TB, entry queryEntry, vulnerabilities []model.Vulnerability) {
+	summary := &remediation.Summary{
+		SelectedRemediationNumber:   0,
+		ActualRemediationDoneNumber: 0,
+	}
+
+	// get fixs from query vulns
+	fixs := summary.GetFixsFromVulns(vulnerabilities, []string{"all"})
+
+	if len(fixs) > 0 {
+		// verify if the remediations vulns actually fixes the results
+		data, err := os.ReadFile(filepath.FromSlash("../internal/console/assets/scan-flags.json"))
+		require.NoError(t, err)
+
+		mockCmd := &cobra.Command{
+			Use:   "mock",
+			Short: "Mock cmd",
+			RunE: func(cmd *cobra.Command, args []string) error {
+				return nil
+			},
+		}
+
+		flags.InitJSONFlags(
+			mockCmd,
+			string(data),
+			true,
+			source.ListSupportedPlatforms(),
+			source.ListSupportedCloudProviders(),
+		)
+
+		temporaryFixs := make(map[string]interface{})
+
+		for k := range fixs {
+			tmpFilePath := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+filepath.Ext(k))
+			tmpFile := remediation.CreateTempFile(k, tmpFilePath)
+
+			temporaryFixs[tmpFile] = fixs[k]
+		}
+
+		for filePath := range temporaryFixs {
+			fix := temporaryFixs[filePath].(remediation.Fix)
+
+			err = summary.RemediateFile(filePath, fix)
+			os.Remove(filePath)
+			require.NoError(t, err)
+		}
+
+		require.Equal(t, summary.SelectedRemediationNumber, summary.ActualRemediationDoneNumber,
+			"'SelectedRemediationNumber' is different from 'ActualRemediationDoneNumber'")
 	}
 }
 
@@ -199,6 +255,10 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 	require.Nil(tb, err)
 	validateQueryResultFields(tb, vulnerabilities)
 	requireEqualVulnerabilities(tb, expectedVulnerabilities, vulnerabilities, entry.dir)
+
+	if entry.platform == "terraform" {
+		testRemediationQuery(tb, entry, vulnerabilities)
+	}
 }
 
 func vulnerabilityCompare(vulnerabilitySlice []model.Vulnerability, i, j int) bool {

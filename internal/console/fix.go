@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"sync"
 
 	"github.com/Checkmarx/kics/internal/console/flags"
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
@@ -103,13 +104,20 @@ func fix(cmd *cobra.Command) error {
 	// get all the fixs related to each filePath
 	fixs := summary.GetFixs(results, include)
 
+	wg := &sync.WaitGroup{}
+
 	for filePath := range fixs {
+		wg.Add(1)
 		fix := fixs[filePath].(remediation.Fix)
-		err = summary.RemediateFile(filePath, fix)
+		go func(filePath string) {
+			defer wg.Done()
+			err = summary.RemediateFile(filePath, fix)
+		}(filePath)
 		if err != nil {
 			return err
 		}
 	}
+	wg.Wait()
 
 	fmt.Printf("\nSelected remediation: %d\n", summary.SelectedRemediationNumber)
 	fmt.Printf("Remediation done: %d\n", summary.ActualRemediationDoneNumber)

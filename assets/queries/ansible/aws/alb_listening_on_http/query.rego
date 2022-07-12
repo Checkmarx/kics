@@ -11,8 +11,6 @@ CxPolicy[result] {
 
 	applicationLb.listeners[index].Protocol != "HTTPS"
 
-	remediation := {"before": applicationLb.listeners[index].Protocol, "after": "HTTPS"}
-
 	result := {
 		"documentId": id,
 		"resourceType": modules[m],
@@ -21,8 +19,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'aws_elb_application_lb' Protocol should be 'HTTP'",
 		"keyActualValue": "'aws_elb_application_lb' Protocol it's not 'HTTP'",
-		"remediation": json.marshal(remediation),
-		"remediationType": "replacement",
 	}
 }
 
