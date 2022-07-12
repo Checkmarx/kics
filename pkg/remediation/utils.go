@@ -127,6 +127,7 @@ func CreateTempFile(filePathCopyFrom, tmpFilePath string) string {
 	return tmpFilePath
 }
 
+// GetFixsFromVulns collects all the replacements and additions per file from []model.Vulnerability
 func (s *Summary) GetFixsFromVulns(vulnerabilities []model.Vulnerability, include []string) map[string]interface{} {
 	fixs := make(map[string]interface{})
 
