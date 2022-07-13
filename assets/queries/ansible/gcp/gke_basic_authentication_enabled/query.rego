@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "gcp_container_cluster.master_auth is defined",
+		"keyExpectedValue": "gcp_container_cluster.master_auth should be defined",
 		"keyActualValue": "gcp_container_cluster.master_auth is undefined",
 	}
 }
@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.master_auth", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("gcp_container_cluster.master_auth.%s is defined", [fields[f]]),
+		"keyExpectedValue": sprintf("gcp_container_cluster.master_auth.%s should be defined", [fields[f]]),
 		"keyActualValue": sprintf("gcp_container_cluster.master_auth.%s is undefined", [fields[f]]),
 	}
 }
@@ -58,7 +58,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.master_auth.%s", [task.name, modules[m], fields[f]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("gcp_container_cluster.master_auth.%s is empty", [fields[f]]),
+		"keyExpectedValue": sprintf("gcp_container_cluster.master_auth.%s should be empty", [fields[f]]),
 		"keyActualValue": sprintf("gcp_container_cluster.master_auth.%s is not empty", [fields[f]]),
 	}
 }

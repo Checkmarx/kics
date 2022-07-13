@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.settings.database_flags", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_sql_instance.settings.database_flags sets the log_min_duration_statement to -1",
+		"keyExpectedValue": "gcp_sql_instance.settings.database_flags should set the log_min_duration_statement to -1",
 		"keyActualValue": "gcp_sql_instance.settings.database_flags doesn't set the log_min_duration_statement to -1",
 	}
 }

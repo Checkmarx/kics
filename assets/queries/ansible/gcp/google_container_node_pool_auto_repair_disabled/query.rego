@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "gcp_container_node_pool.management is defined",
+		"keyExpectedValue": "gcp_container_node_pool.management should be defined",
 		"keyActualValue": "gcp_container_node_pool.management is undefined",
 	}
 }
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.management.auto_repair", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_container_node_pool.management.auto_repair is set to true",
+		"keyExpectedValue": "gcp_container_node_pool.management.auto_repair should be set to true",
 		"keyActualValue": "gcp_container_node_poolmanagement.auto_repair is set to false",
 	}
 }

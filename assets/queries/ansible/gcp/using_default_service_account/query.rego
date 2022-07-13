@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "gcp_compute_instance.service_account_email is defined",
+		"keyExpectedValue": "gcp_compute_instance.service_account_email should be defined",
 		"keyActualValue": "gcp_compute_instance.service_account_email is undefined",
 	}
 }
@@ -62,7 +62,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.service_account_email", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_compute_instance.service_account_email is an email",
+		"keyExpectedValue": "gcp_compute_instance.service_account_email should be an email",
 		"keyActualValue": "gcp_compute_instance.service_account_email is not an email",
 	}
 }
