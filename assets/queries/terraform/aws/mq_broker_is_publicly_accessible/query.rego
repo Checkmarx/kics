@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(broker, "aws_mq_broker", name),
 		"searchKey": sprintf("aws_mq_broker[%s].publicly_accessible", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'publicly_accessible' is undefined or set to false",
+		"keyExpectedValue": "'publicly_accessible' should be undefined or set to false",
 		"keyActualValue": "'publicly_accessible' is set to true",
 	}
 }

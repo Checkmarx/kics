@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.resource_labels", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s is not empty", [modules[m]]),
+		"keyExpectedValue": sprintf("%s should not be empty", [modules[m]]),
 		"keyActualValue": sprintf("%s is empty", [modules[m]]),
 	}
 }

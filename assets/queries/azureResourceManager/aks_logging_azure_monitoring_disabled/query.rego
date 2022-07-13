@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.apiVersion", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'apiVersion' is not '2017-08-03'",
+		"keyExpectedValue": "'apiVersion' should not be '2017-08-03'",
 		"keyActualValue": "'apiVersion' is '2017-08-03'",
 		"searchLine": common_lib.build_search_line(path, ["apiVersion"]),
 	}

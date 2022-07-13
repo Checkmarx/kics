@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.network_acls.default_action", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "azure_rm_storageaccount.network_acls.default_action is not set",
+		"keyExpectedValue": "azure_rm_storageaccount.network_acls.default_action should not be set",
 		"keyActualValue": "azure_rm_storageaccount.network_acls.default_action is 'Allow'",
 	}
 }

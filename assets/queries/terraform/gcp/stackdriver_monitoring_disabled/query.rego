@@ -27,7 +27,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Attribute 'monitoring_service' is not 'none'",
+		"keyExpectedValue": "Attribute 'monitoring_service' should not be 'none'",
 		"keyActualValue": "Attribute 'monitoring_service' is 'none'",
 	}
 }

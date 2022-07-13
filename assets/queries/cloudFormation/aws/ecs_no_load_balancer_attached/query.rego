@@ -30,7 +30,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.LoadBalancers", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.LoadBalancers' is not empty", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.LoadBalancers' should not be empty", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.LoadBalancers' is empty", [name]),
 	}
 }

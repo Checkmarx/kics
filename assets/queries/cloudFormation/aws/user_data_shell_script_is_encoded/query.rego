@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.UserData", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.UserData' is not shell script", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.UserData' should not be shell script", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties..UserData' is shell script", [name]),
 	}
 }

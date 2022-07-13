@@ -58,7 +58,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.master_auth.%s", [task.name, modules[m], fields[f]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("gcp_container_cluster.master_auth.%s is not empty", [field]),
+		"keyExpectedValue": sprintf("gcp_container_cluster.master_auth.%s should not be empty", [field]),
 		"keyActualValue": sprintf("gcp_container_cluster.master_auth.%s is empty", [field]),
 	}
 }

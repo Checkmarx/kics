@@ -55,7 +55,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.disk_encryption_key.%s", [task.name, modules[m], key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("gcp_compute_disk.disk_encryption_key.%s is not empty", [key]),
+		"keyExpectedValue": sprintf("gcp_compute_disk.disk_encryption_key.%s should not be empty", [key]),
 		"keyActualValue": sprintf("gcp_compute_disk.disk_encryption_key.%s is empty", [key]),
 	}
 }

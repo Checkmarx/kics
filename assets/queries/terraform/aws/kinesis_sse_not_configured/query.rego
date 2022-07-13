@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kinesis_firehose_delivery_stream[%s].server_side_encryption.enabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Attribute 'server_side_encryption' is enabled and attribute 'kinesis_source_configuration' is undefined",
+		"keyExpectedValue": "Attribute 'server_side_encryption' is enabled and attribute 'kinesis_source_configuration' should be undefined",
 		"keyActualValue": "Attribute 'server_side_encryption' is enabled and attribute 'kinesis_source_configuration' is set",
 	}
 }

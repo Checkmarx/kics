@@ -1,0 +1,11 @@
+{
+    "id": "0ca1017d-3b80-423e-bb9c-6cd5898d34bd",
+    "queryName": "Lambda IAM InvokeFunction Misconfigured",
+    "severity": "LOW",
+    "category": "Best Practices",
+    "descriptionText": "Lambda permission may be misconfigured if the action field is not filled in by 'lambda:InvokeFunction'",
+    "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission",
+    "platform": "Terraform",
+    "descriptionID": "0ca1017d",
+    "cloudProvider": "aws"
+}

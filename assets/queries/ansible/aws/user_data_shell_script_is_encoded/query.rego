@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.user_data", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "ec2_lc.user_data is not shell script",
+		"keyExpectedValue": "ec2_lc.user_data should not be shell script",
 		"keyActualValue": "ec2_lc.user_data is shell script",
 	}
 }
