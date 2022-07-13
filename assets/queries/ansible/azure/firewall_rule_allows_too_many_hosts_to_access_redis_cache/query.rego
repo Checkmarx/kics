@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.start_ip_address", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "azure_rm_rediscachefirewallrule.start_ip_address and end_ip_address allow up to 255 hosts",
+		"keyExpectedValue": "azure_rm_rediscachefirewallrule.start_ip_address and end_ip_address should allow up to 255 hosts",
 		"keyActualValue": sprintf("azure_rm_rediscachefirewallrule.start_ip_address and end_ip_address allow %d hosts", [available]),
 	}
 }

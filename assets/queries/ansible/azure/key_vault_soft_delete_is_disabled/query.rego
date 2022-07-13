@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.enable_soft_delete", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "azure_rm_keyvault.enable_soft_delete is true",
+		"keyExpectedValue": "azure_rm_keyvault.enable_soft_delete should be true",
 		"keyActualValue": "azure_rm_keyvault.enable_soft_delete is false",
 	}
 }
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "azure_rm_keyvault.enable_soft_delete is defined",
+		"keyExpectedValue": "azure_rm_keyvault.enable_soft_delete should be defined",
 		"keyActualValue": "azure_rm_keyvault.enable_soft_delete is undefined",
 	}
 }
