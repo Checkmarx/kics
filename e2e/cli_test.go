@@ -38,7 +38,7 @@ func Test_E2E_CLI(t *testing.T) {
 
 	templates := prepareTemplates()
 
-	for _, tt := range testcases.Tests {
+	for _, tt := range testcases.Tests[56:] {
 		for arg := range tt.Args.Args {
 			tt := tt
 			arg := arg
@@ -206,15 +206,15 @@ func prepareTemplates() testcases.TestTemplates {
 		scanHelp = []string{}
 	}
 
-	var fixHelp, errFH = utils.PrepareExpected("fix_help", "fixtures/assets")
+	var remediateHelp, errFH = utils.PrepareExpected("remediate_help", "fixtures/assets")
 	if errFH != nil {
-		fixHelp = []string{}
+		remediateHelp = []string{}
 	}
 
 	return testcases.TestTemplates{
-		Help:     strings.Join(help, "\n"),
-		ScanHelp: strings.Join(scanHelp, "\n"),
-		FixHelp:  strings.Join(fixHelp, "\n"),
+		Help:          strings.Join(help, "\n"),
+		ScanHelp:      strings.Join(scanHelp, "\n"),
+		RemediateHelp: strings.Join(remediateHelp, "\n"),
 	}
 }
 

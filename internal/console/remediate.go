@@ -1,7 +1,7 @@
 package console
 
 import (
-	_ "embed" // Embed fix flags
+	_ "embed" // Embed remediate flags
 	"encoding/json"
 	"fmt"
 	"os"
@@ -20,35 +20,35 @@ import (
 )
 
 var (
-	//go:embed assets/fix-flags.json
-	fixFlagsListContent string
+	//go:embed assets/remediate-flags.json
+	remediateFlagsListContent string
 )
 
-// NewFixCmd creates a new instance of the fix Command
-func NewFixCmd() *cobra.Command {
+// NewRemediateCmd creates a new instance of the remediate Command
+func NewRemediateCmd() *cobra.Command {
 	return &cobra.Command{
-		Use:   "fix",
+		Use:   "remediate",
 		Short: "Auto remediates the project",
 		PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
-			return preFix(cmd)
+			return preRemediate(cmd)
 		},
 		RunE: func(cmd *cobra.Command, args []string) error {
-			return fix(cmd)
+			return remediate(cmd)
 		},
 	}
 }
 
-func initFixCmd(fixCmd *cobra.Command) error {
+func initRemediateCmd(remediateCmd *cobra.Command) error {
 	if err := flags.InitJSONFlags(
-		fixCmd,
-		fixFlagsListContent,
+		remediateCmd,
+		remediateFlagsListContent,
 		false,
 		source.ListSupportedPlatforms(),
 		source.ListSupportedCloudProviders()); err != nil {
 		return err
 	}
 
-	if err := fixCmd.MarkFlagRequired(flags.Results); err != nil {
+	if err := remediateCmd.MarkFlagRequired(flags.Results); err != nil {
 		sentryReport.ReportSentry(&sentryReport.Report{
 			Message:  "Failed to add command required flags",
 			Err:      err,
@@ -59,7 +59,7 @@ func initFixCmd(fixCmd *cobra.Command) error {
 	return nil
 }
 
-func preFix(cmd *cobra.Command) error {
+func preRemediate(cmd *cobra.Command) error {
 	err := flags.Validate()
 	if err != nil {
 		return err
@@ -76,7 +76,7 @@ func preFix(cmd *cobra.Command) error {
 	return err
 }
 
-func fix(cmd *cobra.Command) error {
+func remediate(cmd *cobra.Command) error {
 	resultsPath := flags.GetStrFlag(flags.Results)
 	include := flags.GetMultiStrFlag(flags.IncludeIds)
 
@@ -122,7 +122,7 @@ func fix(cmd *cobra.Command) error {
 	fmt.Printf("\nSelected remediation: %d\n", summary.SelectedRemediationNumber)
 	fmt.Printf("Remediation done: %d\n", summary.ActualRemediationDoneNumber)
 
-	exitCode := consoleHelpers.FixExitCode(summary.SelectedRemediationNumber, summary.ActualRemediationDoneNumber)
+	exitCode := consoleHelpers.RemediateExitCode(summary.SelectedRemediationNumber, summary.ActualRemediationDoneNumber)
 	if exitCode != 0 {
 		os.Exit(exitCode)
 	}

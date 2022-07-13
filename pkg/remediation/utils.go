@@ -73,12 +73,8 @@ func willRemediate(remediated []string, originalFileName string, remediation *Re
 		return false
 	}
 
-	m := sync.RWMutex{}
-
-	m.Lock()
 	// scan the temporary file to verify if the remediation removed the result
 	results, err := scanTmpFile(tmpFile, remediation.QueryID, content)
-	m.Unlock()
 
 	if err != nil {
 		log.Error().Msgf("failed to get results of query %s: %s", remediation.QueryID, err)

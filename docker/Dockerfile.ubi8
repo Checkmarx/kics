@@ -86,11 +86,15 @@ RUN unzip terraform-provider-google_4.10.0_linux_amd64.zip && rm terraform-provi
 RUN unzip terraform-provider-aws_3.72.0_linux_amd64.zip && rm terraform-provider-aws_3.72.0_linux_amd64.zip
 RUN mkdir ~/.terraform.d && mkdir ~/.terraform.d/plugins && mkdir ~/.terraform.d/plugins/linux_amd64 && mv terraform-provider-aws_v3.72.0_x5 terraform-provider-google_v4.10.0_x5 terraform-provider-azurerm_v2.95.0_x5 ~/.terraform.d/plugins/linux_amd64
 
-USER ${KUSER}
 
 # Copy built binary to the runtime container
 COPY --chown=${KUSER}:${KGROUP} --from=build_env /build/bin/kics /app/bin/kics
 COPY --chown=${KUSER}:${KGROUP} --from=build_env /build/assets/ /app/bin/assets/
+
+
+RUN chown /app/bin
+
+USER ${KUSER}
 
 ENV PATH $PATH:/app/bin
 
