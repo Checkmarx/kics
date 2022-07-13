@@ -38,7 +38,7 @@ func Test_E2E_CLI(t *testing.T) {
 
 	templates := prepareTemplates()
 
-	for _, tt := range testcases.Tests[56:] {
+	for _, tt := range testcases.Tests {
 		for arg := range tt.Args.Args {
 			tt := tt
 			arg := arg
