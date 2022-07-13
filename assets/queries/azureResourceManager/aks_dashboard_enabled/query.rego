@@ -39,7 +39,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, issue.sk]),
 		"issueType": issue.issueType,
-		"keyExpectedValue": "'addonProfiles.kubeDashboard.enabled' is defined and false",
+		"keyExpectedValue": "'addonProfiles.kubeDashboard.enabled' should be defined and false",
 		"keyActualValue": issue.keyActualValue,
 		"searchLine": common_lib.build_search_line(path, issue.sl),
 	}

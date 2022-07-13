@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.properties.networkAcls", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "resource with type 'Microsoft.Storage/storageAccounts' has 'Trusted Microsoft Services' enabled",
+		"keyExpectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' enabled",
 		"keyActualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
 		"searchLine": common_lib.build_search_line(path, ["properties", "networkAcls"]),
 	}
