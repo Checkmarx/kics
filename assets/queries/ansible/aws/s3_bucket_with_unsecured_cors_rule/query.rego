@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.rules", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%d] does not allows all methods, all headers or several origins", [modules[m], c]),
+		"keyExpectedValue": sprintf("%s[%d] should not allow all methods, all headers or several origins", [modules[m], c]),
 		"keyActualValue": sprintf("%s[%d] allows all methods, all headers or several origins", [modules[m], c]),
 	}
 }
