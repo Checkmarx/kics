@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "azure_rm_subnet.security_group is defined and not null",
+		"keyExpectedValue": "azure_rm_subnet.security_group should be defined and not null",
 		"keyActualValue": "azure_rm_subnet.security_group is undefined or null",
 	}
 }
