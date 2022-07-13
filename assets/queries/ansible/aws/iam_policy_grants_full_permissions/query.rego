@@ -22,7 +22,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "iam_managed_policy.policy.Statement.Resource not equal '*'",
+		"keyExpectedValue": "iam_managed_policy.policy.Statement.Resource should not equal '*'",
 		"keyActualValue": "iam_managed_policy.policy.Statement.Resource equal '*'",
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}

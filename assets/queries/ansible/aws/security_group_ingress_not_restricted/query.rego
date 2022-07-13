@@ -23,7 +23,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.rules", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("ec2_group.rules[%d] is restricted", [index]),
+		"keyExpectedValue": sprintf("ec2_group.rules[%d] should be restricted", [index]),
 		"keyActualValue": sprintf("ec2_group.rules[%d] is not restricted", [index]),
 	}
 }
