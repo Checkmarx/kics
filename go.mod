@@ -43,7 +43,7 @@ require (
 	golang.org/x/text v0.3.7
 	golang.org/x/tools v0.1.11
 	gopkg.in/yaml.v3 v3.0.1
-	helm.sh/helm/v3 v3.9.0
+	helm.sh/helm/v3 v3.9.1
 	mvdan.cc/sh/v3 v3.5.1
 )
 
@@ -86,7 +86,7 @@ require (
 	github.com/Masterminds/semver/v3 v3.1.1 // indirect
 	github.com/Masterminds/sprig v2.22.0+incompatible // indirect
 	github.com/Masterminds/sprig/v3 v3.2.2 // indirect
-	github.com/Masterminds/squirrel v1.5.2 // indirect
+	github.com/Masterminds/squirrel v1.5.3 // indirect
 	github.com/OctopusDeploy/go-octopusdeploy v1.6.0 // indirect
 	github.com/OneOfOne/xxhash v1.2.8 // indirect
 	github.com/PaloAltoNetworks/pango v0.6.0 // indirect
@@ -285,7 +285,7 @@ require (
 	github.com/imdario/mergo v0.3.12 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
-	github.com/jmoiron/sqlx v1.3.4 // indirect
+	github.com/jmoiron/sqlx v1.3.5 // indirect
 	github.com/jonboulle/clockwork v0.2.2 // indirect
 	github.com/jonboydell/logzio_client v1.2.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
@@ -297,7 +297,7 @@ require (
 	github.com/lann/builder v0.0.0-20180802200727-47ae307949d0 // indirect
 	github.com/lann/ps v0.0.0-20150810152359-62de8c46ede0 // indirect
 	github.com/leodido/go-urn v1.2.0 // indirect
-	github.com/lib/pq v1.10.4 // indirect
+	github.com/lib/pq v1.10.6 // indirect
 	github.com/liggitt/tabwriter v0.0.0-20181228230101-89fcab3d43de // indirect
 	github.com/linode/linodego v0.24.1 // indirect
 	github.com/magiconair/properties v1.8.6 // indirect
@@ -405,16 +405,16 @@ require (
 	gopkg.in/ini.v1 v1.66.4 // indirect
 	gopkg.in/square/go-jose.v2 v2.5.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	k8s.io/api v0.24.0 // indirect
-	k8s.io/apiextensions-apiserver v0.24.0 // indirect
-	k8s.io/apimachinery v0.24.0 // indirect
-	k8s.io/apiserver v0.24.0 // indirect
-	k8s.io/cli-runtime v0.24.0 // indirect
-	k8s.io/client-go v0.24.0 // indirect
-	k8s.io/component-base v0.24.0 // indirect
+	k8s.io/api v0.24.2 // indirect
+	k8s.io/apiextensions-apiserver v0.24.2 // indirect
+	k8s.io/apimachinery v0.24.2 // indirect
+	k8s.io/apiserver v0.24.2 // indirect
+	k8s.io/cli-runtime v0.24.2 // indirect
+	k8s.io/client-go v0.24.2 // indirect
+	k8s.io/component-base v0.24.2 // indirect
 	k8s.io/klog/v2 v2.60.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20220328201542-3ee0da9b0b42 // indirect
-	k8s.io/kubectl v0.24.0 // indirect
+	k8s.io/kubectl v0.24.2 // indirect
 	k8s.io/utils v0.0.0-20220210201930-3a6ce19ff2f9 // indirect
 	oras.land/oras-go v1.2.0 // indirect
 	sigs.k8s.io/json v0.0.0-20211208200746-9f7c6b3444d2 // indirect
