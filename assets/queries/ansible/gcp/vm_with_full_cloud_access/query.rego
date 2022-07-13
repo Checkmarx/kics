@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.service_accounts", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_compute_instance.service_accounts.scopes does not contain 'cloud-platform'",
+		"keyExpectedValue": "gcp_compute_instance.service_accounts.scopes should not contain 'cloud-platform'",
 		"keyActualValue": "gcp_compute_instance.service_accounts.scopes contains 'cloud-platform'",
 	}
 }
