@@ -148,8 +148,15 @@ func addition(r Remediation, lines *[]string) []string {
 func (s *Summary) writeRemediation(remediatedLines, lines []string, filePath, similarityID string) []string {
 	remediated := []byte(strings.Join(remediatedLines, "\n"))
 
-	if err := os.WriteFile(filePath, remediated, os.ModePerm); err != nil {
-		log.Error().Msgf("failed to write file: %s", err)
+	f, err := os.OpenFile(filePath, os.O_WRONLY, os.ModePerm)
+
+	if err != nil {
+		log.Error().Msgf("failed to open file '%s': %s", filePath, err)
+		return []string{""}
+	}
+
+	if _, err := f.Write(remediated); err != nil {
+		log.Error().Msgf("failed to write remediation for file: %s", err)
 		return lines
 	}
 
