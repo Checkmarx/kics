@@ -7,11 +7,7 @@ func init() { //nolint
 		Name: "should display an error regarding missing --results flag [E2E-CLI-060]",
 		Args: args{
 			Args: []cmdArgs{
-<<<<<<< HEAD
-				[]string{"fix"},
-=======
 				[]string{"remediate"},
->>>>>>> master
 			},
 			ExpectedOut: []string{"E2E_CLI_060"},
 		},
