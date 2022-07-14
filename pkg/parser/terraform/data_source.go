@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"path/filepath"
+	"sync"
 
 	"github.com/Checkmarx/kics/pkg/parser/terraform/functions"
 	"github.com/hashicorp/hcl/v2"
@@ -106,7 +107,11 @@ func getDataSourcePolicy(currentPath string) {
 		log.Error().Msg("Error trying to convert policy to cty value.")
 		return
 	}
+
+	var mutex = &sync.Mutex{}
+	mutex.Lock()
 	inputVariableMap["data"] = data
+	mutex.Unlock()
 }
 
 func decodeDataSourcePolicy(value cty.Value) dataSourcePolicy {

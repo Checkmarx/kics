@@ -38,14 +38,14 @@ type Remediation struct {
 	QueryID      string
 }
 
-// Fix includes all the replacements and additions related to a file
-type Fix struct {
+// RemediationSet includes all the replacements and additions related to a file
+type RemediationSet struct {
 	Replacement []Remediation
 	Addition    []Remediation
 }
 
-// RemediateFile remediates the replacements first and secondly, the additions sorted down
-func (s *Summary) RemediateFile(filePath string, fix Fix) error {
+// RemediateFile remediationSets the replacements first and secondly, the additions sorted down
+func (s *Summary) RemediateFile(filePath string, remediationSet RemediationSet) error {
 	filepath.Clean(filePath)
 	content, err := os.ReadFile(filePath)
 
@@ -57,9 +57,9 @@ func (s *Summary) RemediateFile(filePath string, fix Fix) error {
 	lines := strings.Split(string(content), "\n")
 
 	// do replacements first
-	if len(fix.Replacement) > 0 {
-		for i := range fix.Replacement {
-			r := fix.Replacement[i]
+	if len(remediationSet.Replacement) > 0 {
+		for i := range remediationSet.Replacement {
+			r := remediationSet.Replacement[i]
 			remediatedLines := replacement(r, lines)
 			if len(remediatedLines) > 0 && willRemediate(remediatedLines, filePath, &r) {
 				lines = s.writeRemediation(remediatedLines, lines, filePath, r.SimilarityID)
@@ -68,14 +68,14 @@ func (s *Summary) RemediateFile(filePath string, fix Fix) error {
 	}
 
 	// do additions after
-	if len(fix.Addition) > 0 {
+	if len(remediationSet.Addition) > 0 {
 		// descending order
-		sort.Slice(fix.Addition, func(i, j int) bool {
-			return fix.Addition[i].Line > fix.Addition[j].Line
+		sort.Slice(remediationSet.Addition, func(i, j int) bool {
+			return remediationSet.Addition[i].Line > remediationSet.Addition[j].Line
 		})
 
-		for i := range fix.Addition {
-			a := fix.Addition[i]
+		for i := range remediationSet.Addition {
+			a := remediationSet.Addition[i]
 			remediatedLines := addition(a, &lines)
 			if len(remediatedLines) > 0 && willRemediate(remediatedLines, filePath, &a) {
 				lines = s.writeRemediation(remediatedLines, lines, filePath, a.SimilarityID)

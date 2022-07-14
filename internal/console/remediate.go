@@ -101,14 +101,14 @@ func remediate(cmd *cobra.Command) error {
 		ActualRemediationDoneNumber: 0,
 	}
 
-	// get all the fixs related to each filePath
-	fixs := summary.GetFixs(results, include)
+	// get all the remediationSets related to each filePath
+	remediationSets := summary.GetRemediationSets(results, include)
 
 	wg := &sync.WaitGroup{}
 
-	for filePath := range fixs {
+	for filePath := range remediationSets {
 		wg.Add(1)
-		fix := fixs[filePath].(remediation.Fix)
+		fix := remediationSets[filePath].(remediation.RemediationSet)
 		go func(filePath string) {
 			defer wg.Done()
 			err = summary.RemediateFile(filePath, fix)
