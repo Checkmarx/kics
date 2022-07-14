@@ -81,6 +81,12 @@ func willRemediate(remediated []string, originalFileName string, remediation *Re
 		return false
 	}
 
+	err = os.Remove(tmpFile)
+
+	if err != nil {
+		log.Err(err)
+	}
+
 	return removedSimilarityID(results, remediation.SimilarityID)
 }
 

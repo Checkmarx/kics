@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"os"
 	"time"
 
 	"github.com/Checkmarx/kics/pkg/engine"
@@ -40,13 +39,6 @@ type runQueryInfo struct {
 func scanTmpFile(tmpFile, queryID string, remediated []byte) ([]model.Vulnerability, error) {
 	// get payload
 	files, err := getPayload(tmpFile, remediated)
-
-	if err != nil {
-		log.Err(err)
-		return []model.Vulnerability{}, err
-	}
-
-	err = os.Remove(tmpFile)
 
 	if err != nil {
 		log.Err(err)

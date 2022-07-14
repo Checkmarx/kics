@@ -108,7 +108,7 @@ func remediate(cmd *cobra.Command) error {
 
 	for filePath := range remediationSets {
 		wg.Add(1)
-		fix := remediationSets[filePath].(remediation.RemediationSet)
+		fix := remediationSets[filePath].(remediation.Set)
 		go func(filePath string) {
 			defer wg.Done()
 			err = summary.RemediateFile(filePath, fix)
