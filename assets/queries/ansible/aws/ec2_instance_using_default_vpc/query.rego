@@ -29,7 +29,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.vpc_subnet_id", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'vpc_subnet_id' is not associated with a default VPC",
+		"keyExpectedValue": "'vpc_subnet_id' should not be associated with a default VPC",
 		"keyActualValue":  "'vpc_subnet_id' is associated with a default VPC",
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "vpc_subnet_id"], []),
 	}

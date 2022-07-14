@@ -10,7 +10,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func Test_GetFixs(t *testing.T) {
+func Test_GetRemediationSets(t *testing.T) {
 
 	filePath := filepath.Join("..", "..", "test", "fixtures", "kics_auto_remediation", "terraform.tf")
 
@@ -58,17 +58,17 @@ func Test_GetFixs(t *testing.T) {
 		QueryID:      "a9dfec39-a740-4105-bbd6-721ba163c053",
 	}
 
-	var fix, fix2 Fix
+	var r, r2 Set
 
-	fix.Replacement = append(fix.Replacement, *replacement)
-	fix.Addition = append(fix.Addition, *addition)
+	r.Replacement = append(r.Replacement, *replacement)
+	r.Addition = append(r.Addition, *addition)
 
 	want := make(map[string]interface{})
-	want[filePath] = fix
+	want[filePath] = r
 
-	fix2.Replacement = append(fix2.Replacement, *replacement)
+	r2.Replacement = append(r2.Replacement, *replacement)
 	want2 := make(map[string]interface{})
-	want2[filePath] = fix2
+	want2[filePath] = r2
 
 	type args struct {
 		res     *Report
@@ -107,8 +107,8 @@ func Test_GetFixs(t *testing.T) {
 				SelectedRemediationNumber:   0,
 				ActualRemediationDoneNumber: 0,
 			}
-			if got := s.GetFixs(*tt.args.res, tt.args.include); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("GetFixs() = %v, want %v", got, tt.want)
+			if got := s.GetRemediationSets(*tt.args.res, tt.args.include); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("GetRemediationSets() = %v, want %v", got, tt.want)
 			}
 			require.Equal(t, s.SelectedRemediationNumber, tt.selectedRemediationNumber)
 		})

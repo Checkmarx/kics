@@ -44,7 +44,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"issueType": "IncorrectValue",
 		"searchKey": sprintf("metadata.name={{%s}}.namespace", [metadata.name]),
-		"keyExpectedValue": "'metadata.namespace' is not set to default, kube-system or kube-public",
+		"keyExpectedValue": "'metadata.namespace' should not be set to default, kube-system or kube-public",
 		"keyActualValue": sprintf("'metadata.namespace' is set to %s", [options[x]]),
 		"searchLine": common_lib.build_search_line(["metadata", "namespace"], [])
 	}

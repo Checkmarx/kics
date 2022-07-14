@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(function, name),
 		"searchKey": sprintf("azurerm_function_app[%s].site_config.ftps_state", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_function_app[%s].site_config.ftps_state' is not set to 'AllAllowed'", [name]),
+		"keyExpectedValue": sprintf("'azurerm_function_app[%s].site_config.ftps_state' should not be set to 'AllAllowed'", [name]),
 		"keyActualValue": sprintf("'azurerm_function_app[%s].site_config.ftps_state' is set to 'AllAllowed'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_function_app", name, "site_config", "ftps_state"], []),
 		"remediation": json.marshal({

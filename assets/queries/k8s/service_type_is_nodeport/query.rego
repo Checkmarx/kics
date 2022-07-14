@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.type", [metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "spec.type is not 'NodePort'",
+		"keyExpectedValue": "spec.type should not be 'NodePort'",
 		"keyActualValue": "spec.type is 'NodePort'",
 	}
 }

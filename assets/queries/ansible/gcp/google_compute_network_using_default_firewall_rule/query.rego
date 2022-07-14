@@ -24,7 +24,7 @@ CxPolicy[result] {
 		"resourceName": tk.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [tk.name, modulesCompute[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s' is not using a default firewall rule", [modulesCompute[m]]),
+		"keyExpectedValue": sprintf("'%s' should not be using a default firewall rule", [modulesCompute[m]]),
 		"keyActualValue": sprintf("'%s' is using a default firewall rule", [modulesCompute[m]]),
 		"searchLine": common_lib.build_search_line(["playbooks", t, modulesCompute[m]], []),
 	}

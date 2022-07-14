@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.hostNetwork", [metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'spec.hostNetwork' is false or undefined",
+		"keyExpectedValue": "'spec.hostNetwork' should be set to false or undefined",
 		"keyActualValue": "'spec.hostNetwork' is true",
 	}
 }

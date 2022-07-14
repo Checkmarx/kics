@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, issue.sk]),
 		"issueType": issue.issueType,
-		"keyExpectedValue": "'networkProfile.networkPolicy' is defined and not empty",
+		"keyExpectedValue": "'networkProfile.networkPolicy' should be defined and not empty",
 		"keyActualValue": issue.keyActualValue,
 		"searchLine": common_lib.build_search_line(path, issue.sl),
 	}

@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_iam_role[%s].assume_role_policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "assume_role_policy.Statement.Action is not equal to, nor does it contain '*'",
+		"keyExpectedValue": "assume_role_policy.Statement.Action should not be equal to, nor does it contain '*'",
 		"keyActualValue": "assume_role_policy.Statement.Action is equal to or contains '*'",
 		"searchLine": common_lib.build_search_line(["resource", "aws_iam_role", name, "assume_role_policy"], []),
 	}

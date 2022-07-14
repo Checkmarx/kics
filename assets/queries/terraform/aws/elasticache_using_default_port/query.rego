@@ -34,7 +34,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(cluster, "aws_elasticache_cluster", name),
 		"searchKey": sprintf("aws_elasticache_cluster[%s].port", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'port' is not set to %d", [enginePort]),
+		"keyExpectedValue": sprintf("'port' should not be set to %d", [enginePort]),
 		"keyActualValue": sprintf("'port' is set to %d", [enginePort]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_elasticache_cluster", name, "port"], []),
 	}

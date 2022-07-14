@@ -19,21 +19,24 @@ type Summary struct {
 	mu                          sync.RWMutex
 }
 
-// GetFixs collects all the replacements and additions per file
-func (s *Summary) GetFixs(results Report, include []string) map[string]interface{} {
-	fixs := make(map[string]interface{})
+// GetRemediationSets collects all the replacements and additions per file
+func (s *Summary) GetRemediationSets(results Report, include []string) map[string]interface{} {
+	remediationSets := make(map[string]interface{})
 
 	vulns := getVulns(results)
 
 	if len(vulns) > 0 {
-		fixs = s.GetFixsFromVulns(vulns, include)
+		remediationSets = s.GetRemediationSetsFromVulns(vulns, include)
 	}
 
-	return fixs
+	return remediationSets
 }
 
 func shouldRemediate(file *File, include []string) bool {
-	if len(file.Remediation) > 0 && len(file.RemediationType) > 0 && (include[0] == "all" || utils.Contains(file.SimilarityID, include)) {
+	if len(file.Remediation) > 0 &&
+		len(file.RemediationType) > 0 &&
+		(include[0] == "all" || utils.Contains(file.SimilarityID, include)) &&
+		filepath.Ext(file.FilePath) == ".tf" { // temporary
 		return true
 	}
 
@@ -73,16 +76,18 @@ func willRemediate(remediated []string, originalFileName string, remediation *Re
 		return false
 	}
 
-	m := sync.RWMutex{}
-
-	m.Lock()
 	// scan the temporary file to verify if the remediation removed the result
 	results, err := scanTmpFile(tmpFile, remediation.QueryID, content)
-	m.Unlock()
 
 	if err != nil {
 		log.Error().Msgf("failed to get results of query %s: %s", remediation.QueryID, err)
 		return false
+	}
+
+	err = os.Remove(tmpFile)
+
+	if err != nil {
+		log.Err(err)
 	}
 
 	return removedSimilarityID(results, remediation.SimilarityID)
@@ -133,9 +138,9 @@ func CreateTempFile(filePathCopyFrom, tmpFilePath string) string {
 	return tmpFilePath
 }
 
-// GetFixsFromVulns collects all the replacements and additions per file from []model.Vulnerability
-func (s *Summary) GetFixsFromVulns(vulnerabilities []model.Vulnerability, include []string) map[string]interface{} {
-	fixs := make(map[string]interface{})
+// GetRemediationSetsFromVulns collects all the replacements and additions per file from []model.Vulnerability
+func (s *Summary) GetRemediationSetsFromVulns(vulnerabilities []model.Vulnerability, include []string) map[string]interface{} {
+	remediationSets := make(map[string]interface{})
 
 	for i := range vulnerabilities {
 		vuln := vulnerabilities[i]
@@ -148,7 +153,7 @@ func (s *Summary) GetFixsFromVulns(vulnerabilities []model.Vulnerability, includ
 			SimilarityID:    vuln.SimilarityID,
 		}
 
-		var fix Fix
+		var remediationSet Set
 
 		if shouldRemediate(&file, include) {
 			s.mu.Lock()
@@ -162,27 +167,27 @@ func (s *Summary) GetFixsFromVulns(vulnerabilities []model.Vulnerability, includ
 			}
 
 			if file.RemediationType == "replacement" {
-				fix.Replacement = append(fix.Replacement, *r)
+				remediationSet.Replacement = append(remediationSet.Replacement, *r)
 			}
 
 			if file.RemediationType == "addition" {
-				fix.Addition = append(fix.Addition, *r)
+				remediationSet.Addition = append(remediationSet.Addition, *r)
 			}
 
-			if _, ok := fixs[file.FilePath]; !ok {
-				fixs[file.FilePath] = fix
+			if _, ok := remediationSets[file.FilePath]; !ok {
+				remediationSets[file.FilePath] = remediationSet
 				continue
 			}
 
-			updatedFix := fixs[file.FilePath].(Fix)
+			updatedRemediationSet := remediationSets[file.FilePath].(Set)
 
-			updatedFix.Addition = append(updatedFix.Addition, fix.Addition...)
-			updatedFix.Replacement = append(updatedFix.Replacement, fix.Replacement...)
+			updatedRemediationSet.Addition = append(updatedRemediationSet.Addition, remediationSet.Addition...)
+			updatedRemediationSet.Replacement = append(updatedRemediationSet.Replacement, remediationSet.Replacement...)
 
-			fixs[file.FilePath] = updatedFix
+			remediationSets[file.FilePath] = updatedRemediationSet
 		}
 	}
-	return fixs
+	return remediationSets
 }
 
 func getVulns(results Report) []model.Vulnerability {

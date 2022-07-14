@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "cloudwatchlogs_log_group.retention is set",
+		"keyExpectedValue": "cloudwatchlogs_log_group.retention should be set",
 		"keyActualValue": "cloudwatchlogs_log_group.retention is undefined",
 	}
 }
@@ -39,7 +39,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.retention", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "cloudwatchlogs_log_group.retention is set and valid",
+		"keyExpectedValue": "cloudwatchlogs_log_group.retention should be set and valid",
 		"keyActualValue": "cloudwatchlogs_log_group.retention is set and invalid",
 	}
 }

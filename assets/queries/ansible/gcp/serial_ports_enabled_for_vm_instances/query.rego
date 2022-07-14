@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.metadata.serial-port-enable", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_compute_instance.metadata.serial-port-enable is undefined or set to false",
+		"keyExpectedValue": "gcp_compute_instance.metadata.serial-port-enable should be undefined or set to false",
 		"keyActualValue": "gcp_compute_instance.metadata.serial-port-enable is set to true",
 	}
 }

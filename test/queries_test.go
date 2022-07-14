@@ -60,11 +60,11 @@ func testRemediationQuery(t testing.TB, entry queryEntry, vulnerabilities []mode
 		ActualRemediationDoneNumber: 0,
 	}
 
-	// get fixs from query vulns
-	fixs := summary.GetFixsFromVulns(vulnerabilities, []string{"all"})
+	// get remediationSets from query vulns
+	remediationSets := summary.GetRemediationSetsFromVulns(vulnerabilities, []string{"all"})
 
-	if len(fixs) > 0 {
-		// verify if the remediations vulns actually fixes the results
+	if len(remediationSets) > 0 {
+		// verify if the remediations vulns actually remediates the results
 		data, err := os.ReadFile(filepath.FromSlash("../internal/console/assets/scan-flags.json"))
 		require.NoError(t, err)
 
@@ -84,20 +84,20 @@ func testRemediationQuery(t testing.TB, entry queryEntry, vulnerabilities []mode
 			source.ListSupportedCloudProviders(),
 		)
 
-		temporaryFixs := make(map[string]interface{})
+		temporaryRemediationSets := make(map[string]interface{})
 
-		for k := range fixs {
+		for k := range remediationSets {
 			tmpFilePath := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+filepath.Ext(k))
 			tmpFile := remediation.CreateTempFile(k, tmpFilePath)
 
-			temporaryFixs[tmpFile] = fixs[k]
+			temporaryRemediationSets[tmpFile] = remediationSets[k]
 		}
 
 		wg := &sync.WaitGroup{}
 
-		for filePath := range temporaryFixs {
+		for filePath := range temporaryRemediationSets {
 			wg.Add(1)
-			fix := temporaryFixs[filePath].(remediation.Fix)
+			fix := temporaryRemediationSets[filePath].(remediation.Set)
 
 			go func(filePath string) {
 				defer wg.Done()

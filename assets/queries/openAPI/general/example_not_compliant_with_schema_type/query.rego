@@ -22,7 +22,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s.examples.%s", [openapi_lib.concat_path(path), name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.examples.%s' is not compliant with the schema type", [concat(".", path)]),
+		"keyExpectedValue": sprintf("%s.examples.%s' should not be compliant with the schema type", [concat(".", path)]),
 		"keyActualValue": sprintf("%s.examples.%s is not compliant with the schema type", [concat(".", path)]),
 		"overrideKey": version,
 	}
@@ -46,7 +46,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s.example", [openapi_lib.concat_path(path)]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.example is not compliant with the schema type", [concat(".", path)]),
+		"keyExpectedValue": sprintf("%s.example should not be compliant with the schema type", [concat(".", path)]),
 		"keyActualValue": sprintf("%s.example is not compliant with the schema type", [concat(".", path)]),
 		"overrideKey": version,
 	}
@@ -70,7 +70,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s.example", [openapi_lib.concat_path(path)]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.example is not compliant with the schema type", [openapi_lib.concat_path(path)]),
+		"keyExpectedValue": sprintf("%s.example should not be compliant with the schema type", [openapi_lib.concat_path(path)]),
 		"keyActualValue": sprintf("%s.example is not compliant with the schema type", [openapi_lib.concat_path(path)]),
 		"overrideKey": version,
 	}
@@ -90,7 +90,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("definitions.%s.example", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("definitions.%s.example is not compliant with the schema type", [name]),
+		"keyExpectedValue": sprintf("definitions.%s.example should not be compliant with the schema type", [name]),
 		"keyActualValue": sprintf("definitions.%s.example is not compliant with the schema type", [name]),
 		"overrideKey": version,
 	}

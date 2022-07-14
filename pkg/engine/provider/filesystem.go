@@ -90,6 +90,24 @@ func (s *FileSystemSourceProvider) GetBasePaths() []string {
 	return s.paths
 }
 
+// ignoreDamagedFiles checks whether we should ignore a damaged file from a scan or not.
+func ignoreDamagedFiles(path string) bool {
+	shouldIgnoreFile := false
+	fileInfo, err := os.Lstat(path)
+	if err != nil {
+		log.Warn().Msgf("Failed getting the file info for file '%s'", path)
+		return shouldIgnoreFile
+	}
+	log.Info().Msgf("No mode type bits are set( is a regular file ) for file '%s' : %t ", path, fileInfo.Mode().IsRegular())
+
+	if fileInfo.Mode()&os.ModeSymlink == os.ModeSymlink {
+		log.Warn().Msgf("File '%s' is a symbolic link - but seems not to be accessible", path)
+		shouldIgnoreFile = true
+	}
+
+	return shouldIgnoreFile
+}
+
 // GetSources tries to open file or directory and execute sink function on it
 func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 	extensions model.Extensions, sink Sink, resolverSink ResolverSink) error {
@@ -103,7 +121,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 		if !fileInfo.IsDir() {
 			c, openFileErr := openScanFile(scanPath, extensions)
 			if openFileErr != nil {
-				if openFileErr == ErrNotSupportedFile {
+				if openFileErr == ErrNotSupportedFile || ignoreDamagedFiles(scanPath) {
 					continue
 				}
 				return openFileErr
@@ -156,6 +174,9 @@ func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string,
 
 		c, err := os.Open(filepath.Clean(path))
 		if err != nil {
+			if ignoreDamagedFiles(filepath.Clean(path)) {
+				return nil
+			}
 			return errors.Wrap(err, "failed to open file")
 		}
 		defer closeFile(c, info)

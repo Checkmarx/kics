@@ -17,7 +17,7 @@ func Test_RemediateFile(t *testing.T) {
 	filePathCopyFrom := filepath.Join("..", "..", "test", "fixtures", "kics_auto_remediation", "terraform.tf")
 
 	type args struct {
-		fix Fix
+		remediate Set
 	}
 
 	replacement := &Remediation{
@@ -27,8 +27,8 @@ func Test_RemediateFile(t *testing.T) {
 		QueryID:      "41a38329-d81b-4be4-aef4-55b2615d3282",
 	}
 
-	var fix1, fix2, fix3 Fix
-	fix1.Replacement = append(fix1.Replacement, *replacement)
+	var r1, r2, r3 Set
+	r1.Replacement = append(r1.Replacement, *replacement)
 
 	addition := &Remediation{
 		Line:         1,
@@ -37,8 +37,8 @@ func Test_RemediateFile(t *testing.T) {
 		QueryID:      "a9dfec39-a740-4105-bbd6-721ba163c053",
 	}
 
-	fix2.Replacement = append(fix2.Replacement, *replacement)
-	fix2.Addition = append(fix2.Addition, *addition)
+	r2.Replacement = append(r2.Replacement, *replacement)
+	r2.Addition = append(r2.Addition, *addition)
 
 	wrongReplacement := &Remediation{
 		Line:         5,
@@ -47,7 +47,7 @@ func Test_RemediateFile(t *testing.T) {
 		QueryID:      "41a38329-d81b-4be4-aef4-55b2615d3282",
 	}
 
-	fix3.Replacement = append(fix3.Replacement, *wrongReplacement)
+	r3.Replacement = append(r3.Replacement, *wrongReplacement)
 
 	tests := []struct {
 		name                        string
@@ -57,28 +57,28 @@ func Test_RemediateFile(t *testing.T) {
 		{
 			name: "remediate a file with a replacement",
 			args: args{
-				fix: fix1,
+				remediate: r1,
 			},
 			actualRemediationDoneNumber: 1,
 		},
 		{
 			name: "remediate a file with a replacement and addition",
 			args: args{
-				fix: fix2,
+				remediate: r2,
 			},
 			actualRemediationDoneNumber: 2,
 		},
 		{
 			name: "remediate a file without any remediation",
 			args: args{
-				fix: Fix{},
+				remediate: Set{},
 			},
 			actualRemediationDoneNumber: 0,
 		},
 		{
 			name: "remediate a file with a wrong remediation",
 			args: args{
-				fix: fix3,
+				remediate: r3,
 			},
 			actualRemediationDoneNumber: 0,
 		},
@@ -111,7 +111,7 @@ func Test_RemediateFile(t *testing.T) {
 
 			tmpFileName := filepath.Join(os.TempDir(), "temporary-remediation"+utils.NextRandom()+filepath.Ext(filePathCopyFrom))
 			tmpFile := CreateTempFile(filePathCopyFrom, tmpFileName)
-			s.RemediateFile(tmpFile, tt.args.fix)
+			s.RemediateFile(tmpFile, tt.args.remediate)
 
 			os.Remove(tmpFile)
 			require.Equal(t, s.ActualRemediationDoneNumber, tt.actualRemediationDoneNumber)

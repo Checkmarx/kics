@@ -6,6 +6,7 @@ Available Commands:
   generate-id    Generates uuid for query
   help           Help about any command
   list-platforms List supported platforms
+  remediate      Auto remediates the project
   scan           Executes a scan analysis
   version        Displays the current version
 

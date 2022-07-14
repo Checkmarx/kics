@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.dnssec_config.defaultKeySpecs.algorithm", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_dns_managed_zone.dnssec_config.defaultKeySpecs.algorithm is not equal to 'rsasha1'",
+		"keyExpectedValue": "gcp_dns_managed_zone.dnssec_config.defaultKeySpecs.algorithm should not be equal to 'rsasha1'",
 		"keyActualValue": "gcp_dns_managed_zone.dnssec_config.defaultKeySpecs.algorithm is equal to 'rsasha1'",
 	}
 }

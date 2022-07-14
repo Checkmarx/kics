@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(vm, name),
 		"searchKey": sprintf("azurerm_virtual_machine[%s].network_interface_ids", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_virtual_machine[%s].network_interface_ids' list is not empty", [name]),
+		"keyExpectedValue": sprintf("'azurerm_virtual_machine[%s].network_interface_ids' list should not be empty", [name]),
 		"keyActualValue": sprintf("'azurerm_virtual_machine[%s].network_interface_ids' list is empty", [name]),
 	}
 }
