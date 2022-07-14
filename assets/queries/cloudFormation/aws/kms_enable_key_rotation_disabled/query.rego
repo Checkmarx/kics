@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resources, name),
 		"searchKey": sprintf("Resources.%s.Properties.EnableKeyRotation", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.EnableKeyRotation is not 'true'", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.EnableKeyRotation should not be 'true'", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.EnableKeyRotation is true", [name]),
 	}
 }

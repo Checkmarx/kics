@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "gcp_storage_bucket.default_object_acl is defined",
+		"keyExpectedValue": "gcp_storage_bucket.default_object_acl should be defined",
 		"keyActualValue": "gcp_storage_bucket.default_object_acl is undefined",
 	}
 }
@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.acl.entity", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_storage_bucket.acl.entity isn't 'allUsers' or 'allAuthenticatedUsers'",
+		"keyExpectedValue": "gcp_storage_bucket.acl.entity should not be 'allUsers' or 'allAuthenticatedUsers'",
 		"keyActualValue": "gcp_storage_bucket.acl.entity is 'allUsers' or 'allAuthenticatedUsers'",
 	}
 }
@@ -56,7 +56,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.default_object_acl.entity", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_storage_bucket.default_object_acl.entity isn't 'allUsers' or 'allAuthenticatedUsers'",
+		"keyExpectedValue": "gcp_storage_bucket.default_object_acl.entity should not be 'allUsers' or 'allAuthenticatedUsers'",
 		"keyActualValue": "gcp_storage_bucket.default_object_acl.entity is 'allUsers' or 'allAuthenticatedUsers'",
 	}
 }

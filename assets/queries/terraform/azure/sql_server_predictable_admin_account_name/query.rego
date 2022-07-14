@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_sql_server[%s].administrator_login", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_sql_server[%s].administrator_login' is not empty'", [name]),
+		"keyExpectedValue": sprintf("'azurerm_sql_server[%s].administrator_login' should not be empty'", [name]),
 		"keyActualValue": sprintf("'azurerm_sql_server[%s].administrator_login' is empty", [name]),
 	}
 }
@@ -27,7 +27,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_sql_server[%s].administrator_login", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_sql_server[%s].administrator_login' is not predictable'", [name]),
+		"keyExpectedValue": sprintf("'azurerm_sql_server[%s].administrator_login' should not be predictable'", [name]),
 		"keyActualValue": sprintf("'azurerm_sql_server[%s].administrator_login' is predictable", [name]),
 	}
 }

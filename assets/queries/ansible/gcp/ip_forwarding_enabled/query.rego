@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.can_ip_forward", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_compute_instance.can_ip_forward is false",
+		"keyExpectedValue": "gcp_compute_instance.can_ip_forward should be set to false",
 		"keyActualValue": "gcp_compute_instance.can_ip_forward is true",
 	}
 }

@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_network_acl[%s].ingress", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_network_acl[%s].ingress[%d] 'SSH' (Port:22) is not public", [name, idx]),
+		"keyExpectedValue": sprintf("aws_network_acl[%s].ingress[%d] 'SSH' (Port:22) should not be public", [name, idx]),
 		"keyActualValue": sprintf("aws_network_acl[%s].ingress[%d] 'SSH' (Port:22) is public", [name, idx]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_network_acl", name, "ingress", idx], []),
 	}
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": netAclRuleName,
 		"searchKey": sprintf("aws_network_acl_rule[%s]", [netAclRuleName]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_network_acl[%s] 'SSH' (TCP:22) is not public", [netAclRuleName]),
+		"keyExpectedValue": sprintf("aws_network_acl[%s] 'SSH' (TCP:22) should not be public", [netAclRuleName]),
 		"keyActualValue": sprintf("aws_network_acl[%s] 'SSH' (TCP:22) is public", [netAclRuleName]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_network_acl_rule", netAclRuleName], []),
 	}
@@ -55,7 +55,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_network_acl[%s].ingress", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_network_acl[%s].ingress 'SSH' (TCP:22) is not public", [name]),
+		"keyExpectedValue": sprintf("aws_network_acl[%s].ingress 'SSH' (TCP:22) should not be public", [name]),
 		"keyActualValue": sprintf("aws_network_acl[%s].ingress 'SSH' (TCP:22) is public", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_network_acl", name, "ingress"], []),
 	}
@@ -75,7 +75,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].%s", [name, keyToCheck]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_network_acl[%s].ingress[%d] 'SSH' (Port:22) is not public", [name, idx]),
+		"keyExpectedValue": sprintf("aws_network_acl[%s].ingress[%d] 'SSH' (Port:22) should not be public", [name, idx]),
 		"keyActualValue": sprintf("aws_network_acl[%s].ingress[%d] 'SSH' (Port:22) is public", [name, idx]),
 		"searchLine": common_lib.build_search_line(["module", name, keyToCheck, idx], []),
 	}

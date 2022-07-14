@@ -75,7 +75,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_sqs_queue[%s].kms_master_key_id", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_sqs_queue.kms_master_key_id is not ''",
+		"keyExpectedValue": "aws_sqs_queue.kms_master_key_id should not be ''",
 		"keyActualValue": "aws_sqs_queue.kms_master_key_id is ''",
 		"searchLine": common_lib.build_search_line(["resource", "aws_sqs_queue", name, "kms_master_key_id"], []),
 	}
@@ -93,7 +93,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'kms_master_key_id' is not empty",
+		"keyExpectedValue": "'kms_master_key_id' should not be empty",
 		"keyActualValue": "'kms_master_key_id' is empty",
 		"searchLine": common_lib.build_search_line(["module", name, "kms_master_key_id"], []),
 	}

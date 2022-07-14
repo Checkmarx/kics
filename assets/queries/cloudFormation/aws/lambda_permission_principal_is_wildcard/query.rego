@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Principal", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.Principal is not wildcard", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Principal should not be wildcard", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.Principal is wildcard", [name]),
 	}
 }

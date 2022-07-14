@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.service_account_name", [resourceType, name, specInfo.path]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.service_account_name is not shared with other workloads", [resourceType, name, specInfo.path]),
+		"keyExpectedValue": sprintf("%s[%s].%s.service_account_name should not be shared with other workloads", [resourceType, name, specInfo.path]),
 		"keyActualValue": sprintf("%s[%s].%s.service_account_name is shared with other workloads", [resourceType, name, specInfo.path]),
 	}
 }

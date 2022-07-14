@@ -37,6 +37,8 @@ CxPolicy[result] {
         "keyExpectedValue": "'versioning' to be true",
         "keyActualValue": "'versioning' is undefined or null",
         "searchLine": common_lib.build_search_line(["module", name], []),
+        "remediation": sprintf("%s {\n\t\t enabled = true\n\t}",[keyToCheck]),
+		"remediationType": "addition",
     }
 }
 
@@ -56,6 +58,8 @@ CxPolicy[result] {
         "keyExpectedValue": "'versioning.enabled' to be true",
         "keyActualValue": "'versioning.enabled' is undefined or null",
         "searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name, "versioning"], []),
+        "remediation": "enabled = true",
+		"remediationType": "addition",
     }
 }
 
@@ -74,6 +78,8 @@ CxPolicy[result] {
         "keyExpectedValue": "'versioning.enabled' to be true",
         "keyActualValue": "'versioning.enabled' is undefined or null",
         "searchLine": common_lib.build_search_line(["module", name, "versioning"], []),
+        "remediation": "enabled = true",
+		"remediationType": "addition",
     }
 }
 
@@ -92,6 +98,11 @@ CxPolicy[result] {
         "keyExpectedValue": "'versioning.enabled' to be true",
         "keyActualValue": "'versioning.enabled' is set to false",
         "searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name, "versioning", "enabled"], []),
+        "remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
     }
 }
 
@@ -110,6 +121,11 @@ CxPolicy[result] {
         "keyExpectedValue": "'versioning.enabled' to be true",
         "keyActualValue": "'versioning.enabled' is set to false",
         "searchLine": common_lib.build_search_line(["module", name, "versioning", "enabled"], []),
+        "remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
     }
 }
 
@@ -130,5 +146,10 @@ CxPolicy[result] {
         "keyExpectedValue": "'versioning_configuration.status' to be set to 'Enabled'",
         "keyActualValue": "'versioning_configuration.status' is set to 'Suspended'",
         "searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_versioning", name, "versioning_configuration", "status"], []),
+        "remediation": json.marshal({
+			"before": "Suspended",
+			"after": "Enabled"
+		}),
+		"remediationType": "replacement",
     }
 }

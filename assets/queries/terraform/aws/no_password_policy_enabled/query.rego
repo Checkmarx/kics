@@ -15,6 +15,11 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'password_reset_required' is true",
 		"keyActualValue": "Attribute 'password_reset_required' is false",
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -31,5 +36,10 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'password_length' is 14 or grater",
 		"keyActualValue": "Attribute 'password_length' is smaller than 14",
+		"remediation": json.marshal({
+			"before": sprintf("%d", [resource.password_length]),
+			"after": "15"
+		}),
+		"remediationType": "replacement",
 	}
 }

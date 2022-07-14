@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.rules", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("ec2_group.rules[%d] port_range does not contain unknown  ports and are not exposed to the entire Internet", [index]),
+		"keyExpectedValue": sprintf("ec2_group.rules[%d] port_range should not contain unknown ports and should not be exposed to the entire Internet", [index]),
 		"keyActualValue": sprintf("ec2_group.rules[%d] port_range contains unknown ports and are exposed to the entire Internet", [index]),
 		"searchLine": commonLib.build_search_line(["playbooks", t, modules[m], "rules", index, "from_port"], []),
 	}

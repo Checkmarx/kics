@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.volumes.name={{%s}}.hostPath.path", [metadata.name, specInfo.path, volume.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.volumes.name={{%s}}.hostPath.path is not '/var/run/docker.sock'", [metadata.name, specInfo.path, volume.name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.volumes.name={{%s}}.hostPath.path should not be '/var/run/docker.sock'", [metadata.name, specInfo.path, volume.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.volumes.name={{%s}}.hostPath.path is '/var/run/docker.sock'", [metadata.name, specInfo.path, volume.name]),
 	}
 }

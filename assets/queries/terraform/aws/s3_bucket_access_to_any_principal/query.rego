@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_s3_bucket", name),
 		"searchKey": sprintf("%s[%s].policy", [resourceType, name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].policy.Principal is not equal to, nor does it contain '*'", [resourceType, name]),
+		"keyExpectedValue": sprintf("%s[%s].policy.Principal should not be equal to, nor does it contain '*'", [resourceType, name]),
 		"keyActualValue": sprintf("%s[%s].policy.Principal is equal to or contains '*'", [resourceType, name]),
 		"searchLine": common_lib.build_search_line(["resource", resourceType, name, "policy"], []),
 	}
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'policy.Principal' is not equal to, nor does it contain '*'", 
+		"keyExpectedValue": "'policy.Principal' should not be equal to, nor does it contain '*'", 
 		"keyActualValue": "'policy.Principal' is equal to or contains '*'", 
 		"searchLine": common_lib.build_search_line(["module", name, "policy"], []),
 	}

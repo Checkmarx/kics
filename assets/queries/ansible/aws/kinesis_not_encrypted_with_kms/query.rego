@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "kinesis_stream.encryption_type is set",
+		"keyExpectedValue": "kinesis_stream.encryption_type should be set",
 		"keyActualValue": "kinesis_stream.encryption_type is undefined",
 	}
 }
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "kinesis_stream.encryption_state is set",
+		"keyExpectedValue": "kinesis_stream.encryption_state should be set",
 		"keyActualValue": "kinesis_stream.encryption_state is undefined",
 	}
 }
@@ -54,7 +54,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.encryption_state", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "kinesis_stream.encryption_state is set to enabled",
+		"keyExpectedValue": "kinesis_stream.encryption_state should be set to enabled",
 		"keyActualValue": "kinesis_stream.encryption_state is not set to enabled",
 	}
 }
@@ -72,7 +72,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.encryption_type", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "kinesis_stream.encryption_type is set and not NONE",
+		"keyExpectedValue": "kinesis_stream.encryption_type should be set and not NONE",
 		"keyActualValue": "kinesis_stream.encryption_type is set but NONE",
 	}
 }
@@ -91,7 +91,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "kinesis_stream.key_id is set",
+		"keyExpectedValue": "kinesis_stream.key_id should be set",
 		"keyActualValue": "kinesis_stream.key_id is undefined",
 	}
 }
