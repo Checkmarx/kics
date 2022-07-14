@@ -13,7 +13,6 @@ Usage:
   kics [command]
 
 Available Commands:
-  fix            Auto remediates the project
   generate-id    Generates uuid for query
   help           Help about any command
   list-platforms List supported platforms

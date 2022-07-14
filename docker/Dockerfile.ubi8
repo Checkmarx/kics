@@ -92,8 +92,6 @@ USER ${KUSER}
 COPY --chown=${KUSER}:${KGROUP} --from=build_env /build/bin/kics /app/bin/kics
 COPY --chown=${KUSER}:${KGROUP} --from=build_env /build/assets/ /app/bin/assets/
 
-RUN chmod 700 /app/bin/kics
-
 ENV PATH $PATH:/app/bin
 
 # Command to run the executable
