@@ -55,9 +55,10 @@ type QueryLoader struct {
 type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{},
 	detector *detector.DetectLine) (model.Vulnerability, error)
 
-type preparedQuery struct {
-	opaQuery rego.PreparedEvalQuery
-	metadata model.QueryMetadata
+// PreparedQuery includes the opaQuery and its metadata
+type PreparedQuery struct {
+	OpaQuery rego.PreparedEvalQuery
+	Metadata model.QueryMetadata
 }
 
 // Inspector represents a list of compiled queries, a builder for vulnerabilities, an information tracker
@@ -78,12 +79,12 @@ type Inspector struct {
 // QueryContext contains the context where the query is executed, which scan it belongs, basic information of query,
 // the query compiled and its payload
 type QueryContext struct {
-	ctx           context.Context
+	Ctx           context.Context
 	scanID        string
-	files         map[string]model.FileMetadata
-	query         *preparedQuery
+	Files         map[string]model.FileMetadata
+	Query         *PreparedQuery
 	payload       model.Documents
-	baseScanPaths []string
+	BaseScanPaths []string
 }
 
 var (
@@ -101,7 +102,8 @@ func NewInspector(
 	tracker Tracker,
 	queryParameters *source.QueryInspectorParameters,
 	excludeResults map[string]bool,
-	queryTimeout int) (*Inspector, error) {
+	queryTimeout int,
+	needsLog bool) (*Inspector, error) {
 	log.Debug().Msg("engine.NewInspector()")
 
 	metrics.Metric.Start("get_queries")
@@ -128,8 +130,10 @@ func NewInspector(
 
 	metrics.Metric.Stop()
 
-	log.Info().
-		Msgf("Inspector initialized, number of queries=%d", queryLoader.querySum)
+	if needsLog {
+		log.Info().
+			Msgf("Inspector initialized, number of queries=%d", queryLoader.querySum)
+	}
 
 	lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
 		Add(helm.DetectKindLine{}, model.KindHELM).
@@ -137,7 +141,10 @@ func NewInspector(
 		Add(docker.DetectKindLine{}, model.KindBUILDAH)
 
 	queryExecTimeout := time.Duration(queryTimeout) * time.Second
-	log.Info().Msgf("Query execution timeout=%v", queryExecTimeout)
+
+	if needsLog {
+		log.Info().Msgf("Query execution timeout=%v", queryExecTimeout)
+	}
 
 	return &Inspector{
 		QueryLoader:      &queryLoader,
@@ -194,7 +201,7 @@ func (c *Inspector) Inspect(
 	for i, queryMeta := range queries {
 		currentQuery <- 1
 
-		queryOpa, err := c.QueryLoader.loadQuery(ctx, &queries[i])
+		queryOpa, err := c.QueryLoader.LoadQuery(ctx, &queries[i])
 		if err != nil {
 			continue
 		}
@@ -202,30 +209,30 @@ func (c *Inspector) Inspect(
 		log.Debug().Msgf("Starting to run query %s", queryMeta.Query)
 		queryStartTime := time.Now()
 
-		query := &preparedQuery{
-			opaQuery: *queryOpa,
-			metadata: queryMeta,
+		query := &PreparedQuery{
+			OpaQuery: *queryOpa,
+			Metadata: queryMeta,
 		}
 
 		vuls, err := c.doRun(&QueryContext{
-			ctx:           ctx,
+			Ctx:           ctx,
 			scanID:        scanID,
-			files:         files.ToMap(),
-			query:         query,
+			Files:         files.ToMap(),
+			Query:         query,
 			payload:       combinedFiles,
-			baseScanPaths: baseScanPaths,
+			BaseScanPaths: baseScanPaths,
 		})
 		if err != nil {
 			sentryReport.ReportSentry(&sentryReport.Report{
-				Message:  fmt.Sprintf("Inspector. query executed with error, query=%s", query.metadata.Query),
+				Message:  fmt.Sprintf("Inspector. query executed with error, query=%s", query.Metadata.Query),
 				Err:      err,
 				Location: "func Inspect()",
-				Platform: query.metadata.Platform,
-				Metadata: query.metadata.Metadata,
-				Query:    query.metadata.Query,
+				Platform: query.Metadata.Platform,
+				Metadata: query.Metadata.Metadata,
+				Query:    query.Metadata.Query,
 			}, true)
 
-			c.failedQueries[query.metadata.Query] = err
+			c.failedQueries[query.Metadata.Query] = err
 
 			continue
 		}
@@ -234,7 +241,7 @@ func (c *Inspector) Inspect(
 
 		vulnerabilities = append(vulnerabilities, vuls...)
 
-		c.tracker.TrackQueryExecution(query.metadata.Aggregation)
+		c.tracker.TrackQueryExecution(query.Metadata.Aggregation)
 	}
 
 	return vulnerabilities, nil
@@ -278,7 +285,7 @@ func (c *Inspector) GetFailedQueries() map[string]error {
 }
 
 func (c *Inspector) doRun(ctx *QueryContext) ([]model.Vulnerability, error) {
-	timeoutCtx, cancel := context.WithTimeout(ctx.ctx, c.queryExecTimeout)
+	timeoutCtx, cancel := context.WithTimeout(ctx.Ctx, c.queryExecTimeout)
 	defer cancel()
 	options := []rego.EvalOption{rego.EvalInput(ctx.payload)}
 
@@ -288,7 +295,7 @@ func (c *Inspector) doRun(ctx *QueryContext) ([]model.Vulnerability, error) {
 		options = append(options, rego.EvalQueryTracer(cov))
 	}
 
-	results, err := ctx.query.opaQuery.Eval(timeoutCtx, options...)
+	results, err := ctx.Query.OpaQuery.Eval(timeoutCtx, options...)
 	if err != nil {
 		if topdown.IsCancel(err) {
 			return nil, errors.Wrap(err, "query executing timeout exited")
@@ -297,24 +304,25 @@ func (c *Inspector) doRun(ctx *QueryContext) ([]model.Vulnerability, error) {
 		return nil, errors.Wrap(err, "failed to evaluate query")
 	}
 	if c.enableCoverageReport && cov != nil {
-		module, parseErr := ast.ParseModule(ctx.query.metadata.Query, ctx.query.metadata.Content)
+		module, parseErr := ast.ParseModule(ctx.Query.Metadata.Query, ctx.Query.Metadata.Content)
 		if parseErr != nil {
 			return nil, errors.Wrap(parseErr, "failed to parse coverage module")
 		}
 
 		c.coverageReport = cov.Report(map[string]*ast.Module{
-			ctx.query.metadata.Query: module,
+			ctx.Query.Metadata.Query: module,
 		})
 	}
 
 	log.Trace().
 		Str("scanID", ctx.scanID).
-		Msgf("Inspector executed with result %+v, query=%s", results, ctx.query.metadata.Query)
+		Msgf("Inspector executed with result %+v, query=%s", results, ctx.Query.Metadata.Query)
 
-	return c.decodeQueryResults(ctx, results)
+	return c.DecodeQueryResults(ctx, results)
 }
 
-func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet) ([]model.Vulnerability, error) {
+// DecodeQueryResults decodes the results into []model.Vulnerability
+func (c *Inspector) DecodeQueryResults(ctx *QueryContext, results rego.ResultSet) ([]model.Vulnerability, error) {
 	if len(results) == 0 {
 		return nil, ErrNoResult
 	}
@@ -337,21 +345,21 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 		vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector)
 		if err != nil {
 			sentryReport.ReportSentry(&sentryReport.Report{
-				Message:  fmt.Sprintf("Inspector can't save vulnerability, query=%s", ctx.query.metadata.Query),
+				Message:  fmt.Sprintf("Inspector can't save vulnerability, query=%s", ctx.Query.Metadata.Query),
 				Err:      err,
 				Location: "func decodeQueryResults()",
-				Platform: ctx.query.metadata.Platform,
-				Metadata: ctx.query.metadata.Metadata,
-				Query:    ctx.query.metadata.Query,
+				Platform: ctx.Query.Metadata.Platform,
+				Metadata: ctx.Query.Metadata.Metadata,
+				Query:    ctx.Query.Metadata.Query,
 			}, true)
 
-			if _, ok := c.failedQueries[ctx.query.metadata.Query]; !ok {
-				c.failedQueries[ctx.query.metadata.Query] = err
+			if _, ok := c.failedQueries[ctx.Query.Metadata.Query]; !ok {
+				c.failedQueries[ctx.Query.Metadata.Query] = err
 			}
 
 			continue
 		}
-		file := ctx.files[vulnerability.FileID]
+		file := ctx.Files[vulnerability.FileID]
 		if ShouldSkipVulnerability(file.Commands, vulnerability.QueryID) {
 			log.Debug().Msgf("Skipping vulnerability in file %s for query '%s':%s", file.FilePath, vulnerability.QueryName, vulnerability.QueryID)
 			continue
@@ -445,8 +453,8 @@ func prepareQueries(queries []model.QueryMetadata, commonLibrary source.RegoLibr
 	}
 }
 
-// Load the query into memory so it can be freed when not used anymore
-func (q QueryLoader) loadQuery(ctx context.Context, query *model.QueryMetadata) (*rego.PreparedEvalQuery, error) {
+// LoadQuery loads the query into memory so it can be freed when not used anymore
+func (q QueryLoader) LoadQuery(ctx context.Context, query *model.QueryMetadata) (*rego.PreparedEvalQuery, error) {
 	opaQuery := rego.PreparedEvalQuery{}
 
 	platformGeneralQuery, ok := q.platformLibraries[query.Platform]
