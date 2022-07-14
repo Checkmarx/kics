@@ -23,7 +23,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'policy.Statement.Action' doesn't contain '*' when 'Effect' is 'Allow'",
+		"keyExpectedValue": "'policy.Statement.Action' shouldn't contain '*' when 'Effect' is 'Allow'",
 		"keyActualValue": "'policy.Statement.Action' contains '*' when 'Effect' is 'Allow'",
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}

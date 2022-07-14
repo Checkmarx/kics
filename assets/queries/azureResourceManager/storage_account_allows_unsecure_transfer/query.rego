@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("resources.name={{%s}}%s", [resourceName, pathValue.sk]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "resource with type 'Microsoft.Storage/storageAccounts' has the 'supportsHttpsTrafficOnly' property defined",
+		"keyExpectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have the 'supportsHttpsTrafficOnly' property defined",
 		"keyActualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' property defined",
 		"searchLine": common_lib.build_search_line(path, pathValue.sl),
 	}
@@ -40,7 +40,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.properties.supportsHttpsTrafficOnly", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "resource with type 'Microsoft.Storage/storageAccounts' has the 'supportsHttpsTrafficOnly' property set to true",
+		"keyExpectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have the 'supportsHttpsTrafficOnly' property set to true",
 		"keyActualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' set to true",
 		"searchLine": common_lib.build_search_line(path, ["properties", "supportsHttpsTrafficOnly"]),
 	}

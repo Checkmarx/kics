@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.value", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "azure_rm_postgresqlconfiguration.value is equal to 'on'",
+		"keyExpectedValue": "azure_rm_postgresqlconfiguration.value should be equal to 'on'",
 		"keyActualValue": "azure_rm_postgresqlconfiguration.value is not equal to 'on'",
 	}
 }
