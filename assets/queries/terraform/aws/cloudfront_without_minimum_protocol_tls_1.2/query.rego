@@ -18,6 +18,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate' is defined and not null", [name]),
 		"keyActualValue": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_cloudfront_distribution", name], []),
+		"remediation": "viewer_certificate {\n\t\t cloudfront_default_certificate = false \n\t\t minimum_protocol_version = \"TLSv1.2_2021\"\n\t}",
+		"remediationType": "addition",
 	}
 }
 
@@ -36,6 +38,11 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate.cloudfront_default_certificate' is 'false'", [name]),
 		"keyActualValue": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate.cloudfront_default_certificate' is 'true'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_cloudfront_distribution", name, "viewer_certificate", "cloudfront_default_certificate"], []),
+		"remediation": json.marshal({
+			"before": "true",
+			"after": "false"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -57,6 +64,11 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate.minimum_protocol_version' is TLSv1.2_x", [name]),
 		"keyActualValue": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate.minimum_protocol_version' is %s", [name, protocol_version]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_cloudfront_distribution", name, "viewer_certificate", "minimum_protocol_version"], []),
+		"remediation": json.marshal({
+			"before": sprintf("%s", [protocol_version]),
+			"after": "TLSv1.2_2021"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -76,5 +88,7 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate.minimum_protocol_version' is defined and not null", [name]),
 		"keyActualValue": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate.minimum_protocol_version' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_cloudfront_distribution", name, "viewer_certificate"], []),
+		"remediation": "minimum_protocol_version = \"TLSv1.2_2021\"",
+		"remediationType": "addition",
 	}
 }
