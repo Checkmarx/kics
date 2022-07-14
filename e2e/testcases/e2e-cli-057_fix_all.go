@@ -13,7 +13,7 @@ func init() { // nolint
 		Name: "should remediate all remediation found [E2E-CLI-057]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"remediate", "--results", "/path/e2e/fixtures/tmp-kics-ar/results-remediate-all.json", "-v"},
+				[]string{"remediate", "--results", "/path/e2e/output/results-remediate-all.json", "-v"},
 			},
 		},
 		WantStatus: []int{0},
