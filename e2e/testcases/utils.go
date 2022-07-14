@@ -187,23 +187,24 @@ func generateResults(reportName string) {
 		log.Error().Msgf("failed to get wd: %s", err)
 	}
 
-	tmpFolderPath := filepath.Join(cwd, "output")
+	tmpFolderPath := filepath.Join(cwd, "tmp-kics-ar")
 
-	if err = os.MkdirAll(tmpFolderPath, os.ModePerm); err != nil {
+	perm := 0777 // only for E2E tests
+
+	if err = os.MkdirAll(tmpFolderPath, os.FileMode(perm)); err != nil {
 		log.Error().Msgf("failed to mkdir: %s", err)
 	}
 
 	filePathCopyFrom := filepath.Join(cwd, "fixtures", "samples", "kics-auto-remediation", "terraform.tf")
 
 	tmpFileName := "temporary-remediation-" + utils.NextRandom() + filepath.Ext(filePathCopyFrom)
-	tmpFilePath := filepath.Join(cwd, "output", tmpFileName)
+	tmpFilePath := filepath.Join(cwd, "tmp-kics-ar", tmpFileName)
 
 	jsonPath := tmpFolderPath
 
 	// create a temporary file with the same content as filePathCopyFrom
 	tmpFile := remediation.CreateTempFile(filePathCopyFrom, tmpFilePath)
 
-	perm := 0777 // only for E2E tests
 	err = os.Chmod(tmpFile, os.FileMode(perm))
 
 	if err != nil {
@@ -214,7 +215,7 @@ func generateResults(reportName string) {
 	useDocker := kicsDockerImage != ""
 
 	if useDocker {
-		tmpFile = "/path/e2e/output/" + tmpFileName
+		tmpFile = "/path/e2e/tmp-kics-ar/" + tmpFileName
 	}
 
 	// create JSON results with remediation
