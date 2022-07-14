@@ -18,6 +18,11 @@ CxPolicy[result] {
 		"keyExpectedValue": "'versioning.status' is enabled",
 		"keyActualValue": "'versioning.status' is suspended",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "versioning", "status"], []),
+		"remediation": json.marshal({
+            "before": "Suspended",
+            "after": "Enabled"
+        }),
+        "remediationType": "replacement",
 	}
 }
 
@@ -36,5 +41,7 @@ CxPolicy[result] {
 		"keyExpectedValue": "'versioning.status' is defined and set to enabled",
 		"keyActualValue": "'versioning' is missing",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_oss_bucket", name], []),
+		"remediation": "versioning {\n\t\tstatus = \"Enabled\"\n\t}",
+        "remediationType": "addition",
 	}
 }

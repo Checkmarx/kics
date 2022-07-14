@@ -19,6 +19,11 @@ CxPolicy[result] {
 		"keyExpectedValue": "'ebs_optimized' is set to true",
 		"keyActualValue": "'ebs_optimized' is set to false",
 		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name, "ebs_optimized"], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -40,6 +45,11 @@ CxPolicy[result] {
 		"keyExpectedValue": "'ebs_optimized' is set to true",
 		"keyActualValue": "'ebs_optimized' is set to false",
 		"searchLine": common_lib.build_search_line(["module", name, "ebs_optimized"], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -59,6 +69,8 @@ CxPolicy[result] {
 		"keyExpectedValue": "'ebs_optimized' is set to true",
 		"keyActualValue": "'ebs_optimized' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name], []),
+		"remediation": "ebs_optimized = true",
+		"remediationType": "addition",
 	}
 }
 
@@ -80,6 +92,10 @@ CxPolicy[result] {
 		"keyExpectedValue": "'ebs_optimized' is set to true",
 		"keyActualValue": "'ebs_optimized' is undefined or null",
 		"searchLine": common_lib.build_search_line(["module", name], []),
+		"remediation": "point_in_time_recovery {\n\t\t enabled = true \n\t}",
+		"remediationType": "addition",
+		"remediation": sprintf("%s = true",[keyToCheck]),
+		"remediationType": "addition",
 	}
 }
 

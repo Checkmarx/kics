@@ -12,9 +12,12 @@ CxPolicy[result] {
 		"resourceType": "aws_elasticsearch_domain",
 		"resourceName": tf_lib.get_resource_name(awsElasticsearchDomain, name),
 		"searchKey": sprintf("aws_elasticsearch_domain[{{%s}}]", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_elasticsearch_domain", name], []),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'log_publishing_options' is defined and not null",
 		"keyActualValue": "'log_publishing_options' is undefined or null",
+		"remediation": "log_publishing_options {\n\t\t enabled = true \n\t}",
+		"remediationType": "addition",
 	}
 }
 
@@ -27,8 +30,14 @@ CxPolicy[result] {
 		"resourceType": "aws_elasticsearch_domain",
 		"resourceName": tf_lib.get_resource_name(awsElasticsearchDomain, name),
 		"searchKey": sprintf("aws_elasticsearch_domain[{{%s}}].log_publishing_options.enabled", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_elasticsearch_domain", name, "log_publishing_options", "enabled"], []),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'log_publishing_options.enabled' is true",
 		"keyActualValue": "'log_publishing_options.enabled' is false",
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
