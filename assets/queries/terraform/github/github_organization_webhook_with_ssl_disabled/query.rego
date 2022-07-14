@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(webhook, name),
 		"searchKey": sprintf("github_organization_webhook[%s].configuration.insecure_ssl", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("github_organization_webhook[%s].configuration.insecure_ssl is false", [name]),
+		"keyExpectedValue": sprintf("github_organization_webhook[%s].configuration.insecure_ssl should be set to false", [name]),
 		"keyActualValue": sprintf("github_organization_webhook[%s].configuration.insecure_ssl is true", [name]),
 	}
 }

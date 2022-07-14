@@ -4,16 +4,16 @@ import (
 	"regexp"
 )
 
-// E2E-CLI-057 - Kics fix command
-// should fix all remediation found
+// E2E-CLI-057 - Kics remediate command
+// should remediate all remediation found
 func init() { // nolint
-	generateResults("results-fix-all")
+	generateResults("results-remediate-all")
 
 	testSample := TestCase{
-		Name: "should fix all remediation found [E2E-CLI-057]",
+		Name: "should remediate all remediation found [E2E-CLI-057]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"fix", "--results", "/path/e2e/fixtures/tmp-kics-ar/results-fix-all.json", "-v"},
+				[]string{"remediate", "--results", "/path/e2e/tmp-kics-ar/results-remediate-all.json", "-v"},
 			},
 		},
 		WantStatus: []int{0},

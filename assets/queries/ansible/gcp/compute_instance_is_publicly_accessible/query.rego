@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.network_interfaces.access_configs", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_compute_instance.network_interfaces.access_configs is not defined",
+		"keyExpectedValue": "gcp_compute_instance.network_interfaces.access_configs should not be defined",
 		"keyActualValue": "gcp_compute_instance.network_interfaces.access_configs is defined",
 	}
 }

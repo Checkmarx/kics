@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s]", [lb[idx], name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'%s[%s]' is not 'internal' and has a 'aws_wafregional_web_acl_association' associated", [lb[idx], name]),
+		"keyExpectedValue": sprintf("'%s[%s]' should not be 'internal' and has a 'aws_wafregional_web_acl_association' associated", [lb[idx], name]),
 		"keyActualValue": sprintf("'%s[%s]' is not 'internal' and does not have a 'aws_wafregional_web_acl_association' associated", [lb[idx], name]),
 	}
 }

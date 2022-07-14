@@ -24,7 +24,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.rules.%s", [task.name, modules[m], cidr]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'ec2_group.rules.%s' is not %s", [cidr, cidrValue]),
+		"keyExpectedValue": sprintf("'ec2_group.rules.%s' should not be %s", [cidr, cidrValue]),
 		"keyActualValue": sprintf("'ec2_group.rules.%s' is %s", [cidr, rule[cidr]]),
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "rules", idx, cidr], []),
 	}

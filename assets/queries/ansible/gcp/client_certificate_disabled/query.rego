@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "gcp_container_cluster.master_auth is defined",
+		"keyExpectedValue": "gcp_container_cluster.master_auth should be defined",
 		"keyActualValue": "gcp_container_cluster.master_auth is undefined",
 	}
 }
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.master_auth", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "gcp_container_cluster.master_auth.client_certificate_config is defined",
+		"keyExpectedValue": "gcp_container_cluster.master_auth.client_certificate_config should be defined",
 		"keyActualValue": "gcp_container_cluster.master_auth.client_certificate_config is undefined",
 	}
 }
@@ -54,7 +54,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.master_auth.client_certificate_config.issue_client_certificate", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_container_cluster.master_auth.password is true",
+		"keyExpectedValue": "gcp_container_cluster.master_auth.password should be true",
 		"keyActualValue": "gcp_container_cluster.master_auth.password is false",
 	}
 }

@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.serviceAccountName", [metadata.name, specInfo.path]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s.serviceAccountName' is not shared with other workloads", [specInfo.path]),
+		"keyExpectedValue": sprintf("'%s.serviceAccountName' should not be shared with other workloads", [specInfo.path]),
 		"keyActualValue": sprintf("'%s.serviceAccountName' is shared with other workloads", [specInfo.path]),
 	}
 }

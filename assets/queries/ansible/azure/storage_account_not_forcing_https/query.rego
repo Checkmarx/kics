@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[index]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "azure_rm_storageaccount.https_only is defined",
+		"keyExpectedValue": "azure_rm_storageaccount.https_only should be defined",
 		"keyActualValue": "azure_rm_storageaccount.https_only is undefined (defaults to false)",
 	}
 }

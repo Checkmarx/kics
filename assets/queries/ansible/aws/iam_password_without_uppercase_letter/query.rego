@@ -18,8 +18,8 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.require_uppercase", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "iam_password_policy.require_uppercase set and true",
-		"keyActualValue": "iam_password_policy.require_uppercase undefined",
+		"keyExpectedValue": "iam_password_policy.require_uppercase should be set and true",
+		"keyActualValue": "iam_password_policy.require_uppercase is undefined",
 	}
 }
 
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.require_uppercase", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "iam_password_policy.require_uppercase is true",
+		"keyExpectedValue": "iam_password_policy.require_uppercase should be true",
 		"keyActualValue": "iam_password_policy.require_uppercase is false",
 	}
 }
