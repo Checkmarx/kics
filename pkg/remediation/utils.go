@@ -90,14 +90,14 @@ func willRemediate(remediated []string, originalFileName string, remediation *Re
 		log.Err(err)
 	}
 
-	return removedResult(results, *remediation)
+	return removedResult(results, remediation)
 }
 
-func removedResult(results []model.Vulnerability, remediation Remediation) bool {
+func removedResult(results []model.Vulnerability, remediation *Remediation) bool {
 	for i := range results {
 		result := results[i]
 
-		regex := regexp.MustCompile(`temporary-remediation-[0-9]+-`)
+		regex := regexp.MustCompile(`temporary-remediation-\d+-`)
 		match := regex.FindString(result.FileName)
 
 		if result.SearchKey == remediation.SearchKey &&
