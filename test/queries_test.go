@@ -97,7 +97,7 @@ func testRemediationQuery(t testing.TB, entry queryEntry, vulnerabilities []mode
 
 		for filePath := range temporaryRemediationSets {
 			wg.Add(1)
-			fix := temporaryRemediationSets[filePath].(remediation.RemediationSet)
+			fix := temporaryRemediationSets[filePath].(remediation.Set)
 
 			go func(filePath string) {
 				defer wg.Done()

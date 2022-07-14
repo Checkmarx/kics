@@ -38,14 +38,14 @@ type Remediation struct {
 	QueryID      string
 }
 
-// RemediationSet includes all the replacements and additions related to a file
-type RemediationSet struct {
+// Set includes all the replacements and additions related to a file
+type Set struct {
 	Replacement []Remediation
 	Addition    []Remediation
 }
 
 // RemediateFile remediationSets the replacements first and secondly, the additions sorted down
-func (s *Summary) RemediateFile(filePath string, remediationSet RemediationSet) error {
+func (s *Summary) RemediateFile(filePath string, remediationSet Set) error {
 	filepath.Clean(filePath)
 	content, err := os.ReadFile(filePath)
 

@@ -144,7 +144,7 @@ func (s *Summary) GetRemediationSetsFromVulns(vulnerabilities []model.Vulnerabil
 			SimilarityID:    vuln.SimilarityID,
 		}
 
-		var remediationSet RemediationSet
+		var remediationSet Set
 
 		if shouldRemediate(&file, include) {
 			s.mu.Lock()
@@ -170,7 +170,7 @@ func (s *Summary) GetRemediationSetsFromVulns(vulnerabilities []model.Vulnerabil
 				continue
 			}
 
-			updatedRemediationSet := remediationSets[file.FilePath].(RemediationSet)
+			updatedRemediationSet := remediationSets[file.FilePath].(Set)
 
 			updatedRemediationSet.Addition = append(updatedRemediationSet.Addition, remediationSet.Addition...)
 			updatedRemediationSet.Replacement = append(updatedRemediationSet.Replacement, remediationSet.Replacement...)

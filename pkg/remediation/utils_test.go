@@ -58,7 +58,7 @@ func Test_GetRemediationSets(t *testing.T) {
 		QueryID:      "a9dfec39-a740-4105-bbd6-721ba163c053",
 	}
 
-	var r, r2 RemediationSet
+	var r, r2 Set
 
 	r.Replacement = append(r.Replacement, *replacement)
 	r.Addition = append(r.Addition, *addition)

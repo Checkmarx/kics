@@ -41,7 +41,12 @@ func scanTmpFile(tmpFile, queryID string, remediated []byte) ([]model.Vulnerabil
 	// get payload
 	files, err := getPayload(tmpFile, remediated)
 
-	os.Remove(tmpFile)
+	if err != nil {
+		log.Err(err)
+		return []model.Vulnerability{}, err
+	}
+
+	err = os.Remove(tmpFile)
 
 	if err != nil {
 		log.Err(err)

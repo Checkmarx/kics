@@ -17,7 +17,7 @@ func Test_RemediateFile(t *testing.T) {
 	filePathCopyFrom := filepath.Join("..", "..", "test", "fixtures", "kics_auto_remediation", "terraform.tf")
 
 	type args struct {
-		remediate RemediationSet
+		remediate Set
 	}
 
 	replacement := &Remediation{
@@ -27,7 +27,7 @@ func Test_RemediateFile(t *testing.T) {
 		QueryID:      "41a38329-d81b-4be4-aef4-55b2615d3282",
 	}
 
-	var r1, r2, r3 RemediationSet
+	var r1, r2, r3 Set
 	r1.Replacement = append(r1.Replacement, *replacement)
 
 	addition := &Remediation{
@@ -71,7 +71,7 @@ func Test_RemediateFile(t *testing.T) {
 		{
 			name: "remediate a file without any remediation",
 			args: args{
-				remediate: RemediationSet{},
+				remediate: Set{},
 			},
 			actualRemediationDoneNumber: 0,
 		},
