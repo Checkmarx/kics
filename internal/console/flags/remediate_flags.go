@@ -1,6 +1,6 @@
 package flags
 
-// Flags constants for fix
+// Flags constants for remediate
 const (
 	Results    = "results"
 	IncludeIds = "include-ids"
