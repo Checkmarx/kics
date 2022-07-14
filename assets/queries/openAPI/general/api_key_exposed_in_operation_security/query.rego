@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.%s.%s.security.%s", [path, operation, s]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "The API Key is not transported over network",
+		"keyExpectedValue": "The API Key should not be transported over network",
 		"keyActualValue": "The API Key is transported over network",
 		"overrideKey": version,
 	}

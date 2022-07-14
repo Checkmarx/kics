@@ -29,9 +29,9 @@ type args struct {
 }
 
 type TestTemplates struct {
-	Help     string
-	ScanHelp string
-	FixHelp  string
+	Help          string
+	ScanHelp      string
+	RemediateHelp string
 }
 
 type cmdArgs []string

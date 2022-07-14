@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.network_acls.bypass", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "azure_rm_storageaccount.network_acls.bypass is not set or contains 'AzureServices'",
+		"keyExpectedValue": "azure_rm_storageaccount.network_acls.bypass should not be set or contain 'AzureServices'",
 		"keyActualValue": "azure_rm_storageaccount.network_acls.bypass does not contain 'AzureServices' ",
 	}
 }

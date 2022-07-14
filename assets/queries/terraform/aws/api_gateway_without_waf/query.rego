@@ -22,10 +22,14 @@ CxPolicy[result] {
 }
 
 has_waf_associated(apiGatewayName) {
-    resource := input.document[_].resource.aws_wafregional_web_acl_association[_]
-   
+    targetResources := {"aws_wafregional_web_acl_association", "aws_wafv2_web_acl_association"}
+
+    waf := targetResources[_]
+
+    resource := input.document[_].resource[waf][_]
+
     associatedResource := split(resource.resource_arn, ".")
-   
+
     associatedResource[0] == "${aws_api_gateway_stage"
     associatedResource[1] == apiGatewayName
 }

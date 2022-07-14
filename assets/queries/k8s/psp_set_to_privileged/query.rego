@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.privileged", [metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.privileged is false", [metadata.name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.privileged should be set to false", [metadata.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.spec.privileged is true", [metadata.name]),
 	}
 }

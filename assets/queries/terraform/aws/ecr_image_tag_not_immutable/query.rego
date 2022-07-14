@@ -13,9 +13,12 @@ CxPolicy[result] {
 		"resourceType": "aws_ecr_repository",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_ecr_repository.%s", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_ecr_repository", name], []),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_ecr_repository.%s.image_tag_mutability is defined and not null", [name]),
 		"keyActualValue": sprintf("aws_ecr_repository.%s.image_tag_mutability is undefined or null", [name]),
+		"remediation": "image_tag_mutability = IMMUTABLE",
+		"remediationType": "addition",
 	}
 }
 
@@ -29,8 +32,14 @@ CxPolicy[result] {
 		"resourceType": "aws_ecr_repository",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_ecr_repository.%s.image_tag_mutability", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_ecr_repository", name, "image_tag_mutability"], []),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_ecr_repository.%s.image_tag_mutability is 'IMMUTABLE'", [name]),
 		"keyActualValue": sprintf("aws_ecr_repository.%s.image_tag_mutability is 'MUTABLE'", [name]),
+		"remediation": json.marshal({
+			"before": "MUTABLE",
+			"after": "IMMUTABLE"
+		}),
+		"remediationType": "replacement",
 	}
 }

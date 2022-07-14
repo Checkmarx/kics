@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.hostPID", [metadata.name, specInfo.path]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s.hostPID' is false or undefined", [specInfo.path]),
+		"keyExpectedValue": sprintf("'%s.hostPID' should be set to false or undefined", [specInfo.path]),
 		"keyActualValue": sprintf("'%s.hostPID' is true", [specInfo.path]),
 	}
 }

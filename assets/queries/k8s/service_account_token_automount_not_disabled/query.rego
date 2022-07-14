@@ -53,7 +53,7 @@ checkAutomount(specInfo, document, metadata) = result {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.automountServiceAccountToken", [metadata.name, specInfo.path]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.automountServiceAccountToken is false", [metadata.name, specInfo.path]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.automountServiceAccountToken should be set to false", [metadata.name, specInfo.path]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.automountServiceAccountToken is true", [metadata.name, specInfo.path]),
 	}
 }
@@ -76,7 +76,7 @@ checkAutomount(specInfo, document, metadata) = result {
 		"resourceName": SAWithAutoMount[k].metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.automountServiceAccountToken", [SAWithAutoMount[k].metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.automountServiceAccountToken is false", [SAWithAutoMount[k].metadata.name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.automountServiceAccountToken should be set to false", [SAWithAutoMount[k].metadata.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.automountServiceAccountToken is true", [SAWithAutoMount[k].metadata.name]),
 	}
 }

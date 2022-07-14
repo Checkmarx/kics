@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_codebuild_project[%s].encryption_key", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "CodeBuild Project is not encrypted with AWS managed key",
+		"keyExpectedValue": "CodeBuild Project should not be encrypted with AWS managed key",
 		"keyActualValue": "CodeBuild Project is encrypted with AWS managed key",
 	}
 }

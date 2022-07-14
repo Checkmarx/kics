@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.host_ipc", [resourceType, name, specInfo.path]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Attribute 'host_ipc' is undefined or false",
+		"keyExpectedValue": "Attribute 'host_ipc' should be undefined or false",
 		"keyActualValue": "Attribute 'host_ipc' is true",
 		"searchLine": common_lib.build_search_line([resourceType, name, specInfo.path],["host_ipc"]),
 		"remediation": json.marshal({

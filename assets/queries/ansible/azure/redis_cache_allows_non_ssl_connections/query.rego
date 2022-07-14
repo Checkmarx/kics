@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.enable_non_ssl_port", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "azure_rm_rediscache.enable_non_ssl_port is false or undefined",
+		"keyExpectedValue": "azure_rm_rediscache.enable_non_ssl_port should be set to false or undefined",
 		"keyActualValue": "azure_rm_rediscache.enable_non_ssl_port is true",
 	}
 }

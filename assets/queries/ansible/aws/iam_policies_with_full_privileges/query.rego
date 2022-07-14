@@ -22,7 +22,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "iam_managed_policy.policy.Statement.Action not contains '*'",
+		"keyExpectedValue": "iam_managed_policy.policy.Statement.Action should not contain '*'",
 		"keyActualValue": "iam_managed_policy.policy.Statement.Action contains '*'",
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}

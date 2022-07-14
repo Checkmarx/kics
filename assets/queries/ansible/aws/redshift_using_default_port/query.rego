@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.port", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "redshift.port is not set to 5439",
+		"keyExpectedValue": "redshift.port should not be set to 5439",
 		"keyActualValue": "redshift.port is set to 5439",
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "port"], []),
 	}

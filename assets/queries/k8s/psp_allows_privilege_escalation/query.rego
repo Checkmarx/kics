@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"issueType": "IncorrectValue",
 		"searchKey": sprintf("metadata.name={{%s}}.%s.allowPrivilegeEscalation", [metadata.name, specInfo.path]),
-		"keyExpectedValue": "Attribute 'allowPrivilegeEscalation' is false",
+		"keyExpectedValue": "Attribute 'allowPrivilegeEscalation' should be set to false",
 		"keyActualValue": "Attribute 'allowPrivilegeEscalation' is true",
 	}
 }

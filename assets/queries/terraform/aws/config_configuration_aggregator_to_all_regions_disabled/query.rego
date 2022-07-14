@@ -16,6 +16,11 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'aws_config_configuration_aggregator[%s].%s.all_regions' is set to true", [name, type]),
 		"keyActualValue": sprintf("'aws_config_configuration_aggregator[%s].%s.all_regions' is set to false", [name, type]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_config_configuration_aggregator", name, type, "all_regions"], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -36,5 +41,7 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'aws_config_configuration_aggregator[%s].%s.all_regions' is set to true", [name, type]),
 		"keyActualValue": sprintf("'aws_config_configuration_aggregator[%s].%s.all_regions' is undefined", [name, type]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_config_configuration_aggregator", name, type], []),
+		"remediation": "all_regions = true",
+		"remediationType": "addition",
 	}
 }

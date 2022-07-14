@@ -46,7 +46,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.security_context.privileged", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context.privileged is not set to true", [resourceType, name, specInfo.path, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context.privileged should not be set to true", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.security_context.privileged is set to true", [resourceType, name, specInfo.path, types[x]]),
 		"searchLine": common_lib.build_search_line([resourceType, name, specInfo.path],[types[x], "security_context","privileged"]),
 		"remediation": json.marshal({

@@ -98,7 +98,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resources[resource], resource),
 		"searchKey": sprintf("Resources.%s.Properties.BucketEncryption.ServerSideEncryptionConfiguration.ServerSideEncryptionByDefault.KMSMasterKeyID", [resource]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.BucketEncryption.ServerSideEncryptionConfiguration.ServerSideEncryptionByDefault.KMSMasterKeyID is undefined", [resource]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.BucketEncryption.ServerSideEncryptionConfiguration.ServerSideEncryptionByDefault.KMSMasterKeyID should be undefined", [resource]),
 		"keyActualValue": sprintf("Resources.%s.Properties.BucketEncryption.ServerSideEncryptionConfiguration.ServerSideEncryptionByDefault.KMSMasterKeyID is set", [resource]),
 	}
 }

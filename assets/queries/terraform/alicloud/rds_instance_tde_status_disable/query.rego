@@ -22,6 +22,11 @@ CxPolicy[result] {
 		"keyExpectedValue": "'tde_status' value should be 'Enabled'",
 		"keyActualValue": "'tde_status' value is set to 'Disabled'",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name, "tde_status"], []),
+		"remediation": json.marshal({
+            "before": "Disabled",
+            "after": "Enabled"
+        }),
+        "remediationType": "replacement",	
 	}
 }
 
@@ -41,6 +46,8 @@ CxPolicy[result] {
 		"keyExpectedValue": "'tde_status' value should be 'Enabled'",
 		"keyActualValue": "'tde_status' is not declared",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name], []),
+		"remediation": "tde_status = \"Enabled\"",
+        "remediationType": "addition",	
 	}
 }
 
@@ -60,6 +67,11 @@ CxPolicy[result] {
 		"keyExpectedValue": "'tde_status' value should be 'Enabled'",
 		"keyActualValue": "'tde_status' value is set to 'Disabled'",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name, "tde_status"], []),
+		"remediation": json.marshal({
+            "before": "Disabled",
+            "after": "Enabled"
+        }),
+        "remediationType": "replacement",
 	}
 }
 
@@ -79,6 +91,8 @@ CxPolicy[result] {
 		"keyExpectedValue": "'tde_status' value should be 'Enabled'",
 		"keyActualValue": "'tde_status' is not declared",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name], []),
+		"remediation": "tde_status = \"Enabled\"",
+        "remediationType": "addition",	
 	}
 }
 

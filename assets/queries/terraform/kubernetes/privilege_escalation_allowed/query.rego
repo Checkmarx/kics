@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.name={{%s}}.security_context.allow_privilege_escalation", [resourceType, name, specInfo.path, types[x],containers[y].name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.allow_privilege_escalation is not set to true", [resourceType, name, specInfo.path, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.allow_privilege_escalation should not be set to true", [resourceType, name, specInfo.path, types[x], y]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].security_context.allow_privilege_escalation is set to true", [resourceType, name, specInfo.path, types[x], y]),
 		"searchLine": common_lib.build_search_line([resourceType, name, specInfo.path],[types[x], "security_context","allow_privilege_escalation"]),
 		"remediation": json.marshal({
@@ -46,7 +46,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.security_context.allow_privilege_escalation", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context.allow_privilege_escalation is not set to true", [resourceType, name, specInfo.path, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context.allow_privilege_escalation should not be set to true", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.security_context.allow_privilege_escalation is set to true", [resourceType, name, specInfo.path, types[x]]),
 		"searchLine": common_lib.build_search_line([resourceType, name, specInfo.path],[types[x], "security_context","allow_privilege_escalation"]),
 		"remediation": json.marshal({

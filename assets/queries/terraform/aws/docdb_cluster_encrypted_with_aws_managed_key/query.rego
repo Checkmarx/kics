@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_docdb_cluster[%s].kms_key_id", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "DOCDB Cluster is not encrypted with AWS managed key",
+		"keyExpectedValue": "DOCDB Cluster should not be encrypted with AWS managed key",
 		"keyActualValue": "DOCDB Cluster is encrypted with AWS managed key",
 	}
 }
