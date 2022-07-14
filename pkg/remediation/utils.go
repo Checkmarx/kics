@@ -54,7 +54,7 @@ func getBefore(line string) string {
 func willRemediate(remediated []string, originalFileName string, remediation *Remediation) bool {
 	filepath.Clean(originalFileName)
 	// create temporary file
-	tmpFile := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+filepath.Ext(originalFileName))
+	tmpFile := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+"-"+filepath.Base(originalFileName))
 	f, err := os.OpenFile(tmpFile, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
 
 	if err != nil {
@@ -90,15 +90,21 @@ func willRemediate(remediated []string, originalFileName string, remediation *Re
 		log.Err(err)
 	}
 
-	return removedSimilarityID(results, remediation.SimilarityID)
+	return removedResult(results, *remediation)
 }
 
-func removedSimilarityID(results []model.Vulnerability, similarity string) bool {
+func removedResult(results []model.Vulnerability, remediation Remediation) bool {
 	for i := range results {
 		result := results[i]
 
-		if result.SimilarityID == similarity {
-			log.Info().Msgf("failed to remediate '%s'", similarity)
+		regex := regexp.MustCompile(`temporary-remediation-[0-9]+-`)
+		match := regex.FindString(result.FileName)
+
+		if result.SearchKey == remediation.SearchKey &&
+			result.KeyActualValue == remediation.ActualValue &&
+			result.KeyExpectedValue == remediation.ExpectedValue &&
+			filepath.Base(result.FileName) == match+filepath.Base(remediation.FilePath) {
+			log.Info().Msgf("failed to remediate '%s'", remediation.SimilarityID)
 			return false
 		}
 	}
@@ -160,10 +166,14 @@ func (s *Summary) GetRemediationSetsFromVulns(vulnerabilities []model.Vulnerabil
 			s.SelectedRemediationNumber++
 			s.mu.Unlock()
 			r := &Remediation{
-				Line:         file.Line,
-				Remediation:  file.Remediation,
-				SimilarityID: file.SimilarityID,
-				QueryID:      vuln.QueryID,
+				Line:          file.Line,
+				Remediation:   file.Remediation,
+				SimilarityID:  file.SimilarityID,
+				QueryID:       vuln.QueryID,
+				SearchKey:     vuln.SearchKey,
+				FilePath:      file.FilePath,
+				ExpectedValue: vuln.KeyExpectedValue,
+				ActualValue:   vuln.KeyActualValue,
 			}
 
 			if file.RemediationType == "replacement" {
@@ -198,12 +208,15 @@ func getVulns(results Report) []model.Vulnerability {
 		for j := range query.Files {
 			file := query.Files[j]
 			vuln := &model.Vulnerability{
-				FileName:        file.FilePath,
-				Line:            file.Line,
-				Remediation:     file.Remediation,
-				RemediationType: file.RemediationType,
-				SimilarityID:    file.SimilarityID,
-				QueryID:         query.QueryID,
+				FileName:         file.FilePath,
+				Line:             file.Line,
+				Remediation:      file.Remediation,
+				RemediationType:  file.RemediationType,
+				SimilarityID:     file.SimilarityID,
+				QueryID:          query.QueryID,
+				SearchKey:        file.SearchKey,
+				KeyExpectedValue: file.ExpectedValue,
+				KeyActualValue:   file.ActualValue,
 			}
 
 			vulns = append(vulns, *vuln)

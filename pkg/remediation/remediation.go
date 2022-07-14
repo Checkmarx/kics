@@ -28,14 +28,21 @@ type File struct {
 	Remediation     string `json:"remediation"`
 	RemediationType string `json:"remediation_type"`
 	SimilarityID    string `json:"similarity_id"`
+	SearchKey       string `json:"search_key"`
+	ExpectedValue   string `json:"expected_value"`
+	ActualValue     string `json:"actual_value"`
 }
 
 // Remediation presents all the relevant information for the fix
 type Remediation struct {
-	Line         int
-	Remediation  string
-	SimilarityID string
-	QueryID      string
+	Line          int
+	Remediation   string
+	SimilarityID  string
+	QueryID       string
+	SearchKey     string
+	FilePath      string
+	ExpectedValue string
+	ActualValue   string
 }
 
 // Set includes all the replacements and additions related to a file

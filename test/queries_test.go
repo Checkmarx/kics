@@ -21,7 +21,6 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/pkg/remediation"
-	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/golang/mock/gomock"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -87,7 +86,7 @@ func testRemediationQuery(t testing.TB, entry queryEntry, vulnerabilities []mode
 		temporaryRemediationSets := make(map[string]interface{})
 
 		for k := range remediationSets {
-			tmpFilePath := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+filepath.Ext(k))
+			tmpFilePath := filepath.Join(os.TempDir(), filepath.Base(k))
 			tmpFile := remediation.CreateTempFile(k, tmpFilePath)
 
 			temporaryRemediationSets[tmpFile] = remediationSets[k]
