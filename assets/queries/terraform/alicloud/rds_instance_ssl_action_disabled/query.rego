@@ -18,6 +18,11 @@ CxPolicy[result] {
 		"keyExpectedValue": "'ssl_action' value should be 'Open'",
 		"keyActualValue": "'ssl_action' value is 'Close'",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name, "ssl_action"], []),
+		"remediation": json.marshal({
+            "before": "Close",
+            "after": "Open"
+        }),
+        "remediationType": "replacement",	
 	}
 }
 
@@ -35,5 +40,7 @@ CxPolicy[result] {
 		"keyExpectedValue": "'ssl_action' value should be 'Open'",
 		"keyActualValue": "'ssl_action' is not defined",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name], []),
+		"remediation": "ssl_action = \"Open\"",
+        "remediationType": "addition",	
 	}
 }
