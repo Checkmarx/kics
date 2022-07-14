@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' has the 'enableRBAC' property defined",
+		"keyExpectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' property defined",
 		"keyActualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' property defined",
 		"searchLine": common_lib.build_search_line(path, ["properties"]),
 	}
@@ -34,7 +34,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.enableRBAC", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' has the 'enableRBAC' property set to true",
+		"keyExpectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' property set to true",
 		"keyActualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' set to true",
 		"searchLine": common_lib.build_search_line(path, ["properties", "enableRBAC"]),
 	}

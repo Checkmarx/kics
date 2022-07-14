@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("securityDefinitions.{{%s}}.type", [key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "security definition is not using basic authentication",
+		"keyExpectedValue": "security definition should not be using basic authentication",
 		"keyActualValue": "security definition is using basic authentication",
 	}
 }

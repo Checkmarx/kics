@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.security.{{%s}}", [p, oper, key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Operation Object is not using implicit flow",
+		"keyExpectedValue": "Operation Object should not be using implicit flow",
 		"keyActualValue": "Operation Object is using implicit flow",
 	}
 }

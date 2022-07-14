@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_load_balancer_policy[%s].policy_attribute.name", [name]),
 		"searchLine": commonLib.build_search_line(["resource", "aws_load_balancer_policy", name, "policy_attribute", "name" ], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s]' is not an insecure protocol", [name, protocol]),
+		"keyExpectedValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s]' should not be an insecure protocol", [name, protocol]),
 		"keyActualValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s]' is an insecure protocol", [name, protocol]),
 		"remediation": json.marshal({
 			"before": sprintf("%s", [protocol]),
@@ -42,7 +42,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_load_balancer_policy[%s].policy_attribute[%d].name", [name,j]),
 		"searchLine": commonLib.build_search_line(["resource", "aws_load_balancer_policy", name, "policy_attribute", j, "name" ], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s]' is not an insecure protocol", [name, protocol]),
+		"keyExpectedValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s]' should not be an insecure protocol", [name, protocol]),
 		"keyActualValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s]' is an insecure protocol", [name, protocol]),
 		"remediation": json.marshal({
 			"before": sprintf("%s", [protocol]),

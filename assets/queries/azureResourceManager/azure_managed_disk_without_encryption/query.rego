@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, issue.sk]),
 		"issueType": issue.issueType,
-		"keyExpectedValue": "'encryptionSettingsCollection.enabled' is set to true",
+		"keyExpectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
 		"keyActualValue": issue.keyActualValue,
 		"searchLine": common_lib.build_search_line(path, issue.sl),
 	}

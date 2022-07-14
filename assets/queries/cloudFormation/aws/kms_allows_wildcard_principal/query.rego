@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resources, name),
 		"searchKey": sprintf("Resources.%s.Properties.KeyPolicy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.KeyPolicy.Statement is not '*'", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.KeyPolicy.Statement should not be '*'", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.KeyPolicy.Statement is '*'", [name]),
 		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "KeyPolicy"], []),
 	}

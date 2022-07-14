@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "cloudtrail.enable_log_file_validation or cloudtrail.log_file_validation_enabled is defined",
+		"keyExpectedValue": "cloudtrail.enable_log_file_validation or cloudtrail.log_file_validation_enabled should be defined",
 		"keyActualValue": "cloudtrail.enable_log_file_validation and cloudtrail.log_file_validation_enabled are undefined",
 	}
 }
@@ -40,7 +40,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.%s", [task.name, modules[m], attr]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("cloudtrail.%s is set to true or yes", [attr]),
+		"keyExpectedValue": sprintf("cloudtrail.%s should be set to true or yes", [attr]),
 		"keyActualValue": sprintf("cloudtrail.%s is not set to true nor yes", [attr]),
 	}
 }

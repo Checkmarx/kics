@@ -24,7 +24,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.%s", [path, op, code, cont]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.%s is not defined", [path, op, code, cont]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.%s should not be defined", [path, op, code, cont]),
 		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.%s is defined", [path, op, code, cont]),
 		"overrideKey": version,
 	}
@@ -45,7 +45,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.responses.{{%s}}.%s", [path, code, cont]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("paths.{{%s}}.responses.{{%s}}.%s is not defined", [path, code, cont]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.responses.{{%s}}.%s should not be defined", [path, code, cont]),
 		"keyActualValue": sprintf("paths.{{%s}}.responses.{{%s}}.%s is defined", [path, code, cont]),
 		"overrideKey": version,
 	}

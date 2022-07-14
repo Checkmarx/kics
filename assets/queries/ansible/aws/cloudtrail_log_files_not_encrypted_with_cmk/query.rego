@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "cloudtrail.kms_key_id is set",
+		"keyExpectedValue": "cloudtrail.kms_key_id should be set",
 		"keyActualValue": "cloudtrail.kms_key_id is undefined",
 	}
 }
