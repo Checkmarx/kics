@@ -8,6 +8,7 @@ CxPolicy[result] {
 	resource = document.resource.aws_autoscaling_group[name]
 
 	count(resource.load_balancers) == 0
+	not has_target_group_arns(resource, "target_group_arns")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -26,6 +27,7 @@ CxPolicy[result] {
 	resource = document.resource.aws_autoscaling_group[name]
 
 	not common_lib.valid_key(resource, "load_balancers")
+	not has_target_group_arns(resource, "target_group_arns")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -42,7 +44,9 @@ CxPolicy[result] {
 CxPolicy[result] {
 	module := input.document[i].module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_autoscaling_group", "load_balancers")
+	keyToCheckGroupArns := common_lib.get_module_equivalent_key("aws", module.source, "aws_autoscaling_group", "target_group_arns")
 
+	not has_target_group_arns(module, keyToCheckGroupArns)
 	not common_lib.valid_key(module, keyToCheck)
 
 	result := {
@@ -60,7 +64,9 @@ CxPolicy[result] {
 CxPolicy[result] {
 	module := input.document[i].module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_autoscaling_group", "load_balancers")
+	keyToCheckGroupArns := common_lib.get_module_equivalent_key("aws", module.source, "aws_autoscaling_group", "target_group_arns")
 
+	not has_target_group_arns(module, keyToCheckGroupArns)
 	count(module[keyToCheck]) == 0
 
 	result := {
@@ -73,4 +79,12 @@ CxPolicy[result] {
 		"keyActualValue": "'load_balancers' is undefined",
 		"searchLine": common_lib.build_search_line(["module", name, "load_balancers"], []),
 	}
+}
+
+has_target_group_arns(resource, key){
+	not is_array(resource[key])
+	resource[key] != ""
+} else{
+	is_array(resource[key])
+	count(resource[key]) > 0
 }
