@@ -41,11 +41,6 @@ CxPolicy[result] {
 		"keyExpectedValue": "'log_connections' parameter is defined value should be 'ON'",
 		"keyActualValue": "'log_connections' parameter is not defined",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name], ["parameters"]),
-		"remediation": json.marshal({
-			"before": "[",
-			"after": "[{\n\t\tname = \"log_connections\"\n\t\tvalue = \"ON\"\n\t},"			
-		}),
-		"remediationType": "replacement",	
 	}
 }
 

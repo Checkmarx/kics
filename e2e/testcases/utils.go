@@ -197,7 +197,7 @@ func generateResults(reportName string) {
 
 	filePathCopyFrom := filepath.Join(cwd, "fixtures", "samples", "kics-auto-remediation", "terraform.tf")
 
-	tmpFileName := "temporary-remediation-" + utils.NextRandom() + filepath.Ext(filePathCopyFrom)
+	tmpFileName := utils.NextRandom() + filepath.Ext(filePathCopyFrom)
 	tmpFilePath := filepath.Join(cwd, "tmp-kics-ar", tmpFileName)
 
 	jsonPath := tmpFolderPath

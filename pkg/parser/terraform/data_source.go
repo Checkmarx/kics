@@ -70,6 +70,8 @@ type convertedPolicy struct {
 	Version   string                     `json:"Version,omitempty"`
 }
 
+var mutexData = &sync.Mutex{}
+
 func getDataSourcePolicy(currentPath string) {
 	tfFiles, err := filepath.Glob(filepath.Join(currentPath, "*.tf"))
 	if err != nil {
@@ -108,10 +110,9 @@ func getDataSourcePolicy(currentPath string) {
 		return
 	}
 
-	var mutex = &sync.Mutex{}
-	mutex.Lock()
+	mutexData.Lock()
 	inputVariableMap["data"] = data
-	mutex.Unlock()
+	mutexData.Unlock()
 }
 
 func decodeDataSourcePolicy(value cty.Value) dataSourcePolicy {

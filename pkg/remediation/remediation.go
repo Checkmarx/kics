@@ -28,14 +28,20 @@ type File struct {
 	Remediation     string `json:"remediation"`
 	RemediationType string `json:"remediation_type"`
 	SimilarityID    string `json:"similarity_id"`
+	SearchKey       string `json:"search_key"`
+	ExpectedValue   string `json:"expected_value"`
+	ActualValue     string `json:"actual_value"`
 }
 
 // Remediation presents all the relevant information for the fix
 type Remediation struct {
-	Line         int
-	Remediation  string
-	SimilarityID string
-	QueryID      string
+	Line          int
+	Remediation   string
+	SimilarityID  string
+	QueryID       string
+	SearchKey     string
+	ExpectedValue string
+	ActualValue   string
 }
 
 // Set includes all the replacements and additions related to a file
@@ -60,7 +66,7 @@ func (s *Summary) RemediateFile(filePath string, remediationSet Set) error {
 	if len(remediationSet.Replacement) > 0 {
 		for i := range remediationSet.Replacement {
 			r := remediationSet.Replacement[i]
-			remediatedLines := replacement(r, lines)
+			remediatedLines := replacement(&r, lines)
 			if len(remediatedLines) > 0 && willRemediate(remediatedLines, filePath, &r) {
 				lines = s.writeRemediation(remediatedLines, lines, filePath, r.SimilarityID)
 			}
@@ -76,7 +82,7 @@ func (s *Summary) RemediateFile(filePath string, remediationSet Set) error {
 
 		for i := range remediationSet.Addition {
 			a := remediationSet.Addition[i]
-			remediatedLines := addition(a, &lines)
+			remediatedLines := addition(&a, &lines)
 			if len(remediatedLines) > 0 && willRemediate(remediatedLines, filePath, &a) {
 				lines = s.writeRemediation(remediatedLines, lines, filePath, a.SimilarityID)
 			}
@@ -92,7 +98,7 @@ type ReplacementInfo struct {
 	After  string `json:"after"`
 }
 
-func replacement(r Remediation, lines []string) []string {
+func replacement(r *Remediation, lines []string) []string {
 	originalLine := lines[r.Line-1]
 
 	var replacement ReplacementInfo
@@ -115,7 +121,7 @@ func replacement(r Remediation, lines []string) []string {
 	return lines
 }
 
-func addition(r Remediation, lines *[]string) []string {
+func addition(r *Remediation, lines *[]string) []string {
 	fatherNumberLine := r.Line - 1
 
 	if len(*lines) <= fatherNumberLine+1 {
