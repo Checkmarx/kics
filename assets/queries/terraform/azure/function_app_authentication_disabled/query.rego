@@ -17,6 +17,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'azurerm_function_app[%s].auth_settings' is defined and not null", [name]),
 		"keyActualValue": sprintf("'azurerm_function_app[%s].auth_settings' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_function_app", name], []),
+		"remediation": "\nauth_settings {\n\t\tenabled = true\n\t}\n",
+		"remediationType": "addition",
 	}
 }
 
@@ -34,5 +36,10 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'azurerm_function_app[%s].auth_settings.enabled' is set to true", [name]),
 		"keyActualValue": sprintf("'azurerm_function_app[%s].auth_settings.enabled' is not set to true", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_function_app", name, "auth_settings", "enabled"], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }

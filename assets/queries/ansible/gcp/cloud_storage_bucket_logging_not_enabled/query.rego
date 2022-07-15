@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "gcp_storage_bucket.logging is defined",
+		"keyExpectedValue": "gcp_storage_bucket.logging should be defined",
 		"keyActualValue": "gcp_storage_bucket.logging is undefined",
 	}
 }

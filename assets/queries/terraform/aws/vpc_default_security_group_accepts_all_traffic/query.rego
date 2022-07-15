@@ -46,7 +46,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_default_security_group[{{%s}}].%s.%s", [name, block, cidrs[c]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s' is undefined", [block]),
+		"keyExpectedValue": sprintf("'%s' should be undefined", [block]),
 		"keyActualValue": sprintf("'%s' accepts all traffic", [block]),
 	}
 }

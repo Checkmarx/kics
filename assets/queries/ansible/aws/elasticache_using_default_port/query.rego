@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.cache_port", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'cache_port' is not set to %d", [enginePort]),
+		"keyExpectedValue": sprintf("'cache_port' should not be set to %d", [enginePort]),
 		"keyActualValue": sprintf("'cache_port' is set to %d", [enginePort]),
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "cache_port"], []),
 	}

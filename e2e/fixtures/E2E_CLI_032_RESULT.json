@@ -136,7 +136,7 @@
 					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is not open to the world (0.0.0.0/0)",
+					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp should not be open to the world (0.0.0.0/0)",
 					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is open to the world (0.0.0.0/0)"
 				},
 				{
@@ -149,7 +149,7 @@
 					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp is not open to the world (0.0.0.0/0)",
+					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp should not be open to the world (0.0.0.0/0)",
 					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp is open to the world (0.0.0.0/0)"
 				}
 			]

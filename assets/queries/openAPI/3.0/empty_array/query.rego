@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s", [openapi_lib.concat_path(path)]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "The array is not empty",
+		"keyExpectedValue": "The array should not be empty",
 		"keyActualValue": "The array is empty",
 	}
 }

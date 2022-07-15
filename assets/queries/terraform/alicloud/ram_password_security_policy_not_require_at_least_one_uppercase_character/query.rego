@@ -16,6 +16,11 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'require_uppercase_characters' is defined and set to true",
 		"keyActualValue": "'require_uppercase_characters' is false",
-		"searchLine": common_lib.build_search_line(["resource", "alicloud_ram_account_password_policy", name, "require_uppercase_characters"], []),		
+		"searchLine": common_lib.build_search_line(["resource", "alicloud_ram_account_password_policy", name, "require_uppercase_characters"], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",		
 	}
 }

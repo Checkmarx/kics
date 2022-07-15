@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.require_lowercase", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "iam_password_policy.require_lowercase is set and true",
+		"keyExpectedValue": "iam_password_policy.require_lowercase should be set and true",
 		"keyActualValue": "iam_password_policy.require_lowercase is undefined",
 	}
 }
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.require_lowercase", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "iam_password_policy.require_lowercase is true",
+		"keyExpectedValue": "iam_password_policy.require_lowercase should be true",
 		"keyActualValue": "iam_password_policy.require_lowercase is false",
 	}
 }

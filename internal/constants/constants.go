@@ -9,7 +9,7 @@ import (
 
 var (
 	// Version - current KICS version
-	Version = "1.5.11"
+	Version = "1.5.12"
 	// SCMCommit - Source control management commit identifier
 	SCMCommit = "NOCOMMIT"
 	// SentryDSN - sentry DSN, unset for disabling
@@ -74,9 +74,10 @@ var (
 
 	// AvailableCloudProviders - All cloud providers available
 	AvailableCloudProviders = map[string]string{
-		"aws":   "",
-		"azure": "",
-		"gcp":   "",
+		"alicloud": "",
+		"aws":      "",
+		"azure":    "",
+		"gcp":      "",
 	}
 )
 

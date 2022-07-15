@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.privileged", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name={{%s}}.{{%s}}.privileged is 'false' or not set", [task.name, modules[m]]),
+		"keyExpectedValue": sprintf("name={{%s}}.{{%s}}.privileged should be set to 'false' or not set", [task.name, modules[m]]),
 		"keyActualValue": sprintf("name={{%s}}.{{%s}}.privileged is 'true'", [task.name, modules[m]]),
 	}
 }

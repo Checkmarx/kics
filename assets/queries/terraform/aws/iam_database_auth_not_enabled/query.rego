@@ -16,6 +16,11 @@ CxPolicy[result] {
 		"keyExpectedValue": "'iam_database_authentication_enabled' is set to true",
 		"keyActualValue": "'iam_database_authentication_enabled' is set to false",
 		"searchLine": common_lib.build_search_line(["resource", "aws_db_instance", name, "iam_database_authentication_enabled"], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -34,6 +39,11 @@ CxPolicy[result] {
 		"keyExpectedValue": "'iam_database_authentication_enabled' is set to true",
 		"keyActualValue": "'iam_database_authentication_enabled' is set to false",
 		"searchLine": common_lib.build_search_line(["module", name, "iam_database_authentication_enabled"], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -50,6 +60,8 @@ CxPolicy[result] {
 		"keyExpectedValue": "'iam_database_authentication_enabled' is set to true",
 		"keyActualValue": "'iam_database_authentication_enabled' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resource", "aws_db_instance", name], []),
+		"remediation": "iam_database_authentication_enabled = true",
+		"remediationType": "addition",
 	}
 }
 
@@ -68,5 +80,7 @@ CxPolicy[result] {
 		"keyExpectedValue": "'iam_database_authentication_enabled' is set to true",
 		"keyActualValue": "'iam_database_authentication_enabled' is undefined or null",
 		"searchLine": common_lib.build_search_line(["module", name], []),
+		"remediation": "iam_database_authentication_enabled = true",
+		"remediationType": "addition",
 	}
 }

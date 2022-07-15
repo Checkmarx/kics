@@ -2,16 +2,19 @@
   {
     "queryName": "AMI Not Encrypted",
     "severity": "HIGH",
-    "line": 7
+    "line": 29,
+    "fileName": "positive.tf"
   },
   {
     "queryName": "AMI Not Encrypted",
     "severity": "HIGH",
-    "line": 21
+    "line": 25,
+    "fileName": "positive.tf"
   },
   {
     "queryName": "AMI Not Encrypted",
     "severity": "HIGH",
-    "line": 29
+    "line": 7,
+    "fileName": "positive.tf"
   }
 ]

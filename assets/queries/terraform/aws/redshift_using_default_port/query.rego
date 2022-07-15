@@ -29,7 +29,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(redshift, name),
 		"searchKey": sprintf("aws_redshift_cluster[%s].port", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_redshift_cluster.port is not set to 5439",
+		"keyExpectedValue": "aws_redshift_cluster.port should not be set to 5439",
 		"keyActualValue": "aws_redshift_cluster.port is set to 5439",
 		"searchLine": common_lib.build_search_line(["resource", "aws_redshift_cluster", name, "port"], []),
 	}
