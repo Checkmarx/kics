@@ -16,6 +16,9 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'versioning' is defined and not null",
 		"keyActualValue": "'versioning' it undefined or null",
+		"searchLine": common_lib.build_search_line(["resource", "google_storage_bucket", name],[]),
+		"remediation": "versioning {\n\t\tenabled = true\n\t}\n",
+		"remediationType": "addition",
 	}
 }
 
@@ -32,5 +35,11 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'versioning.enabled' is true",
 		"keyActualValue": "'versioning.enabled' is false",
+		"searchLine": common_lib.build_search_line(["resource", "google_storage_bucket", name],["versioning", "enabled"]),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
