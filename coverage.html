@@ -215,7 +215,7 @@
 				
 				<option value="file79">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
-				<option value="file80">github.com/Checkmarx/kics/pkg/remediation/remediation.go (84.5%)</option>
+				<option value="file80">github.com/Checkmarx/kics/pkg/remediation/remediation.go (84.7%)</option>
 				
 				<option value="file81">github.com/Checkmarx/kics/pkg/remediation/scan.go (65.5%)</option>
 				
@@ -2172,13 +2172,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="39">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="39">total += v
+                <span class="cov8" title="32">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2203,7 +2203,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -15506,7 +15506,7 @@ func replacement(r *Remediation, lines []string) []string <span class="cov8" tit
 
         <span class="cov8" title="3">remediated := strings.Replace(lines[r.Line-1], replacement.Before, replacement.After, 1)
 
-        if strings.Contains(originalLine, remediated) </span><span class="cov1" title="1">{
+        if originalLine == remediated </span><span class="cov1" title="1">{
                 log.Info().Msgf("remediation '%s' is already done", r.SimilarityID)
                 return []string{}
         }</span>
@@ -15524,7 +15524,9 @@ func addition(r *Remediation, lines *[]string) []string <span class="cov1" title
                 return []string{}
         }</span>
 
-        <span class="cov1" title="1">if strings.Contains((*lines)[fatherNumberLine+1], r.Remediation) </span><span class="cov0" title="0">{
+        <span class="cov1" title="1">firstLine := strings.Split(r.Remediation, "\n")[0]
+
+        if strings.TrimSpace((*lines)[fatherNumberLine+1]) == strings.TrimSpace(firstLine) </span><span class="cov0" title="0">{
                 log.Info().Msgf("remediation '%s' is already done", r.SimilarityID)
                 return []string{}
         }</span>
