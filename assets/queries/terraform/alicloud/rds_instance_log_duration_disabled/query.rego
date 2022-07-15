@@ -41,11 +41,6 @@ CxPolicy[result] {
 		"keyExpectedValue": "'log_duration' parameter is defined and value should be 'ON'",
 		"keyActualValue": "'log_duration' parameter is not defined",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name], ["parameters"]),
-		"remediation": json.marshal({
-			"before": "[",
-			"after": "[{\n\t\tname = \"log_duration\"\n\t\tvalue = \"ON\"\n\t},"			
-		}),
-		"remediationType": "replacement",	
 	}
 }
 

@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("metadata.name=%s.spec.%s.name=%s.ports", [metadata.name, types[x], containers[c].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("spec[%s].%s[%s].ports[%s].hostPort should not be defined", [metadata.name, types[x], containers[c].name, ports[k].hostIP]),
-		"keyActualValue": sprintf("spec[%s].%s[%s].ports[%s].hostPort is Defined", [metadata.name, types[x], containers[c].name, ports[k].hostIP]),
+		"keyActualValue": sprintf("spec[%s].%s[%s].ports[%s].hostPort is defined", [metadata.name, types[x], containers[c].name, ports[k].hostIP]),
 	}
 }
 
@@ -38,6 +38,6 @@ CxPolicy[result] {
 		"searchKey": sprintf("metadata.name=%s.spec.template.spec.%s.name=%s.ports", [metadata.name, types[x], containers[c].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("spec[%s].template.spec.%s[%s].ports[%s].hostPort should not be defined", [metadata.name, types[x], containers[c].name, ports[k].hostIP]),
-		"keyActualValue": sprintf("spec[%s].template.spec.%s[%s].ports[%s].hostPort is Defined", [metadata.name, types[x], containers[c].name, ports[k].hostIP]),
+		"keyActualValue": sprintf("spec[%s].template.spec.%s[%s].ports[%s].hostPort is defined", [metadata.name, types[x], containers[c].name, ports[k].hostIP]),
 	}
 }
