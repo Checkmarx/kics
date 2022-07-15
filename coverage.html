@@ -77,7 +77,7 @@
 				
 				<option value="file10">github.com/Checkmarx/kics/internal/console/pre_scan.go (83.1%)</option>
 				
-				<option value="file11">github.com/Checkmarx/kics/internal/console/remediate.go (8.2%)</option>
+				<option value="file11">github.com/Checkmarx/kics/internal/console/remediate.go (9.1%)</option>
 				
 				<option value="file12">github.com/Checkmarx/kics/internal/console/scan.go (73.2%)</option>
 				
@@ -197,7 +197,7 @@
 				
 				<option value="file70">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (85.7%)</option>
 				
-				<option value="file71">github.com/Checkmarx/kics/pkg/parser/terraform/variables.go (91.8%)</option>
+				<option value="file71">github.com/Checkmarx/kics/pkg/parser/terraform/variables.go (91.5%)</option>
 				
 				<option value="file72">github.com/Checkmarx/kics/pkg/parser/utils/certificate_utils.go (81.6%)</option>
 				
@@ -215,11 +215,11 @@
 				
 				<option value="file79">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
-				<option value="file80">github.com/Checkmarx/kics/pkg/remediation/remediation.go (84.7%)</option>
+				<option value="file80">github.com/Checkmarx/kics/pkg/remediation/remediation.go (84.2%)</option>
 				
-				<option value="file81">github.com/Checkmarx/kics/pkg/remediation/scan.go (64.4%)</option>
+				<option value="file81">github.com/Checkmarx/kics/pkg/remediation/scan.go (63.5%)</option>
 				
-				<option value="file82">github.com/Checkmarx/kics/pkg/remediation/utils.go (80.5%)</option>
+				<option value="file82">github.com/Checkmarx/kics/pkg/remediation/utils.go (80.0%)</option>
 				
 				<option value="file83">github.com/Checkmarx/kics/pkg/report/asff.go (87.5%)</option>
 				
@@ -1440,7 +1440,6 @@ import (
         "fmt"
         "os"
         "path/filepath"
-        "sync"
 
         "github.com/Checkmarx/kics/internal/console/flags"
         consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
@@ -1538,22 +1537,15 @@ func remediate(cmd *cobra.Command) error <span class="cov0" title="0">{
         // get all the remediationSets related to each filePath
         remediationSets := summary.GetRemediationSets(results, include)
 
-        wg := &amp;sync.WaitGroup{}
-
         for filePath := range remediationSets </span><span class="cov0" title="0">{
-                wg.Add(1)
                 fix := remediationSets[filePath].(remediation.Set)
-                go func(filePath string) </span><span class="cov0" title="0">{
-                        defer wg.Done()
-                        err = summary.RemediateFile(filePath, fix)
-                }</span>(filePath)
-                <span class="cov0" title="0">if err != nil </span><span class="cov0" title="0">{
+                err = summary.RemediateFile(filePath, fix)
+                if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
         }
-        <span class="cov0" title="0">wg.Wait()
 
-        fmt.Printf("\nSelected remediation: %d\n", summary.SelectedRemediationNumber)
+        <span class="cov0" title="0">fmt.Printf("\nSelected remediation: %d\n", summary.SelectedRemediationNumber)
         fmt.Printf("Remediation done: %d\n", summary.ActualRemediationDoneNumber)
 
         exitCode := consoleHelpers.RemediateExitCode(summary.SelectedRemediationNumber, summary.ActualRemediationDoneNumber)
@@ -2172,13 +2164,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="39">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="37">total += v
+                <span class="cov9" title="39">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2203,7 +2195,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4718,7 +4710,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="11">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="11">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -13026,7 +13018,6 @@ import (
         "errors"
         "os"
         "strings"
-        "sync"
 
         "github.com/Checkmarx/kics/pkg/model"
         "github.com/Checkmarx/kics/pkg/utils"
@@ -13094,7 +13085,6 @@ type Parser struct {
         parsers    kindParser
         extensions model.Extensions
         Platform   []string
-        Mu         sync.RWMutex
 }
 
 // ParsedDocument is a struct containing data retrieved from parsing
@@ -14341,7 +14331,6 @@ import (
         "fmt"
         "os"
         "path/filepath"
-        "sync"
 
         "github.com/Checkmarx/kics/pkg/parser/terraform/converter"
         "github.com/hashicorp/hcl/v2"
@@ -14351,8 +14340,6 @@ import (
 )
 
 var inputVariableMap = make(converter.VariableMap)
-
-var mutex = &amp;sync.Mutex{}
 
 func mergeMaps(baseMap, newItems converter.VariableMap) <span class="cov8" title="7">{
         for key, value := range newItems </span><span class="cov9" title="8">{
@@ -14461,9 +14448,7 @@ func getInputVariables(currentPath string) <span class="cov3" title="2">{
                 <span class="cov3" title="2">mergeMaps(variablesMap, variables)</span>
         }
 
-        <span class="cov3" title="2">mutex.Lock()
-        inputVariableMap["var"] = cty.ObjectVal(variablesMap)
-        mutex.Unlock()</span>
+        <span class="cov3" title="2">inputVariableMap["var"] = cty.ObjectVal(variablesMap)</span>
 }
 </pre>
 		
@@ -15558,9 +15543,7 @@ func (s *Summary) writeRemediation(remediatedLines, lines []string, filePath, si
         }</span>
 
         <span class="cov8" title="3">log.Info().Msgf("file '%s' was remediated with '%s'", filePath, similarityID)
-        s.mu.Lock()
         s.ActualRemediationDoneNumber++
-        s.mu.Unlock()
 
         return remediatedLines</span>
 }
@@ -15684,9 +15667,7 @@ func getPayload(filePath string, content []byte) (model.FileMetadatas, error) <s
                 return model.FileMetadatas{}, errors.New("failed to get parser")
         }</span>
 
-        <span class="cov10" title="3">p[0].Mu.Lock()
-        documents, er := p[0].Parse(filePath, content)
-        p[0].Mu.Unlock()
+        <span class="cov10" title="3">documents, er := p[0].Parse(filePath, content)
 
         if er != nil </span><span class="cov0" title="0">{
                 log.Error().Msgf("failed to parse file '%s': %s", filePath, er)
@@ -15836,7 +15817,6 @@ import (
         "path/filepath"
         "regexp"
         "strings"
-        "sync"
 
         "github.com/Checkmarx/kics/pkg/model"
         "github.com/Checkmarx/kics/pkg/utils"
@@ -15847,7 +15827,6 @@ import (
 type Summary struct {
         SelectedRemediationNumber   int
         ActualRemediationDoneNumber int
-        mu                          sync.RWMutex
 }
 
 // GetRemediationSets collects all the replacements and additions per file
@@ -15989,9 +15968,7 @@ func (s *Summary) GetRemediationSetsFromVulns(vulnerabilities []model.Vulnerabil
                 var remediationSet Set
 
                 if shouldRemediate(&amp;file, include) </span><span class="cov7" title="3">{
-                        s.mu.Lock()
                         s.SelectedRemediationNumber++
-                        s.mu.Unlock()
                         r := &amp;Remediation{
                                 Line:          file.Line,
                                 Remediation:   file.Remediation,
