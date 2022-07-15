@@ -104,7 +104,7 @@ func replacement(r Remediation, lines []string) []string {
 
 	remediated := strings.Replace(lines[r.Line-1], replacement.Before, replacement.After, 1)
 
-	if strings.Contains(originalLine, remediated) {
+	if originalLine == remediated {
 		log.Info().Msgf("remediation '%s' is already done", r.SimilarityID)
 		return []string{}
 	}
@@ -122,7 +122,9 @@ func addition(r Remediation, lines *[]string) []string {
 		return []string{}
 	}
 
-	if strings.Contains((*lines)[fatherNumberLine+1], r.Remediation) {
+	firstLine := strings.Split(r.Remediation, "\n")[0]
+
+	if strings.TrimSpace((*lines)[fatherNumberLine+1]) == strings.TrimSpace(firstLine) {
 		log.Info().Msgf("remediation '%s' is already done", r.SimilarityID)
 		return []string{}
 	}

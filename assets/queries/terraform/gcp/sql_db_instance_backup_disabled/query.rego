@@ -15,8 +15,6 @@ CxPolicy[result] {
 		"keyExpectedValue": "settings.backup_configuration is defined and not null",
 		"keyActualValue": "settings.backup_configuration is undefined or null",
 		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name],["settings"]),
-		"remediation": "backup_configuration {\n\t\tenabled = true\n\t}\n",
-		"remediationType": "addition",
 	}
 }
 
