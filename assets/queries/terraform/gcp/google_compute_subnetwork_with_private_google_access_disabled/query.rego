@@ -16,6 +16,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'google_compute_subnetwork[%s].private_ip_google_access' is defined and not null", [name]),
 		"keyActualValue": sprintf("'google_compute_subnetwork[%s].private_ip_google_access' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "google_compute_subnetwork", name], []),
+		"remediation": "private_ip_google_access = false",
+		"remediationType": "addition",
 	}
 }
 
@@ -32,5 +34,10 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'google_compute_subnetwork[%s].private_ip_google_access' is set to true", [name]),
 		"keyActualValue": sprintf("'google_compute_subnetwork[%s].private_ip_google_access' is set to false", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "google_compute_subnetwork", name, "private_ip_google_access"], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",		
 	}
 }

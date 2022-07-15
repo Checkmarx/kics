@@ -17,6 +17,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'azurerm_search_service[%s].public_network_access_enabled' is defined and set to false", [name]),
 		"keyActualValue": sprintf("'azurerm_search_service[%s].public_network_access_enabled' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_search_service", name], []),
+		"remediation": "public_network_access_enabled = false",
+		"remediationType": "addition",
 	}
 }
 
@@ -34,5 +36,10 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'azurerm_search_service[%s].public_network_access_enabled' is set to false", [name]),
 		"keyActualValue": sprintf("'azurerm_search_service[%s].public_network_access_enabled' is set to true", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_search_service", name, "public_network_access_enabled"], []),
+		"remediation": json.marshal({
+			"before": "true",
+			"after": "false"
+		}),
+		"remediationType": "replacement",
 	}
 }

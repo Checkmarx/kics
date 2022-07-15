@@ -17,6 +17,11 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("aws_subnet[%s].map_public_ip_on_launch is set to false or undefined", [name]),
 		"keyActualValue": sprintf("aws_subnet[%s].map_public_ip_on_launch is set to true", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_subnet", name, "map_public_ip_on_launch"], []),
+		"remediation": json.marshal({
+			"before": "true",
+			"after": "false"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -35,6 +40,11 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("%s.%s is set to false", [name, keyToCheck]),
 		"keyActualValue": sprintf("%s.%s is set to true", [name, keyToCheck]),
 		"searchLine": common_lib.build_search_line(["module", name, keyToCheck], []),
+		"remediation": json.marshal({
+			"before": "true",
+			"after": "false"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -53,5 +63,7 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("%s.map_public_ip_on_launch is set to false", [name]),
 		"keyActualValue": sprintf("%s.map_public_ip_on_launch is set undefined", [name]),
 		"searchLine": common_lib.build_search_line(["module", name], []),
+		"remediation": sprintf("%s = false", [keyToCheck]),
+		"remediationType": "addition",
 	}
 }

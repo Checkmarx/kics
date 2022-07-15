@@ -17,5 +17,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "spec.required_drop_capabilities 'is ALL or NET_RAW'",
 		"keyActualValue": "spec.required_drop_capabilities 'is not ALL or NET_RAW'",
+		"searchLine": commonLib.build_search_line(["resource", "kubernetes_pod_security_policy" ,name, "spec"],["required_drop_capabilities"]),
 	}
 }

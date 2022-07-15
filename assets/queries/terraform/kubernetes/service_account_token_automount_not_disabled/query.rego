@@ -16,6 +16,9 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.automount_service_account_token is set", [name]),
 		"keyActualValue": sprintf("kubernetes_pod[%s].spec.automount_service_account_token is undefined", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "kubernetes_pod", name, "spec"],[]),
+		"remediation": "automount_service_account_token = false",
+		"remediationType": "addition",
 	}
 }
 
@@ -32,6 +35,12 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.automount_service_account_token is set to false", [name]),
 		"keyActualValue": sprintf("kubernetes_pod[%s].spec.automount_service_account_token is set to true", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "kubernetes_pod", name, "spec"],["automount_service_account_token"]),
+		"remediation": json.marshal({
+			"before": "true",
+			"after": "false"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -52,6 +61,9 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].spec.template.spec.automount_service_account_token is set", [listKinds[x], name]),
 		"keyActualValue": sprintf("%s[%s].spec.template.spec.automount_service_account_token is undefined", [listKinds[x], name]),
+		"searchLine": common_lib.build_search_line(["resource", listKinds[x], name, "spec", "template", "spec"],[]),
+		"remediation": "automount_service_account_token = false",
+		"remediationType": "addition",
 	}
 }
 
@@ -68,6 +80,12 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].spec.template.spec.automount_service_account_token is set to false", [listKinds[x], name]),
 		"keyActualValue": sprintf("%s[%s].spec.template.spec.automount_service_account_token is set to true", [listKinds[x], name]),
+		"searchLine": common_lib.build_search_line(["resource", listKinds[x], name, "spec", "template", "spec"],["automount_service_account_token"]),
+		"remediation": json.marshal({
+			"before": "true",
+			"after": "false"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -84,6 +102,9 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("kubernetes_cron_job[%s].spec.job_template.spec.template.spec.automount_service_account_token is set", [name]),
 		"keyActualValue": sprintf("kubernetes_cron_job[%s].spec.job_template.spec.template.spec.automount_service_account_token is undefined", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "kubernetes_cron_job", name, "spec", "template", "spec", "template", "spec"],[]),
+		"remediation": "automount_service_account_token = false",
+		"remediationType": "addition",
 	}
 }
 
@@ -100,5 +121,11 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("kubernetes_cron_job[%s].spec.job_template.spec.template.spec.automount_service_account_token is set to false", [name]),
 		"keyActualValue": sprintf("kubernetes_cron_job[%s].spec.job_template.spec.template.spec.automount_service_account_token is set to true", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "kubernetes_cron_job", name, "spec", "template", "spec", "template", "spec"],["automount_service_account_token"]),
+		"remediation": json.marshal({
+			"before": "true",
+			"after": "false"
+		}),
+		"remediationType": "replacement",
 	}
 }

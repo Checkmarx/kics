@@ -19,5 +19,10 @@ CxPolicy[result] {
 		"keyExpectedValue": "'acl' is set to private or not set",
 		"keyActualValue": sprintf("'acl' is %s", [possibilities[p]]),
         "searchLine":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "acl"], []),
+		"remediation": json.marshal({
+            "before": p,
+            "after": "private"
+        }),
+        "remediationType": "replacement",
 	}
 }

@@ -83,23 +83,23 @@ jobs:
       - name: Test and Generate Report
         if: matrix.os != 'windows-latest' && steps.changes.outputs.src == 'true'
         run: |
-          go test -mod=vendor -v $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
+          go test -mod=vendor -v -timeout 1500s $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
           result_code=${PIPESTATUS[0]}
           exit $result_code
       - name: Test and Generate Report Dev
         if: matrix.os != 'windows-latest'  && steps.changes.outputs.src == 'false'
         run: |
-          go test -tags dev -mod=vendor -v $(go list -tags dev ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
+          go test -tags dev -mod=vendor -v -timeout 1500s $(go list -tags dev ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
           result_code=${PIPESTATUS[0]}
           exit $result_code
       - name: Test and Generate Report Windows
         if: matrix.os == 'windows-latest' && steps.changes.outputs.src == 'true'
         run: |
-          go test -mod=vendor -v $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
+          go test -mod=vendor -v -timeout 1500s $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
       - name: Test and Generate Report Windows Dev
         if: matrix.os == 'windows-latest' && steps.changes.outputs.src == 'false'
         run: |
-          go test -mod=vendor -tags dev -v $(go list -tags dev ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
+          go test -mod=vendor -tags dev -v -timeout 1500s $(go list -tags dev ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
       - name: Archive test logs
         if: always()
         uses: actions/upload-artifact@v2

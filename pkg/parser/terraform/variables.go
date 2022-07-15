@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"sync"
 
 	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
 	"github.com/hashicorp/hcl/v2"
@@ -13,6 +14,8 @@ import (
 )
 
 var inputVariableMap = make(converter.VariableMap)
+
+var mutex = &sync.Mutex{}
 
 func mergeMaps(baseMap, newItems converter.VariableMap) {
 	for key, value := range newItems {
@@ -120,5 +123,8 @@ func getInputVariables(currentPath string) {
 		}
 		mergeMaps(variablesMap, variables)
 	}
+
+	mutex.Lock()
 	inputVariableMap["var"] = cty.ObjectVal(variablesMap)
+	mutex.Unlock()
 }

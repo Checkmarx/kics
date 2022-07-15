@@ -17,6 +17,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].private_cluster_enabled' is defined and set to true", [name]),
 		"keyActualValue": sprintf("'azurerm_kubernetes_cluster[%s].private_cluster_enabled' is undefined", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_kubernetes_cluster", name], []),
+		"remediation": "private_cluster_enabled = true",
+		"remediationType": "addition",
 	}
 }
 
@@ -34,5 +36,10 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].private_cluster_enabled' is set to true", [name]),
 		"keyActualValue": sprintf("'azurerm_kubernetes_cluster[%s].private_cluster_enabled' is set to false", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_kubernetes_cluster", name, "private_cluster_enabled"], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }

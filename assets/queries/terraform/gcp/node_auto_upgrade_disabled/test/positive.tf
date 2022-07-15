@@ -17,7 +17,7 @@ resource "google_container_node_pool" "positive2" {
   node_count = 3
 
   management {
-
+    auto_repair = true
   }
 
   timeouts {
