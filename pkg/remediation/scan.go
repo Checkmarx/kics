@@ -45,6 +45,11 @@ func scanTmpFile(tmpFile, queryID string, remediated []byte) ([]model.Vulnerabil
 		return []model.Vulnerability{}, err
 	}
 
+	if len(files) == 0 {
+		log.Error().Msg("failed to get payload")
+		return []model.Vulnerability{}, errors.New("failed to get payload")
+	}
+
 	payload := files.Combine(false)
 
 	// init scan
