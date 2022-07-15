@@ -42,10 +42,12 @@ func NewKICSCmd() *cobra.Command {
 
 func initialize(rootCmd *cobra.Command) error {
 	scanCmd := NewScanCmd()
+	remediateCmd := NewRemediateCmd()
 	rootCmd.AddCommand(NewVersionCmd())
 	rootCmd.AddCommand(NewGenerateIDCmd())
 	rootCmd.AddCommand(scanCmd)
 	rootCmd.AddCommand(NewListPlatformsCmd())
+	rootCmd.AddCommand(remediateCmd)
 	rootCmd.CompletionOptions.DisableDefaultCmd = true
 
 	if err := flags.InitJSONFlags(
@@ -58,6 +60,10 @@ func initialize(rootCmd *cobra.Command) error {
 	}
 
 	if err := viper.BindPFlags(rootCmd.PersistentFlags()); err != nil {
+		return err
+	}
+
+	if err := initRemediateCmd(remediateCmd); err != nil {
 		return err
 	}
 

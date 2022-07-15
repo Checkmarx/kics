@@ -13,9 +13,12 @@ CxPolicy[result] {
 		"resourceType": "azurerm_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s]", [name]),
+		"searchLine": common_lib.build_search_line(["resource","azurerm_kubernetes_cluster", name], []),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].role_based_access_control' is defined and not null", [name]),
 		"keyActualValue": sprintf("'azurerm_kubernetes_cluster[%s].role_based_access_control' is undefined or null", [name]),
+		"remediation": "role_based_access_control {\n\t\tenabled = true\n\t}",
+		"remediationType": "addition",
 	}
 }
 
@@ -31,8 +34,14 @@ CxPolicy[result] {
 		"resourceType": "azurerm_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s].role_based_access_control.enabled", [name]),
+		"searchLine": common_lib.build_search_line(["resource","azurerm_kubernetes_cluster", name ,"role_based_access_control", "enabled"], []),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].role_based_access_control.enabled' is set to true", [name]),
 		"keyActualValue": sprintf("'azurerm_kubernetes_cluster[%s].role_based_access_control.enabled' is not set to true", [name]),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }

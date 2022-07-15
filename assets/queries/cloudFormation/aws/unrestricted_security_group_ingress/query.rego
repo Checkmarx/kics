@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.CidrIp", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.CidrIp is not open to the world (0.0.0.0/0)", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.CidrIp should not be open to the world (0.0.0.0/0)", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.CidrIp is open to the world (0.0.0.0/0)", [name]),
 	}
 }
@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.CidrIpv6", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.CidrIpv6 is not open to the world (::/0)", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.CidrIpv6 should not be open to the world (::/0)", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.CidrIpv6 is open to the world (::/0)", [name]),
 	}
 }
@@ -54,7 +54,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].CidrIp is not open to the world (0.0.0.0/0)", [name, index]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].CidrIp should not be open to the world (0.0.0.0/0)", [name, index]),
 		"keyActualValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].CidrIp is open to the world (0.0.0.0/0)", [name, index]),
 	}
 }
@@ -73,7 +73,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].CidrIpv6", [name, index]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].CidrIpv6 is not open to the world (::/0)", [name, index]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].CidrIpv6 should not be open to the world (::/0)", [name, index]),
 		"keyActualValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].CidrIpv6 is open to the world (::/0)", [name, index]),
 	}
 }

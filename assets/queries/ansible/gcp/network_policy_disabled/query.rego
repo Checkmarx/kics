@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("gcp_container_cluster.%s is defined", [fields[f]]),
+		"keyExpectedValue": sprintf("gcp_container_cluster.%s should be defined", [fields[f]]),
 		"keyActualValue": sprintf("gcp_container_cluster.%s is undefined", [fields[f]]),
 	}
 }
@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.addons_config", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "gcp_container_cluster.addons_config.network_policy_config is defined",
+		"keyExpectedValue": "gcp_container_cluster.addons_config.network_policy_config should be defined",
 		"keyActualValue": "gcp_container_cluster.addons_config.network_policy_config is undefined",
 	}
 }
@@ -56,7 +56,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.network_policy.enabled", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_container_cluster.network_policy.enabled is true",
+		"keyExpectedValue": "gcp_container_cluster.network_policy.enabled should be true",
 		"keyActualValue": "gcp_container_cluster.network_policy.enabled is false",
 	}
 }
@@ -75,7 +75,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.addons_config.network_policy_config.disabled", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_container_cluster.addons_config.network_policy_config.disabled is false",
+		"keyExpectedValue": "gcp_container_cluster.addons_config.network_policy_config.disabled should be set to false",
 		"keyActualValue": "gcp_container_cluster.addons_config.network_policy_config.disabled is true",
 	}
 }

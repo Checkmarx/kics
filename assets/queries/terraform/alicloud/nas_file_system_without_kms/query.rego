@@ -16,6 +16,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("alicloud_nas_file_system[%s].encrypt_type' should be defined and set to 2'", [name]),
 		"keyActualValue": sprintf("alicloud_nas_file_system[%s].encrypt_type' is not defined", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_nas_file_system", name], []),
+		"remediation": "encrypt_type = \"2\"",
+		"remediationType": "addition",
 	}
 }
 
@@ -32,5 +34,10 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("alicloud_nas_file_system[%s].encrypt_type' should be set to 2'", [name]),
 		"keyActualValue": sprintf("alicloud_nas_file_system[%s].encrypt_type' is not set to 2  ", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_nas_file_system", name, "encrypt_type"], []),
+		"remediation": json.marshal({
+			"before": resource.encrypt_type,
+			"after": "2"
+		}),
+		"remediationType": "replacement",
 	}
 }

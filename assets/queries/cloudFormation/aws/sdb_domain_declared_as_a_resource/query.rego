@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s is not defined", [name]),
+		"keyExpectedValue": sprintf("Resources.%s should not be defined", [name]),
 		"keyActualValue": sprintf("Resources.%s is defined", [name]),
 	}
 }

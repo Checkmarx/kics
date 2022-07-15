@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	kms := input.document[i].resource.google_kms_crypto_key[name]
@@ -17,6 +18,12 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'rotation_period' must be at most 31536000s",
 		"keyActualValue": sprintf("'rotation_period' is %s", [rotation_period]),
+		"searchLine": common_lib.build_search_line(["resource", "google_kms_crypto_key", name],["rotation_period"]),
+		"remediation": json.marshal({
+			"before": sprintf("%s",[rotation_period]),
+			"after": "100000"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -33,5 +40,8 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'rotation_period' is set and is at most 31536000 seconds",
 		"keyActualValue": "'rotation_period' is undefined",
+		"searchLine": common_lib.build_search_line(["resource", "google_kms_crypto_key", name],[]),
+		"remediation": "rotation_period = \"100000s\"",
+		"remediationType": "addition",
 	}
 }

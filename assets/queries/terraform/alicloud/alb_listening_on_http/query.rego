@@ -16,5 +16,10 @@ CxPolicy[result] {
 		"keyExpectedValue": "'alicloud_alb_listener[%s].listener_protocol' should not be 'HTTP'",
 		"keyActualValue": "'alicloud_alb_listener[%s].listener_protocol' is 'HTTP'",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_alb_listener", name, "listener_protocol"], []),
+		"remediation": json.marshal({
+			"before": "HTTP",
+			"after": "HTTPS"
+		}),
+		"remediationType": "replacement"
 	}
 }

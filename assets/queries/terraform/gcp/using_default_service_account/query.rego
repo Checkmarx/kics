@@ -43,7 +43,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_compute_instance[%s].service_account.email", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'google_compute_instance[%s].service_account.email' is not empty", [name]),
+		"keyExpectedValue": sprintf("'google_compute_instance[%s].service_account.email' should not be empty", [name]),
 		"keyActualValue": sprintf("'google_compute_instance[%s].service_account.email' is empty", [name]),
 	}
 }
@@ -60,7 +60,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_compute_instance[%s].service_account.email", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'google_compute_instance[%s].service_account.email' is not an email", [name]),
+		"keyExpectedValue": sprintf("'google_compute_instance[%s].service_account.email' should not be an email", [name]),
 		"keyActualValue": sprintf("'google_compute_instance[%s].service_account.email' is an email", [name]),
 	}
 }
@@ -75,7 +75,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_compute_instance[%s].service_account.email", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'google_compute_instance[%s].service_account.email' is not a default Google Compute Engine service account", [name]),
+		"keyExpectedValue": sprintf("'google_compute_instance[%s].service_account.email' should not be a default Google Compute Engine service account", [name]),
 		"keyActualValue": sprintf("'google_compute_instance[%s].service_account.email' is a default Google Compute Engine service account", [name]),
 	}
 }

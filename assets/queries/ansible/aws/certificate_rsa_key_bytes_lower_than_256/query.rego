@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.community.aws.aws_acm.certificate", [task.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'community.aws.aws_acm.certificate' uses a RSA key with a length equal to or higher than 256 bytes",
+		"keyExpectedValue": "'community.aws.aws_acm.certificate' should use a RSA key with a length equal to or higher than 256 bytes",
 		"keyActualValue": "'community.aws.aws_acm.certificate' does not use a RSA key with a length equal to or higher than 256 bytes",
 	}
 }

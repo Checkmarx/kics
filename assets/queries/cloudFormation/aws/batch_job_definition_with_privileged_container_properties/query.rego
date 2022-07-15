@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.ContainerProperties.Privileged", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.ContainerProperties.Privileged is false", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.ContainerProperties.Privileged should be set to false", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.ContainerProperties.Privileged is true", [name]),
 	}
 }

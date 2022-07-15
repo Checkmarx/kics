@@ -14,9 +14,12 @@ CxPolicy[result] {
 		"resourceType": "azurerm_app_service",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_app_service[%s]", [name]),
+		"searchLine": common_lib.build_search_line(["resource","azurerm_app_service", name], []),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_app_service[%s].auth_settings' is defined", [name]),
 		"keyActualValue": sprintf("'azurerm_app_service[%s].auth_settings' is undefined", [name]),
+		"remediation": "auth_settings {\n\t\tenabled = true\n\t}",
+		"remediationType": "addition",
 	}
 }
 
@@ -31,8 +34,14 @@ CxPolicy[result] {
 		"resourceType": "azurerm_app_service",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_app_service[%s].auth_settings.enabled", [name]),
+		"searchLine": common_lib.build_search_line(["resource","azurerm_app_service", name, "auth_settings", "enabled"], []),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_app_service[%s].auth_settings.enabled' is true", [name]),
 		"keyActualValue": sprintf("'azurerm_app_service[%s].auth_settings.enabled' is false", [name]),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }

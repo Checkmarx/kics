@@ -42,7 +42,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.serviceAccountName", [metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.serviceAccountName is not empty", [metadata.name]),
+		"keyExpectedValue": sprintf("metadata.name=%s.spec.serviceAccountName should not be empty", [metadata.name]),
 		"keyActualValue": sprintf("metadata.name=%s.spec.serviceAccountName is empty", [metadata.name]),
 	}
 }

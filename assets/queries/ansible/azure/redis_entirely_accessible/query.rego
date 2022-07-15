@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.start_ip_address", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "azure_rm_rediscachefirewallrule start_ip and end_ip are not equal to '0.0.0.0'",
+		"keyExpectedValue": "azure_rm_rediscachefirewallrule start_ip and end_ip should not equal to '0.0.0.0'",
 		"keyActualValue": "azure_rm_rediscachefirewallrule start_ip and end_ip are equal to '0.0.0.0'",
 	}
 }

@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.apiVersion", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'apiVersion' is '2019-02-01' or newer",
+		"keyExpectedValue": "'apiVersion' should be '2019-02-01' or newer",
 		"keyActualValue": sprintf("'apiVersion' is %s", [value.apiVersion]),
 		"searchLine": common_lib.build_search_line(path, ["apiVersion"]),
 	}
@@ -41,7 +41,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, issue.sk]),
 		"issueType": issue.issueType,
-		"keyExpectedValue": "'apiServerAuthorizedIPRanges' is a defined as an array",
+		"keyExpectedValue": "'apiServerAuthorizedIPRanges' should be a defined as an array",
 		"keyActualValue": issue.keyActualValue,
 		"searchLine": common_lib.build_search_line(path, issue.sl),
 	}
@@ -67,7 +67,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, issue.sk]),
 		"issueType": issue.issueType,
-		"keyExpectedValue": "'apiServerAccessProfile.authorizedIPRanges' is defined as an array",
+		"keyExpectedValue": "'apiServerAccessProfile.authorizedIPRanges' should be defined as an array",
 		"keyActualValue": issue.keyActualValue,
 		"searchLine": common_lib.build_search_line(path, issue.sl),
 	}

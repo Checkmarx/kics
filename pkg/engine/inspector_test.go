@@ -399,6 +399,7 @@ func TestNewInspector(t *testing.T) { // nolint
 		queryFilter      source.QueryInspectorParameters
 		excludeResults   map[string]bool
 		queryExecTimeout int
+		needsLog         bool
 	}
 	tests := []struct {
 		name    string
@@ -424,6 +425,7 @@ func TestNewInspector(t *testing.T) { // nolint
 				},
 				excludeResults:   map[string]bool{},
 				queryExecTimeout: 60,
+				needsLog:         true,
 			},
 			want: &Inspector{
 				vb:      vbs,
@@ -443,7 +445,8 @@ func TestNewInspector(t *testing.T) { // nolint
 				tt.args.tracker,
 				&tt.args.queryFilter,
 				tt.args.excludeResults,
-				tt.args.queryExecTimeout)
+				tt.args.queryExecTimeout,
+				tt.args.needsLog)
 
 			if (err != nil) != tt.wantErr {
 				t.Errorf("NewInspector() error: got = %v,\n wantErr = %v", err, tt.wantErr)
@@ -683,7 +686,7 @@ func newInspectorInstance(t *testing.T, queryPath []string) *Inspector {
 		vb,
 		&tracker.CITracker{},
 		&source.QueryInspectorParameters{},
-		map[string]bool{}, 60,
+		map[string]bool{}, 60, true,
 	)
 	require.NoError(t, err)
 	return ins

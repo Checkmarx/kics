@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	compute := input.document[i].resource.google_compute_instance[name]
@@ -16,6 +17,12 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_compute_instance[%s].metadata.enable-oslogin is true or undefined", [name]),
 		"keyActualValue": sprintf("google_compute_instance[%s].metadata.enable-oslogin is false", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "google_compute_instance", name],["metadata", "enable-oslogin"]),
+		"remediation": json.marshal({
+			"before": sprintf("%s", [oslogin]),
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
 

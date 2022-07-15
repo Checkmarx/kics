@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(kmsPolicy, name),
 		"searchKey": sprintf("google_kms_crypto_key_iam_policy[%s].policy_data", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "KMS crypto key is not publicly accessible",
+		"keyExpectedValue": "KMS crypto key should not be publicly accessible",
 		"keyActualValue": "KMS crypto key is publicly accessible",
 		"searchLine": common_lib.build_search_line(["resource", "google_kms_crypto_key_iam_policy", name, "policy_data"], []),
 	}
