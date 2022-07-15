@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "One of 'aws_ebs_volume.encrypted' is defined",
 		"keyActualValue": "One of 'aws_ebs_volume.encrypted' is undefined",
-		"remediation": "point_in_time_recovery {\n\t\t enabled = true \n\t}",
+		"remediation": "encrypted = true",
 		"remediationType": "addition",
 	}
 }

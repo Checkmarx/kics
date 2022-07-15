@@ -15,6 +15,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_application_gateway[%s]' is set", [name]),
 		"keyActualValue": sprintf("'azurerm_application_gateway[%s]' is undefined", [name]),
+		"searchLine": common_lib.build_search_line(["resource","azurerm_application_gateway", name], []),
 	}
 }
 
@@ -31,5 +32,11 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_application_gateway[%s].waf_configuration.enabled' is true", [name]),
 		"keyActualValue": sprintf("'azurerm_application_gateway[%s].waf_configuration.enabled' is false", [name]),
+		"searchLine": common_lib.build_search_line(["resource","azurerm_application_gateway", name, "waf_configuration", "enabled"], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
