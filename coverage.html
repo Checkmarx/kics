@@ -193,11 +193,11 @@
 				
 				<option value="file68">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (76.5%)</option>
 				
-				<option value="file69">github.com/Checkmarx/kics/pkg/parser/terraform/data_source.go (77.1%)</option>
+				<option value="file69">github.com/Checkmarx/kics/pkg/parser/terraform/data_source.go (76.8%)</option>
 				
 				<option value="file70">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (85.7%)</option>
 				
-				<option value="file71">github.com/Checkmarx/kics/pkg/parser/terraform/variables.go (91.9%)</option>
+				<option value="file71">github.com/Checkmarx/kics/pkg/parser/terraform/variables.go (91.8%)</option>
 				
 				<option value="file72">github.com/Checkmarx/kics/pkg/parser/utils/certificate_utils.go (81.6%)</option>
 				
@@ -211,7 +211,7 @@
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (80.0%)</option>
 				
-				<option value="file78">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file78">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (90.9%)</option>
 				
 				<option value="file79">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -2172,13 +2172,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="39">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="39">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2203,7 +2203,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4718,7 +4718,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="11">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -13949,6 +13949,8 @@ type convertedPolicy struct {
         Version   string                     `json:"Version,omitempty"`
 }
 
+var mutexData = &amp;sync.Mutex{}
+
 func getDataSourcePolicy(currentPath string) <span class="cov5" title="3">{
         tfFiles, err := filepath.Glob(filepath.Join(currentPath, "*.tf"))
         if err != nil </span><span class="cov0" title="0">{
@@ -13987,10 +13989,9 @@ func getDataSourcePolicy(currentPath string) <span class="cov5" title="3">{
                 return
         }</span>
 
-        <span class="cov4" title="2">var mutex = &amp;sync.Mutex{}
-        mutex.Lock()
+        <span class="cov4" title="2">mutexData.Lock()
         inputVariableMap["data"] = data
-        mutex.Unlock()</span>
+        mutexData.Unlock()</span>
 }
 
 func decodeDataSourcePolicy(value cty.Value) dataSourcePolicy <span class="cov7" title="4">{
@@ -14351,6 +14352,8 @@ import (
 
 var inputVariableMap = make(converter.VariableMap)
 
+var mutex = &amp;sync.Mutex{}
+
 func mergeMaps(baseMap, newItems converter.VariableMap) <span class="cov8" title="7">{
         for key, value := range newItems </span><span class="cov9" title="8">{
                 baseMap[key] = value
@@ -14458,8 +14461,7 @@ func getInputVariables(currentPath string) <span class="cov3" title="2">{
                 <span class="cov3" title="2">mergeMaps(variablesMap, variables)</span>
         }
 
-        <span class="cov3" title="2">var mutex = &amp;sync.Mutex{}
-        mutex.Lock()
+        <span class="cov3" title="2">mutex.Lock()
         inputVariableMap["var"] = cty.ObjectVal(variablesMap)
         mutex.Unlock()</span>
 }
@@ -15314,7 +15316,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov1" title="1">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -15323,7 +15325,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov1" title="1">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
@@ -15335,14 +15337,14 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov1" title="1">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov1" title="1">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file79" style="display: none">package progress
@@ -15422,14 +15424,20 @@ type File struct {
         Remediation     string `json:"remediation"`
         RemediationType string `json:"remediation_type"`
         SimilarityID    string `json:"similarity_id"`
+        SearchKey       string `json:"search_key"`
+        ExpectedValue   string `json:"expected_value"`
+        ActualValue     string `json:"actual_value"`
 }
 
 // Remediation presents all the relevant information for the fix
 type Remediation struct {
-        Line         int
-        Remediation  string
-        SimilarityID string
-        QueryID      string
+        Line          int
+        Remediation   string
+        SimilarityID  string
+        QueryID       string
+        SearchKey     string
+        ExpectedValue string
+        ActualValue   string
 }
 
 // Set includes all the replacements and additions related to a file
@@ -15454,7 +15462,7 @@ func (s *Summary) RemediateFile(filePath string, remediationSet Set) error <span
         if len(remediationSet.Replacement) &gt; 0 </span><span class="cov8" title="3">{
                 for i := range remediationSet.Replacement </span><span class="cov8" title="3">{
                         r := remediationSet.Replacement[i]
-                        remediatedLines := replacement(r, lines)
+                        remediatedLines := replacement(&amp;r, lines)
                         if len(remediatedLines) &gt; 0 &amp;&amp; willRemediate(remediatedLines, filePath, &amp;r) </span><span class="cov5" title="2">{
                                 lines = s.writeRemediation(remediatedLines, lines, filePath, r.SimilarityID)
                         }</span>
@@ -15470,7 +15478,7 @@ func (s *Summary) RemediateFile(filePath string, remediationSet Set) error <span
 
                 <span class="cov1" title="1">for i := range remediationSet.Addition </span><span class="cov1" title="1">{
                         a := remediationSet.Addition[i]
-                        remediatedLines := addition(a, &amp;lines)
+                        remediatedLines := addition(&amp;a, &amp;lines)
                         if len(remediatedLines) &gt; 0 &amp;&amp; willRemediate(remediatedLines, filePath, &amp;a) </span><span class="cov1" title="1">{
                                 lines = s.writeRemediation(remediatedLines, lines, filePath, a.SimilarityID)
                         }</span>
@@ -15486,7 +15494,7 @@ type ReplacementInfo struct {
         After  string `json:"after"`
 }
 
-func replacement(r Remediation, lines []string) []string <span class="cov8" title="3">{
+func replacement(r *Remediation, lines []string) []string <span class="cov8" title="3">{
         originalLine := lines[r.Line-1]
 
         var replacement ReplacementInfo
@@ -15509,7 +15517,7 @@ func replacement(r Remediation, lines []string) []string <span class="cov8" titl
         return lines</span>
 }
 
-func addition(r Remediation, lines *[]string) []string <span class="cov1" title="1">{
+func addition(r *Remediation, lines *[]string) []string <span class="cov1" title="1">{
         fatherNumberLine := r.Line - 1
 
         if len(*lines) &lt;= fatherNumberLine+1 </span><span class="cov0" title="0">{
@@ -15870,7 +15878,7 @@ func getBefore(line string) string <span class="cov1" title="1">{
 func willRemediate(remediated []string, originalFileName string, remediation *Remediation) bool <span class="cov7" title="3">{
         filepath.Clean(originalFileName)
         // create temporary file
-        tmpFile := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+filepath.Ext(originalFileName))
+        tmpFile := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+"-"+filepath.Base(originalFileName))
         f, err := os.OpenFile(tmpFile, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
 
         if err != nil </span><span class="cov0" title="0">{
@@ -15906,15 +15914,17 @@ func willRemediate(remediated []string, originalFileName string, remediation *Re
                 log.Err(err)
         }</span>
 
-        <span class="cov7" title="3">return removedSimilarityID(results, remediation.SimilarityID)</span>
+        <span class="cov7" title="3">return removedResult(results, remediation)</span>
 }
 
-func removedSimilarityID(results []model.Vulnerability, similarity string) bool <span class="cov7" title="3">{
+func removedResult(results []model.Vulnerability, remediation *Remediation) bool <span class="cov7" title="3">{
         for i := range results </span><span class="cov4" title="2">{
                 result := results[i]
 
-                if result.SimilarityID == similarity </span><span class="cov0" title="0">{
-                        log.Info().Msgf("failed to remediate '%s'", similarity)
+                if result.SearchKey == remediation.SearchKey &amp;&amp;
+                        result.KeyActualValue == remediation.ActualValue &amp;&amp;
+                        result.KeyExpectedValue == remediation.ExpectedValue </span><span class="cov0" title="0">{
+                        log.Info().Msgf("failed to remediate '%s'", remediation.SimilarityID)
                         return false
                 }</span>
         }
@@ -15976,10 +15986,13 @@ func (s *Summary) GetRemediationSetsFromVulns(vulnerabilities []model.Vulnerabil
                         s.SelectedRemediationNumber++
                         s.mu.Unlock()
                         r := &amp;Remediation{
-                                Line:         file.Line,
-                                Remediation:  file.Remediation,
-                                SimilarityID: file.SimilarityID,
-                                QueryID:      vuln.QueryID,
+                                Line:          file.Line,
+                                Remediation:   file.Remediation,
+                                SimilarityID:  file.SimilarityID,
+                                QueryID:       vuln.QueryID,
+                                SearchKey:     vuln.SearchKey,
+                                ExpectedValue: vuln.KeyExpectedValue,
+                                ActualValue:   vuln.KeyActualValue,
                         }
 
                         if file.RemediationType == "replacement" </span><span class="cov4" title="2">{
@@ -16014,12 +16027,15 @@ func getVulns(results Report) []model.Vulnerability <span class="cov4" title="2"
                 for j := range query.Files </span><span class="cov8" title="4">{
                         file := query.Files[j]
                         vuln := &amp;model.Vulnerability{
-                                FileName:        file.FilePath,
-                                Line:            file.Line,
-                                Remediation:     file.Remediation,
-                                RemediationType: file.RemediationType,
-                                SimilarityID:    file.SimilarityID,
-                                QueryID:         query.QueryID,
+                                FileName:         file.FilePath,
+                                Line:             file.Line,
+                                Remediation:      file.Remediation,
+                                RemediationType:  file.RemediationType,
+                                SimilarityID:     file.SimilarityID,
+                                QueryID:          query.QueryID,
+                                SearchKey:        file.SearchKey,
+                                KeyExpectedValue: file.ExpectedValue,
+                                KeyActualValue:   file.ActualValue,
                         }
 
                         vulns = append(vulns, *vuln)
