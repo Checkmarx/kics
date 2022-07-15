@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_api_gateway_domain_name[%s].security_policy is set", [name]),
 		"keyActualValue": sprintf("aws_api_gateway_domain_name[%s].security_policy is undefined", [name]),
-		"remediation": "security_policy = TLS_1_2",
+		"remediation": "security_policy = \"TLS_1_2\"",
 		"remediationType": "addition",
 	}
 }

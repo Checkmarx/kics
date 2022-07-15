@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_cloudtrail[%s].is_multi_region_trail is defined and not null", [name]),
 		"keyActualValue": sprintf("aws_cloudtrail[%s].is_multi_region_trail is undefined or null", [name]),
-		"remediation": "point_in_time_recovery {\n\t\t enabled = true \n\t}",
+		"remediation": "is_multi_region_trail = true",
 		"remediationType": "addition",
 	}
 }

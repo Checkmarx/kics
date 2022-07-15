@@ -15,6 +15,11 @@ CxPolicy[result] {
 		"keyExpectedValue": "Expected 'default_action' to be set to 'Deny'",
 		"keyActualValue": "'default_action' is set to 'Allow'",
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_storage_account", name, "network_rules", "default_action"], []),
+		"remediation": json.marshal({
+			"before": "Allow",
+			"after": "Deny"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -30,5 +35,10 @@ CxPolicy[result] {
 		"keyExpectedValue": "Expected 'default_action' to be set to 'Deny'",
 		"keyActualValue": "'default_action' is set to 'Allow'",
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_storage_account_network_rules", name, "default_action"], []),
+		"remediation": json.marshal({
+			"before": "Allow",
+			"after": "Deny"
+		}),
+		"remediationType": "replacement",
 	}
 }

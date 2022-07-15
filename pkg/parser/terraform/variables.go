@@ -15,6 +15,8 @@ import (
 
 var inputVariableMap = make(converter.VariableMap)
 
+var mutex = &sync.Mutex{}
+
 func mergeMaps(baseMap, newItems converter.VariableMap) {
 	for key, value := range newItems {
 		baseMap[key] = value
@@ -122,7 +124,6 @@ func getInputVariables(currentPath string) {
 		mergeMaps(variablesMap, variables)
 	}
 
-	var mutex = &sync.Mutex{}
 	mutex.Lock()
 	inputVariableMap["var"] = cty.ObjectVal(variablesMap)
 	mutex.Unlock()
