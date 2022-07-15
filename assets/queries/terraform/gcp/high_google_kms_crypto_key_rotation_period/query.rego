@@ -16,6 +16,12 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'google_kms_crypto_key.rotation_period' is less or equal to 7776000",
 		"keyActualValue": "'google_kms_crypto_key.rotation_period' is higher than 7776000",
+		"searchLine": common_lib.build_search_line(["resource", "google_kms_crypto_key", name, "rotation_period"], []),
+		"remediation": json.marshal({
+			"before": sprintf("%s", [rotationP]) ,
+			"after": "100000"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -32,5 +38,8 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'google_kms_crypto_key.rotation_period' is set",
 		"keyActualValue": "'google_kms_crypto_key.rotation_period' is undefined",
+		"searchLine": common_lib.build_search_line(["resource", "google_kms_crypto_key", name], []),
+		"remediation": "rotation_period = \"100000s\"",
+		"remediationType": "addition",
 	}
 }
