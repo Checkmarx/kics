@@ -116,9 +116,7 @@ func getPayload(filePath string, content []byte) (model.FileMetadatas, error) {
 		return model.FileMetadatas{}, errors.New("failed to get parser")
 	}
 
-	p[0].Mu.Lock()
 	documents, er := p[0].Parse(filePath, content)
-	p[0].Mu.Unlock()
 
 	if er != nil {
 		log.Error().Msgf("failed to parse file '%s': %s", filePath, er)
