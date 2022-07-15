@@ -45,6 +45,11 @@ func scanTmpFile(tmpFile, queryID string, remediated []byte) ([]model.Vulnerabil
 		return []model.Vulnerability{}, err
 	}
 
+	if len(files) == 0 {
+		log.Error().Msg("failed to get payload")
+		return []model.Vulnerability{}, errors.New("failed to get payload")
+	}
+
 	payload := files.Combine(false)
 
 	// init scan
@@ -117,11 +122,6 @@ func getPayload(filePath string, content []byte) (model.FileMetadatas, error) {
 
 	if er != nil {
 		log.Error().Msgf("failed to parse file '%s': %s", filePath, er)
-		return model.FileMetadatas{}, er
-	}
-
-	if len(documents.Docs) == 0 {
-		log.Error().Msgf("failed to get docs for '%s'", filePath)
 		return model.FileMetadatas{}, er
 	}
 
