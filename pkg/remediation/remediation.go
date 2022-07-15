@@ -40,7 +40,6 @@ type Remediation struct {
 	SimilarityID  string
 	QueryID       string
 	SearchKey     string
-	FilePath      string
 	ExpectedValue string
 	ActualValue   string
 }

@@ -97,13 +97,9 @@ func removedResult(results []model.Vulnerability, remediation *Remediation) bool
 	for i := range results {
 		result := results[i]
 
-		regex := regexp.MustCompile(`temporary-remediation-\d+-`)
-		match := regex.FindString(result.FileName)
-
 		if result.SearchKey == remediation.SearchKey &&
 			result.KeyActualValue == remediation.ActualValue &&
-			result.KeyExpectedValue == remediation.ExpectedValue &&
-			filepath.Base(result.FileName) == match+filepath.Base(remediation.FilePath) {
+			result.KeyExpectedValue == remediation.ExpectedValue {
 			log.Info().Msgf("failed to remediate '%s'", remediation.SimilarityID)
 			return false
 		}
@@ -171,7 +167,6 @@ func (s *Summary) GetRemediationSetsFromVulns(vulnerabilities []model.Vulnerabil
 				SimilarityID:  file.SimilarityID,
 				QueryID:       vuln.QueryID,
 				SearchKey:     vuln.SearchKey,
-				FilePath:      file.FilePath,
 				ExpectedValue: vuln.KeyExpectedValue,
 				ActualValue:   vuln.KeyActualValue,
 			}

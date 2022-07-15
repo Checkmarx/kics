@@ -55,7 +55,6 @@ func Test_GetRemediationSets(t *testing.T) {
 		Remediation:   "{\"after\":\"true\",\"before\":\"false\"}",
 		SimilarityID:  "87abbee5d0ec977ba193371c702dca2c040ea902d2e606806a63b66119ff89bc",
 		QueryID:       "41a38329-d81b-4be4-aef4-55b2615d3282",
-		FilePath:      filePath,
 		SearchKey:     "resource.alicloud_ram_account_password_policy[corporate1].require_symbols",
 		ExpectedValue: "resource.alicloud_ram_account_password_policy[corporate1].require_symbols is set to 'true'",
 		ActualValue:   "resource.alicloud_ram_account_password_policy[corporate1].require_symbols is configured as 'false'",
@@ -67,7 +66,6 @@ func Test_GetRemediationSets(t *testing.T) {
 		SimilarityID:  "f282fa13cf5e4ffd4bbb0ee2059f8d0240edcd2ca54b3bb71633145d961de5ce",
 		QueryID:       "a9dfec39-a740-4105-bbd6-721ba163c053",
 		SearchKey:     "alicloud_ram_account_password_policy[corporate1]",
-		FilePath:      filePath,
 		ExpectedValue: "'minimum_password_length' is defined and set to 14 or above ",
 		ActualValue:   "'minimum_password_length' is not defined",
 	}
