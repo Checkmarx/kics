@@ -18,6 +18,6 @@ subjects:
   name: bob
   apiGroup: rbac.authorization.k8s.io
 roleRef:
-  kind: Role
+  kind: Role 
   name: allow-attach-neg
   apiGroup: ""
