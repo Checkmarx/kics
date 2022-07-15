@@ -16,6 +16,9 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("kubernetes_pod_security_policy[%s].spec.allow_privilege_escalation is set", [name]),
 		"keyActualValue": sprintf("kubernetes_pod_security_policy[%s].spec.allow_privilege_escalation is undefined", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "kubernetes_pod_security_policy",name, "spec"],[]),
+		"remediation": "allow_privilege_escalation = false",
+		"remediationType": "addition",
 	}
 }
 
@@ -32,5 +35,11 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("kubernetes_pod_security_policy[%s].spec.allow_privilege_escalation is set to false", [name]),
 		"keyActualValue": sprintf("kubernetes_pod_security_policy[%s].spec.allow_privilege_escalation is set to true", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "kubernetes_pod_security_policy",name, "spec"],["allow_privilege_escalation"]),
+		"remediation": json.marshal({
+			"before": sprintf("%s",[resource.spec.allow_privilege_escalation]),
+			"after": "false"
+		}),
+		"remediationType": "replacement",
 	}
 }
