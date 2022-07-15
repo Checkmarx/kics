@@ -25,8 +25,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context is set", [resourceType, name, specInfo.path, types[x], containersType]),
 		"keyActualValue": sprintf("k%s[%s].%s.%s[%d].security_context is undefined", [resourceType, name, specInfo.path, types[x], containersType]),
 		"searchLine": common_lib.build_search_line([resourceType, name, specInfo.path],[types[x]]),
-		"remediation": "security_context = {\n\t\tread_only_root_filesystem = true\n\t}\n",
-		"remediationType": "addition",
 	}
 }
 
@@ -99,8 +97,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context is set", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.security_context is undefined", [resourceType, name, specInfo.path, types[x]]),
 		"searchLine": common_lib.build_search_line([resourceType, name, specInfo.path],[types[x]]),
-		"remediation": "security_context = {\n\t\tread_only_root_filesystem = true\n\t}\n",
-		"remediationType": "addition",
 	}
 }
 
