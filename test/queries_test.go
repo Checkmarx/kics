@@ -21,6 +21,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/pkg/remediation"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/golang/mock/gomock"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -86,28 +87,21 @@ func testRemediationQuery(t testing.TB, entry queryEntry, vulnerabilities []mode
 		temporaryRemediationSets := make(map[string]interface{})
 
 		for k := range remediationSets {
-			tmpFilePath := filepath.Join(os.TempDir(), filepath.Base(k))
+			tmpFilePath := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+filepath.Ext(k))
 			tmpFile := remediation.CreateTempFile(k, tmpFilePath)
 
 			temporaryRemediationSets[tmpFile] = remediationSets[k]
 		}
 
-		wg := &sync.WaitGroup{}
-
 		for filePath := range temporaryRemediationSets {
-			wg.Add(1)
 			fix := temporaryRemediationSets[filePath].(remediation.Set)
 
-			go func(filePath string) {
-				defer wg.Done()
-				err = summary.RemediateFile(filePath, fix)
-				os.Remove(filePath)
-				if err != nil {
-					require.NoError(t, err)
-				}
-			}(filePath)
+			err = summary.RemediateFile(filePath, fix)
+			os.Remove(filePath)
+			if err != nil {
+				require.NoError(t, err)
+			}
 		}
-		wg.Wait()
 
 		require.Equal(t, summary.SelectedRemediationNumber, summary.ActualRemediationDoneNumber,
 			"'SelectedRemediationNumber' is different from 'ActualRemediationDoneNumber'")
