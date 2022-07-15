@@ -120,6 +120,11 @@ func getPayload(filePath string, content []byte) (model.FileMetadatas, error) {
 		return model.FileMetadatas{}, er
 	}
 
+	if len(documents.Docs) == 0 {
+		log.Error().Msgf("failed to get docs for '%s'", filePath)
+		return model.FileMetadatas{}, er
+	}
+
 	var files model.FileMetadatas
 
 	for _, document := range documents.Docs {
