@@ -230,6 +230,8 @@ func parseDataSourceBody(body *hclsyntax.Body) string {
 		"statement": getStatementSpec(),
 	}
 
+	deleteResourcesFromPolicy(body)
+
 	target, decodeErrs := hcldec.Decode(body, dataSourceSpec, &hcl.EvalContext{
 		Variables: inputVariableMap,
 		Functions: functions.TerraformFuncs,
@@ -289,4 +291,12 @@ func parseDataSourceBody(body *hclsyntax.Body) string {
 		return ""
 	}
 	return buffer.String()
+}
+
+func deleteResourcesFromPolicy(body *hclsyntax.Body) {
+	for _, s := range body.Blocks {
+		if s.Type == "statement" {
+			delete(s.Body.Attributes, "resources")
+		}
+	}
 }
