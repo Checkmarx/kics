@@ -60,13 +60,14 @@ type AllowRule struct {
 }
 
 type RegexQuery struct {
-	ID         string          `json:"id"`
-	Name       string          `json:"name"`
-	Multiline  MultilineResult `json:"multiline"`
-	RegexStr   string          `json:"regex"`
-	Entropies  []Entropy       `json:"entropies"`
-	AllowRules []AllowRule     `json:"allowRules"`
-	Regex      *regexp.Regexp
+	ID          string          `json:"id"`
+	Name        string          `json:"name"`
+	Multiline   MultilineResult `json:"multiline"`
+	RegexStr    string          `json:"regex"`
+	SpecialMask string          `json:"specialMask"`
+	Entropies   []Entropy       `json:"entropies"`
+	AllowRules  []AllowRule     `json:"allowRules"`
+	Regex       *regexp.Regexp
 }
 
 type RegexRuleStruct struct {
@@ -350,6 +351,7 @@ func (c *Inspector) checkFileContent(query *RegexQuery, basePaths []string, file
 				file,
 				query,
 				lineVuln.lineNumber,
+				lineVuln.lineContent,
 			)
 		}
 
@@ -371,6 +373,7 @@ func (c *Inspector) checkFileContent(query *RegexQuery, basePaths []string, file
 						file,
 						query,
 						lineVuln.lineNumber,
+						lineVuln.lineContent,
 					)
 				}
 			}
@@ -432,6 +435,7 @@ func (c *Inspector) checkLineByLine(wg *sync.WaitGroup, query *RegexQuery,
 			file,
 			query,
 			lineNumber,
+			currentLine,
 		)
 	}
 
@@ -455,12 +459,13 @@ func (c *Inspector) checkLineByLine(wg *sync.WaitGroup, query *RegexQuery,
 				file,
 				query,
 				lineNumber,
+				currentLine,
 			)
 		}
 	}
 }
 
-func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadata, query *RegexQuery, lineNumber int) {
+func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadata, query *RegexQuery, lineNumber int, issueLine string) {
 	if engine.ShouldSkipVulnerability(file.Commands, query.ID) {
 		log.Debug().Msgf("Skipping vulnerability in file %s for query '%s':%s", file.FilePath, query.Name, query.ID)
 		return
@@ -486,7 +491,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 				FileID:           file.ID,
 				FileName:         file.FilePath,
 				Line:             linesVuln.Line,
-				VulnLines:        hideSecret(linesVuln.VulnLines),
+				VulnLines:        hideSecret(&linesVuln, issueLine, query),
 				IssueType:        "RedundantAttribute",
 				Platform:         SecretsQueryMetadata["platform"],
 				Severity:         model.SeverityHigh,
@@ -613,9 +618,33 @@ func cleanFiles(files model.FileMetadatas) model.FileMetadatas {
 	return cleanFiles
 }
 
-func hideSecret(vulnLines []model.CodeLine) []model.CodeLine {
-	for idx := range vulnLines {
-		vulnLines[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
+func hideSecret(linesVuln *model.VulnerabilityLines, issueLine string, query *RegexQuery) []model.CodeLine {
+	for idx := range linesVuln.VulnLines {
+		if query.SpecialMask == "all" {
+			linesVuln.VulnLines[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
+			continue
+		}
+
+		if linesVuln.VulnLines[idx].Line == issueLine {
+			regex := query.RegexStr
+
+			if len(query.SpecialMask) > 0 {
+				regex = "(.+)" + query.SpecialMask // get key
+			}
+
+			var re = regexp.MustCompile(regex)
+			match := re.FindString(issueLine)
+
+			if len(query.SpecialMask) > 0 {
+				match = issueLine[len(match):] // get value
+			}
+
+			if match != "" {
+				linesVuln.VulnLines[idx].Line = strings.Replace(issueLine, match, "<SECRET-MASKED-ON-PURPOSE>", 1)
+			} else {
+				linesVuln.VulnLines[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
+			}
+		}
 	}
-	return vulnLines
+	return linesVuln.VulnLines
 }
