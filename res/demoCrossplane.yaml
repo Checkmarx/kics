@@ -1,0 +1,34 @@
+apiVersion: container.gcp.crossplane.io/v1beta2
+kind: Cluster
+metadata:
+  name: crossplane-cluster
+  labels:
+     service: gke
+     creation: crossplane
+spec:
+  forProvider:
+    addonsConfig:
+      networkPolicyConfig:
+        disabled: false
+    networkSelector:
+       matchLabels:
+           service: vpc 
+           creation: crossplane
+    subnetworkSelector:
+       matchLabels:
+           service: vpc
+           creation: crossplane
+    location: us-east1-b #change if required
+    ipAllocationPolicy:
+      useIpAliases: true
+    masterAuth:
+      clientCertificateConfig:
+        issueClientCertificate: false
+    defaultMaxPodsConstraint:
+       maxPodsPerNode: 110
+    networkPolicy:
+      enabled: false
+    resourceLabels:
+       owner: crossplane  
+  providerConfigRef:
+        name: crossplane-provider-gcp
