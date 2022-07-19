@@ -54,6 +54,10 @@ docker run -t -v $PWD/cfn-stack.yaml:/path/cfn-stack.yaml -it checkmarx/kics:lat
 
 KICS supports scanning CloudFormation templates with `.json` or `.yaml` extension.
 
+## Crossplane
+
+KICS supports scanning Crossplane manifests with `.yaml` extension.
+
 ## Azure Blueprints
 
 KICS supports scanning Azure Blueprints files, including Azure Blueprints Policy Assignment Artifacts, Azure Blueprints Role Assignment Artifacts, and Azure Blueprints Template Artifacts with `.json` extension.
@@ -92,6 +96,10 @@ Platform: Kubernetes
                 021: spec:
 
 ```
+
+## Knative
+
+KICS supports scanning Knative manifests with `.yaml` extension.
 
 ## Kubernetes
 

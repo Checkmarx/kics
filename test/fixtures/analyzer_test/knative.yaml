@@ -1,0 +1,15 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: autoscale-go
+  namespace: default
+spec:
+  template:
+    metadata:
+      annotations:
+        # Standard Kubernetes CPU-based autoscaling.
+        autoscaling.knative.dev/class: hpa.autoscaling.knative.dev
+        autoscaling.knative.dev/metric: cpu
+    spec:
+      containers:
+        - image: gcr.io/knative-samples/autoscale-go:0.1
