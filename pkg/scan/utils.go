@@ -157,11 +157,6 @@ func analyzePaths(a *analyzer.Analyzer) (model.AnalyzedPaths, error) {
 		return model.AnalyzedPaths{}, err
 	}
 
-	// flag -t was passed but KICS did not find any matching file
-	if a.Types[0] != "" && len(pathsFlag.Types) == 0 {
-		pathsFlag.Types = append(pathsFlag.Types, a.Types...)
-	}
-
 	logLoadingQueriesType(pathsFlag.Types)
 
 	excluded = append(excluded, a.Exc...)
