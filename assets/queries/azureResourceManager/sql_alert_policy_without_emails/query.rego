@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "securityAlertPolicies.properties.emailAddresses is defined and contains emails",
+		"keyExpectedValue": "securityAlertPolicies.properties.emailAddresses should be defined and contain emails",
 		"keyActualValue": "securityAlertPolicies.properties.emailAddresses is not defined",
 		"searchLine": common_lib.build_search_line(path, ["properties"]),
 	}
@@ -44,7 +44,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.emailAddresses", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "securityAlertPolicies.properties.emailAddresses is defined and contains emails",
+		"keyExpectedValue": "securityAlertPolicies.properties.emailAddresses should be defined and contain emails",
 		"keyActualValue": "securityAlertPolicies.properties.emailAddresses doesn't contain emails",
 		"searchLine": common_lib.build_search_line(path, ["properties", "emailAddresses"]),
 	}

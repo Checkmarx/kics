@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.ad_user", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "azure_ad_serviceprincipal.ad_user is neither empty nor null",
+		"keyExpectedValue": "azure_ad_serviceprincipal.ad_user should be neither empty nor null",
 		"keyActualValue": "azure_ad_serviceprincipal.ad_user is empty or null",
 	}
 }
@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.ad_user", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "azure_ad_serviceprincipal.ad_user is not predictable",
+		"keyExpectedValue": "azure_ad_serviceprincipal.ad_user should not be predictable",
 		"keyActualValue": "azure_ad_serviceprincipal.ad_user is predictable",
 	}
 }

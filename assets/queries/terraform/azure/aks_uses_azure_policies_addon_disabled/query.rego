@@ -17,6 +17,11 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].addon_profile.azure_policy.enabled' is set to true", [name]),
 		"keyActualValue": sprintf("'azurerm_kubernetes_cluster[%s].addon_profile.azure_policy.enabled' is set to false", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_kubernetes_cluster", name, "addon_profile", "azure_policy", "enabled"], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -51,5 +56,7 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].addon_profile' is defined and set to true", [name]),
 		"keyActualValue": sprintf("'azurerm_kubernetes_cluster[%s].addon_profile' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_kubernetes_cluster", name], []),
+		"remediation": "addon_profile {\n\t\tazure_policy {\n\t\t\t enabled = true\n\t\t}\n\t}",
+		"remediationType": "addition",
 	}
 }

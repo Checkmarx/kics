@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.permissions.actions", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.permissions[%d].actions does not allow custom role creation", [modules[m], p]),
+		"keyExpectedValue": sprintf("%s.permissions[%d].actions should not allow custom role creation", [modules[m], p]),
 		"keyActualValue": sprintf("%s.permissions[%d].actions allows custom role creation", [modules[m], p]),
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "permissions", p, "actions"], []),
 	}

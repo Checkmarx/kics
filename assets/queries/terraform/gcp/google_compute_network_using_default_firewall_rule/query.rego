@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(computeNetwork, name),
 		"searchKey": sprintf("google_compute_network[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'google_compute_network[%s]' is not using a default firewall rule", [name]),
+		"keyExpectedValue": sprintf("'google_compute_network[%s]' should not be using a default firewall rule", [name]),
 		"keyActualValue": sprintf("'google_compute_network[%s]' is using a default firewall rule", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "google_compute_network", name], []),
 	}

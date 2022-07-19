@@ -12,9 +12,12 @@ CxPolicy[result] {
 		"resourceType": "aws_neptune_cluster",
 		"resourceName": tf_lib.get_resource_name(password_policy, name),
 		"searchKey": sprintf("aws_neptune_cluster[%s]", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_neptune_cluster", name], []),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'iam_database_authentication_enabled' is set to true",
 		"keyActualValue": "'iam_database_authentication_enabled' is undefined",
+		"remediation": "iam_database_authentication_enabled = true",
+		"remediationType": "addition",
 	}
 }
 
@@ -27,8 +30,14 @@ CxPolicy[result] {
 		"resourceType": "aws_neptune_cluster",
 		"resourceName": tf_lib.get_resource_name(password_policy, name),
 		"searchKey": sprintf("aws_neptune_cluster[%s].iam_database_authentication_enabled", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_neptune_cluster", name, "iam_database_authentication_enabled"], []),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'iam_database_authentication_enabled' is set to true",
 		"keyActualValue": "'iam_database_authentication_enabled' is set to false",
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }

@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.%s", [task.name, rds[r], options[o]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "RDS is not running in a public subnet",
+		"keyExpectedValue": "RDS should not be running in a public subnet",
 		"keyActualValue": "RDS is running in a public subnet",
 		"searchLine": common_lib.build_search_line(["playbooks", t, rds[r], options[o]], []),
 	}

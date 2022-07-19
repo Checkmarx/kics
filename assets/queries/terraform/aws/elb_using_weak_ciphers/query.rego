@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_load_balancer_policy[%s].policy_attribute.name", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s].name' is not a weak cipher", [name, protocol]),
+		"keyExpectedValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s].name' should not be a weak cipher", [name, protocol]),
 		"keyActualValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s].name' is a weak cipher", [name, protocol]),
 	}
 }
@@ -32,7 +32,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(policy, name),
 		"searchKey": sprintf("aws_load_balancer_policy[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s].name' is not a weak cipher", [name, protocol]),
+		"keyExpectedValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s].name' should not be a weak cipher", [name, protocol]),
 		"keyActualValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s].name' is a weak cipher", [name, protocol]),
 	}
 }

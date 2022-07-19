@@ -17,6 +17,8 @@ CxPolicy[result] {
 		"keyExpectedValue": "For attribute 'retention_period' to be set and over 90 days.",
 		"keyActualValue": "The attribute 'retention_period' is undefined. The default duration when undefined is 30 days, which is too short.",
         "searchLine": common_lib.build_search_line(["resource", "alicloud_log_store", name], []),
+		"remediation": "retention_period = 100",
+		"remediationType": "addition",
 	}
 }
 
@@ -35,5 +37,10 @@ CxPolicy[result] {
 		"keyExpectedValue": "For the attribite 'retention_period' to be set to 90+ days",
 		"keyActualValue": "The attribute 'retention_period' is not set to 90+ days",
         "searchLine": common_lib.build_search_line(["resource", "alicloud_log_store", name, "retention_period"], []),
+		"remediation": json.marshal({
+			"before": sprintf("%d", [rperiod]),
+			"after": "100"
+		}),
+		"remediationType": "replacement",
 	}
 }

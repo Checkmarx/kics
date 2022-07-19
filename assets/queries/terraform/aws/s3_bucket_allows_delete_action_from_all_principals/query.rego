@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_s3_bucket", name),
 		"searchKey": sprintf("%s[%s].policy", [resourceType, name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].policy.Action is not a 'Delete' action", [resourceType, name]),
+		"keyExpectedValue": sprintf("%s[%s].policy.Action should not be a 'Delete' action", [resourceType, name]),
 		"keyActualValue": sprintf("%s[%s].policy.Action is a 'Delete' action", [resourceType, name]),
 		"searchLine": common_lib.build_search_line(["resource", resourceType, name, "policy"], []),
 	}
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'policy.Statement.Action' is not a 'Delete' action",
+		"keyExpectedValue": "'policy.Statement.Action' should not be a 'Delete' action",
 		"keyActualValue": "'policy.Statement.Action' is a 'Delete' action",
 		"searchLine": common_lib.build_search_line(["module", name, "policy"], []),
 	}

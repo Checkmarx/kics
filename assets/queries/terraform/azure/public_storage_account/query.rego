@@ -82,5 +82,10 @@ CxPolicy[result] {
 		"keyExpectedValue": "'allow_blob_public_access' is set to false or undefined",
 		"keyActualValue": "'allow_blob_public_access' is set to true",
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_storage_account", name, "allow_blob_public_access"], []),
+		"remediation": json.marshal({
+			"before": "true",
+			"after": "false"
+		}),
+		"remediationType": "replacement",
 	}
 }

@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod[%s].spec.volume", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("spec.volume[%d].host_path.path is not '/var/run/docker.sock'", [c]),
+		"keyExpectedValue": sprintf("spec.volume[%d].host_path.path should not be '/var/run/docker.sock'", [c]),
 		"keyActualValue": sprintf("spec.volume[%d].host_path.path is '/var/run/docker.sock'", [c]),
 	}
 }
@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.template.spec.volume", [kind, name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("spec.template.spec.volume[%d].host_path.path is not '/var/run/docker.sock'", [c]),
+		"keyExpectedValue": sprintf("spec.template.spec.volume[%d].host_path.path should not be '/var/run/docker.sock'", [c]),
 		"keyActualValue": sprintf("spec.template.spec.volume[%d].host_path.path is '/var/run/docker.sock'", [c]),
 	}
 }
@@ -54,7 +54,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_cron_job[%s].spec.job_template.spec.template.spec.volume", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("spec.job_template.spec.template.spec.volume[%d].host_path.path is not '/var/run/docker.sock'", [c]),
+		"keyExpectedValue": sprintf("spec.job_template.spec.template.spec.volume[%d].host_path.path should not be '/var/run/docker.sock'", [c]),
 		"keyActualValue": sprintf("spec.job_template.spec.template.spec.volume[%d].host_path.path is '/var/run/docker.sock'", [c]),
 	}
 }

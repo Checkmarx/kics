@@ -16,6 +16,9 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_app_service[%s].https_only' is set", [name]),
 		"keyActualValue": sprintf("'azurerm_app_service[%s].https_only' is undefined", [name]),
+		"searchLine": common_lib.build_search_line(["resource","azurerm_app_service" ,name], []),
+		"remediation": "https_only = true",
+		"remediationType": "addition",
 	}
 }
 
@@ -32,5 +35,11 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_app_service[%s].https_only' is set to true", [name]),
 		"keyActualValue": sprintf("'azurerm_app_service[%s].https_only' is not set to true", [name]),
+		"searchLine": common_lib.build_search_line(["resource","azurerm_app_service" ,name, "https_only"], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }

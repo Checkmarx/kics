@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.dnssecConfig.defaultKeySpecs", [resource.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'algorithm' is not equal to 'rsasha1'",
+		"keyExpectedValue": "'algorithm' should not be equal to 'rsasha1'",
 		"keyActualValue": "'algorithm' is equal to 'rsasha1'",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "dnssecConfig", "defaultKeySpecs", d, "algorithm"], []),
 	}

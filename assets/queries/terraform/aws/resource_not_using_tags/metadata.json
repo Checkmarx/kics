@@ -3,7 +3,7 @@
   "queryName": "Resource Not Using Tags",
   "severity": "INFO",
   "category": "Best Practices",
-  "descriptionText": "AWS services resource tags are an essential part of managing components",
+  "descriptionText": "AWS services resource tags are an essential part of managing components. As a best practice, the field 'tags' should have additional tags defined other than 'Name'",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/resource-tagging",
   "platform": "Terraform",
   "descriptionID": "09db2d52",

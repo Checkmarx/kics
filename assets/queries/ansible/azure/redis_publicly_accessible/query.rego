@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.start_ip_address", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "azure_rm_rediscachefirewallrule ip range is private",
+		"keyExpectedValue": "azure_rm_rediscachefirewallrule ip range should be private",
 		"keyActualValue": "azure_rm_rediscachefirewallrule ip range is public",
 	}
 }

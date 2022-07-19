@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.%s.%s.security.%s", [path, operation, s]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "The API Key is not sent as cleartext over an unencrypted channel",
+		"keyExpectedValue": "The API Key should not be sent as cleartext over an unencrypted channel",
 		"keyActualValue": "The API Key is sent as cleartext over an unencrypted channel",
 		"overrideKey": version,
 	}

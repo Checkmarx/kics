@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sk,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s is not 'Authorization", [sk]),
+		"keyExpectedValue": sprintf("%s should not be 'Authorization", [sk]),
 		"keyActualValue": sprintf("%s is 'Authorization'", [sk]),
 		"overrideKey": version,
 	}

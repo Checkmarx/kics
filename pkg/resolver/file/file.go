@@ -56,7 +56,10 @@ func (r *Resolver) walk(value any, path string, resolveCount int) (any, bool) {
 	// go over the value and replace paths with the real content
 	switch typedValue := value.(type) {
 	case string:
-		return r.resolvePath(typedValue, path, resolveCount)
+		if filepath.Base(path) != typedValue {
+			return r.resolvePath(typedValue, path, resolveCount)
+		}
+		return value, false
 	case []any:
 		for i, v := range typedValue {
 			typedValue[i], _ = r.walk(v, path, resolveCount)

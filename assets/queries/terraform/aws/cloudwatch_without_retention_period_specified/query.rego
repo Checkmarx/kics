@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_cloudwatch_log_group[name]
@@ -11,9 +12,12 @@ CxPolicy[result] {
 		"resourceType": "aws_cloudwatch_log_group",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cloudwatch_log_group[%s]", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_cloudwatch_log_group", name], []),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'retention_in_days' is set and valid",
 		"keyActualValue": "Attribute 'retention_in_days' is undefined",
+		"remediation": "retention_in_days = 7",
+		"remediationType": "addition",
 	}
 }
 
@@ -28,8 +32,14 @@ CxPolicy[result] {
 		"resourceType": "aws_cloudwatch_log_group",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cloudwatch_log_group[%s].retention_in_days", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_cloudwatch_log_group", name, "retention_in_days"], []),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'retention_in_days' is set and valid",
 		"keyActualValue": "Attribute 'retention_in_days' is set but invalid",
+		"remediation": json.marshal({
+			"before": sprintf("%d",[value]),
+			"after": "7"
+		}),
+		"remediationType": "replacement",
 	}
 }

@@ -45,7 +45,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s].master_auth", [primary]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Attribute 'master_auth.username' is not empty and Attribute 'master_auth.password' is not empty",
+		"keyExpectedValue": "Attribute 'master_auth.username' should not be empty and Attribute 'master_auth.password' should not be empty",
 		"keyActualValue": "Attribute 'master_auth.username' is empty or Attribute 'master_auth.password' is empty",
 	}
 }

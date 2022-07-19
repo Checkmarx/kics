@@ -21,7 +21,7 @@ Lines scanned are the lines of the files that were scanned, in the first instanc
 
 ## RESOURCE TYPE AND RESOURCE NAME
 
-KICS presents the resource type and the resource name fields in the JSON result of each query. These fields are available for the following platforms: Ansible, Azure Resource Manager, Kubernetes, and Google Deployment Manager.
+KICS presents the resource type and the resource name fields in the JSON result of each query. These fields are available for the following platforms: Ansible, Azure Resource Manager, CloudFormation, Kubernetes, Google Deployment Manager, and Terraform.
 
 ```
 {

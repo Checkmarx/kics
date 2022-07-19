@@ -27,7 +27,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("variable.{{%s}}.description", [variableName]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'description' is not empty",
+		"keyExpectedValue": "'description' should not be empty",
 		"keyActualValue": "'description' is empty",
 	}
 }

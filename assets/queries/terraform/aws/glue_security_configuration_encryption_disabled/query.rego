@@ -87,7 +87,7 @@ wrong_config(config) = searchKeyInfo {
 	config.s3_encryption.s3_encryption_mode == "DISABLED"
 	searchKeyInfo := {
 		"path": "encryption_configuration.s3_encryption.s3_encryption_mode",
-		"keyExpectedValue": "'s3_encryption_mode' is not set to 'DISABLED'",
+		"keyExpectedValue": "'s3_encryption_mode' should not be set to 'DISABLED'",
 		"keyActualValue": "'s3_encryption_mode' is set to 'DISABLED'",
 	}
 }

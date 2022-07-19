@@ -55,7 +55,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.listeners.%s", [task.name, modules[m], j]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.listeners.SslPolicy is not a weak cipher", [modules[m]]),
+		"keyExpectedValue": sprintf("%s.listeners.SslPolicy should not be a weak cipher", [modules[m]]),
 		"keyActualValue": sprintf("%s.listeners.SslPolicy is a weak cipher", [modules[m]]),
 	}
 }

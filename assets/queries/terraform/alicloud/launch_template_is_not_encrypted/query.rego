@@ -16,6 +16,11 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("alicloud_launch_template[%s].encrypted to be true", [name]),
 		"keyActualValue": sprintf("alicloud_launch_template[%s].encrypted is false", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_launch_template", name, "encrypted"], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -32,5 +37,7 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("alicloud_launch_template[%s] 'encrypted' should be defined and set to true", [name]),
 		"keyActualValue": sprintf("alicloud_launch_template[%s] 'encrypted' argument is not defined", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_launch_template", name], []),
+		"remediation": "encrypted = true",
+		"remediationType": "addition",
 	}
 }

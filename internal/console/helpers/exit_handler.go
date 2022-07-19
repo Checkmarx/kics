@@ -69,3 +69,14 @@ func InitShouldFailArg(args []string) error {
 func ShowError(kind string) bool {
 	return strings.EqualFold(shouldIgnore, "none") || (!strings.EqualFold(shouldIgnore, "all") && !strings.EqualFold(shouldIgnore, kind))
 }
+
+// RemediateExitCode calculate exit code base on the difference between remediation selected and done
+func RemediateExitCode(selectedRemediationNumber, actualRemediationDoneNumber int) int {
+	statusCode := 70
+	if selectedRemediationNumber != actualRemediationDoneNumber {
+		// KICS AR was not able to remediate all the selected remediation
+		return statusCode
+	}
+
+	return 0
+}

@@ -17,6 +17,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'azurerm_function_app[%s].client_cert_mode' is defined and not null", [name]),
 		"keyActualValue": sprintf("'azurerm_function_app[%s].client_cert_mode' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_function_app", name], []),
+		"remediation": "client_cert_mode = \"Required\"",
+		"remediationType": "addition",
 	}
 }
 
@@ -34,5 +36,10 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'azurerm_function_app[%s].client_cert_mode' is set to 'Required'", [name]),
 		"keyActualValue": sprintf("'azurerm_function_app[%s].client_cert_mode' is not set to 'Required'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_function_app", name, "client_cert_mode"], []),
+		"remediation": json.marshal({
+			"before": sprintf("%s", [function.client_cert_mode]),
+			"after": "Required"
+		}),
+		"remediationType": "replacement",
 	}
 }
