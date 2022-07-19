@@ -5,7 +5,6 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
-	"sync"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/utils"
@@ -16,7 +15,6 @@ import (
 type Summary struct {
 	SelectedRemediationNumber   int
 	ActualRemediationDoneNumber int
-	mu                          sync.RWMutex
 }
 
 // GetRemediationSets collects all the replacements and additions per file
@@ -158,9 +156,7 @@ func (s *Summary) GetRemediationSetsFromVulns(vulnerabilities []model.Vulnerabil
 		var remediationSet Set
 
 		if shouldRemediate(&file, include) {
-			s.mu.Lock()
 			s.SelectedRemediationNumber++
-			s.mu.Unlock()
 			r := &Remediation{
 				Line:          file.Line,
 				Remediation:   file.Remediation,

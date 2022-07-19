@@ -162,9 +162,7 @@ func (s *Summary) writeRemediation(remediatedLines, lines []string, filePath, si
 	}
 
 	log.Info().Msgf("file '%s' was remediated with '%s'", filePath, similarityID)
-	s.mu.Lock()
 	s.ActualRemediationDoneNumber++
-	s.mu.Unlock()
 
 	return remediatedLines
 }
