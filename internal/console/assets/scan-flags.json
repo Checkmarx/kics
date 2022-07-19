@@ -190,6 +190,6 @@
     "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",
-    "usage": "disables the usage of .gitignore file to automatically exclude paths"
+    "usage": "disables the exclusion of paths specified within .gitignore file"
   }
 }
