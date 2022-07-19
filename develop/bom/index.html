@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/bom/">
       
       <link rel="icon" href="../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.9">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.3.9">
     
     
       
@@ -1328,76 +1328,76 @@
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><strong>Field</strong></th>
-<th style="text-align: center;"><strong>Possible Values</strong></th>
-<th style="text-align: center;"><strong>Required</strong></th>
-<th style="text-align: center;"><strong>Resources</strong></th>
-<th style="text-align: center;"><strong>Type</strong></th>
+<th align="center"><strong>Field</strong></th>
+<th align="center"><strong>Possible Values</strong></th>
+<th align="center"><strong>Required</strong></th>
+<th align="center"><strong>Resources</strong></th>
+<th align="center"><strong>Type</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">acl</td>
-<td style="text-align: center;">private,<br /> public-read,<br /> public-read-write,<br /> aws-exec-read,<br /> authenticated-read,<br /> bucket-owner-read,<br /> bucket-owner-full-control,<br />  log-delivery-write</td>
-<td style="text-align: center;">No</td>
-<td style="text-align: center;"><code>aws_s3_bucket</code></td>
-<td style="text-align: center;">string</td>
+<td align="center">acl</td>
+<td align="center">private,<br /> public-read,<br /> public-read-write,<br /> aws-exec-read,<br /> authenticated-read,<br /> bucket-owner-read,<br /> bucket-owner-full-control,<br />  log-delivery-write</td>
+<td align="center">No</td>
+<td align="center"><code>aws_s3_bucket</code></td>
+<td align="center">string</td>
 </tr>
 <tr>
-<td style="text-align: center;">policy</td>
-<td style="text-align: center;">policy content (in case <code>resource_accessibility</code> equals hasPolicy)</td>
-<td style="text-align: center;">No</td>
-<td style="text-align: center;"><code>aws_efs_file_system</code>,<br /> <code>aws_s3_bucket</code>,<br /> <code>aws_sns_topic</code>,<br /> <code>aws_sqs_queue</code></td>
-<td style="text-align: center;">JSON marshalled</td>
+<td align="center">policy</td>
+<td align="center">policy content (in case <code>resource_accessibility</code> equals hasPolicy)</td>
+<td align="center">No</td>
+<td align="center"><code>aws_efs_file_system</code>,<br /> <code>aws_s3_bucket</code>,<br /> <code>aws_sns_topic</code>,<br /> <code>aws_sqs_queue</code></td>
+<td align="center">JSON marshalled</td>
 </tr>
 <tr>
-<td style="text-align: center;">resource_accessibility</td>
-<td style="text-align: center;">public, private, hasPolicy or unknown for <code>aws_ebs_volume</code>, <code>aws_efs_file_system</code>, <code>aws_mq_broker</code>, <code>aws_msk_cluster</code>, <code>aws_s3_bucket</code>,  <code>aws_sns_topic</code>, and <code>aws_sqs_queue</code> <br /> <br /> at least one security group associated with the elasticache is unrestricted, all security groups associated with the elasticache are restricted or unknown for <code>aws_elasticache_cluster</code></td>
-<td style="text-align: center;">Yes</td>
-<td style="text-align: center;">all</td>
-<td style="text-align: center;">string</td>
+<td align="center">resource_accessibility</td>
+<td align="center">public, private, hasPolicy or unknown for <code>aws_ebs_volume</code>, <code>aws_efs_file_system</code>, <code>aws_mq_broker</code>, <code>aws_msk_cluster</code>, <code>aws_s3_bucket</code>,  <code>aws_sns_topic</code>, and <code>aws_sqs_queue</code> <br /> <br /> at least one security group associated with the elasticache is unrestricted, all security groups associated with the elasticache are restricted or unknown for <code>aws_elasticache_cluster</code></td>
+<td align="center">Yes</td>
+<td align="center">all</td>
+<td align="center">string</td>
 </tr>
 <tr>
-<td style="text-align: center;">resource_category</td>
-<td style="text-align: center;">In Memory Data Structure for <code>aws_elasticache_cluster</code><br /><br />  Messaging for <code>aws_sns_topic</code><br /><br />  Queues for <code>aws_mq_broker</code> and <code>aws_sqs_queue</code><br /><br />  Storage for <code>aws_ebs_volume</code>, <code>aws_efs_file_system</code>, and <code>aws_s3_bucket</code><br /><br />  Streaming for <code>aws_msk_cluster</code></td>
-<td style="text-align: center;">Yes</td>
-<td style="text-align: center;">all</td>
-<td style="text-align: center;">string</td>
+<td align="center">resource_category</td>
+<td align="center">In Memory Data Structure for <code>aws_elasticache_cluster</code><br /><br />  Messaging for <code>aws_sns_topic</code><br /><br />  Queues for <code>aws_mq_broker</code> and <code>aws_sqs_queue</code><br /><br />  Storage for <code>aws_ebs_volume</code>, <code>aws_efs_file_system</code>, and <code>aws_s3_bucket</code><br /><br />  Streaming for <code>aws_msk_cluster</code></td>
+<td align="center">Yes</td>
+<td align="center">all</td>
+<td align="center">string</td>
 </tr>
 <tr>
-<td style="text-align: center;">resource_encryption</td>
-<td style="text-align: center;">encrypted,<br />  unencrypted,<br />  unknown</td>
-<td style="text-align: center;">Yes</td>
-<td style="text-align: center;">all</td>
-<td style="text-align: center;">string</td>
+<td align="center">resource_encryption</td>
+<td align="center">encrypted,<br />  unencrypted,<br />  unknown</td>
+<td align="center">Yes</td>
+<td align="center">all</td>
+<td align="center">string</td>
 </tr>
 <tr>
-<td style="text-align: center;">resource_engine</td>
-<td style="text-align: center;">memcached, redis or unknown for <code>aws_elasticache_cluster</code><br /><br />  ActiveMQ or RabbitMQ for <code>aws_mq_broker</code></td>
-<td style="text-align: center;">No</td>
-<td style="text-align: center;"><code>aws_elasticache_cluster</code>, <br /> <code>aws_mq_broker</code></td>
-<td style="text-align: center;">string</td>
+<td align="center">resource_engine</td>
+<td align="center">memcached, redis or unknown for <code>aws_elasticache_cluster</code><br /><br />  ActiveMQ or RabbitMQ for <code>aws_mq_broker</code></td>
+<td align="center">No</td>
+<td align="center"><code>aws_elasticache_cluster</code>, <br /> <code>aws_mq_broker</code></td>
+<td align="center">string</td>
 </tr>
 <tr>
-<td style="text-align: center;">resource_name</td>
-<td style="text-align: center;">anything (if the name is defined),<br /> unknown (if the name is not defined)</td>
-<td style="text-align: center;">Yes</td>
-<td style="text-align: center;">all</td>
-<td style="text-align: center;">string</td>
+<td align="center">resource_name</td>
+<td align="center">anything (if the name is defined),<br /> unknown (if the name is not defined)</td>
+<td align="center">Yes</td>
+<td align="center">all</td>
+<td align="center">string</td>
 </tr>
 <tr>
-<td style="text-align: center;">resource_type</td>
-<td style="text-align: center;">aws_ebs_volume for <code>aws_ebs_volume</code>,<br /> aws_efs_file_system for <code>aws_efs_file_system</code>,<br /> aws_elasticache_cluster for <code>aws_elasticache_cluster</code>,<br /> aws_mq_broker for <code>aws_mq_broker</code>,<br /> aws_msk_cluster for <code>aws_msk_cluster</code>,<br /> aws_s3_bucket for <code>aws_s3_bucket</code>,<br /> aws_sns_topic for <code>aws_sns_topic</code>, aws_sqs_queue for <code>aws_sqs_queue</code></td>
-<td style="text-align: center;">Yes</td>
-<td style="text-align: center;">all</td>
-<td style="text-align: center;">string</td>
+<td align="center">resource_type</td>
+<td align="center">aws_ebs_volume for <code>aws_ebs_volume</code>,<br /> aws_efs_file_system for <code>aws_efs_file_system</code>,<br /> aws_elasticache_cluster for <code>aws_elasticache_cluster</code>,<br /> aws_mq_broker for <code>aws_mq_broker</code>,<br /> aws_msk_cluster for <code>aws_msk_cluster</code>,<br /> aws_s3_bucket for <code>aws_s3_bucket</code>,<br /> aws_sns_topic for <code>aws_sns_topic</code>, aws_sqs_queue for <code>aws_sqs_queue</code></td>
+<td align="center">Yes</td>
+<td align="center">all</td>
+<td align="center">string</td>
 </tr>
 <tr>
-<td style="text-align: center;">resource_vendor</td>
-<td style="text-align: center;">AWS</td>
-<td style="text-align: center;">Yes</td>
-<td style="text-align: center;">all</td>
-<td style="text-align: center;">string</td>
+<td align="center">resource_vendor</td>
+<td align="center">AWS</td>
+<td align="center">Yes</td>
+<td align="center">all</td>
+<td align="center">string</td>
 </tr>
 </tbody>
 </table>
@@ -1488,76 +1488,76 @@
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><strong>Field</strong></th>
-<th style="text-align: center;"><strong>Possible Values</strong></th>
-<th style="text-align: center;"><strong>Required</strong></th>
-<th style="text-align: center;"><strong>Resources</strong></th>
-<th style="text-align: center;"><strong>Type</strong></th>
+<th align="center"><strong>Field</strong></th>
+<th align="center"><strong>Possible Values</strong></th>
+<th align="center"><strong>Required</strong></th>
+<th align="center"><strong>Resources</strong></th>
+<th align="center"><strong>Type</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">acl</td>
-<td style="text-align: center;">Private,<br /> PublicRead,<br /> PublicReadWrite,<br /> AuthenticatedRead,<br /> LogDeliveryWrite,<br /> BucketOwnerRead,<br /> BucketOwnerFullControl,<br /> AwsExecRead</td>
-<td style="text-align: center;">No</td>
-<td style="text-align: center;"><code>AWS::S3::Bucket</code></td>
-<td style="text-align: center;">string</td>
+<td align="center">acl</td>
+<td align="center">Private,<br /> PublicRead,<br /> PublicReadWrite,<br /> AuthenticatedRead,<br /> LogDeliveryWrite,<br /> BucketOwnerRead,<br /> BucketOwnerFullControl,<br /> AwsExecRead</td>
+<td align="center">No</td>
+<td align="center"><code>AWS::S3::Bucket</code></td>
+<td align="center">string</td>
 </tr>
 <tr>
-<td style="text-align: center;">policy</td>
-<td style="text-align: center;">policy content (in case <code>resource_accessibility</code> equals hasPolicy)</td>
-<td style="text-align: center;">No</td>
-<td style="text-align: center;"><code>AWS::EFS::FileSystem</code>,<br /> <code>AWS::S3::Bucket</code>,<br /> <code>AWS::SNS::Topic</code>,<br /> <code>AWS::SQS::Queue</code></td>
-<td style="text-align: center;">JSON marshalled</td>
+<td align="center">policy</td>
+<td align="center">policy content (in case <code>resource_accessibility</code> equals hasPolicy)</td>
+<td align="center">No</td>
+<td align="center"><code>AWS::EFS::FileSystem</code>,<br /> <code>AWS::S3::Bucket</code>,<br /> <code>AWS::SNS::Topic</code>,<br /> <code>AWS::SQS::Queue</code></td>
+<td align="center">JSON marshalled</td>
 </tr>
 <tr>
-<td style="text-align: center;">resource_accessibility</td>
-<td style="text-align: center;">public, private, hasPolicy or unknown for <code>AWS::EC2::Volume</code>, <code>AWS::EFS::FileSystem</code>, <code>AWS::AmazonMQ::Broker</code>, <code>AWS::MSK::Cluster</code>, <code>AWS::S3::Bucket</code>,  <code>AWS::SNS::Topic</code>, and <code>AWS::SQS::Queue</code> <br /> <br /> at least one security group associated with the elasticache is unrestricted, all security groups associated with the elasticache are restricted or unknown for <code>AWS::ElastiCache::CacheCluster</code></td>
-<td style="text-align: center;">Yes</td>
-<td style="text-align: center;">all</td>
-<td style="text-align: center;">string</td>
+<td align="center">resource_accessibility</td>
+<td align="center">public, private, hasPolicy or unknown for <code>AWS::EC2::Volume</code>, <code>AWS::EFS::FileSystem</code>, <code>AWS::AmazonMQ::Broker</code>, <code>AWS::MSK::Cluster</code>, <code>AWS::S3::Bucket</code>,  <code>AWS::SNS::Topic</code>, and <code>AWS::SQS::Queue</code> <br /> <br /> at least one security group associated with the elasticache is unrestricted, all security groups associated with the elasticache are restricted or unknown for <code>AWS::ElastiCache::CacheCluster</code></td>
+<td align="center">Yes</td>
+<td align="center">all</td>
+<td align="center">string</td>
 </tr>
 <tr>
-<td style="text-align: center;">resource_category</td>
-<td style="text-align: center;">In Memory Data Structure for <code>AWS::ElastiCache::CacheCluster</code><br /><br />  Messaging for <code>AWS::SNS::Topic</code><br /><br />  Queues for <code>AWS::AmazonMQ::Broker</code> and <code>AWS::SQS::Queue</code><br /><br />  Storage for <code>AWS::EC2::Volume</code>, <code>AWS::EFS::FileSystem</code>, and <code>AWS::S3::Bucket</code><br /><br />  Streaming for <code>AWS::MSK::Cluster</code></td>
-<td style="text-align: center;">Yes</td>
-<td style="text-align: center;">all</td>
-<td style="text-align: center;">string</td>
+<td align="center">resource_category</td>
+<td align="center">In Memory Data Structure for <code>AWS::ElastiCache::CacheCluster</code><br /><br />  Messaging for <code>AWS::SNS::Topic</code><br /><br />  Queues for <code>AWS::AmazonMQ::Broker</code> and <code>AWS::SQS::Queue</code><br /><br />  Storage for <code>AWS::EC2::Volume</code>, <code>AWS::EFS::FileSystem</code>, and <code>AWS::S3::Bucket</code><br /><br />  Streaming for <code>AWS::MSK::Cluster</code></td>
+<td align="center">Yes</td>
+<td align="center">all</td>
+<td align="center">string</td>
 </tr>
 <tr>
-<td style="text-align: center;">resource_encryption</td>
-<td style="text-align: center;">encrypted,<br />  unencrypted,<br />  unknown</td>
-<td style="text-align: center;">Yes</td>
-<td style="text-align: center;">all</td>
-<td style="text-align: center;">string</td>
+<td align="center">resource_encryption</td>
+<td align="center">encrypted,<br />  unencrypted,<br />  unknown</td>
+<td align="center">Yes</td>
+<td align="center">all</td>
+<td align="center">string</td>
 </tr>
 <tr>
-<td style="text-align: center;">resource_engine</td>
-<td style="text-align: center;">memcached, redis or unknown for <code>AWS::ElastiCache::CacheCluster</code><br /><br />  ACTIVEMQ or RABBITMQ for <code>AWS::AmazonMQ::Broker</code></td>
-<td style="text-align: center;">No</td>
-<td style="text-align: center;"><code>AWS::ElastiCache::CacheCluster</code>, <br /> <code>AWS::AmazonMQ::Broker</code></td>
-<td style="text-align: center;">string</td>
+<td align="center">resource_engine</td>
+<td align="center">memcached, redis or unknown for <code>AWS::ElastiCache::CacheCluster</code><br /><br />  ACTIVEMQ or RABBITMQ for <code>AWS::AmazonMQ::Broker</code></td>
+<td align="center">No</td>
+<td align="center"><code>AWS::ElastiCache::CacheCluster</code>, <br /> <code>AWS::AmazonMQ::Broker</code></td>
+<td align="center">string</td>
 </tr>
 <tr>
-<td style="text-align: center;">resource_name</td>
-<td style="text-align: center;">anything (if the name is defined),<br /> unknown (if the name is not defined)</td>
-<td style="text-align: center;">Yes</td>
-<td style="text-align: center;">all</td>
-<td style="text-align: center;">string</td>
+<td align="center">resource_name</td>
+<td align="center">anything (if the name is defined),<br /> unknown (if the name is not defined)</td>
+<td align="center">Yes</td>
+<td align="center">all</td>
+<td align="center">string</td>
 </tr>
 <tr>
-<td style="text-align: center;">resource_type</td>
-<td style="text-align: center;">AWS::EC2::Volume for <code>AWS::EC2::Volume</code>,<br /> AWS::EFS::FileSystem for <code>AWS::EFS::FileSystem</code>,<br /> AWS::ElastiCache::CacheCluster for <code>AWS::ElastiCache::CacheCluster</code>,<br /> AWS::AmazonMQ::Broker for <code>AWS::AmazonMQ::Broker</code>,<br /> AWS::MSK::Cluster for <code>AWS::MSK::Cluster</code>,<br /> AWS::S3::Bucket for <code>AWS::S3::Bucket</code>,<br /> AWS::SNS::Topic for <code>AWS::SNS::Topic</code>, AWS::SQS::Queue for <code>AWS::SQS::Queue</code></td>
-<td style="text-align: center;">Yes</td>
-<td style="text-align: center;">all</td>
-<td style="text-align: center;">string</td>
+<td align="center">resource_type</td>
+<td align="center">AWS::EC2::Volume for <code>AWS::EC2::Volume</code>,<br /> AWS::EFS::FileSystem for <code>AWS::EFS::FileSystem</code>,<br /> AWS::ElastiCache::CacheCluster for <code>AWS::ElastiCache::CacheCluster</code>,<br /> AWS::AmazonMQ::Broker for <code>AWS::AmazonMQ::Broker</code>,<br /> AWS::MSK::Cluster for <code>AWS::MSK::Cluster</code>,<br /> AWS::S3::Bucket for <code>AWS::S3::Bucket</code>,<br /> AWS::SNS::Topic for <code>AWS::SNS::Topic</code>, AWS::SQS::Queue for <code>AWS::SQS::Queue</code></td>
+<td align="center">Yes</td>
+<td align="center">all</td>
+<td align="center">string</td>
 </tr>
 <tr>
-<td style="text-align: center;">resource_vendor</td>
-<td style="text-align: center;">AWS</td>
-<td style="text-align: center;">Yes</td>
-<td style="text-align: center;">all</td>
-<td style="text-align: center;">string</td>
+<td align="center">resource_vendor</td>
+<td align="center">AWS</td>
+<td align="center">Yes</td>
+<td align="center">all</td>
+<td align="center">string</td>
 </tr>
 </tbody>
 </table>
