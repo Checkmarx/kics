@@ -9,7 +9,7 @@ import (
 
 var (
 	// Version - current KICS version
-	Version = "1.5.12"
+	Version = "development"
 	// SCMCommit - Source control management commit identifier
 	SCMCommit = "NOCOMMIT"
 	// SentryDSN - sentry DSN, unset for disabling

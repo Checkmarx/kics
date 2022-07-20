@@ -37,8 +37,6 @@ FROM alpine:3.16.1
 
 ENV TERM xterm-256color
 
-ENV TERM xterm-256color
-
 # Install Terraform and Terraform plugins
 RUN wget https://releases.hashicorp.com/terraform/1.2.3/terraform_1.2.3_linux_amd64.zip \
     && unzip terraform_1.2.3_linux_amd64.zip && rm terraform_1.2.3_linux_amd64.zip \
