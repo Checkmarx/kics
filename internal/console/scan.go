@@ -2,13 +2,11 @@ package console
 
 import (
 	_ "embed" // Embed kics CLI img and scan-flags
-	"net/http"
 	"os"
 	"os/signal"
 	"path/filepath"
 	"strings"
 	"syscall"
-	"time"
 
 	"github.com/Checkmarx/kics/internal/console/flags"
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
@@ -18,7 +16,6 @@ import (
 	"github.com/Checkmarx/kics/pkg/scan"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
-	_ "net/http/pprof"
 )
 
 var (
@@ -146,13 +143,6 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 
 func executeScan(scanParams *scan.Parameters) error {
 	log.Debug().Msg("console.scan()")
-
-	go func() {
-		http.ListenAndServe(":8024", nil)
-	}()
-
-	log.Info().Msg("Starting scan, call PPROF")
-	time.Sleep(time.Second * 30)
 
 	for _, warn := range warnings {
 		log.Warn().Msgf(warn)

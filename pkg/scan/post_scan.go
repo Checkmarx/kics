@@ -123,8 +123,6 @@ func (c *Client) postScan(scanResults *Results) error {
 
 	contributionAppeal(c.Printer, c.ScanParams.QueriesPath)
 
-	time.Sleep(time.Second * 500)
-
 	exitCode := consoleHelpers.ResultsExitCode(&summary)
 	if consoleHelpers.ShowError("results") && exitCode != 0 {
 		os.Exit(exitCode)
