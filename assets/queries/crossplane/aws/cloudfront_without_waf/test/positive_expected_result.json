@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Cloudfront Without WAF",
+    "severity": "LOW",
+    "line": 8,
+    "fileName": "positive.yaml"
+  },
+  {
+    "queryName": "Cloudfront Without WAF",
+    "severity": "LOW",
+    "line": 48,
+    "fileName": "positive.yaml"
+  }  
+]

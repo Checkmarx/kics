@@ -1,0 +1,11 @@
+{
+  "id": "dd667399-8d9d-4a8d-bbb4-e49ab53b2f52",
+  "queryName": "DB Security Group Has Public Interface",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "The CIDR IP should not be a public interface",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_security_group",
+  "platform": "Crossplane",
+  "descriptionID": "c26de1ff",
+  "cloudProvider": "aws"
+}
