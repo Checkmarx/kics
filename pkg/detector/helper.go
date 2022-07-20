@@ -251,12 +251,15 @@ func removeExtras(result string, start, end int) string {
 }
 
 // DetectCurrentLine uses levenshtein distance to find the most accurate line for the vulnerability
-func (d *DefaultDetectLineResponse) DetectCurrentLine(str1, str2 string, recurseCount int, lines []string) (*DefaultDetectLineResponse, []string) {
+func (d *DefaultDetectLineResponse) DetectCurrentLine(str1, str2 string, recurseCount int,
+	lines []string) (det *DefaultDetectLineResponse, l []string) {
 	distances := make(map[int]int)
 
 	for i := d.CurrentLine; i < len(lines); i++ {
-		if res, newLines := d.checkResolvedFile(lines[i], str1, str2, recurseCount); res.FoundAtLeastOne {
-			return res, newLines
+		if len(d.ResolvedFiles) > 0 {
+			if res, newLines := d.checkResolvedFile(lines[i], str1, str2, recurseCount); res.FoundAtLeastOne {
+				return res, newLines
+			}
 		}
 		distances = checkLine(str1, str2, distances, lines[i], i)
 	}
@@ -287,7 +290,8 @@ func checkLine(str1, str2 string, distances map[int]int, line string, i int) map
 	return distances
 }
 
-func (d *DefaultDetectLineResponse) checkResolvedFile(line, str1, st2 string, recurseCount int) (*DefaultDetectLineResponse, []string) {
+func (d *DefaultDetectLineResponse) checkResolvedFile(line, str1, st2 string,
+	recurseCount int) (det *DefaultDetectLineResponse, l []string) {
 	for key, r := range d.ResolvedFiles {
 		if strings.Contains(line, key) {
 			if recurseCount > constants.MaxResolvedFiles {
