@@ -3,7 +3,7 @@
   "queryName": "RDP Access Is Not Restricted",
   "severity": "MEDIUM",
   "category": "Networking and Firewall",
-  "descriptionText": "Check if the Google compute firewall allows unrestricted RDP access.",
+  "descriptionText": "Check if the Google compute firewall allows unrestricted RDP access. Allowed ports should not contain RDP port 3389",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_firewall_module.html",
   "platform": "Ansible",
   "descriptionID": "23f68cd6",

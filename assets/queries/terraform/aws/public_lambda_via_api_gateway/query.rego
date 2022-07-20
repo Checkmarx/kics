@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_lambda_function[name]
 	permissionResource := input.document[i].resource.aws_lambda_permission[permissionName]
@@ -11,9 +13,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_lambda_permission",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_lambda_permission[%s].source_arn", [permissionName]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'source_arn' is not equal '/*/*'",
+		"keyExpectedValue": "'source_arn' should not be equal '/*/*'",
 		"keyActualValue": "'source_arn' is equal '/*/*'",
 	}
 }

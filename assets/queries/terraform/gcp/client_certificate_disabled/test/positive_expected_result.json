@@ -12,6 +12,6 @@
   {
     "queryName": "Client Certificate Disabled",
     "severity": "HIGH",
-    "line": 39
+    "line": 40
   }
 ]

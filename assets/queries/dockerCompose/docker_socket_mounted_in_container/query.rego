@@ -13,7 +13,6 @@ CxPolicy[result] {
  	
     
 	result := {
-    	"debug": sprintf("%s",[host_path]),
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.volumes",[name]),
 		"issueType": "IncorrectValue",

@@ -1,0 +1,10 @@
+{
+  "id": "d45330fd-f58d-45fb-a682-6481477a0f84",
+  "queryName": "RBAC Roles with Attach Permission",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Roles or ClusterRoles with RBAC permissions to attach to containers via 'kubectl attach' could be abused by attackers to read log output (stdout, stderr) and send input data (stdin) to running processes. Additionally, it would allow a malicious user to attach to a privileged container resulting in a privilege escalation attack. To prevent this, the 'pods/attach' verb should not be used in production environments",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+  "platform": "Kubernetes",
+  "descriptionID": "d45330fd"
+}

@@ -64,7 +64,6 @@ CxPolicy[result] {
     not common_lib.valid_key(resources, "limits")
    
 	result := {
-    	"debug":sprintf("%s",[resources]),
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy.resources",[name]),
 		"issueType": "MissingAttribute",

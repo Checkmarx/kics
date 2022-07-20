@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	password_policy := input.document[i].resource.aws_iam_account_password_policy[name]
@@ -8,10 +9,15 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_account_password_policy",
+		"resourceName": tf_lib.get_resource_name(password_policy, name),
 		"searchKey": sprintf("aws_iam_account_password_policy[%s]", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_iam_account_password_policy", name], []),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'require_uppercase_characters' should be set with true value",
 		"keyActualValue": "'require_uppercase_characters' is undefined",
+		"remediation": "require_uppercase_characters = true",
+		"remediationType": "addition",
 	}
 }
 
@@ -21,9 +27,17 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_account_password_policy",
+		"resourceName": tf_lib.get_resource_name(password_policy, name),
 		"searchKey": sprintf("aws_iam_account_password_policy[%s].require_uppercase_characters", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_iam_account_password_policy", name, "require_uppercase_characters"], []),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'require_uppercase_characters' should be true",
 		"keyActualValue": "'require_uppercase_characters' is false",
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }

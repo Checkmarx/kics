@@ -201,7 +201,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
 			m, ok := v.(map[string]interface{})
 			require.True(t, ok)
 
-			platformsWithResourceInfo := []string{"ansible", "azureResourceManager", "k8s", "googleDeploymentManager"}
+			platformsWithResourceInfo := []string{"ansible", "azureResourceManager", "cloudFormation", "k8s", "googleDeploymentManager", "terraform"}
 			requiredProperties := requiredQueryResultProperties
 
 			for i := range platformsWithResourceInfo {
@@ -236,6 +236,22 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
 				))
 			}
 
+			if _, ok := m["remediation"]; ok {
+				_, ok := m["remediationType"]
+				require.True(t, ok, fmt.Sprintf(
+					"query '%s' doesn't include parameter 'remediationType' in response",
+					path.Base(entry.dir)))
+
+			}
+
+			if _, ok := m["remediationType"]; ok {
+				_, ok := m["remediation"]
+				require.True(t, ok, fmt.Sprintf(
+					"query '%s' doesn't include parameter 'remediation' in response",
+					path.Base(entry.dir)))
+
+			}
+
 			return model.Vulnerability{}, nil
 		},
 		trk,
@@ -246,6 +262,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
 		},
 		map[string]bool{},
 		60,
+		true,
 	)
 	require.Nil(t, err)
 	require.NotNil(t, inspector)

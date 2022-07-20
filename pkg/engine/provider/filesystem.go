@@ -6,11 +6,14 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"sync"
 
 	sentryReport "github.com/Checkmarx/kics/internal/sentry"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
+	"github.com/yargevad/filepathx"
 )
 
 // FileSystemSourceProvider provides a path to be scanned
@@ -18,6 +21,7 @@ import (
 type FileSystemSourceProvider struct {
 	paths    []string
 	excludes map[string][]os.FileInfo
+	mu       sync.RWMutex
 }
 
 // ErrNotSupportedFile - error representing when a file format is not supported by KICS
@@ -58,10 +62,12 @@ func (s *FileSystemSourceProvider) AddExcluded(excludePaths []string) error {
 			}
 			return errors.Wrap(err, "failed to open excluded file")
 		}
+		s.mu.Lock()
 		if _, ok := s.excludes[info.Name()]; !ok {
 			s.excludes[info.Name()] = make([]os.FileInfo, 0)
 		}
 		s.excludes[info.Name()] = append(s.excludes[info.Name()], info)
+		s.mu.Unlock()
 	}
 	return nil
 }
@@ -69,7 +75,7 @@ func (s *FileSystemSourceProvider) AddExcluded(excludePaths []string) error {
 // GetExcludePaths gets all the files that should be excluded
 func GetExcludePaths(pathExpressions string) ([]string, error) {
 	if strings.ContainsAny(pathExpressions, "*?[") {
-		info, err := filepath.Glob(pathExpressions)
+		info, err := filepathx.Glob(pathExpressions)
 		if err != nil {
 			log.Error().Msgf("failed to get exclude path %s: %s", pathExpressions, err)
 			return []string{pathExpressions}, nil
@@ -82,6 +88,24 @@ func GetExcludePaths(pathExpressions string) ([]string, error) {
 // GetBasePaths returns base path of FileSystemSourceProvider
 func (s *FileSystemSourceProvider) GetBasePaths() []string {
 	return s.paths
+}
+
+// ignoreDamagedFiles checks whether we should ignore a damaged file from a scan or not.
+func ignoreDamagedFiles(path string) bool {
+	shouldIgnoreFile := false
+	fileInfo, err := os.Lstat(path)
+	if err != nil {
+		log.Warn().Msgf("Failed getting the file info for file '%s'", path)
+		return shouldIgnoreFile
+	}
+	log.Info().Msgf("No mode type bits are set( is a regular file ) for file '%s' : %t ", path, fileInfo.Mode().IsRegular())
+
+	if fileInfo.Mode()&os.ModeSymlink == os.ModeSymlink {
+		log.Warn().Msgf("File '%s' is a symbolic link - but seems not to be accessible", path)
+		shouldIgnoreFile = true
+	}
+
+	return shouldIgnoreFile
 }
 
 // GetSources tries to open file or directory and execute sink function on it
@@ -97,7 +121,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 		if !fileInfo.IsDir() {
 			c, openFileErr := openScanFile(scanPath, extensions)
 			if openFileErr != nil {
-				if openFileErr == ErrNotSupportedFile {
+				if openFileErr == ErrNotSupportedFile || ignoreDamagedFiles(scanPath) {
 					continue
 				}
 				return openFileErr
@@ -150,6 +174,9 @@ func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string,
 
 		c, err := os.Open(filepath.Clean(path))
 		if err != nil {
+			if ignoreDamagedFiles(filepath.Clean(path)) {
+				return nil
+			}
 			return errors.Wrap(err, "failed to open file")
 		}
 		defer closeFile(c, info)
@@ -168,7 +195,9 @@ func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string,
 }
 
 func openScanFile(scanPath string, extensions model.Extensions) (*os.File, error) {
-	if !extensions.Include(filepath.Ext(scanPath)) && !extensions.Include(filepath.Base(scanPath)) {
+	ext := utils.GetExtension(scanPath)
+
+	if !extensions.Include(ext) {
 		return nil, ErrNotSupportedFile
 	}
 
@@ -192,6 +221,8 @@ func closeFile(file *os.File, info os.FileInfo) {
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
 	path string, resolved bool) (bool, error) {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
 	if info.IsDir() {
 		if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
 			log.Info().Msgf("Directory ignored: %s", path)
@@ -208,7 +239,9 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 		log.Trace().Msgf("File ignored: %s", path)
 		return true, nil
 	}
-	if !extensions.Include(filepath.Ext(path)) && !extensions.Include(filepath.Base(path)) {
+	ext := utils.GetExtension(path)
+	if !extensions.Include(ext) {
+		log.Trace().Msgf("File ignored: %s", path)
 		return true, nil
 	}
 	return false, nil

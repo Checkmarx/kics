@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terraform_lib
+import data.generic.terraform as tf_lib
 
 get_matching_action(action, statements) = matched_action {
 	match = common_lib.policy_allows_action(statements, action)
@@ -20,10 +20,10 @@ CxPolicy[result] {
 	lambda = document[l].resource.aws_lambda_function[function_id]
 	# Checking for role whose id matches in the role of lambda arn reference
 	role = document[r].resource.aws_iam_role[role_id]
-	terraform_lib.has_relation(role_id, "aws_iam_role", lambda, "role")
+	tf_lib.has_relation(role_id, "aws_iam_role", lambda, "role")
 	# Checking for role's reference in inline policy
 	inline_policy = document[p].resource.aws_iam_role_policy[inline_policy_id]
-	terraform_lib.has_relation(role_id, "aws_iam_role", inline_policy, "role")
+	tf_lib.has_relation(role_id, "aws_iam_role", inline_policy, "role")
 	inline_policy_json = common_lib.json_unmarshal(inline_policy.policy)
 	parseable_policy = common_lib.make_regex_compatible_policy_statement(inline_policy_json.Statement)
 	actions := data.common_lib.aws_privilege_escalation_actions
@@ -31,6 +31,8 @@ CxPolicy[result] {
 	matching_actions != set()
 	result := {
 		"documentId": document[l].id,
+		"resourceType": "aws_lambda_function",
+		"resourceName": tf_lib.get_resource_name(lambda, function_id),
 		"searchKey": sprintf("aws_lambda_function[%s].role", [function_id]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_lambda_function[%s].role has no privileged permissions through attached inline policy.", [function_id]),
@@ -44,8 +46,8 @@ CxPolicy[result] {
 	lambda = document[l].resource.aws_lambda_function[function_id]
 	# Checking for role whose id matches in the role of lambda arn reference
 	role = document[r].resource.aws_iam_role[role_id]
-	terraform_lib.has_relation(role_id, "aws_iam_role", lambda, "role")
-	attached_customer_managed_policy_ids := terraform_lib.get_attached_managed_policy_ids(role_id, "role", input)
+	tf_lib.has_relation(role_id, "aws_iam_role", lambda, "role")
+	attached_customer_managed_policy_ids := tf_lib.get_attached_managed_policy_ids(role_id, "role", input)
 	attached_customer_managed_policy_id = attached_customer_managed_policy_ids[_]
 	not regex.match("arn:aws.*:iam::.*", attached_customer_managed_policy_id)
 	customer_managed_policy = document[p].resource.aws_iam_policy[attached_customer_managed_policy_id]
@@ -56,6 +58,8 @@ CxPolicy[result] {
 	matching_actions != set()
 	result := {
 		"documentId": document[l].id,
+		"resourceType": "aws_lambda_function",
+		"resourceName": tf_lib.get_resource_name(lambda, function_id),
 		"searchKey": sprintf("aws_lambda_function[%s].role", [function_id]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_lambda_function[%s].role has no privileged permissions through attached managed policy", [function_id]),
@@ -69,13 +73,15 @@ CxPolicy[result] {
 	lambda = document[l].resource.aws_lambda_function[function_id]
 	# Checking for role whose id matches in the role of lambda arn reference
 	role = document[r].resource.aws_iam_role[role_id]
-	terraform_lib.has_relation(role_id, "aws_iam_role", lambda, "role")
-	attached_aws_managed_policy_arns := terraform_lib.get_attached_managed_policy_ids(role_id, "role", input)
+	tf_lib.has_relation(role_id, "aws_iam_role", lambda, "role")
+	attached_aws_managed_policy_arns := tf_lib.get_attached_managed_policy_ids(role_id, "role", input)
 	attached_customer_managed_policy_id = attached_aws_managed_policy_arns[_]
 	# Looking up of privileged policy_arns
 	regex.match(sprintf("arn:aws.*:iam::policy/%s", [data.common_lib.aws_privilege_escalation_policy_names[_]]), attached_customer_managed_policy_id)
 	result := {
 		"documentId": document[l].id,
+		"resourceType": "aws_lambda_function",
+		"resourceName": tf_lib.get_resource_name(lambda, function_id),
 		"searchKey": sprintf("aws_lambda_function[%s].role", [function_id]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_lambda_function[%s].role has no privileged permissions", [function_id]),

@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.security.{{%s}}", [p, oper, key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Operation Object is not using basic authentication",
+		"keyExpectedValue": "Operation Object should not be using basic authentication",
 		"keyActualValue": "Operation Object is using basic authentication",
 	}
 }

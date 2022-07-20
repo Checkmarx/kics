@@ -23,7 +23,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "ecs_ecr.policy.Principal is not equal to '*'",
+		"keyExpectedValue": "ecs_ecr.policy.Principal should not be equal to '*'",
 		"keyActualValue": "ecs_ecr.policy.Principal is equal to '*'",
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}

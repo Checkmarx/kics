@@ -1,6 +1,6 @@
 package Cx
 
-import data.generic.terraform as terraLib
+import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
 
 types := {"init_container", "container"}
@@ -8,7 +8,7 @@ types := {"init_container", "container"}
 CxPolicy[result] {
 	resource := input.document[i].resource[resourceType][name]
 
-	specInfo := terraLib.getSpecInfo(resource[name])
+	specInfo := tf_lib.getSpecInfo(resource[name])
 
 	containers := specInfo.spec[types[x]]
 
@@ -18,9 +18,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].env.value_from.secret_key_ref is undefined", [resourceType, name, specInfo.path, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].env.value_from.secret_key_ref should be undefined", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].env.value_from.secret_key_ref is set", [resourceType, name, specInfo.path, types[x]]),
 	}
 }
@@ -28,7 +30,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 
-	specInfo := terraLib.getSpecInfo(resource[name])
+	specInfo := tf_lib.getSpecInfo(resource[name])
 
 	containers := specInfo.spec[types[x]]
 
@@ -38,9 +40,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.env", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s.env.value_from.secret_key_ref is undefined", [resourceType, name, specInfo.path, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s.env.value_from.secret_key_ref should be undefined", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.env.value_from.secret_key_ref is set", [resourceType, name, specInfo.path, types[x]]),
 	}
 }
@@ -48,7 +52,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 
-	specInfo := terraLib.getSpecInfo(resource[name])
+	specInfo := tf_lib.getSpecInfo(resource[name])
 
 	containers := specInfo.spec[types[x]]
 
@@ -58,9 +62,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].env_from.secret_ref is undefined", [resourceType, name, specInfo.path, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].env_from.secret_ref should be undefined", [resourceType, name, specInfo.path, types[x], y]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].env_from.secret_ref is set", [resourceType, name, specInfo.path, types[x], y]),
 	}
 }
@@ -68,7 +74,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 
-	specInfo := terraLib.getSpecInfo(resource[name])
+	specInfo := tf_lib.getSpecInfo(resource[name])
 
 	containers := specInfo.spec[types[x]]
 
@@ -78,9 +84,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.env_from", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s.env_from.secret_ref is undefined", [resourceType, name, specInfo.path, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s.env_from.secret_ref should be undefined", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.env_from.secret_ref is set", [resourceType, name, specInfo.path, types[x]]),
 	}
 }
