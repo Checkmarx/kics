@@ -28,7 +28,6 @@ type DefaultDetectLineResponse struct {
 	CurrentLine     int
 	IsBreak         bool
 	FoundAtLeastOne bool
-	Lines           []string
 	ResolvedFile    string
 	ResolvedFiles   map[string]model.ResolvedFileSplit
 }
@@ -252,74 +251,62 @@ func removeExtras(result string, start, end int) string {
 }
 
 // DetectCurrentLine uses levenshtein distance to find the most accurate line for the vulnerability
-func (d *DefaultDetectLineResponse) DetectCurrentLine(str1, str2 string, recurseCount int) *DefaultDetectLineResponse {
+func (d *DefaultDetectLineResponse) DetectCurrentLine(str1, str2 string, recurseCount int, lines []string) (*DefaultDetectLineResponse, []string) {
 	distances := make(map[int]int)
 
-	for i := d.CurrentLine; i < len(d.Lines); i++ {
-		if res := d.checkResolvedFile(d.Lines[i], str1, str2, recurseCount); res.FoundAtLeastOne {
-			return res
+	for i := d.CurrentLine; i < len(lines); i++ {
+		if res, newLines := d.checkResolvedFile(lines[i], str1, str2, recurseCount); res.FoundAtLeastOne {
+			return res, newLines
 		}
-		distances = d.checkLine(str1, str2, distances, i)
+		distances = checkLine(str1, str2, distances, lines[i], i)
 	}
 
 	if len(distances) == 0 {
-		return &DefaultDetectLineResponse{
-			FoundAtLeastOne: d.FoundAtLeastOne,
-			CurrentLine:     d.CurrentLine,
-			IsBreak:         true,
-			Lines:           d.Lines,
-			ResolvedFile:    d.ResolvedFile,
-			ResolvedFiles:   d.ResolvedFiles,
-		}
+		d.IsBreak = true
+		return d, lines
 	}
 
-	return &DefaultDetectLineResponse{
-		CurrentLine:     SelectLineWithMinimumDistance(distances, d.CurrentLine),
-		IsBreak:         false,
-		FoundAtLeastOne: true,
-		Lines:           d.Lines,
-		ResolvedFile:    d.ResolvedFile,
-		ResolvedFiles:   d.ResolvedFiles,
-	}
+	d.CurrentLine = SelectLineWithMinimumDistance(distances, d.CurrentLine)
+	d.IsBreak = false
+	d.FoundAtLeastOne = true
+
+	return d, lines
 }
 
-func (d *DefaultDetectLineResponse) checkLine(str1, str2 string, distances map[int]int, i int) map[int]int {
-	if str1 != "" && str2 != "" && strings.Contains(d.Lines[i], str1) {
-		restLine := d.Lines[i][strings.Index(d.Lines[i], str1)+len(str1):]
+func checkLine(str1, str2 string, distances map[int]int, line string, i int) map[int]int {
+	if str1 != "" && str2 != "" && strings.Contains(line, str1) {
+		restLine := line[strings.Index(line, str1)+len(str1):]
 		if strings.Contains(restLine, str2) {
-			distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(d.Lines[i], str1, false), str1)
+			distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(line, str1, false), str1)
 			distances[i] += levenshtein.ComputeDistance(ExtractLineFragment(restLine, str2, false), str2)
 		}
-	} else if str1 != "" && strings.Contains(d.Lines[i], str1) {
-		distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(d.Lines[i], str1, false), str1)
+	} else if str1 != "" && strings.Contains(line, str1) {
+		distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(line, str1, false), str1)
 	}
 
 	return distances
 }
 
-func (d *DefaultDetectLineResponse) checkResolvedFile(line, str1, st2 string, recurseCount int) *DefaultDetectLineResponse {
+func (d *DefaultDetectLineResponse) checkResolvedFile(line, str1, st2 string, recurseCount int) (*DefaultDetectLineResponse, []string) {
 	for key, r := range d.ResolvedFiles {
 		if strings.Contains(line, key) {
 			if recurseCount > constants.MaxResolvedFiles {
 				break
 			}
-			return d.restore(r.Lines, r.Path).DetectCurrentLine(str1, st2, recurseCount+1)
+			return d.restore(r.Path).DetectCurrentLine(str1, st2, recurseCount+1, r.Lines)
 		}
 	}
-	return &DefaultDetectLineResponse{
-		CurrentLine:     0,
-		IsBreak:         false,
-		FoundAtLeastOne: false,
-	}
+
+	d.CurrentLine = 0
+	d.IsBreak = false
+	d.FoundAtLeastOne = false
+
+	return d, []string{}
 }
 
-func (d *DefaultDetectLineResponse) restore(lines []string, file string) *DefaultDetectLineResponse {
-	return &DefaultDetectLineResponse{
-		CurrentLine:     0,
-		IsBreak:         d.IsBreak,
-		FoundAtLeastOne: false,
-		Lines:           lines,
-		ResolvedFile:    file,
-		ResolvedFiles:   d.ResolvedFiles,
-	}
+func (d *DefaultDetectLineResponse) restore(file string) *DefaultDetectLineResponse {
+	d.CurrentLine = 0
+	d.FoundAtLeastOne = false
+	d.ResolvedFile = file
+	return d
 }

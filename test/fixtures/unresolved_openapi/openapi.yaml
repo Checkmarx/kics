@@ -7,10 +7,10 @@ info:
     name: MIT
   contact:
     name: API Support
-    url: http://www.example.com/support
+    url: https://www.example.com/support
     email: support@example.com
 servers:
-  - url: http://petstore.swagger.io/v1
+  - url: https://petstore.swagger.io/v1
 tags:
   - name: pets
 paths:

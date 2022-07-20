@@ -22,7 +22,6 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 		CurrentLine:     0,
 		IsBreak:         false,
 		FoundAtLeastOne: false,
-		Lines:           d.SplitLines(file.OriginalData),
 		ResolvedFile:    file.FilePath,
 		ResolvedFiles:   d.prepareResolvedFiles(file.ResolvedFiles),
 	}
@@ -34,10 +33,11 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 		sanitizedSubstring = strings.Replace(sanitizedSubstring, str[0], `{{`+strconv.Itoa(idx)+`}}`, -1)
 	}
 
+	lines := d.SplitLines(file.OriginalData)
 	for _, key := range strings.Split(sanitizedSubstring, ".") {
 		substr1, substr2 := GenerateSubstrings(key, extractedString)
 
-		detector = detector.DetectCurrentLine(substr1, substr2, 0)
+		detector, lines = detector.DetectCurrentLine(substr1, substr2, 0, lines)
 
 		if detector.IsBreak {
 			break
@@ -47,7 +47,7 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 	if detector.FoundAtLeastOne {
 		return model.VulnerabilityLines{
 			Line:         detector.CurrentLine + 1,
-			VulnLines:    GetAdjacentVulnLines(detector.CurrentLine, outputLines, detector.Lines),
+			VulnLines:    GetAdjacentVulnLines(detector.CurrentLine, outputLines, lines),
 			ResolvedFile: detector.ResolvedFile,
 		}
 	}
