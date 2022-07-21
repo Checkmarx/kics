@@ -421,7 +421,7 @@ func getPlatform(metadataPlatform string) string {
 	case "DockerCompose":
 		return "dockerCompose"
 	case "Knative":
-		return "crossplane"
+		return "knative"
 	case "Kubernetes":
 		return "k8s"
 	case "OpenAPI":
