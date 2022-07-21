@@ -4,6 +4,7 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i]
+	startswith(resource.apiVersion, "compute.azure.crossplane.io")
 	resource.kind == "AKSCluster"
 	spec := resource.spec
 
@@ -26,6 +27,7 @@ CxPolicy[result] {
 	resource.kind == "Composition"
 	resourceList := resource.spec.resources
 
+	startswith(resourceList[j].base.apiVersion, "compute.azure.crossplane.io")
 	resourceList[j].base.kind == "AKSCluster"
 	spec := resourceList[j].base.spec
 	spec.disableRBAC == true

@@ -4,6 +4,7 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i]
+	startswith(resource.apiVersion, "container.gcp.crossplane.io")
 	resource.kind == "NodePool"
 	forProvider := resource.spec.forProvider
 
@@ -23,6 +24,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i]
+	startswith(resource.apiVersion, "container.gcp.crossplane.io")
 	resource.kind == "NodePool"
 	forProvider := resource.spec.forProvider
 
@@ -43,6 +45,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i]
+	startswith(resource.apiVersion, "container.gcp.crossplane.io")
 	resource.kind == "NodePool"
 	forProvider := resource.spec.forProvider
 
@@ -66,6 +69,7 @@ CxPolicy[result] {
 	resource.kind == "Composition"
 	resourceList := resource.spec.resources
 
+	startswith(resourceList[j].base.apiVersion, "container.gcp.crossplane.io")
 	resourceList[j].base.kind == "NodePool"
 	forProvider := resourceList[j].base.spec.forProvider
 	not common_lib.valid_key(forProvider, "management")
@@ -87,6 +91,7 @@ CxPolicy[result] {
 	resource.kind == "Composition"
 	resourceList := resource.spec.resources
 
+	startswith(resourceList[j].base.apiVersion, "container.gcp.crossplane.io")
 	resourceList[j].base.kind == "NodePool"
 	forProvider := resourceList[j].base.spec.forProvider
 	management := forProvider.management
@@ -109,6 +114,7 @@ CxPolicy[result] {
 	resource.kind == "Composition"
 	resourceList := resource.spec.resources
 
+	startswith(resourceList[j].base.apiVersion, "container.gcp.crossplane.io")
 	resourceList[j].base.kind == "NodePool"
 	forProvider := resourceList[j].base.spec.forProvider
 	management := forProvider.management

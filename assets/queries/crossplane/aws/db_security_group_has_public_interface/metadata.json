@@ -4,7 +4,7 @@
   "severity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "The CIDR IP should not be a public interface",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_security_group",
+  "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-aws/ec2.aws.crossplane.io/SecurityGroup/v1beta1@v0.29.0#spec-forProvider-egress-ipRanges-cidrIp",
   "platform": "Crossplane",
   "descriptionID": "c26de1ff",
   "cloudProvider": "aws"

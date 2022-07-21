@@ -4,6 +4,7 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i]
+	startswith(resource.apiVersion, "storage.gcp.crossplane.io")
 	resource.kind == "Bucket"
 	spec := resource.spec
 
@@ -26,6 +27,7 @@ CxPolicy[result] {
 	resource.kind == "Composition"
 	resourceList := resource.spec.resources
 
+	startswith(resourceList[j].base.apiVersion, "storage.gcp.crossplane.io")
 	resourceList[j].base.kind == "Bucket"
 	spec := resourceList[j].base.spec
 	not common_lib.valid_key(spec, "logging")

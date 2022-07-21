@@ -4,6 +4,7 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i]
+	startswith(resource.apiVersion, "database.aws.crossplane.io")
 	resource.kind == "RDSInstance"
 	forProvider := resource.spec.forProvider
 
@@ -23,6 +24,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i]
+	startswith(resource.apiVersion, "database.aws.crossplane.io")
 	resource.kind == "RDSInstance"
 	forProvider := resource.spec.forProvider
 
@@ -45,6 +47,7 @@ CxPolicy[result] {
 	resource.kind == "Composition"
 	resourceList := resource.spec.resources
 
+	startswith(resourceList[j].base.apiVersion, "database.aws.crossplane.io")
 	resourceList[j].base.kind == "RDSInstance"
 	forProvider := resourceList[j].base.spec.forProvider
 	not common_lib.valid_key(forProvider, "storageEncrypted")
@@ -66,6 +69,7 @@ CxPolicy[result] {
 	resource.kind == "Composition"
 	resourceList := resource.spec.resources
 
+	startswith(resourceList[j].base.apiVersion, "database.aws.crossplane.io")
 	resourceList[j].base.kind == "RDSInstance"
 	forProvider := resourceList[j].base.spec.forProvider
 	forProvider.storageEncrypted == false

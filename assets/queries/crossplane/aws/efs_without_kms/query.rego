@@ -4,6 +4,7 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i]
+	startswith(resource.apiVersion, "efs.aws.crossplane.io")
 	resource.kind == "FileSystem"
 	forProvider := resource.spec.forProvider
 
@@ -26,6 +27,7 @@ CxPolicy[result] {
 	resource.kind == "Composition"
 	resourceList := resource.spec.resources
 
+	startswith(resourceList[j].base.apiVersion, "efs.aws.crossplane.io")
 	resourceList[j].base.kind == "FileSystem"
 	forProvider := resourceList[j].base.spec.forProvider
 	not common_lib.valid_key(forProvider, "kmsKeyID")

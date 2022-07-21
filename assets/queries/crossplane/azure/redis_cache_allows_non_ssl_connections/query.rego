@@ -4,6 +4,7 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i]
+	startswith(resource.apiVersion, "cache.azure.crossplane.io")
 	resource.kind == "Redis"
 	forProvider := resource.spec.forProvider
 
@@ -26,6 +27,7 @@ CxPolicy[result] {
 	resource.kind == "Composition"
 	resourceList := resource.spec.resources
 
+	startswith(resourceList[j].base.apiVersion, "cache.azure.crossplane.io")
 	resourceList[j].base.kind == "Redis"
 	forProvider := resourceList[j].base.spec.forProvider
 	forProvider.enableNonSslPort == true

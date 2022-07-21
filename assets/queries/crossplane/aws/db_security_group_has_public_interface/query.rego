@@ -7,6 +7,7 @@ CxPolicy[result] {
 	resource.kind == "SecurityGroup"
 	ingressRules := resource.spec.forProvider.ingress
 
+	startswith(resource.apiVersion, "ec2.aws.crossplane.io")
 	ingressRule := ingressRules[j]
 	ipRange := ingressRule.ipRanges[z]
 	ipRange.cidrIp == "0.0.0.0/0"
@@ -28,6 +29,7 @@ CxPolicy[result] {
 	resource.kind == "Composition"
 	resourceList := resource.spec.resources
 
+	startswith(resourceList[j].base.apiVersion, "ec2.aws.crossplane.io")
 	resourceList[j].base.kind == "SecurityGroup"
 	ingressRules := resourceList[j].base.spec.forProvider.ingress
 	ingressRule := ingressRules[y]

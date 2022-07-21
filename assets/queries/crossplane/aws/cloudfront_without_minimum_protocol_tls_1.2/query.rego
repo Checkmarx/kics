@@ -4,6 +4,7 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i]
+	startswith(resource.apiVersion, "cloudfront.aws.crossplane.io")
 	resource.kind == "Distribution"
 	destribution_config := resource.spec.forProvider.distributionConfig
 
@@ -24,6 +25,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i]
+	startswith(resource.apiVersion, "cloudfront.aws.crossplane.io")
 	resource.kind == "Distribution"
 	destribution_config := resource.spec.forProvider.distributionConfig
 
@@ -43,6 +45,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i]
+	startswith(resource.apiVersion, "cloudfront.aws.crossplane.io")
 	resource.kind == "Distribution"
 	viewerCertificate := resource.spec.forProvider.distributionConfig.viewerCertificate
 
@@ -65,6 +68,7 @@ CxPolicy[result] {
 	resource.kind == "Composition"
 	resourceList := resource.spec.resources
 
+	startswith(resourceList[j].base.apiVersion, "cloudfront.aws.crossplane.io")
 	resourceList[j].base.kind == "Distribution"
 	destribution_config := resourceList[j].base.spec.forProvider.distributionConfig
 
@@ -88,6 +92,7 @@ CxPolicy[result] {
 	resource.kind == "Composition"
 	resourceList := resource.spec.resources
 
+	startswith(resourceList[j].base.apiVersion, "cloudfront.aws.crossplane.io")
 	resourceList[j].base.kind == "Distribution"
 	destribution_config := resourceList[j].base.spec.forProvider.distributionConfig
 
@@ -110,6 +115,7 @@ CxPolicy[result] {
 	resource.kind == "Composition"
 	resourceList := resource.spec.resources
 
+	startswith(resourceList[j].base.apiVersion, "cloudfront.aws.crossplane.io")
 	resourceList[j].base.kind == "Distribution"
 	destribution_config := resourceList[j].base.spec.forProvider.distributionConfig
 	viewerCertificate := destribution_config.viewerCertificate

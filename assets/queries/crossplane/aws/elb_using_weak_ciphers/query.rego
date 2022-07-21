@@ -4,6 +4,7 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i]
+	startswith(resource.apiVersion, "elbv2.aws.crossplane.io")
 	resource.kind == "Listener"
 	forProvider := resource.spec.forProvider
 
@@ -23,6 +24,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i]
+	startswith(resource.apiVersion, "elbv2.aws.crossplane.io")
 	resource.kind == "Listener"
 	forProvider := resource.spec.forProvider
 
@@ -46,6 +48,7 @@ CxPolicy[result] {
 	resource.kind == "Composition"
 	resourceList := resource.spec.resources
 
+	startswith(resourceList[j].base.apiVersion, "elbv2.aws.crossplane.io")
 	resourceList[j].base.kind == "Listener"
 	forProvider := resourceList[j].base.spec.forProvider
 	not common_lib.valid_key(forProvider, "sslPolicy")
@@ -67,6 +70,7 @@ CxPolicy[result] {
 	resource.kind == "Composition"
 	resourceList := resource.spec.resources
 
+	startswith(resourceList[j].base.apiVersion, "elbv2.aws.crossplane.io")
 	resourceList[j].base.kind == "Listener"
 	forProvider := resourceList[j].base.spec.forProvider
 	

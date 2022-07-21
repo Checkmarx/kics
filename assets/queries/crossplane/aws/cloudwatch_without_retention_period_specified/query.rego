@@ -6,6 +6,7 @@ validValues = [1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 18
 
 CxPolicy[result] {
 	resource := input.document[i]
+	startswith(resource.apiVersion, "cloudwatchlogs.aws.crossplane.io")
 	resource.kind == "LogGroup"
 	retention := resource.spec.forProvider.retentionInDays
 
@@ -25,6 +26,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i]
+	startswith(resource.apiVersion, "cloudwatchlogs.aws.crossplane.io")
 	resource.kind == "LogGroup"
 	forProvider := resource.spec.forProvider
 
@@ -47,6 +49,7 @@ CxPolicy[result] {
 	resource.kind == "Composition"
 	resourceList := resource.spec.resources
 
+	startswith(resourceList[j].base.apiVersion, "cloudwatchlogs.aws.crossplane.io")
 	resourceList[j].base.kind == "LogGroup"
 	retention := resourceList[j].base.spec.forProvider.retentionInDays
 	not common_lib.inArray(validValues, retention)
@@ -68,6 +71,7 @@ CxPolicy[result] {
 	resource.kind == "Composition"
 	resourceList := resource.spec.resources
 
+	startswith(resourceList[j].base.apiVersion, "cloudwatchlogs.aws.crossplane.io")
 	resourceList[j].base.kind == "LogGroup"
 	forProvider := resourceList[j].base.spec.forProvider
 	not common_lib.valid_key(forProvider, "retentionInDays")
