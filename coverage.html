@@ -119,7 +119,7 @@
 				
 				<option value="file31">github.com/Checkmarx/kics/pkg/detector/helm/helm_detect.go (88.2%)</option>
 				
-				<option value="file32">github.com/Checkmarx/kics/pkg/detector/helper.go (92.4%)</option>
+				<option value="file32">github.com/Checkmarx/kics/pkg/detector/helper.go (93.0%)</option>
 				
 				<option value="file33">github.com/Checkmarx/kics/pkg/detector/search_line_detector.go (95.0%)</option>
 				
@@ -1702,6 +1702,7 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 
 func executeScan(scanParams *scan.Parameters) error <span class="cov6" title="7">{
         log.Debug().Msg("console.scan()")
+
         for _, warn := range warnings </span><span class="cov10" title="30">{
                 log.Warn().Msgf(warn)
         }</span>
@@ -2164,13 +2165,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="24">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="27">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="24">total += v
+                <span class="cov8" title="27">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2195,7 +2196,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4073,7 +4074,6 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
                 CurrentLine:     0,
                 IsBreak:         false,
                 FoundAtLeastOne: false,
-                Lines:           d.SplitLines(file.OriginalData),
                 ResolvedFile:    file.FilePath,
                 ResolvedFiles:   d.prepareResolvedFiles(file.ResolvedFiles),
         }
@@ -4085,10 +4085,11 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
                 sanitizedSubstring = strings.Replace(sanitizedSubstring, str[0], `{{`+strconv.Itoa(idx)+`}}`, -1)
         }</span>
 
-        <span class="cov5" title="3">for _, key := range strings.Split(sanitizedSubstring, ".") </span><span class="cov7" title="5">{
+        <span class="cov5" title="3">lines := d.SplitLines(file.OriginalData)
+        for _, key := range strings.Split(sanitizedSubstring, ".") </span><span class="cov7" title="5">{
                 substr1, substr2 := GenerateSubstrings(key, extractedString)
 
-                detector = detector.DetectCurrentLine(substr1, substr2, 0)
+                detector, lines = detector.DetectCurrentLine(substr1, substr2, 0, lines)
 
                 if detector.IsBreak </span><span class="cov1" title="1">{
                         break</span>
@@ -4098,7 +4099,7 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
         <span class="cov5" title="3">if detector.FoundAtLeastOne </span><span class="cov4" title="2">{
                 return model.VulnerabilityLines{
                         Line:         detector.CurrentLine + 1,
-                        VulnLines:    GetAdjacentVulnLines(detector.CurrentLine, outputLines, detector.Lines),
+                        VulnLines:    GetAdjacentVulnLines(detector.CurrentLine, outputLines, lines),
                         ResolvedFile: detector.ResolvedFile,
                 }
         }</span>
@@ -4237,7 +4238,6 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
                 CurrentLine:     0,
                 IsBreak:         false,
                 FoundAtLeastOne: false,
-                Lines:           prepareDockerFileLines(d.SplitLines(file.OriginalData)),
                 ResolvedFile:    file.FilePath,
                 ResolvedFiles:   make(map[string]model.ResolvedFileSplit),
         }
@@ -4249,10 +4249,10 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
                 sKey = strings.Replace(sKey, str[0], `{{`+strconv.Itoa(idx)+`}}`, -1)
         }</span>
 
-        <span class="cov3" title="3">for _, key := range strings.Split(sKey, ".") </span><span class="cov5" title="6">{
+        <span class="cov3" title="3">for _, key := range strings.Split(sKey, ".") </span><span class="cov4" title="6">{
                 substr1, substr2 := detector.GenerateSubstrings(key, extractedString)
 
-                det = det.DetectCurrentLine(substr1, substr2, 0)
+                det, _ = det.DetectCurrentLine(substr1, substr2, 0, prepareDockerFileLines(d.SplitLines(file.OriginalData)))
 
                 if det.IsBreak </span><span class="cov0" title="0">{
                         break</span>
@@ -4279,40 +4279,40 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 }
 
 // SplitLines splits Dockerfile document by line, multiline are considered as one
-func (d DetectKindLine) SplitLines(content string) []string <span class="cov5" title="6">{
+func (d DetectKindLine) SplitLines(content string) []string <span class="cov5" title="9">{
         text := strings.ReplaceAll(content, "\r", "")
         return strings.Split(text, "\n")
 }</span>
 
-func prepareDockerFileLines(text []string) []string <span class="cov3" title="3">{
-        for idx, key := range text </span><span class="cov9" title="37">{
-                if !commentRegex.MatchString(key) </span><span class="cov9" title="37">{
+func prepareDockerFileLines(text []string) []string <span class="cov4" title="6">{
+        for idx, key := range text </span><span class="cov9" title="74">{
+                if !commentRegex.MatchString(key) </span><span class="cov9" title="74">{
                         text[idx] = multiLineSpliter(text, key, idx)
                 }</span>
         }
-        <span class="cov3" title="3">return text</span>
+        <span class="cov4" title="6">return text</span>
 }
 
-func multiLineSpliter(textSplit []string, key string, idx int) string <span class="cov10" title="48">{
-        if nameRegexDockerFileML.MatchString(key) </span><span class="cov6" title="11">{
+func multiLineSpliter(textSplit []string, key string, idx int) string <span class="cov10" title="96">{
+        if nameRegexDockerFileML.MatchString(key) </span><span class="cov7" title="22">{
                 i := idx + 1
                 if i &gt;= len(textSplit) </span><span class="cov0" title="0">{
                         return textSplit[idx]
                 }</span>
-                <span class="cov6" title="11">for textSplit[i] == "" </span><span class="cov5" title="8">{
+                <span class="cov7" title="22">for textSplit[i] == "" </span><span class="cov6" title="16">{
                         i++
                         if i &gt;= len(textSplit) </span><span class="cov0" title="0">{
                                 return textSplit[idx]
                         }</span>
                 }
-                <span class="cov6" title="11">if commentRegex.MatchString(textSplit[i]) </span><span class="cov0" title="0">{
+                <span class="cov7" title="22">if commentRegex.MatchString(textSplit[i]) </span><span class="cov0" title="0">{
                         textSplit[i] += " \\"
                 }</span>
-                <span class="cov6" title="11">textSplit[idx] = splitRegex.ReplaceAllLiteralString(textSplit[idx], " "+textSplit[i])
+                <span class="cov7" title="22">textSplit[idx] = splitRegex.ReplaceAllLiteralString(textSplit[idx], " "+textSplit[i])
                 textSplit[i] = ""
                 textSplit[idx] = multiLineSpliter(textSplit, textSplit[idx], idx)</span>
         }
-        <span class="cov10" title="48">return textSplit[idx]</span>
+        <span class="cov10" title="96">return textSplit[idx]</span>
 }
 </pre>
 		
@@ -4542,7 +4542,6 @@ type DefaultDetectLineResponse struct {
         CurrentLine     int
         IsBreak         bool
         FoundAtLeastOne bool
-        Lines           []string
         ResolvedFile    string
         ResolvedFiles   map[string]model.ResolvedFileSplit
 }
@@ -4710,7 +4709,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="11">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -4742,7 +4741,7 @@ func ExtractLineFragment(line, substr string, key bool) string <span class="cov5
                         break</span>
                 }
 
-                <span class="cov4" title="6">end++</span>
+                <span class="cov5" title="6">end++</span>
         }
 
         <span class="cov5" title="9">return removeExtras(line, start, end)</span>
@@ -4766,76 +4765,68 @@ func removeExtras(result string, start, end int) string <span class="cov5" title
 }
 
 // DetectCurrentLine uses levenshtein distance to find the most accurate line for the vulnerability
-func (d *DefaultDetectLineResponse) DetectCurrentLine(str1, str2 string, recurseCount int) *DefaultDetectLineResponse <span class="cov4" title="6">{
+func (d *DefaultDetectLineResponse) DetectCurrentLine(str1, str2 string, recurseCount int,
+        lines []string) (det *DefaultDetectLineResponse, l []string) <span class="cov5" title="6">{
         distances := make(map[int]int)
 
-        for i := d.CurrentLine; i &lt; len(d.Lines); i++ </span><span class="cov9" title="56">{
-                if res := d.checkResolvedFile(d.Lines[i], str1, str2, recurseCount); res.FoundAtLeastOne </span><span class="cov0" title="0">{
-                        return res
-                }</span>
-                <span class="cov9" title="56">distances = d.checkLine(str1, str2, distances, i)</span>
+        for i := d.CurrentLine; i &lt; len(lines); i++ </span><span class="cov10" title="56">{
+                if len(d.ResolvedFiles) &gt; 0 </span><span class="cov3" title="3">{
+                        if res, newLines := d.checkResolvedFile(lines[i], str1, str2, recurseCount); res.FoundAtLeastOne </span><span class="cov0" title="0">{
+                                return res, newLines
+                        }</span>
+                }
+                <span class="cov10" title="56">distances = checkLine(str1, str2, distances, lines[i], i)</span>
         }
 
-        <span class="cov4" title="6">if len(distances) == 0 </span><span class="cov1" title="1">{
-                return &amp;DefaultDetectLineResponse{
-                        FoundAtLeastOne: d.FoundAtLeastOne,
-                        CurrentLine:     d.CurrentLine,
-                        IsBreak:         true,
-                        Lines:           d.Lines,
-                        ResolvedFile:    d.ResolvedFile,
-                        ResolvedFiles:   d.ResolvedFiles,
-                }
+        <span class="cov5" title="6">if len(distances) == 0 </span><span class="cov1" title="1">{
+                d.IsBreak = true
+                return d, lines
         }</span>
 
-        <span class="cov4" title="5">return &amp;DefaultDetectLineResponse{
-                CurrentLine:     SelectLineWithMinimumDistance(distances, d.CurrentLine),
-                IsBreak:         false,
-                FoundAtLeastOne: true,
-                Lines:           d.Lines,
-                ResolvedFile:    d.ResolvedFile,
-                ResolvedFiles:   d.ResolvedFiles,
-        }</span>
+        <span class="cov4" title="5">d.CurrentLine = SelectLineWithMinimumDistance(distances, d.CurrentLine)
+        d.IsBreak = false
+        d.FoundAtLeastOne = true
+
+        return d, lines</span>
 }
 
-func (d *DefaultDetectLineResponse) checkLine(str1, str2 string, distances map[int]int, i int) map[int]int <span class="cov9" title="56">{
-        if str1 != "" &amp;&amp; str2 != "" &amp;&amp; strings.Contains(d.Lines[i], str1) </span><span class="cov4" title="5">{
-                restLine := d.Lines[i][strings.Index(d.Lines[i], str1)+len(str1):]
+func checkLine(str1, str2 string, distances map[int]int, line string, i int) map[int]int <span class="cov10" title="56">{
+        if str1 != "" &amp;&amp; str2 != "" &amp;&amp; strings.Contains(line, str1) </span><span class="cov4" title="5">{
+                restLine := line[strings.Index(line, str1)+len(str1):]
                 if strings.Contains(restLine, str2) </span><span class="cov4" title="4">{
-                        distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(d.Lines[i], str1, false), str1)
+                        distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(line, str1, false), str1)
                         distances[i] += levenshtein.ComputeDistance(ExtractLineFragment(restLine, str2, false), str2)
                 }</span>
-        } else<span class="cov9" title="51"> if str1 != "" &amp;&amp; strings.Contains(d.Lines[i], str1) </span><span class="cov1" title="1">{
-                distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(d.Lines[i], str1, false), str1)
+        } else<span class="cov9" title="51"> if str1 != "" &amp;&amp; strings.Contains(line, str1) </span><span class="cov1" title="1">{
+                distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(line, str1, false), str1)
         }</span>
 
-        <span class="cov9" title="56">return distances</span>
+        <span class="cov10" title="56">return distances</span>
 }
 
-func (d *DefaultDetectLineResponse) checkResolvedFile(line, str1, st2 string, recurseCount int) *DefaultDetectLineResponse <span class="cov10" title="57">{
+func (d *DefaultDetectLineResponse) checkResolvedFile(line, str1, st2 string,
+        recurseCount int) (det *DefaultDetectLineResponse, l []string) <span class="cov4" title="4">{
         for key, r := range d.ResolvedFiles </span><span class="cov4" title="4">{
                 if strings.Contains(line, key) </span><span class="cov1" title="1">{
                         if recurseCount &gt; constants.MaxResolvedFiles </span><span class="cov0" title="0">{
                                 break</span>
                         }
-                        <span class="cov1" title="1">return d.restore(r.Lines, r.Path).DetectCurrentLine(str1, st2, recurseCount+1)</span>
+                        <span class="cov1" title="1">return d.restore(r.Path).DetectCurrentLine(str1, st2, recurseCount+1, r.Lines)</span>
                 }
         }
-        <span class="cov9" title="56">return &amp;DefaultDetectLineResponse{
-                CurrentLine:     0,
-                IsBreak:         false,
-                FoundAtLeastOne: false,
-        }</span>
+
+        <span class="cov3" title="3">d.CurrentLine = 0
+        d.IsBreak = false
+        d.FoundAtLeastOne = false
+
+        return d, []string{}</span>
 }
 
-func (d *DefaultDetectLineResponse) restore(lines []string, file string) *DefaultDetectLineResponse <span class="cov2" title="2">{
-        return &amp;DefaultDetectLineResponse{
-                CurrentLine:     0,
-                IsBreak:         d.IsBreak,
-                FoundAtLeastOne: false,
-                Lines:           lines,
-                ResolvedFile:    file,
-                ResolvedFiles:   d.ResolvedFiles,
-        }
+func (d *DefaultDetectLineResponse) restore(file string) *DefaultDetectLineResponse <span class="cov2" title="2">{
+        d.CurrentLine = 0
+        d.FoundAtLeastOne = false
+        d.ResolvedFile = file
+        return d
 }</span>
 </pre>
 		
