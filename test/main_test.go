@@ -38,7 +38,6 @@ var (
 		"../assets/queries/crossplane/aws":          {FileKind: []model.FileKind{model.KindYAML}, Platform: "crossplane"},
 		"../assets/queries/crossplane/azure":        {FileKind: []model.FileKind{model.KindYAML}, Platform: "crossplane"},
 		"../assets/queries/crossplane/gcp":          {FileKind: []model.FileKind{model.KindYAML}, Platform: "crossplane"},
-		"../assets/queries/knative":                 {FileKind: []model.FileKind{model.KindYAML}, Platform: "knative"},
 		"../assets/queries/k8s":                     {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "k8s"},
 		"../assets/queries/cloudFormation/aws":      {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
 		"../assets/queries/cloudFormation/aws_bom":  {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
