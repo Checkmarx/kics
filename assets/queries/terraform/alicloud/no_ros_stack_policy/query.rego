@@ -48,4 +48,3 @@ hasPolicyDuringUpdate(resource){
 }else{
 	common_lib.valid_key(resource, "stack_policy_during_update_url")
 }
-
