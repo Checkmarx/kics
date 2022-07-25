@@ -14,9 +14,9 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
 		"resourceName": resource.metadata.name,
-		"searchKey": "spec.forProvider.enableNonSslPort",
+		"searchKey": sprintf("metadata.name={{%s}}.spec.forProvider.enableNonSslPort", [resource.metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "enableNonSslPort should be set to false",
+		"keyExpectedValue": "enableNonSslPort should be set to false or undefined",
 		"keyActualValue": "enableNonSslPort is set to true",
 		"searchLine": common_lib.build_search_line(["spec", "forProvider"], ["enableNonSslPort"]),
 	}
@@ -37,8 +37,8 @@ CxPolicy[result] {
 		"resourceType": resourceList[j].base.kind,
 		"resourceName": resourceList[j].base.metadata.name,
 		"searchKey": sprintf("spec.resources.base.metadata.name={{%s}}}.spec.forProvider.enableNonSslPort", [resourceList[j].base.metadata.name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "enableNonSslPort should be set to false",
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "enableNonSslPort should be set to false or undefined",
 		"keyActualValue": "enableNonSslPort is set to true",
 		"searchLine": common_lib.build_search_line(["spec", "resources", j, "base", "spec", "forProvider"], ["enableNonSslPort"]),
 	}

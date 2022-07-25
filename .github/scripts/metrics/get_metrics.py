@@ -22,8 +22,10 @@ queries_path = {
 samples_ext = {
     'azureresourcemanager': ['json'],
     'cloudformation': ['yaml', 'json'],
+    'crossplane': ['yaml'],
     'openapi': ['yaml', 'json'],
     'ansible': ['yaml'],
+    'knative': ['yaml'],
     'k8s': ['yaml'],
     'common': ['yaml', 'json', 'dockerfile', 'tf'],
     'dockerfile': ['dockerfile'],

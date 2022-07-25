@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
 		"resourceName": resource.metadata.name,
-		"searchKey": "spec.disableRBAC",
+		"searchKey": sprintf("metadata.name={{%s}}.spec.disableRBAC", [resource.metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "disableRBAC should be set to false",
 		"keyActualValue": "disableRBAC is set to true",

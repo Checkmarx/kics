@@ -3,7 +3,7 @@
   "queryName": "ELB Using Weak Ciphers",
   "severity": "HIGH",
   "category": "Encryption",
-  "descriptionText": "ELB Predefined or Custom Security Policies must not use weak ciphers, to reduce the risk of the SSL connection between the client and the load balancer being exploited. That means the 'SslPolicy' of 'listeners' must not coincide with any of a predefined list of weak ciphers.",
+  "descriptionText": "ELB Predefined or Custom Security Policies must not use weak ciphers, to reduce the risk of the SSL connection between the client and the load balancer being exploited. That means the 'sslPolicy' of 'Listeners' must not coincide with any of a predefined list of weak ciphers.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html",
   "platform": "Ansible",
   "descriptionID": "ab5b4a0b",

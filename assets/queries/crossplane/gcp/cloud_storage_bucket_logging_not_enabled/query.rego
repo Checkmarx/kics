@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
 		"resourceName": resource.metadata.name,
-		"searchKey": "spec",
+		"searchKey": sprintf("metadata.name={{%s}}.spec", [resource.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Bucket logging should be defined",
 		"keyActualValue": "Bucket logging is not defined",

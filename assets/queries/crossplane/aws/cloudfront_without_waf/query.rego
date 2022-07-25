@@ -7,6 +7,7 @@ CxPolicy[result] {
 	startswith(resource.apiVersion, "cloudfront.aws.crossplane.io")
 	resource.kind == "Distribution"
 	destribution_config := resource.spec.forProvider.distributionConfig
+	destribution_config.enabled == true
 
 	not common_lib.valid_key(destribution_config, "webACLID")
 
@@ -14,7 +15,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
 		"resourceName": resource.metadata.name,
-		"searchKey": sprintf("spec.forProvider.distributionConfig", []),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.forProvider.distributionConfig", [resource.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'webACLID' should be defined",
 		"keyActualValue": "'webACLID' is not defined",
@@ -30,6 +31,7 @@ CxPolicy[result] {
 	startswith(resourceList[j].base.apiVersion, "cloudfront.aws.crossplane.io")
 	resourceList[j].base.kind == "Distribution"
 	destribution_config := resourceList[j].base.spec.forProvider.distributionConfig
+	destribution_config.enabled == true
 
 	not common_lib.valid_key(destribution_config, "webACLID")
 

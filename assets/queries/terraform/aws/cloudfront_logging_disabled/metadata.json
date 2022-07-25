@@ -1,9 +1,9 @@
 {
   "id": "94690d79-b3b0-43de-b656-84ebef5753e5",
-  "queryName": "Cloudfront Logging Disabled",
+  "queryName": "CloudFront Logging Disabled",
   "severity": "MEDIUM",
   "category": "Observability",
-  "descriptionText": "AWS Cloudfront distributions must have logging enabled, which means the attribute 'logging_config' must be defined",
+  "descriptionText": "AWS CloudFront distributions must have logging enabled, which means the attribute 'logging_config' must be defined",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution",
   "platform": "Terraform",
   "descriptionID": "9cf96455",

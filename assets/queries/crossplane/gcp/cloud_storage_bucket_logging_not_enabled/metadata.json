@@ -3,7 +3,7 @@
   "queryName": "Cloud Storage Bucket Logging Not Enabled",
   "severity": "HIGH",
   "category": "Observability",
-  "descriptionText": "Cloud storage bucket with logging not enabled",
+  "descriptionText": "Cloud storage bucket should have logging enabled",
   "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-gcp/storage.gcp.crossplane.io/Bucket/v1alpha3@v0.21.0#spec-logging",
   "platform": "Crossplane",
   "descriptionID": "49295adb",

@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
 		"resourceName": resource.metadata.name,
-		"searchKey": "spec.forProvider",
+		"searchKey": sprintf("metadata.name={{%s}}.spec.forProvider", [resource.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "kmsMasterKeyId should be defined",
 		"keyActualValue": "kmsMasterKeyId is not defined",

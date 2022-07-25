@@ -3,7 +3,7 @@
   "queryName": "DB Instance Storage Not Encrypted",
   "severity": "HIGH",
   "category": "Encryption",
-  "descriptionText": "The parameter storage_encrypted in aws_db_instance must be set to 'true' (the default is 'false').",
+  "descriptionText": "RDSInstance should have its storage encrypted by setting the parameter to 'true'. The storageEncrypted default value is 'false'.",
   "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-aws/database.aws.crossplane.io/RDSInstance/v1beta1@v0.29.0",
   "platform": "Crossplane",
   "descriptionID": "e40c8a7e",
