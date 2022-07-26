@@ -55,6 +55,9 @@ var (
 	buildahRegex                                    = regexp.MustCompile(`\s*buildah\s*from\s*\w+`)
 	dockerComposeVersionRegex                       = regexp.MustCompile(`\s*version\s*:`)
 	dockerComposeServicesRegex                      = regexp.MustCompile(`\s*services\s*:`)
+	pulumiNameRegex                                 = regexp.MustCompile(`\s*name\s*:`)
+	pulumiRuntimeRegex                              = regexp.MustCompile(`\s*runtime\s*:`)
+	pulumiResourcesRegex                            = regexp.MustCompile(`\s*resources\s*:`)
 )
 
 var (
@@ -97,6 +100,7 @@ const (
 	ansible    = "ansible"
 	grpc       = "grpc"
 	dockerfile = "dockerfile"
+	pulumi     = "pulumi"
 )
 
 // regexSlice is a struct to contain a slice of regex
@@ -189,6 +193,13 @@ var types = map[string]regexSlice{
 		[]*regexp.Regexp{
 			dockerComposeVersionRegex,
 			dockerComposeServicesRegex,
+		},
+	},
+	"pulumi": {
+		[]*regexp.Regexp{
+			pulumiNameRegex,
+			pulumiRuntimeRegex,
+			pulumiResourcesRegex,
 		},
 	},
 }

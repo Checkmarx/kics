@@ -10,5 +10,6 @@ valid arguments:
   GoogleDeploymentManager
   Kubernetes
   OpenAPI
+  Pulumi
   Terraform
 {{.ScanHelp}}

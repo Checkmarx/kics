@@ -105,6 +105,7 @@ func (p *Parser) SupportedTypes() map[string]bool {
 		"openapi":                 true,
 		"googledeploymentmanager": true,
 		"dockercompose":           true,
+		"pulumi":                  true,
 	}
 }
 

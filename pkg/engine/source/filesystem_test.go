@@ -643,6 +643,7 @@ func TestListSupportedPlatforms(t *testing.T) {
 		"GoogleDeploymentManager",
 		"Kubernetes",
 		"OpenAPI",
+		"Pulumi",
 		"Terraform",
 	}
 	listActual := ListSupportedPlatforms()

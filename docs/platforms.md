@@ -109,6 +109,10 @@ KICS supports scanning Google Deployment Manager files with `.yaml` extension.
 
 KICS supports AWS Serverless Application Model (AWS SAM) files with `.yaml` extension. Note that KICS recognizes this technology as CloudFormation (for queries purpose).
 
+## Kubernetes
+
+KICS supports scanning Pulumi manifests with `.yaml` extension.
+
 ## Terraform
 
 KICS supports scanning Terraform's HCL files with `.tf` extension and input variables using `terraform.tfvars` or files with `.auto.tfvars` extension that are in same directory of `.tf` files.

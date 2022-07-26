@@ -51,6 +51,7 @@ var (
 		"GoogleDeploymentManager": "googleDeploymentManager",
 		"GRPC":                    "grpc",
 		"Buildah":                 "buildah",
+		"Pulumi":                  "pulumi",
 	}
 
 	// AvailableSeverities - All severities available

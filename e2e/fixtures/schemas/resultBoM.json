@@ -53,6 +53,7 @@
                   "GoogleDeploymentManager",
                   "Kubernetes",
                   "OpenAPI",
+                  "Pulumi",
                   "Terraform"
                 ]
               },

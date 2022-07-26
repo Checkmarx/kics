@@ -432,6 +432,8 @@ func getPlatform(metadataPlatform string) string {
 		return "googleDeploymentManager"
 	case "Buildah":
 		return "buildah"
+	case "Pulumi":
+		return "pulumi"
 	default:
 		return "unknown"
 	}

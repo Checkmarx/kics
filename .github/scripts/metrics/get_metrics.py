@@ -11,13 +11,14 @@ queries_path = {
     'azureresourcemanager': os.path.join(queries_basepath, 'azureResourceManager', '*'),
     'cloudformation': os.path.join(queries_basepath, 'cloudFormation', '**', '*'),
     'openapi': os.path.join(queries_basepath, 'openAPI', '**', '*'),
-    'k8s': os.path.join(queries_basepath, 'k8s', '*'),
+    'k8s': os.path.join(queries_basepath, 'k8s', '*'),    
     'common': os.path.join(queries_basepath, 'common', '*'),
     'dockerfile': os.path.join(queries_basepath, 'dockerfile', '*'),
     'terraform': os.path.join(queries_basepath, 'terraform', '**', '*'),
     'grpc': os.path.join(queries_basepath, 'grpc', '*'),
     'gdm': os.path.join(queries_basepath, 'googleDeploymentManager', '*'),
     'dockerCompose': os.path.join(queries_basepath, 'dockerCompose', '*'),
+    'pulumi': os.path.join(queries_basepath, 'pulumi', '*'),
 }
 samples_ext = {
     'azureresourcemanager': ['json'],
@@ -31,6 +32,7 @@ samples_ext = {
     'grpc': ['proto'],
     'gdm': ['yaml'],
     'dockerCompose': ['dockerCompose'],
+    'pulumi': ['yaml']
 
 }
 summary = {
