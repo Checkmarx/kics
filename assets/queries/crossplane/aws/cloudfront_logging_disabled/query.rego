@@ -18,8 +18,8 @@ CxPolicy[result] {
 		"resourceName": resource.metadata.name,
 		"searchKey": sprintf("%s.metadata.name={{%s}}.spec.forProvider.distributionConfig.logging.enabled", [common_lib.concat_path(path), resource.metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Cloudfront logging enabled attribute should be set to true",
-		"keyActualValue": "Cloudfront logging enabled attribute is set to false",
+		"keyExpectedValue": "CloudFront logging enabled attribute should be set to true",
+		"keyActualValue": "CloudFront logging enabled attribute is set to false",
 		"searchLine": common_lib.build_search_line(path, ["spec", "forProvider", "distributionConfig", "logging", "enabled"]),
 	}
 }
@@ -40,8 +40,8 @@ CxPolicy[result] {
 		"resourceName": resource.metadata.name,
 		"searchKey": sprintf("%s.metadata.name={{%s}}.spec.forProvider.distributionConfig.logging", [common_lib.concat_path(path), resource.metadata.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Cloudfront logging enabled attribute should be defined and set to true",
-		"keyActualValue": "Cloudfront enable is not defined",
+		"keyExpectedValue": "CloudFront logging enabled attribute should be defined and set to true",
+		"keyActualValue": "CloudFront enable is not defined",
 		"searchLine": common_lib.build_search_line(path, ["spec", "forProvider", "distributionConfig", "logging"]),
 	}
 }
@@ -62,8 +62,8 @@ CxPolicy[result] {
 		"resourceName": resource.metadata.name,
 		"searchKey": sprintf("%s.metadata.name={{%s}}.spec.forProvider.distributionConfig", [common_lib.concat_path(path),resource.metadata.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Cloudfront logging enabled attribute should be defined and set to true",
-		"keyActualValue": "Cloudfront logging is not defined",
+		"keyExpectedValue": "CloudFront logging enabled attribute should be defined and set to true",
+		"keyActualValue": "CloudFront logging is not defined",
 		"searchLine": common_lib.build_search_line(path, ["spec", "forProvider", "distributionConfig"]),
 	}
 }
