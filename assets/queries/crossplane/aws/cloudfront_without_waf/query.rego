@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.crossplane as cp_lib
 
 CxPolicy[result] {
 	docs := input.document[i]
@@ -16,7 +17,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
 		"resourceName": resource.metadata.name,
-		"searchKey": sprintf("%s.metadata.name={{%s}}.spec.forProvider.distributionConfig", [common_lib.concat_path(path), resource.metadata.name]),
+		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.distributionConfig", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'webACLID' should be defined",
 		"keyActualValue": "'webACLID' is not defined",

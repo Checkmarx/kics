@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.crossplane as cp_lib
 
 CxPolicy[result] {
 	docs := input.document[i]
@@ -15,7 +16,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
 		"resourceName": resource.metadata.name,
-		"searchKey": sprintf("%s.metadata.name={{%s}}.spec.forProvider.enableNonSslPort", [common_lib.concat_path(path), resource.metadata.name]),
+		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.enableNonSslPort", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "enableNonSslPort should be set to false or undefined",
 		"keyActualValue": "enableNonSslPort is set to true",

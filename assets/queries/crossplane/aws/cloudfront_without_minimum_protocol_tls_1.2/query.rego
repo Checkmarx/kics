@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.crossplane as cp_lib
 
 CxPolicy[result] {
 	docs := input.document[i]
@@ -17,7 +18,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
 		"resourceName": resource.metadata.name,
-		"searchKey": sprintf("%s.metadata.name={{%s}}.spec.forProvider.distributionConfig.viewerCertificate.minimumProtocolVersion", [common_lib.concat_path(path), resource.metadata.name]),
+		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.distributionConfig.viewerCertificate.minimumProtocolVersion", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'viewerCertificate.minimumProtocolVersion' should be TLSv1.2_x",
 		"keyActualValue": sprintf("'viewerCertificate.minimumProtocolVersion' is %s", [viewerCertificate.minimumProtocolVersion]),
@@ -39,7 +40,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
 		"resourceName": resource.metadata.name,
-		"searchKey": sprintf("%s.metadata.name={{%s}}.spec.forProvider.distributionConfig", [common_lib.concat_path(path), resource.metadata.name]),
+		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.distributionConfig", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'viewerCertificate.minimumProtocolVersion' should be defined and set to TLSv1.2_x",
 		"keyActualValue": "'viewerCertificate' is not defined",
@@ -61,7 +62,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
 		"resourceName": resource.metadata.name,
-		"searchKey": sprintf("%s.metadata.name={{%s}}.spec.forProvider.distributionConfig.viewerCertificate", [common_lib.concat_path(path), resource.metadata.name]),
+		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.distributionConfig.viewerCertificate", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'viewerCertificate.minimumProtocolVersion' should be defined and set to TLSv1.2_x",
 		"keyActualValue": "'minimumProtocolVersion' is not defined",
