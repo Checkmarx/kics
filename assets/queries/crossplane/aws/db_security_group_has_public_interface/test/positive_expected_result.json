@@ -8,7 +8,7 @@
   {
     "queryName": "DB Security Group Has Public Interface",
     "severity": "HIGH",
-    "line": 41,
+    "line": 55,
     "fileName": "positive.yaml"
   }  
 ]

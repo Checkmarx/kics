@@ -3,7 +3,8 @@ package Cx
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	resource := input.document[i]
+	docs := input.document[i]
+	[path, resource] := walk(docs)
 	startswith(resource.apiVersion, "cloudfront.aws.crossplane.io")
 	resource.kind == "Distribution"
 	destribution_config := resource.spec.forProvider.distributionConfig
@@ -15,34 +16,10 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
 		"resourceName": resource.metadata.name,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.forProvider.distributionConfig", [resource.metadata.name]),
+		"searchKey": sprintf("%s.metadata.name={{%s}}.spec.forProvider.distributionConfig", [common_lib.concat_path(path), resource.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'webACLID' should be defined",
 		"keyActualValue": "'webACLID' is not defined",
-		"searchLine": common_lib.build_search_line(["spec", "forProvider", "distributionConfig"], []),
-	}
-}
-
-CxPolicy[result] {
-	resource := input.document[i]
-	resource.kind == "Composition"
-	resourceList := resource.spec.resources
-
-	startswith(resourceList[j].base.apiVersion, "cloudfront.aws.crossplane.io")
-	resourceList[j].base.kind == "Distribution"
-	destribution_config := resourceList[j].base.spec.forProvider.distributionConfig
-	destribution_config.enabled == true
-
-	not common_lib.valid_key(destribution_config, "webACLID")
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": resourceList[j].base.kind,
-		"resourceName": resourceList[j].base.metadata.name,
-		"searchKey": sprintf("spec.resources.base.metadata.name={{%s}}}.spec.forProvider.distributionConfig", [resourceList[j].base.metadata.name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'webACLID' should be defined",
-		"keyActualValue": "'webACLID' is not defined",
-		"searchLine": common_lib.build_search_line(["spec", "resources", j, "base","spec", "forProvider", "distributionConfig"], []),
+		"searchLine": common_lib.build_search_line(path, ["spec", "forProvider", "distributionConfig"]),
 	}
 }

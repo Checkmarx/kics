@@ -3,7 +3,8 @@ package Cx
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	resource := input.document[i]
+	docs := input.document[i]
+	[path, resource] := walk(docs)
 	startswith(resource.apiVersion, "sqs.aws.crossplane.io")
 	resource.kind == "Queue"
 	forProvider := resource.spec.forProvider
@@ -14,32 +15,10 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
 		"resourceName": resource.metadata.name,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.forProvider", [resource.metadata.name]),
+		"searchKey": sprintf("%s.metadata.name={{%s}}.spec.forProvider", [common_lib.concat_path(path), resource.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "kmsMasterKeyId should be defined",
 		"keyActualValue": "kmsMasterKeyId is not defined",
-		"searchLine": common_lib.build_search_line(["spec", "forProvider"], []),
-	}
-}
-
-CxPolicy[result] {
-	resource := input.document[i]
-	resource.kind == "Composition"
-	resourceList := resource.spec.resources
-
-	startswith(resourceList[j].base.apiVersion, "sqs.aws.crossplane.io")
-	resourceList[j].base.kind == "Queue"
-	forProvider := resourceList[j].base.spec.forProvider
-	not common_lib.valid_key(forProvider, "kmsMasterKeyId")
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": resourceList[j].base.kind,
-		"resourceName": resourceList[j].base.metadata.name,
-		"searchKey": sprintf("spec.resources.base.metadata.name={{%s}}}.spec.forProvider", [resourceList[j].base.metadata.name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "kmsMasterKeyId should be defined",
-		"keyActualValue": "kmsMasterKeyId is not defined",
-		"searchLine": common_lib.build_search_line(["spec", "resources", j, "base", "spec", "forProvider"], []),
+		"searchLine": common_lib.build_search_line(path, ["spec", "forProvider"]),
 	}
 }
