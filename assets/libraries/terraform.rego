@@ -459,7 +459,7 @@ get_accessibility(resource, name, resourcePolicyName, resourceTarget) = info {
 } else = info {
 	policy := common_lib.json_unmarshal(resource.policy)
 	not is_publicly_accessible(policy)
-	info = {"accessibility": "private", "policy": policy}
+	info = {"accessibility": "hasPolicy", "policy": policy}
 } else = info {
 	not common_lib.valid_key(resource, "policy")
 
@@ -477,7 +477,7 @@ get_accessibility(resource, name, resourcePolicyName, resourceTarget) = info {
 
 	policy := common_lib.json_unmarshal(resourcePolicy.policy)
 	not is_publicly_accessible(policy)
-	info = {"accessibility": "private", "policy": policy}
+	info = {"accessibility": "hasPolicy", "policy": policy}
 } else = info {
 	info = {"accessibility": "unknown", "policy": ""}
 }

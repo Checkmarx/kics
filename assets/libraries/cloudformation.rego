@@ -129,7 +129,7 @@ get_resource_accessibility(nameRef, type, key) = info {
 
 	get_name(keys) == nameRef
 
-	info := {"accessibility": "private", "policy": policy.Properties.PolicyDocument}
+	info := {"accessibility": "hasPolicy", "policy": policy.Properties.PolicyDocument}
 } else = info {
     document := input.document
 	policy := document[_].Resources[_]
@@ -139,7 +139,7 @@ get_resource_accessibility(nameRef, type, key) = info {
 
 	get_name(keys[_]) == nameRef
 
-	info := {"accessibility": "private", "policy": policy.Properties.PolicyDocument}
+	info := {"accessibility": "hasPolicy", "policy": policy.Properties.PolicyDocument}
 } else = info {
 	info := {"accessibility": "unknown", "policy": ""}
 }
