@@ -36,7 +36,7 @@ CxPolicy[result] {
 get_bucket_acl(bucket_resource) = acl {
 	acl := bucket_resource.Properties.AccessControl
 } else = acl {
-	acl := "Private"
+	acl := "private"
 }
 
 is_public_access_blocked(properties) {
@@ -46,11 +46,11 @@ is_public_access_blocked(properties) {
 
 get_resource_accessibility(resource, name) = info {
 	is_public_access_blocked(resource.Properties.PublicAccessBlockConfiguration)
-	info := {"accessibility": "Private", "policy": ""}
+	info := {"accessibility": "private", "policy": ""}
 } else = info {
 	acc := cf_lib.get_resource_accessibility(name, "AWS::S3::BucketPolicy", "Bucket")
 	acl := get_bucket_acl(resource)
-	acl == "private"
+	lower(acl) == "private"
 	info := {"accessibility": "private", "policy": acc.policy}
 } else = info {
 	acc := cf_lib.get_resource_accessibility(name, "AWS::S3::BucketPolicy", "Bucket")
@@ -59,7 +59,7 @@ get_resource_accessibility(resource, name) = info {
 } else = info {
 	acc := cf_lib.get_resource_accessibility(name, "AWS::S3::BucketPolicy", "Bucket")
 	acl := get_bucket_acl(resource)
-	acl != "private"
+	lower(acl) != "private"
 	info := {"accessibility": "public", "policy": acc.policy}
 } else = info {
 	acc := cf_lib.get_resource_accessibility(name, "AWS::S3::BucketPolicy", "Bucket")
