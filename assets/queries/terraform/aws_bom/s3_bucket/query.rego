@@ -72,10 +72,28 @@ get_accessibility(bucket, bucketName) = accessibility {
 	accessibility = {"accessibility": "private", "policy": ""}
 } else = accessibility {
 	# cases when there is a unrestriced policy
-	acc := tf_lib.get_accessibility(bucket, bucketName, "aws_s3_bucket_policy", "bucket")
-    acc.accessibility == "hasPolicy"   
-    
-    accessibility = {"accessibility": "hasPolicy", "policy": acc.policy}   
+	acc := tf_lib.get_accessibility(bucket, bucketName, "aws_s3_bucket_policy", "bucket")  
+    # last cases: acl definition
+	acl:= get_bucket_acl(bucket, bucketName)
+	acl == "private"
+    accessibility = {"accessibility": acl, "policy": acc.policy}   
+} else = accessibility {
+	# cases when there is a unrestriced policy
+	acc := tf_lib.get_accessibility(bucket, bucketName, "aws_s3_bucket_policy", "bucket")  
+    acc.accessibility == "private"
+    accessibility = {"accessibility": acc.accessibility, "policy": acc.policy}   
+} else = accessibility {
+	# cases when there is a unrestriced policy
+	acc := tf_lib.get_accessibility(bucket, bucketName, "aws_s3_bucket_policy", "bucket")  
+    # last cases: acl definition
+	acl:= get_bucket_acl(bucket, bucketName)
+	acl != "private"
+    accessibility = {"accessibility": "public", "policy": acc.policy}   
+} else = accessibility {
+	# cases when there is a unrestriced policy
+	acc := tf_lib.get_accessibility(bucket, bucketName, "aws_s3_bucket_policy", "bucket")  
+    acc.accessibility != "private"
+    accessibility = {"accessibility": acc.accessibility, "policy": acc.policy}   
 } else = accessibility {
 	accessibility = {"accessibility": "unknown", "policy": ""}
 }

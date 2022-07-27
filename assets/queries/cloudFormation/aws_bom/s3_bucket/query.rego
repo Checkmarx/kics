@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document
@@ -49,8 +49,22 @@ get_resource_accessibility(resource, name) = info {
 	info := {"accessibility": "Private", "policy": ""}
 } else = info {
 	acc := cf_lib.get_resource_accessibility(name, "AWS::S3::BucketPolicy", "Bucket")
-	acc.accessibility == "hasPolicy"
-	info := {"accessibility": "hasPolicy", "policy": acc.policy}
+	acl := get_bucket_acl(resource)
+	acl == "private"
+	info := {"accessibility": "private", "policy": acc.policy}
+} else = info {
+	acc := cf_lib.get_resource_accessibility(name, "AWS::S3::BucketPolicy", "Bucket")
+	acc.accessibility == "private"
+	info := {"accessibility": "private", "policy": acc.policy}
+} else = info {
+	acc := cf_lib.get_resource_accessibility(name, "AWS::S3::BucketPolicy", "Bucket")
+	acl := get_bucket_acl(resource)
+	acl != "private"
+	info := {"accessibility": "public", "policy": acc.policy}
+} else = info {
+	acc := cf_lib.get_resource_accessibility(name, "AWS::S3::BucketPolicy", "Bucket")
+	acc.accessibility != "private"
+	info := {"accessibility": acc.accessibility, "policy": acc.policy}
 } else = info {
 	info := {"accessibility": "unknown", "policy": ""}
 }

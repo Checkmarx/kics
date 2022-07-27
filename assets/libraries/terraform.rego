@@ -454,7 +454,12 @@ is_publicly_accessible(policy) {
 
 get_accessibility(resource, name, resourcePolicyName, resourceTarget) = info {
 	policy := common_lib.json_unmarshal(resource.policy)
-	info = {"accessibility": "hasPolicy", "policy": policy}
+	is_publicly_accessible(policy)
+	info = {"accessibility": "public", "policy": policy}
+} else = info {
+	policy := common_lib.json_unmarshal(resource.policy)
+	not is_publicly_accessible(policy)
+	info = {"accessibility": "private", "policy": policy}
 } else = info {
 	not common_lib.valid_key(resource, "policy")
 
@@ -462,7 +467,17 @@ get_accessibility(resource, name, resourcePolicyName, resourceTarget) = info {
 	split(resourcePolicy[resourceTarget], ".")[1] == name
 
 	policy := common_lib.json_unmarshal(resourcePolicy.policy)
-	info = {"accessibility": "hasPolicy", "policy": policy}
+	is_publicly_accessible(policy)
+	info = {"accessibility": "public", "policy": policy}
+} else = info {
+	not common_lib.valid_key(resource, "policy")
+
+	resourcePolicy := input.document[_].resource[resourcePolicyName][_]
+	split(resourcePolicy[resourceTarget], ".")[1] == name
+
+	policy := common_lib.json_unmarshal(resourcePolicy.policy)
+	not is_publicly_accessible(policy)
+	info = {"accessibility": "private", "policy": policy}
 } else = info {
 	info = {"accessibility": "unknown", "policy": ""}
 }
