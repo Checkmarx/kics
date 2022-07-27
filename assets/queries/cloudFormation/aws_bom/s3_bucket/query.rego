@@ -45,13 +45,14 @@ is_public_access_blocked(properties) {
 }
 
 get_resource_accessibility(resource, name) = info {
+	acc := cf_lib.get_resource_accessibility(name, "AWS::S3::BucketPolicy", "Bucket")
 	is_public_access_blocked(resource.Properties.PublicAccessBlockConfiguration)
-	info := {"accessibility": "hasPolicy", "policy": ""}
+	info := {"accessibility": "private", "policy": acc.policy}
 } else = info {
 	acc := cf_lib.get_resource_accessibility(name, "AWS::S3::BucketPolicy", "Bucket")
 	acl := get_bucket_acl(resource)
-	lower(acl) == "hasPolicy"
-	info := {"accessibility": "hasPolicy", "policy": acc.policy}
+	lower(acl) == "private"
+	info := {"accessibility": "private", "policy": acc.policy}
 } else = info {
 	acc := cf_lib.get_resource_accessibility(name, "AWS::S3::BucketPolicy", "Bucket")
 	acc.accessibility == "hasPolicy"
@@ -65,6 +66,4 @@ get_resource_accessibility(resource, name) = info {
 	acc := cf_lib.get_resource_accessibility(name, "AWS::S3::BucketPolicy", "Bucket")
 	acc.accessibility != "hasPolicy"
 	info := {"accessibility": acc.accessibility, "policy": acc.policy}
-} else = info {
-	info := {"accessibility": "unknown", "policy": ""}
 }
