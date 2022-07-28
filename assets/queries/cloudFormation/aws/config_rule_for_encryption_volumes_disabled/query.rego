@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(firstRule, name),
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "There is a ConfigRule for encrypted volumes.",
+		"keyExpectedValue": "There should be a ConfigRule for encrypted volumes.",
 		"keyActualValue": "There isn't a ConfigRule for encrypted volumes."
 	}
 }
