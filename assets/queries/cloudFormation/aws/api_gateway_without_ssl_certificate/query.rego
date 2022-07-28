@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties has ClientCertificateId defined", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties should have ClientCertificateId defined", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties doesn't have ClientCertificateId defined", [name]),
 	}
 }

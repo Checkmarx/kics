@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s.EndpointConfiguration' is defined", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.EndpointConfiguration' should be defined", [name]),
 		"keyActualValue": sprintf("'Resources.%s.EndpointConfiguration' is undefined", [name]),
 	}
 }
@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.EndpointConfiguration", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s.EndpointConfiguration.Types' is defined", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.EndpointConfiguration.Types' should be defined", [name]),
 		"keyActualValue": sprintf("'Resources.%s.EndpointConfiguration.Types' is undefined", [name]),
 	}
 }
@@ -51,7 +51,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.EndpointConfiguration.Types", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.EndpointConfiguration.Types' contains 'PRIVATE'", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.EndpointConfiguration.Types' should contain 'PRIVATE'", [name]),
 		"keyActualValue": sprintf("'Resources.%s.EndpointConfiguration.Types' does not contain 'PRIVATE'", [name]),
 	}
 }

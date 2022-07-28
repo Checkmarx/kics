@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.KMSKeyId' is defined and not null", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.KMSKeyId' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.KMSKeyId' is undefined or null", [name]),
 	}
 }

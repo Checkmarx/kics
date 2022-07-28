@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.AuthorizationType is %s and Resources.%s.Properties.HttpMethod is %s", [name, none, name, options]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.AuthorizationType is %s and Resources.%s.Properties.HttpMethod should be %s", [name, none, name, options]),
 		"keyActualValue": sprintf("Resources.%s.Properties.AuthorizationType is %s and Resources.%s.Properties.HttpMethod is not %s", [name, none, name, options]),
 	}
 }
