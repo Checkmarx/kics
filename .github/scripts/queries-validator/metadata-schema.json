@@ -95,7 +95,8 @@
                 "Knative",
                 "Kubernetes",
                 "OpenAPI",
-                "Terraform"
+                "Terraform",
+                "Pulumi"
             ]
         },
         "descriptionID": {

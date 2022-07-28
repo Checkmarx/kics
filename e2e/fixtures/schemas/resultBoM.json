@@ -55,6 +55,7 @@
                   "Knative",
                   "Kubernetes",
                   "OpenAPI",
+                  "Pulumi",
                   "Terraform"
                 ]
               },

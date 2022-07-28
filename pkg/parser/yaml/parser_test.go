@@ -35,6 +35,7 @@ func TestParser_SupportedTypes(t *testing.T) {
 		"openapi":                 true,
 		"googledeploymentmanager": true,
 		"dockercompose":           true,
+		"pulumi":                  true,
 	}, p.SupportedTypes())
 }
 
