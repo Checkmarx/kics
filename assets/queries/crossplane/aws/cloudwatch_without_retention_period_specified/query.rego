@@ -42,7 +42,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "retentionInDays should be set to a valid value",
-		"keyActualValue": "retentionInDays is set to a invalid value",
+		"keyActualValue": "retentionInDays is undefined",
 		"searchLine": common_lib.build_search_line(path, ["spec", "forProvider"]),
 	}
 }
