@@ -46,7 +46,7 @@ func (c *Client) prepareAndAnalyzePaths() (provider.ExtractedPath, error) {
 		Types:             c.ScanParams.Platform,
 		Exc:               c.ScanParams.ExcludePaths,
 		GitIgnoreFileName: ".gitignore",
-		AddGitIgnore:      c.ScanParams.AddGitIgnore,
+		ExcludeGitIgnore:  c.ScanParams.ExcludeGitIgnore,
 	}
 
 	pathTypes, errAnalyze := analyzePaths(a)

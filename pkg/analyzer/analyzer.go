@@ -116,7 +116,7 @@ type Analyzer struct {
 	Types             []string
 	Exc               []string
 	GitIgnoreFileName string
-	AddGitIgnore      bool
+	ExcludeGitIgnore  bool
 }
 
 // types is a map that contains the regex by type
@@ -218,7 +218,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	// results is the channel shared by the workers that contains the types found
 	results := make(chan string)
 	ignoreFiles := make([]string, 0)
-	hasGitIgnoreFile, gitIgnore := shouldConsiderGitIgnoreFile(a.Paths[0], a.GitIgnoreFileName, a.AddGitIgnore)
+	hasGitIgnoreFile, gitIgnore := shouldConsiderGitIgnoreFile(a.Paths[0], a.GitIgnoreFileName, a.ExcludeGitIgnore)
 
 	// get all the files inside the given paths
 	for _, path := range a.Paths {
@@ -500,11 +500,11 @@ func isExcludedFile(path string, exc []string) bool {
 }
 
 // shouldConsiderGitIgnoreFile verifies if the scan should exclude the files according to the .gitignore file
-func shouldConsiderGitIgnoreFile(path, gitIgnore string, addGitIgnoreFile bool) (bool, *ignore.GitIgnore) {
+func shouldConsiderGitIgnoreFile(path, gitIgnore string, excludeGitIgnoreFile bool) (bool, *ignore.GitIgnore) {
 	gitIgnorePath := filepath.ToSlash(filepath.Join(path, gitIgnore))
 	_, err := os.Stat(gitIgnorePath)
 
-	if !addGitIgnoreFile && err == nil {
+	if !excludeGitIgnoreFile && err == nil {
 		gitIgnore, _ := ignore.CompileIgnoreFile(gitIgnorePath)
 		if gitIgnore != nil {
 			log.Info().Msgf(".gitignore file was found in '%s' and it will be used to automatically exclude paths", path)

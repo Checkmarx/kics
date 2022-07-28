@@ -186,7 +186,7 @@
     "usage": "case insensitive list of platform types to scan\n(${supportedPlatforms})",
     "validation": "validateMultiStrEnum"
   },
-  "add-gitignore": {
+  "exclude-gitignore": {
     "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",
