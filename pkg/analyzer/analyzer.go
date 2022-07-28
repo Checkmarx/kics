@@ -107,7 +107,6 @@ const (
 	dockerfile = "dockerfile"
 	crossplane = "crossplane"
 	knative    = "knative"
-	pulumi     = "pulumi"
 )
 
 // regexSlice is a struct to contain a slice of regex
