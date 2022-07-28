@@ -7,6 +7,8 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::S3::BucketPolicy"
 
+	cf_lib.has_bucket_associated(input.document[i].Resources, resource)
+
 	policy := resource.Properties.PolicyDocument
 	st := common_lib.get_statement(common_lib.get_policy(policy))
 	statement := st[_]

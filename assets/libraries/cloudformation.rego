@@ -73,6 +73,16 @@ getBucketName(resource) = name {
 	name := resource.Properties.Bucket.Ref
 }
 
+has_bucket_associated(resources, bucketPolicyRef){
+	resource := resources[_]
+	resource.Type == "AWS::S3::Bucket"
+	resource.Properties.BucketName == getBucketName(bucketPolicyRef)
+} else {
+	resource := resources[name]
+	resource.Type == "AWS::S3::Bucket"
+	name == getBucketName(bucketPolicyRef)
+}
+
 get_encryption(resource) = encryption {
 	resource.Properties.Encrypted == true
     encryption := "encrypted"
@@ -99,7 +109,35 @@ get_resource_accessibility(nameRef, type, key) = info {
 
 	keys := policy.Properties[key]
 
+	get_name(keys) == nameRef
+
+	policyDoc := policy.Properties.PolicyDocument
+	common_lib.any_principal(policyDoc)
+	common_lib.is_allow_effect(policyDoc)
+
+	info := {"accessibility": "public", "policy": policyDoc}
+} else = info {
+    document := input.document
+	policy := document[_].Resources[_]
+	policy.Type == type
+
+	keys := policy.Properties[key]
+
 	get_name(keys[_]) == nameRef
+
+	policyDoc := policy.Properties.PolicyDocument
+	common_lib.any_principal(policyDoc)
+	common_lib.is_allow_effect(policyDoc)
+
+	info := {"accessibility": "public", "policy": policyDoc}
+} else = info {
+    document := input.document
+	policy := document[_].Resources[_]
+	policy.Type == type
+
+	keys := policy.Properties[key]
+
+	get_name(keys) == nameRef
 
 	info := {"accessibility": "hasPolicy", "policy": policy.Properties.PolicyDocument}
 } else = info {
@@ -109,7 +147,7 @@ get_resource_accessibility(nameRef, type, key) = info {
 
 	keys := policy.Properties[key]
 
-	get_name(keys) == nameRef
+	get_name(keys[_]) == nameRef
 
 	info := {"accessibility": "hasPolicy", "policy": policy.Properties.PolicyDocument}
 } else = info {

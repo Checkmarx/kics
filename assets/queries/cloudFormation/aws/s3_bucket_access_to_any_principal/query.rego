@@ -10,7 +10,7 @@ CxPolicy[result] {
 	policyStatements := [policyStatement |
 		resourcePolicy := input.document[indexBucket].Resources[_]
 		resourcePolicy.Type == "AWS::S3::BucketPolicy"
-		check_ref(resourcePolicy.Properties.Bucket, nameBucket)
+		check_ref(resourcePolicy.Properties.Bucket, resourceBucket, nameBucket)
 		policy := resourcePolicy.Properties.PolicyDocument
 		st := common_lib.get_statement(common_lib.get_policy(policy))
 		policyStatement := st[_]
@@ -36,8 +36,10 @@ CxPolicy[result] {
 	}
 }
 
-check_ref(obj, name) {
-	obj.Ref == name
+check_ref(obj, bucketResource , logicName) {
+	obj.Ref == logicName
 } else {
-	obj == name
+	obj == logicName
+} else {
+	obj == bucketResource.Properties.BucketName
 }
