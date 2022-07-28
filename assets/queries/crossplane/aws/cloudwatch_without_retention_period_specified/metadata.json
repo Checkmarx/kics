@@ -4,7 +4,7 @@
   "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "AWS CloudWatch should have CloudWatch Logs enabled in order to monitor, store, and access log events",
-  "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-aws/cloudwatchlogs.aws.crossplane.io/LogGroup/v1alpha1@v0.29.0",
+  "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-aws/cloudwatchlogs.aws.crossplane.io/LogGroup/v1alpha1@v0.29.0#spec-forProvider-retentionInDays",
   "platform": "Crossplane",
   "descriptionID": "9ce0c6f8",
   "cloudProvider": "aws"

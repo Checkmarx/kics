@@ -40,7 +40,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.storageEncrypted", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "storageEncrypted should be defined and set to true",
-		"keyActualValue": "storageEncrypted is not defined",
+		"keyActualValue": "storageEncrypted is set to false",
 		"searchLine": common_lib.build_search_line(path, ["spec", "forProvider", "storageEncrypted"]),
 	}
 }

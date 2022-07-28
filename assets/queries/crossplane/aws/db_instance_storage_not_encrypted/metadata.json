@@ -4,7 +4,7 @@
   "severity": "HIGH",
   "category": "Encryption",
   "descriptionText": "RDS Instance should have its storage encrypted by setting the parameter to 'true'. The storageEncrypted default value is 'false'.",
-  "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-aws/database.aws.crossplane.io/RDSInstance/v1beta1@v0.29.0",
+  "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-aws/database.aws.crossplane.io/RDSInstance/v1beta1@v0.29.0#spec-forProvider-storageEncrypted",
   "platform": "Crossplane",
   "descriptionID": "e40c8a7e",
   "cloudProvider": "aws"

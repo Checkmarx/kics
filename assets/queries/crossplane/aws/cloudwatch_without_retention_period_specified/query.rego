@@ -20,8 +20,8 @@ CxPolicy[result] {
 		"resourceName": resource.metadata.name,
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.retentionInDays", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "retentioninDays should be set to a valid value",
-		"keyActualValue": "retentioninDays is set to a invalid value",
+		"keyExpectedValue": "retentionInDays should be set to a valid value",
+		"keyActualValue": "retentionInDays is set to a invalid value",
 		"searchLine": common_lib.build_search_line(path, ["spec", "forProvider", "retentionInDays"]),
 	}
 }
@@ -41,8 +41,8 @@ CxPolicy[result] {
 		"resourceName": resource.metadata.name,
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "retentioninDays should be set to a valid value",
-		"keyActualValue": "retentioninDays is set to a invalid value",
+		"keyExpectedValue": "retentionInDays should be set to a valid value",
+		"keyActualValue": "retentionInDays is set to a invalid value",
 		"searchLine": common_lib.build_search_line(path, ["spec", "forProvider"]),
 	}
 }
