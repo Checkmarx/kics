@@ -4,6 +4,7 @@ Resources:
     Type: AWS::CloudFront::Distribution
     Properties:
       DistributionConfig:
+        Enabled: true
         CacheBehaviors:
           - LambdaFunctionAssociations:
               - EventType: string-value

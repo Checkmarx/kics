@@ -1,0 +1,56 @@
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: SecurityGroup
+metadata:
+  name: ec2-rule2
+spec:
+  forProvider:
+    region: us-east-1
+    vpcIdSelector:
+      matchControllerRef: true
+    groupName: crossplane-getting-started
+    description: Allow access to PostgreSQL
+    ingress:
+      - fromPort: 5432
+        toPort: 5432
+        ipProtocol: tcp
+        ipRanges:
+          - cidrIp: 0.0.0.0/0
+            description: Everywhere
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: cluster-aws
+  labels:
+    provider: aws
+    cluster: eks
+spec:
+  compositeTypeRef:
+    apiVersion: mydev.org/v1alpha1
+    kind: CompositeCluster
+  writeConnectionSecretsToNamespace: crossplane-system
+  patchSets:
+    - name: metadata
+      patches:
+        - fromFieldPath: metadata.labels
+  resources:
+    - name: sample-ec2
+      base:
+        apiVersion: ec2.aws.crossplane.io/v1beta1
+        kind: SecurityGroup
+        metadata:
+          name: ec2-rule5
+        spec:
+          forProvider:
+            region: us-east-1
+            vpcIdSelector:
+              matchControllerRef: true
+            groupName: crossplane-getting-started
+            description: Allow access to PostgreSQL
+            ingress:
+              - fromPort: 5432
+                toPort: 5432
+                ipProtocol: tcp
+                ipRanges:
+                  - cidrIp: 0.0.0.0/0
+                    description: Everywhere

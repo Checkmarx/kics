@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Google Container Node Pool Auto Repair Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive.yaml"
+  },
+  {
+    "queryName": "Google Container Node Pool Auto Repair Disabled",
+    "severity": "MEDIUM",
+    "line": 27,
+    "fileName": "positive.yaml"
+  }
+]

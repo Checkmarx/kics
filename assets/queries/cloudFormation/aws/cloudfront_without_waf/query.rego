@@ -8,6 +8,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::CloudFront::Distribution"
 	distributionConfig := resource.Properties.DistributionConfig
 
+	not cf_lib.isCloudFormationFalse(distributionConfig.Enabled)
 	not common_lib.valid_key(distributionConfig, "WebACLId")
 
 	result := {

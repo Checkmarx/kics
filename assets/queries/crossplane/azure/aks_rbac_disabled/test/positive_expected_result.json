@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "AKS RBAC Disabled",
+    "severity": "MEDIUM",
+    "line": 13,
+    "fileName": "positive.yaml"
+  },
+  {
+    "queryName": "AKS RBAC Disabled",
+    "severity": "MEDIUM",
+    "line": 40,
+    "fileName": "positive.yaml"
+  }
+]

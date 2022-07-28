@@ -4,10 +4,12 @@ valid arguments:
   AzureResourceManager
   Buildah
   CloudFormation
+  Crossplane
   DockerCompose
   Dockerfile
   GRPC
   GoogleDeploymentManager
+  Knative
   Kubernetes
   OpenAPI
   Terraform

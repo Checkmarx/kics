@@ -102,6 +102,8 @@ func (p *Parser) SupportedTypes() map[string]bool {
 		"ansible":                 true,
 		"cloudformation":          true,
 		"kubernetes":              true,
+		"crossplane":              true,
+		"knative":                 true,
 		"openapi":                 true,
 		"googledeploymentmanager": true,
 		"dockercompose":           true,
