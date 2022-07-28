@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "SQS with SSE disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive.yaml"
+  },
+  {
+    "queryName": "SQS with SSE disabled",
+    "severity": "MEDIUM",
+    "line": 40,
+    "fileName": "positive.yaml"
+  }
+]

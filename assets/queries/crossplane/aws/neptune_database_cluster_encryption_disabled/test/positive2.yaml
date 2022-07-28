@@ -1,0 +1,50 @@
+apiVersion: neptune.aws.crossplane.io/v1alpha1
+kind: DBCluster
+metadata:
+  name: sample-cluster3
+spec:
+  forProvider:
+    region: eu-central-1
+    applyImmediately: true
+    backupRetentionPeriod: 5
+    engine: neptune
+    enableIAMDatabaseAuthentication: true
+    deletionProtection: false
+    preferredBackupWindow: 07:00-09:00
+    skipFinalSnapshot: true
+    storageEncrypted: false
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: cluster-aws
+  labels:
+    provider: aws
+    cluster: eks
+spec:
+  compositeTypeRef:
+    apiVersion: mydev.org/v1alpha1
+    kind: CompositeCluster
+  writeConnectionSecretsToNamespace: crossplane-system
+  patchSets:
+    - name: metadata
+      patches:
+        - fromFieldPath: metadata.labels
+  resources:
+    - name: sample-ec2
+      base:
+        apiVersion: neptune.aws.crossplane.io/v1alpha1
+        kind: DBCluster
+        metadata:
+          name: sample-cluster4
+        spec:
+          forProvider:
+            region: eu-central-1
+            applyImmediately: true
+            backupRetentionPeriod: 5
+            engine: neptune
+            enableIAMDatabaseAuthentication: true
+            deletionProtection: false
+            preferredBackupWindow: 07:00-09:00
+            skipFinalSnapshot: true
+            storageEncrypted: false

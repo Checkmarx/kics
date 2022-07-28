@@ -396,7 +396,6 @@ func TestDefaultDetectLineResponse_restore(t *testing.T) {
 				CurrentLine:     0,
 				IsBreak:         false,
 				FoundAtLeastOne: false,
-				Lines:           []string{"this is a line"},
 				ResolvedFile:    "newfile",
 				ResolvedFiles:   map[string]model.ResolvedFileSplit{},
 			},
@@ -408,11 +407,10 @@ func TestDefaultDetectLineResponse_restore(t *testing.T) {
 				CurrentLine:     tt.fields.CurrentLine,
 				IsBreak:         tt.fields.IsBreak,
 				FoundAtLeastOne: tt.fields.FoundAtLeastOne,
-				Lines:           tt.fields.Lines,
 				ResolvedFile:    tt.fields.ResolvedFile,
 				ResolvedFiles:   tt.fields.ResolvedFiles,
 			}
-			if got := d.restore(tt.args.lines, tt.args.file); !reflect.DeepEqual(got, tt.want) {
+			if got := d.restore(tt.args.file); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("restore() = %v, want %v", got, tt.want)
 			}
 		})
@@ -433,11 +431,17 @@ func TestDefaultDetectLineResponse_checkResolvedFile(t *testing.T) {
 		str1 string
 		st2  string
 	}
+
+	type want struct {
+		defaultDetectLineResponse *DefaultDetectLineResponse
+		lines                     []string
+	}
+
 	tests := []struct {
 		name   string
 		fields fields
 		args   args
-		want   *DefaultDetectLineResponse
+		want   want
 	}{
 		{
 			name: "test_lines",
@@ -463,22 +467,25 @@ func TestDefaultDetectLineResponse_checkResolvedFile(t *testing.T) {
 					},
 				},
 			},
-			want: &DefaultDetectLineResponse{
-				CurrentLine:     1,
-				IsBreak:         false,
-				FoundAtLeastOne: true,
-				Lines:           []string{"this is line one", "key: value", "this is line three"},
-				ResolvedFile:    "abs/path/to/file",
-				ResolvedFiles: map[string]model.ResolvedFileSplit{
-					"path/to/file": {
-						Path: "abs/path/to/file",
-						Lines: []string{
-							"this is line one",
-							"key: value",
-							"this is line three",
+			want: want{
+				defaultDetectLineResponse: &DefaultDetectLineResponse{
+					CurrentLine:     1,
+					IsBreak:         false,
+					FoundAtLeastOne: true,
+
+					ResolvedFile: "abs/path/to/file",
+					ResolvedFiles: map[string]model.ResolvedFileSplit{
+						"path/to/file": {
+							Path: "abs/path/to/file",
+							Lines: []string{
+								"this is line one",
+								"key: value",
+								"this is line three",
+							},
 						},
 					},
 				},
+				lines: []string{"this is line one", "key: value", "this is line three"},
 			},
 		},
 	}
@@ -488,12 +495,16 @@ func TestDefaultDetectLineResponse_checkResolvedFile(t *testing.T) {
 				CurrentLine:     tt.fields.CurrentLine,
 				IsBreak:         tt.fields.IsBreak,
 				FoundAtLeastOne: tt.fields.FoundAtLeastOne,
-				Lines:           tt.fields.Lines,
 				ResolvedFile:    tt.fields.ResolvedFile,
 				ResolvedFiles:   tt.fields.ResolvedFiles,
 			}
-			if got := d.checkResolvedFile(tt.args.line, tt.args.str1, tt.args.st2, 0); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("checkResolvedFile() = %v, want %v", got, tt.want)
+			gotDefaultDetectLineResponse, gotLines := d.checkResolvedFile(tt.args.line, tt.args.str1, tt.args.st2, 0)
+
+			if !reflect.DeepEqual(gotDefaultDetectLineResponse, tt.want.defaultDetectLineResponse) {
+				t.Errorf("checkResolvedFile() = %v, want %v", gotDefaultDetectLineResponse, tt.want.defaultDetectLineResponse)
+			}
+			if !reflect.DeepEqual(gotLines, tt.want.lines) {
+				t.Errorf("checkResolvedFile() = %v, want %v", gotLines, tt.want.lines)
 			}
 		})
 	}

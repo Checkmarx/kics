@@ -56,6 +56,8 @@ var (
 	buildahRegex                                    = regexp.MustCompile(`\s*buildah\s*from\s*\w+`)
 	dockerComposeVersionRegex                       = regexp.MustCompile(`\s*version\s*:`)
 	dockerComposeServicesRegex                      = regexp.MustCompile(`\s*services\s*:`)
+	crossPlaneRegex                                 = regexp.MustCompile(`\s*\"?apiVersion\"?\s*:\s*(\w+\.)+crossplane\.io/v\w+\s*`)
+	knativeRegex                                    = regexp.MustCompile(`\s*\"?apiVersion\"?\s*:\s*(\w+\.)+knative\.dev/v\w+\s*`)
 )
 
 var (
@@ -79,7 +81,9 @@ var (
 		"azureresourcemanager": append(armRegexTypes, arm),
 		"buildah":              {"buildah"},
 		"cloudformation":       {"cloudformation"},
+		"crossplane":           {"crossplane"},
 		"dockercompose":        {"dockercompose"},
+		"knative":              {"knative"},
 		"kubernetes":           {"kubernetes"},
 		"openapi":              {"openapi"},
 		"terraform":            {"terraform", "cdkTf"},
@@ -98,6 +102,8 @@ const (
 	ansible    = "ansible"
 	grpc       = "grpc"
 	dockerfile = "dockerfile"
+	crossplane = "crossplane"
+	knative    = "knative"
 )
 
 // regexSlice is a struct to contain a slice of regex
@@ -131,6 +137,18 @@ var types = map[string]regexSlice{
 	"kubernetes": {
 		regex: []*regexp.Regexp{
 			k8sRegex,
+			k8sRegexKind,
+		},
+	},
+	"crossplane": {
+		regex: []*regexp.Regexp{
+			crossPlaneRegex,
+			k8sRegexKind,
+		},
+	},
+	"knative": {
+		regex: []*regexp.Regexp{
+			knativeRegex,
 			k8sRegexKind,
 		},
 	},
@@ -349,6 +367,8 @@ func isDockerfile(path string) bool {
 // overrides k8s match when all regexs passes for azureresourcemanager key and extension is set to json
 func needsOverride(check bool, returnType, key, ext string) bool {
 	if check && returnType == kubernetes && key == arm && ext == json {
+		return true
+	} else if check && returnType == kubernetes && (key == knative || key == crossplane) && ext == yaml {
 		return true
 	}
 	return false

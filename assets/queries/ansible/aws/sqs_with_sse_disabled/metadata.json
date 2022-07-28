@@ -3,7 +3,7 @@
   "queryName": "SQS with SSE disabled",
   "severity": "MEDIUM",
   "category": "Encryption",
-  "descriptionText": "Amazon Simple Queue Service (SQS) queue is not protecting the contents of their messages using Server-Side Encryption (SSE)",
+  "descriptionText": "Amazon Simple Queue Service (SQS) queue should protect the contents of their messages using Server-Side Encryption (SSE)",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/sqs_queue_module.html#ansible-collections-community-aws-sqs-queue-module",
   "platform": "Ansible",
   "descriptionID": "7825cf30",

@@ -1,0 +1,10 @@
+apiVersion: aws.stacks.crossplane.io/v1alpha1
+kind: AWSSample
+metadata:
+  name: test
+spec:
+  region: us-west-2
+  credentialsSecretRef:
+    name: aws-account-creds
+    namespace: crossplane-system
+    key: credentials
