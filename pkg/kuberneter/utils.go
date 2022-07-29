@@ -87,7 +87,6 @@ func extractK8sAPIOptions(path string, supportedKinds *supportedKinds) (*K8sAPIO
 	supAPIVersions, supKinds := getSupportedOptions(supportedKinds)
 
 	for i := range k8sAPIOptions.APIVersions {
-		fmt.Println(k8sAPIOptions.APIVersions[i])
 		if !utils.Contains(k8sAPIOptions.APIVersions[i], *supAPIVersions) {
 			return nil, errors.New("wrong apiVersion: " + k8sAPIOptions.APIVersions[i])
 		}

@@ -2,7 +2,6 @@ package kuberneter
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -38,7 +37,6 @@ func Import(ctx context.Context, kuberneterPath, destinationPath string) (string
 	// get the k8s client
 	c, err := getK8sClient()
 	if err != nil {
-		fmt.Println(err)
 		return "", err
 	}
 
@@ -101,12 +99,12 @@ func (info *k8sAPICall) listKinds(apiVersion string, kinds map[string]interface{
 		resource := kindList.(client.ObjectList)
 		err := info.client.List(*info.ctx, resource, client.InNamespace(namespace))
 		if err != nil {
-			log.Error().Msgf("failed to list %s: %s", apiVersion, err)
+			log.Info().Msgf("failed to list %s: %s", apiVersion, err)
 		}
 
 		objList, err := meta.ExtractList(resource)
 		if err != nil {
-			log.Error().Msgf("failed to extract list: %s", err)
+			log.Info().Msgf("failed to extract list: %s", err)
 		}
 
 		log.Info().Msgf("KICS found %d %s(s) in %s", len(objList), kind, getNamespace(namespace))
