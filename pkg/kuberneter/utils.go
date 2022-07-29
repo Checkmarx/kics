@@ -28,13 +28,14 @@ import (
 	"k8s.io/client-go/kubernetes/scheme"
 )
 
+// K8sAPIOptions saves all the necessary information to list the resources
 type K8sAPIOptions struct {
 	Namespaces  []string
 	APIVersions []string
 	Kinds       []string
 }
 
-const K8sAPIPathLength = 3
+const kuberneterPathLength = 3
 
 func (info *k8sAPICall) saveK8sResources(kind, k8sResourcesContent, apiVersionFolder string) {
 	file := filepath.Join(apiVersionFolder, kind+"s"+".yaml")
@@ -73,7 +74,7 @@ func (info *k8sAPICall) getResource(o runtime.Object, apiVersion, kind string, s
 
 func extractK8sAPIOptions(path string, supportedKinds *supportedKinds) (*K8sAPIOptions, error) {
 	pathInfo := strings.Split(path, ":")
-	if len(pathInfo) != K8sAPIPathLength {
+	if len(pathInfo) != kuberneterPathLength {
 		return nil, errors.New("wrong kuberneter path syntax")
 	}
 

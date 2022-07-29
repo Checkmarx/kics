@@ -12,6 +12,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 )
 
+// K8sConfig saves the config for k8s auth
 type K8sConfig struct {
 	Config *rest.Config
 }

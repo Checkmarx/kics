@@ -36,7 +36,7 @@ func (c *Client) prepareAndAnalyzePaths(ctx context.Context) (provider.Extracted
 		return provider.ExtractedPath{}, err
 	}
 
-	kuberneterExPaths, err := provider.GetKuberneterSources(kuberneterPaths, c.ScanParams.OutputPath, ctx)
+	kuberneterExPaths, err := provider.GetKuberneterSources(ctx, kuberneterPaths, c.ScanParams.OutputPath)
 	if err != nil {
 		return provider.ExtractedPath{}, err
 	}

@@ -23,7 +23,7 @@ type k8sAPICall struct {
 type supportedKinds map[string]map[string]interface{}
 
 // Import imports the k8s cluster resources into the destination using kuberneter path
-func Import(kuberneterPath, destinationPath string, ctx context.Context) (string, error) {
+func Import(ctx context.Context, kuberneterPath, destinationPath string) (string, error) {
 	log.Info().Msg("importing k8s cluster resources")
 
 	supportedKinds := buildSupportedKinds()

@@ -72,14 +72,14 @@ func GetTerraformerSources(source []string, destinationPath string) (ExtractedPa
 
 // GetKuberneterSources uses Kubernetes API to download runtime resources
 // After Downloaded files kics scan the files as normal local files
-func GetKuberneterSources(source []string, destinationPath string, ctx context.Context) (ExtractedPath, error) {
+func GetKuberneterSources(ctx context.Context, source []string, destinationPath string) (ExtractedPath, error) {
 	extrStruct := ExtractedPath{
 		Path:          []string{},
 		ExtractionMap: make(map[string]model.ExtractedPathObject),
 	}
 
 	for _, path := range source {
-		exportedPath, err := kuberneter.Import(path, destinationPath, ctx)
+		exportedPath, err := kuberneter.Import(ctx, path, destinationPath)
 		if err != nil {
 			log.Error().Msgf("failed to import %s: %s", path, err)
 		}
