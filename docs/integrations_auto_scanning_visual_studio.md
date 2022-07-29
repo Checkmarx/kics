@@ -67,33 +67,33 @@ You must have Docker installed and running in your environment
 2. In the main navigation, click on the **Extensions** icon.
 3. Search for the **Checkmarx** plugin, then click Install for the plugin.
 
-
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/UPDATE_DOCUMENTATION/docs/img/checkmarx_kics_auto_scanning.png" width="850">
-kics/UPDATE_DOCUMENTATION/docs/img/checkmarx_kics_auto_scanning.png
+<img src="https://user-images.githubusercontent.com/105008282/181722105-6ea7f13f-340f-4d3f-ae68-10d287cc7c73.png" width="850">
 
 The Checkmarx extension is installed and the Checkmarx icon appears in the left-side navigation panel.
+![checkmarx_extension](https://user-images.githubusercontent.com/105008282/181722851-ce90afed-2ac1-465f-a0b8-1104f94e56ee.png)
 
 
-Configuring the Extension
+# Configuring the Extension
 The extension is activated automatically upon installation and no configuration is required. 
 
 It is not necessary to configure the Checkmarx AST Authentication settings in order to use the KICS Auto Scanning feature.
 
 If you would like to customize the scan settings, you can use the following procedure:
 
-In the VS Code console, go to Settings > Extensions > Checkmarx > Checkmarx KICS Auto Scanning.
+1. In the VS Code console, go to **Settings > Extensions > Checkmarx > Checkmarx KICS Auto Scanning.**
+![checkmarx_kics_auto_scanning](https://user-images.githubusercontent.com/105008282/181723043-6020cb85-09f0-4a75-aed0-b185d55014d4.png)
 
 
-By default the extension is configured to run a KICS scan whenever an infrastructure file of a supported type that is open in your editor is saved. If you would like to disable automatic scanning, deselect the Activate KICS Auto Scanning checkbox. 
+2. By default the extension is configured to run a KICS scan whenever an infrastructure file of a supported type that is open in your editor is saved. If you would like to disable automatic scanning, deselect the **Activate KICS Auto Scanning** checkbox. 
 NOTE In this case, you will still be able to trigger scans manually from the command palette, as described below.
 
-If you would like to customize the scan parameters, enter the desire flags in the Additional Parameters field. For a list of available options, see Scan Command Options.
+3. If you would like to customize the scan parameters, enter the desire flags in the **Additional Parameters** field. For a list of available options, see Scan Command Options.
 
-Triggering a Scan Manually
+# Triggering a Scan Manually
 You can trigger a scan manually for the file that is open in your editor by opening the command palette and entering  Checkmarx-ast: Run kics realtime scan ( you can enter search text and select the command).
 
-Viewing KICS Results 
-Viewing the Results Summary
+# Viewing KICS Results 
+# Viewing the Results Summary
 When a scan is completed, a summary of the number of vulnerabilities identified by severity level is shown in the OUTPUT section of the VS Code console. 
 
 Example of results summary:
@@ -105,15 +105,13 @@ CxINFO - 2:04:47 PM]Results summary:
                     "INFO": 4,
                     "LOW": 62,
                     "MEDIUM": 65
-Viewing KICS Vulnerability Details
+
+# Viewing KICS Vulnerability Details
 Detailed information about the vulnerabilities that were detected is shown in the file editor window. The vulnerable code is highlighted according the severity level of the vulnerability, as follows:
 
 High - red
-
 Medium - orange
-
 Info - green
-
 Low - blue
 
 Hover over the vulnerable code to show a tooltip with detailed info about the vulnerability. 
