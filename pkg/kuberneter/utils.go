@@ -39,7 +39,7 @@ const K8sAPIPathLength = 3
 func (info *k8sAPICall) saveK8sResources(kind, k8sResourcesContent, apiVersionFolder string) {
 	file := filepath.Join(apiVersionFolder, kind+"s"+".yaml")
 
-	f, err := os.OpenFile(file, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
+	f, err := os.OpenFile(filepath.Clean(file), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
 
 	if err != nil {
 		log.Error().Msgf("failed to open file '%s': %s", file, err)
@@ -58,7 +58,7 @@ func (info *k8sAPICall) saveK8sResources(kind, k8sResourcesContent, apiVersionFo
 func (info *k8sAPICall) getResource(o runtime.Object, apiVersion, kind string, sb *strings.Builder) *strings.Builder {
 	e := json.NewYAMLSerializer(json.DefaultMetaFactory, scheme.Scheme, scheme.Scheme)
 
-	begin := fmt.Sprintf("\n---\napiVersion: %s\nkind: %s\n", getApiVersion(apiVersion), kind)
+	begin := fmt.Sprintf("\n---\napiVersion: %s\nkind: %s\n", getAPIVersion(apiVersion), kind)
 
 	if _, err := sb.WriteString(begin); err != nil {
 		log.Err(err).Msg("failed to write")
@@ -71,7 +71,11 @@ func (info *k8sAPICall) getResource(o runtime.Object, apiVersion, kind string, s
 	return sb
 }
 
-func extractK8sAPIOptions(path string) (*K8sAPIOptions, error) {
+func getSupportedApiVersions() []string {
+	supportedApiVersions := 
+}
+
+func extractK8sAPIOptions(path string, supportedKinds *supportedKinds) (*K8sAPIOptions, error) {
 	pathInfo := strings.Split(path, ":")
 	if len(pathInfo) != K8sAPIPathLength {
 		return nil, errors.New("wrong kuberneter path syntax")
@@ -81,6 +85,10 @@ func extractK8sAPIOptions(path string) (*K8sAPIOptions, error) {
 		Namespaces:  strings.Split(pathInfo[0], "+"),
 		APIVersions: strings.Split(pathInfo[1], "+"),
 		Kinds:       strings.Split(pathInfo[2], "+"),
+	}
+
+	for i := range k8sAPIOptions.APIVersions {
+
 	}
 
 	if k8sAPIOptions.Namespaces[0] == "*" {
@@ -198,7 +206,7 @@ func getDestinationFolder(destinationPath string) (string, error) {
 	return destination, nil
 }
 
-func getApiVersion(apiVersion string) string {
+func getAPIVersion(apiVersion string) string {
 	if apiVersion == "core/v1" {
 		return "v1"
 	}

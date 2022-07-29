@@ -26,8 +26,11 @@ type supportedKinds map[string]map[string]interface{}
 func Import(kuberneterPath, destinationPath string, ctx context.Context) (string, error) {
 	log.Info().Msg("importing k8s cluster resources")
 
+	supportedKinds := buildSupportedKinds()
+	defer func() { supportedKinds = nil }()
+
 	// extract k8s API options
-	k8sAPIOptions, err := extractK8sAPIOptions(kuberneterPath)
+	k8sAPIOptions, err := extractK8sAPIOptions(kuberneterPath, supportedKinds)
 	if err != nil {
 		return "", err
 	}
@@ -51,9 +54,6 @@ func Import(kuberneterPath, destinationPath string, ctx context.Context) (string
 		ctx:              &ctx,
 		destionationPath: destination,
 	}
-
-	supportedKinds := buildSupportedKinds()
-	defer func() { supportedKinds = nil }()
 
 	// list and save k8s resources
 	for i := range k8sAPIOptions.Namespaces {
