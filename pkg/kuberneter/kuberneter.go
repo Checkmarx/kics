@@ -107,7 +107,7 @@ func (info *k8sAPICall) listKinds(apiVersion string, kinds map[string]interface{
 			log.Info().Msgf("failed to extract list: %s", err)
 		}
 
-		log.Info().Msgf("KICS found %d %s(s) in %s", len(objList), kind, getNamespace(namespace))
+		log.Info().Msgf("KICS found %d %s(s) in %s from %s", len(objList), kind, getNamespace(namespace), apiVersion)
 
 		for i := range objList {
 			item := objList[i]
