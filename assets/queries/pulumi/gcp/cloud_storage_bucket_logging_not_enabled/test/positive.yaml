@@ -1,0 +1,20 @@
+name: aws-eks
+runtime: yaml
+description: An EKS cluster
+resources:
+  example:
+    type: gcp:storage:Bucket
+    properties:
+      location: US-CENTRAL1
+      logging:
+        enabled: false
+        logObjectPrefix: some_obj_prefix
+---
+name: aws-eks
+runtime: yaml
+description: An EKS cluster
+resources:
+  example:
+    type: gcp:storage:Bucket
+    properties:
+      location: US-CENTRAL1

@@ -55,6 +55,7 @@ var (
 		"../assets/queries/googleDeploymentManager": {FileKind: []model.FileKind{model.KindYAML}, Platform: "googleDeploymentManager"},
 		"../assets/queries/grpc":                    {FileKind: []model.FileKind{model.KindPROTO}, Platform: "grpc"},
 		"../assets/queries/buildah":                 {FileKind: []model.FileKind{model.KindBUILDAH}, Platform: "buildah"},
+		"../assets/queries/pulumi/gcp":              {FileKind: []model.FileKind{model.KindYAML}, Platform: "pulumi"},
 	}
 
 	issueTypes = map[string]string{
