@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "API Gateway Without SSL Certificate",
+		"queryName": "Api Gateway Access Logging Disabled",
 		"severity": "MEDIUM",
 		"line": 7,
 		"fileName": "positive.yaml"

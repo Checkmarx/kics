@@ -9,7 +9,7 @@ CxPolicy[result] {
 	resource := input.document[i].resources[name]
 	resource.type == valid_types[_]
 
-	not common_lib.valid_key(resource.properties, "clientCertificateId")
+	not common_lib.valid_key(resource.properties, "accessLogSettings")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -17,8 +17,8 @@ CxPolicy[result] {
 		"resourceName": name,
 		"searchKey": sprintf("resources[%s].properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'clientCertificateId' should be defined",
-		"keyActualValue": "Attribute 'clientCertificateId' is not defined",
+		"keyExpectedValue": "Attribute 'accessLogSettings' should be defined",
+		"keyActualValue": "Attribute 'accessLogSettings' is not defined",
 		"searchLine": common_lib.build_search_line(["resources", name, "properties"], []),
 	}
 }

@@ -6,4 +6,3 @@ resources:
     type: aws:apigatewayv2:Stage
     properties:
       apiId: ${aws_apigatewayv2_api.example.id}
-      clientCertificateId: 12131323a
