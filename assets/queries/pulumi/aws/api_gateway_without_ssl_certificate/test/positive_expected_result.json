@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "API Gateway Without SSL Certificate",
+		"severity": "MEDIUM",
+		"line": 1
+	}
+]

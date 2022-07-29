@@ -1,0 +1,11 @@
+{
+  "id": "0b4869fc-a842-4597-aa00-1294df425440",
+  "queryName": "API Gateway Without SSL Certificate",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "SSL Client Certificate should be enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_stage#client_certificate_id",
+  "platform": "Terraform",
+  "descriptionID": "6d4941dc",
+  "cloudProvider": "aws"
+}
