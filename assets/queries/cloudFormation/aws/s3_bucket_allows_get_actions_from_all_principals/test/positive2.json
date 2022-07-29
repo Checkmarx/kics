@@ -1,17 +1,5 @@
 {
   "Resources": {
-    "Bucket": {
-      "Type": "AWS::S3::Bucket",
-      "Properties": {
-        "BucketName": "DOC-EXAMPLE-BUCKET",
-        "PublicAccessBlockConfiguration": {
-          "BlockPublicAcls": false,
-          "BlockPublicPolicy": false,
-          "IgnorePublicAcls": true,
-          "RestrictPublicBuckets": false
-        }
-      }
-    },
     "SampleBucketPolicy5": {
       "Type": "AWS::S3::BucketPolicy",
       "Properties": {
@@ -47,10 +35,7 @@
         "PolicyDocument": {
           "Statement": [
             {
-              "Action": [
-                "DeleteObject",
-                "GetObject"
-              ],
+              "Action": ["DeleteObject", "GetObject"],
               "Effect": "Allow",
               "Resource": "*",
               "Principal": "*",

@@ -1,0 +1,290 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: CloudFormation template based on AppForMiki Terraform files.
+Resources:
+  amq1:  
+    Type: AWS::AmazonMQ::Broker
+    Properties: 
+      BrokerName: "AMQ_1"
+      EngineType: "ActiveMQ"
+      EngineVersion: "5.15.9"
+      HostInstanceType: "mq.t2.micro"
+      Users:
+        - Password: "MindTheGap"
+          Username: "ExampleUser"
+      PubliclyAccessible: true
+      AutoMinorVersionUpgrade: true
+      DeploymentMode: "SINGLE_INSTANCE"       
+  amq2:  
+    Type: AWS::AmazonMQ::Broker
+    Properties: 
+      BrokerName: "AMQ_2"
+      EngineType: "ActiveMQ"
+      EngineVersion: "5.15.9"
+      HostInstanceType: "mq.t2.micro"
+      Users:
+        - Password: "MindTheGap"
+          Username: "ExampleUser"
+      PubliclyAccessible: true
+      AutoMinorVersionUpgrade: true
+      DeploymentMode: "SINGLE_INSTANCE"
+  msk1:
+    Type: AWS::MSK::Cluster
+    Properties:
+      BrokerNodeGroupInfo:
+        InstanceType: instance_type
+        StorageInfo:
+          EBSStorageInfo:
+            VolumeSize: 1000
+        ClientSubnets:
+          - ""
+        SecurityGroups:
+          - ""
+      ClusterName: "MSK_1"
+      KafkaVersion: "2.4.1"
+      NumberOfBrokerNodes: 3
+      EncryptionInfo:
+        EncryptionAtRest:
+          DataVolumeKMSKeyId: ""
+      OpenMonitoring:
+        Prometheus: 
+          JmxExporter:
+            EnabledInBroker: true
+          NodeExporter:
+            EnabledInBroker: true
+      LoggingInfo:
+        BrokerLogs:
+          CloudWatchLogs:
+            Enabled: true
+            LogGroup: ""
+          Firehose:
+            Enabled: true
+            DeliveryStream: ""
+          S3:
+            Enabled: true
+            Prefix: "logs/msk-"
+            Bucket: ""
+      Tags:
+        Key: foo
+        Value: bar
+  msk2:
+    Type: AWS::MSK::Cluster
+    Properties:
+      BrokerNodeGroupInfo:
+        InstanceType: instance_type
+        StorageInfo:
+          EBSStorageInfo:
+            VolumeSize: 1000
+        ClientSubnets:
+          - ""
+        SecurityGroups:
+          - ""
+      ClusterName: "MSK_1"
+      KafkaVersion: "2.4.1"
+      NumberOfBrokerNodes: 3
+      EncryptionInfo:
+        EncryptionAtRest:
+          DataVolumeKMSKeyId: ""
+      OpenMonitoring:
+        Prometheus: 
+          JmxExporter:
+            EnabledInBroker: true
+          NodeExporter:
+            EnabledInBroker: true
+      LoggingInfo:
+        BrokerLogs:
+          CloudWatchLogs:
+            Enabled: true
+            LogGroup: ""
+          Firehose:
+            Enabled: true
+            DeliveryStream: ""
+          S3:
+            Enabled: true
+            Prefix: "logs/msk-"
+            Bucket: ""
+      Tags:
+        Key: foo
+        Value: bar
+  elasticcahe1:
+    Type: AWS::ElastiCache::CacheCluster
+    Properties:
+      CacheNodeType: "cache.m4.large"
+      Engine: redis
+      NumCacheNodes: 1
+      ClusterName: "MemCache_1"
+      Port: 6379
+      CacheParameterGroupName: ""
+      CacheSecurityGroupNames: 
+      - ""
+  elasticcahe2:
+    Type: AWS::ElastiCache::CacheCluster
+    Properties:
+      CacheNodeType: "cache.m4.large"
+      Engine: redis
+      NumCacheNodes: 1
+      ClusterName: "MemCache_2"
+      Port: 6379
+      CacheParameterGroupName: ""
+  rmq1:  
+    Type: AWS::AmazonMQ::Broker
+    Properties: 
+      BrokerName: "RMQ_1"
+      EngineType: "RabbitMQ"
+      EngineVersion: "5.15.9"
+      HostInstanceType: "mq.t2.micro"
+      Users:
+        - Password: "MindTheGap"
+          Username: "ExampleUser"
+      PubliclyAccessible: true
+      AutoMinorVersionUpgrade: true
+      DeploymentMode: "SINGLE_INSTANCE"   
+  rmq2:  
+    Type: AWS::AmazonMQ::Broker
+    Properties: 
+      BrokerName: "RMQ_2"
+      EngineType: "RabbitMQ"
+      EngineVersion: "5.15.9"
+      HostInstanceType: "mq.t2.micro"
+      Users:
+        - Password: "MindTheGap"
+          Username: "ExampleUser"
+      PubliclyAccessible: true
+      AutoMinorVersionUpgrade: true
+      DeploymentMode: "SINGLE_INSTANCE"         
+  s31:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: "S3_1"
+      AccessControl: "Private"
+      Tags:
+        - Key: Name
+          Value: my_bucket
+        - Key: Environment
+          Value: Dev
+      VersioningConfiguration:
+        Status: Enabled
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+                KMSMasterKeyID: ""
+                SSEAlgorithm: "aws:kms"
+  s31Policy:
+    Type: AWS::S3::BucketPolicy
+    Properties: 
+      Bucket: "S3_1"
+      PolicyDocument: {
+        "Version": "2012-10-17",
+        "Id": "MYBUCKETPOLICY",
+        "Statement": [
+          {
+            "Sid": "IPAllow",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::my_tf_test_bucket/*",
+            "Condition": {
+              "IpAddress": {"aws:SourceIp": "8.8.8.8/32"}
+            }
+          }
+        ]
+      } 
+  s32:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: "S3_2"
+      AccessControl: "Private"
+      Tags:
+        - Key: Name
+          Value: my_bucket
+        - Key: Environment
+          Value: Dev
+      VersioningConfiguration:
+        Status: Enabled  
+  alb:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer    
+    Properties:  
+      Name: "test123"
+      Scheme: "internal"
+      Type: "application"
+  albListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      DefaultActions:
+      - Type: redirect
+        RedirectConfig:
+          StatusCode: HTTP_301
+          Port: "80"
+          Protocol: "HTTP"
+      LoadBalancerArn: !Ref alb
+      Port: 80
+  sqs1:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: "SQS_1"
+      DelaySeconds: 90
+      MaximumMessageSize: 2048
+      MessageRetentionPeriod: 86400
+      ReceiveMessageWaitTimeSeconds: 10
+      RedrivePolicy:
+        deadLetterTargetArn: aws_sqs_queue.terraform_queue_deadletter.arn
+        maxReceiveCount: 4
+      Tags:
+        - Key: Environment
+          Value: production
+  sqs1Policy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      PolicyDocument:      
+        {
+          "Version": "2012-10-17",
+          "Id": "sqspolicy",
+          "Statement": [
+            {
+              "Sid": "First",
+              "Effect": "Allow",
+              "Principal": "*",
+              "Action": "sqs:SendMessage",
+              "Resource": "aws_sqs_queue.positive3.arn"
+            }
+          ]
+        }
+      Queues:
+        - !Ref sqs1
+  sqs2:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: "SQS_2"
+      DelaySeconds: 90
+      MaximumMessageSize: 2048
+      MessageRetentionPeriod: 86400
+      ReceiveMessageWaitTimeSeconds: 10
+      RedrivePolicy: 
+        deadLetterTargetArn: aws_sqs_queue.terraform_queue_deadletter.arn
+        maxReceiveCount: 4
+      Tags:
+        - Key: Environment
+          Value: production             
+  sqs2Policy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      PolicyDocument:      
+        {
+          "Version": "2012-10-17",
+          "Id": "sqspolicy",
+          "Statement": [
+            {
+              "Sid": "First",
+              "Effect": "Allow",
+              "Principal" : { 
+                "AWS": [ 
+                  "arn:aws:iam::123456789012:root",
+                  "arn:aws:iam::555555555555:root" 
+                  ]
+              },
+              "Action": "sqs:SendMessage",
+              "Resource": "aws_sqs_queue.positive4.arn"
+            }
+          ]
+        }
+      Queues:
+        - !Ref sqs2
