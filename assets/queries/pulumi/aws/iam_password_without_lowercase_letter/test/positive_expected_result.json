@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "IAM Password Without Lowercase Letter",
+		"severity": "MEDIUM",
+		"line": 7,
+		"fileName": "positive.yaml"
+	},
+	{
+		"queryName": "IAM Password Without Lowercase Letter",
+		"severity": "MEDIUM",
+		"line": 16,
+		"fileName": "positive.yaml"
+	}
+]
