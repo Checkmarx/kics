@@ -52,6 +52,7 @@ Flags:
                                       cannot be provided with query inclusion flags
                                       can be provided multiple times or as a comma separated string
                                       example: 'Access control,Best practices'
+      --exclude-gitignore             disables the exclusion of paths specified within .gitignore file                                
   -e, --exclude-paths strings         exclude paths from scan
                                       supports glob and can be provided multiple times or as a quoted comma separated string
                                       example: './shouldNotScan/*,somefile.txt'
@@ -106,6 +107,9 @@ Global Flags:
 ```
 
 The other commands have no further options.
+
+## Exclude Paths
+By default, KICS excludes paths specified in the .gitignore file in the root of the repository. To disable this behavior, use flag `--exclude-gitignore`.
 
 ## Library Flag Usage
 
