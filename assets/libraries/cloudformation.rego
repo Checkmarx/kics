@@ -99,7 +99,35 @@ get_resource_accessibility(nameRef, type, key) = info {
 
 	keys := policy.Properties[key]
 
+	get_name(keys) == nameRef
+
+	policyDoc := policy.Properties.PolicyDocument
+	common_lib.any_principal(policyDoc)
+	common_lib.is_allow_effect(policyDoc)
+
+	info := {"accessibility": "public", "policy": policyDoc}
+} else = info {
+    document := input.document
+	policy := document[_].Resources[_]
+	policy.Type == type
+
+	keys := policy.Properties[key]
+
 	get_name(keys[_]) == nameRef
+
+	policyDoc := policy.Properties.PolicyDocument
+	common_lib.any_principal(policyDoc)
+	common_lib.is_allow_effect(policyDoc)
+
+	info := {"accessibility": "public", "policy": policyDoc}
+} else = info {
+    document := input.document
+	policy := document[_].Resources[_]
+	policy.Type == type
+
+	keys := policy.Properties[key]
+
+	get_name(keys) == nameRef
 
 	info := {"accessibility": "hasPolicy", "policy": policy.Properties.PolicyDocument}
 } else = info {
@@ -109,7 +137,7 @@ get_resource_accessibility(nameRef, type, key) = info {
 
 	keys := policy.Properties[key]
 
-	get_name(keys) == nameRef
+	get_name(keys[_]) == nameRef
 
 	info := {"accessibility": "hasPolicy", "policy": policy.Properties.PolicyDocument}
 } else = info {
