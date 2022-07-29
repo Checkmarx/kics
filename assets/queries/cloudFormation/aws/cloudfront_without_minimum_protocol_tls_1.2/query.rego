@@ -7,6 +7,7 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::CloudFront::Distribution"
 	properties := resource.Properties
+	not cf_lib.isCloudFormationFalse(properties.DistributionConfig.Enabled)
 	not common_lib.valid_key(properties.DistributionConfig, "ViewerCertificate")
 
 	result := {
@@ -26,6 +27,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::CloudFront::Distribution"
 	properties := resource.Properties
 	protocolVer := properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion
+	not cf_lib.isCloudFormationFalse(properties.DistributionConfig.Enabled)
 	not common_lib.is_recommended_tls(protocolVer)
 
 	result := {

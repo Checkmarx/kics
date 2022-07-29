@@ -1,0 +1,48 @@
+apiVersion: sqs.aws.crossplane.io/v1beta1
+kind: Queue
+metadata:
+  name: test-queue3
+spec:
+  forProvider:
+    region: us-east-1
+    delaySeconds: 4
+    redrivePolicy:
+      deadLetterTargetArnRef:
+        name: test-queue2
+      maxReceiveCount: 1
+  providerConfigRef:
+    name: example
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: cluster-aws
+  labels:
+    provider: aws
+    cluster: eks
+spec:
+  compositeTypeRef:
+    apiVersion: mydev.org/v1alpha1
+    kind: CompositeCluster
+  writeConnectionSecretsToNamespace: crossplane-system
+  patchSets:
+    - name: metadata
+      patches:
+        - fromFieldPath: metadata.labels
+  resources:
+    - name: sample-ec2
+      base:
+        apiVersion: sqs.aws.crossplane.io/v1beta1
+        kind: Queue
+        metadata:
+          name: test-queue4
+        spec:
+          forProvider:
+            region: us-east-1
+            delaySeconds: 4
+            redrivePolicy:
+              deadLetterTargetArnRef:
+                name: test-queue2
+              maxReceiveCount: 1
+          providerConfigRef:
+            name: example

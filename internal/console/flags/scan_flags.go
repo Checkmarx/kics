@@ -31,4 +31,5 @@ const (
 	LineInfoPayloadFlag    = "payload-lines"
 	DisableSecretsFlag     = "disable-secrets"
 	SecretsRegexesPathFlag = "secrets-regexes-path" //nolint:gosec
+	ExcludeGitIgnore       = "exclude-gitignore"
 )

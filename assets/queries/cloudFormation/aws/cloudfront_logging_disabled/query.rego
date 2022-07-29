@@ -1,13 +1,14 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::CloudFront::Distribution"
 
 	distributionConfig := resource.Properties.DistributionConfig
+	not cf_lib.isCloudFormationFalse(distributionConfig.Enabled)
 	not common_lib.valid_key(distributionConfig, "Logging")
 
 	result := {
@@ -26,6 +27,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::CloudFront::Distribution"
 
 	distributionConfig := resource.Properties.DistributionConfig
+	not cf_lib.isCloudFormationFalse(distributionConfig.Enabled)
 
 	bucketCorrect := resource.Properties.DistributionConfig.Logging.Bucket
 	endswith(bucketCorrect, ".s3.amazonaws.com") == false

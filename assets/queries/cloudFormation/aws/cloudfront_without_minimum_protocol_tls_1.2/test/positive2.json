@@ -5,6 +5,7 @@
       "Type": "AWS::CloudFront::Distribution",
       "Properties": {
         "DistributionConfig": {
+          "Enabled": true,
           "ViewerCertificate": {
             "IamCertificateId": "String",
             "MinimumProtocolVersion": "TLSv1.1_2016",
@@ -52,6 +53,7 @@
       "Type": "AWS::CloudFront::Distribution",
       "Properties": {
         "DistributionConfig": {
+          "Enabled": true,
           "Origins": [
             {
               "CustomOriginConfig": {
