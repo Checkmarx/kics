@@ -2,7 +2,6 @@ Usage:
   kics scan [flags]
 
 Flags:
-      --exclude-gitignore             disables the exclusion of paths specified within .gitignore file
   -m, --bom                           include bill of materials (BoM) in results output
       --cloud-provider strings        list of cloud providers to scan (alicloud, aws, azure, gcp)
       --config string                 path to configuration file
@@ -12,6 +11,7 @@ Flags:
                                       cannot be provided with query inclusion flags
                                       can be provided multiple times or as a comma separated string
                                       example: 'Access control,Best practices'
+      --exclude-gitignore             disables the exclusion of paths specified within .gitignore file
   -e, --exclude-paths strings         exclude paths from scan
                                       supports glob and can be provided multiple times or as a quoted comma separated string
                                       example: './shouldNotScan/*,somefile.txt'
