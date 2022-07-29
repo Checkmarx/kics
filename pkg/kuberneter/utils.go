@@ -71,10 +71,6 @@ func (info *k8sAPICall) getResource(o runtime.Object, apiVersion, kind string, s
 	return sb
 }
 
-func getSupportedApiVersions() []string {
-	supportedApiVersions := 
-}
-
 func extractK8sAPIOptions(path string, supportedKinds *supportedKinds) (*K8sAPIOptions, error) {
 	pathInfo := strings.Split(path, ":")
 	if len(pathInfo) != K8sAPIPathLength {
@@ -87,8 +83,19 @@ func extractK8sAPIOptions(path string, supportedKinds *supportedKinds) (*K8sAPIO
 		Kinds:       strings.Split(pathInfo[2], "+"),
 	}
 
-	for i := range k8sAPIOptions.APIVersions {
+	supAPIVersions, supKinds := getSupportedOptions(supportedKinds)
 
+	for i := range k8sAPIOptions.APIVersions {
+		fmt.Println(k8sAPIOptions.APIVersions[i])
+		if !utils.Contains(k8sAPIOptions.APIVersions[i], *supAPIVersions) {
+			return nil, errors.New("wrong apiVersion: " + k8sAPIOptions.APIVersions[i])
+		}
+	}
+
+	for i := range k8sAPIOptions.Kinds {
+		if !utils.Contains(k8sAPIOptions.Kinds[i], *supKinds) {
+			return nil, errors.New("wrong kind: " + k8sAPIOptions.Kinds[i])
+		}
 	}
 
 	if k8sAPIOptions.Namespaces[0] == "*" {
@@ -211,4 +218,21 @@ func getAPIVersion(apiVersion string) string {
 		return "v1"
 	}
 	return apiVersion
+}
+
+func getSupportedOptions(supportedKinds *supportedKinds) (v, k *[]string) {
+	supportedAPIVersions := make([]string, 0)
+	supKinds := make([]string, 0)
+
+	for apiVersion := range *supportedKinds {
+		supportedAPIVersions = append(supportedAPIVersions, apiVersion)
+		for kind := range (*supportedKinds)[apiVersion] {
+			supKinds = append(supKinds, kind)
+		}
+	}
+
+	supportedAPIVersions = append(supportedAPIVersions, "*")
+	supKinds = append(supKinds, "*")
+
+	return &supportedAPIVersions, &supKinds
 }
