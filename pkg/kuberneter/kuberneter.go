@@ -1,0 +1,124 @@
+package kuberneter
+
+import (
+	"context"
+	"fmt"
+	"os"
+	"path/filepath"
+	"strings"
+	"sync"
+
+	"github.com/rs/zerolog/log"
+	"k8s.io/apimachinery/pkg/api/meta"
+	"sigs.k8s.io/controller-runtime/pkg/client"
+)
+
+type k8sAPICall struct {
+	client           client.Client
+	options          *K8sAPIOptions
+	ctx              *context.Context
+	destionationPath string
+}
+
+type supportedKinds map[string]map[string]interface{}
+
+// Import imports the k8s cluster resources into the destination using kuberneter path
+func Import(kuberneterPath, destinationPath string, ctx context.Context) (string, error) {
+	log.Info().Msg("importing k8s cluster resources")
+
+	// extract k8s API options
+	k8sAPIOptions, err := extractK8sAPIOptions(kuberneterPath)
+	if err != nil {
+		return "", err
+	}
+
+	// get the k8s client
+	c, err := getK8sClient()
+	if err != nil {
+		fmt.Println(err)
+		return "", err
+	}
+
+	// create folder to save k8s resources
+	destination, err := getDestinationFolder(destinationPath)
+	if err != nil {
+		return "", err
+	}
+
+	info := &k8sAPICall{
+		client:           c,
+		options:          k8sAPIOptions,
+		ctx:              &ctx,
+		destionationPath: destination,
+	}
+
+	supportedKinds := buildSupportedKinds()
+	defer func() { supportedKinds = nil }()
+
+	// list and save k8s resources
+	for i := range k8sAPIOptions.Namespaces {
+		info.listK8sResources(i, supportedKinds)
+	}
+
+	return destination, nil
+}
+
+func (info *k8sAPICall) listK8sResources(idx int, supKinds *supportedKinds) {
+	var wg sync.WaitGroup
+	for apiVersion := range *supKinds {
+		kinds := (*supKinds)[apiVersion]
+
+		if isTarget(apiVersion, info.options.APIVersions) {
+			wg.Add(1)
+			go info.listKinds(apiVersion, kinds, info.options.Namespaces[idx], &wg)
+		}
+	}
+	wg.Wait()
+}
+
+func (info *k8sAPICall) listKinds(apiVersion string, kinds map[string]interface{}, namespace string, wg *sync.WaitGroup) {
+	defer wg.Done()
+	sb := &strings.Builder{}
+
+	apiVersionFolder := filepath.Join(info.destionationPath, apiVersion)
+
+	if err := os.MkdirAll(apiVersionFolder, os.ModePerm); err != nil {
+		log.Error().Msgf("unable to create folder %s: %s", apiVersionFolder, err)
+		return
+	}
+
+	for kind := range kinds {
+		kindList := kinds[kind]
+
+		if !isTarget(kind, info.options.Kinds) {
+			continue
+		}
+
+		if _, ok := kindList.(client.ObjectList); !ok {
+			continue
+		}
+
+		resource := kindList.(client.ObjectList)
+		err := info.client.List(*info.ctx, resource, client.InNamespace(namespace))
+		if err != nil {
+			log.Error().Msgf("failed to list %s: %s", apiVersion, err)
+		}
+
+		objList, err := meta.ExtractList(resource)
+		if err != nil {
+			log.Error().Msgf("failed to extract list: %s", err)
+		}
+
+		log.Info().Msgf("KICS found %d %s(s) in %s", len(objList), kind, getNamespace(namespace))
+
+		for i := range objList {
+			item := objList[i]
+			sb = info.getResource(item, apiVersion, kind, sb)
+		}
+
+		if len(sb.String()) > 0 {
+			info.saveK8sResources(kind, sb.String(), apiVersionFolder)
+		}
+		sb.Reset()
+	}
+}

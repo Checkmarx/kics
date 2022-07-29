@@ -1,6 +1,7 @@
 package scan
 
 import (
+	"context"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -17,17 +18,25 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-var terraformerRegex = regexp.MustCompile(`^terraformer::`)
+var (
+	terraformerRegex = regexp.MustCompile(`^terraformer::`)
+	kuberneterRegex  = regexp.MustCompile(`^kuberneter::`)
+)
 
-func (c *Client) prepareAndAnalyzePaths() (provider.ExtractedPath, error) {
+func (c *Client) prepareAndAnalyzePaths(ctx context.Context) (provider.ExtractedPath, error) {
 	err := c.preparePaths()
 	if err != nil {
 		return provider.ExtractedPath{}, err
 	}
 
-	regularPaths, terraformerPaths := extractPathType(c.ScanParams.Path)
+	regularPaths, terraformerPaths, kuberneterPaths := extractPathType(c.ScanParams.Path)
 
 	terraformerExPaths, err := provider.GetTerraformerSources(terraformerPaths, c.ScanParams.OutputPath)
+	if err != nil {
+		return provider.ExtractedPath{}, err
+	}
+
+	kuberneterExPaths, err := provider.GetKuberneterSources(kuberneterPaths, c.ScanParams.OutputPath, ctx)
 	if err != nil {
 		return provider.ExtractedPath{}, err
 	}
@@ -37,7 +46,7 @@ func (c *Client) prepareAndAnalyzePaths() (provider.ExtractedPath, error) {
 		return provider.ExtractedPath{}, err
 	}
 
-	allPaths := combinePaths(terraformerExPaths, regularExPaths)
+	allPaths := combinePaths(terraformerExPaths, kuberneterExPaths, regularExPaths)
 
 	log.Info().Msgf("Total files in the project: %d", getTotalFiles(allPaths.Path))
 
@@ -61,17 +70,21 @@ func (c *Client) prepareAndAnalyzePaths() (provider.ExtractedPath, error) {
 	return allPaths, nil
 }
 
-func combinePaths(terraformer, regular provider.ExtractedPath) provider.ExtractedPath {
+func combinePaths(terraformer, kuberneter, regular provider.ExtractedPath) provider.ExtractedPath {
 	var combinedPaths provider.ExtractedPath
 	paths := make([]string, 0)
 	combinedPathsEx := make(map[string]model.ExtractedPathObject)
 	paths = append(paths, terraformer.Path...)
+	paths = append(paths, kuberneter.Path...)
 	paths = append(paths, regular.Path...)
 	combinedPaths.Path = paths
 	for k, v := range regular.ExtractionMap {
 		combinedPathsEx[k] = v
 	}
 	for k, v := range terraformer.ExtractionMap {
+		combinedPathsEx[k] = v
+	}
+	for k, v := range kuberneter.ExtractionMap {
 		combinedPathsEx[k] = v
 	}
 
@@ -175,10 +188,12 @@ func logLoadingQueriesType(types []string) {
 	log.Info().Msgf("Loading queries of type: %s", strings.Join(types, ", "))
 }
 
-func extractPathType(paths []string) (regular, terraformer []string) {
+func extractPathType(paths []string) (regular, terraformer, k8s []string) {
 	for _, path := range paths {
 		if terraformerRegex.MatchString(path) {
 			terraformer = append(terraformer, terraformerRegex.ReplaceAllString(path, ""))
+		} else if kuberneterRegex.MatchString(path) {
+			k8s = append(k8s, kuberneterRegex.ReplaceAllString(path, ""))
 		} else {
 			regular = append(regular, path)
 		}
@@ -188,7 +203,8 @@ func extractPathType(paths []string) (regular, terraformer []string) {
 
 func deleteExtractionFolder(extractionMap map[string]model.ExtractedPathObject) {
 	for extractionFile := range extractionMap {
-		if strings.Contains(extractionFile, "kics-extract-terraformer") {
+		if strings.Contains(extractionFile, "kics-extract-terraformer") ||
+			strings.Contains(extractionFile, "kics-extract-kuberneter") {
 			continue
 		}
 		err := os.RemoveAll(extractionFile)

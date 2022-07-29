@@ -11,6 +11,7 @@ import (
 
 	"github.com/alexmullins/zip"
 
+	"github.com/Checkmarx/kics/pkg/kuberneter"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/terraformer"
 	"github.com/Checkmarx/kics/pkg/utils"
@@ -54,6 +55,31 @@ func GetTerraformerSources(source []string, destinationPath string) (ExtractedPa
 
 	for _, path := range source {
 		exportedPath, err := terraformer.Import(path, destinationPath)
+		if err != nil {
+			log.Error().Msgf("failed to import %s: %s", path, err)
+		}
+
+		extrStruct.ExtractionMap[exportedPath] = model.ExtractedPathObject{
+			Path:      exportedPath,
+			LocalPath: true,
+		}
+
+		extrStruct.Path = append(extrStruct.Path, exportedPath)
+	}
+
+	return extrStruct, nil
+}
+
+// GetKuberneterSources uses Kubernetes API to download runtime resources
+// After Downloaded files kics scan the files as normal local files
+func GetKuberneterSources(source []string, destinationPath string, ctx context.Context) (ExtractedPath, error) {
+	extrStruct := ExtractedPath{
+		Path:          []string{},
+		ExtractionMap: make(map[string]model.ExtractedPathObject),
+	}
+
+	for _, path := range source {
+		exportedPath, err := kuberneter.Import(path, destinationPath, ctx)
 		if err != nil {
 			log.Error().Msgf("failed to import %s: %s", path, err)
 		}
