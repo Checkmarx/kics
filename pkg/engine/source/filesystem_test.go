@@ -645,6 +645,7 @@ func TestListSupportedPlatforms(t *testing.T) {
 		"Knative",
 		"Kubernetes",
 		"OpenAPI",
+		"Pulumi",
 		"Terraform",
 	}
 	listActual := ListSupportedPlatforms()

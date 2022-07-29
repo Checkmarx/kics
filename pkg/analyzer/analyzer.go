@@ -58,6 +58,9 @@ var (
 	dockerComposeServicesRegex                      = regexp.MustCompile(`\s*services\s*:`)
 	crossPlaneRegex                                 = regexp.MustCompile(`\s*\"?apiVersion\"?\s*:\s*(\w+\.)+crossplane\.io/v\w+\s*`)
 	knativeRegex                                    = regexp.MustCompile(`\s*\"?apiVersion\"?\s*:\s*(\w+\.)+knative\.dev/v\w+\s*`)
+	pulumiNameRegex                                 = regexp.MustCompile(`\s*name\s*:`)
+	pulumiRuntimeRegex                              = regexp.MustCompile(`\s*runtime\s*:`)
+	pulumiResourcesRegex                            = regexp.MustCompile(`\s*resources\s*:`)
 )
 
 var (
@@ -87,6 +90,7 @@ var (
 		"kubernetes":           {"kubernetes"},
 		"openapi":              {"openapi"},
 		"terraform":            {"terraform", "cdkTf"},
+		"pulumi":               {"pulumi"},
 	}
 )
 
@@ -217,6 +221,13 @@ var types = map[string]regexSlice{
 		[]*regexp.Regexp{
 			dockerComposeVersionRegex,
 			dockerComposeServicesRegex,
+		},
+	},
+	"pulumi": {
+		[]*regexp.Regexp{
+			pulumiNameRegex,
+			pulumiRuntimeRegex,
+			pulumiResourcesRegex,
 		},
 	},
 }

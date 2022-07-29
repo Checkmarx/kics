@@ -20,6 +20,7 @@ queries_path = {
     'grpc': os.path.join(queries_basepath, 'grpc', '*'),
     'gdm': os.path.join(queries_basepath, 'googleDeploymentManager', '*'),
     'dockerCompose': os.path.join(queries_basepath, 'dockerCompose', '*'),
+    'pulumi': os.path.join(queries_basepath, 'pulumi', '*'),
 }
 samples_ext = {
     'azureresourcemanager': ['json'],
@@ -35,7 +36,7 @@ samples_ext = {
     'grpc': ['proto'],
     'gdm': ['yaml'],
     'dockerCompose': ['dockerCompose'],
-
+    'pulumi': ['yaml'],
 }
 summary = {
     'total': 0,

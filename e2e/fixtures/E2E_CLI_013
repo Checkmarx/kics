@@ -10,4 +10,5 @@ GoogleDeploymentManager
 Knative
 Kubernetes
 OpenAPI
+Pulumi
 Terraform

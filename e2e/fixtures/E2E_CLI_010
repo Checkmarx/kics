@@ -12,5 +12,6 @@ valid arguments:
   Knative
   Kubernetes
   OpenAPI
+  Pulumi
   Terraform
 {{.ScanHelp}}
