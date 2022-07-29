@@ -99,7 +99,7 @@ The API Versions and their respective kinds (both case sensitive) are listed bel
 | API Versions                       | Kinds                                                                                                                   |
 |------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
 | apps/v1                            | DaemonSet <br/>Deployment <br/>ReplicaSet <br/>StatefulSet                                                                             |
-| v1                                 | LimitRange <br/>Pod <br/>PersistentVolume <br/>PersistentVolumeClaim <br/>ReplicationController <br/>ResourceQuota <br/>Secret ServiceAccount Service |
+| core/v1                                 | LimitRange <br/>Pod <br/>PersistentVolume <br/>PersistentVolumeClaim <br/>ReplicationController <br/>ResourceQuota <br/>Secret ServiceAccount Service |
 | batch/v1                           | CronJob <br/>Job                                                                                                             |
 | networking.k8s.io/v1               | IngressClass <br/>Ingress <br/>NetworkPolicy                                                                                      |
 | policy/v1                          | PodDisruptionBudget                                                                                                     |
