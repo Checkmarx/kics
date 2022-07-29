@@ -68,6 +68,9 @@ You must have Docker installed and running in your environment
 3. Search for the **Checkmarx** plugin, then click Install for the plugin.
 
 
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/UPDATE_DOCUMENTATION/docs/img/checkmarx_kics_auto_scanning.png" width="850">
+kics/UPDATE_DOCUMENTATION/docs/img/checkmarx_kics_auto_scanning.png
+
 The Checkmarx extension is installed and the Checkmarx icon appears in the left-side navigation panel.
 
 
