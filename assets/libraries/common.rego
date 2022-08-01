@@ -353,6 +353,10 @@ get_tag_name_if_exists(resource) = name {
 	tag := resource.spec.forProvider.tags[_]
 	tag.key == "Name"
 	name := tag.value
+} else = name {
+	tag := resource.properties.tags[key]
+	key == "Name"
+	name := tag
 }
 
 
