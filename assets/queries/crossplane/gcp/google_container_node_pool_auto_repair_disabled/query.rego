@@ -15,7 +15,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
-		"resourceName": resource.metadata.name,
+		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "management should be defined with autoRepair set to true",
@@ -37,7 +37,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
-		"resourceName": resource.metadata.name,
+		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.management", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "autoRepair should be defined and set to true",
@@ -59,7 +59,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
-		"resourceName": resource.metadata.name,
+		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.management.autoRepair", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "autoRepair should be set to true",

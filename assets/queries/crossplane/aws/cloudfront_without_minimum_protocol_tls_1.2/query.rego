@@ -17,7 +17,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
-		"resourceName": resource.metadata.name,
+		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.distributionConfig.viewerCertificate.minimumProtocolVersion", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'viewerCertificate.minimumProtocolVersion' should be TLSv1.2_x",
@@ -39,7 +39,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
-		"resourceName": resource.metadata.name,
+		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.distributionConfig", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'viewerCertificate.minimumProtocolVersion' should be defined and set to TLSv1.2_x",
