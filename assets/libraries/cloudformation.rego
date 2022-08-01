@@ -73,16 +73,6 @@ getBucketName(resource) = name {
 	name := resource.Properties.Bucket.Ref
 }
 
-has_bucket_associated(resources, bucketPolicyRef){
-	resource := resources[_]
-	resource.Type == "AWS::S3::Bucket"
-	resource.Properties.BucketName == getBucketName(bucketPolicyRef)
-} else {
-	resource := resources[name]
-	resource.Type == "AWS::S3::Bucket"
-	name == getBucketName(bucketPolicyRef)
-}
-
 get_encryption(resource) = encryption {
 	resource.Properties.Encrypted == true
     encryption := "encrypted"
