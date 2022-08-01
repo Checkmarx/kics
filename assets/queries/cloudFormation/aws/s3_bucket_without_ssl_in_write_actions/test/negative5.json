@@ -37,6 +37,7 @@
     "S3Bucket88": {
       "DeletionPolicy": "Retain",
       "Properties": {
+        "BucketName": "S3Bucket88",
         "AccessControl": "PublicRead",
         "WebsiteConfiguration": {
           "ErrorDocument": "error.html",
