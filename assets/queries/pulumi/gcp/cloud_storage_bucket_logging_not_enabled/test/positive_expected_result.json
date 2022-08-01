@@ -2,13 +2,7 @@
 	{
 		"queryName": "Cloud Storage Bucket Logging Not Enabled",
 		"severity": "HIGH",
-		"line": 10,
-		"fileName": "positive.yaml"
-	},
-	{
-		"queryName": "Cloud Storage Bucket Logging Not Enabled",
-		"severity": "HIGH",
-		"line": 19,
+		"line": 7,
 		"fileName": "positive.yaml"
 	}
 ]

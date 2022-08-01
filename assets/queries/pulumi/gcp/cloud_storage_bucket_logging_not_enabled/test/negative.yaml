@@ -7,6 +7,5 @@ resources:
     properties:
       location: US-CENTRAL1
       logging:
-        enabled: true
         logObjectPrefix: some_obj_prefix
       
