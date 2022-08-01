@@ -1,0 +1,16 @@
+{
+  "Resources": {
+    "Bucket1": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": false,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": false,
+          "RestrictPublicBuckets": true
+        },
+        "AccessControl": "Private"
+      }
+    }
+  }
+}
