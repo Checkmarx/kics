@@ -15,7 +15,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,
-		"resourceName": name,
+		"resourceName": plm_lib.getResourceName(resource, name),
 		"searchKey": sprintf("resources[%s].properties", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'azMode' should be defined and set to 'cross-az' in multi nodes cluster",
@@ -35,7 +35,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,
-		"resourceName": name,
+		"resourceName": plm_lib.getResourceName(resource, name),
 		"searchKey": sprintf("resources[%s].properties.azMode", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'azMode' should be set to 'cross-az' in multi nodes cluster",

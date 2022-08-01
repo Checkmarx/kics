@@ -13,7 +13,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,
-		"resourceName": name,
+		"resourceName": plm_lib.getResourceName(resource, name),
 		"searchKey": sprintf("resources[%s].properties", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'requireLowercaseCharacters' should be defined and set to true",
@@ -32,7 +32,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,
-		"resourceName": name,
+		"resourceName": plm_lib.getResourceName(resource, name),
 		"searchKey": sprintf("resources[%s].properties.requireLowercaseCharacters", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'requireLowercaseCharacters' should be set to true",

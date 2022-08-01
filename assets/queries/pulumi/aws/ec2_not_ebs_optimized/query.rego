@@ -35,7 +35,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,
-		"resourceName": name,
+		"resourceName": plm_lib.getResourceName(resource, name),
 		"searchKey": sprintf("resources[%s].properties.ebsOptimized", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'ebsOptimized' should be set to true",

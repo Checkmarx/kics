@@ -14,7 +14,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,
-		"resourceName": name,
+		"resourceName": plm_lib.getResourceName(resource, name),
 		"searchKey": sprintf("resources[%s].properties", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'accessLogSettings' should be defined",

@@ -14,7 +14,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,
-		"resourceName": name,
+		"resourceName": plm_lib.getResourceName(resource, name),
 		"searchKey": sprintf("resources[%s].properties", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'snapshotRetentionLimit' should be defined and set to higher than 0",
@@ -34,7 +34,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,
-		"resourceName": name,
+		"resourceName": plm_lib.getResourceName(resource, name),
 		"searchKey": sprintf("resources[%s].properties.snapshotRetentionLimit", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'snapshotRetentionLimit' should be set to higher than 0",

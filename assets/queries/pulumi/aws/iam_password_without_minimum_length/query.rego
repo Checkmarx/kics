@@ -13,7 +13,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,
-		"resourceName": name,
+		"resourceName": plm_lib.getResourceName(resource, name),
 		"searchKey": sprintf("resources[%s].properties", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'minimumPasswordLength' should be defined and set to 14 or higher",
@@ -32,7 +32,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,
-		"resourceName": name,
+		"resourceName": plm_lib.getResourceName(resource, name),
 		"searchKey": sprintf("resources[%s].properties.minimumPasswordLength", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'minimumPasswordLength' should be set to 14 or higher",

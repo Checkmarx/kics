@@ -12,7 +12,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,
-		"resourceName": name,
+		"resourceName": plm_lib.getResourceName(resource, name),
 		"searchKey": sprintf("resources[%s].properties", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'pointInTimeRecovery' should be defined",
@@ -31,7 +31,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,
-		"resourceName": name,
+		"resourceName": plm_lib.getResourceName(resource, name),
 		"searchKey": sprintf("resources[%s].properties.pointInTimeRecovery.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'enabled' in 'pointInTimeRecovery' should be set to true",
