@@ -16,7 +16,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
-		"resourceName": resource.metadata.name,
+		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.distributionConfig.logging.enabled", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "CloudFront logging enabled attribute should be set to true",
@@ -38,7 +38,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
-		"resourceName": resource.metadata.name,
+		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.distributionConfig.logging", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "CloudFront logging enabled attribute should be defined and set to true",
@@ -60,7 +60,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
-		"resourceName": resource.metadata.name,
+		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.distributionConfig", [cp_lib.getPath(path),resource.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "CloudFront logging enabled attribute should be defined and set to true",
