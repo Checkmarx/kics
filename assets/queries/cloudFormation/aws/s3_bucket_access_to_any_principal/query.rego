@@ -23,11 +23,11 @@ CxPolicy[result] {
 		"documentId": input.document[indexBucket].id,
 		"resourceType": resourceBucket.Type,
 		"resourceName": cf_lib.get_resource_name(resourceBucket, nameBucket),
-		"searchKey": sprintf("Resources.%s.Properties.PolicyDocument", [nameBucket]),
+		"searchKey": sprintf("Resources.%s", [nameBucket]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'Resources.Properties.PolicyDocument' should not allow access to any principal",
-		"keyActualValue": "'Resources.Properties.PolicyDocument' allows access to any principal",
-		"searchLine": common_lib.build_search_line(["Resource", nameBucket, "Properties", "PolicyDocument"], []),
+		"keyExpectedValue": "Bucket Policy should not allow access to any principal",
+		"keyActualValue": "Bucket Policy allows access to any principal",
+		"searchLine": common_lib.build_search_line(["Resource", nameBucket], []),
 	}
 }
 

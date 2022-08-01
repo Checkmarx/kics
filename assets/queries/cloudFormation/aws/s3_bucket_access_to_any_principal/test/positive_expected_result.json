@@ -2,25 +2,25 @@
   {
     "queryName": "S3 Bucket Access to Any Principal",
     "severity": "HIGH",
-    "line": 14,
+    "line": 2,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "S3 Bucket Access to Any Principal",
     "severity": "HIGH",
-    "line": 39,
+    "line": 27,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "S3 Bucket Access to Any Principal",
     "severity": "HIGH",
-    "line": 16,
+    "line": 3,
     "fileName": "positive2.json"
   },
   {
     "queryName": "S3 Bucket Access to Any Principal",
     "severity": "HIGH",
-    "line": 57,
+    "line": 42,
     "fileName": "positive2.json"
   }
 ]
