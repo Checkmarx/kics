@@ -349,7 +349,12 @@ get_tag_name_if_exists(resource) = name {
 	tag := resource.Properties.Tags[key]
 	key == "Name"
 	name := tag
+} else = name {
+	tag := resource.spec.forProvider.tags[_]
+	tag.key == "Name"
+	name := tag.value
 }
+
 
 get_encryption_if_exists(resource) = encryption {
 	resource.encrypted == true
