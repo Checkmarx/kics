@@ -3,7 +3,7 @@
   "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
   "severity": "MEDIUM",
   "category": "Availability",
-  "descriptionText": "Check if ElastiCache nodes are not being created across multi AZ",
+  "descriptionText": "ElastiCache Nodes should have 'azMode' set to 'cross-az' in in multi nodes cluster",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html",
   "platform": "CloudFormation",
   "descriptionID": "35f94973",

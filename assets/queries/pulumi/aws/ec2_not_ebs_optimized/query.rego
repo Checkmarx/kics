@@ -1,4 +1,4 @@
-package Cx
+	package Cx
 
 import data.generic.common as common_lib
 import data.generic.pulumi as plm_lib
@@ -39,7 +39,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources[%s].properties.ebsOptimized", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'ebsOptimized' should be set to true",
-		"keyActualValue": "Attribute 'ebsOptimized' is set false",
+		"keyActualValue": "Attribute 'ebsOptimized' is set to false",
 		"searchLine": common_lib.build_search_line(["resources", name, "properties"], ["ebsOptimized"]),
 	}
 }
