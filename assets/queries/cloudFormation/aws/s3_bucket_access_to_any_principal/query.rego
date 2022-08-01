@@ -25,8 +25,8 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resourceBucket, nameBucket),
 		"searchKey": sprintf("Resources.%s", [nameBucket]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Bucket Policy should not allow access to any principal",
-		"keyActualValue": "Bucket Policy allows access to any principal",
+		"keyExpectedValue": "associated Bucket Policy should not allow access to any principal",
+		"keyActualValue": "associated Bucket Policy allows access to any principal",
 		"searchLine": common_lib.build_search_line(["Resource", nameBucket], []),
 	}
 }
