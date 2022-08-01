@@ -17,6 +17,8 @@ getResourceName(resource) = name {
 	forProvider := resource.spec.forProvider
 	name := forProvider[resourceNameAtt]
 } else = name {
+	name := common_lib.get_tag_name_if_exists(resource)
+} else = name {
 	name := resource.metadata.name
 }
 
