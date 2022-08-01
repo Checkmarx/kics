@@ -75,7 +75,7 @@ func (info *k8sAPICall) getResource(o runtime.Object, apiVersion, kind string, s
 func extractK8sAPIOptions(path string, supportedKinds *supportedKinds) (*K8sAPIOptions, error) {
 	pathInfo := strings.Split(path, ":")
 	if len(pathInfo) != kuberneterPathLength {
-		return nil, errors.New("wrong kuberneter path syntax")
+		return &K8sAPIOptions{}, errors.New("wrong kuberneter path syntax")
 	}
 
 	k8sAPIOptions := &K8sAPIOptions{
@@ -88,13 +88,13 @@ func extractK8sAPIOptions(path string, supportedKinds *supportedKinds) (*K8sAPIO
 
 	for i := range k8sAPIOptions.APIVersions {
 		if !utils.Contains(k8sAPIOptions.APIVersions[i], *supAPIVersions) {
-			return nil, errors.New("wrong apiVersion: " + k8sAPIOptions.APIVersions[i])
+			return &K8sAPIOptions{}, errors.New("wrong apiVersion: " + k8sAPIOptions.APIVersions[i])
 		}
 	}
 
 	for i := range k8sAPIOptions.Kinds {
 		if !utils.Contains(k8sAPIOptions.Kinds[i], *supKinds) {
-			return nil, errors.New("wrong kind: " + k8sAPIOptions.Kinds[i])
+			return &K8sAPIOptions{}, errors.New("wrong kind: " + k8sAPIOptions.Kinds[i])
 		}
 	}
 
