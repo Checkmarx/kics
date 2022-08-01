@@ -11,3 +11,20 @@ getPath(path) = result {
 	count(path) == 0
 	result := ""
 }
+
+getResourceName(resource) = name {
+	resourceNameAtt := crossplaneResourcesWithName[resource.Kind]
+	forProvider := resource.spec.forProvider
+	name := forProvider[resourceNameAtt]
+} else = name {
+	name := common_lib.get_tag_name_if_exists(resource)
+} else = name {
+	name := resource.metadata.name
+}
+
+crossplaneResourcesWithName = {
+	"Redis": "resourceGroupName",
+	"AKSCluster": "resourceGroupName",
+	"DBCluster": "databaseName",
+	"SecurityGroup": "groupName",
+}

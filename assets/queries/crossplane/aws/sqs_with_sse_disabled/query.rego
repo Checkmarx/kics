@@ -15,7 +15,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
-		"resourceName": resource.metadata.name,
+		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "kmsMasterKeyId should be defined",
