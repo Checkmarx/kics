@@ -16,7 +16,7 @@ import (
 
 var terraformerTimeout = time.Minute * 3
 
-// ImporterFunc is the function kics uses to import resources (for testing porpuses)
+// ImporterFunc is the function kics uses to import resources (for testing purposes)
 var ImporterFunc func(provider terraformutils.ProviderGenerator, options importer.ImportOptions, args []string) error = importer.Import
 
 // CloudProvider is the AWS Cloud Provider

@@ -7,6 +7,7 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"k8s.io/apimachinery/pkg/api/meta"
 	"sigs.k8s.io/controller-runtime/pkg/client"
@@ -20,6 +21,8 @@ type k8sAPICall struct {
 }
 
 type supportedKinds map[string]map[string]interface{}
+
+var getK8sClientFunc = getK8sClient // for testing purposes
 
 // Import imports the k8s cluster resources into the destination using kuberneter path
 func Import(ctx context.Context, kuberneterPath, destinationPath string) (string, error) {
@@ -35,7 +38,7 @@ func Import(ctx context.Context, kuberneterPath, destinationPath string) (string
 	}
 
 	// get the k8s client
-	c, err := getK8sClient()
+	c, err := getK8sClientFunc()
 	if err != nil {
 		return "", err
 	}
@@ -44,6 +47,10 @@ func Import(ctx context.Context, kuberneterPath, destinationPath string) (string
 	destination, err := getDestinationFolder(destinationPath)
 	if err != nil {
 		return "", err
+	}
+
+	if c == nil {
+		return destination, errors.New("failed to get client")
 	}
 
 	info := &k8sAPICall{
