@@ -1,0 +1,11 @@
+{
+  "id": "e93bbe63-a631-4c0f-b6ef-700d48441ff2",
+  "queryName": "ElastiCache Redis Cluster Without Backup",
+  "severity": "MEDIUM",
+  "category": "Backup",
+  "descriptionText": "ElastiCache Redis cluster should have 'snapshotRetentionLimit' higher than 0",
+  "descriptionUrl": "https://www.pulumi.com/registry/packages/aws/api-docs/elasticache/cluster/#snapshotretentionlimit_yaml",
+  "platform": "Pulumi",
+  "descriptionID": "ff8bf6c0",
+  "cloudProvider": "aws"
+}

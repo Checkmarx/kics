@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "ElastiCache Redis Cluster Without Backup",
+		"severity": "MEDIUM",
+		"line": 9,
+		"fileName": "positive.yaml"
+	},
+	{
+		"queryName": "ElastiCache Redis Cluster Without Backup",
+		"severity": "MEDIUM",
+		"line": 17,
+		"fileName": "positive.yaml"
+	}
+]
