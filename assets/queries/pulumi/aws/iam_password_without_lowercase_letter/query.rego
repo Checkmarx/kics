@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources[%s].properties.requireLowercaseCharacters", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'requireLowercaseCharacters' should be set to true",
-		"keyActualValue": "Attribute 'requireLowercaseCharacters' is set to fasle",
+		"keyActualValue": "Attribute 'requireLowercaseCharacters' is set to false",
 		"searchLine": common_lib.build_search_line(["resources", name, "properties"], ["requireLowercaseCharacters"]),
 	}
 }

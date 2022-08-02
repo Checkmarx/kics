@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources[%s].properties.monitoring", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'monitoring' should be set to true",
-		"keyActualValue": "Attribute 'monitoring' is set false",
+		"keyActualValue": "Attribute 'monitoring' is set to false",
 		"searchLine": common_lib.build_search_line(["resources", name, "properties"], ["monitoring"]),
 	}
 }

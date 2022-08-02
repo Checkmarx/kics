@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources[%s].properties.serverSideEncryption.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'enabled' in 'serverSideEncryption' should be set to true",
-		"keyActualValue": "Attribute 'enabled' in 'serverSideEncryption'  is set false",
+		"keyActualValue": "Attribute 'enabled' in 'serverSideEncryption'  is set to false",
 		"searchLine": common_lib.build_search_line(["resources", name, "properties"], ["serverSideEncryption", "enabled"]),
 	}
 }

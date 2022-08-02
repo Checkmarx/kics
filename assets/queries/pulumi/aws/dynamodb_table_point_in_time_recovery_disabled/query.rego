@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources[%s].properties.pointInTimeRecovery.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'enabled' in 'pointInTimeRecovery' should be set to true",
-		"keyActualValue": "Attribute 'enabled' in 'pointInTimeRecovery'  is set false",
+		"keyActualValue": "Attribute 'enabled' in 'pointInTimeRecovery'  is set to false",
 		"searchLine": common_lib.build_search_line(["resources", name, "properties"], ["pointInTimeRecovery", "enabled"]),
 	}
 }
