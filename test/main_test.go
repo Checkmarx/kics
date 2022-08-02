@@ -38,6 +38,7 @@ var (
 		"../assets/queries/crossplane/aws":          {FileKind: []model.FileKind{model.KindYAML}, Platform: "crossplane"},
 		"../assets/queries/crossplane/azure":        {FileKind: []model.FileKind{model.KindYAML}, Platform: "crossplane"},
 		"../assets/queries/crossplane/gcp":          {FileKind: []model.FileKind{model.KindYAML}, Platform: "crossplane"},
+		"../assets/queries/pulumi/aws":              {FileKind: []model.FileKind{model.KindYAML}, Platform: "pulumi"},
 		"../assets/queries/pulumi/gcp":              {FileKind: []model.FileKind{model.KindYAML}, Platform: "pulumi"},
 		"../assets/queries/pulumi/kubernetes":       {FileKind: []model.FileKind{model.KindYAML}, Platform: "pulumi"},
 		"../assets/queries/pulumi/azure":            {FileKind: []model.FileKind{model.KindYAML}, Platform: "pulumi"},
@@ -57,7 +58,7 @@ var (
 		"../assets/queries/googleDeploymentManager": {FileKind: []model.FileKind{model.KindYAML}, Platform: "googleDeploymentManager"},
 		"../assets/queries/grpc":                    {FileKind: []model.FileKind{model.KindPROTO}, Platform: "grpc"},
 		"../assets/queries/buildah":                 {FileKind: []model.FileKind{model.KindBUILDAH}, Platform: "buildah"},
-		//"../assets/queries/knative":          {FileKind: []model.FileKind{model.KindYAML}, Platform: "knative"},
+		//"../assets/queries/knative":               {FileKind: []model.FileKind{model.KindYAML}, Platform: "knative"},
 	}
 
 	issueTypes = map[string]string{

@@ -1,11 +1,11 @@
 {
-  "id": "cfdef2e5-1fe4-4ef4-bea8-c56e08963150",
+  "id": "9b18fc19-7fb8-49b1-8452-9c757c70f926",
   "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
   "severity": "MEDIUM",
   "category": "Availability",
   "descriptionText": "ElastiCache Nodes should have 'AZMode' set to 'cross-az' in in multi nodes cluster",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html",
-  "platform": "CloudFormation",
-  "descriptionID": "35f94973",
+  "descriptionUrl": "https://www.pulumi.com/registry/packages/aws/api-docs/elasticache/cluster/#azmode_yaml",
+  "platform": "Pulumi",
+  "descriptionID": "149de780",
   "cloudProvider": "aws"
 }

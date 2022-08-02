@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "EC2 Not EBS Optimized",
+		"severity": "INFO",
+		"line": 10,
+		"fileName": "positive.yaml"
+	},
+	{
+		"queryName": "EC2 Not EBS Optimized",
+		"severity": "INFO",
+		"line": 18,
+		"fileName": "positive.yaml"
+	}
+]
