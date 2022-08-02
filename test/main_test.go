@@ -41,6 +41,7 @@ var (
 		"../assets/queries/pulumi/aws":              {FileKind: []model.FileKind{model.KindYAML}, Platform: "pulumi"},
 		"../assets/queries/pulumi/gcp":              {FileKind: []model.FileKind{model.KindYAML}, Platform: "pulumi"},
 		"../assets/queries/pulumi/kubernetes":       {FileKind: []model.FileKind{model.KindYAML}, Platform: "pulumi"},
+		"../assets/queries/pulumi/azure":            {FileKind: []model.FileKind{model.KindYAML}, Platform: "pulumi"},
 		"../assets/queries/k8s":                     {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "k8s"},
 		"../assets/queries/cloudFormation/aws":      {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
 		"../assets/queries/cloudFormation/aws_bom":  {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
