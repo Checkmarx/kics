@@ -27,18 +27,20 @@ import (
 
 var (
 	queriesPaths = map[string]model.QueryConfig{
-		"../assets/queries/terraform/aws_bom":    {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
-		"../assets/queries/terraform/aws":        {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
-		"../assets/queries/terraform/azure":      {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
-		"../assets/queries/terraform/gcp":        {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
-		"../assets/queries/terraform/github":     {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
-		"../assets/queries/terraform/kubernetes": {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
-		"../assets/queries/terraform/general":    {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
-		"../assets/queries/terraform/alicloud":   {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
-		"../assets/queries/crossplane/aws":       {FileKind: []model.FileKind{model.KindYAML}, Platform: "crossplane"},
-		"../assets/queries/crossplane/azure":     {FileKind: []model.FileKind{model.KindYAML}, Platform: "crossplane"},
-		"../assets/queries/crossplane/gcp":       {FileKind: []model.FileKind{model.KindYAML}, Platform: "crossplane"},
-		//"../assets/queries/knative":          {FileKind: []model.FileKind{model.KindYAML}, Platform: "knative"},
+		"../assets/queries/terraform/aws_bom":       {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/aws":           {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/azure":         {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/gcp":           {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/github":        {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/kubernetes":    {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/general":       {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/alicloud":      {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/crossplane/aws":          {FileKind: []model.FileKind{model.KindYAML}, Platform: "crossplane"},
+		"../assets/queries/crossplane/azure":        {FileKind: []model.FileKind{model.KindYAML}, Platform: "crossplane"},
+		"../assets/queries/crossplane/gcp":          {FileKind: []model.FileKind{model.KindYAML}, Platform: "crossplane"},
+		"../assets/queries/pulumi/gcp":              {FileKind: []model.FileKind{model.KindYAML}, Platform: "pulumi"},
+		"../assets/queries/pulumi/kubernetes":       {FileKind: []model.FileKind{model.KindYAML}, Platform: "pulumi"},
+		"../assets/queries/pulumi/azure":            {FileKind: []model.FileKind{model.KindYAML}, Platform: "pulumi"},
 		"../assets/queries/k8s":                     {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "k8s"},
 		"../assets/queries/cloudFormation/aws":      {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
 		"../assets/queries/cloudFormation/aws_bom":  {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
@@ -55,8 +57,7 @@ var (
 		"../assets/queries/googleDeploymentManager": {FileKind: []model.FileKind{model.KindYAML}, Platform: "googleDeploymentManager"},
 		"../assets/queries/grpc":                    {FileKind: []model.FileKind{model.KindPROTO}, Platform: "grpc"},
 		"../assets/queries/buildah":                 {FileKind: []model.FileKind{model.KindBUILDAH}, Platform: "buildah"},
-		"../assets/queries/pulumi/gcp":              {FileKind: []model.FileKind{model.KindYAML}, Platform: "pulumi"},
-		"../assets/queries/pulumi/azure":            {FileKind: []model.FileKind{model.KindYAML}, Platform: "pulumi"},
+		//"../assets/queries/knative":          {FileKind: []model.FileKind{model.KindYAML}, Platform: "knative"},
 	}
 
 	issueTypes = map[string]string{
