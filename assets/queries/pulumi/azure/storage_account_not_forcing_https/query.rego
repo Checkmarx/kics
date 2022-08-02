@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,
 		"resourceName": plm_lib.getResourceName(resource, name),
-		"searchKey": sprintf("resources[%s].properties", [name]),
+		"searchKey": sprintf("resources[%s].properties.enableHttpsTrafficOnly", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Storage Account should have attribute 'enableHttpsTrafficOnly' set to true",
 		"keyActualValue": "Storage Account has attribute 'enableHttpsTrafficOnly' set to false",

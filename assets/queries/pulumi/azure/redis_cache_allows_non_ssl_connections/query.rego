@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,
 		"resourceName": plm_lib.getResourceName(resource, name),
-		"searchKey": sprintf("resources[%s].properties", [name]),
+		"searchKey": sprintf("resources[%s].properties.enableNonSslPort", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Redis Cache should have attribute 'enableNonSslPort' set to false",
 		"keyActualValue": "Redis Cache has attribute 'enableNonSslPort' set to true",
