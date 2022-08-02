@@ -29,11 +29,17 @@ func getK8sClient() (client.Client, error) {
 
 		log.Info().Msg("auth to k8s API through k8s config file")
 
+		config.QPS = 100
+		config.Burst = 100
+
 		return client.New(config, client.Options{})
 	}
 
 	c := &K8sConfig{
-		Config: &rest.Config{},
+		Config: &rest.Config{
+			QPS:   100,
+			Burst: 100,
+		},
 	}
 
 	// authentication through k8s service account token or k8s client certificate
