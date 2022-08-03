@@ -21,6 +21,7 @@ Integrate KICS with:
 -   [Terraform Cloud](integrations_tfcloud.md)
 -   [Terraformer](integrations_terraformer.md)
 -   [AWS CodeBuild](integrations_aws_codebuild.md)
+-   [KICS Auto Scanning Extension for Visual Studio Code](integrations_auto_scanning_visual_studio.md)
 -   More soon...
 
 The pipelines examples can be found in our [GitHub Repository](https://github.com/Checkmarx/kics/tree/master/examples)
