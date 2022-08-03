@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="http://docs.kics.io/develop/integrations/">
+        <link rel="canonical" href="http://docs.kics.io/develop/integrations_auto_scanning_visual_studio/">
       
       <link rel="icon" href="../img/logo/kics-hat.ico">
       <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.3.9">
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#integrations_overview" class="md-skip">
+        <a href="#overview" class="md-skip">
           Skip to content
         </a>
       
@@ -230,15 +230,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="./" class="md-tabs__link md-tabs__link--active">
+      <a href="../integrations/" class="md-tabs__link">
         Integrations
       </a>
     </li>
@@ -803,14 +801,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
       
       
@@ -831,48 +827,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Overview
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../integrations/" class="md-nav__link">
         Overview
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#integrations_overview" class="md-nav__link">
-    Integrations Overview
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1260,21 +1219,8 @@
   
   
   
+    
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#integrations_overview" class="md-nav__link">
-    Integrations Overview
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -1286,49 +1232,81 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/Checkmarx/kics/edit/master/docs/integrations.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/Checkmarx/kics/edit/master/docs/integrations_auto_scanning_visual_studio.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-  <h1>Overview</h1>
-
-<h2 id="integrations_overview">Integrations Overview<a class="headerlink" href="#integrations_overview" title="Permanent link">&para;</a></h2>
-<h3 id="plugins">Plugins<a class="headerlink" href="#plugins" title="Permanent link">&para;</a></h3>
-<p>You can integrate KICS with your favorite CI/CD pipelines.
-We provide plugins for some CI/CD tools. For some others we provide a tutorial on how the integration can be done.</p>
-<p>Integrate KICS with:</p>
+<h1 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h1>
+<p>Checkmarx’s KICS Auto Scanning extension for VS Code initiates KICS scans directly from their VS Code console. The scan runs automatically whenever an infrastructure file of a supported type is saved, either manually or by auto-save. The scan runs only on the file that is open in the editor.</p>
+<p>The results are shown in the VS Code console, making it easy to remediate the vulnerabilities that are detected.</p>
+<blockquote>
+<p>📝 KICS (Keeping Infrastructure as Code Secure) is a free, open source solution developed by Checkmarx and the open source community for static code analysis of IaC. KICS automatically parses common IaC files to detect insecure configurations that could expose your applications, data, or services to attack. KICS finds security vulnerabilities, compliance issues, and infrastructure misconfigurations in the following IaC solutions: Terraform, Kubernetes, Docker, AWS CloudFormation, Ansible, and Helm.
+See <a href="https://checkmarx.com/product/opensource/kics-open-source-infrastructure-as-code-project/">KICS - Open Source Solution</a></p>
+<p>❗️This is a free tool provided by Checkmarx for all VS Code users, and does <strong>not</strong> require the user to submit credentials for a Checkmarx AST account. This feature is bundled together with the <strong>Checkmarx</strong> extension, which is used by authenticated AST users to import scan results into their VS Code IDE.  </p>
+</blockquote>
+<p>The plugin is available on marketplace. In addition, the code can be accessed <a href="https://github.com/Checkmarx/ast-vscode-extension">here</a>.</p>
+<h1 id="main_features">Main Features<a class="headerlink" href="#main_features" title="Permanent link">&para;</a></h1>
+<p>Free tool, no Checkmarx account required</p>
+<p>Run scans directly from your IDE</p>
+<p>Scans are triggered automatically whenever a file is saved</p>
+<h1 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h1>
+<p>You must have Docker installed and running in your environment</p>
+<h1 id="installing_the_kics_auto_scanning_extension">Installing the KICS Auto Scanning Extension<a class="headerlink" href="#installing_the_kics_auto_scanning_extension" title="Permanent link">&para;</a></h1>
+<p><strong>To install the extension from marketplace:</strong></p>
+<ol>
+<li>Open Visual Studio Code.</li>
+<li>In the main navigation, click on the <strong>Extensions</strong> icon.</li>
+<li>Search for the <strong>Checkmarx</strong> plugin, then click <strong>Install</strong> for the plugin.</li>
+</ol>
+<p><img alt="plugin_install" src="https://user-images.githubusercontent.com/105008282/182109202-7585a4fc-c0ea-44bf-9496-2209ae602a4e.png" /></p>
+<p>The Checkmarx extension is installed and the Checkmarx icon appears in the left-side navigation panel.</p>
+<p><img alt="checkmarx_extension" src="https://user-images.githubusercontent.com/105008282/182109554-ce6451d8-d357-4219-ad59-8b20fec4bf3b.png" /></p>
+<h1 id="configuring_the_extension">Configuring the Extension<a class="headerlink" href="#configuring_the_extension" title="Permanent link">&para;</a></h1>
+<p>The extension is activated automatically upon installation and no configuration is required. </p>
+<blockquote>
+<p>❗️It is not necessary to configure the Checkmarx AST Authentication settings in order to use the KICS Auto Scanning feature.</p>
+</blockquote>
+<p>If you would like to customize the scan settings, you can use the following procedure:</p>
+<ol>
+<li>
+<p>In the VS Code console, go to <strong>Settings &gt; Extensions &gt; Checkmarx &gt; Checkmarx KICS Auto Scanning.</strong>
+<img alt="checkmarx_kics_auto_scanning" src="https://user-images.githubusercontent.com/105008282/182109584-88f5ca31-c5c8-497f-a023-633951132ccc.png" /></p>
+</li>
+<li>
+<p>By default the extension is configured to run a KICS scan whenever an infrastructure file of a <a href="../platforms/">supported type</a> that is open in your editor is saved. If you would like to disable automatic scanning, deselect the <strong>Activate KICS Auto Scanning</strong> checkbox. 
+<strong>NOTE</strong> In this case, you will still be able to trigger scans manually from the command palette, as described below.</p>
+</li>
+<li>
+<p>If you would like to customize the scan parameters, enter the desire flags in the <strong>Additional Parameters</strong> field. For a list of available options, see Scan Command Options.</p>
+</li>
+</ol>
+<h1 id="triggering_a_scan_manually">Triggering a Scan Manually<a class="headerlink" href="#triggering_a_scan_manually" title="Permanent link">&para;</a></h1>
+<p>You can trigger a scan manually for the file that is open in your editor by opening the command palette and entering  Checkmarx-ast: Run kics realtime scan ( you can enter search text and select the command).</p>
+<h1 id="viewing_kics_results">Viewing KICS Results<a class="headerlink" href="#viewing_kics_results" title="Permanent link">&para;</a></h1>
+<h2 id="viewing_the_results_summary">Viewing the Results Summary<a class="headerlink" href="#viewing_the_results_summary" title="Permanent link">&para;</a></h2>
+<p>When a scan is completed, a summary of the number of vulnerabilities identified by severity level is shown in the OUTPUT section of the VS Code console. </p>
+<p>Example of results summary:</p>
+<pre><code class="language-hcl">1: CxINFO - 2:04:47 PM]Results summary:
+2:                     Total Results&quot;: 141,
+3:                     &quot;HIGH&quot;: 10,
+4:                     &quot;INFO&quot;: 4,
+5:                     &quot;LOW&quot;: 62,
+6:                     &quot;MEDIUM&quot;: 65
+</code></pre>
+<h2 id="viewing_kics_vulnerability_details">Viewing KICS Vulnerability Details<a class="headerlink" href="#viewing_kics_vulnerability_details" title="Permanent link">&para;</a></h2>
+<p>Detailed information about the vulnerabilities that were detected is shown in the file editor window. The vulnerable code is highlighted according the severity level of the vulnerability, as follows:</p>
 <ul>
-<li><a href="../integrations_azurepipelines/">Azure Pipelines</a></li>
-<li><a href="../integrations_bamboo/">Bamboo</a></li>
-<li><a href="../integrations_bitbucketpipelines/">Bitbucket Pipelines</a></li>
-<li><a href="../integrations_circleci/">CircleCI</a></li>
-<li><a href="../integrations_codefresh/">Codefresh</a></li>
-<li><a href="../integrations_ghactions/">Github Actions</a></li>
-<li><a href="../integrations_gitlabci/">GitLab CI</a></li>
-<li><a href="../integrations_jenkins/">Jenkins</a></li>
-<li><a href="../integrations_teamcity/">TeamCity</a></li>
-<li><a href="../integrations_travisci/">Travis</a></li>
-<li><a href="../integrations_pre_commit/">Pre-commit hooks</a></li>
-<li><a href="../integrations_tfcloud/">Terraform Cloud</a></li>
-<li><a href="../integrations_terraformer/">Terraformer</a></li>
-<li><a href="../integrations_aws_codebuild/">AWS CodeBuild</a></li>
-<li><a href="../integrations_auto_scanning_visual_studio/">KICS Auto Scanning Extension for Visual Studio Code</a></li>
-<li>More soon...</li>
+<li>High - red</li>
+<li>Medium - orange</li>
+<li>Info - green</li>
+<li>Low - blue</li>
 </ul>
-<p>The pipelines examples can be found in our <a href="https://github.com/Checkmarx/kics/tree/master/examples">GitHub Repository</a></p>
-<h3 id="megalinter">MegaLinter<a class="headerlink" href="#megalinter" title="Permanent link">&para;</a></h3>
-<p>KICS is natively embedded in <a href="https://megalinter.github.io/">MegaLinter</a>, a 100% Open-Source tool for CI/CD workflows that analyzes consistency and quality of:</p>
-<ul>
-<li>48 languages</li>
-<li>22 formats</li>
-<li>20 tooling formats</li>
-<li>excessive copy-pastes and spelling mistakes</li>
-</ul>
-<p>It also generates various reports, and can apply formatting and auto-fixes, to ensure all your projects sources are clean, whatever IDE/toolbox are used by their developers.</p>
-<p>To install MegaLinter in your repository, just run the following command</p>
-<p><code>npx mega-linter-runner --install</code></p>
+<p>Hover over the vulnerable code to show a tooltip with detailed info about the vulnerability. </p>
+<p><img alt="vulnerabilities" src="https://user-images.githubusercontent.com/105008282/182109633-0510aa5a-ded0-4287-8bd9-681d6da9185d.png" /></p>
+<h2 id="youtube_demo">YouTube Demo<a class="headerlink" href="#youtube_demo" title="Permanent link">&para;</a></h2>
+<p>https://youtu.be/sFD-9CQXfs0</p>
 
               
             </article>
@@ -1339,42 +1317,6 @@ We provide plugins for some CI/CD tools. For some others we provide a tutorial o
       </main>
       
         <footer class="md-footer">
-  
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" >
-      
-        
-        <a href="../queries/terraform-queries/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Terraform" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Terraform
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../integrations_azurepipelines/" class="md-footer__link md-footer__link--next" aria-label="Next: Azure DevOps" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Azure DevOps
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
