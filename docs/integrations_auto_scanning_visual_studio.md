@@ -33,6 +33,7 @@ You must have Docker installed and running in your environment
 
 
 The Checkmarx extension is installed and the Checkmarx icon appears in the left-side navigation panel.
+
 ![checkmarx_extension](https://user-images.githubusercontent.com/105008282/182109554-ce6451d8-d357-4219-ad59-8b20fec4bf3b.png)
 
 
