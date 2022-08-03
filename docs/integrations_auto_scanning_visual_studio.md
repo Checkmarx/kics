@@ -12,7 +12,6 @@ The results are shown in the VS Code console, making it easy to remediate the vu
 
 The plugin is available on marketplace. In addition, the code can be accessed <a href="https://github.com/Checkmarx/ast-vscode-extension">here</a>.
 
-https://github.com/Checkmarx/ast-vscode-extension
 # Main Features
 Free tool, no Checkmarx account required
 
