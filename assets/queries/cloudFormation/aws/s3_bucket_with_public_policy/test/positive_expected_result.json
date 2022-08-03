@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "HIGH",
+    "line": 4,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "HIGH",
+    "line": 10,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "HIGH",
+    "line": 19,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "HIGH",
+    "line": 8,
+    "filename": "positive2.json"
+  }
+]

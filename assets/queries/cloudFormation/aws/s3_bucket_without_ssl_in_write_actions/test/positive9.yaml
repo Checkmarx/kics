@@ -3,6 +3,7 @@ Resources:
   S3Bucket33:
     Type: AWS::S3::Bucket
     Properties:
+      BucketName: S3Bucket33,
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html
@@ -24,6 +25,6 @@ Resources:
             Resource: !Join
               - ''
               - - 'arn:aws:s3:::'
-                - !Ref S3Bucket3
+                - !Ref S3Bucket33
                 - /*
       Bucket: !Ref S3Bucket33

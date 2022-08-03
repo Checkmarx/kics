@@ -34,6 +34,7 @@
     "S3Bucket33": {
       "DeletionPolicy": "Retain",
       "Properties": {
+        "BucketName": "S3Bucket33",
         "AccessControl": "PublicRead",
         "WebsiteConfiguration": {
           "ErrorDocument": "error.html",
