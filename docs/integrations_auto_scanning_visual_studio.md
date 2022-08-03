@@ -82,6 +82,7 @@ Detailed information about the vulnerabilities that were detected is shown in th
 - Low - blue
 
 Hover over the vulnerable code to show a tooltip with detailed info about the vulnerability. 
+
 ![vulnerabilities](https://user-images.githubusercontent.com/105008282/182109633-0510aa5a-ded0-4287-8bd9-681d6da9185d.png)
 
 ## YouTube Demo
