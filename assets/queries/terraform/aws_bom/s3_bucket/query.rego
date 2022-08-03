@@ -68,16 +68,47 @@ get_accessibility(bucket, bucketName) = accessibility {
 	# cases when public access is blocked by aws_s3_bucket_public_access_block
 	s3BucketPublicAccessBlock := input.document[i].resource.aws_s3_bucket_public_access_block[_]
 	split(s3BucketPublicAccessBlock.bucket, ".")[1] == bucketName
+	acc := tf_lib.get_accessibility(bucket, bucketName, "aws_s3_bucket_policy", "bucket")
 	is_public_access_blocked(s3BucketPublicAccessBlock)
-	accessibility = {"accessibility": "private", "policy": ""}
+	accessibility = {"accessibility": "private", "policy": acc.policy}
 } else = accessibility {
 	# cases when there is a unrestriced policy
-	acc := tf_lib.get_accessibility(bucket, bucketName, "aws_s3_bucket_policy", "bucket")
-    acc.accessibility == "hasPolicy"   
-    
-    accessibility = {"accessibility": "hasPolicy", "policy": acc.policy}   
+	acc := tf_lib.get_accessibility(bucket, bucketName, "aws_s3_bucket_policy", "bucket")  
+    # last cases: acl definition
+	acl:= get_bucket_acl(bucket, bucketName)
+	acl == "private"
+    accessibility = {"accessibility": "private", "policy": acc.policy}   
 } else = accessibility {
-	accessibility = {"accessibility": "unknown", "policy": ""}
+	# cases when there is a unrestriced policy
+	acc := tf_lib.get_accessibility(bucket, bucketName, "aws_s3_bucket_policy", "bucket")  
+    acc.accessibility == "hasPolicy"
+    accessibility = {"accessibility": acc.accessibility, "policy": acc.policy}   
+} else = accessibility {
+	# cases when there is a unrestriced policy
+	acc := tf_lib.get_accessibility(bucket, bucketName, "aws_s3_bucket_policy", "bucket")  
+    # last cases: acl definition
+	acl:= get_bucket_acl(bucket, bucketName)
+	acl != "private"
+    accessibility = {"accessibility": "public", "policy": acc.policy}   
+} else = accessibility {
+	# cases when there is a unrestriced policy
+	acc := tf_lib.get_accessibility(bucket, bucketName, "aws_s3_bucket_policy", "bucket")  
+    acc.accessibility != "hasPolicy"
+    accessibility = {"accessibility": acc.accessibility, "policy": acc.policy}   
+}
+
+get_encryption_if_exists(bucket_resource, s3BucketName) = encryption {
+	# version before TF AWS 4.0
+	common_lib.valid_key(bucket_resource, "server_side_encryption_configuration")
+	encryption := "encrypted"
+} else = encryption {
+	# version after TF AWS 4.0
+	bucketAcl := input.document[_].resource.aws_s3_bucket_acl[_]
+	split(bucketAcl.bucket, ".")[1] == s3BucketName
+	tf_lib.has_target_resource(s3BucketName, "aws_s3_bucket_server_side_encryption_configuration")
+	encryption := "encrypted"
+} else = encryption {
+	encryption := "unencrypted"
 }
 
 get_encryption_if_exists(bucket_resource, s3BucketName) = encryption {

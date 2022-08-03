@@ -3,6 +3,7 @@
   "Resources": {
     "S3Bucket2": {
       "Properties": {
+        "BucketName": "S3Bucket2",
         "AccessControl": "PublicRead",
         "WebsiteConfiguration": {
           "IndexDocument": "index.html",
