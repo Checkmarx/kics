@@ -214,14 +214,17 @@ func (c *Inspector) Inspect(
 			Metadata: queryMeta,
 		}
 
-		vuls, err := c.doRun(&QueryContext{
+		queryContext := &QueryContext{
 			Ctx:           ctx,
 			scanID:        scanID,
 			Files:         files.ToMap(),
 			Query:         query,
 			payload:       combinedFiles,
 			BaseScanPaths: baseScanPaths,
-		})
+		}
+
+		vuls, err := c.doRun(queryContext)
+
 		if err != nil {
 			sentryReport.ReportSentry(&sentryReport.Report{
 				Message:  fmt.Sprintf("Inspector. query executed with error, query=%s", query.Metadata.Query),
@@ -234,6 +237,9 @@ func (c *Inspector) Inspect(
 
 			c.failedQueries[query.Metadata.Query] = err
 
+			queryOpa = nil
+			queryContext = nil
+
 			continue
 		}
 
@@ -242,6 +248,8 @@ func (c *Inspector) Inspect(
 		vulnerabilities = append(vulnerabilities, vuls...)
 
 		c.tracker.TrackQueryExecution(query.Metadata.Aggregation)
+
+		query = nil
 	}
 
 	return vulnerabilities, nil

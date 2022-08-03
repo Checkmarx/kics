@@ -46,6 +46,17 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 
 	fileCommands := s.Parser.CommentsCommands(filename, *content)
 
+	file := model.FileMetadata{
+		ID:            uuid.New().String(),
+		ScanID:        scanID,
+		OriginalData:  documents.Content,
+		Kind:          documents.Kind,
+		FilePath:      filename,
+		Commands:      fileCommands,
+		LinesIgnore:   documents.IgnoreLines,
+		ResolvedFiles: documents.ResolvedFiles,
+	}
+
 	for _, document := range documents.Docs {
 		_, err = json.Marshal(document)
 		if err != nil {
@@ -63,18 +74,9 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 			sort.Ints(documents.IgnoreLines)
 		}
 
-		file := model.FileMetadata{
-			ID:               uuid.New().String(),
-			ScanID:           scanID,
-			Document:         PrepareScanDocument(document, documents.Kind),
-			LineInfoDocument: document,
-			OriginalData:     documents.Content,
-			Kind:             documents.Kind,
-			FilePath:         filename,
-			Commands:         fileCommands,
-			LinesIgnore:      documents.IgnoreLines,
-			ResolvedFiles:    documents.ResolvedFiles,
-		}
+		file.Document = PrepareScanDocument(document, documents.Kind)
+		file.LineInfoDocument = document
+
 		s.saveToFile(ctx, &file)
 	}
 	s.Tracker.TrackFileParse()
