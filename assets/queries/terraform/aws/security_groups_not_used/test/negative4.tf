@@ -35,7 +35,7 @@ variable "secgroups" {
 
 data "aws_ami" "cowrie" {
   most_recent = true
-  owners      = ["${var.ami_owner}"]
+  owners      = ["var.ami_owner"]
 
   filter {
     name   = "name"
