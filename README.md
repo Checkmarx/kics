@@ -48,7 +48,7 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <br>
 <img alt="Crossplane" src="docs/img/logo-crossplane.png" width="150">&nbsp;&nbsp;&nbsp;
 <img alt="Pulumi" src="docs/img/logo-pulumi.png" width="130">&nbsp;&nbsp;&nbsp;
-<img alt="Pulumi" src="docs/img/logo-serverlessfw.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="ServerlessFW" src="docs/img/logo-serverlessfw.png" width="150">&nbsp;&nbsp;&nbsp;
 
 
 Support of other solutions and additional cloud providers are on the [roadmap](docs/roadmap.md).
