@@ -113,6 +113,10 @@ KICS supports scanning Swagger 2.0 and OpenAPI 3.0 specs with `.json` and `.yaml
 
 KICS supports scanning Pulumi manifests with `.yaml` extension.
 
+## Pulumi
+
+KICS supports scanning Serverless manifests with `.yml` extension.
+
 
 ## Google Deployment Manager
 

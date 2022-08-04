@@ -13,5 +13,6 @@ valid arguments:
   Kubernetes
   OpenAPI
   Pulumi
+  ServerlessFW
   Terraform
 {{.ScanHelp}}

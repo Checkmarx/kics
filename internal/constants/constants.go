@@ -54,6 +54,7 @@ var (
 		"GRPC":                    "grpc",
 		"Buildah":                 "buildah",
 		"Pulumi":                  "pulumi",
+		"ServerlessFW":            "serverlessfw",
 	}
 
 	// AvailableSeverities - All severities available

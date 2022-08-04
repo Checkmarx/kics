@@ -61,6 +61,9 @@ var (
 	pulumiNameRegex                                 = regexp.MustCompile(`\s*name\s*:`)
 	pulumiRuntimeRegex                              = regexp.MustCompile(`\s*runtime\s*:`)
 	pulumiResourcesRegex                            = regexp.MustCompile(`\s*resources\s*:`)
+	servelessServiceRegex                           = regexp.MustCompile(`\s*service\s*:`)
+	servelessFrameworkRegex                         = regexp.MustCompile(`\s*framework\s*:`)
+	servelessProviderRegex                          = regexp.MustCompile(`\s*provider\s*:`)
 )
 
 var (
@@ -91,6 +94,7 @@ var (
 		"openapi":              {"openapi"},
 		"terraform":            {"terraform", "cdkTf"},
 		"pulumi":               {"pulumi"},
+		"serverlessfw":         {"serverlessfw"},
 	}
 )
 
@@ -228,6 +232,13 @@ var types = map[string]regexSlice{
 			pulumiNameRegex,
 			pulumiRuntimeRegex,
 			pulumiResourcesRegex,
+		},
+	},
+	"serverlessfw": {
+		[]*regexp.Regexp{
+			servelessServiceRegex,
+			servelessFrameworkRegex,
+			servelessProviderRegex,
 		},
 	},
 }

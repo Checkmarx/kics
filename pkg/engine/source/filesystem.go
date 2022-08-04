@@ -424,6 +424,7 @@ var supPlatforms = &supportedPlatforms{
 	"GoogleDeploymentManager": "googleDeploymentManager",
 	"Buildah":                 "buildah",
 	"Pulumi":                  "pulumi",
+	"ServerlessFW":            "servelessfw",
 }
 
 func getPlatform(metadataPlatform string) string {

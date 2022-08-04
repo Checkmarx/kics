@@ -37,6 +37,7 @@ samples_ext = {
     'gdm': ['yaml'],
     'dockerCompose': ['dockerCompose'],
     'pulumi': ['yaml'],
+    "serverlessFW": ['yaml'],
 }
 summary = {
     'total': 0,
