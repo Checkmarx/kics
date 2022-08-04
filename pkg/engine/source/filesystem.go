@@ -50,6 +50,8 @@ func NewFilesystemSource(source, types, cloudProviders []string, libraryPath str
 		types = []string{""}
 	}
 
+	//checkServerlessType(&types)
+
 	if len(cloudProviders) == 0 {
 		cloudProviders = []string{""}
 	}
@@ -443,4 +445,22 @@ func readInputData(inputDataPath string) (string, error) {
 		return emptyInputData, errors.Wrapf(err, "failed to read query input data %s", path.Base(inputDataPath))
 	}
 	return string(inputData), nil
+}
+
+func checkServerlessType(typeSlice *[]string) {
+	cfCheck := false
+	for _, typeVal := range *typeSlice {
+		if typeVal == "serverlessfw" {
+			for _, a := range *typeSlice {
+				if a == "cloudformation" {
+					cfCheck = true
+					break
+				}
+			}
+			if !cfCheck {
+				*typeSlice = append(*typeSlice, "cloudformation")
+			}
+			break
+		}
+	}
 }
