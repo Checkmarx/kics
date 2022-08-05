@@ -61,8 +61,8 @@ var (
 	pulumiNameRegex                                 = regexp.MustCompile(`\s*name\s*:`)
 	pulumiRuntimeRegex                              = regexp.MustCompile(`\s*runtime\s*:`)
 	pulumiResourcesRegex                            = regexp.MustCompile(`\s*resources\s*:`)
-	servelessServiceRegex                           = regexp.MustCompile(`\s*service\s*:`)
-	servelessProviderRegex                          = regexp.MustCompile(`\s*provider\s*:`)
+	serverlessServiceRegex                          = regexp.MustCompile(`\s*service\s*:`)
+	serverlessProviderRegex                         = regexp.MustCompile(`\s*provider\s*:`)
 )
 
 var (
