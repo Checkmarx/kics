@@ -36,6 +36,7 @@ func TestParser_SupportedTypes(t *testing.T) {
 		"googledeploymentmanager": true,
 		"dockercompose":           true,
 		"pulumi":                  true,
+		"serverlessfw":            true,
 	}, p.SupportedTypes())
 }
 

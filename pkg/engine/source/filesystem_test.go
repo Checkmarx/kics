@@ -646,6 +646,7 @@ func TestListSupportedPlatforms(t *testing.T) {
 		"Kubernetes",
 		"OpenAPI",
 		"Pulumi",
+		"ServerlessFW",
 		"Terraform",
 	}
 	listActual := ListSupportedPlatforms()

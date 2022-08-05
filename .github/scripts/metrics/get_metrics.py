@@ -21,6 +21,8 @@ queries_path = {
     'gdm': os.path.join(queries_basepath, 'googleDeploymentManager', '*'),
     'dockerCompose': os.path.join(queries_basepath, 'dockerCompose', '*'),
     'pulumi': os.path.join(queries_basepath, 'pulumi', '*'),
+    'serverlessFW': os.path.join(queries_basepath, 'serverlessFW', '*'),
+
 }
 samples_ext = {
     'azureresourcemanager': ['json'],
@@ -37,6 +39,7 @@ samples_ext = {
     'gdm': ['yaml'],
     'dockerCompose': ['dockerCompose'],
     'pulumi': ['yaml'],
+    "serverlessFW": ['yaml'],
 }
 summary = {
     'total': 0,

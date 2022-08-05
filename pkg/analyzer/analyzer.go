@@ -61,6 +61,8 @@ var (
 	pulumiNameRegex                                 = regexp.MustCompile(`\s*name\s*:`)
 	pulumiRuntimeRegex                              = regexp.MustCompile(`\s*runtime\s*:`)
 	pulumiResourcesRegex                            = regexp.MustCompile(`\s*resources\s*:`)
+	serverlessServiceRegex                          = regexp.MustCompile(`\s*service\s*:`)
+	serverlessProviderRegex                         = regexp.MustCompile(`\s*provider\s*:`)
 )
 
 var (
@@ -91,6 +93,7 @@ var (
 		"openapi":              {"openapi"},
 		"terraform":            {"terraform", "cdkTf"},
 		"pulumi":               {"pulumi"},
+		"serverlessfw":         {"serverlessfw"},
 	}
 )
 
@@ -230,6 +233,12 @@ var types = map[string]regexSlice{
 			pulumiResourcesRegex,
 		},
 	},
+	"serverlessfw": {
+		[]*regexp.Regexp{
+			serverlessServiceRegex,
+			serverlessProviderRegex,
+		},
+	},
 }
 
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
@@ -303,6 +312,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	}()
 
 	availableTypes := createSlice(results)
+	serverlessFWTypeCheck(&availableTypes)
 	unwantedPaths := createSlice(unwanted)
 	unwantedPaths = append(unwantedPaths, ignoreFiles...)
 	returnAnalyzedPaths.Types = availableTypes
@@ -543,4 +553,10 @@ func shouldConsiderGitIgnoreFile(path, gitIgnore string, excludeGitIgnoreFile bo
 		}
 	}
 	return false, nil
+}
+
+func serverlessFWTypeCheck(typesSelected *[]string) {
+	if utils.Contains("serverlessfw", *typesSelected) && !utils.Contains("cloudformation", *typesSelected) {
+		*typesSelected = append(*typesSelected, "cloudformation")
+	}
 }

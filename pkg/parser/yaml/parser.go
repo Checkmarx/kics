@@ -108,6 +108,7 @@ func (p *Parser) SupportedTypes() map[string]bool {
 		"googledeploymentmanager": true,
 		"dockercompose":           true,
 		"pulumi":                  true,
+		"serverlessfw":            true,
 	}
 }
 
