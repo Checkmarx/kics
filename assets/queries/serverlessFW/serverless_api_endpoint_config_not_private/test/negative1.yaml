@@ -1,13 +1,14 @@
-AWSTemplateFormatVersion: '2010-09-09'
-Transform: AWS::Serverless-2016-10-31
-Description: AWS SAM template with a simple API definition
-Resources:
-  ApiGatewayApi4:
-    Type: AWS::Serverless::Api
-    Properties:
-      StageName: prod
-      TracingEnabled: true
-      CacheClusterEnabled: true
-      EndpointConfiguration:
-        Types:
-          - PRIVATE
+service: my-service
+frameworkVersion: '2'
+provider:
+  name: aws
+  endpointType: PRIVATE
+  vpcEndpointIds:
+    - vpce-123
+    - vpce-456
+functions:
+  hello:
+    events:
+      - http:
+          path: user/create
+          method: get

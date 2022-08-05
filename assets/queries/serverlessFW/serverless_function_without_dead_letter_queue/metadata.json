@@ -1,11 +1,10 @@
 {
-  "id": "cb2f612b-ed42-4ff5-9fb9-255c73d39a18",
+  "id": "dec7bc85-d156-4f64-9a33-96ed3d9f3fed",
   "queryName": "Serverless Function Without Dead Letter Queue",
   "severity": "LOW",
   "category": "Insecure Configurations",
-  "descriptionText": "AWS Serverless Function should be configured for a Dead Letter Queue(DLQ)",
-  "descriptionUrl": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-deadletterqueue",
-  "platform": "CloudFormation",
-  "descriptionID": "1142bb9f",
-  "cloudProvider": "aws"
+  "descriptionText": "Serverless Function should be configured for a Dead Letter Queue(DLQ)",
+  "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/guide/functions#dead-letter-queue-dlq",
+  "platform": "ServerlessFW",
+  "descriptionID": "0bd85f63"
 }

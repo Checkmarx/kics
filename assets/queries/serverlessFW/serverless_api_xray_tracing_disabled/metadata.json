@@ -1,11 +1,10 @@
 {
-  "id": "c757c6a3-ac87-4b9d-b28d-e5a5add6a315",
+  "id": "434945e5-4dfd-41b1-aba1-47075ccd9265",
   "queryName": "Serverless API X-Ray Tracing Disabled",
   "severity": "MEDIUM",
   "category": "Observability",
-  "descriptionText": "AWS Serverless API should have X-Ray Tracing enabled",
-  "descriptionUrl": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-api.html#sam-api-tracingenabled",
-  "platform": "CloudFormation",
-  "descriptionID": "ba685b50",
-  "cloudProvider": "aws"
+  "descriptionText": "Serverless API Gateway should have X-Ray Tracing enabled",
+  "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/events/apigateway#aws-x-ray-tracing",
+  "platform": "ServerlessFW",
+  "descriptionID": "4af7c06f"
 }

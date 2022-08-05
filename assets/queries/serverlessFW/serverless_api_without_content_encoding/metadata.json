@@ -1,11 +1,10 @@
 {
-  "id": "a2f2800e-614b-4bc8-89e6-fec8afd24800",
+  "id": "d5d1fe08-89db-440c-8725-b93223387309",
   "queryName": "Serverless API Without Content Encoding",
   "severity": "MEDIUM",
   "category": "Encryption",
-  "descriptionText": "AWS Serverless API should enable Content Encoding through the attribute 'MinimumCompressionSize'. This value should be greater than -1 and smaller than 10485760",
-  "descriptionUrl": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-api.html#sam-api-minimumcompressionsize",
-  "platform": "CloudFormation",
-  "descriptionID": "745a11d2",
-  "cloudProvider": "aws"
+  "descriptionText": "Serverless should have API Gateway with Content Encoding enabled through the attribute 'minimumCompressionSize'. This value should be greater than -1 and smaller than 10485760",
+  "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/events/apigateway#compression",
+  "platform": "ServerlessFW",
+  "descriptionID": "2a9e728c"
 }

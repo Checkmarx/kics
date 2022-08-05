@@ -1,11 +1,10 @@
 {
-  "id": "0a994e04-c6dc-471d-817e-d37451d18a3b",
+  "id": "a4d32883-aac7-42e1-b403-9415af0f3846",
   "queryName": "Serverless API Access Logging Setting Undefined",
   "severity": "MEDIUM",
   "category": "Observability",
-  "descriptionText": "AWS Serverless API/AWS Serverless HTTP API should have Access Logging Setting(s) defined",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-accesslogsetting.html",
-  "platform": "CloudFormation",
-  "descriptionID": "b2bb4961",
-  "cloudProvider": "aws"
+  "descriptionText": "Serverless FW API should have HTTP Access Logging enabled",
+  "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml#logs",
+  "platform": "ServerlessFW",
+  "descriptionID": "15262598"
 }

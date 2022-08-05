@@ -1,48 +1,47 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.cloudformation as cf_lib
+import data.generic.severlessfw as sfw_lib
 
 CxPolicy[result] {
-	document := input.document
-	resource = document[i].Resources[name]
-	resource.Type == "AWS::Serverless::Api"
-	properties := resource.Properties
+	document := input.document[i]
+	sfw_lib.is_serverless_file(resource)
+	provider := document.provider
+	apiGateway := provider.apiGateway
 
-	unrecommended_minimum_compression_size(properties.MinimumCompressionSize)
+	not common_lib.valid_key(apiGateway, "minimumCompressionSize")
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
-		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("Resources.%s.Properties.MinimumCompressionSize", [name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Resources.%s.Properties.MinimumCompressionSize is greater than -1 and smaller than 10485760",
-		"keyActualValue": "Resources.%s.Properties.MinimumCompressionSize is set but smaller than 0 or greater than 10485759",
-		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "MinimumCompressionSize"], []),
-	}
-}
-
-CxPolicy[result] {
-	document := input.document
-	resource = document[i].Resources[name]
-	resource.Type == "AWS::Serverless::Api"
-	properties := resource.Properties
-
-	not common_lib.valid_key(properties, "MinimumCompressionSize")
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": resource.Type,
-		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("Resources.%s.Properties", [name]),
+		"resourceName": document.service,
+		"searchKey": sprintf("provider.apiGateway", []),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.MinimumCompressionSize is defined and not null", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.MinimumCompressionSize is not defined or null", [name]),
-		"searchLine": common_lib.build_search_line(["Resources", name, "Properties"], []),
+		"keyExpectedValue": "apiGateway should have 'minimumCompressionSize' defined and set to a recommended value",
+		"keyActualValue": "apiGateway does not have 'minimumCompressionSize' defined",
+		"searchLine": common_lib.build_search_line(["provider","apiGateway"], []),
 	}
 }
 
+CxPolicy[result] {
+	document := input.document[i]
+	sfw_lib.is_serverless_file(resource)
+	provider := document.provider
+	apiGateway := provider.apiGateway
+
+	unrecommended_minimum_compression_size(apiGateway.minimumCompressionSize)
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": document.service,
+		"searchKey": sprintf("provider.apiGateway.minimumCompressionSize", []),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "'minimumCompressionSize' should be set to a recommended value",
+		"keyActualValue": "'minimumCompressionSize' is set a unrecommended value",
+		"searchLine": common_lib.build_search_line(["provider","apiGateway","minimumCompressionSize"], []),
+	}
+}
 
 unrecommended_minimum_compression_size(value) {
 	value < 0
