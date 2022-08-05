@@ -94,6 +94,7 @@
                 "GoogleDeploymentManager",
                 "Knative",
                 "Kubernetes",
+                "ServerlessFW",
                 "OpenAPI",
                 "Terraform",
                 "Pulumi"
