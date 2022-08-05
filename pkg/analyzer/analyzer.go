@@ -62,7 +62,6 @@ var (
 	pulumiRuntimeRegex                              = regexp.MustCompile(`\s*runtime\s*:`)
 	pulumiResourcesRegex                            = regexp.MustCompile(`\s*resources\s*:`)
 	servelessServiceRegex                           = regexp.MustCompile(`\s*service\s*:`)
-	servelessFrameworkRegex                         = regexp.MustCompile(`\s*frameworkVersion\s*:`)
 	servelessProviderRegex                          = regexp.MustCompile(`\s*provider\s*:`)
 )
 
@@ -237,7 +236,6 @@ var types = map[string]regexSlice{
 	"serverlessfw": {
 		[]*regexp.Regexp{
 			servelessServiceRegex,
-			servelessFrameworkRegex,
 			servelessProviderRegex,
 		},
 	},
