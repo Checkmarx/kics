@@ -1,0 +1,11 @@
+{
+  "id": "c757c6a3-ac87-4b9d-b28d-e5a5add6a315",
+  "queryName": "Serverless API X-Ray Tracing Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "AWS Serverless API should have X-Ray Tracing enabled",
+  "descriptionUrl": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-api.html#sam-api-tracingenabled",
+  "platform": "CloudFormation",
+  "descriptionID": "ba685b50",
+  "cloudProvider": "aws"
+}

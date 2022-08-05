@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AWS SAM template with a simple API definition
+Resources:
+  Function1:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      ImageUri: account-id.dkr.ecr.region.amazonaws.com/ecr-repo-name:image-name
+      ImageConfig:
+        Command:
+          - "app.lambda_handler"
+        EntryPoint:
+          - "entrypoint1"
+        WorkingDirectory: "workDir"
+      Tags:
+        - Key: Type
+          Value: AWS Serverless Function
+      DeadLetterConfig:
+        TargetArn: arn:aws:sqs:us-east-1:2324243535:aaa
+        Type: SQS
+      Environment:
+        Variables:
+          key: value
+      KmsKeyArn: arn:aws:kms:us-west-1:123456789123:key/12345678-12cc-45bb-98aa-9876543210cc
+      

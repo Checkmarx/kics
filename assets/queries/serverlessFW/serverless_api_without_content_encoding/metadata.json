@@ -1,0 +1,11 @@
+{
+  "id": "a2f2800e-614b-4bc8-89e6-fec8afd24800",
+  "queryName": "Serverless API Without Content Encoding",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "AWS Serverless API should enable Content Encoding through the attribute 'MinimumCompressionSize'. This value should be greater than -1 and smaller than 10485760",
+  "descriptionUrl": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-api.html#sam-api-minimumcompressionsize",
+  "platform": "CloudFormation",
+  "descriptionID": "745a11d2",
+  "cloudProvider": "aws"
+}
