@@ -235,8 +235,8 @@ var types = map[string]regexSlice{
 	},
 	"serverlessfw": {
 		[]*regexp.Regexp{
-			servelessServiceRegex,
-			servelessProviderRegex,
+			serverlessServiceRegex,
+			serverlessProviderRegex,
 		},
 	},
 }
