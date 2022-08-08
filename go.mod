@@ -9,7 +9,7 @@ require (
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20211114212643-ec144ca0d701
-	github.com/aws/aws-sdk-go v1.44.59
+	github.com/aws/aws-sdk-go v1.44.70
 	github.com/cheggaaa/pb/v3 v3.1.0
 	github.com/emicklei/proto v1.11.0
 	github.com/getsentry/sentry-go v0.13.0
@@ -39,11 +39,11 @@ require (
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/yargevad/filepathx v1.0.0
 	github.com/zclconf/go-cty v1.10.0
-	golang.org/x/net v0.0.0-20220520000938-2e3eb7b945c2
+	golang.org/x/net v0.0.0-20220722155237-a158d28d115b
 	golang.org/x/text v0.3.7
-	golang.org/x/tools v0.1.11
+	golang.org/x/tools v0.1.12
 	gopkg.in/yaml.v3 v3.0.1
-	helm.sh/helm/v3 v3.9.1
+	helm.sh/helm/v3 v3.9.2
 	mvdan.cc/sh/v3 v3.5.1
 )
 
@@ -388,8 +388,8 @@ require (
 	go.starlark.net v0.0.0-20200306205701-8dd3e2ee1dd5 // indirect
 	golang.org/x/crypto v0.0.0-20220525230936-793ad666bf5e // indirect
 	golang.org/x/oauth2 v0.0.0-20220411215720-9780585627b5 // indirect
-	golang.org/x/sync v0.0.0-20220601150217-0de741cfad7f // indirect
-	golang.org/x/sys v0.0.0-20220715151400-c0bba94af5f8 // indirect
+	golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4 // indirect
+	golang.org/x/sys v0.0.0-20220722155257-8c9f86f7a55f // indirect
 	golang.org/x/term v0.0.0-20210927222741-03fcf44c2211 // indirect
 	golang.org/x/time v0.0.0-20220210224613-90d013bbcef8 // indirect
 	golang.org/x/xerrors v0.0.0-20220517211312-f3a8303e98df // indirect
