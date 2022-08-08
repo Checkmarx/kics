@@ -142,6 +142,10 @@ func Test_detectLine(t *testing.T) { //nolint
 	}
 }
 
+var content = []byte(
+	`content1
+content2`)
+
 func Test_defaultDetectLine_prepareResolvedFiles(t *testing.T) {
 	type args struct {
 		resFiles map[string]model.ResolvedFile
@@ -156,10 +160,9 @@ func Test_defaultDetectLine_prepareResolvedFiles(t *testing.T) {
 			args: args{
 				resFiles: map[string]model.ResolvedFile{
 					"file1": {
-						Content: []byte(
-							`content1
-content2`),
-						Path: "testing/file1",
+						Content:      content,
+						Path:         "testing/file1",
+						LinesContent: utils.SplitLines(string(content)),
 					},
 				},
 			},
