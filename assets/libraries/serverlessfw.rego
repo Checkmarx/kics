@@ -13,7 +13,7 @@ resourcesMap = {
         "iam": "AWS::IAM"        
     },
     "azure":{
-        "function": "Azure:FunctionApp",
+        "function": "Azure:Function",
         "api": "Azure:APIManagement",
         "iam": "Azure:Role"
     },
