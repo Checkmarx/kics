@@ -5,7 +5,6 @@ import data.generic.serverlessfw as sfw_lib
 
 CxPolicy[result] {
 	document := input.document[i]
-	sfw_lib.is_serverless_file(document)
 	iam := document.provider.iam
 	statement := iam.role.statements[stt]
 	check_policy(statement)
@@ -13,17 +12,17 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": sfw_lib.resourceTypeMapping("iam", document.provider.name),
-		"resourceName": document.service,
+		"resourceName": sfw_lib.get_service_name(document),
 		"searchKey": sprintf("provider.iam.role.statements[%d]", [stt]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Statement should not give admin privileges",
 		"keyActualValue": "Statement gives admin privileges",
-		"searchLine": common_lib.build_search_line(["provider","iam","role","statements", stt], []),
+		"searchLine": common_lib.build_search_line(["provider", "iam", "role", "statements", stt], []),
 	}
 }
 
 check_policy(statement) {
 	common_lib.is_allow_effect(statement)
-    common_lib.containsOrInArrayContains(statement.Resource, "*")
+	common_lib.containsOrInArrayContains(statement.Resource, "*")
 	common_lib.containsOrInArrayContains(statement.Action, "*")
 }

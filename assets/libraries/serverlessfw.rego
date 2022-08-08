@@ -2,11 +2,6 @@ package generic.serverlessfw
 
 import data.generic.common as common_lib
 
-is_serverless_file(resource){
-    common_lib.valid_key(resource, "service")
-    common_lib.valid_key(resource, "provider")
-}
-
 resourceTypeMapping(resourceType, provider)= resourceTypeVal{
     resourceTypeVal :=resourcesMap[provider][resourceType]
 }
@@ -32,4 +27,11 @@ resourcesMap = {
         "api": "Aliyun:ApiGateway",
         "iam": "Aliyun:RAM"
     }
+}
+
+get_service_name(document) = name{
+    name := document.service.name
+} else = name {
+    is_string(document.service)
+    name := document.service
 }
