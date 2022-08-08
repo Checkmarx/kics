@@ -1,0 +1,11 @@
+{
+  "id": "6c8d51af-218d-4bfb-94a9-94eabaa0703a",
+  "queryName": "S3 Bucket Without Ignore Public ACL",
+  "severity": "LOW",
+  "category": "Insecure Configurations",
+  "descriptionText": "S3 bucket without ignore public ACL",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-publicaccessblockconfiguration.html",
+  "platform": "CloudFormation",
+  "descriptionID": "74146c20",
+  "cloudProvider": "aws"
+}

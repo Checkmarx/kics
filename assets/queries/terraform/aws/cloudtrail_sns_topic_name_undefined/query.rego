@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(cloudtrail, name),
 		"searchKey": sprintf("aws_cloudtrail[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'aws_cloudtrail[%s].sns_topic_name' is set and is not null", [name]),
+		"keyExpectedValue": sprintf("'aws_cloudtrail[%s].sns_topic_name' is set and should not be null", [name]),
 		"keyActualValue": sprintf("'aws_cloudtrail[%s].sns_topic_name' is undefined or null", [name]),
 	}
 }

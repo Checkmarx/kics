@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.PubliclyAccessible", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.PubliclyAccessible is false or undefined", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.PubliclyAccessible should be set to false or undefined", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.PubliclyAccessible is true", [name]),
 	}
 }

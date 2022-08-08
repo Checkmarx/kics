@@ -27,7 +27,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("variable.{{%s}}.type", [variableName]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'type' is not empty",
+		"keyExpectedValue": "'type' should not be empty",
 		"keyActualValue": "'type' is empty",
 	}
 }

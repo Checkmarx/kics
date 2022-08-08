@@ -15,5 +15,11 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_storage_account[%s].min_tls_version' is 'TLS1_2'", [name]),
 		"keyActualValue": sprintf("'azurerm_storage_account[%s].min_tls_version' is not 'TLS1_2'", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_storage_account", name, "min_tls_version"], []),
+		"remediation": json.marshal({
+			"before": sprintf("%s", [storage.min_tls_version]),
+			"after": "TLS1_2"
+		}),
+		"remediationType": "replacement",
 	}
 }

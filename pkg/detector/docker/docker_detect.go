@@ -31,7 +31,6 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 		CurrentLine:     0,
 		IsBreak:         false,
 		FoundAtLeastOne: false,
-		Lines:           prepareDockerFileLines(d.SplitLines(file.OriginalData)),
 		ResolvedFile:    file.FilePath,
 		ResolvedFiles:   make(map[string]model.ResolvedFileSplit),
 	}
@@ -46,7 +45,7 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	for _, key := range strings.Split(sKey, ".") {
 		substr1, substr2 := detector.GenerateSubstrings(key, extractedString)
 
-		det = det.DetectCurrentLine(substr1, substr2, 0)
+		det, _ = det.DetectCurrentLine(substr1, substr2, 0, prepareDockerFileLines(d.SplitLines(file.OriginalData)))
 
 		if det.IsBreak {
 			break

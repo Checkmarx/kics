@@ -37,7 +37,7 @@
 			"files": [
 				{
 					"file_name": "/path/e2e/fixtures/samples/terraform-single.tf",
-					"similarity_id": "2abf26c3014fc445da69d8d5bb862c1c511e8e16ad3a6c6f6e14c28aa0adac1d",
+					"similarity_id": "225c40e04fe9ac2285e2e47a448c8159cde8561762989f936c5cc6967977f664",
 					"line": 1,
 					"resource_type": "aws_redshift_cluster",
 					"resource_name": "default1",
@@ -46,7 +46,9 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "'aws_redshift_cluster.logging' is true",
-					"actual_value": "'aws_redshift_cluster.logging' is undefined"
+					"actual_value": "'aws_redshift_cluster.logging' is undefined",
+					"remediation": "logging {\n\t\tenable = true \n\t}",
+					"remediation_type": "addition"
 				}
 			]
 		},

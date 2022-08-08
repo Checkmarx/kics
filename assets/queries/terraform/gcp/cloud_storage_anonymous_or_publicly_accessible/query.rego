@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_storage_bucket_iam_binding[%s].members", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'google_storage_bucket_iam_binding[%s].members' is not null", [name]),
+		"keyExpectedValue": sprintf("'google_storage_bucket_iam_binding[%s].members' should not be null", [name]),
 		"keyActualValue": sprintf("'google_storage_bucket_iam_binding[%s].members' is null", [name]),
 	}
 }

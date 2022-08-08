@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.PolicyDocument", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement.NotAction is undefined while Resources.%s.Properties.PolicyDocument.Statement.Effect=Allow", [name, name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement.NotAction should be undefined while Resources.%s.Properties.PolicyDocument.Statement.Effect=Allow", [name, name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement.NotAction is set while Resources.%s.Properties.PolicyDocument.Statement.Effect=Allow", [name, name]),
 		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "PolicyDocument"], []),
 	}

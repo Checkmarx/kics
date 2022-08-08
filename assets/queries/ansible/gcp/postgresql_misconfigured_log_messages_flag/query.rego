@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.settings.database_flags.log_min_messages", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_sql_instance.settings.database_flags sets 'log_min_messages' to a valid value",
+		"keyExpectedValue": "gcp_sql_instance.settings.database_flags should set 'log_min_messages' to a valid value",
 		"keyActualValue": "gcp_sql_instance.settings.database_flags doesn't set 'log_min_messages' to a valid value",
 	}
 }

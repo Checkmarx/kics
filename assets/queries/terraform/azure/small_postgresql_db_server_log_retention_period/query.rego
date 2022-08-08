@@ -17,5 +17,11 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_postgresql_configuration[%s].value' is greater than 3 and less than 8", [name]),
 		"keyActualValue": sprintf("'azurerm_postgresql_configuration[%s].value' is %s", [name, config.value]),
+		"searchLine": commonLib.build_search_line(["resource","azurerm_postgresql_configuration" ,name, "value"], []),
+		"remediation": json.marshal({
+			"before": sprintf("%d", [config.value]),
+			"after": "7"
+		}),
+		"remediationType": "replacement",
 	}
 }

@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s' is referenced by an existing lock", [modules[m]]),
+		"keyExpectedValue": sprintf("'%s' should be referenced by an existing lock", [modules[m]]),
 		"keyActualValue": sprintf("'%s' is not referenced by an existing lock", [modules[m]]),
 		"searchLine": common_lib.build_search_line(["playbooks", task, modules[m]], []),
 	}
