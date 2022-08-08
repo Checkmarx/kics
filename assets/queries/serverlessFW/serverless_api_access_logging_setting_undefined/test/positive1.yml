@@ -1,6 +1,7 @@
 service: myservice
 frameworkVersion: '2'
 provider:
+  name: aws
   logs:
     # Enable HTTP API logs
     # This can either be set to `httpApi: true` to use defaults, or configured via subproperties

@@ -8,12 +8,11 @@ CxPolicy[result] {
 	sfw_lib.is_serverless_file(document)
 	iam := document.provider.iam
 	statement := iam.role.statements[stt]
-	#common_lib.is_allow_effect(statement)
 	check_policy(statement)
 
 	result := {
 		"documentId": input.document[i].id,
-		#"resourceType": resource.Type,
+		"resourceType": sfw_lib.resourceTypeMapping("iam", document.provider.name),
 		"resourceName": document.service,
 		"searchKey": sprintf("provider.iam.role.statements[%d]", [stt]),
 		"issueType": "IncorrectValue",

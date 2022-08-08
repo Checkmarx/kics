@@ -14,7 +14,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		#"resourceType": resource.Type,
+		"resourceType": sfw_lib.resourceTypeMapping("api", document.provider.name),
 		"resourceName": document.service,
 		"searchKey": sprintf("provider.endpointType", []),
 		"issueType": "IncorrectValue",
@@ -33,7 +33,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		#"resourceType": resource.Type,
+		"resourceType": sfw_lib.resourceTypeMapping("api", document.provider.name),
 		"resourceName": document.service,
 		"searchKey": sprintf("provider", []),
 		"issueType": "MissingAttribute",

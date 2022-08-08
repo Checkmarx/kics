@@ -13,7 +13,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		#"resourceType": resource.Type,
+		"resourceType": sfw_lib.resourceTypeMapping("function", document.provider.name),
 		"resourceName": document.service,
 		"searchKey": sprintf("functions.%s.tracing", [fname]),
 		"issueType": "IncorrectValue",
@@ -33,7 +33,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		#"resourceType": resource.Type,
+		"resourceType": sfw_lib.resourceTypeMapping("function", document.provider.name),
 		"resourceName": document.service,
 		"searchKey": sprintf("functions.%s", [fname]),
 		"issueType": "MissingAttribute",

@@ -13,7 +13,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		#"resourceType": resource.Type,
+		"resourceType": sfw_lib.resourceTypeMapping("api", document.provider.name),
 		"resourceName": document.service,
 		"searchKey": sprintf("provider.logs.restApi.accessLogging", []),
 		"issueType": "IncorrectValue",

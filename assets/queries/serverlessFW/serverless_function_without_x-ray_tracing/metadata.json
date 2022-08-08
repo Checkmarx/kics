@@ -3,7 +3,7 @@
   "queryName": "Serverless Function Without X-Ray Tracing",
   "severity": "LOW",
   "category": "Observability",
-  "descriptionText": "Serverless Function should have Tracing enabled. For this, property 'Tracing' should have the value 'Active'",
+  "descriptionText": "Serverless Function should have Tracing enabled. For this, property 'tracing' should have the value 'Active'",
   "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/guide/functions#aws-x-ray-tracing",
   "platform": "ServerlessFW",
   "descriptionID": "f3f93ff6"

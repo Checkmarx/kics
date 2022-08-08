@@ -3,7 +3,7 @@
   "queryName": "Serverless Function Without Dead Letter Queue",
   "severity": "LOW",
   "category": "Insecure Configurations",
-  "descriptionText": "Serverless Function should be configured for a Dead Letter Queue(DLQ)",
+  "descriptionText": "Serverless Function should be configured for a Dead Letter Queue(DLQ). A Dead Letter Queue(DLQ) can be set up in 'onError' config parameter",
   "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/guide/functions#dead-letter-queue-dlq",
   "platform": "ServerlessFW",
   "descriptionID": "0bd85f63"
