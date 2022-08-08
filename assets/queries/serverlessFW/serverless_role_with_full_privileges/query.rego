@@ -12,7 +12,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": sfw_lib.resourceTypeMapping("iam", document.provider.name),
-		"resourceName": sfw_lib.get_service_name(document),
+		"resourceName": iam.role.name,
 		"searchKey": sprintf("provider.iam.role.statements[%d]", [stt]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Statement should not give admin privileges",

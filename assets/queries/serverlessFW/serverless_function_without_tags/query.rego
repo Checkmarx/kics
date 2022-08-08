@@ -13,7 +13,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": sfw_lib.resourceTypeMapping("function", document.provider.name),
-		"resourceName": sfw_lib.get_service_name(document),
+		"resourceName": fname,
 		"searchKey": sprintf("functions.%s", [fname]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'tags' should be defined inside the function",
