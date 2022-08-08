@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
@@ -145,6 +146,11 @@ func TestDetector_DetectLine(t *testing.T) {
 	}
 }
 
+var OriginalData0 = `resource "aws_s3_bucket" "b" {
+	bucket = "my-tf-test-bucket"
+	acl    = "authenticated-read"
+	}`
+
 func TestDetector_GetAdjacent(t *testing.T) {
 	var defaultDetector defaultDetectLine
 	det := initDetector().Add(defaultDetector, model.KindTerraform)
@@ -159,11 +165,9 @@ func TestDetector_GetAdjacent(t *testing.T) {
 		{
 			name: "should get adjacent lines without default detector",
 			fileMetadata: &model.FileMetadata{
-				Kind: model.KindTerraform,
-				OriginalData: `resource "aws_s3_bucket" "b" {
-bucket = "my-tf-test-bucket"
-acl    = "authenticated-read"
-}`,
+				Kind:              model.KindTerraform,
+				OriginalData:      OriginalData0,
+				LinesOriginalData: utils.SplitLines(OriginalData0),
 			},
 			line: 1,
 			expected: model.VulnerabilityLines{
@@ -175,11 +179,11 @@ acl    = "authenticated-read"
 					},
 					{
 						Position: 2,
-						Line:     "bucket = \"my-tf-test-bucket\"",
+						Line:     "\tbucket = \"my-tf-test-bucket\"",
 					},
 					{
 						Position: 3,
-						Line:     "acl    = \"authenticated-read\"",
+						Line:     "\tacl    = \"authenticated-read\"",
 					},
 				},
 				LineWithVulnerabilty: "",
@@ -188,11 +192,9 @@ acl    = "authenticated-read"
 		{
 			name: "should get adjacent lines with default detector",
 			fileMetadata: &model.FileMetadata{
-				Kind: model.KindJSON,
-				OriginalData: `resource "aws_s3_bucket" "b" {
-bucket = "my-tf-test-bucket"
-acl    = "authenticated-read"
-}`,
+				Kind:              model.KindJSON,
+				OriginalData:      OriginalData0,
+				LinesOriginalData: utils.SplitLines(OriginalData0),
 			},
 			line: 1,
 			expected: model.VulnerabilityLines{
@@ -204,11 +206,11 @@ acl    = "authenticated-read"
 					},
 					{
 						Position: 2,
-						Line:     "bucket = \"my-tf-test-bucket\"",
+						Line:     "\tbucket = \"my-tf-test-bucket\"",
 					},
 					{
 						Position: 3,
-						Line:     "acl    = \"authenticated-read\"",
+						Line:     "\tacl    = \"authenticated-read\"",
 					},
 				},
 				LineWithVulnerabilty: "",
