@@ -45,14 +45,14 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	for _, key := range strings.Split(sKey, ".") {
 		substr1, substr2 := detector.GenerateSubstrings(key, extractedString)
 
-		det, _ = det.DetectCurrentLine(substr1, substr2, 0, prepareDockerFileLines(d.SplitLines(file.OriginalData)))
+		det, _ = det.DetectCurrentLine(substr1, substr2, 0, prepareDockerFileLines(*file.LinesOriginalData))
 
 		if det.IsBreak {
 			break
 		}
 	}
 
-	unchangedText := d.SplitLines(file.OriginalData)
+	unchangedText := *file.LinesOriginalData
 
 	if det.FoundAtLeastOne {
 		return model.VulnerabilityLines{
@@ -66,15 +66,9 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 
 	return model.VulnerabilityLines{
 		Line:         undetectedVulnerabilityLine,
-		VulnLines:    []model.CodeLine{},
+		VulnLines:    &[]model.CodeLine{},
 		ResolvedFile: file.FilePath,
 	}
-}
-
-// SplitLines splits Dockerfile document by line, multiline are considered as one
-func (d DetectKindLine) SplitLines(content string) []string {
-	text := strings.ReplaceAll(content, "\r", "")
-	return strings.Split(text, "\n")
 }
 
 func prepareDockerFileLines(text []string) []string {

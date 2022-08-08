@@ -9,6 +9,7 @@ import (
 	"github.com/Checkmarx/kics/internal/constants"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/rs/zerolog/log"
 )
 
@@ -128,8 +129,9 @@ func (r *Resolver) resolvePath(value, filePath string, resolveCount int) (any, b
 	}
 
 	r.ResolvedFiles[value] = model.ResolvedFile{
-		Content: fileContent,
-		Path:    path,
+		Content:      fileContent,
+		Path:         path,
+		LinesContent: utils.SplitLines(string(fileContent)),
 	}
 
 	// Cloudformation !Ref check

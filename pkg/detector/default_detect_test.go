@@ -50,7 +50,7 @@ func Test_detectLine(t *testing.T) { //nolint
 			},
 			want: model.VulnerabilityLines{
 				Line: 3,
-				VulnLines: []model.CodeLine{
+				VulnLines: &[]model.CodeLine{
 					{
 						Position: 2,
 						Line: `						bucket = "my-tf-test-bucket"`,
@@ -93,7 +93,7 @@ func Test_detectLine(t *testing.T) { //nolint
 			},
 			want: model.VulnerabilityLines{
 				Line: 7,
-				VulnLines: []model.CodeLine{
+				VulnLines: &[]model.CodeLine{
 					{
 						Position: 6,
 						Line: `						  Name        = "My bucket"`,
@@ -136,7 +136,7 @@ func Test_detectLine(t *testing.T) { //nolint
 			},
 			want: model.VulnerabilityLines{
 				Line:      -1,
-				VulnLines: []model.CodeLine{},
+				VulnLines: &[]model.CodeLine{},
 			},
 		},
 	}

@@ -132,11 +132,12 @@ func getPayload(filePath string, content []byte) (model.FileMetadatas, error) {
 		}
 
 		file := model.FileMetadata{
-			FilePath:         filePath,
-			Document:         kics.PrepareScanDocument(document, documents.Kind),
-			LineInfoDocument: document,
-			Commands:         p[0].CommentsCommands(filePath, content),
-			OriginalData:     string(content),
+			FilePath:          filePath,
+			Document:          kics.PrepareScanDocument(document, documents.Kind),
+			LineInfoDocument:  document,
+			Commands:          p[0].CommentsCommands(filePath, content),
+			OriginalData:      string(content),
+			LinesOriginalData: utils.SplitLines(string(content)),
 		}
 
 		files = append(files, file)

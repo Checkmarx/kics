@@ -56,7 +56,7 @@ spec:
 			},
 			want: model.VulnerabilityLines{
 				Line: 10,
-				VulnLines: []model.CodeLine{
+				VulnLines: &[]model.CodeLine{
 					{
 						Position: 10,
 						Line:     "  containers:",
@@ -110,7 +110,7 @@ spec:
 			},
 			want: model.VulnerabilityLines{
 				Line: 9,
-				VulnLines: []model.CodeLine{
+				VulnLines: &[]model.CodeLine{
 					{
 						Position: 9,
 						Line:     "spec:",
@@ -172,7 +172,7 @@ spec:
 			},
 			want: model.VulnerabilityLines{
 				Line: 26,
-				VulnLines: []model.CodeLine{
+				VulnLines: &[]model.CodeLine{
 					{
 						Position: 26,
 						Line:     "  containers:",

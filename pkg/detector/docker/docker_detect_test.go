@@ -19,7 +19,7 @@ func TestDetectDockerLine(t *testing.T) { //nolint
 		{
 			expected: model.VulnerabilityLines{
 				Line: 10,
-				VulnLines: []model.CodeLine{
+				VulnLines: &[]model.CodeLine{
 					{
 						Position: 9,
 						Line:     "RUN apk update",
@@ -57,7 +57,7 @@ ENTRYPOINT ["kubectl"]
 		{
 			expected: model.VulnerabilityLines{
 				Line: 17,
-				VulnLines: []model.CodeLine{
+				VulnLines: &[]model.CodeLine{
 					{
 						Position: 16,
 						Line:     "ARG JAR_FILE",
@@ -100,7 +100,7 @@ ADD ${JAR_FILE} apps.jar
 		{
 			expected: model.VulnerabilityLines{
 				Line: 6,
-				VulnLines: []model.CodeLine{
+				VulnLines: &[]model.CodeLine{
 					{
 						Position: 5,
 						Line: `	&& apk add kubectl=1.20.0-r0 \`,
