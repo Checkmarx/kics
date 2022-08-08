@@ -42,6 +42,9 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 		sKey = strings.Replace(sKey, str[0], `{{`+strconv.Itoa(idx)+`}}`, -1)
 	}
 
+	unchangedText := make([]string, len(*file.LinesOriginalData))
+	copy(unchangedText, *file.LinesOriginalData)
+
 	for _, key := range strings.Split(sKey, ".") {
 		substr1, substr2 := detector.GenerateSubstrings(key, extractedString)
 
@@ -51,8 +54,6 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 			break
 		}
 	}
-
-	unchangedText := *file.LinesOriginalData
 
 	if det.FoundAtLeastOne {
 		return model.VulnerabilityLines{

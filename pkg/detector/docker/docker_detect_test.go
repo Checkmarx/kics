@@ -5,9 +5,49 @@ import (
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/rs/zerolog"
 	"github.com/stretchr/testify/require"
 )
+
+var OriginalData1 = `FROM alpine:3.7
+RUN apk update \
+	&& apk upgrade \
+	&& apk add kubectl=1.20.0-r0 \
+	&& rm -rf /var/cache/apk/*
+ENTRYPOINT ["kubectl"]
+
+FROM alpine:3.9
+RUN apk update
+RUN apk update && apk upgrade && apk add kubectl=1.20.0-r0 \
+	&& rm -rf /var/cache/apk/*
+ENTRYPOINT ["kubectl"]
+`
+var OriginalData2 = `FROM openjdk:10-jdk
+VOLUME /tmp
+ADD http://source.file/package.file.tar.gz /temp
+RUN tar -xjf /temp/package.file.tar.gz \
+	&& make -C /tmp/package.file \
+	&& rm /tmp/ package.file.tar.gz
+ARG JAR_FILE
+ADD ${JAR_FILE} app.jar
+
+FROM openjdk:11-jdk
+VOLUME /tmp
+ADD http://source.file/package.file.tar.gz /temp
+RUN tar -xjf /temp/package.file.tar.gz \
+	&& make -C /tmp/package.file \
+	&& rm /tmp/ package.file.tar.gz
+ARG JAR_FILE
+ADD ${JAR_FILE} apps.jar
+`
+
+var OriginalData3 = `FROM alpine:3.7
+RUN apk update \
+	&& apk upgrade \
+	&& apk add kubectl=1.20.0-r0 \
+	&& rm -rf /var/cache/apk/*
+ENTRYPOINT ["kubectl"]`
 
 // TestDetectDockerLine tests the functions [DetectDockerLine()] and all the methods called by them
 func TestDetectDockerLine(t *testing.T) { //nolint
@@ -36,22 +76,11 @@ func TestDetectDockerLine(t *testing.T) { //nolint
 			},
 			searchKey: "FROM={{alpine:3.9}}.RUN={{apk update && apk upgrade && apk add kubectl=1.20.0-r0 	\u0026\u0026 rm -rf /var/cache/apk/*}}",
 			file: &model.FileMetadata{
-				ScanID: "Test2",
-				ID:     "Test2",
-				Kind:   model.KindDOCKER,
-				OriginalData: `FROM alpine:3.7
-RUN apk update \
-	&& apk upgrade \
-	&& apk add kubectl=1.20.0-r0 \
-	&& rm -rf /var/cache/apk/*
-ENTRYPOINT ["kubectl"]
-
-FROM alpine:3.9
-RUN apk update
-RUN apk update && apk upgrade && apk add kubectl=1.20.0-r0 \
-	&& rm -rf /var/cache/apk/*
-ENTRYPOINT ["kubectl"]
-`,
+				ScanID:            "Test2",
+				ID:                "Test2",
+				Kind:              model.KindDOCKER,
+				OriginalData:      OriginalData1,
+				LinesOriginalData: utils.SplitLines(OriginalData1),
 			},
 		},
 		{
@@ -74,27 +103,11 @@ ENTRYPOINT ["kubectl"]
 			},
 			searchKey: "FROM=openjdk:11-jdk.{{ADD ${JAR_FILE} apps.jar}}",
 			file: &model.FileMetadata{
-				ScanID: "Test3",
-				ID:     "Test3",
-				Kind:   model.KindDOCKER,
-				OriginalData: `FROM openjdk:10-jdk
-VOLUME /tmp
-ADD http://source.file/package.file.tar.gz /temp
-RUN tar -xjf /temp/package.file.tar.gz \
-	&& make -C /tmp/package.file \
-	&& rm /tmp/ package.file.tar.gz
-ARG JAR_FILE
-ADD ${JAR_FILE} app.jar
-
-FROM openjdk:11-jdk
-VOLUME /tmp
-ADD http://source.file/package.file.tar.gz /temp
-RUN tar -xjf /temp/package.file.tar.gz \
-	&& make -C /tmp/package.file \
-	&& rm /tmp/ package.file.tar.gz
-ARG JAR_FILE
-ADD ${JAR_FILE} apps.jar
-`,
+				ScanID:            "Test3",
+				ID:                "Test3",
+				Kind:              model.KindDOCKER,
+				OriginalData:      OriginalData2,
+				LinesOriginalData: utils.SplitLines(OriginalData2),
 			},
 		},
 		{
@@ -117,15 +130,11 @@ ADD ${JAR_FILE} apps.jar
 			},
 			searchKey: "FROM={{alpine:3.7}}.ENTRYPOINT[kubectl]",
 			file: &model.FileMetadata{
-				ScanID: "Test",
-				ID:     "Test",
-				Kind:   model.KindDOCKER,
-				OriginalData: `FROM alpine:3.7
-RUN apk update \
-	&& apk upgrade \
-	&& apk add kubectl=1.20.0-r0 \
-	&& rm -rf /var/cache/apk/*
-ENTRYPOINT ["kubectl"]`,
+				ScanID:            "Test",
+				ID:                "Test",
+				Kind:              model.KindDOCKER,
+				OriginalData:      OriginalData3,
+				LinesOriginalData: utils.SplitLines(OriginalData3),
 			},
 		},
 	}
