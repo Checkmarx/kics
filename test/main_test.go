@@ -58,6 +58,7 @@ var (
 		"../assets/queries/googleDeploymentManager": {FileKind: []model.FileKind{model.KindYAML}, Platform: "googleDeploymentManager"},
 		"../assets/queries/grpc":                    {FileKind: []model.FileKind{model.KindPROTO}, Platform: "grpc"},
 		"../assets/queries/buildah":                 {FileKind: []model.FileKind{model.KindBUILDAH}, Platform: "buildah"},
+		"../assets/queries/serverlessFW":            {FileKind: []model.FileKind{model.KindYAML, model.KindYML}, Platform: "serverlessFW"},
 		//"../assets/queries/knative":               {FileKind: []model.FileKind{model.KindYAML}, Platform: "knative"},
 	}
 

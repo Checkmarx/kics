@@ -1,18 +1,19 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.severlessfw as sfw_lib
+import data.generic.serverlessfw as sfw_lib
 
 CxPolicy[result] {
 	document := input.document[i]
-	sfw_lib.is_serverless_file(resource)
+	sfw_lib.is_serverless_file(document)
 	iam := document.provider.iam
 	statement := iam.role.statements[stt]
+	#common_lib.is_allow_effect(statement)
 	check_policy(statement)
 
 	result := {
 		"documentId": input.document[i].id,
-		"resourceType": resource.Type,
+		#"resourceType": resource.Type,
 		"resourceName": document.service,
 		"searchKey": sprintf("provider.iam.role.statements[%d]", [stt]),
 		"issueType": "IncorrectValue",
@@ -22,37 +23,7 @@ CxPolicy[result] {
 	}
 }
 
-CxPolicy[result] {
-	resources := input.document[i].Resources
-	resource := resources[name]
-
-	resource.Type == "AWS::Lambda::Function"
-
-	# check if the role referenced in the lambda function properties is defined in the same template
-	fullRole := split(resource.Properties.Role, ".")
-	role := fullRole[0]
-	resources[role]
-
-	policy := resources[role].Properties.Policies[p]
-
-	check_policy(policy.PolicyDocument)
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": resource.Type,
-		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("Resources.%s.Properties.Policies.PolicyDocument", [role]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.Policies[%s].PolicyDocument does not give admin privileges to Resources.%s ", [role, policy.PolicyName, name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.Policies[%s].PolicyDocument gives admin privileges to Resources.%s ", [role, policy.PolicyName, name]),
-		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "Policies", p], ["PolicyDocument"]),
-	}
-}
-
-check_policy(policy) {
-	st := common_lib.get_statement(common_lib.get_policy(policy))
-	statement := st[_]
-
+check_policy(statement) {
 	common_lib.is_allow_effect(statement)
     common_lib.containsOrInArrayContains(statement.Resource, "*")
 	common_lib.containsOrInArrayContains(statement.Action, "*")

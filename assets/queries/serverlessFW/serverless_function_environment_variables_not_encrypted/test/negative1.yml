@@ -11,8 +11,9 @@ provider:
 functions:
   hello: # this function will OVERWRITE the service level environment config above
     handler: handler.hello
-    awsKmsKeyArn: arn:aws:kms:us-east-1:XXXXXX:key/some-hash
+    kmsKeyArn: arn:aws:kms:us-east-1:XXXXXX:key/some-hash
     environment:
       TABLE_NAME: tableName2
   goodbye: # this function will INHERIT the service level environment config above
     handler: handler.goodbye
+    kmsKeyArn: arn:aws:kms:us-east-1:XXXXXX:key/some-hash

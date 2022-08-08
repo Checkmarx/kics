@@ -1,11 +1,11 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.severlessfw as sfw_lib
+import data.generic.serverlessfw as sfw_lib
 
 CxPolicy[result] {
 	document := input.document[i]
-	sfw_lib.is_serverless_file(resource)
+	sfw_lib.is_serverless_file(document)
 	logs := document.provider.logs
 	restAPI := logs.restApi
 
@@ -13,7 +13,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"resourceType": resource.Type,
+		#"resourceType": resource.Type,
 		"resourceName": document.service,
 		"searchKey": sprintf("provider.logs.restApi.accessLogging", []),
 		"issueType": "IncorrectValue",

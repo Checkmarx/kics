@@ -1,11 +1,11 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.severlessfw as sfw_lib
+import data.generic.serverlessfw as sfw_lib
 
 CxPolicy[result] {
 	document := input.document[i]
-	sfw_lib.is_serverless_file(resource)
+	sfw_lib.is_serverless_file(document)
 	provider := document.provider
 
 	endpointType := provider.endpointType
@@ -14,7 +14,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"resourceType": resource.Type,
+		#"resourceType": resource.Type,
 		"resourceName": document.service,
 		"searchKey": sprintf("provider.endpointType", []),
 		"issueType": "IncorrectValue",
@@ -26,14 +26,14 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	sfw_lib.is_serverless_file(resource)
+	sfw_lib.is_serverless_file(document)
 	provider := document.provider
 
 	not common_lib.valid_key(provider, "endpointType")
 
 	result := {
 		"documentId": input.document[i].id,
-		"resourceType": resource.Type,
+		#"resourceType": resource.Type,
 		"resourceName": document.service,
 		"searchKey": sprintf("provider", []),
 		"issueType": "MissingAttribute",
