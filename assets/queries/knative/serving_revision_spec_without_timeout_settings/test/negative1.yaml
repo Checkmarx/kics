@@ -1,0 +1,8 @@
+apiVersion: serving.knative.dev/v1
+kind: Configuration
+spec:
+  template:
+    metadata:
+    spec:
+      containerConcurrency:
+      timeoutSeconds: 0
