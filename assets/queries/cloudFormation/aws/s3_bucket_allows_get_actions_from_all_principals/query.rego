@@ -12,7 +12,7 @@ CxPolicy[result] {
 	statement := st[_]
 
 	common_lib.is_allow_effect(statement)
-	common_lib.equalsOrInArray(statement.Resource, "*")
+	common_lib.equalsOrInArray(statement.Principal, "*")
 	cf_lib.checkAction(statement.Action, "get")
 
 	result := {
