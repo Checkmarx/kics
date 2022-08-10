@@ -1,13 +1,22 @@
-apiVersion: v1
-kind: Pod
+apiVersion: serving.knative.dev/v1
+kind: Service
 metadata:
-  name: command-demo
-  labels:
-    purpose: demonstrate-command
+  name: dummy
 spec:
-  containers:
-    - name: command-demo-container
-      image: gcr.io/google_containers/kube-apiserver-amd64:v1.6.0
-      command: ["kube-apiserver"]
-      args: ["--enable-admission-plugins=AlwaysAdmit", "--admission-control-config-file=path/to/plugin/config/file.yaml"]
-  restartPolicy: OnFailure
+  ConfigurationSpec:
+    template:
+      spec:
+        containers:
+          - name: app
+            image: images.my-company.example/app:v4
+            securityContext:
+              allowPrivilegeEscalation: false
+            resources:
+              requests:
+                memory: "64Mi"
+                cpu: "250m"
+              limits:
+                memory: "128Mi"
+                cpu: "500m"
+        containerConcurrency: 100
+  RouteSpec: ~
