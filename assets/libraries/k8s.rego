@@ -12,7 +12,7 @@ getSpecInfo(document) = specInfo { # this one can be also used for the result
 } else = specInfo {
 	spec := document.spec
 	specInfo := {"spec": spec, "path": "spec"}
-}
+} 
 
 checkKind(currentKind, listKinds) {
 	currentKind == listKinds[i]
