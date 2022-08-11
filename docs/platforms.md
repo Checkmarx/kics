@@ -100,6 +100,7 @@ Platform: Kubernetes
 ## Knative
 
 KICS supports scanning Knative manifests with `.yaml` extension.
+Due to the possibility of the definition of the [PodSpec and PodTemplate](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#podspec-v1-core) in Knative files, Kubernetes Security Queries are also loaded once the presence of the Knative files is detected.
 
 ## Kubernetes
 

@@ -5,11 +5,9 @@ import data.generic.k8s as k8sLib
 
 types := {"initContainers", "containers"}
 
-valid_kinds = ["Pod", "Configuration", "Service", "Revision", "ContainerSource"]
-
 CxPolicy[result] {
 	document := input.document[i]
-	document.kind == valid_kinds[_]
+	document.kind == k8sLib.valid_pod_spec_kind_list[_]
 	specInfo := k8sLib.getSpecInfo(document)
 	container := specInfo.spec[types[x]][c]
 	rec := {"requests", "limits"}
@@ -30,7 +28,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	document.kind == valid_kinds[_]
+	document.kind == k8sLib.valid_pod_spec_kind_list[_]
 
 	specInfo := k8sLib.getSpecInfo(document)
 	types := {"initContainers", "containers"}

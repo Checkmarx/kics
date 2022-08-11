@@ -3,12 +3,10 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
 
-valid_kinds = ["Pod", "Configuration", "Service", "Revision", "ContainerSource"]
-
 CxPolicy[result] {
 	resource := input.document[i]
 	metadata := resource.metadata
-	resource.kind == valid_kinds[_]
+	resource.kind == k8sLib.valid_pod_spec_kind_list[_]
 	specInfo := k8sLib.getSpecInfo(resource)
 	volumes := specInfo.spec.volumes
 	common_lib.isOSDir(volumes[j].hostPath.path)
@@ -35,7 +33,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i]
 	metadata := resource.metadata
-	not common_lib.inArray(valid_kinds, resource.kind)
+	not common_lib.inArray(k8sLib.valid_pod_spec_kind_list, resource.kind)
 	specInfo := k8sLib.getSpecInfo(resource)
 	volumes := specInfo.spec.volumes
 	common_lib.isOSDir(volumes[j].hostPath.path)
