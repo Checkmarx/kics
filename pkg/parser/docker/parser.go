@@ -153,9 +153,7 @@ func resolveArgs(values []string, args map[string]string) []string {
 	for i := range values {
 		for arg := range args {
 			ref := fmt.Sprintf("${%s}", arg)
-			if strings.Contains(values[i], ref) {
-				values[i] = strings.Replace(values[i], ref, args[arg], 1)
-			}
+			values[i] = strings.Replace(values[i], ref, args[arg], 1)
 		}
 	}
 
