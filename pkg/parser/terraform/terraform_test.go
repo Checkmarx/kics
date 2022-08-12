@@ -1,12 +1,14 @@
 package terraform
 
 import (
-	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
-	"github.com/hashicorp/hcl/v2"
+	"fmt"
 	"path/filepath"
 	"reflect"
 	"strings"
 	"testing"
+
+	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
+	"github.com/hashicorp/hcl/v2"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/stretchr/testify/require"
@@ -45,6 +47,24 @@ resource "aws_s3_bucket" "b" {
 	subnet_id     = var.subnet_ids[count.index]
 
   }`
+
+	parentheses = `
+variable "default" {
+		type    = "string"
+		default = "default_var_file"
+}
+	
+data "aws_ami" "example" {
+		most_recent = true
+	  
+		owners = ["self"]
+		tags = {
+		  Name   = "app-server"
+		  Tested = "true"
+		  ("Tag/${var.default}") = "test"
+		}
+}
+  `
 )
 
 type fileTest struct {
@@ -94,6 +114,19 @@ func Test_Count(t *testing.T) {
 	require.Contains(t, document[0], "resource")
 	require.Contains(t, document[0]["resource"].(model.Document)["aws_instance"], "server1")
 	require.NotContains(t, document[0]["resource"].(model.Document)["aws_instance"], "server")
+}
+
+// Test_Parentheses_Expr tests if parentheses expr is well parsed
+func Test_Parentheses_Expr(t *testing.T) {
+	parser := NewDefault()
+	getInputVariables(filepath.FromSlash("../../../test/fixtures/test-tf-parentheses"))
+	document, _, err := parser.Parse("parentheses.tf", []byte(parentheses))
+	fmt.Println(document)
+	require.NoError(t, err)
+	require.Len(t, document, 1)
+	require.Contains(t, document[0], "data")
+	ami := document[0]["data"].(model.Document)["aws_ami"].(model.Document)["example"]
+	require.Contains(t, ami.(model.Document)["tags"], "Tag/default_var_file")
 }
 
 // Test_Resolve tests the functions [Resolve()] and all the methods called by them
