@@ -1,10 +1,12 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	docs := input.document[i]
+	[path, Resources] := walk(docs)
+	resource := Resources[name]
 	resource.Type == "AWS::RDS::DBInstance"
 	not common_lib.valid_key(resource.Properties, "AutoMinorVersionUpgrade")
 
@@ -12,7 +14,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("Resources.%s.Properties", [name]),
+		"searchKey": sprintf("%s%s.Properties", [cf_lib.getPath(path), name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.AutoMinorVersionUpgrade' is defined", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.AutoMinorVersionUpgrade' is undefined", [name]),
@@ -20,7 +22,9 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	docs := input.document[i]
+	[path, Resources] := walk(docs)
+	resource := Resources[name]
 	resource.Type == "AWS::RDS::DBInstance"
 	resource.Properties.AutoMinorVersionUpgrade == false
 
@@ -28,9 +32,9 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("Resources.%s.Properties.AutoMinorVersionUpgrade", [name]),
+		"searchKey": sprintf("%s%s.Properties.AutoMinorVersionUpgrade", [cf_lib.getPath(path), name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.AutoMinorVersionUpgrade' is true", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.AutoMinorVersionUpgrade' should be true", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.AutoMinorVersionUpgrade' is false", [name]),
 	}
 }
