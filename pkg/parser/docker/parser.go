@@ -3,6 +3,7 @@ package docker
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -52,6 +53,8 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 	arguments := make([]Command, 0)
 	ignoreStruct := newIgnore()
 
+	args := make(map[string]string, 0)
+
 	for _, child := range parsed.AST.Children {
 		child.Value = strings.ToLower(child.Value)
 		if child.Value == "from" {
@@ -80,6 +83,12 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 		cmd.JSON = child.Attributes["json"]
 		for n := child.Next; n != nil; n = n.Next {
 			cmd.Value = append(cmd.Value, n.Value)
+		}
+
+		if child.Value != "arg" {
+			cmd.Value = resolveArgs(cmd.Value, args)
+		} else {
+			args = saveArgs(args, cmd.Value[0])
 		}
 
 		if fromValue == "" {
@@ -138,4 +147,29 @@ func (p *Parser) StringifyContent(content []byte) (string, error) {
 // GetResolvedFiles returns the list of files that are resolved
 func (p *Parser) GetResolvedFiles() map[string]model.ResolvedFile {
 	return make(map[string]model.ResolvedFile)
+}
+
+func resolveArgs(values []string, args map[string]string) []string {
+	for i := range values {
+		for arg := range args {
+			ref := fmt.Sprintf("${%s}", arg)
+			if strings.Contains(values[i], ref) {
+				values[i] = strings.Replace(values[i], ref, args[arg], 1)
+			}
+		}
+	}
+
+	return values
+}
+
+func saveArgs(args map[string]string, argValue string) map[string]string {
+	value := strings.Split(argValue, "=")
+	if len(value) == 2 {
+		args[value[0]] = value[1]
+	}
+	if len(value) > 2 {
+		args[value[0]] = strings.Join(value[1:], "=")
+	}
+
+	return args
 }
