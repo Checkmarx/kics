@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec", [metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Service should have 'timeoutSeconds' defined in 'template.spec'",
-		"keyActualValue": "Service 'timeoutSeconds' does not have defined in 'template.spec'",
+		"keyActualValue": "Service 'timeoutSeconds' is not defined in 'template.spec'",
 		"searchLine": common_lib.build_search_line(["spec", "template", "spec"], []),
 	}
 }
