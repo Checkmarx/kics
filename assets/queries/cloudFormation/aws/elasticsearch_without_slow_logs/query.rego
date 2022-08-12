@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.LogPublishingOptions", [cf_lib.getPath(path),name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.LogPublishingOptions declares slow logs", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.LogPublishingOptions should declare slow logs", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.LogPublishingOptions does not declares slow logs", [name]),
 		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "LogPublishingOptions"], []),
 	}
@@ -41,7 +41,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.LogPublishingOptions.%s.Enabled", [cf_lib.getPath(path),name, logName]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.LogPublishingOptions.%s is a slow log and is enabled", [name, logName]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.LogPublishingOptions.%s should be enabled if is a slow log", [name, logName]),
 		"keyActualValue": sprintf("Resources.%s.Properties.LogPublishingOptions.%s is a slow log but isn't enabled", [name, logName]),
 		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "LogPublishingOptions", logName, "Enabled"], []),
 	}
@@ -61,7 +61,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s%s.Properties.LogPublishingOptions is defined and not null", [cf_lib.getPath(path),name]),
+		"keyExpectedValue": sprintf("%s%s.Properties.LogPublishingOptions should be defined and not null", [cf_lib.getPath(path),name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.LogPublishingOptions is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["Resource", name, "Properties"], []),
 	}

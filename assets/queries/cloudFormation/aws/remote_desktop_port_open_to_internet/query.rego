@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.SecurityGroupIngress", [cf_lib.getPath(path), name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d] doesn't open the remote desktop port (3389)", [name, index]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d] should not open the remote desktop port (3389)", [name, index]),
 		"keyActualValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d] opens the remote desktop port (3389)", [name, index]),
 	}
 }

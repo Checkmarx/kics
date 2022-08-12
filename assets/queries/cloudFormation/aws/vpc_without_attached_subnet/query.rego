@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s", [cf_lib.getPath(path), name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s' is attached to resources", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s' should be attached to resources", [name]),
 		"keyActualValue": sprintf("'Resources.%s' is not attached to resources", [name]),
 	}
 }

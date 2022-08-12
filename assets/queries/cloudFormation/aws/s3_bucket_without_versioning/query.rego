@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties", [cf_lib.getPath(path), name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.VersioningConfiguration is defined", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.VersioningConfiguration should be defined", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.VersioningConfiguration is undefined", [name]),
 	}
 }

@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.AccessPolicies.Statement", [cf_lib.getPath(path), name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Elasticsearch Domain ensure IAM Authentication",
+		"keyExpectedValue": "Elasticsearch Domain should ensure IAM Authentication",
 		"keyActualValue": "Elasticsearch Domain does not ensure IAM Authentication",
 		"searchLine": common_lib.build_search_line(path, [name, "Properties", "AccessPolicies", "Statement", idx]),
 	}

@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties", [cf_lib.getPath(path), name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.EncryptionAtRestOptions is defined and not null", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.EncryptionAtRestOptions should be defined and not null", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.EncryptionAtRestOptions is undefined or null", [name]),
 	}
 }
@@ -40,7 +40,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.EncryptionAtRestOptions", [cf_lib.getPath(path), name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.EncryptionAtRestOptions.KmsKeyId is set", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.EncryptionAtRestOptions.KmsKeyId should be set", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.EncryptionAtRestOptions.KmsKeyId is undefined", [name]),
 	}
 }

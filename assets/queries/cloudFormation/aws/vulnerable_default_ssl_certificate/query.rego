@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.DistributionConfig.CloudfrontDefaultCertificate", [cf_lib.getPath(path), name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.CloudfrontDefaultCertificate is 'false' or not defined.", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.CloudfrontDefaultCertificate should be set to 'false' or not defined.", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.CloudfrontDefaultCertificate is 'true'.", [name]),
 	}
 }
@@ -41,7 +41,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.DistributionConfig.ViewerCertificate", [cf_lib.getPath(path), name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.%s is defined", [name, attr[a]]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.%s should be defined", [name, attr[a]]),
 		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.%s is not defined", [name, attr[a]]),
 	}
 }

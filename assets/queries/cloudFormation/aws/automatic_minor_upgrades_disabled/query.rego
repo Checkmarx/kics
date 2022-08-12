@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties", [cf_lib.getPath(path), name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.AutoMinorVersionUpgrade' is defined", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.AutoMinorVersionUpgrade' should be defined", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.AutoMinorVersionUpgrade' is undefined", [name]),
 	}
 }

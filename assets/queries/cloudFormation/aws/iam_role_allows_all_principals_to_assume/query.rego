@@ -25,7 +25,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.AssumeRolePolicyDocument", [cf_lib.getPath(path), name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement.Principal.AWS does not contain ':root'", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement.Principal.AWS should not contain ':root'", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement.Principal.AWS contains ':root'", [name]),
 		"searchLine": common_lib.build_search_line(path, [name, "Properties", "AssumeRolePolicyDocument"]),
 	}

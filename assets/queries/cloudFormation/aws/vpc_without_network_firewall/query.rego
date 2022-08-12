@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s", [cf_lib.getPath(path), name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s' is associated with a AWS Network Firewall", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s' should be associated with a AWS Network Firewall", [name]),
 		"keyActualValue": sprintf("'Resources.%s' is not associated with a AWS Network Firewall", [name]),
 		"searchLine": common_lib.build_search_line(path, [name]),
 	}

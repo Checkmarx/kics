@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.StorageEncrypted", [cf_lib.getPath(path), name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.StorageEncrypted is true", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.StorageEncrypted should be set to true", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.StorageEncrypted is false", [name]),
 	}
 }
@@ -34,7 +34,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.StorageEncrypted", [cf_lib.getPath(path), name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.StorageEncrypted is defined", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.StorageEncrypted should be defined", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.StorageEncrypted is undefined", [name]),
 	}
 }
