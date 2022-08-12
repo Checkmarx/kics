@@ -1,7 +1,6 @@
 package terraform
 
 import (
-	"fmt"
 	"path/filepath"
 	"reflect"
 	"strings"
@@ -121,7 +120,6 @@ func Test_Parentheses_Expr(t *testing.T) {
 	parser := NewDefault()
 	getInputVariables(filepath.FromSlash("../../../test/fixtures/test-tf-parentheses"))
 	document, _, err := parser.Parse("parentheses.tf", []byte(parentheses))
-	fmt.Println(document)
 	require.NoError(t, err)
 	require.Len(t, document, 1)
 	require.Contains(t, document[0], "data")
