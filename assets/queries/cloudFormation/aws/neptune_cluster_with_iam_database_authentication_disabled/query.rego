@@ -7,7 +7,6 @@ CxPolicy[result] {
 	docs := input.document[i]
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
-	#resource := input.document[i].Resources[name]
 	resource.Type == "AWS::Neptune::DBCluster"
 	properties := resource.Properties
 	properties.IamAuthEnabled == false
@@ -28,7 +27,6 @@ CxPolicy[result] {
 	docs := input.document[i]
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
-	#resource := input.document[i].Resources[name]
 	resource.Type == "AWS::Neptune::DBCluster"
 	properties := resource.Properties
 
@@ -42,6 +40,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.IamAuthEnabled is set to true", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.IamAuthEnabled is undefined", [name]),
-		"searchLine": common_lib.build_search_line(path, ["Properties"]),
+		"searchLine": common_lib.build_search_line(path, [name,"Properties"]),
 	}
 }

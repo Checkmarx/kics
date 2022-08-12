@@ -7,7 +7,6 @@ CxPolicy[result] {
 	docs := input.document[i]
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
-	#resource := input.document[i].Resources[name]
 	resource.Type == "AWS::Neptune::DBCluster"
 	properties := resource.Properties
 	properties.StorageEncrypted == false
