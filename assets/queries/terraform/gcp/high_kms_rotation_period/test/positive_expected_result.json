@@ -1,12 +1,12 @@
 [
   {
     "queryName": "High KMS Rotation Period",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 4
   },
   {
     "queryName": "High KMS Rotation Period",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 7
   }
 ]
