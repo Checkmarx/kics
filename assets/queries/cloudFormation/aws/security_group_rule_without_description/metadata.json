@@ -1,7 +1,7 @@
 {
   "id": "5e6c9c68-8a82-408e-8749-ddad78cbb9c5",
   "queryName": "Security Group Rule Without Description",
-  "severity": "Info",
+  "severity": "INFO",
   "category": "Best Practices",
   "descriptionText": "It's considered a best practice for AWS Security Group to have a description",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
