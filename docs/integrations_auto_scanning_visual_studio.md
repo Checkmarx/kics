@@ -1,4 +1,4 @@
-# Overview
+# KICS Auto Scanning Extension for Visual Studio Code
 Checkmarx’s KICS Auto Scanning extension for VS Code initiates KICS scans directly from their VS Code console. The scan runs automatically whenever an infrastructure file of a supported type is saved, either manually or by auto-save. The scan runs only on the file that is open in the editor.
 
 The results are shown in the VS Code console, making it easy to remediate the vulnerabilities that are detected.
