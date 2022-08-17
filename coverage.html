@@ -191,7 +191,7 @@
 				
 				<option value="file67">github.com/Checkmarx/kics/pkg/parser/terraform/comment/comment.go (96.8%)</option>
 				
-				<option value="file68">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (76.5%)</option>
+				<option value="file68">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (76.1%)</option>
 				
 				<option value="file69">github.com/Checkmarx/kics/pkg/parser/terraform/data_source.go (76.8%)</option>
 				
@@ -209,7 +209,7 @@
 				
 				<option value="file76">github.com/Checkmarx/kics/pkg/printer/utils.go (82.4%)</option>
 				
-				<option value="file77">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (80.0%)</option>
+				<option value="file77">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
 				<option value="file78">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
@@ -2165,13 +2165,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="30">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="30">total += v
+                <span class="cov8" title="34">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2196,7 +2196,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -13719,6 +13719,8 @@ func (c *converter) convertStringPart(expr hclsyntax.Expression) (string, error)
                 return c.convertTemplateConditional(v)</span>
         case *hclsyntax.TemplateJoinExpr:<span class="cov1" title="1">
                 return c.convertTemplateFor(v.Tuple.(*hclsyntax.ForExpr))</span>
+        case *hclsyntax.ParenthesesExpr:<span class="cov0" title="0">
+                return c.convertStringPart(v.Expression)</span>
         default:<span class="cov4" title="6">
                 // try to evaluate with variables
                 valueConverted, _ := expr.Value(&amp;hcl.EvalContext{
@@ -14182,7 +14184,7 @@ type Parser struct {
 }
 
 // NewDefault initializes a parser with Parser default values
-func NewDefault() *Parser <span class="cov4" title="3">{
+func NewDefault() *Parser <span class="cov4" title="4">{
         return &amp;Parser{
                 numOfRetries: RetriesDefaultValue,
                 convertFunc:  converter.DefaultConverted,
@@ -14206,7 +14208,7 @@ func processContent(elements model.Document, content, path string) <span class="
         }
 }
 
-func processElements(elements model.Document, path string) <span class="cov3" title="2">{
+func processElements(elements model.Document, path string) <span class="cov2" title="2">{
         for k, v3 := range elements </span><span class="cov7" title="9">{ // resource elements
                 if k != "certificate_body" </span><span class="cov7" title="9">{
                         continue</span>
@@ -14216,27 +14218,27 @@ func processElements(elements model.Document, path string) <span class="cov3" ti
         }
 }
 
-func processResources(doc model.Document, path string) error <span class="cov3" title="2">{
+func processResources(doc model.Document, path string) error <span class="cov2" title="2">{
         var resourcesElements model.Document
-        for _, resources := range doc </span><span class="cov3" title="2">{ // iterate over resources
+        for _, resources := range doc </span><span class="cov2" title="2">{ // iterate over resources
                 resourcesElements = resources.(model.Document)
-                for _, v2 := range resourcesElements </span><span class="cov3" title="2">{ // resource name
+                for _, v2 := range resourcesElements </span><span class="cov2" title="2">{ // resource name
                         switch t := v2.(type) </span>{
                         case []interface{}:<span class="cov0" title="0">
                                 return errors.New("failed to process resources")</span>
-                        case interface{}:<span class="cov3" title="2">
-                                if elements, ok := t.(model.Document); ok </span><span class="cov3" title="2">{
+                        case interface{}:<span class="cov2" title="2">
+                                if elements, ok := t.(model.Document); ok </span><span class="cov2" title="2">{
                                         processElements(elements, path)
                                 }</span>
                         }
                 }
         }
-        <span class="cov3" title="2">return nil</span>
+        <span class="cov2" title="2">return nil</span>
 }
 
-func addExtraInfo(json []model.Document, path string) ([]model.Document, error) <span class="cov3" title="2">{
-        for _, documents := range json </span><span class="cov3" title="2">{ // iterate over documents
-                if resources, ok := documents["resource"].(model.Document); ok </span><span class="cov3" title="2">{
+func addExtraInfo(json []model.Document, path string) ([]model.Document, error) <span class="cov4" title="3">{
+        for _, documents := range json </span><span class="cov4" title="3">{ // iterate over documents
+                if resources, ok := documents["resource"].(model.Document); ok </span><span class="cov2" title="2">{
                         err := processResources(resources, path)
                         if err != nil </span><span class="cov0" title="0">{
                                 return []model.Document{}, err
@@ -14244,37 +14246,37 @@ func addExtraInfo(json []model.Document, path string) ([]model.Document, error) 
                 }
         }
 
-        <span class="cov3" title="2">return json, nil</span>
+        <span class="cov4" title="3">return json, nil</span>
 }
 
-func parseFile(filename string, shouldReplaceDataSource bool) (*hcl.File, error) <span class="cov10" title="22">{
+func parseFile(filename string, shouldReplaceDataSource bool) (*hcl.File, error) <span class="cov10" title="23">{
         file, err := os.ReadFile(filename)
         if err != nil </span><span class="cov4" title="3">{
                 return nil, err
         }</span>
-        <span class="cov9" title="19">if shouldReplaceDataSource </span><span class="cov5" title="5">{
+        <span class="cov9" title="20">if shouldReplaceDataSource </span><span class="cov5" title="5">{
                 replaceDataIdentifiers := regexp.MustCompile(`(data\.[A-Za-z0-9._-]+)`)
                 file = []byte(replaceDataIdentifiers.ReplaceAllString(string(file), "\"$1\""))
         }</span>
-        <span class="cov9" title="19">parsedFile, _ := hclsyntax.ParseConfig(file, filename, hcl.Pos{Line: 1, Column: 1})
+        <span class="cov9" title="20">parsedFile, _ := hclsyntax.ParseConfig(file, filename, hcl.Pos{Line: 1, Column: 1})
 
         return parsedFile, nil</span>
 }
 
 // Parse execute parser for the content in a file
-func (p *Parser) Parse(path string, content []byte) ([]model.Document, []int, error) <span class="cov3" title="2">{
+func (p *Parser) Parse(path string, content []byte) ([]model.Document, []int, error) <span class="cov4" title="3">{
         file, diagnostics := hclsyntax.ParseConfig(content, filepath.Base(path), hcl.Pos{Byte: 0, Line: 1, Column: 1})
         if diagnostics != nil &amp;&amp; diagnostics.HasErrors() &amp;&amp; len(diagnostics.Errs()) &gt; 0 </span><span class="cov0" title="0">{
                 err := diagnostics.Errs()[0]
                 return nil, []int{}, err
         }</span>
 
-        <span class="cov3" title="2">ignore, err := comment.ParseComments(content, path)
+        <span class="cov4" title="3">ignore, err := comment.ParseComments(content, path)
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err).Msg("failed to parse comments")
         }</span>
 
-        <span class="cov3" title="2">linesToIgnore := comment.GetIgnoreLines(ignore, file.Body.(*hclsyntax.Body))
+        <span class="cov4" title="3">linesToIgnore := comment.GetIgnoreLines(ignore, file.Body.(*hclsyntax.Body))
 
         fc, parseErr := p.convertFunc(file, inputVariableMap)
         json, err := addExtraInfo([]model.Document{fc}, path)
@@ -14282,7 +14284,7 @@ func (p *Parser) Parse(path string, content []byte) ([]model.Document, []int, er
                 return json, []int{}, errors.Wrap(err, "failed terraform parse")
         }</span>
 
-        <span class="cov3" title="2">return json, linesToIgnore, errors.Wrap(parseErr, "failed terraform parse")</span>
+        <span class="cov4" title="3">return json, linesToIgnore, errors.Wrap(parseErr, "failed terraform parse")</span>
 }
 
 // SupportedExtensions returns Terraform extensions
@@ -14332,18 +14334,18 @@ import (
 
 var inputVariableMap = make(converter.VariableMap)
 
-func mergeMaps(baseMap, newItems converter.VariableMap) <span class="cov8" title="7">{
-        for key, value := range newItems </span><span class="cov9" title="8">{
+func mergeMaps(baseMap, newItems converter.VariableMap) <span class="cov9" title="8">{
+        for key, value := range newItems </span><span class="cov10" title="9">{
                 baseMap[key] = value
         }</span>
 }
 
-func setInputVariablesDefaultValues(filename string) (converter.VariableMap, error) <span class="cov9" title="8">{
+func setInputVariablesDefaultValues(filename string) (converter.VariableMap, error) <span class="cov10" title="9">{
         parsedFile, err := parseFile(filename, false)
         if err != nil || parsedFile == nil </span><span class="cov1" title="1">{
                 return nil, err
         }</span>
-        <span class="cov8" title="7">content, _, _ := parsedFile.Body.PartialContent(&amp;hcl.BodySchema{
+        <span class="cov9" title="8">content, _, _ := parsedFile.Body.PartialContent(&amp;hcl.BodySchema{
                 Blocks: []hcl.BlockHeaderSchema{
                         {
                                 Type:       "variable",
@@ -14352,20 +14354,20 @@ func setInputVariablesDefaultValues(filename string) (converter.VariableMap, err
                 },
         })
         defaultValuesMap := make(converter.VariableMap)
-        for _, block := range content.Blocks </span><span class="cov9" title="8">{
+        for _, block := range content.Blocks </span><span class="cov10" title="9">{
                 if len(block.Labels) == 0 || block.Labels[0] == "" </span><span class="cov3" title="2">{
                         continue</span>
                 }
-                <span class="cov8" title="6">attr, _ := block.Body.JustAttributes()
+                <span class="cov8" title="7">attr, _ := block.Body.JustAttributes()
                 if len(attr) == 0 </span><span class="cov3" title="2">{
                         continue</span>
                 }
-                <span class="cov6" title="4">if defaultValue, exists := attr["default"]; exists </span><span class="cov6" title="4">{
+                <span class="cov7" title="5">if defaultValue, exists := attr["default"]; exists </span><span class="cov7" title="5">{
                         defaultVar, _ := defaultValue.Expr.Value(nil)
                         defaultValuesMap[block.Labels[0]] = defaultVar
                 }</span>
         }
-        <span class="cov8" title="7">return defaultValuesMap, nil</span>
+        <span class="cov9" title="8">return defaultValuesMap, nil</span>
 }
 
 func checkTfvarsValid(f *hcl.File, filename string) error <span class="cov7" title="5">{
@@ -14402,34 +14404,34 @@ func getInputVariablesFromFile(filename string) (converter.VariableMap, error) <
         <span class="cov5" title="3">return variables, nil</span>
 }
 
-func getInputVariables(currentPath string) <span class="cov3" title="2">{
+func getInputVariables(currentPath string) <span class="cov5" title="3">{
         variablesMap := make(converter.VariableMap)
         tfFiles, err := filepath.Glob(filepath.Join(currentPath, "*.tf"))
         if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msg("Error getting .tf files")
         }</span>
-        <span class="cov3" title="2">for _, tfFile := range tfFiles </span><span class="cov6" title="4">{
+        <span class="cov5" title="3">for _, tfFile := range tfFiles </span><span class="cov7" title="5">{
                 variables, errDefaultValues := setInputVariablesDefaultValues(tfFile)
                 if errDefaultValues != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("Error getting default values from %s", tfFile)
                         log.Err(errDefaultValues)
                         continue</span>
                 }
-                <span class="cov6" title="4">mergeMaps(variablesMap, variables)</span>
+                <span class="cov7" title="5">mergeMaps(variablesMap, variables)</span>
         }
-        <span class="cov3" title="2">tfVarsFiles, err := filepath.Glob(filepath.Join(currentPath, "*.auto.tfvars"))
+        <span class="cov5" title="3">tfVarsFiles, err := filepath.Glob(filepath.Join(currentPath, "*.auto.tfvars"))
         if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msg("Error getting .auto.tfvars files")
         }</span>
 
-        <span class="cov3" title="2">_, err = os.Stat(filepath.Join(currentPath, "terraform.tfvars"))
-        if err != nil </span><span class="cov1" title="1">{
+        <span class="cov5" title="3">_, err = os.Stat(filepath.Join(currentPath, "terraform.tfvars"))
+        if err != nil </span><span class="cov3" title="2">{
                 log.Trace().Msgf("terraform.tfvars not found on %s", currentPath)
         }</span> else<span class="cov1" title="1"> {
                 tfVarsFiles = append(tfVarsFiles, filepath.Join(currentPath, "terraform.tfvars"))
         }</span>
 
-        <span class="cov3" title="2">for _, tfVarsFile := range tfVarsFiles </span><span class="cov5" title="3">{
+        <span class="cov5" title="3">for _, tfVarsFile := range tfVarsFiles </span><span class="cov5" title="3">{
                 variables, errInputVariables := getInputVariablesFromFile(tfVarsFile)
                 if errInputVariables != nil </span><span class="cov1" title="1">{
                         log.Error().Msgf("Error getting values from %s", tfVarsFiles)
@@ -14439,7 +14441,7 @@ func getInputVariables(currentPath string) <span class="cov3" title="2">{
                 <span class="cov3" title="2">mergeMaps(variablesMap, variables)</span>
         }
 
-        <span class="cov3" title="2">inputVariableMap["var"] = cty.ObjectVal(variablesMap)</span>
+        <span class="cov5" title="3">inputVariableMap["var"] = cty.ObjectVal(variablesMap)</span>
 }
 </pre>
 		
@@ -15233,8 +15235,8 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
 }
 
 // Start initializes the Circle Progress Bar
-func (p ProgressBar) Start() <span class="cov0" title="0">{
-        for </span><span class="cov0" title="0">{ // increment until the Close func is called
+func (p ProgressBar) Start() <span class="cov1" title="1">{
+        for </span><span class="cov1" title="1">{ // increment until the Close func is called
                 p.pBar.Increment()
                 // lower cpu usage from infinite loop
                 time.Sleep(time.Millisecond * sleepTimeout)
