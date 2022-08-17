@@ -365,6 +365,8 @@ func (c *converter) convertStringPart(expr hclsyntax.Expression) (string, error)
 		return c.convertTemplateConditional(v)
 	case *hclsyntax.TemplateJoinExpr:
 		return c.convertTemplateFor(v.Tuple.(*hclsyntax.ForExpr))
+	case *hclsyntax.ParenthesesExpr:
+		return c.convertStringPart(v.Expression)
 	default:
 		// try to evaluate with variables
 		valueConverted, _ := expr.Value(&hcl.EvalContext{

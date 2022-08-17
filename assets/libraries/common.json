@@ -23,7 +23,9 @@
     "iam:UpdateAssumeRolePolicy",
     "iam:PassRole",
     "iam:CreateServiceLinkedRole",
-    "sts:AssumeRole"
+    "sts:AssumeRole",
+    "iam:*",
+    "sts:*"
   ],
   "aws_privilege_escalation_policy_names": [
     "AmazonRDSCustomServiceRolePolicy",
