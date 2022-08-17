@@ -1,13 +1,26 @@
 [
-	{
-		"queryName": "CPU Limits Not Set",
-		"severity": "MEDIUM",
-		"line": 10
-	},
-
-	{
-		"queryName": "CPU Limits Not Set",
-		"severity": "MEDIUM",
-		"line": 15
-	}
+  {
+    "queryName": "CPU Limits Not Set",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fineName": "positive.yaml"
+  },
+  {
+    "queryName": "CPU Limits Not Set",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fineName": "positive.yaml"
+  },
+  {
+    "queryName": "CPU Limits Not Set",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fineName": "positive.yaml"
+  },
+  {
+    "queryName": "CPU Limits Not Set",
+    "severity": "MEDIUM",
+    "line": 35,
+    "fineName": "positive.yaml"
+  }
 ]

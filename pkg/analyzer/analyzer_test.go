@@ -114,6 +114,28 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			gitIgnoreFileName: "gitignore",
 			excludeGitIgnore:  true,
 		},
+		{
+			name: "analyze_test_knative_file",
+			paths: []string{
+				filepath.FromSlash("../../test/fixtures/analyzer_test/knative.yaml"),
+			},
+			wantTypes:         []string{"knative", "kubernetes"},
+			wantExclude:       []string{},
+			wantErr:           false,
+			gitIgnoreFileName: "",
+			excludeGitIgnore:  false,
+		},
+		{
+			name: "analyze_test_servelessfw_file",
+			paths: []string{
+				filepath.FromSlash("../../test/fixtures/analyzer_test/serverlessfw.yml"),
+			},
+			wantTypes:         []string{"serverlessfw", "cloudformation"},
+			wantExclude:       []string{},
+			wantErr:           false,
+			gitIgnoreFileName: "",
+			excludeGitIgnore:  false,
+		},
 	}
 
 	for _, tt := range tests {

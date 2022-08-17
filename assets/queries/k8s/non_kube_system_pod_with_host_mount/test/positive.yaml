@@ -166,3 +166,20 @@ spec:
     - ReadWriteOnce
   hostPath:
     path: "/boot"
+---
+apiVersion: serving.knative.dev/v1
+kind: Revision
+metadata:
+  name: dummy-rev
+  namespace: knative-sequence
+spec:
+  containers:
+    - name: redis
+      image: redis
+      volumeMounts:
+        - name: redis-storage
+          mountPath: /data/redis
+  volumes:
+    - name: redis-storage
+      hostPath:
+        path: /var/redis/data

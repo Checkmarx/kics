@@ -1,7 +1,14 @@
 [
-	{
-		"queryName": "Shared Host Network Namespace",
-		"severity": "MEDIUM",
-		"line": 6
-	}
+  {
+    "queryName": "Shared Host Network Namespace",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive.yaml"
+  },
+  {
+    "queryName": "Shared Host Network Namespace",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive2.yaml"
+  }
 ]
