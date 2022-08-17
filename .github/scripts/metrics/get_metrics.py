@@ -13,7 +13,7 @@ queries_path = {
     'openapi': os.path.join(queries_basepath, 'openAPI', '**', '*'),
     'crossplane': os.path.join(queries_basepath, 'crossplane', '*'),
     'k8s': os.path.join(queries_basepath, 'k8s', '*'),
-    #'knative': os.path.join(queries_basepath, 'knative', '*'),
+    'knative': os.path.join(queries_basepath, 'knative', '*'),
     'common': os.path.join(queries_basepath, 'common', '*'),
     'dockerfile': os.path.join(queries_basepath, 'dockerfile', '*'),
     'terraform': os.path.join(queries_basepath, 'terraform', '**', '*'),

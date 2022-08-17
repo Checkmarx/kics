@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
 
-listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob"]
+listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob", "Configuration", "Service", "Revision", "ContainerSource"]
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -24,12 +24,14 @@ CxPolicy[result] {
 	not common_lib.valid_key(specInfo.spec, "automountServiceAccountToken")
 
 	serviceAccountName := object.get(specInfo.spec, "serviceAccountName", "default")
-	SAWithAutoMount := [x | res := input.document[_];
-		res.kind == "ServiceAccount";
-		res.metadata.name == serviceAccountName;
+	SAWithAutoMount := [x |
+		res := input.document[_]
+		res.kind == "ServiceAccount"
+		res.metadata.name == serviceAccountName
 		common_lib.valid_key(res, "automountServiceAccountToken")
 		x := res
 	]
+
 	count(SAWithAutoMount) == 0
 
 	result := {
@@ -62,12 +64,14 @@ checkAutomount(specInfo, document, metadata) = result {
 	not common_lib.valid_key(specInfo.spec, "automountServiceAccountToken")
 	serviceAccountName := object.get(specInfo.spec, "serviceAccountName", "default")
 
-	SAWithAutoMount := [x | res := input.document[_];
-		res.kind == "ServiceAccount";
-		res.metadata.name == serviceAccountName;
-		res.automountServiceAccountToken == true;
+	SAWithAutoMount := [x |
+		res := input.document[_]
+		res.kind == "ServiceAccount"
+		res.metadata.name == serviceAccountName
+		res.automountServiceAccountToken == true
 		x := res
 	]
+
 	count(SAWithAutoMount) > 0
 
 	result := {

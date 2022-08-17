@@ -312,7 +312,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	}()
 
 	availableTypes := createSlice(results)
-	serverlessFWTypeCheck(&availableTypes)
+	multiPlatformTypeCheck(&availableTypes)
 	unwantedPaths := createSlice(unwanted)
 	unwantedPaths = append(unwantedPaths, ignoreFiles...)
 	returnAnalyzedPaths.Types = availableTypes
@@ -555,8 +555,11 @@ func shouldConsiderGitIgnoreFile(path, gitIgnore string, excludeGitIgnoreFile bo
 	return false, nil
 }
 
-func serverlessFWTypeCheck(typesSelected *[]string) {
+func multiPlatformTypeCheck(typesSelected *[]string) {
 	if utils.Contains("serverlessfw", *typesSelected) && !utils.Contains("cloudformation", *typesSelected) {
 		*typesSelected = append(*typesSelected, "cloudformation")
+	}
+	if utils.Contains("knative", *typesSelected) && !utils.Contains("kubernetes", *typesSelected) {
+		*typesSelected = append(*typesSelected, "kubernetes")
 	}
 }
