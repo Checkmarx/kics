@@ -165,7 +165,7 @@
 				
 				<option value="file54">github.com/Checkmarx/kics/pkg/parser/docker/comments.go (100.0%)</option>
 				
-				<option value="file55">github.com/Checkmarx/kics/pkg/parser/docker/parser.go (91.1%)</option>
+				<option value="file55">github.com/Checkmarx/kics/pkg/parser/docker/parser.go (95.0%)</option>
 				
 				<option value="file56">github.com/Checkmarx/kics/pkg/parser/grpc/converter/converter.go (87.4%)</option>
 				
@@ -209,9 +209,9 @@
 				
 				<option value="file76">github.com/Checkmarx/kics/pkg/printer/utils.go (82.4%)</option>
 				
-				<option value="file77">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (80.0%)</option>
+				<option value="file77">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file78">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file78">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (90.9%)</option>
 				
 				<option value="file79">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -2165,13 +2165,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2196,7 +2196,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4709,7 +4709,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="11">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="11">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -9460,7 +9460,7 @@ type ignore struct {
 }
 
 // newIgnore returns a new ignore struct.
-func newIgnore() *ignore <span class="cov4" title="4">{
+func newIgnore() *ignore <span class="cov5" title="6">{
         return &amp;ignore{
                 from:  make(map[string]bool),
                 lines: make([]int, 0),
@@ -9473,20 +9473,20 @@ func (i *ignore) setIgnore(from string) <span class="cov2" title="2">{
 }</span>
 
 // ignoreBlock adds block lines to be ignored to the ignore struct.
-func (i *ignore) ignoreBlock(node *parser.Node, from string) <span class="cov9" title="23">{
+func (i *ignore) ignoreBlock(node *parser.Node, from string) <span class="cov9" title="29">{
         if _, ok := i.from[from]; ok </span><span class="cov5" title="6">{
                 i.lines = append(i.lines, model.Range(node.StartLine, node.EndLine)...)
         }</span>
 }
 
 // getIgnoreLines returns the lines that are being ignored.
-func (i *ignore) getIgnoreLines() []int <span class="cov7" title="12">{
+func (i *ignore) getIgnoreLines() []int <span class="cov7" title="14">{
         return model.RemoveDuplicates(i.lines)
 }</span>
 
 // getIgnoreComments returns lines to be ignored for each node of the dockerfile
-func (i *ignore) getIgnoreComments(node *parser.Node) (ignore bool) <span class="cov10" title="26">{
-        if len(node.PrevComment) == 0 </span><span class="cov9" title="19">{
+func (i *ignore) getIgnoreComments(node *parser.Node) (ignore bool) <span class="cov10" title="32">{
+        if len(node.PrevComment) == 0 </span><span class="cov9" title="25">{
                 return false
         }</span>
 
@@ -9524,6 +9524,7 @@ func processComment(comment string) (value model.CommentCommand) <span class="co
 import (
         "bytes"
         "encoding/json"
+        "fmt"
         "strings"
 
         "github.com/Checkmarx/kics/pkg/model"
@@ -9559,7 +9560,7 @@ func (p *Parser) Resolve(fileContent []byte, _ string) ([]byte, error) <span cla
 }</span>
 
 // Parse - parses dockerfile to Json
-func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, error) <span class="cov3" title="3">{
+func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, error) <span class="cov4" title="5">{
         var documents []model.Document
         reader := bytes.NewReader(fileContent)
 
@@ -9568,22 +9569,24 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
                 return nil, []int{}, errors.Wrap(err, "failed to parse Dockerfile")
         }</span>
 
-        <span class="cov3" title="3">fromValue := ""
+        <span class="cov4" title="5">fromValue := ""
         from := make(map[string][]Command)
         arguments := make([]Command, 0)
         ignoreStruct := newIgnore()
 
-        for _, child := range parsed.AST.Children </span><span class="cov8" title="21">{
+        args := make(map[string]string, 0)
+
+        for _, child := range parsed.AST.Children </span><span class="cov8" title="27">{
                 child.Value = strings.ToLower(child.Value)
-                if child.Value == "from" </span><span class="cov4" title="4">{
+                if child.Value == "from" </span><span class="cov5" title="6">{
                         fromValue = strings.TrimPrefix(child.Original, "FROM ")
                 }</span>
 
-                <span class="cov8" title="21">if ignoreStruct.getIgnoreComments(child) </span><span class="cov1" title="1">{
+                <span class="cov8" title="27">if ignoreStruct.getIgnoreComments(child) </span><span class="cov1" title="1">{
                         ignoreStruct.setIgnore(fromValue)
                 }</span>
 
-                <span class="cov8" title="21">ignoreStruct.ignoreBlock(child, fromValue)
+                <span class="cov8" title="27">ignoreStruct.ignoreBlock(child, fromValue)
 
                 cmd := Command{
                         Cmd:       child.Value,
@@ -9598,19 +9601,25 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
                         child = child.Next.Children[0]
                 }</span>
 
-                <span class="cov8" title="21">cmd.JSON = child.Attributes["json"]
-                for n := child.Next; n != nil; n = n.Next </span><span class="cov10" title="31">{
+                <span class="cov8" title="27">cmd.JSON = child.Attributes["json"]
+                for n := child.Next; n != nil; n = n.Next </span><span class="cov10" title="41">{
                         cmd.Value = append(cmd.Value, n.Value)
                 }</span>
 
-                <span class="cov8" title="21">if fromValue == "" </span><span class="cov0" title="0">{
+                <span class="cov8" title="27">if child.Value != "arg" </span><span class="cov8" title="22">{
+                        cmd.Value = resolveArgs(cmd.Value, args)
+                }</span> else<span class="cov4" title="5"> {
+                        args = saveArgs(args, cmd.Value[0])
+                }</span>
+
+                <span class="cov8" title="27">if fromValue == "" </span><span class="cov4" title="4">{
                         arguments = append(arguments, cmd)
-                }</span> else<span class="cov8" title="21"> {
+                }</span> else<span class="cov8" title="23"> {
                         from[fromValue] = append(from[fromValue], cmd)
                 }</span>
         }
 
-        <span class="cov3" title="3">doc := &amp;model.Document{}
+        <span class="cov4" title="5">doc := &amp;model.Document{}
         var resource Resource
         resource.CommandList = from
         resource.Arguments = arguments
@@ -9620,11 +9629,11 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
                 return nil, []int{}, errors.Wrap(err, "failed to Marshal Dockerfile")
         }</span>
 
-        <span class="cov3" title="3">if err := json.Unmarshal(j, &amp;doc); err != nil </span><span class="cov0" title="0">{
+        <span class="cov4" title="5">if err := json.Unmarshal(j, &amp;doc); err != nil </span><span class="cov0" title="0">{
                 return nil, []int{}, errors.Wrap(err, "failed to Unmarshal Dockerfile")
         }</span>
 
-        <span class="cov3" title="3">documents = append(documents, *doc)
+        <span class="cov4" title="5">documents = append(documents, *doc)
 
         ignoreLines := ignoreStruct.getIgnoreLines()
 
@@ -9660,6 +9669,30 @@ func (p *Parser) StringifyContent(content []byte) (string, error) <span class="c
 func (p *Parser) GetResolvedFiles() map[string]model.ResolvedFile <span class="cov1" title="1">{
         return make(map[string]model.ResolvedFile)
 }</span>
+
+func resolveArgs(values []string, args map[string]string) []string <span class="cov8" title="22">{
+        for i := range values </span><span class="cov9" title="36">{
+                for arg := range args </span><span class="cov7" title="12">{
+                        ref := fmt.Sprintf("${%s}", arg)
+                        values[i] = strings.Replace(values[i], ref, args[arg], 1)
+                }</span>
+        }
+
+        <span class="cov8" title="22">return values</span>
+}
+
+func saveArgs(args map[string]string, argValue string) map[string]string <span class="cov4" title="5">{
+        value := strings.Split(argValue, "=")
+        if len(value) == 2 </span><span class="cov3" title="3">{
+                args[value[0]] = value[1]
+        }</span>
+        <span class="cov4" title="5">if len(value) &gt; 2 </span><span class="cov1" title="1">{
+                // to handle cases like ARG VAR=erereR=E
+                args[value[0]] = strings.Join(value[1:], "=")
+        }</span>
+
+        <span class="cov4" title="5">return args</span>
+}
 </pre>
 		
 		<pre class="file" id="file56" style="display: none">package converter
@@ -15235,8 +15268,8 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
 }
 
 // Start initializes the Circle Progress Bar
-func (p ProgressBar) Start() <span class="cov0" title="0">{
-        for </span><span class="cov0" title="0">{ // increment until the Close func is called
+func (p ProgressBar) Start() <span class="cov1" title="1">{
+        for </span><span class="cov1" title="1">{ // increment until the Close func is called
                 p.pBar.Increment()
                 // lower cpu usage from infinite loop
                 time.Sleep(time.Millisecond * sleepTimeout)
@@ -15294,7 +15327,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov1" title="1">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -15303,7 +15336,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov1" title="1">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
@@ -15315,14 +15348,14 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov1" title="1">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov1" title="1">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file79" style="display: none">package progress
