@@ -166,6 +166,7 @@ func saveArgs(args map[string]string, argValue string) map[string]string {
 		args[value[0]] = value[1]
 	}
 	if len(value) > 2 {
+		// to handle cases like ARG VAR=erereR=E
 		args[value[0]] = strings.Join(value[1:], "=")
 	}
 
