@@ -1,7 +1,7 @@
 [
 	{
 		"queryName": "IAM Policies Attached To User",
-		"severity": "LOW",
+		"severity": "MEDIUM",
 		"line": 3
 	}
 ]
