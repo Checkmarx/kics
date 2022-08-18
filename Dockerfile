@@ -52,6 +52,15 @@ RUN wget https://releases.hashicorp.com/terraform/1.2.3/terraform_1.2.3_linux_am
     && apk add --no-cache \
     git=2.36.2-r0
 
+
+# Install Terraformer
+RUN wget https://github.com/GoogleCloudPlatform/terraformer/releases/download/0.8.18/terraformer-all-linux-amd64 \
+    && chmod +x terraformer-all-linux-amd64 \
+    && mv terraformer-all-linux-amd64 /usr/bin/terraformer \
+    && apk add gcompat --no-cache
+
+
+
 # Copy built binary to the runtime container
 # Vulnerability fixed in latest version of KICS remove when gh actions version is updated
 # kics-scan ignore-line

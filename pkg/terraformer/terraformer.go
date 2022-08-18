@@ -4,21 +4,17 @@
 package terraformer
 
 import (
-	"context"
 	"fmt"
 	"io"
 	"io/fs"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 	"time"
 
 	tfLogger "log"
 
-	"github.com/Checkmarx/kics/pkg/terraformer/aws"
-	"github.com/Checkmarx/kics/pkg/terraformer/azure"
-	"github.com/Checkmarx/kics/pkg/terraformer/gcp"
-	importer "github.com/GoogleCloudPlatform/terraformer/cmd"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -28,38 +24,9 @@ const terraformerPathLength = 3
 // Path is a struct that contains the terraformer path information
 type Path struct {
 	CloudProvider string
-	Region        []string
-	Resource      []string
-	Projects      []string
-}
-
-// CloudProvider is an interface that defines the methods that a cloud provider must implement
-type CloudProvider interface {
-	Import(ctx context.Context, options *importer.ImportOptions, destination string) error
-}
-
-func (t *Path) createTfOptions(destination, region string, projects []string) *importer.ImportOptions {
-	return &importer.ImportOptions{
-		Resources:     t.Resource,
-		Excludes:      []string{""},
-		PathPattern:   filepath.Join(destination, "{service}"),
-		PathOutput:    "generated",
-		State:         "local",
-		Bucket:        "",
-		Profile:       "",
-		Verbose:       false,
-		Zone:          "",
-		Regions:       []string{region},
-		Projects:      projects,
-		ResourceGroup: "",
-		Connect:       true,
-		Compact:       false,
-		Filter:        []string{},
-		Plan:          false,
-		Output:        "hcl",
-		RetryCount:    5,
-		RetrySleepMs:  300,
-	}
+	Region        string
+	Resource      string
+	Projects      string
 }
 
 // Import imports the terraformer resources into the destination using terraformer
@@ -70,7 +37,6 @@ func Import(terraformerPath, destinationPath string) (string, error) {
 	if err != nil {
 		return "", errors.Wrap(err, "wrong terraformer path syntax")
 	}
-	ctx := context.Background()
 	if destinationPath == "" {
 		destinationPath, err = os.Getwd()
 		if err != nil {
@@ -82,25 +48,21 @@ func Import(terraformerPath, destinationPath string) (string, error) {
 
 	destination := filepath.Join(destinationPath, destFolderName)
 
-	var provider CloudProvider
+	args := buildArgs(pathOptions, destination)
 
-	switch pathOptions.CloudProvider {
-	case "aws":
-		provider = aws.CloudProvider{}
-	case "azure":
-		provider = azure.CloudProvider{}
-	case "gcp":
-		provider = gcp.CloudProvider{}
-	default:
-		return "", errors.New("unsupported Cloud Provider")
+	cmd := exec.Command("terraformer", args...)
+	cmd.Env = os.Environ()
+
+	output, err := cmd.CombinedOutput()
+	fmt.Println(string(output))
+	if err != nil {
+		return "", errors.Wrap(err, "failed to import resources")
 	}
 
-	for _, region := range pathOptions.Region {
-		regionDest := filepath.Join(destination, region)
-		err = provider.Import(ctx, pathOptions.createTfOptions(regionDest, region, pathOptions.Projects), destination)
-		if err != nil {
-			return "", err
-		}
+	_, err = os.Stat(destination)
+	if err != nil {
+		saveTerraformerOutput(destination, string(output))
+		return "", errors.Wrap(err, "failed to import resources")
 	}
 
 	cleanUnwantedFiles(destination)
@@ -115,8 +77,8 @@ func extractTerraformerOptions(path string) (*Path, error) {
 	}
 	return &Path{
 		CloudProvider: pathInfo[0],
-		Region:        strings.Split(pathInfo[2], "/"),
-		Resource:      strings.Split(pathInfo[1], "/"),
+		Region:        strings.ReplaceAll(pathInfo[2], "/", ","),
+		Resource:      strings.ReplaceAll(pathInfo[1], "/", ","),
 		Projects:      getProjects(pathInfo),
 	}, nil
 }
@@ -143,10 +105,48 @@ func deleteOutputFile(path string, output fs.FileInfo) {
 	}
 }
 
-func getProjects(pathInfo []string) []string {
+func getProjects(pathInfo []string) string {
 	if len(pathInfo) == terraformerPathLength+1 {
-		return strings.Split(pathInfo[3], "/")
+		return strings.ReplaceAll(pathInfo[3], "/", ",")
 	}
 
-	return []string{}
+	return ""
+}
+
+func buildArgs(pathOptions *Path, destination string) []string {
+	args := []string{
+		"import", pathOptions.CloudProvider,
+		"--resources=" + pathOptions.Resource,
+		"--regions=" + pathOptions.Region,
+		"--profile=\"\"",
+		"-o", destination,
+		"--verbose",
+	}
+
+	if pathOptions.Projects != "" {
+		args = append(args, "--projects="+pathOptions.Projects)
+	}
+
+	return args
+}
+
+func saveTerraformerOutput(destination, output string) {
+	filepath.Clean(destination)
+	f, err := os.OpenFile(destination, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
+
+	if err != nil {
+		log.Error().Msgf("failed to open file '%s': %s", destination, err)
+	}
+
+	defer func(f *os.File) {
+		err = f.Close()
+		if err != nil {
+			log.Err(err).Msgf("failed to close file: %s", destination)
+		}
+	}(f)
+
+	if _, err = f.WriteString(output); err != nil {
+		log.Error().Msgf("failed to write file '%s': %s", destination, err)
+
+	}
 }
