@@ -54,11 +54,11 @@ EOF
 resource "aws_iam_policy_attachment" "negative3" {
   name       = "${var.name_tag_prefix}-openshift-attachment-forward-logs"
   roles      = ["${aws_iam_role.openshift-instance-role.name}"]
-  policy_arn = "${aws_iam_policy.openshift-policy-forward-logs.arn}"
+  policy_arn = "aws_iam_policy.openshift-policy-forward-logs.arn"
 }
 
 //  Create a instance profile for the role.
 resource "aws_iam_instance_profile" "negative4" {
   name  = "${var.name_tag_prefix}-openshift-instance-profile"
-  role = "${aws_iam_role.openshift-instance-role.name}"
+  role = "aws_iam_role.openshift-instance-role.name"
 }

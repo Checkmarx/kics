@@ -66,6 +66,18 @@ func TestParser_Parse(t *testing.T) {
       		url."https://${GIT_USER}:${GIT_TOKEN}@github.com".insteadOf \
       		"https://github.com"
 		`,
+		`
+		ARG BASE_IMAGE=alpine
+        ARG BASE_IMAGE_TAG=latest
+
+        FROM ${BASE_IMAGE}:${BASE_IMAGE_TAG} as main
+		`,
+		`
+		ARG BASE_IMAGE=alpine
+        ARG BASE_IMAGE_TAG=latest=
+
+        FROM ${BASE_IMAGE}:${BASE_IMAGE_TAG} as main
+		`,
 	}
 
 	for idx, sampleFile := range sample {
@@ -102,6 +114,22 @@ func TestParser_Parse(t *testing.T) {
 			require.Len(t, docGoALP, 5)
 			require.Contains(t, docGoALP.([]interface{})[4].(map[string]interface{})["Value"].([]interface{})[0], "${GIT_USER}")
 			require.Equal(t, []int{2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, igLines)
+		case 3:
+			require.NoError(t, err)
+			require.Len(t, doc, 1)
+			require.Len(t, doc[0]["command"], 1)
+			require.Contains(t, doc[0]["command"], "${BASE_IMAGE}:${BASE_IMAGE_TAG} as main")
+			c := doc[0]["command"].(map[string]interface{})["${BASE_IMAGE}:${BASE_IMAGE_TAG} as main"]
+			require.Len(t, c, 1)
+			require.Contains(t, c.([]interface{})[0].(map[string]interface{})["Value"].([]interface{})[0], "alpine:latest")
+		case 4:
+			require.NoError(t, err)
+			require.Len(t, doc, 1)
+			require.Len(t, doc[0]["command"], 1)
+			require.Contains(t, doc[0]["command"], "${BASE_IMAGE}:${BASE_IMAGE_TAG} as main")
+			c := doc[0]["command"].(map[string]interface{})["${BASE_IMAGE}:${BASE_IMAGE_TAG} as main"]
+			require.Len(t, c, 1)
+			require.Contains(t, c.([]interface{})[0].(map[string]interface{})["Value"].([]interface{})[0], "alpine:latest=")
 		}
 	}
 }
