@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Serverless API Without Content Encoding",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive1.yml"
+  },
+  {
+    "queryName": "Serverless API Without Content Encoding",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive2.yml"
+  }
+]
