@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_sns_topic[%s].kms_master_key_id", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "SNS Topic is not encrypted with AWS managed key",
+		"keyExpectedValue": "SNS Topic should not be encrypted with AWS managed key",
 		"keyActualValue": "SNS Topic is encrypted with AWS managed key",
 	}
 }

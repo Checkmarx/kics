@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.metadata.enable-oslogin", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_compute_instance.metadata.enable-oslogin is true",
+		"keyExpectedValue": "gcp_compute_instance.metadata.enable-oslogin should be true",
 		"keyActualValue": "gcp_compute_instance.metadata.enable-oslogin is false",
 	}
 }

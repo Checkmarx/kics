@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Policies", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.Policies' is undefined or empty", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.Policies' should be undefined or empty", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.Policies' is not empty", [name]),
 	}
 }

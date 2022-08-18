@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "azure_rm_aks.addon is set",
+		"keyExpectedValue": "azure_rm_aks.addon should be set",
 		"keyActualValue": "azure_rm_aks.addon is undefined",
 	}
 }
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.addon", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "azure_rm_aks.addon.monitoring is set",
+		"keyExpectedValue": "azure_rm_aks.addon.monitoring should be set",
 		"keyActualValue": "azure_rm_aks.addon.monitoring is undefined",
 	}
 }
@@ -56,7 +56,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.addon.monitoring", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("azure_rm_aks.addon.monitoring.%s is set", [attr]),
+		"keyExpectedValue": sprintf("azure_rm_aks.addon.monitoring.%s should be set", [attr]),
 		"keyActualValue": sprintf("azure_rm_aks.addon.monitoring.%s is undefined", [attr]),
 	}
 }
@@ -74,7 +74,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.addon.monitoring.enabled", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "azure_rm_aks.addon.monitoring.enabled is set to 'yes' or 'false'",
+		"keyExpectedValue": "azure_rm_aks.addon.monitoring.enabled should be set to 'yes' or 'false'",
 		"keyActualValue": "azure_rm_aks.addon.monitoring.enabled is not set to 'yes' or 'false'",
 	}
 }

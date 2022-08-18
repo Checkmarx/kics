@@ -51,6 +51,11 @@ CxPolicy[result] {
 		"keyExpectedValue": "'return_connection_password_encrypted' is set to true",
 		"keyActualValue": "'return_connection_password_encrypted' is not set to true",
 		"searchLine": common_lib.build_search_line(["resource", "aws_glue_data_catalog_encryption_settings", name, "data_catalog_encryption_settings","connection_password_encryption", "return_connection_password_encrypted"], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
 

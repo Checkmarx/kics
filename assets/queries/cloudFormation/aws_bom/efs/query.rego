@@ -33,6 +33,10 @@ CxPolicy[result] {
 }
 
 get_resource_accessibility(resource) = info {
+	common_lib.is_allow_effect(resource.Properties.FileSystemPolicy)
+	common_lib.any_principal(resource.Properties.FileSystemPolicy)
+	info := {"accessibility": "public", "policy": resource.Properties.FileSystemPolicy}
+} else = info {
 	info := {"accessibility": "hasPolicy", "policy": resource.Properties.FileSystemPolicy}
 } else = info {
 	info := {"accessibility": "unknown", "policy": ""}

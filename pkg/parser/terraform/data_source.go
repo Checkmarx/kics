@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"path/filepath"
+	"sync"
 
 	"github.com/Checkmarx/kics/pkg/parser/terraform/functions"
 	"github.com/hashicorp/hcl/v2"
@@ -69,6 +70,8 @@ type convertedPolicy struct {
 	Version   string                     `json:"Version,omitempty"`
 }
 
+var mutexData = &sync.Mutex{}
+
 func getDataSourcePolicy(currentPath string) {
 	tfFiles, err := filepath.Glob(filepath.Join(currentPath, "*.tf"))
 	if err != nil {
@@ -106,7 +109,10 @@ func getDataSourcePolicy(currentPath string) {
 		log.Error().Msg("Error trying to convert policy to cty value.")
 		return
 	}
+
+	mutexData.Lock()
 	inputVariableMap["data"] = data
+	mutexData.Unlock()
 }
 
 func decodeDataSourcePolicy(value cty.Value) dataSourcePolicy {

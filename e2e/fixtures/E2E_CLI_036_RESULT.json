@@ -11,8 +11,8 @@
 	"scan_id": "console",
 	"severity_counters": {
 		"HIGH": 6,
-		"INFO": 0,
-		"LOW": 5,
+		"INFO": 3,
+		"LOW": 2,
 		"MEDIUM": 9,
 		"TRACE": 0
 	},
@@ -136,7 +136,7 @@
 					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp is not open to the world (0.0.0.0/0)",
+					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp should not be open to the world (0.0.0.0/0)",
 					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp is open to the world (0.0.0.0/0)"
 				},
 				{
@@ -149,7 +149,7 @@
 					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is not open to the world (0.0.0.0/0)",
+					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp should not be open to the world (0.0.0.0/0)",
 					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is open to the world (0.0.0.0/0)"
 				}
 			]
@@ -405,11 +405,11 @@
 			"query_name": "Security Group Rule Without Description",
 			"query_id": "5e6c9c68-8a82-408e-8749-ddad78cbb9c5",
 			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
-			"severity": "LOW",
+			"severity": "INFO",
 			"platform": "CloudFormation",
 			"cloud_provider": "AWS",
 			"category": "Best Practices",
-			"description": "AWS Security Group Rule should have description defined",
+			"description": "It's considered a best practice for AWS Security Group to have a description",
 			"description_id": "f7c62b11",
 			"files": [
 				{

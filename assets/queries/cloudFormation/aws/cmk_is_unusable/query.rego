@@ -29,7 +29,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.PendingWindowInDays", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.PendingWindowInDays' is undefined", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.PendingWindowInDays' should be undefined", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.PendingWindowInDays' is defined", [name]),
 	}
 }

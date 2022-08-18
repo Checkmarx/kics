@@ -17,6 +17,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'azurerm_postgresql_server[%s].threat_detection_policy' is a defined object", [name]),
 		"keyActualValue": sprintf("'azurerm_postgresql_server[%s].threat_detection_policy' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_postgresql_server", name], []),
+		"remediation": "threat_detection_policy = true",
+		"remediationType": "addition",
 	}
 }
 
@@ -34,5 +36,10 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'azurerm_postgresql_server[%s].threat_detection_policy.enabled' is set to true", [name]),
 		"keyActualValue": sprintf("'azurerm_postgresql_server[%s].threat_detection_policy.enabled' is set to false", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_postgresql_server", name, "threat_detection_policy", "enabled"], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }

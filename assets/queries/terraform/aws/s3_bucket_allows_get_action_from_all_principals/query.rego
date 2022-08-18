@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_s3_bucket", name),
 		"searchKey": sprintf("%s[%s].policy.Action", [pl[r], name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].policy.Action is not a 'Get' action", [pl[r], name]),
+		"keyExpectedValue": sprintf("%s[%s].policy.Action should not be a 'Get' action", [pl[r], name]),
 		"keyActualValue": sprintf("%s[%s].policy.Action is a 'Get' action", [pl[r], name]),
 		"searchLine": common_lib.build_search_line(["resource", pl[r], name, "policy", "Statement"], []),
 	}
@@ -31,7 +31,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].%s.Action", [name, keyToCheck]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("module[%s].policy.Action is not a 'Get' action", [name]),
+		"keyExpectedValue": sprintf("module[%s].policy.Action should not be a 'Get' action", [name]),
 		"keyActualValue": sprintf("module[%s].policy.Action is a 'Get' action", [name]),
 		"searchLine": common_lib.build_search_line(["module", name, keyToCheck, "Statement"], []),
 	}

@@ -1,0 +1,11 @@
+{
+  "id": "48f100d9-f499-4c6d-b2b8-deafe47ffb26",
+  "queryName": "S3 Bucket Allows Public ACL",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "S3 bucket allows public ACL",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-publicaccessblockconfiguration.html",
+  "platform": "CloudFormation",
+  "descriptionID": "f962a2d5",
+  "cloudProvider": "aws"
+}

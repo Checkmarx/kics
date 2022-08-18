@@ -16,6 +16,11 @@ CxPolicy[result] {
 		"keyExpectedValue": "'publicly_accessible' is set to false or undefined",
 		"keyActualValue": "'publicly_accessible' is set to true",
 		"searchLine": common_lib.build_search_line(["resource", "aws_db_instance", name, "publicly_accessibled"], []),
+		"remediation": json.marshal({
+			"before": "true",
+			"after": "false"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -34,5 +39,10 @@ CxPolicy[result] {
 		"keyExpectedValue": "'publicly_accessible' is set to false or undefined",
 		"keyActualValue": "'publicly_accessible' is set to true",
 		"searchLine": common_lib.build_search_line(["module", name, "publicly_accessible"], []),
+		"remediation": json.marshal({
+			"before": "true",
+			"after": "false"
+		}),
+		"remediationType": "replacement",
 	}
 }
