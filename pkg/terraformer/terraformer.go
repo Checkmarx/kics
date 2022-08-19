@@ -135,18 +135,19 @@ func buildArgs(pathOptions *Path, destination string) []string {
 	args := []string{
 		"import", pathOptions.CloudProvider,
 		"--resources=" + pathOptions.Resources,
-		"--regions=" + pathOptions.Regions,
 		"-o", destination,
 		"--verbose",
 	}
 
 	// probably we will need to define the profile to ""
 	if pathOptions.CloudProvider == "aws" {
+		args = append(args, "--regions="+pathOptions.Regions)
 		args = append(args, "--profile=\"\"")
 	}
 
 	// the flag '--projects' is only required for gcp
 	if pathOptions.Projects != "" && pathOptions.CloudProvider == "google" {
+		args = append(args, "--regions="+pathOptions.Regions)
 		args = append(args, "--projects="+pathOptions.Projects)
 	}
 
