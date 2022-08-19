@@ -19,7 +19,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-const terraformerPathLength = 3
+const terraformerPathLength = 2
 
 // Path is a struct that contains the terraformer path information
 type Path struct {

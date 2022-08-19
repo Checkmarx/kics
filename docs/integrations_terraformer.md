@@ -101,11 +101,15 @@ $Env:ARM_TENANT_ID="<ARM_TENANT_ID>"
 
 ## KICS Terraformer Path Syntax
 
-### Regular
+
+### AWS
 
 ```sh
 terraformer::{CloudProvider}:{Resources}:{Regions}
 ```
+
+### AZURE
+terraformer::{CloudProvider}:{Resources}
 
 ### GCP
 ```sh
