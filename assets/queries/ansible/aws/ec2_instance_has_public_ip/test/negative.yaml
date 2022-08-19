@@ -10,3 +10,17 @@
     image_id: ami-04b762b4289fba92b
     key_name: my_ssh_key
     instance_type: t2.micro
+- name: Create an ec2 launch template
+  community.aws.ec2_launch_template:
+    name: "my_template"
+    image_id: "ami-04b762b4289fba92b"
+    key_name: my_ssh_key
+    instance_type: t2.micro
+    network_interfaces:
+      - interface_type: interface
+        ipv6_addresses: []
+        mac_address: '0 e: 0 e: 36: 60: 67: cf'
+        network_interface_id: eni - 061 dee20eba3b445a
+        owner_id: '721066863947'
+        source_dest_check: true
+        status: " in -use"
