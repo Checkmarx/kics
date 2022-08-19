@@ -6,7 +6,6 @@ package terraformer
 import (
 	"fmt"
 	"io"
-	"io/fs"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -20,6 +19,12 @@ import (
 )
 
 const terraformerPathLength = 2
+
+// for testing purposes
+var (
+	runTerraformerFunc        func(pathOptions *Path, destination string) (string, error) = runTerraformer
+	saveTerraformerOutputFunc func(destination, output string) error                      = saveTerraformerOutput
+)
 
 // Path is a struct that contains the terraformer path information
 type Path struct {
@@ -46,27 +51,17 @@ func Import(terraformerPath, destinationPath string) (string, error) {
 
 	destFolderName := fmt.Sprintf("kics-extract-terraformer-%s", time.Now().Format("01-02-2006"))
 
-	// destination folder where the Terraform resources will be saved
+	// set destination folder path where the Terraform resources will be saved
 	destination := filepath.Join(destinationPath, destFolderName)
 
-	args := buildArgs(pathOptions, destination)
-	fmt.Println(args)
-
-	cmd := exec.Command("terraformer", args...)
-	cmd.Env = os.Environ()
-
-	fmt.Println(cmd.Env)
-
-	output, err := cmd.CombinedOutput()
-	fmt.Println(string(output))
+	// run Terraformer
+	output, err := runTerraformerFunc(pathOptions, destination)
 	if err != nil {
 		return "", errors.Wrap(err, "failed to import resources")
 	}
 
-	_, err = os.Stat(destination)
-	fmt.Println(err)
-	saveTerraformerOutput(destination, string(output), err)
-
+	// save Terraform output
+	err = saveTerraformerOutputFunc(destination, output)
 	if err != nil {
 		return "", errors.Wrap(err, "failed to import resources")
 	}
@@ -80,7 +75,9 @@ func Import(terraformerPath, destinationPath string) (string, error) {
 // {CloudProvider}:{Resources}:{Regions}:{Projects}
 func extractTerraformerOptions(path string) (*Path, error) {
 	pathInfo := strings.Split(path, ":")
-	if len(pathInfo) != terraformerPathLength && len(pathInfo) != terraformerPathLength+1 {
+	if len(pathInfo) != terraformerPathLength &&
+		len(pathInfo) != terraformerPathLength+2 &&
+		len(pathInfo) != terraformerPathLength+1 {
 		return nil, errors.New("wrong terraformer path syntax")
 	}
 	return &Path{
@@ -89,30 +86,6 @@ func extractTerraformerOptions(path string) (*Path, error) {
 		Resources:     strings.ReplaceAll(pathInfo[1], "/", ","),
 		Projects:      getProjects(pathInfo),
 	}, nil
-}
-
-// cleanUnwantedFiles deletes the output files from the destination folder
-func cleanUnwantedFiles(destination string) {
-	err := filepath.Walk(destination, func(path string, info fs.FileInfo, err error) error {
-		if info != nil {
-			deleteOutputFile(path, info)
-		}
-		return nil
-	})
-
-	if err != nil {
-		log.Err(err).Msg("failed to clean unwanted files")
-	}
-}
-
-// deleteOutputFile deletes a 'outputs.tf' file
-func deleteOutputFile(path string, output fs.FileInfo) {
-	if output.Name() == "outputs.tf" {
-		err := os.Remove(path)
-		if err != nil {
-			log.Err(err).Msgf("failed to remove outputs.tf in path %s", path)
-		}
-	}
 }
 
 // getProjects gets all the projects pointed in the KICS Terraformer Path Syntax
@@ -125,6 +98,8 @@ func getProjects(pathInfo []string) string {
 	return ""
 }
 
+// getRegions gets all the regions pointed in the KICS Terraformer Path Syntax
+// regions are only required for aws and gcp
 func getRegions(pathInfo []string) string {
 	if len(pathInfo) >= terraformerPathLength+1 {
 		return strings.ReplaceAll(pathInfo[2], "/", ",")
@@ -149,44 +124,40 @@ func buildArgs(pathOptions *Path, destination string) []string {
 
 	// probably we will need to define the profile to ""
 	if pathOptions.CloudProvider == "aws" {
-		args = append(args, "--regions="+pathOptions.Regions)
-		args = append(args, "--profile=\"\"")
+		args = append(args, "--regions="+pathOptions.Regions, "--profile=\"\"")
 	}
 
 	// the flag '--projects' is only required for gcp
 	if pathOptions.Projects != "" && pathOptions.CloudProvider == "google" {
-		args = append(args, "--regions="+pathOptions.Regions)
-		args = append(args, "--projects="+pathOptions.Projects)
+		args = append(args, "--regions="+pathOptions.Regions, "--projects="+pathOptions.Projects)
 	}
 
 	return args
 }
 
-// saveTerraformerOutput saves the terraformer command output in the destination folder
-func saveTerraformerOutput(destination, output string, statErr error) {
-	if statErr != nil {
-		if err := os.MkdirAll(destination, os.ModePerm); err != nil {
-			log.Error().Msgf("failed to mkdir: %s", err)
-		}
-	}
+// runTerraformer runs the terraformer binary
+func runTerraformer(pathOptions *Path, destination string) (string, error) {
+	args := buildArgs(pathOptions, destination)
+	fmt.Println(args)
 
-	filePath := filepath.Join(destination, "terraformer-output.txt")
-	filepath.Clean(filePath)
+	cmd := exec.Command("terraformer", args...)
+	cmd.Env = os.Environ()
 
-	f, err := os.OpenFile(filePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
+	fmt.Println(cmd.Env)
 
-	if err != nil {
-		log.Error().Msgf("failed to open file '%s': %s", filePath, err)
-	}
+	output, err := cmd.CombinedOutput()
+	fmt.Println(string(output))
 
-	defer func(f *os.File) {
-		err = f.Close()
-		if err != nil {
-			log.Err(err).Msgf("failed to close file: %s", filePath)
-		}
-	}(f)
+	return string(output), err
+}
 
-	if _, err = f.WriteString(output); err != nil {
-		log.Error().Msgf("failed to write file '%s': %s", filePath, err)
-	}
+// saveTerraformerOutput verifies if the destination folder exists
+// if not, it means that someting went wrong in the Terraformer command
+// it also saves the terraformer command output in the destination folder
+func saveTerraformerOutput(destination, output string) error {
+	_, err := os.Stat(destination)
+	fmt.Println(err)
+	save(destination, output, err)
+
+	return err
 }
