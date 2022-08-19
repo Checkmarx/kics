@@ -85,7 +85,7 @@ func extractTerraformerOptions(path string) (*Path, error) {
 	}
 	return &Path{
 		CloudProvider: pathInfo[0],
-		Regions:       strings.ReplaceAll(pathInfo[2], "/", ","),
+		Regions:       getRegions(pathInfo),
 		Resources:     strings.ReplaceAll(pathInfo[1], "/", ","),
 		Projects:      getProjects(pathInfo),
 	}, nil
@@ -119,6 +119,14 @@ func deleteOutputFile(path string, output fs.FileInfo) {
 // projects are only required for gcp
 func getProjects(pathInfo []string) string {
 	if len(pathInfo) == terraformerPathLength+1 {
+		return strings.ReplaceAll(pathInfo[3], "/", ",")
+	}
+
+	return ""
+}
+
+func getRegions(pathInfo []string) string {
+	if len(pathInfo) >= terraformerPathLength+1 {
 		return strings.ReplaceAll(pathInfo[3], "/", ",")
 	}
 
