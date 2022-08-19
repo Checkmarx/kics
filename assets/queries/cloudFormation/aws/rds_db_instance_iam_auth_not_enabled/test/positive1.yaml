@@ -17,3 +17,4 @@ Resources:
       DeletionProtection: false
       KmsKeyId: !Ref MyKey
       EnableIAMDatabaseAuthentication: false
+      Engine: mysql

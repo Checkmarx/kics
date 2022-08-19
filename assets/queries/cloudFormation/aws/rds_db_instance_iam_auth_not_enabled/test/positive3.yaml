@@ -16,3 +16,4 @@ Resources:
       SourceRegion: !Ref SourceRegion
       DeletionProtection: false
       KmsKeyId: !Ref MyKey
+      Engine: mysql

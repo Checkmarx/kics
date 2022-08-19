@@ -339,11 +339,11 @@ get_tag_name_if_exists(resource) = name {
 	name := resource.tags.Name
 } else = name {
 	tag := resource.Properties.Tags[_]
-    tag.Key == "Name"
+	tag.Key == "Name"
 	name := tag.Value
 } else = name {
 	tag := resource.Properties.FileSystemTags[_]
-    tag.Key == "Name"
+	tag.Key == "Name"
 	name := tag.Value
 } else = name {
 	tag := resource.Properties.Tags[key]
@@ -493,14 +493,14 @@ has_wildcard(statement, typeAction) {
 get_nested_values_info(object, array_vals) = return_value {
 	arr := [x |
 		some i, _ in array_vals
-		path := array.slice(array_vals, 0, i+1)
+		path := array.slice(array_vals, 0, i + 1)
 		walk(object, [path, _]) # evaluates to false if path is not in object
 		x := path[i]
 	]
 
 	return_value := {
 		"valid": count(array_vals) == count(arr),
-		"searchKey": concat(".", arr)
+		"searchKey": concat(".", arr),
 	}
 }
 
@@ -541,3 +541,49 @@ is_aws_ebs_optimized_by_default(instanceType) {
 	inArray(data.common_lib.aws_ebs_optimized_by_default, instanceType)
 }
 
+valid_for_IAM_engine_and_version_check(resource) {
+	valid_key(resource, "engine_version")
+	valid_for_IAM_engine_and_costum_version_check(resource.engine, resource.engine_version)
+} else {
+	engines_that_supports_iam := ["aurora", "aurora-mysql", "aurora-postgresql", "postgres", "mysql", "mariadb"]
+	resource.engine == engines_that_supports_iam[_]
+	not valid_key(resource, "engine_version")
+}
+
+valid_for_IAM_engine_and_costum_version_check(engine, version) {
+	engine_that_all_version_supports_iam := ["aurora", "aurora-mysql", "aurora-postgresql"]
+	engine == engine_that_all_version_supports_iam[_]
+} else {
+	engine == "postgres"
+	version != "13.7-R1"
+} else {
+	engine == "mysql"
+	valid_mysql_versions := [
+		"8.0.11",
+		"8.0.13",
+		"8.0.15",
+		"8.0.16",
+		"8.0.17",
+		"8.0.19",
+		"8.0.20",
+		"8.0.21",
+		"8.0.23",
+		"8.0.25",
+		"8.0.26",
+		"8.0.27",
+		"8.0.28",
+		"8.0",
+	]
+
+	version == valid_mysql_versions[_]
+} else {
+	engine == "mariadb"
+	valid_mariadb_versions := [
+		"10.6.5",
+		"10.6.7",
+		"10.6.8",
+		"10.6",
+	]
+
+	version == valid_mariadb_versions[_]
+}

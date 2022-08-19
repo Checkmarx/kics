@@ -9,6 +9,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::RDS::DBInstance"
 	properties := resource.Properties
 	properties.EnableIAMDatabaseAuthentication == false
+	cf_lib.valid_for_IAM_engine_and_version_check(properties)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -27,6 +28,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::RDS::DBInstance"
 	properties := resource.Properties
 	not common_lib.valid_key(properties, "EnableIAMDatabaseAuthentication")
+	cf_lib.valid_for_IAM_engine_and_version_check(properties)
 
 	result := {
 		"documentId": input.document[i].id,

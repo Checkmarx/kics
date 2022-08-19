@@ -247,3 +247,12 @@ get_resource_name(resource, resourceDefinitionName) = name {
 } else = name {
 	name := resourceDefinitionName
 }
+
+valid_for_IAM_engine_and_version_check(resource) {
+	common_lib.valid_key(resource, "EngineVersion")
+	common_lib.valid_for_IAM_engine_and_costum_version_check(resource.Engine, resource.EngineVersion)
+} else {
+	engines_that_supports_iam := ["aurora", "aurora-mysql", "aurora-postgresql", "postgres", "mysql", "mariadb"]
+	resource.Engine == engines_that_supports_iam[_]
+	not common_lib.valid_key(resource, "EngineVersion")
+}
