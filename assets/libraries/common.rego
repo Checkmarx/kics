@@ -541,49 +541,21 @@ is_aws_ebs_optimized_by_default(instanceType) {
 	inArray(data.common_lib.aws_ebs_optimized_by_default, instanceType)
 }
 
-valid_for_IAM_engine_and_version_check(resource) {
-	valid_key(resource, "engine_version")
-	valid_for_IAM_engine_and_costum_version_check(resource.engine, resource.engine_version)
+#aurora is equivelent to mysql 5.6 https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth.Availability
+#all aurora-postgresql versions that do not support IAM auth are deprecated Source:console.aws (launch rds instance) 
+valid_for_iam_engine_and_version_check(resource, engineVar, engineVersionVar, instanceClassVar) {
+	resource[engineVar] == "mariadb"
+	startswith(resource[engineVersionVar], "10.6")
 } else {
-	engines_that_supports_iam := ["aurora", "aurora-mysql", "aurora-postgresql", "postgres", "mysql", "mariadb"]
-	resource.engine == engines_that_supports_iam[_]
-	not valid_key(resource, "engine_version")
-}
-
-valid_for_IAM_engine_and_costum_version_check(engine, version) {
-	engine_that_all_version_supports_iam := ["aurora", "aurora-mysql", "aurora-postgresql"]
-	engine == engine_that_all_version_supports_iam[_]
+	engines_that_supports_iam := ["aurora-postgresql", "postgres", "mysql", "mariadb"]
+	resource[engineVar] == engines_that_supports_iam[_]
+	not valid_key(resource, engineVersionVar)
 } else {
-	engine == "postgres"
-	version != "13.7-R1"
+	engines_that_supports_iam := ["aurora-postgresql", "postgres", "mysql"]
+	resource[engineVar] == engines_that_supports_iam[_]
 } else {
-	engine == "mysql"
-	valid_mysql_versions := [
-		"8.0.11",
-		"8.0.13",
-		"8.0.15",
-		"8.0.16",
-		"8.0.17",
-		"8.0.19",
-		"8.0.20",
-		"8.0.21",
-		"8.0.23",
-		"8.0.25",
-		"8.0.26",
-		"8.0.27",
-		"8.0.28",
-		"8.0",
-	]
-
-	version == valid_mysql_versions[_]
-} else {
-	engine == "mariadb"
-	valid_mariadb_versions := [
-		"10.6.5",
-		"10.6.7",
-		"10.6.8",
-		"10.6",
-	]
-
-	version == valid_mariadb_versions[_]
+	aurora_mysql_engines := ["aurora", "aurora-mysql"]
+	resource[engineVar]== aurora_mysql_engines[_]
+	invalid_classes := ["db.t2.small", "db.t3.small"]
+	not inArray(invalid_classes, resource[instanceClassVar])
 }
