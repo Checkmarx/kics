@@ -118,7 +118,7 @@ func deleteOutputFile(path string, output fs.FileInfo) {
 // getProjects gets all the projects pointed in the KICS Terraformer Path Syntax
 // projects are only required for gcp
 func getProjects(pathInfo []string) string {
-	if len(pathInfo) == terraformerPathLength+1 {
+	if len(pathInfo) == terraformerPathLength+2 {
 		return strings.ReplaceAll(pathInfo[3], "/", ",")
 	}
 
@@ -127,7 +127,7 @@ func getProjects(pathInfo []string) string {
 
 func getRegions(pathInfo []string) string {
 	if len(pathInfo) >= terraformerPathLength+1 {
-		return strings.ReplaceAll(pathInfo[3], "/", ",")
+		return strings.ReplaceAll(pathInfo[2], "/", ",")
 	}
 
 	return ""
