@@ -121,7 +121,11 @@ func main() {
 		decoder2 := json.NewDecoder(jsonTestsOutputClean)
 		for decoder2.More() {
 			var log TestLog
-			decoder2.Decode(&log)
+			errDecoder := decoder2.Decode(&log)
+			if errDecoder != nil {
+				fmt.Printf("Error when decoding: %w\n", log)
+				os.Exit(1)
+			}
 
 			if log.Action != "output" {
 				continue
