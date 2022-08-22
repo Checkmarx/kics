@@ -3,7 +3,7 @@
   "queryName": "AKS Network Policy Misconfigured",
   "severity": "MEDIUM",
   "category": "Insecure Configurations",
-  "descriptionText": "Azure Kubernetes Service should have the proper network policy configuration",
+  "descriptionText": "Azure Kubernetes Service should have the proper network policy configuration to ensure the principle of least privileges, which means that ",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/kubernetes_cluster",
   "platform": "Terraform",
   "descriptionID": "7708dadb",
