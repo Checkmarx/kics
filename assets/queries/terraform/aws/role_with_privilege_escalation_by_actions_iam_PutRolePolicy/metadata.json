@@ -1,0 +1,11 @@
+{
+  "id": "eb64f1e9-f67d-4e35-8a3c-3d6a2f9efea7",
+  "queryName": "Role With Privilege Escalation By Actions 'iam:PutRolePolicy'",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Role with privilege escalation by actions 'iam:PutRolePolicy' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy#policy",
+  "platform": "Terraform",
+  "descriptionID": "2d361444",
+  "cloudProvider": "aws"
+}

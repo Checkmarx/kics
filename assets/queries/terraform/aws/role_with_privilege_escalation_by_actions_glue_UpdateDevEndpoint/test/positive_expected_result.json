@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Role With Privilege Escalation By Actions 'glue:UpdateDevEndpoint'",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  }
+]
