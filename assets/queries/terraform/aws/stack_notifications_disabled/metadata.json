@@ -3,7 +3,7 @@
   "queryName": "Stack Notifications Disabled",
   "severity": "MEDIUM",
   "category": "Observability",
-  "descriptionText": "AWS CloudFormation should have stack notifications enabled",
+  "descriptionText": "AWS CloudFormation should have stack notifications enabled to be notified when an event occurs",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack",
   "platform": "Terraform",
   "descriptionID": "f9826281",

@@ -3,7 +3,7 @@
   "queryName": "SSH Access Is Not Restricted",
   "severity": "MEDIUM",
   "category": "Networking and Firewall",
-  "descriptionText": "Google Firewall should not allow SSH access (port 22) from the Internet (public CIDR block)",
+  "descriptionText": "Google Firewall should not allow SSH access (port 22) from the Internet (public CIDR block) to ensure the principle of least privileges",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_firewall_module.html",
   "platform": "Ansible",
   "descriptionID": "1b0564ad",
