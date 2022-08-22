@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	_ "embed" // used for embedding report static files
+	"html"
 	"html/template"
 	"os"
 	"path/filepath"
@@ -51,7 +52,7 @@ func includeCSS(name string) template.HTML {
 	if err != nil {
 		return ""
 	}
-	return template.HTML("<style>" + cssMinified + "</style>") //nolint
+	return template.HTML(html.EscapeString("<style>" + cssMinified + "</style>")) //nolint
 }
 
 func includeJS(name string) template.HTML {
@@ -61,7 +62,7 @@ func includeJS(name string) template.HTML {
 	if err != nil {
 		return ""
 	}
-	return template.HTML("<script>" + jsMinified + "</script>") //nolint
+	return template.HTML(html.EscapeString("<script>" + jsMinified + "</script>")) //nolint
 }
 
 func generateE2EReport(path, filename string, body interface{}) error {
