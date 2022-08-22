@@ -3,7 +3,7 @@
   "queryName": "CloudFront Logging Disabled",
   "severity": "MEDIUM",
   "category": "Observability",
-  "descriptionText": "AWS CloudFront distributions must have logging enabled to collect all viewer requests, which means the attribute 'logging_config' must be defined",
+  "descriptionText": "AWS CloudFront distributions should have logging enabled to collect all viewer requests, which means the attribute 'logging_config' should be defined",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution",
   "platform": "Terraform",
   "descriptionID": "9cf96455",
