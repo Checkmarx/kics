@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "S3 Bucket Without Ignore Public ACL",
+    "severity": "LOW",
+    "line": 4,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "S3 Bucket Without Ignore Public ACL",
+    "severity": "LOW",
+    "line": 10,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "S3 Bucket Without Ignore Public ACL",
+    "severity": "LOW",
+    "line": 21,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "S3 Bucket Without Ignore Public ACL",
+    "severity": "LOW",
+    "line": 9,
+    "filename": "positive2.json"
+  }
+]

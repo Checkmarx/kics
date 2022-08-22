@@ -35,10 +35,7 @@
         "PolicyDocument": {
           "Statement": [
             {
-              "Action": [
-                "DeleteObject",
-                "GetObject"
-              ],
+              "Action": ["DeleteObject", "GetObject"],
               "Effect": "Allow",
               "Resource": "*",
               "Principal": "*",
