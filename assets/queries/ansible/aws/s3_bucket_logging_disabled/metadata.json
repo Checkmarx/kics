@@ -3,7 +3,7 @@
   "queryName": "S3 Bucket Logging Disabled",
   "severity": "MEDIUM",
   "category": "Observability",
-  "descriptionText": "S3 bucket without debug_botocore_endpoint_logs",
+  "descriptionText": "S3 bucket should have 'debug_botocore_endpoint_logs' defined",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html#parameter-debug_botocore_endpoint_logs",
   "platform": "Ansible",
   "descriptionID": "2b508aee",
