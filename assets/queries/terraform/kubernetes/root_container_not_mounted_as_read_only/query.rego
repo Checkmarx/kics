@@ -20,10 +20,11 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
+		"searchKey": sprintf("%s[%s].%s.%s.name={{%s}}", [resourceType, name, specInfo.path, types[x], containersType.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context is set", [resourceType, name, specInfo.path, types[x], containersType]),
 		"keyActualValue": sprintf("k%s[%s].%s.%s[%d].security_context is undefined", [resourceType, name, specInfo.path, types[x], containersType]),
+		"searchLine": common_lib.build_search_line([resourceType, name, specInfo.path],[types[x]]),
 	}
 }
 
@@ -34,18 +35,19 @@ CxPolicy[result] {
 	containers := specInfo.spec[types[x]]
 
 	is_array(containers) == true
-	containerSecurity := containers[_].security_context
-
-	not common_lib.valid_key(containerSecurity, "read_only_root_filesystem")
+    common_lib.valid_key(containers[j], "security_context")
+    not common_lib.valid_key(containers[j].security_context, "read_only_root_filesystem")
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resourceType,
-		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
+		"searchKey": sprintf("%s[%s].%s.%s.name={{%s}}.security_context", [resourceType, name, specInfo.path, types[x], containers[j].name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.read_only_root_filesystem is set", [resourceType, name, specInfo.path, types[x], containerSecurity]),
-		"keyActualValue": sprintf("%s[%s].%s.%s[%d].security_context.read_only_root_filesystem is undefined", [resourceType, name, specInfo.path, types[x], containerSecurity]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.read_only_root_filesystem is set", [resourceType, name, specInfo.path, types[x], j]),
+		"keyActualValue": sprintf("%s[%s].%s.%s[%d].security_context.read_only_root_filesystem is undefined", [resourceType, name, specInfo.path, types[x], j]),
+		"searchLine": common_lib.build_search_line([resourceType, name, specInfo.path],[types[x], "security_context"]),
+		"remediation": "read_only_root_filesystem = true",
+		"remediationType": "addition",
 	}
 }
 
@@ -53,19 +55,27 @@ CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 
 	specInfo := tf_lib.getSpecInfo(resource[name])
-	containers := specInfo.spec[types[x]]
+	containers := specInfo.spec[types[x]]	
 
 	is_array(containers) == true
-	containers[y].security_context.read_only_root_filesystem != true
+
+	common_lib.valid_key(containers[y], "security_context")
+	containers[y].security_context.read_only_root_filesystem == false
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
+		"searchKey": sprintf("%s[%s].%s.%s.name={{%s}}.security_context.read_only_root_filesystem", [resourceType, name, specInfo.path, types[x], containers[y].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.read_only_root_filesystem is set to true", [resourceType, name, specInfo.path, types[x], y]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].security_context.read_only_root_filesystem is not set to true", [resourceType, name, specInfo.path, types[x], y]),
+		"searchLine": common_lib.build_search_line([resourceType, name, specInfo.path],[types[x], "security_context", "read_only_root_filesystem"]),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -86,6 +96,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context is set", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.security_context is undefined", [resourceType, name, specInfo.path, types[x]]),
+		"searchLine": common_lib.build_search_line([resourceType, name, specInfo.path],[types[x]]),
 	}
 }
 
@@ -106,6 +117,9 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context.read_only_root_filesystem is set", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.security_context.read_only_root_filesystem is undefined", [resourceType, name, specInfo.path, types[x]]),
+		"searchLine": common_lib.build_search_line([resourceType, name, specInfo.path],[types[x], "security_context"]),
+		"remediation": "read_only_root_filesystem = true",
+		"remediationType": "addition",
 	}
 }
 
@@ -116,7 +130,7 @@ CxPolicy[result] {
 	containers := specInfo.spec[types[x]]
 
 	is_object(containers) == true
-	containers.security_context.read_only_root_filesystem != true
+	containers.security_context.read_only_root_filesystem == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -126,5 +140,11 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context.read_only_root_filesystem is set to true", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.security_context.read_only_root_filesystem is not set to true", [resourceType, name, specInfo.path, types[x]]),
+		"searchLine": common_lib.build_search_line([resourceType, name, specInfo.path],[types[x], "security_context" ,"read_only_root_filesystem"]),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }

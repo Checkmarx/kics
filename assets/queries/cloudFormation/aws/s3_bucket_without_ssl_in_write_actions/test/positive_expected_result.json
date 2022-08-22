@@ -14,7 +14,7 @@
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
     "severity": "HIGH",
-    "line": 11,
+    "line": 12,
     "fileName": "positive3.yaml"
   },
   {
@@ -26,7 +26,7 @@
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
     "severity": "HIGH",
-    "line": 11,
+    "line": 12,
     "fileName": "positive4.yaml"
   },
   {
@@ -44,7 +44,7 @@
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
     "severity": "HIGH",
-    "line": 46,
+    "line": 47,
     "fileName": "positive7.json"
   },
   {

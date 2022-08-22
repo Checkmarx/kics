@@ -74,9 +74,10 @@ var (
 
 	// AvailableCloudProviders - All cloud providers available
 	AvailableCloudProviders = map[string]string{
-		"aws":   "",
-		"azure": "",
-		"gcp":   "",
+		"alicloud": "",
+		"aws":      "",
+		"azure":    "",
+		"gcp":      "",
 	}
 )
 

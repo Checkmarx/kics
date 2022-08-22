@@ -15,6 +15,12 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_container_node_pool[%s].management.auto_repair is true", [name]),
 		"keyActualValue": sprintf("google_container_node_pool[%s].management.auto_repair is false", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "google_container_node_pool", name],["management", "auto_repair"]),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -30,5 +36,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("google_container_node_pool[%s].management.auto_repair is defined and not null", [name]),
 		"keyActualValue": sprintf("google_container_node_pool[%s].management.auto_repair is undefined or null", [name]),
+		"remediation": "management {\n\t\tauto_repair = true\n\t}\n",
+		"remediationType": "addition",
 	}
 }

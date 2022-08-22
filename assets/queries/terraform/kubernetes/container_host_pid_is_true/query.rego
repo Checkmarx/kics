@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
@@ -17,5 +18,11 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'host_pid' should be undefined or false",
 		"keyActualValue": "Attribute 'host_pid' is true",
+		"searchLine": common_lib.build_search_line([resourceType, name, specInfo.path],["host_pid"]),
+		"remediation": json.marshal({
+			"before": "true",
+			"after": "false"
+		}),
+		"remediationType": "replacement",
 	}
 }

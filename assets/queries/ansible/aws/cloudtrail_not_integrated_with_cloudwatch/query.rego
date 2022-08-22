@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("name={{%s}}.{{%s}}.%s is defined", [task.name, modules[m], properties[p]]),
+		"keyExpectedValue": sprintf("name={{%s}}.{{%s}}.%s should be defined", [task.name, modules[m], properties[p]]),
 		"keyActualValue": sprintf("name={{%s}}.{{%s}}.%s is not defined", [task.name, modules[m], properties[p]]),
 	}
 }

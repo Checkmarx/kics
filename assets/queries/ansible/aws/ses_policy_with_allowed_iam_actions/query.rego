@@ -9,7 +9,7 @@ CxPolicy[result] {
 	task := ans_lib.tasks[id][t]
 	sesPolicy := task[modules[m]]
 	ans_lib.checkState(sesPolicy)
-	
+
 	st := common_lib.get_statement(common_lib.get_policy(sesPolicy.policy))
 	statement := st[_]
 
@@ -23,7 +23,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'policy' does not allow IAM actions to all principals",
+		"keyExpectedValue": "'policy' should not allow IAM actions to all principals",
 		"keyActualValue": "'policy' allows IAM actions to all principals",
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}

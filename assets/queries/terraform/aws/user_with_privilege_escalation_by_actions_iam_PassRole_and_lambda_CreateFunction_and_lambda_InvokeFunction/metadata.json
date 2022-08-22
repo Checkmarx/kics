@@ -1,0 +1,11 @@
+{
+  "id": "8055dec2-efb8-4fe6-8837-d9bed6ff202a",
+  "queryName": "User With Privilege Escalation By Actions 'lambda:CreateFunction' And 'iam:PassRole' And 'lambda:InvokeFunction'",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "User with privilege escalation by actions 'lambda:CreateFunction' and 'iam:PassRole' and 'lambda:InvokeFunction' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy",
+  "platform": "Terraform",
+  "descriptionID": "da252d8a",
+  "cloudProvider": "aws"
+}

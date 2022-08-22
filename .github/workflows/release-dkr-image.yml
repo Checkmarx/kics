@@ -48,7 +48,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push alpine to Docker Hub
-        uses: docker/build-push-action@v3.0.0
+        uses: docker/build-push-action@v3.1.1
         id: build_alpine
         with:
           context: .
@@ -62,7 +62,7 @@ jobs:
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
       - name: Build and push debian to Docker Hub
         id: build_debian
-        uses: docker/build-push-action@v3.0.0
+        uses: docker/build-push-action@v3.1.1
         with:
           context: .
           file: ./docker/Dockerfile.debian
@@ -76,7 +76,7 @@ jobs:
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
       - name: Build and push ubi8 to Docker Hub
         id: build_ubi8
-        uses: docker/build-push-action@v3.0.0
+        uses: docker/build-push-action@v3.1.1
         with:
           context: .
           file: ./docker/Dockerfile.ubi8

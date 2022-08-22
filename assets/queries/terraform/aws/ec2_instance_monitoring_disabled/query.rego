@@ -17,6 +17,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'monitoring' is defined and not null", [name]),
 		"keyActualValue": sprintf("'monitoring' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name], []),
+		"remediation": "monitoring = true",
+		"remediationType": "addition",
 	}
 }
 
@@ -35,6 +37,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'monitoring' is defined and not null", [name]),
 		"keyActualValue": sprintf("'monitoring' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["module", name], []),
+		"remediation": sprintf("%s = true",[keyToCheck]), 
+		"remediationType": "addition",
 	}
 }
 
@@ -52,6 +56,11 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'monitoring' is set to true", [name]),
 		"keyActualValue": sprintf("'monitoring' is set to false", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name, "monitoring"], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -65,11 +74,16 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
-		"searchKey": sprintf("module[%s].monitoring", [name]),
+		"searchKey": sprintf("module[%s].%s", [name,keyToCheck]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'monitoring' is set to true", [name]),
 		"keyActualValue": sprintf("'monitoring' is set to false", [name]),
-		"searchLine": common_lib.build_search_line(["module", name, "monitoring"], []),
+		"searchLine": common_lib.build_search_line(["module", name, keyToCheck], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
 

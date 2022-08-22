@@ -33,7 +33,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push Github Action Image to Docker Hub
-        uses: docker/build-push-action@v3.0.0
+        uses: docker/build-push-action@v3.1.1
         id: build_gh_action
         with:
           context: .

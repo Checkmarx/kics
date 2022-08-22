@@ -17,7 +17,8 @@ CxPolicy[result] {
 		"keyExpectedValue": "'max_password_age' should be higher than 0 and lower than 91",
 		"keyActualValue": "'max_password_age' is not defined",
         "searchLine": common_lib.build_search_line(["resource", "alicloud_ram_account_password_policy", name], []),
-		
+        "remediation": "max_password_age = 12",
+		"remediationType": "addition",
 	}
 }
 
@@ -35,6 +36,11 @@ CxPolicy[result] {
 		"keyExpectedValue": "'max_password_age' should be higher than 0 and lower than 91",
 		"keyActualValue": "'max_password_age' is higher than 90",
         "searchLine": common_lib.build_search_line(["resource", "alicloud_ram_account_password_policy", name, "max_password_age"], []),
+		"remediation": json.marshal({
+            "before": sprintf("%d", [resource.max_password_age]),
+            "after": "12"
+        }),
+        "remediationType": "replacement",
 		
 	}
 }
@@ -53,6 +59,10 @@ CxPolicy[result] {
 		"keyExpectedValue": "'max_password_age' should be higher than 0 and lower than 91",
 		"keyActualValue": "'max_password_age' is equal to 0",
         "searchLine": common_lib.build_search_line(["resource", "alicloud_ram_account_password_policy", name, "max_password_age"], []),
-		
+		"remediation": json.marshal({
+            "before": sprintf("%d", [resource.max_password_age]),
+            "after": "12"
+        }),
+        "remediationType": "replacement",		
 	}
 }

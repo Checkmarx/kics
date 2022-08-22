@@ -20,6 +20,8 @@ CxPolicy[result] {
 		"keyExpectedValue": "'enable_deletion_protection' is defined and set to true",
 		"keyActualValue": "'enable_deletion_protection' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resource", loadBalancer, name], []),
+		"remediation": "enable_deletion_protection = true",
+		"remediationType": "addition",
 	}
 }
 
@@ -38,6 +40,11 @@ CxPolicy[result] {
 		"keyExpectedValue": "'enable_deletion_protection' is set to true",
 		"keyActualValue": "'enable_deletion_protection' is set to false",
 		"searchLine": common_lib.build_search_line(["resource", loadBalancer, name, "enable_deletion_protection"], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -56,6 +63,8 @@ CxPolicy[result] {
 		"keyExpectedValue": "'enable_deletion_protection' is defined and set to true",
 		"keyActualValue": "'enable_deletion_protection' is undefined or null",
 		"searchLine": common_lib.build_search_line(["module", name], []),
+		"remediation": "enable_deletion_protection = true",
+		"remediationType": "addition",
 	}
 }
 
@@ -74,5 +83,10 @@ CxPolicy[result] {
 		"keyExpectedValue": "'enable_deletion_protection' is set to true",
 		"keyActualValue": "'enable_deletion_protection' is set to false",
 		"searchLine": common_lib.build_search_line(["module", name, "enable_deletion_protection"], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }

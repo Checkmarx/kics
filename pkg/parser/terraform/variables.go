@@ -120,5 +120,6 @@ func getInputVariables(currentPath string) {
 		}
 		mergeMaps(variablesMap, variables)
 	}
+
 	inputVariableMap["var"] = cty.ObjectVal(variablesMap)
 }
