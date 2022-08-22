@@ -45,7 +45,7 @@
 					"search_key": "Resources.ALBListener.Properties.Protocol",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "'Resources.ALBListener.Protocol' not equal to 'HTTP'",
+					"expected_value": "'Resources.ALBListener.Protocol' should not be equal to 'HTTP'",
 					"actual_value": "'Resources.ALBListener.Protocol' equals to 'HTTP'"
 				}
 			]
@@ -175,7 +175,7 @@
 					"search_key": "Resources.ECSALB",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "'Resources.ECSALB' does not have an 'internal' scheme and has a 'WebACLAssociation' associated",
+					"expected_value": "'Resources.ECSALB' should not have an 'internal' scheme and should have a 'WebACLAssociation' associated",
 					"actual_value": "'Resources.ECSALB' does not have an 'internal' scheme and a 'WebACLAssociation' associated"
 				}
 			]
@@ -201,7 +201,7 @@
 					"search_key": "Resources.ECSAutoScalingGroup.Properties",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "'Resources.ECSAutoScalingGroup.Properties.LoadBalancerNames' is defined",
+					"expected_value": "'Resources.ECSAutoScalingGroup.Properties.LoadBalancerNames' should be defined",
 					"actual_value": "'Resources.ECSAutoScalingGroup.Properties.LoadBalancerNames' is not defined"
 				}
 			]
