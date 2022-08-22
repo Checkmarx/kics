@@ -71,7 +71,7 @@
 					"search_key": "Resources.TaskDefinition.Properties",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "'Resources.TaskDefinition.Properties.NetworkMode' is set and is 'awsvpc'",
+					"expected_value": "'Resources.TaskDefinition.Properties.NetworkMode' should be set and should be 'awsvpc'",
 					"actual_value": "'Resources.TaskDefinition.Properties.NetworkMode' is undefined and defaults to 'bridge'"
 				}
 			]
@@ -227,7 +227,7 @@
 					"search_key": "Resources.service.Properties",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "Resources.service.Properties.DeploymentConfiguration is defined and not null",
+					"expected_value": "Resources.service.Properties.DeploymentConfiguration should be defined and not null",
 					"actual_value": "Resources.service.Properties.DeploymentConfiguration is undefined or null"
 				}
 			]
@@ -383,7 +383,7 @@
 					"search_key": "Resources.TaskDefinition.Properties.ContainerDefinitions",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' contains 'HealthCheck' property",
+					"expected_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' should contain 'HealthCheck' property",
 					"actual_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property"
 				},
 				{
@@ -396,7 +396,7 @@
 					"search_key": "Resources.TaskDefinition.Properties.ContainerDefinitions",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' contains 'HealthCheck' property",
+					"expected_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' should contain 'HealthCheck' property",
 					"actual_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property"
 				}
 			]
