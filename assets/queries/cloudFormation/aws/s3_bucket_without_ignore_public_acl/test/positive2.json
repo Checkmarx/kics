@@ -5,10 +5,11 @@
       "Properties": {
         "PublicAccessBlockConfiguration": {
           "BlockPublicAcls": false,
-          "BlockPublicPolicy": false,
+          "BlockPublicPolicy": true,
           "IgnorePublicAcls": false,
-          "RestrictPublicBuckets": false
-        }
+          "RestrictPublicBuckets": true
+        },
+        "AccessControl": "Private"
       }
     }
   }

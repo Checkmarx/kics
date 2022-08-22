@@ -24,14 +24,14 @@ hasFlag(container, flag) {
 	common_lib.inArray(container.args, flag)
 }
 
-startWithFlag(container, flag){
+startWithFlag(container, flag) {
 	startsWithArray(container.command, flag)
 } else {
 	startsWithArray(container.args, flag)
 }
 
 startsWithArray(arr, item) {
-    startswith(arr[_], item)
+	startswith(arr[_], item)
 }
 
 hasFlagWithValue(container, flag, value) {
@@ -51,27 +51,27 @@ hasValue(values, value) {
 	splittedValues[_] == value
 }
 
-startAndEndWithFlag(container, flag, ext){
-	startWithAndEndWithArray(container.command, flag,ext)
+startAndEndWithFlag(container, flag, ext) {
+	startWithAndEndWithArray(container.command, flag, ext)
 } else {
 	startWithAndEndWithArray(container.args, flag, ext)
 }
 
 startWithAndEndWithArray(arr, item, ext) {
-    startswith(arr[_], item)
-    endswith(arr[_], ext)
+	startswith(arr[_], item)
+	endswith(arr[_], ext)
 }
 
 hasFlagEqualOrGreaterThanValue(container, flag, value) {
 	command := container.command
 	startswith(command[a], flag)
 	flag_value := split(command[a], "=")[1]
-	to_number(flag_value)>= value
+	to_number(flag_value) >= value
 } else {
 	args := container.args
 	startswith(args[a], flag)
 	flag_value := split(args[a], "=")[1]
-	to_number(flag_value)>= value
+	to_number(flag_value) >= value
 }
 
 hasFlagBetweenValues(container, flag, higher, lower) {
@@ -90,3 +90,13 @@ betweenValues(value, higher, lower) {
 	to_number(value) > higher
 	to_number(value) < lower
 }
+
+# Valid K8s/Knative Kinds that support podSpec or PodSpecTemplate
+# https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#podspec-v1-core
+valid_pod_spec_kind_list = [
+	"Pod",
+	"Configuration",
+	"Service",
+	"Revision",
+	"ContainerSource",
+]

@@ -1,6 +1,6 @@
 {
   "id": "cb3f5ed6-0d18-40de-a93d-b3538db31e8c",
-  "queryName": "Security Group Without Description",
+  "queryName": "Security Group Rule Without Description",
   "severity": "INFO",
   "category": "Best Practices",
   "descriptionText": "It's considered a best practice for AWS Security Group to have a description",

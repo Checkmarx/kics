@@ -56,6 +56,7 @@
                   "Kubernetes",
                   "OpenAPI",
                   "Pulumi",
+                  "ServerlessFW",
                   "Terraform"
                 ]
               },

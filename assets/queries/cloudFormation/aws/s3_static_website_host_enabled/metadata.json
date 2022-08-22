@@ -3,8 +3,8 @@
   "queryName": "S3 Static Website Host Enabled",
   "severity": "HIGH",
   "category": "Insecure Configurations",
-  "descriptionText": "It's dangerous disabling a block public access settings in bucket or writing a bucket policy that grants public read access",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-publicaccessblockconfiguration.html",
+  "descriptionText": "Checks if any static websites are hosted on buckets. Even static websites can be a liability when poorly configured.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration.html",
   "platform": "CloudFormation",
   "descriptionID": "b50aab99",
   "cloudProvider": "aws"

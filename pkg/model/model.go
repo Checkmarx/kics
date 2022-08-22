@@ -15,6 +15,7 @@ const (
 	KindTerraform FileKind = "TF"
 	KindJSON      FileKind = "JSON"
 	KindYAML      FileKind = "YAML"
+	KindYML       FileKind = "YML"
 	KindDOCKER    FileKind = "DOCKERFILE"
 	KindPROTO     FileKind = "PROTO"
 	KindCOMMON    FileKind = "*"

@@ -4,9 +4,7 @@ resource "azurerm_kubernetes_cluster" "positive1" {
   resource_group_name = azurerm_resource_group.example.name
   dns_prefix          = "exampleaks1"
 
-  role_based_access_control {
-    enabled = false
-  }
+  role_based_access_control_enabled = false
 
   default_node_pool {
     name       = "default"
@@ -32,6 +30,10 @@ resource "azurerm_kubernetes_cluster" "positive2" {
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
   dns_prefix          = "exampleaks2"
+
+  role_based_access_control {
+    enabled = false
+  }
 
   default_node_pool {
     name       = "default"

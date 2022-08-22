@@ -13,7 +13,7 @@ CxPolicy[result] {
 	st := common_lib.get_statement(common_lib.get_policy(policy))
 	statement := st[_]
 	common_lib.is_allow_effect(statement)
-	common_lib.equalsOrInArray(statement.Resource, "*")
+	common_lib.equalsOrInArray(statement.Principal, "*")
 	cf_lib.checkAction(statement.Action, "delete")
 
 	result := {
