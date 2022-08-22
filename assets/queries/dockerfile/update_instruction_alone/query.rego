@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Instruction 'RUN <package-manager> update' is followed by 'RUN <package-manager> install' ",
+		"keyExpectedValue": "Instruction 'RUN <package-manager> update' should be followed by 'RUN <package-manager> install' ",
 		"keyActualValue": "Instruction 'RUN <package-manager> update' isn't followed by 'RUN <package-manager> install in the same 'RUN' statement",
 	}
 }
@@ -33,24 +33,26 @@ isValidUpdate(command) {
 
 	update := {"update", "--update"}
 
-	array_split[minus(len, 1)] == update[j]
+	array_split[len - 1] == update[j]
 }
 
+commandList := [
+	"install",
+	"source-install",
+	"reinstall",
+	"groupinstall",
+	"localinstall",
+	"add",
+]
+
 updateFollowedByInstall(command) {
-	commandList = [
-		"install",
-		"source-install",
-		"reinstall",
-		"groupinstall",
-		"localinstall",
-		"add",
-	]
+	update := {x | x := indexof_n(command, "update"); count(x) != 0}
+	count(update) > 0
+	install := {x | x := indexof_n(command, commandList[_]); count(x) != 0}
+	count(install) > 0
+	checkUpdateFollowedByInstall(update[_], install)
+}
 
-	update := indexof(command, "update")
-	update != -1
-
-	install := indexof(command, commandList[_])
-	install != -1
-
-	update < install
+checkUpdateFollowedByInstall(updatePos, installArray) {
+	updatePos[_] < installArray[_][_]
 }

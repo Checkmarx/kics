@@ -3,7 +3,7 @@
   "queryName": "S3 Bucket Access to Any Principal",
   "severity": "HIGH",
   "category": "Access Control",
-  "descriptionText": "The S3 Bucket should not have the (accessPublicBlock empty or accessPublicBlock.ignorePublicAcls = false or accessPublicBlock.restrictPublicBuckets = false ) and ( policy.Statement contain [Effect='Allow' and (Principal='*' or Principal.AWS='*')])",
+  "descriptionText": "The S3 Bucket should not be associated with a policy statement that grants access to any principal",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html",
   "platform": "CloudFormation",
   "descriptionID": "9a57423d",

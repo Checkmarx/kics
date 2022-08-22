@@ -1,0 +1,11 @@
+{
+  "id": "860ba89b-b8de-4e72-af54-d6aee4138a69",
+  "queryName": "S3 Bucket Allows Public Policy",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "S3 bucket allows public policy",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-publicaccessblockconfiguration.html",
+  "platform": "CloudFormation",
+  "descriptionID": "bfe99abf",
+  "cloudProvider": "aws"
+}
