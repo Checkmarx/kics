@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("Parameters.%s.Default", [paramName]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Parameters.%s.Default should not defined", [paramName]),
+		"keyExpectedValue": sprintf("Parameters.%s.Default should not be defined", [paramName]),
 		"keyActualValue": sprintf("Parameters.%s.Default is defined", [paramName]),
 	}
 }
