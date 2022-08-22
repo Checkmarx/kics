@@ -51,7 +51,7 @@ func includeCSS(name string) template.HTML {
 	if err != nil {
 		return ""
 	}
-	return template.HTML(template.HTMLEscapeString("<style>" + cssMinified + "</style>")) //nolint //#nosec
+	return template.HTML("<style>" + cssMinified + "</style>") //nolint //#nosec G203 -- possible false positive
 }
 
 func includeJS(name string) template.HTML {
@@ -61,7 +61,7 @@ func includeJS(name string) template.HTML {
 	if err != nil {
 		return ""
 	}
-	return template.HTML(template.HTMLEscapeString("<script>" + jsMinified + "</script>")) //nolint //#nosec
+	return template.HTML("<script>" + jsMinified + "</script>") //nolint //#nosec G203 -- possible false positive
 }
 
 func generateE2EReport(path, filename string, body interface{}) error {
