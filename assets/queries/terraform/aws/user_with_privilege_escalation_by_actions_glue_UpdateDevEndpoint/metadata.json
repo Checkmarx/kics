@@ -1,0 +1,11 @@
+{
+  "id": "9b877bd8-94b4-4c10-a060-8e0436cc09fa",
+  "queryName": "User With Privilege Escalation By Actions 'glue:UpdateDevEndpoint'",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "User with privilege escalation by actions 'glue:UpdateDevEndpoint' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy",
+  "platform": "Terraform",
+  "descriptionID": "1a48ac37",
+  "cloudProvider": "aws"
+}

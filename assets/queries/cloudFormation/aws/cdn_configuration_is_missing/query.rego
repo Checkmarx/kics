@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.DistributionConfig.Enabled", [cf_lib.getPath(path), name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.Enabled should be set to 'true'", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.Enabled should be 'true'", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.Enabled is configured as 'false'", [name]),
 	}
 }

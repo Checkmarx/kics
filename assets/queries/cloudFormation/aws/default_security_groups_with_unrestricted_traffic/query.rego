@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties", [cf_lib.getPath(path), name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("The inbound and outbound rules should not be empty when Resources.%s.Properties.GroupName is defined as default", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.GroupName should be defined as default and the inbound and outbound rules should be empty.", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.GroupName is defined as default and the inbound and outbound rules are not empty.", [name]),
 	}
 }

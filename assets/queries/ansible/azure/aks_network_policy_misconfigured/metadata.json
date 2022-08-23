@@ -3,7 +3,7 @@
   "queryName": "AKS Network Policy Misconfigured",
   "severity": "MEDIUM",
   "category": "Insecure Configurations",
-  "descriptionText": "Azure Kubernetes Service should have the proper network policy configuration",
+  "descriptionText": "Azure Kubernetes Service should have the proper network policy configuration to ensure the principle of least privileges, which means that 'network_profile.network_policy' should be defined",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_aks_module.html#parameter-network_profile/network_policy",
   "platform": "Ansible",
   "descriptionID": "75bbf826",

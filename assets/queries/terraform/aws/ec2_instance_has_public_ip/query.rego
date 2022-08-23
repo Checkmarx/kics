@@ -7,6 +7,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_instance[name]
 
 	not common_lib.valid_key(resource, "associate_public_ip_address")
+	not common_lib.valid_key(resource, "network_interface")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -23,7 +24,9 @@ CxPolicy[result] {
 CxPolicy[result] {
 	module := input.document[i].module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_instance", "associate_public_ip_address")
+	netInterfaceKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_instance", "network_interface")
 
+	not common_lib.valid_key(module, netInterfaceKey)
 	not common_lib.valid_key(module, keyToCheck)
 
 	result := {
@@ -42,6 +45,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_instance[name]
 
 	isTrue(resource.associate_public_ip_address)
+	not common_lib.valid_key(resource, "network_interface")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -58,7 +62,9 @@ CxPolicy[result] {
 CxPolicy[result] {
 	module := input.document[i].module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_instance", "associate_public_ip_address")
+	netInterfaceKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_instance", "network_interface")
 
+	not common_lib.valid_key(module, netInterfaceKey)
 	isTrue(module[keyToCheck])
 
 	result := {
