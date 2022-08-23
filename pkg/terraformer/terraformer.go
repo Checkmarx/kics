@@ -1,6 +1,3 @@
-//go:build !dev
-// +build !dev
-
 package terraformer
 
 import (
@@ -38,6 +35,8 @@ type Path struct {
 func Import(terraformerPath, destinationPath string) (string, error) {
 	log.Info().Msg("importing terraformer resources")
 	tfLogger.SetOutput(io.Discard)
+
+	// extracts relevant info from KICS Terraformer Path Syntax
 	pathOptions, err := extractTerraformerOptions(terraformerPath)
 	if err != nil {
 		return "", errors.Wrap(err, "wrong terraformer path syntax")
@@ -49,9 +48,8 @@ func Import(terraformerPath, destinationPath string) (string, error) {
 		}
 	}
 
-	destFolderName := fmt.Sprintf("kics-extract-terraformer-%s", time.Now().Format("01-02-2006"))
-
 	// set destination folder path where the Terraform resources will be saved
+	destFolderName := fmt.Sprintf("kics-extract-terraformer-%s", time.Now().Format("01-02-2006"))
 	destination := filepath.Join(destinationPath, destFolderName)
 
 	// run Terraformer
@@ -66,6 +64,7 @@ func Import(terraformerPath, destinationPath string) (string, error) {
 		return "", errors.Wrap(err, "failed to import resources")
 	}
 
+	// clean unwanted files like output.tf
 	cleanUnwantedFiles(destination)
 
 	return destination, nil
@@ -124,7 +123,7 @@ func buildArgs(pathOptions *Path, destination string) []string {
 
 	// probably we will need to define the profile to ""
 	if pathOptions.CloudProvider == "aws" {
-		args = append(args, "--regions="+pathOptions.Regions, "--profile=\"\"")
+		args = append(args, "--regions="+pathOptions.Regions, "--profile=")
 	}
 
 	// the flag '--projects' is only required for gcp
@@ -138,15 +137,11 @@ func buildArgs(pathOptions *Path, destination string) []string {
 // runTerraformer runs the terraformer binary
 func runTerraformer(pathOptions *Path, destination string) (string, error) {
 	args := buildArgs(pathOptions, destination)
-	fmt.Println(args)
 
-	cmd := exec.Command("terraformer", args...)
-	cmd.Env = os.Environ()
-
-	fmt.Println(cmd.Env)
+	cmd := exec.Command("terraformer", args...) //#nosec
+	cmd.Env = append(os.Environ(), "AWS_PROFILE=default")
 
 	output, err := cmd.CombinedOutput()
-	fmt.Println(string(output))
 
 	return string(output), err
 }
@@ -156,7 +151,6 @@ func runTerraformer(pathOptions *Path, destination string) (string, error) {
 // it also saves the terraformer command output in the destination folder
 func saveTerraformerOutput(destination, output string) error {
 	_, err := os.Stat(destination)
-	fmt.Println(err)
 	save(destination, output, err)
 
 	return err

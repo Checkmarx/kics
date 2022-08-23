@@ -215,3 +215,4 @@ Also note that you should fill the `<credentials_path>` with the path that point
 
 - If environment credentials are incorrect a timeout may occur.
 - If the resource to import doesn't exist in the region specified a {resource}.tf file will not be created.
+- You can find the Terraform output in `terraformer-output.txt` inside `kics-extract-terraformer` folder.
