@@ -3,7 +3,7 @@
   "queryName": "IAM Database Auth Not Enabled",
   "severity": "HIGH",
   "category": "Encryption",
-  "descriptionText": "IAM Database Auth Enabled must be configured to true",
+  "descriptionText": "IAM Database Auth Enabled should be configured to true when using compatible engine and version",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#iam_database_authentication_enabled",
   "platform": "Terraform",
   "descriptionID": "12b1c8aa",

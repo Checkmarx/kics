@@ -30,7 +30,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, j),
 		"searchKey": sprintf("Resources.%s", [subnetName]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s is a private subnet", [subnetName]),
+		"keyExpectedValue": sprintf("Resources.%s should be a private subnet", [subnetName]),
 		"keyActualValue": sprintf("Resources.%s has a route for unrestricted internet traffic", [subnetName]),
 	}
 }

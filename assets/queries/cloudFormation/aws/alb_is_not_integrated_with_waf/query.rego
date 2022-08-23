@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s' does not have an 'internal' scheme and has a 'WebACLAssociation' associated", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s' should not have an 'internal' scheme and should have a 'WebACLAssociation' associated", [name]),
 		"keyActualValue": sprintf("'Resources.%s' does not have an 'internal' scheme and a 'WebACLAssociation' associated", [name]),
 	}
 }
