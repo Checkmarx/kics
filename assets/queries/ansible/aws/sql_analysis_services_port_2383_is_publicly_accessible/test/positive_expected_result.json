@@ -1,26 +1,26 @@
 [
   {
-    "queryName": "SQL Analysis Services Port 2383 (TCP) is Publicly Accessible",
+    "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 9
   },
   {
-    "queryName": "SQL Analysis Services Port 2383 (TCP) is Publicly Accessible",
+    "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 23
   },
   {
-    "queryName": "SQL Analysis Services Port 2383 (TCP) is Publicly Accessible",
+    "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 37
   },
   {
-    "queryName": "SQL Analysis Services Port 2383 (TCP) is Publicly Accessible",
+    "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 51
   },
   {
-    "queryName": "SQL Analysis Services Port 2383 (TCP) is Publicly Accessible",
+    "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 65
   }
