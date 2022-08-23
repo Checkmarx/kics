@@ -22,7 +22,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.PolicyDocument", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.PolicyDocument.Statement.Resource' does not have full permissions or is Admin", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.PolicyDocument.Statement.Resource' should not have full permissions or be Admin", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.PolicyDocument.Statement.Resource' has full permissions and is not Admin.", [name]),
 		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "PolicyDocument"], []),
 	}
