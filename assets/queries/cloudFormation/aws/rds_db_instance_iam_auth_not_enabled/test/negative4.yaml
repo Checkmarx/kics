@@ -11,9 +11,11 @@ Resources:
   MyDBSmall:
     Type: "AWS::RDS::DBInstance"
     Properties:
-      DBInstanceClass: db.r3.xlarge
+      DBInstanceClass: db.t2.small
       SourceDBInstanceIdentifier: !Ref SourceDBInstanceIdentifier
       SourceRegion: !Ref SourceRegion
       DeletionProtection: false
       KmsKeyId: !Ref MyKey
-      Engine: mysql
+      EnableIAMDatabaseAuthentication: false
+      Engine: mariadb
+      EngineVersion: 10.2.43

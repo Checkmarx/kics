@@ -51,6 +51,7 @@ func includeCSS(name string) template.HTML {
 	if err != nil {
 		return ""
 	}
+	/* #nosec */
 	return template.HTML("<style>" + cssMinified + "</style>") //nolint
 }
 
@@ -61,6 +62,7 @@ func includeJS(name string) template.HTML {
 	if err != nil {
 		return ""
 	}
+	/* #nosec */
 	return template.HTML("<script>" + jsMinified + "</script>") //nolint
 }
 

@@ -339,11 +339,11 @@ get_tag_name_if_exists(resource) = name {
 	name := resource.tags.Name
 } else = name {
 	tag := resource.Properties.Tags[_]
-    tag.Key == "Name"
+	tag.Key == "Name"
 	name := tag.Value
 } else = name {
 	tag := resource.Properties.FileSystemTags[_]
-    tag.Key == "Name"
+	tag.Key == "Name"
 	name := tag.Value
 } else = name {
 	tag := resource.Properties.Tags[key]
@@ -493,14 +493,14 @@ has_wildcard(statement, typeAction) {
 get_nested_values_info(object, array_vals) = return_value {
 	arr := [x |
 		some i, _ in array_vals
-		path := array.slice(array_vals, 0, i+1)
+		path := array.slice(array_vals, 0, i + 1)
 		walk(object, [path, _]) # evaluates to false if path is not in object
 		x := path[i]
 	]
 
 	return_value := {
 		"valid": count(array_vals) == count(arr),
-		"searchKey": concat(".", arr)
+		"searchKey": concat(".", arr),
 	}
 }
 
@@ -539,6 +539,25 @@ get_bom_output(bom_output, policy) = output {
 # This function is based on these docs: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html#describe-ebs-optimization
 is_aws_ebs_optimized_by_default(instanceType) {
 	inArray(data.common_lib.aws_ebs_optimized_by_default, instanceType)
+}
+
+#aurora is equivelent to mysql 5.6 https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth.Availability
+#all aurora-postgresql versions that do not support IAM auth are deprecated Source:console.aws (launch rds instance) 
+valid_for_iam_engine_and_version_check(resource, engineVar, engineVersionVar, instanceClassVar) {
+	resource[engineVar] == "mariadb"
+	startswith(resource[engineVersionVar], "10.6")
+} else {
+	engines_that_supports_iam := ["aurora-postgresql", "postgres", "mysql", "mariadb"]
+	resource[engineVar] == engines_that_supports_iam[_]
+	not valid_key(resource, engineVersionVar)
+} else {
+	engines_that_supports_iam := ["aurora-postgresql", "postgres", "mysql"]
+	resource[engineVar] == engines_that_supports_iam[_]
+} else {
+	aurora_mysql_engines := ["aurora", "aurora-mysql"]
+	resource[engineVar]== aurora_mysql_engines[_]
+	invalid_classes := ["db.t2.small", "db.t3.small"]
+	not inArray(invalid_classes, resource[instanceClassVar])
 }
 
 get_group_from_policy_attachment(attachment) = group {
