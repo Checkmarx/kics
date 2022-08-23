@@ -9,7 +9,7 @@ require (
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20211114212643-ec144ca0d701
-	github.com/aws/aws-sdk-go v1.44.70
+	github.com/aws/aws-sdk-go v1.44.78
 	github.com/cheggaaa/pb/v3 v3.1.0
 	github.com/emicklei/proto v1.11.0
 	github.com/getsentry/sentry-go v0.13.0
@@ -22,7 +22,7 @@ require (
 	github.com/hashicorp/hcl v1.0.0
 	github.com/hashicorp/hcl/v2 v2.13.0
 	github.com/hashicorp/terraform-json v0.14.0
-	github.com/johnfercher/maroto v0.37.0
+	github.com/johnfercher/maroto v0.38.0
 	github.com/mackerelio/go-osstat v0.2.2
 	github.com/mailru/easyjson v0.7.7
 	github.com/moby/buildkit v0.10.3
@@ -35,7 +35,7 @@ require (
 	github.com/spf13/viper v1.12.0
 	github.com/stretchr/testify v1.8.0
 	github.com/tdewolff/minify/v2 v2.12.0
-	github.com/tidwall/gjson v1.14.1
+	github.com/tidwall/gjson v1.14.3
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/yargevad/filepathx v1.0.0
 	github.com/zclconf/go-cty v1.10.0
@@ -43,7 +43,7 @@ require (
 	golang.org/x/text v0.3.7
 	golang.org/x/tools v0.1.12
 	gopkg.in/yaml.v3 v3.0.1
-	helm.sh/helm/v3 v3.9.2
+	helm.sh/helm/v3 v3.9.3
 	mvdan.cc/sh/v3 v3.5.1
 )
 
@@ -215,7 +215,7 @@ require (
 	github.com/docker/go-metrics v0.0.1 // indirect
 	github.com/docker/go-units v0.4.0 // indirect
 	github.com/dollarshaveclub/new-relic-synthetics-go v0.0.0-20170605224734-4dc3dd6ae884 // indirect
-	github.com/emicklei/go-restful v2.9.5+incompatible // indirect
+	github.com/emicklei/go-restful/v3 v3.8.0 // indirect
 	github.com/evanphx/json-patch v4.12.0+incompatible // indirect
 	github.com/exponent-io/jsonpath v0.0.0-20151013193312-d6023ce2651d // indirect
 	github.com/fastly/go-fastly/v3 v3.12.0 // indirect
@@ -413,7 +413,7 @@ require (
 	k8s.io/client-go v0.24.2 // indirect
 	k8s.io/component-base v0.24.2 // indirect
 	k8s.io/klog/v2 v2.60.1 // indirect
-	k8s.io/kube-openapi v0.0.0-20220328201542-3ee0da9b0b42 // indirect
+	k8s.io/kube-openapi v0.0.0-20220627174259-011e075b9cb8 // indirect
 	k8s.io/kubectl v0.24.2 // indirect
 	k8s.io/utils v0.0.0-20220210201930-3a6ce19ff2f9 // indirect
 	oras.land/oras-go v1.2.0 // indirect

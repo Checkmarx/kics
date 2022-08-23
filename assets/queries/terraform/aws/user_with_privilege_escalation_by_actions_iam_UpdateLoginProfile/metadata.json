@@ -1,0 +1,11 @@
+{
+  "id": "6deb34e2-5d9c-499a-801b-ea6d9eda894f",
+  "queryName": "User With Privilege Escalation By Actions 'iam:UpdateLoginProfile'",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "User with privilege escalation by actions 'iam:UpdateLoginProfile' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy",
+  "platform": "Terraform",
+  "descriptionID": "559f74f0",
+  "cloudProvider": "aws"
+}

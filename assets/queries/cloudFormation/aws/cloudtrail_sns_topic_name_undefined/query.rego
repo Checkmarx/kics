@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.SnsTopicName' is set", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.SnsTopicName' should be set", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.SnsTopicName' is undefined", [name]),
 	}
 }

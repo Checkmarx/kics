@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.NetworkMode' is set and is 'awsvpc'", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.NetworkMode' should be set and should be 'awsvpc'", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.NetworkMode' is undefined and defaults to 'bridge'", [name]),
 	}
 }
@@ -32,7 +32,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.NetworkMode", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.NetworkMode' is 'awsvpc'", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.NetworkMode' should be 'awsvpc'", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.NetworkMode' is '%s'", [name,properties.NetworkMode]),
 	}
 }

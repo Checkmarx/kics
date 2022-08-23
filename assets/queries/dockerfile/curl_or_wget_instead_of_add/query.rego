@@ -9,11 +9,11 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Use 'curl' or 'wget' to download %s", [resource.Value[0]]),
+		"keyExpectedValue": sprintf("Should use 'curl' or 'wget' to download %s", [resource.Value[0]]),
 		"keyActualValue": sprintf("'ADD' %s", [resource.Value[0]]),
 	}
 }
 
 httpRequestChecker(cmdValue) {
-	regex.match("https?", cmdValue[_])
+	regex.match("https?://", cmdValue[_])
 }
