@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/queries/googledeploymentmanager-queries/">
       
       <link rel="icon" href="../../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.0">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.1">
     
     
       
@@ -1350,13 +1350,6 @@
 <td><a href="https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/instances">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>COS Node Image Not Used<br/><sup><sub>dbe058d7-b82e-430b-8426-992b2e4677e7</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Insecure Configurations</td>
-<td>The node image should be Container-Optimized OS(COS)</td>
-<td><a href="https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Not Proper Email Account In Use<br/><sup><sub>a21b8df3-c840-4b3d-a41a-10fb2afda171</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
@@ -1483,6 +1476,13 @@
 <td><a href="https://cloud.google.com/storage/docs/json_api/v1/buckets">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>COS Node Image Not Used<br/><sup><sub>dbe058d7-b82e-430b-8426-992b2e4677e7</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>The node image should be Container-Optimized OS(COS)</td>
+<td><a href="https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>OSLogin Is Disabled In VM Instance<br/><sup><sub>e66e1b71-c810-4b4e-a737-0ab59e7f5e41</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
@@ -1507,7 +1507,7 @@
 <td>SSH Access Is Not Restricted<br/><sup><sub>dee21308-2a7a-49de-8ff7-c9b87e188575</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
-<td>Check if Google Firewall allows SSH access (port 22) from the Internet (public CIDR block)</td>
+<td>Google Firewall should not allow SSH access (port 22) from the Internet (public CIDR block) to ensure the principle of least privileges</td>
 <td><a href="https://cloud.google.com/compute/docs/reference/rest/v1/firewalls">Documentation</a><br/></td>
 </tr>
 <tr>

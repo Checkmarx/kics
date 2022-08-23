@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/queries/ansible-queries/">
       
       <link rel="icon" href="../../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.0">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.1">
     
     
       
@@ -1345,7 +1345,7 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>ECS Service Admin Role is Present<br/><sup><sub>7db727c1-1720-468e-b80e-06697f71e09e</sub></sup></td>
+<td>ECS Service Admin Role Is Present<br/><sup><sub>7db727c1-1720-468e-b80e-06697f71e09e</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Access Control</td>
 <td>ECS Services must not have Admin roles, which means the attribute 'role' must not be an admin role</td>
@@ -1411,7 +1411,7 @@
 <td>Authentication Without MFA<br/><sup><sub>eee107f9-b3d8-45d3-b9c6-43b5a7263ce1</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Access Control</td>
-<td>Users should authenticate with MFA (Multi-factor Authentication)</td>
+<td>Users should authenticate with MFA (Multi-factor Authentication) to ensure an extra layer of protection when authenticating</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/iam_mfa_device_info_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -1530,7 +1530,7 @@
 <td>User Data Contains Encoded Private Key<br/><sup><sub>c09f4d3e-27d2-4d46-9453-abbe9687a64e</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
-<td>User Data contains an encoded RSA Private Key</td>
+<td>User Data should not contain a base64 encoded private key. If so, anyone can decode the private key easily</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_lc_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -1544,7 +1544,7 @@
 <td>IAM Database Auth Not Enabled<br/><sup><sub>0ed012a4-9199-43d2-b9e4-9bd049a48aa4</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
-<td>IAM Database Auth Enabled must be configured to true</td>
+<td>IAM Database Auth Enabled should be configured to true when using compatible engine and version</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -1670,7 +1670,7 @@
 <td>DB Security Group With Public Scope<br/><sup><sub>0956aedf-6a7a-478b-ab56-63e2b19923ad</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
-<td>The IP address in a DB Security Group must not be '0.0.0.0/0' (IPv4) or '::/0' (IPv6).</td>
+<td>The IP address in a DB Security Group should not be '0.0.0.0/0' (IPv4) or '::/0' (IPv6). If so, any IP can access it</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -1873,7 +1873,7 @@
 <td>IAM Password Without Number<br/><sup><sub>9cf25d62-0b96-42c8-b66d-998cd6ee5bb8</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Best Practices</td>
-<td>Check if IAM account password has at least one number</td>
+<td>IAM user resource Login Profile Password should have at least one number</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -1933,7 +1933,7 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/elasticache_module.html#parameter-engine">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>SQS with SSE disabled<br/><sup><sub>e1e7b278-2a8b-49bd-a26e-66a7f70b17eb</sub></sup></td>
+<td>SQS With SSE Disabled<br/><sup><sub>e1e7b278-2a8b-49bd-a26e-66a7f70b17eb</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Encryption</td>
 <td>Amazon Simple Queue Service (SQS) queue is not protecting the contents of their messages using Server-Side Encryption (SSE)</td>
@@ -1996,7 +1996,7 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/aws_api_gateway_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>SQL Analysis Services Port 2383 (TCP) is Publicly Accessible<br/><sup><sub>7af1c447-c014-4f05-bd8b-ebe3a15734ac</sub></sup></td>
+<td>SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible<br/><sup><sub>7af1c447-c014-4f05-bd8b-ebe3a15734ac</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
 <td>Check if port 2383 on TCP is publicly accessible by checking the CIDR block range that can access it.</td>
@@ -2010,10 +2010,10 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/wafv2_resources_module.html#parameter-arn">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Cloudfront Logging Disabled<br/><sup><sub>d31cb911-bf5b-4eb6-9fc3-16780c77c7bd</sub></sup></td>
+<td>CloudFront Logging Disabled<br/><sup><sub>d31cb911-bf5b-4eb6-9fc3-16780c77c7bd</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
-<td>AWS Cloudfront distributions must have logging enabled, which means the attribute 'logging' must be defined with 'enabled' set to true</td>
+<td>AWS CloudFront distributions should have logging enabled to collect all viewer requests, which means the attribute 'logging' should be defined with 'enabled' set to true</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/cloudfront_distribution_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2055,7 +2055,7 @@
 <td>Stack Notifications Disabled<br/><sup><sub>d39761d7-94ab-45b0-ab5e-27c44e381d58</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
-<td>AWS CloudFormation should have stack notifications enabled</td>
+<td>AWS CloudFormation should have stack notifications enabled to be notified when an event occurs</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/cloudformation_module.html#parameter-notification_arns">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2069,7 +2069,7 @@
 <td>S3 Bucket Logging Disabled<br/><sup><sub>c3b9f7b0-f5a0-49ec-9cbc-f1e346b7274d</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
-<td>S3 bucket should have debug_botocore_endpoint_logs</td>
+<td>S3 bucket should have 'debug_botocore_endpoint_logs' defined</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html#parameter-debug_botocore_endpoint_logs">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2090,8 +2090,15 @@
 <td>Hardcoded AWS Access Key In Lambda<br/><sup><sub>f34508b9-f574-4330-b42d-88c44cced645</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Secret Management</td>
-<td>Lambda access key should not be in plaintext.</td>
+<td>Lambda access/secret keys should not be hardcoded</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/lambda_module.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Hardcoded AWS Access Key<br/><sup><sub>c2f15af3-66a0-4176-a56e-e4711e502e5c</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Secret Management</td>
+<td>AWS Access Key should not be hardcoded</td>
+<td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_instance_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>IAM Policy Grants 'AssumeRole' Permission Across All Services<br/><sup><sub>12a7a7ce-39d6-49dd-923d-aeb4564eb66c</sub></sup></td>
@@ -2150,10 +2157,10 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/efs_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>CloudTrail Log Files Not Encrypted With CMK<br/><sup><sub>f5587077-3f57-4370-9b4e-4eb5b1bac85b</sub></sup></td>
+<td>CloudTrail Log Files Not Encrypted With KMS<br/><sup><sub>f5587077-3f57-4370-9b4e-4eb5b1bac85b</sub></sup></td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Encryption</td>
-<td>CloudTrail Log Files should be encrypted with Key Management Service (KMS)</td>
+<td>Logs delivered by CloudTrail should be encrypted using KMS to increase security of your CloudTrail</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2171,7 +2178,7 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-port">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Cloudfront Without WAF<br/><sup><sub>22c80725-e390-4055-8d14-a872230f6607</sub></sup></td>
+<td>CloudFront Without WAF<br/><sup><sub>22c80725-e390-4055-8d14-a872230f6607</sub></sup></td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Networking and Firewall</td>
 <td>All AWS CloudFront distributions should be integrated with the Web Application Firewall (AWS WAF) service</td>
@@ -2209,15 +2216,8 @@
 <td>CloudTrail Log File Validation Disabled<br/><sup><sub>4d8681a2-3d30-4c89-8070-08acd142748e</sub></sup></td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Observability</td>
-<td>CloudTrail Log Files should have validation enabled</td>
+<td>CloudTrail log file validation should be enabled to determine whether a log file has not been tampered</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Hardcoded AWS Access Key<br/><sup><sub>c2f15af3-66a0-4176-a56e-e4711e502e5c</sub></sup></td>
-<td><span style="color:#CC0">Low</span></td>
-<td>Secret Management</td>
-<td>Check if the user data in the EC2 instance has the access key hardcoded</td>
-<td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_instance_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>EC2 Not EBS Optimized<br/><sup><sub>338b6cab-961d-4998-bb49-e5b6a11c9a5c</sub></sup></td>
@@ -2301,13 +2301,6 @@
 <td>Insecure Configurations</td>
 <td>SQL Instance should not have Contained Database Authentication On</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>COS Node Image Not Used<br/><sup><sub>be41f891-96b1-4b9d-b74f-b922a918c778</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Insecure Configurations</td>
-<td>The node image should be Container-Optimized OS(COS)</td>
-<td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_node_pool_module.html#parameter-config/image_type">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Cluster Labels Disabled<br/><sup><sub>fbe9b2d0-a2b7-47a1-a534-03775f3013f7</sub></sup></td>
@@ -2492,6 +2485,13 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Using Default Service Account<br/><sup><sub>2775e169-e708-42a9-9305-b58aadd2c4dd</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Instances must not be configured to use the Default Service Account, that has full access to all Cloud APIs, which means the attribute 'service_account_email' must be defined. Additionally, it must not be empty and must also not be a default Google Compute Engine service account.</td>
+<td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Cloud DNS Without DNSSEC<br/><sup><sub>80b15fb1-6207-40f4-a803-6915ae619a03</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
@@ -2504,13 +2504,6 @@
 <td>Insecure Defaults</td>
 <td>Kubernetes Engine Clusters should not be configured to use the default service account</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html#parameter-node_config/service_account">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Using Default Service Account<br/><sup><sub>2775e169-e708-42a9-9305-b58aadd2c4dd</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Insecure Defaults</td>
-<td>Instances must not be configured to use the Default Service Account, that has full access to all Cloud APIs, which means the attribute 'service_account_email' must be defined. Additionally, it must not be empty and must also not be a default Google Compute Engine service account.</td>
-<td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Google Compute Network Using Default Firewall Rule<br/><sup><sub>29b8224a-60e9-4011-8ac2-7916a659841f</sub></sup></td>
@@ -2530,14 +2523,14 @@
 <td>SSH Access Is Not Restricted<br/><sup><sub>b2fbf1df-76dd-4d78-a6c0-e538f4a9b016</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
-<td>Check if Google Firewall allows SSH access (port 22) from the Internet (public CIDR block).</td>
+<td>Google Firewall should not allow SSH access (port 22) from the Internet (public CIDR block) to ensure the principle of least privileges</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_firewall_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Serial Ports Are Enabled For VM Instances<br/><sup><sub>c6fc6f29-dc04-46b6-99ba-683c01aff350</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
-<td>Google Compute Engine VM instances should not enable serial ports</td>
+<td>Google Compute Engine VM instances should not enable serial ports. When enabled, anyone can access your VM, if they know the username, project ID, SSH key, instance name and zone</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2569,6 +2562,13 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>COS Node Image Not Used<br/><sup><sub>be41f891-96b1-4b9d-b74f-b922a918c778</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Resource Management</td>
+<td>The node image should be Container-Optimized OS(COS)</td>
+<td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_node_pool_module.html#parameter-config/image_type">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Project-wide SSH Keys Are Enabled In VM Instances<br/><sup><sub>099b4411-d11e-4537-a0fc-146b19762a79</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Secret Management</td>
@@ -2579,7 +2579,7 @@
 <td>High KMS Rotation Period<br/><sup><sub>79f45008-60b3-4a0a-a302-8311fd3701b4</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Secret Management</td>
-<td>KMS rotation period should not surpass 365 days.</td>
+<td>KMS rotation period should not surpass 365 days</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_kms_crypto_key_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2600,7 +2600,7 @@
 <td>Google Compute Subnetwork with Private Google Access Disabled<br/><sup><sub>6a4080ae-79bd-42f6-a924-8f534c1c018b</sub></sup></td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Networking and Firewall</td>
-<td>Google Compute Subnetwork should have 'private_ip_google_access' set to yes</td>
+<td>Google Compute Subnetwork should have Private Google Access enabled, which means 'private_ip_google_access' should be set to yes</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_subnetwork_module.html#parameter-private_ip_google_access">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2648,7 +2648,7 @@
 <td>Public Storage Account<br/><sup><sub>35e2f133-a395-40de-a79d-b260d973d1bd</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Access Control</td>
-<td>Check if 'network_acls' is open to public.</td>
+<td>Storage Account should not be public to grant the principle of least privileges</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-network_acls">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2697,7 +2697,7 @@
 <td>Azure Container Registry With No Locks<br/><sup><sub>581dae78-307d-45d5-aae4-fe2b0db267a5</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
-<td>Azurerm Container Registry should contain associated locks through 'azure_rm_lock.managed_resource_id' or 'azure_rm_lock.resource_group' association</td>
+<td>Azurerm Container Registry should contain associated locks, which means 'azure_rm_lock.managed_resource_id' or 'azure_rm_lock.resource_group' association should be defined</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_lock_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2732,7 +2732,7 @@
 <td>CosmosDB Account IP Range Filter Not Set<br/><sup><sub>e8c80448-31d8-4755-85fc-6dbab69c2717</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
-<td>The IP range filter should be defined</td>
+<td>The IP range filter should be defined to secure the data stored</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_cosmosdbaccount_module.html#parameter-ip_range_filter">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2771,13 +2771,6 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_adserviceprincipal_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Unrestricted SQL Server Access<br/><sup><sub>3f23c96c-f9f5-488d-9b17-605b8da5842f</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Best Practices</td>
-<td>Azure SQL Server Accessibility should be set to a minimal address range, which means the difference between the values of the 'end_ip_address' and 'start_ip_address' must be lesser than 256. Additionally, both ips must be different from '0.0.0.0'</td>
-<td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_sqlfirewallrule_module.html">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>SQL Server Predictable Admin Account Name<br/><sup><sub>663062e9-473d-4e87-99bc-6f3684b3df40</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Best Practices</td>
@@ -2790,13 +2783,6 @@
 <td>Build Process</td>
 <td>Cosmos DB Account must have a mapping of tags.</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_cosmosdbaccount_module.html">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Redis Cache Allows Non SSL Connections<br/><sup><sub>869e7fb4-30f0-4bdb-b360-ad548f337f2f</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Encryption</td>
-<td>Redis Cache resources should not allow non-SSL connections.</td>
-<td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_rediscache_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Storage Account Not Using Latest TLS Encryption Version<br/><sup><sub>c62746cf-92d5-4649-9acf-7d48d086f2ee</sub></sup></td>
@@ -2813,10 +2799,17 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_subnet_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Redis Cache Allows Non SSL Connections<br/><sup><sub>869e7fb4-30f0-4bdb-b360-ad548f337f2f</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Redis Cache resources should not allow non-SSL connections</td>
+<td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_rediscache_module.html">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>AKS Network Policy Misconfigured<br/><sup><sub>8c3bedf1-c570-4c3b-b414-d068cd39a00c</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
-<td>Azure Kubernetes Service should have the proper network policy configuration</td>
+<td>Azure Kubernetes Service should have the proper network policy configuration to ensure the principle of least privileges, which means that 'network_profile.network_policy' should be defined</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_aks_module.html#parameter-network_profile/network_policy">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2825,6 +2818,13 @@
 <td>Insecure Defaults</td>
 <td>Default Network Access rule for Storage Accounts must be set to deny, which means the attribute 'default_action' must be 'Deny'</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Unrestricted SQL Server Access<br/><sup><sub>3f23c96c-f9f5-488d-9b17-605b8da5842f</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Azure SQL Server Accessibility should be set to a minimal address range to grant the principle of least privileges, which means the difference between the values of the 'end_ip_address' and 'start_ip_address' should be less than 256. Additionally, both ips should be different from '0.0.0.0'</td>
+<td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_sqlfirewallrule_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>WAF Is Disabled For Azure Application Gateway<br/><sup><sub>2fc5ab5a-c5eb-4ae4-b687-0f16fe77c255</sub></sup></td>

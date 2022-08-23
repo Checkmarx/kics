@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/queries/all-queries/">
       
       <link rel="icon" href="../../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.0">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.1">
     
     
       
@@ -3925,7 +3925,7 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>ECS Service Admin Role is Present<br/><sup><sub>3206240f-2e87-4e58-8d24-3e19e7c83d7c</sub></sup></td>
+<td>ECS Service Admin Role Is Present<br/><sup><sub>3206240f-2e87-4e58-8d24-3e19e7c83d7c</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
 <td>Access Control</td>
@@ -4017,7 +4017,7 @@
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
 <td>Access Control</td>
-<td>Users should authenticate with MFA (Multi-factor Authentication)</td>
+<td>Users should authenticate with MFA (Multi-factor Authentication) to ensure an extra layer of protection when authenticating</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -4213,7 +4213,7 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_object#server_side_encryption">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>CA certificate Identifier is outdated<br/><sup><sub>9f40c07e-699e-4410-8856-3ba0f2e3a2dd</sub></sup></td>
+<td>CA Certificate Identifier Is Outdated<br/><sup><sub>9f40c07e-699e-4410-8856-3ba0f2e3a2dd</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
@@ -4305,7 +4305,7 @@
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
-<td>User Data Base64 contains an encoded RSA Private Key</td>
+<td>User Data should not contain a base64 encoded private key. If so, anyone can decode the private key easily</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_configuration#user_data_base64">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -4337,7 +4337,7 @@
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
-<td>IAM Database Auth Enabled must be configured to true</td>
+<td>IAM Database Auth Enabled should be configured to true when using compatible engine and version</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#iam_database_authentication_enabled">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -4593,7 +4593,7 @@
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
-<td>The IP address in a DB Security Group must not be '0.0.0.0/0' (IPv4) or '::/0' (IPv6).</td>
+<td>The IP address in a DB Security Group should not be '0.0.0.0/0' (IPv4) or '::/0' (IPv6). If so, any IP can access it</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_security_group">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -4717,6 +4717,14 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_aggregator#all_regions">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>User With Privilege Escalation By Actions 'iam:UpdateLoginProfile'<br/><sup><sub>6deb34e2-5d9c-499a-801b-ea6d9eda894f</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>User with privilege escalation by actions 'iam:UpdateLoginProfile' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Certificate Has Expired<br/><sup><sub>c3831315-5ae6-4fa8-b458-3d4d5ab7a3f6</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -4733,6 +4741,22 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_authorizer">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Group With Privilege Escalation By Actions 'iam:PutUserPolicy'<br/><sup><sub>60263b4a-6801-4587-911d-919c37ed733b</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Group with privilege escalation by actions 'iam:PutUserPolicy' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Group With Privilege Escalation By Actions 'iam:AddUserToGroup'<br/><sup><sub>970ed7a2-0aca-4425-acf1-0453c9ecbca1</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Group with privilege escalation by actions 'iam:AddUserToGroup' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>IAM User With Access To Console<br/><sup><sub>9ec311bf-dfd9-421f-8498-0b063c8bc552</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -4741,12 +4765,52 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_login_profile">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Group With Privilege Escalation By Actions 'ec2:RunInstances' And 'iam:PassRole'<br/><sup><sub>15e6ad8c-f420-49a6-bafb-074f5eb1ec74</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Group with privilege escalation by actions 'ec2:RunInstances' and 'iam:PassRole' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Group With Privilege Escalation By Actions 'lambda:CreateFunction' And 'iam:PassRole' And 'lambda:InvokeFunction'<br/><sup><sub>034d0aee-620f-4bf7-b7fb-efdf661fdb9e</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Group with privilege escalation by actions 'lambda:CreateFunction' and 'iam:PassRole' and 'lambda:InvokeFunction' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Group With Privilege Escalation By Actions 'glue:UpdateDevEndpoint'<br/><sup><sub>8f3c16b3-354d-45db-8ad5-5066778a9485</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Group with privilege escalation by actions 'glue:UpdateDevEndpoint' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Group With Privilege Escalation By Actions 'iam:UpdateLoginProfile'<br/><sup><sub>ad296c0d-8131-4d6b-b030-1b0e73a99ad3</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Group with privilege escalation by actions 'iam:UpdateLoginProfile' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>IAM Access Key Is Exposed<br/><sup><sub>7081f85c-b94d-40fd-8b45-a4f1cac75e46</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
 <td>Check if IAM Access Key is active for some user besides 'root'</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_access_key">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Role With Privilege Escalation By Actions 'iam:AttachUserPolicy'<br/><sup><sub>7c96920c-6fd0-449d-9a52-0aa431b6beaf</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Role with privilege escalation by actions 'iam:AttachUserPolicy' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy#policy">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Public Lambda via API Gateway<br/><sup><sub>3ef8696c-e4ae-4872-92c7-520bb44dfe77</sub></sup></td>
@@ -4765,12 +4829,84 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_rest_api_policy#policy">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>User With Privilege Escalation By Actions 'glue:CreateDevEndpoint' And 'iam:PassRole'<br/><sup><sub>94fbe150-27e3-4eba-9ca6-af32865e4503</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>User with privilege escalation by actions 'glue:CreateDevEndpoint' and 'iam:PassRole' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Group With Privilege Escalation By Actions 'lambda:UpdateFunctionCode'<br/><sup><sub>571254d8-aa6a-432e-9725-535d3ef04d69</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Group with privilege escalation by actions 'lambda:UpdateFunctionCode' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>User With Privilege Escalation By Actions 'iam:PutGroupPolicy'<br/><sup><sub>8bfbf7ab-d5e8-4100-8618-798956e101e0</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>User with privilege escalation by actions 'iam:PutGroupPolicy' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Group With Privilege Escalation By Actions 'iam:AttachUserPolicy'<br/><sup><sub>db78d14b-10e5-4e6e-84b1-dace6327b1ec</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Group with privilege escalation by actions 'iam:AttachUserPolicy' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Group With Privilege Escalation By Actions 'iam:PutGroupPolicy'<br/><sup><sub>e77c89f6-9c85-49ea-b95b-5f960fe5be92</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Group with privilege escalation by actions 'iam:PutGroupPolicy' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>User With Privilege Escalation By Actions 'cloudformation:CreateStack' And 'iam:PassRole'<br/><sup><sub>19ffbe31-9d72-4379-9768-431195eae328</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>User with privilege escalation by actions 'cloudformation:CreateStack' and 'iam:PassRole' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>User With Privilege Escalation By Actions 'iam:AttachGroupPolicy'<br/><sup><sub>6d23d87e-1c5b-4308-b224-92624300f29b</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>User with privilege escalation by actions 'iam:AttachGroupPolicy' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Secrets Manager With Vulnerable Policy<br/><sup><sub>fa00ce45-386d-4718-8392-fb485e1f3c5b</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
 <td>Secrets Manager policy should avoid wildcard in 'Principal' and 'Action'</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>User With Privilege Escalation By Actions 'glue:UpdateDevEndpoint'<br/><sup><sub>9b877bd8-94b4-4c10-a060-8e0436cc09fa</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>User with privilege escalation by actions 'glue:UpdateDevEndpoint' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Role With Privilege Escalation By Actions 'iam:AttachRolePolicy'<br/><sup><sub>f465fff1-0a0f-457d-aa4d-1bddb6f204ff</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Role with privilege escalation by actions 'iam:AttachRolePolicy' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy#policy">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Lambda Permission Principal Is Wildcard<br/><sup><sub>e08ed7eb-f3ef-494d-9d22-2e3db756a347</sub></sup></td>
@@ -4797,12 +4933,36 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/glue_resource_policy#policy">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>User With Privilege Escalation By Actions 'iam:CreatePolicyVersion'<br/><sup><sub>1743f5f1-0bb0-4934-acef-c80baa5dadfa</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>User with privilege escalation by actions 'iam:CreatePolicyVersion' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>IAM Role Policy passRole Allows All<br/><sup><sub>e39bee8c-fe54-4a3f-824d-e5e2d1cca40a</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
 <td>Using the iam:passrole action with wildcards (*) in the resource can be overly permissive because it allows iam:passrole permissions on multiple resources</td>
 <td><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-security-warning-pass-role-with-star-in-resource">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Role With Privilege Escalation By Actions 'lambda:UpdateFunctionCode'<br/><sup><sub>c583f0f9-7dfd-476b-a056-f47c62b47b46</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Role with privilege escalation by actions 'lambda:UpdateFunctionCode' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>User With Privilege Escalation By Actions 'iam:AttachUserPolicy'<br/><sup><sub>70cb518c-d990-46f6-bc05-44a5041493d6</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>User with privilege escalation by actions 'iam:AttachUserPolicy' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>S3 Bucket Allows Public ACL<br/><sup><sub>d0cc8694-fcad-43ff-ac86-32331d7e867f</sub></sup></td>
@@ -4813,12 +4973,36 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Group With Privilege Escalation By Actions 'iam:AttachGroupPolicy'<br/><sup><sub>70b42736-efee-4bce-80d5-50358ed94990</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Group with privilege escalation by actions 'iam:AttachGroupPolicy' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>User With Privilege Escalation By Actions 'iam:CreateAccessKey'<br/><sup><sub>113208f2-a886-4526-9ecc-f3218600e12c</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>User with privilege escalation by actions 'iam:CreateAccessKey' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Cross-Account IAM Assume Role Policy Without ExternalId or MFA<br/><sup><sub>09c35abf-5852-4622-ac7a-b987b331232e</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
 <td>Cross-Account IAM Assume Role Policy should require external ID or MFA to protect cross-account access</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role#assume_role_policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>User With Privilege Escalation By Actions 'iam:PutUserPolicy'<br/><sup><sub>0c10d7da-85c4-4d62-b2a8-d6c104f1bd77</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>User with privilege escalation by actions 'iam:PutUserPolicy' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>SQS Policy Allows All Actions<br/><sup><sub>816ea8cf-d589-442d-a917-2dd0ce0e45e3</sub></sup></td>
@@ -4829,12 +5013,44 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue_policy">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Role With Privilege Escalation By Actions 'glue:UpdateDevEndpoint'<br/><sup><sub>eda48c88-2b7d-4e34-b6ca-04c0194aee17</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Role with privilege escalation by actions 'glue:UpdateDevEndpoint' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Role With Privilege Escalation By Actions 'iam:UpdateAssumeRolePolicy' And 'sts:AssumeRole'<br/><sup><sub>f1173d8c-3264-4148-9fdb-61181e031b51</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Role with privilege escalation by actions 'iam:UpdateAssumeRolePolicy' and 'sts:AssumeRole' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>AMI Shared With Multiple Accounts<br/><sup><sub>ba4e0031-3e9d-4d7d-b0d6-bd8f003f8698</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
 <td>Limits access to AWS AMIs by checking if more than one account is using the same image</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ami_launch_permission">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>User With Privilege Escalation By Actions 'iam:UpdateAssumeRolePolicy' And 'sts:AssumeRole'<br/><sup><sub>33627268-1445-4385-988a-318fd9d1a512</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>User with privilege escalation by actions 'iam:UpdateAssumeRolePolicy' and 'sts:AssumeRole' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>User With Privilege Escalation By Actions 'iam:PutRolePolicy'<br/><sup><sub>eeb4d37a-3c59-4789-a00c-1509bc3af1e5</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>User with privilege escalation by actions 'iam:PutRolePolicy' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>SES Policy With Allowed IAM Actions<br/><sup><sub>34b921bd-90a0-402e-a0a5-dc73371fd963</sub></sup></td>
@@ -4845,12 +5061,76 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ses_identity_policy#policy">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Group With Privilege Escalation By Actions 'cloudformation:CreateStack' And 'iam:PassRole'<br/><sup><sub>9b0ffadc-a61f-4c2a-b1e6-68fab60f6267</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Group with privilege escalation by actions 'cloudformation:CreateStack' and 'iam:PassRole' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Role With Privilege Escalation By Actions 'iam:AttachGroupPolicy'<br/><sup><sub>f906113d-cdc0-415a-ba60-609cc6daaf4d</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Role with privilege escalation by actions 'iam:AttachGroupPolicy' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Group With Privilege Escalation By Actions 'iam:CreateAccessKey'<br/><sup><sub>846646e3-2af1-428c-ac5d-271eccfa6faf</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Group with privilege escalation by actions 'iam:CreateAccessKey' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>User With Privilege Escalation By Actions 'lambda:CreateFunction' And 'iam:PassRole' And 'lambda:InvokeFunction'<br/><sup><sub>8055dec2-efb8-4fe6-8837-d9bed6ff202a</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>User with privilege escalation by actions 'lambda:CreateFunction' and 'iam:PassRole' and 'lambda:InvokeFunction' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Role With Privilege Escalation By Actions 'iam:CreateLoginProfile'<br/><sup><sub>9a205ba3-0dd1-42eb-8d54-2ffec836b51a</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Role with privilege escalation by actions 'iam:CreateLoginProfile' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>CloudWatch Logs Destination With Vulnerable Policy<br/><sup><sub>db0ec4c4-852c-46a2-b4f3-7ec13cdb12a8</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
 <td>CloudWatch Logs destination policy should avoid wildcard in 'principals' and 'actions'</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_destination_policy#access_policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Role With Privilege Escalation By Actions 'ec2:RunInstances' And 'iam:PassRole'<br/><sup><sub>30b88745-eebe-4ecb-a3a9-5cf886e96204</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Role with privilege escalation by actions 'ec2:RunInstances' and 'iam:PassRole' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Group With Privilege Escalation By Actions 'iam:AttachRolePolicy'<br/><sup><sub>3dd96caa-0b5f-4a85-b929-acfac4646cc2</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Group with privilege escalation by actions 'iam:AttachRolePolicy' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Role With Privilege Escalation By Actions 'iam:PutUserPolicy'<br/><sup><sub>8f75840d-9ee7-42f3-b203-b40e3979eb12</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Role with privilege escalation by actions 'iam:PutUserPolicy' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy#policy">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>IAM Policies Attached To User<br/><sup><sub>b4378389-a9aa-44ee-91e7-ef183f11079e</sub></sup></td>
@@ -4861,12 +5141,52 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy_attachment">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Role With Privilege Escalation By Actions 'iam:AddUserToGroup'<br/><sup><sub>b8a31292-509d-4b61-bc40-13b167db7e9c</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Role with privilege escalation by actions 'iam:AddUserToGroup' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>User With Privilege Escalation By Actions 'lambda:UpdateFunctionCode'<br/><sup><sub>b69247e5-7e73-464e-ba74-ec9b715c6e12</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>User with privilege escalation by actions 'lambda:UpdateFunctionCode' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Role With Privilege Escalation By Actions 'iam:PutGroupPolicy'<br/><sup><sub>d6047119-a0b2-4b59-a4f2-127a36fb685b</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Role with privilege escalation by actions 'iam:PutGroupPolicy' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Neptune Cluster With IAM Database Authentication Disabled<br/><sup><sub>c91d7ea0-d4d1-403b-8fe1-c9961ac082c5</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
 <td>Neptune Cluster should have IAM Database Authentication enabled</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/neptune_cluster#storage_encrypted">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>User With Privilege Escalation By Actions 'iam:CreateLoginProfile'<br/><sup><sub>0fd7d920-4711-46bd-aff2-d307d82cd8b7</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>User with privilege escalation by actions 'iam:CreateLoginProfile' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Group With Privilege Escalation By Actions 'iam:UpdateAssumeRolePolicy' And 'sts:AssumeRole'<br/><sup><sub>78f1ec6f-5659-41ea-bd48-d0a142dce4f2</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Group with privilege escalation by actions 'iam:UpdateAssumeRolePolicy' and 'sts:AssumeRole' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Lambda With Vulnerable Policy<br/><sup><sub>ad9dabc7-7839-4bae-a957-aa9120013f39</sub></sup></td>
@@ -4885,6 +5205,22 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_method">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Role With Privilege Escalation By Actions 'iam:UpdateLoginProfile'<br/><sup><sub>35ccf766-0e4d-41ed-9ec4-2dab155082b4</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Role with privilege escalation by actions 'iam:UpdateLoginProfile' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Role With Privilege Escalation By Actions 'lambda:CreateFunction' And 'iam:PassRole' And 'lambda:InvokeFunction'<br/><sup><sub>fa62ac4f-f5b9-45b9-97c1-625c8b6253ca</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Role with privilege escalation by actions 'lambda:CreateFunction' and 'iam:PassRole' and 'lambda:InvokeFunction' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Elasticsearch Without IAM Authentication<br/><sup><sub>e7530c3c-b7cf-4149-8db9-d037a0b5268e</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -4899,6 +5235,46 @@
 <td>Access Control</td>
 <td>Checks for dangerous permissions in Action statements in an SQS Queue Policy. This is deemed a potential security risk as it would allow various attacks to the queue</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue_policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Group With Privilege Escalation By Actions 'iam:CreateLoginProfile'<br/><sup><sub>04c686f1-e0cd-4812-88e1-4e038410074c</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Group with privilege escalation by actions 'iam:CreateLoginProfile' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Role With Privilege Escalation By Actions 'glue:CreateDevEndpoint' And 'iam:PassRole'<br/><sup><sub>0a592060-8166-49f5-8e65-99ac6dce9871</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Role with privilege escalation by actions 'glue:CreateDevEndpoint' and 'iam:PassRole' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Group With Privilege Escalation By Actions 'iam:CreatePolicyVersion'<br/><sup><sub>ec49cbfd-fae4-45f3-81b1-860526d66e3f</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Group with privilege escalation by actions 'iam:CreatePolicyVersion' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Role With Privilege Escalation By Actions 'iam:CreateAccessKey'<br/><sup><sub>5b4d4aee-ac94-4810-9611-833636e5916d</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Role with privilege escalation by actions 'iam:CreateAccessKey' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Group With Privilege Escalation By Actions 'iam:SetDefaultPolicyVersion'<br/><sup><sub>7782d4b3-e23e-432b-9742-d9528432e771</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Group with privilege escalation by actions 'iam:SetDefaultPolicyVersion' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>SNS Topic Publicity Has Allow and NotAction Simultaneously<br/><sup><sub>5ea624e4-c8b1-4bb3-87a4-4235a776adcc</sub></sup></td>
@@ -4917,6 +5293,30 @@
 <td><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Role With Privilege Escalation By Actions 'iam:SetDefaultPolicyVersion'<br/><sup><sub>118281d0-6471-422e-a7c5-051bc667926e</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Role with privilege escalation by actions 'iam:SetDefaultPolicyVersion' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Role With Privilege Escalation By Actions 'cloudformation:CreateStack' And 'iam:PassRole'<br/><sup><sub>be2aa235-bd93-4b68-978a-1cc65d49082f</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Role with privilege escalation by actions 'cloudformation:CreateStack' and 'iam:PassRole' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Role With Privilege Escalation By Actions 'iam:PutRolePolicy'<br/><sup><sub>eb64f1e9-f67d-4e35-8a3c-3d6a2f9efea7</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Role with privilege escalation by actions 'iam:PutRolePolicy' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>ECR Repository Is Publicly Accessible<br/><sup><sub>e86e26fc-489e-44f0-9bcd-97305e4ba69a</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -4925,12 +5325,68 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository_policy">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Group With Privilege Escalation By Actions 'iam:PutRolePolicy'<br/><sup><sub>c0c1e744-0f37-445e-924a-1846f0839f69</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Group with privilege escalation by actions 'iam:PutRolePolicy' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Role With Privilege Escalation By Actions 'iam:CreatePolicyVersion'<br/><sup><sub>ee49557d-750c-4cc1-aa95-94ab36cbefde</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Role with privilege escalation by actions 'iam:CreatePolicyVersion' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Elasticsearch Domain With Vulnerable Policy<br/><sup><sub>16c4216a-50d3-4785-bfb2-4adb5144a8ba</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
 <td>Elasticsearch Domain policy should avoid wildcard in 'Action' and 'Principal'.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain_policy#access_policies">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>User With Privilege Escalation By Actions 'iam:AttachRolePolicy'<br/><sup><sub>e227091e-2228-4b40-b046-fc13650d8e88</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>User with privilege escalation by actions 'iam:AttachRolePolicy' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>User With Privilege Escalation By Actions 'ec2:RunInstances' And 'iam:PassRole'<br/><sup><sub>89561b03-cb35-44a9-a7e9-8356e71606f4</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>User with privilege escalation by actions 'ec2:RunInstances' and 'iam:PassRole' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>User With Privilege Escalation By Actions 'iam:SetDefaultPolicyVersion'<br/><sup><sub>43a41523-386a-4cb1-becb-42af6b414433</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>User with privilege escalation by actions 'iam:SetDefaultPolicyVersion' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>User With Privilege Escalation By Actions 'iam:AddUserToGroup'<br/><sup><sub>bf9d42c7-c2f9-4dfe-942c-c8cc8249a081</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>User with privilege escalation by actions 'iam:AddUserToGroup' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Group With Privilege Escalation By Actions 'glue:CreateDevEndpoint' And 'iam:PassRole'<br/><sup><sub>7d544dad-8a6c-431c-84c1-5f07fe9afc0e</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Group with privilege escalation by actions 'glue:CreateDevEndpoint' and 'iam:PassRole' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>ElastiCache Nodes Not Created Across Multi AZ<br/><sup><sub>6db03a91-f933-4f13-ab38-a8b87a7de54d</sub></sup></td>
@@ -5429,11 +5885,11 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Cloudfront Logging Disabled<br/><sup><sub>94690d79-b3b0-43de-b656-84ebef5753e5</sub></sup></td>
+<td>CloudFront Logging Disabled<br/><sup><sub>94690d79-b3b0-43de-b656-84ebef5753e5</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
-<td>AWS Cloudfront distributions must have logging enabled, which means the attribute 'logging_config' must be defined</td>
+<td>AWS CloudFront distributions should have logging enabled to collect all viewer requests, which means the attribute 'logging_config' should be defined</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -5525,7 +5981,7 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_deployment">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Elasticsearch Without Slow Logs<br/><sup><sub>e979fcbc-df6c-422d-9458-c33d65e71c45</sub></sup></td>
+<td>ElasticSearch Without Slow Logs<br/><sup><sub>e979fcbc-df6c-422d-9458-c33d65e71c45</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
@@ -5577,7 +6033,7 @@
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
-<td>Enable AWS CloudFormation Stack Notifications</td>
+<td>AWS CloudFormation should have stack notifications enabled to be notified when an event occurs</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -5649,8 +6105,16 @@
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Secret Management</td>
-<td>Lambda hardcoded AWS access/secret keys</td>
+<td>Lambda access/secret keys should not be hardcoded</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Hardcoded AWS Access Key<br/><sup><sub>d7b9d850-3e06-4a75-852f-c46c2e92240b</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Secret Management</td>
+<td>AWS Access Key should not be hardcoded</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>IAM Policy Grants 'AssumeRole' Permission Across All Services<br/><sup><sub>bcdcbdc6-a350-4855-ae7c-d1e6436f7c97</sub></sup></td>
@@ -5757,14 +6221,6 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository_policy">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>CloudTrail Log Files Not Encrypted With CMK<br/><sup><sub>5d9e3164-9265-470c-9a10-57ae454ac0c7</sub></sup></td>
-<td>Terraform</td>
-<td><span style="color:#CC0">Low</span></td>
-<td>Encryption</td>
-<td>Logs delivered by CloudTrail should be encrypted using KMS</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#kms_key_id">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>ECR Repository Not Encrypted With CMK<br/><sup><sub>0e32d561-4b5a-4664-a6e3-a3fa85649157</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#CC0">Low</span></td>
@@ -5821,7 +6277,7 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#port">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Cloudfront Without WAF<br/><sup><sub>1419b4c6-6d5c-4534-9cf6-6a5266085333</sub></sup></td>
+<td>CloudFront Without WAF<br/><sup><sub>1419b4c6-6d5c-4534-9cf6-6a5266085333</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Networking and Firewall</td>
@@ -5921,7 +6377,7 @@
 <td>Terraform</td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Observability</td>
-<td>CloudTrail log file validation should be enabled</td>
+<td>CloudTrail log file validation should be enabled to determine whether a log file has not been tampered</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#enable_log_file_validation">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -5931,6 +6387,14 @@
 <td>Observability</td>
 <td>Every VPC resource should have an associated Flow Log</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudTrail Log Files Not Encrypted With KMS<br/><sup><sub>5d9e3164-9265-470c-9a10-57ae454ac0c7</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Observability</td>
+<td>Logs delivered by CloudTrail should be encrypted using KMS</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#kms_key_id">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>API Gateway Deployment Without API Gateway UsagePlan Associated<br/><sup><sub>b3a59b8e-94a3-403e-b6e2-527abaf12034</sub></sup></td>
@@ -5971,14 +6435,6 @@
 <td>Resource Management</td>
 <td>API Gateway Stage should have API Gateway UsagePlan defined and associated.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_stage">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Hardcoded AWS Access Key<br/><sup><sub>d7b9d850-3e06-4a75-852f-c46c2e92240b</sub></sup></td>
-<td>Terraform</td>
-<td><span style="color:#CC0">Low</span></td>
-<td>Secret Management</td>
-<td>Hard-coded AWS access key / secret key exists in EC2 user data</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Security Group Not Used<br/><sup><sub>4849211b-ac39-479e-ae78-5694d506cb24</sub></sup></td>
@@ -6139,14 +6595,6 @@
 <td>Encryption</td>
 <td>KMS Crypto Key should not be publicly accessible. In other words, the KMS Crypto Key policy should not set 'allUsers' or 'allAuthenticatedUsers' in the attribute 'member'/'members'</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_kms_crypto_key_iam#google_kms_crypto_key_iam_policy">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>COS Node Image Not Used<br/><sup><sub>8a893e46-e267-485a-8690-51f39951de58</sub></sup></td>
-<td>Terraform</td>
-<td><span style="color:#C00">High</span></td>
-<td>Insecure Configurations</td>
-<td>The node image should be Container-Optimized OS(COS)</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool#node_config">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Not Proper Email Account In Use<br/><sup><sub>9356962e-4a4f-4d06-ac59-dc8008775eaa</sub></sup></td>
@@ -6365,12 +6813,28 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>COS Node Image Not Used<br/><sup><sub>8a893e46-e267-485a-8690-51f39951de58</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>The node image should be Container-Optimized OS(COS)</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool#node_config">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Google Project Auto Create Network Disabled<br/><sup><sub>59571246-3f62-4965-a96f-c7d97e269351</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
 <td>Verifies if the Google Project Auto Create Network is Disabled</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serial Ports Are Enabled For VM Instances<br/><sup><sub>97fa667a-d05b-4f16-9071-58b939f34751</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Google Compute Engine VM instances should not enable serial ports. When enabled, anyone can access your VM, if they know the username, project ID, SSH key, instance name and zone</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>OSLogin Is Disabled For VM Instance<br/><sup><sub>d0b4d550-c001-46c3-bbdb-d5d75d33f05f</sub></sup></td>
@@ -6417,16 +6881,8 @@
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
-<td>Check if Google Firewall allows SSH access (port 22) from the Internet (public CIDR block)</td>
+<td>Google Firewall should not allow SSH access (port 22) from the Internet (public CIDR block) to ensure the principle of least privileges</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Serial Ports Are Enabled For VM Instances<br/><sup><sub>97fa667a-d05b-4f16-9071-58b939f34751</sub></sup></td>
-<td>Terraform</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Networking and Firewall</td>
-<td>VM instance should not enable serial ports</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>RDP Access Is Not Restricted<br/><sup><sub>678fd659-96f2-454a-a2a0-c2571f83a4a3</sub></sup></td>
@@ -6473,7 +6929,7 @@
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Secret Management</td>
-<td>KMS Rotation Period should be greater than 365 days.</td>
+<td>KMS rotation period should not surpass 365 days</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/kms_crypto_key">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -6505,7 +6961,7 @@
 <td>Terraform</td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Networking and Firewall</td>
-<td>Google Compute Subnetwork should have 'private_ip_google_access' set to true</td>
+<td>Google Compute Subnetwork should have Private Google Access enabled, which means 'private_ip_google_access' should be set to true</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork#private_ip_google_access">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -7537,7 +7993,7 @@
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
 <td>Access Control</td>
-<td>Storage Account should not be public</td>
+<td>Storage Account should not be public to grant the principle of least privileges</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -7665,7 +8121,7 @@
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
-<td>Azurerm Container Registry Must Contain Associated Locks</td>
+<td>Azurerm Container Registry should contain associated locks, which means 'azurerm_management_lock.scope' should be associated with 'azurerm_container_registry'</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_registry">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -7737,7 +8193,7 @@
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
-<td>The Ip Range Must Contain Ips</td>
+<td>The IP range filter should be defined to secure the data stored</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cosmosdb_account#ip_range_filter">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -7817,7 +8273,7 @@
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
-<td>Role Definition should not allow custom role creation</td>
+<td>Role Definition should not allow custom role creation (Microsoft.Authorization/roleDefinitions/write)</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_definition#actions">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -7853,14 +8309,6 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/security_center_contact#email">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Unrestricted SQL Server Access<br/><sup><sub>d7ba74da-2da0-4d4b-83c8-2fd72a3f6c28</sub></sup></td>
-<td>Terraform</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Best Practices</td>
-<td>Azure SQL Server Accessibility must be set to a minimal address range, which means the difference between the values of the 'end_ip_address' and 'start_ip_address' must be lesser than 256. Additionally, both ips must be different from '0.0.0.0'</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_firewall_rule">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>SQL Server Predictable Admin Account Name<br/><sup><sub>2ab6de9a-0136-415c-be92-79d2e4fd750f</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -7875,14 +8323,6 @@
 <td>Build Process</td>
 <td>Cosmos DB Account must have a mapping of tags.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cosmosdb_account">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Redis Cache Allows Non SSL Connections<br/><sup><sub>e29a75e6-aba3-4896-b42d-b87818c16b58</sub></sup></td>
-<td>Terraform</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Encryption</td>
-<td>Redis Cache resources should not allow non-SSL connections.</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>AKS Disk Encryption Set ID Undefined<br/><sup><sub>b17d8bb8-4c08-4785-867e-cb9e62a622aa</sub></sup></td>
@@ -7933,6 +8373,14 @@
 <td><a href="https://www.terraform.io/docs/providers/azure/r/virtual_network.html">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Redis Cache Allows Non SSL Connections<br/><sup><sub>e29a75e6-aba3-4896-b42d-b87818c16b58</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Redis Cache resources should not allow non-SSL connections</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Function App Client Certificates Unrequired<br/><sup><sub>9bb3c639-5edf-458c-8ee5-30c17c7d671d</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -7945,7 +8393,7 @@
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
-<td>Check if the Azure Kubernetes Service doesn't have the proper network policy configuration.</td>
+<td>Azure Kubernetes Service should have the proper network policy configuration to ensure the principle of least privileges, which means that 'network_profile.network_policy' should be defined</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/kubernetes_cluster">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -8011,6 +8459,14 @@
 <td>Networking and Firewall</td>
 <td>Check if Web Application Firewall is disabled or not configured for Azure's Application Gateway.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_gateway">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Unrestricted SQL Server Access<br/><sup><sub>d7ba74da-2da0-4d4b-83c8-2fd72a3f6c28</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Azure SQL Server Accessibility should be set to a minimal address range to grant the principle of least privileges, which means the difference between the values of the 'end_ip_address' and 'start_ip_address' must be less than 256. Additionally, both ips must be different from '0.0.0.0'.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_firewall_rule">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Firewall Rule Allows Too Many Hosts To Access Redis Cache<br/><sup><sub>a829b715-cf75-4e92-b645-54c9b739edfb</sub></sup></td>
@@ -8513,7 +8969,7 @@
 <td>CloudFormation</td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
-<td>IAM Database Auth Enabled must be configured to true</td>
+<td>IAM Database Auth Enabled should be configured to true when compatible with engine and version</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-enableiamdatabaseauthentication">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -8633,7 +9089,7 @@
 <td>CloudFormation</td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
-<td>User Data Base64 contains an encoded RSA Private Key</td>
+<td>User Data should not contain a base64 encoded private key. If so, anyone can decode the private key easily</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -8877,11 +9333,11 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>DB Security Group with Public Scope<br/><sup><sub>9564406d-e761-4e61-b8d7-5926e3ab8e79</sub></sup></td>
+<td>DB Security Group With Public Scope<br/><sup><sub>9564406d-e761-4e61-b8d7-5926e3ab8e79</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
-<td>The IP address in a DB Security Group must not be '0.0.0.0/0' (IPv4) or '::/0' (IPv6).</td>
+<td>The IP address in a DB Security Group should not be '0.0.0.0/0' (IPv4) or '::/0' (IPv6). If so, any IP can access it</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -8917,7 +9373,7 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>EC2 Instance Has Public IP<br/><sup><sub>b3de4e4c-14be-4159-b99d-9ad194365e4c</sub></sup></td>
+<td>EC2 Instance Subnet Has Public IP Mapping On Launch<br/><sup><sub>b3de4e4c-14be-4159-b99d-9ad194365e4c</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
@@ -8961,7 +9417,7 @@
 <td>CloudFormation</td>
 <td><span style="color:#C00">High</span></td>
 <td>Observability</td>
-<td>Server Access Logging must be enabled on S3 Buckets so that all changes are logged and trackable when the Service used is CloudTrail</td>
+<td>Server Access Logging should be enabled on S3 Buckets so that all changes are logged and trackable when the Service used is CloudTrail</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-loggingconfig">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -9365,7 +9821,7 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html#cfn-ecr-repository-imagescanningconfiguration">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>SQS with SSE disabled<br/><sup><sub>12726829-93ed-4d51-9cbe-13423f4299e1</sub></sup></td>
+<td>SQS With SSE Disabled<br/><sup><sub>12726829-93ed-4d51-9cbe-13423f4299e1</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Encryption</td>
@@ -9377,7 +9833,7 @@
 <td>CloudFormation</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Encryption</td>
-<td>CodeBuild Should have EncryptionKey defined</td>
+<td>CodeBuild Project should be encrypted, which means 'EncryptionKey' should be defined</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -9697,7 +10153,7 @@
 <td>CloudFormation</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
-<td>AWS Cloudfront distributions must have logging enabled, which means the attribute 'DistributionConfig.Logging' must be defined</td>
+<td>AWS CloudFront distributions should have logging enabled to collect all viewer requests, which means the attribute 'DistributionConfig.Logging' should be defined</td>
 <td><a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/logging-and-monitoring.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -9761,7 +10217,7 @@
 <td>CloudFormation</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
-<td>Enable AWS CloudFormation Stack Notifications</td>
+<td>AWS CloudFormation should have stack notifications enabled to be notified when an event occurs</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -9841,7 +10297,7 @@
 <td>CloudFormation</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Secret Management</td>
-<td>Lambda hardcoded AWS access/secret keys</td>
+<td>Lambda access/secret keys should not be hardcoded</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-environment">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -10093,11 +10549,11 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>CloudTrail Log Files Not Encrypted With CMK<br/><sup><sub>050a9ba8-d1cb-4c61-a5e8-8805a70d3b85</sub></sup></td>
+<td>CloudTrail Log Files Not Encrypted With KMS<br/><sup><sub>050a9ba8-d1cb-4c61-a5e8-8805a70d3b85</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Encryption</td>
-<td>Logs delivered by CloudTrail should be encrypted using KMS</td>
+<td>Logs delivered by CloudTrail should be encrypted using KMS to increase security of your CloudTrail</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-kmskeyid">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -10217,7 +10673,7 @@
 <td>CloudFormation</td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Observability</td>
-<td>CloudTrail log file validation should be enabled</td>
+<td>CloudTrail log file validation should be enabled to determine whether a log file has not been tampered</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-enablelogfilevalidation">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -10653,14 +11109,6 @@
 <td><a href="https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/instances">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>COS Node Image Not Used<br/><sup><sub>dbe058d7-b82e-430b-8426-992b2e4677e7</sub></sup></td>
-<td>GoogleDeploymentManager</td>
-<td><span style="color:#C00">High</span></td>
-<td>Insecure Configurations</td>
-<td>The node image should be Container-Optimized OS(COS)</td>
-<td><a href="https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Not Proper Email Account In Use<br/><sup><sub>a21b8df3-c840-4b3d-a41a-10fb2afda171</sub></sup></td>
 <td>GoogleDeploymentManager</td>
 <td><span style="color:#C00">High</span></td>
@@ -10805,6 +11253,14 @@
 <td><a href="https://cloud.google.com/storage/docs/json_api/v1/buckets">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>COS Node Image Not Used<br/><sup><sub>dbe058d7-b82e-430b-8426-992b2e4677e7</sub></sup></td>
+<td>GoogleDeploymentManager</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>The node image should be Container-Optimized OS(COS)</td>
+<td><a href="https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>OSLogin Is Disabled In VM Instance<br/><sup><sub>e66e1b71-c810-4b4e-a737-0ab59e7f5e41</sub></sup></td>
 <td>GoogleDeploymentManager</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -10833,7 +11289,7 @@
 <td>GoogleDeploymentManager</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
-<td>Check if Google Firewall allows SSH access (port 22) from the Internet (public CIDR block)</td>
+<td>Google Firewall should not allow SSH access (port 22) from the Internet (public CIDR block) to ensure the principle of least privileges</td>
 <td><a href="https://cloud.google.com/compute/docs/reference/rest/v1/firewalls">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -10909,7 +11365,7 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>ECS Service Admin Role is Present<br/><sup><sub>7db727c1-1720-468e-b80e-06697f71e09e</sub></sup></td>
+<td>ECS Service Admin Role Is Present<br/><sup><sub>7db727c1-1720-468e-b80e-06697f71e09e</sub></sup></td>
 <td>Ansible</td>
 <td><span style="color:#C00">High</span></td>
 <td>Access Control</td>
@@ -10985,7 +11441,7 @@
 <td>Ansible</td>
 <td><span style="color:#C00">High</span></td>
 <td>Access Control</td>
-<td>Users should authenticate with MFA (Multi-factor Authentication)</td>
+<td>Users should authenticate with MFA (Multi-factor Authentication) to ensure an extra layer of protection when authenticating</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/iam_mfa_device_info_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -11121,7 +11577,7 @@
 <td>Ansible</td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
-<td>User Data contains an encoded RSA Private Key</td>
+<td>User Data should not contain a base64 encoded private key. If so, anyone can decode the private key easily</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_lc_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -11137,7 +11593,7 @@
 <td>Ansible</td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
-<td>IAM Database Auth Enabled must be configured to true</td>
+<td>IAM Database Auth Enabled should be configured to true when using compatible engine and version</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -11281,7 +11737,7 @@
 <td>Ansible</td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
-<td>The IP address in a DB Security Group must not be '0.0.0.0/0' (IPv4) or '::/0' (IPv6).</td>
+<td>The IP address in a DB Security Group should not be '0.0.0.0/0' (IPv4) or '::/0' (IPv6). If so, any IP can access it</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -11513,7 +11969,7 @@
 <td>Ansible</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Best Practices</td>
-<td>Check if IAM account password has at least one number</td>
+<td>IAM user resource Login Profile Password should have at least one number</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -11581,7 +12037,7 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/elasticache_module.html#parameter-engine">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>SQS with SSE disabled<br/><sup><sub>e1e7b278-2a8b-49bd-a26e-66a7f70b17eb</sub></sup></td>
+<td>SQS With SSE Disabled<br/><sup><sub>e1e7b278-2a8b-49bd-a26e-66a7f70b17eb</sub></sup></td>
 <td>Ansible</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Encryption</td>
@@ -11653,7 +12109,7 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/aws_api_gateway_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>SQL Analysis Services Port 2383 (TCP) is Publicly Accessible<br/><sup><sub>7af1c447-c014-4f05-bd8b-ebe3a15734ac</sub></sup></td>
+<td>SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible<br/><sup><sub>7af1c447-c014-4f05-bd8b-ebe3a15734ac</sub></sup></td>
 <td>Ansible</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
@@ -11669,11 +12125,11 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/wafv2_resources_module.html#parameter-arn">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Cloudfront Logging Disabled<br/><sup><sub>d31cb911-bf5b-4eb6-9fc3-16780c77c7bd</sub></sup></td>
+<td>CloudFront Logging Disabled<br/><sup><sub>d31cb911-bf5b-4eb6-9fc3-16780c77c7bd</sub></sup></td>
 <td>Ansible</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
-<td>AWS Cloudfront distributions must have logging enabled, which means the attribute 'logging' must be defined with 'enabled' set to true</td>
+<td>AWS CloudFront distributions should have logging enabled to collect all viewer requests, which means the attribute 'logging' should be defined with 'enabled' set to true</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/cloudfront_distribution_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -11721,7 +12177,7 @@
 <td>Ansible</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
-<td>AWS CloudFormation should have stack notifications enabled</td>
+<td>AWS CloudFormation should have stack notifications enabled to be notified when an event occurs</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/cloudformation_module.html#parameter-notification_arns">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -11737,7 +12193,7 @@
 <td>Ansible</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
-<td>S3 bucket should have debug_botocore_endpoint_logs</td>
+<td>S3 bucket should have 'debug_botocore_endpoint_logs' defined</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html#parameter-debug_botocore_endpoint_logs">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -11761,8 +12217,16 @@
 <td>Ansible</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Secret Management</td>
-<td>Lambda access key should not be in plaintext.</td>
+<td>Lambda access/secret keys should not be hardcoded</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/lambda_module.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Hardcoded AWS Access Key<br/><sup><sub>c2f15af3-66a0-4176-a56e-e4711e502e5c</sub></sup></td>
+<td>Ansible</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Secret Management</td>
+<td>AWS Access Key should not be hardcoded</td>
+<td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_instance_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>IAM Policy Grants 'AssumeRole' Permission Across All Services<br/><sup><sub>12a7a7ce-39d6-49dd-923d-aeb4564eb66c</sub></sup></td>
@@ -11829,11 +12293,11 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/efs_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>CloudTrail Log Files Not Encrypted With CMK<br/><sup><sub>f5587077-3f57-4370-9b4e-4eb5b1bac85b</sub></sup></td>
+<td>CloudTrail Log Files Not Encrypted With KMS<br/><sup><sub>f5587077-3f57-4370-9b4e-4eb5b1bac85b</sub></sup></td>
 <td>Ansible</td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Encryption</td>
-<td>CloudTrail Log Files should be encrypted with Key Management Service (KMS)</td>
+<td>Logs delivered by CloudTrail should be encrypted using KMS to increase security of your CloudTrail</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -11853,7 +12317,7 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-port">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Cloudfront Without WAF<br/><sup><sub>22c80725-e390-4055-8d14-a872230f6607</sub></sup></td>
+<td>CloudFront Without WAF<br/><sup><sub>22c80725-e390-4055-8d14-a872230f6607</sub></sup></td>
 <td>Ansible</td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Networking and Firewall</td>
@@ -11897,16 +12361,8 @@
 <td>Ansible</td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Observability</td>
-<td>CloudTrail Log Files should have validation enabled</td>
+<td>CloudTrail log file validation should be enabled to determine whether a log file has not been tampered</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Hardcoded AWS Access Key<br/><sup><sub>c2f15af3-66a0-4176-a56e-e4711e502e5c</sub></sup></td>
-<td>Ansible</td>
-<td><span style="color:#CC0">Low</span></td>
-<td>Secret Management</td>
-<td>Check if the user data in the EC2 instance has the access key hardcoded</td>
-<td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_instance_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>EC2 Not EBS Optimized<br/><sup><sub>338b6cab-961d-4998-bb49-e5b6a11c9a5c</sub></sup></td>
@@ -11971,14 +12427,6 @@
 <td>Insecure Configurations</td>
 <td>SQL Instance should not have Contained Database Authentication On</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>COS Node Image Not Used<br/><sup><sub>be41f891-96b1-4b9d-b74f-b922a918c778</sub></sup></td>
-<td>Ansible</td>
-<td><span style="color:#C00">High</span></td>
-<td>Insecure Configurations</td>
-<td>The node image should be Container-Optimized OS(COS)</td>
-<td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_node_pool_module.html#parameter-config/image_type">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Cluster Labels Disabled<br/><sup><sub>fbe9b2d0-a2b7-47a1-a534-03775f3013f7</sub></sup></td>
@@ -12189,6 +12637,14 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Using Default Service Account<br/><sup><sub>2775e169-e708-42a9-9305-b58aadd2c4dd</sub></sup></td>
+<td>Ansible</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Instances must not be configured to use the Default Service Account, that has full access to all Cloud APIs, which means the attribute 'service_account_email' must be defined. Additionally, it must not be empty and must also not be a default Google Compute Engine service account.</td>
+<td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Cloud DNS Without DNSSEC<br/><sup><sub>80b15fb1-6207-40f4-a803-6915ae619a03</sub></sup></td>
 <td>Ansible</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -12203,14 +12659,6 @@
 <td>Insecure Defaults</td>
 <td>Kubernetes Engine Clusters should not be configured to use the default service account</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html#parameter-node_config/service_account">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Using Default Service Account<br/><sup><sub>2775e169-e708-42a9-9305-b58aadd2c4dd</sub></sup></td>
-<td>Ansible</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Insecure Defaults</td>
-<td>Instances must not be configured to use the Default Service Account, that has full access to all Cloud APIs, which means the attribute 'service_account_email' must be defined. Additionally, it must not be empty and must also not be a default Google Compute Engine service account.</td>
-<td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Google Compute Network Using Default Firewall Rule<br/><sup><sub>29b8224a-60e9-4011-8ac2-7916a659841f</sub></sup></td>
@@ -12233,7 +12681,7 @@
 <td>Ansible</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
-<td>Check if Google Firewall allows SSH access (port 22) from the Internet (public CIDR block).</td>
+<td>Google Firewall should not allow SSH access (port 22) from the Internet (public CIDR block) to ensure the principle of least privileges</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_firewall_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -12241,7 +12689,7 @@
 <td>Ansible</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
-<td>Google Compute Engine VM instances should not enable serial ports</td>
+<td>Google Compute Engine VM instances should not enable serial ports. When enabled, anyone can access your VM, if they know the username, project ID, SSH key, instance name and zone</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -12277,6 +12725,14 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>COS Node Image Not Used<br/><sup><sub>be41f891-96b1-4b9d-b74f-b922a918c778</sub></sup></td>
+<td>Ansible</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Resource Management</td>
+<td>The node image should be Container-Optimized OS(COS)</td>
+<td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_node_pool_module.html#parameter-config/image_type">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Project-wide SSH Keys Are Enabled In VM Instances<br/><sup><sub>099b4411-d11e-4537-a0fc-146b19762a79</sub></sup></td>
 <td>Ansible</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -12289,7 +12745,7 @@
 <td>Ansible</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Secret Management</td>
-<td>KMS rotation period should not surpass 365 days.</td>
+<td>KMS rotation period should not surpass 365 days</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_kms_crypto_key_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -12313,7 +12769,7 @@
 <td>Ansible</td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Networking and Firewall</td>
-<td>Google Compute Subnetwork should have 'private_ip_google_access' set to yes</td>
+<td>Google Compute Subnetwork should have Private Google Access enabled, which means 'private_ip_google_access' should be set to yes</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_subnetwork_module.html#parameter-private_ip_google_access">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -12337,7 +12793,7 @@
 <td>Ansible</td>
 <td><span style="color:#C00">High</span></td>
 <td>Access Control</td>
-<td>Check if 'network_acls' is open to public.</td>
+<td>Storage Account should not be public to grant the principle of least privileges</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-network_acls">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -12393,7 +12849,7 @@
 <td>Ansible</td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
-<td>Azurerm Container Registry should contain associated locks through 'azure_rm_lock.managed_resource_id' or 'azure_rm_lock.resource_group' association</td>
+<td>Azurerm Container Registry should contain associated locks, which means 'azure_rm_lock.managed_resource_id' or 'azure_rm_lock.resource_group' association should be defined</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_lock_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -12433,7 +12889,7 @@
 <td>Ansible</td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
-<td>The IP range filter should be defined</td>
+<td>The IP range filter should be defined to secure the data stored</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_cosmosdbaccount_module.html#parameter-ip_range_filter">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -12477,14 +12933,6 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_adserviceprincipal_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Unrestricted SQL Server Access<br/><sup><sub>3f23c96c-f9f5-488d-9b17-605b8da5842f</sub></sup></td>
-<td>Ansible</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Best Practices</td>
-<td>Azure SQL Server Accessibility should be set to a minimal address range, which means the difference between the values of the 'end_ip_address' and 'start_ip_address' must be lesser than 256. Additionally, both ips must be different from '0.0.0.0'</td>
-<td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_sqlfirewallrule_module.html">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>SQL Server Predictable Admin Account Name<br/><sup><sub>663062e9-473d-4e87-99bc-6f3684b3df40</sub></sup></td>
 <td>Ansible</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -12499,14 +12947,6 @@
 <td>Build Process</td>
 <td>Cosmos DB Account must have a mapping of tags.</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_cosmosdbaccount_module.html">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Redis Cache Allows Non SSL Connections<br/><sup><sub>869e7fb4-30f0-4bdb-b360-ad548f337f2f</sub></sup></td>
-<td>Ansible</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Encryption</td>
-<td>Redis Cache resources should not allow non-SSL connections.</td>
-<td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_rediscache_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Storage Account Not Using Latest TLS Encryption Version<br/><sup><sub>c62746cf-92d5-4649-9acf-7d48d086f2ee</sub></sup></td>
@@ -12525,11 +12965,19 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_subnet_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Redis Cache Allows Non SSL Connections<br/><sup><sub>869e7fb4-30f0-4bdb-b360-ad548f337f2f</sub></sup></td>
+<td>Ansible</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Redis Cache resources should not allow non-SSL connections</td>
+<td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_rediscache_module.html">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>AKS Network Policy Misconfigured<br/><sup><sub>8c3bedf1-c570-4c3b-b414-d068cd39a00c</sub></sup></td>
 <td>Ansible</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
-<td>Azure Kubernetes Service should have the proper network policy configuration</td>
+<td>Azure Kubernetes Service should have the proper network policy configuration to ensure the principle of least privileges, which means that 'network_profile.network_policy' should be defined</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_aks_module.html#parameter-network_profile/network_policy">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -12539,6 +12987,14 @@
 <td>Insecure Defaults</td>
 <td>Default Network Access rule for Storage Accounts must be set to deny, which means the attribute 'default_action' must be 'Deny'</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Unrestricted SQL Server Access<br/><sup><sub>3f23c96c-f9f5-488d-9b17-605b8da5842f</sub></sup></td>
+<td>Ansible</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Azure SQL Server Accessibility should be set to a minimal address range to grant the principle of least privileges, which means the difference between the values of the 'end_ip_address' and 'start_ip_address' should be less than 256. Additionally, both ips should be different from '0.0.0.0'</td>
+<td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_sqlfirewallrule_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>WAF Is Disabled For Azure Application Gateway<br/><sup><sub>2fc5ab5a-c5eb-4ae4-b687-0f16fe77c255</sub></sup></td>

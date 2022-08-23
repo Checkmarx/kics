@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/queries/cloudformation-queries/">
       
       <link rel="icon" href="../../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.0">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.1">
     
     
       
@@ -1488,7 +1488,7 @@
 <td>IAM Database Auth Not Enabled<br/><sup><sub>9fcd0a0a-9b6f-4670-a215-d94e6bf3f184</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
-<td>IAM Database Auth Enabled must be configured to true</td>
+<td>IAM Database Auth Enabled should be configured to true when compatible with engine and version</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-enableiamdatabaseauthentication">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -1593,7 +1593,7 @@
 <td>User Data Contains Encoded Private Key<br/><sup><sub>568cc372-ca64-420d-9015-ee347d00d288</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
-<td>User Data Base64 contains an encoded RSA Private Key</td>
+<td>User Data should not contain a base64 encoded private key. If so, anyone can decode the private key easily</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -1807,10 +1807,10 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>DB Security Group with Public Scope<br/><sup><sub>9564406d-e761-4e61-b8d7-5926e3ab8e79</sub></sup></td>
+<td>DB Security Group With Public Scope<br/><sup><sub>9564406d-e761-4e61-b8d7-5926e3ab8e79</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
-<td>The IP address in a DB Security Group must not be '0.0.0.0/0' (IPv4) or '::/0' (IPv6).</td>
+<td>The IP address in a DB Security Group should not be '0.0.0.0/0' (IPv4) or '::/0' (IPv6). If so, any IP can access it</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -1842,7 +1842,7 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>EC2 Instance Has Public IP<br/><sup><sub>b3de4e4c-14be-4159-b99d-9ad194365e4c</sub></sup></td>
+<td>EC2 Instance Subnet Has Public IP Mapping On Launch<br/><sup><sub>b3de4e4c-14be-4159-b99d-9ad194365e4c</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
 <td>EC2 Subnet should not have MapPublicIpOnLaunch set to true</td>
@@ -1880,7 +1880,7 @@
 <td>S3 Bucket CloudTrail Logging Disabled<br/><sup><sub>c3ce69fd-e3df-49c6-be78-1db3f802261c</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Observability</td>
-<td>Server Access Logging must be enabled on S3 Buckets so that all changes are logged and trackable when the Service used is CloudTrail</td>
+<td>Server Access Logging should be enabled on S3 Buckets so that all changes are logged and trackable when the Service used is CloudTrail</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-loggingconfig">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2234,7 +2234,7 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html#cfn-ecr-repository-imagescanningconfiguration">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>SQS with SSE disabled<br/><sup><sub>12726829-93ed-4d51-9cbe-13423f4299e1</sub></sup></td>
+<td>SQS With SSE Disabled<br/><sup><sub>12726829-93ed-4d51-9cbe-13423f4299e1</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Encryption</td>
 <td>Amazon Simple Queue Service (SQS) queue is not protecting the contents of their messages using Server-Side Encryption (SSE)</td>
@@ -2244,7 +2244,7 @@
 <td>CodeBuild Not Encrypted<br/><sup><sub>d7467bb6-3ed1-4c82-8095-5e7a818d0aad</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Encryption</td>
-<td>CodeBuild Should have EncryptionKey defined</td>
+<td>CodeBuild Project should be encrypted, which means 'EncryptionKey' should be defined</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2524,7 +2524,7 @@
 <td>CloudFront Logging Disabled<br/><sup><sub>de77cd9f-0e8b-46cc-b4a4-b6b436838642</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
-<td>AWS Cloudfront distributions must have logging enabled, which means the attribute 'DistributionConfig.Logging' must be defined</td>
+<td>AWS CloudFront distributions should have logging enabled to collect all viewer requests, which means the attribute 'DistributionConfig.Logging' should be defined</td>
 <td><a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/logging-and-monitoring.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2580,7 +2580,7 @@
 <td>Stack Notifications Disabled<br/><sup><sub>837e033c-4717-40bd-807e-6abaa30161b7</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
-<td>Enable AWS CloudFormation Stack Notifications</td>
+<td>AWS CloudFormation should have stack notifications enabled to be notified when an event occurs</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2650,7 +2650,7 @@
 <td>Hardcoded AWS Access Key In Lambda<br/><sup><sub>2564172f-c92b-4261-9acd-464aed511696</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Secret Management</td>
-<td>Lambda hardcoded AWS access/secret keys</td>
+<td>Lambda access/secret keys should not be hardcoded</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-environment">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2871,10 +2871,10 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>CloudTrail Log Files Not Encrypted With CMK<br/><sup><sub>050a9ba8-d1cb-4c61-a5e8-8805a70d3b85</sub></sup></td>
+<td>CloudTrail Log Files Not Encrypted With KMS<br/><sup><sub>050a9ba8-d1cb-4c61-a5e8-8805a70d3b85</sub></sup></td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Encryption</td>
-<td>Logs delivered by CloudTrail should be encrypted using KMS</td>
+<td>Logs delivered by CloudTrail should be encrypted using KMS to increase security of your CloudTrail</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-kmskeyid">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2979,7 +2979,7 @@
 <td>CloudTrail Log File Validation Disabled<br/><sup><sub>2a3560fe-52ca-4443-b34f-bf0ed5eb74c8</sub></sup></td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Observability</td>
-<td>CloudTrail log file validation should be enabled</td>
+<td>CloudTrail log file validation should be enabled to determine whether a log file has not been tampered</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-enablelogfilevalidation">Documentation</a><br/></td>
 </tr>
 <tr>
