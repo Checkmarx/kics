@@ -4,8 +4,9 @@ import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
-	document := input.document
-	sns_topic := document[i].Resources[name]
+	documents := input.document[i]
+	[_, Resources] := walk(documents)
+	sns_topic := Resources[name]
 	sns_topic.Type == "AWS::SNS::Topic"
 
 	info := cf_lib.get_resource_accessibility(name, "AWS::SNS::TopicPolicy", "Topics")

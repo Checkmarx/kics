@@ -10,5 +10,11 @@
     "severity": "TRACE",
     "line": 5,
     "fileName": "positive2.json"
+  },
+  {
+    "queryName": "BOM - SNS",
+    "severity": "TRACE",
+    "line": 17,
+    "fileName": "positive3.yaml"
   }
 ]

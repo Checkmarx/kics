@@ -22,5 +22,11 @@
     "severity": "TRACE",
     "line": 4,
     "fileName": "positive4.json"
+  },
+  {
+    "queryName": "BOM - AWS EFS",
+    "severity": "TRACE",
+    "line": 17,
+    "fileName": "positive5.yaml"
   }
 ]

@@ -4,8 +4,9 @@ import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
-	document := input.document
-	elasticache := document[i].Resources[name]
+	documents := input.document[i]
+	[_, Resources] := walk(documents)
+	elasticache := Resources[name]
 	elasticache.Type == "AWS::ElastiCache::CacheCluster"
 
 	bom_output = {
