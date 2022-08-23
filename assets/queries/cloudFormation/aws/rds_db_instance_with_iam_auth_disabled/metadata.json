@@ -1,6 +1,6 @@
 {
   "id": "9fcd0a0a-9b6f-4670-a215-d94e6bf3f184",
-  "queryName": "IAM Database Auth Not Enabled",
+  "queryName": "RDS DB Instance With IAM Auth Disabled",
   "severity": "HIGH",
   "category": "Encryption",
   "descriptionText": "IAM Database Auth Enabled should be configured to true when compatible with engine and version",
