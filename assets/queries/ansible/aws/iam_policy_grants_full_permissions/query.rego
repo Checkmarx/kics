@@ -15,6 +15,7 @@ CxPolicy[result] {
 
 	common_lib.is_allow_effect(statement)
 	common_lib.equalsOrInArray(statement.Resource, "*")
+	common_lib.not_only_ec2messages_actions(statement.Action)
 
 	result := {
 		"documentId": id,

@@ -14,6 +14,7 @@ CxPolicy[result] {
 	common_lib.is_allow_effect(statement)
 	not common_lib.equalsOrInArray(statement.Resource, lower("arn:aws:iam::aws:policy/AdministratorAccess"))
 	common_lib.equalsOrInArray(statement.Action, "*")
+	common_lib.not_only_ec2messages_actions(statement.Action)
 
 	result := {
 		"documentId": input.document[i].id,
