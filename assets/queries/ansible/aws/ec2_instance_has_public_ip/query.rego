@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -8,6 +9,7 @@ CxPolicy[result] {
 	ec2 := task[modules[m]]
 	checkState(ec2)
 
+	not common_lib.valid_key(ec2, "network_interfaces")
 	ansLib.isAnsibleTrue(ec2.assign_public_ip)
 
 	# There is no default value for assign_public_ip
