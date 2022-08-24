@@ -36,7 +36,7 @@ func Import(terraformerPath, destinationPath string) (string, error) {
 	log.Info().Msg("importing terraformer resources")
 	tfLogger.SetOutput(io.Discard)
 
-	// extracts relevant info from KICS Terraformer Path Syntax
+	// extracts relevant info from KICS terraformer path syntax
 	pathOptions, err := extractTerraformerOptions(terraformerPath)
 	if err != nil {
 		return "", errors.Wrap(err, "wrong terraformer path syntax")
@@ -48,17 +48,19 @@ func Import(terraformerPath, destinationPath string) (string, error) {
 		}
 	}
 
-	// set destination folder path where the Terraform resources will be saved
+	// set destination folder path where the terraform resources will be saved
 	destFolderName := fmt.Sprintf("kics-extract-terraformer-%s", time.Now().Format("01-02-2006"))
 	destination := filepath.Join(destinationPath, destFolderName)
 
-	// run Terraformer
+	// run terraformer
 	output, err := runTerraformerFunc(pathOptions, destination)
 	if err != nil {
+		// save terraformer output
+		_ = saveTerraformerOutputFunc(destination, output)
 		return "", errors.Wrap(err, "failed to import resources")
 	}
 
-	// save Terraform output
+	// save terraformer output
 	err = saveTerraformerOutputFunc(destination, output)
 	if err != nil {
 		return "", errors.Wrap(err, "failed to import resources")
@@ -70,7 +72,7 @@ func Import(terraformerPath, destinationPath string) (string, error) {
 	return destination, nil
 }
 
-// extractTerraformerOptions extracts all the information from the KICS Terraformer Path Syntax without the prefix 'terraformer::'
+// extractTerraformerOptions extracts all the information from the KICS terraformer path syntax without the prefix 'terraformer::'
 // {CloudProvider}:{Resources}:{Regions}:{Projects}
 func extractTerraformerOptions(path string) (*Path, error) {
 	pathInfo := strings.Split(path, ":")
@@ -87,7 +89,7 @@ func extractTerraformerOptions(path string) (*Path, error) {
 	}, nil
 }
 
-// getProjects gets all the projects pointed in the KICS Terraformer Path Syntax
+// getProjects gets all the projects pointed in the KICS terraformer path syntax
 // projects are only required for gcp
 func getProjects(pathInfo []string) string {
 	if len(pathInfo) == terraformerPathLength+2 {
@@ -97,7 +99,7 @@ func getProjects(pathInfo []string) string {
 	return ""
 }
 
-// getRegions gets all the regions pointed in the KICS Terraformer Path Syntax
+// getRegions gets all the regions pointed in the KICS terraformer path syntax
 // regions are only required for aws and gcp
 func getRegions(pathInfo []string) string {
 	if len(pathInfo) >= terraformerPathLength+1 {
@@ -147,7 +149,7 @@ func runTerraformer(pathOptions *Path, destination string) (string, error) {
 }
 
 // saveTerraformerOutput verifies if the destination folder exists
-// if not, it means that someting went wrong in the Terraformer command
+// if not, it means that someting went wrong in the terraformer command
 // it also saves the terraformer command output in the destination folder
 func saveTerraformerOutput(destination, output string) error {
 	_, err := os.Stat(destination)

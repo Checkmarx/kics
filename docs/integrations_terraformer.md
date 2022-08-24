@@ -109,7 +109,9 @@ terraformer::{CloudProvider}:{Resources}:{Regions}
 ```
 
 ### AZURE
+```sh
 terraformer::{CloudProvider}:{Resources}
+```
 
 ### GCP
 ```sh
@@ -131,7 +133,7 @@ You can find a complete list of possible values in the links below:
 
 To import all resources please use: `*`
 
-**Regions**: A slash-separated list of the regions to import from.
+**Regions**: A slash-separated list of the regions to import from. **It is only required for AWS and GCP**.
 
 **Projects**: A slash-separated list of the projects ids to import from. **It is only required for GCP**.
 
@@ -176,10 +178,10 @@ To run KICS Terraformer integration with Docker simply pass the AZURE Credential
 Note that you should fill the `<certificate_path>` with the path that points to the directory where your certificate is located, and the `<certificate-name>` should point to the certificate name located in `<certificate_path>`.
 
 ```sh
-docker run -v <certificate_path>:/certificate -e ARM_CLIENT_CERTIFICATE_PATH=/certificate/<certificate_name>.pfx -e ARM_CLIENT_CERTIFICATE_PASSWORD -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_SUBSCRIPTION_ID checkmarx/kics:latest scan -p "terraformer::azure:storage_account:eastus" -v --no-progress
+docker run -v <certificate_path>:/certificate -e ARM_CLIENT_CERTIFICATE_PATH=/certificate/<certificate_name>.pfx -e ARM_CLIENT_CERTIFICATE_PASSWORD -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_SUBSCRIPTION_ID checkmarx/kics:latest scan -p "terraformer::azure:storage_account" -v --no-progress
 ```
 ```sh
-docker run -v <certificate_path>:/certificate -v ${PWD}:/path/ -e ARM_CLIENT_CERTIFICATE_PATH=/certificate/<certificate_name>.pfx -e ARM_CLIENT_CERTIFICATE_PASSWORD -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_SUBSCRIPTION_ID checkmarx/kics:latest scan -p "terraformer::azure:storage_account:eastus" -v --no-progress -o /path/results
+docker run -v <certificate_path>:/certificate -v ${PWD}:/path/ -e ARM_CLIENT_CERTIFICATE_PATH=/certificate/<certificate_name>.pfx -e ARM_CLIENT_CERTIFICATE_PASSWORD -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_SUBSCRIPTION_ID checkmarx/kics:latest scan -p "terraformer::azure:storage_account" -v --no-progress -o /path/results
 ```
 
 ![client_certificate_terraformer_azure](https://user-images.githubusercontent.com/74001161/152843317-7e83b70c-2a44-4f22-8a5e-fa9434950269.gif)
@@ -187,10 +189,10 @@ docker run -v <certificate_path>:/certificate -v ${PWD}:/path/ -e ARM_CLIENT_CER
 
 #### Service Principal with Client Secret
 ```sh
-docker run -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET -e ARM_TENANT_ID checkmarx/kics:latest scan -p "terraformer::azure:storage_account:eastus" -v --no-progress
+docker run -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET -e ARM_TENANT_ID checkmarx/kics:latest scan -p "terraformer::azure:storage_account" -v --no-progress
 ```
 ```sh
-docker run -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET -e ARM_TENANT_ID -v ${PWD}:/path/ checkmarx/kics:latest scan -p "terraformer::azure:storage_account:eastus" -v --no-progress -o /path/results
+docker run -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET -e ARM_TENANT_ID -v ${PWD}:/path/ checkmarx/kics:latest scan -p "terraformer::azure:storage_account" -v --no-progress -o /path/results
 ```
 
 ![client_secret_terraformer_azure](https://user-images.githubusercontent.com/74001161/152833926-68b7cc56-23c0-4297-b308-56f4c6746e09.gif)
