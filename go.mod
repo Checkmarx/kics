@@ -81,8 +81,7 @@ require (
 	github.com/docker/go-connections v0.4.0 // indirect
 	github.com/docker/go-metrics v0.0.1 // indirect
 	github.com/docker/go-units v0.4.0 // indirect
-	github.com/dollarshaveclub/new-relic-synthetics-go v0.0.0-20170605224734-4dc3dd6ae884 // indirect
-	github.com/emicklei/go-restful v2.9.5+incompatible // indirect
+	github.com/emicklei/go-restful/v3 v3.8.0 // indirect
 	github.com/evanphx/json-patch v4.12.0+incompatible // indirect
 	github.com/exponent-io/jsonpath v0.0.0-20151013193312-d6023ce2651d // indirect
 	github.com/fatih/color v1.13.0 // indirect
@@ -213,7 +212,6 @@ require (
 
 replace (
 	github.com/docker/cli => github.com/docker/cli v20.10.12+incompatible
-	github.com/emicklei/go-restful/ => github.com/emicklei/go-restful/v3 v3.8.0
 	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
 	github.com/spf13/afero => github.com/spf13/afero v1.2.2
 	gopkg.in/jarcoal/httpmock.v1 => github.com/jarcoal/httpmock v1.0.5
