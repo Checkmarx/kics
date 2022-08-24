@@ -187,12 +187,12 @@ func logLoadingQueriesType(types []string) {
 	log.Info().Msgf("Loading queries of type: %s", strings.Join(types, ", "))
 }
 
-func extractPathType(paths []string) (regular, terraformer, k8s []string) {
+func extractPathType(paths []string) (regular, terraformer, kuberneter []string) {
 	for _, path := range paths {
 		if terraformerRegex.MatchString(path) {
 			terraformer = append(terraformer, terraformerRegex.ReplaceAllString(path, ""))
 		} else if kuberneterRegex.MatchString(path) {
-			k8s = append(k8s, kuberneterRegex.ReplaceAllString(path, ""))
+			kuberneter = append(kuberneter, kuberneterRegex.ReplaceAllString(path, ""))
 		} else {
 			regular = append(regular, path)
 		}
