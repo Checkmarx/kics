@@ -18,10 +18,8 @@ import (
 const terraformerPathLength = 2
 
 // for testing purposes
-var (
-	runTerraformerFunc        func(pathOptions *Path, destination string) (string, error) = runTerraformer
-	saveTerraformerOutputFunc func(destination, output string) error                      = saveTerraformerOutput
-)
+var runTerraformerFunc func(pathOptions *Path, destination string) (string, error) = runTerraformer
+var saveTerraformerOutputFunc func(destination, output string) error = saveTerraformerOutput
 
 // Path is a struct that contains the terraformer path information
 type Path struct {
