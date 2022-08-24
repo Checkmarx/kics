@@ -230,21 +230,18 @@ func parseDataSourceBody(body *hclsyntax.Body) string {
 		"statement": getStatementSpec(),
 	}
 
-	//deleteResourcesFromPolicy(body)
-
 	target, decodeErrs := hcldec.Decode(body, dataSourceSpec, &hcl.EvalContext{
 		Variables: inputVariableMap,
 		Functions: functions.TerraformFuncs,
 	})
 
-	//check decode errors
+	// check decode errors
 	for _, decErr := range decodeErrs {
 		if decErr.Summary != "Unknown variable" {
 			log.Debug().Msg("Error trying to eval data source block.")
 			return ""
-		} else {
-			log.Debug().Msg("Dismissed Error when decoding policy: Found unknown variable")
 		}
+		log.Debug().Msg("Dismissed Error when decoding policy: Found unknown variable")
 	}
 
 	dataSourceJSON := decodeDataSourcePolicy(target)
