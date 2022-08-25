@@ -682,14 +682,3 @@ user_unrecommended_permission_policy_scenarios(targetUser, permission) {
     unrecommended_permission_policy(resourcePolicy, permission)
 
 }
-
-# ec2 messages only support resource equal to '*' 
-# https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonmessagedeliveryservice.html
-not_only_ec2messages_actions(actions){
-	is_array(actions)
-    action := actions[_]
-	not startswith(action, "ec2messages:")
-} else {
-	not is_array(actions)
-	not startswith(actions, "ec2messages:")
-}
