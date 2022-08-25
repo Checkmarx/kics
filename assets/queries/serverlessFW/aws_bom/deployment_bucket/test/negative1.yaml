@@ -1,7 +1,0 @@
-AWSTemplateFormatVersion: '2010-09-09'
-Resources:
-  myDistribution:
-    Type: AWS::CloudFront::Distribution
-    Properties:
-      DistributionConfig:
-        Enabled: true

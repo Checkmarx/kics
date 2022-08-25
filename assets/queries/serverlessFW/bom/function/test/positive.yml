@@ -1,0 +1,130 @@
+# serverless.yml
+ 
+# Service name
+service: myservice
+ 
+provider: 
+  name: aws
+# Framework version constraint (semver constraint): '3', '^2.33'
+frameworkVersion: '3'
+ 
+# Configuration validation: 'error' (fatal error), 'warn' (logged to the output) or 'off' (default: warn)
+# See https://www.serverless.com/framework/docs/configuration-validation
+configValidationMode: error
+# Load environment variables from .env files (default: false)
+# See https://www.serverless.com/framework/docs/environment-variables
+useDotenv: true
+# 'warn' reports deprecations on the go, 'error' will result with an exception being thrown on first approached deprecation
+deprecationNotificationMode: warn:summary
+# Disable deprecations by their codes (default: empty)
+# See https://www.serverless.com/framework/docs/deprecations
+disabledDeprecations:
+  - DEP_CODE_1 # Deprecation code to disable
+  - '*' # Disable all deprecation messages
+functions:
+  # A function
+  hello:
+    # The file and module for this specific function. Cannot be used with 'image'.
+    handler: users.create
+    # Container image to use. Cannot be used with 'handler'.
+    # Can be the URI of an image in ECR, or the name of an image defined in 'provider.ecr.images'
+    image: baseimage
+    runtime: nodejs14.x
+    # Memory size (default: 1024MB)
+    memorySize: 512
+    # Timeout (default: 6 seconds)
+    # Note: API Gateway has a maximum timeout of 30 seconds
+    timeout: 10
+    # Function environment variables
+    environment:
+      APP_ENV_VARIABLE: FOOBAR
+    # Configure the size of ephemeral storage available to your Lambda function (in MBs, default: 512)
+    ephemeralStorageSize: 512
+    # Override the Lambda function name
+    name: ${sls:stage}-lambdaName
+    description: My function
+    # Processor architecture: 'x86_64' or 'arm64' via Graviton2 (default: x86_64)
+    architecture: x86_64
+    # Reserve a maximum number of concurrent instances (default: account limit)
+    reservedConcurrency: 5
+    # Provision a minimum number of concurrent instances (default: 0)
+    provisionedConcurrency: 3
+    # Override the IAM role to use for this function
+    role: arn:aws:iam::XXXXXX:role/role
+    # SNS topic or SQS ARN to use for the DeadLetterConfig (failed executions)
+    onError: arn:aws:sns:us-east-1:XXXXXX:sns-topic
+    # KMS key ARN to use for encryption for this function
+    kmsKeyArn: arn:aws:kms:us-east-1:XXXXXX:key/some-hash
+    # Disable the creation of the CloudWatch log group
+    disableLogs: false
+    # Duration for CloudWatch log retention (default: forever).
+    logRetentionInDays: 14
+    tags: # Function specific tags
+      foo: bar
+    # VPC settings for this function
+    # If you use VPC then both subproperties (securityGroupIds and subnetIds) are required
+    # Can be set to '~' to disable the use of a VPC
+    vpc:
+      securityGroupIds:
+        - securityGroupId1
+        - securityGroupId2
+      subnetIds:
+        - subnetId1
+        - subnetId2
+    # Lambda URL definition for this function, optional
+    # Can be defined as `true` which will create URL without authorizer and cors settings
+    url:
+      authorizer: 'aws_iam' # Authorizer used for calls to Lambda URL
+      cors:  # CORS configuration for Lambda URL, can also be defined as `true` with default CORS configuration
+        allowedOrigins:
+          - "*"
+        allowedHeaders:
+          - Authorization
+        allowedMethods:
+          - GET
+        allowCredentials: true
+        exposedResponseHeaders:
+          - SomeHeader
+        maxAge: 3600
+    # Packaging rules specific to this function
+    package:
+      # Directories and files to include in the deployed package
+      patterns:
+        - src/**
+        - handler.js
+        - '!.git/**'
+        - '!.travis.yml'
+      # Explicitly set the package artifact to deploy (overrides native packaging behavior)
+      artifact: path/to/my-artifact.zip
+      # Package this function as an individual artifact (default: false)
+      individually: true
+    # ARN of Lambda layers to use
+    layers:
+      - arn:aws:lambda:region:XXXXXX:layer:LayerName:Y
+    # Overrides the provider setting. Can be 'Active' or 'PassThrough'
+    tracing: Active
+    # Conditionally deploy the function
+    condition: SomeCondition
+    # CloudFormation 'DependsOn' option
+    dependsOn:
+      - MyThing
+      - MyOtherThing
+    # Lambda destination settings
+    destinations:
+      # Function name or ARN (or reference) of target (EventBridge/SQS/SNS topic)
+      onSuccess: functionName
+      # Function name or ARN (or reference) of target (EventBridge/SQS/SNS topic)
+      onFailure:
+        type: sns
+        arn:
+          Ref: SomeTopicName
+    # Mount an EFS filesystem
+    fileSystemConfig:
+      # ARN of EFS Access Point
+      arn: arn:aws:elasticfilesystem:us-east-1:11111111:access-point/fsap-a1a1a1
+      # Path under which EFS will be mounted and accessible in Lambda
+      localMountPath: /mnt/example
+    # Maximum retry attempts when an asynchronous invocation fails (between 0 and 2; default: 2)
+    maximumRetryAttempts: 1
+    # Maximum event age in seconds when invoking asynchronously (between 60 and 21600)
+    maximumEventAge: 7200

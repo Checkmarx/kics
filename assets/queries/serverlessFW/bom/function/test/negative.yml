@@ -1,0 +1,21 @@
+# serverless.yml
+ 
+# Service name
+service: myservice
+ 
+# Framework version constraint (semver constraint): '3', '^2.33'
+frameworkVersion: '3'
+ 
+# Configuration validation: 'error' (fatal error), 'warn' (logged to the output) or 'off' (default: warn)
+# See https://www.serverless.com/framework/docs/configuration-validation
+configValidationMode: error
+# Load environment variables from .env files (default: false)
+# See https://www.serverless.com/framework/docs/environment-variables
+useDotenv: true
+# 'warn' reports deprecations on the go, 'error' will result with an exception being thrown on first approached deprecation
+deprecationNotificationMode: warn:summary
+# Disable deprecations by their codes (default: empty)
+# See https://www.serverless.com/framework/docs/deprecations
+disabledDeprecations:
+  - DEP_CODE_1 # Deprecation code to disable
+  - '*' # Disable all deprecation messages

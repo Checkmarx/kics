@@ -1,0 +1,48 @@
+# serverless.yml
+ 
+# Service name
+service: myservice
+
+provider:
+  name: aws
+  deploymentBucket:
+      # Name of an existing bucket to use (default: created by serverless)
+      name: comserverlessselfproviderregiondeploys
+      # On deployment, serverless prunes artifacts older than this limit (default: 5)
+      maxPreviousDeploymentArtifacts: 10
+      # Prevents public access via ACLs or bucket policies (default: false)
+      # Note: the deployment bucket is not public by default. These are additional ACLs.
+      blockPublicAccess: true
+      # Skip the creation of a default bucket policy when the deployment bucket is created (default: false)
+      skipPolicySetup: true
+      # Enable bucket versioning (default: false)
+      versioning: true
+      # Server-side encryption method
+      serverSideEncryption: AES256
+      # For server-side encryption
+      sseKMSKeyId: arn:aws:kms:us-east-1:xxxxxxxxxxxx:key/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+      # For server-side encryption with custom keys
+      sseCustomerAlgorithim: AES256
+      sseCustomerKey: string
+      sseCustomerKeyMD5: md5sum
+      # Tags that will be added to each of the deployment resources
+      tags:
+        key1: value1
+        key2: value2
+ 
+# Framework version constraint (semver constraint): '3', '^2.33'
+frameworkVersion: '3'
+ 
+# Configuration validation: 'error' (fatal error), 'warn' (logged to the output) or 'off' (default: warn)
+# See https://www.serverless.com/framework/docs/configuration-validation
+configValidationMode: error
+# Load environment variables from .env files (default: false)
+# See https://www.serverless.com/framework/docs/environment-variables
+useDotenv: true
+# 'warn' reports deprecations on the go, 'error' will result with an exception being thrown on first approached deprecation
+deprecationNotificationMode: warn:summary
+# Disable deprecations by their codes (default: empty)
+# See https://www.serverless.com/framework/docs/deprecations
+disabledDeprecations:
+  - DEP_CODE_1 # Deprecation code to disable
+  - '*' # Disable all deprecation messages

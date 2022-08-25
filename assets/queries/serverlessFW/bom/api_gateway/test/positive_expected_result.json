@@ -1,0 +1,15 @@
+[
+    {
+      "queryName": "BOM - API Gateway",
+      "severity": "TRACE",
+      "line": 35,
+      "fileName": "positive.yml"
+    },
+    {
+      "queryName": "BOM - API Gateway",
+      "severity": "TRACE",
+      "line": 35,
+      "fileName": "positive2.yml"
+    }
+  ]
+  
