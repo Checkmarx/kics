@@ -13,8 +13,8 @@ CxPolicy[result] {
 	statement := st[_]
 
 	common_lib.is_allow_effect(statement)
-	common_lib.equalsOrInArray(statement.Resource, "*")
-	common_lib.not_only_ec2messages_actions(statement.Action)
+	not common_lib.equalsOrInArray(statement.Resource, lower("arn:aws:iam::aws:policy/AdministratorAccess"))
+	common_lib.equalsOrInArray(statement.Action, "*")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -22,8 +22,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].policy", [resourceType[idx], name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'policy.Statement.Resource' should not equal '*'",
-		"keyActualValue": "'policy.Statement.Resource' equal '*'",
+		"keyExpectedValue": "'policy.Statement.Resource' should not have full permissions without being Admin",
+		"keyActualValue": "'policy.Statement.Resource' has full permissions and is not Admin",
 		"searchLine": common_lib.build_search_line(["resource", resourceType[idx], name, "access_policy"], []),
 	}
 }

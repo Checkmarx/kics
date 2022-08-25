@@ -23,10 +23,7 @@ resource "aws_iam_user_policy" "positive3" {
   "Statement": [
     {
       "Action": [
-        "ec2:*",
-        "s3:*",
-        "lambda:*",
-        "cloudwatch:*"
+      "*"
       ],
       "Effect": "Allow",
       "Resource": "*"

@@ -14,8 +14,8 @@ CxPolicy[result] {
 	statement := st[_]
 
 	common_lib.is_allow_effect(statement)
-	common_lib.equalsOrInArray(statement.Resource, "*")
-	common_lib.not_only_ec2messages_actions(statement.Action)
+	not common_lib.equalsOrInArray(statement.Resource, lower("arn:aws:iam::aws:policy/AdministratorAccess"))
+	common_lib.equalsOrInArray(statement.Action, "*")
 
 	result := {
 		"documentId": id,
@@ -23,8 +23,8 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "iam_managed_policy.policy.Statement.Resource should not equal '*'",
-		"keyActualValue": "iam_managed_policy.policy.Statement.Resource equal '*'",
+		"keyExpectedValue": "'iam_managed_policy.policy.Statement.Resource' should not have full permissions without being Admin",
+		"keyActualValue": "'iam_managed_policy.policy.Statement.Resource' has full permissions and is not Admin",
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}
 }

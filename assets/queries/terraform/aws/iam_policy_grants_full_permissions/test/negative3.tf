@@ -6,10 +6,10 @@ resource "aws_iam_policy" "s3-permission" {
   "Statement": [
     {
       "Action": [
-        "ec2messages:*"
+        "*"
       ],
       "Effect": "Allow",
-      "Resource": "*"
+      "Resource": "arn:aws:iam::aws:policy/AdministratorAccess"
     }
   ]
 }
