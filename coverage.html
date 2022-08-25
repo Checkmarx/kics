@@ -193,7 +193,7 @@
 				
 				<option value="file68">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (76.1%)</option>
 				
-				<option value="file69">github.com/Checkmarx/kics/pkg/parser/terraform/data_source.go (76.8%)</option>
+				<option value="file69">github.com/Checkmarx/kics/pkg/parser/terraform/data_source.go (74.6%)</option>
 				
 				<option value="file70">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (85.7%)</option>
 				
@@ -2165,13 +2165,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="29">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="29">total += v
+                <span class="cov8" title="32">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2196,7 +2196,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4709,7 +4709,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="11">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="11">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -14129,10 +14129,16 @@ func parseDataSourceBody(body *hclsyntax.Body) string <span class="cov7" title="
                 Variables: inputVariableMap,
                 Functions: functions.TerraformFuncs,
         })
-        if decodeErrs != nil </span><span class="cov0" title="0">{
-                log.Debug().Msg("Error trying to eval data source block.")
-                return ""
-        }</span>
+
+        // check decode errors
+        for _, decErr := range decodeErrs </span><span class="cov0" title="0">{
+                if decErr.Summary != "Unknown variable" </span><span class="cov0" title="0">{
+                        log.Debug().Msg("Error trying to eval data source block.")
+                        return ""
+                }</span>
+                <span class="cov0" title="0">log.Debug().Msg("Dismissed Error when decoding policy: Found unknown variable")</span>
+        }
+
         <span class="cov7" title="4">dataSourceJSON := decodeDataSourcePolicy(target)
         convertedDataSource := convertedPolicy{
                 ID:      dataSourceJSON.ID,
@@ -14386,6 +14392,7 @@ func setInputVariablesDefaultValues(filename string) (converter.VariableMap, err
                         },
                 },
         })
+
         defaultValuesMap := make(converter.VariableMap)
         for _, block := range content.Blocks </span><span class="cov10" title="9">{
                 if len(block.Labels) == 0 || block.Labels[0] == "" </span><span class="cov3" title="2">{
