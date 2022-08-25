@@ -1,7 +1,6 @@
 package model
 
 import (
-	"fmt"
 	"strings"
 	"sync"
 
@@ -59,9 +58,6 @@ func ignoreCommentsYAML(node *yaml.Node) {
 		}
 		linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&content.HeadComment), i, node, node.Kind, false)...)
 	}
-
-	fmt.Println()
-	fmt.Println(linesIgnore)
 
 	NewIgnore.build(linesIgnore)
 }
