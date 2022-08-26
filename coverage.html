@@ -145,7 +145,7 @@
 				
 				<option value="file44">github.com/Checkmarx/kics/pkg/kics/service.go (42.2%)</option>
 				
-				<option value="file45">github.com/Checkmarx/kics/pkg/kics/sink.go (38.3%)</option>
+				<option value="file45">github.com/Checkmarx/kics/pkg/kics/sink.go (40.0%)</option>
 				
 				<option value="file46">github.com/Checkmarx/kics/pkg/model/comment_yaml.go (75.0%)</option>
 				
@@ -211,7 +211,7 @@
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (80.0%)</option>
 				
-				<option value="file78">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file78">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (95.5%)</option>
 				
 				<option value="file79">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -2167,13 +2167,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="30">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="30">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -4686,7 +4686,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="11">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -7891,18 +7891,6 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 
         <span class="cov0" title="0">fileCommands := s.Parser.CommentsCommands(filename, *content)
 
-        file := model.FileMetadata{
-                ID:                uuid.New().String(),
-                ScanID:            scanID,
-                OriginalData:      documents.Content,
-                Kind:              documents.Kind,
-                FilePath:          filename,
-                Commands:          fileCommands,
-                LinesIgnore:       documents.IgnoreLines,
-                ResolvedFiles:     documents.ResolvedFiles,
-                LinesOriginalData: utils.SplitLines(documents.Content),
-        }
-
         for _, document := range documents.Docs </span><span class="cov0" title="0">{
                 _, err = json.Marshal(document)
                 if err != nil </span><span class="cov0" title="0">{
@@ -7920,8 +7908,19 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
                         sort.Ints(documents.IgnoreLines)
                 }</span>
 
-                <span class="cov0" title="0">file.Document = PrepareScanDocument(document, documents.Kind)
-                file.LineInfoDocument = document
+                <span class="cov0" title="0">file := model.FileMetadata{
+                        ID:                uuid.New().String(),
+                        ScanID:            scanID,
+                        Document:          PrepareScanDocument(document, documents.Kind),
+                        LineInfoDocument:  document,
+                        OriginalData:      documents.Content,
+                        Kind:              documents.Kind,
+                        FilePath:          filename,
+                        Commands:          fileCommands,
+                        LinesIgnore:       documents.IgnoreLines,
+                        ResolvedFiles:     documents.ResolvedFiles,
+                        LinesOriginalData: utils.SplitLines(documents.Content),
+                }
 
                 s.saveToFile(ctx, &amp;file)</span>
         }
@@ -15385,7 +15384,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov3" title="2">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -15394,26 +15393,26 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov3" title="2">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
                 }</span>
-                <span class="cov0" title="0">p.wg.Done()</span>
+                <span class="cov3" title="2">p.wg.Done()</span>
         }()
 
         <span class="cov3" title="2">for </span><span class="cov10" title="20">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov3" title="2">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov3" title="2">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file79" style="display: none">package progress
