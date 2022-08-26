@@ -1,0 +1,14 @@
+service: my-service
+frameworkVersion: '2'
+provider:
+  name: aws
+  endpointType: PRIVATE
+  vpcEndpointIds:
+    - vpce-123
+    - vpce-456
+functions:
+  hello:
+    events:
+      - http:
+          path: user/create
+          method: get

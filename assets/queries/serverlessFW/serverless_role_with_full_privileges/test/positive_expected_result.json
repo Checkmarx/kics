@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Serverless Role With Full Privileges",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive1.yml"
+  }
+]
