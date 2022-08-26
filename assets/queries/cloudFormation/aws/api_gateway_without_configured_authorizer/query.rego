@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "API Gateway REST API is associated with an API Gateway Authorizer",
+		"keyExpectedValue": "API Gateway REST API should be associated with an API Gateway Authorizer",
 		"keyActualValue": "API Gateway REST API is not associated with an API Gateway Authorizer",
 		"searchLine": common_lib.build_search_line(["Resources", name], []),
 	}
@@ -34,7 +34,7 @@ has_authorizer_associated(apiName, type) {
 }
 
 get_value(properties, field) = value {
-	value = properties[field].Ref 
+	value = properties[field].Ref
 } else = value {
 	value = properties[field]
 }

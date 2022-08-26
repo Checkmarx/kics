@@ -10,6 +10,7 @@ import (
 	sentryReport "github.com/Checkmarx/kics/internal/sentry"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser/jsonfilter/parser"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/antlr/antlr4/runtime/Go/antlr"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
@@ -24,11 +25,11 @@ var (
 	}
 )
 
-func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reader) error {
+func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reader, data []byte) error {
 	s.Tracker.TrackFileFound()
 	log.Debug().Msgf("Starting to process file %s", filename)
 
-	c, err := getContent(rc)
+	c, err := getContent(rc, data)
 
 	content := c.Content
 
@@ -45,6 +46,18 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 	}
 
 	fileCommands := s.Parser.CommentsCommands(filename, *content)
+
+	file := model.FileMetadata{
+		ID:                uuid.New().String(),
+		ScanID:            scanID,
+		OriginalData:      documents.Content,
+		Kind:              documents.Kind,
+		FilePath:          filename,
+		Commands:          fileCommands,
+		LinesIgnore:       documents.IgnoreLines,
+		ResolvedFiles:     documents.ResolvedFiles,
+		LinesOriginalData: utils.SplitLines(documents.Content),
+	}
 
 	for _, document := range documents.Docs {
 		_, err = json.Marshal(document)
@@ -63,18 +76,9 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 			sort.Ints(documents.IgnoreLines)
 		}
 
-		file := model.FileMetadata{
-			ID:               uuid.New().String(),
-			ScanID:           scanID,
-			Document:         PrepareScanDocument(document, documents.Kind),
-			LineInfoDocument: document,
-			OriginalData:     documents.Content,
-			Kind:             documents.Kind,
-			FilePath:         filename,
-			Commands:         fileCommands,
-			LinesIgnore:      documents.IgnoreLines,
-			ResolvedFiles:    documents.ResolvedFiles,
-		}
+		file.Document = PrepareScanDocument(document, documents.Kind)
+		file.LineInfoDocument = document
+
 		s.saveToFile(ctx, &file)
 	}
 	s.Tracker.TrackFileParse()

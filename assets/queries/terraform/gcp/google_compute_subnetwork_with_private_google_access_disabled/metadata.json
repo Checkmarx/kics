@@ -3,7 +3,7 @@
   "queryName": "Google Compute Subnetwork with Private Google Access Disabled",
   "severity": "LOW",
   "category": "Networking and Firewall",
-  "descriptionText": "Google Compute Subnetwork should have 'private_ip_google_access' set to true",
+  "descriptionText": "Google Compute Subnetwork should have Private Google Access enabled, which means 'private_ip_google_access' should be set to true",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork#private_ip_google_access",
   "platform": "Terraform",
   "descriptionID": "87e8a4f7",

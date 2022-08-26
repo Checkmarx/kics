@@ -234,10 +234,16 @@ func parseDataSourceBody(body *hclsyntax.Body) string {
 		Variables: inputVariableMap,
 		Functions: functions.TerraformFuncs,
 	})
-	if decodeErrs != nil {
-		log.Debug().Msg("Error trying to eval data source block.")
-		return ""
+
+	// check decode errors
+	for _, decErr := range decodeErrs {
+		if decErr.Summary != "Unknown variable" {
+			log.Debug().Msg("Error trying to eval data source block.")
+			return ""
+		}
+		log.Debug().Msg("Dismissed Error when decoding policy: Found unknown variable")
 	}
+
 	dataSourceJSON := decodeDataSourcePolicy(target)
 	convertedDataSource := convertedPolicy{
 		ID:      dataSourceJSON.ID,

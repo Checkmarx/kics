@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.EnableLogFileValidation' exists", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.EnableLogFileValidation' should exist", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.EnableLogFileValidation' is missing", [name]),
 	}
 }
@@ -30,7 +30,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.EnableLogFileValidation", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.EnableLogFileValidation' is true", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.EnableLogFileValidation' should be true", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.EnableLogFileValidation' is not true", [name]),
 	}
 }

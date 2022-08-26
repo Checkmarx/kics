@@ -20,6 +20,7 @@ import (
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
@@ -162,13 +163,14 @@ func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte)
 		for _, document := range docs.Docs {
 			require.NoError(t, err)
 			files = append(files, model.FileMetadata{
-				ID:               uuid.NewString(),
-				ScanID:           scanID,
-				Document:         kics.PrepareScanDocument(document, docs.Kind),
-				LineInfoDocument: document,
-				OriginalData:     docs.Content,
-				Kind:             docs.Kind,
-				FilePath:         filePath,
+				ID:                uuid.NewString(),
+				ScanID:            scanID,
+				Document:          kics.PrepareScanDocument(document, docs.Kind),
+				LineInfoDocument:  document,
+				OriginalData:      docs.Content,
+				Kind:              docs.Kind,
+				FilePath:          filePath,
+				LinesOriginalData: utils.SplitLines(docs.Content),
 			})
 		}
 	}
