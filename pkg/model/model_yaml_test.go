@@ -460,3 +460,56 @@ func compareJSONLine(t *testing.T, test1 interface{}, test2 string) {
 	require.NoError(t, err)
 	require.JSONEq(t, test2, string(stringefiedJSON))
 }
+
+func Test_GetIgnoreLines(t *testing.T) {
+	tests := []struct {
+		name string
+		file *FileMetadata
+		want []int
+	}{
+		{
+			name: "test get ignore lines",
+			file: &FileMetadata{
+				FilePath:    "sample.yaml",
+				LinesIgnore: []int{53, 54},
+				OriginalData: `- name: Playbook to Create users and Projects in Openstack
+  hosts: localhost
+  collections:
+    - openstack.cloud
+  tasks:
+    - name: "Ensure Projects are as defined"
+      include: subroutines/openstack_per_project_actions.yaml
+    - name: "Create Users in Openstack"
+      openstack.cloud.identity_user:
+        state: present
+        name: "{{ add_user.name }}"
+        password: "{{ all_openstack_default_pass }}"
+        email: "{{ add_user.email }}"
+        # kics-scan ignore-line
+        update_password: on_create
+        default_project: "{{ add_user.orgunit }}"
+        domain: default
+      loop: "{{ users_present }}"
+      loop_control:
+        loop_var: add_user
+    - name: Basic AMI Creation2
+      amazon.aws.ec2_ami:
+        instance_id: i-xxxxxx
+        device_mapping:
+          device_name: /dev/sda
+        wait: yes
+        name: newtest
+        tags:
+          Name: newtest
+          Service: TestService`,
+			},
+			want: []int{14, 15},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := GetIgnoreLines(tt.file)
+			require.Equal(t, got, tt.want)
+		})
+	}
+}

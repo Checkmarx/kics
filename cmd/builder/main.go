@@ -71,8 +71,15 @@ func saveFile(filePath string, content []byte) error {
 	if err != nil {
 		return err
 	}
+
+	defer func() {
+		if err := f.Close(); err != nil {
+			log.Err(err).Msgf("failed to close '%s'", filePath)
+		}
+	}()
+
 	if _, err := f.Write(content); err != nil {
 		return err
 	}
-	return f.Close()
+	return nil
 }
