@@ -101,11 +101,26 @@ get_resource_accessibility(nameRef, type, key) = info {
 
 	get_name(keys) == nameRef
 
-	policyDoc := policy.Properties.PolicyDocument
-	common_lib.any_principal(policyDoc)
-	common_lib.is_allow_effect(policyDoc)
+	not is_array(policy.Properties.PolicyDocument.Statement)
+	statement := policy.Properties.PolicyDocument.Statement
+	common_lib.any_principal(statement)
+	common_lib.is_allow_effect(statement)
 
-	info := {"accessibility": "public", "policy": policyDoc}
+	info := {"accessibility": "public", "policy": policy.Properties.PolicyDocument}
+} else = info {
+	document := input.document
+	policy := document[_].Resources[_]
+	policy.Type == type
+
+	keys := policy.Properties[key]
+
+	get_name(keys) == nameRef
+
+	statement := policy.Properties.PolicyDocument.Statement[_]
+	common_lib.any_principal(statement)
+	common_lib.is_allow_effect(statement)
+
+	info := {"accessibility": "public", "policy": policy.Properties.PolicyDocument}
 } else = info {
     document := input.document
 	policy := document[_].Resources[_]
@@ -115,11 +130,26 @@ get_resource_accessibility(nameRef, type, key) = info {
 
 	get_name(keys[_]) == nameRef
 
-	policyDoc := policy.Properties.PolicyDocument
-	common_lib.any_principal(policyDoc)
-	common_lib.is_allow_effect(policyDoc)
+	not is_array(policy.Properties.PolicyDocument.Statement)
+	statement := policy.Properties.PolicyDocument.Statement
+	common_lib.any_principal(statement)
+	common_lib.is_allow_effect(statement)
 
-	info := {"accessibility": "public", "policy": policyDoc}
+	info := {"accessibility": "public", "policy": policy.Properties.PolicyDocument}
+} else = info {
+    document := input.document
+	policy := document[_].Resources[_]
+	policy.Type == type
+
+	keys := policy.Properties[key]
+
+	get_name(keys[_]) == nameRef
+
+	statement := policy.Properties.PolicyDocument.Statement[_]
+	common_lib.any_principal(statement)
+	common_lib.is_allow_effect(statement)
+
+	info := {"accessibility": "public", "policy": policy.Properties.PolicyDocument}
 } else = info {
     document := input.document
 	policy := document[_].Resources[_]
