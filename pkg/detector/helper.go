@@ -309,8 +309,13 @@ func (d *DefaultDetectLineResponse) checkResolvedFile(line, str1, st2 string,
 }
 
 func (d *DefaultDetectLineResponse) restore(file string) *DefaultDetectLineResponse {
-	d.CurrentLine = 0
-	d.FoundAtLeastOne = false
-	d.ResolvedFile = file
-	return d
+	restore := &DefaultDetectLineResponse{
+		CurrentLine:     0,
+		IsBreak:         d.IsBreak,
+		FoundAtLeastOne: false,
+		ResolvedFile:    file,
+		ResolvedFiles:   d.ResolvedFiles,
+	}
+
+	return restore
 }

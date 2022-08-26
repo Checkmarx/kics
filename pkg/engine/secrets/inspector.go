@@ -579,6 +579,10 @@ func validateCustomSecretsQueriesID(allRegexQueries []RegexQuery) error {
 }
 
 func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.FileMetadatas) {
+	// lines ignore can have the lines from the resolved files
+	// since inspector secrets only looks to original data, the lines ignore should be replaced
+	files[idx].LinesIgnore = model.GetIgnoreLines(&files[idx])
+
 	wg := &sync.WaitGroup{}
 	// check file content line by line
 	if c.regexQueries[i].Multiline == (MultilineResult{}) {
