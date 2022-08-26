@@ -35,34 +35,11 @@ func NewResolver(
 	}
 }
 
-func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int) []byte {
-	var obj yaml.Node
-	err := r.unmarshler(fileContent, &obj)
-	if err != nil {
-		return fileContent
-	}
-
-	// resolve the paths
-	obj, _ = r.yamlWalk(&obj, path, resolveCount)
-
-	if obj.Kind == 1 && len(obj.Content) == 1 {
-		obj = *obj.Content[0]
-	}
-
-	b, err := r.marshler(obj)
-	if err != nil {
-		return fileContent
-	}
-
-	return b
-}
-
 // Resolve - replace or modifies in-memory content before parsing
 func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int) []byte {
 	if utils.Contains(filepath.Ext(path), []string{".yml", ".yaml"}) {
 		return r.yamlResolve(fileContent, path, resolveCount)
 	}
-
 	var obj any
 	err := r.unmarshler(fileContent, &obj)
 	if err != nil {
@@ -70,7 +47,7 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int) []
 	}
 
 	// resolve the paths
-	obj, _ = r.walk(&obj, path, resolveCount)
+	obj, _ = r.walk(obj, path, resolveCount)
 
 	b, err := r.marshler(obj)
 	if err != nil {
@@ -110,6 +87,28 @@ func (r *Resolver) handleMap(value map[string]interface{}, path string, resolveC
 		value[k] = val
 	}
 	return value, false
+}
+
+func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int) []byte {
+	var obj yaml.Node
+	err := r.unmarshler(fileContent, &obj)
+	if err != nil {
+		return fileContent
+	}
+
+	// resolve the paths
+	obj, _ = r.yamlWalk(&obj, path, resolveCount)
+
+	if obj.Kind == 1 && len(obj.Content) == 1 {
+		obj = *obj.Content[0]
+	}
+
+	b, err := r.marshler(obj)
+	if err != nil {
+		return fileContent
+	}
+
+	return b
 }
 
 func (r *Resolver) yamlWalk(value *yaml.Node, path string, resolveCount int) (yaml.Node, bool) {
@@ -239,8 +238,9 @@ func (r *Resolver) resolvePath(value, filePath string, resolveCount int) (any, b
 	}
 
 	r.ResolvedFiles[value] = model.ResolvedFile{
-		Content: fileContent,
-		Path:    path,
+		Content:      fileContent,
+		Path:         path,
+		LinesContent: utils.SplitLines(string(fileContent)),
 	}
 	// Cloudformation !Ref check
 	if strings.Contains(strings.ToLower(value), "!ref") {
