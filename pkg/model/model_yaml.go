@@ -3,6 +3,7 @@ package model
 import (
 	json "encoding/json"
 	"errors"
+	"path/filepath"
 	"strconv"
 
 	"github.com/Checkmarx/kics/pkg/utils"
@@ -23,6 +24,30 @@ func (m *Document) UnmarshalYAML(value *yaml.Node) error {
 		return nil
 	}
 	return errors.New("failed to parse yaml content")
+}
+
+// GetIgnoreLines get the lines to ignore in the KICS results
+// lines ignore can have the lines from the resolved files
+// since inspector secrets only looks to original data, the lines ignore should be replaced in yaml cases
+func GetIgnoreLines(file *FileMetadata) []int {
+	ignoreLines := file.LinesIgnore
+
+	if utils.Contains(filepath.Ext(file.FilePath), []string{".yml", ".yaml"}) {
+		NewIgnore.Reset()
+		var node yaml.Node
+
+		if err := yaml.Unmarshal([]byte(file.OriginalData), &node); err != nil {
+			log.Info().Msgf("failed to unmarshal file: %s", err)
+			return ignoreLines
+		}
+
+		if node.Kind == 1 && len(node.Content) == 1 {
+			_ = unmarshal(node.Content[0])
+			ignoreLines = NewIgnore.GetLines()
+		}
+	}
+
+	return ignoreLines
 }
 
 /*
