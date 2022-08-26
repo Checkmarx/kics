@@ -550,7 +550,6 @@ is_aws_ebs_optimized_by_default(instanceType) {
 	inArray(data.common_lib.aws_ebs_optimized_by_default, instanceType)
 }
 
-<<<<<<<<< Temporary merge branch 1
 # IANA
 weakCipher(aux) {
 	weak_ciphers_IANA_Format = {
@@ -573,7 +572,7 @@ weakCipher(aux) {
 	weak_ciphers_GnuTLS_Format[_] == aux
 }
 
-=========
+
 #aurora is equivelent to mysql 5.6 https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth.Availability
 #all aurora-postgresql versions that do not support IAM auth are deprecated Source:console.aws (launch rds instance) 
 valid_for_iam_engine_and_version_check(resource, engineVar, engineVersionVar, instanceClassVar) {
