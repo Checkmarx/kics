@@ -119,7 +119,7 @@
 				
 				<option value="file31">github.com/Checkmarx/kics/pkg/detector/helm/helm_detect.go (87.9%)</option>
 				
-				<option value="file32">github.com/Checkmarx/kics/pkg/detector/helper.go (93.0%)</option>
+				<option value="file32">github.com/Checkmarx/kics/pkg/detector/helper.go (92.9%)</option>
 				
 				<option value="file33">github.com/Checkmarx/kics/pkg/detector/search_line_detector.go (95.0%)</option>
 				
@@ -155,7 +155,7 @@
 				
 				<option value="file49">github.com/Checkmarx/kics/pkg/model/model_easyjson.go (34.7%)</option>
 				
-				<option value="file50">github.com/Checkmarx/kics/pkg/model/model_yaml.go (86.8%)</option>
+				<option value="file50">github.com/Checkmarx/kics/pkg/model/model_yaml.go (86.1%)</option>
 				
 				<option value="file51">github.com/Checkmarx/kics/pkg/model/summary.go (87.0%)</option>
 				
@@ -211,7 +211,7 @@
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (80.0%)</option>
 				
-				<option value="file78">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (90.9%)</option>
+				<option value="file78">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
 				<option value="file79">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -263,7 +263,7 @@
 				
 				<option value="file103">github.com/Checkmarx/kics/pkg/report/sonarqube.go (90.9%)</option>
 				
-				<option value="file104">github.com/Checkmarx/kics/pkg/resolver/file/file.go (78.6%)</option>
+				<option value="file104">github.com/Checkmarx/kics/pkg/resolver/file/file.go (80.7%)</option>
 				
 				<option value="file105">github.com/Checkmarx/kics/pkg/resolver/helm/helm.go (88.5%)</option>
 				
@@ -2167,13 +2167,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="33">total += v
+                <span class="cov9" title="37">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2198,7 +2198,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4800,10 +4800,15 @@ func (d *DefaultDetectLineResponse) checkResolvedFile(line, str1, st2 string,
 }
 
 func (d *DefaultDetectLineResponse) restore(file string) *DefaultDetectLineResponse <span class="cov2" title="2">{
-        d.CurrentLine = 0
-        d.FoundAtLeastOne = false
-        d.ResolvedFile = file
-        return d
+        restore := &amp;DefaultDetectLineResponse{
+                CurrentLine:     0,
+                IsBreak:         d.IsBreak,
+                FoundAtLeastOne: false,
+                ResolvedFile:    file,
+                ResolvedFiles:   d.ResolvedFiles,
+        }
+
+        return restore
 }</span>
 </pre>
 		
@@ -6514,6 +6519,10 @@ func validateCustomSecretsQueriesID(allRegexQueries []RegexQuery) error <span cl
 }
 
 func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.FileMetadatas) <span class="cov5" title="231">{
+        // lines ignore can have the lines from the resolved files
+        // since inspector secrets only looks to original data, the lines ignore should be replaced
+        files[idx].LinesIgnore = model.GetIgnoreLines(&amp;files[idx])
+
         wg := &amp;sync.WaitGroup{}
         // check file content line by line
         if c.regexQueries[i].Multiline == (MultilineResult{}) </span><span class="cov5" title="210">{
@@ -7983,24 +7992,24 @@ var (
 )
 
 // build builds the ignore struct
-func (i *Ignore) build(lines []int) <span class="cov7" title="18">{
+func (i *Ignore) build(lines []int) <span class="cov7" title="29">{
         defer memoryMu.Unlock()
         memoryMu.Lock()
         i.Lines = append(i.Lines, lines...)
 }</span>
 
 // GetLines returns the lines to ignore
-func (i *Ignore) GetLines() []int <span class="cov4" title="5">{
+func (i *Ignore) GetLines() []int <span class="cov4" title="6">{
         return RemoveDuplicates(i.Lines)
 }</span>
 
 // Reset resets the ignore struct
-func (i *Ignore) Reset() <span class="cov4" title="5">{
+func (i *Ignore) Reset() <span class="cov4" title="6">{
         i.Lines = make([]int, 0)
 }</span>
 
 // ignoreCommentsYAML sets the lines to ignore for a yaml file
-func ignoreCommentsYAML(node *yaml.Node) <span class="cov7" title="18">{
+func ignoreCommentsYAML(node *yaml.Node) <span class="cov7" title="29">{
         linesIgnore := make([]int, 0)
         if node.HeadComment != "" </span><span class="cov1" title="1">{
                 // Squence Node - Head Comment comes in root node
@@ -8009,24 +8018,24 @@ func ignoreCommentsYAML(node *yaml.Node) <span class="cov7" title="18">{
                 return
         }</span>
         // check if comment is in the content
-        <span class="cov7" title="17">for i, content := range node.Content </span><span class="cov10" title="50">{
+        <span class="cov7" title="28">for i, content := range node.Content </span><span class="cov10" title="107">{
                 if content.FootComment != "" &amp;&amp; i+2 &lt; len(node.Content) </span><span class="cov0" title="0">{
                         linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&amp;content.FootComment), i+2, node, node.Kind, true)...)
                 }</span>
-                <span class="cov10" title="50">if content.HeadComment == "" </span><span class="cov9" title="46">{
+                <span class="cov10" title="107">if content.HeadComment == "" </span><span class="cov9" title="102">{
                         continue</span>
                 }
-                <span class="cov4" title="4">linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&amp;content.HeadComment), i, node, node.Kind, false)...)</span>
+                <span class="cov4" title="5">linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&amp;content.HeadComment), i, node, node.Kind, false)...)</span>
         }
 
-        <span class="cov7" title="17">NewIgnore.build(linesIgnore)</span>
+        <span class="cov7" title="28">NewIgnore.build(linesIgnore)</span>
 }
 
 // processCommentYAML returns the lines to ignore
-func processCommentYAML(comment *comment, position int, content *yaml.Node, kind yaml.Kind, isFooter bool) (linesIgnore []int) <span class="cov4" title="5">{
+func processCommentYAML(comment *comment, position int, content *yaml.Node, kind yaml.Kind, isFooter bool) (linesIgnore []int) <span class="cov4" title="6">{
         linesIgnore = make([]int, 0)
         switch com := (*comment).value(); com </span>{
-        case IgnoreLine:<span class="cov1" title="1">
+        case IgnoreLine:<span class="cov2" title="2">
                 linesIgnore = append(linesIgnore, processLine(kind, content, position)...)</span>
         case IgnoreBlock:<span class="cov3" title="3">
                 linesIgnore = append(linesIgnore, processBlock(kind, content.Content, position)...)</span>
@@ -8034,7 +8043,7 @@ func processCommentYAML(comment *comment, position int, content *yaml.Node, kind
                 linesIgnore = append(linesIgnore, processRegularLine(string(*comment), content, position, isFooter)...)</span>
         }
 
-        <span class="cov4" title="5">return</span>
+        <span class="cov4" title="6">return</span>
 }
 
 func getSeqLastLine(content *yaml.Node) int <span class="cov0" title="0">{
@@ -8102,15 +8111,15 @@ func processRegularLine(comment string, content *yaml.Node, position int, isFoot
 }
 
 // processLine returns the lines to ignore for a line
-func processLine(kind yaml.Kind, content *yaml.Node, position int) (linesIgnore []int) <span class="cov1" title="1">{
+func processLine(kind yaml.Kind, content *yaml.Node, position int) (linesIgnore []int) <span class="cov2" title="2">{
         linesIgnore = make([]int, 0)
         var nodeToIgnore *yaml.Node
         if kind == yaml.ScalarNode </span><span class="cov0" title="0">{
                 nodeToIgnore = content
-        }</span> else<span class="cov1" title="1"> {
+        }</span> else<span class="cov2" title="2"> {
                 nodeToIgnore = content.Content[position]
         }</span>
-        <span class="cov1" title="1">linesIgnore = append(linesIgnore, nodeToIgnore.Line-1, nodeToIgnore.Line)
+        <span class="cov2" title="2">linesIgnore = append(linesIgnore, nodeToIgnore.Line-1, nodeToIgnore.Line)
         return</span>
 }
 
@@ -8133,25 +8142,25 @@ func processBlock(kind yaml.Kind, content []*yaml.Node, position int) (linesIgno
 }
 
 // getNodeLastLine returns the last line of a node
-func getNodeLastLine(node *yaml.Node) (lastLine int) <span class="cov9" title="33">{
+func getNodeLastLine(node *yaml.Node) (lastLine int) <span class="cov7" title="33">{
         lastLine = node.Line
-        for _, content := range node.Content </span><span class="cov8" title="30">{
-                if content.Line &gt; lastLine </span><span class="cov6" title="13">{
+        for _, content := range node.Content </span><span class="cov7" title="30">{
+                if content.Line &gt; lastLine </span><span class="cov5" title="13">{
                         lastLine = content.Line
                 }</span>
-                <span class="cov8" title="30">if lineContent := getNodeLastLine(content); lineContent &gt; lastLine </span><span class="cov4" title="5">{
+                <span class="cov7" title="30">if lineContent := getNodeLastLine(content); lineContent &gt; lastLine </span><span class="cov4" title="5">{
                         lastLine = lineContent
                 }</span>
         }
 
-        <span class="cov9" title="33">return</span>
+        <span class="cov7" title="33">return</span>
 }
 
 // value returns the value of the comment
-func (c *comment) value() (value CommentCommand) <span class="cov4" title="5">{
+func (c *comment) value() (value CommentCommand) <span class="cov4" title="6">{
         comment := strings.ToLower(string(*c))
         // check if we are working with kics command
-        if KICSCommentRgxp.MatchString(comment) </span><span class="cov4" title="5">{
+        if KICSCommentRgxp.MatchString(comment) </span><span class="cov4" title="6">{
                 comment = KICSCommentRgxp.ReplaceAllString(comment, "")
                 comment = strings.Trim(comment, "\n")
                 commands := strings.Split(strings.Trim(comment, "\r"), " ")
@@ -8165,23 +8174,23 @@ func (c *comment) value() (value CommentCommand) <span class="cov4" title="5">{
 		<pre class="file" id="file47" style="display: none">package model
 
 // RemoveDuplicates removes duplicate lines from a slice of lines.
-func RemoveDuplicates(lines []int) []int <span class="cov5" title="6">{
+func RemoveDuplicates(lines []int) []int <span class="cov5" title="7">{
         seen := make(map[int]bool)
         var result []int
-        for _, line := range lines </span><span class="cov10" title="35">{
-                if !seen[line] </span><span class="cov9" title="33">{
+        for _, line := range lines </span><span class="cov10" title="37">{
+                if !seen[line] </span><span class="cov9" title="35">{
                         result = append(result, line)
                         seen[line] = true
                 }</span>
         }
-        <span class="cov5" title="6">return result</span>
+        <span class="cov5" title="7">return result</span>
 }
 
 // ProcessCommands processes a slice of commands.
-func ProcessCommands(commands []string) CommentCommand <span class="cov6" title="8">{
-        for _, command := range commands </span><span class="cov6" title="9">{
+func ProcessCommands(commands []string) CommentCommand <span class="cov6" title="9">{
+        for _, command := range commands </span><span class="cov6" title="10">{
                 switch com := CommentCommand(command); com </span>{
-                case IgnoreLine:<span class="cov2" title="2">
+                case IgnoreLine:<span class="cov3" title="3">
                         return IgnoreLine</span>
                 case IgnoreBlock:<span class="cov4" title="4">
                         return IgnoreBlock</span>
@@ -8698,6 +8707,7 @@ func (v *Document) UnmarshalEasyJSON(l *jlexer.Lexer) <span class="cov0" title="
 import (
         json "encoding/json"
         "errors"
+        "path/filepath"
         "strconv"
 
         "github.com/Checkmarx/kics/pkg/utils"
@@ -8706,9 +8716,9 @@ import (
 )
 
 // UnmarshalYAML is a custom yaml parser that places line information in the payload
-func (m *Document) UnmarshalYAML(value *yaml.Node) error <span class="cov4" title="3">{
+func (m *Document) UnmarshalYAML(value *yaml.Node) error <span class="cov3" title="3">{
         dpc := unmarshal(value)
-        if mapDcp, ok := dpc.(map[string]interface{}); ok </span><span class="cov4" title="3">{
+        if mapDcp, ok := dpc.(map[string]interface{}); ok </span><span class="cov3" title="3">{
                 // set line information for root level objects
                 mapDcp["_kics_lines"] = getLines(value, 0)
 
@@ -8718,6 +8728,30 @@ func (m *Document) UnmarshalYAML(value *yaml.Node) error <span class="cov4" titl
                 return nil
         }</span>
         <span class="cov0" title="0">return errors.New("failed to parse yaml content")</span>
+}
+
+// GetIgnoreLines get the lines to ignore in the KICS results
+// lines ignore can have the lines from the resolved files
+// since inspector secrets only looks to original data, the lines ignore should be replaced in yaml cases
+func GetIgnoreLines(file *FileMetadata) []int <span class="cov1" title="1">{
+        ignoreLines := file.LinesIgnore
+
+        if utils.Contains(filepath.Ext(file.FilePath), []string{".yml", ".yaml"}) </span><span class="cov1" title="1">{
+                NewIgnore.Reset()
+                var node yaml.Node
+
+                if err := yaml.Unmarshal([]byte(file.OriginalData), &amp;node); err != nil </span><span class="cov0" title="0">{
+                        log.Info().Msgf("failed to unmarshal file: %s", err)
+                        return ignoreLines
+                }</span>
+
+                <span class="cov1" title="1">if node.Kind == 1 &amp;&amp; len(node.Content) == 1 </span><span class="cov1" title="1">{
+                        _ = unmarshal(node.Content[0])
+                        ignoreLines = NewIgnore.GetLines()
+                }</span>
+        }
+
+        <span class="cov1" title="1">return ignoreLines</span>
 }
 
 /*
@@ -8730,42 +8764,42 @@ func (m *Document) UnmarshalYAML(value *yaml.Node) error <span class="cov4" titl
 */
 // unmarshal is the function that will parse the yaml elements and call the functions needed
 // to place their line information in the payload
-func unmarshal(val *yaml.Node) interface{} <span class="cov9" title="13">{
+func unmarshal(val *yaml.Node) interface{} <span class="cov8" title="24">{
         tmp := make(map[string]interface{})
         ignoreCommentsYAML(val)
 
         // if Yaml Node is an Array than we are working with ansible
         // which need to be placed inside "playbooks"
-        if val.Kind == yaml.SequenceNode </span><span class="cov1" title="1">{
+        if val.Kind == yaml.SequenceNode </span><span class="cov2" title="2">{
                 contentArray := make([]interface{}, 0)
-                for _, contentEntry := range val.Content </span><span class="cov3" title="2">{
+                for _, contentEntry := range val.Content </span><span class="cov3" title="3">{
                         contentArray = append(contentArray, unmarshal(contentEntry))
                 }</span>
-                <span class="cov1" title="1">tmp["playbooks"] = contentArray</span>
-        } else<span class="cov9" title="12"> if val.Kind == yaml.ScalarNode </span><span class="cov4" title="3">{
+                <span class="cov2" title="2">tmp["playbooks"] = contentArray</span>
+        } else<span class="cov8" title="22"> if val.Kind == yaml.ScalarNode </span><span class="cov4" title="4">{
                 // resolve Scalar Node
                 return scalarNodeResolver(val)
-        }</span> else<span class="cov8" title="9"> {
+        }</span> else<span class="cov7" title="18"> {
                 // iterate two by two, since first iteration is the key and the second is the value
-                for i := 0; i &lt; len(val.Content); i += 2 </span><span class="cov10" title="16">{
-                        if val.Content[i].Kind == yaml.ScalarNode </span><span class="cov10" title="16">{
+                for i := 0; i &lt; len(val.Content); i += 2 </span><span class="cov10" title="44">{
+                        if val.Content[i].Kind == yaml.ScalarNode </span><span class="cov10" title="44">{
                                 switch val.Content[i+1].Kind </span>{
-                                case yaml.ScalarNode:<span class="cov8" title="11">
+                                case yaml.ScalarNode:<span class="cov9" title="32">
                                         tmp[val.Content[i].Value] = scalarNodeResolver(val.Content[i+1])</span>
                                 // in case value iteration is a map
-                                case yaml.MappingNode:<span class="cov4" title="3">
+                                case yaml.MappingNode:<span class="cov5" title="8">
                                         // unmarshall map value and get its line information
                                         tt := unmarshal(val.Content[i+1]).(map[string]interface{})
                                         tt["_kics_lines"] = getLines(val.Content[i+1], val.Content[i].Line)
                                         tmp[val.Content[i].Value] = tt</span>
                                 // in case value iteration is an array
-                                case yaml.SequenceNode:<span class="cov3" title="2">
+                                case yaml.SequenceNode:<span class="cov4" title="4">
                                         contentArray := make([]interface{}, 0)
                                         // unmarshall each iteration of the array
-                                        for _, contentEntry := range val.Content[i+1].Content </span><span class="cov6" title="5">{
+                                        for _, contentEntry := range val.Content[i+1].Content </span><span class="cov6" title="9">{
                                                 contentArray = append(contentArray, unmarshal(contentEntry))
                                         }</span>
-                                        <span class="cov3" title="2">tmp[val.Content[i].Value] = contentArray</span>
+                                        <span class="cov4" title="4">tmp[val.Content[i].Value] = contentArray</span>
                                 case yaml.AliasNode:<span class="cov0" title="0">
                                         if tt, ok := unmarshal(val.Content[i+1].Alias).(map[string]interface{}); ok </span><span class="cov0" title="0">{
                                                 tt["_kics_lines"] = getLines(val.Content[i+1], val.Content[i].Line)
@@ -8778,12 +8812,12 @@ func unmarshal(val *yaml.Node) interface{} <span class="cov9" title="13">{
                         }
                 }
         }
-        <span class="cov8" title="10">return tmp</span>
+        <span class="cov8" title="20">return tmp</span>
 }
 
 // getLines creates the map containing the line information for the yaml Node
 // def is the line to be used as "_kics__default"
-func getLines(val *yaml.Node, def int) map[string]*LineObject <span class="cov9" title="13">{
+func getLines(val *yaml.Node, def int) map[string]*LineObject <span class="cov7" title="18">{
         lineMap := make(map[string]*LineObject)
 
         // line information map
@@ -8798,29 +8832,29 @@ func getLines(val *yaml.Node, def int) map[string]*LineObject <span class="cov9"
         }</span>
 
         // iterate two by two, since first iteration is the key and the second is the value
-        <span class="cov9" title="12">for i := 0; i &lt; len(val.Content); i += 2 </span><span class="cov10" title="16">{
+        <span class="cov7" title="17">for i := 0; i &lt; len(val.Content); i += 2 </span><span class="cov9" title="32">{
                 lineArr := make([]map[string]*LineObject, 0)
                 // in case the value iteration is an array call getLines for each iteration of the array
-                if val.Content[i+1].Kind == yaml.SequenceNode </span><span class="cov3" title="2">{
-                        for _, contentEntry := range val.Content[i+1].Content </span><span class="cov6" title="5">{
+                if val.Content[i+1].Kind == yaml.SequenceNode </span><span class="cov2" title="2">{
+                        for _, contentEntry := range val.Content[i+1].Content </span><span class="cov4" title="5">{
                                 defaultLine := val.Content[i].Line
-                                if contentEntry.Kind == yaml.ScalarNode </span><span class="cov4" title="3">{
+                                if contentEntry.Kind == yaml.ScalarNode </span><span class="cov3" title="3">{
                                         defaultLine = contentEntry.Line
-                                }</span> else<span class="cov3" title="2"> if contentEntry.Kind == yaml.MappingNode &amp;&amp; len(contentEntry.Content) &gt; 0 </span><span class="cov3" title="2">{
+                                }</span> else<span class="cov2" title="2"> if contentEntry.Kind == yaml.MappingNode &amp;&amp; len(contentEntry.Content) &gt; 0 </span><span class="cov2" title="2">{
                                         defaultLine = contentEntry.Content[0].Line
                                 }</span>
-                                <span class="cov6" title="5">lineArr = append(lineArr, getLines(contentEntry, defaultLine))</span>
+                                <span class="cov4" title="5">lineArr = append(lineArr, getLines(contentEntry, defaultLine))</span>
                         }
                 }
 
                 // line information map of each key of the yaml Node
-                <span class="cov10" title="16">lineMap["_kics_"+val.Content[i].Value] = &amp;LineObject{
+                <span class="cov9" title="32">lineMap["_kics_"+val.Content[i].Value] = &amp;LineObject{
                         Line: val.Content[i].Line,
                         Arr:  lineArr,
                 }</span>
         }
 
-        <span class="cov9" title="12">return lineMap</span>
+        <span class="cov7" title="17">return lineMap</span>
 }
 
 // getSeqLines iterates through the elements of an Array
@@ -8830,7 +8864,7 @@ func getSeqLines(val *yaml.Node, def int) map[string]*LineObject <span class="co
         lineArr := make([]map[string]*LineObject, 0)
 
         // get line information slice of every element in the array
-        for _, cont := range val.Content </span><span class="cov3" title="2">{
+        for _, cont := range val.Content </span><span class="cov2" title="2">{
                 lineArr = append(lineArr, getLines(cont, cont.Line))
         }</span>
 
@@ -8843,7 +8877,7 @@ func getSeqLines(val *yaml.Node, def int) map[string]*LineObject <span class="co
 }
 
 // scalarNodeResolver transforms a ScalarNode value in its correct type
-func scalarNodeResolver(val *yaml.Node) interface{} <span class="cov9" title="14">{
+func scalarNodeResolver(val *yaml.Node) interface{} <span class="cov9" title="36">{
         var transformed interface{} = val.Value
         switch val.Tag </span>{
         case "!!bool":<span class="cov1" title="1">
@@ -8859,7 +8893,7 @@ func scalarNodeResolver(val *yaml.Node) interface{} <span class="cov9" title="14
                 transformed = nil</span>
         }
 
-        <span class="cov9" title="14">return transformed</span>
+        <span class="cov9" title="36">return transformed</span>
 }
 
 // transformBoolScalarNode transforms a string value to its boolean representation
@@ -15351,7 +15385,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov1" title="1">{
+                close: func() error </span><span class="cov0" title="0">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -15360,7 +15394,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov1" title="1">{
+        defer func() </span><span class="cov0" title="0">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
@@ -15372,14 +15406,14 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov1" title="1">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov1" title="1">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file79" style="display: none">package progress
@@ -18487,6 +18521,7 @@ import (
         "strings"
 
         "github.com/Checkmarx/kics/internal/constants"
+        "gopkg.in/yaml.v3"
 
         "github.com/Checkmarx/kics/pkg/model"
         "github.com/Checkmarx/kics/pkg/utils"
@@ -18516,16 +18551,20 @@ func NewResolver(
 
 // Resolve - replace or modifies in-memory content before parsing
 func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int) []byte <span class="cov4" title="4">{
-        var obj any
+        var obj yaml.Node
         err := r.unmarshler(fileContent, &amp;obj)
         if err != nil </span><span class="cov0" title="0">{
                 return fileContent
         }</span>
 
         // resolve the paths
-        <span class="cov4" title="4">obj, _ = r.walk(obj, path, resolveCount)
+        <span class="cov4" title="4">obj, _ = r.walk(&amp;obj, path, resolveCount)
 
-        b, err := r.marshler(obj)
+        if obj.Kind == 1 &amp;&amp; len(obj.Content) == 1 </span><span class="cov4" title="4">{
+                obj = *obj.Content[0]
+        }</span>
+
+        <span class="cov4" title="4">b, err := r.marshler(obj)
         if err != nil </span><span class="cov0" title="0">{
                 return fileContent
         }</span>
@@ -18533,60 +18572,51 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int) []
         <span class="cov4" title="4">return b</span>
 }
 
-func (r *Resolver) walk(value any, path string, resolveCount int) (any, bool) <span class="cov10" title="24">{
-        // go over the value and replace paths with the real content
-        switch typedValue := value.(type) </span>{
-        case string:<span class="cov7" title="11">
-                if filepath.Base(path) != typedValue </span><span class="cov7" title="11">{
-                        return r.resolvePath(typedValue, path, resolveCount)
+func (r *Resolver) walk(value *yaml.Node, path string, resolveCount int) (yaml.Node, bool) <span class="cov10" title="46">{
+        // go over the value and replace paths with the real conten
+        switch value.Kind </span>{
+        case yaml.ScalarNode:<span class="cov8" title="29">
+                if filepath.Base(path) != value.Value </span><span class="cov8" title="29">{
+                        return r.resolvePath(value, path, resolveCount)
                 }</span>
-                <span class="cov0" title="0">return value, false</span>
-        case []any:<span class="cov1" title="1">
-                for i, v := range typedValue </span><span class="cov2" title="2">{
-                        typedValue[i], _ = r.walk(v, path, resolveCount)
-                }</span>
-                <span class="cov1" title="1">return typedValue, false</span>
-        case map[string]any:<span class="cov8" title="12">
-                return r.handleMap(typedValue, path, resolveCount)</span>
-        default:<span class="cov0" title="0">
-                return value, false</span>
+                <span class="cov0" title="0">return *value, false</span>
+        default:<span class="cov7" title="17">
+                for i := range value.Content </span><span class="cov9" title="42">{
+                        resolved, ok := r.walk(value.Content[i], path, resolveCount)
+                        if ok &amp;&amp; i &gt;= 1 </span><span class="cov3" title="3">{
+                                if strings.Contains(value.Content[i-1].Value, "ref") </span><span class="cov3" title="3">{ // openapi
+                                        return resolved, false
+                                }</span>
+                        }
+                        <span class="cov9" title="39">value.Content[i] = &amp;resolved</span>
+                }
+                <span class="cov7" title="14">return *value, false</span>
         }
-}
-
-func (r *Resolver) handleMap(value map[string]interface{}, path string, resolveCount int) (any, bool) <span class="cov8" title="12">{
-        for k, v := range value </span><span class="cov9" title="18">{
-                val, res := r.walk(v, path, resolveCount)
-                // check if it is a ref than everything needs to be changed
-                if res &amp;&amp; strings.Contains(strings.ToLower(k), "ref") </span><span class="cov4" title="3">{
-                        return val, false
-                }</span>
-                <span class="cov8" title="15">value[k] = val</span>
-        }
-        <span class="cov7" title="9">return value, false</span>
 }
 
 // isPath returns true if the value is a valid path
-func (r *Resolver) resolvePath(value, filePath string, resolveCount int) (any, bool) <span class="cov7" title="11">{
+func (r *Resolver) resolvePath(v *yaml.Node, filePath string, resolveCount int) (yaml.Node, bool) <span class="cov8" title="29">{
+        value := v.Value
         if resolveCount &gt; constants.MaxResolvedFiles </span><span class="cov0" title="0">{
-                return value, false
+                return *v, false
         }</span>
-        <span class="cov7" title="11">path := filepath.Join(filepath.Dir(filePath), value)
+        <span class="cov8" title="29">path := filepath.Join(filepath.Dir(filePath), value)
         _, err := os.Stat(path)
-        if err != nil </span><span class="cov6" title="8">{
-                return value, false
+        if err != nil </span><span class="cov8" title="26">{
+                return *v, false
         }</span>
 
-        <span class="cov4" title="3">if !contains(filepath.Ext(path), r.Extension) </span><span class="cov0" title="0">{
-                return value, false
+        <span class="cov3" title="3">if !contains(filepath.Ext(path), r.Extension) </span><span class="cov0" title="0">{
+                return *v, false
         }</span>
 
         // open the file with the content to replace
-        <span class="cov4" title="3">file, err := os.Open(filepath.Clean(path))
+        <span class="cov3" title="3">file, err := os.Open(filepath.Clean(path))
         if err != nil </span><span class="cov0" title="0">{
-                return value, false
+                return *v, false
         }</span>
 
-        <span class="cov4" title="3">defer func(file *os.File) </span><span class="cov4" title="3">{
+        <span class="cov3" title="3">defer func(file *os.File) </span><span class="cov3" title="3">{
                 err = file.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Err(err).Msgf("failed to close resolved file: %s", path)
@@ -18594,21 +18624,25 @@ func (r *Resolver) resolvePath(value, filePath string, resolveCount int) (any, b
         }(file)
 
         // read the content
-        <span class="cov4" title="3">fileContent, err := io.ReadAll(file)
+        <span class="cov3" title="3">fileContent, err := io.ReadAll(file)
         if err != nil </span><span class="cov0" title="0">{
-                return value, false
+                return *v, false
         }</span>
 
-        <span class="cov4" title="3">resolvedFile := r.Resolve(fileContent, path, resolveCount+1)
+        <span class="cov3" title="3">resolvedFile := r.Resolve(fileContent, path, resolveCount+1)
 
         // parse the content
-        var obj any
+        var obj yaml.Node
         err = r.unmarshler(resolvedFile, &amp;obj)
         if err != nil </span><span class="cov0" title="0">{
-                return value, false
+                return *v, false
         }</span>
 
-        <span class="cov4" title="3">r.ResolvedFiles[value] = model.ResolvedFile{
+        <span class="cov3" title="3">if obj.Kind == 1 &amp;&amp; len(obj.Content) == 1 </span><span class="cov3" title="3">{
+                obj = *obj.Content[0]
+        }</span>
+
+        <span class="cov3" title="3">r.ResolvedFiles[value] = model.ResolvedFile{
                 Content:      fileContent,
                 Path:         path,
                 LinesContent: utils.SplitLines(string(fileContent)),
@@ -18619,12 +18653,12 @@ func (r *Resolver) resolvePath(value, filePath string, resolveCount int) (any, b
                 return obj, false
         }</span>
 
-        <span class="cov4" title="3">return obj, true</span>
+        <span class="cov3" title="3">return obj, true</span>
 }
 
-func contains(elem string, list []string) bool <span class="cov4" title="3">{
-        for _, e := range list </span><span class="cov6" title="6">{
-                if elem == e </span><span class="cov4" title="3">{
+func contains(elem string, list []string) bool <span class="cov3" title="3">{
+        for _, e := range list </span><span class="cov5" title="6">{
+                if elem == e </span><span class="cov3" title="3">{
                         return true
                 }</span>
         }
