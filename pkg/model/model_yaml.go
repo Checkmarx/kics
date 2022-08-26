@@ -27,6 +27,8 @@ func (m *Document) UnmarshalYAML(value *yaml.Node) error {
 }
 
 // GetIgnoreLines get the lines to ignore in the KICS results
+// lines ignore can have the lines from the resolved files
+// since inspector secrets only looks to original data, the lines ignore should be replaced in yaml cases
 func GetIgnoreLines(file *FileMetadata) []int {
 	ignoreLines := file.LinesIgnore
 

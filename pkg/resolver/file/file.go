@@ -59,7 +59,6 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int) []
 
 func (r *Resolver) walk(value *yaml.Node, path string, resolveCount int) (yaml.Node, bool) {
 	// go over the value and replace paths with the real conten
-
 	switch value.Kind {
 	case yaml.ScalarNode:
 		if filepath.Base(path) != value.Value {
