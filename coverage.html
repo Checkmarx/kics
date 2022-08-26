@@ -97,7 +97,7 @@
 				
 				<option value="file20">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (73.2%)</option>
 				
-				<option value="file21">github.com/Checkmarx/kics/pkg/builder/engine/engine.go (71.8%)</option>
+				<option value="file21">github.com/Checkmarx/kics/pkg/builder/engine/engine.go (72.6%)</option>
 				
 				<option value="file22">github.com/Checkmarx/kics/pkg/builder/model/model.go (100.0%)</option>
 				
@@ -115,15 +115,15 @@
 				
 				<option value="file29">github.com/Checkmarx/kics/pkg/detector/detector.go (100.0%)</option>
 				
-				<option value="file30">github.com/Checkmarx/kics/pkg/detector/docker/docker_detect.go (83.3%)</option>
+				<option value="file30">github.com/Checkmarx/kics/pkg/detector/docker/docker_detect.go (82.9%)</option>
 				
-				<option value="file31">github.com/Checkmarx/kics/pkg/detector/helm/helm_detect.go (88.2%)</option>
+				<option value="file31">github.com/Checkmarx/kics/pkg/detector/helm/helm_detect.go (87.9%)</option>
 				
 				<option value="file32">github.com/Checkmarx/kics/pkg/detector/helper.go (93.0%)</option>
 				
 				<option value="file33">github.com/Checkmarx/kics/pkg/detector/search_line_detector.go (95.0%)</option>
 				
-				<option value="file34">github.com/Checkmarx/kics/pkg/engine/inspector.go (81.4%)</option>
+				<option value="file34">github.com/Checkmarx/kics/pkg/engine/inspector.go (81.2%)</option>
 				
 				<option value="file35">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (79.5%)</option>
 				
@@ -145,7 +145,7 @@
 				
 				<option value="file44">github.com/Checkmarx/kics/pkg/kics/service.go (42.2%)</option>
 				
-				<option value="file45">github.com/Checkmarx/kics/pkg/kics/sink.go (40.0%)</option>
+				<option value="file45">github.com/Checkmarx/kics/pkg/kics/sink.go (38.3%)</option>
 				
 				<option value="file46">github.com/Checkmarx/kics/pkg/model/comment_yaml.go (75.0%)</option>
 				
@@ -191,7 +191,7 @@
 				
 				<option value="file67">github.com/Checkmarx/kics/pkg/parser/terraform/comment/comment.go (96.8%)</option>
 				
-				<option value="file68">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (76.1%)</option>
+				<option value="file68">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (77.1%)</option>
 				
 				<option value="file69">github.com/Checkmarx/kics/pkg/parser/terraform/data_source.go (74.6%)</option>
 				
@@ -211,7 +211,7 @@
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (80.0%)</option>
 				
-				<option value="file78">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file78">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (90.9%)</option>
 				
 				<option value="file79">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -299,7 +299,9 @@
 				
 				<option value="file121">github.com/Checkmarx/kics/pkg/utils/random.go (100.0%)</option>
 				
-				<option value="file122">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
+				<option value="file122">github.com/Checkmarx/kics/pkg/utils/split_lines.go (100.0%)</option>
+				
+				<option value="file123">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
 				
 				</select>
 			</div>
@@ -2165,13 +2167,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="32">total += v
+                <span class="cov8" title="33">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -3045,12 +3047,12 @@ func (e *Engine) expToString(expr hclsyntax.Expression) (string, error) <span cl
                         }</span>
                         <span class="cov6" title="4">return v.AsString(), nil</span>
                 }
-                <span class="cov0" title="0">builder, err := e.buildString(t.Parts)
+                <span class="cov0" title="0">builderString, err := e.buildString(t.Parts)
                 if err != nil </span><span class="cov0" title="0">{
                         return "", err
                 }</span>
 
-                <span class="cov0" title="0">return builder.String(), nil</span>
+                <span class="cov0" title="0">return builderString, nil</span>
         case *hclsyntax.TemplateWrapExpr:<span class="cov0" title="0">
                 return e.expToString(t.Wrapped)</span>
         case *hclsyntax.ObjectConsKeyExpr:<span class="cov3" title="2">
@@ -3073,16 +3075,23 @@ func (e *Engine) expToString(expr hclsyntax.Expression) (string, error) <span cl
         <span class="cov0" title="0">return "", fmt.Errorf("can't convert expression %T to string", expr)</span>
 }
 
-func (e *Engine) buildString(parts []hclsyntax.Expression) (strings.Builder, error) <span class="cov1" title="1">{
-        var builder strings.Builder
+func (e *Engine) buildString(parts []hclsyntax.Expression) (string, error) <span class="cov1" title="1">{
+        builder := &amp;strings.Builder{}
+
         for _, part := range parts </span><span class="cov0" title="0">{
                 s, err := e.expToString(part)
                 if err != nil </span><span class="cov0" title="0">{
-                        return strings.Builder{}, err
+                        return "", err
                 }</span>
                 <span class="cov0" title="0">builder.WriteString(s)</span>
         }
-        <span class="cov1" title="1">return builder, nil</span>
+
+        <span class="cov1" title="1">s := builder.String()
+
+        builder.Reset()
+        builder = nil
+
+        return s, nil</span>
 }
 
 func (e *Engine) walkConstantItem(item hclsyntax.ObjectConsItem, walkHistory []build.PathItem) error <span class="cov3" title="2">{
@@ -4069,7 +4078,7 @@ type defaultDetectLine struct {
 
 // DetectLine searches vulnerability line if kindDetectLine is not in detectors
 func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string,
-        outputLines int, logwithfields *zerolog.Logger) model.VulnerabilityLines <span class="cov5" title="3">{
+        outputLines int, logwithfields *zerolog.Logger) model.VulnerabilityLines <span class="cov7" title="3">{
         detector := &amp;DefaultDetectLineResponse{
                 CurrentLine:     0,
                 IsBreak:         false,
@@ -4081,12 +4090,12 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
         var extractedString [][]string
         extractedString = GetBracketValues(searchKey, extractedString, "")
         sanitizedSubstring := searchKey
-        for idx, str := range extractedString </span><span class="cov5" title="3">{
+        for idx, str := range extractedString </span><span class="cov7" title="3">{
                 sanitizedSubstring = strings.Replace(sanitizedSubstring, str[0], `{{`+strconv.Itoa(idx)+`}}`, -1)
         }</span>
 
-        <span class="cov5" title="3">lines := d.SplitLines(file.OriginalData)
-        for _, key := range strings.Split(sanitizedSubstring, ".") </span><span class="cov7" title="5">{
+        <span class="cov7" title="3">lines := *file.LinesOriginalData
+        for _, key := range strings.Split(sanitizedSubstring, ".") </span><span class="cov10" title="5">{
                 substr1, substr2 := GenerateSubstrings(key, extractedString)
 
                 detector, lines = detector.DetectCurrentLine(substr1, substr2, 0, lines)
@@ -4096,7 +4105,7 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
                 }
         }
 
-        <span class="cov5" title="3">if detector.FoundAtLeastOne </span><span class="cov4" title="2">{
+        <span class="cov7" title="3">if detector.FoundAtLeastOne </span><span class="cov4" title="2">{
                 return model.VulnerabilityLines{
                         Line:         detector.CurrentLine + 1,
                         VulnLines:    GetAdjacentVulnLines(detector.CurrentLine, outputLines, lines),
@@ -4108,25 +4117,20 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 
         return model.VulnerabilityLines{
                 Line:         undetectedVulnerabilityLine,
-                VulnLines:    []model.CodeLine{},
+                VulnLines:    &amp;[]model.CodeLine{},
                 ResolvedFile: detector.ResolvedFile,
         }</span>
 }
 
-func (d defaultDetectLine) SplitLines(content string) []string <span class="cov10" title="8">{
-        text := strings.ReplaceAll(content, "\r", "")
-        return strings.Split(text, "\n")
-}</span>
-
-func (d defaultDetectLine) prepareResolvedFiles(resFiles map[string]model.ResolvedFile) map[string]model.ResolvedFileSplit <span class="cov7" title="4">{
+func (d defaultDetectLine) prepareResolvedFiles(resFiles map[string]model.ResolvedFile) map[string]model.ResolvedFileSplit <span class="cov8" title="4">{
         resolvedFiles := make(map[string]model.ResolvedFileSplit)
         for f, res := range resFiles </span><span class="cov1" title="1">{
                 resolvedFiles[f] = model.ResolvedFileSplit{
                         Path:  res.Path,
-                        Lines: d.SplitLines(string(res.Content)),
+                        Lines: *res.LinesContent,
                 }
         }</span>
-        <span class="cov7" title="4">return resolvedFiles</span>
+        <span class="cov8" title="4">return resolvedFiles</span>
 }
 </pre>
 		
@@ -4139,7 +4143,6 @@ import (
 
 type kindDetectLine interface {
         DetectLine(file *model.FileMetadata, searchKey string, outputLines int, logWithFields *zerolog.Logger) model.VulnerabilityLines
-        SplitLines(content string) []string
 }
 
 // DetectLine is a struct that associates a kindDetectLine to its FileKind
@@ -4151,7 +4154,7 @@ type DetectLine struct {
 }
 
 // NewDetectLine creates a new DetectLine's reference
-func NewDetectLine(outputLines int) *DetectLine <span class="cov10" title="8">{
+func NewDetectLine(outputLines int) *DetectLine <span class="cov10" title="7">{
         return &amp;DetectLine{
                 detectors:       make(map[model.FileKind]kindDetectLine),
                 logWithFields:   &amp;zerolog.Logger{},
@@ -4166,7 +4169,7 @@ func (d *DetectLine) SetupLogs(logger *zerolog.Logger) <span class="cov1" title=
 }</span>
 
 // Add adds a new kindDetectLine to the caller and returns it
-func (d *DetectLine) Add(detector kindDetectLine, kind model.FileKind) *DetectLine <span class="cov7" title="4">{
+func (d *DetectLine) Add(detector kindDetectLine, kind model.FileKind) *DetectLine <span class="cov6" title="3">{
         d.detectors[kind] = detector
         return d
 }</span>
@@ -4182,27 +4185,12 @@ func (d *DetectLine) DetectLine(file *model.FileMetadata, searchKey string, logW
 
 // GetAdjecent finds and returns the lines adjecent to the line containing the vulnerability
 func (d *DetectLine) GetAdjecent(file *model.FileMetadata, line int) model.VulnerabilityLines <span class="cov4" title="2">{
-        if det, ok := d.detectors[file.Kind]; ok </span><span class="cov1" title="1">{
-                return model.VulnerabilityLines{
-                        Line:         line,
-                        VulnLines:    GetAdjacentVulnLines(line-1, d.outputLines, det.SplitLines(file.OriginalData)),
-                        ResolvedFile: file.FilePath,
-                }
-        }</span>
-        <span class="cov1" title="1">return model.VulnerabilityLines{
+        return model.VulnerabilityLines{
                 Line:         line,
-                VulnLines:    GetAdjacentVulnLines(line-1, d.outputLines, d.defaultDetector.SplitLines(file.OriginalData)),
+                VulnLines:    GetAdjacentVulnLines(line-1, d.outputLines, *file.LinesOriginalData),
                 ResolvedFile: file.FilePath,
-        }</span>
-}
-
-// SplitLines splits lines splits the file by lines based on the type of file
-func (d *DetectLine) SplitLines(file *model.FileMetadata) []string <span class="cov4" title="2">{
-        if det, ok := d.detectors[file.Kind]; ok </span><span class="cov1" title="1">{
-                return det.SplitLines(file.OriginalData)
-        }</span>
-        <span class="cov1" title="1">return d.defaultDetector.SplitLines(file.OriginalData)</span>
-}
+        }
+}</span>
 </pre>
 		
 		<pre class="file" id="file30" style="display: none">package docker
@@ -4249,19 +4237,20 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
                 sKey = strings.Replace(sKey, str[0], `{{`+strconv.Itoa(idx)+`}}`, -1)
         }</span>
 
-        <span class="cov3" title="3">for _, key := range strings.Split(sKey, ".") </span><span class="cov4" title="6">{
+        <span class="cov3" title="3">unchangedText := make([]string, len(*file.LinesOriginalData))
+        copy(unchangedText, *file.LinesOriginalData)
+
+        for _, key := range strings.Split(sKey, ".") </span><span class="cov4" title="6">{
                 substr1, substr2 := detector.GenerateSubstrings(key, extractedString)
 
-                det, _ = det.DetectCurrentLine(substr1, substr2, 0, prepareDockerFileLines(d.SplitLines(file.OriginalData)))
+                det, _ = det.DetectCurrentLine(substr1, substr2, 0, prepareDockerFileLines(*file.LinesOriginalData))
 
                 if det.IsBreak </span><span class="cov0" title="0">{
                         break</span>
                 }
         }
 
-        <span class="cov3" title="3">unchangedText := d.SplitLines(file.OriginalData)
-
-        if det.FoundAtLeastOne </span><span class="cov3" title="3">{
+        <span class="cov3" title="3">if det.FoundAtLeastOne </span><span class="cov3" title="3">{
                 return model.VulnerabilityLines{
                         Line:         det.CurrentLine + 1,
                         VulnLines:    detector.GetAdjacentVulnLines(det.CurrentLine, outputLines, unchangedText),
@@ -4273,16 +4262,10 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 
         return model.VulnerabilityLines{
                 Line:         undetectedVulnerabilityLine,
-                VulnLines:    []model.CodeLine{},
+                VulnLines:    &amp;[]model.CodeLine{},
                 ResolvedFile: file.FilePath,
         }</span>
 }
-
-// SplitLines splits Dockerfile document by line, multiline are considered as one
-func (d DetectKindLine) SplitLines(content string) []string <span class="cov5" title="9">{
-        text := strings.ReplaceAll(content, "\r", "")
-        return strings.Split(text, "\n")
-}</span>
 
 func prepareDockerFileLines(text []string) []string <span class="cov4" title="6">{
         for idx, key := range text </span><span class="cov9" title="74">{
@@ -4293,26 +4276,26 @@ func prepareDockerFileLines(text []string) []string <span class="cov4" title="6"
         <span class="cov4" title="6">return text</span>
 }
 
-func multiLineSpliter(textSplit []string, key string, idx int) string <span class="cov10" title="96">{
-        if nameRegexDockerFileML.MatchString(key) </span><span class="cov7" title="22">{
+func multiLineSpliter(textSplit []string, key string, idx int) string <span class="cov10" title="85">{
+        if nameRegexDockerFileML.MatchString(key) </span><span class="cov5" title="11">{
                 i := idx + 1
                 if i &gt;= len(textSplit) </span><span class="cov0" title="0">{
                         return textSplit[idx]
                 }</span>
-                <span class="cov7" title="22">for textSplit[i] == "" </span><span class="cov6" title="16">{
+                <span class="cov5" title="11">for textSplit[i] == "" </span><span class="cov5" title="8">{
                         i++
                         if i &gt;= len(textSplit) </span><span class="cov0" title="0">{
                                 return textSplit[idx]
                         }</span>
                 }
-                <span class="cov7" title="22">if commentRegex.MatchString(textSplit[i]) </span><span class="cov0" title="0">{
+                <span class="cov5" title="11">if commentRegex.MatchString(textSplit[i]) </span><span class="cov0" title="0">{
                         textSplit[i] += " \\"
                 }</span>
-                <span class="cov7" title="22">textSplit[idx] = splitRegex.ReplaceAllLiteralString(textSplit[idx], " "+textSplit[i])
+                <span class="cov5" title="11">textSplit[idx] = splitRegex.ReplaceAllLiteralString(textSplit[idx], " "+textSplit[i])
                 textSplit[i] = ""
                 textSplit[idx] = multiLineSpliter(textSplit, textSplit[idx], idx)</span>
         }
-        <span class="cov10" title="96">return textSplit[idx]</span>
+        <span class="cov10" title="85">return textSplit[idx]</span>
 }
 </pre>
 		
@@ -4357,7 +4340,7 @@ const (
 func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
         outputLines int, logWithFields *zerolog.Logger) model.VulnerabilityLines <span class="cov2" title="3">{
         searchKey = fmt.Sprintf("%s.%s", strings.TrimRight(strings.TrimLeft(file.HelmID, "# "), ":"), searchKey)
-        lines := d.SplitLines(file.OriginalData)
+        lines := *file.LinesOriginalData
         curLineRes := detectCurlLine{
                 foundRes: false,
                 lineRes:  0,
@@ -4415,16 +4398,10 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 
         return model.VulnerabilityLines{
                 Line:         undetectedVulnerabilityLine,
-                VulnLines:    []model.CodeLine{},
+                VulnLines:    &amp;[]model.CodeLine{},
                 ResolvedFile: file.FilePath,
         }</span>
 }
-
-// SplitLines splits the Helm document by line
-func (d DetectKindLine) SplitLines(content string) []string <span class="cov2" title="3">{
-        text := strings.ReplaceAll(content, "\r", "")
-        return strings.Split(text, "\n")
-}</span>
 
 // removeLines is used to update the vulnerability line after removing the "# KICS_HELM_ID_"
 func removeLines(current int, lineRemove map[int]int) int <span class="cov2" title="3">{
@@ -4500,7 +4477,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -4655,7 +4632,7 @@ func generateSubstr(substr string, parts []string, length int) string <span clas
 
 // GetAdjacentVulnLines is used to get the lines adjacent to the line that contains the vulnerability
 // adj is the amount of lines wanted
-func GetAdjacentVulnLines(idx, adj int, lines []string) []model.CodeLine <span class="cov6" title="11">{
+func GetAdjacentVulnLines(idx, adj int, lines []string) *[]model.CodeLine <span class="cov6" title="11">{
         var endPos int
         var startPos int
         if adj &lt;= len(lines) </span><span class="cov6" title="10">{
@@ -4693,7 +4670,7 @@ func GetAdjacentVulnLines(idx, adj int, lines []string) []model.CodeLine <span c
 
 // createVulnLines is the function that will  generate the array that contains the lines numbers
 // used to alter the color of the line that contains the vulnerability
-func createVulnLines(startPos int, lines []string) []model.CodeLine <span class="cov6" title="11">{
+func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class="cov6" title="11">{
         vulns := make([]model.CodeLine, len(lines))
         for idx, line := range lines </span><span class="cov8" title="30">{
                 vulns[idx] = model.CodeLine{
@@ -4702,7 +4679,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
                 }
                 startPos++
         }</span>
-        <span class="cov6" title="11">return vulns</span>
+        <span class="cov6" title="11">return &amp;vulns</span>
 }
 
 // SelectLineWithMinimumDistance will search a map of levenshtein distances to find the minimum distance
@@ -4728,12 +4705,12 @@ func ExtractLineFragment(line, substr string, key bool) string <span class="cov5
         <span class="cov5" title="9">start := strings.Index(line, substr)
         end := start + len(substr)
 
-        for start &gt;= 0 </span><span class="cov8" title="27">{
+        for start &gt;= 0 </span><span class="cov7" title="22">{
                 if line[start] == ' ' </span><span class="cov5" title="7">{
                         break</span>
                 }
 
-                <span class="cov7" title="20">start--</span>
+                <span class="cov7" title="15">start--</span>
         }
 
         <span class="cov5" title="9">for end &lt; len(line) </span><span class="cov6" title="13">{
@@ -4741,7 +4718,7 @@ func ExtractLineFragment(line, substr string, key bool) string <span class="cov5
                         break</span>
                 }
 
-                <span class="cov5" title="6">end++</span>
+                <span class="cov4" title="6">end++</span>
         }
 
         <span class="cov5" title="9">return removeExtras(line, start, end)</span>
@@ -4766,19 +4743,19 @@ func removeExtras(result string, start, end int) string <span class="cov5" title
 
 // DetectCurrentLine uses levenshtein distance to find the most accurate line for the vulnerability
 func (d *DefaultDetectLineResponse) DetectCurrentLine(str1, str2 string, recurseCount int,
-        lines []string) (det *DefaultDetectLineResponse, l []string) <span class="cov5" title="6">{
+        lines []string) (det *DefaultDetectLineResponse, l []string) <span class="cov4" title="6">{
         distances := make(map[int]int)
 
-        for i := d.CurrentLine; i &lt; len(lines); i++ </span><span class="cov10" title="56">{
+        for i := d.CurrentLine; i &lt; len(lines); i++ </span><span class="cov10" title="58">{
                 if len(d.ResolvedFiles) &gt; 0 </span><span class="cov3" title="3">{
                         if res, newLines := d.checkResolvedFile(lines[i], str1, str2, recurseCount); res.FoundAtLeastOne </span><span class="cov0" title="0">{
                                 return res, newLines
                         }</span>
                 }
-                <span class="cov10" title="56">distances = checkLine(str1, str2, distances, lines[i], i)</span>
+                <span class="cov10" title="58">distances = checkLine(str1, str2, distances, lines[i], i)</span>
         }
 
-        <span class="cov5" title="6">if len(distances) == 0 </span><span class="cov1" title="1">{
+        <span class="cov4" title="6">if len(distances) == 0 </span><span class="cov1" title="1">{
                 d.IsBreak = true
                 return d, lines
         }</span>
@@ -4790,18 +4767,18 @@ func (d *DefaultDetectLineResponse) DetectCurrentLine(str1, str2 string, recurse
         return d, lines</span>
 }
 
-func checkLine(str1, str2 string, distances map[int]int, line string, i int) map[int]int <span class="cov10" title="56">{
+func checkLine(str1, str2 string, distances map[int]int, line string, i int) map[int]int <span class="cov10" title="58">{
         if str1 != "" &amp;&amp; str2 != "" &amp;&amp; strings.Contains(line, str1) </span><span class="cov4" title="5">{
                 restLine := line[strings.Index(line, str1)+len(str1):]
                 if strings.Contains(restLine, str2) </span><span class="cov4" title="4">{
                         distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(line, str1, false), str1)
                         distances[i] += levenshtein.ComputeDistance(ExtractLineFragment(restLine, str2, false), str2)
                 }</span>
-        } else<span class="cov9" title="51"> if str1 != "" &amp;&amp; strings.Contains(line, str1) </span><span class="cov1" title="1">{
+        } else<span class="cov9" title="53"> if str1 != "" &amp;&amp; strings.Contains(line, str1) </span><span class="cov1" title="1">{
                 distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(line, str1, false), str1)
         }</span>
 
-        <span class="cov10" title="56">return distances</span>
+        <span class="cov10" title="58">return distances</span>
 }
 
 func (d *DefaultDetectLineResponse) checkResolvedFile(line, str1, st2 string,
@@ -4966,6 +4943,7 @@ import (
         "github.com/open-policy-agent/opa/rego"
         "github.com/open-policy-agent/opa/storage/inmem"
         "github.com/open-policy-agent/opa/topdown"
+        "github.com/open-policy-agent/opa/util"
         "github.com/pkg/errors"
         "github.com/rs/zerolog/log"
 )
@@ -4999,7 +4977,7 @@ type QueryLoader struct {
 
 // VulnerabilityBuilder represents a function that will build a vulnerability
 type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{},
-        detector *detector.DetectLine) (model.Vulnerability, error)
+        detector *detector.DetectLine) (*model.Vulnerability, error)
 
 // PreparedQuery includes the opaQuery and its metadata
 type PreparedQuery struct {
@@ -5029,7 +5007,7 @@ type QueryContext struct {
         scanID        string
         Files         map[string]model.FileMetadata
         Query         *PreparedQuery
-        payload       model.Documents
+        payload       *ast.Value
         BaseScanPaths []string
 }
 
@@ -5136,14 +5114,26 @@ func (c *Inspector) Inspect(
         log.Debug().Msg("engine.Inspect()")
         combinedFiles := files.Combine(false)
 
-        _, err := json.Marshal(combinedFiles)
+        var vulnerabilities []model.Vulnerability
+        vulnerabilities = make([]model.Vulnerability, 0)
+        var p interface{}
+
+        payload, err := json.Marshal(combinedFiles)
         if err != nil </span><span class="cov0" title="0">{
-                return nil, err
+                return vulnerabilities, err
         }</span>
 
-        <span class="cov3" title="2">var vulnerabilities []model.Vulnerability
-        vulnerabilities = make([]model.Vulnerability, 0)
-        queries := c.getQueriesByPlat(platforms)
+        <span class="cov3" title="2">err = util.UnmarshalJSON(payload, &amp;p)
+        if err != nil </span><span class="cov0" title="0">{
+                return vulnerabilities, err
+        }</span>
+
+        <span class="cov3" title="2">astPayload, err := ast.InterfaceToValue(p)
+        if err != nil </span><span class="cov0" title="0">{
+                return vulnerabilities, err
+        }</span>
+
+        <span class="cov3" title="2">queries := c.getQueriesByPlat(platforms)
         for i, queryMeta := range queries </span><span class="cov3" title="2">{
                 currentQuery &lt;- 1
 
@@ -5160,14 +5150,17 @@ func (c *Inspector) Inspect(
                         Metadata: queryMeta,
                 }
 
-                vuls, err := c.doRun(&amp;QueryContext{
+                queryContext := &amp;QueryContext{
                         Ctx:           ctx,
                         scanID:        scanID,
                         Files:         files.ToMap(),
                         Query:         query,
-                        payload:       combinedFiles,
+                        payload:       &amp;astPayload,
                         BaseScanPaths: baseScanPaths,
-                })
+                }
+
+                vuls, err := c.doRun(queryContext)
+
                 if err != nil </span><span class="cov0" title="0">{
                         sentryReport.ReportSentry(&amp;sentryReport.Report{
                                 Message:  fmt.Sprintf("Inspector. query executed with error, query=%s", query.Metadata.Query),
@@ -5233,7 +5226,7 @@ func (c *Inspector) GetFailedQueries() map[string]error <span class="cov1" title
 func (c *Inspector) doRun(ctx *QueryContext) ([]model.Vulnerability, error) <span class="cov3" title="2">{
         timeoutCtx, cancel := context.WithTimeout(ctx.Ctx, c.queryExecTimeout)
         defer cancel()
-        options := []rego.EvalOption{rego.EvalInput(ctx.payload)}
+        options := []rego.EvalOption{rego.EvalParsedInput(*ctx.payload)}
 
         var cov *cover.Cover
         if c.enableCoverageReport </span><span class="cov3" title="2">{
@@ -5242,6 +5235,7 @@ func (c *Inspector) doRun(ctx *QueryContext) ([]model.Vulnerability, error) <spa
         }</span>
 
         <span class="cov3" title="2">results, err := ctx.Query.OpaQuery.Eval(timeoutCtx, options...)
+        ctx.payload = nil
         if err != nil </span><span class="cov0" title="0">{
                 if topdown.IsCancel(err) </span><span class="cov0" title="0">{
                         return nil, errors.Wrap(err, "query executing timeout exited")
@@ -5325,7 +5319,7 @@ func (c *Inspector) DecodeQueryResults(ctx *QueryContext, results rego.ResultSet
                         continue</span>
                 }
 
-                <span class="cov1" title="1">vulnerabilities = append(vulnerabilities, vulnerability)</span>
+                <span class="cov1" title="1">vulnerabilities = append(vulnerabilities, *vulnerability)</span>
         }
 
         <span class="cov3" title="2">if failedDetectLine </span><span class="cov0" title="0">{
@@ -6325,7 +6319,7 @@ func (c *Inspector) checkFileContent(query *RegexQuery, basePaths []string, file
 
 func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadata, vulnGroups [][]string) []lineVulneInfo <span class="cov1" title="1">{
         content := file.OriginalData
-        lines := c.detector.SplitLines(file)
+        lines := *file.LinesOriginalData
         lineVulneInfoSlice := make([]lineVulneInfo, 0)
         realLineUpdater := 0
         for _, groups := range vulnGroups </span><span class="cov1" title="1">{
@@ -6345,7 +6339,7 @@ func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadat
 
                 text := strings.ReplaceAll(contentMatchRemoved, "\r", "")
                 contentMatchRemovedLines := strings.Split(text, "\n")
-                for i := 0; i &lt; len(lines); i++ </span><span class="cov3" title="13">{
+                for i := 0; i &lt; len(lines); i++ </span><span class="cov2" title="7">{
                         if lines[i] != contentMatchRemovedLines[i] </span><span class="cov1" title="1">{
                                 lineVulneInfoObject.lineNumber = i + realLineUpdater
                                 lineVulneInfoObject.lineContent = lines[i]
@@ -6473,15 +6467,15 @@ func calculateEntropy(token, charSet string) float64 <span class="cov3" title="1
                 return 0
         }</span>
         <span class="cov3" title="12">charMap := map[rune]float64{}
-        for _, char := range token </span><span class="cov6" title="382">{
-                if strings.Contains(charSet, string(char)) </span><span class="cov6" title="315">{
+        for _, char := range token </span><span class="cov7" title="1234">{
+                if strings.Contains(charSet, string(char)) </span><span class="cov6" title="909">{
                         charMap[char]++
                 }</span>
         }
 
         <span class="cov3" title="12">var freq float64
         length := float64(len(token))
-        for _, count := range charMap </span><span class="cov5" title="147">{
+        for _, count := range charMap </span><span class="cov5" title="191">{
                 freq += count * math.Log2(count)
         }</span>
 
@@ -6523,8 +6517,8 @@ func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.Fil
         wg := &amp;sync.WaitGroup{}
         // check file content line by line
         if c.regexQueries[i].Multiline == (MultilineResult{}) </span><span class="cov5" title="210">{
-                lines := c.detector.SplitLines(&amp;files[idx])
-                for lineNumber, currentLine := range lines </span><span class="cov7" title="2850">{
+                lines := (&amp;files[idx]).LinesOriginalData
+                for lineNumber, currentLine := range *lines </span><span class="cov7" title="2850">{
                         wg.Add(1)
                         go c.checkLineByLine(wg, &amp;c.regexQueries[i], basePaths, &amp;files[idx], lineNumber, currentLine)
                 }</span>
@@ -7218,10 +7212,10 @@ const (
 
 // DefaultVulnerabilityBuilder defines a vulnerability builder to execute default actions of scan
 var DefaultVulnerabilityBuilder = func(ctx *QueryContext, tracker Tracker,
-        v interface{}, detector *dec.DetectLine) (model.Vulnerability, error) <span class="cov10" title="5">{
+        v interface{}, detector *dec.DetectLine) (*model.Vulnerability, error) <span class="cov10" title="5">{
         vObj, ok := v.(map[string]interface{})
         if !ok </span><span class="cov0" title="0">{
-                return model.Vulnerability{}, ErrInvalidResult
+                return &amp;model.Vulnerability{}, ErrInvalidResult
         }</span>
 
         <span class="cov10" title="5">vObj = mergeWithMetadata(vObj, ctx.Query.Metadata.Metadata)
@@ -7231,19 +7225,19 @@ var DefaultVulnerabilityBuilder = func(ctx *QueryContext, tracker Tracker,
 
         output, err = json.Marshal(vObj)
         if err != nil </span><span class="cov0" title="0">{
-                return model.Vulnerability{}, errors.Wrap(err, "failed to marshall query output")
+                return &amp;model.Vulnerability{}, errors.Wrap(err, "failed to marshall query output")
         }</span>
 
         <span class="cov10" title="5">var fileID *string
 
         fileID, err = mapKeyToString(vObj, "documentId", false)
         if err != nil </span><span class="cov0" title="0">{
-                return model.Vulnerability{}, errors.Wrap(err, "failed to recognize file id")
+                return &amp;model.Vulnerability{}, errors.Wrap(err, "failed to recognize file id")
         }</span>
 
         <span class="cov10" title="5">file, ok := ctx.Files[*fileID]
         if !ok </span><span class="cov0" title="0">{
-                return model.Vulnerability{}, errors.New("failed to find file from query response")
+                return &amp;model.Vulnerability{}, errors.New("failed to find file from query response")
         }</span>
 
         <span class="cov10" title="5">logWithFields := log.With().
@@ -7256,7 +7250,7 @@ var DefaultVulnerabilityBuilder = func(ctx *QueryContext, tracker Tracker,
 
         linesVulne := model.VulnerabilityLines{
                 Line:      -1,
-                VulnLines: []model.CodeLine{},
+                VulnLines: &amp;[]model.CodeLine{},
         }
 
         similarityIDLineInfo := ""
@@ -7317,7 +7311,7 @@ var DefaultVulnerabilityBuilder = func(ctx *QueryContext, tracker Tracker,
 
         <span class="cov10" title="5">platform := getStringFromMap("platform", "", overrideKey, vObj, &amp;logWithFields)
 
-        return model.Vulnerability{
+        return &amp;model.Vulnerability{
                 ID:               0,
                 SimilarityID:     PtrStringToString(similarityID),
                 ScanID:           ctx.scanID,
@@ -7546,6 +7540,7 @@ import (
 
         sentryReport "github.com/Checkmarx/kics/internal/sentry"
         "github.com/Checkmarx/kics/pkg/model"
+        "github.com/Checkmarx/kics/pkg/utils"
         "github.com/google/uuid"
         "github.com/rs/zerolog/log"
 )
@@ -7592,18 +7587,19 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
                         }</span>
 
                         <span class="cov0" title="0">file := model.FileMetadata{
-                                ID:               uuid.New().String(),
-                                ScanID:           scanID,
-                                Document:         PrepareScanDocument(document, kind),
-                                OriginalData:     string(rfile.OriginalData),
-                                LineInfoDocument: document,
-                                Kind:             kind,
-                                FilePath:         rfile.FileName,
-                                Content:          string(rfile.Content),
-                                HelmID:           rfile.SplitID,
-                                IDInfo:           rfile.IDInfo,
-                                LinesIgnore:      documents.IgnoreLines,
-                                ResolvedFiles:    documents.ResolvedFiles,
+                                ID:                uuid.New().String(),
+                                ScanID:            scanID,
+                                Document:          PrepareScanDocument(document, kind),
+                                OriginalData:      string(rfile.OriginalData),
+                                LineInfoDocument:  document,
+                                Kind:              kind,
+                                FilePath:          rfile.FileName,
+                                Content:           string(rfile.Content),
+                                HelmID:            rfile.SplitID,
+                                IDInfo:            rfile.IDInfo,
+                                LinesIgnore:       documents.IgnoreLines,
+                                ResolvedFiles:     documents.ResolvedFiles,
+                                LinesOriginalData: utils.SplitLines(string(rfile.OriginalData)),
                         }
                         s.saveToFile(ctx, &amp;file)</span>
                 }
@@ -7678,11 +7674,12 @@ type Service struct {
 func (s *Service) PrepareSources(ctx context.Context, scanID string, wg *sync.WaitGroup, errCh chan&lt;- error) <span class="cov0" title="0">{
         defer wg.Done()
         // CxSAST query under review
+        data := make([]byte, mbConst)
         if err := s.SourceProvider.GetSources(
                 ctx,
                 s.Parser.SupportedExtensions(),
                 func(ctx context.Context, filename string, rc io.ReadCloser) error </span><span class="cov0" title="0">{
-                        return s.sink(ctx, filename, scanID, rc)
+                        return s.sink(ctx, filename, scanID, rc, data)
                 }</span>,
                 func(ctx context.Context, filename string) ([]string, error) <span class="cov0" title="0">{ // Sink used for resolver files and templates
                         return s.resolverSink(ctx, filename, scanID)
@@ -7741,11 +7738,10 @@ type Content struct {
    getContent will read the passed file 1MB at a time
    to prevent resource exhaustion and return its content
 */
-func getContent(rc io.Reader) (*Content, error) <span class="cov0" title="0">{
+func getContent(rc io.Reader, data []byte) (*Content, error) <span class="cov0" title="0">{
         maxSizeMB := 5 // Max size of file in MBs
         var content []byte
         countLines := 0
-        data := make([]byte, mbConst)
 
         c := &amp;Content{
                 Content:    &amp;[]byte{},
@@ -7793,14 +7789,14 @@ func (s *Service) saveToFile(ctx context.Context, file *model.FileMetadata) <spa
 
 // PrepareScanDocument removes _kics_lines from payload and parses json filters
 func PrepareScanDocument(body map[string]interface{}, kind model.FileKind) map[string]interface{} <span class="cov1" title="1">{
-        bodyMap := make(map[string]interface{})
+        var bodyMap map[string]interface{}
         j, err := json.Marshal(body)
         if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msgf("failed to remove kics line information")
                 return body
         }</span>
         <span class="cov1" title="1">if err := json.Unmarshal(j, &amp;bodyMap); err != nil </span><span class="cov0" title="0">{
-                log.Error().Msgf("failed to remove kics line information")
+                log.Error().Msgf("failed to remove kics line information: '%s'", err)
                 return body
         }</span>
         <span class="cov1" title="1">prepareScanDocumentRoot(bodyMap, kind)
@@ -7849,6 +7845,7 @@ import (
         sentryReport "github.com/Checkmarx/kics/internal/sentry"
         "github.com/Checkmarx/kics/pkg/model"
         "github.com/Checkmarx/kics/pkg/parser/jsonfilter/parser"
+        "github.com/Checkmarx/kics/pkg/utils"
         "github.com/antlr/antlr4/runtime/Go/antlr"
         "github.com/google/uuid"
         "github.com/pkg/errors"
@@ -7863,11 +7860,11 @@ var (
         }
 )
 
-func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reader) error <span class="cov0" title="0">{
+func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reader, data []byte) error <span class="cov0" title="0">{
         s.Tracker.TrackFileFound()
         log.Debug().Msgf("Starting to process file %s", filename)
 
-        c, err := getContent(rc)
+        c, err := getContent(rc, data)
 
         content := c.Content
 
@@ -7884,6 +7881,18 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
         }</span>
 
         <span class="cov0" title="0">fileCommands := s.Parser.CommentsCommands(filename, *content)
+
+        file := model.FileMetadata{
+                ID:                uuid.New().String(),
+                ScanID:            scanID,
+                OriginalData:      documents.Content,
+                Kind:              documents.Kind,
+                FilePath:          filename,
+                Commands:          fileCommands,
+                LinesIgnore:       documents.IgnoreLines,
+                ResolvedFiles:     documents.ResolvedFiles,
+                LinesOriginalData: utils.SplitLines(documents.Content),
+        }
 
         for _, document := range documents.Docs </span><span class="cov0" title="0">{
                 _, err = json.Marshal(document)
@@ -7902,18 +7911,9 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
                         sort.Ints(documents.IgnoreLines)
                 }</span>
 
-                <span class="cov0" title="0">file := model.FileMetadata{
-                        ID:               uuid.New().String(),
-                        ScanID:           scanID,
-                        Document:         PrepareScanDocument(document, documents.Kind),
-                        LineInfoDocument: document,
-                        OriginalData:     documents.Content,
-                        Kind:             documents.Kind,
-                        FilePath:         filename,
-                        Commands:         fileCommands,
-                        LinesIgnore:      documents.IgnoreLines,
-                        ResolvedFiles:    documents.ResolvedFiles,
-                }
+                <span class="cov0" title="0">file.Document = PrepareScanDocument(document, documents.Kind)
+                file.LineInfoDocument = document
+
                 s.saveToFile(ctx, &amp;file)</span>
         }
         <span class="cov0" title="0">s.Tracker.TrackFileParse()
@@ -8283,7 +8283,7 @@ type Version struct {
 // VulnerabilityLines is the representation of the found line for issue
 type VulnerabilityLines struct {
         Line                 int
-        VulnLines            []CodeLine
+        VulnLines            *[]CodeLine
         LineWithVulnerabilty string
         ResolvedFile         string
 }
@@ -8318,19 +8318,20 @@ type CommentsCommands map[string]string
 
 // FileMetadata is a representation of basic information and content of a file
 type FileMetadata struct {
-        ID               string `db:"id"`
-        ScanID           string `db:"scan_id"`
-        Document         Document
-        LineInfoDocument map[string]interface{}
-        OriginalData     string   `db:"orig_data"`
-        Kind             FileKind `db:"kind"`
-        FilePath         string   `db:"file_path"`
-        Content          string
-        HelmID           string
-        IDInfo           map[int]interface{}
-        Commands         CommentsCommands
-        LinesIgnore      []int
-        ResolvedFiles    map[string]ResolvedFile
+        ID                string `db:"id"`
+        ScanID            string `db:"scan_id"`
+        Document          Document
+        LineInfoDocument  map[string]interface{}
+        OriginalData      string   `db:"orig_data"`
+        Kind              FileKind `db:"kind"`
+        FilePath          string   `db:"file_path"`
+        Content           string
+        HelmID            string
+        IDInfo            map[int]interface{}
+        Commands          CommentsCommands
+        LinesIgnore       []int
+        ResolvedFiles     map[string]ResolvedFile
+        LinesOriginalData *[]string
 }
 
 // QueryMetadata is a representation of general information about a query
@@ -8348,34 +8349,34 @@ type QueryMetadata struct {
 // Vulnerability is a representation of a detected vulnerability in scanned files
 // after running a query
 type Vulnerability struct {
-        ID               int        `json:"id"`
-        ScanID           string     `db:"scan_id" json:"-"`
-        SimilarityID     string     `db:"similarity_id" json:"similarityID"`
-        FileID           string     `db:"file_id" json:"-"`
-        FileName         string     `db:"file_name" json:"fileName"`
-        QueryID          string     `db:"query_id" json:"queryID"`
-        QueryName        string     `db:"query_name" json:"queryName"`
-        QueryURI         string     `json:"-"`
-        Category         string     `json:"category"`
-        Description      string     `json:"description"`
-        DescriptionID    string     `json:"descriptionID"`
-        Platform         string     `db:"platform" json:"platform"`
-        Severity         Severity   `json:"severity"`
-        Line             int        `json:"line"`
-        VulnLines        []CodeLine `json:"vulnLines"`
-        ResourceType     string     `db:"resource_type" json:"resourceType"`
-        ResourceName     string     `db:"resource_name" json:"resourceName"`
-        IssueType        IssueType  `db:"issue_type" json:"issueType"`
-        SearchKey        string     `db:"search_key" json:"searchKey"`
-        SearchLine       int        `db:"search_line" json:"searchLine"`
-        SearchValue      string     `db:"search_value" json:"searchValue"`
-        KeyExpectedValue string     `db:"key_expected_value" json:"expectedValue"`
-        KeyActualValue   string     `db:"key_actual_value" json:"actualValue"`
-        Value            *string    `db:"value" json:"value"`
-        Output           string     `json:"-"`
-        CloudProvider    string     `json:"cloud_provider"`
-        Remediation      string     `db:"remediation" json:"remediation"`
-        RemediationType  string     `db:"remediation_type" json:"remediation_type"`
+        ID               int         `json:"id"`
+        ScanID           string      `db:"scan_id" json:"-"`
+        SimilarityID     string      `db:"similarity_id" json:"similarityID"`
+        FileID           string      `db:"file_id" json:"-"`
+        FileName         string      `db:"file_name" json:"fileName"`
+        QueryID          string      `db:"query_id" json:"queryID"`
+        QueryName        string      `db:"query_name" json:"queryName"`
+        QueryURI         string      `json:"-"`
+        Category         string      `json:"category"`
+        Description      string      `json:"description"`
+        DescriptionID    string      `json:"descriptionID"`
+        Platform         string      `db:"platform" json:"platform"`
+        Severity         Severity    `json:"severity"`
+        Line             int         `json:"line"`
+        VulnLines        *[]CodeLine `json:"vulnLines"`
+        ResourceType     string      `db:"resource_type" json:"resourceType"`
+        ResourceName     string      `db:"resource_name" json:"resourceName"`
+        IssueType        IssueType   `db:"issue_type" json:"issueType"`
+        SearchKey        string      `db:"search_key" json:"searchKey"`
+        SearchLine       int         `db:"search_line" json:"searchLine"`
+        SearchValue      string      `db:"search_value" json:"searchValue"`
+        KeyExpectedValue string      `db:"key_expected_value" json:"expectedValue"`
+        KeyActualValue   string      `db:"key_actual_value" json:"actualValue"`
+        Value            *string     `db:"value" json:"value"`
+        Output           string      `json:"-"`
+        CloudProvider    string      `json:"cloud_provider"`
+        Remediation      string      `db:"remediation" json:"remediation"`
+        RemediationType  string      `db:"remediation_type" json:"remediation_type"`
 }
 
 // QueryConfig is a struct that contains the fileKind and platform of the rego query
@@ -8491,8 +8492,9 @@ type ResolvedFileSplit struct {
 
 // ResolvedFile is a struct that contains the information of a resolved file, the path and the content in bytes of the file
 type ResolvedFile struct {
-        Path    string
-        Content []byte
+        Path         string
+        Content      []byte
+        LinesContent *[]string
 }
 </pre>
 		
@@ -8894,21 +8896,21 @@ type SeveritySummary struct {
 
 // VulnerableFile contains information of a vulnerable file and where the vulnerability was found
 type VulnerableFile struct {
-        FileName         string     `json:"file_name"`
-        SimilarityID     string     `json:"similarity_id"`
-        Line             int        `json:"line"`
-        VulnLines        []CodeLine `json:"-"`
-        ResourceType     string     `json:"resource_type,omitempty"`
-        ResourceName     string     `json:"resource_name,omitempty"`
-        IssueType        IssueType  `json:"issue_type"`
-        SearchKey        string     `json:"search_key"`
-        SearchLine       int        `json:"search_line"`
-        SearchValue      string     `json:"search_value"`
-        KeyExpectedValue string     `json:"expected_value"`
-        KeyActualValue   string     `json:"actual_value"`
-        Value            *string    `json:"value,omitempty"`
-        Remediation      string     `json:"remediation,omitempty"`
-        RemediationType  string     `json:"remediation_type,omitempty"`
+        FileName         string      `json:"file_name"`
+        SimilarityID     string      `json:"similarity_id"`
+        Line             int         `json:"line"`
+        VulnLines        *[]CodeLine `json:"-"`
+        ResourceType     string      `json:"resource_type,omitempty"`
+        ResourceName     string      `json:"resource_name,omitempty"`
+        IssueType        IssueType   `json:"issue_type"`
+        SearchKey        string      `json:"search_key"`
+        SearchLine       int         `json:"search_line"`
+        SearchValue      string      `json:"search_value"`
+        KeyExpectedValue string      `json:"expected_value"`
+        KeyActualValue   string      `json:"actual_value"`
+        Value            *string     `json:"value,omitempty"`
+        Remediation      string      `json:"remediation,omitempty"`
+        RemediationType  string      `json:"remediation_type,omitempty"`
 }
 
 // QueryResult contains a query that tested positive ID, name, severity and a list of files that tested vulnerable
@@ -13713,7 +13715,7 @@ func (c *converter) convertTemplate(t *hclsyntax.TemplateExpr) (string, error) <
                 }</span>
                 <span class="cov7" title="24">return v.AsString(), nil</span>
         }
-        <span class="cov5" title="7">var builder strings.Builder
+        <span class="cov5" title="7">builder := &amp;strings.Builder{}
         for _, part := range t.Parts </span><span class="cov7" title="23">{
                 s, err := c.convertStringPart(part)
                 if err != nil </span><span class="cov0" title="0">{
@@ -13727,7 +13729,13 @@ func (c *converter) convertTemplate(t *hclsyntax.TemplateExpr) (string, error) <
                 }</span>
                 <span class="cov7" title="23">builder.WriteString(s)</span>
         }
-        <span class="cov5" title="7">return builder.String(), nil</span>
+
+        <span class="cov5" title="7">s := builder.String()
+
+        builder.Reset()
+        builder = nil
+
+        return s, nil</span>
 }
 
 func (c *converter) convertStringPart(expr hclsyntax.Expression) (string, error) <span class="cov8" title="33">{
@@ -13768,7 +13776,7 @@ func (c *converter) convertStringPart(expr hclsyntax.Expression) (string, error)
 }
 
 func (c *converter) convertTemplateConditional(expr *hclsyntax.ConditionalExpr) (string, error) <span class="cov2" title="2">{
-        var builder strings.Builder
+        builder := &amp;strings.Builder{}
         builder.WriteString("%{if ")
         builder.WriteString(c.rangeSource(expr.Condition.Range()))
         builder.WriteString("}")
@@ -13799,11 +13807,16 @@ func (c *converter) convertTemplateConditional(expr *hclsyntax.ConditionalExpr) 
         }</span>
         <span class="cov2" title="2">builder.WriteString("%{endif}")
 
-        return builder.String(), nil</span>
+        s := builder.String()
+
+        builder.Reset()
+        builder = nil
+
+        return s, nil</span>
 }
 
 func (c *converter) convertTemplateFor(expr *hclsyntax.ForExpr) (string, error) <span class="cov1" title="1">{
-        var builder strings.Builder
+        builder := &amp;strings.Builder{}
         builder.WriteString("%{for ")
         if len(expr.KeyVar) &gt; 0 </span><span class="cov0" title="0">{
                 builder.WriteString(expr.KeyVar)
@@ -13826,7 +13839,11 @@ func (c *converter) convertTemplateFor(expr *hclsyntax.ForExpr) (string, error) 
         <span class="cov1" title="1">builder.WriteString(templ)
         builder.WriteString("%{endfor}")
 
-        return builder.String(), nil</span>
+        s := builder.String()
+
+        builder.Reset()
+        builder = nil
+        return s, nil</span>
 }
 
 func (c *converter) wrapExpr(expr hclsyntax.Expression) (string, error) <span class="cov6" title="11">{
@@ -15075,7 +15092,7 @@ func printFiles(query *model.QueryResult, printer *Printer) <span class="cov5" t
                         query.Files[fileIdx].FileName, printer.Success.Sprint(query.Files[fileIdx].Line))
                 if !printer.minimal </span><span class="cov4" title="3">{
                         fmt.Println()
-                        for _, line := range query.Files[fileIdx].VulnLines </span><span class="cov0" title="0">{
+                        for _, line := range *query.Files[fileIdx].VulnLines </span><span class="cov0" title="0">{
                                 if len(line.Line) &gt; charsLimitPerLine </span><span class="cov0" title="0">{
                                         line.Line = line.Line[:charsLimitPerLine]
                                 }</span>
@@ -15334,7 +15351,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov1" title="1">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -15343,7 +15360,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov1" title="1">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
@@ -15355,14 +15372,14 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov1" title="1">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov1" title="1">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file79" style="display: none">package progress
@@ -15716,11 +15733,12 @@ func getPayload(filePath string, content []byte) (model.FileMetadatas, error) <s
                 }
 
                 <span class="cov10" title="3">file := model.FileMetadata{
-                        FilePath:         filePath,
-                        Document:         kics.PrepareScanDocument(document, documents.Kind),
-                        LineInfoDocument: document,
-                        Commands:         p[0].CommentsCommands(filePath, content),
-                        OriginalData:     string(content),
+                        FilePath:          filePath,
+                        Document:          kics.PrepareScanDocument(document, documents.Kind),
+                        LineInfoDocument:  document,
+                        Commands:          p[0].CommentsCommands(filePath, content),
+                        OriginalData:      string(content),
+                        LinesOriginalData: utils.SplitLines(string(content)),
                 }
 
                 files = append(files, file)</span>
@@ -18471,6 +18489,7 @@ import (
         "github.com/Checkmarx/kics/internal/constants"
 
         "github.com/Checkmarx/kics/pkg/model"
+        "github.com/Checkmarx/kics/pkg/utils"
         "github.com/rs/zerolog/log"
 )
 
@@ -18590,8 +18609,9 @@ func (r *Resolver) resolvePath(value, filePath string, resolveCount int) (any, b
         }</span>
 
         <span class="cov4" title="3">r.ResolvedFiles[value] = model.ResolvedFile{
-                Content: fileContent,
-                Path:    path,
+                Content:      fileContent,
+                Path:         path,
+                LinesContent: utils.SplitLines(string(fileContent)),
         }
 
         // Cloudformation !Ref check
@@ -20336,7 +20356,20 @@ func NextRandom() string <span class="cov10" title="2">{
 // ==============================================================================
 </pre>
 		
-		<pre class="file" id="file122" style="display: none">package test
+		<pre class="file" id="file122" style="display: none">package utils
+
+import "strings"
+
+// SplitLines splits the document by line
+func SplitLines(content string) *[]string <span class="cov8" title="1">{
+        text := strings.ReplaceAll(content, "\r", "")
+        split := strings.Split(text, "\n")
+
+        return &amp;split
+}</span>
+</pre>
+		
+		<pre class="file" id="file123" style="display: none">package test
 
 import (
         "bytes"
@@ -20464,6 +20497,7 @@ var queryHigh = model.QueryResult{
                         KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
                         KeyActualValue:   "'default_action.redirect.protocol' is missing",
                         Value:            nil,
+                        VulnLines:        &amp;[]model.CodeLine{},
                 },
                 {
                         FileName:         positive,
@@ -20473,6 +20507,7 @@ var queryHigh = model.QueryResult{
                         KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
                         KeyActualValue:   "'default_action.redirect.protocol' is equal 'HTTP'",
                         Value:            nil,
+                        VulnLines:        &amp;[]model.CodeLine{},
                 },
         },
 }
@@ -20493,6 +20528,7 @@ var queryMedium = model.QueryResult{
                         KeyExpectedValue: "resource.aws_mq_broker[positive1].encryption_options is defined",
                         KeyActualValue:   "resource.aws_mq_broker[positive1].encryption_options is not defined",
                         Value:            nil,
+                        VulnLines:        &amp;[]model.CodeLine{},
                 },
         },
 }
@@ -20510,6 +20546,7 @@ var queryMedium2 = model.QueryResult{
                         KeyExpectedValue: "GuardDuty Detector should be Enabled",
                         KeyActualValue:   "GuardDuty Detector is not Enabled",
                         Value:            nil,
+                        VulnLines:        &amp;[]model.CodeLine{},
                 },
         },
         Platform:    "Terraform",
@@ -20529,6 +20566,7 @@ var queryInfo = model.QueryResult{
                         KeyExpectedValue: "aws_guardduty_detector[{{negative1}}].tags is defined and not null",
                         KeyActualValue:   "aws_guardduty_detector[{{negative1}}].tags is undefined or null",
                         Value:            nil,
+                        VulnLines:        &amp;[]model.CodeLine{},
                 },
                 {
                         FileName:         filepath.Join("assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "positive.tf"),
@@ -20538,6 +20576,7 @@ var queryInfo = model.QueryResult{
                         KeyExpectedValue: "aws_guardduty_detector[{{positive1}}].tags is defined and not null",
                         KeyActualValue:   "aws_guardduty_detector[{{positive1}}].tags is undefined or null",
                         Value:            nil,
+                        VulnLines:        &amp;[]model.CodeLine{},
                 },
         },
         Platform:    "Terraform",
