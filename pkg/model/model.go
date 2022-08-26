@@ -78,7 +78,7 @@ type Version struct {
 // VulnerabilityLines is the representation of the found line for issue
 type VulnerabilityLines struct {
 	Line                 int
-	VulnLines            []CodeLine
+	VulnLines            *[]CodeLine
 	LineWithVulnerabilty string
 	ResolvedFile         string
 }
@@ -113,19 +113,20 @@ type CommentsCommands map[string]string
 
 // FileMetadata is a representation of basic information and content of a file
 type FileMetadata struct {
-	ID               string `db:"id"`
-	ScanID           string `db:"scan_id"`
-	Document         Document
-	LineInfoDocument map[string]interface{}
-	OriginalData     string   `db:"orig_data"`
-	Kind             FileKind `db:"kind"`
-	FilePath         string   `db:"file_path"`
-	Content          string
-	HelmID           string
-	IDInfo           map[int]interface{}
-	Commands         CommentsCommands
-	LinesIgnore      []int
-	ResolvedFiles    map[string]ResolvedFile
+	ID                string `db:"id"`
+	ScanID            string `db:"scan_id"`
+	Document          Document
+	LineInfoDocument  map[string]interface{}
+	OriginalData      string   `db:"orig_data"`
+	Kind              FileKind `db:"kind"`
+	FilePath          string   `db:"file_path"`
+	Content           string
+	HelmID            string
+	IDInfo            map[int]interface{}
+	Commands          CommentsCommands
+	LinesIgnore       []int
+	ResolvedFiles     map[string]ResolvedFile
+	LinesOriginalData *[]string
 }
 
 // QueryMetadata is a representation of general information about a query
@@ -143,34 +144,34 @@ type QueryMetadata struct {
 // Vulnerability is a representation of a detected vulnerability in scanned files
 // after running a query
 type Vulnerability struct {
-	ID               int        `json:"id"`
-	ScanID           string     `db:"scan_id" json:"-"`
-	SimilarityID     string     `db:"similarity_id" json:"similarityID"`
-	FileID           string     `db:"file_id" json:"-"`
-	FileName         string     `db:"file_name" json:"fileName"`
-	QueryID          string     `db:"query_id" json:"queryID"`
-	QueryName        string     `db:"query_name" json:"queryName"`
-	QueryURI         string     `json:"-"`
-	Category         string     `json:"category"`
-	Description      string     `json:"description"`
-	DescriptionID    string     `json:"descriptionID"`
-	Platform         string     `db:"platform" json:"platform"`
-	Severity         Severity   `json:"severity"`
-	Line             int        `json:"line"`
-	VulnLines        []CodeLine `json:"vulnLines"`
-	ResourceType     string     `db:"resource_type" json:"resourceType"`
-	ResourceName     string     `db:"resource_name" json:"resourceName"`
-	IssueType        IssueType  `db:"issue_type" json:"issueType"`
-	SearchKey        string     `db:"search_key" json:"searchKey"`
-	SearchLine       int        `db:"search_line" json:"searchLine"`
-	SearchValue      string     `db:"search_value" json:"searchValue"`
-	KeyExpectedValue string     `db:"key_expected_value" json:"expectedValue"`
-	KeyActualValue   string     `db:"key_actual_value" json:"actualValue"`
-	Value            *string    `db:"value" json:"value"`
-	Output           string     `json:"-"`
-	CloudProvider    string     `json:"cloud_provider"`
-	Remediation      string     `db:"remediation" json:"remediation"`
-	RemediationType  string     `db:"remediation_type" json:"remediation_type"`
+	ID               int         `json:"id"`
+	ScanID           string      `db:"scan_id" json:"-"`
+	SimilarityID     string      `db:"similarity_id" json:"similarityID"`
+	FileID           string      `db:"file_id" json:"-"`
+	FileName         string      `db:"file_name" json:"fileName"`
+	QueryID          string      `db:"query_id" json:"queryID"`
+	QueryName        string      `db:"query_name" json:"queryName"`
+	QueryURI         string      `json:"-"`
+	Category         string      `json:"category"`
+	Description      string      `json:"description"`
+	DescriptionID    string      `json:"descriptionID"`
+	Platform         string      `db:"platform" json:"platform"`
+	Severity         Severity    `json:"severity"`
+	Line             int         `json:"line"`
+	VulnLines        *[]CodeLine `json:"vulnLines"`
+	ResourceType     string      `db:"resource_type" json:"resourceType"`
+	ResourceName     string      `db:"resource_name" json:"resourceName"`
+	IssueType        IssueType   `db:"issue_type" json:"issueType"`
+	SearchKey        string      `db:"search_key" json:"searchKey"`
+	SearchLine       int         `db:"search_line" json:"searchLine"`
+	SearchValue      string      `db:"search_value" json:"searchValue"`
+	KeyExpectedValue string      `db:"key_expected_value" json:"expectedValue"`
+	KeyActualValue   string      `db:"key_actual_value" json:"actualValue"`
+	Value            *string     `db:"value" json:"value"`
+	Output           string      `json:"-"`
+	CloudProvider    string      `json:"cloud_provider"`
+	Remediation      string      `db:"remediation" json:"remediation"`
+	RemediationType  string      `db:"remediation_type" json:"remediation_type"`
 }
 
 // QueryConfig is a struct that contains the fileKind and platform of the rego query
@@ -286,6 +287,7 @@ type ResolvedFileSplit struct {
 
 // ResolvedFile is a struct that contains the information of a resolved file, the path and the content in bytes of the file
 type ResolvedFile struct {
-	Path    string
-	Content []byte
+	Path         string
+	Content      []byte
+	LinesContent *[]string
 }

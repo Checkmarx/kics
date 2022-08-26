@@ -141,7 +141,7 @@ func generateSubstr(substr string, parts []string, length int) string {
 
 // GetAdjacentVulnLines is used to get the lines adjacent to the line that contains the vulnerability
 // adj is the amount of lines wanted
-func GetAdjacentVulnLines(idx, adj int, lines []string) []model.CodeLine {
+func GetAdjacentVulnLines(idx, adj int, lines []string) *[]model.CodeLine {
 	var endPos int
 	var startPos int
 	if adj <= len(lines) {
@@ -179,7 +179,7 @@ func GetAdjacentVulnLines(idx, adj int, lines []string) []model.CodeLine {
 
 // createVulnLines is the function that will  generate the array that contains the lines numbers
 // used to alter the color of the line that contains the vulnerability
-func createVulnLines(startPos int, lines []string) []model.CodeLine {
+func createVulnLines(startPos int, lines []string) *[]model.CodeLine {
 	vulns := make([]model.CodeLine, len(lines))
 	for idx, line := range lines {
 		vulns[idx] = model.CodeLine{
@@ -188,7 +188,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine {
 		}
 		startPos++
 	}
-	return vulns
+	return &vulns
 }
 
 // SelectLineWithMinimumDistance will search a map of levenshtein distances to find the minimum distance

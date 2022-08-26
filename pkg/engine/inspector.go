@@ -20,6 +20,7 @@ import (
 	"github.com/open-policy-agent/opa/rego"
 	"github.com/open-policy-agent/opa/storage/inmem"
 	"github.com/open-policy-agent/opa/topdown"
+	"github.com/open-policy-agent/opa/util"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -53,7 +54,7 @@ type QueryLoader struct {
 
 // VulnerabilityBuilder represents a function that will build a vulnerability
 type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{},
-	detector *detector.DetectLine) (model.Vulnerability, error)
+	detector *detector.DetectLine) (*model.Vulnerability, error)
 
 // PreparedQuery includes the opaQuery and its metadata
 type PreparedQuery struct {
@@ -83,7 +84,7 @@ type QueryContext struct {
 	scanID        string
 	Files         map[string]model.FileMetadata
 	Query         *PreparedQuery
-	payload       model.Documents
+	payload       *ast.Value
 	BaseScanPaths []string
 }
 
@@ -190,13 +191,25 @@ func (c *Inspector) Inspect(
 	log.Debug().Msg("engine.Inspect()")
 	combinedFiles := files.Combine(false)
 
-	_, err := json.Marshal(combinedFiles)
-	if err != nil {
-		return nil, err
-	}
-
 	var vulnerabilities []model.Vulnerability
 	vulnerabilities = make([]model.Vulnerability, 0)
+	var p interface{}
+
+	payload, err := json.Marshal(combinedFiles)
+	if err != nil {
+		return vulnerabilities, err
+	}
+
+	err = util.UnmarshalJSON(payload, &p)
+	if err != nil {
+		return vulnerabilities, err
+	}
+
+	astPayload, err := ast.InterfaceToValue(p)
+	if err != nil {
+		return vulnerabilities, err
+	}
+
 	queries := c.getQueriesByPlat(platforms)
 	for i, queryMeta := range queries {
 		currentQuery <- 1
@@ -214,14 +227,17 @@ func (c *Inspector) Inspect(
 			Metadata: queryMeta,
 		}
 
-		vuls, err := c.doRun(&QueryContext{
+		queryContext := &QueryContext{
 			Ctx:           ctx,
 			scanID:        scanID,
 			Files:         files.ToMap(),
 			Query:         query,
-			payload:       combinedFiles,
+			payload:       &astPayload,
 			BaseScanPaths: baseScanPaths,
-		})
+		}
+
+		vuls, err := c.doRun(queryContext)
+
 		if err != nil {
 			sentryReport.ReportSentry(&sentryReport.Report{
 				Message:  fmt.Sprintf("Inspector. query executed with error, query=%s", query.Metadata.Query),
@@ -287,7 +303,7 @@ func (c *Inspector) GetFailedQueries() map[string]error {
 func (c *Inspector) doRun(ctx *QueryContext) ([]model.Vulnerability, error) {
 	timeoutCtx, cancel := context.WithTimeout(ctx.Ctx, c.queryExecTimeout)
 	defer cancel()
-	options := []rego.EvalOption{rego.EvalInput(ctx.payload)}
+	options := []rego.EvalOption{rego.EvalParsedInput(*ctx.payload)}
 
 	var cov *cover.Cover
 	if c.enableCoverageReport {
@@ -296,6 +312,7 @@ func (c *Inspector) doRun(ctx *QueryContext) ([]model.Vulnerability, error) {
 	}
 
 	results, err := ctx.Query.OpaQuery.Eval(timeoutCtx, options...)
+	ctx.payload = nil
 	if err != nil {
 		if topdown.IsCancel(err) {
 			return nil, errors.Wrap(err, "query executing timeout exited")
@@ -379,7 +396,7 @@ func (c *Inspector) DecodeQueryResults(ctx *QueryContext, results rego.ResultSet
 			continue
 		}
 
-		vulnerabilities = append(vulnerabilities, vulnerability)
+		vulnerabilities = append(vulnerabilities, *vulnerability)
 	}
 
 	if failedDetectLine {

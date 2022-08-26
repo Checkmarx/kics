@@ -383,7 +383,7 @@ func (c *Inspector) checkFileContent(query *RegexQuery, basePaths []string, file
 
 func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadata, vulnGroups [][]string) []lineVulneInfo {
 	content := file.OriginalData
-	lines := c.detector.SplitLines(file)
+	lines := *file.LinesOriginalData
 	lineVulneInfoSlice := make([]lineVulneInfo, 0)
 	realLineUpdater := 0
 	for _, groups := range vulnGroups {
@@ -581,8 +581,8 @@ func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.Fil
 	wg := &sync.WaitGroup{}
 	// check file content line by line
 	if c.regexQueries[i].Multiline == (MultilineResult{}) {
-		lines := c.detector.SplitLines(&files[idx])
-		for lineNumber, currentLine := range lines {
+		lines := (&files[idx]).LinesOriginalData
+		for lineNumber, currentLine := range *lines {
 			wg.Add(1)
 			go c.checkLineByLine(wg, &c.regexQueries[i], basePaths, &files[idx], lineNumber, currentLine)
 		}
