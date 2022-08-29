@@ -544,18 +544,20 @@ is_aws_ebs_optimized_by_default(instanceType) {
 #aurora is equivelent to mysql 5.6 https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth.Availability
 #all aurora-postgresql versions that do not support IAM auth are deprecated Source:console.aws (launch rds instance) 
 valid_for_iam_engine_and_version_check(resource, engineVar, engineVersionVar, instanceClassVar) {
-	lower(resource[engineVar]) == "mariadb"
-	startswith(resource[engineVersionVar], "10.6")
+	key_list := [engineVar, engineVersionVar]
+	contains(lower(resource[engineVar]), "mariadb")
+	version_check := {x | x := resource[key_list[_]]; contains(x, "10.6")}
+	count(version_check) > 0
 } else {
 	engines_that_supports_iam := ["aurora-postgresql", "postgres", "mysql", "mariadb"]
-	lower(resource[engineVar]) == engines_that_supports_iam[_]
+	contains(lower(resource[engineVar]), engines_that_supports_iam[_])
 	not valid_key(resource, engineVersionVar)
 } else {
 	engines_that_supports_iam := ["aurora-postgresql", "postgres", "mysql"]
-	lower(resource[engineVar]) == engines_that_supports_iam[_]
+	contains(lower(resource[engineVar]), engines_that_supports_iam[_])
 } else {
 	aurora_mysql_engines := ["aurora", "aurora-mysql"]
-	lower(resource[engineVar]) == aurora_mysql_engines[_]
+	contains(lower(resource[engineVar]), aurora_mysql_engines[_])
 	invalid_classes := ["db.t2.small", "db.t3.small"]
 	not inArray(invalid_classes, resource[instanceClassVar])
 }
