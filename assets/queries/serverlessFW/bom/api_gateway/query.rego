@@ -11,7 +11,7 @@ CxPolicy[result] {
 	accessibility := get_resource_accessibility(apiGateway)
 
 	bom_output = {
-		"resource_type": "Serverless Function",
+		"resource_type": "API Gateway",
 		"resource_name": provider.apiName,
 		"resource_accessibility": accessibility.accessibility,
 		"resource_encryption": "unknown",

@@ -230,3 +230,120 @@ Results will be found in the [JSON](results.md) output and placed separately und
 	]
 }
 ```
+## [ServerlessFW] Bill Of Materials
+
+This feature uses Rego queries to extract a list of used ServerlessFW resources along with its metadata in the scanned IaC. In ServerlessFW is also possible to use CloudFormation BoM Rego queries so get the resources defined in the CF template.
+
+Find the existing queries under: [assets/queries/serverlessFW/bom](https://github.com/Checkmarx/kics/tree/master/assets/queries/serverlessFW/bom)
+
+BoM queries extracts metadata about the resources and organizes it in the following structure:
+
+```go
+billOfMaterialsRequiredFields := map[string]bool{
+    "acl":                    false,
+    "policy":                 false,
+    "resource_accessibility": true,
+    "resource_category":      true,
+    "resource_encryption":    true,
+    "resource_engine":        false,
+    "resource_name":          true,
+    "resource_type":          true,
+    "resource_vendor":        true,
+}
+```
+
+Observe more detailed information about it in the table below.
+
+|       **Field**        |                                                                                                            **Possible Values**                                                                                                            | **Required** |         **Resources**         |    **Type**     |
+| :--------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------: | :---------------------------: | :-------------: |
+|          acl           | Private,<br /> Public<br /> for `deploymentBucket` and Private,<br /> PublicRead,<br /> PublicReadWrite,<br /> AuthenticatedRead,<br /> LogDeliveryWrite,<br /> BucketOwnerRead,<br /> BucketOwnerFullControl,<br /> AwsExecRead for `s3` |      No      | `deploymentBucket`,<br />`s3` |     string      |
+|         policy         |                                                                                policy content (in case `resource_accessibility` equals hasPolicy for `s3`)                                                                                |      No      |             `s3`              | JSON marshalled |
+| resource_accessibility |                                                                            public, private, hasPolicy or unknown for `deploymentBucket`, `s3` and `apiGateway`                                                                            |     Yes      |              all              |     string      |
+|   resource_category    |                                                           Compute for `function`<br /><br />  API Gateway for `apiGateway`<br /><br />  Storage for `deploymentBucket` and `s3`                                                           |     Yes      |              all              |     string      |
+|  resource_encryption   |                                                                                               encrypted,<br />  unencrypted,<br />  unknown                                                                                               |     Yes      |              all              |     string      |
+|    resource_engine     |                                                                                                                  unknown                                                                                                                  |      No      |             none              |     string      |
+|     resource_name      |                                                                               anything (if the name is defined),<br /> unknown (if the name is not defined)                                                                               |     Yes      |              all              |     string      |
+|     resource_type      |                                                          Serverless Function for `function`,<br /> S3 Bucket for `deploymentBucket` and `s3`,<br /> API Gateway for `apiGateway`                                                          |     Yes      |              all              |     string      |
+|    resource_vendor     |                                                                                                       Value specified in `provider`                                                                                                       |     Yes      |              all              |     string      |
+
+
+### BoM query example
+```
+CxPolicy[result] {
+	document := input.document[i]
+	provider := document.provider
+	apiGateway := provider.apiGateway
+
+	accessibility := get_resource_accessibility(apiGateway)
+
+	bom_output = {
+		"resource_type": "API Gateway",
+		"resource_name": provider.apiName,
+		"resource_accessibility": accessibility.accessibility,
+		"resource_encryption": "unknown",
+		"resource_vendor": upper(sfw_lib.get_provider_name(document)),
+		"resource_category": "API",
+	}
+
+	final_bom_output := common_lib.get_bom_output(bom_output, accessibility.policy)
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("provider.apiGateway", []),
+		"issueType": "BillOfMaterials",
+		"keyExpectedValue": "",
+		"keyActualValue": "",
+		"searchLine": common_lib.build_search_line(["provider", "apiGateway"], []),
+		"value": json.marshal(final_bom_output),
+	}
+}
+```
+
+### Results
+
+Results will be found in the [JSON](results.md) output and placed separately under `bill_of_materials` key:
+
+```json
+{ 
+    // etc...
+    "bill_of_materials": [
+		{
+			"query_name": "BOM - AWS S3 Buckets",
+			"query_id": "2dd09b29-8f05-44ba-8315-49ffe6bb9442",
+			"query_url": "https://kics.io",
+			"severity": "TRACE",
+			"platform": "ServerlessFW",
+			"category": "Bill Of Materials",
+			"description": "A list of S3 resources found. Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance.",
+			"description_id": "27fcde52",
+			"files": [
+				{
+					"file_name": "assets/queries/serverlessFW/bom/s3_bucket/test/positive2.yml",
+					"similarity_id": "8d91f8f5a4bfccb125dc14902b817e6c168107f409e190a16bea3261be4bab46",
+					"line": 11,
+					"issue_type": "BillOfMaterials",
+					"search_key": "provider.s3.bucketOne",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "",
+					"actual_value": "",
+					"value": "{\"acl\":\"private\",\"resource_accessibility\":\"private\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"my-custom-bucket-name\",\"resource_type\":\"AWS S3 Bucket\",\"resource_vendor\":\"AWS\"}"
+				},
+				{
+					"file_name": "assets/queries/serverlessFW/bom/s3_bucket/test/positive.yml",
+					"similarity_id": "d0df878eeb48f0648f3993ed609797b3077c595d961533a21357860fa23e116b",
+					"line": 8,
+					"issue_type": "BillOfMaterials",
+					"search_key": "provider.deploymentBucket",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "",
+					"actual_value": "",
+					"value": "{\"acl\":\"private\",\"resource_accessibility\":\"private\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"comserverlessselfproviderregiondeploys\",\"resource_type\":\"AWS S3 Bucket\",\"resource_vendor\":\"AWS\"}"
+				}
+			]
+		}
+	]
+}
+```
+
