@@ -104,6 +104,13 @@ func TestFileAnalyzer(t *testing.T) {
 	}
 }
 
+func TestFileAnalyzer_Error_File(t *testing.T) {
+	t.Run("file_analizer_no_file", func(t *testing.T) {
+		_, err := FileAnalyzer("test/fixtures/config_test/kicsNoFileExists.js")
+		require.Error(t, err)
+	})
+}
+
 func TestHelpers_GenerateReport(t *testing.T) {
 	type args struct {
 		path     string
