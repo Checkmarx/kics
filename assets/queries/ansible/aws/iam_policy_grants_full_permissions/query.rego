@@ -15,6 +15,7 @@ CxPolicy[result] {
 
 	common_lib.is_allow_effect(statement)
 	common_lib.equalsOrInArray(statement.Resource, "*")
+	common_lib.equalsOrInArray(statement.Action, "*")
 
 	result := {
 		"documentId": id,
@@ -22,8 +23,8 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "iam_managed_policy.policy.Statement.Resource should not equal '*'",
-		"keyActualValue": "iam_managed_policy.policy.Statement.Resource equal '*'",
+		"keyExpectedValue": "'policy.Statement.Resource' and 'policy.Statement.Action' should no be equal to '*'",
+		"keyActualValue": "'policy.Statement.Resource' and 'policy.Statement.Action' are equal to '*'",
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}
 }
