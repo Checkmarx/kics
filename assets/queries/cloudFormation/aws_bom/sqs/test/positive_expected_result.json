@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "BOM - SQS",
+    "queryName": "BOM - AWS SQS",
     "severity": "TRACE",
     "line": 2,
     "fileName": "positive1.yaml"
   },
   {
-    "queryName": "BOM - SQS",
+    "queryName": "BOM - AWS SQS",
     "severity": "TRACE",
     "line": 3,
     "fileName": "positive2.json"
