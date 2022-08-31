@@ -65,21 +65,6 @@ is_unrestricted(securityGroupName) {
 	unrestricted(sg)
 }
 
-is_restricted(securityGroupName) {
-	contains(securityGroupName, "${aws_security_group")
-	sg := input.document[_].resource.aws_security_group[split(securityGroupName, ".")[1]]
-	not unrestricted(sg)
-} else {
-	contains(securityGroupName, "${aws_elasticache_security_group")
-	elasticacheSG := input.document[_].resource.aws_elasticache_security_group[split(securityGroupName, ".")[1]]
-
-	sgName := elasticacheSG.security_group_names[_]
-	contains(sgName, "${aws_security_group")
-
-	sg := input.document[_].resource.aws_security_group[split(sgName, ".")[1]]
-	not unrestricted(sg)
-}
-
 options := {"security_group_names", "security_group_ids"}
 
 get_accessibility(elasticache) = accessibility {
@@ -92,7 +77,7 @@ get_accessibility(elasticache) = accessibility {
 } else = accessibility {
 	count({
 		x | securityGroupInfo := elasticache[options[_]][x];
-		is_restricted(securityGroupInfo)
+		not is_unrestricted(securityGroupInfo)
 	}) == count(elasticache[options[_]])
 
 	accessibility := "all security groups associated with the elasticache are restricted"

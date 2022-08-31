@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityPolicy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityPolicy is %s", [name, tls]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityPolicy should be %s", [name, tls]),
 		"keyActualValue": sprintf("Resources.%s.Properties.SecurityPolicy should be %s", [name, tls]),
 	}
 }

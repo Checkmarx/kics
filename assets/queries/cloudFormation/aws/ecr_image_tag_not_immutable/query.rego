@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.ImageTagMutability is defined and not null", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.ImageTagMutability should be defined and not null", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.ImageTagMutability is undefined or null", [name]),
 	}
 }
@@ -32,7 +32,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.ImageTagMutability", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.ImageTagMutability is 'IMMUTABLE'", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.ImageTagMutability should be 'IMMUTABLE'", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.ImageTagMutability is 'MUTABLE'", [name]),
 	}
 }

@@ -1,0 +1,11 @@
+{
+  "id": "89561b03-cb35-44a9-a7e9-8356e71606f4",
+  "queryName": "User With Privilege Escalation By Actions 'ec2:RunInstances' And 'iam:PassRole'",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "User with privilege escalation by actions 'ec2:RunInstances' and 'iam:PassRole' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy#policy",
+  "platform": "Terraform",
+  "descriptionID": "05f5544f",
+  "cloudProvider": "aws"
+}

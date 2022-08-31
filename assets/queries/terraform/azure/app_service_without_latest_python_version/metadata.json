@@ -1,0 +1,11 @@
+{
+  "id": "cc4aaa9d-1070-461a-b519-04e00f42db8a",
+  "queryName": "App Service Without Latest Python Version",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "Periodically, newer versions are released for Python software either due to security flaws or to include additional functionality. Using the latest full Python version for web apps is recommended in order to take advantage of security fixes, if any, and/or additional functionalities of the newer version.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#python_version",
+  "platform": "Terraform",
+  "descriptionID": "848bf695",
+  "cloudProvider": "azure"
+}

@@ -1,6 +1,6 @@
 {
   "id": "42e7dca3-8cce-4325-8df0-108888259136",
-  "queryName": "BOM - SNS",
+  "queryName": "BOM - AWS SNS",
   "severity": "TRACE",
   "category": "Bill Of Materials",
   "descriptionText": "A list of SNS resources specified. Amazon Simple Notification Service (Amazon SNS) is a fully managed messaging service for both application-to-application (A2A) and application-to-person (A2P) communication.",
