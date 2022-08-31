@@ -4009,7 +4009,7 @@
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
 <td>Access Control</td>
-<td>Check if an IAM policy is granting full permissions to resources from the get-go, instead of granting permissions gradually as necessary.</td>
+<td>IAM policy should not grant full permissions to resources from the get-go, instead of granting permissions gradually as necessary.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -8629,6 +8629,14 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_secret#content_type">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>App Service Without Latest Python Version<br/><sup><sub>cc4aaa9d-1070-461a-b519-04e00f42db8a</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Best Practices</td>
+<td>Periodically, newer versions are released for Python software either due to security flaws or to include additional functionality. Using the latest full Python version for web apps is recommended in order to take advantage of security fixes, if any, and/or additional functionalities of the newer version.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#python_version">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>App Service Without Latest PHP Version<br/><sup><sub>96fe318e-d631-4156-99fa-9080d57280ae</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#CC0">Low</span></td>
@@ -8709,7 +8717,7 @@
 <td><a href="https://kics.io">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>BOM - MSK<br/><sup><sub>051f2063-2517-4295-ad8e-ba88c1bf5cfc</sub></sup></td>
+<td>BOM - AWS MSK<br/><sup><sub>051f2063-2517-4295-ad8e-ba88c1bf5cfc</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#CCC">Trace</span></td>
 <td>Bill Of Materials</td>
@@ -8717,7 +8725,7 @@
 <td><a href="https://kics.io">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>BOM - SQS<br/><sup><sub>baecd2da-492a-4d59-b9dc-29540a1398e0</sub></sup></td>
+<td>BOM - AWS SQS<br/><sup><sub>baecd2da-492a-4d59-b9dc-29540a1398e0</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#CCC">Trace</span></td>
 <td>Bill Of Materials</td>
@@ -8725,7 +8733,7 @@
 <td><a href="https://kics.io">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>BOM - SNS<br/><sup><sub>eccc4d59-74b9-4974-86f1-74386e0c7f33</sub></sup></td>
+<td>BOM - AWS SNS<br/><sup><sub>eccc4d59-74b9-4974-86f1-74386e0c7f33</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#CCC">Trace</span></td>
 <td>Bill Of Materials</td>
@@ -8857,7 +8865,7 @@
 <td>CloudFormation</td>
 <td><span style="color:#C00">High</span></td>
 <td>Access Control</td>
-<td>Check if an IAM policy is granting full permissions to resources from the get-go, instead of granting permissions gradually as necessary.</td>
+<td>IAM policy should not grant full permissions to resources from the get-go, instead of granting permissions gradually as necessary.</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -10845,7 +10853,7 @@
 <td><a href="https://kics.io">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>BOM - MSK<br/><sup><sub>2730c169-51d7-4ae7-99b5-584379eff1bb</sub></sup></td>
+<td>BOM - AWS MSK<br/><sup><sub>2730c169-51d7-4ae7-99b5-584379eff1bb</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#CCC">Trace</span></td>
 <td>Bill Of Materials</td>
@@ -10853,7 +10861,7 @@
 <td><a href="https://kics.io">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>BOM - SQS<br/><sup><sub>59a849c2-1127-4023-85a5-ef906dcd458c</sub></sup></td>
+<td>BOM - AWS SQS<br/><sup><sub>59a849c2-1127-4023-85a5-ef906dcd458c</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#CCC">Trace</span></td>
 <td>Bill Of Materials</td>
@@ -10861,7 +10869,7 @@
 <td><a href="https://kics.io">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>BOM - SNS<br/><sup><sub>42e7dca3-8cce-4325-8df0-108888259136</sub></sup></td>
+<td>BOM - AWS SNS<br/><sup><sub>42e7dca3-8cce-4325-8df0-108888259136</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#CCC">Trace</span></td>
 <td>Bill Of Materials</td>
@@ -11433,7 +11441,7 @@
 <td>Ansible</td>
 <td><span style="color:#C00">High</span></td>
 <td>Access Control</td>
-<td>Check if an IAM policy is granting full permissions to resources from the get-go, instead of granting permissions gradually as necessary.</td>
+<td>IAM policy should not grant full permissions to resources from the get-go, instead of granting permissions gradually as necessary.</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/iam_managed_policy_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
