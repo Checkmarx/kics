@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.RepositoryPolicyText", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.RepositoryPolicyText.Statement.Principal doesn't contain '*'", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.RepositoryPolicyText.Statement.Principal shouldn't contain '*'", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.RepositoryPolicyText.Statement.Principal contains '*'", [name]),
 		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "RepositoryPolicyTexts"], []),
 	}

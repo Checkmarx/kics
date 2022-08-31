@@ -5,10 +5,23 @@ import (
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/Checkmarx/kics/test"
 	"github.com/rs/zerolog"
 	"github.com/stretchr/testify/require"
 )
+
+var OriginalData = `resource "aws_s3_bucket" "b" {
+	bucket = "my-tf-test-bucket"
+	acl    = "authenticated-read"
+
+	tags = {
+	  Name        = "My bucket"
+	  Environment = "Dev.123"
+	  Environment = "test"
+	}
+	  }
+	  `
 
 // Test_detectLine tests the functions [detectLine()] and all the methods called by them
 func Test_detectLine(t *testing.T) { //nolint
@@ -29,19 +42,11 @@ func Test_detectLine(t *testing.T) { //nolint
 			name: "detect_line",
 			args: args{
 				file: &model.FileMetadata{
-					ScanID: "scanID",
-					ID:     "Test",
-					Kind:   model.KindTerraform,
-					OriginalData: `resource "aws_s3_bucket" "b" {
-						bucket = "my-tf-test-bucket"
-						acl    = "authenticated-read"
-
-						tags = {
-						  Name        = "My bucket"
-						  Environment = "Dev"
-						}
-					      }
-					      `,
+					ScanID:            "scanID",
+					ID:                "Test",
+					Kind:              model.KindTerraform,
+					OriginalData:      OriginalData,
+					LinesOriginalData: utils.SplitLines(OriginalData),
 				},
 				searchKey: "aws_s3_bucket[b].acl",
 			},
@@ -50,14 +55,14 @@ func Test_detectLine(t *testing.T) { //nolint
 			},
 			want: model.VulnerabilityLines{
 				Line: 3,
-				VulnLines: []model.CodeLine{
+				VulnLines: &[]model.CodeLine{
 					{
 						Position: 2,
-						Line: `						bucket = "my-tf-test-bucket"`,
+						Line: `	bucket = "my-tf-test-bucket"`,
 					},
 					{
 						Position: 3,
-						Line: `						acl    = "authenticated-read"`,
+						Line: `	acl    = "authenticated-read"`,
 					},
 					{
 						Position: 4,
@@ -71,20 +76,11 @@ func Test_detectLine(t *testing.T) { //nolint
 			name: "detect_line_with_curly_brackets",
 			args: args{
 				file: &model.FileMetadata{
-					ScanID: "scanID",
-					ID:     "Test",
-					Kind:   model.KindTerraform,
-					OriginalData: `resource "aws_s3_bucket" "b" {
-						bucket = "my-tf-test-bucket"
-						acl    = "authenticated-read"
-
-						tags = {
-						  Name        = "My bucket"
-						  Environment = "Dev.123"
-						  Environment = "test"
-						}
-					      }
-					      `,
+					ScanID:            "scanID",
+					ID:                "Test",
+					Kind:              model.KindTerraform,
+					OriginalData:      OriginalData,
+					LinesOriginalData: utils.SplitLines(OriginalData),
 				},
 				searchKey: "aws_s3_bucket[b].Environment={{Dev.123}}",
 			},
@@ -93,18 +89,18 @@ func Test_detectLine(t *testing.T) { //nolint
 			},
 			want: model.VulnerabilityLines{
 				Line: 7,
-				VulnLines: []model.CodeLine{
+				VulnLines: &[]model.CodeLine{
 					{
 						Position: 6,
-						Line: `						  Name        = "My bucket"`,
+						Line: `	  Name        = "My bucket"`,
 					},
 					{
 						Position: 7,
-						Line: `						  Environment = "Dev.123"`,
+						Line: `	  Environment = "Dev.123"`,
 					},
 					{
 						Position: 8,
-						Line: `						  Environment = "test"`,
+						Line: `	  Environment = "test"`,
 					},
 				},
 				LineWithVulnerabilty: "",
@@ -114,20 +110,11 @@ func Test_detectLine(t *testing.T) { //nolint
 			name: "detect_line_error",
 			args: args{
 				file: &model.FileMetadata{
-					ScanID: "scanID",
-					ID:     "Test",
-					Kind:   model.KindTerraform,
-					OriginalData: `resource "aws_s3_bucket" "b" {
-						bucket = "my-tf-test-bucket"
-						acl    = "authenticated-read"
-
-						tags = {
-						  Name        = "My bucket"
-						  Environment = "Dev.123"
-						  Environment = "test"
-						}
-					      }
-					      `,
+					ScanID:            "scanID",
+					ID:                "Test",
+					Kind:              model.KindTerraform,
+					OriginalData:      OriginalData,
+					LinesOriginalData: utils.SplitLines(OriginalData),
 				},
 				searchKey: "testing.error",
 			},
@@ -136,7 +123,7 @@ func Test_detectLine(t *testing.T) { //nolint
 			},
 			want: model.VulnerabilityLines{
 				Line:      -1,
-				VulnLines: []model.CodeLine{},
+				VulnLines: &[]model.CodeLine{},
 			},
 		},
 	}
@@ -155,6 +142,10 @@ func Test_detectLine(t *testing.T) { //nolint
 	}
 }
 
+var content = []byte(
+	`content1
+content2`)
+
 func Test_defaultDetectLine_prepareResolvedFiles(t *testing.T) {
 	type args struct {
 		resFiles map[string]model.ResolvedFile
@@ -169,10 +160,9 @@ func Test_defaultDetectLine_prepareResolvedFiles(t *testing.T) {
 			args: args{
 				resFiles: map[string]model.ResolvedFile{
 					"file1": {
-						Content: []byte(
-							`content1
-content2`),
-						Path: "testing/file1",
+						Content:      content,
+						Path:         "testing/file1",
+						LinesContent: utils.SplitLines(string(content)),
 					},
 				},
 			},

@@ -3,7 +3,7 @@
   "queryName": "CodeBuild Not Encrypted",
   "severity": "MEDIUM",
   "category": "Encryption",
-  "descriptionText": "CodeBuild Should have EncryptionKey defined",
+  "descriptionText": "CodeBuild Project should be encrypted, which means 'EncryptionKey' should be defined",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html",
   "platform": "CloudFormation",
   "descriptionID": "3e1306b1",

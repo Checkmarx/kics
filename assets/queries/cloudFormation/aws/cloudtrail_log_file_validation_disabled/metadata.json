@@ -3,7 +3,7 @@
   "queryName": "CloudTrail Log File Validation Disabled",
   "severity": "LOW",
   "category": "Observability",
-  "descriptionText": "CloudTrail log file validation should be enabled",
+  "descriptionText": "CloudTrail log file validation should be enabled to determine whether a log file has not been tampered",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-enablelogfilevalidation",
   "platform": "CloudFormation",
   "descriptionID": "66ab1b20",

@@ -1,0 +1,11 @@
+{
+  "id": "7d544dad-8a6c-431c-84c1-5f07fe9afc0e",
+  "queryName": "Group With Privilege Escalation By Actions 'glue:CreateDevEndpoint' And 'iam:PassRole'",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Group with privilege escalation by actions 'glue:CreateDevEndpoint' and 'iam:PassRole' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy",
+  "platform": "Terraform",
+  "descriptionID": "59598729",
+  "cloudProvider": "aws"
+}

@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig.Enabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.Enabled is 'true'", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.Enabled should be 'true'", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.Enabled is configured as 'false'", [name]),
 	}
 }
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig contains an 'Origins' object", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig should contain an 'Origins' object", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig does not contain an 'Origins' object configured", [name]),
 	}
 }
