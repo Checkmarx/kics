@@ -5,7 +5,7 @@
       Version: "2012-10-17"
       Statement:
       - Effect: "Allow"
-        Action: "logs:CreateLogGroup"
+        Action: "*"
         Resource: "*"
     make_default: false
     state: present

@@ -27,7 +27,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(entry1, name),
 		"searchKey": sprintf("Resources.%s.Properties.RuleNumber", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s' has not the same rule number as other entry for the same NetworkACL", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s' shouldn't have the same rule number as other entry for the same NetworkACL", [name]),
 		"keyActualValue": sprintf("'Resources.%s' has the same rule number as other entry for the same NetworkACL", [name]),
 	}
 }

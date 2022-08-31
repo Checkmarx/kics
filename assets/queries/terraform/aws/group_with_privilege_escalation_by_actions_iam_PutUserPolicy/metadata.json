@@ -1,0 +1,11 @@
+{
+  "id": "60263b4a-6801-4587-911d-919c37ed733b",
+  "queryName": "Group With Privilege Escalation By Actions 'iam:PutUserPolicy'",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Group with privilege escalation by actions 'iam:PutUserPolicy' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy",
+  "platform": "Terraform",
+  "descriptionID": "fdfe7031",
+  "cloudProvider": "aws"
+}

@@ -11,9 +11,10 @@ Resources:
   MyDBSmall:
     Type: "AWS::RDS::DBInstance"
     Properties:
-      DBInstanceClass: !Ref DBInstanceType
+      DBInstanceClass: db.r3.xlarge
       SourceDBInstanceIdentifier: !Ref SourceDBInstanceIdentifier
       SourceRegion: !Ref SourceRegion
       DeletionProtection: false
       KmsKeyId: !Ref MyKey
       EnableIAMDatabaseAuthentication: false
+      Engine: aurora

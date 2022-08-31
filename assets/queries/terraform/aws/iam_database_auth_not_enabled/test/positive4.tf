@@ -5,7 +5,7 @@ module "db" {
   identifier = "demodb"
 
   engine            = "mysql"
-  engine_version    = "5.7.19"
+  engine_version    = "8.0.28"
   instance_class    = "db.t2.large"
   allocated_storage = 5
 

@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(deployment, name),
 		"searchKey": sprintf("Resources.%s.Properties.StageDescription", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.StageDescription.CacheDataEncrypted' is defined and not null", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.StageDescription.CacheDataEncrypted' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.StageDescription.CacheDataEncrypted' is undefined or null", [name]),
 	}
 }
@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(deployment, name),
 		"searchKey": sprintf("Resources.%s.Properties.StageDescription.CacheDataEncrypted", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.StageDescription.CacheDataEncrypted' is set to true", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.StageDescription.CacheDataEncrypted' should be set to true", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.StageDescription.CacheDataEncrypted' is set to false", [name]),
 	}
 }

@@ -1,6 +1,6 @@
 {
   "id": "b3de4e4c-14be-4159-b99d-9ad194365e4c",
-  "queryName": "EC2 Instance Has Public IP",
+  "queryName": "EC2 Instance Subnet Has Public IP Mapping On Launch",
   "severity": "HIGH",
   "category": "Networking and Firewall",
   "descriptionText": "EC2 Subnet should not have MapPublicIpOnLaunch set to true",

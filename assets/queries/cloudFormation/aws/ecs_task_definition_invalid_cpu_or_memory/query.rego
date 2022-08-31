@@ -27,7 +27,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": searchkey,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.ContainerDefinitions.Memory' doesn't have incorrect values", [name2]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.ContainerDefinitions.Memory' shouldn't have incorrect values", [name2]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.ContainerDefinitions.Memory' has incorrect value", [name2]),
 	}
 }
@@ -49,7 +49,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": searchkey,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.ContainerDefinitions.Cpu' doesn't have incorrect values", [name2]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.ContainerDefinitions.Cpu' shouldn't have incorrect values", [name2]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.ContainerDefinitions.Cpu' has incorrect value", [name2]),
 	}
 }
