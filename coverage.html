@@ -211,7 +211,7 @@
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (80.0%)</option>
 				
-				<option value="file78">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (90.9%)</option>
+				<option value="file78">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
 				<option value="file79">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -281,27 +281,23 @@
 				
 				<option value="file112">github.com/Checkmarx/kics/pkg/scanner/scanner.go (56.4%)</option>
 				
-				<option value="file113">github.com/Checkmarx/kics/pkg/terraformer/aws/aws_cloud_provider.go (93.3%)</option>
+				<option value="file113">github.com/Checkmarx/kics/pkg/terraformer/terraformer.go (56.5%)</option>
 				
-				<option value="file114">github.com/Checkmarx/kics/pkg/terraformer/azure/azure_cloud_provider.go (92.9%)</option>
+				<option value="file114">github.com/Checkmarx/kics/pkg/terraformer/utils.go (16.7%)</option>
 				
-				<option value="file115">github.com/Checkmarx/kics/pkg/terraformer/gcp/gcp_cloud_provider.go (93.8%)</option>
+				<option value="file115">github.com/Checkmarx/kics/pkg/utils/ansible_vault.go (88.9%)</option>
 				
-				<option value="file116">github.com/Checkmarx/kics/pkg/terraformer/terraformer.go (72.1%)</option>
+				<option value="file116">github.com/Checkmarx/kics/pkg/utils/contains.go (100.0%)</option>
 				
-				<option value="file117">github.com/Checkmarx/kics/pkg/utils/ansible_vault.go (88.9%)</option>
+				<option value="file117">github.com/Checkmarx/kics/pkg/utils/get_extension.go (77.3%)</option>
 				
-				<option value="file118">github.com/Checkmarx/kics/pkg/utils/contains.go (100.0%)</option>
+				<option value="file118">github.com/Checkmarx/kics/pkg/utils/map.go (100.0%)</option>
 				
-				<option value="file119">github.com/Checkmarx/kics/pkg/utils/get_extension.go (77.3%)</option>
+				<option value="file119">github.com/Checkmarx/kics/pkg/utils/random.go (100.0%)</option>
 				
-				<option value="file120">github.com/Checkmarx/kics/pkg/utils/map.go (100.0%)</option>
+				<option value="file120">github.com/Checkmarx/kics/pkg/utils/split_lines.go (100.0%)</option>
 				
-				<option value="file121">github.com/Checkmarx/kics/pkg/utils/random.go (100.0%)</option>
-				
-				<option value="file122">github.com/Checkmarx/kics/pkg/utils/split_lines.go (100.0%)</option>
-				
-				<option value="file123">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
+				<option value="file121">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
 				
 				</select>
 			</div>
@@ -2167,13 +2163,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov8" title="33">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2198,7 +2194,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4686,7 +4682,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="11">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="11">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -15384,7 +15380,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov1" title="1">{
+                close: func() error </span><span class="cov0" title="0">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -15393,7 +15389,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov1" title="1">{
+        defer func() </span><span class="cov0" title="0">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
@@ -15405,14 +15401,14 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov1" title="1">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov1" title="1">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file79" style="display: none">package progress
@@ -20018,307 +20014,221 @@ func startProgressBar(total int, wg *sync.WaitGroup, progressChannel chan int64,
 }</span>
 </pre>
 		
-		<pre class="file" id="file113" style="display: none">//go:build !dev
-// +build !dev
-
-package aws
+		<pre class="file" id="file113" style="display: none">package terraformer
 
 import (
-        "context"
-        "errors"
-        "sync"
-        "time"
-
-        importer "github.com/GoogleCloudPlatform/terraformer/cmd"
-        awsterraformer "github.com/GoogleCloudPlatform/terraformer/providers/aws"
-        "github.com/GoogleCloudPlatform/terraformer/terraformutils"
-)
-
-var terraformerTimeout = time.Minute * 3
-
-// ImporterFunc is the function kics uses to import resources (for testing porpuses)
-var ImporterFunc func(provider terraformutils.ProviderGenerator, options importer.ImportOptions, args []string) error = importer.Import
-
-// CloudProvider is the AWS Cloud Provider
-type CloudProvider struct{}
-
-var provider = &amp;awsterraformer.AWSProvider{}
-
-// Import imports the terraformer resources into the destination using terraformer
-func (a CloudProvider) Import(ctx context.Context, options *importer.ImportOptions, destination string) error <span class="cov8" title="1">{
-        ctxT, cancel := context.WithTimeout(ctx, terraformerTimeout)
-        defer cancel()
-        wg := sync.WaitGroup{}
-        done := make(chan error, 1)
-
-        for _, region := range options.Regions </span><span class="cov8" title="1">{
-                wg.Add(1)
-                go func(region string) </span><span class="cov8" title="1">{
-                        defer wg.Done()
-                        done &lt;- ImporterFunc(provider, *options, []string{region, ""})
-                }</span>(region)
-        }
-
-        <span class="cov8" title="1">go func() </span><span class="cov8" title="1">{
-                defer close(done)
-                wg.Wait()
-        }</span>()
-
-        <span class="cov8" title="1">select </span>{
-        case err := &lt;-done:<span class="cov8" title="1">
-                return err</span>
-        case &lt;-ctxT.Done():<span class="cov0" title="0">
-                return errors.New("terraformer import execution timeout")</span>
-        }
-}
-</pre>
-		
-		<pre class="file" id="file114" style="display: none">//go:build !dev
-// +build !dev
-
-package azure
-
-import (
-        "context"
-        "errors"
-        "sync"
-        "time"
-
-        importer "github.com/GoogleCloudPlatform/terraformer/cmd"
-        azureterraformer "github.com/GoogleCloudPlatform/terraformer/providers/azure"
-        "github.com/GoogleCloudPlatform/terraformer/terraformutils"
-)
-
-var terraformerTimeout = time.Minute * 3
-
-// ImporterFunc is the function kics uses to import resources (for testing porpuses)
-var ImporterFunc func(provider terraformutils.ProviderGenerator, options importer.ImportOptions, args []string) error = importer.Import
-
-// CloudProvider is the AZURE Cloud Provider
-type CloudProvider struct{}
-
-var provider = &amp;azureterraformer.AzureProvider{}
-
-// Import imports the terraformer resources into the destination using terraformer
-func (a CloudProvider) Import(ctx context.Context, options *importer.ImportOptions, destination string) error <span class="cov8" title="1">{
-        ctxT, cancel := context.WithTimeout(ctx, terraformerTimeout)
-        defer cancel()
-        wg := sync.WaitGroup{}
-        done := make(chan error, 1)
-
-        wg.Add(1)
-        go func() </span><span class="cov8" title="1">{
-                defer wg.Done()
-                done &lt;- ImporterFunc(provider, *options, []string{options.ResourceGroup})
-        }</span>()
-
-        <span class="cov8" title="1">go func() </span><span class="cov8" title="1">{
-                defer close(done)
-                wg.Wait()
-        }</span>()
-
-        <span class="cov8" title="1">select </span>{
-        case err := &lt;-done:<span class="cov8" title="1">
-                return err</span>
-        case &lt;-ctxT.Done():<span class="cov0" title="0">
-                return errors.New("terraformer import execution timeout")</span>
-        }
-}
-</pre>
-		
-		<pre class="file" id="file115" style="display: none">//go:build !dev
-// +build !dev
-
-package gcp
-
-import (
-        "context"
-        "errors"
-        "sync"
-        "time"
-
-        importer "github.com/GoogleCloudPlatform/terraformer/cmd"
-        gcpterraformer "github.com/GoogleCloudPlatform/terraformer/providers/gcp"
-        "github.com/GoogleCloudPlatform/terraformer/terraformutils"
-)
-
-var terraformerTimeout = time.Minute * 3
-
-// ImporterFunc is the function kics uses to import resources (for testing porpuses)
-var ImporterFunc func(provider terraformutils.ProviderGenerator, options importer.ImportOptions, args []string) error = importer.Import
-
-// CloudProvider is the AWS Cloud Provider
-type CloudProvider struct{}
-
-var provider = &amp;gcpterraformer.GCPProvider{}
-
-// Import imports the terraformer resources into the destination using terraformer
-func (a CloudProvider) Import(ctx context.Context, options *importer.ImportOptions, destination string) error <span class="cov8" title="1">{
-        ctxT, cancel := context.WithTimeout(ctx, terraformerTimeout)
-        defer cancel()
-        wg := sync.WaitGroup{}
-        done := make(chan error, 1)
-
-        for _, project := range options.Projects </span><span class="cov8" title="1">{
-                for _, region := range options.Regions </span><span class="cov8" title="1">{
-                        wg.Add(1)
-                        go func(region string) </span><span class="cov8" title="1">{
-                                defer wg.Done()
-                                done &lt;- ImporterFunc(provider, *options, []string{region, project, ""})
-                        }</span>(region)
-                }
-        }
-
-        <span class="cov8" title="1">go func() </span><span class="cov8" title="1">{
-                defer close(done)
-                wg.Wait()
-        }</span>()
-
-        <span class="cov8" title="1">select </span>{
-        case err := &lt;-done:<span class="cov8" title="1">
-                return err</span>
-        case &lt;-ctxT.Done():<span class="cov0" title="0">
-                return errors.New("terraformer import execution timeout")</span>
-        }
-}
-</pre>
-		
-		<pre class="file" id="file116" style="display: none">//go:build !dev
-// +build !dev
-
-package terraformer
-
-import (
-        "context"
         "fmt"
         "io"
-        "io/fs"
         "os"
+        "os/exec"
         "path/filepath"
         "strings"
         "time"
 
         tfLogger "log"
 
-        "github.com/Checkmarx/kics/pkg/terraformer/aws"
-        "github.com/Checkmarx/kics/pkg/terraformer/azure"
-        "github.com/Checkmarx/kics/pkg/terraformer/gcp"
-        importer "github.com/GoogleCloudPlatform/terraformer/cmd"
         "github.com/pkg/errors"
         "github.com/rs/zerolog/log"
 )
 
-const terraformerPathLength = 3
+const terraformerPathLength = 2
+
+// for testing purposes
+var (
+        runTerraformerFunc        = runTerraformer
+        saveTerraformerOutputFunc = saveTerraformerOutput
+)
 
 // Path is a struct that contains the terraformer path information
 type Path struct {
         CloudProvider string
-        Region        []string
-        Resource      []string
-        Projects      []string
+        Regions       string
+        Resources     string
+        Projects      string
 }
-
-// CloudProvider is an interface that defines the methods that a cloud provider must implement
-type CloudProvider interface {
-        Import(ctx context.Context, options *importer.ImportOptions, destination string) error
-}
-
-func (t *Path) createTfOptions(destination, region string, projects []string) *importer.ImportOptions <span class="cov10" title="2">{
-        return &amp;importer.ImportOptions{
-                Resources:     t.Resource,
-                Excludes:      []string{""},
-                PathPattern:   filepath.Join(destination, "{service}"),
-                PathOutput:    "generated",
-                State:         "local",
-                Bucket:        "",
-                Profile:       "",
-                Verbose:       false,
-                Zone:          "",
-                Regions:       []string{region},
-                Projects:      projects,
-                ResourceGroup: "",
-                Connect:       true,
-                Compact:       false,
-                Filter:        []string{},
-                Plan:          false,
-                Output:        "hcl",
-                RetryCount:    5,
-                RetrySleepMs:  300,
-        }
-}</span>
 
 // Import imports the terraformer resources into the destination using terraformer
-func Import(terraformerPath, destinationPath string) (string, error) <span class="cov10" title="2">{
+func Import(terraformerPath, destinationPath string) (string, error) <span class="cov10" title="4">{
         log.Info().Msg("importing terraformer resources")
         tfLogger.SetOutput(io.Discard)
+
+        // extracts relevant info from KICS terraformer path syntax
         pathOptions, err := extractTerraformerOptions(terraformerPath)
         if err != nil </span><span class="cov1" title="1">{
                 return "", errors.Wrap(err, "wrong terraformer path syntax")
         }</span>
-        <span class="cov1" title="1">ctx := context.Background()
-        if destinationPath == "" </span><span class="cov1" title="1">{
+        <span class="cov8" title="3">if destinationPath == "" </span><span class="cov8" title="3">{
                 destinationPath, err = os.Getwd()
                 if err != nil </span><span class="cov0" title="0">{
                         return "", errors.Wrap(err, "failed to get working directory")
                 }</span>
         }
 
-        <span class="cov1" title="1">destFolderName := fmt.Sprintf("kics-extract-terraformer-%s", time.Now().Format("01-02-2006"))
-
+        // set destination folder path where the terraform resources will be saved
+        <span class="cov8" title="3">destFolderName := fmt.Sprintf("kics-extract-terraformer-%s", time.Now().Format("01-02-2006"))
         destination := filepath.Join(destinationPath, destFolderName)
 
-        var provider CloudProvider
+        // run terraformer
+        output, err := runTerraformerFunc(pathOptions, destination)
+        if err != nil </span><span class="cov0" title="0">{
+                // save terraformer output
+                _ = saveTerraformerOutputFunc(destination, output)
+                return "", errors.Wrap(err, "failed to import resources")
+        }</span>
 
-        switch pathOptions.CloudProvider </span>{
-        case "aws":<span class="cov1" title="1">
-                provider = aws.CloudProvider{}</span>
-        case "azure":<span class="cov0" title="0">
-                provider = azure.CloudProvider{}</span>
-        case "gcp":<span class="cov0" title="0">
-                provider = gcp.CloudProvider{}</span>
-        default:<span class="cov0" title="0">
-                return "", errors.New("unsupported Cloud Provider")</span>
-        }
+        // save terraformer output
+        <span class="cov8" title="3">err = saveTerraformerOutputFunc(destination, output)
+        if err != nil </span><span class="cov0" title="0">{
+                return "", errors.Wrap(err, "failed to import resources")
+        }</span>
 
-        <span class="cov1" title="1">for _, region := range pathOptions.Region </span><span class="cov1" title="1">{
-                regionDest := filepath.Join(destination, region)
-                err = provider.Import(ctx, pathOptions.createTfOptions(regionDest, region, pathOptions.Projects), destination)
-                if err != nil </span><span class="cov0" title="0">{
-                        return "", err
-                }</span>
-        }
-
-        <span class="cov1" title="1">cleanUnwantedFiles(destination)
+        // clean unwanted files like output.tf
+        <span class="cov8" title="3">cleanUnwantedFiles(destination)
 
         return destination, nil</span>
 }
 
-func extractTerraformerOptions(path string) (*Path, error) <span class="cov10" title="2">{
+// extractTerraformerOptions extracts all the information from the KICS terraformer path syntax without the prefix 'terraformer::'
+// {CloudProvider}:{Resources}:{Regions}:{Projects}
+func extractTerraformerOptions(path string) (*Path, error) <span class="cov10" title="4">{
         pathInfo := strings.Split(path, ":")
-        if len(pathInfo) != terraformerPathLength &amp;&amp; len(pathInfo) != terraformerPathLength+1 </span><span class="cov1" title="1">{
+        if len(pathInfo) != terraformerPathLength &amp;&amp;
+                len(pathInfo) != terraformerPathLength+2 &amp;&amp;
+                len(pathInfo) != terraformerPathLength+1 </span><span class="cov1" title="1">{
                 return nil, errors.New("wrong terraformer path syntax")
         }</span>
-        <span class="cov1" title="1">return &amp;Path{
+        <span class="cov8" title="3">return &amp;Path{
                 CloudProvider: pathInfo[0],
-                Region:        strings.Split(pathInfo[2], "/"),
-                Resource:      strings.Split(pathInfo[1], "/"),
+                Regions:       getRegions(pathInfo),
+                Resources:     strings.ReplaceAll(pathInfo[1], "/", ","),
                 Projects:      getProjects(pathInfo),
         }, nil</span>
 }
 
-func cleanUnwantedFiles(destination string) <span class="cov1" title="1">{
-        err := filepath.Walk(destination, func(path string, info fs.FileInfo, err error) error </span><span class="cov1" title="1">{
+// getProjects gets all the projects pointed in the KICS terraformer path syntax
+// projects are only required for gcp
+func getProjects(pathInfo []string) string <span class="cov8" title="3">{
+        if len(pathInfo) == terraformerPathLength+2 </span><span class="cov1" title="1">{
+                return strings.ReplaceAll(pathInfo[3], "/", ",")
+        }</span>
+
+        <span class="cov5" title="2">return ""</span>
+}
+
+// getRegions gets all the regions pointed in the KICS terraformer path syntax
+// regions are only required for aws and gcp
+func getRegions(pathInfo []string) string <span class="cov8" title="3">{
+        if len(pathInfo) &gt;= terraformerPathLength+1 </span><span class="cov5" title="2">{
+                return strings.ReplaceAll(pathInfo[2], "/", ",")
+        }</span>
+
+        <span class="cov1" title="1">return ""</span>
+}
+
+// buildArgs build the args for the command terraformer
+func buildArgs(pathOptions *Path, destination string) []string <span class="cov0" title="0">{
+        // the terraformer command for gcp is google
+        if pathOptions.CloudProvider == "gcp" </span><span class="cov0" title="0">{
+                pathOptions.CloudProvider = "google"
+        }</span>
+
+        <span class="cov0" title="0">args := []string{
+                "import", pathOptions.CloudProvider,
+                "--resources=" + pathOptions.Resources,
+                "-o", destination,
+                "--verbose",
+        }
+
+        // probably we will need to define the profile to ""
+        if pathOptions.CloudProvider == "aws" </span><span class="cov0" title="0">{
+                args = append(args, "--regions="+pathOptions.Regions, "--profile=")
+        }</span>
+
+        // the flag '--projects' is only required for gcp
+        <span class="cov0" title="0">if pathOptions.Projects != "" &amp;&amp; pathOptions.CloudProvider == "google" </span><span class="cov0" title="0">{
+                args = append(args, "--regions="+pathOptions.Regions, "--projects="+pathOptions.Projects)
+        }</span>
+
+        <span class="cov0" title="0">return args</span>
+}
+
+// runTerraformer runs the terraformer binary
+func runTerraformer(pathOptions *Path, destination string) (string, error) <span class="cov0" title="0">{
+        args := buildArgs(pathOptions, destination)
+
+        cmd := exec.Command("terraformer", args...) //#nosec
+        cmd.Env = append(os.Environ(), "AWS_PROFILE=default")
+
+        output, err := cmd.CombinedOutput()
+
+        return string(output), err
+}</span>
+
+// saveTerraformerOutput verifies if the destination folder exists
+// if not, it means that someting went wrong in the terraformer command
+// it also saves the terraformer command output in the destination folder
+func saveTerraformerOutput(destination, output string) error <span class="cov0" title="0">{
+        _, err := os.Stat(destination)
+        save(destination, output, err)
+
+        return err
+}</span>
+</pre>
+		
+		<pre class="file" id="file114" style="display: none">package terraformer
+
+import (
+        "io/fs"
+        "os"
+        "path/filepath"
+
+        "github.com/rs/zerolog/log"
+)
+
+// save saves the terraformer command output in the destination folder
+func save(destination, output string, statErr error) <span class="cov0" title="0">{
+        if statErr != nil </span><span class="cov0" title="0">{
+                if err := os.MkdirAll(destination, os.ModePerm); err != nil </span><span class="cov0" title="0">{
+                        log.Error().Msgf("failed to mkdir: %s", err)
+                }</span>
+        }
+
+        <span class="cov0" title="0">filePath := filepath.Join(destination, "terraformer-output.txt")
+        filepath.Clean(filePath)
+
+        f, err := os.OpenFile(filePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
+
+        if err != nil </span><span class="cov0" title="0">{
+                log.Error().Msgf("failed to open file '%s': %s", filePath, err)
+        }</span>
+
+        <span class="cov0" title="0">defer func(f *os.File) </span><span class="cov0" title="0">{
+                err = f.Close()
+                if err != nil </span><span class="cov0" title="0">{
+                        log.Err(err).Msgf("failed to close file: %s", filePath)
+                }</span>
+        }(f)
+
+        <span class="cov0" title="0">if _, err = f.WriteString(output); err != nil </span><span class="cov0" title="0">{
+                log.Error().Msgf("failed to write file '%s': %s", filePath, err)
+        }</span>
+}
+
+// cleanUnwantedFiles deletes the output files from the destination folder
+func cleanUnwantedFiles(destination string) <span class="cov10" title="3">{
+        err := filepath.Walk(destination, func(path string, info fs.FileInfo, err error) error </span><span class="cov10" title="3">{
                 if info != nil </span><span class="cov0" title="0">{
                         deleteOutputFile(path, info)
                 }</span>
-                <span class="cov1" title="1">return nil</span>
+                <span class="cov10" title="3">return nil</span>
         })
 
-        <span class="cov1" title="1">if err != nil </span><span class="cov0" title="0">{
+        <span class="cov10" title="3">if err != nil </span><span class="cov0" title="0">{
                 log.Err(err).Msg("failed to clean unwanted files")
         }</span>
 }
 
+// deleteOutputFile deletes a 'outputs.tf' file
 func deleteOutputFile(path string, output fs.FileInfo) <span class="cov0" title="0">{
         if output.Name() == "outputs.tf" </span><span class="cov0" title="0">{
                 err := os.Remove(path)
@@ -20327,17 +20237,9 @@ func deleteOutputFile(path string, output fs.FileInfo) <span class="cov0" title=
                 }</span>
         }
 }
-
-func getProjects(pathInfo []string) []string <span class="cov1" title="1">{
-        if len(pathInfo) == terraformerPathLength+1 </span><span class="cov0" title="0">{
-                return strings.Split(pathInfo[3], "/")
-        }</span>
-
-        <span class="cov1" title="1">return []string{}</span>
-}
 </pre>
 		
-		<pre class="file" id="file117" style="display: none">package utils
+		<pre class="file" id="file115" style="display: none">package utils
 
 import (
         "regexp"
@@ -20364,7 +20266,7 @@ func DecryptAnsibleVault(fileContent []byte, secret string) []byte <span class="
 }
 </pre>
 		
-		<pre class="file" id="file118" style="display: none">package utils
+		<pre class="file" id="file116" style="display: none">package utils
 
 import "reflect"
 
@@ -20384,7 +20286,7 @@ func Contains(target, list interface{}) bool <span class="cov6" title="6">{
 }
 </pre>
 		
-		<pre class="file" id="file119" style="display: none">package utils
+		<pre class="file" id="file117" style="display: none">package utils
 
 import (
         "bytes"
@@ -20439,7 +20341,7 @@ func isTextFile(path string) bool <span class="cov1" title="1">{
 }
 </pre>
 		
-		<pre class="file" id="file120" style="display: none">package utils
+		<pre class="file" id="file118" style="display: none">package utils
 
 import "sort"
 
@@ -20461,7 +20363,7 @@ func MergeMaps(map1, map2 map[string]interface{}) <span class="cov1" title="1">{
 }
 </pre>
 		
-		<pre class="file" id="file121" style="display: none">package utils
+		<pre class="file" id="file119" style="display: none">package utils
 
 import (
         "os"
@@ -20496,7 +20398,7 @@ func NextRandom() string <span class="cov10" title="2">{
 // ==============================================================================
 </pre>
 		
-		<pre class="file" id="file122" style="display: none">package utils
+		<pre class="file" id="file120" style="display: none">package utils
 
 import "strings"
 
@@ -20509,7 +20411,7 @@ func SplitLines(content string) *[]string <span class="cov8" title="1">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file123" style="display: none">package test
+		<pre class="file" id="file121" style="display: none">package test
 
 import (
         "bytes"
