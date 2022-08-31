@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/integrations_terraformer/">
       
       <link rel="icon" href="../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.1">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
     
     
       
@@ -1420,8 +1420,11 @@ $Env:ARM_CLIENT_SECRET=&quot;&lt;ARM_CLIENT_SECRET&gt;&quot;
 $Env:ARM_TENANT_ID=&quot;&lt;ARM_TENANT_ID&gt;&quot;
 </code></pre>
 <h2 id="kics_terraformer_path_syntax">KICS Terraformer Path Syntax<a class="headerlink" href="#kics_terraformer_path_syntax" title="Permanent link">&para;</a></h2>
-<h3 id="regular">Regular<a class="headerlink" href="#regular" title="Permanent link">&para;</a></h3>
+<h3 id="aws">AWS<a class="headerlink" href="#aws" title="Permanent link">&para;</a></h3>
 <pre><code class="language-sh">terraformer::{CloudProvider}:{Resources}:{Regions}
+</code></pre>
+<h3 id="azure">AZURE<a class="headerlink" href="#azure" title="Permanent link">&para;</a></h3>
+<pre><code class="language-sh">terraformer::{CloudProvider}:{Resources}
 </code></pre>
 <h3 id="gcp">GCP<a class="headerlink" href="#gcp" title="Permanent link">&para;</a></h3>
 <pre><code class="language-sh">terraformer::{CloudProvider}:{Resources}:{Regions}:{Projects}
@@ -1437,7 +1440,7 @@ You can find a complete list of possible values in the links below:
 - <a href="https://github.com/GoogleCloudPlatform/terraformer/blob/master/docs/azure.md#list-of-supported-azure-resources">azure</a>
 - <a href="https://github.com/GoogleCloudPlatform/terraformer/blob/master/docs/gcp.md">gcp</a></p>
 <p>To import all resources please use: <code>*</code></p>
-<p><strong>Regions</strong>: A slash-separated list of the regions to import from.</p>
+<p><strong>Regions</strong>: A slash-separated list of the regions to import from. <strong>It is only required for AWS and GCP</strong>.</p>
 <p><strong>Projects</strong>: A slash-separated list of the projects ids to import from. <strong>It is only required for GCP</strong>.</p>
 <h2 id="running_kics_with_terraformer_1">Running KICS with Terraformer<a class="headerlink" href="#running_kics_with_terraformer_1" title="Permanent link">&para;</a></h2>
 <p>When Running KICS using a terraformer path, resources are imported using the credentials set as environment variables in terraform format to the current working directory in a new folder named <code>kics-extract-terraformer</code> following the above-described structure.
@@ -1464,15 +1467,15 @@ KICS will then run a scan on these local files.</p>
 <p>To run KICS Terraformer integration with Docker simply pass the AZURE Credentials that were set as environment variables to the docker run command and use the terraformer path syntax. Choose one of the following options:</p>
 <h4 id="using_service_principal_with_client_certificate_1">Using Service Principal with Client Certificate<a class="headerlink" href="#using_service_principal_with_client_certificate_1" title="Permanent link">&para;</a></h4>
 <p>Note that you should fill the <code>&lt;certificate_path&gt;</code> with the path that points to the directory where your certificate is located, and the <code>&lt;certificate-name&gt;</code> should point to the certificate name located in <code>&lt;certificate_path&gt;</code>.</p>
-<pre><code class="language-sh">docker run -v &lt;certificate_path&gt;:/certificate -e ARM_CLIENT_CERTIFICATE_PATH=/certificate/&lt;certificate_name&gt;.pfx -e ARM_CLIENT_CERTIFICATE_PASSWORD -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_SUBSCRIPTION_ID checkmarx/kics:latest scan -p &quot;terraformer::azure:storage_account:eastus&quot; -v --no-progress
+<pre><code class="language-sh">docker run -v &lt;certificate_path&gt;:/certificate -e ARM_CLIENT_CERTIFICATE_PATH=/certificate/&lt;certificate_name&gt;.pfx -e ARM_CLIENT_CERTIFICATE_PASSWORD -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_SUBSCRIPTION_ID checkmarx/kics:latest scan -p &quot;terraformer::azure:storage_account&quot; -v --no-progress
 </code></pre>
-<pre><code class="language-sh">docker run -v &lt;certificate_path&gt;:/certificate -v ${PWD}:/path/ -e ARM_CLIENT_CERTIFICATE_PATH=/certificate/&lt;certificate_name&gt;.pfx -e ARM_CLIENT_CERTIFICATE_PASSWORD -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_SUBSCRIPTION_ID checkmarx/kics:latest scan -p &quot;terraformer::azure:storage_account:eastus&quot; -v --no-progress -o /path/results
+<pre><code class="language-sh">docker run -v &lt;certificate_path&gt;:/certificate -v ${PWD}:/path/ -e ARM_CLIENT_CERTIFICATE_PATH=/certificate/&lt;certificate_name&gt;.pfx -e ARM_CLIENT_CERTIFICATE_PASSWORD -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_SUBSCRIPTION_ID checkmarx/kics:latest scan -p &quot;terraformer::azure:storage_account&quot; -v --no-progress -o /path/results
 </code></pre>
 <p><img alt="client_certificate_terraformer_azure" src="https://user-images.githubusercontent.com/74001161/152843317-7e83b70c-2a44-4f22-8a5e-fa9434950269.gif" /></p>
 <h4 id="service_principal_with_client_secret_1">Service Principal with Client Secret<a class="headerlink" href="#service_principal_with_client_secret_1" title="Permanent link">&para;</a></h4>
-<pre><code class="language-sh">docker run -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET -e ARM_TENANT_ID checkmarx/kics:latest scan -p &quot;terraformer::azure:storage_account:eastus&quot; -v --no-progress
+<pre><code class="language-sh">docker run -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET -e ARM_TENANT_ID checkmarx/kics:latest scan -p &quot;terraformer::azure:storage_account&quot; -v --no-progress
 </code></pre>
-<pre><code class="language-sh">docker run -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET -e ARM_TENANT_ID -v ${PWD}:/path/ checkmarx/kics:latest scan -p &quot;terraformer::azure:storage_account:eastus&quot; -v --no-progress -o /path/results
+<pre><code class="language-sh">docker run -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET -e ARM_TENANT_ID -v ${PWD}:/path/ checkmarx/kics:latest scan -p &quot;terraformer::azure:storage_account&quot; -v --no-progress -o /path/results
 </code></pre>
 <p><img alt="client_secret_terraformer_azure" src="https://user-images.githubusercontent.com/74001161/152833926-68b7cc56-23c0-4297-b308-56f4c6746e09.gif" /></p>
 <h3 id="gcp_run_kics_terraformer_integration_with_docker">[GCP] Run KICS Terraformer integration with Docker<a class="headerlink" href="#gcp_run_kics_terraformer_integration_with_docker" title="Permanent link">&para;</a></h3>
@@ -1487,6 +1490,7 @@ KICS will then run a scan on these local files.</p>
 <ul>
 <li>If environment credentials are incorrect a timeout may occur.</li>
 <li>If the resource to import doesn't exist in the region specified a {resource}.tf file will not be created.</li>
+<li>You can find the Terraform output in <code>terraformer-output.txt</code> inside <code>kics-extract-terraformer</code> folder.</li>
 </ul>
 
 
