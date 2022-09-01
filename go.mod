@@ -24,7 +24,7 @@ require (
 	github.com/johnfercher/maroto v0.38.0
 	github.com/mackerelio/go-osstat v0.2.2
 	github.com/mailru/easyjson v0.7.7
-	github.com/moby/buildkit v0.10.3
+	github.com/moby/buildkit v0.10.4
 	github.com/open-policy-agent/opa v0.43.0
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.26.1
