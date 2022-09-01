@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.SecurityGroupIngress' doesn't have more than 256 hosts.", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.SecurityGroupIngress' should not have more than 256 hosts.", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.SecurityGroupIngress' has more than 256 hosts.", [name]),
 	}
 }
@@ -34,7 +34,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.SecurityGroupIngress' doesn't have more than 256 hosts.", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.SecurityGroupIngress' should not have more than 256 hosts.", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.SecurityGroupIngress' has more than 256 hosts.", [name]),
 	}
 }
@@ -51,7 +51,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.DBSecurityGroupIngress", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.DBSecurityGroupIngress' doesn't have more than 256 hosts.", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.DBSecurityGroupIngress' should not have more than 256 hosts.", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.DBSecurityGroupIngress' has more than 256 hosts.", [name]),
 	}
 }

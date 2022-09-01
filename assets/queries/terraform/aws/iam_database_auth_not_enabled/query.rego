@@ -6,6 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_db_instance[name]
 	resource.iam_database_authentication_enabled == false
+	common_lib.valid_for_iam_engine_and_version_check(resource, "engine", "engine_version", "instance_class")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -18,7 +19,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_db_instance", name, "iam_database_authentication_enabled"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
@@ -29,6 +30,8 @@ CxPolicy[result] {
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_db_instance", "iam_database_authentication_enabled")
 
 	module[keyToCheck] == false
+
+	common_lib.valid_for_iam_engine_and_version_check(module, "engine", "engine_version", "instance_class")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -41,7 +44,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["module", name, "iam_database_authentication_enabled"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
@@ -50,6 +53,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_db_instance[name]
 	not common_lib.valid_key(resource, "iam_database_authentication_enabled")
+	common_lib.valid_for_iam_engine_and_version_check(resource, "engine", "engine_version", "instance_class")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -70,6 +74,8 @@ CxPolicy[result] {
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_db_instance", "iam_database_authentication_enabled")
 
 	not common_lib.valid_key(module, keyToCheck)
+
+	common_lib.valid_for_iam_engine_and_version_check(module, "engine", "engine_version", "instance_class")
 
 	result := {
 		"documentId": input.document[i].id,

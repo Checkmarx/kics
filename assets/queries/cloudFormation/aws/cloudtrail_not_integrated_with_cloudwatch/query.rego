@@ -9,7 +9,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::CloudTrail::Trail"
 	attributes := {"CloudWatchLogsLogGroupArn", "CloudWatchLogsRoleArn"}
 	attr := attributes[a]
-	
+
 	not common_lib.valid_key(resource.Properties, attr)
 
 	result := {
@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.%s' is declared", [name, attr]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.%s' should be declared", [name, attr]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.%s' is not declared", [name, attr]),
 	}
 }

@@ -3,7 +3,7 @@
   "queryName": "SSH Access Is Not Restricted",
   "severity": "MEDIUM",
   "category": "Networking and Firewall",
-  "descriptionText": "Check if Google Firewall allows SSH access (port 22) from the Internet (public CIDR block)",
+  "descriptionText": "Google Firewall should not allow SSH access (port 22) from the Internet (public CIDR block) to ensure the principle of least privileges",
   "descriptionUrl": "https://cloud.google.com/compute/docs/reference/rest/v1/firewalls",
   "platform": "GoogleDeploymentManager",
   "descriptionID": "10629ac9",

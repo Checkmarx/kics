@@ -9,6 +9,7 @@ import (
 
 	sentryReport "github.com/Checkmarx/kics/internal/sentry"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 )
@@ -55,18 +56,19 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 			}
 
 			file := model.FileMetadata{
-				ID:               uuid.New().String(),
-				ScanID:           scanID,
-				Document:         PrepareScanDocument(document, kind),
-				OriginalData:     string(rfile.OriginalData),
-				LineInfoDocument: document,
-				Kind:             kind,
-				FilePath:         rfile.FileName,
-				Content:          string(rfile.Content),
-				HelmID:           rfile.SplitID,
-				IDInfo:           rfile.IDInfo,
-				LinesIgnore:      documents.IgnoreLines,
-				ResolvedFiles:    documents.ResolvedFiles,
+				ID:                uuid.New().String(),
+				ScanID:            scanID,
+				Document:          PrepareScanDocument(document, kind),
+				OriginalData:      string(rfile.OriginalData),
+				LineInfoDocument:  document,
+				Kind:              kind,
+				FilePath:          rfile.FileName,
+				Content:           string(rfile.Content),
+				HelmID:            rfile.SplitID,
+				IDInfo:            rfile.IDInfo,
+				LinesIgnore:       documents.IgnoreLines,
+				ResolvedFiles:     documents.ResolvedFiles,
+				LinesOriginalData: utils.SplitLines(string(rfile.OriginalData)),
 			}
 			s.saveToFile(ctx, &file)
 		}

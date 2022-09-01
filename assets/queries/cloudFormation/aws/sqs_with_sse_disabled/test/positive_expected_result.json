@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "SQS with SSE disabled",
+    "queryName": "SQS With SSE Disabled",
     "severity": "MEDIUM",
     "line": 4,
     "fileName": "positive1.yaml"
   },
   {
-    "queryName": "SQS with SSE disabled",
+    "queryName": "SQS With SSE Disabled",
     "severity": "MEDIUM",
     "line": 5,
     "fileName": "positive2.json"
