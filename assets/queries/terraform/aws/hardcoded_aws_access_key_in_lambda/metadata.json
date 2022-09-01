@@ -3,7 +3,7 @@
   "queryName": "Hardcoded AWS Access Key In Lambda",
   "severity": "MEDIUM",
   "category": "Secret Management",
-  "descriptionText": "Lambda hardcoded AWS access/secret keys",
+  "descriptionText": "Lambda access/secret keys should not be hardcoded",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function",
   "platform": "Terraform",
   "descriptionID": "63935af4",

@@ -1,6 +1,6 @@
 {
   "id": "051f2063-2517-4295-ad8e-ba88c1bf5cfc",
-  "queryName": "BOM - MSK",
+  "queryName": "BOM - AWS MSK",
   "severity": "TRACE",
   "category": "Bill Of Materials",
   "descriptionText": "A list of MSK resources specified. Amazon Managed Streaming for Apache Kafka (Amazon MSK) is a fully managed service that enables you to build and run applications that use Apache Kafka to process streaming data.",

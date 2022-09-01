@@ -339,11 +339,11 @@ get_tag_name_if_exists(resource) = name {
 	name := resource.tags.Name
 } else = name {
 	tag := resource.Properties.Tags[_]
-    tag.Key == "Name"
+	tag.Key == "Name"
 	name := tag.Value
 } else = name {
 	tag := resource.Properties.FileSystemTags[_]
-    tag.Key == "Name"
+	tag.Key == "Name"
 	name := tag.Value
 } else = name {
 	tag := resource.Properties.Tags[key]
@@ -493,14 +493,14 @@ has_wildcard(statement, typeAction) {
 get_nested_values_info(object, array_vals) = return_value {
 	arr := [x |
 		some i, _ in array_vals
-		path := array.slice(array_vals, 0, i+1)
+		path := array.slice(array_vals, 0, i + 1)
 		walk(object, [path, _]) # evaluates to false if path is not in object
 		x := path[i]
 	]
 
 	return_value := {
 		"valid": count(array_vals) == count(arr),
-		"searchKey": concat(".", arr)
+		"searchKey": concat(".", arr),
 	}
 }
 
@@ -541,6 +541,27 @@ is_aws_ebs_optimized_by_default(instanceType) {
 	inArray(data.common_lib.aws_ebs_optimized_by_default, instanceType)
 }
 
+#aurora is equivelent to mysql 5.6 https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth.Availability
+#all aurora-postgresql versions that do not support IAM auth are deprecated Source:console.aws (launch rds instance) 
+valid_for_iam_engine_and_version_check(resource, engineVar, engineVersionVar, instanceClassVar) {
+	key_list := [engineVar, engineVersionVar]
+	contains(lower(resource[engineVar]), "mariadb")
+	version_check := {x | x := resource[key_list[_]]; contains(x, "10.6")}
+	count(version_check) > 0
+} else {
+	engines_that_supports_iam := ["aurora-postgresql", "postgres", "mysql", "mariadb"]
+	contains(lower(resource[engineVar]), engines_that_supports_iam[_])
+	not valid_key(resource, engineVersionVar)
+} else {
+	engines_that_supports_iam := ["aurora-postgresql", "postgres", "mysql"]
+	contains(lower(resource[engineVar]), engines_that_supports_iam[_])
+} else {
+	aurora_mysql_engines := ["aurora", "aurora-mysql"]
+	contains(lower(resource[engineVar]), aurora_mysql_engines[_])
+	invalid_classes := ["db.t2.small", "db.t3.small"]
+	not inArray(invalid_classes, resource[instanceClassVar])
+}
+
 get_group_from_policy_attachment(attachment) = group {
 	group := split(attachment.groups[_], ".")[1]
 } else = group {
@@ -560,106 +581,100 @@ get_user_from_policy_attachment(attachment) = user {
 }
 
 unrecommended_permission_policy(resourcePolicy, permission) {
-    policy := json_unmarshal(resourcePolicy.policy)
+	policy := json_unmarshal(resourcePolicy.policy)
 
-    st := get_statement(policy)
+	st := get_statement(policy)
 	statement := st[_]
 
 	is_allow_effect(statement)
 
-    equalsOrInArray(statement.Resource, "*")
-    equalsOrInArray(statement.Action, lower(permission))
+	equalsOrInArray(statement.Resource, "*")
+	equalsOrInArray(statement.Action, lower(permission))
 }
 
 group_unrecommended_permission_policy_scenarios(targetGroup, permission) {
- 	# get the IAM group policy
- 	groupPolicy := input.document[_].resource.aws_iam_group_policy[_]
+	# get the IAM group policy
+	groupPolicy := input.document[_].resource.aws_iam_group_policy[_]
 
-    # get the group referenced in IAM group policy and confirm it is the target group
-    group := split(groupPolicy.group, ".")[1]
-    group == targetGroup
+	# get the group referenced in IAM group policy and confirm it is the target group
+	group := split(groupPolicy.group, ".")[1]
+	group == targetGroup
 
-    # verify that the policy is unrecommended
-    unrecommended_permission_policy(groupPolicy, permission)
+	# verify that the policy is unrecommended
+	unrecommended_permission_policy(groupPolicy, permission)
 } else {
+	# find attachment
+	attachments := {"aws_iam_policy_attachment", "aws_iam_group_policy_attachment"}
+	attachment := input.document[_].resource[attachments[_]][_]
 
-    # find attachment
-    attachments := {"aws_iam_policy_attachment", "aws_iam_group_policy_attachment"}
-    attachment := input.document[_].resource[attachments[_]][_]
+	# get the group referenced in IAM policy attachment and confirm it is the target group
+	group := get_group_from_policy_attachment(attachment)
+	group == targetGroup
 
-    # get the group referenced in IAM policy attachment and confirm it is the target group
-    group := get_group_from_policy_attachment(attachment)
-    group == targetGroup
+	# confirm that policy associated is unrecommended
+	policy := split(attachment.policy_arn, ".")[1]
 
-    # confirm that policy associated is unrecommended
-    policy := split(attachment.policy_arn, ".")[1]
+	policies := {"aws_iam_role_policy", "aws_iam_user_policy", "aws_iam_group_policy", "aws_iam_policy"}
+	resourcePolicy := input.document[_].resource[policies[_]][policy]
 
-    policies := {"aws_iam_role_policy", "aws_iam_user_policy", "aws_iam_group_policy", "aws_iam_policy"}
-    resourcePolicy := input.document[_].resource[policies[_]][policy]
-
-    # verify that the policy is unrecommended
-    unrecommended_permission_policy(resourcePolicy, permission)
-
+	# verify that the policy is unrecommended
+	unrecommended_permission_policy(resourcePolicy, permission)
 }
 
 role_unrecommended_permission_policy_scenarios(targetRole, permission) {
- 	# get the IAM role policy
- 	rolePolicy := input.document[_].resource.aws_iam_role_policy[_]
+	# get the IAM role policy
+	rolePolicy := input.document[_].resource.aws_iam_role_policy[_]
 
-    # get the role referenced in IAM role policy and confirm it is the target role
-    role := split(rolePolicy.role, ".")[1]
-    role == targetRole
+	# get the role referenced in IAM role policy and confirm it is the target role
+	role := split(rolePolicy.role, ".")[1]
+	role == targetRole
 
-    # verify that the policy is unrecommended
-    unrecommended_permission_policy(rolePolicy, permission)
+	# verify that the policy is unrecommended
+	unrecommended_permission_policy(rolePolicy, permission)
 } else {
+	# find attachment
+	attachments := {"aws_iam_policy_attachment", "aws_iam_role_policy_attachment"}
+	attachment := input.document[_].resource[attachments[_]][_]
 
-    # find attachment
-    attachments := {"aws_iam_policy_attachment", "aws_iam_role_policy_attachment"}
-    attachment := input.document[_].resource[attachments[_]][_]
+	# get the role referenced in IAM policy attachment and confirm it is the target role
+	role := get_role_from_policy_attachment(attachment)
+	role == targetRole
 
-    # get the role referenced in IAM policy attachment and confirm it is the target role
-    role := get_role_from_policy_attachment(attachment)
-    role == targetRole
+	# confirm that policy associated is unrecommended
+	policy := split(attachment.policy_arn, ".")[1]
 
-    # confirm that policy associated is unrecommended
-    policy := split(attachment.policy_arn, ".")[1]
+	policies := {"aws_iam_role_policy", "aws_iam_user_policy", "aws_iam_group_policy", "aws_iam_policy"}
+	resourcePolicy := input.document[_].resource[policies[_]][policy]
 
-    policies := {"aws_iam_role_policy", "aws_iam_user_policy", "aws_iam_group_policy", "aws_iam_policy"}
-    resourcePolicy := input.document[_].resource[policies[_]][policy]
-
-    # verify that the policy is unrecommended
-    unrecommended_permission_policy(resourcePolicy, permission)
-
+	# verify that the policy is unrecommended
+	unrecommended_permission_policy(resourcePolicy, permission)
 }
 
 user_unrecommended_permission_policy_scenarios(targetUser, permission) {
- 	# get the IAM user policy
- 	userPolicy := input.document[_].resource.aws_iam_user_policy[_]
+	# get the IAM user policy
+	userPolicy := input.document[_].resource.aws_iam_user_policy[_]
 
-    # get the user referenced in IAM user policy and confirm it is the target user
-    user := split(userPolicy.user, ".")[1]
-    user == targetUser
+	# get the user referenced in IAM user policy and confirm it is the target user
+	user := split(userPolicy.user, ".")[1]
+	user == targetUser
 
-    # verify that the policy is unrecommended
-    unrecommended_permission_policy(userPolicy, permission)
+	# verify that the policy is unrecommended
+	unrecommended_permission_policy(userPolicy, permission)
 } else {
+	# find attachment
+	attachments := {"aws_iam_policy_attachment", "aws_iam_user_policy_attachment"}
+	attachment := input.document[_].resource[attachments[_]][_]
 
-    # find attachment
-    attachments := {"aws_iam_policy_attachment", "aws_iam_user_policy_attachment"}
-    attachment := input.document[_].resource[attachments[_]][_]
+	# get the user referenced in IAM policy attachment and confirm it is the target user
+	user := get_user_from_policy_attachment(attachment)
+	user == targetUser
 
-    # get the user referenced in IAM policy attachment and confirm it is the target user
-    user := get_user_from_policy_attachment(attachment)
-    user == targetUser
+	# confirm that policy associated is unrecommended
+	policy := split(attachment.policy_arn, ".")[1]
 
-    # confirm that policy associated is unrecommended
-    policy := split(attachment.policy_arn, ".")[1]
+	policies := {"aws_iam_role_policy", "aws_iam_user_policy", "aws_iam_group_policy", "aws_iam_policy"}
+	resourcePolicy := input.document[_].resource[policies[_]][policy]
 
-    policies := {"aws_iam_role_policy", "aws_iam_user_policy", "aws_iam_group_policy", "aws_iam_policy"}
-    resourcePolicy := input.document[_].resource[policies[_]][policy]
-
-    # verify that the policy is unrecommended
-    unrecommended_permission_policy(resourcePolicy, permission)
-
+	# verify that the policy is unrecommended
+	unrecommended_permission_policy(resourcePolicy, permission)
 }

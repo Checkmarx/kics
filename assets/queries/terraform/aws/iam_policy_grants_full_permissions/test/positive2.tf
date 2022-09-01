@@ -6,10 +6,7 @@ resource "aws_iam_policy" "s3-permission" {
   "Statement": [
     {
       "Action": [
-        "ec2:*",
-        "s3:*",
-        "lambda:*",
-        "cloudwatch:*"
+        "*"
       ],
       "Effect": "Allow",
       "Resource": "*"

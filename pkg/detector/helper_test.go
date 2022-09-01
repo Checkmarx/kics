@@ -164,7 +164,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 	tests := []struct {
 		name string
 		args args
-		want []model.CodeLine
+		want *[]model.CodeLine
 	}{
 		{
 			name: "test_start_of_file",
@@ -178,7 +178,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: []model.CodeLine{
+			want: &[]model.CodeLine{
 				{
 					Position: 1,
 					Line:     "firstline",
@@ -205,7 +205,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: []model.CodeLine{
+			want: &[]model.CodeLine{
 				{
 					Position: 3,
 					Line:     "secondline",
@@ -232,7 +232,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: []model.CodeLine{
+			want: &[]model.CodeLine{
 				{
 					Position: 1,
 					Line:     "firstline",
@@ -259,7 +259,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: []model.CodeLine{
+			want: &[]model.CodeLine{
 				{
 					Position: 2,
 					Line:     "secondline",
@@ -282,7 +282,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: []model.CodeLine{
+			want: &[]model.CodeLine{
 				{
 					Position: 1,
 					Line:     "firstline",
@@ -305,7 +305,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: []model.CodeLine{
+			want: &[]model.CodeLine{
 				{
 					Position: 4,
 					Line:     "forthline",
@@ -324,7 +324,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: []model.CodeLine{
+			want: &[]model.CodeLine{
 				{
 					Position: 1,
 					Line:     "firstline",
