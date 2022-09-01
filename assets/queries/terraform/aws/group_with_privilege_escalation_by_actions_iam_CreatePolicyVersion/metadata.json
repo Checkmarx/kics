@@ -1,0 +1,11 @@
+{
+  "id": "ec49cbfd-fae4-45f3-81b1-860526d66e3f",
+  "queryName": "Group With Privilege Escalation By Actions 'iam:CreatePolicyVersion'",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Group with privilege escalation by actions 'iam:CreatePolicyVersion' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy",
+  "platform": "Terraform",
+  "descriptionID": "04f8f6ca",
+  "cloudProvider": "aws"
+}

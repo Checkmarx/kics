@@ -164,7 +164,7 @@ func printFiles(query *model.QueryResult, printer *Printer) {
 			query.Files[fileIdx].FileName, printer.Success.Sprint(query.Files[fileIdx].Line))
 		if !printer.minimal {
 			fmt.Println()
-			for _, line := range query.Files[fileIdx].VulnLines {
+			for _, line := range *query.Files[fileIdx].VulnLines {
 				if len(line.Line) > charsLimitPerLine {
 					line.Line = line.Line[:charsLimitPerLine]
 				}

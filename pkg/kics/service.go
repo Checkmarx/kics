@@ -62,11 +62,12 @@ type Service struct {
 func (s *Service) PrepareSources(ctx context.Context, scanID string, wg *sync.WaitGroup, errCh chan<- error) {
 	defer wg.Done()
 	// CxSAST query under review
+	data := make([]byte, mbConst)
 	if err := s.SourceProvider.GetSources(
 		ctx,
 		s.Parser.SupportedExtensions(),
 		func(ctx context.Context, filename string, rc io.ReadCloser) error {
-			return s.sink(ctx, filename, scanID, rc)
+			return s.sink(ctx, filename, scanID, rc, data)
 		},
 		func(ctx context.Context, filename string) ([]string, error) { // Sink used for resolver files and templates
 			return s.resolverSink(ctx, filename, scanID)
@@ -125,11 +126,10 @@ type Content struct {
    getContent will read the passed file 1MB at a time
    to prevent resource exhaustion and return its content
 */
-func getContent(rc io.Reader) (*Content, error) {
+func getContent(rc io.Reader, data []byte) (*Content, error) {
 	maxSizeMB := 5 // Max size of file in MBs
 	var content []byte
 	countLines := 0
-	data := make([]byte, mbConst)
 
 	c := &Content{
 		Content:    &[]byte{},
@@ -177,14 +177,14 @@ func (s *Service) saveToFile(ctx context.Context, file *model.FileMetadata) {
 
 // PrepareScanDocument removes _kics_lines from payload and parses json filters
 func PrepareScanDocument(body map[string]interface{}, kind model.FileKind) map[string]interface{} {
-	bodyMap := make(map[string]interface{})
+	var bodyMap map[string]interface{}
 	j, err := json.Marshal(body)
 	if err != nil {
 		log.Error().Msgf("failed to remove kics line information")
 		return body
 	}
 	if err := json.Unmarshal(j, &bodyMap); err != nil {
-		log.Error().Msgf("failed to remove kics line information")
+		log.Error().Msgf("failed to remove kics line information: '%s'", err)
 		return body
 	}
 	prepareScanDocumentRoot(bodyMap, kind)
