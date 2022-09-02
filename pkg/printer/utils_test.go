@@ -24,7 +24,7 @@ func Test_PrintScanDuration(t *testing.T) {
 		name                    string
 		cmd                     *cobra.Command
 		flagsListContent        string
-		persintentFlag          bool
+		persistentFlag          bool
 		supportedPlatforms      []string
 		supportedCloudProviders []string
 		elapsed                 time.Duration
@@ -34,7 +34,7 @@ func Test_PrintScanDuration(t *testing.T) {
 			name:                    "should print scan duration",
 			cmd:                     mockCmd,
 			flagsListContent:        "",
-			persintentFlag:          true,
+			persistentFlag:          true,
 			supportedPlatforms:      []string{"terraform"},
 			supportedCloudProviders: []string{"aws"},
 			elapsed:                 time.Duration(1),
@@ -49,7 +49,7 @@ func Test_PrintScanDuration(t *testing.T) {
 				"defaultValue": "true",
 				"usage": "display only log messages to CLI output (mutually exclusive with silent)"
 			}}`,
-			persintentFlag:          true,
+			persistentFlag:          true,
 			supportedPlatforms:      []string{"terraform"},
 			supportedCloudProviders: []string{"aws"},
 			elapsed:                 time.Duration(1),
@@ -59,7 +59,7 @@ func Test_PrintScanDuration(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			flags.InitJSONFlags(test.cmd, test.flagsListContent, test.persintentFlag, test.supportedPlatforms, test.supportedCloudProviders)
+			flags.InitJSONFlags(test.cmd, test.flagsListContent, test.persistentFlag, test.supportedPlatforms, test.supportedCloudProviders)
 
 			rescueStdout := os.Stdout
 			r, w, _ := os.Pipe()
