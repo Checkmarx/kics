@@ -211,6 +211,7 @@ require (
 )
 
 replace (
+	github.com/moby/buildkit => github.com/moby/buildkit v0.10.4
 	github.com/containerd/containerd => github.com/containerd/containerd v1.6.8
 	github.com/docker/cli => github.com/docker/cli v20.10.12+incompatible
 	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
