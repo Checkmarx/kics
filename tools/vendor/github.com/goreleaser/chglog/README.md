@@ -5,7 +5,7 @@
   <p align="center">
     <a href="https://github.com/goreleaser/chglog/releases/latest"><img alt="Release" src="https://img.shields.io/github/release/goreleaser/chglog.svg?style=for-the-badge"></a>
     <a href="/LICENSE.md"><img alt="Software License" src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge"></a>
-    <a href="https://github.com/goreleaser/goreleaser/actions?workflow=build"><img alt="GitHub Actions" src="https://img.shields.io/github/workflow/status/goreleaser/goreleaser/build?style=for-the-badge"></a>
+    <a href="https://github.com/goreleaser/chglog/actions?workflow=build"><img alt="GitHub Actions" src="https://img.shields.io/github/workflow/status/goreleaser/chglog/build?style=for-the-badge"></a>
     <a href="https://codecov.io/gh/goreleaser/chglog"><img alt="Codecov branch" src="https://img.shields.io/codecov/c/github/goreleaser/chglog/master.svg?style=for-the-badge"></a>
     <a href="https://goreportcard.com/report/github.com/goreleaser/chglog"><img alt="Go Report Card" src="https://goreportcard.com/badge/github.com/goreleaser/chglog?style=for-the-badge"></a>
     <a href="http://godoc.org/github.com/goreleaser/chglog"><img alt="Go Doc" src="https://img.shields.io/badge/godoc-reference-blue.svg?style=for-the-badge"></a>
@@ -29,10 +29,10 @@ https://github.com/goreleaser/nfpm and the deb and rpm changelog formats not bei
 * [x] reproducible results
   * [x] depend on the fewer external things as possible
   * [x] store changelog in a transportable format (.yml)
-* [x] be possible to use it as a lib in other go projects (namely [goreleaser][] itself)
+* [x] be possible to use it as a lib in other go projects (namely [goreleaser](https://goreleaser.com) itself)
 
 ## Install
-`go get github.com/djgilcrease/chglog/cmd/chglog`
+`go get github.com/goreleaser/chglog/cmd/chglog`
 
 ## Usage
 
@@ -97,7 +97,7 @@ easy and will surely help the developers at least buy some ☕️ or 🍺!
 
 ## Stargazers over time
 
-[![goreleaser/chglog stargazers over time](https://starcharts.herokuapp.com/goreleaser/chglog.svg)](https://starcharts.herokuapp.com/goreleaser/chglog)
+[![goreleaser/chglog stargazers over time](https://starchart.cc/goreleaser/chglog.svg)](https://starchart.cc/goreleaser/chglog)
 
 ---
 

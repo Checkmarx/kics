@@ -5,14 +5,12 @@ import (
 	"io/ioutil"
 	"os"
 
-	"gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v3"
 )
 
 // Parse parse a changelog.yml into ChangeLogEntries.
 func Parse(file string) (entries ChangeLogEntries, err error) {
-	var (
-		body []byte
-	)
+	var body []byte
 	body, err = ioutil.ReadFile(file) // nolint: gosec,gocritic
 	switch {
 	case os.IsNotExist(err):
@@ -32,5 +30,5 @@ func Parse(file string) (entries ChangeLogEntries, err error) {
 func (c *ChangeLogEntries) Save(file string) (err error) {
 	data, _ := yaml.Marshal(c)
 	// nolint: gosec,gocritic
-	return ioutil.WriteFile(file, data, 0644)
+	return ioutil.WriteFile(file, data, 0o644)
 }

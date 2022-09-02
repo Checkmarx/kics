@@ -114,6 +114,24 @@ func formatChangelog(ctx *context.Context, entries []string) (string, error) {
 		return strings.Join(entries, newLine), nil
 	}
 
+	for i := range entries {
+		entry := entries[i]
+		abbr := ctx.Config.Changelog.Abbrev
+		switch abbr {
+		case 0:
+			continue
+		case -1:
+			_, rest, _ := strings.Cut(entry, " ")
+			entries[i] = rest
+		default:
+			commit, rest, _ := strings.Cut(entry, " ")
+			if abbr > len(commit) {
+				continue
+			}
+			entries[i] = fmt.Sprintf("%s %s", commit[:abbr], rest)
+		}
+	}
+
 	result := []string{"## Changelog"}
 	if len(ctx.Config.Changelog.Groups) == 0 {
 		log.Debug("not grouping entries")
@@ -152,7 +170,7 @@ func formatChangelog(ctx *context.Context, entries []string) (string, error) {
 	sort.Slice(groups, func(i, j int) bool { return groups[i].order < groups[j].order })
 	for _, group := range groups {
 		if len(group.entries) > 0 {
-			result = append(result, fmt.Sprintf("### %s", group.title))
+			result = append(result, fmt.Sprintf("\n### %s", group.title))
 			result = append(result, group.entries...)
 		}
 	}

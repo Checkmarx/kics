@@ -30,6 +30,15 @@ func New() *Ctrlc {
 // Default ctrlc instance
 var Default = New()
 
+// ErrorCtrlC happens when ctrlc gets a signal.
+type ErrorCtrlC struct {
+	sig os.Signal
+}
+
+func (e ErrorCtrlC) Error() string {
+	return fmt.Sprintf("ctrlc: received signal: %s", e.sig)
+}
+
 // Run executes a given task with a given context, dealing with its timeouts,
 // cancels and SIGTERM and SIGINT signals.
 // It will return an error if the context is canceled, if deadline exceeds,
@@ -45,6 +54,6 @@ func (c *Ctrlc) Run(ctx context.Context, task Task) error {
 	case <-ctx.Done():
 		return ctx.Err()
 	case sig := <-c.signals:
-		return fmt.Errorf("received: %s", sig)
+		return ErrorCtrlC{sig}
 	}
 }

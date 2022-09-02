@@ -1,3 +1,44 @@
+# Release (v1.11.2)
+
+* No change notes available for this release.
+
+# Release (v1.11.1)
+
+## Module Highlights
+* `github.com/aws/smithy-go`: v1.11.1
+  * **Bug Fix**: Updates the smithy-go HTTP Request to correctly handle building the request to an http.Request. Related to [aws/aws-sdk-go-v2#1583](https://github.com/aws/aws-sdk-go-v2/issues/1583)
+
+# Release (v1.11.0)
+
+## Module Highlights
+* `github.com/aws/smithy-go`: v1.11.0
+  * **Feature**: Updates deserialization of header list to supported quoted strings
+
+# Release (v1.10.0)
+
+## Module Highlights
+* `github.com/aws/smithy-go`: v1.10.0
+  * **Feature**: Add `ptr.Duration`, `ptr.ToDuration`, `ptr.DurationSlice`, `ptr.ToDurationSlice`, `ptr.DurationMap`, and `ptr.ToDurationMap` functions for the `time.Duration` type.
+
+# Release (v1.9.1)
+
+## Module Highlights
+* `github.com/aws/smithy-go`: v1.9.1
+  * **Documentation**: Fixes various typos in Go package documentation.
+
+# Release (v1.9.0)
+
+## Module Highlights
+* `github.com/aws/smithy-go`: v1.9.0
+  * **Feature**: sync: OnceErr, can be used to concurrently record a signal when an error has occurred.
+  * **Bug Fix**: `transport/http`: CloseResponseBody and ErrorCloseResponseBody middleware have been updated to ensure that the body is fully drained before closing.
+
+# Release v1.8.1
+
+### Smithy Go Module
+* **Bug Fix**: Fixed an issue that would cause the HTTP Content-Length to be set to 0 if the stream body was not set.
+  * Fixes [aws/aws-sdk-go-v2#1418](https://github.com/aws/aws-sdk-go-v2/issues/1418)
+
 # Release v1.8.0
 
 ### Smithy Go Module

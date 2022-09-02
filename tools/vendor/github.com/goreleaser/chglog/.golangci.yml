@@ -1,5 +1,5 @@
 linters:
-  enable-all: true
+  enable-all: false
   disable:
     - godox
     - wsl

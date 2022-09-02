@@ -3,7 +3,6 @@ package log
 import (
 	"fmt"
 	"io"
-	stdlog "log"
 	"sort"
 	"sync"
 
@@ -84,7 +83,7 @@ func (l *Logger) DecreasePadding() {
 	l.Padding -= defaultPadding
 }
 
-func (l *Logger) handleLog(e *Entry) error {
+func (l *Logger) handleLog(e *Entry) {
 	style := Styles[e.Level]
 	level := Strings[e.Level]
 	names := e.Fields.Names()
@@ -107,7 +106,6 @@ func (l *Logger) handleLog(e *Entry) error {
 	}
 
 	fmt.Fprintln(l.Writer)
-	return nil
 }
 
 func (l *Logger) rightPadding(names []string) int {
@@ -193,7 +191,5 @@ func (l *Logger) log(level Level, e *Entry, msg string) {
 		return
 	}
 
-	if err := l.handleLog(e.finalize(level, msg)); err != nil {
-		stdlog.Printf("error logging: %s", err)
-	}
+	l.handleLog(e.finalize(level, msg))
 }

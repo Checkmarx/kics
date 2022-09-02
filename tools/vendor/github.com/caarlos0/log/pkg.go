@@ -3,20 +3,10 @@ package log
 import (
 	"io"
 	"os"
-
-	"github.com/charmbracelet/lipgloss"
-	"github.com/muesli/termenv"
 )
 
 // singletons ftw?
 var Log Interface = New(os.Stderr)
-
-func init() {
-	// enable colored output on github actions et al
-	if os.Getenv("CI") != "" {
-		lipgloss.SetColorProfile(termenv.TrueColor)
-	}
-}
 
 // New creates a new logger.
 func New(w io.Writer) *Logger {

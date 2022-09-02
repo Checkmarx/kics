@@ -20,7 +20,7 @@
 // set to "BlockBlob".
 // See https://stackoverflow.com/questions/37824136/put-on-sas-blob-url-without-specifying-x-ms-blob-type-header.
 //
-// URLs
+// # URLs
 //
 // For blob.OpenBucket, azureblob registers for the scheme "azblob".
 // The default URL opener will use credentials from the environment variables
@@ -31,38 +31,40 @@
 // default Azure public domain "blob.core.windows.net" will be used. Check
 // the Azure Developer Guide for your particular cloud environment to see
 // the proper blob storage domain name to provide.
+// If there are multiple identities assigned to your account, you can also provide
+// AZURE_CLIENT_ID to designate which identity should be used for authentication.
 // To customize the URL opener, or for more details on the URL format,
 // see URLOpener.
 // See https://gocloud.dev/concepts/urls/ for background information.
 //
-// Escaping
+// # Escaping
 //
 // Go CDK supports all UTF-8 strings; to make this work with services lacking
 // full UTF-8 support, strings must be escaped (during writes) and unescaped
 // (during reads). The following escapes are performed for azureblob:
-//  - Blob keys: ASCII characters 0-31, 92 ("\"), and 127 are escaped to
-//    "__0x<hex>__". Additionally, the "/" in "../" and a trailing "/" in a
-//    key (e.g., "foo/") are escaped in the same way.
-//  - Metadata keys: Per https://docs.microsoft.com/en-us/azure/storage/blobs/storage-properties-metadata,
-//    Azure only allows C# identifiers as metadata keys. Therefore, characters
-//    other than "[a-z][A-z][0-9]_" are escaped using "__0x<hex>__". In addition,
-//    characters "[0-9]" are escaped when they start the string.
-//    URL encoding would not work since "%" is not valid.
-//  - Metadata values: Escaped using URL encoding.
+//   - Blob keys: ASCII characters 0-31, 92 ("\"), and 127 are escaped to
+//     "__0x<hex>__". Additionally, the "/" in "../" and a trailing "/" in a
+//     key (e.g., "foo/") are escaped in the same way.
+//   - Metadata keys: Per https://docs.microsoft.com/en-us/azure/storage/blobs/storage-properties-metadata,
+//     Azure only allows C# identifiers as metadata keys. Therefore, characters
+//     other than "[a-z][A-z][0-9]_" are escaped using "__0x<hex>__". In addition,
+//     characters "[0-9]" are escaped when they start the string.
+//     URL encoding would not work since "%" is not valid.
+//   - Metadata values: Escaped using URL encoding.
 //
-// As
+// # As
 //
 // azureblob exposes the following types for As:
-//  - Bucket: *azblob.ContainerURL
-//  - Error: azblob.StorageError
-//  - ListObject: azblob.BlobItemInternal for objects, azblob.BlobPrefix for "directories"
-//  - ListOptions.BeforeList: *azblob.ListBlobsSegmentOptions
-//  - Reader: azblob.DownloadResponse
-//  - Reader.BeforeRead: *azblob.BlockBlobURL, *azblob.BlobAccessConditions
-//  - Attributes: azblob.BlobGetPropertiesResponse
-//  - CopyOptions.BeforeCopy: azblob.Metadata, *azblob.ModifiedAccessConditions, *azblob.BlobAccessConditions
-//  - WriterOptions.BeforeWrite: *azblob.UploadStreamToBlockBlobOptions
-//  - SignedURLOptions.BeforeSign: *azblob.BlobSASSignatureValues
+//   - Bucket: *azblob.ContainerURL
+//   - Error: azblob.StorageError
+//   - ListObject: azblob.BlobItemInternal for objects, azblob.BlobPrefix for "directories"
+//   - ListOptions.BeforeList: *azblob.ListBlobsSegmentOptions
+//   - Reader: azblob.DownloadResponse
+//   - Reader.BeforeRead: *azblob.BlockBlobURL, *azblob.BlobAccessConditions
+//   - Attributes: azblob.BlobGetPropertiesResponse
+//   - CopyOptions.BeforeCopy: azblob.Metadata, *azblob.ModifiedAccessConditions, *azblob.BlobAccessConditions
+//   - WriterOptions.BeforeWrite: *azblob.UploadStreamToBlockBlobOptions
+//   - SignedURLOptions.BeforeSign: *azblob.BlobSASSignatureValues
 package azureblob
 
 import (
@@ -131,6 +133,10 @@ type Options struct {
 	// The full URL used is "<Protocol>://<account name>.<StorageDomain>", where the
 	// "<account name>." part is dropped if IsCDN is set to true.
 	IsCDN bool
+
+	// IsLocalEmulator should be set to true when targetting Local Storage Emulator (Azurite).
+	// The URL format is "<Protocol>://<StorageDomain>/<account name>" (ex: http://127.0.0.1:10000/devstoreaccount1).
+	IsLocalEmulator bool
 }
 
 const (
@@ -165,6 +171,7 @@ func (o *lazyCredsOpener) OpenBucketURL(ctx context.Context, u *url.URL) (*blob.
 		// Ignore errors, as we'll get errors from OpenBucket later.
 		accountName, _ := DefaultAccountName()
 		accountKey, _ := DefaultAccountKey()
+		clientId, _ := DefaultClientId()
 		sasToken, _ := DefaultSASToken()
 		storageDomain, _ := DefaultStorageDomain()
 		isCDN, _ := DefaultIsCDN()
@@ -180,7 +187,7 @@ func (o *lazyCredsOpener) OpenBucketURL(ctx context.Context, u *url.URL) (*blob.
 		if accountKey != "" || sasToken != "" {
 			o.opener, o.err = openerFromEnv(accountName, accountKey, sasToken, opts)
 		} else if isMSIEnvironment {
-			o.opener, o.err = openerFromMSI(accountName, opts)
+			o.opener, o.err = openerFromMSI(accountName, clientId, opts)
 		} else {
 			o.opener, o.err = openerFromAnon(accountName, opts)
 		}
@@ -200,9 +207,10 @@ const Scheme = "azblob"
 // The URL host is used as the bucket name.
 //
 // The following query options are supported:
-//  - domain: The domain name used to access the Azure Blob storage (e.g. blob.core.windows.net)
-//  - protocol: The protocol to use (e.g., http or https; default to https)
-//  - cdn: Set to true when domain represents a CDN
+//   - domain: The domain name used to access the Azure Blob storage (e.g. blob.core.windows.net)
+//   - protocol: The protocol to use (e.g., http or https; default to https)
+//   - cdn: Set to true when domain represents a CDN
+//   - localemu: Set to true when domain points to the Local Storage Emulator (Azurite)
 //
 // See Options for more details.
 type URLOpener struct {
@@ -266,9 +274,9 @@ var defaultTokenRefreshFunction = func(spToken *adal.ServicePrincipalToken) func
 }
 
 // openerFromMSI acquires an MSI token and returns TokenCredential backed URLOpener
-func openerFromMSI(accountName AccountName, opts Options) (*URLOpener, error) {
+func openerFromMSI(accountName AccountName, clientId ClientId, opts Options) (*URLOpener, error) {
 
-	spToken, err := getMSIServicePrincipalToken(azure.PublicCloud.ResourceIdentifiers.Storage)
+	spToken, err := getMSIServicePrincipalToken(azure.PublicCloud.ResourceIdentifiers.Storage, clientId)
 	if err != nil {
 		return nil, fmt.Errorf("failure acquiring token from MSI endpoint %w", err)
 	}
@@ -287,14 +295,23 @@ func openerFromMSI(accountName AccountName, opts Options) (*URLOpener, error) {
 }
 
 // getMSIServicePrincipalToken retrieves Azure API Service Principal token.
-func getMSIServicePrincipalToken(resource string) (*adal.ServicePrincipalToken, error) {
+func getMSIServicePrincipalToken(resource string, clientId ClientId) (*adal.ServicePrincipalToken, error) {
 
 	msiEndpoint, err := adal.GetMSIEndpoint()
 	if err != nil {
 		return nil, fmt.Errorf("failed to get the managed service identity endpoint: %v", err)
 	}
 
-	token, err := adal.NewServicePrincipalTokenFromMSI(msiEndpoint, resource)
+	var token *adal.ServicePrincipalToken
+	if clientId == "" {
+		token, err = adal.NewServicePrincipalTokenFromMSI(msiEndpoint, resource)
+	} else {
+		opts := &adal.ManagedIdentityOptions{
+			ClientID: string(clientId),
+		}
+		token, err = adal.NewServicePrincipalTokenFromManagedIdentity(resource, opts)
+	}
+
 	if err != nil {
 		return nil, fmt.Errorf("failed to create the managed service identity token: %v", err)
 	}
@@ -333,6 +350,12 @@ func setOptionsFromURLParams(q url.Values, o *Options) error {
 				return err
 			}
 			o.IsCDN = isCDN
+		case "localemu":
+			isLocalEmulator, err := strconv.ParseBool(value)
+			if err != nil {
+				return err
+			}
+			o.IsLocalEmulator = isLocalEmulator
 		default:
 			return fmt.Errorf("unknown query parameter %q", param)
 		}
@@ -366,6 +389,9 @@ type AccountName string
 // AccountKey is an Azure storage account key (primary or secondary).
 type AccountKey string
 
+// ClientID is an Azure client id
+type ClientId string
+
 // SASToken is an Azure shared access signature.
 // https://docs.microsoft.com/en-us/azure/storage/common/storage-dotnet-shared-access-signature-part-1
 type SASToken string
@@ -398,6 +424,13 @@ func DefaultAccountKey() (AccountKey, error) {
 		return "", errors.New("azureblob: environment variable AZURE_STORAGE_KEY not set")
 	}
 	return AccountKey(s), nil
+}
+
+// DefaultClientId loads the Azure client Id from the
+// AZURE_CLIENT_ID environment variable. Use of the client Id is optional
+func DefaultClientId() (ClientId, error) {
+	s := os.Getenv("AZURE_CLIENT_ID")
+	return ClientId(s), nil
 }
 
 // DefaultSASToken loads a Azure SAS token from the AZURE_STORAGE_SAS_TOKEN
@@ -500,7 +533,7 @@ func openBucket(ctx context.Context, pipeline pipeline.Pipeline, accountName Acc
 	d := string(opts.StorageDomain)
 	var u string
 	// The URL structure of the local emulator is a bit different from the real one.
-	if strings.HasPrefix(d, "127.0.0.1") || strings.HasPrefix(d, "localhost") {
+	if strings.HasPrefix(d, "127.0.0.1") || strings.HasPrefix(d, "localhost") || opts.IsLocalEmulator {
 		u = fmt.Sprintf("%s://%s/%s", opts.Protocol, opts.StorageDomain, accountName) // http://127.0.0.1:10000/devstoreaccount1
 	} else if opts.IsCDN {
 		u = fmt.Sprintf("%s://%s", opts.Protocol, opts.StorageDomain) // https://mycdnname.azureedge.net
@@ -806,6 +839,7 @@ func (b *bucket) ListPaged(ctx context.Context, opts *driver.ListOptions) (*driv
 	page := &driver.ListPage{}
 	page.Objects = []*driver.ListObject{}
 	for _, blobPrefix := range listBlob.Segment.BlobPrefixes {
+		blobPrefix := blobPrefix // capture loop variable for use in AsFunc
 		page.Objects = append(page.Objects, &driver.ListObject{
 			Key:   unescapeKey(blobPrefix.Name),
 			Size:  0,
@@ -821,6 +855,7 @@ func (b *bucket) ListPaged(ctx context.Context, opts *driver.ListOptions) (*driv
 	}
 
 	for _, blobInfo := range listBlob.Segment.BlobItems {
+		blobInfo := blobInfo // capture loop variable for use in AsFunc
 		page.Objects = append(page.Objects, &driver.ListObject{
 			Key:     unescapeKey(blobInfo.Name),
 			ModTime: blobInfo.Properties.LastModified,
@@ -981,6 +1016,9 @@ func (b *bucket) NewTypedWriter(ctx context.Context, key string, contentType str
 	if opts.BufferSize == 0 {
 		opts.BufferSize = defaultUploadBlockSize
 	}
+	if opts.MaxConcurrency == 0 {
+		opts.MaxConcurrency = defaultUploadBuffers
+	}
 
 	md := make(map[string]string, len(opts.Metadata))
 	for k, v := range opts.Metadata {
@@ -1005,7 +1043,7 @@ func (b *bucket) NewTypedWriter(ctx context.Context, key string, contentType str
 	}
 	uploadOpts := &azblob.UploadStreamToBlockBlobOptions{
 		BufferSize: opts.BufferSize,
-		MaxBuffers: defaultUploadBuffers,
+		MaxBuffers: opts.MaxConcurrency,
 		Metadata:   md,
 		BlobHTTPHeaders: azblob.BlobHTTPHeaders{
 			CacheControl:       opts.CacheControl,

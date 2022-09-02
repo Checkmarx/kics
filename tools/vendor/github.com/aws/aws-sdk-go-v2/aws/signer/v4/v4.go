@@ -382,12 +382,7 @@ func (s *Signer) PresignHTTP(
 }
 
 func (s *httpSigner) buildCredentialScope() string {
-	return strings.Join([]string{
-		s.Time.ShortTimeFormat(),
-		s.Region,
-		s.ServiceName,
-		"aws4_request",
-	}, "/")
+	return v4Internal.BuildCredentialScope(s.Time, s.Region, s.ServiceName)
 }
 
 func buildQuery(r v4Internal.Rule, header http.Header) (url.Values, http.Header) {
@@ -448,7 +443,15 @@ func (s *httpSigner) buildCanonicalHeaders(host string, rule v4Internal.Rule, he
 		} else {
 			canonicalHeaders.WriteString(headers[i])
 			canonicalHeaders.WriteRune(colon)
-			canonicalHeaders.WriteString(strings.Join(signed[headers[i]], ","))
+			// Trim out leading, trailing, and dedup inner spaces from signed header values.
+			values := signed[headers[i]]
+			for j, v := range values {
+				cleanedValue := strings.TrimSpace(v4Internal.StripExcessSpaces(v))
+				canonicalHeaders.WriteString(cleanedValue)
+				if j < len(values)-1 {
+					canonicalHeaders.WriteRune(',')
+				}
+			}
 		}
 		canonicalHeaders.WriteRune('\n')
 	}

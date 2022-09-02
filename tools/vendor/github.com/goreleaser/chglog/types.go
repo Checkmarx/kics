@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/Masterminds/semver/v3"
+	conventional_commit "gitlab.com/digitalxero/go-conventional-commit"
 )
 
 // ChangeLogEntries list of ChangeLog entries.
@@ -82,17 +83,8 @@ type ChangeLogChange struct {
 	Author *User `yaml:"author,omitempty"`
 	// Committer is the one performing the commit, might be different from
 	// Author.
-	Committer          *User               `yaml:"committer,omitempty"`
-	ConventionalCommit *ConventionalCommit `yaml:"conventional_commit,omitempty"`
-}
-
-// ConventionalCommit a parsed conventional commit message.
-type ConventionalCommit struct {
-	Category    string `yaml:"category"`
-	Scope       string `yaml:"scope"`
-	Breaking    bool   `yaml:"breaking"`
-	Description string `yaml:"description"`
-	Body        string `yaml:"body"`
+	Committer          *User                                   `yaml:"committer,omitempty"`
+	ConventionalCommit *conventional_commit.ConventionalCommit `yaml:"conventional_commit,omitempty"`
 }
 
 // User is used to identify who created a commit or tag.

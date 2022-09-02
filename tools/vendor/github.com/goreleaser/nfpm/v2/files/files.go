@@ -14,19 +14,19 @@ import (
 // Content describes the source and destination
 // of one file to copy into a package.
 type Content struct {
-	Source      string           `yaml:"src,omitempty"`
-	Destination string           `yaml:"dst,omitempty"`
-	Type        string           `yaml:"type,omitempty"`
-	Packager    string           `yaml:"packager,omitempty"`
-	FileInfo    *ContentFileInfo `yaml:"file_info,omitempty"`
+	Source      string           `yaml:"src,omitempty" json:"src,omitempty"`
+	Destination string           `yaml:"dst,omitempty" json:"dst,omitempty"`
+	Type        string           `yaml:"type,omitempty" json:"type,omitempty"`
+	Packager    string           `yaml:"packager,omitempty" json:"packager,omitempty"`
+	FileInfo    *ContentFileInfo `yaml:"file_info,omitempty" json:"file_info,omitempty"`
 }
 
 type ContentFileInfo struct {
-	Owner string      `yaml:"owner,omitempty"`
-	Group string      `yaml:"group"`
-	Mode  os.FileMode `yaml:"mode,omitempty"`
-	MTime time.Time   `yaml:"mtime,omitempty"`
-	Size  int64       `yaml:"-"`
+	Owner string      `yaml:"owner,omitempty" json:"owner,omitempty"`
+	Group string      `yaml:"group,omitempty" json:"group,omitempty"`
+	Mode  os.FileMode `yaml:"mode,omitempty" json:"mode,omitempty"`
+	MTime time.Time   `yaml:"mtime,omitempty" json:"mtime,omitempty"`
+	Size  int64       `yaml:"-" json:"-"`
 }
 
 // Contents list of Content to process.

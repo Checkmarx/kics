@@ -107,14 +107,6 @@ brews:
     fish_completion.install "completions/nfpm.fish"
     man1.install "manpages/nfpm.1.gz"
 
-rigs:
-  - rig:
-      owner: goreleaser
-      name: fish-food
-    homepage: https://nfpm.goreleaser.com
-    description: nFPM is a simple, 0-dependencies, deb, rpm and apk packager.
-    license: MIT
-
 scoop:
   bucket:
     owner: goreleaser

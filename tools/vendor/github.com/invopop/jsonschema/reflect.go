@@ -20,7 +20,7 @@ import (
 )
 
 // Version is the JSON Schema version.
-var Version = "http://json-schema.org/draft/2020-12/schema"
+var Version = "https://json-schema.org/draft/2020-12/schema"
 
 // Schema represents a JSON Schema object type.
 // RFC draft-bhutton-json-schema-00 section 4.3
@@ -555,7 +555,7 @@ func (r *Reflector) reflectStructFields(st *Schema, definitions Definitions, t r
 
 		st.Properties.Set(name, property)
 		if required {
-			st.Required = append(st.Required, name)
+			st.Required = appendUniqueString(st.Required, name)
 		}
 	}
 
@@ -570,6 +570,15 @@ func (r *Reflector) reflectStructFields(st *Schema, definitions Definitions, t r
 			}
 		}
 	}
+}
+
+func appendUniqueString(base []string, value string) []string {
+	for _, v := range base {
+		if v == value {
+			return base
+		}
+	}
+	return append(base, value)
 }
 
 func (r *Reflector) lookupComment(t reflect.Type, name string) string {
@@ -834,6 +843,8 @@ func (t *Schema) arrayKeywords(tags []string) {
 					f, _ := strconv.ParseFloat(val, 64)
 					t.Items.Enum = append(t.Items.Enum, f)
 				}
+			case "format":
+				t.Items.Format = val
 			}
 		}
 	}
