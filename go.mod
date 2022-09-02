@@ -8,7 +8,7 @@ require (
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20211114212643-ec144ca0d701
-	github.com/aws/aws-sdk-go v1.44.82
+	github.com/aws/aws-sdk-go v1.44.90
 	github.com/cheggaaa/pb/v3 v3.1.0
 	github.com/emicklei/proto v1.11.0
 	github.com/getsentry/sentry-go v0.13.0
@@ -16,13 +16,13 @@ require (
 	github.com/golang/mock v1.6.0
 	github.com/google/pprof v0.0.0-20210720184732-4bb14d4b1be1
 	github.com/google/uuid v1.3.0
-	github.com/gookit/color v1.5.1
+	github.com/gookit/color v1.5.2
 	github.com/hashicorp/go-getter v1.6.2
 	github.com/hashicorp/hcl v1.0.0
-	github.com/hashicorp/hcl/v2 v2.13.0
+	github.com/hashicorp/hcl/v2 v2.14.0
 	github.com/hashicorp/terraform-json v0.14.0
 	github.com/johnfercher/maroto v0.38.0
-	github.com/mackerelio/go-osstat v0.2.2
+	github.com/mackerelio/go-osstat v0.2.3
 	github.com/mailru/easyjson v0.7.7
 	github.com/moby/buildkit v0.10.4
 	github.com/open-policy-agent/opa v0.43.0
@@ -33,7 +33,7 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.12.0
 	github.com/stretchr/testify v1.8.0
-	github.com/tdewolff/minify/v2 v2.12.0
+	github.com/tdewolff/minify/v2 v2.12.1
 	github.com/tidwall/gjson v1.14.3
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/yargevad/filepathx v1.0.0
@@ -164,7 +164,7 @@ require (
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/subosito/gotenv v1.3.0 // indirect
-	github.com/tdewolff/parse/v2 v2.6.1 // indirect
+	github.com/tdewolff/parse/v2 v2.6.3 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/tidwall/pretty v1.2.0 // indirect
 	github.com/ulikunitz/xz v0.5.8 // indirect
