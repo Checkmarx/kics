@@ -1,0 +1,16 @@
+dist/
+!internal/pipe/dist
+bin/
+coverage.txt
+goreleaser
+debug.test
+snap.login
+site/
+www/docs/static/releases*.json
+.vercel
+completions/
+.vscode/
+.task/
+.idea/
+manpages
+output.json

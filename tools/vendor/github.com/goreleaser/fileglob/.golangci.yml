@@ -1,0 +1,13 @@
+linters:
+  enable-all: true
+  disable:
+    - godox
+    - wsl
+    - gomnd
+    - testpackage
+    - nolintlint
+    - gofumpt
+    - nlreturn
+    - gci
+    - exhaustivestruct
+    - varnamelen

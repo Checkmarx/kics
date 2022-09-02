@@ -1,0 +1,15 @@
+steps:
+- name: 'gcr.io/cloud-marketplace-containers/google/bazel'
+  entrypoint: 'bazel'
+  args: ['build', '--curses=no', '//:all']
+- name: 'gcr.io/cloud-marketplace-containers/google/bazel'
+  entrypoint: 'bazel'
+  args: ['test', '--test_output=all', '--curses=no', '//:all']
+- name: 'gcr.io/cloud-marketplace-containers/google/bazel'
+  entrypoint: 'bazel'
+  dir: 'example_bazel'
+  args: ['build', '--curses=no', '//:all']
+- name: 'gcr.io/cloud-marketplace-containers/google/bazel'
+  entrypoint: 'bazel'
+  dir: 'example_bazel'
+  args: ['test', '--test_output=all', '--curses=no', '//:all']

@@ -1,0 +1,58 @@
+# A build file for rpmpack.
+# For running basic build/run/test you can also use the regular go tools,
+# this is currently added to assist in external testing.
+
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+load("@bazel_gazelle//:def.bzl", "gazelle")
+
+# gazelle:prefix github.com/google/rpmpack
+# gazelle:go_naming_convention import_alias
+gazelle(name = "gazelle")
+
+go_library(
+    name = "rpmpack",
+    srcs = [
+        "dir.go",
+        "file_types.go",
+        "header.go",
+        "rpm.go",
+        "sense.go",
+        "tags.go",
+        "tar.go",
+    ],
+    importpath = "github.com/google/rpmpack",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_cavaliergopher_cpio//:cpio",
+        "@com_github_klauspost_compress//zstd",
+        "@com_github_klauspost_pgzip//:pgzip",
+        "@com_github_pkg_errors//:errors",
+        "@com_github_ulikunitz_xz//:xz",
+        "@com_github_ulikunitz_xz//lzma",
+    ],
+)
+
+go_test(
+    name = "rpmpack_test",
+    srcs = [
+        "dir_test.go",
+        "file_types_test.go",
+        "header_test.go",
+        "rpm_test.go",
+        "sense_test.go",
+        "tar_test.go",
+    ],
+    embed = [":rpmpack"],
+    deps = [
+        "@com_github_google_go_cmp//cmp",
+        "@com_github_klauspost_compress//zstd",
+        "@com_github_ulikunitz_xz//:xz",
+        "@com_github_ulikunitz_xz//lzma",
+    ],
+)
+
+alias(
+    name = "go_default_library",
+    actual = ":rpmpack",
+    visibility = ["//visibility:public"],
+)

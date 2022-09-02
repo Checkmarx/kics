@@ -1,0 +1,133 @@
+# https://taskfile.dev
+
+version: '3'
+
+env:
+  GO111MODULE: on
+  GOPROXY: https://proxy.golang.org,direct
+  DOCKER_BUILDKIT: 1
+
+vars:
+  DOCKER: '{{default "docker" .DOCKER}}'
+
+tasks:
+  dev:
+    desc: Setup git hooks
+    cmds:
+      - git config core.hooksPath .githooks
+
+  setup:
+    desc: Install dependencies
+    cmds:
+      - go mod tidy
+
+  build:
+    desc: Build the binary
+    sources:
+      - ./**/*.go
+    generates:
+      - ./nfpm
+    cmds:
+      - go build ./cmd/nfpm
+
+  acceptance:pull:
+    desc: Pull acceptance test images
+    vars:
+      IMGS:
+        sh: grep FROM ./testdata/acceptance/*.dockerfile | cut -f2 -d' ' | grep -v min | grep -v test | sort | uniq
+    cmds:
+      - echo "{{.IMGS}}" | while read -r img; do docker pull $img; done
+
+  acceptance:
+    desc: Run acceptance tests
+    env:
+      LC_ALL: C
+    vars:
+      TEST_OPTIONS: '{{default "" .TEST_OPTIONS}}'
+      TEST_PATTERN: '{{default "." .TEST_PATTERN}}'
+    cmds:
+      - go test {{.TEST_OPTIONS}} -tags=acceptance -p 4 -failfast -race -coverpkg=./... -covermode=atomic -coverprofile=coverage.txt acceptance_test.go -run {{.TEST_PATTERN}} -timeout=1h
+
+  test:
+    desc: Run unit tests
+    env:
+      LC_ALL: C
+    vars:
+      TEST_OPTIONS: '{{default "" .TEST_OPTIONS}}'
+      SOURCE_FILES: '{{default "./..." .SOURCE_FILES}}'
+      TEST_PATTERN: '{{default "." .TEST_PATTERN}}'
+    cmds:
+      - go test {{.TEST_OPTIONS}} -failfast -race -coverpkg=./... -covermode=atomic -coverprofile=coverage.txt {{.SOURCE_FILES}} -run {{.TEST_PATTERN}} -timeout=5m
+
+  cover:
+    desc: Open the cover tool
+    cmds:
+      - go tool cover -html=coverage.txt
+
+  fmt:
+    desc: gofumpt all code
+    cmds:
+      - gofumpt -w -l .
+
+  ci:
+    desc: Run all CI steps
+    cmds:
+      - task: setup
+      - task: build
+      - task: test
+      - task: acceptance
+
+  default:
+    desc: Runs the default tasks
+    cmds:
+      - task: ci
+
+  docs:generate:
+    desc: Generate docs
+    cmds:
+      - ./scripts/cmd_docs.sh
+    sources:
+      - cmd/*.go
+      - nfpm.go
+      - ./scripts/cmd_docs.sh
+      - CONTRIBUTING.md
+    generates:
+      - www/docs/cmd/*.md
+      - www/docs/contributing.md
+
+  docs:imgs:
+    desc: Download and resize images
+    cmds:
+      - wget -O www/docs/static/logo.png https://github.com/goreleaser/artwork/raw/master/goreleaserfundo.png
+      - wget -O www/docs/static/card.png "https://og.caarlos0.dev/**GoReleaser**%20%7C%20Deliver%20Go%20binaries%20as%20fast%20and%20easily%20as%20possible.png?theme=light&md=1&fontSize=80px&images=https://github.com/goreleaser.png"
+      - wget -O www/docs/static/avatar.png https://github.com/goreleaser.png
+      - convert www/docs/static/avatar.png -define icon:auto-resize=64,48,32,16 www/docs/static/favicon.ico
+      - convert www/docs/static/avatar.png -resize x120 www/docs/static/apple-touch-icon.png
+
+  docs:serve:
+    desc: Start documentation server
+    cmds:
+      - task: docs:generate
+      - '{{.DOCKER}} run --rm -it -p 8000:8000 -v ${PWD}/www:/docs docker.io/squidfunk/mkdocs-material'
+
+  docs:build:
+    desc: Build docs
+    cmds:
+      - task: docs:generate
+      - '{{.DOCKER}} run --rm -v ${PWD}/www:/docs docker.io/squidfunk/mkdocs-material build'
+
+  docs:vercel:build:
+    desc: Build documentation for deploying to Vercel
+    cmds:
+      - scripts/vercel/install.sh
+      - scripts/vercel/build.sh
+
+  release:
+    desc: Create a new tag
+    vars:
+      NEXT:
+        sh: svu n
+    cmds:
+      - git tag {{.NEXT}}
+      - echo {{.NEXT}}
+      - git push origin --tags
