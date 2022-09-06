@@ -1,3 +1,6 @@
+/*
+Package kuberneter implements calls to the Kubernetes API in order to scan the runtime information of the resources
+*/
 package kuberneter
 
 import (
