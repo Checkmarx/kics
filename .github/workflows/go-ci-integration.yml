@@ -59,7 +59,7 @@ jobs:
             -p "/path" \
             -o "/path/"
       - name: Archive test logs
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: always()
         with:
           name: integration-logs-${{ github.event.pull_request.head.sha }}
@@ -68,7 +68,7 @@ jobs:
         run: |
           cat  ${PWD}/assets/queries/results.json
       - name: Archive test results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: integration-results-${{ github.event.pull_request.head.sha }}
           path: assets/queries/results.json
