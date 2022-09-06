@@ -231,7 +231,12 @@ func loadTemplates(lines []string, templates testcases.TestTemplates) []string {
 		return []string{}
 	}
 
-	return strings.Split(builder.String(), "\n")
+	t := builder.String()
+
+	builder.Reset()
+	builder = nil
+
+	return strings.Split(t, "\n")
 }
 
 func printTestDetails(output []string) {

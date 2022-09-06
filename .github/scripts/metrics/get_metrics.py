@@ -13,7 +13,7 @@ queries_path = {
     'openapi': os.path.join(queries_basepath, 'openAPI', '**', '*'),
     'crossplane': os.path.join(queries_basepath, 'crossplane', '*'),
     'k8s': os.path.join(queries_basepath, 'k8s', '*'),
-    #'knative': os.path.join(queries_basepath, 'knative', '*'),
+    'knative': os.path.join(queries_basepath, 'knative', '*'),
     'common': os.path.join(queries_basepath, 'common', '*'),
     'dockerfile': os.path.join(queries_basepath, 'dockerfile', '*'),
     'terraform': os.path.join(queries_basepath, 'terraform', '**', '*'),
@@ -21,6 +21,8 @@ queries_path = {
     'gdm': os.path.join(queries_basepath, 'googleDeploymentManager', '*'),
     'dockerCompose': os.path.join(queries_basepath, 'dockerCompose', '*'),
     'pulumi': os.path.join(queries_basepath, 'pulumi', '*'),
+    'serverlessFW': os.path.join(queries_basepath, 'serverlessFW', '*'),
+
 }
 samples_ext = {
     'azureresourcemanager': ['json'],
@@ -37,6 +39,7 @@ samples_ext = {
     'gdm': ['yaml'],
     'dockerCompose': ['dockerCompose'],
     'pulumi': ['yaml'],
+    "serverlessFW": ['yaml'],
 }
 summary = {
     'total': 0,

@@ -3,14 +3,16 @@ Resources:
   S3Bucket5:
     Type: AWS::S3::Bucket
     Properties:
+      BucketName: S3Bucket5
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: error.html
     DeletionPolicy: Retain
-  S3Bucket6:
+  S3Bucket6:    
     Type: AWS::S3::Bucket
     Properties:
+      BucketName: S3Bucket6
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html

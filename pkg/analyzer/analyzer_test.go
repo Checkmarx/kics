@@ -19,11 +19,11 @@ func TestAnalyzer_Analyze(t *testing.T) {
 		excludeGitIgnore  bool
 	}{
 		{
-			name:        "analyze_test_dir_single_path",
-			paths:       []string{filepath.FromSlash("../../test/fixtures/analyzer_test")},
-			wantTypes:   []string{"dockerfile", "googledeploymentmanager", "cloudformation", "crossplane", "knative", "kubernetes", "openapi", "terraform", "ansible", "azureresourcemanager", "dockercompose", "pulumi"},
-			wantExclude: []string{},
-			wantErr:     false,
+			name:              "analyze_test_dir_single_path",
+			paths:             []string{filepath.FromSlash("../../test/fixtures/analyzer_test")},
+			wantTypes:         []string{"dockerfile", "googledeploymentmanager", "cloudformation", "crossplane", "knative", "kubernetes", "openapi", "terraform", "ansible", "azureresourcemanager", "dockercompose", "pulumi", "serverlessfw"},
+			wantExclude:       []string{},
+			wantErr:           false,
 			gitIgnoreFileName: "",
 			excludeGitIgnore:  false,
 		},
@@ -113,6 +113,28 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			wantErr:           false,
 			gitIgnoreFileName: "gitignore",
 			excludeGitIgnore:  true,
+		},
+		{
+			name: "analyze_test_knative_file",
+			paths: []string{
+				filepath.FromSlash("../../test/fixtures/analyzer_test/knative.yaml"),
+			},
+			wantTypes:         []string{"knative", "kubernetes"},
+			wantExclude:       []string{},
+			wantErr:           false,
+			gitIgnoreFileName: "",
+			excludeGitIgnore:  false,
+		},
+		{
+			name: "analyze_test_servelessfw_file",
+			paths: []string{
+				filepath.FromSlash("../../test/fixtures/analyzer_test/serverlessfw.yml"),
+			},
+			wantTypes:         []string{"serverlessfw", "cloudformation"},
+			wantExclude:       []string{},
+			wantErr:           false,
+			gitIgnoreFileName: "",
+			excludeGitIgnore:  false,
 		},
 	}
 

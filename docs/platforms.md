@@ -100,6 +100,7 @@ Platform: Kubernetes
 ## Knative
 
 KICS supports scanning Knative manifests with `.yaml` extension.
+Due to the possibility of the definition of the [PodSpec and PodTemplate](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#podspec-v1-core) in Knative files, Kubernetes Security Queries are also loaded once the presence of the Knative files is detected.
 
 ## Kubernetes
 
@@ -112,6 +113,11 @@ KICS supports scanning Swagger 2.0 and OpenAPI 3.0 specs with `.json` and `.yaml
 ## Pulumi
 
 KICS supports scanning Pulumi manifests with `.yaml` extension.
+
+## ServerlessFW
+
+KICS supports scanning Serverless manifests with `.yml` extension.
+Due to the possibility of the definition of the CloudFormation template,  inside `Serverless.yml`, CloudFormation Security Queries are also loaded once the presence of the ServerlessFW files is detected.
 
 
 ## Google Deployment Manager

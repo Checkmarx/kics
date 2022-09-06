@@ -64,7 +64,7 @@ func main() {
 	flag.Parse()
 
 	// Read TestLog (NDJSON)
-	jsonTestsOutput, err := os.Open(filepath.Join(filepath.ToSlash(testPath), testName))
+	jsonTestsOutput, err := os.Open(filepath.Clean(filepath.Join(filepath.ToSlash(testPath), testName)))
 	if err != nil {
 		fmt.Printf("Error when trying to open: %v\n", filepath.Join(filepath.ToSlash(testPath), testName))
 		os.Exit(1)
@@ -112,7 +112,7 @@ func main() {
 
 	// Parse Output from Failed Tests
 	if hasFailures {
-		jsonTestsOutputClean, err := os.Open(filepath.Join(filepath.ToSlash(testPath), testName))
+		jsonTestsOutputClean, err := os.Open(filepath.Clean(filepath.Join(filepath.ToSlash(testPath), testName)))
 		if err != nil {
 			fmt.Printf("Error when trying to open: %v\n", filepath.Join(filepath.ToSlash(testPath), testName))
 			os.Exit(1)
@@ -121,7 +121,11 @@ func main() {
 		decoder2 := json.NewDecoder(jsonTestsOutputClean)
 		for decoder2.More() {
 			var log TestLog
-			decoder2.Decode(&log)
+			errDecoder := decoder2.Decode(&log)
+			if errDecoder != nil {
+				fmt.Printf("Error when decoding: %w\n", log)
+				os.Exit(1)
+			}
 
 			if log.Action != "output" {
 				continue

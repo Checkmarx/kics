@@ -17,7 +17,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
-		"resourceName": resource.metadata.name,
+		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.ingress.ipRanges.cidrIp={{%s}}", [cp_lib.getPath(path), resource.metadata.name, ipRange.cidrIp]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "ingress rule should not contain '0.0.0.0/0'",

@@ -13,7 +13,7 @@ CxPolicy[result] {
 	bom_output = {
 		"resource_type": "AWS::S3::Bucket",
 		"resource_name": cf_lib.get_resource_name(bucket_resource, name),
-		"resource_accessibility": info.accessibility,
+		"resource_accessibility": lower(info.accessibility),
 		"resource_encryption": cf_lib.get_encryption(bucket_resource),
 		"resource_vendor": "AWS",
 		"resource_category": "Storage",

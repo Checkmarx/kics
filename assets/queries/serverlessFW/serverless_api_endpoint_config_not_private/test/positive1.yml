@@ -1,0 +1,10 @@
+service: my-service
+frameworkVersion: '2'
+provider:
+  name: aws
+functions:
+  hello:
+    events:
+      - http:
+          path: user/create
+          method: get

@@ -1,24 +1,24 @@
 [
   {
     "queryName": "IAM Policies Attached To User",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 14,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "IAM Policies Attached To User",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 10,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "IAM Policies Attached To User",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 14,
     "fileName": "positive2.json"
   },
   {
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 10,
     "fileName": "positive2.json",
     "queryName": "IAM Policies Attached To User"

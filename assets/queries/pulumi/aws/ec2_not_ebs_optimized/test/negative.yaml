@@ -1,0 +1,20 @@
+name: aws-eks
+runtime: yaml
+description: An EKS cluster
+resources:
+  example:
+    type: aws:ec2:Instance
+    properties:
+      instanceType: t2.micro
+      monitoring: true
+      ebsOptimized: true
+---
+name: aws-eks
+runtime: yaml
+description: An EKS cluster
+resources:
+  example:
+    type: aws:ec2:Instance
+    properties:
+      instanceType: t3.nano
+      monitoring: true
