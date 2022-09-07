@@ -8,7 +8,7 @@ These are our upcoming features:
     - Serverless Framework
     - Crossplane
     - Knative
-    - Kubernetes API
+- Kubernetes API
 - BoM for Serverless Framework
 - Support Windows Containers
 
