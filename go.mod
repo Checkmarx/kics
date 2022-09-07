@@ -25,7 +25,7 @@ require (
 	github.com/mackerelio/go-osstat v0.2.3
 	github.com/mailru/easyjson v0.7.7
 	github.com/moby/buildkit v0.10.4
-	github.com/open-policy-agent/opa v0.43.0
+	github.com/open-policy-agent/opa v0.43.1
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.26.1
 	github.com/sosedoff/ansible-vault-go v0.1.1
@@ -212,8 +212,8 @@ require (
 
 replace (
 	github.com/containerd/containerd => github.com/containerd/containerd v1.6.8
-	github.com/moby/buildkit => github.com/moby/buildkit v0.10.4
 	github.com/docker/cli => github.com/docker/cli v20.10.12+incompatible
+	github.com/moby/buildkit => github.com/moby/buildkit v0.10.4
 	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
 	github.com/spf13/afero => github.com/spf13/afero v1.2.2
 	gopkg.in/jarcoal/httpmock.v1 => github.com/jarcoal/httpmock v1.0.5
