@@ -8,7 +8,7 @@ These are our upcoming features:
     - Serverless Framework
     - Crossplane
     - Knative
-- Kuberneter (resource data gathering through Kubernetes API)
+- Dynamic gathering and scan of Kubernetes cluster data through Kubernetes API
 - BoM for Serverless Framework
 - Support Windows Containers
 
