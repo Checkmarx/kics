@@ -2,10 +2,15 @@
 
 These are our upcoming features:
 
-- Support extracting runtime configurations from additional Cloud providers such as Azure & GCP
-- CIS certifications for k8s and release 1.5
-- Integration with AWS Security Hub
-- Extend coverage of queries for GCP & Azure
+- Release of the v1.6
+- KICS will support the following technologies:
+    - Pulumi
+    - Serverless Framework
+    - Crossplane
+    - Knative
+    - Kubernetes API
+- BoM for Serverless Framework
+- Support Windows Containers
 
 Have an idea?
 Join the <a href="https://github.com/Checkmarx/kics/discussions" target="_blank">GitHub discussions</a> or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
@@ -16,6 +21,16 @@ Join the <a href="https://github.com/Checkmarx/kics/discussions" target="_blank"
 
 | Release | Feature |
 | --- | --- |
+| **April 2022** |
+| v1.5.6 | Support REST API to execute KICS scan |
+| v1.5.6 | Support REST API to get KICS scan results |
+| v1.5.6 | Support Cloudformation BOM	 |
+| **March 2022** |
+| v1.5.5 | Kubelet Configuration Support |
+| v1.5.5 | Display how many lines of IaC were parsed/scanned (in LOGS) |
+| v1.5.5 | Docker compose analyzer support |
+| v1.5.4 | Gitlab KICS added Features - Analyse Merge Requests |
+| v1.5.3 | Support multi-staged Docker queries |
 | **February 2022** |
 | v1.5.2 | Terraformer integration with AZURE |
 | v1.5.2 | Terraformer integration with GCP |
