@@ -1,0 +1,62 @@
+apiVersion: database.aws.crossplane.io/v1beta1
+kind: RDSInstance
+metadata:
+  name: rds5
+spec:
+  forProvider:
+    allocatedStorage: 50
+    applyModificationsImmediately: false
+    backupRetentionPeriod: 0
+    caCertificateIdentifier: rds-ca-2019
+    copyTagsToSnapshot: false
+    dbInstanceClass: db.t3.medium
+    deletionProtection: false
+    enableIAMDatabaseAuthentication: false
+    enablePerformanceInsights: false
+    engine: mysql
+    region: us-west-2
+    engineVersion: 5.7.33
+    licenseModel: general-public-license
+    publiclyAccessible: false
+    storageType: gp2
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: cluster-aws
+  labels:
+    provider: aws
+    cluster: eks
+spec:
+  compositeTypeRef:
+    apiVersion: mydev.org/v1alpha1
+    kind: CompositeCluster
+  writeConnectionSecretsToNamespace: crossplane-system
+  patchSets:
+    - name: metadata
+      patches:
+        - fromFieldPath: metadata.labels
+  resources:
+    - name: sample-ec2
+      base:
+        apiVersion: database.aws.crossplane.io/v1beta1
+        kind: RDSInstance
+        metadata:
+          name: rds6
+        spec:
+          forProvider:
+            allocatedStorage: 50
+            applyModificationsImmediately: false
+            backupRetentionPeriod: 0
+            caCertificateIdentifier: rds-ca-2019
+            copyTagsToSnapshot: false
+            dbInstanceClass: db.t3.medium
+            deletionProtection: false
+            enableIAMDatabaseAuthentication: false
+            enablePerformanceInsights: false
+            engine: mysql
+            region: us-west-2
+            engineVersion: 5.7.33
+            licenseModel: general-public-license
+            publiclyAccessible: false
+            storageType: gp2

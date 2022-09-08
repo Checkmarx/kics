@@ -1,0 +1,21 @@
+name: aws-eks
+runtime: yaml
+description: An EKS cluster
+resources:
+  example:
+    type: aws:elasticache:Cluster
+    properties:
+      engine: memcached
+      numCacheNodes: 2
+      azMode: cross-az
+---
+name: aws-eks
+runtime: yaml
+description: An EKS cluster
+resources:
+  example:
+    type: aws:elasticache:Cluster
+    properties:
+      engine: memcached
+      numCacheNodes: 1
+

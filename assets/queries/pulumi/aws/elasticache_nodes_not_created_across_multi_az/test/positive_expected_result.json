@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "ElastiCache Nodes Not Created Across Multi AZ",
+		"severity": "MEDIUM",
+		"line": 10,
+		"fileName": "positive.yaml"
+	},
+	{
+		"queryName": "ElastiCache Nodes Not Created Across Multi AZ",
+		"severity": "MEDIUM",
+		"line": 18,
+		"fileName": "positive.yaml"
+	}
+]

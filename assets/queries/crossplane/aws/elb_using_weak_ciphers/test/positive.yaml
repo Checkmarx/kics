@@ -1,0 +1,60 @@
+apiVersion: elbv2.aws.crossplane.io/v1alpha1
+kind: Listener
+metadata:
+  name: test-listener
+spec:
+  forProvider:
+    region: us-east-1
+    defaultActions:
+      - actionType: forward
+        forwardConfig:
+          targetGroups:
+            - targetGroupArnRef:
+                name: test-targetgroup
+    loadBalancerArnRef:
+      name: test-loadbalancer
+    port: 80
+    protocol: HTTP
+    sslPolicy: TLS_NULL_WITH_NULL_NULL
+  providerConfigRef:
+    name: example
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: cluster-aws
+  labels:
+    provider: aws
+    cluster: eks
+spec:
+  compositeTypeRef:
+    apiVersion: mydev.org/v1alpha1
+    kind: CompositeCluster
+  writeConnectionSecretsToNamespace: crossplane-system
+  patchSets:
+    - name: metadata
+      patches:
+        - fromFieldPath: metadata.labels
+  resources:
+    - name: sample-ec2
+      base:
+        apiVersion: elbv2.aws.crossplane.io/v1alpha1
+        kind: Listener
+        metadata:
+          name: test-listener2
+        spec:
+          forProvider:
+            region: us-east-1
+            defaultActions:
+              - actionType: forward
+                forwardConfig:
+                  targetGroups:
+                    - targetGroupArnRef:
+                        name: test-targetgroup
+            loadBalancerArnRef:
+              name: test-loadbalancer
+            port: 80
+            protocol: HTTP
+            sslPolicy: TLS_NULL_WITH_NULL_NULL
+          providerConfigRef:
+            name: example

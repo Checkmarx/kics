@@ -41,12 +41,16 @@ func (c *Client) prepareAndAnalyzePaths() (provider.ExtractedPath, error) {
 
 	log.Info().Msgf("Total files in the project: %d", getTotalFiles(allPaths.Path))
 
-	pathTypes, errAnalyze :=
-		analyzePaths(
-			allPaths.Path,
-			c.ScanParams.Platform,
-			c.ScanParams.ExcludePaths,
-		)
+	a := &analyzer.Analyzer{
+		Paths:             allPaths.Path,
+		Types:             c.ScanParams.Platform,
+		Exc:               c.ScanParams.ExcludePaths,
+		GitIgnoreFileName: ".gitignore",
+		ExcludeGitIgnore:  c.ScanParams.ExcludeGitIgnore,
+	}
+
+	pathTypes, errAnalyze := analyzePaths(a)
+
 	if errAnalyze != nil {
 		return provider.ExtractedPath{}, errAnalyze
 	}
@@ -142,25 +146,20 @@ func resolvePath(flagContent, flagName string) (string, error) {
 // analyzePaths will analyze the paths to scan to determine which type of queries to load
 // and which files should be ignored, it then updates the types and exclude flags variables
 // with the results found
-func analyzePaths(paths, types, exclude []string) (model.AnalyzedPaths, error) {
+func analyzePaths(a *analyzer.Analyzer) (model.AnalyzedPaths, error) {
 	var err error
 	var pathsFlag model.AnalyzedPaths
 	excluded := make([]string, 0)
 
-	pathsFlag, err = analyzer.Analyze(paths, types, exclude)
+	pathsFlag, err = analyzer.Analyze(a)
 	if err != nil {
 		log.Err(err)
 		return model.AnalyzedPaths{}, err
 	}
 
-	// flag -t was passed but KICS did not find any matching file
-	if types[0] != "" && len(pathsFlag.Types) == 0 {
-		pathsFlag.Types = append(pathsFlag.Types, types...)
-	}
-
 	logLoadingQueriesType(pathsFlag.Types)
 
-	excluded = append(excluded, exclude...)
+	excluded = append(excluded, a.Exc...)
 	excluded = append(excluded, pathsFlag.Exc...)
 	pathsFlag.Exc = excluded
 	return pathsFlag, nil

@@ -1,0 +1,21 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: dummy
+spec:
+  template:
+    spec:
+      containers:
+        - name: app
+          image: images.my-company.example/app:v4
+          securityContext:
+            allowPrivilegeEscalation: false
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+      containerConcurrency: 100
+      timeoutSeconds: 600      
