@@ -16,6 +16,7 @@ CxPolicy[result] {
 	common_lib.is_allow_effect(statement)
 
 	common_lib.containsOrInArrayContains(statement.Action, "*")
+	common_lib.containsOrInArrayContains(statement.Principal, "*")
 
 	result := {
 		"documentId": id,

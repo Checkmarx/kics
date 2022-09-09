@@ -14,8 +14,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_s3_bucket", name),
 		"searchKey": sprintf("aws_s3_bucket[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'policy.Statement.Action' doesn't contain '*'",
-		"keyActualValue": "'policy.Statement.Action' contains '*'",
+		"keyExpectedValue": "'policy.Statement' should not allow all actions to any principal",
+		"keyActualValue": "'policy.Statement' allows all actions to any principal",
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name, "policy"], []),
 	}
 }
@@ -32,8 +32,8 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'policy.Statement.Action' doesn't contain '*'",
-		"keyActualValue": "'policy.Statement.Action' contains '*'",
+		"keyExpectedValue": "'policy.Statement' should not allow all actions to any principal",
+		"keyActualValue": "'policy.Statement' allows all actions to any principal",
 		"searchLine": common_lib.build_search_line(["module", name, "policy"], []),
 	}
 }
@@ -45,4 +45,5 @@ all_permissions(policyValue) {
 
 	common_lib.is_allow_effect(statement)
 	common_lib.containsOrInArrayContains(statement.Action, "*")
+	common_lib.containsOrInArrayContains(statement.Principal, "*")
 }
