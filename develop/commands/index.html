@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/commands/">
       
       <link rel="icon" href="../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.3">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.4">
     
     
       
@@ -451,6 +451,13 @@
         <li class="md-nav__item">
   <a href="#scan_command_options" class="md-nav__link">
     Scan Command Options
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exclude_paths" class="md-nav__link">
+    Exclude Paths
   </a>
   
 </li>
@@ -1314,6 +1321,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#exclude_paths" class="md-nav__link">
+    Exclude Paths
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#library_flag_usage" class="md-nav__link">
     Library Flag Usage
   </a>
@@ -1399,6 +1413,7 @@ Flags:
                                       cannot be provided with query inclusion flags
                                       can be provided multiple times or as a comma separated string
                                       example: 'Access control,Best practices'
+      --exclude-gitignore             disables the exclusion of paths specified within .gitignore file                                
   -e, --exclude-paths strings         exclude paths from scan
                                       supports glob and can be provided multiple times or as a quoted comma separated string
                                       example: './shouldNotScan/*,somefile.txt'
@@ -1439,7 +1454,7 @@ Flags:
   -r, --secrets-regexes-path string   path to secrets regex rules configuration file
       --timeout int                   number of seconds the query has to execute before being canceled (default 60)
   -t, --type strings                  case insensitive list of platform types to scan
-                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Kubernetes, OpenAPI, Terraform)
+                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
 
 Global Flags:
       --ci                  display only log messages to CLI output (mutually exclusive with silent)
@@ -1452,6 +1467,8 @@ Global Flags:
   -v, --verbose             write logs to stdout too (mutually exclusive with silent)
 </code></pre>
 <p>The other commands have no further options.</p>
+<h2 id="exclude_paths">Exclude Paths<a class="headerlink" href="#exclude_paths" title="Permanent link">&para;</a></h2>
+<p>By default, KICS excludes paths specified in the .gitignore file in the root of the repository. To disable this behavior, use flag <code>--exclude-gitignore</code>.</p>
 <h2 id="library_flag_usage">Library Flag Usage<a class="headerlink" href="#library_flag_usage" title="Permanent link">&para;</a></h2>
 <p>As mentioned above, the library flag (<code>-b</code> or <code>--libraries-path</code>) refers to the directory with libraries. The functions need to be grouped by platform and the library file name should follow the format: <code>&lt;platform&gt;.rego</code> to be loaded by KICS. It doesn't matter your directory structure. In other words, for example, if you want to indicate a directory that contains a library for your terraform queries, you should group your functions (used in your terraform queries) in a file named <code>terraform.rego</code> wherever you want.</p>
 <p>This will merge the custom libraries found on the flag's path with KICS's default libraries. Note that any functions declared in a custom library with the same signature as an existing function in the <a href="https://github.com/Checkmarx/kics/tree/master/assets/libraries">default libraries</a> will cause <strong>the default library function to be overwritten by the custom definition provided</strong>.</p>
@@ -1465,6 +1482,7 @@ Global Flags:
 <pre><code class="language-sh">DISABLE_CRASH_REPORT=0 ./bin/kics version
 # 'KICS crash report disabled' message should appear in the logs
 </code></pre>
+
 
 
 

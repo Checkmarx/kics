@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/platforms/">
       
       <link rel="icon" href="../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.3">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.4">
     
     
       
@@ -512,6 +512,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#crossplane" class="md-nav__link">
+    Crossplane
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#azure_blueprints" class="md-nav__link">
     Azure Blueprints
   </a>
@@ -547,6 +554,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#knative" class="md-nav__link">
+    Knative
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#kubernetes" class="md-nav__link">
     Kubernetes
   </a>
@@ -556,6 +570,20 @@
         <li class="md-nav__item">
   <a href="#openapi" class="md-nav__link">
     OpenAPI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pulumi" class="md-nav__link">
+    Pulumi
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#serverlessfw" class="md-nav__link">
+    ServerlessFW
   </a>
   
 </li>
@@ -1391,6 +1419,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#crossplane" class="md-nav__link">
+    Crossplane
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#azure_blueprints" class="md-nav__link">
     Azure Blueprints
   </a>
@@ -1426,6 +1461,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#knative" class="md-nav__link">
+    Knative
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#kubernetes" class="md-nav__link">
     Kubernetes
   </a>
@@ -1435,6 +1477,20 @@
         <li class="md-nav__item">
   <a href="#openapi" class="md-nav__link">
     OpenAPI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pulumi" class="md-nav__link">
+    Pulumi
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#serverlessfw" class="md-nav__link">
+    ServerlessFW
   </a>
   
 </li>
@@ -1516,6 +1572,8 @@ cdk init app --language go
 </code></pre>
 <h2 id="cloudformation">CloudFormation<a class="headerlink" href="#cloudformation" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning CloudFormation templates with <code>.json</code> or <code>.yaml</code> extension.</p>
+<h2 id="crossplane">Crossplane<a class="headerlink" href="#crossplane" title="Permanent link">&para;</a></h2>
+<p>KICS supports scanning Crossplane manifests with <code>.yaml</code> extension.</p>
 <h2 id="azure_blueprints">Azure Blueprints<a class="headerlink" href="#azure_blueprints" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning Azure Blueprints files, including Azure Blueprints Policy Assignment Artifacts, Azure Blueprints Role Assignment Artifacts, and Azure Blueprints Template Artifacts with <code>.json</code> extension.</p>
 <p>Note that KICS recognizes this technology as Azure Resource Manager (for queries purpose).</p>
@@ -1540,10 +1598,18 @@ Platform: Kubernetes
                 021: spec:
 
 </code></pre>
+<h2 id="knative">Knative<a class="headerlink" href="#knative" title="Permanent link">&para;</a></h2>
+<p>KICS supports scanning Knative manifests with <code>.yaml</code> extension.
+Due to the possibility of the definition of the <a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#podspec-v1-core">PodSpec and PodTemplate</a> in Knative files, Kubernetes Security Queries are also loaded once the presence of the Knative files is detected.</p>
 <h2 id="kubernetes">Kubernetes<a class="headerlink" href="#kubernetes" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning Kubernetes manifests with <code>.yaml</code> extension.</p>
 <h2 id="openapi">OpenAPI<a class="headerlink" href="#openapi" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning Swagger 2.0 and OpenAPI 3.0 specs with <code>.json</code> and <code>.yaml</code> extension.</p>
+<h2 id="pulumi">Pulumi<a class="headerlink" href="#pulumi" title="Permanent link">&para;</a></h2>
+<p>KICS supports scanning Pulumi manifests with <code>.yaml</code> extension.</p>
+<h2 id="serverlessfw">ServerlessFW<a class="headerlink" href="#serverlessfw" title="Permanent link">&para;</a></h2>
+<p>KICS supports scanning Serverless manifests with <code>.yml</code> extension.
+Due to the possibility of the definition of the CloudFormation template,  inside <code>Serverless.yml</code>, CloudFormation Security Queries are also loaded once the presence of the ServerlessFW files is detected.</p>
 <h2 id="google_deployment_manager">Google Deployment Manager<a class="headerlink" href="#google_deployment_manager" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning Google Deployment Manager files with <code>.yaml</code> extension.</p>
 <h2 id="sam">SAM<a class="headerlink" href="#sam" title="Permanent link">&para;</a></h2>
@@ -1586,6 +1652,7 @@ Platform: Kubernetes
   user_data_base64 = &quot;a123B==&quot;
 }
 </code></pre>
+
 
 
 
