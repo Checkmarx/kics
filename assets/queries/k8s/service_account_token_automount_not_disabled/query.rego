@@ -3,11 +3,12 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
 
-listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob", "Configuration", "Service", "Revision", "ContainerSource"]
+knativeKinds := ["Configuration", "Service", "Revision", "ContainerSource"]
+listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob" ]
 
 CxPolicy[result] {
 	document := input.document[i]
-	k8sLib.checkKind(document.kind, listKinds)
+	k8sLib.checkKindWithKnative(document, listKinds, knativeKinds)
 	metadata := document.metadata
 
 	specInfo := k8sLib.getSpecInfo(document)
@@ -16,7 +17,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	k8sLib.checkKind(document.kind, listKinds)
+	k8sLib.checkKindWithKnative(document, listKinds, knativeKinds)
 	metadata := document.metadata
 
 	specInfo := k8sLib.getSpecInfo(document)
