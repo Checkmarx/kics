@@ -39,7 +39,13 @@ func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) {
 		Excluded: excluded,
 	}
 	for _, split := range *splits {
-		origpath := filepath.Join(filepath.Dir(filePath), split.path)
+		subFolderSplited := strings.Split(filePath, "/")
+		subFolder := subFolderSplited[len(subFolderSplited)-1]
+
+		splitPathSplited := strings.Split(split.path, "/")
+		splitPathSplited[0] = subFolder
+
+		origpath := filepath.Join(filepath.Dir(filePath), strings.Join(splitPathSplited, "/"))
 		rfiles.File = append(rfiles.File, model.ResolvedHelm{
 			FileName:     origpath,
 			Content:      split.content,
