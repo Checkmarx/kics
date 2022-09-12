@@ -78,6 +78,7 @@ nav:
       - Badge: BADGE.md
       - Using pre-commit hooks: integrations_pre_commit.md
       - Terraformer: integrations_terraformer.md
+      - KICS Auto Scanning Extension for Visual Studio Code: integrations_auto_scanning_visual_studio.md
   - Certifications: certifications.md
   - Project:
       - Roadmap: roadmap.md
