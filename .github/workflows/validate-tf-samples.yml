@@ -29,4 +29,5 @@ jobs:
             "assets/queries/terraform/**/**/test/*.tf" \
             --linter .bin/tflint \
             --skip '.github/scripts/samples-linters/ignore-list/terraform' \
-            --verbose --tmp --redirect
+            --verbose --tmp --redirect \
+            --extra '--config .github/scripts/samples-linters/.tflint.hcl'
