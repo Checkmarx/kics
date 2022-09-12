@@ -18,6 +18,14 @@ checkKind(currentKind, listKinds) {
 	currentKind == listKinds[i]
 }
 
+checkKindWithKnative(doc, listKinds, knativeKinds) {
+	doc.kind == listKinds[i]
+} else {
+	contains(doc.apiVersion, "knative")
+	doc.kind == knativeKinds[i]
+}
+
+
 hasFlag(container, flag) {
 	common_lib.inArray(container.command, flag)
 } else {

@@ -157,8 +157,8 @@ require (
 	github.com/rubenv/sql-migrate v1.1.1 // indirect
 	github.com/russross/blackfriday v1.5.2 // indirect
 	github.com/ruudk/golang-pdf417 v0.0.0-20181029194003-1af4ab5afa58 // indirect
-	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/sabhiram/go-gitignore v0.0.0-20210923224102-525f6e181f06
+	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/shopspring/decimal v1.2.0 // indirect
 	github.com/sirupsen/logrus v1.9.0 // indirect
 	github.com/spf13/afero v1.8.2 // indirect
@@ -192,18 +192,19 @@ require (
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/ini.v1 v1.66.4 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	k8s.io/api v0.24.2 // indirect
+	k8s.io/api v0.24.3
 	k8s.io/apiextensions-apiserver v0.24.2 // indirect
-	k8s.io/apimachinery v0.24.2 // indirect
+	k8s.io/apimachinery v0.24.3
 	k8s.io/apiserver v0.24.2 // indirect
 	k8s.io/cli-runtime v0.24.2 // indirect
-	k8s.io/client-go v0.24.2 // indirect
+	k8s.io/client-go v0.24.3
 	k8s.io/component-base v0.24.2 // indirect
 	k8s.io/klog/v2 v2.60.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20220627174259-011e075b9cb8 // indirect
 	k8s.io/kubectl v0.24.2 // indirect
 	k8s.io/utils v0.0.0-20220210201930-3a6ce19ff2f9 // indirect
 	oras.land/oras-go v1.2.0 // indirect
+	sigs.k8s.io/controller-runtime v0.12.3
 	sigs.k8s.io/json v0.0.0-20211208200746-9f7c6b3444d2 // indirect
 	sigs.k8s.io/kustomize/api v0.11.4 // indirect
 	sigs.k8s.io/kustomize/kyaml v0.13.6 // indirect
@@ -213,8 +214,8 @@ require (
 
 replace (
 	github.com/containerd/containerd => github.com/containerd/containerd v1.6.8
-	github.com/moby/buildkit => github.com/moby/buildkit v0.10.4
 	github.com/docker/cli => github.com/docker/cli v20.10.12+incompatible
+	github.com/moby/buildkit => github.com/moby/buildkit v0.10.4
 	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
 	github.com/spf13/afero => github.com/spf13/afero v1.2.2
 	gopkg.in/jarcoal/httpmock.v1 => github.com/jarcoal/httpmock v1.0.5
