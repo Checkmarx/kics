@@ -273,7 +273,7 @@
 				
 				<option value="file108">github.com/Checkmarx/kics/pkg/resolver/helm/helm.go (88.5%)</option>
 				
-				<option value="file109">github.com/Checkmarx/kics/pkg/resolver/helm/resolver.go (88.4%)</option>
+				<option value="file109">github.com/Checkmarx/kics/pkg/resolver/helm/resolver.go (85.7%)</option>
 				
 				<option value="file110">github.com/Checkmarx/kics/pkg/resolver/resolver.go (90.5%)</option>
 				
@@ -2174,13 +2174,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="30">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="30">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2205,7 +2205,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -19582,6 +19582,7 @@ func getExcluded(charterino *chart.Chart, chartpath string) []string <span class
 
 import (
         "path/filepath"
+        "regexp"
         "strconv"
         "strings"
 
@@ -19619,7 +19620,13 @@ func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) <span c
                 Excluded: excluded,
         }
         for _, split := range *splits </span><span class="cov3" title="3">{
-                origpath := filepath.Join(filepath.Dir(filePath), split.path)
+                subFolder := filepath.Base(filePath)
+
+                splitPath := strings.Split(split.path, getPathSeparator(split.path))
+
+                splited := filepath.Join(splitPath[1:]...)
+
+                origpath := filepath.Join(filepath.Dir(filePath), subFolder, splited)
                 rfiles.File = append(rfiles.File, model.ResolvedHelm{
                         FileName:     origpath,
                         Content:      split.content,
@@ -19740,6 +19747,15 @@ func getIDMap(originalData []byte) (map[int]interface{}, error) <span class="cov
         <span class="cov3" title="3">ids[idHelm] = mapLines
 
         return ids, nil</span>
+}
+
+func getPathSeparator(path string) string <span class="cov3" title="3">{
+        if matched, err := regexp.MatchString(`[a-zA-Z0-9_\/-]+(\[a-zA-Z0-9_\/-]+)*`, path); matched &amp;&amp; err == nil </span><span class="cov3" title="3">{
+                return "/"
+        }</span> else<span class="cov0" title="0"> if matched, err := regexp.MatchString(`[a-z0-9_.$-]+(\\[a-z0-9_.$-]+)*`, path); matched &amp;&amp; err == nil </span><span class="cov0" title="0">{
+                return "\\"
+        }</span>
+        <span class="cov0" title="0">return ""</span>
 }
 </pre>
 		
