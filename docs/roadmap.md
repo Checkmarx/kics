@@ -2,6 +2,10 @@
 
 These are our upcoming features:
 
+- Add new BoM resources:
+    - AWS Aurora 
+    - AWS DynamoDB 
+    - AWS RDS 
 -   BoM for Serverless Framework
 -   Support Windows Containers
 
