@@ -1,6 +1,7 @@
 package helm
 
 import (
+	"os"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -39,13 +40,13 @@ func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) {
 		Excluded: excluded,
 	}
 	for _, split := range *splits {
-		subFolderSplited := strings.Split(filePath, "/")
-		subFolder := subFolderSplited[len(subFolderSplited)-1]
+		subFolder := filepath.Base(filePath)
 
-		splitPathSplited := strings.Split(split.path, "/")
-		splitPathSplited[0] = subFolder
+		splitPath := strings.Split(split.path, string(os.PathSeparator))
 
-		origpath := filepath.Join(filepath.Dir(filePath), strings.Join(splitPathSplited, "/"))
+		splited := filepath.Join(splitPath[1:]...)
+
+		origpath := filepath.Join(filepath.Dir(filePath), subFolder, splited)
 		rfiles.File = append(rfiles.File, model.ResolvedHelm{
 			FileName:     origpath,
 			Content:      split.content,
