@@ -170,9 +170,9 @@ func getIDMap(originalData []byte) (map[int]interface{}, error) {
 }
 
 func getPathSeparator(path string) string {
-	if matched, err := regexp.MatchString(`\w+(/\w+)*`, path); matched && err == nil {
+	if matched, err := regexp.MatchString(`[a-zA-Z0-9_\/-]+(\[a-zA-Z0-9_\/-]+)*`, path); matched && err == nil {
 		return "/"
-	} else if matched, err := regexp.MatchString(`\w+(\\\w+)*`, path); matched && err == nil {
+	} else if matched, err := regexp.MatchString(`[a-z0-9_.$-]+(\\[a-z0-9_.$-]+)*`, path); matched && err == nil {
 		return "\\"
 	}
 	return ""
