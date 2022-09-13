@@ -1,8 +1,8 @@
 package helm
 
 import (
-	"os"
 	"path/filepath"
+	"regexp"
 	"strconv"
 	"strings"
 
@@ -42,7 +42,7 @@ func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) {
 	for _, split := range *splits {
 		subFolder := filepath.Base(filePath)
 
-		splitPath := strings.Split(split.path, string(os.PathSeparator))
+		splitPath := strings.Split(split.path, getPathSeparator(split.path))
 
 		splited := filepath.Join(splitPath[1:]...)
 
@@ -167,4 +167,13 @@ func getIDMap(originalData []byte) (map[int]interface{}, error) {
 	ids[idHelm] = mapLines
 
 	return ids, nil
+}
+
+func getPathSeparator(path string) string {
+	if matched, err := regexp.MatchString(`\w+(/\w+)*`, path); matched && err == nil {
+		return "/"
+	} else if matched, err := regexp.MatchString(`\w+(\\\w+)*`, path); matched && err == nil {
+		return "\\"
+	}
+	return ""
 }
