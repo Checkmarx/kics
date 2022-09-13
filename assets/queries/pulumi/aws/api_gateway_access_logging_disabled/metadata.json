@@ -1,0 +1,11 @@
+{
+  "id": "bf4b48b9-fc1f-4552-984a-4becdb5bf503",
+  "queryName": "API Gateway Access Logging Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "API Gateway should have Access Log Settings defined",
+  "descriptionUrl": "https://www.pulumi.com/registry/packages/aws/api-docs/apigatewayv2/stage/#accesslogsettings_yaml",
+  "platform": "Pulumi",
+  "descriptionID": "5feb747f",
+  "cloudProvider": "aws"
+}

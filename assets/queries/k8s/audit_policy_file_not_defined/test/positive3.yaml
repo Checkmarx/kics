@@ -1,0 +1,14 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: dummy
+  namespace: knative-sequence
+spec:
+  template:
+    spec:
+      containers:
+      - name: command-demo-container
+        image: gcr.io/google_containers/kube-apiserver-amd64:v1.6.0
+        command: ["kube-apiserver"]
+        args: []
+    restartPolicy: OnFailure

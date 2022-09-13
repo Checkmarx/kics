@@ -1,0 +1,18 @@
+name: yaml-example
+description: Create a Pod with auto-naming
+runtime: yaml
+resources:
+  pod:
+    type: kubernetes:core/v1:Pod
+    properties:
+      metadata:
+        annotations:
+          container.apparmor.security.beta.kubernetes.io: localhost/k8s-apparmor-example-allow-write
+          container.apparmor.security.beta.kubernetes.io2: localhost/k8s-apparmor-example-allow-write
+      spec:
+        containers:
+          - image: nginx:1.14.2
+            name: nginx
+            ports:
+             - containerPort: 80
+        type: kubernetes:core/v1:Pod

@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "CloudFront Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive.yaml"
+  },
+  {
+    "queryName": "CloudFront Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 50,
+    "fileName": "positive.yaml"
+  },
+  {
+    "queryName": "CloudFront Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "CloudFront Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 41,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "CloudFront Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "CloudFront Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 47,
+    "fileName": "positive3.yaml"
+  }
+]

@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "DynamoDB Table Point In Time Recovery Disabled",
+		"severity": "INFO",
+		"line": 7,
+		"fileName": "positive.yaml"
+	},
+	{
+		"queryName": "DynamoDB Table Point In Time Recovery Disabled",
+		"severity": "INFO",
+		"line": 21,
+		"fileName": "positive.yaml"
+	}
+]

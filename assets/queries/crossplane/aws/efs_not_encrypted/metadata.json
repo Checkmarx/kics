@@ -1,0 +1,11 @@
+{
+  "id": "72840c35-3876-48be-900d-f21b2f0c2ea1",
+  "queryName": "EFS Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Elastic File System (EFS) must be encrypted",
+  "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-aws/efs.aws.crossplane.io/FileSystem/v1alpha1@v0.29.0#spec-forProvider-encrypted",
+  "platform": "Crossplane",
+  "descriptionID": "de7bf263",
+	"cloudProvider": "aws"
+}

@@ -43,6 +43,13 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <img alt="Cloud Deployment Kit" src="docs/img/logo-cdk.png" width="150">&nbsp;&nbsp;&nbsp;
 <img alt="SAM" src="docs/img/logo-sam.png" width="55">&nbsp;&nbsp;&nbsp;
 <img alt="Docker Compose" src="docs/img/logo-dockercompose.png" width="80">&nbsp;&nbsp;&nbsp;
+<img alt="Knative" src="docs/img/logo-knative.png" width="80">&nbsp;&nbsp;&nbsp;
+<br>
+<br>
+<img alt="Crossplane" src="docs/img/logo-crossplane.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="Pulumi" src="docs/img/logo-pulumi.png" width="130">&nbsp;&nbsp;&nbsp;
+<img alt="ServerlessFW" src="docs/img/logo-serverlessfw.png" width="150">&nbsp;&nbsp;&nbsp;
+
 
 Support of other solutions and additional cloud providers are on the [roadmap](docs/roadmap.md).
 
@@ -74,14 +81,6 @@ The nightly release will have a "nightly" prefix with the last commit hash code.
 
 KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.
 [Check out how](docs/CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
-
-**Note:** For development not related to terraformer please use the Golang build tag `dev` in commands `go run, go build and go test`
-
-Examples:
-
--   `go test -tags dev ./...`
--   `go run -tags dev cmd/console/main.go`
--   `go build -tags dev cmd/console/main.go`
 
 
 ## Meet us at conferences

@@ -2,6 +2,13 @@
 	{
 		"queryName": "Shared Host IPC Namespace",
 		"severity": "MEDIUM",
-		"line": 6
+		"line": 6,
+		"fileName": "positive.yaml"
+	},
+	{
+		"queryName": "Shared Host IPC Namespace",
+		"severity": "MEDIUM",
+		"line": 9,
+		"fileName": "positive2.yaml"
 	}
 ]

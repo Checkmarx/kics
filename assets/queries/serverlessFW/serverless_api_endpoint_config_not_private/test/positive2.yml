@@ -1,0 +1,11 @@
+service: my-service
+frameworkVersion: '2'
+provider:
+  name: aws
+  endpointType: REGIONAL
+functions:
+  hello:
+    events:
+      - http:
+          path: user/create
+          method: get

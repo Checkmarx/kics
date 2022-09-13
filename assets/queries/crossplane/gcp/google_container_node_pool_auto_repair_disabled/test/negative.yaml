@@ -1,0 +1,20 @@
+apiVersion: container.gcp.crossplane.io/v1beta1
+kind: NodePool
+metadata:
+  name: cluster-np
+spec:
+  forProvider:
+    management:
+      autoRepair: true
+    autoscaling:
+      autoprovisioned: false
+      enabled: true
+      maxNodeCount: 5
+      minNodeCount: 3 
+    clusterRef:
+      name: eutuxia-cluster
+    initialNodeCount: 3 
+    config:
+      machineType: n1-standard-1
+    locations:
+      - "us-central1-a"    
