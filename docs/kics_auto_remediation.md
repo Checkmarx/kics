@@ -23,8 +23,12 @@ Note that this feature will be only available for Terraform, for now.
    </p>
 
 
-2. If your JSON report has any result with remediation, you will need to run the new KICS command: fix. 
+2. If your JSON report has any result with remediation, you will need to run the new KICS command: remediate. 
 
-   If you want KICS to remediate all the reported issues, you can run ```docker run -v /home/cosmicgirl/:/path/ kics fix --results /path/results/results.json -v```.
+   If you want KICS to remediate all the reported issues, you can run 
 
-   If you want to specify which remediation KICS should fix, you can use the flag `--include-ids`. In this flag, you should point the `similarity_id` of the result. For example: ```docker run -v /home/cosmicgirl/:/path/ kics fix --results /path/results/results.json --include-ids "f282fa13cf5e4ffd4bbb0ee2059f8d0240edcd2ca54b3bb71633145d961de5ce" -v```
+   ```docker run -v /home/cosmicgirl/:/path/ kics remediate --results /path/results/results.json -v```.
+
+   If you want to specify which remediation KICS should fix, you can use the flag `--include-ids`. In this flag, you should point the `similarity_id` of the result. For example: 
+
+   ```docker run -v /home/cosmicgirl/:/path/ kics remediate --results /path/results/results.json --include-ids "f282fa13cf5e4ffd4bbb0ee2059f8d0240edcd2ca54b3bb71633145d961de5ce" -v```
