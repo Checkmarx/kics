@@ -51,7 +51,7 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <img alt="ServerlessFW" src="docs/img/logo-serverlessfw.png" width="150">&nbsp;&nbsp;&nbsp;
 <br>
 <br>
-<img alt="Azure BluePrints" src="docs/img/logo-azure-blueprints.png" width="130">&nbsp;&nbsp;&nbsp;
+<img alt="Azure BluePrints" src="docs/img/logo-azure-blueprints.png" width="100">&nbsp;&nbsp;&nbsp;
 
 
 Support of other solutions and additional cloud providers are on the [roadmap](docs/roadmap.md).
