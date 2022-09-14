@@ -43,12 +43,14 @@ func TestFlags_InitJSONFlags(t *testing.T) {
 	}
 
 	kicsFlags, _ := os.ReadFile("../assets/kics-flags.json")
+	dummy := string(kicsFlags)
+	fmt.Print(dummy)
 
 	tests := []struct {
 		name                    string
 		cmd                     *cobra.Command
 		flagsListContent        string
-		persintentFlag          bool
+		persistentFlag          bool
 		supportedPlatforms      []string
 		supportedCloudProviders []string
 		wantErr                 bool
@@ -57,7 +59,7 @@ func TestFlags_InitJSONFlags(t *testing.T) {
 			name:                    "should initialize flags without error",
 			cmd:                     mockCmd,
 			flagsListContent:        string(kicsFlags),
-			persintentFlag:          true,
+			persistentFlag:          true,
 			supportedPlatforms:      []string{"terraform"},
 			supportedCloudProviders: []string{"aws"},
 			wantErr:                 false,
@@ -71,16 +73,76 @@ func TestFlags_InitJSONFlags(t *testing.T) {
 				"defaultValue": "false",
 				"usage": "write logs to stdout too (mutually exclusive with silent)"
 			}`,
-			persintentFlag:          true,
+			persistentFlag:          true,
 			supportedPlatforms:      []string{"terraform"},
 			supportedCloudProviders: []string{"aws"},
 			wantErr:                 true,
+		},
+		{
+			name: "should throw error due to not being possible to convert bool default value",
+			cmd:  mockCmd,
+			flagsListContent: `{
+				"ci": {
+				  "flagType": "bool",
+				  "shorthandFlag": "",
+				  "defaultValue": "_$at",
+				  "usage": "display only log messages to CLI output (mutually exclusive with silent)"
+				}
+			  }
+			  `,
+			persistentFlag:          true,
+			supportedPlatforms:      []string{"terraform"},
+			supportedCloudProviders: []string{"aws"},
+			wantErr:                 true,
+		},
+		{
+			name: "should throw error due to not being possible to convert default int value",
+			cmd:  mockCmd,
+			flagsListContent: `{
+				"ci": {
+				  "flagType": "int",
+				  "shorthandFlag": "",
+				  "defaultValue": "_$at",
+				  "usage": "display only log messages to CLI output (mutually exclusive with silent)"
+				}
+			  }
+			  `,
+			persistentFlag:          true,
+			supportedPlatforms:      []string{"terraform"},
+			supportedCloudProviders: []string{"aws"},
+			wantErr:                 true,
+		},
+		{
+			name: "should not throw error due to not being possible to convert flag value type",
+			cmd:  mockCmd,
+			flagsListContent: `{
+				"ci": {
+				  "flagType": "un",
+				  "shorthandFlag": "",
+				  "defaultValue": "_$at",
+				  "usage": "display only log messages to CLI output (mutually exclusive with silent)"
+				}
+			  }
+			  `,
+			persistentFlag:          true,
+			supportedPlatforms:      []string{"terraform"},
+			supportedCloudProviders: []string{"aws"},
+			wantErr:                 false,
+		},
+		{
+			name:                    "should not throw error due to hidden flag",
+			cmd:                     mockCmd,
+			flagsListContent:        "{\n  \"dummy\": {\n    \"flagType\": \"bool\",\n    \"shorthandFlag\": \"\",\n    \"defaultValue\": \"false\",\n    \"hidden\": true,\n    \"usage\": \"display only log messages to CLI output (mutually exclusive with silent)\"\n  }\n}\n",
+			persistentFlag:          true,
+			supportedPlatforms:      []string{"terraform"},
+			supportedCloudProviders: []string{"aws"},
+			wantErr:                 false,
 		},
 	}
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			got := InitJSONFlags(test.cmd, test.flagsListContent, test.persintentFlag, test.supportedCloudProviders, test.supportedCloudProviders)
+			got := InitJSONFlags(test.cmd, test.flagsListContent, test.persistentFlag, test.supportedCloudProviders, test.supportedCloudProviders)
 			if !test.wantErr {
 				require.NoError(t, got)
 			} else {
