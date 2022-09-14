@@ -45,20 +45,35 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
 <div style="min-width:120;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
         <img alt="gRPC" src="img/logo-grpc.png"  width="120" style="min-width:120px">&nbsp;&nbsp;&nbsp;
 </div>
-<div style="min-width:55;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <img alt="Azure Resource Manager" src="img/logo-arm.png"  width="55" style="min-width:55px">&nbsp;&nbsp;&nbsp;
+<div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="Cloud Deployment Kit" src="img/logo-cdk.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
+</div>
+<div style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="Crossplane" src="img/logo-crossplane.png"  width="170" style="min-width:170px">&nbsp;&nbsp;&nbsp;
+</div>
+<div style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="Pulumi" src="img/logo-pulumi.png"  width="170" style="min-width:170px">&nbsp;&nbsp;&nbsp;
+</div>
+<div style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="ServerlessFW" src="img/logo-serverlessfw.png"  width="170" style="min-width:170px">&nbsp;&nbsp;&nbsp;
 </div>
 <div style="min-width:55;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
         <img alt="Google Deployment Manager" src="img/logo-gdm.png"  width="55" style="min-width:55px">&nbsp;&nbsp;&nbsp;
 </div>
-<div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <img alt="Cloud Deployment Kit" src="img/logo-cdk.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
+<div style="min-width:55;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="Azure Resource Manager" src="img/logo-arm.png"  width="55" style="min-width:55px">&nbsp;&nbsp;&nbsp;
 </div>
 <div style="min-width:55;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
         <img alt="SAM" src="img/logo-sam.png"  width="55" style="min-width:55px">&nbsp;&nbsp;&nbsp;
 </div>
 <div style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
         <img alt="Docker Compose" src="img/logo-dockercompose.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
+</div>
+<div style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="Knative" src="img/logo-knative.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
+</div>
+<div style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="Azure Blueprints" src="img/logo-azure-blueprints.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
 </div>
 </div>
 
