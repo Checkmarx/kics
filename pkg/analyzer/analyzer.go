@@ -385,30 +385,6 @@ func isDockerfile(path string) bool {
 	return check
 }
 
-func isDockerfile(path string) bool {
-	content, err := os.ReadFile(filepath.Clean(path))
-	if err != nil {
-		log.Error().Msgf("failed to analyze file: %s", err)
-		return false
-	}
-
-	regexes := []*regexp.Regexp{
-		regexp.MustCompile(`\s*FROM\s*`),
-		regexp.MustCompile(`\s*RUN\s*`),
-	}
-
-	check := true
-
-	for _, regex := range regexes {
-		if !regex.Match(content) {
-			check = false
-			break
-		}
-	}
-
-	return check
-}
-
 // overrides k8s match when all regexs passes for azureresourcemanager key and extension is set to json
 func needsOverride(check bool, returnType, key, ext string) bool {
 	if check && returnType == kubernetes && key == arm && ext == json {
@@ -474,9 +450,6 @@ func checkReturnType(path, returnType, ext string, content []byte) string {
 	if returnType != "" {
 		if returnType == "cdkTf" {
 			return terraform
-		}
-		if returnType == "cniK8s" {
-			return kubernetes
 		}
 		if utils.Contains(returnType, armRegexTypes) {
 			return arm
