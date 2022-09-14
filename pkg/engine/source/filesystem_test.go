@@ -637,12 +637,16 @@ func TestListSupportedPlatforms(t *testing.T) {
 		"AzureResourceManager",
 		"Buildah",
 		"CloudFormation",
+		"Crossplane",
 		"Dockerfile",
 		"DockerCompose",
 		"GRPC",
 		"GoogleDeploymentManager",
+		"Knative",
 		"Kubernetes",
 		"OpenAPI",
+		"Pulumi",
+		"ServerlessFW",
 		"Terraform",
 	}
 	listActual := ListSupportedPlatforms()

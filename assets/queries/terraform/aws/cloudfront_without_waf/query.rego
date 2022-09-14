@@ -4,6 +4,7 @@ import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_cloudfront_distribution[name]
+	resource.enabled == true
 	not resource.web_acl_id
 
 	result := {

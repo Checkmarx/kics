@@ -1,0 +1,39 @@
+apiVersion: compute.azure.crossplane.io/v1alpha3
+kind: AKSCluster
+metadata:
+  name: anais-crossplane-demo
+spec:
+  location: eastus
+  version: "1.19.7"
+  nodeVMSize: Standard_D2_v2
+  resourceGroupNameRef:
+    name: anais-resource
+  dnsNamePrefix: dt
+  nodeCount: 2
+  disableRBAC: false
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: aks.multik8s.platformref.crossplane.io
+  labels:
+    provider: AZURE
+spec:
+  compositeTypeRef:
+    apiVersion: multik8s.platformref.crossplane.io/v1alpha1
+    kind: AKS
+  resources:
+    - name: sample-ec2
+      base:
+        apiVersion: compute.azure.crossplane.io/v1alpha3
+        kind: AKSCluster
+        metadata:
+          name: anais-crossplane-demo
+        spec:
+          location: eastus
+          version: "1.19.7"
+          nodeVMSize: Standard_D2_v2
+          resourceGroupNameRef:
+            name: anais-resource
+          dnsNamePrefix: dt
+          nodeCount: 2

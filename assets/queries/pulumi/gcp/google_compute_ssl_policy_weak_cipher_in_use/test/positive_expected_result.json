@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "Google Compute SSL Policy Weak Cipher In Use",
+		"severity": "MEDIUM",
+		"line": 7,
+		"fileName": "positive.yaml"
+	},
+	{
+		"queryName": "Google Compute SSL Policy Weak Cipher In Use",
+		"severity": "MEDIUM",
+		"line": 16,
+		"fileName": "positive.yaml"
+	}
+]

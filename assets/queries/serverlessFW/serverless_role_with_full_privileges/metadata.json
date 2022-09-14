@@ -1,0 +1,10 @@
+{
+  "id": "59ebb4f3-2a6c-46dc-b4f0-cc5418dcddcd",
+  "queryName": "Serverless Role With Full Privileges",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Roles defined in Serverless files should not have policies granting full administrative privileges.",
+  "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/guide/iam",
+  "platform": "ServerlessFW",
+  "descriptionID": "0907f0e7"
+}

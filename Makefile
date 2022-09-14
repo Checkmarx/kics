@@ -28,17 +28,11 @@ clean: ## remove files created during build
 mod-tidy: ## go mod tidy - download and cleanup modules
 	$(call print-target)
 	@go mod tidy
-	cd tools && go mod tidy
 
 .PHONY: vendor
 vendor: ## go mod vendor - download vendor modules
 	$(call print-target)
 	@go mod vendor
-
-.PHONY: install
-install: ## go install tools
-	$(call print-target)
-	cd tools && go install $(shell cd tools && go list -f '{{ join .Imports " " }}' -tags=tools)
 
 .PHONY: lint
 lint: ## Lint the files
