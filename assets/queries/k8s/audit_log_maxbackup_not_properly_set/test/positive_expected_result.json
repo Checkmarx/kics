@@ -1,14 +1,38 @@
 [
-	{
-		"queryName": "Audit Log Maxbackup Not Properly Set",
-		"severity": "LOW",
-		"line": 11,
-        "fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Audit Log Maxbackup Not Properly Set",
-		"severity": "LOW",
-		"line": 11,
-        "fileName": "positive2.yaml"
-	}
+  {
+    "queryName": "Audit Log Maxbackup Not Properly Set",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Audit Log Maxbackup Not Properly Set",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Audit Log Maxbackup Not Properly Set",
+    "severity": "LOW",
+    "line": 12,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "Audit Log Maxbackup Not Properly Set",
+    "severity": "LOW",
+    "line": 27,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "Audit Log Maxbackup Not Properly Set",
+    "severity": "LOW",
+    "line": 40,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "Audit Log Maxbackup Not Properly Set",
+    "severity": "LOW",
+    "line": 55,
+    "fileName": "positive3.yaml"
+  }
 ]

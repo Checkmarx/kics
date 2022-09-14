@@ -6,6 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.resource.aws_cloudfront_distribution[name]
+	resource.enabled == true
 
 	not common_lib.valid_key(resource, "viewer_certificate")
 
@@ -26,6 +27,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.resource.aws_cloudfront_distribution[name]
+	resource.enabled == true
 
 	resource.viewer_certificate.cloudfront_default_certificate == true
 
@@ -49,6 +51,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.resource.aws_cloudfront_distribution[name]
+	resource.enabled == true
 
 	resource.viewer_certificate.cloudfront_default_certificate == false
 	protocol_version := resource.viewer_certificate.minimum_protocol_version
@@ -75,6 +78,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.resource.aws_cloudfront_distribution[name]
+	resource.enabled == true
 
 	resource.viewer_certificate.cloudfront_default_certificate == false
 	not common_lib.valid_key(resource.viewer_certificate, "minimum_protocol_version")

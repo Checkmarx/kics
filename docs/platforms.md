@@ -54,6 +54,10 @@ docker run -t -v $PWD/cfn-stack.yaml:/path/cfn-stack.yaml -it checkmarx/kics:lat
 
 KICS supports scanning CloudFormation templates with `.json` or `.yaml` extension.
 
+## Crossplane
+
+KICS supports scanning Crossplane manifests with `.yaml` extension.
+
 ## Azure Blueprints
 
 KICS supports scanning Azure Blueprints files, including Azure Blueprints Policy Assignment Artifacts, Azure Blueprints Role Assignment Artifacts, and Azure Blueprints Template Artifacts with `.json` extension.
@@ -93,6 +97,11 @@ Platform: Kubernetes
 
 ```
 
+## Knative
+
+KICS supports scanning Knative manifests with `.yaml` extension.
+Due to the possibility of the definition of the [PodSpec and PodTemplate](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#podspec-v1-core) in Knative files, Kubernetes Security Queries are also loaded once the presence of the Knative files is detected.
+
 ## Kubernetes
 
 KICS supports scanning Kubernetes manifests with `.yaml` extension.
@@ -100,6 +109,16 @@ KICS supports scanning Kubernetes manifests with `.yaml` extension.
 ## OpenAPI
 
 KICS supports scanning Swagger 2.0 and OpenAPI 3.0 specs with `.json` and `.yaml` extension.
+
+## Pulumi
+
+KICS supports scanning Pulumi manifests with `.yaml` extension.
+
+## ServerlessFW
+
+KICS supports scanning Serverless manifests with `.yml` extension.
+Due to the possibility of the definition of the CloudFormation template,  inside `Serverless.yml`, CloudFormation Security Queries are also loaded once the presence of the ServerlessFW files is detected.
+
 
 ## Google Deployment Manager
 

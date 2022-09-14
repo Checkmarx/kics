@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Serverless API Endpoint Config Not Private",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive1.yml"
+  },
+  {
+    "queryName": "Serverless API Endpoint Config Not Private",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive2.yml"
+  }
+]

@@ -135,5 +135,4 @@ run:
     - assets
     - docs
     - vendor
-    - tools
     - pkg/parser/jsonfilter/parser

@@ -42,8 +42,10 @@ var (
 	AvailablePlatforms = map[string]string{
 		"Ansible":                 "ansible",
 		"CloudFormation":          "cloudFormation",
+		"Crossplane":              "crossplane",
 		"Dockerfile":              "dockerfile",
 		"DockerCompose":           "dockerCompose",
+		"Knative":                 "knative",
 		"Kubernetes":              "k8s",
 		"OpenAPI":                 "openAPI",
 		"Terraform":               "terraform",
@@ -51,6 +53,8 @@ var (
 		"GoogleDeploymentManager": "googleDeploymentManager",
 		"GRPC":                    "grpc",
 		"Buildah":                 "buildah",
+		"Pulumi":                  "pulumi",
+		"ServerlessFW":            "serverlessFW",
 	}
 
 	// AvailableSeverities - All severities available

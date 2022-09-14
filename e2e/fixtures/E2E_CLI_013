@@ -2,10 +2,14 @@ Ansible
 AzureResourceManager
 Buildah
 CloudFormation
+Crossplane
 DockerCompose
 Dockerfile
 GRPC
 GoogleDeploymentManager
+Knative
 Kubernetes
 OpenAPI
+Pulumi
+ServerlessFW
 Terraform

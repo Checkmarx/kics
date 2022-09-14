@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "API Gateway Access Logging Disabled",
+		"severity": "MEDIUM",
+		"line": 7,
+		"fileName": "positive.yaml"
+	}
+]

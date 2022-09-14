@@ -1,20 +1,23 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	docs := input.document[i]
+	[path, Resources] := walk(docs)
+	resource := Resources[name]
 	resource.Type == "AWS::CloudFront::Distribution"
 	distributionConfig := resource.Properties.DistributionConfig
 
+	not cf_lib.isCloudFormationFalse(distributionConfig.Enabled)
 	not common_lib.valid_key(distributionConfig, "WebACLId")
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig", [name]),
+		"searchKey": sprintf("%s%s.Properties.DistributionConfig", [cf_lib.getPath(path), name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.WebACLId should be defined", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.WebACLId is undefined", [name]),
