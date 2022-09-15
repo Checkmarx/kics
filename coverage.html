@@ -55,7 +55,7 @@
 			<div id="nav">
 				<select id="files">
 				
-				<option value="file0">github.com/Checkmarx/kics/internal/console/flags/flags.go (86.7%)</option>
+				<option value="file0">github.com/Checkmarx/kics/internal/console/flags/flags.go (94.4%)</option>
 				
 				<option value="file1">github.com/Checkmarx/kics/internal/console/flags/flags_utils.go (87.1%)</option>
 				
@@ -67,9 +67,9 @@
 				
 				<option value="file5">github.com/Checkmarx/kics/internal/console/generate_id.go (80.0%)</option>
 				
-				<option value="file6">github.com/Checkmarx/kics/internal/console/helpers/exit_handler.go (87.5%)</option>
+				<option value="file6">github.com/Checkmarx/kics/internal/console/helpers/exit_handler.go (100.0%)</option>
 				
-				<option value="file7">github.com/Checkmarx/kics/internal/console/helpers/helpers.go (48.1%)</option>
+				<option value="file7">github.com/Checkmarx/kics/internal/console/helpers/helpers.go (49.1%)</option>
 				
 				<option value="file8">github.com/Checkmarx/kics/internal/console/kics.go (78.9%)</option>
 				
@@ -93,7 +93,7 @@
 				
 				<option value="file18">github.com/Checkmarx/kics/internal/storage/memory.go (95.2%)</option>
 				
-				<option value="file19">github.com/Checkmarx/kics/internal/tracker/ci.go (72.2%)</option>
+				<option value="file19">github.com/Checkmarx/kics/internal/tracker/ci.go (100.0%)</option>
 				
 				<option value="file20">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (85.5%)</option>
 				
@@ -215,9 +215,9 @@
 				
 				<option value="file79">github.com/Checkmarx/kics/pkg/printer/utils.go (82.4%)</option>
 				
-				<option value="file80">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (80.0%)</option>
+				<option value="file80">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file81">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (90.9%)</option>
+				<option value="file81">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
 				<option value="file82">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -273,11 +273,11 @@
 				
 				<option value="file108">github.com/Checkmarx/kics/pkg/resolver/helm/helm.go (88.5%)</option>
 				
-				<option value="file109">github.com/Checkmarx/kics/pkg/resolver/helm/resolver.go (85.7%)</option>
+				<option value="file109">github.com/Checkmarx/kics/pkg/resolver/helm/resolver.go (88.4%)</option>
 				
 				<option value="file110">github.com/Checkmarx/kics/pkg/resolver/resolver.go (90.5%)</option>
 				
-				<option value="file111">github.com/Checkmarx/kics/pkg/scan/client.go (33.3%)</option>
+				<option value="file111">github.com/Checkmarx/kics/pkg/scan/client.go (44.4%)</option>
 				
 				<option value="file112">github.com/Checkmarx/kics/pkg/scan/post_scan.go (0.0%)</option>
 				
@@ -361,7 +361,7 @@ type flagJSON struct {
         Validation     string
 }
 
-func evalUsage(usage string, supportedPlatforms, supportedCloudProviders []string) string <span class="cov9" title="15">{
+func evalUsage(usage string, supportedPlatforms, supportedCloudProviders []string) string <span class="cov10" title="19">{
         variables := map[string]string{
                 "sliceInstructions":  "can be provided multiple times or as a comma separated string",
                 "supportedLogLevels": strings.Join(constants.AvailableLogLevels, ","),
@@ -377,25 +377,25 @@ func evalUsage(usage string, supportedPlatforms, supportedCloudProviders []strin
         for i := range match </span><span class="cov7" title="8">{
                 usage = strings.ReplaceAll(usage, "${"+match[i][1]+"}", variables[match[i][1]])
         }</span>
-        <span class="cov9" title="15">return usage</span>
+        <span class="cov10" title="19">return usage</span>
 }
 
-func checkHiddenAndDeprecated(flagSet *pflag.FlagSet, flagName string, flagProps flagJSON) error <span class="cov8" title="12">{ //nolint:gocritic
-        if flagProps.Hidden </span><span class="cov0" title="0">{
+func checkHiddenAndDeprecated(flagSet *pflag.FlagSet, flagName string, flagProps flagJSON) error <span class="cov9" title="14">{ //nolint:gocritic
+        if flagProps.Hidden </span><span class="cov1" title="1">{
                 err := flagSet.MarkHidden(flagName)
                 if err != nil </span><span class="cov0" title="0">{
                         log.Err(err).Msg("Loading flags: could not mark flag as hidden")
                         return err
                 }</span>
         }
-        <span class="cov8" title="12">if flagProps.Deprecated </span><span class="cov1" title="1">{
+        <span class="cov9" title="14">if flagProps.Deprecated </span><span class="cov1" title="1">{
                 err := flagSet.MarkDeprecated(flagName, flagProps.DeprecatedInfo)
                 if err != nil </span><span class="cov0" title="0">{
                         log.Err(err).Msg("Loading flags: could not mark flag as deprecated")
                         return err
                 }</span>
         }
-        <span class="cov8" title="12">return nil</span>
+        <span class="cov9" title="14">return nil</span>
 }
 
 // InitJSONFlags initialize cobra flags
@@ -404,7 +404,7 @@ func InitJSONFlags(
         flagsListContent string,
         persistentFlag bool,
         supportedPlatforms,
-        supportedCloudProviders []string) error <span class="cov4" title="3">{
+        supportedCloudProviders []string) error <span class="cov6" title="7">{
         var flagsList map[string]flagJSON
         err := json.Unmarshal([]byte(flagsListContent), &amp;flagsList)
         if err != nil </span><span class="cov1" title="1">{
@@ -412,12 +412,12 @@ func InitJSONFlags(
                 return err
         }</span>
 
-        <span class="cov3" title="2">flagSet := cmd.Flags()
-        if persistentFlag </span><span class="cov1" title="1">{
+        <span class="cov6" title="6">flagSet := cmd.Flags()
+        if persistentFlag </span><span class="cov5" title="5">{
                 flagSet = cmd.PersistentFlags()
         }</span>
 
-        <span class="cov3" title="2">for flagName, flagProps := range flagsList </span><span class="cov8" title="12">{
+        <span class="cov6" title="6">for flagName, flagProps := range flagsList </span><span class="cov9" title="16">{
                 flagProps.Usage = evalUsage(flagProps.Usage, supportedPlatforms, supportedCloudProviders)
 
                 switch flagProps.FlagType </span>{
@@ -433,38 +433,38 @@ func InitJSONFlags(
                         var flag string
                         flagsStrReferences[flagName] = &amp;flag
                         flagSet.StringVarP(flagsStrReferences[flagName], flagName, flagProps.ShorthandFlag, *flagProps.DefaultValue, flagProps.Usage)</span>
-                case "bool":<span class="cov5" title="5">
+                case "bool":<span class="cov6" title="7">
                         var flag bool
                         flagsBoolReferences[flagName] = &amp;flag
                         defaultValue, err := strconv.ParseBool(*flagProps.DefaultValue)
-                        if err != nil </span><span class="cov0" title="0">{
+                        if err != nil </span><span class="cov1" title="1">{
                                 log.Err(err).Msg("Loading flags: could not convert default values")
                                 return err
                         }</span>
-                        <span class="cov5" title="5">flagSet.BoolVarP(flagsBoolReferences[flagName], flagName, flagProps.ShorthandFlag, defaultValue, flagProps.Usage)</span>
-                case "int":<span class="cov1" title="1">
+                        <span class="cov6" title="6">flagSet.BoolVarP(flagsBoolReferences[flagName], flagName, flagProps.ShorthandFlag, defaultValue, flagProps.Usage)</span>
+                case "int":<span class="cov3" title="2">
                         var flag int
                         flagsIntReferences[flagName] = &amp;flag
                         defaultValue, err := strconv.Atoi(*flagProps.DefaultValue)
-                        if err != nil </span><span class="cov0" title="0">{
+                        if err != nil </span><span class="cov1" title="1">{
                                 log.Err(err).Msg("Loading flags: could not convert default values")
                                 return err
                         }</span>
                         <span class="cov1" title="1">flagSet.IntVarP(flagsIntReferences[flagName], flagName, flagProps.ShorthandFlag, defaultValue, flagProps.Usage)</span>
-                default:<span class="cov0" title="0">
+                default:<span class="cov1" title="1">
                         log.Error().Msgf("Flag %s has unknown type %s", flagName, flagProps.FlagType)</span>
                 }
 
-                <span class="cov8" title="12">err := checkHiddenAndDeprecated(flagSet, flagName, flagProps)
+                <span class="cov9" title="14">err := checkHiddenAndDeprecated(flagSet, flagName, flagProps)
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov8" title="12">if flagProps.Validation != "" </span><span class="cov3" title="2">{
+                <span class="cov9" title="14">if flagProps.Validation != "" </span><span class="cov3" title="2">{
                         validations[flagName] = strings.Split(flagProps.Validation, ",")
                 }</span>
         }
-        <span class="cov3" title="2">return nil</span>
+        <span class="cov5" title="4">return nil</span>
 }
 
 // GetStrFlag get a string flag by its name
@@ -858,14 +858,14 @@ func ShowError(kind string) bool <span class="cov5" title="4">{
 }</span>
 
 // RemediateExitCode calculate exit code base on the difference between remediation selected and done
-func RemediateExitCode(selectedRemediationNumber, actualRemediationDoneNumber int) int <span class="cov0" title="0">{
+func RemediateExitCode(selectedRemediationNumber, actualRemediationDoneNumber int) int <span class="cov3" title="2">{
         statusCode := 70
-        if selectedRemediationNumber != actualRemediationDoneNumber </span><span class="cov0" title="0">{
+        if selectedRemediationNumber != actualRemediationDoneNumber </span><span class="cov1" title="1">{
                 // KICS AR was not able to remediate all the selected remediation
                 return statusCode
         }</span>
 
-        <span class="cov0" title="0">return 0</span>
+        <span class="cov1" title="1">return 0</span>
 }
 </pre>
 		
@@ -932,16 +932,16 @@ func CustomConsoleWriter(fileLogger *zerolog.ConsoleWriter) zerolog.ConsoleWrite
 }
 
 // FileAnalyzer determines the type of extension in the passed config file by its content
-func FileAnalyzer(path string) (string, error) <span class="cov10" title="11">{
+func FileAnalyzer(path string) (string, error) <span class="cov10" title="12">{
         ostat, err := os.Open(filepath.Clean(path))
+        if err != nil </span><span class="cov1" title="1">{
+                return "", err
+        }</span>
+        <span class="cov9" title="11">rc, err := io.ReadAll(ostat)
         if err != nil </span><span class="cov0" title="0">{
                 return "", err
         }</span>
-        <span class="cov10" title="11">rc, err := io.ReadAll(ostat)
-        if err != nil </span><span class="cov0" title="0">{
-                return "", err
-        }</span>
-        <span class="cov10" title="11">var temp map[string]interface{}
+        <span class="cov9" title="11">var temp map[string]interface{}
 
         // CxSAST query under review
         if err := json.Unmarshal(rc, &amp;temp); err == nil </span><span class="cov3" title="2">{
@@ -949,7 +949,7 @@ func FileAnalyzer(path string) (string, error) <span class="cov10" title="11">{
         }</span>
 
         // CxSAST query under review
-        <span class="cov9" title="9">if err := yaml.Unmarshal(rc, &amp;temp); err == nil </span><span class="cov5" title="3">{
+        <span class="cov8" title="9">if err := yaml.Unmarshal(rc, &amp;temp); err == nil </span><span class="cov4" title="3">{
                 return "yaml", nil
         }</span>
 
@@ -1027,7 +1027,7 @@ func GetDefaultQueryPath(queriesPath string) (string, error) <span class="cov3" 
 // ListReportFormats return a slice with all supported report formats
 func ListReportFormats() []string <span class="cov1" title="1">{
         supportedFormats := make([]string, 0, len(reportGenerators))
-        for reportFormats := range reportGenerators </span><span class="cov10" title="11">{
+        for reportFormats := range reportGenerators </span><span class="cov9" title="11">{
                 supportedFormats = append(supportedFormats, reportFormats)
         }</span>
         <span class="cov1" title="1">sort.Strings(supportedFormats)
@@ -2174,13 +2174,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="35">total += v
+                <span class="cov9" title="37">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2205,7 +2205,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2391,27 +2391,27 @@ func (c *CITracker) FailedComputeSimilarityID() <span class="cov1" title="1">{
 }</span>
 
 // TrackScanSecret - add to secrets scanned
-func (c *CITracker) TrackScanSecret() <span class="cov0" title="0">{
+func (c *CITracker) TrackScanSecret() <span class="cov1" title="1">{
         c.ScanSecrets++
 }</span>
 
 // TrackScanPath - paths to preform scan
-func (c *CITracker) TrackScanPath() <span class="cov0" title="0">{
+func (c *CITracker) TrackScanPath() <span class="cov1" title="1">{
         c.ScanPaths++
 }</span>
 
 // TrackVersion - information if current version is latest
-func (c *CITracker) TrackVersion(retrievedVersion model.Version) <span class="cov0" title="0">{
+func (c *CITracker) TrackVersion(retrievedVersion model.Version) <span class="cov1" title="1">{
         c.Version = retrievedVersion
 }</span>
 
 // TrackFileFoundCountLines - information about the lines of the scanned files
-func (c *CITracker) TrackFileFoundCountLines(countLines int) <span class="cov0" title="0">{
+func (c *CITracker) TrackFileFoundCountLines(countLines int) <span class="cov1" title="1">{
         c.FoundCountLines += countLines
 }</span>
 
 // TrackFileParseCountLines - information about the lines of the parsed files
-func (c *CITracker) TrackFileParseCountLines(countLines int) <span class="cov0" title="0">{
+func (c *CITracker) TrackFileParseCountLines(countLines int) <span class="cov1" title="1">{
         c.ParsedCountLines += countLines
 }</span>
 </pre>
@@ -15989,8 +15989,8 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
 }
 
 // Start initializes the Circle Progress Bar
-func (p ProgressBar) Start() <span class="cov0" title="0">{
-        for </span><span class="cov0" title="0">{ // increment until the Close func is called
+func (p ProgressBar) Start() <span class="cov1" title="1">{
+        for </span><span class="cov1" title="1">{ // increment until the Close func is called
                 p.pBar.Increment()
                 // lower cpu usage from infinite loop
                 time.Sleep(time.Millisecond * sleepTimeout)
@@ -16048,7 +16048,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov1" title="1">{
+                close: func() error </span><span class="cov0" title="0">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -16057,7 +16057,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov1" title="1">{
+        defer func() </span><span class="cov0" title="0">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
@@ -16069,14 +16069,14 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov1" title="1">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov1" title="1">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file82" style="display: none">package progress
@@ -19582,7 +19582,6 @@ func getExcluded(charterino *chart.Chart, chartpath string) []string <span class
 
 import (
         "path/filepath"
-        "regexp"
         "strconv"
         "strings"
 
@@ -19620,13 +19619,7 @@ func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) <span c
                 Excluded: excluded,
         }
         for _, split := range *splits </span><span class="cov3" title="3">{
-                subFolder := filepath.Base(filePath)
-
-                splitPath := strings.Split(split.path, getPathSeparator(split.path))
-
-                splited := filepath.Join(splitPath[1:]...)
-
-                origpath := filepath.Join(filepath.Dir(filePath), subFolder, splited)
+                origpath := filepath.Join(filepath.Dir(filePath), split.path)
                 rfiles.File = append(rfiles.File, model.ResolvedHelm{
                         FileName:     origpath,
                         Content:      split.content,
@@ -19747,15 +19740,6 @@ func getIDMap(originalData []byte) (map[int]interface{}, error) <span class="cov
         <span class="cov3" title="3">ids[idHelm] = mapLines
 
         return ids, nil</span>
-}
-
-func getPathSeparator(path string) string <span class="cov3" title="3">{
-        if matched, err := regexp.MatchString(`[a-zA-Z0-9_\/-]+(\[a-zA-Z0-9_\/-]+)*`, path); matched &amp;&amp; err == nil </span><span class="cov3" title="3">{
-                return "/"
-        }</span> else<span class="cov0" title="0"> if matched, err := regexp.MatchString(`[a-z0-9_.$-]+(\\[a-z0-9_.$-]+)*`, path); matched &amp;&amp; err == nil </span><span class="cov0" title="0">{
-                return "\\"
-        }</span>
-        <span class="cov0" title="0">return ""</span>
 }
 </pre>
 		
@@ -19897,14 +19881,14 @@ type Client struct {
 }
 
 // NewClient initializes the client with all the required parameters
-func NewClient(params *Parameters, proBarBuilder *progress.PbBuilder, customPrint *consolePrinter.Printer) (*Client, error) <span class="cov8" title="1">{
+func NewClient(params *Parameters, proBarBuilder *progress.PbBuilder, customPrint *consolePrinter.Printer) (*Client, error) <span class="cov10" title="2">{
         t, err := tracker.NewTracker(params.PreviewLines)
-        if err != nil </span><span class="cov0" title="0">{
+        if err != nil </span><span class="cov1" title="1">{
                 log.Err(err)
                 return nil, err
         }</span>
 
-        <span class="cov8" title="1">descriptions.CheckVersion(t)
+        <span class="cov1" title="1">descriptions.CheckVersion(t)
 
         store := storage.NewMemoryStorage()
 
