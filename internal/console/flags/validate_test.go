@@ -53,3 +53,8 @@ func TestFlags_convertSliceToDummyMap(t *testing.T) {
 		})
 	}
 }
+
+func TestFlags_Validator(t *testing.T) {
+	err := Validate()
+	require.Equal(t, err, nil)
+}
