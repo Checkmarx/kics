@@ -10,7 +10,7 @@ https://github.com/Checkmarx/kics
 
 ## Command
 
-To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the -p KICS parameter (see the full list of CLI options below)
+To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the `-p` KICS parameter (see the full list of CLI options below)
 
 NOTE: from v1.3.0 KICS does not execute `scan` command by default anymore.
 
@@ -21,16 +21,16 @@ docker pull checkmarx/kics:latest
 Scan a directory
 
 ```sh
-docker run -t -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan -p "/path" -o "/path/"
+docker run -t -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan -p /path -o "path_to_results_file"
 ```
 
 Scan a single file
 
 ```sh
-docker run -t -v {path_to_host_folder}/{filename}.{extention}:/path/{filename}.{extention} checkmarx/kics:latest scan -p "/path" -o "/path/"
+docker run -t -v {path_to_host_folder}/{filename}.{extention}:/path/{filename}.{extention} checkmarx/kics:latest scan -p /path -o "path_to_results_file"
 ```
 
-This will generate a `results.json` file, for both examples, under `path`.
+This will generate a `results.json` file, for both examples, under `path_to_results_file`.
 
 ℹ️ **UBI Based Images**
 
@@ -45,6 +45,22 @@ Another option is [rebuilding the dockerfile](https://github.com/Checkmarx/kics/
 ## CLI Options
 
 Usage:
+
+```txt
+Executes a kics analysis
+
+Usage:
+  kics [command]
+
+Available Commands:
+  generate-id    Generates uuid for query
+  help           Help about any command
+  list-platforms List supported platforms
+  remediate      Auto remediates the project
+  scan           Executes a scan analysis
+  version        Displays the current version
+```
+
 
 ```txt
 Executes a scan analysis
