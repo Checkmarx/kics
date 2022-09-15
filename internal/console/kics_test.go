@@ -198,7 +198,7 @@ func TestConsole_Execute(t *testing.T) { //nolint
 		},
 		{
 			name: "test_kics_remediate_with_id",
-			args: []string{"kics", "remediate", "--results", filepath.FromSlash("../../test/assets/results.json"),
+			args: []string{"kics", "remediate", "--results", filepath.FromSlash("../../test/assets/results_for_ar.json"),
 				"--include-ids", "760d3bbce5e83fe48d20cbd70736bfac43fda67253238f31bde8206ba06c8821"},
 			wantErr:                  false,
 			remove:                   "",
@@ -206,7 +206,7 @@ func TestConsole_Execute(t *testing.T) { //nolint
 		},
 		{
 			name:                     "test_kics_remediate_all",
-			args:                     []string{"kics", "remediate", "--results", filepath.FromSlash("../../test/assets/results.json")},
+			args:                     []string{"kics", "remediate", "--results", filepath.FromSlash("../../test/assets/results_for_ar.json")},
 			wantErr:                  false,
 			remove:                   "",
 			rewriteRemediateTestFile: true,
