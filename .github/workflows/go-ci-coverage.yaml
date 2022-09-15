@@ -3,7 +3,7 @@ name: go-ci-coverage
 on:
   push:
     branches:
-      - "master"
+      - "kics/codeCoverageImprovements"
 
 jobs:
   coverage:
