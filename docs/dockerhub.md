@@ -30,7 +30,7 @@ Scan a single file
 docker run -t -v {path_to_host_folder}/{filename}.{extention}:/path/{filename}.{extention} checkmarx/kics:latest scan -p /path -o "/path/"
 ```
 
-This will generate a `results.json` file, for both examples, under `/path/`.
+This will generate a `results.json` file, for both examples, under `path`.
 
 ℹ️ **UBI Based Images**
 
