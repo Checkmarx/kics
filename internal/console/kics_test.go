@@ -191,14 +191,14 @@ func TestConsole_Execute(t *testing.T) { //nolint
 		},
 		{
 			name:                     "test_kics_fail_remediate_invalid_json",
-			args:                     []string{"kics", "remediate", "--results", filepath.FromSlash("./../../test/assets/invalid.json")},
+			args:                     []string{"kics", "remediate", "--results", filepath.FromSlash("../../test/assets/invalid.json")},
 			wantErr:                  true,
 			remove:                   "",
 			rewriteRemediateTestFile: false,
 		},
 		{
 			name: "test_kics_remediate_with_id",
-			args: []string{"kics", "remediate", "--results", filepath.FromSlash("./../../test/assets/results.json"),
+			args: []string{"kics", "remediate", "--results", filepath.FromSlash("../../test/assets/results.json"),
 				"--include-ids", "760d3bbce5e83fe48d20cbd70736bfac43fda67253238f31bde8206ba06c8821"},
 			wantErr:                  false,
 			remove:                   "",
@@ -206,7 +206,7 @@ func TestConsole_Execute(t *testing.T) { //nolint
 		},
 		{
 			name:                     "test_kics_remediate_all",
-			args:                     []string{"kics", "remediate", "--results", filepath.FromSlash("./../../test/assets/results.json")},
+			args:                     []string{"kics", "remediate", "--results", filepath.FromSlash("../../test/assets/results.json")},
 			wantErr:                  false,
 			remove:                   "",
 			rewriteRemediateTestFile: true,
@@ -243,6 +243,6 @@ func TestConsole_Execute(t *testing.T) { //nolint
 
 func rewriteRemediateTestFile() error {
 	d1 := []byte("resource \"alicloud_ram_account_password_policy\" \"corporate1\" {\n\t\trequire_lowercase_characters = false\n\t\trequire_uppercase_characters = false\n\t\trequire_numbers              = false\n\t\trequire_symbols              = false\n\t\thard_expiry                  = true\n\t\tpassword_reuse_prevention    = 5\n\t\tmax_login_attempts           = 3\n\t}\n\nresource \"alicloud_ram_account_password_policy\" \"corporate2\" {\n\t\tminimum_password_length = 14\n\t\trequire_lowercase_characters = false\n\t\trequire_uppercase_characters = false\n\t\trequire_numbers              = false\n\t\trequire_symbols              = false\n\t\thard_expiry                  = true\n\t\tpassword_reuse_prevention    = 5\n\t\tmax_login_attempts           = 3\n\t}")
-	err := os.WriteFile("./../../test/assets/auto_remediation_sample.tf", d1, 0666)
+	err := os.WriteFile("../../test/assets/auto_remediation_sample.tf", d1, 0666)
 	return err
 }
