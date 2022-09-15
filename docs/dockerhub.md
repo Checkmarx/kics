@@ -21,16 +21,16 @@ docker pull checkmarx/kics:latest
 Scan a directory
 
 ```sh
-docker run -t -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan -p /path -o "path_to_results_file"
+docker run -t -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan -p /path -o "/path/"
 ```
 
 Scan a single file
 
 ```sh
-docker run -t -v {path_to_host_folder}/{filename}.{extention}:/path/{filename}.{extention} checkmarx/kics:latest scan -p /path -o "path_to_results_file"
+docker run -t -v {path_to_host_folder}/{filename}.{extention}:/path/{filename}.{extention} checkmarx/kics:latest scan -p /path -o "/path/"
 ```
 
-This will generate a `results.json` file, for both examples, under `path_to_results_file`.
+This will generate a `results.json` file, for both examples, under `/path/`.
 
 ℹ️ **UBI Based Images**
 
