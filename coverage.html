@@ -77,7 +77,7 @@
 				
 				<option value="file10">github.com/Checkmarx/kics/internal/console/pre_scan.go (83.1%)</option>
 				
-				<option value="file11">github.com/Checkmarx/kics/internal/console/remediate.go (9.1%)</option>
+				<option value="file11">github.com/Checkmarx/kics/internal/console/remediate.go (81.8%)</option>
 				
 				<option value="file12">github.com/Checkmarx/kics/internal/console/scan.go (73.2%)</option>
 				
@@ -215,7 +215,7 @@
 				
 				<option value="file79">github.com/Checkmarx/kics/pkg/printer/utils.go (82.4%)</option>
 				
-				<option value="file80">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
+				<option value="file80">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (80.0%)</option>
 				
 				<option value="file81">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
@@ -770,7 +770,7 @@ import (
 )
 
 // NewGenerateIDCmd creates a new instance of the generate-id Command
-func NewGenerateIDCmd() *cobra.Command <span class="cov10" title="12">{
+func NewGenerateIDCmd() *cobra.Command <span class="cov10" title="18">{
         return &amp;cobra.Command{
                 Use:   "generate-id",
                 Short: "Generates uuid for query",
@@ -1149,14 +1149,14 @@ var (
 )
 
 // NewKICSCmd creates a new instance of the kics Command
-func NewKICSCmd() *cobra.Command <span class="cov10" title="12">{
+func NewKICSCmd() *cobra.Command <span class="cov10" title="18">{
         return &amp;cobra.Command{
                 Use:   "kics",
                 Short: constants.Fullname,
         }
 }</span>
 
-func initialize(rootCmd *cobra.Command) error <span class="cov10" title="12">{
+func initialize(rootCmd *cobra.Command) error <span class="cov10" title="18">{
         scanCmd := NewScanCmd()
         remediateCmd := NewRemediateCmd()
         rootCmd.AddCommand(NewVersionCmd())
@@ -1175,19 +1175,19 @@ func initialize(rootCmd *cobra.Command) error <span class="cov10" title="12">{
                 return err
         }</span>
 
-        <span class="cov10" title="12">if err := viper.BindPFlags(rootCmd.PersistentFlags()); err != nil </span><span class="cov0" title="0">{
+        <span class="cov10" title="18">if err := viper.BindPFlags(rootCmd.PersistentFlags()); err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
 
-        <span class="cov10" title="12">if err := initRemediateCmd(remediateCmd); err != nil </span><span class="cov0" title="0">{
+        <span class="cov10" title="18">if err := initRemediateCmd(remediateCmd); err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
 
-        <span class="cov10" title="12">return initScanCmd(scanCmd)</span>
+        <span class="cov10" title="18">return initScanCmd(scanCmd)</span>
 }
 
 // Execute starts kics execution
-func Execute() error <span class="cov10" title="12">{
+func Execute() error <span class="cov10" title="18">{
         zerolog.SetGlobalLevel(zerolog.InfoLevel)
 
         enableCrashReport()
@@ -1203,7 +1203,7 @@ func Execute() error <span class="cov10" title="12">{
                 return err
         }</span>
 
-        <span class="cov10" title="12">if err := rootCmd.ExecuteContext(ctx); err != nil </span><span class="cov3" title="2">{
+        <span class="cov10" title="18">if err := rootCmd.ExecuteContext(ctx); err != nil </span><span class="cov6" title="5">{
                 sentryReport.ReportSentry(&amp;sentryReport.Report{
                         Message:  "Failed to run application",
                         Err:      err,
@@ -1212,21 +1212,21 @@ func Execute() error <span class="cov10" title="12">{
                 return err
         }</span>
 
-        <span class="cov9" title="10">return nil</span>
+        <span class="cov8" title="13">return nil</span>
 }
 
-func enableCrashReport() <span class="cov10" title="12">{
+func enableCrashReport() <span class="cov10" title="18">{
         enableCrashReport, found := os.LookupEnv("DISABLE_CRASH_REPORT")
         if found &amp;&amp; (enableCrashReport == "0" || enableCrashReport == "false") </span><span class="cov0" title="0">{
                 initSentry("")
-        }</span> else<span class="cov10" title="12"> {
+        }</span> else<span class="cov10" title="18"> {
                 initSentry(constants.SentryDSN)
         }</span>
 }
 
-func initSentry(dsn string) <span class="cov10" title="12">{
+func initSentry(dsn string) <span class="cov10" title="18">{
         var err error
-        if dsn == "" </span><span class="cov10" title="12">{
+        if dsn == "" </span><span class="cov10" title="18">{
                 warnings = append(warnings, "KICS crash report disabled")
                 err = sentry.Init(sentry.ClientOptions{
                         Release: constants.GetRelease(),
@@ -1237,10 +1237,10 @@ func initSentry(dsn string) <span class="cov10" title="12">{
                         Release: constants.GetRelease(),
                 })
         }</span>
-        <span class="cov10" title="12">if err != nil </span><span class="cov0" title="0">{
+        <span class="cov10" title="18">if err != nil </span><span class="cov0" title="0">{
                 log.Err(err).Msg("Failed to initialize sentry")
         }</span>
-        <span class="cov10" title="12">sentry.Flush(constants.SentryRefreshRate * time.Second)</span>
+        <span class="cov10" title="18">sentry.Flush(constants.SentryRefreshRate * time.Second)</span>
 }
 </pre>
 		
@@ -1254,12 +1254,12 @@ import (
 )
 
 // NewListPlatformsCmd creates a new instance of the list-platforms Command
-func NewListPlatformsCmd() *cobra.Command <span class="cov9" title="12">{
+func NewListPlatformsCmd() *cobra.Command <span class="cov10" title="18">{
         return &amp;cobra.Command{
                 Use:   "list-platforms",
                 Short: "List supported platforms",
                 RunE: func(cmd *cobra.Command, args []string) error </span><span class="cov1" title="1">{
-                        for _, v := range source.ListSupportedPlatforms() </span><span class="cov10" title="15">{
+                        for _, v := range source.ListSupportedPlatforms() </span><span class="cov9" title="15">{
                                 fmt.Fprintf(cmd.OutOrStdout(), "%s\n", v)
                         }</span>
                         <span class="cov1" title="1">return nil</span>
@@ -1462,20 +1462,20 @@ var (
 )
 
 // NewRemediateCmd creates a new instance of the remediate Command
-func NewRemediateCmd() *cobra.Command <span class="cov10" title="12">{
+func NewRemediateCmd() *cobra.Command <span class="cov10" title="18">{
         return &amp;cobra.Command{
                 Use:   "remediate",
                 Short: "Auto remediates the project",
-                PersistentPreRunE: func(cmd *cobra.Command, args []string) error </span><span class="cov0" title="0">{
+                PersistentPreRunE: func(cmd *cobra.Command, args []string) error </span><span class="cov6" title="5">{
                         return preRemediate(cmd)
                 }</span>,
-                RunE: func(cmd *cobra.Command, args []string) error <span class="cov0" title="0">{
+                RunE: func(cmd *cobra.Command, args []string) error <span class="cov5" title="4">{
                         return remediate(cmd)
                 }</span>,
         }
 }
 
-func initRemediateCmd(remediateCmd *cobra.Command) error <span class="cov10" title="12">{
+func initRemediateCmd(remediateCmd *cobra.Command) error <span class="cov10" title="18">{
         if err := flags.InitJSONFlags(
                 remediateCmd,
                 remediateFlagsListContent,
@@ -1485,7 +1485,7 @@ func initRemediateCmd(remediateCmd *cobra.Command) error <span class="cov10" tit
                 return err
         }</span>
 
-        <span class="cov10" title="12">if err := remediateCmd.MarkFlagRequired(flags.Results); err != nil </span><span class="cov0" title="0">{
+        <span class="cov10" title="18">if err := remediateCmd.MarkFlagRequired(flags.Results); err != nil </span><span class="cov0" title="0">{
                 sentryReport.ReportSentry(&amp;sentryReport.Report{
                         Message:  "Failed to add command required flags",
                         Err:      err,
@@ -1493,47 +1493,47 @@ func initRemediateCmd(remediateCmd *cobra.Command) error <span class="cov10" tit
                 }, true)
                 log.Err(err).Msg("Failed to add command required flags")
         }</span>
-        <span class="cov10" title="12">return nil</span>
+        <span class="cov10" title="18">return nil</span>
 }
 
-func preRemediate(cmd *cobra.Command) error <span class="cov0" title="0">{
+func preRemediate(cmd *cobra.Command) error <span class="cov6" title="5">{
         err := flags.Validate()
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
 
-        <span class="cov0" title="0">err = flags.ValidateQuerySelectionFlags()
+        <span class="cov6" title="5">err = flags.ValidateQuerySelectionFlags()
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
-        <span class="cov0" title="0">err = internalPrinter.SetupPrinter(cmd.InheritedFlags())
+        <span class="cov6" title="5">err = internalPrinter.SetupPrinter(cmd.InheritedFlags())
         if err != nil </span><span class="cov0" title="0">{
                 return errors.New(initError + err.Error())
         }</span>
-        <span class="cov0" title="0">return err</span>
+        <span class="cov6" title="5">return err</span>
 }
 
-func remediate(cmd *cobra.Command) error <span class="cov0" title="0">{
+func remediate(cmd *cobra.Command) error <span class="cov5" title="4">{
         resultsPath := flags.GetStrFlag(flags.Results)
         include := flags.GetMultiStrFlag(flags.IncludeIds)
 
         filepath.Clean(resultsPath)
 
         content, err := os.ReadFile(resultsPath)
-        if err != nil </span><span class="cov0" title="0">{
+        if err != nil </span><span class="cov1" title="1">{
                 log.Error().Msgf("failed to read file: %s", err)
                 return err
         }</span>
 
-        <span class="cov0" title="0">results := remediation.Report{}
+        <span class="cov4" title="3">results := remediation.Report{}
 
         err = json.Unmarshal(content, &amp;results)
-        if err != nil </span><span class="cov0" title="0">{
+        if err != nil </span><span class="cov1" title="1">{
                 log.Error().Msgf("failed to unmarshal file: %s", err)
                 return err
         }</span>
 
-        <span class="cov0" title="0">summary := &amp;remediation.Summary{
+        <span class="cov3" title="2">summary := &amp;remediation.Summary{
                 SelectedRemediationNumber:   0,
                 ActualRemediationDoneNumber: 0,
         }
@@ -1541,7 +1541,7 @@ func remediate(cmd *cobra.Command) error <span class="cov0" title="0">{
         // get all the remediationSets related to each filePath
         remediationSets := summary.GetRemediationSets(results, include)
 
-        for filePath := range remediationSets </span><span class="cov0" title="0">{
+        for filePath := range remediationSets </span><span class="cov3" title="2">{
                 fix := remediationSets[filePath].(remediation.Set)
                 err = summary.RemediateFile(filePath, fix)
                 if err != nil </span><span class="cov0" title="0">{
@@ -1549,7 +1549,7 @@ func remediate(cmd *cobra.Command) error <span class="cov0" title="0">{
                 }</span>
         }
 
-        <span class="cov0" title="0">fmt.Printf("\nSelected remediation: %d\n", summary.SelectedRemediationNumber)
+        <span class="cov3" title="2">fmt.Printf("\nSelected remediation: %d\n", summary.SelectedRemediationNumber)
         fmt.Printf("Remediation done: %d\n", summary.ActualRemediationDoneNumber)
 
         exitCode := consoleHelpers.RemediateExitCode(summary.SelectedRemediationNumber, summary.ActualRemediationDoneNumber)
@@ -1557,7 +1557,7 @@ func remediate(cmd *cobra.Command) error <span class="cov0" title="0">{
                 os.Exit(exitCode)
         }</span>
 
-        <span class="cov0" title="0">return nil</span>
+        <span class="cov3" title="2">return nil</span>
 }
 </pre>
 		
@@ -1595,7 +1595,7 @@ const (
 )
 
 // NewScanCmd creates a new instance of the scan Command
-func NewScanCmd() *cobra.Command <span class="cov7" title="12">{
+func NewScanCmd() *cobra.Command <span class="cov8" title="18">{
         return &amp;cobra.Command{
                 Use:   scanCommandStr,
                 Short: "Executes a scan analysis",
@@ -1608,7 +1608,7 @@ func NewScanCmd() *cobra.Command <span class="cov7" title="12">{
         }
 }
 
-func initScanCmd(scanCmd *cobra.Command) error <span class="cov7" title="12">{
+func initScanCmd(scanCmd *cobra.Command) error <span class="cov8" title="18">{
         if err := flags.InitJSONFlags(
                 scanCmd,
                 scanFlagsListContent,
@@ -1618,7 +1618,7 @@ func initScanCmd(scanCmd *cobra.Command) error <span class="cov7" title="12">{
                 return err
         }</span>
 
-        <span class="cov7" title="12">if err := scanCmd.MarkFlagRequired(flags.PathFlag); err != nil </span><span class="cov0" title="0">{
+        <span class="cov8" title="18">if err := scanCmd.MarkFlagRequired(flags.PathFlag); err != nil </span><span class="cov0" title="0">{
                 sentryReport.ReportSentry(&amp;sentryReport.Report{
                         Message:  "Failed to add command required flags",
                         Err:      err,
@@ -1626,7 +1626,7 @@ func initScanCmd(scanCmd *cobra.Command) error <span class="cov7" title="12">{
                 }, true)
                 log.Err(err).Msg("Failed to add command required flags")
         }</span>
-        <span class="cov7" title="12">return nil</span>
+        <span class="cov8" title="18">return nil</span>
 }
 
 func run(cmd *cobra.Command) error <span class="cov6" title="7">{
@@ -1759,7 +1759,7 @@ import (
 )
 
 // NewVersionCmd creates a new instance of the version Command
-func NewVersionCmd() *cobra.Command <span class="cov10" title="12">{
+func NewVersionCmd() *cobra.Command <span class="cov10" title="18">{
         return &amp;cobra.Command{
                 Use:   "version",
                 Short: "Displays the current version",
@@ -2174,13 +2174,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="37">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2205,7 +2205,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -15989,8 +15989,8 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
 }
 
 // Start initializes the Circle Progress Bar
-func (p ProgressBar) Start() <span class="cov1" title="1">{
-        for </span><span class="cov1" title="1">{ // increment until the Close func is called
+func (p ProgressBar) Start() <span class="cov0" title="0">{
+        for </span><span class="cov0" title="0">{ // increment until the Close func is called
                 p.pBar.Increment()
                 // lower cpu usage from infinite loop
                 time.Sleep(time.Millisecond * sleepTimeout)
