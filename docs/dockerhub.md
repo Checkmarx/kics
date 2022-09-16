@@ -27,7 +27,7 @@ docker run -t -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan 
 Scan a single file
 
 ```sh
-docker run -t -v {path_to_host_folder}/{filename}.{extention}:/path/{filename}.{extention} checkmarx/kics:latest scan -p /path -o "/path/"
+docker run -t -v {path_to_host_folder}:/path checkmarx/kics:latest scan -p /path/{filename}.{extention} -o "/path/"
 ```
 
 This will generate a `results.json` file, for both examples, under `path`.
