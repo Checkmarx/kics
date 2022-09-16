@@ -147,7 +147,7 @@
 				
 				<option value="file45">github.com/Checkmarx/kics/pkg/kics/sink.go (40.0%)</option>
 				
-				<option value="file46">github.com/Checkmarx/kics/pkg/kuberneter/auth.go (18.0%)</option>
+				<option value="file46">github.com/Checkmarx/kics/pkg/kuberneter/auth.go (100.0%)</option>
 				
 				<option value="file47">github.com/Checkmarx/kics/pkg/kuberneter/kuberneter.go (25.0%)</option>
 				
@@ -2174,13 +2174,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="36">total += v
+                <span class="cov8" title="31">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2205,7 +2205,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4776,7 +4776,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="11">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="11">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -8133,17 +8133,17 @@ type K8sConfig struct {
         Config *rest.Config
 }
 
-func getK8sClient() (client.Client, error) <span class="cov0" title="0">{
+func getK8sClient() (client.Client, error) <span class="cov9" title="6">{
         // authentication through k8s config file
-        if len(os.Getenv("K8S_CONFIG_FILE")) &gt; 0 </span><span class="cov0" title="0">{
+        if len(os.Getenv("K8S_CONFIG_FILE")) &gt; 0 </span><span class="cov4" title="2">{
                 config, err := clientcmd.BuildConfigFromFlags("", os.Getenv("K8S_CONFIG_FILE"))
 
-                if err != nil </span><span class="cov0" title="0">{
+                if err != nil </span><span class="cov1" title="1">{
                         log.Error().Msgf("failed to get k8s client through k8s config file: %s", err)
                         return nil, err
                 }</span>
 
-                <span class="cov0" title="0">log.Info().Msg("auth to k8s API through k8s config file")
+                <span class="cov1" title="1">log.Info().Msg("auth to k8s API through k8s config file")
 
                 config.QPS = 100
                 config.Burst = 100
@@ -8151,7 +8151,7 @@ func getK8sClient() (client.Client, error) <span class="cov0" title="0">{
                 return client.New(config, client.Options{})</span>
         }
 
-        <span class="cov0" title="0">c := &amp;K8sConfig{
+        <span class="cov7" title="4">c := &amp;K8sConfig{
                 Config: &amp;rest.Config{
                         QPS:   100,
                         Burst: 100,
@@ -8159,33 +8159,33 @@ func getK8sClient() (client.Client, error) <span class="cov0" title="0">{
         }
 
         // authentication through k8s service account token or k8s client certificate
-        if len(os.Getenv("K8S_HOST")) &gt; 0 &amp;&amp; c.hasCertificateAuthority() </span><span class="cov0" title="0">{
+        if len(os.Getenv("K8S_HOST")) &gt; 0 &amp;&amp; c.hasCertificateAuthority() </span><span class="cov4" title="2">{
                 c.Config.Host = os.Getenv("K8S_HOST")
 
                 // authentication through k8s service account token
-                if c.hasServiceAccountToken() </span><span class="cov0" title="0">{
+                if c.hasServiceAccountToken() </span><span class="cov1" title="1">{
                         log.Info().Msg("auth to k8s API through k8s service account token")
                         return client.New(c.Config, client.Options{})
                 }</span>
 
                 // authentication through k8s client certificate
-                <span class="cov0" title="0">if c.hasClientCertificate() </span><span class="cov0" title="0">{
+                <span class="cov1" title="1">if c.hasClientCertificate() </span><span class="cov1" title="1">{
                         log.Info().Msg("auth to k8s API through k8s client certificate")
                         return client.New(c.Config, client.Options{})
                 }</span>
         }
 
-        <span class="cov0" title="0">log.Error().Msg("failed to get k8s client. check the k8s cluster auth information")
+        <span class="cov4" title="2">log.Error().Msg("failed to get k8s client. check the k8s cluster auth information")
         return nil, errors.New("failed to get k8s client")</span>
 }
 
-func (c *K8sConfig) hasCertificateAuthority() bool <span class="cov10" title="4">{
-        if len(os.Getenv("K8S_CA_FILE")) &gt; 0 </span><span class="cov1" title="1">{
+func (c *K8sConfig) hasCertificateAuthority() bool <span class="cov9" title="6">{
+        if len(os.Getenv("K8S_CA_FILE")) &gt; 0 </span><span class="cov6" title="3">{
                 c.Config.TLSClientConfig.CAFile = os.Getenv("K8S_CA_FILE")
                 return true
         }</span>
 
-        <span class="cov8" title="3">if len(os.Getenv("K8S_CA_DATA")) &gt; 0 </span><span class="cov5" title="2">{
+        <span class="cov6" title="3">if len(os.Getenv("K8S_CA_DATA")) &gt; 0 </span><span class="cov4" title="2">{
                 caDataDecoded, err := b64.StdEncoding.DecodeString(os.Getenv("K8S_CA_DATA"))
                 if err != nil </span><span class="cov1" title="1">{
                         log.Error().Msgf("failed to decode K8S_CA_DATA: %s", err)
@@ -8198,56 +8198,57 @@ func (c *K8sConfig) hasCertificateAuthority() bool <span class="cov10" title="4"
         <span class="cov1" title="1">return false</span>
 }
 
-func (c *K8sConfig) hasServiceAccountToken() bool <span class="cov0" title="0">{
-        if len(os.Getenv("K8S_SA_TOKEN_FILE")) &gt; 0 </span><span class="cov0" title="0">{
+func (c *K8sConfig) hasServiceAccountToken() bool <span class="cov8" title="5">{
+        if len(os.Getenv("K8S_SA_TOKEN_FILE")) &gt; 0 </span><span class="cov1" title="1">{
                 c.Config.BearerTokenFile = os.Getenv("K8S_SA_TOKEN_FILE")
                 return true
         }</span>
 
-        <span class="cov0" title="0">if len(os.Getenv("K8S_SA_TOKEN_DATA")) &gt; 0 </span><span class="cov0" title="0">{
+        //maybe we should add decode verification?
+        <span class="cov7" title="4">if len(os.Getenv("K8S_SA_TOKEN_DATA")) &gt; 0 </span><span class="cov4" title="2">{
                 c.Config.BearerToken = os.Getenv("K8S_SA_TOKEN_DATA")
                 return true
         }</span>
 
-        <span class="cov0" title="0">return false</span>
+        <span class="cov4" title="2">return false</span>
 }
 
-func (c *K8sConfig) hasClientCertificate() bool <span class="cov0" title="0">{
+func (c *K8sConfig) hasClientCertificate() bool <span class="cov10" title="7">{
         hasCert := false
 
-        if len(os.Getenv("K8S_CERT_FILE")) &gt; 0 </span><span class="cov0" title="0">{
+        if len(os.Getenv("K8S_CERT_FILE")) &gt; 0 </span><span class="cov7" title="4">{
                 c.Config.TLSClientConfig.CertFile = os.Getenv("K8S_CERT_FILE")
                 hasCert = true
         }</span>
 
-        <span class="cov0" title="0">if len(os.Getenv("K8S_CERT_DATA")) &gt; 0 </span><span class="cov0" title="0">{
+        <span class="cov10" title="7">if len(os.Getenv("K8S_CERT_DATA")) &gt; 0 </span><span class="cov4" title="2">{
                 certDataDecoded, err := b64.StdEncoding.DecodeString(os.Getenv("K8S_CERT_DATA"))
-                if err != nil </span><span class="cov0" title="0">{
+                if err != nil </span><span class="cov1" title="1">{
                         log.Error().Msgf("failed to decode K8S_CERT_DATA: %s", err)
                         return false
                 }</span>
-                <span class="cov0" title="0">c.Config.TLSClientConfig.CertData = certDataDecoded
+                <span class="cov1" title="1">c.Config.TLSClientConfig.CertData = certDataDecoded
                 hasCert = true</span>
         }
 
-        <span class="cov0" title="0">if hasCert </span><span class="cov0" title="0">{
-                if len(os.Getenv("K8S_KEY_FILE")) &gt; 0 </span><span class="cov0" title="0">{
+        <span class="cov9" title="6">if hasCert </span><span class="cov8" title="5">{
+                if len(os.Getenv("K8S_KEY_FILE")) &gt; 0 </span><span class="cov6" title="3">{
                         c.Config.TLSClientConfig.KeyFile = os.Getenv("K8S_KEY_FILE")
                         return true
                 }</span>
 
-                <span class="cov0" title="0">if len(os.Getenv("K8S_KEY_DATA")) &gt; 0 </span><span class="cov0" title="0">{
+                <span class="cov4" title="2">if len(os.Getenv("K8S_KEY_DATA")) &gt; 0 </span><span class="cov4" title="2">{
                         keyDataDecoded, err := b64.StdEncoding.DecodeString(os.Getenv("K8S_KEY_DATA"))
-                        if err != nil </span><span class="cov0" title="0">{
+                        if err != nil </span><span class="cov1" title="1">{
                                 log.Error().Msgf("failed to decode K8S_KEY_DATA: %s", err)
                                 return false
                         }</span>
-                        <span class="cov0" title="0">c.Config.TLSClientConfig.KeyData = keyDataDecoded
+                        <span class="cov1" title="1">c.Config.TLSClientConfig.KeyData = keyDataDecoded
                         return true</span>
                 }
         }
 
-        <span class="cov0" title="0">return false</span>
+        <span class="cov1" title="1">return false</span>
 }
 </pre>
 		
