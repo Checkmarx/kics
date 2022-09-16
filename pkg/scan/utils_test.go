@@ -194,3 +194,95 @@ func Test_GetTotalFiles(t *testing.T) {
 		})
 	}
 }
+
+func Test_LogLoadingQueriesType(t *testing.T) {
+	tests := []struct {
+		name           string
+		types          []string
+		expectedOutput string
+	}{
+		{
+			name:           "empty types",
+			types:          []string{},
+			expectedOutput: "",
+		},
+		{
+			name:           "type terraform",
+			types:          []string{"terraform"},
+			expectedOutput: "",
+		},
+		{
+			name:           "multiple types",
+			types:          []string{"terraform", "cloudformation"},
+			expectedOutput: "",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			rescueStdout := os.Stdout
+			r, w, _ := os.Pipe()
+			os.Stdout = w
+
+			logLoadingQueriesType(tt.types)
+
+			w.Close()
+			out, _ := ioutil.ReadAll(r)
+			os.Stdout = rescueStdout
+
+			require.Equal(t, tt.expectedOutput, string(out))
+
+		})
+	}
+
+}
+
+func Test_ExtractPathType(t *testing.T) {
+	tests := []struct {
+		name                string
+		paths               []string
+		expectedTerraformer []string
+		expectedKuberneter  []string
+		expectedPaths       []string
+	}{
+		{
+			name:                "terraformer",
+			paths:               []string{"terraformer::*:*:*"},
+			expectedTerraformer: []string{"*:*:*"},
+			expectedKuberneter:  []string(nil),
+			expectedPaths:       []string(nil),
+		},
+
+		{
+			name:                "kuberneter",
+			paths:               []string{"kuberneter::*:*:*"},
+			expectedTerraformer: []string(nil),
+			expectedKuberneter:  []string{"*:*:*"},
+			expectedPaths:       []string(nil),
+		},
+		{
+			name:                "count progress and utils folder files",
+			paths:               []string{filepath.Join("..", "..", "pkg", "progress"), filepath.Join("..", "..", "pkg", "utils")},
+			expectedTerraformer: []string(nil),
+			expectedKuberneter:  []string(nil),
+			expectedPaths:       []string{filepath.Join("..", "..", "pkg", "progress"), filepath.Join("..", "..", "pkg", "utils")},
+		},
+		{
+			name:                "empty",
+			paths:               []string{},
+			expectedTerraformer: []string(nil),
+			expectedKuberneter:  []string(nil),
+			expectedPaths:       []string(nil),
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+
+			v_paths, v_terraformer, v_kuberneter := extractPathType(tt.paths)
+
+			require.Equal(t, tt.expectedTerraformer, v_terraformer)
+			require.Equal(t, tt.expectedKuberneter, v_kuberneter)
+			require.Equal(t, tt.expectedPaths, v_paths)
+
+		})
+	}
+}
