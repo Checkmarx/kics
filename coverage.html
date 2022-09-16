@@ -283,7 +283,7 @@
 				
 				<option value="file113">github.com/Checkmarx/kics/pkg/scan/scan.go (3.5%)</option>
 				
-				<option value="file114">github.com/Checkmarx/kics/pkg/scan/utils.go (21.3%)</option>
+				<option value="file114">github.com/Checkmarx/kics/pkg/scan/utils.go (29.5%)</option>
 				
 				<option value="file115">github.com/Checkmarx/kics/pkg/scanner/scanner.go (56.4%)</option>
 				
@@ -2174,13 +2174,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="35">total += v
+                <span class="cov8" title="33">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2205,7 +2205,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov6" title="13">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4776,7 +4776,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="11">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="11">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -20454,15 +20454,15 @@ func (c *Client) preparePaths() error <span class="cov0" title="0">{
 }
 
 // GetQueryPath gets all the queries paths
-func (c *Client) GetQueryPath() error <span class="cov10" title="3">{
+func (c *Client) GetQueryPath() error <span class="cov3" title="3">{
         queriesPath := make([]string, 0)
-        if c.ScanParams.ChangedDefaultQueryPath </span><span class="cov6" title="2">{
-                for _, queryPath := range c.ScanParams.QueriesPath </span><span class="cov10" title="3">{
+        if c.ScanParams.ChangedDefaultQueryPath </span><span class="cov2" title="2">{
+                for _, queryPath := range c.ScanParams.QueriesPath </span><span class="cov3" title="3">{
                         extractedQueriesPath, errExtractQueries := resolvePath(queryPath, "queries-path")
                         if errExtractQueries != nil </span><span class="cov0" title="0">{
                                 return errExtractQueries
                         }</span>
-                        <span class="cov10" title="3">queriesPath = append(queriesPath, extractedQueriesPath)</span>
+                        <span class="cov3" title="3">queriesPath = append(queriesPath, extractedQueriesPath)</span>
                 }
         } else<span class="cov1" title="1"> {
                 log.Debug().Msgf("Looking for queries in executable path and in current work directory")
@@ -20472,7 +20472,7 @@ func (c *Client) GetQueryPath() error <span class="cov10" title="3">{
                 }</span>
                 <span class="cov0" title="0">queriesPath = append(queriesPath, defaultQueryPath)</span>
         }
-        <span class="cov6" title="2">c.ScanParams.QueriesPath = queriesPath
+        <span class="cov2" title="2">c.ScanParams.QueriesPath = queriesPath
         return nil</span>
 }
 
@@ -20488,15 +20488,15 @@ func (c *Client) getLibraryPath() error <span class="cov0" title="0">{
         <span class="cov0" title="0">return nil</span>
 }
 
-func resolvePath(flagContent, flagName string) (string, error) <span class="cov10" title="3">{
+func resolvePath(flagContent, flagName string) (string, error) <span class="cov3" title="3">{
         extractedPath, errExtractPath := provider.GetSources([]string{flagContent})
         if errExtractPath != nil </span><span class="cov0" title="0">{
                 return "", errExtractPath
         }</span>
-        <span class="cov10" title="3">if len(extractedPath.Path) != 1 </span><span class="cov0" title="0">{
+        <span class="cov3" title="3">if len(extractedPath.Path) != 1 </span><span class="cov0" title="0">{
                 return "", fmt.Errorf("could not find a valid path (--%s) on %s", flagName, flagContent)
         }</span>
-        <span class="cov10" title="3">log.Debug().Msgf("Trying to load path (--%s) from %s", flagName, flagContent)
+        <span class="cov3" title="3">log.Debug().Msgf("Trying to load path (--%s) from %s", flagName, flagContent)
         return extractedPath.Path[0], nil</span>
 }
 
@@ -20557,7 +20557,7 @@ func deleteExtractionFolder(extractionMap map[string]model.ExtractedPathObject) 
         }
 }
 
-func contributionAppeal(customPrint *consolePrinter.Printer, queriesPath []string) <span class="cov6" title="2">{
+func contributionAppeal(customPrint *consolePrinter.Printer, queriesPath []string) <span class="cov2" title="2">{
         if !utils.ContainsInString(filepath.Join("assets", "queries"), queriesPath) </span><span class="cov1" title="1">{
                 msg := "\nAre you using a custom query? If so, feel free to contribute to KICS!\n"
                 contributionPage := "Check out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md\n"
@@ -20568,7 +20568,7 @@ func contributionAppeal(customPrint *consolePrinter.Printer, queriesPath []strin
 }
 
 // printVersionCheck - Prints and logs warning if not using KICS latest version
-func printVersionCheck(customPrint *consolePrinter.Printer, s *model.Summary) <span class="cov6" title="2">{
+func printVersionCheck(customPrint *consolePrinter.Printer, s *model.Summary) <span class="cov2" title="2">{
         if !s.LatestVersion.Latest </span><span class="cov1" title="1">{
                 message := fmt.Sprintf("A new version 'v%s' of KICS is available, please consider updating", s.LatestVersion.LatestVersionTag)
 
@@ -20577,24 +20577,24 @@ func printVersionCheck(customPrint *consolePrinter.Printer, s *model.Summary) <s
         }</span>
 }
 
-func getTotalFiles(paths []string) int <span class="cov0" title="0">{
+func getTotalFiles(paths []string) int <span class="cov4" title="4">{
         files := 0
-        for _, path := range paths </span><span class="cov0" title="0">{
-                if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov0" title="0">{
-                        if err != nil </span><span class="cov0" title="0">{
+        for _, path := range paths </span><span class="cov4" title="5">{
+                if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov10" title="45">{
+                        if err != nil </span><span class="cov1" title="1">{
                                 return err
                         }</span>
 
-                        <span class="cov0" title="0">if !info.IsDir() </span><span class="cov0" title="0">{
+                        <span class="cov9" title="44">if !info.IsDir() </span><span class="cov9" title="36">{
                                 files++
                         }</span>
 
-                        <span class="cov0" title="0">return nil</span>
-                }); err != nil <span class="cov0" title="0">{
+                        <span class="cov9" title="44">return nil</span>
+                }); err != nil <span class="cov1" title="1">{
                         log.Error().Msgf("failed to walk path %s: %s", path, err)
                 }</span>
         }
-        <span class="cov0" title="0">return files</span>
+        <span class="cov4" title="4">return files</span>
 }
 </pre>
 		
