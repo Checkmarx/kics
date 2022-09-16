@@ -7,6 +7,7 @@ import (
 	"reflect"
 	"testing"
 
+	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/model"
 	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
 	"github.com/stretchr/testify/require"
@@ -283,6 +284,71 @@ func Test_ExtractPathType(t *testing.T) {
 			require.Equal(t, tt.expectedKuberneter, v_kuberneter)
 			require.Equal(t, tt.expectedPaths, v_paths)
 
+		})
+	}
+}
+
+func Test_CombinePaths(t *testing.T) {
+	tests := []struct {
+		name           string
+		terraformer    provider.ExtractedPath
+		kuberneter     provider.ExtractedPath
+		regular        provider.ExtractedPath
+		expectedOutput provider.ExtractedPath
+	}{
+		{
+			name: "terraformer ExtractedPath",
+			terraformer: provider.ExtractedPath{
+				Path: []string{""},
+				ExtractionMap: map[string]model.ExtractedPathObject{
+					"": {
+						Path:      "",
+						LocalPath: true,
+					},
+				},
+			},
+			kuberneter: provider.ExtractedPath{},
+			regular:    provider.ExtractedPath{},
+			expectedOutput: provider.ExtractedPath{
+				Path: []string{""},
+				ExtractionMap: map[string]model.ExtractedPathObject{
+					"": {
+						Path:      "",
+						LocalPath: true,
+					},
+				},
+			},
+		},
+		{
+			name: "kuberneter ExtractedPath",
+			kuberneter: provider.ExtractedPath{
+				Path: []string{""},
+				ExtractionMap: map[string]model.ExtractedPathObject{
+					"": {
+						Path:      "",
+						LocalPath: true,
+					},
+				},
+			},
+			terraformer: provider.ExtractedPath{},
+			regular:     provider.ExtractedPath{},
+			expectedOutput: provider.ExtractedPath{
+				Path: []string{""},
+				ExtractionMap: map[string]model.ExtractedPathObject{
+					"": {
+						Path:      "",
+						LocalPath: true,
+					},
+				},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+
+			v := combinePaths(tt.terraformer, tt.kuberneter, tt.regular)
+
+			require.Equal(t, tt.expectedOutput, v)
 		})
 	}
 }
