@@ -91,6 +91,7 @@ func (c *K8sConfig) hasServiceAccountToken() bool {
 		return true
 	}
 
+	//maybe we should add decode verification?
 	if len(os.Getenv("K8S_SA_TOKEN_DATA")) > 0 {
 		c.Config.BearerToken = os.Getenv("K8S_SA_TOKEN_DATA")
 		return true
