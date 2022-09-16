@@ -92,7 +92,7 @@ func Test_PrintVersionCheck(t *testing.T) {
 					LatestVersionTag: "1.1.0",
 				},
 			},
-			expectedOutput: "\x1b[38;2;255;153;19mA new version 'v1.1.0' of KICS is available, please consider updating\x1b[0m\n",
+			expectedOutput: "A new version 'v1.1.0' of KICS is available, please consider updating\n",
 		},
 	}
 	for _, tt := range tests {
@@ -123,7 +123,7 @@ func Test_ContributionAppeal(t *testing.T) {
 			name:           "test custom query",
 			consolePrinter: consolePrinter.NewPrinter(true),
 			queriesPath:    []string{filepath.Join("custom", "query", "path")},
-			expectedOutput: "\x1b[38;2;255;227;19m\nAre you using a custom query? If so, feel free to contribute to KICS!\nCheck out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md\n\x1b[0m\n",
+			expectedOutput: "\nAre you using a custom query? If so, feel free to contribute to KICS!\nCheck out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md\n\n",
 		},
 		{
 			name:           "test non custom query",
