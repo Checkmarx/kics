@@ -92,7 +92,7 @@ func Test_PrintVersionCheck(t *testing.T) {
 					LatestVersionTag: "1.1.0",
 				},
 			},
-			expectedOutput: "A new version 'v1.1.0' of KICS is available, please consider updating\n",
+			expectedOutput: "A new version 'v1.1.0' of KICS is available, please consider updating",
 		},
 	}
 	for _, tt := range tests {
@@ -107,7 +107,11 @@ func Test_PrintVersionCheck(t *testing.T) {
 			out, _ := ioutil.ReadAll(r)
 			os.Stdout = rescueStdout
 
-			require.Equal(t, tt.expectedOutput, string(out))
+			if tt.expectedOutput != "" {
+				require.Contains(t, string(out), tt.expectedOutput)
+			} else {
+				require.Equal(t, tt.expectedOutput, string(out))
+			}
 		})
 	}
 }
@@ -123,7 +127,7 @@ func Test_ContributionAppeal(t *testing.T) {
 			name:           "test custom query",
 			consolePrinter: consolePrinter.NewPrinter(true),
 			queriesPath:    []string{filepath.Join("custom", "query", "path")},
-			expectedOutput: "\nAre you using a custom query? If so, feel free to contribute to KICS!\nCheck out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md\n\n",
+			expectedOutput: "\nAre you using a custom query? If so, feel free to contribute to KICS!\nCheck out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md",
 		},
 		{
 			name:           "test non custom query",
@@ -144,8 +148,49 @@ func Test_ContributionAppeal(t *testing.T) {
 			out, _ := ioutil.ReadAll(r)
 			os.Stdout = rescueStdout
 
-			require.Equal(t, tt.expectedOutput, string(out))
+			if tt.expectedOutput != "" {
+				require.Contains(t, string(out), tt.expectedOutput)
+			} else {
+				require.Equal(t, tt.expectedOutput, string(out))
+			}
 		})
 	}
 
+}
+
+func Test_GetTotalFiles(t *testing.T) {
+	tests := []struct {
+		name           string
+		paths          []string
+		expectedOutput int
+	}{
+		{
+			name:           "count utils folder files",
+			paths:          []string{filepath.Join("..", "..", "pkg", "utils")},
+			expectedOutput: 12,
+		},
+		{
+			name:           "count progress folder files",
+			paths:          []string{filepath.Join("..", "..", "pkg", "progress")},
+			expectedOutput: 6,
+		},
+		{
+			name:           "count progress and utils folder files",
+			paths:          []string{filepath.Join("..", "..", "pkg", "progress"), filepath.Join("..", "..", "pkg", "utils")},
+			expectedOutput: 18,
+		},
+		{
+			name:           "count invalid folder",
+			paths:          []string{filepath.Join("pkg", "progress")},
+			expectedOutput: 0,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+
+			v := getTotalFiles(tt.paths)
+			require.Equal(t, tt.expectedOutput, v)
+
+		})
+	}
 }
