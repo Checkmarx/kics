@@ -1,9 +1,15 @@
 package scan
 
 import (
+	"io/ioutil"
+	"os"
 	"path/filepath"
 	"reflect"
 	"testing"
+
+	"github.com/Checkmarx/kics/pkg/model"
+	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
+	"github.com/stretchr/testify/require"
 )
 
 func Test_GetQueryPath(t *testing.T) {
@@ -55,4 +61,91 @@ func Test_GetQueryPath(t *testing.T) {
 			}
 		})
 	}
+}
+
+func Test_PrintVersionCheck(t *testing.T) {
+	tests := []struct {
+		name           string
+		consolePrinter *consolePrinter.Printer
+		modelSummary   *model.Summary
+		expectedOutput string
+	}{
+		{
+			name:           "test latest version",
+			consolePrinter: consolePrinter.NewPrinter(true),
+			modelSummary: &model.Summary{
+				Version: "v1.0.0",
+				LatestVersion: model.Version{
+					Latest:           true,
+					LatestVersionTag: "1.0.0",
+				},
+			},
+			expectedOutput: "",
+		},
+		{
+			name:           "test outdated version",
+			consolePrinter: consolePrinter.NewPrinter(true),
+			modelSummary: &model.Summary{
+				Version: "v1.0.0",
+				LatestVersion: model.Version{
+					Latest:           false,
+					LatestVersionTag: "1.1.0",
+				},
+			},
+			expectedOutput: "\x1b[38;2;255;153;19mA new version 'v1.1.0' of KICS is available, please consider updating\x1b[0m\n",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			rescueStdout := os.Stdout
+			r, w, _ := os.Pipe()
+			os.Stdout = w
+
+			printVersionCheck(tt.consolePrinter, tt.modelSummary)
+
+			w.Close()
+			out, _ := ioutil.ReadAll(r)
+			os.Stdout = rescueStdout
+
+			require.Equal(t, tt.expectedOutput, string(out))
+		})
+	}
+}
+
+func Test_ContributionAppeal(t *testing.T) {
+	tests := []struct {
+		name           string
+		consolePrinter *consolePrinter.Printer
+		queriesPath    []string
+		expectedOutput string
+	}{
+		{
+			name:           "test custom query",
+			consolePrinter: consolePrinter.NewPrinter(true),
+			queriesPath:    []string{filepath.Join("custom", "query", "path")},
+			expectedOutput: "\x1b[38;2;255;227;19m\nAre you using a custom query? If so, feel free to contribute to KICS!\nCheck out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md\n\x1b[0m\n",
+		},
+		{
+			name:           "test non custom query",
+			consolePrinter: consolePrinter.NewPrinter(true),
+			queriesPath:    []string{filepath.Join("assets", "queries", "path")},
+			expectedOutput: "",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			rescueStdout := os.Stdout
+			r, w, _ := os.Pipe()
+			os.Stdout = w
+
+			contributionAppeal(tt.consolePrinter, tt.queriesPath)
+
+			w.Close()
+			out, _ := ioutil.ReadAll(r)
+			os.Stdout = rescueStdout
+
+			require.Equal(t, tt.expectedOutput, string(out))
+		})
+	}
+
 }

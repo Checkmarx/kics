@@ -5,3 +5,4 @@ pkg/engine/mock/*.go
 **/*_mock.go
 pkg/parser/jsonfilter/parser/jsonfilter*
 internal/sentry
+pkg/model/model_easyjson.go
