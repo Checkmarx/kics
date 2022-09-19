@@ -283,7 +283,7 @@
 				
 				<option value="file113">github.com/Checkmarx/kics/pkg/scan/scan.go (3.5%)</option>
 				
-				<option value="file114">github.com/Checkmarx/kics/pkg/scan/utils.go (56.6%)</option>
+				<option value="file114">github.com/Checkmarx/kics/pkg/scan/utils.go (62.3%)</option>
 				
 				<option value="file115">github.com/Checkmarx/kics/pkg/scanner/scanner.go (56.4%)</option>
 				
@@ -2174,13 +2174,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov8" title="31">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2205,7 +2205,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4567,7 +4567,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -20456,29 +20456,29 @@ func combinePaths(terraformer, kuberneter, regular provider.ExtractedPath) provi
         return combinedPaths</span>
 }
 
-func (c *Client) preparePaths() error <span class="cov0" title="0">{
+func (c *Client) preparePaths() error <span class="cov3" title="3">{
         var err error
         err = c.GetQueryPath()
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
-        <span class="cov0" title="0">err = c.getLibraryPath()
-        if err != nil </span><span class="cov0" title="0">{
+        <span class="cov3" title="3">err = c.getLibraryPath()
+        if err != nil </span><span class="cov1" title="1">{
                 return err
         }</span>
-        <span class="cov0" title="0">return nil</span>
+        <span class="cov2" title="2">return nil</span>
 }
 
 // GetQueryPath gets all the queries paths
-func (c *Client) GetQueryPath() error <span class="cov3" title="3">{
+func (c *Client) GetQueryPath() error <span class="cov5" title="6">{
         queriesPath := make([]string, 0)
-        if c.ScanParams.ChangedDefaultQueryPath </span><span class="cov2" title="2">{
-                for _, queryPath := range c.ScanParams.QueriesPath </span><span class="cov3" title="3">{
+        if c.ScanParams.ChangedDefaultQueryPath </span><span class="cov4" title="5">{
+                for _, queryPath := range c.ScanParams.QueriesPath </span><span class="cov5" title="8">{
                         extractedQueriesPath, errExtractQueries := resolvePath(queryPath, "queries-path")
                         if errExtractQueries != nil </span><span class="cov0" title="0">{
                                 return errExtractQueries
                         }</span>
-                        <span class="cov3" title="3">queriesPath = append(queriesPath, extractedQueriesPath)</span>
+                        <span class="cov5" title="8">queriesPath = append(queriesPath, extractedQueriesPath)</span>
                 }
         } else<span class="cov1" title="1"> {
                 log.Debug().Msgf("Looking for queries in executable path and in current work directory")
@@ -20488,31 +20488,31 @@ func (c *Client) GetQueryPath() error <span class="cov3" title="3">{
                 }</span>
                 <span class="cov0" title="0">queriesPath = append(queriesPath, defaultQueryPath)</span>
         }
-        <span class="cov2" title="2">c.ScanParams.QueriesPath = queriesPath
+        <span class="cov4" title="5">c.ScanParams.QueriesPath = queriesPath
         return nil</span>
 }
 
-func (c *Client) getLibraryPath() error <span class="cov3" title="3">{
-        if c.ScanParams.ChangedDefaultLibrariesPath </span><span class="cov2" title="2">{
+func (c *Client) getLibraryPath() error <span class="cov5" title="6">{
+        if c.ScanParams.ChangedDefaultLibrariesPath </span><span class="cov4" title="4">{
                 extractedLibrariesPath, errExtractLibraries := resolvePath(c.ScanParams.LibrariesPath, "libraries-path")
-                if errExtractLibraries != nil </span><span class="cov1" title="1">{
+                if errExtractLibraries != nil </span><span class="cov2" title="2">{
                         return errExtractLibraries
                 }</span>
 
-                <span class="cov1" title="1">c.ScanParams.LibrariesPath = extractedLibrariesPath</span>
+                <span class="cov2" title="2">c.ScanParams.LibrariesPath = extractedLibrariesPath</span>
         }
-        <span class="cov2" title="2">return nil</span>
+        <span class="cov4" title="4">return nil</span>
 }
 
-func resolvePath(flagContent, flagName string) (string, error) <span class="cov4" title="5">{
+func resolvePath(flagContent, flagName string) (string, error) <span class="cov6" title="12">{
         extractedPath, errExtractPath := provider.GetSources([]string{flagContent})
-        if errExtractPath != nil </span><span class="cov1" title="1">{
+        if errExtractPath != nil </span><span class="cov2" title="2">{
                 return "", errExtractPath
         }</span>
-        <span class="cov4" title="4">if len(extractedPath.Path) != 1 </span><span class="cov0" title="0">{
+        <span class="cov6" title="10">if len(extractedPath.Path) != 1 </span><span class="cov0" title="0">{
                 return "", fmt.Errorf("could not find a valid path (--%s) on %s", flagName, flagContent)
         }</span>
-        <span class="cov4" title="4">log.Debug().Msgf("Trying to load path (--%s) from %s", flagName, flagContent)
+        <span class="cov6" title="10">log.Debug().Msgf("Trying to load path (--%s) from %s", flagName, flagContent)
         return extractedPath.Path[0], nil</span>
 }
 
