@@ -1,7 +1,6 @@
 package scan
 
 import (
-	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -416,12 +415,50 @@ func Test_CombinePaths(t *testing.T) {
 }
 
 func Test_GetLibraryPath(t *testing.T) {
+	c := &Client{}
+
 	tests := []struct {
 		name           string
-		terraformer    provider.ExtractedPath
-		kuberneter     provider.ExtractedPath
-		regular        provider.ExtractedPath
-		expectedOutput provider.ExtractedPath
-	}{}
-	fmt.Print(tests)
+		scanParameters Parameters
+		expectedError  bool
+	}{
+		{
+			name: "default without flag",
+			scanParameters: Parameters{
+				LibrariesPath:               "./assets/libraries",
+				ChangedDefaultLibrariesPath: false,
+			},
+			expectedError: false,
+		},
+		{
+			name: "default with flag",
+			scanParameters: Parameters{
+				LibrariesPath:               filepath.Join("..", "..", "assets", "libraries"),
+				ChangedDefaultLibrariesPath: true,
+			},
+			expectedError: false,
+		},
+		{
+			name: "custom",
+			scanParameters: Parameters{
+				LibrariesPath:               "./test",
+				ChangedDefaultLibrariesPath: true,
+			},
+			expectedError: true,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			c.ScanParams = &tt.scanParameters
+			v := c.getLibraryPath()
+
+			if tt.expectedError {
+				require.Error(t, v)
+			} else {
+				require.NoError(t, v)
+			}
+
+		})
+	}
 }
