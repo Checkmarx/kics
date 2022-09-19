@@ -7,6 +7,7 @@ import (
 	"reflect"
 	"testing"
 
+	"github.com/Checkmarx/kics/pkg/analyzer"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/model"
 	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
@@ -527,6 +528,51 @@ func Test_PreparePaths(t *testing.T) {
 				require.NoError(t, v)
 			}
 
+		})
+	}
+}
+
+func Test_AnalyzePaths(t *testing.T) {
+	tests := []struct {
+		name           string
+		analyzer       analyzer.Analyzer
+		expectedError  bool
+		expectedOutput model.AnalyzedPaths
+	}{
+		{
+			name: "test",
+			analyzer: analyzer.Analyzer{
+				Paths: []string{
+					"/home/miguel/cx/kics/assets/queries/terraform/alicloud/action_trail_logging_all_regions_disabled",
+					"/home/miguel/cx/kics/assets/queries/terraform/alicloud/actiontrail_trail_oss_bucket_is_publicly_accessible",
+				},
+				Types:             []string{""},
+				Exc:               []string{},
+				GitIgnoreFileName: ".gitignore",
+				ExcludeGitIgnore:  false,
+			},
+			expectedError: false,
+			expectedOutput: model.AnalyzedPaths{
+				Types: []string{"terraform"},
+				Exc: []string{
+					"/home/miguel/cx/kics/assets/queries/terraform/alicloud/actiontrail_trail_oss_bucket_is_publicly_accessible/test/positive_expected_result.json",
+					"/home/miguel/cx/kics/assets/queries/terraform/alicloud/action_trail_logging_all_regions_disabled/metadata.json",
+					"/home/miguel/cx/kics/assets/queries/terraform/alicloud/actiontrail_trail_oss_bucket_is_publicly_accessible/metadata.json",
+					"/home/miguel/cx/kics/assets/queries/terraform/alicloud/action_trail_logging_all_regions_disabled/test/positive_expected_result.json",
+				},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			anPaths, err := analyzePaths(&tt.analyzer)
+			require.ElementsMatch(t, tt.expectedOutput.Types, anPaths.Types)
+			require.ElementsMatch(t, tt.expectedOutput.Exc, anPaths.Exc)
+			if tt.expectedError {
+				require.Error(t, err)
+			} else {
+				require.NoError(t, err)
+			}
 		})
 	}
 }
