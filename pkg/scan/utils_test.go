@@ -415,7 +415,6 @@ func Test_CombinePaths(t *testing.T) {
 }
 
 func Test_GetLibraryPath(t *testing.T) {
-	c := &Client{}
 
 	tests := []struct {
 		name           string
@@ -450,9 +449,78 @@ func Test_GetLibraryPath(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			c := &Client{}
+
 			c.ScanParams = &tt.scanParameters
 			v := c.getLibraryPath()
 
+			if tt.expectedError {
+				require.Error(t, v)
+			} else {
+				require.NoError(t, v)
+			}
+
+		})
+	}
+}
+
+func Test_PreparePaths(t *testing.T) {
+
+	tests := []struct {
+		name            string
+		scanParameters  Parameters
+		expectedError   bool
+		queriesQuantity int
+	}{
+		{
+			name: "default without flag",
+			scanParameters: Parameters{
+				LibrariesPath:               "./assets/libraries",
+				ChangedDefaultLibrariesPath: false,
+				QueriesPath: []string{
+					filepath.Join("..", "..", "assets", "queries", "terraform", "aws"),
+					filepath.Join("..", "..", "assets", "queries", "terraform", "azure"),
+				},
+				ChangedDefaultQueryPath: true,
+			},
+			expectedError:   false,
+			queriesQuantity: 2,
+		},
+		{
+			name: "default with flag",
+			scanParameters: Parameters{
+				LibrariesPath:               filepath.Join("..", "..", "assets", "libraries"),
+				ChangedDefaultLibrariesPath: true,
+				QueriesPath: []string{
+					filepath.Join("..", "..", "assets", "queries", "terraform", "aws"),
+					filepath.Join("..", "..", "assets", "queries", "terraform", "azure"),
+				},
+				ChangedDefaultQueryPath: true,
+			},
+			queriesQuantity: 2,
+			expectedError:   false,
+		},
+		{
+			name: "custom",
+			scanParameters: Parameters{
+				LibrariesPath:               "./test",
+				ChangedDefaultLibrariesPath: true,
+				QueriesPath: []string{
+					filepath.Join("..", "..", "assets", "queries", "terraform", "aws"),
+				},
+				ChangedDefaultQueryPath: true,
+			},
+			queriesQuantity: 1,
+			expectedError:   true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			c := &Client{}
+			c.ScanParams = &tt.scanParameters
+			v := c.preparePaths()
+
+			require.Equal(t, tt.queriesQuantity, len(c.ScanParams.QueriesPath))
 			if tt.expectedError {
 				require.Error(t, v)
 			} else {
