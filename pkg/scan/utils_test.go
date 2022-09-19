@@ -1,6 +1,7 @@
 package scan
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -342,6 +343,67 @@ func Test_CombinePaths(t *testing.T) {
 				},
 			},
 		},
+		{
+			name: "one regular ExtractedPath",
+			regular: provider.ExtractedPath{
+				Path: []string{"kics/assets/queries/terraform/alicloud/action_trail_logging_all_regions_disabled"},
+				ExtractionMap: map[string]model.ExtractedPathObject{
+					"": {
+						Path:      "./assets/queries/terraform/alicloud/action_trail_logging_all_regions_disabled",
+						LocalPath: true,
+					},
+				},
+			},
+			terraformer: provider.ExtractedPath{},
+			kuberneter:  provider.ExtractedPath{},
+			expectedOutput: provider.ExtractedPath{
+				Path: []string{"kics/assets/queries/terraform/alicloud/action_trail_logging_all_regions_disabled"},
+				ExtractionMap: map[string]model.ExtractedPathObject{
+					"": {
+						Path:      "./assets/queries/terraform/alicloud/action_trail_logging_all_regions_disabled",
+						LocalPath: true,
+					},
+				},
+			},
+		},
+		{
+			name: "multiple regular ExtractedPath",
+			regular: provider.ExtractedPath{
+				Path: []string{
+					"/home/miguel/cx/kics/assets/queries/terraform/alicloud/action_trail_logging_all_regions_disabled",
+					"/home/miguel/cx/kics/assets/queries/terraform/alicloud/actiontrail_trail_oss_bucket_is_publicly_accessible",
+				},
+				ExtractionMap: map[string]model.ExtractedPathObject{
+					"/tmp/kics-extract-872644142": {
+						Path:      "github.com/Checkmarx/kics/pkg/model.ExtractedPathObject",
+						LocalPath: true,
+					},
+					"/tmp/kics-extract-539696053": {
+						Path:      "github.com/Checkmarx/kics/pkg/model.ExtractedPathObject",
+						LocalPath: true,
+					},
+				},
+			},
+
+			terraformer: provider.ExtractedPath{},
+			kuberneter:  provider.ExtractedPath{},
+			expectedOutput: provider.ExtractedPath{
+				Path: []string{
+					"/home/miguel/cx/kics/assets/queries/terraform/alicloud/action_trail_logging_all_regions_disabled",
+					"/home/miguel/cx/kics/assets/queries/terraform/alicloud/actiontrail_trail_oss_bucket_is_publicly_accessible",
+				},
+				ExtractionMap: map[string]model.ExtractedPathObject{
+					"/tmp/kics-extract-872644142": {
+						Path:      "github.com/Checkmarx/kics/pkg/model.ExtractedPathObject",
+						LocalPath: true,
+					},
+					"/tmp/kics-extract-539696053": {
+						Path:      "github.com/Checkmarx/kics/pkg/model.ExtractedPathObject",
+						LocalPath: true,
+					},
+				},
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -351,4 +413,15 @@ func Test_CombinePaths(t *testing.T) {
 			require.Equal(t, tt.expectedOutput, v)
 		})
 	}
+}
+
+func Test_GetLibraryPath(t *testing.T) {
+	tests := []struct {
+		name           string
+		terraformer    provider.ExtractedPath
+		kuberneter     provider.ExtractedPath
+		regular        provider.ExtractedPath
+		expectedOutput provider.ExtractedPath
+	}{}
+	fmt.Print(tests)
 }
