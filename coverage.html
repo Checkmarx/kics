@@ -273,7 +273,7 @@
 				
 				<option value="file108">github.com/Checkmarx/kics/pkg/resolver/helm/helm.go (88.5%)</option>
 				
-				<option value="file109">github.com/Checkmarx/kics/pkg/resolver/helm/resolver.go (88.4%)</option>
+				<option value="file109">github.com/Checkmarx/kics/pkg/resolver/helm/resolver.go (85.7%)</option>
 				
 				<option value="file110">github.com/Checkmarx/kics/pkg/resolver/resolver.go (90.5%)</option>
 				
@@ -283,7 +283,7 @@
 				
 				<option value="file113">github.com/Checkmarx/kics/pkg/scan/scan.go (3.5%)</option>
 				
-				<option value="file114">github.com/Checkmarx/kics/pkg/scan/utils.go (50.0%)</option>
+				<option value="file114">github.com/Checkmarx/kics/pkg/scan/utils.go (50.8%)</option>
 				
 				<option value="file115">github.com/Checkmarx/kics/pkg/scanner/scanner.go (56.4%)</option>
 				
@@ -2174,13 +2174,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="28">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov8" title="28">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -4776,7 +4776,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="11">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -19583,6 +19583,7 @@ func getExcluded(charterino *chart.Chart, chartpath string) []string <span class
 
 import (
         "path/filepath"
+        "regexp"
         "strconv"
         "strings"
 
@@ -19620,7 +19621,13 @@ func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) <span c
                 Excluded: excluded,
         }
         for _, split := range *splits </span><span class="cov3" title="3">{
-                origpath := filepath.Join(filepath.Dir(filePath), split.path)
+                subFolder := filepath.Base(filePath)
+
+                splitPath := strings.Split(split.path, getPathSeparator(split.path))
+
+                splited := filepath.Join(splitPath[1:]...)
+
+                origpath := filepath.Join(filepath.Dir(filePath), subFolder, splited)
                 rfiles.File = append(rfiles.File, model.ResolvedHelm{
                         FileName:     origpath,
                         Content:      split.content,
@@ -19741,6 +19748,15 @@ func getIDMap(originalData []byte) (map[int]interface{}, error) <span class="cov
         <span class="cov3" title="3">ids[idHelm] = mapLines
 
         return ids, nil</span>
+}
+
+func getPathSeparator(path string) string <span class="cov3" title="3">{
+        if matched, err := regexp.MatchString(`[a-zA-Z0-9_\/-]+(\[a-zA-Z0-9_\/-]+)*`, path); matched &amp;&amp; err == nil </span><span class="cov3" title="3">{
+                return "/"
+        }</span> else<span class="cov0" title="0"> if matched, err := regexp.MatchString(`[a-z0-9_.$-]+(\\[a-z0-9_.$-]+)*`, path); matched &amp;&amp; err == nil </span><span class="cov0" title="0">{
+                return "\\"
+        }</span>
+        <span class="cov0" title="0">return ""</span>
 }
 </pre>
 		
@@ -20418,7 +20434,7 @@ func (c *Client) prepareAndAnalyzePaths(ctx context.Context) (provider.Extracted
         return allPaths, nil</span>
 }
 
-func combinePaths(terraformer, kuberneter, regular provider.ExtractedPath) provider.ExtractedPath <span class="cov2" title="2">{
+func combinePaths(terraformer, kuberneter, regular provider.ExtractedPath) provider.ExtractedPath <span class="cov4" title="4">{
         var combinedPaths provider.ExtractedPath
         paths := make([]string, 0)
         combinedPathsEx := make(map[string]model.ExtractedPathObject)
@@ -20426,17 +20442,17 @@ func combinePaths(terraformer, kuberneter, regular provider.ExtractedPath) provi
         paths = append(paths, kuberneter.Path...)
         paths = append(paths, regular.Path...)
         combinedPaths.Path = paths
-        for k, v := range regular.ExtractionMap </span><span class="cov0" title="0">{
+        for k, v := range regular.ExtractionMap </span><span class="cov3" title="3">{
                 combinedPathsEx[k] = v
         }</span>
-        <span class="cov2" title="2">for k, v := range terraformer.ExtractionMap </span><span class="cov1" title="1">{
+        <span class="cov4" title="4">for k, v := range terraformer.ExtractionMap </span><span class="cov1" title="1">{
                 combinedPathsEx[k] = v
         }</span>
-        <span class="cov2" title="2">for k, v := range kuberneter.ExtractionMap </span><span class="cov1" title="1">{
+        <span class="cov4" title="4">for k, v := range kuberneter.ExtractionMap </span><span class="cov1" title="1">{
                 combinedPathsEx[k] = v
         }</span>
 
-        <span class="cov2" title="2">combinedPaths.ExtractionMap = combinedPathsEx
+        <span class="cov4" title="4">combinedPaths.ExtractionMap = combinedPathsEx
         return combinedPaths</span>
 }
 
