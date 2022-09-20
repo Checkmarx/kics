@@ -19,8 +19,8 @@ import (
 // FileSystemSourceProvider provides a path to be scanned
 // and a list of files which will not be scanned
 type FileSystemSourceProvider struct {
-	paths    []string
-	excludes map[string][]os.FileInfo
+	Paths    []string
+	Excludes map[string][]os.FileInfo
 	mu       sync.RWMutex
 }
 
@@ -36,8 +36,8 @@ func NewFileSystemSourceProvider(paths, excludes []string) (*FileSystemSourcePro
 		osPaths[idx] = filepath.FromSlash(path)
 	}
 	fs := &FileSystemSourceProvider{
-		paths:    osPaths,
-		excludes: ex,
+		Paths:    osPaths,
+		Excludes: ex,
 	}
 	for _, exclude := range excludes {
 		excludePaths, err := GetExcludePaths(exclude)
@@ -63,10 +63,10 @@ func (s *FileSystemSourceProvider) AddExcluded(excludePaths []string) error {
 			return errors.Wrap(err, "failed to open excluded file")
 		}
 		s.mu.Lock()
-		if _, ok := s.excludes[info.Name()]; !ok {
-			s.excludes[info.Name()] = make([]os.FileInfo, 0)
+		if _, ok := s.Excludes[info.Name()]; !ok {
+			s.Excludes[info.Name()] = make([]os.FileInfo, 0)
 		}
-		s.excludes[info.Name()] = append(s.excludes[info.Name()], info)
+		s.Excludes[info.Name()] = append(s.Excludes[info.Name()], info)
 		s.mu.Unlock()
 	}
 	return nil
@@ -87,7 +87,7 @@ func GetExcludePaths(pathExpressions string) ([]string, error) {
 
 // GetBasePaths returns base path of FileSystemSourceProvider
 func (s *FileSystemSourceProvider) GetBasePaths() []string {
-	return s.paths
+	return s.Paths
 }
 
 // ignoreDamagedFiles checks whether we should ignore a damaged file from a scan or not.
@@ -111,7 +111,7 @@ func ignoreDamagedFiles(path string) bool {
 // GetSources tries to open file or directory and execute sink function on it
 func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 	extensions model.Extensions, sink Sink, resolverSink ResolverSink) error {
-	for _, scanPath := range s.paths {
+	for _, scanPath := range s.Paths {
 		resolved := false
 		fileInfo, err := os.Stat(scanPath)
 		if err != nil {
@@ -224,7 +224,7 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 	s.mu.RLock()
 	defer s.mu.RUnlock()
 	if info.IsDir() {
-		if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
+		if f, ok := s.Excludes[info.Name()]; ok && containsFile(f, info) {
 			log.Info().Msgf("Directory ignored: %s", path)
 			return true, filepath.SkipDir
 		}
@@ -235,7 +235,7 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 		return false, nil
 	}
 
-	if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
+	if f, ok := s.Excludes[info.Name()]; ok && containsFile(f, info) {
 		log.Trace().Msgf("File ignored: %s", path)
 		return true, nil
 	}
