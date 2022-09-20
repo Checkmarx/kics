@@ -543,8 +543,8 @@ func Test_AnalyzePaths(t *testing.T) {
 			name: "test",
 			analyzer: analyzer.Analyzer{
 				Paths: []string{
-					"/home/miguel/cx/kics/assets/queries/terraform/alicloud/action_trail_logging_all_regions_disabled",
-					"/home/miguel/cx/kics/assets/queries/terraform/alicloud/actiontrail_trail_oss_bucket_is_publicly_accessible",
+					filepath.Join("..", "..", "assets", "queries", "terraform", "alicloud", "action_trail_logging_all_regions_disabled"),
+					filepath.Join("..", "..", "assets", "queries", "terraform", "alicloud", "actiontrail_trail_oss_bucket_is_publicly_accessible"),
 				},
 				Types:             []string{""},
 				Exc:               []string{},
@@ -555,10 +555,10 @@ func Test_AnalyzePaths(t *testing.T) {
 			expectedOutput: model.AnalyzedPaths{
 				Types: []string{"terraform"},
 				Exc: []string{
-					"/home/miguel/cx/kics/assets/queries/terraform/alicloud/actiontrail_trail_oss_bucket_is_publicly_accessible/test/positive_expected_result.json",
-					"/home/miguel/cx/kics/assets/queries/terraform/alicloud/action_trail_logging_all_regions_disabled/metadata.json",
-					"/home/miguel/cx/kics/assets/queries/terraform/alicloud/actiontrail_trail_oss_bucket_is_publicly_accessible/metadata.json",
-					"/home/miguel/cx/kics/assets/queries/terraform/alicloud/action_trail_logging_all_regions_disabled/test/positive_expected_result.json",
+					filepath.Join("..", "..", "assets", "queries", "terraform", "alicloud", "action_trail_logging_all_regions_disabled", "test", "positive_expected_result.json"),
+					filepath.Join("..", "..", "assets", "queries", "terraform", "alicloud", "action_trail_logging_all_regions_disabled", "metadata.json"),
+					filepath.Join("..", "..", "assets", "queries", "terraform", "alicloud", "actiontrail_trail_oss_bucket_is_publicly_accessible", "metadata.json"),
+					filepath.Join("..", "..", "assets", "queries", "terraform", "alicloud", "actiontrail_trail_oss_bucket_is_publicly_accessible", "test", "positive_expected_result.json"),
 				},
 			},
 		},
