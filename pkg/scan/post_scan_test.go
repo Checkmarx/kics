@@ -182,7 +182,7 @@ func Test_PrintOuput(t *testing.T) {
 		},
 		{
 			name:       "print with output path",
-			outputPath: filepath.Join("..", "..", "res"),
+			outputPath: filepath.Join("..", ".."),
 			filename:   "results",
 			body: model.Summary{
 				Version: "",
