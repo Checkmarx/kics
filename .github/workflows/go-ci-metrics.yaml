@@ -26,7 +26,7 @@ jobs:
           curl -L \
             https://img.shields.io/badge/Queries-${{ steps.metrics.outputs.total_queries }}-blue.svg > queries.svg
           cat queries.svg
-      - uses: actions/upload-artifact@master
+      - uses: actions/upload-artifact@v3
         with:
           name: ${{ runner.os }}-queries-badge-latest
           path: queries.svg
