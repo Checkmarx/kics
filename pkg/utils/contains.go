@@ -20,6 +20,7 @@ func Contains(target, list interface{}) bool {
 	return false
 }
 
+// Verifies if some string in list contains target
 func ContainsInString(target string, list []string) bool {
 	for i := 0; i < len(list); i++ {
 		if strings.Contains(list[i], target) {

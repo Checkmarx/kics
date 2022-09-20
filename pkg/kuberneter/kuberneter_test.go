@@ -13,7 +13,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 )
 
-type env_var struct {
+type envVar struct {
 	name  string
 	value string
 }
@@ -72,12 +72,12 @@ func Test_HasCAFile_envVars(t *testing.T) {
 
 	tests := []struct {
 		name           string
-		args           []env_var
+		args           []envVar
 		expectedResult bool
 	}{
 		{
 			name: "has_K8S_CA_FILE",
-			args: []env_var{
+			args: []envVar{
 				{
 					name:  "K8S_CA_FILE",
 					value: "path/to/file",
@@ -87,7 +87,7 @@ func Test_HasCAFile_envVars(t *testing.T) {
 		},
 		{
 			name: "has_valid_K8S_CA_DATA",
-			args: []env_var{
+			args: []envVar{
 				{
 					name:  "K8S_CA_DATA",
 					value: "U09NRSBURVNUIERBVEE=",
@@ -97,7 +97,7 @@ func Test_HasCAFile_envVars(t *testing.T) {
 		},
 		{
 			name: "has_invalid_K8S_CA_DATA",
-			args: []env_var{
+			args: []envVar{
 				{
 					name:  "K8S_CA_DATA",
 					value: "U09NRSBURVNUIERBVEE=asd",
@@ -107,7 +107,7 @@ func Test_HasCAFile_envVars(t *testing.T) {
 		},
 		{
 			name:           "has_no_CA_FILE",
-			args:           []env_var{},
+			args:           []envVar{},
 			expectedResult: false,
 		},
 	}
@@ -136,12 +136,12 @@ func Test_HasClientCertificate_envVars(t *testing.T) {
 
 	tests := []struct {
 		name           string
-		args           []env_var
+		args           []envVar
 		expectedResult bool
 	}{
 		{
 			name: "has_K8S_CERT_FILE_and_K8S_KEY_FILE",
-			args: []env_var{
+			args: []envVar{
 				{
 					name:  "K8S_CERT_FILE",
 					value: "path/to/file",
@@ -155,7 +155,7 @@ func Test_HasClientCertificate_envVars(t *testing.T) {
 		},
 		{
 			name: "has_valid_K8S_CERT_DATA_and_K8S_KEY_FILE",
-			args: []env_var{
+			args: []envVar{
 				{
 					name:  "K8S_CERT_DATA",
 					value: "U09NRSBURVNUIERBVEE=",
@@ -169,7 +169,7 @@ func Test_HasClientCertificate_envVars(t *testing.T) {
 		},
 		{
 			name: "has_invalid_K8S_CERT_DATA",
-			args: []env_var{
+			args: []envVar{
 				{
 					name:  "K8S_CERT_DATA",
 					value: "U09NRSBURVNUIERBVEE=asd",
@@ -179,7 +179,7 @@ func Test_HasClientCertificate_envVars(t *testing.T) {
 		},
 		{
 			name: "has_invalid_K8S_KEY_DATA",
-			args: []env_var{
+			args: []envVar{
 				{
 					name:  "K8S_CERT_FILE",
 					value: "path/to/file",
@@ -193,7 +193,7 @@ func Test_HasClientCertificate_envVars(t *testing.T) {
 		},
 		{
 			name: "has_valid_K8S_KEY_DATA",
-			args: []env_var{
+			args: []envVar{
 				{
 					name:  "K8S_CERT_FILE",
 					value: "path/to/file",
@@ -207,7 +207,7 @@ func Test_HasClientCertificate_envVars(t *testing.T) {
 		},
 		{
 			name:           "has_no_K8S_CERT_DATA_or_K8S_CERT_FILE",
-			args:           []env_var{},
+			args:           []envVar{},
 			expectedResult: false,
 		},
 	}
@@ -236,12 +236,12 @@ func Test_HasServiceAccountToken_envVars(t *testing.T) {
 
 	tests := []struct {
 		name           string
-		args           []env_var
+		args           []envVar
 		expectedResult bool
 	}{
 		{
 			name: "has_K8S_SA_TOKEN_FILE",
-			args: []env_var{
+			args: []envVar{
 				{
 					name:  "K8S_SA_TOKEN_FILE",
 					value: "path/to/file",
@@ -251,7 +251,7 @@ func Test_HasServiceAccountToken_envVars(t *testing.T) {
 		},
 		{
 			name: "has_K8S_SA_TOKEN_DATA",
-			args: []env_var{
+			args: []envVar{
 				{
 					name:  "K8S_SA_TOKEN_DATA",
 					value: "U09NRSBURVNUIERBVEE=",
@@ -261,7 +261,7 @@ func Test_HasServiceAccountToken_envVars(t *testing.T) {
 		},
 		{
 			name:           "has_no_SA_TOKEN",
-			args:           []env_var{},
+			args:           []envVar{},
 			expectedResult: false,
 		},
 	}
@@ -289,37 +289,37 @@ func Test_HasServiceAccountToken_envVars(t *testing.T) {
 func Test_GetClient(t *testing.T) {
 	tests := []struct {
 		name    string
-		args    []env_var
+		args    []envVar
 		wantErr bool
 	}{
 		{
 			name: "has_K8S_CONFIG_FILE",
-			args: []env_var{
+			args: []envVar{
 				{
 					name:  "K8S_CONFIG_FILE",
-					value: get_valid_cert_path([]string{"..", "..", "test", "assets", "sample_K8S_CONFIG_FILE.yaml"}),
+					value: getValidCertPath([]string{"..", "..", "test", "assets", "sample_K8S_CONFIG_FILE.yaml"}),
 				},
 			},
 			wantErr: false,
 		},
 		{
 			name: "has_no_valid_K8S_CONFIG_FILE",
-			args: []env_var{
+			args: []envVar{
 				{
 					name:  "K8S_CONFIG_FILE",
-					value: get_valid_cert_path([]string{"..", "..", "test", "assets", "invalid.yaml"}),
+					value: getValidCertPath([]string{"..", "..", "test", "assets", "invalid.yaml"}),
 				},
 			},
 			wantErr: true,
 		},
 		{
-			name:    "has_no_env_vars",
-			args:    []env_var{},
+			name:    "has_no_envVars",
+			args:    []envVar{},
 			wantErr: true,
 		},
 		{
 			name: "has_K8S_HOST",
-			args: []env_var{
+			args: []envVar{
 				{
 					name:  "K8S_K8S_HOST",
 					value: "https://f037947b-2b72-470f-b606-8601055974c7.eu-west-2.linodelke.net:443",
@@ -329,7 +329,7 @@ func Test_GetClient(t *testing.T) {
 		},
 		{
 			name: "has_K8S_HOST_with_invalid_SA_TOKEN_DATA",
-			args: []env_var{
+			args: []envVar{
 				{
 					name:  "K8S_HOST",
 					value: "https://f037947b-2b72-470f-b606-8601055974c7.eu-west-2.linodelke.net:443",
@@ -347,7 +347,7 @@ func Test_GetClient(t *testing.T) {
 		},
 		{
 			name: "has_K8S_HOST_with_invalid_CERT_DATA_and_KEY_DATA",
-			args: []env_var{
+			args: []envVar{
 				{
 					name:  "K8S_HOST",
 					value: "https://f037947b-2b72-470f-b606-8601055974c7.eu-west-2.linodelke.net:443",
@@ -383,9 +383,9 @@ func Test_GetClient(t *testing.T) {
 	}
 }
 
-func get_valid_cert_path(path []string) string {
-	k8s_cert_path := filepath.Join(path[:]...)
-	finalPath := filepath.Join(k8s_cert_path)
+func getValidCertPath(path []string) string {
+	k8sCertPath := filepath.Join(path[:]...)
+	finalPath := filepath.Join(k8sCertPath)
 	fmt.Print(finalPath)
 	return finalPath
 }

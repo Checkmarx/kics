@@ -279,11 +279,11 @@ func Test_ExtractPathType(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 
-			v_paths, v_terraformer, v_kuberneter := extractPathType(tt.paths)
+			vPaths, vTerraformer, vKuberneter := extractPathType(tt.paths)
 
-			require.Equal(t, tt.expectedTerraformer, v_terraformer)
-			require.Equal(t, tt.expectedKuberneter, v_kuberneter)
-			require.Equal(t, tt.expectedPaths, v_paths)
+			require.Equal(t, tt.expectedTerraformer, vTerraformer)
+			require.Equal(t, tt.expectedKuberneter, vKuberneter)
+			require.Equal(t, tt.expectedPaths, vPaths)
 
 		})
 	}
