@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/queries/ansible-queries/">
       
       <link rel="icon" href="../../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.2">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.3">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.9f9400aa.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7a952b86.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
@@ -1440,13 +1440,6 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>S3 Bucket Allows WriteACP Action From All Principals<br/><sup><sub>7529b8d2-55d7-44d2-b1cd-d7d2984a2a81</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Access Control</td>
-<td>S3 Buckets must not allow Write_ACP Action From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is Write_ACP, for all Principals.</td>
-<td><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>S3 Bucket With All Permissions<br/><sup><sub>6a6d7e56-c913-4549-b5c5-5221e624d2ec</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Access Control</td>
@@ -1492,7 +1485,7 @@
 <td>DB Instance Storage Not Encrypted<br/><sup><sub>7dfb316c-a6c2-454d-b8a2-97f147b0c0ff</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
-<td>The parameter storage_encrypted in aws_db_instance must be set to 'true' (the default is 'false').</td>
+<td>AWS DB Instance should have its storage encrypted by setting the parameter to 'true'. The storage_encrypted default value is 'false'.</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -1996,7 +1989,7 @@
 <td>SQS With SSE Disabled<br/><sup><sub>e1e7b278-2a8b-49bd-a26e-66a7f70b17eb</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Encryption</td>
-<td>Amazon Simple Queue Service (SQS) queue is not protecting the contents of their messages using Server-Side Encryption (SSE)</td>
+<td>Amazon Simple Queue Service (SQS) queue should protect the contents of their messages using Server-Side Encryption (SSE)</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/sqs_queue_module.html#ansible-collections-community-aws-sqs-queue-module">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2005,13 +1998,6 @@
 <td>Encryption</td>
 <td>CodeBuild Project should be encrypted</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/aws_codebuild_module.html">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>AWS Password Policy With Unchangeable Passwords<br/><sup><sub>e28ceb92-d588-4166-aac5-766c8f5b7472</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Insecure Configurations</td>
-<td>Unchangeable passwords in AWS password policy</td>
-<td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Certificate RSA Key Bytes Lower Than 256<br/><sup><sub>d5ec2080-340a-4259-b885-f833c4ea6a31</sub></sup></td>
@@ -2033,6 +2019,13 @@
 <td>Insecure Configurations</td>
 <td>EC2 Instances should be configured under a VPC network. AWS VPCs provide the controls to facilitate a formal process for approving and testing all network connections and changes to the firewall and router configurations.</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_module.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>AWS Password Policy With Unchangeable Passwords<br/><sup><sub>e28ceb92-d588-4166-aac5-766c8f5b7472</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Unchangeable passwords in AWS password policy</td>
+<td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Lambda Function Without Tags<br/><sup><sub>265d9725-2fb8-42a2-bc57-3279c5db82d5</sub></sup></td>
@@ -2129,7 +2122,7 @@
 <td>S3 Bucket Logging Disabled<br/><sup><sub>c3b9f7b0-f5a0-49ec-9cbc-f1e346b7274d</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
-<td>S3 bucket should have 'debug_botocore_endpoint_logs' defined</td>
+<td>Server Access Logging should be enabled on S3 Buckets so that all changes are logged and trackable</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html#parameter-debug_botocore_endpoint_logs">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2478,7 +2471,7 @@
 <td>Cloud Storage Bucket Logging Not Enabled<br/><sup><sub>507df964-ad97-4035-ab14-94a82eabdfdd</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Observability</td>
-<td>Cloud storage bucket with logging not enabled</td>
+<td>Cloud storage bucket should have logging enabled</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_storage_bucket_module.html#parameter-logging">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2527,7 +2520,7 @@
 <td>Google Container Node Pool Auto Repair Disabled<br/><sup><sub>d58c6f24-3763-4269-9f5b-86b2569a003b</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
-<td>Verifies if Google Container Node Pool Auto Repair is Enabled. This service periodically checks for failing nodes and repairs them to ensure a smooth running state.</td>
+<td>Google Container Node Pool Auto Repair should be enabled. This service periodically checks for failing nodes and repairs them to ensure a smooth running state.</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_node_pool_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2639,7 +2632,7 @@
 <td>High KMS Rotation Period<br/><sup><sub>79f45008-60b3-4a0a-a302-8311fd3701b4</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Secret Management</td>
-<td>KMS rotation period should not surpass 365 days</td>
+<td>KMS Rotation Period should be greater than 365 days.</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_kms_crypto_key_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2722,7 +2715,7 @@
 <td>Storage Account Not Forcing HTTPS<br/><sup><sub>2c99a474-2a3c-4c17-8294-53ffa5ed0522</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
-<td>See that Storage Accounts forces the use of HTTPS</td>
+<td>Storage Accounts should enforce the use of HTTPS</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-https_only">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -3042,10 +3035,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.39f04ddb.min.js"></script>
+      <script src="../../assets/javascripts/bundle.37e9125f.min.js"></script>
       
         <script src="../../js/version-mike.js"></script>
       

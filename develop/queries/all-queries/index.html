@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/queries/all-queries/">
       
       <link rel="icon" href="../../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.2">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.3">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.9f9400aa.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7a952b86.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
@@ -1375,6 +1375,86 @@
 <td>Secret Management</td>
 <td>Query to find passwords and secrets in infrastructure code.</td>
 <td><a href="https://kics.io/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serverless Role With Full Privileges<br/><sup><sub>59ebb4f3-2a6c-46dc-b4f0-cc5418dcddcd</sub></sup></td>
+<td>ServerlessFW</td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>Roles defined in Serverless files should not have policies granting full administrative privileges.</td>
+<td><a href="https://www.serverless.com/framework/docs/providers/aws/guide/iam">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serverless Function Environment Variables Not Encrypted<br/><sup><sub>4495bc5d-4d1e-4a26-ae92-152d18195648</sub></sup></td>
+<td>ServerlessFW</td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Serverless Function should encrypt environment variables</td>
+<td><a href="https://www.serverless.com/framework/docs/providers/aws/guide/functions#kms-keys">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serverless API Without Content Encoding<br/><sup><sub>d5d1fe08-89db-440c-8725-b93223387309</sub></sup></td>
+<td>ServerlessFW</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>Serverless should have API Gateway with Content Encoding enabled through the attribute 'minimumCompressionSize'. This value should be greater than -1 and smaller than 10485760</td>
+<td><a href="https://www.serverless.com/framework/docs/providers/aws/events/apigateway#compression">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serverless Function Without Tags<br/><sup><sub>f99d3482-fa8c-4f79-bad9-35212dded164</sub></sup></td>
+<td>ServerlessFW</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Serverless Function should be have associated tags</td>
+<td><a href="https://www.serverless.com/framework/docs/providers/aws/guide/functions#tags">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serverless Function Without Unique IAM Role<br/><sup><sub>165aae3b-a56a-48f3-b76d-d2b5083f5b8f</sub></sup></td>
+<td>ServerlessFW</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Serverless Function should not share IAM Role to ensure it will have the minimum privileges needed to perform the required tasks</td>
+<td><a href="https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml#functions">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serverless API Endpoint Config Not Private<br/><sup><sub>4d424558-c6d1-453c-be98-9a7f877abd9a</sub></sup></td>
+<td>ServerlessFW</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Serverless should have endpointType set to 'PRIVATE'. This way, it's not exposed to the public internet</td>
+<td><a href="https://www.serverless.com/framework/docs/providers/aws/events/apigateway#configuring-endpoint-types">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serverless API Access Logging Setting Undefined<br/><sup><sub>a4d32883-aac7-42e1-b403-9415af0f3846</sub></sup></td>
+<td>ServerlessFW</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Serverless FW API should have HTTP Access Logging enabled</td>
+<td><a href="https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml#logs">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serverless API X-Ray Tracing Disabled<br/><sup><sub>434945e5-4dfd-41b1-aba1-47075ccd9265</sub></sup></td>
+<td>ServerlessFW</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Serverless API Gateway should have X-Ray Tracing enabled</td>
+<td><a href="https://www.serverless.com/framework/docs/providers/aws/events/apigateway#aws-x-ray-tracing">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serverless Function Without Dead Letter Queue<br/><sup><sub>dec7bc85-d156-4f64-9a33-96ed3d9f3fed</sub></sup></td>
+<td>ServerlessFW</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Insecure Configurations</td>
+<td>Serverless Function should be configured for a Dead Letter Queue(DLQ). A Dead Letter Queue(DLQ) can be set up in 'onError' config parameter</td>
+<td><a href="https://www.serverless.com/framework/docs/providers/aws/guide/functions#dead-letter-queue-dlq">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serverless Function Without X-Ray Tracing<br/><sup><sub>0d7ef70f-e176-44e6-bdba-add3e429788d</sub></sup></td>
+<td>ServerlessFW</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Observability</td>
+<td>Serverless Function should have Tracing enabled. For this, property 'tracing' should have the value 'Active'</td>
+<td><a href="https://www.serverless.com/framework/docs/providers/aws/guide/functions#aws-x-ray-tracing">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>UNIX Ports Out Of Range<br/><sup><sub>71bf8cf8-f0a1-42fa-b9d2-d10525e0a38e</sub></sup></td>
@@ -4025,20 +4105,20 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>S3 Bucket Allows WriteACP Action From All Principals<br/><sup><sub>64a222aa-7793-4e40-915f-4b302c76e4d4</sub></sup></td>
-<td>Terraform</td>
-<td><span style="color:#C00">High</span></td>
-<td>Access Control</td>
-<td>S3 Buckets must not allow Write_ACP Action From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is Write_ACP, for all Principals.</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>S3 Bucket With All Permissions<br/><sup><sub>a4966c4f-9141-48b8-a564-ffe9959945bc</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
 <td>Access Control</td>
 <td>S3 Buckets must not have all permissions, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is '*', for all Principals.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket ACL Grants WRITE_ACP Permission<br/><sup><sub>64a222aa-7793-4e40-915f-4b302c76e4d4</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>S3 Buckets should not allow WRITE_ACP permission to the S3 Bucket Access Control List in order to prevent AWS accounts or IAM users to modify access control permissions to the bucket.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_acl">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>S3 Bucket ACL Allows Read Or Write to All Users<br/><sup><sub>38c5ee0d-7f22-4260-ab72-5073048df100</sub></sup></td>
@@ -4133,7 +4213,7 @@
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
-<td>The parameter storage_encrypted in aws_db_instance must be set to 'true' (the default is 'false').</td>
+<td>AWS DB Instance should have its storage encrypted by setting the parameter to 'true'. The storage_encrypted default value is 'false'.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#storage_encrypted">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -5453,7 +5533,7 @@
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Availability</td>
-<td>Check if ElastiCache nodes are not being created across multi AZ</td>
+<td>ElastiCache Nodes should have 'az_mode' set to 'cross-az' in in multi nodes cluster</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -5701,7 +5781,7 @@
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Encryption</td>
-<td>Amazon Simple Queue Service (SQS) queue is not protecting the contents of their messages using Server-Side Encryption (SSE)</td>
+<td>Amazon Simple Queue Service (SQS) queue should protect the contents of their messages using Server-Side Encryption (SSE)</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -6049,11 +6129,11 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain#log_publishing_options">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Api Gateway Access Logging Disabled<br/><sup><sub>1b6799eb-4a7a-4b04-9001-8cceb9999326</sub></sup></td>
+<td>API Gateway Access Logging Disabled<br/><sup><sub>1b6799eb-4a7a-4b04-9001-8cceb9999326</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
-<td>RDS does not have any kind of logger</td>
+<td>API Gateway should have Access Log Settings defined</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_stage#access_log_settings">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -6765,7 +6845,7 @@
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
 <td>Observability</td>
-<td>Cloud storage bucket with logging not enabled</td>
+<td>Cloud storage bucket should have logging enabled</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#log_bucket">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -6845,7 +6925,7 @@
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
-<td>Verifies if Google Container Node Pool Auto Repair is Enabled. This service periodically checks for failing nodes and repairs them to ensure a smooth running state.</td>
+<td>Google Container Node Pool Auto Repair should be enabled. This service periodically checks for failing nodes and repairs them to ensure a smooth running state.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -6989,7 +7069,7 @@
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Secret Management</td>
-<td>KMS rotation period should not surpass 365 days</td>
+<td>KMS Rotation Period should be greater than 365 days.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/kms_crypto_key">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -8085,7 +8165,7 @@
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
-<td>See that Storage Accounts forces the use of HTTPS</td>
+<td>Storage Accounts should enforce the use of HTTPS</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -9033,14 +9113,6 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>IAM Database Auth Not Enabled<br/><sup><sub>9fcd0a0a-9b6f-4670-a215-d94e6bf3f184</sub></sup></td>
-<td>CloudFormation</td>
-<td><span style="color:#C00">High</span></td>
-<td>Encryption</td>
-<td>IAM Database Auth Enabled should be configured to true when compatible with engine and version</td>
-<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-enableiamdatabaseauthentication">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>SageMaker Data Encryption Disabled<br/><sup><sub>709e6da6-fa1f-44cc-8f17-7f25f96dadbe</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#C00">High</span></td>
@@ -9087,6 +9159,14 @@
 <td>Encryption</td>
 <td>Ensure that storage is encrypted.</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>RDS DB Instance With IAM Auth Disabled<br/><sup><sub>9fcd0a0a-9b6f-4670-a215-d94e6bf3f184</sub></sup></td>
+<td>CloudFormation</td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>IAM Database Auth Enabled should be configured to true when compatible with engine and version</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-enableiamdatabaseauthentication">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Viewer Protocol Policy Allows HTTP<br/><sup><sub>31733ee2-fef0-4e87-9778-65da22a8ecf1</sub></sup></td>
@@ -9265,7 +9345,7 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>S3 Bucket with Unsecured CORS Rule<br/><sup><sub>3609d27c-3698-483a-9402-13af6ae80583</sub></sup></td>
+<td>S3 Bucket With Unsecured CORS Rule<br/><sup><sub>3609d27c-3698-483a-9402-13af6ae80583</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
@@ -9287,14 +9367,6 @@
 <td>Insecure Defaults</td>
 <td>WebAcl DefaultAction should not be ALLOW</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-webacl.html">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Remote Desktop Port Open To Internet<br/><sup><sub>c9846969-d066-431f-9b34-8c4abafe422a</sub></sup></td>
-<td>CloudFormation</td>
-<td><span style="color:#C00">High</span></td>
-<td>Networking and Firewall</td>
-<td>The Remote Desktop port is open to the internet in a Security Group</td>
-<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Fully Open Ingress<br/><sup><sub>e415f8d3-fc2b-4f52-88ab-1129e8c8d3f5</sub></sup></td>
@@ -9425,6 +9497,14 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>EC2 Instance Subnet Has Public IP Mapping On Launch<br/><sup><sub>b3de4e4c-14be-4159-b99d-9ad194365e4c</sub></sup></td>
+<td>CloudFormation</td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>EC2 Instance Subnet should not have MapPublicIpOnLaunch set to true</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html#cfn-ec2-subnet-mappubliciponlaunch">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Security Groups With Exposed Admin Ports<br/><sup><sub>cdbb0467-2957-4a77-9992-7b55b29df7b7</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#C00">High</span></td>
@@ -9441,12 +9521,12 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>EC2 Instance Subnet Has Public IP Mapping On Launch<br/><sup><sub>b3de4e4c-14be-4159-b99d-9ad194365e4c</sub></sup></td>
+<td>Remote Desktop Port Open To Internet<br/><sup><sub>c9846969-d066-431f-9b34-8c4abafe422a</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
-<td>EC2 Subnet should not have MapPublicIpOnLaunch set to true</td>
-<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html#cfn-ec2-subnet-mappubliciponlaunch">Documentation</a><br/></td>
+<td>The Remote Desktop port is open to the internet in a Security Group</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Security Group Unrestricted Access To RDP<br/><sup><sub>3ae83918-7ec7-4cb8-80db-b91ef0f94002</sub></sup></td>
@@ -9473,20 +9553,20 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-dbsubnetgroupname">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>CMK Rotation Disabled<br/><sup><sub>1c07bfaf-663c-4f6f-b22b-8e2d481e4df5</sub></sup></td>
-<td>CloudFormation</td>
-<td><span style="color:#C00">High</span></td>
-<td>Observability</td>
-<td>Customer Master Keys (CMK) must have rotation enabled, which means the attribute 'EnableKeyRotation' must be set to 'true' when the key is enabled.</td>
-<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>S3 Bucket CloudTrail Logging Disabled<br/><sup><sub>c3ce69fd-e3df-49c6-be78-1db3f802261c</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#C00">High</span></td>
 <td>Observability</td>
 <td>Server Access Logging should be enabled on S3 Buckets so that all changes are logged and trackable when the Service used is CloudTrail</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-loggingconfig">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CMK Rotation Disabled<br/><sup><sub>1c07bfaf-663c-4f6f-b22b-8e2d481e4df5</sub></sup></td>
+<td>CloudFormation</td>
+<td><span style="color:#C00">High</span></td>
+<td>Observability</td>
+<td>Customer Master Keys (CMK) must have rotation enabled, which means the attribute 'EnableKeyRotation' must be set to 'true' when the key is enabled.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>CloudTrail Logging Disabled<br/><sup><sub>5c0b06d5-b7a4-484c-aeb0-75a836269ff0</sub></sup></td>
@@ -9589,7 +9669,7 @@
 <td>CloudFormation</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
-<td>IAM User should embed managed policies instead of inline policies</td>
+<td>IAM policies should be attached only to groups or roles</td>
 <td><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -9677,7 +9757,7 @@
 <td>CloudFormation</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Availability</td>
-<td>Check if ElastiCache nodes are not being created across multi AZ</td>
+<td>ElastiCache Nodes should have 'AZMode' set to 'cross-az' in in multi nodes cluster</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -9893,8 +9973,16 @@
 <td>CloudFormation</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Encryption</td>
-<td>Amazon Simple Queue Service (SQS) queue is not protecting the contents of their messages using Server-Side Encryption (SSE)</td>
+<td>Amazon Simple Queue Service (SQS) queue should protect the contents of their messages using Server-Side Encryption (SSE)</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-kmsmasterkeyid">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>RDS Storage Encryption Disabled<br/><sup><sub>65844ba3-03a1-40a8-b3dd-919f122e8c95</sub></sup></td>
+<td>CloudFormation</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>RDS DBCluster should have storage encrypted set to true</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html#cfn-rds-dbcluster-storageencrypted">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>CodeBuild Not Encrypted<br/><sup><sub>d7467bb6-3ed1-4c82-8095-5e7a818d0aad</sub></sup></td>
@@ -9959,14 +10047,6 @@
 <td>Encryption</td>
 <td>EMR SecurityConfiguration should enable and properly configure encryption at rest and in transit.</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-securityconfiguration.html">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>RDS Storage Encryption Disabled<br/><sup><sub>65844ba3-03a1-40a8-b3dd-919f122e8c95</sub></sup></td>
-<td>CloudFormation</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Encryption</td>
-<td>RDS DBCluster should have storage encrypted set to true</td>
-<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html#cfn-rds-dbcluster-storageencrypted">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>GitHub Repository Set To Public<br/><sup><sub>5906092d-5f74-490d-9a03-78febe0f65e1</sub></sup></td>
@@ -10113,6 +10193,14 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Security Groups Without VPC Attached<br/><sup><sub>493d9591-6249-47bf-8dc0-5c10161cc558</sub></sup></td>
+<td>CloudFormation</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Security Groups must have a VPC.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>TCP/UDP Protocol Network ACL Entry Allows All Ports<br/><sup><sub>f57f849c-883b-4cb7-85e7-f7b199dff163</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -10127,14 +10215,6 @@
 <td>Networking and Firewall</td>
 <td>AWS Security Group Egress should have a single port</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-security-group-egress.html">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Security Groups Without VPC Attached<br/><sup><sub>493d9591-6249-47bf-8dc0-5c10161cc558</sub></sup></td>
-<td>CloudFormation</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Networking and Firewall</td>
-<td>Security Groups must have a VPC.</td>
-<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>EC2 Permissive Network ACL Protocols<br/><sup><sub>03879981-efa2-47a0-a818-c843e1441b88</sub></sup></td>
@@ -10273,6 +10353,14 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>ElasticSearch Without Slow Logs<br/><sup><sub>086ea2eb-14a6-4fd4-914b-38e0bc8703e8</sub></sup></td>
+<td>CloudFormation</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Ensure that AWS Elasticsearch enables support for slow logs</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html#cfn-elasticsearch-domain-logpublishingoptions">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>GuardDuty Detector Disabled<br/><sup><sub>a25cd877-375c-4121-a640-730929936fac</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -10335,14 +10423,6 @@
 <td>Observability</td>
 <td>Server Access Logging should be enabled on S3 Buckets so that all changes are logged and trackable</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-loggingconfig">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>ElasticSearch Without Slow Logs<br/><sup><sub>086ea2eb-14a6-4fd4-914b-38e0bc8703e8</sub></sup></td>
-<td>CloudFormation</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Observability</td>
-<td>Ensure that AWS Elasticsearch enables support for slow logs</td>
-<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html#cfn-elasticsearch-domain-logpublishingoptions">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>CloudTrail SNS Topic Name Undefined<br/><sup><sub>3e09413f-471e-40f3-8626-990c79ae63f3</sub></sup></td>
@@ -10533,11 +10613,11 @@
 <td>CloudFormation</td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Availability</td>
-<td>The number of gateways approaches or goes beyond the limit in a particular VPC</td>
+<td>The number of gateways attached should not approach or go beyond the limit of 3, in a particular VPC</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc-gateway-attachment.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>RDS With Deletion Protection Disabled<br/><sup><sub>2c161e58-cb52-454f-abea-6470c37b5e6e</sub></sup></td>
+<td>RDS DB Instance With Deletion Protection Disabled<br/><sup><sub>2c161e58-cb52-454f-abea-6470c37b5e6e</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Backup</td>
@@ -10837,7 +10917,7 @@
 <td>CloudFormation</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
-<td>AWS Serverless Function must have associated tags</td>
+<td>AWS Serverless Function should have associated tags</td>
 <td><a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-tags">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -11385,6 +11465,14 @@
 <td><a href="https://cloud.google.com/compute/docs/reference/rest/v1/instances">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Serving Revision Spec Without Timeout Seconds<br/><sup><sub>e8bb41e4-2f24-4e84-8bea-8c7c070cf93d</sub></sup></td>
+<td>Knative</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Insecure Configurations</td>
+<td>Serving Revision Spec should have Timeout Seconds defined to avoid Denial of Service</td>
+<td><a href="https://knative.dev/docs/reference/api/serving-api/#serving.knative.dev/v1.RevisionSpec">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Run Using apt<br/><sup><sub>a1bc27c6-7115-48d8-bf9d-5a7e836845ba</sub></sup></td>
 <td>Buildah</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -11473,14 +11561,6 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>S3 Bucket Allows WriteACP Action From All Principals<br/><sup><sub>7529b8d2-55d7-44d2-b1cd-d7d2984a2a81</sub></sup></td>
-<td>Ansible</td>
-<td><span style="color:#C00">High</span></td>
-<td>Access Control</td>
-<td>S3 Buckets must not allow Write_ACP Action From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is Write_ACP, for all Principals.</td>
-<td><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>S3 Bucket With All Permissions<br/><sup><sub>6a6d7e56-c913-4549-b5c5-5221e624d2ec</sub></sup></td>
 <td>Ansible</td>
 <td><span style="color:#C00">High</span></td>
@@ -11533,7 +11613,7 @@
 <td>Ansible</td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
-<td>The parameter storage_encrypted in aws_db_instance must be set to 'true' (the default is 'false').</td>
+<td>AWS DB Instance should have its storage encrypted by setting the parameter to 'true'. The storage_encrypted default value is 'false'.</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -12109,7 +12189,7 @@
 <td>Ansible</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Encryption</td>
-<td>Amazon Simple Queue Service (SQS) queue is not protecting the contents of their messages using Server-Side Encryption (SSE)</td>
+<td>Amazon Simple Queue Service (SQS) queue should protect the contents of their messages using Server-Side Encryption (SSE)</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/sqs_queue_module.html#ansible-collections-community-aws-sqs-queue-module">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -12119,14 +12199,6 @@
 <td>Encryption</td>
 <td>CodeBuild Project should be encrypted</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/aws_codebuild_module.html">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>AWS Password Policy With Unchangeable Passwords<br/><sup><sub>e28ceb92-d588-4166-aac5-766c8f5b7472</sub></sup></td>
-<td>Ansible</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Insecure Configurations</td>
-<td>Unchangeable passwords in AWS password policy</td>
-<td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Certificate RSA Key Bytes Lower Than 256<br/><sup><sub>d5ec2080-340a-4259-b885-f833c4ea6a31</sub></sup></td>
@@ -12151,6 +12223,14 @@
 <td>Insecure Configurations</td>
 <td>EC2 Instances should be configured under a VPC network. AWS VPCs provide the controls to facilitate a formal process for approving and testing all network connections and changes to the firewall and router configurations.</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_module.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>AWS Password Policy With Unchangeable Passwords<br/><sup><sub>e28ceb92-d588-4166-aac5-766c8f5b7472</sub></sup></td>
+<td>Ansible</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Unchangeable passwords in AWS password policy</td>
+<td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Lambda Function Without Tags<br/><sup><sub>265d9725-2fb8-42a2-bc57-3279c5db82d5</sub></sup></td>
@@ -12261,7 +12341,7 @@
 <td>Ansible</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
-<td>S3 bucket should have 'debug_botocore_endpoint_logs' defined</td>
+<td>Server Access Logging should be enabled on S3 Buckets so that all changes are logged and trackable</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html#parameter-debug_botocore_endpoint_logs">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -12629,7 +12709,7 @@
 <td>Ansible</td>
 <td><span style="color:#C00">High</span></td>
 <td>Observability</td>
-<td>Cloud storage bucket with logging not enabled</td>
+<td>Cloud storage bucket should have logging enabled</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_storage_bucket_module.html#parameter-logging">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -12685,7 +12765,7 @@
 <td>Ansible</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
-<td>Verifies if Google Container Node Pool Auto Repair is Enabled. This service periodically checks for failing nodes and repairs them to ensure a smooth running state.</td>
+<td>Google Container Node Pool Auto Repair should be enabled. This service periodically checks for failing nodes and repairs them to ensure a smooth running state.</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_node_pool_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -12813,7 +12893,7 @@
 <td>Ansible</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Secret Management</td>
-<td>KMS rotation period should not surpass 365 days</td>
+<td>KMS Rotation Period should be greater than 365 days.</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_kms_crypto_key_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -12877,7 +12957,7 @@
 <td>Ansible</td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
-<td>See that Storage Accounts forces the use of HTTPS</td>
+<td>Storage Accounts should enforce the use of HTTPS</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-https_only">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -13151,6 +13231,126 @@
 <td>Observability</td>
 <td>Ensure that Activity Log Retention is set 365 days or greater</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_monitorlogprofile_module.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EFS Not Encrypted<br/><sup><sub>72840c35-3876-48be-900d-f21b2f0c2ea1</sub></sup></td>
+<td>Crossplane</td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Elastic File System (EFS) must be encrypted</td>
+<td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/efs.aws.crossplane.io/FileSystem/v1alpha1@v0.29.0#spec-forProvider-encrypted">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>DB Instance Storage Not Encrypted<br/><sup><sub>e50eb68a-a4af-4048-8bbe-8ec324421469</sub></sup></td>
+<td>Crossplane</td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>RDS Instance should have its storage encrypted by setting the parameter to 'true'. The storageEncrypted default value is 'false'.</td>
+<td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/database.aws.crossplane.io/RDSInstance/v1beta1@v0.29.0#spec-forProvider-storageEncrypted">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ELB Using Weak Ciphers<br/><sup><sub>a507daa5-0795-4380-960b-dd7bb7c56661</sub></sup></td>
+<td>Crossplane</td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>ELB Predefined or Custom Security Policies must not use weak ciphers, to reduce the risk of the SSL connection between the client and the load balancer being exploited. That means the 'sslPolicy' of 'Listener' must not coincide with any of a predefined list of weak ciphers.</td>
+<td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/elbv2.aws.crossplane.io/Listener/v1alpha1@v0.29.0#spec-forProvider-sslPolicy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EFS Without KMS<br/><sup><sub>bdecd6db-2600-47dd-a10c-72c97cf17ae9</sub></sup></td>
+<td>Crossplane</td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Amazon Elastic Filesystem should have filesystem encryption enabled using KMS CMK customer-managed keys instead of AWS managed-keys</td>
+<td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/efs.aws.crossplane.io/FileSystem/v1alpha1@v0.29.0#spec-forProvider-kmsKeyID">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudFront Without Minimum Protocol TLS 1.2<br/><sup><sub>255b0fcc-9f82-41fe-9229-01b163e3376b</sub></sup></td>
+<td>Crossplane</td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>CloudFront Minimum Protocol version should be at least TLS 1.2</td>
+<td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/cloudfront.aws.crossplane.io/Distribution/v1alpha1@v0.29.0#spec-forProvider-distributionConfig-viewerCertificate-minimumProtocolVersion">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>DB Security Group Has Public Interface<br/><sup><sub>dd667399-8d9d-4a8d-bbb4-e49ab53b2f52</sub></sup></td>
+<td>Crossplane</td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>The CIDR IP should not be a public interface</td>
+<td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/ec2.aws.crossplane.io/SecurityGroup/v1beta1@v0.29.0#spec-forProvider-ingress-ipRanges-cidrIp">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>SQS with SSE disabled<br/><sup><sub>9296f1cc-7a40-45de-bd41-f31745488a0e</sub></sup></td>
+<td>Crossplane</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>Amazon Simple Queue Service (SQS) queue should protect the contents of their messages using Server-Side Encryption (SSE)</td>
+<td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/sqs.aws.crossplane.io/Queue/v1beta1@v0.29.0#spec-forProvider-kmsMasterKeyId">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Neptune Database Cluster Encryption Disabled<br/><sup><sub>83bf5aca-138a-498e-b9cd-ad5bc5e117b4</sub></sup></td>
+<td>Crossplane</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>Neptune database cluster storage should have encryption enabled</td>
+<td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/neptune.aws.crossplane.io/DBCluster/v1alpha1@v0.29.0#spec-forProvider-storageEncrypted">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudFront Logging Disabled<br/><sup><sub>7b590235-1ff4-421b-b9ff-5227134be9bb</sub></sup></td>
+<td>Crossplane</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>AWS CloudFront distributions must have logging enabled, which means the attribute 'logging' must be defined with 'enabled' set to true</td>
+<td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/cloudfront.aws.crossplane.io/Distribution/v1alpha1@v0.29.0#spec-forProvider-distributionConfig-logging">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudWatch Without Retention Period Specified<br/><sup><sub>934613fe-b12c-4e5a-95f5-c1dcdffac1ff</sub></sup></td>
+<td>Crossplane</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>AWS CloudWatch should have CloudWatch Logs enabled in order to monitor, store, and access log events</td>
+<td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/cloudwatchlogs.aws.crossplane.io/LogGroup/v1alpha1@v0.29.0#spec-forProvider-retentionInDays">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudFront Without WAF<br/><sup><sub>6d19ce0f-b3d8-4128-ac3d-1064e0f00494</sub></sup></td>
+<td>Crossplane</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Networking and Firewall</td>
+<td>All AWS CloudFront distributions should be integrated with the Web Application Firewall (AWS WAF) service</td>
+<td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/cloudfront.aws.crossplane.io/Distribution/v1alpha1@v0.29.0#spec-forProvider-distributionConfig-webACLID">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Cloud Storage Bucket Logging Not Enabled<br/><sup><sub>6c2d627c-de0f-45fb-b33d-dad9bffbb421</sub></sup></td>
+<td>Crossplane</td>
+<td><span style="color:#C00">High</span></td>
+<td>Observability</td>
+<td>Cloud storage bucket should have logging enabled</td>
+<td><a href="https://doc.crds.dev/github.com/crossplane/provider-gcp/storage.gcp.crossplane.io/Bucket/v1alpha3@v0.21.0#spec-logging">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Google Container Node Pool Auto Repair Disabled<br/><sup><sub>b4f65d13-a609-4dc1-af7c-63d2e08bffe9</sub></sup></td>
+<td>Crossplane</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Google Container Node Pool Auto Repair should be enabled. This service periodically checks for failing nodes and repairs them to ensure a smooth running state.</td>
+<td><a href="https://doc.crds.dev/github.com/crossplane/provider-gcp/container.gcp.crossplane.io/NodePool/v1beta1@v0.21.0#spec-forProvider-management-autoRepair">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>AKS RBAC Disabled<br/><sup><sub>b2418936-cd47-4ea2-8346-623c0bdb87bd</sub></sup></td>
+<td>Crossplane</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Azure Container Service (AKS) instance should have role-based access control (RBAC) enabled</td>
+<td><a href="https://doc.crds.dev/github.com/crossplane/provider-azure/compute.azure.crossplane.io/AKSCluster/v1alpha3@v0.19.0#spec-disableRBAC">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Redis Cache Allows Non SSL Connections<br/><sup><sub>6c7cfec3-c686-4ed2-bf58-a1ec054b63fc</sub></sup></td>
+<td>Crossplane</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>Redis Cache resource should not allow non-SSL connections.</td>
+<td><a href="https://doc.crds.dev/github.com/crossplane/provider-azure/cache.azure.crossplane.io/Redis/v1beta1@v0.19.0#spec-forProvider-enableNonSslPort">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Key Vault Not Recoverable<br/><sup><sub>7c25f361-7c66-44bf-9b69-022acd5eb4bd</sub></sup></td>
@@ -14648,6 +14848,134 @@
 <td>Kubernetes External Secret Storage and Management System usage should be considered if you have more complex secret management needs, rather than using Kubernetes Secrets directly. Additionally, ensure that access to secrets is carefully limited</td>
 <td><a href="https://kubernetes.io/docs/concepts/configuration/secret/">Documentation</a><br/></td>
 </tr>
+<tr>
+<td>ElastiCache Nodes Not Created Across Multi AZ<br/><sup><sub>9b18fc19-7fb8-49b1-8452-9c757c70f926</sub></sup></td>
+<td>Pulumi</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Availability</td>
+<td>ElastiCache Nodes should have 'AZMode' set to 'cross-az' in in multi nodes cluster</td>
+<td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/elasticache/cluster/#azmode_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ElastiCache Redis Cluster Without Backup<br/><sup><sub>e93bbe63-a631-4c0f-b6ef-700d48441ff2</sub></sup></td>
+<td>Pulumi</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Backup</td>
+<td>ElastiCache Redis cluster should have 'snapshotRetentionLimit' higher than 0</td>
+<td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/elasticache/cluster/#snapshotretentionlimit_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Password Without Lowercase Letter<br/><sup><sub>de92dd34-1b88-43e8-b825-6e02d73c4549</sub></sup></td>
+<td>Pulumi</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Best Practices</td>
+<td>IAM Password should have at least one lowercase letter</td>
+<td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/iam/accountpasswordpolicy/#requirelowercasecharacters_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Password Without Minimum Length<br/><sup><sub>9850d621-7485-44f7-8bdd-b3cf426315cf</sub></sup></td>
+<td>Pulumi</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Best Practices</td>
+<td>IAM password should have the required minimum length</td>
+<td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/iam/accountpasswordpolicy/#minimumpasswordlength_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>DynamoDB Table Not Encrypted<br/><sup><sub>b6a7e0ae-aed8-4a19-a993-a95760bf8836</sub></sup></td>
+<td>Pulumi</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>AWS DynamoDB Tables should have serverSideEncryption enabled</td>
+<td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/dynamodb/table/#serversideencryption_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>API Gateway Without SSL Certificate<br/><sup><sub>f27791a5-e2ae-4905-8910-6f995c576d09</sub></sup></td>
+<td>Pulumi</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>SSL Client Certificate should be defined</td>
+<td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/apigatewayv2/stage/#clientcertificateid_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>API Gateway Access Logging Disabled<br/><sup><sub>bf4b48b9-fc1f-4552-984a-4becdb5bf503</sub></sup></td>
+<td>Pulumi</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>API Gateway should have Access Log Settings defined</td>
+<td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/apigatewayv2/stage/#accesslogsettings_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EC2 Not EBS Optimized<br/><sup><sub>d991e4ae-42ab-429b-ab43-d5e5fa9ca633</sub></sup></td>
+<td>Pulumi</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>It's considered a best practice for an EC2 instance to use an EBS optimized instance. This provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance</td>
+<td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/ec2/instance/#ebsoptimized_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>DynamoDB Table Point In Time Recovery Disabled<br/><sup><sub>327b0729-4c5c-4c44-8b5c-e476cd9c7290</sub></sup></td>
+<td>Pulumi</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>It's considered a best practice to have point in time recovery enabled for DynamoDB Table</td>
+<td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/dynamodb/table/#pointintimerecovery_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EC2 Instance Monitoring Disabled<br/><sup><sub>daa581ef-731c-4121-832d-cf078f67759d</sub></sup></td>
+<td>Pulumi</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Observability</td>
+<td>EC2 Instance should have detailed monitoring enabled. With detailed monitoring enabled data is available in 1-minute periods</td>
+<td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/ec2/instance/#monitoring_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Cloud Storage Bucket Logging Not Enabled<br/><sup><sub>48f7e44d-d1d1-44c2-b336-9f11b65c4fb0</sub></sup></td>
+<td>Pulumi</td>
+<td><span style="color:#C00">High</span></td>
+<td>Observability</td>
+<td>Cloud storage bucket should have logging enabled</td>
+<td><a href="https://www.pulumi.com/registry/packages/gcp/api-docs/storage/bucket/#logging_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Google Compute SSL Policy Weak Cipher In Use<br/><sup><sub>965e8830-2bec-4b9b-a7f0-24dbc200a68f</sub></sup></td>
+<td>Pulumi</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>This query confirms if Google Compute SSL Policy Weak Chyper Suits is Enabled, to do so we need to check if TLS is TLS_1_2, because other version have Weak Chypers</td>
+<td><a href="https://www.pulumi.com/registry/packages/gcp/api-docs/compute/sslpolicy/#mintlsversion_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>PSP Set To Privileged<br/><sup><sub>ee305555-6b1d-4055-94cf-e22131143c34</sub></sup></td>
+<td>Pulumi</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Do not allow pod to request execution as privileged.</td>
+<td><a href="https://www.pulumi.com/registry/packages/kubernetes/api-docs/policy/v1beta1/podsecuritypolicy/#privileged_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Missing App Armor Config<br/><sup><sub>95588189-1abd-4df1-9588-b0a5034f9e87</sub></sup></td>
+<td>Pulumi</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Access Control</td>
+<td>Containers should be configured with AppArmor for any application to reduce its potential attack</td>
+<td><a href="https://www.pulumi.com/registry/packages/kubernetes/api-docs/core/v1/pod/#objectmeta">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Storage Account Not Forcing HTTPS<br/><sup><sub>cb8e4bf0-903d-45c6-a278-9a947d82a27b</sub></sup></td>
+<td>Pulumi</td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Storage Accounts should enforce the use of HTTPS</td>
+<td><a href="https://www.pulumi.com/registry/packages/azure-native/api-docs/storage/storageaccount/#enablehttpstrafficonly_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Redis Cache Allows Non SSL Connections<br/><sup><sub>49e30ac8-f58e-4222-b488-3dcb90158ec1</sub></sup></td>
+<td>Pulumi</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>Redis Cache resource should not allow non-SSL connections.</td>
+<td><a href="https://www.pulumi.com/registry/packages/azure-native/api-docs/cache/redis/#enablenonsslport_yaml">Documentation</a><br/></td>
+</tr>
 </tbody>
 </table>
 
@@ -14727,10 +15055,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.39f04ddb.min.js"></script>
+      <script src="../../assets/javascripts/bundle.37e9125f.min.js"></script>
       
         <script src="../../js/version-mike.js"></script>
       

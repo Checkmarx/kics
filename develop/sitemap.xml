@@ -276,6 +276,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/queries/crossplane-queries/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/queries/dockercompose-queries/</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
@@ -296,12 +301,27 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/queries/knative-queries/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/queries/kubernetes-queries/</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/openapi-queries/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/pulumi-queries/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/serverlessfw-queries/</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>

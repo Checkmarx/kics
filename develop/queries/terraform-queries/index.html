@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/queries/terraform-queries/">
       
       <link rel="icon" href="../../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.2">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.3">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.9f9400aa.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7a952b86.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
@@ -1454,18 +1454,18 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>S3 Bucket Allows WriteACP Action From All Principals<br/><sup><sub>64a222aa-7793-4e40-915f-4b302c76e4d4</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Access Control</td>
-<td>S3 Buckets must not allow Write_ACP Action From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is Write_ACP, for all Principals.</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>S3 Bucket With All Permissions<br/><sup><sub>a4966c4f-9141-48b8-a564-ffe9959945bc</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Access Control</td>
 <td>S3 Buckets must not have all permissions, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is '*', for all Principals.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket ACL Grants WRITE_ACP Permission<br/><sup><sub>64a222aa-7793-4e40-915f-4b302c76e4d4</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>S3 Buckets should not allow WRITE_ACP permission to the S3 Bucket Access Control List in order to prevent AWS accounts or IAM users to modify access control permissions to the bucket.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_acl">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>S3 Bucket ACL Allows Read Or Write to All Users<br/><sup><sub>38c5ee0d-7f22-4260-ab72-5073048df100</sub></sup></td>
@@ -1548,7 +1548,7 @@
 <td>DB Instance Storage Not Encrypted<br/><sup><sub>08bd0760-8752-44e1-9779-7bb369b2b4e4</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
-<td>The parameter storage_encrypted in aws_db_instance must be set to 'true' (the default is 'false').</td>
+<td>AWS DB Instance should have its storage encrypted by setting the parameter to 'true'. The storage_encrypted default value is 'false'.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#storage_encrypted">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2703,7 +2703,7 @@
 <td>ElastiCache Nodes Not Created Across Multi AZ<br/><sup><sub>6db03a91-f933-4f13-ab38-a8b87a7de54d</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Availability</td>
-<td>Check if ElastiCache nodes are not being created across multi AZ</td>
+<td>ElastiCache Nodes should have 'az_mode' set to 'cross-az' in in multi nodes cluster</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2920,7 +2920,7 @@
 <td>SQS With SSE Disabled<br/><sup><sub>6e8849c1-3aa7-40e3-9063-b85ee300f29f</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Encryption</td>
-<td>Amazon Simple Queue Service (SQS) queue is not protecting the contents of their messages using Server-Side Encryption (SSE)</td>
+<td>Amazon Simple Queue Service (SQS) queue should protect the contents of their messages using Server-Side Encryption (SSE)</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -3225,10 +3225,10 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain#log_publishing_options">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Api Gateway Access Logging Disabled<br/><sup><sub>1b6799eb-4a7a-4b04-9001-8cceb9999326</sub></sup></td>
+<td>API Gateway Access Logging Disabled<br/><sup><sub>1b6799eb-4a7a-4b04-9001-8cceb9999326</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
-<td>RDS does not have any kind of logger</td>
+<td>API Gateway should have Access Log Settings defined</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_stage#access_log_settings">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -3905,7 +3905,7 @@
 <td>Cloud Storage Bucket Logging Not Enabled<br/><sup><sub>d6cabc3a-d57e-48c2-b341-bf3dd4f4a120</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Observability</td>
-<td>Cloud storage bucket with logging not enabled</td>
+<td>Cloud storage bucket should have logging enabled</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#log_bucket">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -3975,7 +3975,7 @@
 <td>Google Container Node Pool Auto Repair Disabled<br/><sup><sub>acfdbec6-4a17-471f-b412-169d77553332</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
-<td>Verifies if Google Container Node Pool Auto Repair is Enabled. This service periodically checks for failing nodes and repairs them to ensure a smooth running state.</td>
+<td>Google Container Node Pool Auto Repair should be enabled. This service periodically checks for failing nodes and repairs them to ensure a smooth running state.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -4101,7 +4101,7 @@
 <td>High KMS Rotation Period<br/><sup><sub>352271ca-842f-408a-8b24-f6f2b76eb027</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Secret Management</td>
-<td>KMS rotation period should not surpass 365 days</td>
+<td>KMS Rotation Period should be greater than 365 days.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/kms_crypto_key">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -5168,7 +5168,7 @@
 <td>Storage Account Not Forcing HTTPS<br/><sup><sub>12944ec4-1fa0-47be-8b17-42a034f937c2</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
-<td>See that Storage Accounts forces the use of HTTPS</td>
+<td>Storage Accounts should enforce the use of HTTPS</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -5921,10 +5921,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.39f04ddb.min.js"></script>
+      <script src="../../assets/javascripts/bundle.37e9125f.min.js"></script>
       
         <script src="../../js/version-mike.js"></script>
       

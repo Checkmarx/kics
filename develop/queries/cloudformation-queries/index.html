@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/queries/cloudformation-queries/">
       
       <link rel="icon" href="../../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.2">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.3">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.9f9400aa.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7a952b86.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
@@ -1545,13 +1545,6 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>IAM Database Auth Not Enabled<br/><sup><sub>9fcd0a0a-9b6f-4670-a215-d94e6bf3f184</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Encryption</td>
-<td>IAM Database Auth Enabled should be configured to true when compatible with engine and version</td>
-<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-enableiamdatabaseauthentication">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>SageMaker Data Encryption Disabled<br/><sup><sub>709e6da6-fa1f-44cc-8f17-7f25f96dadbe</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
@@ -1592,6 +1585,13 @@
 <td>Encryption</td>
 <td>Ensure that storage is encrypted.</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>RDS DB Instance With IAM Auth Disabled<br/><sup><sub>9fcd0a0a-9b6f-4670-a215-d94e6bf3f184</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>IAM Database Auth Enabled should be configured to true when compatible with engine and version</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-enableiamdatabaseauthentication">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Viewer Protocol Policy Allows HTTP<br/><sup><sub>31733ee2-fef0-4e87-9778-65da22a8ecf1</sub></sup></td>
@@ -1748,7 +1748,7 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>S3 Bucket with Unsecured CORS Rule<br/><sup><sub>3609d27c-3698-483a-9402-13af6ae80583</sub></sup></td>
+<td>S3 Bucket With Unsecured CORS Rule<br/><sup><sub>3609d27c-3698-483a-9402-13af6ae80583</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
 <td>If the CORS (Cross-Origin Resource Sharing) rule is defined in an S3 bucket, it should be secure</td>
@@ -1767,13 +1767,6 @@
 <td>Insecure Defaults</td>
 <td>WebAcl DefaultAction should not be ALLOW</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-webacl.html">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Remote Desktop Port Open To Internet<br/><sup><sub>c9846969-d066-431f-9b34-8c4abafe422a</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Networking and Firewall</td>
-<td>The Remote Desktop port is open to the internet in a Security Group</td>
-<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Fully Open Ingress<br/><sup><sub>e415f8d3-fc2b-4f52-88ab-1129e8c8d3f5</sub></sup></td>
@@ -1888,6 +1881,13 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>EC2 Instance Subnet Has Public IP Mapping On Launch<br/><sup><sub>b3de4e4c-14be-4159-b99d-9ad194365e4c</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>EC2 Instance Subnet should not have MapPublicIpOnLaunch set to true</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html#cfn-ec2-subnet-mappubliciponlaunch">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Security Groups With Exposed Admin Ports<br/><sup><sub>cdbb0467-2957-4a77-9992-7b55b29df7b7</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
@@ -1902,11 +1902,11 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>EC2 Instance Subnet Has Public IP Mapping On Launch<br/><sup><sub>b3de4e4c-14be-4159-b99d-9ad194365e4c</sub></sup></td>
+<td>Remote Desktop Port Open To Internet<br/><sup><sub>c9846969-d066-431f-9b34-8c4abafe422a</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
-<td>EC2 Subnet should not have MapPublicIpOnLaunch set to true</td>
-<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html#cfn-ec2-subnet-mappubliciponlaunch">Documentation</a><br/></td>
+<td>The Remote Desktop port is open to the internet in a Security Group</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Security Group Unrestricted Access To RDP<br/><sup><sub>3ae83918-7ec7-4cb8-80db-b91ef0f94002</sub></sup></td>
@@ -1930,18 +1930,18 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-dbsubnetgroupname">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>CMK Rotation Disabled<br/><sup><sub>1c07bfaf-663c-4f6f-b22b-8e2d481e4df5</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Observability</td>
-<td>Customer Master Keys (CMK) must have rotation enabled, which means the attribute 'EnableKeyRotation' must be set to 'true' when the key is enabled.</td>
-<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>S3 Bucket CloudTrail Logging Disabled<br/><sup><sub>c3ce69fd-e3df-49c6-be78-1db3f802261c</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Observability</td>
 <td>Server Access Logging should be enabled on S3 Buckets so that all changes are logged and trackable when the Service used is CloudTrail</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-loggingconfig">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CMK Rotation Disabled<br/><sup><sub>1c07bfaf-663c-4f6f-b22b-8e2d481e4df5</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Observability</td>
+<td>Customer Master Keys (CMK) must have rotation enabled, which means the attribute 'EnableKeyRotation' must be set to 'true' when the key is enabled.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>CloudTrail Logging Disabled<br/><sup><sub>5c0b06d5-b7a4-484c-aeb0-75a836269ff0</sub></sup></td>
@@ -2031,7 +2031,7 @@
 <td>IAM Policies Attached To User<br/><sup><sub>edc95c10-7366-4f30-9b4b-f995c84eceb5</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
-<td>IAM User should embed managed policies instead of inline policies</td>
+<td>IAM policies should be attached only to groups or roles</td>
 <td><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2108,7 +2108,7 @@
 <td>ElastiCache Nodes Not Created Across Multi AZ<br/><sup><sub>cfdef2e5-1fe4-4ef4-bea8-c56e08963150</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Availability</td>
-<td>Check if ElastiCache nodes are not being created across multi AZ</td>
+<td>ElastiCache Nodes should have 'AZMode' set to 'cross-az' in in multi nodes cluster</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2297,8 +2297,15 @@
 <td>SQS With SSE Disabled<br/><sup><sub>12726829-93ed-4d51-9cbe-13423f4299e1</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Encryption</td>
-<td>Amazon Simple Queue Service (SQS) queue is not protecting the contents of their messages using Server-Side Encryption (SSE)</td>
+<td>Amazon Simple Queue Service (SQS) queue should protect the contents of their messages using Server-Side Encryption (SSE)</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-kmsmasterkeyid">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>RDS Storage Encryption Disabled<br/><sup><sub>65844ba3-03a1-40a8-b3dd-919f122e8c95</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>RDS DBCluster should have storage encrypted set to true</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html#cfn-rds-dbcluster-storageencrypted">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>CodeBuild Not Encrypted<br/><sup><sub>d7467bb6-3ed1-4c82-8095-5e7a818d0aad</sub></sup></td>
@@ -2355,13 +2362,6 @@
 <td>Encryption</td>
 <td>EMR SecurityConfiguration should enable and properly configure encryption at rest and in transit.</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-securityconfiguration.html">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>RDS Storage Encryption Disabled<br/><sup><sub>65844ba3-03a1-40a8-b3dd-919f122e8c95</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Encryption</td>
-<td>RDS DBCluster should have storage encrypted set to true</td>
-<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html#cfn-rds-dbcluster-storageencrypted">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>GitHub Repository Set To Public<br/><sup><sub>5906092d-5f74-490d-9a03-78febe0f65e1</sub></sup></td>
@@ -2490,6 +2490,13 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Security Groups Without VPC Attached<br/><sup><sub>493d9591-6249-47bf-8dc0-5c10161cc558</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Security Groups must have a VPC.</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>TCP/UDP Protocol Network ACL Entry Allows All Ports<br/><sup><sub>f57f849c-883b-4cb7-85e7-f7b199dff163</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
@@ -2502,13 +2509,6 @@
 <td>Networking and Firewall</td>
 <td>AWS Security Group Egress should have a single port</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-security-group-egress.html">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Security Groups Without VPC Attached<br/><sup><sub>493d9591-6249-47bf-8dc0-5c10161cc558</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Networking and Firewall</td>
-<td>Security Groups must have a VPC.</td>
-<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>EC2 Permissive Network ACL Protocols<br/><sup><sub>03879981-efa2-47a0-a818-c843e1441b88</sub></sup></td>
@@ -2630,6 +2630,13 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>ElasticSearch Without Slow Logs<br/><sup><sub>086ea2eb-14a6-4fd4-914b-38e0bc8703e8</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Ensure that AWS Elasticsearch enables support for slow logs</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html#cfn-elasticsearch-domain-logpublishingoptions">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>GuardDuty Detector Disabled<br/><sup><sub>a25cd877-375c-4121-a640-730929936fac</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
@@ -2684,13 +2691,6 @@
 <td>Observability</td>
 <td>Server Access Logging should be enabled on S3 Buckets so that all changes are logged and trackable</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-loggingconfig">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>ElasticSearch Without Slow Logs<br/><sup><sub>086ea2eb-14a6-4fd4-914b-38e0bc8703e8</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Observability</td>
-<td>Ensure that AWS Elasticsearch enables support for slow logs</td>
-<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html#cfn-elasticsearch-domain-logpublishingoptions">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>CloudTrail SNS Topic Name Undefined<br/><sup><sub>3e09413f-471e-40f3-8626-990c79ae63f3</sub></sup></td>
@@ -2857,11 +2857,11 @@
 <td>VPC Attached With Too Many Gateways<br/><sup><sub>97e94d17-e2c7-4109-a53b-6536ac1bb64e</sub></sup></td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Availability</td>
-<td>The number of gateways approaches or goes beyond the limit in a particular VPC</td>
+<td>The number of gateways attached should not approach or go beyond the limit of 3, in a particular VPC</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc-gateway-attachment.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>RDS With Deletion Protection Disabled<br/><sup><sub>2c161e58-cb52-454f-abea-6470c37b5e6e</sub></sup></td>
+<td>RDS DB Instance With Deletion Protection Disabled<br/><sup><sub>2c161e58-cb52-454f-abea-6470c37b5e6e</sub></sup></td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Backup</td>
 <td>RDS DBInstance should have deletion protection set to true</td>
@@ -3150,7 +3150,7 @@
 <td>Serverless Function Without Tags<br/><sup><sub>a71ecabe-03b6-456a-b3bc-d1a39aa20c98</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
-<td>AWS Serverless Function must have associated tags</td>
+<td>AWS Serverless Function should have associated tags</td>
 <td><a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-tags">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -3364,10 +3364,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.39f04ddb.min.js"></script>
+      <script src="../../assets/javascripts/bundle.37e9125f.min.js"></script>
       
         <script src="../../js/version-mike.js"></script>
       
