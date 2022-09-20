@@ -2174,13 +2174,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="31">total += v
+                <span class="cov9" title="37">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -4776,7 +4776,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="11">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -20081,7 +20081,8 @@ func (c *Client) postScan(scanResults *Results) error <span class="cov0" title="
 }
 </pre>
 		
-		<pre class="file" id="file113" style="display: none">package scan
+		<pre class="file" id="file113" style="display: none">// Package Scan implements functions and helpers to ensure the proper scan of the specified files
+package scan
 
 import (
         "context"
@@ -20994,6 +20995,7 @@ func Contains(target, list interface{}) bool <span class="cov6" title="6">{
         <span class="cov4" title="3">return false</span>
 }
 
+// Verifies if some string in list contains target
 func ContainsInString(target string, list []string) bool <span class="cov0" title="0">{
         for i := 0; i &lt; len(list); i++ </span><span class="cov0" title="0">{
                 if strings.Contains(list[i], target) </span><span class="cov0" title="0">{
