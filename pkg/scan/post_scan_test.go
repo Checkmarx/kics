@@ -1,6 +1,7 @@
 package scan
 
 import (
+	"os"
 	"path/filepath"
 	"testing"
 	"time"
@@ -230,7 +231,7 @@ func Test_PrintOuput(t *testing.T) {
 		},
 		{
 			name:       "print with empty formats",
-			outputPath: filepath.Join("..", "..", "res"),
+			outputPath: filepath.Join("..", ".."),
 			filename:   "results",
 			body: model.Summary{
 				Version: "",
@@ -279,9 +280,11 @@ func Test_PrintOuput(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			err := printOutput(tt.outputPath, tt.filename, tt.body, tt.formats, tt.proBarBuilder)
+			os.Remove(filepath.Join("..", "..", tt.filename+".json"))
 			require.NoError(t, err)
 		})
 	}
+
 }
 
 func Test_resolveOutputs(t *testing.T) {
