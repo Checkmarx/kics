@@ -281,9 +281,9 @@
 				
 				<option value="file112">github.com/Checkmarx/kics/pkg/scan/post_scan.go (0.0%)</option>
 				
-				<option value="file113">github.com/Checkmarx/kics/pkg/scan/scan.go (3.5%)</option>
+				<option value="file113">github.com/Checkmarx/kics/pkg/scan/scan.go (16.3%)</option>
 				
-				<option value="file114">github.com/Checkmarx/kics/pkg/scan/utils.go (62.3%)</option>
+				<option value="file114">github.com/Checkmarx/kics/pkg/scan/utils.go (70.5%)</option>
 				
 				<option value="file115">github.com/Checkmarx/kics/pkg/scanner/scanner.go (56.4%)</option>
 				
@@ -2174,13 +2174,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="31">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2205,7 +2205,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -20246,29 +20246,29 @@ func (c *Client) executeScan(ctx context.Context) (*Results, error) <span class=
         }, nil</span>
 }
 
-func getExcludeResultsMap(excludeResults []string) map[string]bool <span class="cov8" title="1">{
+func getExcludeResultsMap(excludeResults []string) map[string]bool <span class="cov1" title="1">{
         excludeResultsMap := make(map[string]bool)
         for _, er := range excludeResults </span><span class="cov0" title="0">{
                 excludeResultsMap[er] = true
         }</span>
-        <span class="cov8" title="1">return excludeResultsMap</span>
+        <span class="cov1" title="1">return excludeResultsMap</span>
 }
 
-func getSecretsRegexRules(regexRulesPath string) (regexRulesContent string, err error) <span class="cov0" title="0">{
-        if len(regexRulesPath) &gt; 0 </span><span class="cov0" title="0">{
+func getSecretsRegexRules(regexRulesPath string) (regexRulesContent string, err error) <span class="cov10" title="3">{
+        if len(regexRulesPath) &gt; 0 </span><span class="cov6" title="2">{
                 b, err := os.ReadFile(regexRulesPath)
-                if err != nil </span><span class="cov0" title="0">{
+                if err != nil </span><span class="cov1" title="1">{
                         return regexRulesContent, err
                 }</span>
-                <span class="cov0" title="0">regexRulesContent = string(b)</span>
-        } else<span class="cov0" title="0"> {
+                <span class="cov1" title="1">regexRulesContent = string(b)</span>
+        } else<span class="cov1" title="1"> {
                 regexRulesContent = assets.SecretsQueryRegexRulesJSON
         }</span>
 
-        <span class="cov0" title="0">return regexRulesContent, nil</span>
+        <span class="cov6" title="2">return regexRulesContent, nil</span>
 }
 
-func (c *Client) createQueryFilter() *source.QueryInspectorParameters <span class="cov0" title="0">{
+func (c *Client) createQueryFilter() *source.QueryInspectorParameters <span class="cov1" title="1">{
         excludeQueries := source.ExcludeQueries{
                 ByIDs:        c.ScanParams.ExcludeQueries,
                 ByCategories: c.ScanParams.ExcludeCategories,
@@ -20519,7 +20519,7 @@ func resolvePath(flagContent, flagName string) (string, error) <span class="cov6
 // analyzePaths will analyze the paths to scan to determine which type of queries to load
 // and which files should be ignored, it then updates the types and exclude flags variables
 // with the results found
-func analyzePaths(a *analyzer.Analyzer) (model.AnalyzedPaths, error) <span class="cov0" title="0">{
+func analyzePaths(a *analyzer.Analyzer) (model.AnalyzedPaths, error) <span class="cov1" title="1">{
         var err error
         var pathsFlag model.AnalyzedPaths
         excluded := make([]string, 0)
@@ -20530,7 +20530,7 @@ func analyzePaths(a *analyzer.Analyzer) (model.AnalyzedPaths, error) <span class
                 return model.AnalyzedPaths{}, err
         }</span>
 
-        <span class="cov0" title="0">logLoadingQueriesType(pathsFlag.Types)
+        <span class="cov1" title="1">logLoadingQueriesType(pathsFlag.Types)
 
         excluded = append(excluded, a.Exc...)
         excluded = append(excluded, pathsFlag.Exc...)
@@ -20538,13 +20538,13 @@ func analyzePaths(a *analyzer.Analyzer) (model.AnalyzedPaths, error) <span class
         return pathsFlag, nil</span>
 }
 
-func logLoadingQueriesType(types []string) <span class="cov3" title="3">{
+func logLoadingQueriesType(types []string) <span class="cov4" title="4">{
         if len(types) == 0 </span><span class="cov1" title="1">{
                 log.Info().Msg("No queries were loaded")
                 return
         }</span>
 
-        <span class="cov2" title="2">log.Info().Msgf("Loading queries of type: %s", strings.Join(types, ", "))</span>
+        <span class="cov3" title="3">log.Info().Msgf("Loading queries of type: %s", strings.Join(types, ", "))</span>
 }
 
 func extractPathType(paths []string) (regular, terraformer, kuberneter []string) <span class="cov4" title="4">{
