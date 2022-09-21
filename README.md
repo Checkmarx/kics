@@ -110,4 +110,6 @@ Join the <a href="https://github.com/Checkmarx/kics/discussions" target="_blank"
 
 ---
 
+test update
+
 &copy; 2021 Checkmarx Ltd. All Rights Reserved.
