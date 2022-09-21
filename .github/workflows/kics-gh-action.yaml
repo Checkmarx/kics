@@ -20,7 +20,7 @@ jobs:
           output_path: ./results
           output_formats: json,html
           type: dockerfile
-          build-args: KICS_IMAGE=checkmarx/kics:v1.5.14
+          build_args: KICS_IMAGE=checkmarx/kics:v1.5.14
       - uses: actions/upload-artifact@v3
         with:
           name: results
