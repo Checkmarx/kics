@@ -54,7 +54,7 @@ RUN wget https://releases.hashicorp.com/terraform/1.2.3/terraform_1.2.3_linux_am
 
 
 # Install Terraformer
-RUN wget https://github.com/GoogleCloudPlatform/terraformer/releases/download/0.8.21/terraformer-all-linux-amd64 \
+RUN wget https://github.com/GoogleCloudPlatform/terraformer/releases/download/0.8.22/terraformer-all-linux-amd64 \
     && chmod +x terraformer-all-linux-amd64 \
     && mv terraformer-all-linux-amd64 /usr/bin/terraformer \
     && apk add gcompat=1.0.0-r4 --no-cache
