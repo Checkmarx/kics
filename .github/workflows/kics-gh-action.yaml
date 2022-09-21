@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Run KICS Scan
-        uses: checkmarx/kics-action@v1.5
+        uses: gabriel-cx/kics-github-action@v1.5
         with:
 #           token: ${{ secrets.GITHUB_TOKEN }}
           path: "./Dockerfile"
@@ -20,6 +20,7 @@ jobs:
           output_path: ./results
           output_formats: json,html
           type: dockerfile
+          build-args: KICS_IMAGE=checkmarx/kics:v1.5.14
       - uses: actions/upload-artifact@v3
         with:
           name: results
