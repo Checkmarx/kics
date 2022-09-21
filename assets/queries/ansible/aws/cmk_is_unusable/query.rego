@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{community.aws.aws_kms}}.enabled", [task.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "community.aws.aws_kms.enabled is set to true",
+		"keyExpectedValue": "community.aws.aws_kms.enabled should be set to true",
 		"keyActualValue": "community.aws.aws_kms.enabled is set to false",
 	}
 }

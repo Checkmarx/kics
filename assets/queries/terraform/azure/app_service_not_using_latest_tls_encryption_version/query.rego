@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(app, name),
 		"searchKey": sprintf("azurerm_app_service[%s].site_config.min_tls_version", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_app_service[%s].site_config.min_tls_version' is set to '1.2'", [name]),
+		"keyExpectedValue": sprintf("'azurerm_app_service[%s].site_config.min_tls_version' should be set to '1.2'", [name]),
 		"keyActualValue": sprintf("'azurerm_app_service[%s].site_config.min_tls_version' is not set to '1.2'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_app_service", name, "site_config", "min_tls_version"], []),
 		"remediation": json.marshal({
@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(app, name),
 		"searchKey": sprintf("azurerm_app_service[%s].site_config.min_tls_version", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_app_service[%s].site_config.min_tls_version' is set to '1.2'", [name]),
+		"keyExpectedValue": sprintf("'azurerm_app_service[%s].site_config.min_tls_version' should be set to '1.2'", [name]),
 		"keyActualValue": sprintf("'azurerm_app_service[%s].site_config.min_tls_version' is not set to '1.2'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_app_service", name, "site_config", "min_tls_version"], []),
 		"remediation": json.marshal({

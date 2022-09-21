@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_kms_key[%s]", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_kms_key", name], []),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_kms_key[%s].deletion_window_in_days is set and valid", [name]),
+		"keyExpectedValue": sprintf("aws_kms_key[%s].deletion_window_in_days should be set and valid", [name]),
 		"keyActualValue": sprintf("aws_kms_key[%s].deletion_window_in_days is undefined", [name]),
 		"remediation": "deletion_window_in_days = 30",
 		"remediationType": "addition",
@@ -42,7 +42,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_kms_key[%s].deletion_window_in_days", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_kms_key", name ,"deletion_window_in_days"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_kms_key[%s].deletion_window_in_days is set and valid", [name]),
+		"keyExpectedValue": sprintf("aws_kms_key[%s].deletion_window_in_days should be set and valid", [name]),
 		"keyActualValue": sprintf("aws_kms_key[%s].deletion_window_in_days is set but invalid", [name]),
 		"remediation": json.marshal({
 			"before": sprintf("%d", [resource.deletion_window_in_days]),

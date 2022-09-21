@@ -32,7 +32,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cognito_user_pool[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_cognito_user_pool[%s].mfa_configuration is set to 'ON' or 'OPTIONAL", [name]),
+		"keyExpectedValue": sprintf("aws_cognito_user_pool[%s].mfa_configuration should be set to 'ON' or 'OPTIONAL", [name]),
 		"keyActualValue": sprintf("aws_cognito_user_pool[%s].mfa_configuration is set to '%s'", [name, resource.mfa_configuration]),
 	}
 }

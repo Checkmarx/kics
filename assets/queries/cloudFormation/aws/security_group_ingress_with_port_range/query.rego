@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties", [cf_lib.getPath(path),name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.FromPort should be equal to Resources.%s.Properties.ToPort", [name, name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.FromPort should equal to Resources.%s.Properties.ToPort", [name, name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.FromPort is not equal to Resources.%s.Properties.ToPort", [name, name]),
 	}
 }
@@ -39,7 +39,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.SecurityGroupIngress", [cf_lib.getPath(path),name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].FromPort should be equal to Resources.%s.Properties.SecurityGroupIngress[%d].ToPort", [name, index, name, index]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].FromPort should equal to Resources.%s.Properties.SecurityGroupIngress[%d].ToPort", [name, index, name, index]),
 		"keyActualValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].FromPort is not equal to Resources.%s.Properties.SecurityGroupIngress[%d].ToPort", [name, index, name, index]),
 	}
 }

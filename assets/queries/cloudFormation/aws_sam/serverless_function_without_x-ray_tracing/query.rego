@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Tracing", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'Tracing' is set to 'Active'",
+		"keyExpectedValue": "'Tracing' should be set to 'Active'",
 		"keyActualValue": sprintf("'Tracing' is set to '%s'", [properties.Tracing]),
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "Tracing"], []),
 	}
