@@ -12,7 +12,7 @@ This provides you the ability to run KICS scans in your Github repositories and 
 
 ```yaml
 - name: KICS Github Action
-  uses: Checkmarx/kics-github-action@latest
+  uses: checkmarx/kics-action@latest
   with:
     # path to file or directory to scan
     path:
