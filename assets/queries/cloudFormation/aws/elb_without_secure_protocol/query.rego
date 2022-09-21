@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Listeners", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Listeners.%s' is set to 'SSL' or 'HTTPS'", [name, protocol]),
+		"keyExpectedValue": sprintf("'Resources.%s.Listeners.%s' should be set to 'SSL' or 'HTTPS'", [name, protocol]),
 		"keyActualValue": sprintf("'Resources.%s.Listeners.%s' isn't set to 'SSL' or 'HTTPS'", [name, protocol]),
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "Listeners", idx], [protocol]),
 	}

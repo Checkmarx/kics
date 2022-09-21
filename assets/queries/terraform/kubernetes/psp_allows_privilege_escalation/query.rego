@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod_security_policy[%s].spec.allow_privilege_escalation", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_pod_security_policy[%s].spec.allow_privilege_escalation is set to false", [name]),
+		"keyExpectedValue": sprintf("kubernetes_pod_security_policy[%s].spec.allow_privilege_escalation should be set to false", [name]),
 		"keyActualValue": sprintf("kubernetes_pod_security_policy[%s].spec.allow_privilege_escalation is set to true", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "kubernetes_pod_security_policy",name, "spec"],["allow_privilege_escalation"]),
 		"remediation": json.marshal({

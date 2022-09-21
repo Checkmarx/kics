@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Listeners.Protocol=HTTP", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Listeners.Protocol' should not be equal to 'HTTP'", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Listeners.Protocol' should not equal to 'HTTP'", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Listeners.Protocol' equals to 'HTTP'", [name]),
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties","Listeners",l,"Protocol"], []),
 	}
@@ -34,7 +34,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Protocol", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Protocol' should not be equal to 'HTTP'", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Protocol' should not equal to 'HTTP'", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Protocol' equals to 'HTTP'", [name]),
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties","Protocol"], []),
 	}

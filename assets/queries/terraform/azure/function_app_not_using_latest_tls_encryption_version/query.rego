@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(app, name),
 		"searchKey": sprintf("azurerm_function_app[%s].site_config.min_tls_version", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_function_app[%s].site_config.min_tls_version' is set to '1.2'", [name]),
+		"keyExpectedValue": sprintf("'azurerm_function_app[%s].site_config.min_tls_version' should be set to '1.2'", [name]),
 		"keyActualValue": sprintf("'azurerm_function_app[%s].site_config.min_tls_version' is not set to '1.2'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_function_app", name, "site_config", "min_tls_version"], []),
 		"remediation": json.marshal({

@@ -34,7 +34,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(monitor, name),
 		"searchKey": sprintf("azurerm_monitor_log_profile[%s].retention_policy.enabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_monitor_log_profile[%s].retention_policy.enabled' is set to true", [name]),
+		"keyExpectedValue": sprintf("'azurerm_monitor_log_profile[%s].retention_policy.enabled' should be set to true", [name]),
 		"keyActualValue": sprintf("'azurerm_monitor_log_profile[%s].retention_policy.enabled' is set to false", [name]),
 		"searchLine": common_lib.build_search_line(["resource","azurerm_monitor_log_profile",name, "retention_policy","enabled"], []),
 		"remediation": json.marshal({

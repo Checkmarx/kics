@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(bucket, "aws_s3_bucket", name),
 		"searchKey": sprintf("aws_s3_bucket[%s].server_side_encryption_configuration.rule.apply_server_side_encryption_by_default.sse_algorithm", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'sse_algorithm' to be AES256 when key is null",
+		"keyExpectedValue": "'sse_algorithm' should be AES256 when key is null",
 		"keyActualValue": sprintf("'sse_algorithm' is %s when key is null", [sse.sse_algorithm]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name, "server_side_encryption_configuration", "rule", "apply_server_side_encryption_by_default", "sse_algorithm"], []),
 	}
@@ -39,7 +39,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].server_side_encryption_configuration.rule.apply_server_side_encryption_by_default.sse_algorithm", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'sse_algorithm' to be AES256 when key is null",
+		"keyExpectedValue": "'sse_algorithm' should be AES256 when key is null",
 		"keyActualValue": sprintf("'sse_algorithm' is %s when key is null", [algorithm.sse_algorithm]),
 		"searchLine": common_lib.build_search_line(["module", name, "server_side_encryption_configuration", "rule", "apply_server_side_encryption_by_default", "sse_algorithm"], []),
 	}
@@ -60,7 +60,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_s3_bucket", name),
 		"searchKey": sprintf("aws_s3_bucket[%s].server_side_encryption_configuration.rule.apply_server_side_encryption_by_default.kms_master_key_id", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'kms_master_key_id' to be null when algorithm is 'AES256'",
+		"keyExpectedValue": "'kms_master_key_id' should be null when algorithm is 'AES256'",
 		"keyActualValue": "'kms_master_key_id'is not null when algorithm is 'AES256'",
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name, "server_side_encryption_configuration", "rule", "apply_server_side_encryption_by_default", "kms_master_key_id"], []),
 	}
@@ -82,7 +82,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].server_side_encryption_configuration.rule.apply_server_side_encryption_by_default.kms_master_key_id", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'kms_master_key_id' to be null when algorithm is 'AES256'",
+		"keyExpectedValue": "'kms_master_key_id' should be null when algorithm is 'AES256'",
 		"keyActualValue": "'kms_master_key_id'is not null when algorithm is 'AES256'",
 		"searchLine": common_lib.build_search_line(["module", name, "server_side_encryption_configuration", "rule", "apply_server_side_encryption_by_default", "kms_master_key_id"], []),
 	}
@@ -100,7 +100,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'server_side_encryption_configuration' to be defined and not null",
+		"keyExpectedValue": "'server_side_encryption_configuration' should be defined and not null",
 		"keyActualValue": "'server_side_encryption_configuration' is undefined or null",
 		"searchLine": common_lib.build_search_line(["module", name], []),
 	}
@@ -141,7 +141,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(sse, name),
 		"searchKey": sprintf("aws_s3_bucket_server_side_encryption_configuration[%s].rule", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'apply_server_side_encryption_by_default' to be defined and not null",
+		"keyExpectedValue": "'apply_server_side_encryption_by_default' should be defined and not null",
 		"keyActualValue": "'apply_server_side_encryption_by_default' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_server_side_encryption_configuration", name, "rule"], []),
 	}
@@ -164,7 +164,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(sse, name),
 		"searchKey": sprintf("aws_s3_bucket_server_side_encryption_configuration[%s].rule.apply_server_side_encryption_by_default.kms_master_key_id", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'kms_master_key_id' to be null when algorithm is 'AES256'",
+		"keyExpectedValue": "'kms_master_key_id' should be null when algorithm is 'AES256'",
 		"keyActualValue": "'kms_master_key_id' is not null when algorithm is 'AES256'",
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_server_side_encryption_configuration", name, "rule", "apply_server_side_encryption_by_default", "kms_master_key_id"], []),
 	}
@@ -188,7 +188,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(sse, name),
 		"searchKey": sprintf("aws_s3_bucket_server_side_encryption_configuration[%s].rule.apply_server_side_encryption_by_default.sse_algorithm", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'sse_algorithm' to be AES256 when key is null",
+		"keyExpectedValue": "'sse_algorithm' should be AES256 when key is null",
 		"keyActualValue": sprintf("'sse_algorithm' is %s when key is null", [rule.sse_algorithm]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_server_side_encryption_configuration", name, "rule", "apply_server_side_encryption_by_default", "sse_algorithm"], []),
 	}

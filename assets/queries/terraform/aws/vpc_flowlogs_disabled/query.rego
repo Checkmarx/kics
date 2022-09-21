@@ -51,7 +51,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("%s.%s", [name, keyToCheck]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.%s is set to true", [name, keyToCheck]),
+		"keyExpectedValue": sprintf("%s.%s should be set to true", [name, keyToCheck]),
 		"keyActualValue": sprintf("%s.%s is set to false", [name, keyToCheck]),
 		"searchLine": common_lib.build_search_line(["module", name, keyToCheck], []),
 	}
@@ -69,7 +69,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("%s", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s.%s is set to true", [name, keyToCheck]),
+		"keyExpectedValue": sprintf("%s.%s should be set to true", [name, keyToCheck]),
 		"keyActualValue": sprintf("%s.%s is undefined", [name, keyToCheck]),
 		"searchLine": common_lib.build_search_line(["module", name], []),
 	}

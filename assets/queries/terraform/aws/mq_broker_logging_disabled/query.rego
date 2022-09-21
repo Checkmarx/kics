@@ -55,7 +55,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(broker, "aws_mq_broker", name),
 		"searchKey": sprintf("aws_mq_broker[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'logs' is set and enabling general AND audit logging",
+		"keyExpectedValue": "'logs' should be set and enabling general AND audit logging",
 		"keyActualValue": "'logs' is undefined",
 	}
 }

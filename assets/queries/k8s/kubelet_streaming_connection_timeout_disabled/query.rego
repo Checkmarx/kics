@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "--streaming-connection-idle-timeout flag not to be 0",
+		"keyExpectedValue": "--streaming-connection-idle-timeout flag not should be 0",
 		"keyActualValue": "--streaming-connection-idle-timeout flag is 0",
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
 	}
@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}.streamingConnectionIdleTimeout",
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "streamingConnectionIdleTimeout not to be 0s",
+		"keyExpectedValue": "streamingConnectionIdleTimeout not should be 0s",
 		"keyActualValue": "streamingConnectionIdleTimeout is 0s",
 	}
 }
