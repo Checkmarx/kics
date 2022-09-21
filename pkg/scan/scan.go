@@ -1,4 +1,4 @@
-// Package Scan implements functions and helpers to ensure the proper scan of the specified files
+// Package scan implements functions and helpers to ensure the proper scan of the specified files
 package scan
 
 import (
