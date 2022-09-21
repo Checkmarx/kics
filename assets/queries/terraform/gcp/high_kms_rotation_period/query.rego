@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(kms, name),
 		"searchKey": sprintf("google_kms_crypto_key[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'rotation_period' is set and is at most 31536000 seconds",
+		"keyExpectedValue": "'rotation_period' should be set and is at most 31536000 seconds",
 		"keyActualValue": "'rotation_period' is undefined",
 		"searchLine": common_lib.build_search_line(["resource", "google_kms_crypto_key", name],[]),
 		"remediation": "rotation_period = \"100000s\"",

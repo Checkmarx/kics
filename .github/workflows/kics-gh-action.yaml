@@ -2,7 +2,7 @@ name: kics-github-action
 
 on:
   pull_request:
-    branches: [master, release/1.6]
+    branches: [master]
   workflow_dispatch:
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
           output_path: ./results
           output_formats: json,html
           type: dockerfile
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: results
           path: ./results

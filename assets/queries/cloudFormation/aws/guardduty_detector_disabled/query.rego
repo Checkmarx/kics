@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Enable", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.Enable is set to true", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Enable should be set to true", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.Enable is set to false", [name]),
 	}
 }

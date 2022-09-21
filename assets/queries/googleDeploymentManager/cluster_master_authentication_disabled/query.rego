@@ -14,8 +14,8 @@ CxPolicy[result] {
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'masterAuth' to be defined and not null",
-		"keyActualValue": "'masterAuth' is undefined or null", 
+		"keyExpectedValue": "'masterAuth' should be defined and not null",
+		"keyActualValue": "'masterAuth' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties"], []),
 	}
 }
@@ -33,8 +33,8 @@ CxPolicy[result] {
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.masterAuth", [resource.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'masterAuth.username' to be defined and Attribute 'masterAuth.password' to be defined",
-		"keyActualValue": "Attribute 'masterAuth.username' is undefined or attribute 'masterAuth.password' is undefined", 
+		"keyExpectedValue": "Attribute 'masterAuth.username' should be defined and Attribute 'masterAuth.password' should be defined",
+		"keyActualValue": "Attribute 'masterAuth.username' is undefined or attribute 'masterAuth.password' is undefined",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "masterAuth"], []),
 	}
 }
@@ -52,8 +52,8 @@ CxPolicy[result] {
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.masterAuth", [resource.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Attribute 'masterAuth.username' to be not empty and attribute 'masterAuth.password' to be not empty",
-		"keyActualValue": "Attribute 'masterAuth.username' is empty or attribute 'masterAuth.password' is empty", 
+		"keyExpectedValue": "Attribute 'masterAuth.username' should not be empty and attribute 'masterAuth.password' should not be empty",
+		"keyActualValue": "Attribute 'masterAuth.username' is empty or attribute 'masterAuth.password' is empty",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "masterAuth"], []),
 	}
 }

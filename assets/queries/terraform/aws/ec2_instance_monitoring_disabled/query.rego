@@ -53,7 +53,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_instance.{{%s}}.monitoring", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'monitoring' is set to true", [name]),
+		"keyExpectedValue": sprintf("'monitoring' should be set to true", [name]),
 		"keyActualValue": sprintf("'monitoring' is set to false", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name, "monitoring"], []),
 		"remediation": json.marshal({
@@ -76,7 +76,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].%s", [name,keyToCheck]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'monitoring' is set to true", [name]),
+		"keyExpectedValue": sprintf("'monitoring' should be set to true", [name]),
 		"keyActualValue": sprintf("'monitoring' is set to false", [name]),
 		"searchLine": common_lib.build_search_line(["module", name, keyToCheck], []),
 		"remediation": json.marshal({

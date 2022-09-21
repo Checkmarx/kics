@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_iam_account_password_policy[%s]", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_iam_account_password_policy", name], []),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'minimum_password_length' is set and no less than 14",
+		"keyExpectedValue": "'minimum_password_length' should be set and no less than 14",
 		"keyActualValue": "'minimum_password_length' is undefined",
 		"remediation": "minimum_password_length = 14",
 		"remediationType": "addition",
@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_iam_account_password_policy[%s].minimum_password_length", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_iam_account_password_policy", name, "minimum_password_length"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'minimum_password_length' is set and no less than 14",
+		"keyExpectedValue": "'minimum_password_length' should be set and no less than 14",
 		"keyActualValue": "'minimum_password_length' is less than 14",
 		"remediation": json.marshal({
 			"before": sprintf("%d", [min_length]),

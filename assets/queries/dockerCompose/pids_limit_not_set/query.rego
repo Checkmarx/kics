@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s",[name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Pids_limit to be defined.",
+		"keyExpectedValue": "Pids_limit should be defined.",
 		"keyActualValue": "Pids_limit is not defined.",
 		"searchLine": common_lib.build_search_line(["services", name], []),
 	}
@@ -31,7 +31,7 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.pids_limit",[name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Pids_limit to be limited.",
+		"keyExpectedValue": "Pids_limit should be limited.",
 		"keyActualValue": "Pids_limit is not limited.",
 		"searchLine": common_lib.build_search_line(["services", name, "pids_limit"], []),
 	}

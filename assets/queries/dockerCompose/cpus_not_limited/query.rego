@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy.resources.limits",[name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'deploy.resources.limits.cpus' to be defined",
+		"keyExpectedValue": "'deploy.resources.limits.cpus' should be defined",
 		"keyActualValue": "'deploy.resources.limits.cpus' is not defined",
 		"searchLine": common_lib.build_search_line(["services", name, "deploy", "resources", "limits"], []),
 	}
@@ -49,7 +49,7 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy",[name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'deploy.resources' to be defined",
+		"keyExpectedValue": "'deploy.resources' should be defined",
 		"keyActualValue":  "'deploy.resources' is not defined",
 		"searchLine": common_lib.build_search_line(["services", name, "deploy"], []),
 	}
@@ -67,7 +67,7 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy.resources",[name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'deploy.resources.limits' to be defined",
+		"keyExpectedValue": "'deploy.resources.limits' should be defined",
 		"keyActualValue": "'deploy.resources.limits' is not defined",
 		"searchLine": common_lib.build_search_line(["services", name, "deploy", "resources"], []),
     }
@@ -85,7 +85,7 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s",[name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "For cpus priority to be declared.",
+		"keyExpectedValue": "For cpus priority should be declared.",
 		"keyActualValue": "There is no cpus priority declared.",
 		"searchLine": common_lib.build_search_line(["services", name], []),
 	}
