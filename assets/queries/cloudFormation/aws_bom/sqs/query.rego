@@ -4,8 +4,9 @@ import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
-	document := input.document
-	sqs_queue := document[i].Resources[name]
+	documents := input.document[i]
+	[_, Resources] := walk(documents)
+	sqs_queue := Resources[name]
 	sqs_queue.Type == "AWS::SQS::Queue"
 
 	info := cf_lib.get_resource_accessibility(name, "AWS::SQS::QueuePolicy", "Queues")

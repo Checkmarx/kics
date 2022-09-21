@@ -11,7 +11,7 @@ queries_path = {
     'azureresourcemanager': os.path.join(queries_basepath, 'azureResourceManager', '*'),
     'cloudformation': os.path.join(queries_basepath, 'cloudFormation', '**', '*'),
     'openapi': os.path.join(queries_basepath, 'openAPI', '**', '*'),
-    'crossplane': os.path.join(queries_basepath, 'crossplane', '*'),
+    'crossplane': os.path.join(queries_basepath, 'crossplane',"**" ,'*'),
     'k8s': os.path.join(queries_basepath, 'k8s', '*'),
     'knative': os.path.join(queries_basepath, 'knative', '*'),
     'common': os.path.join(queries_basepath, 'common', '*'),
@@ -20,8 +20,8 @@ queries_path = {
     'grpc': os.path.join(queries_basepath, 'grpc', '*'),
     'gdm': os.path.join(queries_basepath, 'googleDeploymentManager', '*'),
     'dockerCompose': os.path.join(queries_basepath, 'dockerCompose', '*'),
-    'pulumi': os.path.join(queries_basepath, 'pulumi', '*'),
-    'serverlessFW': os.path.join(queries_basepath, 'serverlessFW', '*'),
+    'pulumi': os.path.join(queries_basepath, 'pulumi', "**", '*'),
+    'serverlessFW': os.path.join(queries_basepath, 'serverlessFW', '**','*'),
 
 }
 samples_ext = {

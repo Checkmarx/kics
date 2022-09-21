@@ -4,8 +4,9 @@ import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
-	document := input.document
-	ebs_volume := document[i].Resources[name]
+	documents := input.document[i]
+	[_, Resources] := walk(documents)
+	ebs_volume := Resources[name]
 	ebs_volume.Type == "AWS::EC2::Volume"
 
 	bom_output = {

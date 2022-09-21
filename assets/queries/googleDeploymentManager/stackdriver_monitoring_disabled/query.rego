@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'monitoringService' to be defined and not null",
+		"keyExpectedValue": "'monitoringService' should be defined and not null",
 		"keyActualValue": "'monitoringService' is undefined or null", 
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties"], []),
 	}

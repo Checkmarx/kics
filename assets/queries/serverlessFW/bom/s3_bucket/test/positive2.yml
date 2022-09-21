@@ -1,0 +1,19 @@
+# serverless.yml
+ 
+# Service name
+service: myservice
+
+provider:
+  name: aws
+  # If you need to configure the bucket itself, you'll need to add s3 resources to the provider configuration
+  s3:
+    # Eventual additional properties in camel case
+    bucketOne:
+      # Supported properties are the same ones as supported by CF resource for S3 bucket
+      # See https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html
+      name: my-custom-bucket-name
+      versioningConfiguration:
+        Status: Enabled
+ 
+# Framework version constraint (semver constraint): '3', '^2.33'
+frameworkVersion: '3'

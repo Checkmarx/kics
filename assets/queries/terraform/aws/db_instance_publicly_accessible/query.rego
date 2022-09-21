@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_db_instance[%s].publicly_accessible", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'publicly_accessible' is set to false or undefined",
+		"keyExpectedValue": "'publicly_accessible' should be set to false or undefined",
 		"keyActualValue": "'publicly_accessible' is set to true",
 		"searchLine": common_lib.build_search_line(["resource", "aws_db_instance", name, "publicly_accessibled"], []),
 		"remediation": json.marshal({
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].publicly_accessible", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'publicly_accessible' is set to false or undefined",
+		"keyExpectedValue": "'publicly_accessible' should be set to false or undefined",
 		"keyActualValue": "'publicly_accessible' is set to true",
 		"searchLine": common_lib.build_search_line(["module", name, "publicly_accessible"], []),
 		"remediation": json.marshal({

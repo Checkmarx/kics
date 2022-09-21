@@ -1,0 +1,29 @@
+service: service
+frameworkVersion: '2' 
+provider:
+  name: aws
+  runtime: nodejs12.x
+ 
+functions:
+  hello:
+    handler: handler.hello
+    onError: arn:aws:sns:us-east-1:XXXXXX:test
+    tags:
+      foo: bar
+    role: arn:aws:iam::XXXXXX:role/role
+    tracing: Active
+resources:
+  Resources:
+      FileSystemResource:
+        Type: 'AWS::EFS::FileSystem'
+        Properties:
+          AvailabilityZoneName: us-east-1a
+          BackupPolicy:
+            Status: ENABLED
+          Encrypted: false
+          LifecyclePolicies:
+            - TransitionToIA: AFTER_30_DAYS
+          FileSystemTags:
+            - Key: Name
+              Value: TestFileSystem
+    

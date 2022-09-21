@@ -29,7 +29,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kinesis_stream[%s].encryption_type", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_kinesis_stream[%s].encryption_type is set and not NONE", [name]),
+		"keyExpectedValue": sprintf("aws_kinesis_stream[%s].encryption_type should be set and not NONE", [name]),
 		"keyActualValue": sprintf("aws_kinesis_stream[%s].encryption_type is set but NONE", [name]),
 	}
 }

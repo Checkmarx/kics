@@ -4,8 +4,9 @@ import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
-	document := input.document
-	efs_file_system := document[i].Resources[name]
+	documents := input.document[i]
+	[_, Resources] := walk(documents)
+	efs_file_system := Resources[name]
 	efs_file_system.Type == "AWS::EFS::FileSystem"
 
 	info := get_resource_accessibility(efs_file_system)

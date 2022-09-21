@@ -1,0 +1,15 @@
+[
+    {
+      "queryName": "BOM - Function",
+      "severity": "TRACE",
+      "line": 26,
+      "fileName": "positive.yml"
+    },
+    {
+      "queryName": "BOM - Function",
+      "severity": "TRACE",
+      "line": 26,
+      "fileName": "positive2.yml"
+    }
+  ]
+  

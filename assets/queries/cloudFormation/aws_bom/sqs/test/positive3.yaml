@@ -1,0 +1,37 @@
+service: service
+frameworkVersion: '2' 
+provider:
+  name: aws
+  runtime: nodejs12.x
+ 
+functions:
+  hello:
+    handler: handler.hello
+    onError: arn:aws:sns:us-east-1:XXXXXX:test
+    tags:
+      foo: bar
+    role: arn:aws:iam::XXXXXX:role/role
+    tracing: Active
+resources:
+  Resources:
+    MyQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: "SampleQueue"
+        KmsMasterKeyId: wewewewewewe
+    SampleSQSPolicy: 
+      Type: AWS::SQS::QueuePolicy
+      Properties: 
+        Queues: 
+          - !Ref MyQueue
+        PolicyDocument: 
+          Statement: 
+            - 
+              Action: 
+                - "SQS:SendMessage" 
+                - "SQS:ReceiveMessage"
+              Effect: "Allow"
+              Resource: "arn:aws:sqs:us-east-2:444455556666:queue2"
+              Principal:  
+                AWS: 
+                  - "111122223333"  

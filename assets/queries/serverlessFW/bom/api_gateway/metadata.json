@@ -1,0 +1,10 @@
+{
+    "id": "81b48ad5-4ff7-4ceb-840c-41d8826bfa72",
+    "queryName": "BOM - API Gateway",
+    "severity": "TRACE",
+    "category": "Bill Of Materials",
+    "descriptionText": "A list of Serverless API Gateway found. API Gateway is a fully managed service that makes it easy for developers to create, publish, maintain, monitor, and secure APIs at any scale",
+    "descriptionUrl": "https://kics.io",
+    "platform": "ServerlessFW",
+    "descriptionID": "203a8e18"
+}

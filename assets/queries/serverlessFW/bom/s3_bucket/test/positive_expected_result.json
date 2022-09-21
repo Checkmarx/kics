@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "BOM - AWS S3 Buckets",
+    "severity": "TRACE",
+    "line": 8,
+    "fileName": "positive.yml"
+  },
+  {
+    "queryName": "BOM - AWS S3 Buckets",
+    "severity": "TRACE",
+    "line": 11,
+    "fileName": "positive2.yml"
+  }
+]

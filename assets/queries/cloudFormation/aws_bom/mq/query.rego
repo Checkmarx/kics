@@ -4,8 +4,9 @@ import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
-	document := input.document
-	mq := document[i].Resources[name]
+	documents := input.document[i]
+	[_, Resources] := walk(documents)
+	mq := Resources[name]
 	mq.Type == "AWS::AmazonMQ::Broker"
 
 	bom_output = {

@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.validate_certs", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_api_gateway.validate_certs is set to yes",
+		"keyExpectedValue": "aws_api_gateway.validate_certs should be set to yes",
 		"keyActualValue": "aws_api_gateway.validate_certs is not set to yes",
 	}
 }

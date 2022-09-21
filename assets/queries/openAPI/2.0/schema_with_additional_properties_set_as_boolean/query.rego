@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.additionalProperties", [openapi_lib.concat_path(path)]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'additionalProperties' is set as an object value",
+		"keyExpectedValue": "'additionalProperties' should be set as an object value",
 		"keyActualValue": "'additionalProperties' is set as a boolean value",
 	}
 }

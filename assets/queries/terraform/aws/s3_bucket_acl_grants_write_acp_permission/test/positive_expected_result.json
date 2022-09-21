@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "S3 Bucket ACL Grants WRITE_ACP Permission",
+    "severity": "HIGH",
+    "line": 16,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "S3 Bucket ACL Grants WRITE_ACP Permission",
+    "severity": "HIGH",
+    "line": 23,
+    "filename": "positive2.tf"
+  }
+]

@@ -11,7 +11,7 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s",[name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Healthcheck to be defined.",
+		"keyExpectedValue": "Healthcheck should be defined.",
 		"keyActualValue": "Healthcheck is not defined.",
 		"searchLine": common_lib.build_search_line(["services", name], []),
 	}
@@ -26,7 +26,7 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.healthcheck.disable",[name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Healthcheck to be enabled.",
+		"keyExpectedValue": "Healthcheck should be enabled.",
 		"keyActualValue": "Healthcheck is disabled.",
 		"searchLine": common_lib.build_search_line(["services", name, "healthcheck", "disable"], []),
 	}
@@ -42,7 +42,7 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.healthcheck.test",[name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Healthcheck to be enabled.",
+		"keyExpectedValue": "Healthcheck should be enabled.",
 		"keyActualValue": "Healthcheck is disabled.",
 		"searchLine": common_lib.build_search_line(["services", name, "healthcheck", "test"], []),
 	}

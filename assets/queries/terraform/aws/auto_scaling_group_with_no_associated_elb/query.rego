@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_autoscaling_group[%s].load_balancers", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_autoscaling_group[%s].load_balancers is set and not empty", [name]),
+		"keyExpectedValue": sprintf("aws_autoscaling_group[%s].load_balancers should be set and not empty", [name]),
 		"keyActualValue": sprintf("aws_autoscaling_group[%s].load_balancers is empty", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_autoscaling_group", name, "load_balancers"], []),
 	}
@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_autoscaling_group[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_autoscaling_group[%s].load_balancers is set and not empty", [name]),
+		"keyExpectedValue": sprintf("aws_autoscaling_group[%s].load_balancers should be set and not empty", [name]),
 		"keyActualValue": sprintf("aws_autoscaling_group[%s].load_balancers is undefined", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_autoscaling_group", name], []),
 	}
@@ -55,7 +55,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'load_balancers' is set and not empty",
+		"keyExpectedValue": "'load_balancers' should be set and not empty",
 		"keyActualValue": "'load_balancers' is undefined",
 		"searchLine": common_lib.build_search_line(["module", name], []),
 	}
@@ -75,7 +75,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].load_balancers", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'load_balancers' is set and not empty",
+		"keyExpectedValue": "'load_balancers' should be set and not empty",
 		"keyActualValue": "'load_balancers' is undefined",
 		"searchLine": common_lib.build_search_line(["module", name, "load_balancers"], []),
 	}

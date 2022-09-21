@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_sqs_queue_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'policy.Statement.Action' should not be equal '*'",
+		"keyExpectedValue": "'policy.Statement.Action' should not equal '*'",
 		"keyActualValue": "'policy.Statement.Action' is equal '*'",
 		"searchLine": common_lib.build_search_line(["resource", "aws_sqs_queue_policy", name, "policy"], []),
 	}
@@ -32,7 +32,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].%s", [name, keyToCheck]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'policy.Statement.Action' should not be equal '*'",
+		"keyExpectedValue": "'policy.Statement.Action' should not equal '*'",
 		"keyActualValue": "'policy.Statement.Action' is equal '*'",
 		"searchLine": common_lib.build_search_line(["module", name, keyToCheck], []),
 	}

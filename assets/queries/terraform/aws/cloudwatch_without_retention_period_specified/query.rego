@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_cloudwatch_log_group[%s]", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_cloudwatch_log_group", name], []),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'retention_in_days' is set and valid",
+		"keyExpectedValue": "Attribute 'retention_in_days' should be set and valid",
 		"keyActualValue": "Attribute 'retention_in_days' is undefined",
 		"remediation": "retention_in_days = 7",
 		"remediationType": "addition",
@@ -34,7 +34,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_cloudwatch_log_group[%s].retention_in_days", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_cloudwatch_log_group", name, "retention_in_days"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Attribute 'retention_in_days' is set and valid",
+		"keyExpectedValue": "Attribute 'retention_in_days' should be set and valid",
 		"keyActualValue": "Attribute 'retention_in_days' is set but invalid",
 		"remediation": json.marshal({
 			"before": sprintf("%d",[value]),

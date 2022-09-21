@@ -4,8 +4,9 @@ import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	document := input.document
-	bucket_resource := document[i].Resources[name]
+	documents := input.document[i]
+	[_, Resources] := walk(documents)
+	bucket_resource := Resources[name]
 	bucket_resource.Type == "AWS::S3::Bucket"
 
 	info := get_resource_accessibility(bucket_resource, name)

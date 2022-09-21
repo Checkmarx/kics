@@ -1,0 +1,10 @@
+{
+    "id": "30314607-2453-43e1-bebb-a731784dfef4",
+    "queryName": "BOM - Function",
+    "severity": "TRACE",
+    "category": "Bill Of Materials",
+    "descriptionText": "A list of Serverless Functions found. Serverless FW functions is a cloud execution model that dynamically allocates resources on demand to feel the use needs",
+    "descriptionUrl": "https://kics.io",
+    "platform": "ServerlessFW",
+    "descriptionID": "66500267"
+}

@@ -10,7 +10,7 @@ To scan a directory/file on your host you have to mount it as a volume to the co
 
 ```shell
 docker pull checkmarx/kics:latest
-docker run -t -v "{path_to_host_folder_to_scan}":/path checkmarx/kics scan -p "/path" -o "/path/"
+docker run -t -v "{path_to_host_folder_to_scan}":/path checkmarx/kics scan -p /path -o "/path/"
 ```
 
 You can see the list of available tags in [dockerhub](https://hub.docker.com/r/checkmarx/kics/tags?page=1&ordering=-name)

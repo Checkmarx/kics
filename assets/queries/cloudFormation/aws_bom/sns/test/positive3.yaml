@@ -1,0 +1,37 @@
+service: service
+frameworkVersion: '2' 
+provider:
+  name: aws
+  runtime: nodejs12.x
+ 
+functions:
+  hello:
+    handler: handler.hello
+    onError: arn:aws:sns:us-east-1:XXXXXX:test
+    tags:
+      foo: bar
+    role: arn:aws:iam::XXXXXX:role/role
+    tracing: Active
+resources:
+  Resources:
+    SnsTopic:
+      Type: 'AWS::SNS::Topic'
+      Properties:
+        Subscription:
+          - Endpoint: email@example.com
+            Protocol: email
+        TopicName: alarm-action
+        KmsMasterKeyId: ididididid
+    StartedTopicPolicy:
+      Type: AWS::SNS::TopicPolicy
+      Properties:
+        Topics:
+          - !Ref SnsTopic
+        PolicyDocument:
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service: events.amazonaws.com
+              Action:
+                - sns:Publish
+              Resource: "*"
