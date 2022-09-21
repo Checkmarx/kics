@@ -2174,13 +2174,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="35">total += v
+                <span class="cov8" title="33">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -20081,7 +20081,7 @@ func (c *Client) postScan(scanResults *Results) error <span class="cov1" title="
 }
 </pre>
 		
-		<pre class="file" id="file113" style="display: none">// Package Scan implements functions and helpers to ensure the proper scan of the specified files
+		<pre class="file" id="file113" style="display: none">// Package scan implements functions and helpers to ensure the proper scan of the specified files
 package scan
 
 import (
@@ -20995,7 +20995,7 @@ func Contains(target, list interface{}) bool <span class="cov6" title="6">{
         <span class="cov4" title="3">return false</span>
 }
 
-// Verifies if some string in list contains target
+// ContainsInString verifies if some string in list contains the specified target
 func ContainsInString(target string, list []string) bool <span class="cov0" title="0">{
         for i := 0; i &lt; len(list); i++ </span><span class="cov0" title="0">{
                 if strings.Contains(list[i], target) </span><span class="cov0" title="0">{
