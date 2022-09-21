@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Run KICS Scan
-        uses: gabriel-cx/kics-github-action@v1.5
+        uses: gabriel-cx/kics-github-action
         with:
 #           token: ${{ secrets.GITHUB_TOKEN }}
           path: "./Dockerfile"
