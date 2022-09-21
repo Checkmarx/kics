@@ -57,7 +57,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_actiontrail_trail", name),
 		"searchKey": sprintf("alicloud_actiontrail_trail[%s].%s", [name, p[f]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s' is set to All", [p[f]]),
+		"keyExpectedValue": sprintf("'%s' should be set to All", [p[f]]),
 		"keyActualValue": sprintf("'%s' is not set to All", [p[f]]),
         "searchLine": common_lib.build_search_line(["resource", "alicloud_actiontrail_trail", name, p[f]], []),
 		"remediation": json.marshal(remediation),

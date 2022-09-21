@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_oss_bucket", name),
 		"searchKey": sprintf("alicloud_oss_bucket[%s].acl", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'acl' is set to private or not set",
+		"keyExpectedValue": "'acl' should be set to private or not set",
 		"keyActualValue": sprintf("'acl' is %s", [possibilities[p]]),
         "searchLine":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "acl"], []),
 		"remediation": json.marshal({

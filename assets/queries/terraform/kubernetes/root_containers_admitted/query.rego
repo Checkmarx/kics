@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod_security_policy[%s].spec.%s", [name, privilege[p]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_pod_security_policy[%s].spec.%s is set to false", [name, privilege[p]]),
+		"keyExpectedValue": sprintf("kubernetes_pod_security_policy[%s].spec.%s should be set to false", [name, privilege[p]]),
 		"keyActualValue": sprintf("kubernetes_pod_security_policy[%s].spec.%s is set to true", [name, privilege[p]]),
 	}
 }

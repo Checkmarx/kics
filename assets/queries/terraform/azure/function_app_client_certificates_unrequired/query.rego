@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(function, name),
 		"searchKey": sprintf("azurerm_function_app[%s].client_cert_mode", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_function_app[%s].client_cert_mode' is set to 'Required'", [name]),
+		"keyExpectedValue": sprintf("'azurerm_function_app[%s].client_cert_mode' should be set to 'Required'", [name]),
 		"keyActualValue": sprintf("'azurerm_function_app[%s].client_cert_mode' is not set to 'Required'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_function_app", name, "client_cert_mode"], []),
 		"remediation": json.marshal({

@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(input.document[i].resource.azurerm_storage_account[name], name),
 		"searchKey": sprintf("azurerm_storage_account[%s].network_rules.default_action", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Expected 'default_action' to be set to 'Deny'",
+		"keyExpectedValue": "Expected 'default_action' should be set to 'Deny'",
 		"keyActualValue": "'default_action' is set to 'Allow'",
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_storage_account", name, "network_rules", "default_action"], []),
 		"remediation": json.marshal({
@@ -32,7 +32,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(networkRules, name),
 		"searchKey": sprintf("azurerm_storage_account_network_rules[%s].default_action", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Expected 'default_action' to be set to 'Deny'",
+		"keyExpectedValue": "Expected 'default_action' should be set to 'Deny'",
 		"keyActualValue": "'default_action' is set to 'Allow'",
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_storage_account_network_rules", name, "default_action"], []),
 		"remediation": json.marshal({

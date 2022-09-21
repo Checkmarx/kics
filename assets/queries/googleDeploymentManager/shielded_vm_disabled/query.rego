@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'shieldedInstanceConfig' is defined and not null",
-		"keyActualValue": "'shieldedInstanceConfig' is undefined or null", 
+		"keyActualValue": "'shieldedInstanceConfig' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties"], []),
 	}
 }
@@ -44,7 +44,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resources[idx]
 	resource.type == "compute.v1.instance"
-	
+
 	field := fields[_]
 	resource.properties.shieldedInstanceConfig[field] == false
 
@@ -54,7 +54,7 @@ CxPolicy[result] {
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.shieldedInstanceConfig.%s", [resource.name, field]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s' is set to true", [field]),
+		"keyExpectedValue": sprintf("'%s' should be set to true", [field]),
 		"keyActualValue": sprintf("'%s' is set to false", [field]),
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "shieldedInstanceConfig", field], []),
 	}

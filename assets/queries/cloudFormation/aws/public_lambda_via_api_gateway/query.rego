@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.SourceArn", [cf_lib.getPath(path), name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.SourceArn should not be equal to '/*/*'", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.SourceArn should not equal to '/*/*'", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.SourceArn is equal to '/*/*' or contains '/*/*'", [name]),
 	}
 }

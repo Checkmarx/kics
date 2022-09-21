@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.legacyAbac.enabled", [resource.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'legacyAbac.enabled' to be false",
+		"keyExpectedValue": "'legacyAbac.enabled' should be false",
 		"keyActualValue": "'legacyAbac.enabled' is true", 
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "legacyAbac", "enabled"], []),
 	}

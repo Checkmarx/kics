@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_config_configuration_aggregator[%s].%s.all_regions", [name, type]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'aws_config_configuration_aggregator[%s].%s.all_regions' is set to true", [name, type]),
+		"keyExpectedValue": sprintf("'aws_config_configuration_aggregator[%s].%s.all_regions' should be set to true", [name, type]),
 		"keyActualValue": sprintf("'aws_config_configuration_aggregator[%s].%s.all_regions' is set to false", [name, type]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_config_configuration_aggregator", name, type, "all_regions"], []),
 		"remediation": json.marshal({
@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_config_configuration_aggregator[%s].%s", [name, type]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'aws_config_configuration_aggregator[%s].%s.all_regions' is set to true", [name, type]),
+		"keyExpectedValue": sprintf("'aws_config_configuration_aggregator[%s].%s.all_regions' should be set to true", [name, type]),
 		"keyActualValue": sprintf("'aws_config_configuration_aggregator[%s].%s.all_regions' is undefined", [name, type]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_config_configuration_aggregator", name, type], []),
 		"remediation": "all_regions = true",

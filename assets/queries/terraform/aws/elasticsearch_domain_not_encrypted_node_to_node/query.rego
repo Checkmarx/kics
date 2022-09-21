@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_elasticsearch_domain[{{%s}}]", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_elasticsearch_domain", name], []),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "The attribute 'node_to_node_encryption' is set to true",
+		"keyExpectedValue": "The attribute 'node_to_node_encryption' should be set to true",
 		"keyActualValue": "The attribute 'node_to_node_encryption' is undefined",
 		"remediation": "node_to_node_encryption {\n\t\t enabled = true \n\t}",
 		"remediationType": "addition",
@@ -34,7 +34,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_elasticsearch_domain[{{%s}}].node_to_node_encryption.enabled", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_elasticsearch_domain", name, "enabled"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "The attribute 'node_to_node_encryption' is set to true",
+		"keyExpectedValue": "The attribute 'node_to_node_encryption' should be set to true",
 		"keyActualValue": "The attribute 'node_to_node_encryption' is not set to true",
 		"remediation": json.marshal({
 			"before": "false",

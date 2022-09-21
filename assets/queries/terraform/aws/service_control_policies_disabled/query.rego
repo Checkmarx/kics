@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(org, name),
 		"searchKey": sprintf("aws_organizations_organization[%s].feature_set", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'feature_set' is set to 'ALL' or undefined",
+		"keyExpectedValue": "'feature_set' should be set to 'ALL' or undefined",
 		"keyActualValue": "'feature_set' is set to 'CONSOLIDATED_BILLING'",
 		"searchLine": common_lib.build_search_line(["resource", "aws_organizations_organization", name, "feature_set"], []),
 		"remediation": json.marshal({

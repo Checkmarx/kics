@@ -42,7 +42,9 @@ nav:
       - Platforms: platforms.md
       - Utilities: utilities.md
       - Architecture: architecture.md
+      - Auto Remediation : kics_auto_remediation.md
       - Changes in v1.3.0: changes.md
+      - Changes in v1.6.0: changes1_6.md
   - Queries:
       - General Info: queries.md
       - Creating Queries: creating-queries.md
@@ -78,6 +80,8 @@ nav:
       - Badge: BADGE.md
       - Using pre-commit hooks: integrations_pre_commit.md
       - Terraformer: integrations_terraformer.md
+      - KICS Auto Scanning: integrations_auto_scanning_visual_studio.md
+      - Kuberneter: integrations_kuberneter.md
   - Certifications: certifications.md
   - Project:
       - Roadmap: roadmap.md

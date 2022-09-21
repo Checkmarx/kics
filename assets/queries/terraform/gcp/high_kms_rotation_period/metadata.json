@@ -3,7 +3,7 @@
   "queryName": "High KMS Rotation Period",
   "severity": "MEDIUM",
   "category": "Secret Management",
-  "descriptionText": "KMS rotation period should not surpass 365 days",
+  "descriptionText": "KMS Rotation Period should be greater than 365 days.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/kms_crypto_key",
   "platform": "Terraform",
   "descriptionID": "2ce06fd2",

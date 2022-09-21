@@ -10,7 +10,7 @@ https://github.com/Checkmarx/kics
 
 ## Command
 
-To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the -p KICS parameter (see the full list of CLI options below)
+To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the `-p` KICS parameter (see the full list of CLI options below)
 
 NOTE: from v1.3.0 KICS does not execute `scan` command by default anymore.
 
@@ -21,13 +21,13 @@ docker pull checkmarx/kics:latest
 Scan a directory
 
 ```sh
-docker run -t -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan -p "/path" -o "/path/"
+docker run -t -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan -p /path -o "/path/"
 ```
 
 Scan a single file
 
 ```sh
-docker run -t -v {path_to_host_folder}/{filename}.{extention}:/path/{filename}.{extention} checkmarx/kics:latest scan -p "/path" -o "/path/"
+docker run -t -v {path_to_host_folder}:/path checkmarx/kics:latest scan -p /path/{filename}.{extention} -o "/path/"
 ```
 
 This will generate a `results.json` file, for both examples, under `path`.
@@ -45,6 +45,34 @@ Another option is [rebuilding the dockerfile](https://github.com/Checkmarx/kics/
 ## CLI Options
 
 Usage:
+
+```txt
+Executes a kics analysis
+
+Usage:
+  kics [command]
+
+Available Commands:
+  generate-id    Generates uuid for query
+  help           Help about any command
+  list-platforms List supported platforms
+  remediate      Auto remediates the project
+  scan           Executes a scan analysis
+  version        Displays the current version
+```
+
+```txt
+Auto remediates the project
+
+Usage:
+  kics remediate [flags]
+
+Flags:
+  -h, --help                  help for remediate
+      --include-ids strings   which remediation (similarity ids) should be remediated 
+                              example "f6b7acac2d541d8c15c88d2be51b0e6abd576750b71c580f2e3a9346f7ed0e67,6af5fc5d7c0ad0077348a090f7c09949369d24d5608bbdbd14376a15de62afd1" (default [all])
+      --results string        points to the JSON results file with remediation
+```
 
 ```txt
 Executes a scan analysis
@@ -104,7 +132,9 @@ Flags:
       --timeout int                   number of seconds the query has to execute before being canceled (default 60)
   -t, --type strings                  case insensitive list of platform types to scan
                                       (Ansible, AzureResourceManager, Buildah, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
+```
 
+```txt
 Global Flags:
       --ci                  display only log messages to CLI output (mutually exclusive with silent)
   -f, --log-format string   determines log format (pretty,json) (default "pretty")

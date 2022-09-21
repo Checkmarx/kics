@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'privateClusterConfig' is defined and not null",
-		"keyActualValue": "'privateClusterConfig' is undefined or null", 
+		"keyActualValue": "'privateClusterConfig' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties"], []),
 	}
 }
@@ -52,7 +52,7 @@ CxPolicy[result] {
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.privateClusterConfig.%s", [resource.name, fields[f]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s' is set to true", [fields[f]]),
+		"keyExpectedValue": sprintf("'%s' should be set to true", [fields[f]]),
 		"keyActualValue":  sprintf("'%s' is set to false", [fields[f]]),
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "privateClusterConfig", fields[f]], []),
 	}

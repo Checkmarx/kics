@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [moduleName]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'logging' to be defined",
+		"keyExpectedValue": "'logging' should be defined",
 		"keyActualValue": "'logging' is undefined",
 		"searchLine": common_lib.build_search_line(["module", moduleName], []),
 	}

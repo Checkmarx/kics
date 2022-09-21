@@ -13,9 +13,9 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_s3_bucket",
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_s3_bucket", name),
-		"searchKey": sprintf("aws_s3_bucket[%s].acl=%s", [name, resource.acl]),	
+		"searchKey": sprintf("aws_s3_bucket[%s].acl=%s", [name, resource.acl]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'acl' to be equal to 'private'",
+		"keyExpectedValue": "'acl' should equal to 'private'",
 		"keyActualValue": sprintf("'acl' is equal '%s'", [resource.acl]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name, "acl"], []),
 	}
@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].acl", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'acl' to be equal to 'private'",
+		"keyExpectedValue": "'acl' should equal to 'private'",
 		"keyActualValue": sprintf("'acl' is equal '%s'", [module[keyToCheck]]),
 		"searchLine": common_lib.build_search_line(["module", name, "acl"], []),
 	}
@@ -53,7 +53,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(acl, name),
 		"searchKey": sprintf("aws_s3_bucket_acl[%s].acl", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_s3_bucket_acl[%s].acl to be private", [name]),
+		"keyExpectedValue": sprintf("aws_s3_bucket_acl[%s].acl should be private", [name]),
 		"keyActualValue": sprintf("aws_s3_bucket_acl[%s].acl is %s", [acl.acl]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_acl", name, "acl"], []),
 	}
