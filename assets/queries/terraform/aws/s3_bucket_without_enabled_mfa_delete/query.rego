@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(bucket, "aws_s3_bucket", name),
 		"searchKey": sprintf("aws_s3_bucket[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "versioning to be defined and not null",
+		"keyExpectedValue": "versioning should be defined and not null",
 		"keyActualValue": "versioning is undefined or null",
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name], []),
 	}
@@ -42,7 +42,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(bucket, "aws_s3_bucket", name),
 		"searchKey": sprintf("aws_s3_bucket[%s].versioning", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'%s' to be set to true", [checkedFields[j]]),
+		"keyExpectedValue": sprintf("'%s' should be set to true", [checkedFields[j]]),
 		"keyActualValue": sprintf("'%s' is undefined or null", [checkedFields[j]]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name, "versioning"], []),
 	}
@@ -60,7 +60,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(bucket, "aws_s3_bucket", name),
 		"searchKey": sprintf("aws_s3_bucket[%s].versioning.%s", [name, checkedFields[j]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s' to be set to true", [checkedFields[j]]),
+		"keyExpectedValue": sprintf("'%s' should be set to true", [checkedFields[j]]),
 		"keyActualValue": sprintf("'%s' is set to false", [checkedFields[j]]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name, "versioning", checkedFields[j]], []),
 	}
@@ -79,7 +79,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'versioning' to be defined and not null",
+		"keyExpectedValue": "'versioning' should be defined and not null",
 		"keyActualValue": "'versioning' is undefined or null",
 		"searchLine": common_lib.build_search_line(["module", name], []),
 	}
@@ -98,7 +98,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].versioning", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'%s' to be set to true", [checkedFields[c]]),
+		"keyExpectedValue": sprintf("'%s' should be set to true", [checkedFields[c]]),
 		"keyActualValue": sprintf("'%s' is undefined or null", [checkedFields[c]]),
 		"searchLine": common_lib.build_search_line(["module", name, "versioning"], []),
 	}
@@ -117,7 +117,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].versioning.%s", [name, checkedFields[c]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s' to be set to true", [checkedFields[c]]),
+		"keyExpectedValue": sprintf("'%s' should be set to true", [checkedFields[c]]),
 		"keyActualValue": sprintf("'%s' is set to false", [checkedFields[c]]),
 		"searchLine": common_lib.build_search_line(["module", name, "versioning", checkedFields[c]], []),
 	}
@@ -139,7 +139,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(bucket_versioning, name),
 		"searchKey": sprintf("aws_s3_bucket_versioning[%s].versioning_configuration.mfa_delete", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'versioning_configuration.mfa_delete' to be set to 'Enabled'",
+		"keyExpectedValue": "'versioning_configuration.mfa_delete' should be set to 'Enabled'",
 		"keyActualValue": "'versioning_configuration.mfa_delete' is set to 'Disabled'",
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_versioning", name, "versioning_configuration", "mfa_delete"], []),
 	}
@@ -161,7 +161,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(bucket_versioning, name),
 		"searchKey": sprintf("aws_s3_bucket_versioning[%s].versioning_configuration.status", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'versioning_configuration.status' to be set to 'Enabled'",
+		"keyExpectedValue": "'versioning_configuration.status' should be set to 'Enabled'",
 		"keyActualValue": "'versioning_configuration.status' is set to 'Disabled'",
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_versioning", name, "versioning_configuration", "status"], []),
 	}
@@ -183,7 +183,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(bucket_versioning, name),
 		"searchKey": sprintf("aws_s3_bucket_versioning[%s].versioning_configuration", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'versioning_configuration.mfa_delete' to be defined and not null",
+		"keyExpectedValue": "'versioning_configuration.mfa_delete' should be defined and not null",
 		"keyActualValue": "'versioning_configuration.mfa_delete' is undefined and not null",
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_versioning", name, "versioning_configuration"], []),
 	}

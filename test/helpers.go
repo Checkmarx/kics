@@ -126,6 +126,7 @@ var queryHigh = model.QueryResult{
 			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
 			KeyActualValue:   "'default_action.redirect.protocol' is missing",
 			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
 		},
 		{
 			FileName:         positive,
@@ -135,6 +136,7 @@ var queryHigh = model.QueryResult{
 			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
 			KeyActualValue:   "'default_action.redirect.protocol' is equal 'HTTP'",
 			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
 		},
 	},
 }
@@ -155,6 +157,7 @@ var queryMedium = model.QueryResult{
 			KeyExpectedValue: "resource.aws_mq_broker[positive1].encryption_options is defined",
 			KeyActualValue:   "resource.aws_mq_broker[positive1].encryption_options is not defined",
 			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
 		},
 	},
 }
@@ -172,6 +175,7 @@ var queryMedium2 = model.QueryResult{
 			KeyExpectedValue: "GuardDuty Detector should be Enabled",
 			KeyActualValue:   "GuardDuty Detector is not Enabled",
 			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
 		},
 	},
 	Platform:    "Terraform",
@@ -191,6 +195,7 @@ var queryInfo = model.QueryResult{
 			KeyExpectedValue: "aws_guardduty_detector[{{negative1}}].tags is defined and not null",
 			KeyActualValue:   "aws_guardduty_detector[{{negative1}}].tags is undefined or null",
 			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
 		},
 		{
 			FileName:         filepath.Join("assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "positive.tf"),
@@ -200,6 +205,7 @@ var queryInfo = model.QueryResult{
 			KeyExpectedValue: "aws_guardduty_detector[{{positive1}}].tags is defined and not null",
 			KeyActualValue:   "aws_guardduty_detector[{{positive1}}].tags is undefined or null",
 			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
 		},
 	},
 	Platform:    "Terraform",

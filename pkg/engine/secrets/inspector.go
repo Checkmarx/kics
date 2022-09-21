@@ -384,7 +384,7 @@ func (c *Inspector) checkFileContent(query *RegexQuery, basePaths []string, file
 
 func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadata, vulnGroups [][]string) []lineVulneInfo {
 	content := file.OriginalData
-	lines := c.detector.SplitLines(file)
+	lines := *file.LinesOriginalData
 	lineVulneInfoSlice := make([]lineVulneInfo, 0)
 	realLineUpdater := 0
 	for _, groups := range vulnGroups {
@@ -579,11 +579,15 @@ func validateCustomSecretsQueriesID(allRegexQueries []RegexQuery) error {
 }
 
 func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.FileMetadatas) {
+	// lines ignore can have the lines from the resolved files
+	// since inspector secrets only looks to original data, the lines ignore should be replaced
+	files[idx].LinesIgnore = model.GetIgnoreLines(&files[idx])
+
 	wg := &sync.WaitGroup{}
 	// check file content line by line
 	if c.regexQueries[i].Multiline == (MultilineResult{}) {
-		lines := c.detector.SplitLines(&files[idx])
-		for lineNumber, currentLine := range lines {
+		lines := (&files[idx]).LinesOriginalData
+		for lineNumber, currentLine := range *lines {
 			wg.Add(1)
 			go c.checkLineByLine(wg, &c.regexQueries[i], basePaths, &files[idx], lineNumber, currentLine)
 		}
@@ -621,14 +625,14 @@ func cleanFiles(files model.FileMetadatas) model.FileMetadatas {
 	return cleanFiles
 }
 
-func hideSecret(linesVuln *model.VulnerabilityLines, issueLine string, query *RegexQuery) []model.CodeLine {
-	for idx := range linesVuln.VulnLines {
+func hideSecret(linesVuln *model.VulnerabilityLines, issueLine string, query *RegexQuery) *[]model.CodeLine {
+	for idx := range *linesVuln.VulnLines {
 		if query.SpecialMask == "all" {
-			linesVuln.VulnLines[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
+			(*linesVuln.VulnLines)[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
 			continue
 		}
 
-		if linesVuln.VulnLines[idx].Line == issueLine {
+		if (*linesVuln.VulnLines)[idx].Line == issueLine {
 			regex := query.RegexStr
 
 			if len(query.SpecialMask) > 0 {
@@ -643,9 +647,9 @@ func hideSecret(linesVuln *model.VulnerabilityLines, issueLine string, query *Re
 			}
 
 			if match != "" {
-				linesVuln.VulnLines[idx].Line = strings.Replace(issueLine, match, "<SECRET-MASKED-ON-PURPOSE>", 1)
+				(*linesVuln.VulnLines)[idx].Line = strings.Replace(issueLine, match, "<SECRET-MASKED-ON-PURPOSE>", 1)
 			} else {
-				linesVuln.VulnLines[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
+				(*linesVuln.VulnLines)[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
 			}
 		}
 	}

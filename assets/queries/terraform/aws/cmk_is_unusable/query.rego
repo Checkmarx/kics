@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_kms_key[%s].is_enabled", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_kms_key", name, "is_enabled"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_kms_key[%s].is_enabled is set to true", [name]),
+		"keyExpectedValue": sprintf("aws_kms_key[%s].is_enabled should be set to true", [name]),
 		"keyActualValue": sprintf("aws_kms_key[%s].is_enabled is set to false", [name]),
 		"remediation": json.marshal({
 			"before": "false",

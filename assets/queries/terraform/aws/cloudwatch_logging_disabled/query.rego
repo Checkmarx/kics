@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(route, name),
 		"searchKey": sprintf("aws_route53_zone[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'aws_route53_query_log' is set for respective 'aws_route53_zone'",
+		"keyExpectedValue": "'aws_route53_query_log' should be set for respective 'aws_route53_zone'",
 		"keyActualValue": "'aws_route53_query_log' is undefined",
 	}
 }

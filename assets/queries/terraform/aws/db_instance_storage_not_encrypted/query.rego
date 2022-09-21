@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_db_instance[%s].storage_encrypted", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'storage_encrypted' is set to true",
+		"keyExpectedValue": "'storage_encrypted' should be set to true",
 		"keyActualValue": "'storage_encrypted' is set to false",
 		"searchLine": common_lib.build_search_line(["resource", "aws_db_instance", name, "storage_encrypted"], []),
 	}
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].storage_encrypted", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'storage_encrypted' is set to true",
+		"keyExpectedValue": "'storage_encrypted' should be set to true",
 		"keyActualValue": "'storage_encrypted' is set to false",
 		"searchLine": common_lib.build_search_line(["module", name, "storage_encrypted"], []),
 	}
@@ -55,7 +55,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_db_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'storage_encrypted' is set to true",
+		"keyExpectedValue": "'storage_encrypted' should be set to true",
 		"keyActualValue": "'storage_encrypted' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resource", "aws_db_instance", name], []),
 	}
@@ -76,7 +76,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'storage_encrypted' is set to true",
+		"keyExpectedValue": "'storage_encrypted' should be set to true",
 		"keyActualValue": "'storage_encrypted' is undefined or null",
 		"searchLine": common_lib.build_search_line(["module", name], []),
 	}

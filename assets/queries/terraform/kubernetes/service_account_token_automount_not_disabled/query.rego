@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod[%s].spec.automount_service_account_token", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.automount_service_account_token is set to false", [name]),
+		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.automount_service_account_token should be set to false", [name]),
 		"keyActualValue": sprintf("kubernetes_pod[%s].spec.automount_service_account_token is set to true", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "kubernetes_pod", name, "spec"],["automount_service_account_token"]),
 		"remediation": json.marshal({
@@ -78,7 +78,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.template.spec.automount_service_account_token", [listKinds[x], name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].spec.template.spec.automount_service_account_token is set to false", [listKinds[x], name]),
+		"keyExpectedValue": sprintf("%s[%s].spec.template.spec.automount_service_account_token should be set to false", [listKinds[x], name]),
 		"keyActualValue": sprintf("%s[%s].spec.template.spec.automount_service_account_token is set to true", [listKinds[x], name]),
 		"searchLine": common_lib.build_search_line(["resource", listKinds[x], name, "spec", "template", "spec"],["automount_service_account_token"]),
 		"remediation": json.marshal({
@@ -119,7 +119,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_cron_job[%s].spec.job_template.spec.template.spec.automount_service_account_token", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_cron_job[%s].spec.job_template.spec.template.spec.automount_service_account_token is set to false", [name]),
+		"keyExpectedValue": sprintf("kubernetes_cron_job[%s].spec.job_template.spec.template.spec.automount_service_account_token should be set to false", [name]),
 		"keyActualValue": sprintf("kubernetes_cron_job[%s].spec.job_template.spec.template.spec.automount_service_account_token is set to true", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "kubernetes_cron_job", name, "spec", "template", "spec", "template", "spec"],["automount_service_account_token"]),
 		"remediation": json.marshal({

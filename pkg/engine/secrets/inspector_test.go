@@ -11,6 +11,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/progress"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/stretchr/testify/require"
 )
 
@@ -141,6 +142,124 @@ var testCompileRegexesInput = []struct {
 	},
 }
 
+var OriginalData1 = `
+resource "google_container_cluster" "primary3" {
+name               = "marcellus-wallace"
+location           = "us-central1-a"
+initial_node_count = 3
+
+master_auth {
+	username = "1234567890qwertyuiopasdfghjklçzxcvbnm"
+	password = ""
+
+	client_certificate_config {
+		issue_client_certificate = true
+	}
+}
+}`
+
+var OriginalData2 = `
+apiVersion: v1
+kind: Secret
+metadata:
+name: secret-basic-auth
+type: kubernetes.io/basic-auth
+stringData:
+password: "root"`
+
+var OriginalData3 = `
+resource "aws_transfer_ssh_key" "example" {
+server_id = aws_transfer_server.example.id
+user_name = aws_transfer_user.example.user_name
+body      = <<EOT
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAaAAAABNlY2RzYS
+1zaGEyLW5pc3RwMjU2AAAACG5pc3RwMjU2AAAAQQTTD+Q+10oNWDzXxx9x2bOobcXAA4rd
+jGaQoqJjcXRWR2TS1ioKvML1fI5KLP4kuF3TlyPTLgJxlfrJtYYEfGHwAAAA0FjbkWRY25
+FkAAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNMP5D7XSg1YPNfH
+H3HZs6htxcADit2MZpCiomNxdFZHZNLWKgq8wvV8jkos/iS4XdOXI9MuAnGV+sm1hgR8Yf
+AAAAAgHI23o+KRbewZJJxFExEGwiOPwM7gonjATdzLP+YT/6sAAAA0cm9nZXJpb3AtbWFj
+Ym9va0BSb2dlcmlvUC1NYWNCb29rcy1NYWNCb29rLVByby5sb2NhbAECAwQ=
+-----END OPENSSH PRIVATE KEY-----
+EOT
+}`
+
+var OriginalData0 = `
+resource "aws_lambda_function" "analysis_lambda2" {
+  # lambda have plain text secrets in environment variables
+  filename      = "resources/lambda_function_payload.zip"
+  function_name = "${local.resource_prefix.value}-analysis"
+  role          = "${aws_iam_role.iam_for_lambda.arn}"
+  handler       = "exports.test"
+
+  source_code_hash = "${filebase64sha256("resources/lambda_function_payload.zip")}"
+
+  runtime = "nodejs12.x"
+
+  environment {
+	variables = {
+	  secret_key = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+	}
+  }
+}
+`
+
+var OriginalData4 = `# kics-scan ignore
+resource "google_container_cluster" "primary3" {
+name               = "marcellus-wallace"
+location           = "us-central1-a"
+initial_node_count = 3
+
+master_auth {
+	username = "1234567890qwertyuiopasdfghjklçzxcvbnm"
+	password = "password123456"
+
+	client_certificate_config {
+		issue_client_certificate = true
+	}
+}
+}`
+
+var OriginalData5 = `
+resource "google_container_cluster" "primary3" {
+name               = "marcellus-wallace"
+location           = "us-central1-a"
+initial_node_count = 3
+
+master_auth {
+	username = "1234567890qwertyuiopasdfghjklçzxcvbnm"
+  # password = "password123456"
+
+	client_certificate_config {
+		issue_client_certificate = true
+	}
+}
+}`
+
+var OriginalData6 = `
+- name: Start a workflow in the Itential Automation Platform
+	community.network.iap_start_workflow:
+		iap_port: 3000
+	    iap_fqdn: localhost
+#       kics-scan ignore-line
+#       token_key: "DFSFSFHFGFGF[DSFSFAADAFASD%3D"
+		workflow_name: "RouterUpgradeWorkflow"
+		description: "OS-Router-Upgrade"
+		variables: {"deviceName":"ASR9K"}
+`
+
+var OriginalData7 = `# kics-scan disable=baee238e-1921-4801-9c3f-79ae1d7b2cbc
+- name: Start a workflow in the Itential Automation Platform
+	community.network.iap_start_workflow:
+		iap_port: 3000
+		iap_fqdn: localhost
+		token_key: "DFSFSFHFGFGF[DSFSFAADAFASD%3D"
+		workflow_name: "RouterUpgradeWorkflow"
+		description: "OS-Router-Upgrade"
+		variables: {"deviceName":"ASR9K"}
+	register: result
+`
+
 var testInspectInput = []struct {
 	name     string
 	files    model.FileMetadatas
@@ -151,25 +270,12 @@ var testInspectInput = []struct {
 		name: "valid_no_results",
 		files: model.FileMetadatas{
 			{
-				ID:       "853012ab-cc05-4c1c-b517-9c3552085ee8",
-				Document: model.Document{},
-				OriginalData: `
-	resource "google_container_cluster" "primary3" {
-	name               = "marcellus-wallace"
-	location           = "us-central1-a"
-	initial_node_count = 3
-
-	master_auth {
-		username = "1234567890qwertyuiopasdfghjklçzxcvbnm"
-		password = ""
-
-		client_certificate_config {
-			issue_client_certificate = true
-		}
-	}
-	}`,
-				Kind:     "TF",
-				FilePath: "assets/queries/common/passwords_and_secrets/test/negative7.tf",
+				ID:                "853012ab-cc05-4c1c-b517-9c3552085ee8",
+				Document:          model.Document{},
+				OriginalData:      OriginalData1,
+				LinesOriginalData: utils.SplitLines(OriginalData1),
+				Kind:              "TF",
+				FilePath:          "assets/queries/common/passwords_and_secrets/test/negative7.tf",
 			},
 		},
 		wantVuln: []model.Vulnerability{},
@@ -179,18 +285,12 @@ var testInspectInput = []struct {
 		name: "valid_one_result",
 		files: model.FileMetadatas{
 			{
-				ID:       "b032c51d-2e7c-4ffc-8a81-41405c166bc8",
-				Document: model.Document{},
-				OriginalData: `
-	apiVersion: v1
-	kind: Secret
-	metadata:
-	name: secret-basic-auth
-	type: kubernetes.io/basic-auth
-	stringData:
-	password: "root"`,
-				Kind:     "K8S",
-				FilePath: "assets/queries/common/passwords_and_secrets/test/positive1.yaml",
+				ID:                "b032c51d-2e7c-4ffc-8a81-41405c166bc8",
+				Document:          model.Document{},
+				OriginalData:      OriginalData2,
+				LinesOriginalData: utils.SplitLines(OriginalData2),
+				Kind:              "K8S",
+				FilePath:          "assets/queries/common/passwords_and_secrets/test/positive1.yaml",
 			},
 		},
 		wantVuln: []model.Vulnerability{
@@ -208,26 +308,12 @@ var testInspectInput = []struct {
 		name: "valid_one_multiline_result",
 		files: model.FileMetadatas{
 			{
-				ID:       "d274e272-a4af-497e-a900-a277500e4182",
-				Document: model.Document{},
-				OriginalData: `
-	resource "aws_transfer_ssh_key" "example" {
-	server_id = aws_transfer_server.example.id
-	user_name = aws_transfer_user.example.user_name
-	body      = <<EOT
-	-----BEGIN OPENSSH PRIVATE KEY-----
-	b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAaAAAABNlY2RzYS
-	1zaGEyLW5pc3RwMjU2AAAACG5pc3RwMjU2AAAAQQTTD+Q+10oNWDzXxx9x2bOobcXAA4rd
-	jGaQoqJjcXRWR2TS1ioKvML1fI5KLP4kuF3TlyPTLgJxlfrJtYYEfGHwAAAA0FjbkWRY25
-	FkAAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNMP5D7XSg1YPNfH
-	H3HZs6htxcADit2MZpCiomNxdFZHZNLWKgq8wvV8jkos/iS4XdOXI9MuAnGV+sm1hgR8Yf
-	AAAAAgHI23o+KRbewZJJxFExEGwiOPwM7gonjATdzLP+YT/6sAAAA0cm9nZXJpb3AtbWFj
-	Ym9va0BSb2dlcmlvUC1NYWNCb29rcy1NYWNCb29rLVByby5sb2NhbAECAwQ=
-	-----END OPENSSH PRIVATE KEY-----
-	EOT
-	}`,
-				Kind:     "TF",
-				FilePath: "assets/queries/common/passwords_and_secrets/test/positive13.tf",
+				ID:                "d274e272-a4af-497e-a900-a277500e4182",
+				Document:          model.Document{},
+				OriginalData:      OriginalData3,
+				LinesOriginalData: utils.SplitLines(OriginalData3),
+				Kind:              "TF",
+				FilePath:          "assets/queries/common/passwords_and_secrets/test/positive13.tf",
 			},
 		},
 		wantVuln: []model.Vulnerability{
@@ -245,29 +331,12 @@ var testInspectInput = []struct {
 		name: "valid_generic_secret",
 		files: model.FileMetadatas{
 			{
-				ID:       "",
-				Document: model.Document{},
-				OriginalData: `
-	resource "aws_lambda_function" "analysis_lambda2" {
-	  # lambda have plain text secrets in environment variables
-	  filename      = "resources/lambda_function_payload.zip"
-	  function_name = "${local.resource_prefix.value}-analysis"
-	  role          = "${aws_iam_role.iam_for_lambda.arn}"
-	  handler       = "exports.test"
-
-	  source_code_hash = "${filebase64sha256("resources/lambda_function_payload.zip")}"
-
-	  runtime = "nodejs12.x"
-
-	  environment {
-	    variables = {
-	      secret_key = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
-	    }
-	  }
-	}
-	`,
-				Kind:     "TF",
-				FilePath: "assets/queries/common/passwords_and_secrets/test/positive37.tf",
+				ID:                "",
+				Document:          model.Document{},
+				OriginalData:      OriginalData0,
+				LinesOriginalData: utils.SplitLines(OriginalData0),
+				Kind:              "TF",
+				FilePath:          "assets/queries/common/passwords_and_secrets/test/positive37.tf",
 			},
 		},
 		wantVuln: []model.Vulnerability{
@@ -289,24 +358,11 @@ var testInspectInput = []struct {
 				Commands: model.CommentsCommands{
 					"ignore": "",
 				},
-				Document: model.Document{},
-				OriginalData: `# kics-scan ignore
-resource "google_container_cluster" "primary3" {
-name               = "marcellus-wallace"
-location           = "us-central1-a"
-initial_node_count = 3
-
-master_auth {
-	username = "1234567890qwertyuiopasdfghjklçzxcvbnm"
-	password = "password123456"
-
-	client_certificate_config {
-		issue_client_certificate = true
-	}
-}
-}`,
-				Kind:     "TF",
-				FilePath: "assets/queries/common/passwords_and_secrets/test/negative7.tf",
+				Document:          model.Document{},
+				OriginalData:      OriginalData4,
+				LinesOriginalData: utils.SplitLines(OriginalData4),
+				Kind:              "TF",
+				FilePath:          "assets/queries/common/passwords_and_secrets/test/negative7.tf",
 			},
 		},
 		wantVuln: []model.Vulnerability{},
@@ -316,26 +372,13 @@ master_auth {
 		name: "valid_no_results",
 		files: model.FileMetadatas{
 			{
-				ID:          "853012ab-cc05-4c1c-b517-9c3552085ee8",
-				LinesIgnore: []int{9},
-				Document:    model.Document{},
-				OriginalData: `
-resource "google_container_cluster" "primary3" {
-name               = "marcellus-wallace"
-location           = "us-central1-a"
-initial_node_count = 3
-
-master_auth {
-	username = "1234567890qwertyuiopasdfghjklçzxcvbnm"
-  # password = "password123456"
-
-	client_certificate_config {
-		issue_client_certificate = true
-	}
-}
-}`,
-				Kind:     "TF",
-				FilePath: "assets/queries/common/passwords_and_secrets/test/negative7.tf",
+				ID:                "853012ab-cc05-4c1c-b517-9c3552085ee8",
+				LinesIgnore:       []int{9},
+				Document:          model.Document{},
+				OriginalData:      OriginalData5,
+				LinesOriginalData: utils.SplitLines(OriginalData5),
+				Kind:              "TF",
+				FilePath:          "assets/queries/common/passwords_and_secrets/test/negative7.tf",
 			},
 		},
 		wantVuln: []model.Vulnerability{},
@@ -345,22 +388,13 @@ master_auth {
 		name: "valid_no_results",
 		files: model.FileMetadatas{
 			{
-				ID:          "853012ab-cc05-4c1c-b517-9c3552085ee8",
-				LinesIgnore: []int{6, 7},
-				Document:    model.Document{},
-				OriginalData: `
-- name: Start a workflow in the Itential Automation Platform
-	community.network.iap_start_workflow:
-		iap_port: 3000
-	    iap_fqdn: localhost
-#       kics-scan ignore-line
-#       token_key: "DFSFSFHFGFGF[DSFSFAADAFASD%3D"
-		workflow_name: "RouterUpgradeWorkflow"
-		description: "OS-Router-Upgrade"
-		variables: {"deviceName":"ASR9K"}
-`,
-				Kind:     "ANS",
-				FilePath: "assets/queries/common/passwords_and_secrets/test/positive28.yaml",
+				ID:                "853012ab-cc05-4c1c-b517-9c3552085ee8",
+				LinesIgnore:       []int{6, 7},
+				Document:          model.Document{},
+				OriginalData:      OriginalData6,
+				LinesOriginalData: utils.SplitLines(OriginalData6),
+				Kind:              "ANS",
+				FilePath:          "assets/queries/common/passwords_and_secrets/test/positive28.yaml",
 			},
 		},
 		wantVuln: []model.Vulnerability{},
@@ -374,20 +408,11 @@ master_auth {
 				Commands: model.CommentsCommands{
 					"disable": "baee238e-1921-4801-9c3f-79ae1d7b2cbc",
 				},
-				Document: model.Document{},
-				OriginalData: `# kics-scan disable=baee238e-1921-4801-9c3f-79ae1d7b2cbc
-- name: Start a workflow in the Itential Automation Platform
-	community.network.iap_start_workflow:
-		iap_port: 3000
-		iap_fqdn: localhost
-		token_key: "DFSFSFHFGFGF[DSFSFAADAFASD%3D"
-		workflow_name: "RouterUpgradeWorkflow"
-		description: "OS-Router-Upgrade"
-		variables: {"deviceName":"ASR9K"}
-	register: result
-`,
-				Kind:     "ANS",
-				FilePath: "assets/queries/common/passwords_and_secrets/test/positive28.yaml",
+				Document:          model.Document{},
+				OriginalData:      OriginalData7,
+				LinesOriginalData: utils.SplitLines(OriginalData7),
+				Kind:              "ANS",
+				FilePath:          "assets/queries/common/passwords_and_secrets/test/positive28.yaml",
 			},
 		},
 		wantVuln: []model.Vulnerability{},

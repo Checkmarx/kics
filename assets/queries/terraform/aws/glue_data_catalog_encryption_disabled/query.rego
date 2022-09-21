@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_glue_data_catalog_encryption_settings[%s].data_catalog_encryption_settings.encryption_at_rest.catalog_encryption_mode", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'catalog_encryption_mode' is set to 'SSE-KMS'",
+		"keyExpectedValue": "'catalog_encryption_mode' should be set to 'SSE-KMS'",
 		"keyActualValue": "'catalog_encryption_mode' is not set to 'SSE-KMS'",
 		"searchLine": common_lib.build_search_line(["resource", "aws_glue_data_catalog_encryption_settings", name, "data_catalog_encryption_settings","encryption_at_rest", "catalog_encryption_mode"], []),
 	}
@@ -48,7 +48,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_glue_data_catalog_encryption_settings[%s].data_catalog_encryption_settings.connection_password_encryption.return_connection_password_encrypted", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'return_connection_password_encrypted' is set to true",
+		"keyExpectedValue": "'return_connection_password_encrypted' should be set to true",
 		"keyActualValue": "'return_connection_password_encrypted' is not set to true",
 		"searchLine": common_lib.build_search_line(["resource", "aws_glue_data_catalog_encryption_settings", name, "data_catalog_encryption_settings","connection_password_encryption", "return_connection_password_encrypted"], []),
 		"remediation": json.marshal({

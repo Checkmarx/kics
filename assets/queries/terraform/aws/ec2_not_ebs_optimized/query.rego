@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_instance[{{%s}}].ebs_optimized", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'ebs_optimized' is set to true",
+		"keyExpectedValue": "'ebs_optimized' should be set to true",
 		"keyActualValue": "'ebs_optimized' is set to false",
 		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name, "ebs_optimized"], []),
 		"remediation": json.marshal({
@@ -42,7 +42,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].ebs_optimized", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'ebs_optimized' is set to true",
+		"keyExpectedValue": "'ebs_optimized' should be set to true",
 		"keyActualValue": "'ebs_optimized' is set to false",
 		"searchLine": common_lib.build_search_line(["module", name, "ebs_optimized"], []),
 		"remediation": json.marshal({
@@ -66,7 +66,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_instance[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'ebs_optimized' is set to true",
+		"keyExpectedValue": "'ebs_optimized' should be set to true",
 		"keyActualValue": "'ebs_optimized' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name], []),
 		"remediation": "ebs_optimized = true",
@@ -89,7 +89,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'ebs_optimized' is set to true",
+		"keyExpectedValue": "'ebs_optimized' should be set to true",
 		"keyActualValue": "'ebs_optimized' is undefined or null",
 		"searchLine": common_lib.build_search_line(["module", name], []),
 	}

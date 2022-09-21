@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.source_arn", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "lambda_policy.source_arn should not be equal to '/*/*'",
+		"keyExpectedValue": "lambda_policy.source_arn should not equal to '/*/*'",
 		"keyActualValue": "lambda_policy.source_arn is equal to '/*/*'",
 	}
 }

@@ -53,7 +53,7 @@ CxPolicy[result] {
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.settings.ipConfiguration.requireSsl", [resource.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'settings.ipConfiguration.requireSsl' to be true",
+		"keyExpectedValue": "'settings.ipConfiguration.requireSsl' should be true",
 		"keyActualValue": "'settings.ipConfiguration.requireSsl' is false", 
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "settings", "ipConfiguration", "requireSsl"], []),
 	}

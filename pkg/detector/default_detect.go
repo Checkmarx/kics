@@ -33,7 +33,7 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 		sanitizedSubstring = strings.Replace(sanitizedSubstring, str[0], `{{`+strconv.Itoa(idx)+`}}`, -1)
 	}
 
-	lines := d.SplitLines(file.OriginalData)
+	lines := *file.LinesOriginalData
 	for _, key := range strings.Split(sanitizedSubstring, ".") {
 		substr1, substr2 := GenerateSubstrings(key, extractedString)
 
@@ -56,14 +56,9 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 
 	return model.VulnerabilityLines{
 		Line:         undetectedVulnerabilityLine,
-		VulnLines:    []model.CodeLine{},
+		VulnLines:    &[]model.CodeLine{},
 		ResolvedFile: detector.ResolvedFile,
 	}
-}
-
-func (d defaultDetectLine) SplitLines(content string) []string {
-	text := strings.ReplaceAll(content, "\r", "")
-	return strings.Split(text, "\n")
 }
 
 func (d defaultDetectLine) prepareResolvedFiles(resFiles map[string]model.ResolvedFile) map[string]model.ResolvedFileSplit {
@@ -71,7 +66,7 @@ func (d defaultDetectLine) prepareResolvedFiles(resFiles map[string]model.Resolv
 	for f, res := range resFiles {
 		resolvedFiles[f] = model.ResolvedFileSplit{
 			Path:  res.Path,
-			Lines: d.SplitLines(string(res.Content)),
+			Lines: *res.LinesContent,
 		}
 	}
 	return resolvedFiles

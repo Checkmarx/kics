@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_launch_template[%s].encrypted", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("alicloud_launch_template[%s].encrypted to be true", [name]),
+		"keyExpectedValue": sprintf("alicloud_launch_template[%s].encrypted should be true", [name]),
 		"keyActualValue": sprintf("alicloud_launch_template[%s].encrypted is false", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_launch_template", name, "encrypted"], []),
 		"remediation": json.marshal({

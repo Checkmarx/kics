@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_lambda_permission[%s].source_arn", [permissionName]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'source_arn' should not be equal '/*/*'",
+		"keyExpectedValue": "'source_arn' should not equal '/*/*'",
 		"keyActualValue": "'source_arn' is equal '/*/*'",
 	}
 }
