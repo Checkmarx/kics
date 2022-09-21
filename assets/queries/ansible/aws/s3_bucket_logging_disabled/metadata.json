@@ -3,7 +3,7 @@
   "queryName": "S3 Bucket Logging Disabled",
   "severity": "MEDIUM",
   "category": "Observability",
-  "descriptionText": "S3 bucket should have 'debug_botocore_endpoint_logs' defined",
+  "descriptionText": "Server Access Logging should be enabled on S3 Buckets so that all changes are logged and trackable",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html#parameter-debug_botocore_endpoint_logs",
   "platform": "Ansible",
   "descriptionID": "2b508aee",
