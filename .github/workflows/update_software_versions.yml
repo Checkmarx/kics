@@ -19,7 +19,7 @@ jobs:
       - name: Run test update_versions script
         id: updatever
         run: |
-          pip3 install -r .github/scripts/update_versions/requirements.txt
+          pip3 install -r .github/scripts/statistics/requirements.txt
           output= $(python3 .github/scripts/update_versions/update.py)
           echo "$output"
           echo "::set-output name=status::$output"
