@@ -17,12 +17,13 @@ jobs:
         with:
           python-version: "3.x"
       - name: Run test statistics script
-        id: metrics
+        id: updatever
         run: |
           pip3 install -r .github/scripts/update_versions/requirements.txt
           output= $(python3 .github/scripts/update_versions/update.py)
+          echo "::set-output name=status::$output"
       - name: Create pull request
-        if: "contains(output, 'Packages Updated')"
+        if: "contains(steps.updatever.outputs.status, 'Packages Updated')"
         uses: peter-evans/create-pull-request@v4
         with:
           title: "bump: updating software versions"
