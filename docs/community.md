@@ -1,8 +1,7 @@
 ## Community Meetings
 -   [GitHub discussion regarding Community Meetings](https://github.com/Checkmarx/kics/discussions/5675)
-- Calendar:
-    - 23423423~
-    - sdfsd f
+- Calendar for the upcoming session:
+    - [Session info + date + link goes here]
 
 ## Hacktoberfest
 *"Hacktoberfest is a month-long celebration of open source projects, their maintainers, and the entire community of contributors. Each October, open source maintainers give new contributors extra attention as they guide developers through their first pull requests on GitHub."*<br />
