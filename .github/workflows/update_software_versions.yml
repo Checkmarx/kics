@@ -20,7 +20,8 @@ jobs:
         id: updatever
         run: |
           pip3 install -r .github/scripts/statistics/requirements.txt
-          output= $(python3 .github/scripts/update_versions/update.py)
+          python3 .github/scripts/update_versions/update.py
+          output= "test"
           echo "$output"
           echo "::set-output name=status::$output"
       - name: Create pull request
