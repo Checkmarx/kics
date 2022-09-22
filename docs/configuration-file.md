@@ -95,26 +95,26 @@ exclude-categories: "exclude categories by providing its name"
 exclude-paths: "exclude paths or files from scan"
 exclude-queries: "exclude queries by providing the query ID"
 exclude-results: "exclude results by providing a list of similarity IDs of a result"
-exclude-severities: "exclude results by providing the severity of a result"
-libraries-path: "path to directory with libraries (default "./assets/libraries")"
+exclude-severities: [] "Exclude results by providing a list of severities you want to exclude. Possible values: high, medium, low, info, trace."
+libraries-path: ./assets/libraries "path to directory with libraries"
 log-file: true
-log-level: INFO
+log-level: INFO "Possible values: TRACE, DEBUG, INFO, WARN, ERROR, FATAL."
 log-path: path to the log file
 minimal-ui: false
 no-color: false
 no-progress: false
-output-name: "name used on report creations (default \"results\")"
+output-name: results "name used on report creations"
 output-path: "directory path to store reports"
 path: "path to file or directory to scan"
 payload-path: "file path to store source internal representation in JSON format"
 preview-lines: 3
 profiling: "enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)"
-queries-path: "path to directory with queries (default ./assets/queries) (default './assets/queries')"
-report-formats: "formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])"
+queries-path: "./assets/queries" "path to directory with queries"
+report-formats: [json] "formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube)"
 silent: false
-type: "type of queries to use in the scan"
+type: "type of queries to use in the scan" ???
 timeout: "number of seconds the query has to execute before being canceled"
-verbose: true
+verbose: true ???
 disable-full-descriptions: "disable request for full descriptions and use default vulnerability descriptions"
 ```
 
