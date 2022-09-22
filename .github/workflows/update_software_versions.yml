@@ -1,0 +1,39 @@
+name: update-software-versions
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Update Software Versions"
+        required: true
+jobs:
+  update-software-versions:
+    name: update software versions to latest
+    runs-on: ubuntu-latest    
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+      - name: Run test statistics script
+        id: metrics
+        run: |
+          pip3 install -r .github/scripts/statistics/requirements.txt
+          python3 .github/scripts/update_versions/update.py
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          title: "bump: updating software versions"
+          token: ${{ secrets.KICS_BOT_PAT }}
+          commit-message: "docs: updating software versions to new release"
+          delete-branch: true
+          branch: feature/kicsbot-software-versions
+          base: feat/no_more_magic_versions_numbers
+          body: |
+            **Automated Changes**
+            Updating documentation index page.
+            Triggered by SHA: _${{ github.sha }}_
+          labels: documentation
+
