@@ -1,12 +1,6 @@
 name: update-software-versions
 on:
-  push:
-    branches: [ feat/no_more_magic_versions_numbers ]
   workflow_dispatch:
-    inputs:
-      version:
-        description: "Update Software Versions"
-        required: true
 jobs:
   update-software-versions:
     name: update software versions to latest
@@ -29,13 +23,13 @@ jobs:
         with:
           title: "bump: updating software versions"
           token: ${{ secrets.KICS_BOT_PAT }}
-          commit-message: "docs: updating software versions to new release"
+          commit-message: "bump: updating software versions to new release"
           delete-branch: true
           branch: feature/kicsbot-software-versions
-          base: feat/no_more_magic_versions_numbers
+          base: master
           body: |
             **Automated Changes**
-            Updating documentation index page.
+            Updating assets/libraries/common.json software versions
             Triggered by SHA: _${{ github.sha }}_
-          labels: documentation
+          labels: enhancement
 
