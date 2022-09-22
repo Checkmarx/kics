@@ -16,11 +16,12 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: "3.x"
-      - name: Run test statistics script
+      - name: Run test update_versions script
         id: updatever
         run: |
           pip3 install -r .github/scripts/update_versions/requirements.txt
           output= $(python3 .github/scripts/update_versions/update.py)
+          echo "$output"
           echo "::set-output name=status::$output"
       - name: Create pull request
         if: "contains(steps.updatever.outputs.status, 'Packages Updated')"
