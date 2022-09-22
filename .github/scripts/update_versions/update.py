@@ -13,12 +13,12 @@ def checkVersion(name, apiUrl, currentVersion):
 
         if request_version != currentVersion:
             # print version is up to date and return empty string
-            # print("\t" + name + "\tfrom " +
-            #   currentVersion + " to " + request_version)
+            print("\t" + name + "\tfrom " +
+               currentVersion + " to " + request_version)
             return request_version
         else:
             # print version is up to date and return empty string
-            # print("\t" + name + "\talready in latest version: " + currentVersion)
+            print("\t" + name + "\talready in latest version: " + currentVersion)
             return ""
 
     else:
@@ -39,7 +39,7 @@ file_changed = False
 # get version_numbers_to_check json object
 versions_to_check = data['version_numbers_to_check']
 
-# print("Checking versions:")
+print("Checking versions:")
 
 for i in versions_to_check:
     # check if any version is outdated
@@ -53,4 +53,4 @@ if file_changed:
     f = open('assets/libraries/common.json', "w")
     json.dump(data, f, indent=2)
     f.close()
-    print("Packages Updated")
+    print("Versions Updated")

@@ -1693,7 +1693,7 @@
     {
       "name": "python",
       "apiUrl": "https://endoflife.date/api/python.json",
-      "version": "3.10.0"
+      "version": "3.10.7"
     },
     {
       "name": "php",

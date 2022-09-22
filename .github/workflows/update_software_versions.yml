@@ -16,16 +16,18 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: "3.x"
-      - name: Run test update_versions script
-        id: updatever
+      - name: Run update_versions script
         run: |
-          pip3 install -r .github/scripts/statistics/requirements.txt
+          pip3 install -r .github/scripts/update_versions/requirements.txt
           python3 .github/scripts/update_versions/update.py
-          output= "test"
-          echo "$output"
-          echo "::set-output name=status::$output"
+      - name: Verify Changed files
+        uses: tj-actions/verify-changed-files@v11.1
+        id: verify-changed-files
+        with:
+          files: |
+             *.json
       - name: Create pull request
-        if: "contains(steps.updatever.outputs.status, 'Packages Updated')"
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
         uses: peter-evans/create-pull-request@v4
         with:
           title: "bump: updating software versions"
