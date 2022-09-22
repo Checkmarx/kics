@@ -1,8 +1,5 @@
 name: update-software-versions
 on:
-  push:
-    branches:
-      - "feat/no_more_magic_versions_numbers"
   workflow_dispatch:
 jobs:
   update-software-versions:
@@ -35,7 +32,7 @@ jobs:
           commit-message: "bump: updating software versions to new release"
           delete-branch: true
           branch: feature/kicsbot-software-versions
-          base: feat/no_more_magic_versions_numbers
+          base: master
           body: |
             **Automated Changes**
             Updating assets/libraries/common.json software versions
