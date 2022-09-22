@@ -1,5 +1,8 @@
 name: update-software-versions
 on:
+  push:
+    branches:
+      - "feat/no_more_magic_versions_numbers"
   workflow_dispatch:
 jobs:
   update-software-versions:
@@ -16,9 +19,10 @@ jobs:
       - name: Run test statistics script
         id: metrics
         run: |
-          pip3 install -r .github/scripts/statistics/requirements.txt
-          python3 .github/scripts/update_versions/update.py
+          pip3 install -r .github/scripts/update_versions/requirements.txt
+          output= $(python3 .github/scripts/update_versions/update.py)
       - name: Create pull request
+        if: "contains(output, 'Packages Updated')"
         uses: peter-evans/create-pull-request@v4
         with:
           title: "bump: updating software versions"
@@ -26,7 +30,7 @@ jobs:
           commit-message: "bump: updating software versions to new release"
           delete-branch: true
           branch: feature/kicsbot-software-versions
-          base: master
+          base: feat/no_more_magic_versions_numbers
           body: |
             **Automated Changes**
             Updating assets/libraries/common.json software versions

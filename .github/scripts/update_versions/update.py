@@ -1,6 +1,5 @@
 import json
 import requests
-
 # Gets data from apiUrl argument and check if current version is outdated and returns new versions if applicable
 def checkVersion(name, apiUrl, currentVersion):
     # make Http Get request
@@ -14,18 +13,18 @@ def checkVersion(name, apiUrl, currentVersion):
 
         if request_version != currentVersion:
             # print version is up to date and return empty string
-            print("\t" + name + "\tfrom " +
-                currentVersion + " to " + request_version)
+            # print("\t" + name + "\tfrom " +
+            #   currentVersion + " to " + request_version)
             return request_version
         else:
             # print version is up to date and return empty string
-            print("\t" + name + "\talready in latest version: " + currentVersion)
+            # print("\t" + name + "\talready in latest version: " + currentVersion)
             return ""
 
     else:
         # raise exception is request is not successful
         raise Exception("\t error getting data from:\t"+ apiUrl)
-
+        
 
 # file descriptor
 f = open('assets/libraries/common.json', "r")
@@ -40,7 +39,7 @@ file_changed = False
 # get version_numbers_to_check json object
 versions_to_check = data['version_numbers_to_check']
 
-print("Checking versions:")
+# print("Checking versions:")
 
 for i in versions_to_check:
     # check if any version is outdated
@@ -54,3 +53,4 @@ if file_changed:
     f = open('assets/libraries/common.json', "w")
     json.dump(data, f, indent=2)
     f.close()
+    print("Packages Updated")
