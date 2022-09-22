@@ -1,5 +1,7 @@
 name: update-software-versions
 on:
+  push:
+    branches: [ feat/no_more_magic_versions_numbers ]
   workflow_dispatch:
     inputs:
       version:
