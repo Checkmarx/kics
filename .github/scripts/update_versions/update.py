@@ -1,5 +1,4 @@
 import json
-from queue import Empty
 import requests
 
 # Gets data from apiUrl argument and check if current version is outdated and returns new versions if applicable
@@ -23,9 +22,10 @@ def checkVersion(name, apiUrl, currentVersion):
             print("\t" + name + "\talready in latest version: " + currentVersion)
             return ""
 
-    else: 
+    else:
         # raise exception is request is not successful
         raise Exception("\t error getting data from:\t"+ apiUrl)
+
 
 # file descriptor
 f = open('assets/libraries/common.json', "r")
