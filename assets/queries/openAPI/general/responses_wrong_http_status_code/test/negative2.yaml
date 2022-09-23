@@ -36,3 +36,10 @@ paths:
                         links:
                           - href: http://127.0.0.1:8774/v2/
                             rel: self
+         # Definition of all error statuses
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
