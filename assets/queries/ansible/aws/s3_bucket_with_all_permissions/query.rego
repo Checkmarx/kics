@@ -16,6 +16,7 @@ CxPolicy[result] {
 	common_lib.is_allow_effect(statement)
 
 	common_lib.containsOrInArrayContains(statement.Action, "*")
+	common_lib.containsOrInArrayContains(statement.Principal, "*")
 
 	result := {
 		"documentId": id,
@@ -23,8 +24,8 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'policy.Statement.Action' shouldn't contain '*' when 'Effect' is 'Allow'",
-		"keyActualValue": "'policy.Statement.Action' contains '*' when 'Effect' is 'Allow'",
+		"keyExpectedValue": "'policy.Statement' should not allow all actions to all principal",
+		"keyActualValue": "'policy.Statement' allows all actions to all principal",
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}
 }
