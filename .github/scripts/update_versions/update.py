@@ -1,6 +1,6 @@
 import json
 import requests
-# Gets data from apiUrl argument and check if current version is outdated and returns new versions if applicable
+# Gets data from apiUrl argument and checks if current version is outdated and returns new versions if applicable
 def checkVersion(name, apiUrl, currentVersion):
     # make Http Get request
     r = requests.get(apiUrl)
@@ -12,7 +12,7 @@ def checkVersion(name, apiUrl, currentVersion):
         request_version = r.json()[0]['latest']
 
         if request_version != currentVersion:
-            # print version is up to date and return empty string
+            # print version is not up to date and return the updated version value
             print("\t" + name + "\tfrom " +
                currentVersion + " to " + request_version)
             return request_version
