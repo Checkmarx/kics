@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "MSK Broker Is Publicly Accessible",
+    "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "MSK Broker Is Publicly Accessible",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive2.json"
+  }
+]
