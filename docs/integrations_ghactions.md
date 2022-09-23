@@ -12,7 +12,7 @@ This provides you the ability to run KICS scans in your Github repositories and 
 
 ```yaml
 - name: KICS Github Action
-  uses: Checkmarx/kics-github-action@latest
+  uses: Checkmarx/kics-github-action@v1.5
   with:
     # path to file or directory to scan
     path:
@@ -41,7 +41,7 @@ steps:
     # make sure results dir is created
     run: mkdir -p results-dir
   - name: run kics Scan
-    uses: checkmarx/kics-action@latest
+    uses: Checkmarx/kics-github-action@v1.5
     with:
       path: 'terraform'
       output_path: results-dir
