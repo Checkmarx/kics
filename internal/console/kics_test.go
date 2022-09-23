@@ -243,6 +243,6 @@ func TestConsole_Execute(t *testing.T) { //nolint
 
 func rewriteRemediateTestFile() error {
 	d1 := []byte("resource \"alicloud_ram_account_password_policy\" \"corporate1\" {\n\t\trequire_lowercase_characters = false\n\t\trequire_uppercase_characters = false\n\t\trequire_numbers              = false\n\t\trequire_symbols              = false\n\t\thard_expiry                  = true\n\t\tpassword_reuse_prevention    = 5\n\t\tmax_login_attempts           = 3\n\t}\n\nresource \"alicloud_ram_account_password_policy\" \"corporate2\" {\n\t\tminimum_password_length = 14\n\t\trequire_lowercase_characters = false\n\t\trequire_uppercase_characters = false\n\t\trequire_numbers              = false\n\t\trequire_symbols              = false\n\t\thard_expiry                  = true\n\t\tpassword_reuse_prevention    = 5\n\t\tmax_login_attempts           = 3\n\t}")
-	err := os.WriteFile("../../test/assets/auto_remediation_sample.tf", d1, 0666)
+	err := os.WriteFile(filepath.FromSlash("../../test/assets/auto_remediation_sample.tf"), d1, 0666)
 	return err
 }

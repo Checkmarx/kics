@@ -2,7 +2,6 @@ package kuberneter
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -386,6 +385,5 @@ func Test_GetClient(t *testing.T) {
 func getValidCertPath(path []string) string {
 	k8sCertPath := filepath.Join(path[:]...)
 	finalPath := filepath.Join(k8sCertPath)
-	fmt.Print(finalPath)
 	return finalPath
 }

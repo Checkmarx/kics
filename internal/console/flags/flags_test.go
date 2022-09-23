@@ -43,8 +43,6 @@ func TestFlags_InitJSONFlags(t *testing.T) {
 	}
 
 	kicsFlags, _ := os.ReadFile("../assets/kics-flags.json")
-	dummy := string(kicsFlags)
-	fmt.Print(dummy)
 
 	tests := []struct {
 		name                    string
