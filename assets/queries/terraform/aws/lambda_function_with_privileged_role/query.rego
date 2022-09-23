@@ -24,7 +24,10 @@ CxPolicy[result] {
 	inline_policy := document[p].resource.aws_iam_role_policy[inline_policy_id]
 	split(inline_policy.role, ".")[1] == role_id
 
-    matching_actions := hasPrivilegedPermissions(inline_policy)
+    policy := common_lib.json_unmarshal(inline_policy.policy)
+	statements := tf_lib.getStatement(policy)
+    statement := statements[_]
+	matching_actions := hasPrivilegedPermissions(statement)
 	count(matching_actions) > 0
 
 
@@ -61,7 +64,10 @@ CxPolicy[result] {
 	customer_managed_policy = document[p].resource.aws_iam_policy[attached_customer_managed_policy_id]
 
 
-	matching_actions := hasPrivilegedPermissions(customer_managed_policy)
+	policy := common_lib.json_unmarshal(customer_managed_policy.policy)
+	statements := tf_lib.getStatement(policy)
+    statement := statements[_]
+	matching_actions := hasPrivilegedPermissions(statement)
 	count(matching_actions) > 0
 
 
@@ -113,10 +119,7 @@ is_attachment(attachment, role_id) {
 }
 
 
-hasPrivilegedPermissions(resource) = matching_actions {
-	# Looks at statement
-	policy := common_lib.json_unmarshal(resource.policy)
-	statement := tf_lib.getStatement(policy)
+hasPrivilegedPermissions(statement) = matching_actions {
 	statement.Effect == "Allow"
 	matching_actions := [matching_actions | action := privilegeEscalationActions[x]; common_lib.check_actions(statement, action); matching_actions := action]
 } else = matching_actions {
