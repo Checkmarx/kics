@@ -2,6 +2,8 @@
 
 KICS allow you to provide all configurations either as command line arguments or as code.
 
+KICS supports JSON, TOML, YAML, and HCL formats for the configuration files, and it is able to infer the format without the need of file extension.
+
   > 📝 &nbsp; flags that can receive multiple values can be either provided as a comma separated string or an array as in the example above
 
 ## Examples
@@ -40,20 +42,12 @@ output-path: "results"
 
 ---
 
-## Supported Formats
 
-KICS supports the following formats for the configuration files.
+## Examples
 
--   JSON
--   TOML
--   YAML
--   HCL
 
-Notice that format is about the content and not the file extension.
 
-KICS is able to infer the format without the need of file extension.
 
----
 
 ## Templates
 
