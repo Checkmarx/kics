@@ -1,6 +1,6 @@
 ## Configuration File
 
-KICS allow you to provide all configurations either as command line arguments or as code.
+KICS allow you to provide all configurations either as command line arguments or as code. You can see all possible configurations in the [CLI](commands.md#Scan-Command-Options).
 
 KICS supports JSON, TOML, YAML, and HCL formats for the configuration files, and it is able to infer the format without the need of file extension.
 
