@@ -24,7 +24,7 @@ def checkVersion(name, apiUrl, currentVersion):
     else:
         # raise exception is request is not successful
         raise Exception("\t error getting data from:\t"+ apiUrl)
-        
+
 
 # file descriptor
 f = open('assets/libraries/common.json', "r")
