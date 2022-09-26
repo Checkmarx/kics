@@ -1,8 +1,9 @@
 ## Configuration File
 
-KICS allow you to provide all configurations either as command line arguments or as code. You can see all possible configurations in the [CLI](commands.md#Scan-Command-Options).
+KICS allow you to provide all configurations either as command line arguments or as code. You can see all possible configurations in the [CLI](commands.md#scan-command-options).
+You can disable scanning in certain parts of file using inline comments. More can be found in [Running KICS](running-kics.md#using-commands-on-scanned-files-as-comments) section.
 
-KICS supports JSON, TOML, YAML, and HCL formats for the configuration files, and it is able to infer the format without the need of file extension.
+KICS supports JSON, TOML, YAML, and HCL formats for the configuration files, and it is able to infer the formats without the need of file extension.
 
   > 📝 &nbsp; flags that can receive multiple values can be either provided as a comma separated string or an array as in the example above
 
