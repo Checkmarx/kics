@@ -2,7 +2,9 @@
 
 KICS allow you to provide all configurations either as command line arguments or as code.
 
-Here is a Configuration file example:
+  > 📝 &nbsp; flags that can receive multiple values can be either provided as a comma separated string or an array as in the example above
+
+## Examples
 
 ```JSON
 {
@@ -35,7 +37,6 @@ exclude-paths:
 output-path: "results"
 ```
 
-> 📝 &nbsp; flags that can receive multiple values can be either provided as a comma separated string or an array as in the example above
 
 ---
 
