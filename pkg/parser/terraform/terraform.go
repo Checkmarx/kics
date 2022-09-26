@@ -13,6 +13,7 @@ import (
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
+	"github.com/zclconf/go-cty/cty/json"
 )
 
 // RetriesDefaultValue is default number of times a parser will retry to execute
@@ -57,8 +58,14 @@ func processElements(elements model.Document, path string) {
 		if k != "certificate_body" {
 			continue
 		}
-		content := utils.CheckCertificate(v3.(string))
-		processContent(elements, content, path)
+		switch value := v3.(type) {
+		case string:
+			content := utils.CheckCertificate(value)
+			processContent(elements, content, path)
+		case json.SimpleJSONValue:
+			content := utils.CheckCertificate(value.Value.AsString())
+			processContent(elements, content, path)
+		}
 	}
 }
 
