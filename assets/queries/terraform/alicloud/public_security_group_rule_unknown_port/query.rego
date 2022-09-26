@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terraform_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_security_group_rule[name]
@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_security_group_rule",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_security_group_rule[%s].port_range", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "port_range does not contain unknown ports and are not exposed to the entire Internet",
@@ -35,6 +37,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_security_group_rule",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_security_group_rule[%s].port_range", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "port_range does not contain ports unknown and are not exposed to the entire Internet",

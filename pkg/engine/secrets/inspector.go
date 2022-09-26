@@ -41,6 +41,7 @@ type Inspector struct {
 	vulnerabilities       []model.Vulnerability
 	queryExecutionTimeout time.Duration
 	foundLines            []int
+	mu                    sync.RWMutex
 }
 
 type Entropy struct {
@@ -60,13 +61,14 @@ type AllowRule struct {
 }
 
 type RegexQuery struct {
-	ID         string          `json:"id"`
-	Name       string          `json:"name"`
-	Multiline  MultilineResult `json:"multiline"`
-	RegexStr   string          `json:"regex"`
-	Entropies  []Entropy       `json:"entropies"`
-	AllowRules []AllowRule     `json:"allowRules"`
-	Regex      *regexp.Regexp
+	ID          string          `json:"id"`
+	Name        string          `json:"name"`
+	Multiline   MultilineResult `json:"multiline"`
+	RegexStr    string          `json:"regex"`
+	SpecialMask string          `json:"specialMask"`
+	Entropies   []Entropy       `json:"entropies"`
+	AllowRules  []AllowRule     `json:"allowRules"`
+	Regex       *regexp.Regexp
 }
 
 type RegexRuleStruct struct {
@@ -163,7 +165,7 @@ func NewInspector(
 
 func (c *Inspector) inspectQuery(ctx context.Context, basePaths []string,
 	files model.FileMetadatas, i int) ([]model.Vulnerability, error) {
-	timeoutCtx, cancel := context.WithTimeout(ctx, c.queryExecutionTimeout*time.Second)
+	timeoutCtx, cancel := context.WithTimeout(ctx, c.queryExecutionTimeout)
 	defer cancel()
 
 	cleanFiles := cleanFiles(files)
@@ -382,7 +384,7 @@ func (c *Inspector) checkFileContent(query *RegexQuery, basePaths []string, file
 
 func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadata, vulnGroups [][]string) []lineVulneInfo {
 	content := file.OriginalData
-	lines := c.detector.SplitLines(file)
+	lines := *file.LinesOriginalData
 	lineVulneInfoSlice := make([]lineVulneInfo, 0)
 	realLineUpdater := 0
 	for _, groups := range vulnGroups {
@@ -480,6 +482,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 		log.Error().Msg("unable to compute similarity ID")
 	}
 
+	c.mu.Lock()
 	if _, ok := c.excludeResults[engine.PtrStringToString(simID)]; !ok {
 		linesVuln := c.detector.GetAdjecent(file, lineNumber+1)
 		if !ignoreLine(linesVuln.Line, file.LinesIgnore) {
@@ -490,7 +493,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 				FileID:           file.ID,
 				FileName:         file.FilePath,
 				Line:             linesVuln.Line,
-				VulnLines:        linesVuln.VulnLines,
+				VulnLines:        hideSecret(&linesVuln, issueLine, query),
 				IssueType:        "RedundantAttribute",
 				Platform:         SecretsQueryMetadata["platform"],
 				Severity:         model.SeverityHigh,
@@ -499,12 +502,13 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 				Description:      SecretsQueryMetadata["descriptionText"],
 				DescriptionID:    SecretsQueryMetadata["descriptionID"],
 				KeyExpectedValue: "Hardcoded secret key should not appear in source",
-				KeyActualValue:   fmt.Sprintf("'%s' contains a secret", issueLine),
+				KeyActualValue:   "Hardcoded secret key appears in source",
 				CloudProvider:    SecretsQueryMetadata["cloudProvider"],
 			}
 			c.vulnerabilities = append(c.vulnerabilities, vuln)
 		}
 	}
+	c.mu.Unlock()
 }
 
 // CheckEntropyInterval - verifies if a given token's entropy is within expected bounds
@@ -575,11 +579,15 @@ func validateCustomSecretsQueriesID(allRegexQueries []RegexQuery) error {
 }
 
 func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.FileMetadatas) {
+	// lines ignore can have the lines from the resolved files
+	// since inspector secrets only looks to original data, the lines ignore should be replaced
+	files[idx].LinesIgnore = model.GetIgnoreLines(&files[idx])
+
 	wg := &sync.WaitGroup{}
 	// check file content line by line
 	if c.regexQueries[i].Multiline == (MultilineResult{}) {
-		lines := c.detector.SplitLines(&files[idx])
-		for lineNumber, currentLine := range lines {
+		lines := (&files[idx]).LinesOriginalData
+		for lineNumber, currentLine := range *lines {
 			wg.Add(1)
 			go c.checkLineByLine(wg, &c.regexQueries[i], basePaths, &files[idx], lineNumber, currentLine)
 		}
@@ -615,4 +623,35 @@ func cleanFiles(files model.FileMetadatas) model.FileMetadatas {
 	}
 
 	return cleanFiles
+}
+
+func hideSecret(linesVuln *model.VulnerabilityLines, issueLine string, query *RegexQuery) *[]model.CodeLine {
+	for idx := range *linesVuln.VulnLines {
+		if query.SpecialMask == "all" {
+			(*linesVuln.VulnLines)[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
+			continue
+		}
+
+		if (*linesVuln.VulnLines)[idx].Line == issueLine {
+			regex := query.RegexStr
+
+			if len(query.SpecialMask) > 0 {
+				regex = "(.+)" + query.SpecialMask // get key
+			}
+
+			var re = regexp.MustCompile(regex)
+			match := re.FindString(issueLine)
+
+			if len(query.SpecialMask) > 0 {
+				match = issueLine[len(match):] // get value
+			}
+
+			if match != "" {
+				(*linesVuln.VulnLines)[idx].Line = strings.Replace(issueLine, match, "<SECRET-MASKED-ON-PURPOSE>", 1)
+			} else {
+				(*linesVuln.VulnLines)[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
+			}
+		}
+	}
+	return linesVuln.VulnLines
 }

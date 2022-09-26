@@ -19,9 +19,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("s3_bucket[%s] does not allow Delete Action From All Principals", [bucket.name]),
+		"keyExpectedValue": sprintf("s3_bucket[%s] should not allow Delete Action From All Principals", [bucket.name]),
 		"keyActualValue": sprintf("s3_bucket[%s] allows Delete Action From All Principals", [bucket.name]),
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}

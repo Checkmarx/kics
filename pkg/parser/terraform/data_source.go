@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"path/filepath"
+	"sync"
 
 	"github.com/Checkmarx/kics/pkg/parser/terraform/functions"
 	"github.com/hashicorp/hcl/v2"
@@ -69,6 +70,8 @@ type convertedPolicy struct {
 	Version   string                     `json:"Version,omitempty"`
 }
 
+var mutexData = &sync.Mutex{}
+
 func getDataSourcePolicy(currentPath string) {
 	tfFiles, err := filepath.Glob(filepath.Join(currentPath, "*.tf"))
 	if err != nil {
@@ -106,7 +109,10 @@ func getDataSourcePolicy(currentPath string) {
 		log.Error().Msg("Error trying to convert policy to cty value.")
 		return
 	}
+
+	mutexData.Lock()
 	inputVariableMap["data"] = data
+	mutexData.Unlock()
 }
 
 func decodeDataSourcePolicy(value cty.Value) dataSourcePolicy {
@@ -228,10 +234,16 @@ func parseDataSourceBody(body *hclsyntax.Body) string {
 		Variables: inputVariableMap,
 		Functions: functions.TerraformFuncs,
 	})
-	if decodeErrs != nil {
-		log.Debug().Msg("Error trying to eval data source block.")
-		return ""
+
+	// check decode errors
+	for _, decErr := range decodeErrs {
+		if decErr.Summary != "Unknown variable" {
+			log.Debug().Msg("Error trying to eval data source block.")
+			return ""
+		}
+		log.Debug().Msg("Dismissed Error when decoding policy: Found unknown variable")
 	}
+
 	dataSourceJSON := decodeDataSourcePolicy(target)
 	convertedDataSource := convertedPolicy{
 		ID:      dataSourceJSON.ID,

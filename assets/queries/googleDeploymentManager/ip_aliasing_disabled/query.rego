@@ -10,9 +10,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'ipAllocationPolicy' to be defined and not null",
+		"keyExpectedValue": "'ipAllocationPolicy' should be defined and not null",
 		"keyActualValue": "'ipAllocationPolicy' is undefined or null", 
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties"], []),
 	}
@@ -26,9 +28,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.ipAllocationPolicy", [resource.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'ipAllocationPolicy.useIpAliases' to be defined and not null",
+		"keyExpectedValue": "'ipAllocationPolicy.useIpAliases' should be defined and not null",
 		"keyActualValue": "'ipAllocationPolicy.useIpAliases' is undefined or null", 
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "ipAllocationPolicy"], []),
 	}
@@ -42,9 +46,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.ipAllocationPolicy.useIpAliases", [resource.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'ipAllocationPolicy.useIpAliases' to be true",
+		"keyExpectedValue": "'ipAllocationPolicy.useIpAliases' should be true",
 		"keyActualValue": "'ipAllocationPolicy.useIpAliases' is false", 
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "ipAllocationPolicy", "useIpAliases"], []),
 	}

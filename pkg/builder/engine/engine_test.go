@@ -2,7 +2,6 @@ package engine
 
 import (
 	"reflect"
-	"strings"
 	"testing"
 
 	build "github.com/Checkmarx/kics/pkg/builder/model"
@@ -108,7 +107,7 @@ func TestEngine_BuildString(t *testing.T) {
 		name    string
 		args    args
 		fields  fields
-		want    strings.Builder
+		want    string
 		wantErr bool
 	}{
 		{
@@ -119,7 +118,7 @@ func TestEngine_BuildString(t *testing.T) {
 			args: args{
 				parts: []hclsyntax.Expression{},
 			},
-			want:    strings.Builder{},
+			want:    "",
 			wantErr: false,
 		},
 	}

@@ -13,9 +13,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "cloudtrail.sns_topic_name is set",
+		"keyExpectedValue": "cloudtrail.sns_topic_name should be set",
 		"keyActualValue": "cloudtrail.sns_topic_name is undefined",
 	}
 }
@@ -29,9 +31,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.sns_topic_name", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "cloudtrail.sns_topic_name is set",
+		"keyExpectedValue": "cloudtrail.sns_topic_name should be set",
 		"keyActualValue": "cloudtrail.sns_topic_name is empty",
 	}
 }

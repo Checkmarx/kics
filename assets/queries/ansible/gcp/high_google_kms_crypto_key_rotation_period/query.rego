@@ -14,9 +14,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "gcp_kms_key_ring.rotation_period is defined",
+		"keyExpectedValue": "gcp_kms_key_ring.rotation_period should be defined",
 		"keyActualValue": "gcp_kms_key_ring.rotation_period is undefined",
 	}
 }
@@ -31,9 +33,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.rotation_period", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_kms_key_ring.rotation_period is >= 7776000",
+		"keyExpectedValue": "gcp_kms_key_ring.rotation_period should be >= 7776000",
 		"keyActualValue": "gcp_kms_key_ring.rotation_period is < 7776000",
 	}
 }

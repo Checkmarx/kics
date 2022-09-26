@@ -33,6 +33,7 @@ func setInputVariablesDefaultValues(filename string) (converter.VariableMap, err
 			},
 		},
 	})
+
 	defaultValuesMap := make(converter.VariableMap)
 	for _, block := range content.Blocks {
 		if len(block.Labels) == 0 || block.Labels[0] == "" {
@@ -120,5 +121,6 @@ func getInputVariables(currentPath string) {
 		}
 		mergeMaps(variablesMap, variables)
 	}
+
 	inputVariableMap["var"] = cty.ObjectVal(variablesMap)
 }

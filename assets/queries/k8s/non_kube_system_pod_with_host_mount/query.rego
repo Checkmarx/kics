@@ -1,15 +1,21 @@
 package Cx
 
+import data.generic.common as common_lib
+import data.generic.k8s as k8sLib
+
 CxPolicy[result] {
 	resource := input.document[i]
 	metadata := resource.metadata
 	not metadata.namespace
-	resource.kind == "Pod"
-	volumes := resource.spec.volumes
-	volumes[_].hostPath.path
+	resource.kind == k8sLib.valid_pod_spec_kind_list[_]
+	specInfo := k8sLib.getSpecInfo(resource)
+	volumes := specInfo.spec.volumes
+	volumes[j].hostPath.path
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.volumes.name={{%s}}.hostPath.path", [metadata.name, volumes[j].name]),
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
+		"searchKey": sprintf("metadata.name={{%s}}.%s.volumes.name={{%s}}.hostPath.path", [metadata.name, specInfo.path, volumes[j].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resource name '%s' of kind '%s' in non kube-system namespace '%s' should not have hostPath '%s' mounted", [
 			metadata.name,
@@ -23,6 +29,7 @@ CxPolicy[result] {
 			"default",
 			volumes[j].hostPath.path,
 		]),
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j ,"hostPath", "path"])
 	}
 }
 
@@ -31,12 +38,15 @@ CxPolicy[result] {
 	metadata := resource.metadata
 	namespace := metadata.namespace
 	namespace != "kube-system"
-	resource.kind == "Pod"
-	volumes := resource.spec.volumes
-	volumes[_].hostPath.path
+	resource.kind == k8sLib.valid_pod_spec_kind_list[_]
+	specInfo := k8sLib.getSpecInfo(resource)
+	volumes := specInfo.spec.volumes
+	volumes[j].hostPath.path
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.volumes.name={{%s}}.hostPath.path", [metadata.name, volumes[j].name]),
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
+		"searchKey": sprintf("metadata.name={{%s}}.%s.volumes.name={{%s}}.hostPath.path", [metadata.name,specInfo.path, volumes[j].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resource name '%s' of kind '%s' in non kube-system namespace '%s' should not have hostPath '%s' mounted", [
 			metadata.name,
@@ -50,6 +60,7 @@ CxPolicy[result] {
 			metadata.namespace,
 			volumes[j].hostPath.path,
 		]),
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j ,"hostPath", "path"])
 	}
 }
 
@@ -58,11 +69,13 @@ CxPolicy[result] {
 	metadata := resource.metadata
 	namespace := metadata.namespace
 	namespace != "kube-system"
-	resource.kind != "Pod"
+	not common_lib.inArray(k8sLib.valid_pod_spec_kind_list, resource.kind)
 	volumes := resource.spec.template.spec.volumes
-	volumes[_].hostPath.path
+	volumes[j].hostPath.path
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.volumes.name={{%s}}.hostPath.path", [metadata.name, volumes[j].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resource name '%s' of kind '%s' in non kube-system namespace '%s' should not have hostPath '%s' mounted", [
@@ -84,11 +97,13 @@ CxPolicy[result] {
 	resource := input.document[i]
 	metadata := resource.metadata
 	not metadata.namespace
-	resource.kind != "Pod"
+	not common_lib.inArray(k8sLib.valid_pod_spec_kind_list, resource.kind)
 	volumes := resource.spec.template.spec.volumes
-	volumes[_].hostPath.path
+	volumes[j].hostPath.path
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.volumes.name={{%s}}.hostPath.path", [metadata.name, volumes[j].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resource name '%s' of kind '%s' in a non kube-system namespace '%s' should not have hostPath '%s' mounted", [
@@ -114,6 +129,8 @@ CxPolicy[result] {
 	path := resource.spec.hostPath.path
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.hostPath.path", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("PersistentVolume name '%s' of kind '%s' in non kube-system namespace '%s' should not mount a host sensitive OS directory '%s' with hostPath", [
@@ -139,6 +156,8 @@ CxPolicy[result] {
 	path := resource.spec.hostPath.path
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.hostPath.path", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("PersistentVolume name '%s' of kind '%s' in non kube-system namespace '%s' should not mount a host sensitive OS directory '%s' with hostPath", [

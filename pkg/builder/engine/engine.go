@@ -152,12 +152,12 @@ func (e *Engine) expToString(expr hclsyntax.Expression) (string, error) {
 			}
 			return v.AsString(), nil
 		}
-		builder, err := e.buildString(t.Parts)
+		builderString, err := e.buildString(t.Parts)
 		if err != nil {
 			return "", err
 		}
 
-		return builder.String(), nil
+		return builderString, nil
 	case *hclsyntax.TemplateWrapExpr:
 		return e.expToString(t.Wrapped)
 	case *hclsyntax.ObjectConsKeyExpr:
@@ -180,16 +180,23 @@ func (e *Engine) expToString(expr hclsyntax.Expression) (string, error) {
 	return "", fmt.Errorf("can't convert expression %T to string", expr)
 }
 
-func (e *Engine) buildString(parts []hclsyntax.Expression) (strings.Builder, error) {
-	var builder strings.Builder
+func (e *Engine) buildString(parts []hclsyntax.Expression) (string, error) {
+	builder := &strings.Builder{}
+
 	for _, part := range parts {
 		s, err := e.expToString(part)
 		if err != nil {
-			return strings.Builder{}, err
+			return "", err
 		}
 		builder.WriteString(s)
 	}
-	return builder, nil
+
+	s := builder.String()
+
+	builder.Reset()
+	builder = nil
+
+	return s, nil
 }
 
 func (e *Engine) walkConstantItem(item hclsyntax.ObjectConsItem, walkHistory []build.PathItem) error {

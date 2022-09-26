@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.settings", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'settings.backupConfiguration' is defined and not null",
@@ -28,6 +30,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.settings.backupConfiguration", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'settings.backupConfiguration.enabled' is defined and not null",
@@ -45,9 +49,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.settings.backupConfiguration.enabled", [resource.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'settings.backupConfiguration.enabled' to be true",
+		"keyExpectedValue": "'settings.backupConfiguration.enabled' should be true",
 		"keyActualValue": "'settings.backupConfiguration.enabled' is false", 
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "settings", "backupConfiguration", "enabled"], []),
 	}

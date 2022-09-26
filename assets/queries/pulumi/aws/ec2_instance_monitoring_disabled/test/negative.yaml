@@ -1,0 +1,8 @@
+name: aws-eks
+runtime: yaml
+description: An EKS cluster
+resources:
+  example:
+    type: aws:ec2:Instance
+    properties:
+      monitoring: true

@@ -1,6 +1,7 @@
 package docker
 
 import (
+	"reflect"
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -16,7 +17,7 @@ func TestParser_GetKind(t *testing.T) {
 // TestParser_SupportedExtensions tests the functions [SupportedExtensions()] and all the methods called by them
 func TestParser_SupportedExtensions(t *testing.T) {
 	p := &Parser{}
-	require.Equal(t, []string{"Dockerfile", ".dockerfile"}, p.SupportedExtensions())
+	require.Equal(t, []string{"Dockerfile", ".dockerfile", ".ubi8", ".debian", "possibleDockerfile"}, p.SupportedExtensions())
 }
 
 // TestParser_SupportedExtensions tests the functions [SupportedTypes()] and all the methods called by them
@@ -65,6 +66,18 @@ func TestParser_Parse(t *testing.T) {
       		url."https://${GIT_USER}:${GIT_TOKEN}@github.com".insteadOf \
       		"https://github.com"
 		`,
+		`
+		ARG BASE_IMAGE=alpine
+        ARG BASE_IMAGE_TAG=latest
+
+        FROM ${BASE_IMAGE}:${BASE_IMAGE_TAG} as main
+		`,
+		`
+		ARG BASE_IMAGE=alpine
+        ARG BASE_IMAGE_TAG=latest=
+
+        FROM ${BASE_IMAGE}:${BASE_IMAGE_TAG} as main
+		`,
 	}
 
 	for idx, sampleFile := range sample {
@@ -101,6 +114,22 @@ func TestParser_Parse(t *testing.T) {
 			require.Len(t, docGoALP, 5)
 			require.Contains(t, docGoALP.([]interface{})[4].(map[string]interface{})["Value"].([]interface{})[0], "${GIT_USER}")
 			require.Equal(t, []int{2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, igLines)
+		case 3:
+			require.NoError(t, err)
+			require.Len(t, doc, 1)
+			require.Len(t, doc[0]["command"], 1)
+			require.Contains(t, doc[0]["command"], "${BASE_IMAGE}:${BASE_IMAGE_TAG} as main")
+			c := doc[0]["command"].(map[string]interface{})["${BASE_IMAGE}:${BASE_IMAGE_TAG} as main"]
+			require.Len(t, c, 1)
+			require.Contains(t, c.([]interface{})[0].(map[string]interface{})["Value"].([]interface{})[0], "alpine:latest")
+		case 4:
+			require.NoError(t, err)
+			require.Len(t, doc, 1)
+			require.Len(t, doc[0]["command"], 1)
+			require.Contains(t, doc[0]["command"], "${BASE_IMAGE}:${BASE_IMAGE_TAG} as main")
+			c := doc[0]["command"].(map[string]interface{})["${BASE_IMAGE}:${BASE_IMAGE_TAG} as main"]
+			require.Len(t, c, 1)
+			require.Contains(t, c.([]interface{})[0].(map[string]interface{})["Value"].([]interface{})[0], "alpine:latest=")
 		}
 	}
 }
@@ -122,7 +151,7 @@ func Test_Resolve(t *testing.T) {
 
 	resolved, err := parser.Resolve([]byte(have), "Dockerfile")
 	require.NoError(t, err)
-	require.Equal(t, []byte(have), *resolved)
+	require.Equal(t, []byte(have), resolved)
 }
 
 // Test_GetCommentToken must get the token that represents a comment
@@ -183,6 +212,26 @@ ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 			got, err := tt.fields.parser.StringifyContent(tt.args.content)
 			require.Equal(t, tt.wantErr, (err != nil))
 			require.Equal(t, tt.want, got)
+		})
+	}
+}
+
+func TestParser_GetResolvedFiles(t *testing.T) {
+	tests := []struct {
+		name string
+		want map[string]model.ResolvedFile
+	}{
+		{
+			name: "test get resolved files",
+			want: map[string]model.ResolvedFile{},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			p := &Parser{}
+			if got := p.GetResolvedFiles(); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("GetResolvedFiles() = %v, want %v", got, tt.want)
+			}
 		})
 	}
 }

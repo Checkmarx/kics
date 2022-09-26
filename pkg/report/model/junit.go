@@ -3,6 +3,7 @@ package model
 import (
 	"encoding/xml"
 	"fmt"
+	"strings"
 
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/model"
@@ -73,11 +74,13 @@ func (jUnit *junitTestSuites) GenerateTestEntry(query *model.QueryResult) {
 		failedTest := junitFailure{
 			Type: queryDescription,
 			Message: fmt.Sprintf(
-				"A problem was found on '%s' file in line %d, %s, but %s.",
+				"[Severity: %s, Query description: %s] Problem found on '%s' file in line %d. Expected value: %s. Actual value: %s.",
+				query.Severity,
+				queryDescription,
 				query.Files[idx].FileName,
 				query.Files[idx].Line,
-				query.Files[idx].KeyExpectedValue,
-				query.Files[idx].KeyActualValue,
+				strings.TrimRight(query.Files[idx].KeyExpectedValue, "."),
+				strings.TrimRight(query.Files[idx].KeyActualValue, "."),
 			),
 		}
 

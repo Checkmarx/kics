@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	doc := input.document[i].Resources
@@ -11,9 +12,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.IamInstanceProfile' is set", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.IamInstanceProfile' should be set", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.IamInstanceProfile' is undefined", [name]),
 	}
 }
@@ -30,9 +33,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.IamInstanceProfile", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.IamInstanceProfile' has matching IamInstanceProfile resource", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.IamInstanceProfile' should have a matching IamInstanceProfile resource", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.IamInstanceProfile' does not have matching IamInstanceProfile resource", [name]),
 	}
 }
@@ -50,9 +55,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [iamProfile]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.Roles' is set", [iamProfile]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.Roles' should be set", [iamProfile]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.Roles' is undefined", [iamProfile]),
 	}
 }

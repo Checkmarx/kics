@@ -3,7 +3,7 @@
   "queryName": "IAM Policies With Full Privileges",
   "severity": "HIGH",
   "category": "Access Control",
-  "descriptionText": "IAM policies that allow full administrative privileges (for all resources)",
+  "descriptionText": "IAM policies shouldn't allow full administrative privileges (for all resources)",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_managed_policy_module.html",
   "platform": "Ansible",
   "descriptionID": "3827a620",

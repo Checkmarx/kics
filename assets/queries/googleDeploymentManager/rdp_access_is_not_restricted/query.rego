@@ -13,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.allowed", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'allowed.ports' to not include RDP port 3389",

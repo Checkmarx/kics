@@ -1,0 +1,9 @@
+name: aws-eks
+runtime: yaml
+description: An EKS cluster
+resources:
+  example:
+    type: gcp:compute:SSLPolicy
+    properties:
+      minTlsVersion: TLS_1_2
+      

@@ -3,6 +3,7 @@ package docker
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -33,8 +34,8 @@ type Command struct {
 }
 
 // Resolve - replace or modifies in-memory content before parsing
-func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
-	return &fileContent, nil
+func (p *Parser) Resolve(fileContent []byte, _ string) ([]byte, error) {
+	return fileContent, nil
 }
 
 // Parse - parses dockerfile to Json
@@ -51,6 +52,8 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 	from := make(map[string][]Command)
 	arguments := make([]Command, 0)
 	ignoreStruct := newIgnore()
+
+	args := make(map[string]string, 0)
 
 	for _, child := range parsed.AST.Children {
 		child.Value = strings.ToLower(child.Value)
@@ -80,6 +83,12 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 		cmd.JSON = child.Attributes["json"]
 		for n := child.Next; n != nil; n = n.Next {
 			cmd.Value = append(cmd.Value, n.Value)
+		}
+
+		if child.Value != "arg" {
+			cmd.Value = resolveArgs(cmd.Value, args)
+		} else {
+			args = saveArgs(args, cmd.Value[0])
 		}
 
 		if fromValue == "" {
@@ -117,7 +126,7 @@ func (p *Parser) GetKind() model.FileKind {
 
 // SupportedExtensions returns Dockerfile extensions
 func (p *Parser) SupportedExtensions() []string {
-	return []string{"Dockerfile", ".dockerfile"}
+	return []string{"Dockerfile", ".dockerfile", ".ubi8", ".debian", "possibleDockerfile"}
 }
 
 // SupportedTypes returns types supported by this parser, which are dockerfile
@@ -133,4 +142,33 @@ func (p *Parser) GetCommentToken() string {
 // StringifyContent converts original content into string formated version
 func (p *Parser) StringifyContent(content []byte) (string, error) {
 	return string(content), nil
+}
+
+// GetResolvedFiles returns the list of files that are resolved
+func (p *Parser) GetResolvedFiles() map[string]model.ResolvedFile {
+	return make(map[string]model.ResolvedFile)
+}
+
+func resolveArgs(values []string, args map[string]string) []string {
+	for i := range values {
+		for arg := range args {
+			ref := fmt.Sprintf("${%s}", arg)
+			values[i] = strings.Replace(values[i], ref, args[arg], 1)
+		}
+	}
+
+	return values
+}
+
+func saveArgs(args map[string]string, argValue string) map[string]string {
+	value := strings.Split(argValue, "=")
+	if len(value) == 2 {
+		args[value[0]] = value[1]
+	}
+	if len(value) > 2 {
+		// to handle cases like ARG VAR=erereR=E
+		args[value[0]] = strings.Join(value[1:], "=")
+	}
+
+	return args
 }

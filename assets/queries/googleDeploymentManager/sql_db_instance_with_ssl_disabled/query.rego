@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.settings", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'settings.ipConfiguration' is defined and not null",
@@ -28,6 +30,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.settings.ipConfiguration", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'settings.ipConfiguration.requireSsl' is defined and not null",
@@ -45,9 +49,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.settings.ipConfiguration.requireSsl", [resource.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'settings.ipConfiguration.requireSsl' to be true",
+		"keyExpectedValue": "'settings.ipConfiguration.requireSsl' should be true",
 		"keyActualValue": "'settings.ipConfiguration.requireSsl' is false", 
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "settings", "ipConfiguration", "requireSsl"], []),
 	}

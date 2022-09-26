@@ -13,9 +13,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.categories", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("resource with type 'microsoft.insights/logprofiles' has categories[%d] set to 'Write', 'Delete' or 'Action'", [x]),
+		"keyExpectedValue": sprintf("resource with type 'microsoft.insights/logprofiles' should have categories[%d] set to 'Write', 'Delete' or 'Action'", [x]),
 		"keyActualValue": sprintf("resource with type 'microsoft.insights/logprofiles' has categories[%d] set to '%s'", [x, category]),
 		"searchLine": common_lib.build_search_line(path, ["properties", "categories", x]),
 	}

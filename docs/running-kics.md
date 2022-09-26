@@ -17,7 +17,7 @@ Files and directories that are not local will be placed in a temporarly folder d
 ### Local Files
 
 ```
-docker run -v {​​​​path_to_scan}​​​​:/path checkmarx/kics scan -p "/path"
+docker run -t -v {​​​​path_to_scan}​​​​:/path checkmarx/kics scan -p /path
 ```
 
 ### Archived Files
@@ -33,7 +33,7 @@ Available archive formats:
 -   `xz`
 
 ```
-docker run -v {​​​​path_to_scan_zip}​​​​:/path checkmarx/kics scan -p "/path"
+docker run -t -v {​​​​path_to_scan_zip}​​​​:/path checkmarx/kics scan -p /path
 ```
 
 More information can be seen [here](https://github.com/hashicorp/go-getter#unarchiving)
@@ -54,7 +54,7 @@ s3::{S3 Bucket URL}?{query parameters}
 -   `aws_profile` - Use this profile from local ~/.aws/ config. Takes - priority over the other three.
 
 ```
-docker run -v ~/.aws:/path checkmarx/kics scan -p "s3::https://s3.amazonaws.com/bucket/foo?aws_profile=/path/.aws/profile"
+docker run -t -v ~/.aws:/path checkmarx/kics scan -p "s3::https://s3.amazonaws.com/bucket/foo?aws_profile=/path/.aws/profile"
 ```
 
 More information can be seen [here](https://github.com/hashicorp/go-getter#s3-s3)
@@ -62,13 +62,13 @@ More information can be seen [here](https://github.com/hashicorp/go-getter#s3-s3
 ### Git
 
 ```
-docker run checkmarx/kics scan -p "git::https://github.com/Checkmarx/kics"
+docker run -t checkmarx/kics scan -p "git::https://github.com/Checkmarx/kics"
 ```
 
 #### SSH
 
 ```
-docker run checkmarx/kics scan -p "git::git@github.com:Checkmarx/kics.git"
+docker run -t checkmarx/kics scan -p "git::git@github.com:Checkmarx/kics.git"
 ```
 
 Please make sure you have SSH private key configured with your github account
@@ -78,7 +78,7 @@ More information can be seen [here](https://github.com/hashicorp/go-getter#git-g
 ### GSC
 
 ```
-docker run checkmarx/kics scan -p "gcs::https://www.googleapis.com/storage/v1/bucket"
+docker run -t checkmarx/kics scan -p "gcs::https://www.googleapis.com/storage/v1/bucket"
 ```
 
 Please make sure you have set GSC authentication credentials to your application code by environment variables

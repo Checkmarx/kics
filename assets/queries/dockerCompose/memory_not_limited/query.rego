@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy.resources.limits",[name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'deploy.resources.limits.memory' to be defined",
+		"keyExpectedValue": "'deploy.resources.limits.memory' should be defined",
 		"keyActualValue": "'deploy.resources.limits.memory' is not defined",
 		"searchLine": common_lib.build_search_line(["services", name, "deploy", "resources", "limits"], []),
 	}
@@ -49,7 +49,7 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy",[name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'deploy.resources' to be defined",
+		"keyExpectedValue": "'deploy.resources' should be defined",
 		"keyActualValue":  "'deploy.resources' is not defined",
 		"searchLine": common_lib.build_search_line(["services", name, "deploy"], []),
 	}
@@ -64,11 +64,10 @@ CxPolicy[result] {
     not common_lib.valid_key(resources, "limits")
    
 	result := {
-    	"debug":sprintf("%s",[resources]),
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy.resources",[name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'deploy.resources.limits' to be defined",
+		"keyExpectedValue": "'deploy.resources.limits' should be defined",
 		"keyActualValue": "'deploy.resources.limits' is not defined",
 		"searchLine": common_lib.build_search_line(["services", name, "deploy", "resources"], []),
     }
@@ -86,7 +85,7 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s",[name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "For mem_limit to be declared.",
+		"keyExpectedValue": "For mem_limit should be declared.",
 		"keyActualValue": "There is no mem_limit declared.",
 		"searchLine": common_lib.build_search_line(["services", name], []),
 	}

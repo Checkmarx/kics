@@ -39,6 +39,11 @@ var (
 		"keyActualValue",
 	}
 
+	requiredQueryResultExtraProperties = []string{
+		"resourceType",
+		"resourceName",
+	}
+
 	searchValueAllowedQueriesPath = []string{
 		"../assets/queries/ansible/azure/sensitive_port_is_exposed_to_entire_network",
 		"../assets/queries/cloudFormation/aws/ec2_sensitive_port_is_publicly_exposed",
@@ -192,11 +197,21 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
 	inspector, err := engine.NewInspector(
 		ctx,
 		queriesSource,
-		func(ctx *engine.QueryContext, trk engine.Tracker, v interface{}, detector *detector.DetectLine) (model.Vulnerability, error) {
+		func(ctx *engine.QueryContext, trk engine.Tracker, v interface{}, detector *detector.DetectLine) (*model.Vulnerability, error) {
 			m, ok := v.(map[string]interface{})
 			require.True(t, ok)
 
-			for _, requiredProperty := range requiredQueryResultProperties {
+			platformsWithResourceInfo := []string{"ansible", "azureResourceManager", "cloudFormation", "k8s", "googleDeploymentManager", "terraform"}
+			requiredProperties := requiredQueryResultProperties
+
+			for i := range platformsWithResourceInfo {
+				if entry.platform == platformsWithResourceInfo[i] && !strings.Contains(entry.dir, "aws_bom") {
+					requiredProperties = append(requiredProperties, requiredQueryResultExtraProperties...)
+
+				}
+			}
+
+			for _, requiredProperty := range requiredProperties {
 				_, ok := m[requiredProperty]
 				require.True(t, ok, fmt.Sprintf(
 					"query '%s' doesn't include parameter '%s' in response",
@@ -221,7 +236,23 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
 				))
 			}
 
-			return model.Vulnerability{}, nil
+			if _, ok := m["remediation"]; ok {
+				_, ok := m["remediationType"]
+				require.True(t, ok, fmt.Sprintf(
+					"query '%s' doesn't include parameter 'remediationType' in response",
+					path.Base(entry.dir)))
+
+			}
+
+			if _, ok := m["remediationType"]; ok {
+				_, ok := m["remediation"]
+				require.True(t, ok, fmt.Sprintf(
+					"query '%s' doesn't include parameter 'remediation' in response",
+					path.Base(entry.dir)))
+
+			}
+
+			return &model.Vulnerability{}, nil
 		},
 		trk,
 		&source.QueryInspectorParameters{
@@ -231,6 +262,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
 		},
 		map[string]bool{},
 		60,
+		true,
 	)
 	require.Nil(t, err)
 	require.NotNil(t, inspector)

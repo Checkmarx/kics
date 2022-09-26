@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	module := input.document[i].module[name]
@@ -11,9 +12,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'user_data_base64' is undefined or not script",
+		"keyExpectedValue": "'user_data_base64' should be undefined or not script",
 		"keyActualValue": "'user_data_base64' is defined",
 		"searchLine": common_lib.build_search_line(["module", name, "user_data_base64"], []),
 	}
@@ -26,9 +29,11 @@ CxPolicy[result] {
 	startswith(decoded_result, "#!/")
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_launch_configuration",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_launch_configuration[%s].user_data_base64", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_launch_configuration[%s].user_data_base64 is undefined or not script", [name]),
+		"keyExpectedValue": sprintf("aws_launch_configuration[%s].user_data_base64 should be undefined or not script", [name]),
 		"keyActualValue": sprintf("aws_launch_configuration[%s].user_data_base64 is defined", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_launch_configuration", name, "user_data_base64"], []),
 	}

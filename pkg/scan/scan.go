@@ -43,7 +43,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 	progressBar := c.ProBarBuilder.BuildCircle("Preparing Scan Assets: ")
 	go progressBar.Start()
 
-	extractedPaths, err := c.prepareAndAnalyzePaths()
+	extractedPaths, err := c.prepareAndAnalyzePaths(ctx)
 	if err != nil {
 		log.Err(err)
 		return nil, err
@@ -68,6 +68,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		queryFilter,
 		c.ExcludeResultsMap,
 		c.ScanParams.QueryExecTimeout,
+		true,
 	)
 	if err != nil {
 		return nil, err

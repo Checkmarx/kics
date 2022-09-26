@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": "n/a",
 		"searchKey": "kind={{EncryptionConfiguration}}.providers",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aescbc, kms or secretbox provider should be defined",

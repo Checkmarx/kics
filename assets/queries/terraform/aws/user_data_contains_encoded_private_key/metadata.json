@@ -3,7 +3,7 @@
   "queryName": "User Data Contains Encoded Private Key",
   "severity": "HIGH",
   "category": "Encryption",
-  "descriptionText": "User Data Base64 contains an encoded RSA Private Key",
+  "descriptionText": "User Data should not contain a base64 encoded private key. If so, anyone can decode the private key easily",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_configuration#user_data_base64",
   "platform": "Terraform",
   "descriptionID": "e3b3b5c1",

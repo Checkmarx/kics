@@ -14,9 +14,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.permissions.actions", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "resource with type 'Microsoft.Authorization/roleDefinitions' does not allow custom role creation",
+		"keyExpectedValue": "resource with type 'Microsoft.Authorization/roleDefinitions' should not allow custom role creation",
 		"keyActualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')",
 		"searchLine": common_lib.build_search_line(path, ["properties", "permissions", x, "actions"]),
 	}

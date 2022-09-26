@@ -218,7 +218,7 @@ func format(rules []build.Rule) []RegoRule {
 	return res
 }
 
-func createBlock(rule build.Rule) Block { // nolint:gocyclo
+func createBlock(rule build.Rule) Block {
 	result := Block{}
 	result = resultName(rule, result)
 

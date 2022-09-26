@@ -16,6 +16,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s.listeners is defined", [modules[m]]),
@@ -33,6 +35,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.listeners.%s", [task.name, modules[m], j]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s.listeners.SslPolicy is defined", [modules[m]]),
@@ -49,6 +53,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.listeners.%s", [task.name, modules[m], j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s.listeners.SslPolicy is a secure protocol", [modules[m]]),

@@ -454,6 +454,11 @@ is_publicly_accessible(policy) {
 
 get_accessibility(resource, name, resourcePolicyName, resourceTarget) = info {
 	policy := common_lib.json_unmarshal(resource.policy)
+	is_publicly_accessible(policy)
+	info = {"accessibility": "public", "policy": policy}
+} else = info {
+	policy := common_lib.json_unmarshal(resource.policy)
+	not is_publicly_accessible(policy)
 	info = {"accessibility": "hasPolicy", "policy": policy}
 } else = info {
 	not common_lib.valid_key(resource, "policy")
@@ -462,6 +467,16 @@ get_accessibility(resource, name, resourcePolicyName, resourceTarget) = info {
 	split(resourcePolicy[resourceTarget], ".")[1] == name
 
 	policy := common_lib.json_unmarshal(resourcePolicy.policy)
+	is_publicly_accessible(policy)
+	info = {"accessibility": "public", "policy": policy}
+} else = info {
+	not common_lib.valid_key(resource, "policy")
+
+	resourcePolicy := input.document[_].resource[resourcePolicyName][_]
+	split(resourcePolicy[resourceTarget], ".")[1] == name
+
+	policy := common_lib.json_unmarshal(resourcePolicy.policy)
+	not is_publicly_accessible(policy)
 	info = {"accessibility": "hasPolicy", "policy": policy}
 } else = info {
 	info = {"accessibility": "unknown", "policy": ""}
@@ -508,87 +523,11 @@ matches(target, name) {
 	target == name
 }
 
-return_customer_managed_policy_id_if_attached(policy_id, principal_id, attachment_id, principal_type, attachment_type, code) = p_id{
-	attachment_type == "principal_attachment" # i.e attachment of policy through policy reference in individual role / user / group resource
-	customer_managed_policy = code.document[_].resource.aws_iam_policy[policy_id]
-	customer_managed_policy_attachment = code.document[_].resource[sprintf("aws_iam_%s_policy_attachment",[principal_type])][attachment_id]
-	has_relation(policy_id, "aws_iam_policy", customer_managed_policy_attachment, "policy_arn")
-    has_relation(principal_id, sprintf("aws_iam_%s", [principal_type]), customer_managed_policy_attachment, principal_type)
-	p_id := policy_id
-} else = p_id{
-	attachment_type == "policy_attachment" # i.e attachment of policy through role / user / group reference in the corresponding policy
-	customer_managed_policy = code.document[_].resource.aws_iam_policy[policy_id]
-	customer_managed_policy_attachment = code.document[_].resource.aws_iam_policy_attachment[attachment_id]
-	has_relation(policy_id, "aws_iam_policy", customer_managed_policy_attachment, "policy_arn")
-	has_relation(principal_id, sprintf("aws_iam_%s", [principal_type]), customer_managed_policy_attachment, sprintf("%ss", [principal_type]))
-    p_id := policy_id
-}
 
-get_attached_managed_policy_arn(principal_id, attachment_id, principal_type, attachment_type, code) = policy_arns{
-	# This takes care of pre-existing policy arn's that may be attached to the resource
-	# and are not defined in the existing terraform template
-	attachment_type == "principal_attachment" # i.e attachment of policy through policy reference in individual role / user / group resource
-	managed_policy_attachment = code.document[_].resource[sprintf("aws_iam_%s_policy_attachment",[principal_type])][attachment_id]
-	has_relation(principal_id, sprintf("aws_iam_%s", [principal_type]), managed_policy_attachment, principal_type)
-	p_arns = common_lib.normalize_to_list(managed_policy_attachment.policy_arn)
-	# There are 3 partitions that AWS supports i.e aws , aws-cn , aws-us-gov
-	# Hence the partition has been kept as aws.*
-	policy_arns = [ x | x := p_arns[_]; regex.match("arn:aws.*:iam::.*", x)]
-	policy_arns != []
-} else = policy_arns{
-	attachment_type == "policy_attachment" # i.e attachment of policy through role / user / group reference in the corresponding policy
-	managed_policy_attachment = code.document[_].resource.aws_iam_policy_attachment[attachment_id]
-	has_relation(principal_id, sprintf("aws_iam_%s", [principal_type]), managed_policy_attachment, sprintf("%ss", [principal_type]))
-    p_arns = common_lib.normalize_to_list(managed_policy_attachment.policy_arn)
-	# There are 3 partitions that AWS supports i.e aws , aws-cn , aws-us-gov
-	# Hence the partition has been kept as aws.*
-	policy_arns = [ x | x := p_arns[_]; regex.match("arn:aws.*:iam::.*", x)]
-	policy_arns != []
-}
+has_target_resource(bucketName, resourceName) {
+	resource := input.document[i].resource[resourceName][_]
 
-# This method is useful since terraform allows two ways to attach a managed policy
-# to a resource i.e. via 
-# A) https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy_attachment
-# OR
-# B.1) https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment
-# B.2) https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy_attachment
-# B.3)https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy_attachment
-get_attached_managed_policy_ids(principal_id, principal_type, code) = managed_policy_ids{
-	# Role  / User / Group policy attachment
-	# Attached policies that are as well defined in the terraform templates
-	customer_managed_policy_ids := [ p_id | code.document[_].resource.aws_iam_policy[p_id]]
-	
-	customer_managed_policy_direct_attachment_ids := [ a_id | code.document[_].resource.aws_iam_policy_attachment[a_id]]
-	related_direct_policy_attachments := [return_customer_managed_policy_id_if_attached(pol_id, principal_id, att_id, principal_type, "policy_attachment", code)| pol_id := customer_managed_policy_ids[_];att_id := customer_managed_policy_direct_attachment_ids[_]]
-	
-	customer_managed_policy_principal_attachment_ids := [ a_id | code.document[_].resource[sprintf("aws_iam_%s_policy_attachment",[principal_type])][a_id]]
-    related_principal_policy_attachments := [return_customer_managed_policy_id_if_attached(pol_id, principal_id, att_id, principal_type, "principal_attachment", code)| pol_id := customer_managed_policy_ids[_];att_id := customer_managed_policy_principal_attachment_ids[_]]
-	
-	# Getting unique matching policy_ids in form of list
-	temp1 := { t1 | t1 := array.concat(related_principal_policy_attachments, related_direct_policy_attachments)[_]}
-	total_customer_managed_policy_ids = [p1 | p1:= temp1[_]]
-	
-	
-	# Attached policies that are pre-existing in the AWS and referred here with policy arns
-	preexisting_attached_policy_arns_through_direct_attachments = [get_attached_managed_policy_arn(principal_id, att_id, principal_type, "policy_attachment", code)| att_id := customer_managed_policy_direct_attachment_ids[_]]
- 	preexisting_attached_policy_arns_through_principal_attachment = [get_attached_managed_policy_arn(principal_id, att_id, principal_type, "principal_attachment", code)| att_id := customer_managed_policy_principal_attachment_ids[_]]
-	temp2 = {t2 | t2 := array.concat(preexisting_attached_policy_arns_through_direct_attachments, preexisting_attached_policy_arns_through_principal_attachment)[_][_]}
-	total_preexisting_managed_policy_arns := [p2 | p2:=temp2[_]]
-
-	managed_policy_ids := array.concat(total_customer_managed_policy_ids, total_preexisting_managed_policy_arns)
-}
-
-# Used for checking relationship
-has_relation(related_resource_id, related_resource_type, current_resource, current_resource_attribute){
-	value = object.get(current_resource, current_resource_attribute, "empty")
-	value != "empty"
-	is_array(value)
-	regex.match(sprintf("\\$\\{%v\\.%v\\.", [related_resource_type, related_resource_id]), value[_])
-} else {
-	value = object.get(current_resource, current_resource_attribute, "empty")
-	value != "empty"
-	is_string(value)
-	regex.match(sprintf("\\${%v\\.%v\\.", [related_resource_type, related_resource_id]), value)
+	split(resource.bucket, ".")[1] == bucketName
 }
 
 #Checks if an action is allowed for all principals
@@ -599,4 +538,37 @@ allows_action_from_all_principals(json_policy, action) {
 	statement.Effect == "Allow"
     anyPrincipal(statement)
     common_lib.containsOrInArrayContains(statement.Action, action)
+}
+
+resourceFieldName = {
+	"google_bigquery_dataset": "friendly_name",
+	"alicloud_actiontrail_trail": "trail_name",
+	"alicloud_ros_stack": "stack_name",
+	"alicloud_oss_bucket": "bucket",
+	"aws_s3_bucket": "bucket",
+	"aws_msk_cluster": "cluster_name",
+	"aws_mq_broker": "broker_name",
+	"aws_elasticache_cluster": "cluster_id",
+}
+
+get_resource_name(resource, resourceDefinitionName) = name {
+	possibleNames := {"name", "display_name"}
+	targetName := possibleNames[_]
+	name := resource[targetName]
+} else = name {
+	name := resource.metadata.name
+} else = name {
+	prefix := resource.name_prefix
+	name := sprintf("%s<unknown-sufix>", [prefix])
+} else = name {
+	name := common_lib.get_tag_name_if_exists(resource)
+} else = name {
+	name := resourceDefinitionName
+}
+
+get_specific_resource_name(resource, resourceType, resourceDefinitionName) = name {
+	field := resourceFieldName[resourceType]
+	name := resource[field]
+} else = name {
+	name := get_resource_name(resource, resourceDefinitionName)
 }

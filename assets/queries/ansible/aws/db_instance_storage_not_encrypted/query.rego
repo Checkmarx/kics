@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "rds_instance.storage_encrypted should be set to true",
@@ -32,6 +34,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.storage_encrypted", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "rds_instance.storage_encrypted should be set to true",

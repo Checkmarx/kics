@@ -14,9 +14,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.admin_username", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "azure_rm_sqlserver.admin_username is not empty",
+		"keyExpectedValue": "azure_rm_sqlserver.admin_username should not be empty",
 		"keyActualValue": "azure_rm_sqlserver.admin_username is empty",
 	}
 }
@@ -31,9 +33,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.admin_username", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "azure_rm_sqlserver.admin_username is not predictable",
+		"keyExpectedValue": "azure_rm_sqlserver.admin_username should not be predictable",
 		"keyActualValue": "azure_rm_sqlserver.admin_username is predictable",
 	}
 }

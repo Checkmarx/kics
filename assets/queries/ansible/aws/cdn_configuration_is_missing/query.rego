@@ -13,9 +13,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("name={{%s}}.{{%s}}.enabled is set to 'true'", [task.name, modules[m]]),
+		"keyExpectedValue": sprintf("name={{%s}}.{{%s}}.enabled should be set to 'true'", [task.name, modules[m]]),
 		"keyActualValue": sprintf("name={{%s}}.{{%s}}.enabled is not set", [task.name, modules[m]]),
 	}
 }
@@ -30,9 +32,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.enabled", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name={{%s}}.{{%s}}.enabled is set to 'true'", [task.name, modules[m]]),
+		"keyExpectedValue": sprintf("name={{%s}}.{{%s}}.enabled should be set to 'true'", [task.name, modules[m]]),
 		"keyActualValue": sprintf("name={{%s}}.{{%s}}.enabled is set to '%s'", [task.name, modules[m], cloudfront_distribution.enabled]),
 	}
 }
@@ -47,6 +51,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("name={{%s}}.{{%s}}.origins is defined", [task.name, modules[m]]),

@@ -12,9 +12,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.settings.databaseFlags[%d]", [resource.name, f]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'settings.databaseFlags[%d]' to be 'off'", [f]),
+		"keyExpectedValue": sprintf("'settings.databaseFlags[%d]' should be 'off'", [f]),
 		"keyActualValue": sprintf("'settings.databaseFlags[%d]' is equal to 'on'", [f]), 
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "settings", "databaseFlags", f], []),
 	}

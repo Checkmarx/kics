@@ -11,9 +11,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' has the 'siteConfig' property defined",
+		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' should have the 'siteConfig' property defined",
 		"keyActualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'siteConfig' property defined",
 		"searchLine": common_lib.build_search_line(path, ["properties"]),
 	}
@@ -28,9 +30,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.siteConfig", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' has the 'http20Enabled' property defined",
+		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' should have the 'http20Enabled' property defined",
 		"keyActualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' property defined",
 		"searchLine": common_lib.build_search_line(path, ["properties", "siteConfig"]),
 	}
@@ -45,10 +49,12 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.siteConfig.http20Enabled", [common_lib.concat_path(path), value.name]),
 		"searchKey": "resources.type={{Microsoft.Web/sites}}.properties.siteConfig.http20Enabled",
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' has the 'http20Enabled' property set to true",
+		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' should have the 'http20Enabled' property set to true",
 		"keyActualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' set to true",
 		"searchLine": common_lib.build_search_line(path, ["properties", "siteConfig", "http20Enabled"]),
 	}

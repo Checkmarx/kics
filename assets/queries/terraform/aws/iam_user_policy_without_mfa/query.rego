@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terra_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_iam_user_policy[name]
@@ -17,9 +17,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_user_policy",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_iam_user_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'policy.Statement.Principal.AWS' contains ':mfa/' or 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' is set to true",
+		"keyExpectedValue": "'policy.Statement.Principal.AWS' contains ':mfa/' or 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' should be set to true",
 		"keyActualValue": "'policy.Statement.Principal.AWS' doesn't contain ':mfa/' or 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' is set to false",
 		"searchLine": common_lib.build_search_line(["resource", "aws_iam_user_policy", name, "policy"], []),
 	}
@@ -42,7 +44,7 @@ check_root(statement, resource) {
 	user := statement.Principal.AWS[_]
 	contains(user, "root")
 } else {
-	terra_lib.anyPrincipal(statement)
+	tf_lib.anyPrincipal(statement)
 } else {
 	options := {"user", "name"}
 	contains(resource[options[_]], "root")

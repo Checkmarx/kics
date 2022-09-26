@@ -1,0 +1,11 @@
+{
+  "id": "dd667399-8d9d-4a8d-bbb4-e49ab53b2f52",
+  "queryName": "DB Security Group Has Public Interface",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "The CIDR IP should not be a public interface",
+  "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-aws/ec2.aws.crossplane.io/SecurityGroup/v1beta1@v0.29.0#spec-forProvider-ingress-ipRanges-cidrIp",
+  "platform": "Crossplane",
+  "descriptionID": "c26de1ff",
+  "cloudProvider": "aws"
+}

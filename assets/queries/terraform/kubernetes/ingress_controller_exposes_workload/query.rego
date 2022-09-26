@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_ingress[name]
@@ -15,9 +16,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_ingress",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_ingress[%s].spec.rule.http.path.backend", [name]),
 	    "issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_ingress[%s] is not exposing the workload", [name]),
+		"keyExpectedValue": sprintf("kubernetes_ingress[%s] should not be exposing the workload", [name]),
 		"keyActualValue": sprintf("kubernetes_ingress[%s] is exposing the workload", [name]),
 	}
 }

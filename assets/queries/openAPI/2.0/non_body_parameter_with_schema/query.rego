@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.name=%s.schema", [searchKey, param.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'schema' is not set",
+		"keyExpectedValue": "'schema' should not be set",
 		"keyActualValue": "'schema' is set",
 	}
 }

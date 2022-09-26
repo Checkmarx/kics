@@ -16,6 +16,7 @@ Available Commands:
   generate-id    Generates uuid for query
   help           Help about any command
   list-platforms List supported platforms
+  remediate      Auto remediates the project
   scan           Executes a scan analysis
   version        Displays the current version
 
@@ -43,7 +44,7 @@ Usage:
 
 Flags:
   -m, --bom                           include bill of materials (BoM) in results output
-      --cloud-provider strings        list of cloud providers to scan (aws, azure, gcp)
+      --cloud-provider strings        list of cloud providers to scan (alicloud, aws, azure, gcp)
       --config string                 path to configuration file
       --disable-full-descriptions     disable request for full descriptions and use default vulnerability descriptions
       --disable-secrets               disable secrets scanning
@@ -51,6 +52,7 @@ Flags:
                                       cannot be provided with query inclusion flags
                                       can be provided multiple times or as a comma separated string
                                       example: 'Access control,Best practices'
+      --exclude-gitignore             disables the exclusion of paths specified within .gitignore file                                
   -e, --exclude-paths strings         exclude paths from scan
                                       supports glob and can be provided multiple times or as a quoted comma separated string
                                       example: './shouldNotScan/*,somefile.txt'
@@ -91,7 +93,7 @@ Flags:
   -r, --secrets-regexes-path string   path to secrets regex rules configuration file
       --timeout int                   number of seconds the query has to execute before being canceled (default 60)
   -t, --type strings                  case insensitive list of platform types to scan
-                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Kubernetes, OpenAPI, Terraform)
+                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
 
 Global Flags:
       --ci                  display only log messages to CLI output (mutually exclusive with silent)
@@ -105,6 +107,9 @@ Global Flags:
 ```
 
 The other commands have no further options.
+
+## Exclude Paths
+By default, KICS excludes paths specified in the .gitignore file in the root of the repository. To disable this behavior, use flag `--exclude-gitignore`.
 
 ## Library Flag Usage
 

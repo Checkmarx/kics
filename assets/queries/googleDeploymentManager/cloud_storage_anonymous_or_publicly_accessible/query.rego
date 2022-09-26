@@ -10,10 +10,12 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'acl' to be defined",
-		"keyActualValue": "'acl' is undefined or null", 
+		"keyExpectedValue": "'acl' should be defined",
+		"keyActualValue": "'acl' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties"], []),
 	}
 }
@@ -27,10 +29,12 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.acl[%d].entity", [resource.name, j]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("properties.acl[%d].entity to be not equal to 'allUsers' or 'AllAuthenticatedUsers'", [j]),
-		"keyActualValue": sprintf("properties.acl[%d].entity is equal to 'allUsers' or 'AllAuthenticatedUsers'", [j]), 
+		"keyExpectedValue": sprintf("properties.acl[%d].entity should not equal to 'allUsers' or 'AllAuthenticatedUsers'", [j]),
+		"keyActualValue": sprintf("properties.acl[%d].entity is equal to 'allUsers' or 'AllAuthenticatedUsers'", [j]),
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "acl", j, "entity"], []),
 	}
 }
@@ -43,10 +47,12 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'defaultObjectAcl' to be defined",
-		"keyActualValue": "'defaultObjectAcl' is undefined or null", 
+		"keyExpectedValue": "'defaultObjectAcl' should be defined",
+		"keyActualValue": "'defaultObjectAcl' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties"], []),
 	}
 }
@@ -60,10 +66,12 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.defaultObjectAcl[%d].entity", [resource.name, j]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("properties.defaultObjectAcl[%d].entity to be not equal to 'allUsers' or 'AllAuthenticatedUsers'", [j]),
-		"keyActualValue": sprintf("properties.defaultObjectAcl[%d].entity is equal to 'allUsers' or 'AllAuthenticatedUsers'", [j]), 
+		"keyExpectedValue": sprintf("properties.defaultObjectAcl[%d].entity should not equal to 'allUsers' or 'AllAuthenticatedUsers'", [j]),
+		"keyActualValue": sprintf("properties.defaultObjectAcl[%d].entity is equal to 'allUsers' or 'AllAuthenticatedUsers'", [j]),
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "defaultObjectAcl", j, "entity"], []),
 	}
 }

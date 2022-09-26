@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
     some i
@@ -13,10 +14,17 @@ CxPolicy[result] {
     
     result := {
         "documentId": input.document[i].id,
-        "searchKey": sprintf("alicloud_actiontrail_trail[%s].oss_bucket_name", [name]),
+        "resourceType": "alicloud_oss_bucket",
+		"resourceName": tf_lib.get_specific_resource_name(actiontrail, "alicloud_oss_bucket", name),
+        "searchKey": sprintf("alicloud_oss_bucket[%s].acl", [name]),
         "issueType": "IncorrectValue",
-        "keyExpectedValue": sprintf("'alicloud_actiontrail_trail[%s].oss_bucket_name' is private", [name]),
-        "keyActualValue": sprintf("'alicloud_actiontrail_trail[%s].oss_bucket_name' is %s", [name, possibilities[p]]),
-        "searchLine": common_lib.build_search_line(["resource", "alicloud_actiontrail_trail", name, "oss_bucket_name"], []),
+        "keyExpectedValue": sprintf("'alicloud_oss_bucket[%s].oss_bucket_name' is private", [name]),
+        "keyActualValue": sprintf("'alicloud_oss_bucket[%s].oss_bucket_name' is %s", [name, possibilities[p]]),
+        "searchLine": common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "acl"], []),
+        "remediation": json.marshal({
+            "before": p,
+            "after": "private"
+        }),
+        "remediationType": "replacement",
     }
 }

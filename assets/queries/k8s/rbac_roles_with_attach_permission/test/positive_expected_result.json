@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "RBAC Roles with Attach Permission",
+    "severity": "MEDIUM",
+    "line": 8
+  }
+]

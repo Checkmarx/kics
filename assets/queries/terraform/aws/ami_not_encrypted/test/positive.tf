@@ -22,7 +22,7 @@ resource "aws_ami" "positive2" {
     device_name = "/dev/xvda1"
     snapshot_id = "snap-xxxxxxxx"
     volume_size = 8
-	encrypted			  = false
+	  encrypted			  = false
   }
 }
 

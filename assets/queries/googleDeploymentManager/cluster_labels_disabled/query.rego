@@ -10,9 +10,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'resourceLabels' to be defined and not null",
+		"keyExpectedValue": "'resourceLabels' should be defined and not null",
 		"keyActualValue": "'resourceLabels' is undefined or null", 
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties"], []),
 	}

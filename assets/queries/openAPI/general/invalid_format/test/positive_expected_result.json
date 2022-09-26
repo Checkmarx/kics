@@ -38,32 +38,8 @@
   {
     "queryName": "Invalid Format (v2)",
     "severity": "LOW",
-    "line": 34,
-    "filename": "positive3.json"
-  },
-  {
-    "queryName": "Invalid Format (v2)",
-    "severity": "LOW",
-    "line": 56,
-    "filename": "positive3.json"
-  },
-  {
-    "queryName": "Invalid Format (v2)",
-    "severity": "LOW",
     "line": 42,
     "filename": "positive3.json"
-  },
-  {
-    "queryName": "Invalid Format (v2)",
-    "severity": "LOW",
-    "line": 27,
-    "filename": "positive4.yaml"
-  },
-  {
-    "queryName": "Invalid Format (v2)",
-    "severity": "LOW",
-    "line": 40,
-    "filename": "positive4.yaml"
   },
   {
     "queryName": "Invalid Format (v2)",

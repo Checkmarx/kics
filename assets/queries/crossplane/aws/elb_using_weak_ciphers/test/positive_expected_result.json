@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "ELB Using Weak Ciphers",
+    "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive.yaml"
+  },
+  {
+    "queryName": "ELB Using Weak Ciphers",
+    "severity": "HIGH",
+    "line": 58,
+    "fileName": "positive.yaml"
+  }
+]

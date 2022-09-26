@@ -12,6 +12,8 @@ checkUser(specInfo, container, containerType, document, metadata) = result {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser=%d", [metadata.name, specInfo.path, containerType, container.name, uid]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser should be set to a UID >= 10000", [metadata.name, specInfo.path, containerType, container.name]),
@@ -30,6 +32,8 @@ checkUser(specInfo, container, containerType, document, metadata) = result {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.securityContext.runAsUser=%d", [metadata.name, specInfo.path, uid]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.securityContext.runAsUser should be set to a UID >= 10000", [metadata.name, specInfo.path]),
@@ -47,6 +51,8 @@ checkUser(specInfo, container, containerType, document, metadata) = result {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": common_lib.remove_last_point(sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.%s", [metadata.name, specInfo.path, containerType, container.name, nested_info2.searchKey])),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser should be defined", [metadata.name, specInfo.path, containerType, container.name]),

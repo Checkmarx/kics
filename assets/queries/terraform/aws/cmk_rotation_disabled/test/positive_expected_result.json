@@ -8,7 +8,25 @@
   {
     "queryName": "CMK Rotation Disabled",
     "severity": "HIGH",
-    "line": 4,
+    "line": 1,
     "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "CMK Rotation Disabled",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "CMK Rotation Disabled",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "CMK Rotation Disabled",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive5.tf"
   }
 ]

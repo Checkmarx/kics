@@ -28,17 +28,11 @@ clean: ## remove files created during build
 mod-tidy: ## go mod tidy - download and cleanup modules
 	$(call print-target)
 	@go mod tidy
-	cd tools && go mod tidy
 
 .PHONY: vendor
 vendor: ## go mod vendor - download vendor modules
 	$(call print-target)
 	@go mod vendor
-
-.PHONY: install
-install: ## go install tools
-	$(call print-target)
-	cd tools && go install $(shell cd tools && go list -f '{{ join .Imports " " }}' -tags=tools)
 
 .PHONY: lint
 lint: ## Lint the files
@@ -61,12 +55,6 @@ build: generate
 	@go build -o ${TARGET_BIN} -ldflags "-X ${CONSTANTS_PATH}.SCMCommit=${COMMIT} -X ${CONSTANTS_PATH}.Version=${VERSION} -X ${CONSTANTS_PATH}.BaseURL=${DESCRIPTIONS_URL}" \
 		cmd/console/main.go
 
-.PHONY: build-dev
-build-dev: ## go build dev
-build-dev: generate
-	$(call print-target)
-	@go build -o ${TARGET_BIN} -tags dev -ldflags "-X ${CONSTANTS_PATH}.SCMCommit=${COMMIT} -X ${CONSTANTS_PATH}.Version=${VERSION} -X ${CONSTANTS_PATH}.BaseURL=${DESCRIPTIONS_URL}" \
-		cmd/console/main.go
 
 .PHONY: go-clean
 go-clean: ## Go clean build, test and modules caches
@@ -89,21 +77,9 @@ test-short: generate
 	@go test -short ./...
 
 .PHONY: test
-test-short-dev: # Run sanity unit tests
-test-short-dev: generate
-	$(call print-target)
-	@go test -tags dev -short ./...
-
-.PHONY: test
 test: ## Run all tests
 test: test-cover test-e2e
 	$(call print-target)
-
-.PHONY: test-race-dev
-test-race-dev: ## Run tests with race detector
-test-race-dev: generate
-	$(call print-target)
-	@go test -tags dev -timeout 5000s -race $(shell go list -tags dev ./... | grep -v e2e)
 
 .PHONY: test-race
 test-race: ## Run tests with race detector
@@ -117,23 +93,11 @@ test-unit: generate
 	$(call print-target)
 	@go test $(shell go list ./... | grep -v e2e)
 
-.PHONY: test-unit-dev
-test-unit-dev: ## Run unit tests
-test-unit-dev: generate
-	$(call print-target)
-	@go test -tags dev $(shell go list -tags dev ./... | grep -v e2e)
-
 .PHONY: test-cover
 test-cover: ## Run tests with code coverage
 test-cover: generate
 	$(call print-target)
 	@go test -covermode=atomic -v -coverprofile=coverage.out $(shell go list ./... | grep -v e2e)
-
-.PHONY: test-cover-dev
-test-cover-dev: ## Run tests with code coverage
-test-cover-dev: generate
-	$(call print-target)
-	@go test -tags dev -covermode=atomic -v -coverprofile=coverage.out $(shell go list -tags dev ./... | grep -v e2e)
 
 .PHONY: test-coverage-report
 test-coverage-report: ## Run unit tests and generate test coverage report
@@ -147,12 +111,6 @@ test-e2e: ## Run E2E tests
 test-e2e: build
 	$(call print-target)
 	E2E_KICS_BINARY=$(PWD)/bin/kics go test "github.com/Checkmarx/kics/e2e" -v -timeout 1500s
-
-.PHONY: test-e2e-dev
-test-e2e-dev: ## Run E2E tests
-test-e2e-dev: build
-	$(call print-target)
-	E2E_KICS_BINARY=$(PWD)/bin/kics go test -tags dev "github.com/Checkmarx/kics/e2e" -v -timeout 2100s
 
 .PHONY: cover
 cover: ## generate coverage report
@@ -172,7 +130,7 @@ dkr-compose: ## build docker image and runs docker-compose up
 
 .PHONY: dkr-build-antlr
 dkr-build-antlr: ## build ANTLRv4 docker image and generate parser based on given grammar
-	@docker build -t antlr4-generator:dev -f Dockerfile.antlr .
+	@docker build -t antlr4-generator:dev -f ./docker/Dockerfile.antlr .
 	@docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v $(pwd)/pkg/parser/jsonfilter:/work -it antlr4-generator:dev
 
 .PHONY: release

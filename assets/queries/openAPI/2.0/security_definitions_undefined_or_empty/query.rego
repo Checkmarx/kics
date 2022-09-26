@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": "swagger",
 		"issueType": issueType,
-		"keyExpectedValue": "'securityDefinitions' is set and not empty",
+		"keyExpectedValue": "'securityDefinitions' should be set and not empty",
 		"keyActualValue": "'securityDefinitions' is undefined or empty",
 	}
 }

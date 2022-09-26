@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"errors"
 	"os"
-	"path/filepath"
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -18,8 +17,9 @@ type kindParser interface {
 	SupportedExtensions() []string
 	SupportedTypes() map[string]bool
 	Parse(filePath string, fileContent []byte) ([]model.Document, []int, error)
-	Resolve(fileContent []byte, filename string) (*[]byte, error)
+	Resolve(fileContent []byte, filename string) ([]byte, error)
 	StringifyContent(content []byte) (string, error)
+	GetResolvedFiles() map[string]model.ResolvedFile
 }
 
 // Builder is a representation of parsers that will be construct
@@ -76,11 +76,12 @@ type Parser struct {
 
 // ParsedDocument is a struct containing data retrieved from parsing
 type ParsedDocument struct {
-	Docs        []model.Document
-	Kind        model.FileKind
-	Content     string
-	IgnoreLines []int
-	CountLines  int
+	Docs          []model.Document
+	Kind          model.FileKind
+	Content       string
+	IgnoreLines   []int
+	CountLines    int
+	ResolvedFiles map[string]model.ResolvedFile
 }
 
 // CommentsCommands gets commands on comments in the file beginning, before the code starts
@@ -100,7 +101,7 @@ func (c *Parser) CommentsCommands(filePath string, fileContent []byte) model.Com
 				}
 				fields := strings.Fields(strings.TrimSpace(strings.TrimPrefix(line, commentToken)))
 				if len(fields) > 1 && fields[0] == "kics-scan" && fields[1] != "" {
-					commandParameters := strings.SplitN(fields[1], "=", 2) //nolint:gomnd
+					commandParameters := strings.SplitN(fields[1], "=", 2)
 					if len(commandParameters) > 1 {
 						commentsCommands[commandParameters[0]] = commandParameters[1]
 					} else {
@@ -124,7 +125,7 @@ func (c *Parser) Parse(filePath string, fileContent []byte) (ParsedDocument, err
 		if err != nil {
 			return ParsedDocument{}, err
 		}
-		obj, igLines, err := c.parsers.Parse(filePath, *resolved)
+		obj, igLines, err := c.parsers.Parse(filePath, resolved)
 		if err != nil {
 			return ParsedDocument{}, err
 		}
@@ -136,11 +137,12 @@ func (c *Parser) Parse(filePath string, fileContent []byte) (ParsedDocument, err
 		}
 
 		return ParsedDocument{
-			Docs:        obj,
-			Kind:        c.parsers.GetKind(),
-			Content:     cont,
-			IgnoreLines: igLines,
-			CountLines:  bytes.Count(*resolved, []byte{'\n'}) + 1,
+			Docs:          obj,
+			Kind:          c.parsers.GetKind(),
+			Content:       cont,
+			IgnoreLines:   igLines,
+			CountLines:    bytes.Count(resolved, []byte{'\n'}) + 1,
+			ResolvedFiles: c.parsers.GetResolvedFiles(),
 		}, nil
 	}
 	return ParsedDocument{
@@ -171,10 +173,7 @@ func contains(types []string, supportedTypes map[string]bool) bool {
 }
 
 func (c *Parser) isValidExtension(filePath string) bool {
-	ext := filepath.Ext(filePath)
-	if ext == "" {
-		ext = filepath.Base(filePath)
-	}
+	ext := utils.GetExtension(filePath)
 	_, ok := c.extensions[ext]
 	return ok
 }

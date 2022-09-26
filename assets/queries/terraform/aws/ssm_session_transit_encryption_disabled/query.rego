@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_ssm_document[name]
@@ -12,6 +13,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_ssm_document",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_ssm_document[%s].content", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'inputs' is defined and not null",
@@ -30,6 +33,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_ssm_document",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_ssm_document[%s].content", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'inputs.kmsKeyId' is defined and not null",

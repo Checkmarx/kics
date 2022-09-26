@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: RDS Storage Encrypted
+Parameters:
+  SourceDBInstanceIdentifier:
+    Type: String
+  DBInstanceType:
+    Type: String
+  SourceRegion:
+    Type: String
+Resources:
+  MyDBSmall:
+    Type: "AWS::RDS::DBInstance"
+    Properties:
+      DBInstanceClass: db.r3.xlarge
+      SourceDBInstanceIdentifier: !Ref SourceDBInstanceIdentifier
+      SourceRegion: !Ref SourceRegion
+      DeletionProtection: false
+      KmsKeyId: !Ref MyKey
+      Engine: mysql

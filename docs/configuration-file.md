@@ -191,7 +191,7 @@ You can enclose all your configurations in a file and use it in two different wa
 3. Pass the configuration file as argument:
 
 ```
-docker run -v {​​​​path_to_kics_config}​​​​:/kics -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p "/path" --config /kics/kics-config.json
+docker run -t -v {​​​​path_to_kics_config}​​​​:/kics -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p /path --config /kics/kics-config.json
 ```
 
 #### Configuration as Code
@@ -201,7 +201,7 @@ docker run -v {​​​​path_to_kics_config}​​​​:/kics -v {path_to_ho
 3. Invoke KICS without arguments (KICS will search for the specific file in the root)
 
 ```
-docker run -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p "/path"
+docker run -t -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p /path
 ```
 
 **Note**: If more than one path is given, KICS will warn that `--config` must be used to explicit decide.

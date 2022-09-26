@@ -164,7 +164,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 	tests := []struct {
 		name string
 		args args
-		want []model.CodeLine
+		want *[]model.CodeLine
 	}{
 		{
 			name: "test_start_of_file",
@@ -178,7 +178,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: []model.CodeLine{
+			want: &[]model.CodeLine{
 				{
 					Position: 1,
 					Line:     "firstline",
@@ -205,7 +205,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: []model.CodeLine{
+			want: &[]model.CodeLine{
 				{
 					Position: 3,
 					Line:     "secondline",
@@ -232,7 +232,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: []model.CodeLine{
+			want: &[]model.CodeLine{
 				{
 					Position: 1,
 					Line:     "firstline",
@@ -259,7 +259,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: []model.CodeLine{
+			want: &[]model.CodeLine{
 				{
 					Position: 2,
 					Line:     "secondline",
@@ -282,7 +282,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: []model.CodeLine{
+			want: &[]model.CodeLine{
 				{
 					Position: 1,
 					Line:     "firstline",
@@ -305,7 +305,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: []model.CodeLine{
+			want: &[]model.CodeLine{
 				{
 					Position: 4,
 					Line:     "forthline",
@@ -324,7 +324,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: []model.CodeLine{
+			want: &[]model.CodeLine{
 				{
 					Position: 1,
 					Line:     "firstline",
@@ -354,6 +354,157 @@ func TestGetAdjacents(t *testing.T) { //nolint
 			require.Nil(t, err)
 			if !reflect.DeepEqual(gotStrVulnerabilities, wantStrVulnerabilities) {
 				t.Errorf("getAdjacents() = %v, want = %v", gotStrVulnerabilities, wantStrVulnerabilities)
+			}
+		})
+	}
+}
+
+func TestDefaultDetectLineResponse_restore(t *testing.T) {
+	type fields struct {
+		CurrentLine     int
+		IsBreak         bool
+		FoundAtLeastOne bool
+		Lines           []string
+		ResolvedFile    string
+		ResolvedFiles   map[string]model.ResolvedFileSplit
+	}
+	type args struct {
+		lines []string
+		file  string
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   *DefaultDetectLineResponse
+	}{
+		{
+			name: "test_empty_lines",
+			args: args{
+				lines: []string{"this is a line"},
+				file:  "newfile",
+			},
+			fields: fields{
+				CurrentLine:     27,
+				IsBreak:         false,
+				FoundAtLeastOne: false,
+				Lines:           []string{"oldline"},
+				ResolvedFile:    "oldfile",
+				ResolvedFiles:   map[string]model.ResolvedFileSplit{},
+			},
+			want: &DefaultDetectLineResponse{
+				CurrentLine:     0,
+				IsBreak:         false,
+				FoundAtLeastOne: false,
+				ResolvedFile:    "newfile",
+				ResolvedFiles:   map[string]model.ResolvedFileSplit{},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			d := &DefaultDetectLineResponse{
+				CurrentLine:     tt.fields.CurrentLine,
+				IsBreak:         tt.fields.IsBreak,
+				FoundAtLeastOne: tt.fields.FoundAtLeastOne,
+				ResolvedFile:    tt.fields.ResolvedFile,
+				ResolvedFiles:   tt.fields.ResolvedFiles,
+			}
+			if got := d.restore(tt.args.file); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("restore() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestDefaultDetectLineResponse_checkResolvedFile(t *testing.T) {
+	type fields struct {
+		CurrentLine     int
+		IsBreak         bool
+		FoundAtLeastOne bool
+		Lines           []string
+		ResolvedFile    string
+		ResolvedFiles   map[string]model.ResolvedFileSplit
+	}
+	type args struct {
+		line string
+		str1 string
+		st2  string
+	}
+
+	type want struct {
+		defaultDetectLineResponse *DefaultDetectLineResponse
+		lines                     []string
+	}
+
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   want
+	}{
+		{
+			name: "test_lines",
+			args: args{
+				line: "$ref: path/to/file",
+				str1: "key",
+				st2:  "value",
+			},
+			fields: fields{
+				CurrentLine:     27,
+				IsBreak:         false,
+				FoundAtLeastOne: false,
+				Lines:           []string{"oldline"},
+				ResolvedFile:    "oldfile",
+				ResolvedFiles: map[string]model.ResolvedFileSplit{
+					"path/to/file": {
+						Path: "abs/path/to/file",
+						Lines: []string{
+							"this is line one",
+							"key: value",
+							"this is line three",
+						},
+					},
+				},
+			},
+			want: want{
+				defaultDetectLineResponse: &DefaultDetectLineResponse{
+					CurrentLine:     1,
+					IsBreak:         false,
+					FoundAtLeastOne: true,
+
+					ResolvedFile: "abs/path/to/file",
+					ResolvedFiles: map[string]model.ResolvedFileSplit{
+						"path/to/file": {
+							Path: "abs/path/to/file",
+							Lines: []string{
+								"this is line one",
+								"key: value",
+								"this is line three",
+							},
+						},
+					},
+				},
+				lines: []string{"this is line one", "key: value", "this is line three"},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			d := &DefaultDetectLineResponse{
+				CurrentLine:     tt.fields.CurrentLine,
+				IsBreak:         tt.fields.IsBreak,
+				FoundAtLeastOne: tt.fields.FoundAtLeastOne,
+				ResolvedFile:    tt.fields.ResolvedFile,
+				ResolvedFiles:   tt.fields.ResolvedFiles,
+			}
+			gotDefaultDetectLineResponse, gotLines := d.checkResolvedFile(tt.args.line, tt.args.str1, tt.args.st2, 0)
+
+			if !reflect.DeepEqual(gotDefaultDetectLineResponse, tt.want.defaultDetectLineResponse) {
+				t.Errorf("checkResolvedFile() = %v, want %v", gotDefaultDetectLineResponse, tt.want.defaultDetectLineResponse)
+			}
+			if !reflect.DeepEqual(gotLines, tt.want.lines) {
+				t.Errorf("checkResolvedFile() = %v, want %v", gotLines, tt.want.lines)
 			}
 		})
 	}

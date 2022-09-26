@@ -637,12 +637,16 @@ func TestListSupportedPlatforms(t *testing.T) {
 		"AzureResourceManager",
 		"Buildah",
 		"CloudFormation",
+		"Crossplane",
 		"Dockerfile",
 		"DockerCompose",
 		"GRPC",
 		"GoogleDeploymentManager",
+		"Knative",
 		"Kubernetes",
 		"OpenAPI",
+		"Pulumi",
+		"ServerlessFW",
 		"Terraform",
 	}
 	listActual := ListSupportedPlatforms()
@@ -718,7 +722,7 @@ func TestSource_validateMetadata(t *testing.T) {
 
 // TestSource_ListSupportedCloudProviders tests the function ListSupportedCloudProviders.
 func TestSource_ListSupportedCloudProviders(t *testing.T) {
-	want := []string{"aws", "azure", "gcp"}
+	want := []string{"alicloud", "aws", "azure", "gcp"}
 	t.Run("test List Suported CP", func(t *testing.T) {
 		got := ListSupportedCloudProviders()
 		require.Equal(t, want, got)

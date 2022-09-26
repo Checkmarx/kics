@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.cloudformation as cf_lib
+
 CxPolicy[result] {
 	resources := input.document[i].Resources
 	resource := resources[k]
@@ -13,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, k),
 		"searchKey": sprintf("Resources.%s.Properties.Role", [k]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Each AWS Lambda Function has a unique role",

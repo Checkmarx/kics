@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sk,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s is not 'Content-Type", [sk]),
+		"keyExpectedValue": sprintf("%s should not be 'Content-Type", [sk]),
 		"keyActualValue": sprintf("%s is 'Content-Type'", [sk]),
 		"overrideKey": version,
 	}

@@ -3,6 +3,7 @@ Resources:
   S3Bucket3:
     Type: AWS::S3::Bucket
     Properties:
+      BucketName: S3Bucket3
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html
@@ -11,6 +12,7 @@ Resources:
   S3Bucket4:
     Type: AWS::S3::Bucket
     Properties:
+      BucketName: S3Bucket4
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html

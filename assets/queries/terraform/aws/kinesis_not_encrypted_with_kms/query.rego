@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_kinesis_stream[name]
 
@@ -7,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_kinesis_stream",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kinesis_stream[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_kinesis_stream[%s].encryption_type is set", [name]),
@@ -21,9 +25,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_kinesis_stream",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kinesis_stream[%s].encryption_type", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_kinesis_stream[%s].encryption_type is set and not NONE", [name]),
+		"keyExpectedValue": sprintf("aws_kinesis_stream[%s].encryption_type should be set and not NONE", [name]),
 		"keyActualValue": sprintf("aws_kinesis_stream[%s].encryption_type is set but NONE", [name]),
 	}
 }
@@ -37,6 +43,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_kinesis_stream",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kinesis_stream[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_kinesis_stream[%s].kms_key_id is set", [name]),

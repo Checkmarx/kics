@@ -1,0 +1,10 @@
+{
+  "id": "f99d3482-fa8c-4f79-bad9-35212dded164",
+  "queryName": "Serverless Function Without Tags",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Serverless Function should be have associated tags",
+  "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/guide/functions#tags",
+  "platform": "ServerlessFW",
+  "descriptionID": "39d4d6d2"
+}

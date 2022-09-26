@@ -22,11 +22,11 @@
   {
     "queryName": "Network Policy Disabled",
     "severity": "HIGH",
-    "line": 62
+    "line": 63
   },
   {
     "queryName": "Network Policy Disabled",
     "severity": "HIGH",
-    "line": 85
+    "line": 86
   }
 ]

@@ -1,0 +1,10 @@
+{
+  "id": "165aae3b-a56a-48f3-b76d-d2b5083f5b8f",
+  "queryName": "Serverless Function Without Unique IAM Role",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Serverless Function should not share IAM Role to ensure it will have the minimum privileges needed to perform the required tasks",
+  "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml#functions",
+  "platform": "ServerlessFW",
+  "descriptionID": "071f8656"
+}

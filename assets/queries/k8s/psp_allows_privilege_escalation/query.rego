@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"issueType": "MissingAttribute",
 		"searchKey": sprintf("metadata.name={{%s}}.%s", [metadata.name, specInfo.path]),
 		"keyExpectedValue": "Attribute 'allowPrivilegeEscalation' is set",
@@ -32,9 +34,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"issueType": "IncorrectValue",
 		"searchKey": sprintf("metadata.name={{%s}}.%s.allowPrivilegeEscalation", [metadata.name, specInfo.path]),
-		"keyExpectedValue": "Attribute 'allowPrivilegeEscalation' is false",
+		"keyExpectedValue": "Attribute 'allowPrivilegeEscalation' should be set to false",
 		"keyActualValue": "Attribute 'allowPrivilegeEscalation' is true",
 	}
 }

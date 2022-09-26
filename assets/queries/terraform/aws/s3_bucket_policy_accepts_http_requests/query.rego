@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 resources := {"aws_s3_bucket_policy", "aws_s3_bucket"}
 
@@ -8,10 +9,13 @@ CxPolicy[result] {
 	resourceType := resources[r]
 	resource := input.document[i].resource[resourceType][name]
 
-	not deny_http_requests(resource.policy)
+	policy_unmarshaled := common_lib.json_unmarshal(resource.policy)
+	not deny_http_requests(policy_unmarshaled)
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_s3_bucket", name),
 		"searchKey": sprintf("%s[%s].policy", [resourceType, name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].policy does not accept HTTP Requests", [resourceType, name]),
@@ -27,10 +31,13 @@ CxPolicy[result] {
 
 	policy := module[keyToCheck]
 
-	not deny_http_requests(policy)
+	policy_unmarshaled := common_lib.json_unmarshal(policy)
+	not deny_http_requests(policy_unmarshaled)
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy' does not accept HTTP Requests",
@@ -39,13 +46,19 @@ CxPolicy[result] {
 	}
 }
 
-validActions := {"*", "s3:*", "s3:GetObject"}
-
-check_action(action) {
-	is_string(action)
-	action == validActions[x]
+any_s3_action(action) {
+	any([action == "*", startswith(action, "s3:")])
+}
+check_action(st) {
+	is_string(st.Action)
+	any_s3_action(st.Action)
 } else {
-	action[a] == validActions[x]
+	any_s3_action(st.Action[a])
+} else {
+	is_string(st.Actions)
+	any_s3_action(st.Actions)
+} else {
+	any_s3_action(st.Actions[a])
 }
 
 is_equal(secure, target)
@@ -54,18 +67,17 @@ is_equal(secure, target)
 }else {
     secure[_]==target
 }
+
 deny_http_requests(policyValue) {
-    policy := common_lib.json_unmarshal(policyValue)
-    st := common_lib.get_statement(policy)
+    st := common_lib.get_statement(policyValue)
     statement := st[_]
-    check_action(statement.Action)
+    check_action(statement)
     statement.Effect == "Deny"
     is_equal(statement.Condition.Bool["aws:SecureTransport"], "false")
 } else {
-    policy := common_lib.json_unmarshal(policyValue)
-    st := common_lib.get_statement(policy)
+    st := common_lib.get_statement(policyValue)
     statement := st[_]
-    check_action(statement.Action)
+    check_action(statement)
     statement.Effect == "Allow"
     is_equal(statement.Condition.Bool["aws:SecureTransport"], "true")
 }

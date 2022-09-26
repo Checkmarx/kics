@@ -3,7 +3,7 @@
   "queryName": "Instance With No VPC",
   "severity": "MEDIUM",
   "category": "Insecure Configurations",
-  "descriptionText": "Instance should be configured in VPC (Virtual Private Cloud)",
+  "descriptionText": "EC2 Instances should be configured under a VPC network. AWS VPCs provide the controls to facilitate a formal process for approving and testing all network connections and changes to the firewall and router configurations.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance",
   "platform": "Terraform",
   "descriptionID": "225a9f30",

@@ -5,16 +5,18 @@ To create a badge and update it the user should run KICS in their CI.
 This can be done differently for each [integration we have](https://docs.kics.io/1.3.1/integrations/).
 
 Let's assume a manual CLI process using docker:
+
 ```bash
 #!/usr/bin/env bash
 echo "running KICS in the current dir and writing results.json"
-docker run -v $PWD:/path checkmarx/kics:latest scan -p "/path" -o "/path/"
+docker run -t -v $PWD:/path checkmarx/kics:latest scan -p /path -o "/path/"
 ```
 
 This will generate a results.json file under `path`.
 Parse the `results.json` and request a badge to img.shields.io.
 
 For this example, let's assume HIGH and MEDIUM results are bad:
+
 ```bash
 #!/usr/bin/env bash
 HIGH=$(jq '.severity_counters.HIGH' results.json)

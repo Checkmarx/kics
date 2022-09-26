@@ -10,9 +10,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'loggingService' to be defined and not null",
+		"keyExpectedValue": "'loggingService' should be defined and not null",
 		"keyActualValue": "'loggingService' is undefined or null", 
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties"], []),
 	}
@@ -26,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.loggingService", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'loggingService' to not be none",

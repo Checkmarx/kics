@@ -1,0 +1,60 @@
+apiVersion: cloudfront.aws.crossplane.io/v1alpha1
+kind: Distribution
+metadata:
+  name: sample-distribution
+spec:
+  forProvider:
+    region: us-east-1
+    distributionConfig:
+      enabled: true
+      comment: Crossplane - auto provisioning
+      logging:
+        enabled: true
+        include_cookies: false
+        bucket: sample.s3.amazonaws.com
+      origins:
+        items:
+          - domainName: sample.s3.amazonaws.com
+            id: s3Origin
+            s3OriginConfig:
+              originAccessIDentity: ""
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: cluster-aws
+  labels:
+    provider: aws
+    cluster: eks
+spec:
+  compositeTypeRef:
+    apiVersion: mydev.org/v1alpha1
+    kind: CompositeCluster
+  writeConnectionSecretsToNamespace: crossplane-system
+  patchSets:
+  - name: metadata
+    patches:
+    - fromFieldPath: metadata.labels
+  resources:
+    - name: sample-cloudfront
+      base: 
+        apiVersion: cloudfront.aws.crossplane.io/v1alpha1
+        kind: Distribution
+        metadata:
+          name: sample-distribution
+        spec:
+          forProvider:
+            region: us-east-1
+            distributionConfig:
+              enabled: true
+              comment: Crossplane - auto provisioning
+              logging:
+                enabled: true
+                include_cookies: false
+                bucket: sample.s3.amazonaws.com
+              origins:
+                items:
+                  - domainName: sample.s3.amazonaws.com
+                    id: s3Origin
+                    s3OriginConfig:
+                      originAccessIDentity: ""

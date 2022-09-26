@@ -11,9 +11,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' has the 'httpsOnly' property defined",
+		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' property defined",
 		"keyActualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' property defined",
 		"searchLine": common_lib.build_search_line(path, ["properties"]),
 	}
@@ -28,9 +30,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.httpsOnly", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' has the 'httpsOnly' property set to true",
+		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' property set to true",
 		"keyActualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true",
 		"searchLine": common_lib.build_search_line(path, ["properties", "httpsOnly"]),
 	}

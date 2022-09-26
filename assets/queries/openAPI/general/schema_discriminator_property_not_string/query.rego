@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), discriminator.path]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.{{%s}}.%s is set to string", [openapi_lib.concat_path(path), discriminator.path]),
+		"keyExpectedValue": sprintf("%s.{{%s}}.%s should be set to string", [openapi_lib.concat_path(path), discriminator.path]),
 		"keyActualValue": sprintf("%s.{{%s}}.%s is not set to string", [openapi_lib.concat_path(path), discriminator.path]),
 		"overrideKey": version,
 	}
@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.{{%s}}.%s", [schemaInfo.path, s, discriminator.path]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.{{%s}}.%s is set to string", [schemaInfo.path, s, discriminator.path]),
+		"keyExpectedValue": sprintf("%s.{{%s}}.%s should be set to string", [schemaInfo.path, s, discriminator.path]),
 		"keyActualValue": sprintf("%s.{{%s}}.%s is not set to string", [schemaInfo.path, s, discriminator.path]),
 		"overrideKey": version,
 	}

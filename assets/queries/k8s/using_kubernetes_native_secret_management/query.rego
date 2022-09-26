@@ -11,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": document.metadata.name,
 		"issueType": "MissingAttribute",
 		"searchKey": sprintf("metadata.name={{%s}}", [document.metadata.name]),
 		"keyExpectedValue": "External secret storage should be used",

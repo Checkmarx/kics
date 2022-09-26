@@ -10,9 +10,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'metadata' to be defined and not null",
+		"keyExpectedValue": "'metadata' should be defined and not null",
 		"keyActualValue": "'metadata' is undefined or null", 
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties"], []),
 	}
@@ -26,6 +28,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.metadata.items", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'metadata.items' should have 'block-project-ssh-keys'",
@@ -43,6 +47,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.metadata.items[%d].key", [resource.name, j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'metadata.items[%d].value' should be true", [j]),

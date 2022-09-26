@@ -6,11 +6,11 @@ This provides you the ability to run KICS scans as a stage in your pipeline.
 
 ## Declarative pipelines:
 
-Create a new pipeline clicking on **New Item** on the left menu bar, then fill in the name of your pipeline and select the option "pipeline":
+Create a new pipeline by clicking on **New Item** on the left menu bar, then fill in the name of your pipeline and select the option "pipeline":
 
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-creating-pipeline.png" width="850">
 
-Paste one of the pipeline examples bellow:
+Paste one of the pipeline examples below:
 
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-paste-pipeline.png" width="850">
 
@@ -24,7 +24,7 @@ Click on the build number to download the reports stored as artifacts.
 
 ### Using Docker
 
-The following pipeline uses KICS docker image to scan a project and publishes the HTML report in Jenkins.
+The following pipeline uses the KICS docker image to scan a project and publishes the HTML report in Jenkins.
 
 Plugins required:
 

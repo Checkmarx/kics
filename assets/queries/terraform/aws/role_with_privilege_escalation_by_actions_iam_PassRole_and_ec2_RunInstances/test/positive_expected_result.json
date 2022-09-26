@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Role With Privilege Escalation By Actions 'ec2:RunInstances' And 'iam:PassRole'",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  }
+]

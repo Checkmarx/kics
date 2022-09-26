@@ -3,7 +3,7 @@
   "queryName": "CloudFront Logging Disabled",
   "severity": "MEDIUM",
   "category": "Observability",
-  "descriptionText": "Make sure AWS CloudFront distribution has access log enabled",
+  "descriptionText": "AWS CloudFront distributions should have logging enabled to collect all viewer requests, which means the attribute 'DistributionConfig.Logging' should be defined",
   "descriptionUrl": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/logging-and-monitoring.html",
   "platform": "CloudFormation",
   "descriptionID": "3254d6d0",

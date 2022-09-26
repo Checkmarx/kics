@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_cloudtrail[name]
@@ -10,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_cloudtrail",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cloudtrail[%s].event_selector", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'read_write_type' is defined and not null",
@@ -25,9 +28,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_cloudtrail",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cloudtrail[%s].event_selector.read_write_type", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'read_write_type' is set to 'All'",
+		"keyExpectedValue": "'read_write_type' should be set to 'All'",
 		"keyActualValue": "'read_write_type' is not set to 'All'",
 	}
 }
