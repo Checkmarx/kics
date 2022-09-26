@@ -7,6 +7,7 @@ KICS supports JSON, TOML, YAML, and HCL formats for the configuration files, and
   > 📝 &nbsp; flags that can receive multiple values can be either provided as a comma separated string or an array as in the example above
 
 ## Examples
+#### JSON
 
 ```JSON
 {
@@ -23,6 +24,7 @@ KICS supports JSON, TOML, YAML, and HCL formats for the configuration files, and
 }
 ```
 
+#### YAML
 The same example now in YAML format passing `type` as an array of strings:
 
 ```YAML
@@ -39,46 +41,23 @@ exclude-paths:
 output-path: "results"
 ```
 
+#### TOML
+
+```TOML
+path = "assets/iac_samples"
+verbose = true
+log-file = true
+type = "Dockerfile,Kubernetes"
+queries-path = "assets/queries"
+exclude-paths = [ "foo/", "bar/" ]
+output-path = "results"
+```
 
 ---
 
 
 ## Examples
 
-
-
-
-
-
-#### TOML Format
-
-```TOML
-exclude-categories = "exclude categories by providing its name"
-exclude-paths = "exclude paths or files from scan"
-exclude-queries = "exclude queries by providing the query ID"
-exclude-results = "exclude results by providing a list of similarity IDs of a result"
-exclude-severities = "exclude results by providing the severity of a result"
-libraries-path = "path to directory with libraries (default \"./assets/libraries\")"
-log-file = true
-log-level = "INFO"
-log-path = "path to the log file"
-minimal-ui = false
-no-color = false
-no-progress = false
-output-name = "name used on report creations (default \"results\")"
-output-path = "directory path to store reports"
-path = "path to file or directory to scan"
-payload-path = "file path to store source internal representation in JSON format"
-preview-lines = 3
-profiling = "enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)"
-queries-path = "path to directory with queries (default ./assets/queries) (default './assets/queries')"
-report-formats = "formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])"
-silent = false
-type = "type of queries to use in the scan"
-timeout = "number of seconds the query has to execute before being canceled"
-verbose = true
-disable-full-descriptions = "disable request for full descriptions and use default vulnerability descriptions"
-```
 
 #### HCL Format
 
