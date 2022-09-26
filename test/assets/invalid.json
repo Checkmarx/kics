@@ -261,7 +261,7 @@
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "'require_numbers' is defined and set to true",
-					"actual_value": "'require_numbers' is false",
+					"actual_value": "'require_numbers' is false"
 					"remediation": "{\"after\":\"true\",\"before\":\"false\"}"
 					"remediation_type": "replacement"
 				}
