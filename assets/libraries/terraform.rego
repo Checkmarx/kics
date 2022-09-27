@@ -441,13 +441,14 @@ uses_aws_managed_key(key, awsManagedKey) {
 
 getStatement(policy) = st {
 	is_array(policy.Statement)
-	st = policy.Statement[_]
+	st = policy.Statement
 } else = st {
-	st := policy.Statement
+	st := [policy.Statement]
 }
 
 is_publicly_accessible(policy) {
-	statement := getStatement(policy)
+	statements := getStatement(policy)
+	statement:= statements[_]
 	statement.Effect == "Allow"
 	anyPrincipal(statement)
 }

@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(lb, name),
 		"searchKey": sprintf("%s[%s].enable_deletion_protection", [loadBalancer, name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'enable_deletion_protection' is set to true",
+		"keyExpectedValue": "'enable_deletion_protection' should be set to true",
 		"keyActualValue": "'enable_deletion_protection' is set to false",
 		"searchLine": common_lib.build_search_line(["resource", loadBalancer, name, "enable_deletion_protection"], []),
 		"remediation": json.marshal({
@@ -80,7 +80,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].enable_deletion_protection", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'enable_deletion_protection' is set to true",
+		"keyExpectedValue": "'enable_deletion_protection' should be set to true",
 		"keyActualValue": "'enable_deletion_protection' is set to false",
 		"searchLine": common_lib.build_search_line(["module", name, "enable_deletion_protection"], []),
 		"remediation": json.marshal({

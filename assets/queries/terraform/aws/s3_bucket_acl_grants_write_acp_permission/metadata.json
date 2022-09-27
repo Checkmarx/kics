@@ -1,0 +1,11 @@
+{
+  "id": "64a222aa-7793-4e40-915f-4b302c76e4d4",
+  "queryName": "S3 Bucket ACL Grants WRITE_ACP Permission",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "S3 Buckets should not allow WRITE_ACP permission to the S3 Bucket Access Control List in order to prevent AWS accounts or IAM users to modify access control permissions to the bucket.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_acl",
+  "platform": "Terraform",
+  "descriptionID": "addee63f",
+  "cloudProvider": "aws"
+}

@@ -8,11 +8,13 @@ import (
 )
 
 func TestConsole_Execute(t *testing.T) { //nolint
+
 	tests := []struct {
-		name    string
-		args    []string
-		wantErr bool
-		remove  string
+		name                     string
+		args                     []string
+		wantErr                  bool
+		remove                   string
+		rewriteRemediateTestFile bool
 	}{
 		{
 			name: "test_kics",
@@ -24,8 +26,9 @@ func TestConsole_Execute(t *testing.T) { //nolint
 				"-q",
 				filepath.FromSlash("../../assets/queries/terraform/aws/alb_is_not_integrated_with_waf"),
 			},
-			wantErr: false,
-			remove:  "",
+			wantErr:                  false,
+			remove:                   "",
+			rewriteRemediateTestFile: false,
 		},
 		{
 			name: "test_kics_output_flag",
@@ -39,8 +42,9 @@ func TestConsole_Execute(t *testing.T) { //nolint
 				"-o",
 				"results.json",
 			},
-			wantErr: false,
-			remove:  "results.json",
+			wantErr:                  false,
+			remove:                   "results.json",
+			rewriteRemediateTestFile: false,
 		},
 		{
 			name: "test_kics_payload_flag",
@@ -54,8 +58,9 @@ func TestConsole_Execute(t *testing.T) { //nolint
 				"-d",
 				"payload.json",
 			},
-			wantErr: false,
-			remove:  "payload.json",
+			wantErr:                  false,
+			remove:                   "payload.json",
+			rewriteRemediateTestFile: false,
 		},
 		{
 			name: "test_kics_exclude_flag",
@@ -69,8 +74,9 @@ func TestConsole_Execute(t *testing.T) { //nolint
 				"-e",
 				filepath.FromSlash("../../test/fixtures/tc-sim01/positive1.tf"),
 			},
-			wantErr: false,
-			remove:  "",
+			wantErr:                  false,
+			remove:                   "",
+			rewriteRemediateTestFile: false,
 		},
 		{
 			name: "test_kics_exclude_results_flag",
@@ -83,8 +89,9 @@ func TestConsole_Execute(t *testing.T) { //nolint
 				filepath.FromSlash("../../assets/queries/terraform/aws/alb_is_not_integrated_with_waf"),
 				"-x", "c8f2b4b2a74bca2aa6d94336c144f9713524b745c1a3590e6492e98d819e352d",
 			},
-			wantErr: false,
-			remove:  "",
+			wantErr:                  false,
+			remove:                   "",
+			rewriteRemediateTestFile: false,
 		},
 		{
 			name: "test_kics_multiple_paths",
@@ -97,8 +104,9 @@ func TestConsole_Execute(t *testing.T) { //nolint
 					filepath.FromSlash("../../test/fixtures/tc-sim01/positive2.tf")),
 				"-q", filepath.FromSlash("../../assets/queries/terraform/aws/alb_is_not_integrated_with_waf"),
 			},
-			wantErr: false,
-			remove:  "",
+			wantErr:                  false,
+			remove:                   "",
+			rewriteRemediateTestFile: false,
 		},
 		{
 			name: "test_kics_config_flag",
@@ -112,8 +120,9 @@ func TestConsole_Execute(t *testing.T) { //nolint
 				"--config",
 				filepath.FromSlash("../../test/fixtures/config/kics.config_json"),
 			},
-			wantErr: false,
-			remove:  "",
+			wantErr:                  false,
+			remove:                   "",
+			rewriteRemediateTestFile: false,
 		},
 		{
 			name: "test_kics_unknown_config_flag",
@@ -126,33 +135,81 @@ func TestConsole_Execute(t *testing.T) { //nolint
 				"--config",
 				filepath.FromSlash("../../test/fixtures/config/kics_unknown.config_json"),
 			},
-			wantErr: true,
-			remove:  "",
+			wantErr:                  true,
+			remove:                   "",
+			rewriteRemediateTestFile: false,
 		},
 		{
-			name:    "test_kics_version_cmd",
-			args:    []string{"kics", "version"},
-			wantErr: false,
-			remove:  "",
+			name:                     "test_kics_version_cmd",
+			args:                     []string{"kics", "version"},
+			wantErr:                  false,
+			remove:                   "",
+			rewriteRemediateTestFile: false,
 		},
 		{
-			name:    "test_kics_list_platforms_cmd",
-			args:    []string{"kics", "list-platforms"},
-			wantErr: false,
-			remove:  "",
+			name:                     "test_kics_list_platforms_cmd",
+			args:                     []string{"kics", "list-platforms"},
+			wantErr:                  false,
+			remove:                   "",
+			rewriteRemediateTestFile: false,
 		},
 		{
-			name:    "test_kics_generate_id_cmd",
-			args:    []string{"kics", "generate-id"},
-			wantErr: false,
-			remove:  "",
+			name:                     "test_kics_generate_id_cmd",
+			args:                     []string{"kics", "generate-id"},
+			wantErr:                  false,
+			remove:                   "",
+			rewriteRemediateTestFile: false,
 		},
 		{
 			name: "test_kics_fail_without_scan",
 			args: []string{"kics", "--path", filepath.FromSlash("../../test/fixtures/tc-sim01/positive1.tf"),
 				"-q", filepath.FromSlash("../../assets/queries/terraform/aws/alb_is_not_integrated_with_waf")},
-			wantErr: true,
-			remove:  "",
+			wantErr:                  true,
+			remove:                   "",
+			rewriteRemediateTestFile: false,
+		},
+		{
+			name:                     "test_kics_fail_remediate_invalid_arg",
+			args:                     []string{"kics", "remediate"},
+			wantErr:                  true,
+			remove:                   "",
+			rewriteRemediateTestFile: false,
+		},
+		{
+			name:                     "test_kics_remediate_help",
+			args:                     []string{"kics", "remediate", "--help"},
+			wantErr:                  false,
+			remove:                   "",
+			rewriteRemediateTestFile: false,
+		},
+		{
+			name:                     "test_kics_fail_remediate_invalid_path",
+			args:                     []string{"kics", "remediate", "--results", "../../test/results.json"},
+			wantErr:                  true,
+			remove:                   "",
+			rewriteRemediateTestFile: false,
+		},
+		{
+			name:                     "test_kics_fail_remediate_invalid_json",
+			args:                     []string{"kics", "remediate", "--results", filepath.FromSlash("../../test/assets/invalid.json")},
+			wantErr:                  true,
+			remove:                   "",
+			rewriteRemediateTestFile: false,
+		},
+		{
+			name: "test_kics_remediate_with_id",
+			args: []string{"kics", "remediate", "--results", filepath.FromSlash("../../test/assets/results_for_ar.json"),
+				"--include-ids", "760d3bbce5e83fe48d20cbd70736bfac43fda67253238f31bde8206ba06c8821"},
+			wantErr:                  false,
+			remove:                   "",
+			rewriteRemediateTestFile: true,
+		},
+		{
+			name:                     "test_kics_remediate_all",
+			args:                     []string{"kics", "remediate", "--results", filepath.FromSlash("../../test/assets/results_for_ar.json")},
+			wantErr:                  false,
+			remove:                   "",
+			rewriteRemediateTestFile: true,
 		},
 	}
 
@@ -173,6 +230,19 @@ func TestConsole_Execute(t *testing.T) { //nolint
 					t.Errorf("failed to remove file: %v, %v", tt.remove, err)
 				}
 			}
+			if tt.rewriteRemediateTestFile == true {
+				err = rewriteRemediateTestFile()
+				if err != nil {
+					t.Errorf("failed to rewrite remediate test file: %v, %v", tt.rewriteRemediateTestFile, err)
+				}
+
+			}
 		})
 	}
+}
+
+func rewriteRemediateTestFile() error {
+	d1 := []byte("resource \"alicloud_ram_account_password_policy\" \"corporate1\" {\n\t\trequire_lowercase_characters = false\n\t\trequire_uppercase_characters = false\n\t\trequire_numbers              = false\n\t\trequire_symbols              = false\n\t\thard_expiry                  = true\n\t\tpassword_reuse_prevention    = 5\n\t\tmax_login_attempts           = 3\n\t}\n\nresource \"alicloud_ram_account_password_policy\" \"corporate2\" {\n\t\tminimum_password_length = 14\n\t\trequire_lowercase_characters = false\n\t\trequire_uppercase_characters = false\n\t\trequire_numbers              = false\n\t\trequire_symbols              = false\n\t\thard_expiry                  = true\n\t\tpassword_reuse_prevention    = 5\n\t\tmax_login_attempts           = 3\n\t}")
+	err := os.WriteFile(filepath.FromSlash("../../test/assets/auto_remediation_sample.tf"), d1, 0666)
+	return err
 }

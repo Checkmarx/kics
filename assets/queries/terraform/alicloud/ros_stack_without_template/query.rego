@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_ros_stack", name),
 		"searchKey": sprintf("alicloud_ros_stack[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'template_body' or Attribute 'template_url' to be set.",
+		"keyExpectedValue": "Attribute 'template_body' or Attribute 'template_url' should be set.",
 		"keyActualValue": "Both Attribute 'template_body' and Attribute 'template_url' are undefined.",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_ros_stack", name], []),
 	}

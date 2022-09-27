@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_dynamodb_table[{{%s}}].server_side_encryption.enabled", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_dynamodb_table", name,"server_side_encryption","enabled"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_dynamodb_table.server_side_encryption.enabled is set to true",
+		"keyExpectedValue": "aws_dynamodb_table.server_side_encryption.enabled should be set to true",
 		"keyActualValue": "aws_dynamodb_table.server_side_encryption.enabled is set to false",
 		"remediation": json.marshal({
 			"before": "false",
@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_dynamodb_table[{{%s}}]", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_dynamodb_table", name], []),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_dynamodb_table.server_side_encryption.enabled is set to true",
+		"keyExpectedValue": "aws_dynamodb_table.server_side_encryption.enabled should be set to true",
 		"keyActualValue": "aws_dynamodb_table.server_side_encryption is missing",
 		"remediation": "server_side_encryption {\n\t\t enabled = true \n\t }",
 		"remediationType": "addition",

@@ -23,7 +23,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "--feature-gates=RotateKubeletServerCertificate flag to be true",
+		"keyExpectedValue": "--feature-gates=RotateKubeletServerCertificate flag should be true",
 		"keyActualValue": "--feature-gates=RotateKubeletServerCertificate flag is false",
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
 	}
@@ -41,7 +41,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}.featureGates",
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "RotateKubeletServerCertificates to be true",
+		"keyExpectedValue": "RotateKubeletServerCertificates should be true",
 		"keyActualValue": "RotateKubeletServerCertificate is false",
 	}
 }

@@ -98,7 +98,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses", [n, oper]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s response is set when security field is defined", [wantedResponses]),
+		"keyExpectedValue": sprintf("%s response should be set when security field is defined", [wantedResponses]),
 		"keyActualValue": sprintf("%s response is undefined when security field is defined", [wantedResponses]),
 		"overrideKey": version,
 	}

@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.schema%s", [openapi_lib.concat_path(path), issue.path]),
 		"issueType": issue.type,
-		"keyExpectedValue": "'additionalProperties' is set to true",
+		"keyExpectedValue": "'additionalProperties' should be set to true",
 		"keyActualValue": issue.message,
 	}
 }
@@ -31,7 +31,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.schemas.{{%s}}%s", [schema, issue.path]),
 		"issueType": issue.type,
-		"keyExpectedValue": "'additionalProperties' is set to true",
+		"keyExpectedValue": "'additionalProperties' should be set to true",
 		"keyActualValue": issue.message,
 	}
 }
@@ -51,7 +51,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), multiSchemas.kind]),
 		"issueType": issue.type,
-		"keyExpectedValue": "'additionalProperties' is set to true",
+		"keyExpectedValue": "'additionalProperties' should be set to true",
 		"keyActualValue": issue.message,
 	}
 }

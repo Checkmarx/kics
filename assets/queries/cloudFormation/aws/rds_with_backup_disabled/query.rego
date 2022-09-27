@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.BackupRetentionPeriod", [cf_lib.getPath(path), name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.BackupRetentionPeriod' should not be equal to zero", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.BackupRetentionPeriod' should not equal to zero", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.BackupRetentionPeriod' is equal to zero", [name]),
 	}
 }

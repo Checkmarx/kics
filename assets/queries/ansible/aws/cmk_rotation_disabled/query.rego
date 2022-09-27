@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{community.aws.aws_kms}}.enable_key_rotation", [task.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "community.aws.aws_kms.enable_key_rotation is set to true",
+		"keyExpectedValue": "community.aws.aws_kms.enable_key_rotation should be set to true",
 		"keyActualValue": "community.aws.aws_kms.enable_key_rotation is set to false",
 	}
 }

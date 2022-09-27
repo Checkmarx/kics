@@ -79,7 +79,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(storage, name),
 		"searchKey": sprintf("azurerm_storage_account[%s].allow_blob_public_access", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'allow_blob_public_access' is set to false or undefined",
+		"keyExpectedValue": "'allow_blob_public_access' should be set to false or undefined",
 		"keyActualValue": "'allow_blob_public_access' is set to true",
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_storage_account", name, "allow_blob_public_access"], []),
 		"remediation": json.marshal({

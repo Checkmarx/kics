@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.security_opt",[name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "no-new-privileges to be set in security_opt.",
+		"keyExpectedValue": "no-new-privileges should be set in security_opt.",
 		"keyActualValue": "no-new-privileges is not set in security_opt",
 		"searchLine": common_lib.build_search_line(["services", name, "security_opt"], []),
 	}

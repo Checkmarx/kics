@@ -9,7 +9,8 @@ CxPolicy[result] {
 	resourceType := resources[r]
 	resource := input.document[i].resource[resourceType][name]
 
-	not deny_http_requests(resource.policy)
+	policy_unmarshaled := common_lib.json_unmarshal(resource.policy)
+	not deny_http_requests(policy_unmarshaled)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -30,7 +31,8 @@ CxPolicy[result] {
 
 	policy := module[keyToCheck]
 
-	not deny_http_requests(policy)
+	policy_unmarshaled := common_lib.json_unmarshal(policy)
+	not deny_http_requests(policy_unmarshaled)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -67,15 +69,13 @@ is_equal(secure, target)
 }
 
 deny_http_requests(policyValue) {
-    policy := common_lib.json_unmarshal(policyValue)
-    st := common_lib.get_statement(policy)
+    st := common_lib.get_statement(policyValue)
     statement := st[_]
     check_action(statement)
     statement.Effect == "Deny"
     is_equal(statement.Condition.Bool["aws:SecureTransport"], "false")
 } else {
-    policy := common_lib.json_unmarshal(policyValue)
-    st := common_lib.get_statement(policy)
+    st := common_lib.get_statement(policyValue)
     statement := st[_]
     check_action(statement)
     statement.Effect == "Allow"

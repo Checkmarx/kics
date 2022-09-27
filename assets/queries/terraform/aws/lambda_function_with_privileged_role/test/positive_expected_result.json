@@ -1,22 +1,32 @@
 [
   {
-    "queryName": "Lambda Function With Privileged role",
+    "queryName": "Lambda Function With Privileged Role",
     "severity": "HIGH",
-    "line": 4
+    "line": 4,
+    "fileName": "positive.tf"
   },
   {
-    "queryName": "Lambda Function With Privileged role",
+    "queryName": "Lambda Function With Privileged Role",
     "severity": "HIGH",
-    "line": 4
+    "line": 4,
+    "fileName": "positive.tf"
   },
   {
-    "queryName": "Lambda Function With Privileged role",
+    "queryName": "Lambda Function With Privileged Role",
     "severity": "HIGH",
-    "line": 4
+    "line": 4,
+    "fileName": "positive.tf"
   },
   {
-    "queryName": "Lambda Function With Privileged role",
+    "queryName": "Lambda Function With Privileged Role",
     "severity": "HIGH",
-    "line": 23
+    "line": 4,
+    "fileName": "positive.tf"
+  },
+  {
+    "queryName": "Lambda Function With Privileged Role",
+    "severity": "HIGH",
+    "line": 23,
+    "fileName": "positive.tf"
   }
 ]

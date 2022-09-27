@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "--read-only-port flag to be '0'",
+		"keyExpectedValue": "--read-only-port flag should be '0'",
 		"keyActualValue": "--read-only-port flag is not set to '0'",
 	}
 }

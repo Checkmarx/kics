@@ -214,11 +214,12 @@ func deleteExtractionFolder(extractionMap map[string]model.ExtractedPathObject) 
 }
 
 func contributionAppeal(customPrint *consolePrinter.Printer, queriesPath []string) {
-	if utils.Contains(filepath.Join("assets", "queries"), queriesPath) {
+	if !utils.ContainsInString(filepath.Join("assets", "queries"), queriesPath) {
 		msg := "\nAre you using a custom query? If so, feel free to contribute to KICS!\n"
 		contributionPage := "Check out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md\n"
 
-		fmt.Println(customPrint.ContributionMessage.Sprintf(msg + contributionPage))
+		output := customPrint.ContributionMessage.Sprintf(msg + contributionPage)
+		fmt.Println(output)
 	}
 }
 

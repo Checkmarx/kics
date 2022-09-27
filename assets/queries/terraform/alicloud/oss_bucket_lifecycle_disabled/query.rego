@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_oss_bucket", name),
 		"searchKey": sprintf("alicloud_oss_bucket[%s].lifecycle_rule.enabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'lifecycle_rule' is set and enabled",
+		"keyExpectedValue": "'lifecycle_rule' should be set and enabled",
 		"keyActualValue": "'lifecycle_rule' is set but disabled",
         "searchLine":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "lifecycle_rule", "enabled"], []),
 		"remediation": json.marshal({
@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_oss_bucket", name),
 		"searchKey": sprintf("alicloud_oss_bucket[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'lifecycle_rule' is set and enabled",
+		"keyExpectedValue": "'lifecycle_rule' should be set and enabled",
 		"keyActualValue": "'lifecycle_rule' is not set",
         "searchLine":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name], []),
 	}

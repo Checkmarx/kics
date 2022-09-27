@@ -36,4 +36,5 @@ check_status_code(code) {
 
 check_status_code(code) {
 	count(code) != 3
+	code != "default"
 }

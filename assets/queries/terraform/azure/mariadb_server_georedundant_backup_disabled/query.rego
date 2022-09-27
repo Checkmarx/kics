@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(mdb, name),
 		"searchKey": sprintf("azurerm_mariadb_server[%s].geo_redundant_backup_enabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_mariadb_server[%s].geo_redundant_backup_enabled' is set to true", [name]),
+		"keyExpectedValue": sprintf("'azurerm_mariadb_server[%s].geo_redundant_backup_enabled' should be set to true", [name]),
 		"keyActualValue": sprintf("'azurerm_mariadb_server[%s].geo_redundant_backup_enabled' is set to false", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_mariadb_server", name, "geo_redundant_backup_enabled"], []),
 		"remediation": json.marshal({
