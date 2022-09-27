@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"sync"
 
+	"github.com/Checkmarx/kics/pkg/builder/engine"
 	"github.com/Checkmarx/kics/pkg/parser/terraform/functions"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hcldec"
@@ -230,6 +231,8 @@ func parseDataSourceBody(body *hclsyntax.Body) string {
 		"statement": getStatementSpec(),
 	}
 
+	resolveDataResources(body)
+
 	target, decodeErrs := hcldec.Decode(body, dataSourceSpec, &hcl.EvalContext{
 		Variables: inputVariableMap,
 		Functions: functions.TerraformFuncs,
@@ -295,4 +298,32 @@ func parseDataSourceBody(body *hclsyntax.Body) string {
 		return ""
 	}
 	return buffer.String()
+}
+
+// resourcesResolver resolves the data resources expressions into LiteralValueExpr
+func resolveDataResources(body *hclsyntax.Body) {
+	for _, block := range body.Blocks {
+		if resources, ok := block.Body.Attributes["resources"]; ok &&
+			block.Type == "statement" {
+			resolveTuple(resources.Expr)
+		}
+	}
+}
+
+func resolveTuple(expr hclsyntax.Expression) {
+	e := engine.Engine{}
+	if v, ok := expr.(*hclsyntax.TupleConsExpr); ok {
+		for i, ex := range v.Exprs {
+			striExpr, err := e.ExpToString(ex)
+
+			if err != nil {
+				log.Info().Msgf("error when trying to ExpToString: %s", err)
+			}
+
+			v.Exprs[i] = &hclsyntax.LiteralValueExpr{
+				Val:      cty.StringVal(striExpr),
+				SrcRange: v.Exprs[i].Range(),
+			}
+		}
+	}
 }
