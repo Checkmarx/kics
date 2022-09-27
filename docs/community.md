@@ -1,6 +1,6 @@
 ## Community Meetings
 -   [GitHub discussion regarding Community Meetings](https://github.com/Checkmarx/kics/discussions/5675).
-    -   Here you have access to the PDfs that contain the topics mentioned in each session.
+    -   Here you have access to the PDfs that contains the topics mentioned in each session.
 - Calendar for the upcoming session:
     - [Session info + date + link goes here]
 
