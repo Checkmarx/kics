@@ -107,7 +107,7 @@ func getDataSourcePolicy(currentPath string) {
 	}
 	data, err := gocty.ToCtyValue(policyResource, cty.Map(cty.Map(cty.Map(cty.String))))
 	if err != nil {
-		log.Error().Msg("Error trying to convert policy to cty value.")
+		log.Error().Msgf("Error trying to convert policy to cty value: %s", err)
 		return
 	}
 
@@ -119,13 +119,13 @@ func getDataSourcePolicy(currentPath string) {
 func decodeDataSourcePolicy(value cty.Value) dataSourcePolicy {
 	jsonified, err := ctyjson.Marshal(value, cty.DynamicPseudoType)
 	if err != nil {
-		log.Error().Msg("Error trying to decode data source block.")
+		log.Error().Msgf("Error trying to decode data source block: %s", err)
 		return dataSourcePolicy{}
 	}
 	var data dataSource
 	err = json.Unmarshal(jsonified, &data)
 	if err != nil {
-		log.Error().Msg("Error trying to encode data source json.")
+		log.Error().Msgf("Error trying to encode data source json: %s", err)
 		return dataSourcePolicy{}
 	}
 	return data.Value
@@ -241,7 +241,7 @@ func parseDataSourceBody(body *hclsyntax.Body) string {
 	// check decode errors
 	for _, decErr := range decodeErrs {
 		if decErr.Summary != "Unknown variable" {
-			log.Debug().Msg("Error trying to eval data source block.")
+			log.Debug().Msgf("Error trying to eval data source block: %s", decErr.Summary)
 			return ""
 		}
 		log.Debug().Msg("Dismissed Error when decoding policy: Found unknown variable")
@@ -294,13 +294,13 @@ func parseDataSourceBody(body *hclsyntax.Body) string {
 	encoder.SetEscapeHTML(false)
 	err := encoder.Encode(convertedDataSource)
 	if err != nil {
-		log.Error().Msg("Error trying to encoding data source json.")
+		log.Error().Msgf("Error trying to encoding data source json: %s", err)
 		return ""
 	}
 	return buffer.String()
 }
 
-// resourcesResolver resolves the data resources expressions into LiteralValueExpr
+// resolveDataResources resolves the data resources expressions into LiteralValueExpr
 func resolveDataResources(body *hclsyntax.Body) {
 	for _, block := range body.Blocks {
 		if resources, ok := block.Body.Attributes["resources"]; ok &&
@@ -317,7 +317,7 @@ func resolveTuple(expr hclsyntax.Expression) {
 			striExpr, err := e.ExpToString(ex)
 
 			if err != nil {
-				log.Info().Msgf("error when trying to ExpToString: %s", err)
+				log.Error().Msgf("Error trying to ExpToString: %s", err)
 			}
 
 			v.Exprs[i] = &hclsyntax.LiteralValueExpr{

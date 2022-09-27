@@ -136,6 +136,7 @@ func (e *Engine) walkAttribute(attr *hclsyntax.Attribute, walkHistory []build.Pa
 	return nil
 }
 
+// ExpToString converts an expression into a string
 func (e *Engine) ExpToString(expr hclsyntax.Expression) (string, error) {
 	switch t := expr.(type) {
 	case *hclsyntax.LiteralValueExpr:
