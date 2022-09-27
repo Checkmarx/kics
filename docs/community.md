@@ -1,5 +1,6 @@
 ## Community Meetings
--   [GitHub discussion regarding Community Meetings](https://github.com/Checkmarx/kics/discussions/5675)
+-   [GitHub discussion regarding Community Meetings](https://github.com/Checkmarx/kics/discussions/5675).
+    -   Here you have access to the PDfs that contain the topics mentioned in each session.
 - Calendar for the upcoming session:
     - [Session info + date + link goes here]
 
@@ -8,6 +9,12 @@
 <a href="https://github.com/topics/hacktoberfest" style="color: rgb(105, 151, 236);">Hacktoberfest</a>
 
 -   [Open Issues for the event](https://github.com/Checkmarx/kics/issues?q=is%3Aissue+is%3Aopen+label%3A%22hacktoberfest%22)
+
+
+## Contribution
+
+KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.
+[Check out how](docs/CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
 ## Meet us at conferences
 
