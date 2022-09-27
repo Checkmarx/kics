@@ -5,6 +5,8 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestImport(t *testing.T) {
@@ -76,6 +78,45 @@ func TestImport(t *testing.T) {
 			if !strings.Contains(filepath.Base(got), filepath.Base(tt.want)) {
 				t.Errorf("Import() = %v, want %v", filepath.Base(got), filepath.Base(tt.want))
 			}
+		})
+	}
+}
+
+func Test_BuildArgs(t *testing.T) {
+
+	tests := []struct {
+		name           string
+		pathOptions    *Path
+		destination    string
+		expectedOutput []string
+	}{
+		{
+			name: "test aws build",
+			pathOptions: &Path{
+				CloudProvider: "aws",
+				Regions:       "eu-central-1",
+				Resources:     "s3",
+				Projects:      "",
+			},
+			destination:    "some/dest",
+			expectedOutput: []string{"import", "aws", "--resources=s3", "-o", "some/dest", "--verbose", "--regions=eu-central-1", "--profile="},
+		},
+		{
+			name: "test gcp build",
+			pathOptions: &Path{
+				CloudProvider: "gcp",
+				Regions:       "eu-central-1",
+				Resources:     "google_storage_bucket",
+				Projects:      "someProj",
+			},
+			destination:    "some/dest",
+			expectedOutput: []string{"import", "google", "--resources=google_storage_bucket", "-o", "some/dest", "--verbose", "--regions=eu-central-1", "--projects=someProj"},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			v := buildArgs(tt.pathOptions, tt.destination)
+			require.Equal(t, tt.expectedOutput, v)
 		})
 	}
 }
