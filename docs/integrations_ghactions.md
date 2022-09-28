@@ -4,6 +4,10 @@ You can integrate KICS into your Github Actions CI/CD pipelines with a specific 
 
 This provides you the ability to run KICS scans in your Github repositories and streamline vulnerabilities and misconfiguration checks to your infrastructure as code (IaC).
 
+#### Important note
+If you use a version from **v1.2 to v1.5 of the kics-github-action** it means you will be scanning your IaC files with **KICS version 1.5.15**.</br></br>
+In order to use **KICS version 1.6.x** to scan your files, you should use the **v1.6 of the kics-github-action**.
+
 #### Tutorial
 
 1. Edit the workflow file you want to integrate KICS in
