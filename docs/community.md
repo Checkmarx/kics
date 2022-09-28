@@ -8,7 +8,7 @@
 - [To participate in our community meetings you can use this link](https://tinyurl.com/kics-community)
 
 ## Hacktoberfest
-*"Hacktoberfest is a month-long celebration of open source projects, their maintainers, and the entire community of contributors. Each October, open source maintainers give new contributors extra attention as they guide developers through their first pull requests on GitHub."*<br />
+*"[Hacktoberfest](https://github.com/topics/hacktoberfest) is a month-long celebration of open source projects, their maintainers, and the entire community of contributors. Each October, open source maintainers give new contributors extra attention as they guide developers through their first pull requests on GitHub."*<br />
 <a href="https://github.com/topics/hacktoberfest" style="color: rgb(105, 151, 236);">Hacktoberfest</a>
 
 -   [Open Issues for the event](https://github.com/Checkmarx/kics/issues?q=is%3Aissue+is%3Aopen+label%3A%22hacktoberfest%22)
