@@ -199,7 +199,7 @@
 				
 				<option value="file71">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (77.1%)</option>
 				
-				<option value="file72">github.com/Checkmarx/kics/pkg/parser/terraform/data_source.go (74.6%)</option>
+				<option value="file72">github.com/Checkmarx/kics/pkg/parser/terraform/data_source.go (76.8%)</option>
 				
 				<option value="file73">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (81.4%)</option>
 				
@@ -2174,13 +2174,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="33">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2205,7 +2205,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -3100,7 +3100,7 @@ func (e *Engine) walkAttribute(attr *hclsyntax.Attribute, walkHistory []build.Pa
                 *hclsyntax.LiteralValueExpr,
                 *hclsyntax.ScopeTraversalExpr:<span class="cov5" title="3">
 
-                v, err := e.expToString(attr.Expr)
+                v, err := e.ExpToString(attr.Expr)
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
@@ -3121,7 +3121,8 @@ func (e *Engine) walkAttribute(attr *hclsyntax.Attribute, walkHistory []build.Pa
         <span class="cov6" title="4">return nil</span>
 }
 
-func (e *Engine) expToString(expr hclsyntax.Expression) (string, error) <span class="cov10" title="9">{
+// ExpToString converts an expression into a string
+func (e *Engine) ExpToString(expr hclsyntax.Expression) (string, error) <span class="cov10" title="9">{
         switch t := expr.(type) </span>{
         case *hclsyntax.LiteralValueExpr:<span class="cov1" title="1">
                 s, err := ctyConvert.Convert(t.Val, cty.String)
@@ -3144,9 +3145,9 @@ func (e *Engine) expToString(expr hclsyntax.Expression) (string, error) <span cl
 
                 <span class="cov0" title="0">return builderString, nil</span>
         case *hclsyntax.TemplateWrapExpr:<span class="cov0" title="0">
-                return e.expToString(t.Wrapped)</span>
+                return e.ExpToString(t.Wrapped)</span>
         case *hclsyntax.ObjectConsKeyExpr:<span class="cov3" title="2">
-                return e.expToString(t.Wrapped)</span>
+                return e.ExpToString(t.Wrapped)</span>
         case *hclsyntax.ScopeTraversalExpr:<span class="cov3" title="2">
                 var items []string
                 for _, part := range t.Traversal </span><span class="cov3" title="2">{
@@ -3169,7 +3170,7 @@ func (e *Engine) buildString(parts []hclsyntax.Expression) (string, error) <span
         builder := &amp;strings.Builder{}
 
         for _, part := range parts </span><span class="cov0" title="0">{
-                s, err := e.expToString(part)
+                s, err := e.ExpToString(part)
                 if err != nil </span><span class="cov0" title="0">{
                         return "", err
                 }</span>
@@ -3185,14 +3186,14 @@ func (e *Engine) buildString(parts []hclsyntax.Expression) (string, error) <span
 }
 
 func (e *Engine) walkConstantItem(item hclsyntax.ObjectConsItem, walkHistory []build.PathItem) error <span class="cov3" title="2">{
-        k, err := e.expToString(item.KeyExpr)
+        k, err := e.ExpToString(item.KeyExpr)
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
 
         <span class="cov3" title="2">walkHistory = append(walkHistory, build.PathItem{Type: build.PathTypeDefault, Name: k})
 
-        v, err := e.expToString(item.ValueExpr)
+        v, err := e.ExpToString(item.ValueExpr)
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
@@ -4776,7 +4777,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="11">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5941,12 +5942,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="29697">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="29699">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="29697">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="29426">{
+                <span class="cov9" title="29699">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="29428">{
                         return skipFolder
                 }</span>
 
@@ -6018,7 +6019,7 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="270">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="29700">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="29702">{
         s.mu.RLock()
         defer s.mu.RUnlock()
         if info.IsDir() </span><span class="cov8" title="6606">{
@@ -6033,12 +6034,12 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="23094">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="23096">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="23094">ext := utils.GetExtension(path)
-        if !extensions.Include(ext) </span><span class="cov9" title="22824">{
+        <span class="cov9" title="23096">ext := utils.GetExtension(path)
+        if !extensions.Include(ext) </span><span class="cov9" title="22826">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
@@ -14611,6 +14612,7 @@ import (
         "path/filepath"
         "sync"
 
+        "github.com/Checkmarx/kics/pkg/builder/engine"
         "github.com/Checkmarx/kics/pkg/parser/terraform/functions"
         "github.com/hashicorp/hcl/v2"
         "github.com/hashicorp/hcl/v2/hcldec"
@@ -14711,7 +14713,7 @@ func getDataSourcePolicy(currentPath string) <span class="cov5" title="3">{
         }
         data, err := gocty.ToCtyValue(policyResource, cty.Map(cty.Map(cty.Map(cty.String))))
         if err != nil </span><span class="cov0" title="0">{
-                log.Error().Msg("Error trying to convert policy to cty value.")
+                log.Error().Msgf("Error trying to convert policy to cty value: %s", err)
                 return
         }</span>
 
@@ -14723,13 +14725,13 @@ func getDataSourcePolicy(currentPath string) <span class="cov5" title="3">{
 func decodeDataSourcePolicy(value cty.Value) dataSourcePolicy <span class="cov7" title="4">{
         jsonified, err := ctyjson.Marshal(value, cty.DynamicPseudoType)
         if err != nil </span><span class="cov0" title="0">{
-                log.Error().Msg("Error trying to decode data source block.")
+                log.Error().Msgf("Error trying to decode data source block: %s", err)
                 return dataSourcePolicy{}
         }</span>
         <span class="cov7" title="4">var data dataSource
         err = json.Unmarshal(jsonified, &amp;data)
         if err != nil </span><span class="cov0" title="0">{
-                log.Error().Msg("Error trying to encode data source json.")
+                log.Error().Msgf("Error trying to encode data source json: %s", err)
                 return dataSourcePolicy{}
         }</span>
         <span class="cov7" title="4">return data.Value</span>
@@ -14835,6 +14837,8 @@ func parseDataSourceBody(body *hclsyntax.Body) string <span class="cov7" title="
                 "statement": getStatementSpec(),
         }
 
+        resolveDataResources(body)
+
         target, decodeErrs := hcldec.Decode(body, dataSourceSpec, &amp;hcl.EvalContext{
                 Variables: inputVariableMap,
                 Functions: functions.TerraformFuncs,
@@ -14843,7 +14847,7 @@ func parseDataSourceBody(body *hclsyntax.Body) string <span class="cov7" title="
         // check decode errors
         for _, decErr := range decodeErrs </span><span class="cov0" title="0">{
                 if decErr.Summary != "Unknown variable" </span><span class="cov0" title="0">{
-                        log.Debug().Msg("Error trying to eval data source block.")
+                        log.Debug().Msgf("Error trying to eval data source block: %s", decErr.Summary)
                         return ""
                 }</span>
                 <span class="cov0" title="0">log.Debug().Msg("Dismissed Error when decoding policy: Found unknown variable")</span>
@@ -14896,10 +14900,38 @@ func parseDataSourceBody(body *hclsyntax.Body) string <span class="cov7" title="
         encoder.SetEscapeHTML(false)
         err := encoder.Encode(convertedDataSource)
         if err != nil </span><span class="cov0" title="0">{
-                log.Error().Msg("Error trying to encoding data source json.")
+                log.Error().Msgf("Error trying to encoding data source json: %s", err)
                 return ""
         }</span>
         <span class="cov7" title="4">return buffer.String()</span>
+}
+
+// resolveDataResources resolves the data resources expressions into LiteralValueExpr
+func resolveDataResources(body *hclsyntax.Body) <span class="cov7" title="4">{
+        for _, block := range body.Blocks </span><span class="cov10" title="8">{
+                if resources, ok := block.Body.Attributes["resources"]; ok &amp;&amp;
+                        block.Type == "statement" </span><span class="cov8" title="6">{
+                        resolveTuple(resources.Expr)
+                }</span>
+        }
+}
+
+func resolveTuple(expr hclsyntax.Expression) <span class="cov8" title="6">{
+        e := engine.Engine{}
+        if v, ok := expr.(*hclsyntax.TupleConsExpr); ok </span><span class="cov8" title="6">{
+                for i, ex := range v.Exprs </span><span class="cov10" title="8">{
+                        striExpr, err := e.ExpToString(ex)
+
+                        if err != nil </span><span class="cov0" title="0">{
+                                log.Error().Msgf("Error trying to ExpToString: %s", err)
+                        }</span>
+
+                        <span class="cov10" title="8">v.Exprs[i] = &amp;hclsyntax.LiteralValueExpr{
+                                Val:      cty.StringVal(striExpr),
+                                SrcRange: v.Exprs[i].Range(),
+                        }</span>
+                }
+        }
 }
 </pre>
 		
