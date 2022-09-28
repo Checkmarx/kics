@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "COPY '--from' Without FROM Alias Defined Previously",
-		"severity": "MEDIUM",
-		"line": 11
-	}
-]
