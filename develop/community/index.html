@@ -10,14 +10,14 @@
       
       
       
-        <link rel="canonical" href="http://docs.kics.io/develop/flags/">
+        <link rel="canonical" href="http://docs.kics.io/develop/community/">
       
       <link rel="icon" href="../img/logo/kics-hat.ico">
       <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.3">
     
     
       
-        <title>Flags - KICS</title>
+        <title>Community - KICS</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#flags" class="md-skip">
+        <a href="#community_meetings" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Flags
+              Community
             
           </span>
         </div>
@@ -286,10 +286,12 @@
         
   
   
+    
+  
 
 
   <li class="md-tabs__item">
-    <a href="../community/" class="md-tabs__link">
+    <a href="./" class="md-tabs__link md-tabs__link--active">
       Community
     </a>
   </li>
@@ -1261,11 +1263,69 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../community/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Community
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Community
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#community_meetings" class="md-nav__link">
+    Community Meetings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hacktoberfest" class="md-nav__link">
+    Hacktoberfest
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribution" class="md-nav__link">
+    Contribution
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#meet_us_at_conferences" class="md-nav__link">
+    Meet us at conferences
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1310,36 +1370,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#flags" class="md-nav__link">
-    Flags
+  <a href="#community_meetings" class="md-nav__link">
+    Community Meetings
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#hidden_and_deprecated_flags" class="md-nav__link">
-    Hidden and Deprecated Flags
+  <a href="#hacktoberfest" class="md-nav__link">
+    Hacktoberfest
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#flag_types" class="md-nav__link">
-    Flag types
+  <a href="#contribution" class="md-nav__link">
+    Contribution
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#accessing_and_setting_flags" class="md-nav__link">
-    Accessing and setting flags
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage_variables" class="md-nav__link">
-    Usage variables
+  <a href="#meet_us_at_conferences" class="md-nav__link">
+    Meet us at conferences
   </a>
   
 </li>
@@ -1358,95 +1411,51 @@
                 
                   
 
-  <a href="https://github.com/Checkmarx/kics/edit/master/docs/flags.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/Checkmarx/kics/edit/master/docs/community.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-  <h1>Flags</h1>
+  <h1>Community</h1>
 
-<h2 id="flags">Flags<a class="headerlink" href="#flags" title="Permanent link">&para;</a></h2>
-<p>KICS scan flags are defined on <code>kics-flags.json</code> and <code>scan-flags.json</code>, that can be found on <code>console/assets</code> directory.</p>
-<p>The structure of a flag on JSON definition should use the following structure:</p>
-<pre><code class="language-json">{
-    &quot;flagName&quot;: {
-        &quot;flagType&quot;: &quot;&lt;multiStr|str|bool|int&gt;The type of the flag&quot;,
-        &quot;shorthandFlag&quot;: &quot;&lt;optional&gt;Shorthand for the flag, MUST be one character only&quot;,
-        &quot;defaultValue&quot;: &quot;The default value of the flag, MUST be string or null&quot;,
-        &quot;usage&quot;: &quot;Usage description of the flag, can use variables, which is described bellow&quot;
-    }
-}
-</code></pre>
-<p>Example of a valid <code>flags.json</code> file:</p>
-<pre><code class="language-json">{
-    &quot;no-progress&quot;: {
-        &quot;flagType&quot;: &quot;bool&quot;,
-        &quot;shorthandFlag&quot;: &quot;&quot;,
-        &quot;defaultValue&quot;: &quot;false&quot;,
-        &quot;usage&quot;: &quot;hides the progress bar&quot;
-    },
-    &quot;output-path&quot;: {
-        &quot;flagType&quot;: &quot;str&quot;,
-        &quot;shorthandFlag&quot;: &quot;o&quot;,
-        &quot;defaultValue&quot;: &quot;&quot;,
-        &quot;usage&quot;: &quot;directory path to store reports&quot;
-    },
-    &quot;type&quot;: {
-        &quot;flagType&quot;: &quot;multiStr&quot;,
-        &quot;shorthandFlag&quot;: &quot;t&quot;,
-        &quot;defaultValue&quot;: &quot;&quot;,
-        &quot;usage&quot;: &quot;case insensitive list of platform types to scan\n(${supportedPlatforms})&quot;
-    }
-}
-</code></pre>
-<h2 id="hidden_and_deprecated_flags">Hidden and Deprecated Flags<a class="headerlink" href="#hidden_and_deprecated_flags" title="Permanent link">&para;</a></h2>
-<p>To mark a flag as hidden use the following configuration:</p>
-<pre><code class="language-json">{
-  &quot;disable-cis-descriptions&quot;: {
-    &quot;flagType&quot;: &quot;bool&quot;,
-    &quot;shorthandFlag&quot;: &quot;&quot;,
-    &quot;defaultValue&quot;: &quot;false&quot;,
-    &quot;usage&quot;: &quot;disable request for full descriptions and use default vulnerability descriptions&quot;,
-    &quot;hidden&quot;: true
-  }
-}
-</code></pre>
-<p>If you also want to display a flag deprecation warning you can define it like this:</p>
-<pre><code class="language-json">{
-  &quot;disable-cis-descriptions&quot;: {
-    &quot;flagType&quot;: &quot;bool&quot;,
-    &quot;shorthandFlag&quot;: &quot;&quot;,
-    &quot;defaultValue&quot;: &quot;false&quot;,
-    &quot;usage&quot;: &quot;disable request for full descriptions and use default vulnerability descriptions&quot;,
-    &quot;hidden&quot;: true,
-    &quot;deprecated&quot;: true,
-    &quot;deprecatedInfo&quot;: &quot;use --disable-full-descriptions instead&quot;
-  }
-}
-</code></pre>
-<h2 id="flag_types">Flag types<a class="headerlink" href="#flag_types" title="Permanent link">&para;</a></h2>
-<p>As described above you should describe which type is the flag, currently there is 4 flags types:
-- str: Represents a string type;
-- int: Represents an integer type;
-- bool: Represents a boolean type;
-- multiStr: Represents a string slice type, this receives multiple strings comma-separated;</p>
-<p>This type is used to cast <code>defaultValue</code> field and to determine which map it will be saved.</p>
-<h2 id="accessing_and_setting_flags">Accessing and setting flags<a class="headerlink" href="#accessing_and_setting_flags" title="Permanent link">&para;</a></h2>
-<p>If you want to access flag, you should use get functions and the name of the flag. Currently there are 4 get functions:
-- <code>getStrFlag(flagName)</code>: Returns a string value of requested flag;
-- <code>getIntFlag(flagName)</code>: Returns a integer value of requested flag;
-- <code>getBoolFlag(flagName)</code>: Returns a boolean value of requested flag;
-- <code>getMultiStrFlag(flagName)</code>: Returns a slice of strings of requested flag;</p>
-<p>You can also set a flag value, using set functions. Currently there are 2 set functions:
-- <code>setStrFlag(flagName)</code>: Sets a flag with string value;
-- <code>setMultiStrFlag(flagName)</code>: Sets a flag with slice of strings value;</p>
-<h2 id="usage_variables">Usage variables<a class="headerlink" href="#usage_variables" title="Permanent link">&para;</a></h2>
-<p>Usage field has a special function that replace variables found in this field, using the syntax <code>${variable}</code>. If a variable is listed when evaluating usage, it will replace it with this text. Currently there are 3 variables supported:
-- <code>sliceInstructions</code>: A constant with instructions for slice flags;
-- <code>supportedPlatforms</code>: The result of <code>ListSupportedPlatforms</code> function converted to string, which gets all KICS supported platforms;
-- <code>supportedProviders</code>: The result of <code>ListSupportedCloudProviders</code> function converted to string, which gets all KICS supported providers;</p>
-<p>You can add variables by modifing <code>variables</code> map on <code>evalUsage</code> function of flags.go file.</p>
+<h2 id="community_meetings">Community Meetings<a class="headerlink" href="#community_meetings" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://github.com/Checkmarx/kics/discussions/5675">GitHub discussion regarding Community Meetings</a>.<ul>
+<li>Here you have access to the PDfs that contains the topics mentioned in each session.</li>
+</ul>
+</li>
+<li>Calendar for the upcoming sessions:<ul>
+<li>October 6, 2022 at 15h00 UTC +0</li>
+<li>October 20, 2022 at 15h00 UTC +0</li>
+<li>November 3, 2022 at 15h00 UTC +0</li>
+</ul>
+</li>
+<li><a href="https://tinyurl.com/kics-community">To participate in our community meetings you can use this link</a></li>
+</ul>
+<h2 id="hacktoberfest">Hacktoberfest<a class="headerlink" href="#hacktoberfest" title="Permanent link">&para;</a></h2>
+<p><em>"<a href="https://github.com/topics/hacktoberfest">Hacktoberfest</a> is a month-long celebration of open source projects, their maintainers, and the entire community of contributors. Each October, open source maintainers give new contributors extra attention as they guide developers through their first pull requests on GitHub."</em><br /></p>
+<ul>
+<li><a href="https://github.com/Checkmarx/kics/issues?q=is%3Aissue+is%3Aopen+label%3A%22hacktoberfest%22">Open Issues for the event</a></li>
+</ul>
+<h2 id="contribution">Contribution<a class="headerlink" href="#contribution" title="Permanent link">&para;</a></h2>
+<p>KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.
+<a href="docs/CONTRIBUTING.md">Check out how</a>, within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.</p>
+<h2 id="meet_us_at_conferences">Meet us at conferences<a class="headerlink" href="#meet_us_at_conferences" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://youtu.be/9ZKldJeBHl4">AWS re:Invent 2021: AWS On Air</a> (<a href="https://youtu.be/9ZKldJeBHl4">video</a>)</li>
+<li><a href="https://www.meetup.com/OWASP-Bristol/events/281869377/">OWASP Bristol &amp; Suffolk Chapter - Meetup</a> (<a href="https://youtu.be/KKZJEJF6I0M">video</a>)</li>
+<li><a href="https://www.meetup.com/OWASP-Canberra-Chapter/events/281946376/">OWASP Canberra Chapter - Meetup</a></li>
+<li><a href="https://www.infosec-city.com/sin21-bizcomm">InfoSec City - Singapore 2021</a></li>
+<li><a href="https://devopscon.io/cloud-platforms-serverless/infrastructure-is-the-new-code-is-your-devsecops-ready/">DevSecOps Singapore 2021</a></li>
+<li><a href="https://www.blackhat.com/eu-21/arsenal/schedule/#kics-keeping-infrastructure-as-code-secure-25111">Blackhat Europe 2021</a></li>
+<li><a href="https://events.hashicorp.com/hashitalksisrael">HashiTalks IL 2021</a> (<a href="https://www.youtube.com/watch?v=DFRiSVH4lu0">video</a>)</li>
+<li><a href="https://yalla-devops.com/">Yalla DevOps 2021</a> (<a href="https://youtu.be/Hs_YbAH9giI">video</a>)</li>
+<li><a href="https://code.geektime.co.il/">Geektime Code 2021</a></li>
+<li><a href="https://www.devseccon.com/devseccon24-2021/">DevSecCon24 2021</a> (<a href="https://www.youtube.com/watch?v=eaD-tGMOKe8">video</a>)</li>
+<li><a href="https://www.gisec.ae/gisec-2021-conference/insecure-infrastructure-as-code-leaves-the-door-open-for-hackers-1wez">GISEC Global 2021</a></li>
+<li><a href="https://www.blackhat.com/asia-21/arsenal/schedule/#kics-22475">Blackhat ASIA 2021</a> (<a href="https://www.youtube.com/watch?v=56AM1wiIOss">video</a>)</li>
+</ul>
 
 
 
@@ -1462,6 +1471,42 @@
       </main>
       
         <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../CONTRIBUTING/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Contribution" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Contribution
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../about/" class="md-footer__link md-footer__link--next" aria-label="Next: About" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              About
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

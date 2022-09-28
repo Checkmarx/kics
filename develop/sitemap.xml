@@ -61,6 +61,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/community/</loc>
+         <lastmod>2022-09-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/configuration-file/</loc>
          <lastmod>2022-09-28</lastmod>
          <changefreq>daily</changefreq>
