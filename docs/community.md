@@ -5,7 +5,7 @@
     - October 6, 2022 at 15h00 UTC +0
     - October 20, 2022 at 15h00 UTC +0
     - November 3, 2022 at 15h00 UTC +0
-- To participate in our community meetings you can use the following link: https://tinyurl.com/kics-community
+- [To participate in our community meetings you can use this link](https://tinyurl.com/kics-community)
 
 ## Hacktoberfest
 *"Hacktoberfest is a month-long celebration of open source projects, their maintainers, and the entire community of contributors. Each October, open source maintainers give new contributors extra attention as they guide developers through their first pull requests on GitHub."*<br />
