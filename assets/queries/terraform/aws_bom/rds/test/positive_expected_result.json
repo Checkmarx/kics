@@ -1,0 +1,62 @@
+[
+  {
+    "queryName": "BOM - AWS S3 Buckets",
+    "severity": "TRACE",
+    "line": 14,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "BOM - AWS S3 Buckets",
+    "severity": "TRACE",
+    "line": 14,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "BOM - AWS S3 Buckets",
+    "severity": "TRACE",
+    "line": 14,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "BOM - AWS S3 Buckets",
+    "severity": "TRACE",
+    "line": 14,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "BOM - AWS S3 Buckets",
+    "severity": "TRACE",
+    "line": 14,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "BOM - AWS S3 Buckets",
+    "severity": "TRACE",
+    "line": 14,
+    "fileName": "positive6.tf"
+  },
+  {
+    "queryName": "BOM - AWS S3 Buckets",
+    "severity": "TRACE",
+    "line": 14,
+    "fileName": "positive7.tf"
+  },
+  {
+    "queryName": "BOM - AWS S3 Buckets",
+    "severity": "TRACE",
+    "line": 14,
+    "fileName": "positive8.tf"
+  },
+  {
+    "queryName": "BOM - AWS S3 Buckets",
+    "severity": "TRACE",
+    "line": 14,
+    "fileName": "positive9.tf"
+  },
+  {
+    "queryName": "BOM - AWS S3 Buckets",
+    "severity": "TRACE",
+    "line": 14,
+    "fileName": "positive10.tf"
+  }
+]
