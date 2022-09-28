@@ -445,15 +445,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#supported_formats" class="md-nav__link">
-    Supported Formats
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#templates" class="md-nav__link">
-    Templates
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
@@ -1386,15 +1379,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#supported_formats" class="md-nav__link">
-    Supported Formats
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#templates" class="md-nav__link">
-    Templates
+  <a href="#examples" class="md-nav__link">
+    Examples
   </a>
   
 </li>
@@ -1436,8 +1422,14 @@
   <h1>Configuration</h1>
 
 <h2 id="configuration_file">Configuration File<a class="headerlink" href="#configuration_file" title="Permanent link">&para;</a></h2>
-<p>KICS allow you to provide all configurations either as command line arguments or as code.</p>
-<p>Here is a Configuration file example:</p>
+<p>KICS allow you to provide all configurations either as command line arguments or as code. You can see all possible configurations in the <a href="../commands/#scan-command-options">CLI</a>.
+You can disable scanning in certain parts of file using inline comments. More can be found in <a href="../running-kics/#using-commands-on-scanned-files-as-comments">Running KICS</a> section.</p>
+<p>KICS supports JSON, TOML, YAML, and HCL formats for the configuration files, and it is able to infer the formats without the need of file extension.</p>
+<blockquote>
+<p>📝 &nbsp; flags that can receive multiple values can be either provided as a comma separated string or an array as in the example above</p>
+</blockquote>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<h4 id="json">JSON<a class="headerlink" href="#json" title="Permanent link">&para;</a></h4>
 <pre><code class="language-JSON">{
   &quot;path&quot;: &quot;assets/iac_samples&quot;,
   &quot;verbose&quot;: true,
@@ -1451,6 +1443,7 @@
   &quot;output-path&quot;: &quot;results&quot;
 }
 </code></pre>
+<h4 id="yaml">YAML<a class="headerlink" href="#yaml" title="Permanent link">&para;</a></h4>
 <p>The same example now in YAML format passing <code>type</code> as an array of strings:</p>
 <pre><code class="language-YAML">path: assets/iac_samples
 verbose: true
@@ -1464,131 +1457,23 @@ exclude-paths:
   - &quot;bar/&quot;
 output-path: &quot;results&quot;
 </code></pre>
-<blockquote>
-<p>📝 &nbsp; flags that can receive multiple values can be either provided as a comma separated string or an array as in the example above</p>
-</blockquote>
-<hr />
-<h2 id="supported_formats">Supported Formats<a class="headerlink" href="#supported_formats" title="Permanent link">&para;</a></h2>
-<p>KICS supports the following formats for the configuration files.</p>
-<ul>
-<li>JSON</li>
-<li>TOML</li>
-<li>YAML</li>
-<li>HCL</li>
-</ul>
-<p>Notice that format is about the content and not the file extension.</p>
-<p>KICS is able to infer the format without the need of file extension.</p>
-<hr />
-<h2 id="templates">Templates<a class="headerlink" href="#templates" title="Permanent link">&para;</a></h2>
-<h4 id="json_format">JSON Format<a class="headerlink" href="#json_format" title="Permanent link">&para;</a></h4>
-<pre><code class="language-JSON">{
-  &quot;exclude-categories&quot;: &quot;exclude categories by providing its name&quot;,
-  &quot;exclude-paths&quot;: &quot;exclude paths or files from scan&quot;,
-  &quot;exclude-queries&quot;: &quot;exclude queries by providing the query ID&quot;,
-  &quot;exclude-results&quot;: &quot;exclude results by providing a list of similarity IDs of a result&quot;,
-  &quot;exclude-severities&quot;: &quot;exclude results by providing the severity of a result&quot;,
-  &quot;libraries-path&quot;: &quot;path to directory with libraries (default \&quot;./assets/libraries\&quot;)&quot;,
-  &quot;log-file&quot;: true,
-  &quot;log-level&quot;: &quot;INFO&quot;,
-  &quot;log-path&quot;: &quot;path to the log file&quot;,
-  &quot;silent&quot;: false,
-  &quot;minimal-ui&quot;: false,
-  &quot;no-color&quot;: false,
-  &quot;no-progress&quot;: false,
-  &quot;output-name&quot;: &quot;name used on report creations (default \&quot;results\&quot;)&quot;,
-  &quot;output-path&quot;: &quot;directory path to store reports&quot;,
-  &quot;path&quot;: &quot;path to file or directory to scan&quot;,
-  &quot;payload-path&quot;: &quot;file path to store source internal representation in JSON format&quot;,
-  &quot;preview-lines&quot;: 3,
-  &quot;queries-path&quot;: &quot;path to directory with queries (default ./assets/queries) (default './assets/queries')&quot;,
-  &quot;report-formats&quot;: &quot;formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])&quot;,
-  &quot;type&quot;: &quot;type of queries to use in the scan&quot;,
-  &quot;timeout&quot;: &quot;number of seconds the query has to execute before being canceled&quot;,
-  &quot;verbose&quot;: true,
-  &quot;profiling&quot;: &quot;enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)&quot;,
-  &quot;disable-full-descriptions&quot;: &quot;disable request for full descriptions and use default vulnerability descriptions&quot;
-}
-</code></pre>
-<h4 id="yaml_format">YAML Format<a class="headerlink" href="#yaml_format" title="Permanent link">&para;</a></h4>
-<pre><code class="language-YAML">exclude-categories: &quot;exclude categories by providing its name&quot;
-exclude-paths: &quot;exclude paths or files from scan&quot;
-exclude-queries: &quot;exclude queries by providing the query ID&quot;
-exclude-results: &quot;exclude results by providing a list of similarity IDs of a result&quot;
-exclude-severities: &quot;exclude results by providing the severity of a result&quot;
-libraries-path: &quot;path to directory with libraries (default &quot;./assets/libraries&quot;)&quot;
-log-file: true
-log-level: INFO
-log-path: path to the log file
-minimal-ui: false
-no-color: false
-no-progress: false
-output-name: &quot;name used on report creations (default \&quot;results\&quot;)&quot;
-output-path: &quot;directory path to store reports&quot;
-path: &quot;path to file or directory to scan&quot;
-payload-path: &quot;file path to store source internal representation in JSON format&quot;
-preview-lines: 3
-profiling: &quot;enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)&quot;
-queries-path: &quot;path to directory with queries (default ./assets/queries) (default './assets/queries')&quot;
-report-formats: &quot;formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])&quot;
-silent: false
-type: &quot;type of queries to use in the scan&quot;
-timeout: &quot;number of seconds the query has to execute before being canceled&quot;
-verbose: true
-disable-full-descriptions: &quot;disable request for full descriptions and use default vulnerability descriptions&quot;
-</code></pre>
-<h4 id="toml_format">TOML Format<a class="headerlink" href="#toml_format" title="Permanent link">&para;</a></h4>
-<pre><code class="language-TOML">exclude-categories = &quot;exclude categories by providing its name&quot;
-exclude-paths = &quot;exclude paths or files from scan&quot;
-exclude-queries = &quot;exclude queries by providing the query ID&quot;
-exclude-results = &quot;exclude results by providing a list of similarity IDs of a result&quot;
-exclude-severities = &quot;exclude results by providing the severity of a result&quot;
-libraries-path = &quot;path to directory with libraries (default \&quot;./assets/libraries\&quot;)&quot;
-log-file = true
-log-level = &quot;INFO&quot;
-log-path = &quot;path to the log file&quot;
-minimal-ui = false
-no-color = false
-no-progress = false
-output-name = &quot;name used on report creations (default \&quot;results\&quot;)&quot;
-output-path = &quot;directory path to store reports&quot;
-path = &quot;path to file or directory to scan&quot;
-payload-path = &quot;file path to store source internal representation in JSON format&quot;
-preview-lines = 3
-profiling = &quot;enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)&quot;
-queries-path = &quot;path to directory with queries (default ./assets/queries) (default './assets/queries')&quot;
-report-formats = &quot;formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])&quot;
-silent = false
-type = &quot;type of queries to use in the scan&quot;
-timeout = &quot;number of seconds the query has to execute before being canceled&quot;
+<h4 id="toml">TOML<a class="headerlink" href="#toml" title="Permanent link">&para;</a></h4>
+<pre><code class="language-TOML">path = &quot;assets/iac_samples&quot;
 verbose = true
-disable-full-descriptions = &quot;disable request for full descriptions and use default vulnerability descriptions&quot;
+log-file = true
+type = &quot;Dockerfile,Kubernetes&quot;
+queries-path = &quot;assets/queries&quot;
+exclude-paths = [ &quot;foo/&quot;, &quot;bar/&quot; ]
+output-path = &quot;results&quot;
 </code></pre>
-<h4 id="hcl_format">HCL Format<a class="headerlink" href="#hcl_format" title="Permanent link">&para;</a></h4>
-<pre><code class="language-hcl">&quot;exclude-categories&quot; = &quot;exclude categories by providing its name&quot;
-&quot;exclude-paths&quot; = &quot;exclude paths or files from scan&quot;
-&quot;exclude-queries&quot; = &quot;exclude queries by providing the query ID&quot;
-&quot;exclude-results&quot; = &quot;exclude results by providing a list of similarity IDs of a result&quot;
-&quot;exclude-severities&quot; = &quot;exclude results by providing the severity of a result&quot;
-&quot;libraries-path&quot; = &quot;path to directory with libraries (default \&quot;./assets/libraries\&quot;)&quot;
-&quot;log-file&quot; = true
-&quot;log-level&quot; = &quot;INFO&quot;
-&quot;log-path&quot; = &quot;path to the log file&quot;
-&quot;minimal-ui&quot; = false
-&quot;no-color&quot; = false
-&quot;no-progress&quot; = false
-&quot;output-name&quot; = &quot;name used on report creations (default \&quot;results\&quot;)&quot;
-&quot;output-path&quot; = &quot;directory path to store reports&quot;
-&quot;path&quot; = &quot;path to file or directory to scan&quot;
-&quot;payload-path&quot; = &quot;file path to store source internal representation in JSON format&quot;
-&quot;preview-lines&quot; = 3
-&quot;profiling&quot; = &quot;enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)&quot;
-&quot;queries-path&quot; = &quot;path to directory with queries (default ./assets/queries) (default './assets/queries')&quot;
-&quot;report-formats&quot; = &quot;formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])&quot;
-&quot;silent&quot; = false
-&quot;type&quot; = &quot;type of queries to use in the scan&quot;
-&quot;timeout&quot; = &quot;number of seconds the query has to execute before being canceled&quot;
+<h4 id="hcl">HCL<a class="headerlink" href="#hcl" title="Permanent link">&para;</a></h4>
+<pre><code class="language-hcl">&quot;path&quot; = &quot;assets/iac_samples&quot;
 &quot;verbose&quot; = true
-&quot;disable-full-descriptions&quot; = &quot;disable request for full descriptions and use default vulnerability descriptions&quot;
+&quot;log-file&quot; = true
+&quot;type&quot; = &quot;Dockerfile,Kubernetes&quot;
+&quot;queries-path&quot; = &quot;assets/queries&quot;
+&quot;exclude-paths&quot; = [&quot;foo/&quot;, &quot;bar/&quot;]
+&quot;output-path&quot; = &quot;results&quot;
 </code></pre>
 <hr />
 <h2 id="how_to_use">How to Use<a class="headerlink" href="#how_to_use" title="Permanent link">&para;</a></h2>
