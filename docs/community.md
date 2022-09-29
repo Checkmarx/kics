@@ -16,7 +16,7 @@
 ## Contribution
 
 KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.
-[Check out how](docs/CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
+[Check out how](https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
 ## Meet us at conferences
 
