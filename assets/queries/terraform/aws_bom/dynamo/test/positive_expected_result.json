@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "BOM - AWS DynamoDB",
+    "severity": "TRACE",
+    "line": 21,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "BOM - AWS DynamoDB",
+    "severity": "TRACE",
+    "line": 21,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "BOM - AWS DynamoDB",
+    "severity": "TRACE",
+    "line": 21,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "BOM - AWS DynamoDB",
+    "severity": "TRACE",
+    "line": 1,
+    "fileName": "positive4.tf"
+  }
+]
