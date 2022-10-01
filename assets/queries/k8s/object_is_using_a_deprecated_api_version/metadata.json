@@ -2,9 +2,9 @@
   "id": "94b76ea5-e074-4ca2-8a03-c5a606e30645",
   "queryName": "Object Is Using A Deprecated API Version",
   "severity": "HIGH",
-  "category": "Insecure Configurations",
-  "descriptionText": "Check if any objects are using a deprecated version of API.",
-  "descriptionUrl": "https://kubernetes.io/docs/reference/using-api/deprecation-policy/",
+  "category": "Best Practices",
+  "descriptionText": "Kubernetes APIs evolve over time and are sometimes removed with newer releases. To prevent incompatibilities when upgrading Kubernetes, deprecated APIs should be replaced with newer and more stable API versions.",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/using-api/deprecation-guide/",
   "platform": "Kubernetes",
   "descriptionID": "d5c30c5b"
 }
