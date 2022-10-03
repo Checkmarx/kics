@@ -9,6 +9,8 @@ module "db" {
   instance_class    = "db.t2.large"
   allocated_storage = 5
   auto_minor_version_upgrade = true
+  backup_retention_period =  0
+
 
   name     = "demodb"
   username = "user"

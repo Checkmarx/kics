@@ -1,6 +1,6 @@
 //some comments (used just for resource offset)
 
-resource "aws_db_instance" "positive1" {
+resource "aws_db_instance" "negative1" {
   allocated_storage    = 20
   storage_type         = "gp2"
   engine               = "mysql"
@@ -9,5 +9,4 @@ resource "aws_db_instance" "positive1" {
   name                 = "mydb"
   username             = "foo"
   password             = "foobarbaz"
-  backup_retention_period =  0
 }
