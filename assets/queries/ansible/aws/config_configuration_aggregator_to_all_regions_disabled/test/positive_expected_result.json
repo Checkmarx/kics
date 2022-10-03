@@ -1,12 +1,12 @@
 [
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 10
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 24
   }
 ]
