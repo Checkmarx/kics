@@ -14,6 +14,6 @@
     key_ring: projects/{{ gcp_project }}/locations/us-central1/keyRings/key-key-ring
     project: test_project
     auth_kind: serviceaccount
-    rotation_period: 10000000s
+    rotation_period: 7776000s
     service_account_file: /tmp/auth.pem
     state: present
