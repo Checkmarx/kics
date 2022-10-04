@@ -7,7 +7,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_app_service[name]
 	php_version := resource.site_config.php_version
-    to_number(php_version) != to_number(get_version("php"))
+    to_number(php_version) != to_number(common_lib.get_version("php"))
     
 	result := {
 		"documentId": input.document[i].id,
@@ -25,7 +25,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_windows_web_app[name]
     php_version := resource.site_config.application_stack.php_version
-	php_version != concat("", ["v", get_version("php")])
+	php_version != concat("", ["v", common_lib.get_version("php")])
     
 	result := {
 		"documentId": input.document[i].id,
@@ -43,7 +43,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_linux_web_app[name]
     php_version := resource.site_config.application_stack.php_version
-	to_number(php_version) != to_number(get_version("php"))
+	to_number(php_version) != to_number(common_lib.get_version("php"))
     
 	result := {
 		"documentId": input.document[i].id,
@@ -55,10 +55,4 @@ CxPolicy[result] {
 		"keyActualValue": "'php_version' is not the latest avaliable stable version (8.1)",
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_linux_web_app", name, "site_config", "application_stack", "php_version"], []),
 	}
-}
-
-get_version(name) = version {
-	val := common_lib.get_latest_software_version(name)
-	splited := split(val, ".")
-	version := concat(".", [splited[0],splited[1]])
 }

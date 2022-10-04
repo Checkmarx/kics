@@ -7,7 +7,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_app_service[name]
 	python_version := resource.site_config.python_version
-    to_number(python_version) != to_number(get_version("python"))
+    to_number(python_version) != to_number(common_lib.get_version("python"))
     
 	result := {
 		"documentId": input.document[i].id,
@@ -25,7 +25,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_windows_web_app[name]
     python_version := resource.site_config.application_stack.python_version
-	python_version != concat("", ["v", get_version("python")])
+	python_version != concat("", ["v", common_lib.get_version("python")])
     
 	result := {
 		"documentId": input.document[i].id,
@@ -43,7 +43,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_linux_web_app[name]
     python_version := resource.site_config.application_stack.python_version
-	to_number(python_version) != to_number(get_version("python"))
+	to_number(python_version) != to_number(common_lib.get_version("python"))
     
 	result := {
 		"documentId": input.document[i].id,
@@ -57,8 +57,4 @@ CxPolicy[result] {
 	}
 }
 
-get_version(name) = version {
-	val := common_lib.get_latest_software_version(name)
-	splited := split(val, ".")
-	version := concat(".", [splited[0],splited[1]])
-}
+
