@@ -13,7 +13,7 @@ CxPolicy[result] {
 	bom_output = {
 		"resource_type": "AWS::RDS::DBInstance",
 		"resource_name": cf_lib.get_resource_name(resource, name),
-		"resource_engine": resource.Properties.Engine
+		"resource_engine": resource.Properties.Engine,
 		"resource_accessibility": accessibility,
 		"resource_encryption": get_db_instance_encryption(resource),
 		"resource_vendor": "AWS",
@@ -122,7 +122,7 @@ get_enc_for_aurora(resource) = encryption{
 	encryption := get_cluster_enc(cluster)
 }
 
-#get encytion for for the cluster
+# get encytion for for the cluster
 get_cluster_enc(resource)= encryption{
 	resource.Properties.StorageEncrypted == true
 	encryption := "encrypted"
