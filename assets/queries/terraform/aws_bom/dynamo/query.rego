@@ -31,10 +31,11 @@ CxPolicy[result] {
 }
 
 get_accessibility(resource, name) = info{
-	vpc_endpoint_policy := input.document[_].resource.aws_vpc_endpoint_policy[_]
-
-	policy := common_lib.json_unmarshal(vpc_endpoint_policy.policy)
-	info := policy_accessibility(policy, resource.name)
+	values := [x | 
+    vpc_endpoint_policy := input.document[_].resource.aws_vpc_endpoint_policy[_]
+    policy := common_lib.json_unmarshal(vpc_endpoint_policy.policy)
+    x := policy_accessibility(policy, resource.name)]
+    info := get_info(values)
 } else = info {
 	info := {"accessibility":"private", "policy": ""}
 }
@@ -45,10 +46,10 @@ policy_accessibility(policy, table_name) = info {
 
 	common_lib.is_allow_effect(statement)
 	common_lib.any_principal(statement.Principal)
+	check_actions(statement.Action)
 
 	resources_arn := get_resource_arn(statement.Resource)
-	has_all_or_dynamob_arn(resources_arn, table_name)
-	
+	has_all_or_dynamob_arn(resources_arn, table_name)	
 
 	info := {"accessibility":"public", "policy": policy}
 } else  = info {
@@ -81,6 +82,85 @@ get_encryption(resource) = encryption{
 	encryption := "unencrypted"
 }
 
+dynamo_actions := {
+	"dynamodb:DescribeContributorInsights",
+	"dynamodb:RestoreTableToPointInTime",
+	"dynamodb:UpdateGlobalTable",
+	"dynamodb:DeleteTable",
+	"dynamodb:UpdateTableReplicaAutoScaling",
+	"dynamodb:DescribeTable",
+	"dynamodb:PartiQLInsert",
+	"dynamodb:GetItem",
+	"dynamodb:DescribeContinuousBackups",
+	"dynamodb:DescribeExport",
+	"dynamodb:ListImports",
+	"dynamodb:EnableKinesisStreamingDestination",
+	"dynamodb:BatchGetItem",
+	"dynamodb:DisableKinesisStreamingDestination",
+	"dynamodb:UpdateTimeToLive",
+	"dynamodb:BatchWriteItem",
+	"dynamodb:PutItem",
+	"dynamodb:PartiQLUpdate",
+	"dynamodb:Scan",
+	"dynamodb:StartAwsBackupJob",
+	"dynamodb:UpdateItem",
+	"dynamodb:UpdateGlobalTableSettings",
+	"dynamodb:CreateTable",
+	"dynamodb:RestoreTableFromAwsBackup",
+	"dynamodb:GetShardIterator",
+	"dynamodb:DescribeReservedCapacity",
+	"dynamodb:ExportTableToPointInTime",
+	"dynamodb:DescribeBackup",
+	"dynamodb:UpdateTable",
+	"dynamodb:GetRecords",
+	"dynamodb:DescribeTableReplicaAutoScaling",
+	"dynamodb:DescribeImport",
+	"dynamodb:ListTables",
+	"dynamodb:DeleteItem",
+	"dynamodb:PurchaseReservedCapacityOfferings",
+	"dynamodb:CreateTableReplica",
+	"dynamodb:ListTagsOfResource",
+	"dynamodb:UpdateContributorInsights",
+	"dynamodb:CreateBackup",
+	"dynamodb:UpdateContinuousBackups",
+	"dynamodb:DescribeReservedCapacityOfferings",
+	"dynamodb:TagResource",
+	"dynamodb:PartiQLSelect",
+	"dynamodb:CreateGlobalTable",
+	"dynamodb:DescribeKinesisStreamingDestination",
+	"dynamodb:DescribeLimits",
+	"dynamodb:ImportTable",
+	"dynamodb:ListExports",
+	"dynamodb:UntagResource",
+	"dynamodb:ConditionCheckItem",
+	"dynamodb:ListBackups",
+	"dynamodb:Query",
+	"dynamodb:DescribeStream",
+	"dynamodb:DeleteTableReplica",
+	"dynamodb:DescribeTimeToLive",
+	"dynamodb:ListStreams",
+	"dynamodb:ListContributorInsights",
+	"dynamodb:DescribeGlobalTableSettings",
+	"dynamodb:ListGlobalTables",
+	"dynamodb:DescribeGlobalTable",
+	"dynamodb:RestoreTableFromBackup",
+	"dynamodb:DeleteBackup",
+	"dynamodb:PartiQLDelete",
+	"dynamodb:*"
+}
+
+check_actions(actions) {
+	common_lib.equalsOrInArray(actions, dynamo_actions[_])
+} else {
+	common_lib.equalsOrInArray(actions, "*")
+}
+
+get_info(info_arr)= info{
+	val := [ x | info_arr[x].accessibility == "public" ]
+	info := info_arr[val[0]]
+} else = info{
+	info := info_arr[0]
+}
 
 
 
