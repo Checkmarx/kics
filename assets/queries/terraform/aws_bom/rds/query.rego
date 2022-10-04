@@ -8,10 +8,10 @@ CxPolicy[result] {
 
 	accessibility := get_accessibility(resource)
 
-	bom_output = {		
+	bom_output = {
 		"resource_type": "aws_db_instance",
 		"resource_name": tf_lib.get_specific_resource_name(resource, "aws_db_instance", name),
-		"resource_engine": resource.engine
+		"resource_engine": resource.engine,
 		"resource_accessibility": accessibility,
 		"resource_encryption": get_db_instance_encryption(resource),
 		"resource_vendor": "AWS",
@@ -27,6 +27,32 @@ CxPolicy[result] {
 		"keyExpectedValue": "",
 		"keyActualValue": "",
 		"searchLine": common_lib.build_search_line(["resource", "aws_db_instance", name], []),
+		"value": json.marshal(final_bom_output),
+	}
+}
+
+CxPolicy[result] {
+	resource := input.document[i].resource.aws_rds_cluster_instance[name]
+
+	bom_output = {
+		"resource_type": "aws_rds_cluster_instance",
+		"resource_name": tf_lib.get_specific_resource_name(resource, "aws_rds_cluster_instance", name),
+		"resource_engine": get_rds_cluster_instance_engine(resource),
+		"resource_accessibility": get_accessibility(resource),
+		"resource_encryption": get_rds_cluster_instance_encryption(resource),
+		"resource_vendor": "AWS",
+		"resource_category": "Storage",
+	}
+
+	final_bom_output = common_lib.get_bom_output(bom_output, "")
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("aws_rds_cluster_instance[%s]", [name]),
+		"issueType": "BillOfMaterials",
+		"keyExpectedValue": "",
+		"keyActualValue": "",
+		"searchLine": common_lib.build_search_line(["resource", "aws_rds_cluster_instance", name], []),
 		"value": json.marshal(final_bom_output),
 	}
 }
@@ -60,4 +86,10 @@ get_rds_cluster_instance_encryption(resource)=encryption{
 	cluster_name := split(resource.cluster_identifier, ".")[1] 
 	cluster_resource := input.document[_].resource.aws_rds_cluster[cluster_name]
 	encryption := get_rds_cluster_encryption(resource)
+}
+
+get_rds_cluster_instance_engine(resource) = engine{
+	cluster_name := split(resource.engine, ".")[1] 
+	cluster_resource := input.document[_].resource.aws_rds_cluster[cluster_name]
+	engine := cluster_resource.engine
 }
