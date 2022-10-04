@@ -8,9 +8,10 @@ CxPolicy[result] {
 
 	accessibility := get_accessibility(resource)
 
-	bom_output = {
+	bom_output = {		
 		"resource_type": "aws_db_instance",
 		"resource_name": tf_lib.get_specific_resource_name(resource, "aws_db_instance", name),
+		"resource_engine": resource.engine
 		"resource_accessibility": accessibility,
 		"resource_encryption": get_db_instance_encryption(resource),
 		"resource_vendor": "AWS",
@@ -26,58 +27,6 @@ CxPolicy[result] {
 		"keyExpectedValue": "",
 		"keyActualValue": "",
 		"searchLine": common_lib.build_search_line(["resource", "aws_db_instance", name], []),
-		"value": json.marshal(final_bom_output),
-	}
-}
-
-CxPolicy[result] {
-	resource := input.document[i].resource.aws_db_instance[name]
-
-	bom_output = {
-		"resource_type": "aws_rds_cluster",
-		"resource_name": tf_lib.get_specific_resource_name(resource, "aws_rds_cluster", name),
-		"resource_accessibility": "",
-		"resource_encryption": get_db_instance_encryption(resource),
-		"resource_vendor": "AWS",
-		"resource_category": "Storage",
-	}
-
-	final_bom_output = common_lib.get_bom_output(bom_output, "")
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_rds_cluster[%s]", [name]),
-		"issueType": "BillOfMaterials",
-		"keyExpectedValue": "",
-		"keyActualValue": "",
-		"searchLine": common_lib.build_search_line(["resource", "aws_rds_cluster", name], []),
-		"value": json.marshal(final_bom_output),
-	}
-}
-
-CxPolicy[result] {
-	resource := input.document[i].resource.aws_rds_cluster_instance[name]
-
-	accessibility := get_accessibility(resource)
-
-	bom_output = {
-		"resource_type": "aws_rds_cluster_instance",
-		"resource_name": tf_lib.get_specific_resource_name(resource, "aws_rds_cluster_instance", name),
-		"resource_accessibility": accessibility,
-		"resource_encryption": get_db_instance_encryption(resource),
-		"resource_vendor": "AWS",
-		"resource_category": "Storage",
-	}
-
-	final_bom_output = common_lib.get_bom_output(bom_output, "")
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_rds_cluster_instance[%s]", [name]),
-		"issueType": "BillOfMaterials",
-		"keyExpectedValue": "",
-		"keyActualValue": "",
-		"searchLine": common_lib.build_search_line(["resource", "aws_rds_cluster_instance", name], []),
 		"value": json.marshal(final_bom_output),
 	}
 }
