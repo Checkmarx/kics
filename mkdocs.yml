@@ -90,6 +90,7 @@ nav:
       - Releases: releases.md
       - Performance: performance.md
   - Contribution: CONTRIBUTING.md
+  - Community: community.md
   - About: about.md
 
 extra_css:

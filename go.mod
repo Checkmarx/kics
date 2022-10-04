@@ -8,7 +8,7 @@ require (
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20211114212643-ec144ca0d701
-	github.com/aws/aws-sdk-go v1.44.101
+	github.com/aws/aws-sdk-go v1.44.109
 	github.com/cheggaaa/pb/v3 v3.1.0
 	github.com/emicklei/proto v1.11.0
 	github.com/getsentry/sentry-go v0.13.1-0.20220508072807-409df0940aad
@@ -33,7 +33,7 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.13.0
 	github.com/stretchr/testify v1.8.0
-	github.com/tdewolff/minify/v2 v2.12.1
+	github.com/tdewolff/minify/v2 v2.12.3
 	github.com/tidwall/gjson v1.14.3
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/yargevad/filepathx v1.0.0
@@ -167,7 +167,7 @@ require (
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/subosito/gotenv v1.4.1 // indirect
-	github.com/tdewolff/parse/v2 v2.6.3 // indirect
+	github.com/tdewolff/parse/v2 v2.6.4 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/tidwall/pretty v1.2.0 // indirect
 	github.com/ulikunitz/xz v0.5.8 // indirect
@@ -193,12 +193,12 @@ require (
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	k8s.io/api v0.25.1
+	k8s.io/api v0.25.2
 	k8s.io/apiextensions-apiserver v0.24.2 // indirect
-	k8s.io/apimachinery v0.25.1
+	k8s.io/apimachinery v0.25.2
 	k8s.io/apiserver v0.24.2 // indirect
 	k8s.io/cli-runtime v0.24.2 // indirect
-	k8s.io/client-go v0.25.1
+	k8s.io/client-go v0.25.2
 	k8s.io/component-base v0.24.2 // indirect
 	k8s.io/klog/v2 v2.70.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20220803162953-67bda5d908f1 // indirect

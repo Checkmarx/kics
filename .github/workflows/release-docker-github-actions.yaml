@@ -39,7 +39,7 @@ jobs:
           context: .
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: checkmarx/kics:gh-action
+          tags: checkmarx/kics:gh-action-kics1.6
           build-args: |
             VERSION=${{ github.event.inputs.version }}
             COMMIT=${{ github.sha }}

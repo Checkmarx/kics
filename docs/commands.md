@@ -66,6 +66,7 @@ Flags:
       --exclude-severities strings    exclude results by providing the severity of a result
                                       can be provided multiple times or as a comma separated string
                                       example: 'info,low'
+                                      possible values: 'high, medium, low, info, trace'
       --fail-on strings               which kind of results should return an exit code different from 0
                                       accepts: high, medium, low and info
                                       example: "high,low" (default [high,medium,low,info])
@@ -104,6 +105,21 @@ Global Flags:
       --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
   -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
   -v, --verbose             write logs to stdout too (mutually exclusive with silent)
+```
+
+## Auto Remediate Command Options
+
+```txt
+Auto remediates the project
+
+Usage:
+  kics remediate [flags]
+
+Flags:
+  -h, --help                  help for remediate
+      --include-ids strings   which remediation (similarity ids) should be remediated 
+                              example "f6b7acac2d541d8c15c88d2be51b0e6abd576750b71c580f2e3a9346f7ed0e67,6af5fc5d7c0ad0077348a090f7c09949369d24d5608bbdbd14376a15de62afd1" (default [all])
+      --results string        points to the JSON results file with remediation
 ```
 
 The other commands have no further options.
