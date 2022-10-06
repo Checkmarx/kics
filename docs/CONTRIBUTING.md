@@ -6,6 +6,10 @@ KICS is a true community project. It's built as an open source from day one, and
 
 Within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
+#### Community Meetings
+
+You're welcome to join our monthly [community meetings](community.md)
+
 #### Contribution Options
 
 Good news! You don't have to contribute code. There are plenty of ways you can contribute to KICS project:
