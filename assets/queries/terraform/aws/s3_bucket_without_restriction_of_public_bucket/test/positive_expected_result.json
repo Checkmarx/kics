@@ -2,20 +2,8 @@
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
     "severity": "HIGH",
-    "line": 14,
-    "filename": "positive1.tf"
-  },
-  {
-    "queryName": "S3 Bucket Without Restriction Of Public Bucket",
-    "severity": "HIGH",
     "line": 11,
     "filename": "positive1.tf"
-  },
-  {
-    "queryName": "S3 Bucket Without Restriction Of Public Bucket",
-    "severity": "HIGH",
-    "line": 1,
-    "filename": "positive3.tf"
   },
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
