@@ -104,9 +104,9 @@ get_engine(resource) = engine {
 } else = engine {
 	not common_lib.valid_key(resource, "snapshot_identifier")
 	replicate_source_db := resource.replicate_source_db
-	source_db_name := split(resource.engine, ".")[1] 
+	source_db_name := split(replicate_source_db, ".")[1] 
 	source_db := input.document[_].resource.aws_db_instance[source_db_name]
 	engine := source_db.engine
 } else = engine {
-	engine := unknown
+	engine := "unknown"
 }

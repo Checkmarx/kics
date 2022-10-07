@@ -32,3 +32,14 @@ resource "aws_db_instance" "default" {
   skip_final_snapshot  = true
 }
 
+resource "aws_db_instance" "sample3" {
+  allocated_storage    = 10
+  db_name              = "mydb"
+  engine_version       = "5.7"
+  instance_class       = "db.t3.micro"
+  username             = "foo"
+  password             = "foobarbaz"
+  parameter_group_name = "default.mysql5.7"
+  replicate_source_db  = aws_db_instance.default.id
+  skip_final_snapshot  = true
+}
