@@ -11,7 +11,7 @@ CxPolicy[result] {
 	bom_output = {
 		"resource_type": "aws_db_instance",
 		"resource_name": tf_lib.get_specific_resource_name(resource, "aws_db_instance", name),
-		"resource_engine": resource.engine,
+		"resource_engine": get_engine(resource),
 		"resource_accessibility": accessibility,
 		"resource_encryption": get_db_instance_encryption(resource),
 		"resource_vendor": "AWS",
@@ -92,4 +92,21 @@ get_rds_cluster_instance_engine(resource) = engine{
 	cluster_name := split(resource.engine, ".")[1] 
 	cluster_resource := input.document[_].resource.aws_rds_cluster[cluster_name]
 	engine := cluster_resource.engine
+} else = engine{
+	cluster_name := split(resource.engine, ".")[1] 
+	cluster_resource := input.document[_].resource.aws_rds_cluster[cluster_name]
+	not common_lib.valid_key(cluster_resource, "engine")
+	engine := "unknown"
+}
+
+get_engine(resource) = engine {
+	engine := resource.engine
+} else = engine {
+	not common_lib.valid_key(resource, "snapshot_identifier")
+	replicate_source_db := resource.replicate_source_db
+	source_db_name := split(resource.engine, ".")[1] 
+	source_db := input.document[_].resource.aws_db_instance[source_db_name]
+	engine := source_db.engine
+} else = engine {
+	engine := unknown
 }
