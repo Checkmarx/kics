@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "BOM - AWS RDS",
+    "severity": "TRACE",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "BOM - AWS RDS",
+    "severity": "TRACE",
+    "line": 23,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "BOM - AWS RDS",
+    "severity": "TRACE",
+    "line": 35,
+    "fileName": "positive1.tf"
+  }
+]
