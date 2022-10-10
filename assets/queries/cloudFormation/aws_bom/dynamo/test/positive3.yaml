@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  DynamoDBEndpoint:
+    Type: "AWS::EC2::VPCEndpoint"
+    Properties:
+      RouteTableIds:
+        - !Ref PublicRouteTable
+        - !Ref Private0RouteTable
+        - !Ref Private1RouteTable
+        - !Ref Private2RouteTable
+      ServiceName:
+        !Sub "com.amazonaws.${AWS::Region}.dynamodb"
+      VpcId: !Ref VPC
+      PolicyDocument: {
+        "Id": "Policy",
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "Statement",
+            "Action": "dynamodb:*",
+            "Effect": "Allow",
+            "Resource": "arn:aws:dynamodb:ap-southeast-2:123412341234:table/other",
+            "Principal": "*"
+          }
+        ]
+      }
+  DynamoDBOnDemandTable2:
+    Type: "AWS::DynamoDB::Table"
+    Properties:
+      TableName: test3
+      AttributeDefinitions:
+        - AttributeName: pk
+          AttributeType: S
+      KeySchema:
+        - AttributeName: pk
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+      SSESpecification:
+        SSEEnabled: false
+        SSEType: "KMS"
