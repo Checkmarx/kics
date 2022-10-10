@@ -718,7 +718,7 @@ get_latest_software_version(name) = version {
 }
 
 get_version(name) = version {
-	val := common_lib.get_latest_software_version(name)
+	val := get_latest_software_version(name)
 	splited := split(val, ".")
 	version := concat(".", [splited[0],splited[1]])
 }
