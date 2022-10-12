@@ -1432,19 +1432,19 @@
 <td align="center">policy</td>
 <td align="center">policy content (in case <code>resource_accessibility</code> equals hasPolicy)</td>
 <td align="center">No</td>
-<td align="center"><code>aws_efs_file_system</code>,<br /> <code>aws_s3_bucket</code>,<br /> <code>aws_sns_topic</code>,<br /> <code>aws_sqs_queue</code></td>
+<td align="center"><code>aws_efs_file_system</code>,<br /> <code>aws_s3_bucket</code>,<br /> <code>aws_sns_topic</code>,<br /> <code>aws_sqs_queue</code>,<br /> <code>aws_dynamodb_table</code></td>
 <td align="center">JSON marshalled</td>
 </tr>
 <tr>
 <td align="center">resource_accessibility</td>
-<td align="center">public, private, hasPolicy or unknown for <code>aws_ebs_volume</code>, <code>aws_efs_file_system</code>, <code>aws_mq_broker</code>, <code>aws_msk_cluster</code>, <code>aws_s3_bucket</code>,  <code>aws_sns_topic</code>, and <code>aws_sqs_queue</code> <br /> <br /> at least one security group associated with the elasticache is unrestricted, all security groups associated with the elasticache are restricted or unknown for <code>aws_elasticache_cluster</code></td>
+<td align="center">public, private, hasPolicy or unknown for <br /> <code>aws_ebs_volume</code>,<br /> <code>aws_efs_file_system</code>,<br /> <code>aws_mq_broker</code>,<br /> <code>aws_msk_cluster</code>,<br /> <code>aws_s3_bucket</code>,<br />  <code>aws_sns_topic</code>,<br /> <code>aws_sqs_queue</code>,<br /> <code>aws_db_instance</code>, <br /> <code>aws_rds_cluster_instance</code>,<br /> and <code>aws_dynamodb_table</code> <br /> <br /> at least one security group associated with the elasticache is unrestricted, all security groups associated with the elasticache are restricted or unknown for <code>aws_elasticache_cluster</code></td>
 <td align="center">Yes</td>
 <td align="center">all</td>
 <td align="center">string</td>
 </tr>
 <tr>
 <td align="center">resource_category</td>
-<td align="center">In Memory Data Structure for <code>aws_elasticache_cluster</code><br /><br />  Messaging for <code>aws_sns_topic</code><br /><br />  Queues for <code>aws_mq_broker</code> and <code>aws_sqs_queue</code><br /><br />  Storage for <code>aws_ebs_volume</code>, <code>aws_efs_file_system</code>, and <code>aws_s3_bucket</code><br /><br />  Streaming for <code>aws_msk_cluster</code></td>
+<td align="center">In Memory Data Structure for <code>aws_elasticache_cluster</code><br /><br />  Messaging for <code>aws_sns_topic</code><br /><br />  Queues for <code>aws_mq_broker</code> and <code>aws_sqs_queue</code><br /><br />  Storage for <code>aws_ebs_volume</code>, <code>aws_efs_file_system</code>, <code>aws_s3_bucket</code>,<br /> <code>aws_db_instance</code>, <br /> <code>aws_rds_cluster_instance</code>, and <code>aws_dynamodb_table</code>  <br /><br />  Streaming for <code>aws_msk_cluster</code></td>
 <td align="center">Yes</td>
 <td align="center">all</td>
 <td align="center">string</td>
@@ -1458,9 +1458,9 @@
 </tr>
 <tr>
 <td align="center">resource_engine</td>
-<td align="center">memcached, redis or unknown for <code>aws_elasticache_cluster</code><br /><br />  ActiveMQ or RabbitMQ for <code>aws_mq_broker</code></td>
+<td align="center">memcached, redis or unknown for <code>aws_elasticache_cluster</code><br /><br />  ActiveMQ or RabbitMQ for <code>aws_mq_broker</code> <br /><br /> parameter in <a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstance.html">API action CreateDBInstance</a> or unknown for <br /> <code>aws_db_instance</code>, and <br /> <code>aws_rds_cluster_instance</code></td>
 <td align="center">No</td>
-<td align="center"><code>aws_elasticache_cluster</code>, <br /> <code>aws_mq_broker</code></td>
+<td align="center"><code>aws_elasticache_cluster</code>, <br /> <code>aws_mq_broker</code>,<br /> <code>aws_db_instance</code>,<br /> <code>aws_rds_cluster_instance</code></td>
 <td align="center">string</td>
 </tr>
 <tr>
@@ -1472,7 +1472,7 @@
 </tr>
 <tr>
 <td align="center">resource_type</td>
-<td align="center">aws_ebs_volume for <code>aws_ebs_volume</code>,<br /> aws_efs_file_system for <code>aws_efs_file_system</code>,<br /> aws_elasticache_cluster for <code>aws_elasticache_cluster</code>,<br /> aws_mq_broker for <code>aws_mq_broker</code>,<br /> aws_msk_cluster for <code>aws_msk_cluster</code>,<br /> aws_s3_bucket for <code>aws_s3_bucket</code>,<br /> aws_sns_topic for <code>aws_sns_topic</code>, aws_sqs_queue for <code>aws_sqs_queue</code></td>
+<td align="center">aws_ebs_volume for <code>aws_ebs_volume</code>,<br /> aws_efs_file_system for <code>aws_efs_file_system</code>,<br /> aws_elasticache_cluster for <code>aws_elasticache_cluster</code>,<br /> aws_mq_broker for <code>aws_mq_broker</code>,<br /> aws_msk_cluster for <code>aws_msk_cluster</code>,<br /> aws_s3_bucket for <code>aws_s3_bucket</code>,<br /> aws_sns_topic for <code>aws_sns_topic</code>,<br /> aws_sqs_queue for <code>aws_sqs_queue</code> <br /> aws_db_instance for <code>aws_db_instance</code>,<br /> aws_rds_cluster_instance for <code>aws_rds_cluster_instance</code>,<br /> aws_dynamodb_table for <code>aws_dynamodb_table</code></td>
 <td align="center">Yes</td>
 <td align="center">all</td>
 <td align="center">string</td>
@@ -1592,19 +1592,19 @@
 <td align="center">policy</td>
 <td align="center">policy content (in case <code>resource_accessibility</code> equals hasPolicy)</td>
 <td align="center">No</td>
-<td align="center"><code>AWS::EFS::FileSystem</code>,<br /> <code>AWS::S3::Bucket</code>,<br /> <code>AWS::SNS::Topic</code>,<br /> <code>AWS::SQS::Queue</code></td>
+<td align="center"><code>AWS::EFS::FileSystem</code>,<br /> <code>AWS::S3::Bucket</code>,<br /> <code>AWS::SNS::Topic</code>,<br /> <code>AWS::SQS::Queue</code>,<br /> <code>AWS::DynamoDB::Table</code></td>
 <td align="center">JSON marshalled</td>
 </tr>
 <tr>
 <td align="center">resource_accessibility</td>
-<td align="center">public, private, hasPolicy or unknown for <code>AWS::EC2::Volume</code>, <code>AWS::EFS::FileSystem</code>, <code>AWS::AmazonMQ::Broker</code>, <code>AWS::MSK::Cluster</code>, <code>AWS::S3::Bucket</code>,  <code>AWS::SNS::Topic</code>, and <code>AWS::SQS::Queue</code> <br /> <br /> at least one security group associated with the elasticache is unrestricted, all security groups associated with the elasticache are restricted or unknown for <code>AWS::ElastiCache::CacheCluster</code></td>
+<td align="center">public, private, hasPolicy or unknown for <br /><code>AWS::EC2::Volume</code>,<br /><code>AWS::EFS::FileSystem</code>,<br /><code>AWS::AmazonMQ::Broker</code>,<br /><code>AWS::MSK::Cluster</code>,<br /><code>AWS::S3::Bucket</code>, <br /><code>AWS::SNS::Topic</code>,<br /><code>AWS::SQS::Queue</code>,<br /><code>AWS::RDS::DBInstance</code>,<br />and <code>AWS::DynamoDB::Table</code> <br /> <br /> at least one security group associated with the elasticache is unrestricted, all security groups associated with the elasticache are restricted or unknown for <code>AWS::ElastiCache::CacheCluster</code></td>
 <td align="center">Yes</td>
 <td align="center">all</td>
 <td align="center">string</td>
 </tr>
 <tr>
 <td align="center">resource_category</td>
-<td align="center">In Memory Data Structure for <code>AWS::ElastiCache::CacheCluster</code><br /><br />  Messaging for <code>AWS::SNS::Topic</code><br /><br />  Queues for <code>AWS::AmazonMQ::Broker</code> and <code>AWS::SQS::Queue</code><br /><br />  Storage for <code>AWS::EC2::Volume</code>, <code>AWS::EFS::FileSystem</code>, and <code>AWS::S3::Bucket</code><br /><br />  Streaming for <code>AWS::MSK::Cluster</code></td>
+<td align="center">In Memory Data Structure for <code>AWS::ElastiCache::CacheCluster</code><br /><br />  Messaging for <code>AWS::SNS::Topic</code><br /><br />  Queues for <code>AWS::AmazonMQ::Broker</code> and <code>AWS::SQS::Queue</code><br /><br />  Storage for <code>AWS::EC2::Volume</code>, <code>AWS::EFS::FileSystem</code>, <code>AWS::S3::Bucket</code>, <code>AWS::RDS::DBInstance</code>, and <code>AWS::DynamoDB::Table</code><br /><br />  Streaming for <code>AWS::MSK::Cluster</code></td>
 <td align="center">Yes</td>
 <td align="center">all</td>
 <td align="center">string</td>
@@ -1618,9 +1618,9 @@
 </tr>
 <tr>
 <td align="center">resource_engine</td>
-<td align="center">memcached, redis or unknown for <code>AWS::ElastiCache::CacheCluster</code><br /><br />  ACTIVEMQ or RABBITMQ for <code>AWS::AmazonMQ::Broker</code></td>
+<td align="center">memcached, redis or unknown for <code>AWS::ElastiCache::CacheCluster</code><br /><br />  ACTIVEMQ or RABBITMQ for <code>AWS::AmazonMQ::Broker</code> <br /><br /> aurora, aurora-mysql, aurora-postgresql, mariadb, mysql, oracle-ee, oracle-ee-cdb, oracle-se2, oracle-se2-cdb, postgres, sqlserver-ee, sqlserver-se, sqlserver-ex, sqlserver-web or unknown for <code>AWS::RDS::DBInstance</code></td>
 <td align="center">No</td>
-<td align="center"><code>AWS::ElastiCache::CacheCluster</code>, <br /> <code>AWS::AmazonMQ::Broker</code></td>
+<td align="center"><code>AWS::ElastiCache::CacheCluster</code>, <br /> <code>AWS::AmazonMQ::Broker</code>,<br /> <code>AWS::RDS::DBInstance</code></td>
 <td align="center">string</td>
 </tr>
 <tr>
@@ -1632,7 +1632,7 @@
 </tr>
 <tr>
 <td align="center">resource_type</td>
-<td align="center">AWS::EC2::Volume for <code>AWS::EC2::Volume</code>,<br /> AWS::EFS::FileSystem for <code>AWS::EFS::FileSystem</code>,<br /> AWS::ElastiCache::CacheCluster for <code>AWS::ElastiCache::CacheCluster</code>,<br /> AWS::AmazonMQ::Broker for <code>AWS::AmazonMQ::Broker</code>,<br /> AWS::MSK::Cluster for <code>AWS::MSK::Cluster</code>,<br /> AWS::S3::Bucket for <code>AWS::S3::Bucket</code>,<br /> AWS::SNS::Topic for <code>AWS::SNS::Topic</code>, AWS::SQS::Queue for <code>AWS::SQS::Queue</code></td>
+<td align="center">AWS::EC2::Volume for <code>AWS::EC2::Volume</code>,<br /> AWS::EFS::FileSystem for <code>AWS::EFS::FileSystem</code>,<br /> AWS::ElastiCache::CacheCluster for <code>AWS::ElastiCache::CacheCluster</code>,<br /> AWS::AmazonMQ::Broker for <code>AWS::AmazonMQ::Broker</code>,<br /> AWS::MSK::Cluster for <code>AWS::MSK::Cluster</code>,<br /> AWS::S3::Bucket for <code>AWS::S3::Bucket</code>,<br /> AWS::SNS::Topic for <code>AWS::SNS::Topic</code>, <br/>AWS::SQS::Queue for <code>AWS::SQS::Queue</code>,<br/> AWS::RDS::DBInstance for <code>AWS::RDS::DBInstance</code>,<br /> AWS::DynamoDB::Table for <code>AWS::DynamoDB::Table</code></td>
 <td align="center">Yes</td>
 <td align="center">all</td>
 <td align="center">string</td>
