@@ -1,30 +1,30 @@
 [
   {
-    "queryName": "BOM - SNS",
+    "queryName": "BOM - AWS SNS",
     "severity": "TRACE",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "BOM - SNS",
+    "queryName": "BOM - AWS SNS",
     "severity": "TRACE",
     "line": 1,
     "fileName": "positive2.tf"
   },
   {
-    "queryName": "BOM - SNS",
+    "queryName": "BOM - AWS SNS",
     "severity": "TRACE",
     "line": 1,
     "fileName": "positive3.tf"
   },
   {
-    "queryName": "BOM - SNS",
+    "queryName": "BOM - AWS SNS",
     "severity": "TRACE",
     "line": 1,
     "fileName": "positive4.tf"
   },
   {
-    "queryName": "BOM - SNS",
+    "queryName": "BOM - AWS SNS",
     "severity": "TRACE",
     "line": 1,
     "fileName": "positive5.tf"

@@ -34,7 +34,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s].addon_profile.azure_policy.enabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].addon_profile.azure_policy.enabled' is set to true", [name]),
+		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].addon_profile.azure_policy.enabled' should be set to true", [name]),
 		"keyActualValue": sprintf("'azurerm_kubernetes_cluster[%s].addon_profile.azure_policy.enabled' is set to false", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_kubernetes_cluster", name, "addon_profile", "azure_policy", "enabled"], []),
 		"remediation": json.marshal({
@@ -58,7 +58,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s].azure_policy_enabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].azure_policy_enabled' is set to true", [name]),
+		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].azure_policy_enabled' should be set to true", [name]),
 		"keyActualValue": sprintf("'azurerm_kubernetes_cluster[%s].azure_policy_enabled' is set to false", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_kubernetes_cluster", name, "azure_policy_enabled"], []),
 		"remediation": json.marshal({

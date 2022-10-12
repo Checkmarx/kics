@@ -2,7 +2,7 @@ name: go-ci-integration
 
 on:
   pull_request:
-    branches: [master, release/1.6]
+    branches: [master]
 
 jobs:
   integration-tests:
@@ -20,7 +20,7 @@ jobs:
           persist-credentials: false
       - name: Set up Docker Buildx
         id: buildx
-        uses: docker/setup-buildx-action@master
+        uses: docker/setup-buildx-action@v2
       - name: Cache Docker layers
         uses: actions/cache@v3
         with:
@@ -32,7 +32,7 @@ jobs:
         run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-8)" >> $GITHUB_ENV
       - name: Build
         id: docker_build
-        uses: docker/build-push-action@v3.1.0
+        uses: docker/build-push-action@v3.1.1
         with:
           load: true
           context: ./
@@ -59,7 +59,7 @@ jobs:
             -p "/path" \
             -o "/path/"
       - name: Archive test logs
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: always()
         with:
           name: integration-logs-${{ github.event.pull_request.head.sha }}
@@ -68,7 +68,7 @@ jobs:
         run: |
           cat  ${PWD}/assets/queries/results.json
       - name: Archive test results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: integration-results-${{ github.event.pull_request.head.sha }}
           path: assets/queries/results.json

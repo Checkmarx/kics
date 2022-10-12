@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"sync"
 
+	"github.com/Checkmarx/kics/pkg/builder/engine"
 	"github.com/Checkmarx/kics/pkg/parser/terraform/functions"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hcldec"
@@ -106,7 +107,7 @@ func getDataSourcePolicy(currentPath string) {
 	}
 	data, err := gocty.ToCtyValue(policyResource, cty.Map(cty.Map(cty.Map(cty.String))))
 	if err != nil {
-		log.Error().Msg("Error trying to convert policy to cty value.")
+		log.Error().Msgf("Error trying to convert policy to cty value: %s", err)
 		return
 	}
 
@@ -118,13 +119,13 @@ func getDataSourcePolicy(currentPath string) {
 func decodeDataSourcePolicy(value cty.Value) dataSourcePolicy {
 	jsonified, err := ctyjson.Marshal(value, cty.DynamicPseudoType)
 	if err != nil {
-		log.Error().Msg("Error trying to decode data source block.")
+		log.Error().Msgf("Error trying to decode data source block: %s", err)
 		return dataSourcePolicy{}
 	}
 	var data dataSource
 	err = json.Unmarshal(jsonified, &data)
 	if err != nil {
-		log.Error().Msg("Error trying to encode data source json.")
+		log.Error().Msgf("Error trying to encode data source json: %s", err)
 		return dataSourcePolicy{}
 	}
 	return data.Value
@@ -230,14 +231,22 @@ func parseDataSourceBody(body *hclsyntax.Body) string {
 		"statement": getStatementSpec(),
 	}
 
+	resolveDataResources(body)
+
 	target, decodeErrs := hcldec.Decode(body, dataSourceSpec, &hcl.EvalContext{
 		Variables: inputVariableMap,
 		Functions: functions.TerraformFuncs,
 	})
-	if decodeErrs != nil {
-		log.Debug().Msg("Error trying to eval data source block.")
-		return ""
+
+	// check decode errors
+	for _, decErr := range decodeErrs {
+		if decErr.Summary != "Unknown variable" {
+			log.Debug().Msgf("Error trying to eval data source block: %s", decErr.Summary)
+			return ""
+		}
+		log.Debug().Msg("Dismissed Error when decoding policy: Found unknown variable")
 	}
+
 	dataSourceJSON := decodeDataSourcePolicy(target)
 	convertedDataSource := convertedPolicy{
 		ID:      dataSourceJSON.ID,
@@ -285,8 +294,36 @@ func parseDataSourceBody(body *hclsyntax.Body) string {
 	encoder.SetEscapeHTML(false)
 	err := encoder.Encode(convertedDataSource)
 	if err != nil {
-		log.Error().Msg("Error trying to encoding data source json.")
+		log.Error().Msgf("Error trying to encoding data source json: %s", err)
 		return ""
 	}
 	return buffer.String()
+}
+
+// resolveDataResources resolves the data resources expressions into LiteralValueExpr
+func resolveDataResources(body *hclsyntax.Body) {
+	for _, block := range body.Blocks {
+		if resources, ok := block.Body.Attributes["resources"]; ok &&
+			block.Type == "statement" {
+			resolveTuple(resources.Expr)
+		}
+	}
+}
+
+func resolveTuple(expr hclsyntax.Expression) {
+	e := engine.Engine{}
+	if v, ok := expr.(*hclsyntax.TupleConsExpr); ok {
+		for i, ex := range v.Exprs {
+			striExpr, err := e.ExpToString(ex)
+
+			if err != nil {
+				log.Error().Msgf("Error trying to ExpToString: %s", err)
+			}
+
+			v.Exprs[i] = &hclsyntax.LiteralValueExpr{
+				Val:      cty.StringVal(striExpr),
+				SrcRange: v.Exprs[i].Range(),
+			}
+		}
+	}
 }

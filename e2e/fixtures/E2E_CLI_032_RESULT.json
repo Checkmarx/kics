@@ -45,7 +45,7 @@
 					"search_key": "Resources.ALBListener.Properties.Protocol",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "'Resources.ALBListener.Protocol' not equal to 'HTTP'",
+					"expected_value": "'Resources.ALBListener.Protocol' should not equal to 'HTTP'",
 					"actual_value": "'Resources.ALBListener.Protocol' equals to 'HTTP'"
 				}
 			]
@@ -71,7 +71,7 @@
 					"search_key": "Resources.TaskDefinition.Properties",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "'Resources.TaskDefinition.Properties.NetworkMode' is set and is 'awsvpc'",
+					"expected_value": "'Resources.TaskDefinition.Properties.NetworkMode' should be set and should be 'awsvpc'",
 					"actual_value": "'Resources.TaskDefinition.Properties.NetworkMode' is undefined and defaults to 'bridge'"
 				}
 			]
@@ -175,7 +175,7 @@
 					"search_key": "Resources.ECSALB",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "'Resources.ECSALB' does not have an 'internal' scheme and has a 'WebACLAssociation' associated",
+					"expected_value": "'Resources.ECSALB' should not have an 'internal' scheme and should have a 'WebACLAssociation' associated",
 					"actual_value": "'Resources.ECSALB' does not have an 'internal' scheme and a 'WebACLAssociation' associated"
 				}
 			]
@@ -201,7 +201,7 @@
 					"search_key": "Resources.ECSAutoScalingGroup.Properties",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "'Resources.ECSAutoScalingGroup.Properties.LoadBalancerNames' is defined",
+					"expected_value": "'Resources.ECSAutoScalingGroup.Properties.LoadBalancerNames' should be defined",
 					"actual_value": "'Resources.ECSAutoScalingGroup.Properties.LoadBalancerNames' is not defined"
 				}
 			]
@@ -227,7 +227,7 @@
 					"search_key": "Resources.service.Properties",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "Resources.service.Properties.DeploymentConfiguration is defined and not null",
+					"expected_value": "Resources.service.Properties.DeploymentConfiguration should be defined and not null",
 					"actual_value": "Resources.service.Properties.DeploymentConfiguration is undefined or null"
 				}
 			]
@@ -331,7 +331,7 @@
 					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort",
+					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort should equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort",
 					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is not equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort"
 				},
 				{
@@ -344,7 +344,7 @@
 					"search_key": "Resources.EcsSecurityGroupALBports.Properties",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is equal to Resources.EcsSecurityGroupALBports.Properties.ToPort",
+					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort should equal to Resources.EcsSecurityGroupALBports.Properties.ToPort",
 					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is not equal to Resources.EcsSecurityGroupALBports.Properties.ToPort"
 				},
 				{
@@ -357,7 +357,7 @@
 					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort",
+					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort should equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort",
 					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is not equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort"
 				}
 			]
@@ -383,7 +383,7 @@
 					"search_key": "Resources.TaskDefinition.Properties.ContainerDefinitions",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' contains 'HealthCheck' property",
+					"expected_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' should contain 'HealthCheck' property",
 					"actual_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property"
 				},
 				{
@@ -396,7 +396,7 @@
 					"search_key": "Resources.TaskDefinition.Properties.ContainerDefinitions",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' contains 'HealthCheck' property",
+					"expected_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' should contain 'HealthCheck' property",
 					"actual_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property"
 				}
 			]
@@ -448,7 +448,7 @@
 					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description is set",
+					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description should be set",
 					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description is undefined"
 				},
 				{
@@ -461,7 +461,7 @@
 					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is set",
+					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description should be set",
 					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is undefined"
 				},
 				{
@@ -474,7 +474,7 @@
 					"search_key": "Resources.EcsSecurityGroupALBports.Properties",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.Description is set",
+					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.Description should be set",
 					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.Description is undefined"
 				}
 			]

@@ -1,14 +1,16 @@
 package file
 
 import (
-	"github.com/Checkmarx/kics/test"
-	"gopkg.in/yaml.v3"
+	"encoding/json"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"reflect"
 	"strings"
 	"testing"
+
+	"github.com/Checkmarx/kics/test"
+	"gopkg.in/yaml.v3"
 )
 
 func TestResolver_Resolve(t *testing.T) {
@@ -37,23 +39,35 @@ func TestResolver_Resolve(t *testing.T) {
 				path: filepath.ToSlash("test/fixtures/unresolved_openapi/responses/_index.yaml"),
 			},
 			want: []byte(
-				`NullResponse:
-            description: Null response
-        UnexpectedError:
-            content:
-                application/json:
-                    schema:
-                        properties:
-                            code:
-                                format: int32
-                                type: integer
-                            message:
-                                type: string
-                        required:
-                            - code
-                            - message
-                        type: object
-            description: unexpected error`),
+				`UnexpectedError:
+					description: unexpected error
+					content:
+					application/json:
+						schema:
+							type: object
+							required:
+							- code
+							- message
+							properties:
+							code:
+								type: integer
+								format: int32
+							message:
+								type: string		
+		NullResponse:
+            description: Null response`),
+		},
+		{
+			name: "json test",
+			fields: fields{
+				Resolver: NewResolver(json.Unmarshal, json.Marshal, []string{".json"}),
+			},
+			args: args{
+				path: filepath.ToSlash("test/fixtures/unresolved_openapi_json/openapi.json"),
+			},
+			want: []byte(
+				"{\"info\":{\"title\":\"Reference in reference example\",\"version\":\"1.0.0\"},\"openapi\":\"3.0.3\",\"paths\":{\"/api/test/ref/in/ref\":{\"post\":{\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"definition_reference\":{\"$ref\":\"definitions.json#/definitions/External\"}},\"required\":[\"definition_reference\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"id\":{\"format\":\"int32\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}}}}}}",
+			),
 		},
 	}
 	for _, tt := range tests {

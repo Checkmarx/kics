@@ -1,3 +1,4 @@
+// Package scan implements functions and helpers to ensure the proper scan of the specified files
 package scan
 
 import (
@@ -43,7 +44,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 	progressBar := c.ProBarBuilder.BuildCircle("Preparing Scan Assets: ")
 	go progressBar.Start()
 
-	extractedPaths, err := c.prepareAndAnalyzePaths()
+	extractedPaths, err := c.prepareAndAnalyzePaths(ctx)
 	if err != nil {
 		log.Err(err)
 		return nil, err

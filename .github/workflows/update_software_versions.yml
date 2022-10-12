@@ -1,0 +1,41 @@
+name: update-software-versions
+on:
+  workflow_dispatch:
+jobs:
+  update-software-versions:
+    name: update software versions to latest
+    runs-on: ubuntu-latest    
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+      - name: Run update_versions script
+        run: |
+          pip3 install -r .github/scripts/update_versions/requirements.txt
+          python3 .github/scripts/update_versions/update.py
+      - name: Verify Changed files
+        uses: tj-actions/verify-changed-files@v11.1
+        id: verify-changed-files
+        with:
+          files: |
+             *.json
+      - name: Create pull request
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
+        uses: peter-evans/create-pull-request@v4
+        with:
+          title: "bump: updating software versions"
+          token: ${{ secrets.KICS_BOT_PAT }}
+          commit-message: "bump: updating software versions to new release"
+          delete-branch: true
+          branch: feature/kicsbot-software-versions
+          base: master
+          body: |
+            **Automated Changes**
+            Updating assets/libraries/common.json software versions
+            Triggered by SHA: _${{ github.sha }}_
+          labels: enhancement
+

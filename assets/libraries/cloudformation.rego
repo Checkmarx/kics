@@ -9,6 +9,7 @@ isCloudFormationFalse(answer) {
 } else {
 	answer == false
 }
+
 # Find out if the document has a resource type equals to 'AWS::SecretsManager::Secret'
 hasSecretManager(str, document) {
 	selectedSecret := strings.replace_n({"${": "", "}": ""}, regex.find_n(`\${\w+}`, str, 1)[0])
@@ -28,57 +29,57 @@ isLoadBalancer(resource) {
 # Check if there is an action inside an array
 checkAction(currentAction, actionToCompare) {
 	is_string(currentAction)
-    currentAction == "*"
-    currentAction == actionToCompare
+	currentAction == "*"
+	currentAction == actionToCompare
 } else {
-    is_string(currentAction)
+	is_string(currentAction)
 	contains(lower(currentAction), actionToCompare)
 } else {
-    is_array(currentAction)
-    action := currentAction[_]
-    action == "*"
-    action == actionToCompare
+	is_array(currentAction)
+	action := currentAction[_]
+	action == "*"
+	action == actionToCompare
 } else {
-    is_array(currentAction)
-    action := currentAction[_]
-    contains(lower(action), actionToCompare)
+	is_array(currentAction)
+	action := currentAction[_]
+	contains(lower(action), actionToCompare)
 }
 
 # Dictionary of UDP ports
 udpPortsMap = {
-    53: "DNS",
-    137: "NetBIOS Name Service",
-    138: "NetBIOS Datagram Service",
-    139: "NetBIOS Session Service",
-    161: "SNMP",
-    389: "LDAP",
-    1434: "MSSQL Browser",
-    2483: "Oracle DB SSL",
-    2484: "Oracle DB SSL",
-    5432: "PostgreSQL",
-    11211: "Memcached",
-    11214: "Memcached SSL",
-    11215: "Memcached SSL",
+	53: "DNS",
+	137: "NetBIOS Name Service",
+	138: "NetBIOS Datagram Service",
+	139: "NetBIOS Session Service",
+	161: "SNMP",
+	389: "LDAP",
+	1434: "MSSQL Browser",
+	2483: "Oracle DB SSL",
+	2484: "Oracle DB SSL",
+	5432: "PostgreSQL",
+	11211: "Memcached",
+	11214: "Memcached SSL",
+	11215: "Memcached SSL",
 }
 
 # Get content of the resource(s) based on the type
 getResourcesByType(resources, type) = list {
-    list = [resource | resources[i].Type == type; resource := resources[i]]
+	list = [resource | resources[i].Type == type; resource := resources[i]]
 }
 
 getBucketName(resource) = name {
 	name := resource.Properties.Bucket
-    not common_lib.valid_key(name, "Ref")
+	not common_lib.valid_key(name, "Ref")
 } else = name {
 	name := resource.Properties.Bucket.Ref
 }
 
 get_encryption(resource) = encryption {
 	resource.Properties.Encrypted == true
-    encryption := "encrypted"
+	encryption := "encrypted"
 } else = encryption {
-    fields := {"KmsMasterKeyId", "EncryptionInfo", "EncryptionOptions", "BucketEncryption"}
-    common_lib.valid_key(resource.Properties, fields[_])
+	fields := {"KmsMasterKeyId", "EncryptionInfo", "EncryptionOptions", "BucketEncryption"}
+	common_lib.valid_key(resource.Properties, fields[_])
 	encryption := "encrypted"
 } else = encryption {
 	encryption := "unencrypted"
@@ -101,13 +102,13 @@ get_resource_accessibility(nameRef, type, key) = info {
 
 	get_name(keys) == nameRef
 
-	policyDoc := policy.Properties.PolicyDocument
-	common_lib.any_principal(policyDoc)
-	common_lib.is_allow_effect(policyDoc)
+	statement := common_lib.get_statement(policy.Properties.PolicyDocument)
+	common_lib.any_principal(statement)
+	common_lib.is_allow_effect(statement)
 
-	info := {"accessibility": "public", "policy": policyDoc}
+	info := {"accessibility": "public", "policy": policy.Properties.PolicyDocument}
 } else = info {
-    document := input.document
+	document := input.document
 	policy := document[_].Resources[_]
 	policy.Type == type
 
@@ -115,13 +116,13 @@ get_resource_accessibility(nameRef, type, key) = info {
 
 	get_name(keys[_]) == nameRef
 
-	policyDoc := policy.Properties.PolicyDocument
-	common_lib.any_principal(policyDoc)
-	common_lib.is_allow_effect(policyDoc)
+	statement := common_lib.get_statement(policy.Properties.PolicyDocument)
+	common_lib.any_principal(statement)
+	common_lib.is_allow_effect(statement)
 
-	info := {"accessibility": "public", "policy": policyDoc}
+	info := {"accessibility": "public", "policy": policy.Properties.PolicyDocument}
 } else = info {
-    document := input.document
+	document := input.document
 	policy := document[_].Resources[_]
 	policy.Type == type
 
@@ -131,7 +132,7 @@ get_resource_accessibility(nameRef, type, key) = info {
 
 	info := {"accessibility": "hasPolicy", "policy": policy.Properties.PolicyDocument}
 } else = info {
-    document := input.document
+	document := input.document
 	policy := document[_].Resources[_]
 	policy.Type == type
 
@@ -145,7 +146,7 @@ get_resource_accessibility(nameRef, type, key) = info {
 }
 
 resourceFieldName = {
-	"AWS::Config::ConfigRule": "ConfigRuleName",  
+	"AWS::Config::ConfigRule": "ConfigRuleName",
 	"AWS::ElasticLoadBalancing::LoadBalancer": "LoadBalancerName",
 	"AWS::ElasticLoadBalancingV2::LoadBalancer": "Name",
 	"Alexa::ASK::Skill": "",
@@ -156,7 +157,7 @@ resourceFieldName = {
 	"AWS::ApiGateway::Deployment": "StageName",
 	"AWS::ApiGateway::RestApi": "Name",
 	"AWS::ApiGateway::Method": "OperationName",
-	"AWS::ApiGateway::Authorizer": "Name", 
+	"AWS::ApiGateway::Authorizer": "Name",
 	"AWS::ApiGatewayV2::Authorizer": "Name",
 	"AWS::ApiGatewayV2::Api": "Name",
 	"AWS::ApiGateway::DomainName": "DomainName",
@@ -246,4 +247,14 @@ get_resource_name(resource, resourceDefinitionName) = name {
 	name := common_lib.get_tag_name_if_exists(resource)
 } else = name {
 	name := resourceDefinitionName
+}
+
+getPath(path) = result {
+	count(path) > 0
+	path_string := common_lib.concat_path(path)
+	out := array.concat([path_string], ["."])
+	result := concat("", out)
+} else = result {
+	count(path) == 0
+	result := ""
 }

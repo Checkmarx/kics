@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "DB Instance Storage Not Encrypted",
+    "severity": "HIGH",
+    "line": 21,
+    "fileName": "positive.yaml"
+  },
+  {
+    "queryName": "DB Instance Storage Not Encrypted",
+    "severity": "HIGH",
+    "line": 63,
+    "fileName": "positive.yaml"
+  },
+  {
+    "queryName": "DB Instance Storage Not Encrypted",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "DB Instance Storage Not Encrypted",
+    "severity": "HIGH",
+    "line": 47,
+    "fileName": "positive2.yaml"
+  } 
+]

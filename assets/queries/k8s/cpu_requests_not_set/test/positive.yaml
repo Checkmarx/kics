@@ -4,18 +4,41 @@ metadata:
   name: frontend
 spec:
   containers:
-  - name: app
-    image: images.my-company.example/app:v4
-    resources:
-      requests:
-        memory: "64Mi"
-      limits:
-        memory: "128Mi"
-        cpu: "500m"
-
-  - name: log-aggregator
-    image: images.my-company.example/log-aggregator:v6
-    resources:
-      limits:
-        memory: "128Mi"
-        cpu: "500m"
+    - name: app
+      image: images.my-company.example/app:v4
+      resources:
+        requests:
+          memory: "64Mi"
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+    - name: log-aggregator
+      image: images.my-company.example/log-aggregator:v6
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+---
+apiVersion: serving.knative.dev/v1
+kind: Configuration
+metadata:
+  name: dummy-config
+  namespace: knative-sequence
+spec:
+  template:
+    spec:
+      containers:
+        - name: app
+          image: images.my-company.example/app:v4
+          resources:
+            requests:
+              memory: "64Mi"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+        - name: log-aggregator
+          image: images.my-company.example/log-aggregator:v6
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"

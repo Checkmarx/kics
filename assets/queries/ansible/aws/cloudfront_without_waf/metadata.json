@@ -1,6 +1,6 @@
 {
   "id": "22c80725-e390-4055-8d14-a872230f6607",
-  "queryName": "Cloudfront Without WAF",
+  "queryName": "CloudFront Without WAF",
   "severity": "LOW",
   "category": "Networking and Firewall",
   "descriptionText": "All AWS CloudFront distributions should be integrated with the Web Application Firewall (AWS WAF) service",

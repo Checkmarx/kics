@@ -1,0 +1,38 @@
+apiVersion: cloudwatchlogs.aws.crossplane.io/v1alpha1
+kind: LogGroup
+metadata:
+  name: lg-3
+spec:
+  forProvider:
+    logGroupName: /aws/eks/sample-cluster/cluster
+    region: us-east-1
+    retentionInDays: 0
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: cluster-aws
+  labels:
+    provider: aws
+    cluster: eks
+spec:
+  compositeTypeRef:
+    apiVersion: mydev.org/v1alpha1
+    kind: CompositeCluster
+  writeConnectionSecretsToNamespace: crossplane-system
+  patchSets:
+    - name: metadata
+      patches:
+        - fromFieldPath: metadata.labels
+  resources:
+    - name: sample-ec2
+      base:
+        apiVersion: cloudwatchlogs.aws.crossplane.io/v1alpha1
+        kind: LogGroup
+        metadata:
+          name: lg-4
+        spec:
+          forProvider:
+            logGroupName: /aws/eks/sample-cluster/cluster
+            region: us-east-1
+            retentionInDays: 0

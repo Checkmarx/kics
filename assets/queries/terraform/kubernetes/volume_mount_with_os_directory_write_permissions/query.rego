@@ -24,7 +24,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.volume_mount.read_only", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].volume_mount.read_only is set to true", [resourceType, name, specInfo.path, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].volume_mount.read_only should be set to true", [resourceType, name, specInfo.path, types[x], y]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].volume_mount.read_only is set to false", [resourceType, name, specInfo.path, types[x], y]),
 		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], y, "volume_mount", "read_only"]),
 	}
@@ -49,7 +49,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.volume_mount.read_only", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].volume_mount[%d].read_only is set to true", [resourceType, name, specInfo.path, types[x], y, j]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].volume_mount[%d].read_only should be set to true", [resourceType, name, specInfo.path, types[x], y, j]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].volume_mount[%d].read_only is set to false", [resourceType, name, specInfo.path, types[x], y, j]),
 		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], y, "volume_mount", j, "read_only"]),
 	}
@@ -74,7 +74,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.volume_mount.read_only", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s.volume_mount.read_only is set to true", [resourceType, name, specInfo.path, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s.volume_mount.read_only should be set to true", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.volume_mount.read_only is set to false", [resourceType, name, specInfo.path, types[x]]),
 		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], "volume_mount", "read_only"]),
 		"remediation": json.marshal({
@@ -104,7 +104,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.volume_mount.read_only", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s.volume_mount[%d].read_only is set to true", [resourceType, name, specInfo.path, types[x], j]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s.volume_mount[%d].read_only should be set to true", [resourceType, name, specInfo.path, types[x], j]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.volume_mount[%d].read_only is set to false", [resourceType, name, specInfo.path, types[x], j]),
 		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], "volume_mount", j, "read_only"]),
 		"remediation": json.marshal({

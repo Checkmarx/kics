@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s has a ConfigRule defining rotation period on AccessKeys.", [name]),
+		"keyExpectedValue": sprintf("Resources.%s should have a ConfigRule defining rotation period on AccessKeys.", [name]),
 		"keyActualValue": sprintf("Resources.%s doesn't have a ConfigRule defining rotation period on AccessKeys.", [name]),
 	}
 }
@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(configRule, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.InputParameters is defined and contains 'maxAccessKeyAge' key.", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.InputParameters should be defined and contain 'maxAccessKeyAge' key.", [name]),
 		"keyActualValue": sprintf("Resources.%s.InputParameters is undefined.", [name]),
 	}
 }
@@ -54,7 +54,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(configRule, name),
 		"searchKey": sprintf("Resources.%s.Properties.InputParameters.maxAccessKeyAge", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.InputParameters.maxAccessKeyAge is less or equal to 90 (days)", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.InputParameters.maxAccessKeyAge should be less or equal to 90 (days)", [name]),
 		"keyActualValue": sprintf("Resources.%s.InputParameters.maxAccessKeyAge is more than 90 (days).", [name]),
 	}
 }

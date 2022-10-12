@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_elasticsearch_domain[%s]", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_elasticsearch_domain", name], []),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'encrypt_at_rest' is set and enabled",
+		"keyExpectedValue": "'encrypt_at_rest' should be set and enabled",
 		"keyActualValue": "'encrypt_at_rest' is undefined",
 		"remediation": "encrypt_at_rest {\n\t\t enabled = true \n\t}",
 		"remediationType": "addition",

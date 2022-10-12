@@ -1,0 +1,11 @@
+{
+  "id": "23edf35f-7c22-4ff9-87e6-0ca74261cfbf",
+  "queryName": "BOM - AWS DynamoDB",
+  "severity": "TRACE",
+  "category": "Bill Of Materials",
+  "descriptionText": "A list of DynamoDB resources found. Amazon DynamoDB is a fully managed, serverless, key-value NoSQL database designed to run high-performance applications at any scale.",
+  "descriptionUrl": "https://kics.io",
+  "platform": "Terraform",
+  "descriptionID": "c9007e7c",
+  "cloudProvider": "aws"
+}

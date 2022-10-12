@@ -120,6 +120,13 @@ resource "aws_iam_policy" "positivecustomermanagedpolicy1" {
       ],
       "Effect": "Allow",
       "Resource": "*"
+    },
+    {
+      "Action": [
+        "iam:CreateLoginProfile"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
     }
   ]
 }

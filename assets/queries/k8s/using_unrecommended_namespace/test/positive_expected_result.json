@@ -22,5 +22,11 @@
     "severity": "MEDIUM",
     "line": 5,
     "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Using Unrecommended Namespace",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive5.yaml"
   }
 ]

@@ -1,104 +1,30 @@
-//go:build !dev
-// +build !dev
-
 package terraformer
 
 import (
+	"os"
 	"path/filepath"
-	"reflect"
 	"strings"
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/terraformer/aws"
-	importer "github.com/GoogleCloudPlatform/terraformer/cmd"
-	"github.com/GoogleCloudPlatform/terraformer/terraformutils"
+	"github.com/stretchr/testify/require"
 )
-
-func TestPath_createTfOptions(t *testing.T) {
-	type fields struct {
-		CloudProvider string
-		Region        []string
-		Resource      []string
-		Projects      []string
-	}
-	type args struct {
-		destination string
-		region      string
-		projects    []string
-	}
-	tests := []struct {
-		name   string
-		fields fields
-		args   args
-		want   *importer.ImportOptions
-	}{
-		{
-			name: "test createTfOptions",
-			fields: fields{
-				CloudProvider: "aws",
-				Region:        []string{"us-east-1"},
-				Resource:      []string{"subnet"},
-				Projects:      []string{""},
-			},
-			args: args{
-				destination: "destination",
-				region:      "us-east-1",
-				projects:    []string{""},
-			},
-			want: &importer.ImportOptions{
-				Resources:     []string{"subnet"},
-				Excludes:      []string{""},
-				PathPattern:   filepath.Join("destination", "{service}"),
-				PathOutput:    "generated",
-				State:         "local",
-				Bucket:        "",
-				Profile:       "",
-				Verbose:       false,
-				Zone:          "",
-				Regions:       []string{"us-east-1"},
-				Projects:      []string{""},
-				ResourceGroup: "",
-				Connect:       true,
-				Compact:       false,
-				Filter:        []string{},
-				Plan:          false,
-				Output:        "hcl",
-				RetryCount:    5,
-				RetrySleepMs:  300,
-			},
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			tr := &Path{
-				CloudProvider: tt.fields.CloudProvider,
-				Region:        tt.fields.Region,
-				Resource:      tt.fields.Resource,
-				Projects:      tt.fields.Projects,
-			}
-			if got := tr.createTfOptions(tt.args.destination, tt.args.region, tt.args.projects); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("Path.createTfOptions() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
-var mockImporter = func(provider terraformutils.ProviderGenerator, options importer.ImportOptions, args []string) error {
-	return nil
-}
 
 func TestImport(t *testing.T) {
 	type args struct {
 		terraformerPath string
 	}
 	tests := []struct {
-		name    string
-		args    args
-		want    string
-		wantErr bool
+		name           string
+		runTerraformer func(pathOptions *Path, destination string) (string, error)
+		args           args
+		want           string
+		wantErr        bool
 	}{
 		{
-			name: "test import",
+			name: "test import aws",
+			runTerraformer: func(pathOptions *Path, destination string) (string, error) {
+				return "", nil
+			},
 			args: args{
 				terraformerPath: "aws:subnet:eu-west-2",
 			},
@@ -106,9 +32,34 @@ func TestImport(t *testing.T) {
 			wantErr: false,
 		},
 		{
-			name: "test import path error",
+			name: "test import gcp",
+			runTerraformer: func(pathOptions *Path, destination string) (string, error) {
+				return "", nil
+			},
 			args: args{
-				terraformerPath: "aws:eu-west-2",
+				terraformerPath: "gcp:instances:us-west4:cosmic-1234",
+			},
+			want:    "kics-extract-terraformer",
+			wantErr: false,
+		},
+		{
+			name: "test import azure",
+			runTerraformer: func(pathOptions *Path, destination string) (string, error) {
+				return "", nil
+			},
+			args: args{
+				terraformerPath: "azure:storage_account",
+			},
+			want:    "kics-extract-terraformer",
+			wantErr: false,
+		},
+		{
+			name: "test import path error",
+			runTerraformer: func(pathOptions *Path, destination string) (string, error) {
+				return "", nil
+			},
+			args: args{
+				terraformerPath: "aws",
 			},
 			want:    ".",
 			wantErr: true,
@@ -116,8 +67,10 @@ func TestImport(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			aws.ImporterFunc = mockImporter
+			runTerraformerFunc = tt.runTerraformer
+			saveTerraformerOutputFunc = func(destination, output string) error { return nil }
 			got, err := Import(tt.args.terraformerPath, "")
+			os.RemoveAll(got)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Import() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -125,6 +78,45 @@ func TestImport(t *testing.T) {
 			if !strings.Contains(filepath.Base(got), filepath.Base(tt.want)) {
 				t.Errorf("Import() = %v, want %v", filepath.Base(got), filepath.Base(tt.want))
 			}
+		})
+	}
+}
+
+func Test_BuildArgs(t *testing.T) {
+
+	tests := []struct {
+		name           string
+		pathOptions    *Path
+		destination    string
+		expectedOutput []string
+	}{
+		{
+			name: "test aws build",
+			pathOptions: &Path{
+				CloudProvider: "aws",
+				Regions:       "eu-central-1",
+				Resources:     "s3",
+				Projects:      "",
+			},
+			destination:    "some/dest",
+			expectedOutput: []string{"import", "aws", "--resources=s3", "-o", "some/dest", "--verbose", "--regions=eu-central-1", "--profile="},
+		},
+		{
+			name: "test gcp build",
+			pathOptions: &Path{
+				CloudProvider: "gcp",
+				Regions:       "eu-central-1",
+				Resources:     "google_storage_bucket",
+				Projects:      "someProj",
+			},
+			destination:    "some/dest",
+			expectedOutput: []string{"import", "google", "--resources=google_storage_bucket", "-o", "some/dest", "--verbose", "--regions=eu-central-1", "--projects=someProj"},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			v := buildArgs(tt.pathOptions, tt.destination)
+			require.Equal(t, tt.expectedOutput, v)
 		})
 	}
 }

@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_workspaces_workspace[{{%s}}].workspace_properties.%s", [name, volumes[n].value]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_workspaces_workspace.%s is set to true", [volumesKey]),
+		"keyExpectedValue": sprintf("aws_workspaces_workspace.%s should be set to true", [volumesKey]),
 		"keyActualValue": sprintf("aws_workspaces_workspace.%s is missing", [volumesKey]),
 	}
 }
@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_workspaces_workspace[{{%s}}].%s", [name, volumes[n].key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_workspaces_workspace.%s is set to true", [volumes[n].key]),
+		"keyExpectedValue": sprintf("aws_workspaces_workspace.%s should be set to true", [volumes[n].key]),
 		"keyActualValue": sprintf("aws_workspaces_workspace.%s is set to false", [volumes[n].key]),
 	}
 }

@@ -73,14 +73,14 @@ wrong_config(config) = searchKeyInfo {
 	config.cloudwatch_encryption.cloudwatch_encryption_mode != "SSE-KMS"
 	searchKeyInfo := {
 		"path": "encryption_configuration.cloudwatch_encryption.cloudwatch_encryption_mode",
-		"keyExpectedValue": "'cloudwatch_encryption_mode' is set to 'SSE-KMS'",
+		"keyExpectedValue": "'cloudwatch_encryption_mode' should be set to 'SSE-KMS'",
 		"keyActualValue": "'cloudwatch_encryption_mode' is not set to 'SSE-KMS'",
 	}
 } else = searchKeyInfo {
 	config.job_bookmarks_encryption.job_bookmarks_encryption_mode != "CSE-KMS"
 	searchKeyInfo := {
 		"path": "encryption_configuration.job_bookmarks_encryption.job_bookmarks_encryption_mode",
-		"keyExpectedValue": "'job_bookmarks_encryption_mode' is set to 'CSE-KMS'",
+		"keyExpectedValue": "'job_bookmarks_encryption_mode' should be set to 'CSE-KMS'",
 		"keyActualValue": "'job_bookmarks_encryption_mode' is not set to 'CSE-KMS'",
 	}
 } else = searchKeyInfo {
