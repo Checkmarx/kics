@@ -25,7 +25,7 @@ require (
 	github.com/mackerelio/go-osstat v0.2.3
 	github.com/mailru/easyjson v0.7.7
 	github.com/moby/buildkit v0.10.4
-	github.com/open-policy-agent/opa v0.44.0
+	github.com/open-policy-agent/opa v0.45.0
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.26.1
 	github.com/sosedoff/ansible-vault-go v0.1.1
@@ -38,7 +38,7 @@ require (
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/yargevad/filepathx v1.0.0
 	github.com/zclconf/go-cty v1.11.0
-	golang.org/x/net v0.0.0-20220826154423-83b083e8dc8b
+	golang.org/x/net v0.0.0-20220909164309-bea034e7d591
 	golang.org/x/text v0.3.7
 	golang.org/x/tools v0.1.12
 	gopkg.in/yaml.v3 v3.0.1
