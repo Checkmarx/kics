@@ -4,16 +4,18 @@ import (
 	"regexp"
 )
 
-// E2E-CLI-057 - Kics remediate command
+// E2E-CLI-061 - KICS remediate command
 // should remediate all remediation found
 func init() { // nolint
-	generateResults("results-remediate-all")
+	generateResults("results-remediate-custom-queries")
 
 	testSample := TestCase{
-		Name: "should remediate all remediation found [E2E-CLI-057]",
+		Name: "should remediate the recomendations from the loaded custom queries [E2E-CLI-061]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"remediate", "--results", "/path/e2e/tmp-kics-ar/results-remediate-all.json", "-v"},
+				[]string{"remediate", "--results", "/path/e2e/tmp-kics-ar/results-remediate-custom-queries.json",
+					"--queries", "/path/e2e/fixtures/samples/custom-queries",
+					"-v"},
 			},
 		},
 		WantStatus: []int{0},

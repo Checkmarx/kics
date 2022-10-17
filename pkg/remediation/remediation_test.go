@@ -101,6 +101,15 @@ func Test_RemediateFile(t *testing.T) {
 		source.ListSupportedPlatforms(),
 		source.ListSupportedCloudProviders(),
 	)
+	data, err = os.ReadFile(filepath.FromSlash("../../internal/console/assets/remediate-flags.json"))
+	require.NoError(t, err)
+	flags.InitJSONFlags(
+		mockCmd,
+		string(data),
+		true,
+		source.ListSupportedPlatforms(),
+		source.ListSupportedCloudProviders(),
+	)
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -111,7 +120,7 @@ func Test_RemediateFile(t *testing.T) {
 
 			tmpFileName := filepath.Join(os.TempDir(), "temporary-remediation"+utils.NextRandom()+filepath.Ext(filePathCopyFrom))
 			tmpFile := CreateTempFile(filePathCopyFrom, tmpFileName)
-			s.RemediateFile(tmpFile, tt.args.remediate)
+			s.RemediateFile(tmpFile, tt.args.remediate, false)
 
 			os.Remove(tmpFile)
 			require.Equal(t, s.ActualRemediationDoneNumber, tt.actualRemediationDoneNumber)

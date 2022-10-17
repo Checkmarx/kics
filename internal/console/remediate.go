@@ -103,9 +103,11 @@ func remediate(cmd *cobra.Command) error {
 	// get all the remediationSets related to each filePath
 	remediationSets := summary.GetRemediationSets(results, include)
 
+	changedDefaultQueryPath := cmd.Flags().Lookup(flags.Queries).Changed
+
 	for filePath := range remediationSets {
 		fix := remediationSets[filePath].(remediation.Set)
-		err = summary.RemediateFile(filePath, fix)
+		err = summary.RemediateFile(filePath, fix, changedDefaultQueryPath)
 		if err != nil {
 			return err
 		}

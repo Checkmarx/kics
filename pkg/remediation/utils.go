@@ -49,7 +49,8 @@ func getBefore(line string) string {
 }
 
 // willRemediate verifies if the remediation actually removes the result
-func willRemediate(remediated []string, originalFileName string, remediation *Remediation) bool {
+func willRemediate(remediated []string, originalFileName string, remediation *Remediation,
+	changedDefaultQueryPath bool) bool {
 	filepath.Clean(originalFileName)
 	// create temporary file
 	tmpFile := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+"-"+filepath.Base(originalFileName))
@@ -75,7 +76,7 @@ func willRemediate(remediated []string, originalFileName string, remediation *Re
 	}
 
 	// scan the temporary file to verify if the remediation removed the result
-	results, err := scanTmpFile(tmpFile, remediation.QueryID, content)
+	results, err := scanTmpFile(tmpFile, remediation.QueryID, content, changedDefaultQueryPath)
 
 	if err != nil {
 		log.Error().Msgf("failed to get results of query %s: %s", remediation.QueryID, err)

@@ -71,6 +71,7 @@ Flags:
   -h, --help                  help for remediate
       --include-ids strings   which remediation (similarity ids) should be remediated 
                               example "f6b7acac2d541d8c15c88d2be51b0e6abd576750b71c580f2e3a9346f7ed0e67,6af5fc5d7c0ad0077348a090f7c09949369d24d5608bbdbd14376a15de62afd1" (default [all])
+      --queries strings       paths to directory with queries (default [./assets/queries])
       --results string        points to the JSON results file with remediation
 ```
 

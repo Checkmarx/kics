@@ -36,7 +36,7 @@ type runQueryInfo struct {
 }
 
 // scanTmpFile scans a temporary file against a specific query
-func scanTmpFile(tmpFile, queryID string, remediated []byte) ([]model.Vulnerability, error) {
+func scanTmpFile(tmpFile, queryID string, remediated []byte, changedDefaultQueryPath bool) ([]model.Vulnerability, error) {
 	// get payload
 	files, err := getPayload(tmpFile, remediated)
 
@@ -53,7 +53,7 @@ func scanTmpFile(tmpFile, queryID string, remediated []byte) ([]model.Vulnerabil
 	payload := files.Combine(false)
 
 	// init scan
-	inspector, err := initScan(queryID)
+	inspector, err := initScan(queryID, changedDefaultQueryPath)
 
 	if err != nil {
 		log.Err(err)
@@ -183,14 +183,15 @@ func runQuery(r *runQueryInfo) []model.Vulnerability {
 	return decoded
 }
 
-func initScan(queryID string) (*engine.Inspector, error) {
+func initScan(queryID string, changedDefaultQueryPath bool) (*engine.Inspector, error) {
 	scanParams := &scan.Parameters{
-		QueriesPath:      flags.GetMultiStrFlag(flags.QueriesPath),
-		Platform:         flags.GetMultiStrFlag(flags.TypeFlag),
-		CloudProvider:    flags.GetMultiStrFlag(flags.CloudProviderFlag),
-		LibrariesPath:    flags.GetStrFlag(flags.LibrariesPath),
-		PreviewLines:     flags.GetIntFlag(flags.PreviewLinesFlag),
-		QueryExecTimeout: flags.GetIntFlag(flags.QueryExecTimeoutFlag),
+		QueriesPath:             flags.GetMultiStrFlag(flags.Queries),
+		Platform:                flags.GetMultiStrFlag(flags.TypeFlag),
+		CloudProvider:           flags.GetMultiStrFlag(flags.CloudProviderFlag),
+		LibrariesPath:           flags.GetStrFlag(flags.LibrariesPath),
+		PreviewLines:            flags.GetIntFlag(flags.PreviewLinesFlag),
+		QueryExecTimeout:        flags.GetIntFlag(flags.QueryExecTimeoutFlag),
+		ChangedDefaultQueryPath: changedDefaultQueryPath,
 	}
 
 	c := &scan.Client{
@@ -256,5 +257,5 @@ func loadQuery(inspector *engine.Inspector, queryID string) (*engine.PreparedQue
 		return query, nil
 	}
 
-	return &engine.PreparedQuery{}, errors.New("unable to load query" + queryID)
+	return &engine.PreparedQuery{}, errors.New("unable to load query " + queryID)
 }

@@ -32,3 +32,7 @@ Note that this feature will be only available for Terraform, for now.
    If you want to specify which remediation KICS should fix, you can use the flag `--include-ids`. In this flag, you should point the `similarity_id` of the result. For example: 
 
    ```docker run -v /home/cosmicgirl/:/path/ kics remediate --results /path/results/results.json --include-ids "f282fa13cf5e4ffd4bbb0ee2059f8d0240edcd2ca54b3bb71633145d961de5ce" -v```
+   
+   If you want to point to your custom queries, you can use the flag `--queries`. In this flag, you should point the paths to the directory with queries. For example:
+   
+   ```docker run -v /home/cosmicgirl/:/path/ kics remediate --results /path/results/results.json --queries <custom-queries-path> -v```
