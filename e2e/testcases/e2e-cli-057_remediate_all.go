@@ -1,11 +1,12 @@
 package testcases
 
+// E2E-CLI-057 - KICS remediate command
+// should remediate all remediation found
+
 import (
 	"regexp"
 )
 
-// E2E-CLI-057 - KICS remediate command
-// should remediate all remediation found
 func init() { // nolint
 	generateResults("results-remediate-all")
 
