@@ -97,7 +97,7 @@
 				
 				<option value="file20">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (85.5%)</option>
 				
-				<option value="file21">github.com/Checkmarx/kics/pkg/builder/engine/engine.go (72.6%)</option>
+				<option value="file21">github.com/Checkmarx/kics/pkg/builder/engine/engine.go (71.8%)</option>
 				
 				<option value="file22">github.com/Checkmarx/kics/pkg/builder/model/model.go (100.0%)</option>
 				
@@ -2174,13 +2174,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov8" title="33">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2205,7 +2205,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -3149,18 +3149,8 @@ func (e *Engine) ExpToString(expr hclsyntax.Expression) (string, error) <span cl
         case *hclsyntax.ObjectConsKeyExpr:<span class="cov3" title="2">
                 return e.ExpToString(t.Wrapped)</span>
         case *hclsyntax.ScopeTraversalExpr:<span class="cov3" title="2">
-                var items []string
-                for _, part := range t.Traversal </span><span class="cov3" title="2">{
-                        switch tt := part.(type) </span>{
-                        case hcl.TraverseAttr:<span class="cov0" title="0">
-                                items = append(items, tt.Name)</span>
-                        case hcl.TraverseRoot:<span class="cov3" title="2">
-                                items = append(items, tt.Name)</span>
-                        case hcl.TraverseIndex:<span class="cov0" title="0">
-                                items = append(items, tt.Key.AsString())</span>
-                        }
-                }
-                <span class="cov3" title="2">return strings.Join(items, "."), nil</span>
+                items := evaluateScopeTraversalExpr(t.Traversal)
+                return strings.Join(items, "."), nil</span>
         }
 
         <span class="cov0" title="0">return "", fmt.Errorf("can't convert expression %T to string", expr)</span>
@@ -3236,6 +3226,26 @@ func (e *Engine) addRule(walkHistory []build.PathItem, comment commentParser.Com
                         Attributes: t.Attributes,
                 })
         }</span>
+}
+
+func evaluateScopeTraversalExpr(t hcl.Traversal) []string <span class="cov3" title="2">{
+        items := make([]string, 0)
+        for _, part := range t </span><span class="cov3" title="2">{
+                switch tt := part.(type) </span>{
+                case hcl.TraverseAttr:<span class="cov0" title="0">
+                        items = append(items, tt.Name)</span>
+                case hcl.TraverseRoot:<span class="cov3" title="2">
+                        items = append(items, tt.Name)</span>
+                case hcl.TraverseIndex:<span class="cov0" title="0">
+                        switch tt.Key.Type() </span>{
+                        case cty.Number:<span class="cov0" title="0">
+                                items = append(items, tt.Key.AsBigFloat().String())</span>
+                        case cty.String:<span class="cov0" title="0">
+                                items = append(items, tt.Key.AsString())</span>
+                        }
+                }
+        }
+        <span class="cov3" title="2">return items</span>
 }
 </pre>
 		
