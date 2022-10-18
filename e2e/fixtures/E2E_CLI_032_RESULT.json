@@ -118,7 +118,7 @@
 		{
 			"query_name": "Passwords And Secrets - CloudFormation Secret Template",
 			"query_id": "e0f01838-b1c2-4669-b84b-981949ebe5ed",
-			"query_url": "https://kics.io/",
+			"query_url": "https://docs.kics.io/latest/secrets/",
 			"severity": "HIGH",
 			"platform": "Common",
 			"cloud_provider": "COMMON",
@@ -142,7 +142,7 @@
 		{
 			"query_name": "Passwords And Secrets - Encryption Key",
 			"query_id": "9fb1cd65-7a07-4531-9bcf-47589d0f82d6",
-			"query_url": "https://kics.io/",
+			"query_url": "https://docs.kics.io/latest/secrets/",
 			"severity": "HIGH",
 			"platform": "Common",
 			"cloud_provider": "COMMON",
@@ -166,7 +166,7 @@
 		{
 			"query_name": "Passwords And Secrets - Generic Password",
 			"query_id": "487f4be7-3fd9-4506-a07a-eae252180c08",
-			"query_url": "https://kics.io/",
+			"query_url": "https://docs.kics.io/latest/secrets/",
 			"severity": "HIGH",
 			"platform": "Common",
 			"cloud_provider": "COMMON",
