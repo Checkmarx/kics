@@ -1,12 +1,12 @@
+// testcases for E2E tests
 package testcases
-
-// E2E-CLI-061 - KICS remediate command
-// should remediate all remediation found
 
 import (
 	"regexp"
 )
 
+// E2E-CLI-061 - KICS remediate command
+// should remediate all remediation found
 func init() { // nolint
 	generateResults("results-remediate-custom-queries")
 
