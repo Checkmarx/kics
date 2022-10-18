@@ -31,6 +31,13 @@ var (
 	SecretsQueryMetadata map[string]string
 )
 
+type SecretTracker struct {
+	ResolvedFilePath string
+	Line             int
+	OriginalContent  string
+	MaskedContent    string
+}
+
 type Inspector struct {
 	ctx                   context.Context
 	tracker               engine.Tracker
@@ -42,6 +49,7 @@ type Inspector struct {
 	queryExecutionTimeout time.Duration
 	foundLines            []int
 	mu                    sync.RWMutex
+	SecretTracker         []SecretTracker
 }
 
 type Entropy struct {
@@ -114,6 +122,7 @@ func NewInspector(
 			allowRules:            make([]AllowRule, 0),
 			vulnerabilities:       make([]model.Vulnerability, 0),
 			queryExecutionTimeout: time.Duration(executionTimeout) * time.Second,
+			SecretTracker:         make([]SecretTracker, 0),
 		}, nil
 	}
 
@@ -493,7 +502,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 				FileID:           file.ID,
 				FileName:         file.FilePath,
 				Line:             linesVuln.Line,
-				VulnLines:        hideSecret(&linesVuln, issueLine, query),
+				VulnLines:        hideSecret(&linesVuln, issueLine, query, &c.SecretTracker),
 				IssueType:        "RedundantAttribute",
 				Platform:         SecretsQueryMetadata["platform"],
 				Severity:         model.SeverityHigh,
@@ -625,9 +634,10 @@ func cleanFiles(files model.FileMetadatas) model.FileMetadatas {
 	return cleanFiles
 }
 
-func hideSecret(linesVuln *model.VulnerabilityLines, issueLine string, query *RegexQuery) *[]model.CodeLine {
+func hideSecret(linesVuln *model.VulnerabilityLines, issueLine string, query *RegexQuery, secretTracker *[]SecretTracker) *[]model.CodeLine {
 	for idx := range *linesVuln.VulnLines {
 		if query.SpecialMask == "all" {
+			addToSecretTracker(secretTracker, (*linesVuln).ResolvedFile, (*linesVuln).Line, (*linesVuln.VulnLines)[idx].Line, "<SECRET-MASKED-ON-PURPOSE>")
 			(*linesVuln.VulnLines)[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
 			continue
 		}
@@ -647,11 +657,24 @@ func hideSecret(linesVuln *model.VulnerabilityLines, issueLine string, query *Re
 			}
 
 			if match != "" {
+				originalCntAux := (*linesVuln.VulnLines)[idx].Line
 				(*linesVuln.VulnLines)[idx].Line = strings.Replace(issueLine, match, "<SECRET-MASKED-ON-PURPOSE>", 1)
+				addToSecretTracker(secretTracker, (*linesVuln).ResolvedFile, (*linesVuln).Line, originalCntAux, (*linesVuln.VulnLines)[idx].Line)
+
 			} else {
+				addToSecretTracker(secretTracker, (*linesVuln).ResolvedFile, (*linesVuln).Line, (*linesVuln.VulnLines)[idx].Line, "<SECRET-MASKED-ON-PURPOSE>")
 				(*linesVuln.VulnLines)[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
 			}
 		}
 	}
 	return linesVuln.VulnLines
+}
+
+func addToSecretTracker(secretTracker *[]SecretTracker, path string, line int, originalCnt string, maskedCnt string) {
+	*secretTracker = append(*secretTracker, SecretTracker{
+		ResolvedFilePath: path,
+		Line:             line,
+		OriginalContent:  originalCnt,
+		MaskedContent:    maskedCnt,
+	})
 }
