@@ -154,7 +154,7 @@ type JSONFilterLexer struct {
 func NewJSONFilterLexer(input antlr.CharStream) *JSONFilterLexer {
 	l := new(JSONFilterLexer)
 	lexerDeserializer := antlr.NewATNDeserializer(nil)
-	lexerAtn := lexerDeserializer.DeserializeFromUInt16(serializedLexerAtn)
+	lexerAtn := lexerDeserializer.Deserialize(uint16Toint32(serializedLexerAtn))
 	lexerDecisionToDFA := make([]*antlr.DFA, len(lexerAtn.DecisionToState))
 	for index, ds := range lexerAtn.DecisionToState {
 		lexerDecisionToDFA[index] = antlr.NewDFA(ds, index)
@@ -203,3 +203,12 @@ const (
 	JSONFilterLexerNUMBER      = 26
 	JSONFilterLexerWS          = 27
 )
+
+// uint16Toint32 converts []uint16 to []int32
+func uint16Toint32(atn []uint16) []int32 {
+	atn32 := make([]int32, 0)
+	for i := range atn {
+		atn32 = append(atn32, int32(atn[i]))
+	}
+	return atn32
+}

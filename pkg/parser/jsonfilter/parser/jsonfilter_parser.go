@@ -85,7 +85,7 @@ type JSONFilterParser struct {
 func NewJSONFilterParser(input antlr.TokenStream) *JSONFilterParser {
 	this := new(JSONFilterParser)
 	deserializer := antlr.NewATNDeserializer(nil)
-	deserializedATN := deserializer.DeserializeFromUInt16(parserATN)
+	deserializedATN := deserializer.Deserialize(uint16Toint32(parserATN))
 	decisionToDFA := make([]*antlr.DFA, len(deserializedATN.DecisionToState))
 	for index, ds := range deserializedATN.DecisionToState {
 		decisionToDFA[index] = antlr.NewDFA(ds, index)
