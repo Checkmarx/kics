@@ -31,8 +31,8 @@ var (
 	SecretsQueryMetadata map[string]string
 )
 
-// Struct to keep tracking of the secrets found in the inspector
-// used for masking all the secrets in the vulnerability preview in the different report formats
+// SecretTracker is Struct created to keep track of the secrets found in the inspector
+// it used for masking all the secrets in the vulnerability preview in the different report formats
 type SecretTracker struct {
 	ResolvedFilePath string
 	Line             int
