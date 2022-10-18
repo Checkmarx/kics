@@ -225,16 +225,16 @@ func prepareScanDocumentValue(bodyType map[string]interface{}, kind model.FileKi
 
 func updateMaskedSecrets(vulnerabilities *[]model.Vulnerability, maskedSecretsTracked []secrets.SecretTracker) {
 	for idx, _ := range *vulnerabilities {
+		vuln := (*vulnerabilities)[idx]
 		for _, secretT := range maskedSecretsTracked {
-			if (*vulnerabilities)[idx].FileName == secretT.ResolvedFilePath {
-				vulnLines := (*(*vulnerabilities)[idx].VulnLines)
-				switch (*vulnerabilities)[idx].Line {
-				case (secretT.Line + 1):
-					vulnLines[0].Line = secretT.MaskedContent
-				case (secretT.Line):
-					vulnLines[1].Line = secretT.MaskedContent
-				case (secretT.Line - 1):
-					vulnLines[2].Line = secretT.MaskedContent
+
+			if vuln.FileName == secretT.ResolvedFilePath {
+				vulnLines := (*vuln.VulnLines)
+
+				for vlidx, _ := range vulnLines {
+					if vulnLines[vlidx].Position == secretT.Line {
+						vulnLines[vlidx].Line = secretT.MaskedContent
+					}
 				}
 			}
 		}

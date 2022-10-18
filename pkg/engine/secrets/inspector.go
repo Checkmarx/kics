@@ -670,7 +670,7 @@ func hideSecret(linesVuln *model.VulnerabilityLines, issueLine string, query *Re
 	return linesVuln.VulnLines
 }
 
-func addToSecretTracker(secretTracker *[]SecretTracker, path string, line int, originalCnt string, maskedCnt string) {
+func addToSecretTracker(secretTracker *[]SecretTracker, path string, line int, originalCnt, maskedCnt string) {
 	*secretTracker = append(*secretTracker, SecretTracker{
 		ResolvedFilePath: path,
 		Line:             line,
