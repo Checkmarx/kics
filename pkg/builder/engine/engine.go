@@ -164,17 +164,7 @@ func (e *Engine) ExpToString(expr hclsyntax.Expression) (string, error) {
 	case *hclsyntax.ObjectConsKeyExpr:
 		return e.ExpToString(t.Wrapped)
 	case *hclsyntax.ScopeTraversalExpr:
-		var items []string
-		for _, part := range t.Traversal {
-			switch tt := part.(type) {
-			case hcl.TraverseAttr:
-				items = append(items, tt.Name)
-			case hcl.TraverseRoot:
-				items = append(items, tt.Name)
-			case hcl.TraverseIndex:
-				items = append(items, tt.Key.AsString())
-			}
-		}
+		items := evaluateScopeTraversalExpr(t.Traversal)
 		return strings.Join(items, "."), nil
 	}
 
@@ -251,4 +241,24 @@ func (e *Engine) addRule(walkHistory []build.PathItem, comment commentParser.Com
 			Attributes: t.Attributes,
 		})
 	}
+}
+
+func evaluateScopeTraversalExpr(t hcl.Traversal) []string {
+	items := make([]string, 0)
+	for _, part := range t {
+		switch tt := part.(type) {
+		case hcl.TraverseAttr:
+			items = append(items, tt.Name)
+		case hcl.TraverseRoot:
+			items = append(items, tt.Name)
+		case hcl.TraverseIndex:
+			switch tt.Key.Type() {
+			case cty.Number:
+				items = append(items, tt.Key.AsBigFloat().String())
+			case cty.String:
+				items = append(items, tt.Key.AsString())
+			}
+		}
+	}
+	return items
 }
