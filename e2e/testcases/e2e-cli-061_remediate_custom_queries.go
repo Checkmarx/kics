@@ -1,4 +1,4 @@
-// testcases for E2E tests
+// Package testcases for E2E tests
 package testcases
 
 import (
