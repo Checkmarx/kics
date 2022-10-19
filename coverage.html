@@ -129,7 +129,7 @@
 				
 				<option value="file36">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (71.8%)</option>
 				
-				<option value="file37">github.com/Checkmarx/kics/pkg/engine/secrets/inspector.go (85.1%)</option>
+				<option value="file37">github.com/Checkmarx/kics/pkg/engine/secrets/inspector.go (85.0%)</option>
 				
 				<option value="file38">github.com/Checkmarx/kics/pkg/engine/similarity/similarity_id.go (94.7%)</option>
 				
@@ -143,7 +143,7 @@
 				
 				<option value="file43">github.com/Checkmarx/kics/pkg/kics/resolver_sink.go (0.0%)</option>
 				
-				<option value="file44">github.com/Checkmarx/kics/pkg/kics/service.go (42.2%)</option>
+				<option value="file44">github.com/Checkmarx/kics/pkg/kics/service.go (40.3%)</option>
 				
 				<option value="file45">github.com/Checkmarx/kics/pkg/kics/sink.go (40.0%)</option>
 				
@@ -217,7 +217,7 @@
 				
 				<option value="file80">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (80.0%)</option>
 				
-				<option value="file81">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file81">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (90.9%)</option>
 				
 				<option value="file82">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -2174,13 +2174,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="35">total += v
+                <span class="cov8" title="31">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2205,7 +2205,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -6099,6 +6099,15 @@ var (
         SecretsQueryMetadata map[string]string
 )
 
+// SecretTracker is Struct created to keep track of the secrets found in the inspector
+// it used for masking all the secrets in the vulnerability preview in the different report formats
+type SecretTracker struct {
+        ResolvedFilePath string
+        Line             int
+        OriginalContent  string
+        MaskedContent    string
+}
+
 type Inspector struct {
         ctx                   context.Context
         tracker               engine.Tracker
@@ -6110,6 +6119,7 @@ type Inspector struct {
         queryExecutionTimeout time.Duration
         foundLines            []int
         mu                    sync.RWMutex
+        SecretTracker         []SecretTracker
 }
 
 type Entropy struct {
@@ -6182,6 +6192,7 @@ func NewInspector(
                         allowRules:            make([]AllowRule, 0),
                         vulnerabilities:       make([]model.Vulnerability, 0),
                         queryExecutionTimeout: time.Duration(executionTimeout) * time.Second,
+                        SecretTracker:         make([]SecretTracker, 0),
                 }, nil
         }</span>
 
@@ -6561,7 +6572,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
                                 FileID:           file.ID,
                                 FileName:         file.FilePath,
                                 Line:             linesVuln.Line,
-                                VulnLines:        hideSecret(&amp;linesVuln, issueLine, query),
+                                VulnLines:        hideSecret(&amp;linesVuln, issueLine, query, &amp;c.SecretTracker),
                                 IssueType:        "RedundantAttribute",
                                 Platform:         SecretsQueryMetadata["platform"],
                                 Severity:         model.SeverityHigh,
@@ -6693,9 +6704,13 @@ func cleanFiles(files model.FileMetadatas) model.FileMetadatas <span class="cov5
         <span class="cov5" title="264">return cleanFiles</span>
 }
 
-func hideSecret(linesVuln *model.VulnerabilityLines, issueLine string, query *RegexQuery) *[]model.CodeLine <span class="cov1" title="3">{
+func hideSecret(linesVuln *model.VulnerabilityLines,
+        issueLine string,
+        query *RegexQuery,
+        secretTracker *[]SecretTracker) *[]model.CodeLine <span class="cov1" title="3">{
         for idx := range *linesVuln.VulnLines </span><span class="cov1" title="2">{
                 if query.SpecialMask == "all" </span><span class="cov1" title="1">{
+                        addToSecretTracker(secretTracker, linesVuln.ResolvedFile, linesVuln.Line, (*linesVuln.VulnLines)[idx].Line, "&lt;SECRET-MASKED-ON-PURPOSE&gt;")
                         (*linesVuln.VulnLines)[idx].Line = "&lt;SECRET-MASKED-ON-PURPOSE&gt;"
                         continue</span>
                 }
@@ -6715,14 +6730,30 @@ func hideSecret(linesVuln *model.VulnerabilityLines, issueLine string, query *Re
                         }</span>
 
                         <span class="cov1" title="1">if match != "" </span><span class="cov1" title="1">{
+                                originalCntAux := (*linesVuln.VulnLines)[idx].Line
                                 (*linesVuln.VulnLines)[idx].Line = strings.Replace(issueLine, match, "&lt;SECRET-MASKED-ON-PURPOSE&gt;", 1)
+                                addToSecretTracker(secretTracker, linesVuln.ResolvedFile, linesVuln.Line, originalCntAux, (*linesVuln.VulnLines)[idx].Line)
                         }</span> else<span class="cov0" title="0"> {
+                                addToSecretTracker(secretTracker,
+                                        linesVuln.ResolvedFile,
+                                        linesVuln.Line,
+                                        (*linesVuln.VulnLines)[idx].Line,
+                                        "&lt;SECRET-MASKED-ON-PURPOSE&gt;")
                                 (*linesVuln.VulnLines)[idx].Line = "&lt;SECRET-MASKED-ON-PURPOSE&gt;"
                         }</span>
                 }
         }
         <span class="cov1" title="3">return linesVuln.VulnLines</span>
 }
+
+func addToSecretTracker(secretTracker *[]SecretTracker, path string, line int, originalCnt, maskedCnt string) <span class="cov1" title="2">{
+        *secretTracker = append(*secretTracker, SecretTracker{
+                ResolvedFilePath: path,
+                Line:             line,
+                OriginalContent:  originalCnt,
+                MaskedContent:    maskedCnt,
+        })
+}</span>
 </pre>
 		
 		<pre class="file" id="file38" style="display: none">package similarity
@@ -7790,6 +7821,7 @@ import (
         "github.com/Checkmarx/kics/pkg/model"
         "github.com/Checkmarx/kics/pkg/parser"
         "github.com/Checkmarx/kics/pkg/resolver"
+
         "github.com/Checkmarx/kics/pkg/utils"
         "github.com/pkg/errors"
         "github.com/rs/zerolog/log"
@@ -7886,6 +7918,8 @@ func (s *Service) StartScan(
                 errCh &lt;- errors.Wrap(err, "failed to inspect files")
         }</span>
         <span class="cov6" title="4">vulnerabilities = append(vulnerabilities, secretsVulnerabilities...)
+
+        updateMaskedSecrets(&amp;vulnerabilities, s.SecretsInspector.SecretTracker)
 
         err = s.Storage.SaveVulnerabilities(ctx, vulnerabilities)
         if err != nil </span><span class="cov0" title="0">{
@@ -7992,6 +8026,24 @@ func prepareScanDocumentValue(bodyType map[string]interface{}, kind model.FileKi
                 case string:<span class="cov7" title="6">
                         if field, ok := lines[kind]; ok &amp;&amp; utils.Contains(key, field) </span><span class="cov1" title="1">{
                                 bodyType[key] = resolveJSONFilter(value)
+                        }</span>
+                }
+        }
+}
+
+func updateMaskedSecrets(vulnerabilities *[]model.Vulnerability, maskedSecretsTracked []secrets.SecretTracker) <span class="cov6" title="4">{
+        for idx := range *vulnerabilities </span><span class="cov0" title="0">{
+                for _, secretT := range maskedSecretsTracked </span><span class="cov0" title="0">{
+                        updateMaskedSecretLine(&amp;(*vulnerabilities)[idx], secretT)
+                }</span>
+        }
+}
+
+func updateMaskedSecretLine(vulnerability *model.Vulnerability, secretT secrets.SecretTracker) <span class="cov0" title="0">{
+        if vulnerability.FileName == secretT.ResolvedFilePath </span><span class="cov0" title="0">{
+                for vlidx := range *vulnerability.VulnLines </span><span class="cov0" title="0">{
+                        if (*vulnerability.VulnLines)[vlidx].Position == secretT.Line </span><span class="cov0" title="0">{
+                                (*vulnerability.VulnLines)[vlidx].Line = secretT.MaskedContent
                         }</span>
                 }
         }
@@ -16097,7 +16149,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov1" title="1">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -16106,7 +16158,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov1" title="1">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
@@ -16118,14 +16170,14 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov1" title="1">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov1" title="1">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file82" style="display: none">package progress
