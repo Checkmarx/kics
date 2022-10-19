@@ -265,6 +265,17 @@ Resources:
     Properties:
       Path: /
       Roles: [!Ref 'EC2Role']
+  MyAmpAppSecretManagerRotater:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: 'This is my amp app instance secret'
+      GenerateSecretString:
+        SecretStringTemplate: '{"username":"admin"}'
+        GenerateStringKey: 'password'
+        EncryptionKey: 'password'
+        Password: 'password'
+        PasswordLength: 16
+        ExcludeCharacters: '"@/\'
 Outputs:
   ecsservice:
     Value: !Ref 'service'

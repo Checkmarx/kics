@@ -1,9 +1,9 @@
 {
 	"kics_version": "development",
 	"files_scanned": 1,
-	"lines_scanned": 278,
+	"lines_scanned": 289,
 	"files_parsed": 1,
-	"lines_parsed": 278,
+	"lines_parsed": 289,
 	"files_failed_to_scan": 0,
 	"queries_total": 13,
 	"queries_failed_to_execute": 0,
@@ -18,8 +18,8 @@
 	},
 	"total_counter": 20,
 	"total_bom_resources": 0,
-	"start": "2022-05-17T14:26:40.9648352+01:00",
-	"end": "2022-05-17T14:26:43.738301+01:00",
+	"start": "2022-10-18T14:56:55.859960017+01:00",
+	"end": "2022-10-18T14:56:56.399687664+01:00",
 	"paths": [
 		"/path/e2e/fixtures/samples/positive.yaml"
 	],
@@ -414,19 +414,6 @@
 			"files": [
 				{
 					"file_name": "fixtures\\samples\\positive.yaml",
-					"similarity_id": "95883c9f983adb8f547c54e24837b6aa402978a00417be98441514959d4171d4",
-					"line": 27,
-					"resource_type": "AWS::EC2::SecurityGroupIngress",
-					"resource_name": "EcsSecurityGroupSSHinbound",
-					"issue_type": "MissingAttribute",
-					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
-					"search_line": 0,
-					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description should be set",
-					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is undefined"
-				},
-				{
-					"file_name": "fixtures\\samples\\positive.yaml",
 					"similarity_id": "39fec612777f59fb4181dd2330ee465ec860c962acfebb07a4f1ee1f122d24e7",
 					"line": 35,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -450,6 +437,19 @@
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description should be set",
 					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description is undefined"
+				},
+				{
+					"file_name": "fixtures\\samples\\positive.yaml",
+					"similarity_id": "95883c9f983adb8f547c54e24837b6aa402978a00417be98441514959d4171d4",
+					"line": 27,
+					"resource_type": "AWS::EC2::SecurityGroupIngress",
+					"resource_name": "EcsSecurityGroupSSHinbound",
+					"issue_type": "MissingAttribute",
+					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description should be set",
+					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is undefined"
 				}
 			]
 		}

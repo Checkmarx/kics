@@ -13,6 +13,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	"github.com/Checkmarx/kics/pkg/resolver"
+
 	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
@@ -109,6 +110,8 @@ func (s *Service) StartScan(
 		errCh <- errors.Wrap(err, "failed to inspect files")
 	}
 	vulnerabilities = append(vulnerabilities, secretsVulnerabilities...)
+
+	updateMaskedSecrets(&vulnerabilities, s.SecretsInspector.SecretTracker)
 
 	err = s.Storage.SaveVulnerabilities(ctx, vulnerabilities)
 	if err != nil {
@@ -215,6 +218,24 @@ func prepareScanDocumentValue(bodyType map[string]interface{}, kind model.FileKi
 		case string:
 			if field, ok := lines[kind]; ok && utils.Contains(key, field) {
 				bodyType[key] = resolveJSONFilter(value)
+			}
+		}
+	}
+}
+
+func updateMaskedSecrets(vulnerabilities *[]model.Vulnerability, maskedSecretsTracked []secrets.SecretTracker) {
+	for idx := range *vulnerabilities {
+		for _, secretT := range maskedSecretsTracked {
+			updateMaskedSecretLine(&(*vulnerabilities)[idx], secretT)
+		}
+	}
+}
+
+func updateMaskedSecretLine(vulnerability *model.Vulnerability, secretT secrets.SecretTracker) {
+	if vulnerability.FileName == secretT.ResolvedFilePath {
+		for vlidx := range *vulnerability.VulnLines {
+			if (*vulnerability.VulnLines)[vlidx].Position == secretT.Line {
+				(*vulnerability.VulnLines)[vlidx].Line = secretT.MaskedContent
 			}
 		}
 	}
