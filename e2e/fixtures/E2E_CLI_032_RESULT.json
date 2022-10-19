@@ -1,25 +1,25 @@
 {
 	"kics_version": "development",
 	"files_scanned": 1,
-	"lines_scanned": 278,
+	"lines_scanned": 289,
 	"files_parsed": 1,
-	"lines_parsed": 278,
+	"lines_parsed": 289,
 	"files_failed_to_scan": 0,
-	"queries_total": 495,
+	"queries_total": 501,
 	"queries_failed_to_execute": 0,
 	"queries_failed_to_compute_similarity_id": 0,
 	"scan_id": "console",
 	"severity_counters": {
-		"HIGH": 6,
+		"HIGH": 9,
 		"INFO": 3,
 		"LOW": 3,
-		"MEDIUM": 9,
+		"MEDIUM": 10,
 		"TRACE": 0
 	},
-	"total_counter": 21,
+	"total_counter": 25,
 	"total_bom_resources": 0,
-	"start": "2022-05-17T12:57:12.0455501+01:00",
-	"end": "2022-05-17T12:57:27.2636532+01:00",
+	"start": "2022-10-18T15:00:25.226787889+01:00",
+	"end": "2022-10-18T15:00:35.433733848+01:00",
 	"paths": [
 		"/path/e2e/fixtures/samples/positive.yaml"
 	],
@@ -112,6 +112,78 @@
 					"search_value": "",
 					"expected_value": "Resource name 'EcsSecurityGroupHTTPinbound02' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from all IPv4 adresses and to all available ports",
 					"actual_value": "Resource name 'EcsSecurityGroupHTTPinbound02' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from CIDR 0.0.0.0/0 to all available ports"
+				}
+			]
+		},
+		{
+			"query_name": "Passwords And Secrets - CloudFormation Secret Template",
+			"query_id": "e0f01838-b1c2-4669-b84b-981949ebe5ed",
+			"query_url": "https://docs.kics.io/latest/secrets/",
+			"severity": "HIGH",
+			"platform": "Common",
+			"cloud_provider": "COMMON",
+			"category": "Secret Management",
+			"description": "Query to find passwords and secrets in infrastructure code.",
+			"description_id": "d69d8a89",
+			"files": [
+				{
+					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
+					"similarity_id": "5f948e5c0c97f3e7c43cd531de50c6c54a2cec221a45f113a34a571165d30553",
+					"line": 273,
+					"issue_type": "RedundantAttribute",
+					"search_key": "",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Hardcoded secret key should not appear in source",
+					"actual_value": "Hardcoded secret key appears in source"
+				}
+			]
+		},
+		{
+			"query_name": "Passwords And Secrets - Encryption Key",
+			"query_id": "9fb1cd65-7a07-4531-9bcf-47589d0f82d6",
+			"query_url": "https://docs.kics.io/latest/secrets/",
+			"severity": "HIGH",
+			"platform": "Common",
+			"cloud_provider": "COMMON",
+			"category": "Secret Management",
+			"description": "Query to find passwords and secrets in infrastructure code.",
+			"description_id": "d69d8a89",
+			"files": [
+				{
+					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
+					"similarity_id": "844945794b3e1dde699997428753e3b29a7b39dd45a49a5010810c87566e41a4",
+					"line": 275,
+					"issue_type": "RedundantAttribute",
+					"search_key": "",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Hardcoded secret key should not appear in source",
+					"actual_value": "Hardcoded secret key appears in source"
+				}
+			]
+		},
+		{
+			"query_name": "Passwords And Secrets - Generic Password",
+			"query_id": "487f4be7-3fd9-4506-a07a-eae252180c08",
+			"query_url": "https://docs.kics.io/latest/secrets/",
+			"severity": "HIGH",
+			"platform": "Common",
+			"cloud_provider": "COMMON",
+			"category": "Secret Management",
+			"description": "Query to find passwords and secrets in infrastructure code.",
+			"description_id": "d69d8a89",
+			"files": [
+				{
+					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
+					"similarity_id": "379b043925f80377f9a5c54a286392202b624f04f71e8d09f87da0ac414a5b04",
+					"line": 276,
+					"issue_type": "RedundantAttribute",
+					"search_key": "",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Hardcoded secret key should not appear in source",
+					"actual_value": "Hardcoded secret key appears in source"
 				}
 			]
 		},
@@ -311,6 +383,32 @@
 			]
 		},
 		{
+			"query_name": "Secrets Manager Should Specify KmsKeyId",
+			"query_id": "c8ae9ba9-c2f7-4e5c-b32e-a4b7712d4d22",
+			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-secret.html",
+			"severity": "MEDIUM",
+			"platform": "CloudFormation",
+			"cloud_provider": "AWS",
+			"category": "Secret Management",
+			"description": "Secrets Manager Secret should explicitly specify KmsKeyId, this will allow the secret to be shared cross-account",
+			"description_id": "d78bb871",
+			"files": [
+				{
+					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
+					"similarity_id": "fc5fc7cf72f42a639c6caf58ea2cdefd05811c7487abf44c401ad15225634ead",
+					"line": 270,
+					"resource_type": "AWS::SecretsManager::Secret",
+					"resource_name": "MyAmpAppSecretManagerRotater",
+					"issue_type": "MissingAttribute",
+					"search_key": "Resources.MyAmpAppSecretManagerRotater.Properties",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Resources.MyAmpAppSecretManagerRotater.Properties.KmsKeyId is defined",
+					"actual_value": "Resources.MyAmpAppSecretManagerRotater.Properties.KmsKeyId is undefined"
+				}
+			]
+		},
+		{
 			"query_name": "Security Group Ingress With Port Range",
 			"query_id": "87482183-a8e7-4e42-a566-7a23ec231c16",
 			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html",
@@ -336,19 +434,6 @@
 				},
 				{
 					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "000056cd0b9697e13f2f4561f1963e34c58c042b921c4d0fad0f2fa5214374eb",
-					"line": 35,
-					"resource_type": "AWS::EC2::SecurityGroupIngress",
-					"resource_name": "EcsSecurityGroupALBports",
-					"issue_type": "IncorrectValue",
-					"search_key": "Resources.EcsSecurityGroupALBports.Properties",
-					"search_line": 0,
-					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort should equal to Resources.EcsSecurityGroupALBports.Properties.ToPort",
-					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is not equal to Resources.EcsSecurityGroupALBports.Properties.ToPort"
-				},
-				{
-					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
 					"similarity_id": "810487007189ac4de717dffc3204a05756e80e910b34f89ee08fd14f612328aa",
 					"line": 27,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -359,6 +444,19 @@
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort should equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort",
 					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is not equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort"
+				},
+				{
+					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
+					"similarity_id": "000056cd0b9697e13f2f4561f1963e34c58c042b921c4d0fad0f2fa5214374eb",
+					"line": 35,
+					"resource_type": "AWS::EC2::SecurityGroupIngress",
+					"resource_name": "EcsSecurityGroupALBports",
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.EcsSecurityGroupALBports.Properties",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort should equal to Resources.EcsSecurityGroupALBports.Properties.ToPort",
+					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is not equal to Resources.EcsSecurityGroupALBports.Properties.ToPort"
 				}
 			]
 		},
@@ -440,6 +538,19 @@
 			"files": [
 				{
 					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
+					"similarity_id": "39fec612777f59fb4181dd2330ee465ec860c962acfebb07a4f1ee1f122d24e7",
+					"line": 35,
+					"resource_type": "AWS::EC2::SecurityGroupIngress",
+					"resource_name": "EcsSecurityGroupALBports",
+					"issue_type": "MissingAttribute",
+					"search_key": "Resources.EcsSecurityGroupALBports.Properties",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.Description should be set",
+					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.Description is undefined"
+				},
+				{
+					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
 					"similarity_id": "e96cf20cc6e1e11dce2d40d9e2b37446a00f00c3f541aa7dd13861059f6fcce8",
 					"line": 19,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -463,19 +574,6 @@
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description should be set",
 					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is undefined"
-				},
-				{
-					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "39fec612777f59fb4181dd2330ee465ec860c962acfebb07a4f1ee1f122d24e7",
-					"line": 35,
-					"resource_type": "AWS::EC2::SecurityGroupIngress",
-					"resource_name": "EcsSecurityGroupALBports",
-					"issue_type": "MissingAttribute",
-					"search_key": "Resources.EcsSecurityGroupALBports.Properties",
-					"search_line": 0,
-					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.Description should be set",
-					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.Description is undefined"
 				}
 			]
 		}
