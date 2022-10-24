@@ -1,6 +1,6 @@
 {
   "id": "acb6b4e2-a086-4f35-aefd-4db6ea51ada2",
-  "queryName": "Elasticsearch Log is disabled",
+  "queryName": "Elasticsearch Log Disabled",
   "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "AWS Elasticsearch should have logs enabled",
