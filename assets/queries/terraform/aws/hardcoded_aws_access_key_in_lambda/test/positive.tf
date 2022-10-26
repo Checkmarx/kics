@@ -33,7 +33,7 @@ resource "aws_lambda_function" "positive2" {
 
   environment {
     variables = {
-      foo = "1234567890123456789012345678901234567890$"
+      foo = "AKIAIOSFODNN7EXAMAAA"
     }
   }
 }
@@ -54,7 +54,7 @@ resource "aws_lambda_function" "positive3" {
 
   environment {
     variables = {
-      foo = "12345678901234567890123456789012345678901234567890123456789012345678901234567890$"
+      foo = "AKIASXANV9XVIJ1YCIJ5"
     }
   }
 }

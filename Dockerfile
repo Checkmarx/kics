@@ -1,4 +1,4 @@
-FROM golang:1.19.1-alpine as build_env
+FROM golang:1.19.2-alpine as build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
@@ -50,7 +50,7 @@ RUN wget https://releases.hashicorp.com/terraform/1.2.3/terraform_1.2.3_linux_am
     && mkdir ~/.terraform.d && mkdir ~/.terraform.d/plugins && mkdir ~/.terraform.d/plugins/linux_amd64 && mv terraform-provider-aws_v3.72.0_x5 terraform-provider-google_v4.32.0_x5 terraform-provider-azurerm_v3.18.0_x5 ~/.terraform.d/plugins/linux_amd64 \
     && apk upgrade --no-cache pcre2 \
     && apk add --no-cache \
-    git=2.36.2-r0
+    git=2.36.3-r0
 
 
 # Install Terraformer

@@ -1698,7 +1698,7 @@
     {
       "name": "php",
       "apiUrl": "https://endoflife.date/api/php.json",
-      "version": "8.1.10"
+      "version": "8.1.11"
     }
   ]
 }
