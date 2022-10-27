@@ -39,7 +39,7 @@ require (
 	github.com/yargevad/filepathx v1.0.0
 	github.com/zclconf/go-cty v1.11.1
 	golang.org/x/net v0.0.0-20221002022538-bcab6841153b
-	golang.org/x/text v0.3.8
+	golang.org/x/text v0.4.0
 	golang.org/x/tools v0.1.12
 	gopkg.in/yaml.v3 v3.0.1
 	helm.sh/helm/v3 v3.9.4
