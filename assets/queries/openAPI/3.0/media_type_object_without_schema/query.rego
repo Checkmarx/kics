@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.content", [openapi_lib.concat_path(path)]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "The attribute 'schema' is set",
+		"keyExpectedValue": "The attribute 'schema' should be set",
 		"keyActualValue": "The attribute 'schema' is undefined",
 	}
 }
@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.content", [openapi_lib.concat_path(path)]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "The attribute 'schema' is set",
+		"keyExpectedValue": "The attribute 'schema' should be set",
 		"keyActualValue": "The attribute 'schema' is undefined",
 	}
 }

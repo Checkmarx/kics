@@ -23,7 +23,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_kms.policy does not have wildcard in 'Action' and 'Principal'",
+		"keyExpectedValue": "aws_kms.policy should not have wildcard in 'Action' and 'Principal'",
 		"keyActualValue": "aws_kms.policy has wildcard in 'Action' or 'Principal'",
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}

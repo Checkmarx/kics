@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(redshift, name),
 		"searchKey": sprintf("aws_redshift_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_redshift_cluster.port is defined and not null",
+		"keyExpectedValue": "aws_redshift_cluster.port should be defined and not null",
 		"keyActualValue": "aws_redshift_cluster.port is undefined or null",
 		"searchLine": common_lib.build_search_line(["resource", "aws_redshift_cluster", name], []),
 	}

@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_redshift_cluster[%s].logging.enable", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_redshift_cluster", name, "logging", "enable"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'aws_redshift_cluster.logging' is true",
+		"keyExpectedValue": "'aws_redshift_cluster.logging' should be true",
 		"keyActualValue": "'aws_redshift_cluster.logging' is false",
 		"remediation": json.marshal({
 			"before": "false",
@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_redshift_cluster[%s]", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_redshift_cluster", name], []),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'aws_redshift_cluster.logging' is true",
+		"keyExpectedValue": "'aws_redshift_cluster.logging' should be true",
 		"keyActualValue": "'aws_redshift_cluster.logging' is undefined",
 		"remediation": "logging {\n\t\tenable = true \n\t}",
 		"remediationType": "addition",

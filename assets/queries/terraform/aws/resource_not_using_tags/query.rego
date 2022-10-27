@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[{{%s}}]", [res, name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[{{%s}}].tags is defined and not null", [res, name]),
+		"keyExpectedValue": sprintf("%s[{{%s}}].tags should be defined and not null", [res, name]),
 		"keyActualValue": sprintf("%s[{{%s}}].tags is undefined or null", [res, name]),
 	}
 }

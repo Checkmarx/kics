@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(api, name),
 		"searchKey": sprintf("aws_api_gateway_stage[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'access_log_settings' is defined",
+		"keyExpectedValue": "'access_log_settings' should be defined",
 		"keyActualValue": "'access_log_settings' is not defined",
 	}
 }
@@ -29,7 +29,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(api, name),
 		"searchKey": sprintf("aws_apigatewayv2_stage[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'access_log_settings' is defined",
+		"keyExpectedValue": "'access_log_settings' should be defined",
 		"keyActualValue": "'access_log_settings' is not defined",
 	}
 }

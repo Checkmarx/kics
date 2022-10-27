@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Role", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.Role' does not refer an inline IAM Policy", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.Role' should not refer an inline IAM Policy", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.Role' refers to inline IAM Policy '%s'", [name, policy]),
 	}
 }

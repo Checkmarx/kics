@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resources, name),
 		"searchKey": sprintf("Resources.%s.Properties.KeyPolicy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.KeyPolicy.Statement does not have wildcard in 'Action' and 'Principal'", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.KeyPolicy.Statement should not have wildcard in 'Action' and 'Principal'", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.KeyPolicy.Statement has wildcard in 'Action' and 'Principal'", [name]),
 		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "KeyPolicy"], []),
 	}
@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resources, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.KeyPolicy is defined and not null", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.KeyPolicy should be defined and not null", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.KeyPolicy is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["Resource", name, "Properties"], []),
 	}

@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].policy", [resourceType[idx], name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].policy is misconfigured", [name]),
+		"keyExpectedValue": sprintf("%s[%s].policy should be misconfigured", [name]),
 		"keyActualValue": sprintf("%s[%s].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name", [name])
 	}
 }

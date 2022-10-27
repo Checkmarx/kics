@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_dns_managed_zone[%s].dnssec_config.state", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'dnssec_config.state' is equal to 'on'",
+		"keyExpectedValue": "'dnssec_config.state' should equal to 'on'",
 		"keyActualValue": "'dnssec_config.state' is not equal to 'on'",
 		"searchLine": common_lib.build_search_line(["resource","google_dns_managed_zone", name, "dnssec_config", "state"],[])
 	}

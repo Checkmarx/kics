@@ -22,7 +22,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_iam_role[%s].assume_role_policy.Principal.AWS", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'assume_role_policy.Statement.Principal.AWS' does not contain ':root'",
+		"keyExpectedValue": "'assume_role_policy.Statement.Principal.AWS' should not contain ':root'",
 		"keyActualValue": "'assume_role_policy.Statement.Principal.AWS' contains ':root'",
 		"searchLine": common_lib.build_search_line(["resource", "aws_iam_role", name, "assume_role_policy", "Principal", "AWS"], []),
 	}

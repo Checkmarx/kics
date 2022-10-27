@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"issueType": "MissingAttribute",
 		"searchKey": sprintf("metadata.name={{%s}}.%s", [metadata.name, specInfo.path]),
-		"keyExpectedValue": "Attribute 'allowPrivilegeEscalation' is set",
+		"keyExpectedValue": "Attribute 'allowPrivilegeEscalation' should be set",
 		"keyActualValue": "Attribute 'allowPrivilegeEscalation' is undefined",
 	}
 }

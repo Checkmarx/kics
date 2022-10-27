@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'dnssecConfig' is defined and not null",
+		"keyExpectedValue": "'dnssecConfig' should be defined and not null",
 		"keyActualValue": "'dnssecConfig' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties"], []),
 	}
@@ -32,7 +32,7 @@ CxPolicy[result] {
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.dnssecConfig", [resource.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'state' is defined and not null",
+		"keyExpectedValue": "'state' should be defined and not null",
 		"keyActualValue": "'state' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "dnssecConfig"], []),
 	}

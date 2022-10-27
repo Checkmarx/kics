@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod_security_policy[%s].spec", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("kubernetes_pod_security_policy[%s].spec.required_drop_capabilities is set", [name]),
+		"keyExpectedValue": sprintf("kubernetes_pod_security_policy[%s].spec.required_drop_capabilities should be set", [name]),
 		"keyActualValue": sprintf("kubernetes_pod_security_policy[%s].spec.required_drop_capabilities is undefined", [name]),
 	}
 }

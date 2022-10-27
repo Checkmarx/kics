@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.securitySchemes.{{%s}}.scheme", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("components.securitySchemes.{{%s}} does not use 'basic' authentication", [name]),
+		"keyExpectedValue": sprintf("components.securitySchemes.{{%s}} should not use 'basic' authentication", [name]),
 		"keyActualValue": sprintf("components.securitySchemes.{{%s}} uses 'basic' authentication", [name]),
 	}
 }

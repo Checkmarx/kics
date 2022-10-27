@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"issueType": "MissingAttribute",
 		"searchKey": sprintf("kind={{%s}}.metadata.name={{%s}}", [kind, metadata.name]),
-		"keyExpectedValue": "metadata.namespace is defined and not null",
+		"keyExpectedValue": "metadata.namespace should be defined and not null",
 		"keyActualValue": "metadata.namespace is undefined or null",
 		"searchLine": common_lib.build_search_line(["metadata", "name"], []),
 	}

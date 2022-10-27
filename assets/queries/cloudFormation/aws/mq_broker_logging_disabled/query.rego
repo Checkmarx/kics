@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.Logs is set", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Logs should be set", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.Logs is undefined", [name]),
 	}
 }
@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Logs", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.Logs.%s is set", [name,lTypes]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Logs.%s should be set", [name,lTypes]),
 		"keyActualValue": sprintf("Resources.%s.Properties.Logs.%s is undefined", [name,lTypes]),
 	}
 }

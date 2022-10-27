@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_s3_bucket", name),
 		"searchKey": sprintf("aws_s3_bucket_object[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_s3_bucket_object.server_side_encryption is defined and not null",
+		"keyExpectedValue": "aws_s3_bucket_object.server_side_encryption should be defined and not null",
 		"keyActualValue": "aws_s3_bucket_object.server_side_encryption is undefined or null",
 	}
 }

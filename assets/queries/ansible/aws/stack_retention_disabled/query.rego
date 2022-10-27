@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "cloudformation_stack_set.purge_stacks is set",
+		"keyExpectedValue": "cloudformation_stack_set.purge_stacks should be set",
 		"keyActualValue": "cloudformation_stack_set.purge_stacks is undefined",
 	}
 }

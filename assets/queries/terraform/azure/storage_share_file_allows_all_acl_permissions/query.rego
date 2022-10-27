@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_storage_share[%s].acl.access_policy.permissions", [storageShareName]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("azurerm_storage_share[%s].acl.access_policy.permissions does not allow all ACL permissions", [storageShareName]),
+		"keyExpectedValue": sprintf("azurerm_storage_share[%s].acl.access_policy.permissions should not allow all ACL permissions", [storageShareName]),
 		"keyActualValue": sprintf("azurerm_storage_share[%s].acl.access_policy.permissions allows all ACL permissions", [storageShareName]),
 	}
 }

@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(restAPI, name),
 		"searchKey": sprintf("aws_api_gateway_rest_api[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "API Gateway REST API is associated with an API Gateway Authorizer",
+		"keyExpectedValue": "API Gateway REST API should be associated with an API Gateway Authorizer",
 		"keyActualValue": "API Gateway REST API is not associated with an API Gateway Authorizer",
 		"searchLine": common_lib.build_search_line(["resource", "aws_api_gateway_rest_api", name], []),
 	}

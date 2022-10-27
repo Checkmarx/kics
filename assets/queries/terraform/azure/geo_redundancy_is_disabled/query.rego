@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, var0),
 		"searchKey": sprintf("azurerm_postgresql_server[%s]", [var0]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_postgresql_server.%s.geo_redundant_backup_enabled' is set", [var0]),
+		"keyExpectedValue": sprintf("'azurerm_postgresql_server.%s.geo_redundant_backup_enabled' should be set", [var0]),
 		"keyActualValue": sprintf("'azurerm_postgresql_server.%s.geo_redundant_backup_enabled' is undefined", [var0]),
 		"searchLine": common_lib.build_search_line(["resource","azurerm_postgresql_server" ,var0], []),
 		"remediation": "geo_redundant_backup_enabled = true",
@@ -31,7 +31,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, var0),
 		"searchKey": sprintf("azurerm_postgresql_server[%s].geo_redundant_backup_enabled", [var0]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_postgresql_server.%s.geo_redundant_backup_enabled' is true", [var0]),
+		"keyExpectedValue": sprintf("'azurerm_postgresql_server.%s.geo_redundant_backup_enabled' should be true", [var0]),
 		"keyActualValue": sprintf("'azurerm_postgresql_server.%s.geo_redundant_backup_enabled' is false", [var0]),
 		"searchLine": common_lib.build_search_line(["resource","azurerm_postgresql_server" ,var0, "geo_redundant_backup_enabled"], []),
 		"remediation": json.marshal({

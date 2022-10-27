@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_elasticache_cluster", name),
 		"searchKey": sprintf("aws_elasticache_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_elasticache_cluster.port is defined and not null",
+		"keyExpectedValue": "aws_elasticache_cluster.port should be defined and not null",
 		"keyActualValue": "aws_elasticache_cluster.port is undefined or null",
 		"searchLine": common_lib.build_search_line(["resource", "aws_elasticache_cluster", name], []),
 	}

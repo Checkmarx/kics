@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("security.%s", [field]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("security[%d].%s is defined in '#/components/securitySchemes'", [s, field]),
+		"keyExpectedValue": sprintf("security[%d].%s should be defined in '#/components/securitySchemes'", [s, field]),
 		"keyActualValue": sprintf("security[%d].%s is not defined in '#/components/securitySchemes'", [s, field]),
 	}
 }

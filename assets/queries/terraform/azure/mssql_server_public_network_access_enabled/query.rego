@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_mssql_server[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_mssql_server[%s].public_network_access_enabled' is defined and not null", [name]),
+		"keyExpectedValue": sprintf("'azurerm_mssql_server[%s].public_network_access_enabled' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'azurerm_mssql_server[%s].public_network_access_enabled' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_mssql_server", name], []),
 		"remediation": "public_network_access_enabled = false",
@@ -42,6 +42,6 @@ CxPolicy[result] {
 			"before": "true",
 			"after": "false"
 		}),
-		"remediationType": "replacement",		
+		"remediationType": "replacement",
 	}
 }

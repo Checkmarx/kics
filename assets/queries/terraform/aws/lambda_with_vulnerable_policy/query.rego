@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_lambda_permission[%s].action", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_lambda_permission[%s].action does not have wildcard", [name]),
+		"keyExpectedValue": sprintf("aws_lambda_permission[%s].action should not have wildcard", [name]),
 		"keyActualValue": sprintf("aws_lambda_permission[%s].action has wildcard", [name]),
 	}
 }

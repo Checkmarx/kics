@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("variable.{{%s}}", [variableName]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'description' is defined and not null",
+		"keyExpectedValue": "'description' should be defined and not null",
 		"keyActualValue": "'description' is undefined or null",
 	}
 }

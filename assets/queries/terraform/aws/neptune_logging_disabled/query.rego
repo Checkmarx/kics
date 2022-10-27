@@ -9,7 +9,7 @@ validTypeConcat := concat(", ", validTypes)
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_neptune_cluster[name]
 	not exist(resource, "enable_cloudwatch_logs_exports")
-	
+
 
 	result := {
 		"documentId": input.document[i].id,
@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_neptune_cluster[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_neptune_cluster.enable_cloudwatch_logs_exports is defined",
+		"keyExpectedValue": "aws_neptune_cluster.enable_cloudwatch_logs_exports should be defined",
 		"keyActualValue": "aws_neptune_cluster.enable_cloudwatch_logs_exports is undefined",
 	}
 }

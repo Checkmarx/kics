@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(compute, name),
 		"searchKey": sprintf("google_compute_instance[%s].metadata.block-project-ssh-keys", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("google_compute_instance[%s].metadata.block-project-ssh-keys is true", [name]),
+		"keyExpectedValue": sprintf("google_compute_instance[%s].metadata.block-project-ssh-keys should be true", [name]),
 		"keyActualValue": sprintf("google_compute_instance[%s].metadata.block-project-ssh-keys is %s", [name, ssh_keys_enabled]),
 	}
 }
@@ -30,7 +30,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(compute, name),
 		"searchKey": sprintf("google_compute_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("google_compute_instance[%s].metadata is set", [name]),
+		"keyExpectedValue": sprintf("google_compute_instance[%s].metadata should be set", [name]),
 		"keyActualValue": sprintf("google_compute_instance[%s].metadata is undefined", [name]),
 	}
 }
@@ -45,7 +45,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(compute, name),
 		"searchKey": sprintf("google_compute_instance[%s].metadata", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("google_compute_instance[%s].metadata.block-project-ssh-keys is set", [name]),
+		"keyExpectedValue": sprintf("google_compute_instance[%s].metadata.block-project-ssh-keys should be set", [name]),
 		"keyActualValue": sprintf("google_compute_instance[%s].metadata.block-project-ssh-keys is undefined", [name]),
 	}
 }

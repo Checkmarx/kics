@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(firewall, name),
 		"searchKey": sprintf("google_compute_firewall[%s].allow.ports", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'google_compute_firewall[%s].allow.ports' does not include RDP port 3389", [name]),
+		"keyExpectedValue": sprintf("'google_compute_firewall[%s].allow.ports' should not include RDP port 3389", [name]),
 		"keyActualValue": sprintf("'google_compute_firewall[%s].allow.ports' includes RDP port 3389", [name]),
 		"searchLine": common_lib.build_search_line(["google_compute_firewall", name, "allow", a], []),
 	}

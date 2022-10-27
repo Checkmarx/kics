@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_cloudtrail", name], []),
 		"searchKey": sprintf("aws_cloudtrail[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_cloudtrail[%s].is_multi_region_trail is defined and not null", [name]),
+		"keyExpectedValue": sprintf("aws_cloudtrail[%s].is_multi_region_trail should be defined and not null", [name]),
 		"keyActualValue": sprintf("aws_cloudtrail[%s].is_multi_region_trail is undefined or null", [name]),
 		"remediation": "is_multi_region_trail = true",
 		"remediationType": "addition",

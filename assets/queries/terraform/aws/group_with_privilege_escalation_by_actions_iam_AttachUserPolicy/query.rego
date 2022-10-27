@@ -17,7 +17,7 @@ CxPolicy[result] {
         "resourceName": tf_lib.get_resource_name(group, targetGroup),
 		"searchKey": sprintf("aws_iam_group[%s]", [targetGroup]),
 		"issueType": "IncorrectValue",
-        "keyExpectedValue": sprintf("group %s is not associated with a policy that has Action set to 'iam:AttachUserPolicy' and Resource set to '*'", [targetGroup]),
+        "keyExpectedValue": sprintf("group %s shouldn't be associated with a policy that has Action set to 'iam:AttachUserPolicy' and Resource set to '*'", [targetGroup]),
 		"keyActualValue": sprintf("group %s is associated with a policy that has Action set to 'iam:AttachUserPolicy' and Resource set to '*'", [targetGroup]),
         "searchLine": common_lib.build_search_line(["resource", "aws_iam_group", targetGroup], []),
 	}

@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(instance, name),
 		"searchKey": sprintf("aws_instance[%s].user_data", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'user_data' doesn't contain hardcoded access key",
+		"keyExpectedValue": "'user_data' shouldn't contain hardcoded access key",
 		"keyActualValue": "'user_data' contains hardcoded access key",
 		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name, "user_data"], []),
 	}
@@ -31,7 +31,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].user_data", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'user_data' doesn't contain hardcoded access key",
+		"keyExpectedValue": "'user_data' shouldn't contain hardcoded access key",
 		"keyActualValue": "'user_data' contains hardcoded access key",
 		"searchLine": common_lib.build_search_line(["module", name, "user_data"], []),
 	}

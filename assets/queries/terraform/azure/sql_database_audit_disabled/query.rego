@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_sql_database[%s].threat_detection_policy", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'threat_detection_policy' exists",
+		"keyExpectedValue": "'threat_detection_policy' should exist",
 		"keyActualValue": "'threat_detection_policy' is missing",
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_sql_database" ,name, "threat_detection_policy"], []),
 		"remediation": "threat_detection_policy {\n\t\tstate = \"Enabled\"\n\t}\n",

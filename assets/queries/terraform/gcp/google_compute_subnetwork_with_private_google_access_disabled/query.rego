@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_compute_subnetwork[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'google_compute_subnetwork[%s].private_ip_google_access' is defined and not null", [name]),
+		"keyExpectedValue": sprintf("'google_compute_subnetwork[%s].private_ip_google_access' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'google_compute_subnetwork[%s].private_ip_google_access' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "google_compute_subnetwork", name], []),
 		"remediation": "private_ip_google_access = false",
@@ -38,6 +38,6 @@ CxPolicy[result] {
 			"before": "false",
 			"after": "true"
 		}),
-		"remediationType": "replacement",		
+		"remediationType": "replacement",
 	}
 }

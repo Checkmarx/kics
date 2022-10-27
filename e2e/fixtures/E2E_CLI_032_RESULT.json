@@ -403,7 +403,7 @@
 					"search_key": "Resources.MyAmpAppSecretManagerRotater.Properties",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "Resources.MyAmpAppSecretManagerRotater.Properties.KmsKeyId is defined",
+					"expected_value": "Resources.MyAmpAppSecretManagerRotater.Properties.KmsKeyId should be defined",
 					"actual_value": "Resources.MyAmpAppSecretManagerRotater.Properties.KmsKeyId is undefined"
 				}
 			]
@@ -520,7 +520,7 @@
 					"search_key": "Resources",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "'AWS::AccessAnalyzer::Analyzer' is set",
+					"expected_value": "'AWS::AccessAnalyzer::Analyzer' should be set",
 					"actual_value": "'AWS::AccessAnalyzer::Analyzer' is undefined"
 				}
 			]

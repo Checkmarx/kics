@@ -8,7 +8,7 @@ CxPolicy[result] {
 	resource.type == "ingress"
 	resource.cidr_ip == "0.0.0.0/0"
 	isTCPorUDP(resource.ip_protocol)
-    containsUnknownPort(resource)	
+    containsUnknownPort(resource)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_security_group_rule[%s].port_range", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "port_range does not contain unknown ports and are not exposed to the entire Internet",
+		"keyExpectedValue": "port_range should not contain unknown ports and should not be exposed to the entire Internet",
 		"keyActualValue": "port_range contains unknown ports and are exposed to the entire Internet",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_security_group_rule", name, "port_range"], []),
 	}
@@ -33,7 +33,7 @@ CxPolicy[result] {
 	resource.cidr_ip == "0.0.0.0/0"
 	resource.ip_protocol == "all"
 	resource.port_range == "-1/-1"
-    containsUnknownPortForAll(resource)	
+    containsUnknownPortForAll(resource)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -41,7 +41,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_security_group_rule[%s].port_range", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "port_range does not contain ports unknown and are not exposed to the entire Internet",
+		"keyExpectedValue": "port_range should not contain ports unknown and should not be exposed to the entire Internet",
 		"keyActualValue": "port_range contains ports unknown and are exposed to the entire Internet",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_security_group_rule", name, "port_range"], []),
 	}

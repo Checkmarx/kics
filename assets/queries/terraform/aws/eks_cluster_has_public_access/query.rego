@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_eks_cluster[%s].vpc_config.endpoint_public_access", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_eks_cluster", name, "vpc_config", "endpoint_public_access"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'vpc_config.endpoint_public_access' is equal 'false'",
+		"keyExpectedValue": "'vpc_config.endpoint_public_access' should equal 'false'",
 		"keyActualValue": "'vpc_config.endpoint_public_access' is equal 'true'",
 		"remediation": json.marshal({
 			"before": "true",

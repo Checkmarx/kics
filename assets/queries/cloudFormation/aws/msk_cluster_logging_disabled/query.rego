@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resources, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.LoggingInfo is defined", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.LoggingInfo should be defined", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.LoggingInfo is undefined", [name]),
 	}
 }

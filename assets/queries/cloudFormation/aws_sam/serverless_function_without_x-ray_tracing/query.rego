@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Property 'TracingConfig' is defined and not null",
+		"keyExpectedValue": "Property 'TracingConfig' should be defined and not null",
 		"keyActualValue": "Property 'TracingConfig' is undefined or null",
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties"], []),
 	}

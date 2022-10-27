@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_sns_topic[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'Statement.Principal.AWS' doesn't contain '*'",
+		"keyExpectedValue": "'Statement.Principal.AWS' shouldn't contain '*'",
 		"keyActualValue": "'Statement.Principal.AWS' contains '*'",
 		"searchLine": common_lib.build_search_line(["resource", "aws_sns_topic", name, "policy"], []),
 	}

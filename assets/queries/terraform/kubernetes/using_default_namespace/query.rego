@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].metadata", [listKinds[x], name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].metadata is set", [listKinds[x], name]),
+		"keyExpectedValue": sprintf("%s[%s].metadata should be set", [listKinds[x], name]),
 		"keyActualValue": sprintf("%s[%s].metadata is undefined", [listKinds[x], name]),
 	}
 }

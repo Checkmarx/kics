@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].disk_encryption_set_id' is defined and not null", [name]),
+		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].disk_encryption_set_id' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'azurerm_kubernetes_cluster[%s].disk_encryption_set_id' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_kubernetes_cluster", name], []),
 	}

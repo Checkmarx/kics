@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.parameters.name={{%s}}", [openapi_lib.concat_path(path), param.name]),
 		"issueType": issueType,
-		"keyExpectedValue": "Path parameter has the field 'required' set to 'true' for location 'path'",
+		"keyExpectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
 		"keyActualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
 		"overrideKey": version,
 	}

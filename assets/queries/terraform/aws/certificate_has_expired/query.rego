@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].certificate_body", [resourceType, name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].certificate_body does not have expired", [resourceType, name]),
+		"keyExpectedValue": sprintf("%s[%s].certificate_body should not have expired", [resourceType, name]),
 		"keyActualValue": sprintf("%s[%s].certificate_body has expired", [resourceType, name]),
 	}
 }

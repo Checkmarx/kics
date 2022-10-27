@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s does not have more than one of the attributes template, template_body and template_url set", [modules[m]]),
+		"keyExpectedValue": sprintf("%s should not have more than one of the attributes template, template_body and template_url set", [modules[m]]),
 		"keyActualValue": sprintf("%s has more than one of the attributes template, template_body and template_url set", [modules[m]]),
 	}
 }

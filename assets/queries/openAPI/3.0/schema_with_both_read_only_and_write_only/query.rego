@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.content.{{%s}}.schema", [path, operation, r, c]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.content.{{%s}}.schema does not have both 'writeOnly' and 'readOnly' set to true", [path, operation, r, c]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.content.{{%s}}.schema should not have both 'writeOnly' and 'readOnly' set to true", [path, operation, r, c]),
 		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.content.{{%s}}.schema has both 'writeOnly' and 'readOnly' set to true", [path, operation, r, c]),
 	}
 }
@@ -32,7 +32,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.parameters.{{%s}}.schema", [path, parameter]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("paths.{{%s}}.parameters.{{%s}}.schema does not have both 'writeOnly' and 'readOnly' set to true", [path, parameter]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.parameters.{{%s}}.schema should not have both 'writeOnly' and 'readOnly' set to true", [path, parameter]),
 		"keyActualValue": sprintf("paths.{{%s}}.parameters.{{%s}}.schema has both 'writeOnly' and 'readOnly' set to true", [path, parameter]),
 	}
 }
@@ -49,7 +49,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.parameters.{{%s}}.schema", [path, operation, parameter]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.parameters.{{%s}}.schema does not have both 'writeOnly' and 'readOnly' set to true", [path, operation, parameter]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.parameters.{{%s}}.schema should not have both 'writeOnly' and 'readOnly' set to true", [path, operation, parameter]),
 		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.parameters.{{%s}}.schema has both 'writeOnly' and 'readOnly' set to true", [path, operation, parameter]),
 	}
 }
@@ -66,7 +66,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}.schema", [path, operation, c]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}.schema does not have both 'writeOnly' and 'readOnly' set to true", [path, operation, c]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}.schema should not have both 'writeOnly' and 'readOnly' set to true", [path, operation, c]),
 		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}.schema has both 'writeOnly' and 'readOnly' set to true", [path, operation, c]),
 	}
 }
@@ -83,7 +83,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.requestBodies.{{%s}}.content.{{%s}}.schema", [r, c]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("components.requestBodies.{{%s}}.content.{{%s}}.schema does not have both 'writeOnly' and 'readOnly' set to true", [r, c]),
+		"keyExpectedValue": sprintf("components.requestBodies.{{%s}}.content.{{%s}}.schema should not have both 'writeOnly' and 'readOnly' set to true", [r, c]),
 		"keyActualValue": sprintf("components.requestBodies.{{%s}}.content.{{%s}}.schema has both 'writeOnly' and 'readOnly' set to true", [r, c]),
 	}
 }
@@ -100,7 +100,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.parameters.{{%s}}.schema", [parameter]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("components.parameters.{{%s}}.schema does not have both 'writeOnly' and 'readOnly' set to true", [parameter]),
+		"keyExpectedValue": sprintf("components.parameters.{{%s}}.schema should not have both 'writeOnly' and 'readOnly' set to true", [parameter]),
 		"keyActualValue": sprintf("components.parameters.{{%s}}.schema has both 'writeOnly' and 'readOnly' set to true", [parameter]),
 	}
 }
@@ -117,7 +117,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.responses.{{%s}}.content.{{%s}}.schema", [r, c]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("components.responses.{{%s}}.content.{{%s}}.schema does not have both 'writeOnly' and 'readOnly' set to true", [r, c]),
+		"keyExpectedValue": sprintf("components.responses.{{%s}}.content.{{%s}}.schema should not have both 'writeOnly' and 'readOnly' set to true", [r, c]),
 		"keyActualValue": sprintf("components.responses.{{%s}}.content.{{%s}}.schema has both 'writeOnly' and 'readOnly' set to true", [r, c]),
 	}
 }
@@ -134,7 +134,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.schemas.{{%s}}", [s]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("components.schemas.{{%s}} does not have both 'writeOnly' and 'readOnly' set to true", [s]),
+		"keyExpectedValue": sprintf("components.schemas.{{%s}} should not have both 'writeOnly' and 'readOnly' set to true", [s]),
 		"keyActualValue": sprintf("components.schemas.{{%s}} has both 'writeOnly' and 'readOnly' set to true", [s]),
 	}
 }

@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'master_auth' is defined",
+		"keyExpectedValue": "Attribute 'master_auth' should be defined",
 		"keyActualValue": "Attribute 'master_auth' is undefined",
 	}
 }
@@ -28,7 +28,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s].master_auth", [primary]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'master_auth.username' is defined and Attribute 'master_auth.password' is defined",
+		"keyExpectedValue": "Attribute 'master_auth.username' should be defined and Attribute 'master_auth.password' should be defined",
 		"keyActualValue": "Attribute 'master_auth.username' is undefined or Attribute 'master_auth.password' is undefined",
 	}
 }
