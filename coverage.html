@@ -171,7 +171,7 @@
 				
 				<option value="file57">github.com/Checkmarx/kics/pkg/parser/docker/comments.go (100.0%)</option>
 				
-				<option value="file58">github.com/Checkmarx/kics/pkg/parser/docker/parser.go (95.0%)</option>
+				<option value="file58">github.com/Checkmarx/kics/pkg/parser/docker/parser.go (95.7%)</option>
 				
 				<option value="file59">github.com/Checkmarx/kics/pkg/parser/grpc/converter/converter.go (87.4%)</option>
 				
@@ -215,7 +215,7 @@
 				
 				<option value="file79">github.com/Checkmarx/kics/pkg/printer/utils.go (82.4%)</option>
 				
-				<option value="file80">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (80.0%)</option>
+				<option value="file80">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
 				<option value="file81">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
@@ -2174,13 +2174,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="36">total += v
+                <span class="cov8" title="33">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2205,7 +2205,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4787,7 +4787,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="11">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5952,17 +5952,17 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="29765">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="29803">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="29765">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="29484">{
+                <span class="cov9" title="29803">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="29494">{
                         return skipFolder
                 }</span>
 
                 // ------------------ Helm resolver --------------------------------
-                <span class="cov5" title="281">if info.IsDir() </span><span class="cov1" title="1">{
+                <span class="cov6" title="309">if info.IsDir() </span><span class="cov1" title="1">{
                         excluded, errRes := resolverSink(ctx, strings.ReplaceAll(path, "\\", "/"))
                         if errRes != nil </span><span class="cov0" title="0">{
                                 sentryReport.ReportSentry(&amp;sentryReport.Report{
@@ -5981,17 +5981,17 @@ func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string,
                 }
                 // -----------------------------------------------------------------
 
-                <span class="cov5" title="280">c, err := os.Open(filepath.Clean(path))
+                <span class="cov6" title="308">c, err := os.Open(filepath.Clean(path))
                 if err != nil </span><span class="cov0" title="0">{
                         if ignoreDamagedFiles(filepath.Clean(path)) </span><span class="cov0" title="0">{
                                 return nil
                         }</span>
                         <span class="cov0" title="0">return errors.Wrap(err, "failed to open file")</span>
                 }
-                <span class="cov5" title="280">defer closeFile(c, info)
+                <span class="cov6" title="308">defer closeFile(c, info)
 
                 err = sink(ctx, strings.ReplaceAll(path, "\\", "/"), c)
-                if err != nil </span><span class="cov5" title="140">{
+                if err != nil </span><span class="cov5" title="154">{
                         sentryReport.ReportSentry(&amp;sentryReport.Report{
                                 Message:  fmt.Sprintf("Filesystem files provider couldn't parse file, file=%s", info.Name()),
                                 Err:      err,
@@ -5999,7 +5999,7 @@ func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string,
                                 FileName: info.Name(),
                         }, true)
                 }</span>
-                <span class="cov5" title="280">return nil</span>
+                <span class="cov6" title="308">return nil</span>
         })
 }
 
@@ -6017,7 +6017,7 @@ func openScanFile(scanPath string, extensions model.Extensions) (*os.File, error
         <span class="cov1" title="1">return c, nil</span>
 }
 
-func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="280">{
+func closeFile(file *os.File, info os.FileInfo) <span class="cov6" title="308">{
         if err := file.Close(); err != nil </span><span class="cov0" title="0">{
                 sentryReport.ReportSentry(&amp;sentryReport.Report{
                         Message:  fmt.Sprintf("Filesystem couldn't close file, file=%s", info.Name()),
@@ -6029,31 +6029,31 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="280">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="29768">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="29806">{
         s.mu.RLock()
         defer s.mu.RUnlock()
-        if info.IsDir() </span><span class="cov8" title="6614">{
+        if info.IsDir() </span><span class="cov8" title="6618">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
                         return true, filepath.SkipDir
                 }</span>
-                <span class="cov8" title="6613">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
-                if err != nil || resolved </span><span class="cov8" title="6611">{
+                <span class="cov8" title="6617">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
+                if err != nil || resolved </span><span class="cov8" title="6615">{
                         return true, nil
                 }</span>
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="23154">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="23188">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="23154">ext := utils.GetExtension(path)
-        if !extensions.Include(ext) </span><span class="cov9" title="22874">{
+        <span class="cov9" title="23188">ext := utils.GetExtension(path)
+        if !extensions.Include(ext) </span><span class="cov9" title="22880">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov5" title="280">return false, nil</span>
+        <span class="cov6" title="308">return false, nil</span>
 }
 
 func containsFile(fileList []os.FileInfo, target os.FileInfo) bool <span class="cov1" title="1">{
@@ -10333,18 +10333,19 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
         ignoreStruct := newIgnore()
 
         args := make(map[string]string, 0)
+        envs := make(map[string]string, 0)
 
-        for _, child := range parsed.AST.Children </span><span class="cov8" title="27">{
+        for _, child := range parsed.AST.Children </span><span class="cov7" title="27">{
                 child.Value = strings.ToLower(child.Value)
-                if child.Value == "from" </span><span class="cov5" title="6">{
+                if child.Value == "from" </span><span class="cov4" title="6">{
                         fromValue = strings.TrimPrefix(child.Original, "FROM ")
                 }</span>
 
-                <span class="cov8" title="27">if ignoreStruct.getIgnoreComments(child) </span><span class="cov1" title="1">{
+                <span class="cov7" title="27">if ignoreStruct.getIgnoreComments(child) </span><span class="cov1" title="1">{
                         ignoreStruct.setIgnore(fromValue)
                 }</span>
 
-                <span class="cov8" title="27">ignoreStruct.ignoreBlock(child, fromValue)
+                <span class="cov7" title="27">ignoreStruct.ignoreBlock(child, fromValue)
 
                 cmd := Command{
                         Cmd:       child.Value,
@@ -10359,20 +10360,26 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
                         child = child.Next.Children[0]
                 }</span>
 
-                <span class="cov8" title="27">cmd.JSON = child.Attributes["json"]
-                for n := child.Next; n != nil; n = n.Next </span><span class="cov10" title="41">{
+                <span class="cov7" title="27">cmd.JSON = child.Attributes["json"]
+                for n := child.Next; n != nil; n = n.Next </span><span class="cov8" title="41">{
                         cmd.Value = append(cmd.Value, n.Value)
                 }</span>
 
-                <span class="cov8" title="27">if child.Value != "arg" </span><span class="cov8" title="22">{
-                        cmd.Value = resolveArgs(cmd.Value, args)
+                <span class="cov7" title="27">if child.Value != "arg" </span><span class="cov7" title="22">{
+                        cmd.Value = resolveArgsAndEnvs(cmd.Value, args)
                 }</span> else<span class="cov4" title="5"> {
                         args = saveArgs(args, cmd.Value[0])
                 }</span>
 
-                <span class="cov8" title="27">if fromValue == "" </span><span class="cov4" title="4">{
+                <span class="cov7" title="27">if child.Value != "env" </span><span class="cov7" title="26">{
+                        cmd.Value = resolveArgsAndEnvs(cmd.Value, envs)
+                }</span> else<span class="cov1" title="1"> {
+                        envs = saveEnvs(envs, cmd.Value)
+                }</span>
+
+                <span class="cov7" title="27">if fromValue == "" </span><span class="cov3" title="4">{
                         arguments = append(arguments, cmd)
-                }</span> else<span class="cov8" title="23"> {
+                }</span> else<span class="cov7" title="23"> {
                         from[fromValue] = append(from[fromValue], cmd)
                 }</span>
         }
@@ -10428,15 +10435,17 @@ func (p *Parser) GetResolvedFiles() map[string]model.ResolvedFile <span class="c
         return make(map[string]model.ResolvedFile)
 }</span>
 
-func resolveArgs(values []string, args map[string]string) []string <span class="cov8" title="22">{
-        for i := range values </span><span class="cov9" title="36">{
-                for arg := range args </span><span class="cov7" title="12">{
-                        ref := fmt.Sprintf("${%s}", arg)
-                        values[i] = strings.Replace(values[i], ref, args[arg], 1)
+func resolveArgsAndEnvs(values []string, args map[string]string) []string <span class="cov9" title="48">{
+        for i := range values </span><span class="cov10" title="75">{
+                for arg := range args </span><span class="cov6" title="16">{
+                        ref1 := fmt.Sprintf("${%s}", arg)
+                        values[i] = strings.Replace(values[i], ref1, args[arg], 1)
+                        ref2 := fmt.Sprintf("$%s", arg)
+                        values[i] = strings.Replace(values[i], ref2, args[arg], 1)
                 }</span>
         }
 
-        <span class="cov8" title="22">return values</span>
+        <span class="cov9" title="48">return values</span>
 }
 
 func saveArgs(args map[string]string, argValue string) map[string]string <span class="cov4" title="5">{
@@ -10450,6 +10459,13 @@ func saveArgs(args map[string]string, argValue string) map[string]string <span c
         }</span>
 
         <span class="cov4" title="5">return args</span>
+}
+
+func saveEnvs(envs map[string]string, envValues []string) map[string]string <span class="cov1" title="1">{
+        if len(envValues) == 2 </span><span class="cov1" title="1">{
+                envs[envValues[0]] = envValues[1]
+        }</span>
+        <span class="cov1" title="1">return envs</span>
 }
 </pre>
 		
@@ -16090,8 +16106,8 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
 }
 
 // Start initializes the Circle Progress Bar
-func (p ProgressBar) Start() <span class="cov0" title="0">{
-        for </span><span class="cov0" title="0">{ // increment until the Close func is called
+func (p ProgressBar) Start() <span class="cov1" title="1">{
+        for </span><span class="cov1" title="1">{ // increment until the Close func is called
                 p.pBar.Increment()
                 // lower cpu usage from infinite loop
                 time.Sleep(time.Millisecond * sleepTimeout)
@@ -21330,15 +21346,15 @@ func StringifyStruct(v interface{}) (string, error) <span class="cov0" title="0"
 }
 
 // MapToStringSlice extract slice of keys from a map[string]string
-func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov7" title="4892">{
+func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov7" title="4895">{
         keys := make([]string, len(stringKeyMap))
 
         i := 0
-        for k := range stringKeyMap </span><span class="cov10" title="73381">{
+        for k := range stringKeyMap </span><span class="cov10" title="73426">{
                 keys[i] = k
                 i++
         }</span>
-        <span class="cov7" title="4892">return keys</span>
+        <span class="cov7" title="4895">return keys</span>
 }
 
 var queryHigh = model.QueryResult{
