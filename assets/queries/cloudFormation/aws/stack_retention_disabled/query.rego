@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.AutoDeployment is set", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.AutoDeployment should be set", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.AutoDeployment is undefined", [name]),
 	}
 }
@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.AutoDeployment", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.AutoDeployment.Enabled is set", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.AutoDeployment.Enabled should be set", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.AutoDeployment.Enabled is undefined", [name]),
 	}
 }
@@ -73,7 +73,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.AutoDeployment", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.AutoDeployment.RetainStacksOnAccountRemoval is set", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.AutoDeployment.RetainStacksOnAccountRemoval should be set", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.AutoDeployment.RetainStacksOnAccountRemoval is undefined", [name]),
 	}
 }

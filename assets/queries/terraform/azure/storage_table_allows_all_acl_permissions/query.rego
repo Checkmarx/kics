@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_storage_table[%s].acl.permissions", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("azurerm_storage_table[%s].acl.permissions does not allow all ACL permissions", [name]),
+		"keyExpectedValue": sprintf("azurerm_storage_table[%s].acl.permissions should not allow all ACL permissions", [name]),
 		"keyActualValue": sprintf("azurerm_storage_table[%s].acl.permissions allows all ACL permissions", [name]),
 	}
 }

@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(compute, name),
 		"searchKey": sprintf("google_compute_instance[%s].metadata.enable-oslogin", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("google_compute_instance[%s].metadata.enable-oslogin is true or undefined", [name]),
+		"keyExpectedValue": sprintf("google_compute_instance[%s].metadata.enable-oslogin should be true or undefined", [name]),
 		"keyActualValue": sprintf("google_compute_instance[%s].metadata.enable-oslogin is false", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "google_compute_instance", name],["metadata", "enable-oslogin"]),
 		"remediation": json.marshal({

@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}", [metadata.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'metadata.annotations' is set",
+		"keyExpectedValue": "'metadata.annotations' should be set",
 		"keyActualValue": "'metadata.annotations' is undefined",
 	}
 }

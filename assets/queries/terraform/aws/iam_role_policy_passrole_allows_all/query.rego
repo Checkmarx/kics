@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_iam_role_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'aws_iam_role_policy.policy.Statement.Action' iam:passrole doesn't have Resource '*'",
+		"keyExpectedValue": "'aws_iam_role_policy.policy.Statement.Action' iam:passrole shouldn't have Resource '*'",
 		"keyActualValue": "'aws_iam_role_policy.policy.Statement.Action' iam:passrole has Resource '*'",
 		"searchLine": common_lib.build_search_line(["resource", "aws_iam_role_policy", name, "policy"], []),
 	}

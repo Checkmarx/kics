@@ -27,7 +27,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": "resource",
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'aws_accessanalyzer_analyzer' is set",
+		"keyExpectedValue": "'aws_accessanalyzer_analyzer' should be set",
 		"keyActualValue": "'aws_accessanalyzer_analyzer' is undefined",
 		"searchLine": common_lib.build_search_line(["resource"], []),
 	}

@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": path[1],
 		"searchKey": sprintf("%s[%s].policy", [path[0], path[1]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'Principal' is defined",
+		"keyExpectedValue": "'Principal' should be defined",
 		"keyActualValue": "'Principal' is undefined",
 		"searchLine": common_lib.build_search_line(["resource", path[0], path[1], "policy"], []),
 	}

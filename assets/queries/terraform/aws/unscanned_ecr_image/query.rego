@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_ecr_repository[%s]", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_ecr_repository", name], []),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_ecr_repository[%s].image_scanning_configuration is defined", [name]),
+		"keyExpectedValue": sprintf("aws_ecr_repository[%s].image_scanning_configuration should be defined", [name]),
 		"keyActualValue": sprintf("aws_ecr_repository[%s].image_scanning_configuration is undefined", [name]),
 		"remediation": "image_scanning_configuration { \n\t\tscan_on_push = true \n\t}",
 		"remediationType": "addition",

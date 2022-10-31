@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_cloudtrail.%s.enable_logging", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_cloudtrail", name, "enable_logging"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_cloudtrail.%s.enable_logging is true", [name]),
+		"keyExpectedValue": sprintf("aws_cloudtrail.%s.enable_logging should be true", [name]),
 		"keyActualValue": sprintf("aws_cloudtrail.%s.enable_logging is false", [name]),
 		"remediation": json.marshal({
 			"before": "false",

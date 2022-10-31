@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_elasticache_cluster", name, "az_mode"], []),
 		"searchKey": sprintf("aws_elasticache_cluster[%s].az_mode", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'az_mode' is 'cross-az' in multi nodes cluster",
+		"keyExpectedValue": "'az_mode' should be 'cross-az' in multi nodes cluster",
 		"keyActualValue": sprintf("'az_mode' is '%s'", [cluster.az_mode]),
 		"remediation": json.marshal({
 			"before": sprintf("%s", [cluster.az_mode]),

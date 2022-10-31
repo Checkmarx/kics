@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_docdb_cluster[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports is defined",
+		"keyExpectedValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports should be defined",
 		"keyActualValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports is undefined",
 	}
 }

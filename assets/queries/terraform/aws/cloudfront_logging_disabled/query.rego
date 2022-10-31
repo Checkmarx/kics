@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cloudfront_distribution[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_cloudfront_distribution[%s].logging_config is defined", [name]),
+		"keyExpectedValue": sprintf("aws_cloudfront_distribution[%s].logging_config should be defined", [name]),
 		"keyActualValue": sprintf("aws_cloudfront_distribution[%s].logging_config is undefined", [name]),
 	}
 }

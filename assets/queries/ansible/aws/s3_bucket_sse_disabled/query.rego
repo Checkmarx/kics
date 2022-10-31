@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.encryption", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "s3_bucket.encryption_key_id is defined",
+		"keyExpectedValue": "s3_bucket.encryption_key_id should be defined",
 		"keyActualValue": "s3_bucket.encryption_key_id is undefined",
 	}
 }
@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.encryption", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "s3_bucket.encryption_key_id is defined",
+		"keyExpectedValue": "s3_bucket.encryption_key_id should be defined",
 		"keyActualValue": "s3_bucket.encryption_key_id is empty or null",
 	}
 }

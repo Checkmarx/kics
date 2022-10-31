@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("aws_eks_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'enabled_cluster_log_types' is defined and not null",
+		"keyExpectedValue": "'enabled_cluster_log_types' should be defined and not null",
 		"keyActualValue": "'enabled_cluster_log_types' is undefined or null",
 	}
 }

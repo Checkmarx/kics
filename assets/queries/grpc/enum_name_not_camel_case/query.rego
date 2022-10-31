@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("enum[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Enum Name follows CamelCase (Initial Letter is Capital)",
+		"keyExpectedValue": "Enum Name should follow CamelCase (Initial Letter is Capital)",
 		"keyActualValue": "Enum Name doesn't follow CamelCase",
 	}
 }

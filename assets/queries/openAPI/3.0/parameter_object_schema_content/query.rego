@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.parameters.name={{%s}}", [name, params.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Parameter Object doesn't have both 'schema' and 'content' defined",
+		"keyExpectedValue": "Parameter Object shouldn't have both 'schema' and 'content' defined",
 		"keyActualValue": "Parameter Object has both 'schema' and 'content' defined",
 	}
 }
@@ -32,7 +32,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.%s.%s.parameters.name={{%s}}", [name, oper, params.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Parameter Object doesn't have both 'schema' and 'content' defined",
+		"keyExpectedValue": "Parameter Object shouldn't have both 'schema' and 'content' defined",
 		"keyActualValue": "Parameter Object has both 'schema' and 'content' defined",
 	}
 }
@@ -49,7 +49,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("openapi.components.parameters.name={{%s}}", [params.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Parameter Object doesn't have both 'schema' and 'content' defined",
+		"keyExpectedValue": "Parameter Object shouldn't have both 'schema' and 'content' defined",
 		"keyActualValue": "Parameter Object has both 'schema' and 'content' defined",
 	}
 }

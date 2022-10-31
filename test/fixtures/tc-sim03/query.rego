@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_redshift_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_redshift_cluster.publicly_accessible is defined",
+		"keyExpectedValue": "aws_redshift_cluster.publicly_accessible should be defined",
 		"keyActualValue": "aws_redshift_cluster.publicly_accessible is undefined",
 	}
 }

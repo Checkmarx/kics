@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(broker, "aws_mq_broker", name),
 		"searchKey": sprintf("aws_mq_broker[%s].logs.%s", [name, type]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'general' and 'audit' logging are set to true",
+		"keyExpectedValue": "'general' and 'audit' logging should be set to true",
 		"keyActualValue": sprintf("'%s' is set to false", [type]),
 	}
 }
@@ -39,7 +39,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(broker, "aws_mq_broker", name),
 		"searchKey": sprintf("aws_mq_broker[%s].logs", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'general' and 'audit' logging are set to true",
+		"keyExpectedValue": "'general' and 'audit' logging should be set to true",
 		"keyActualValue": "'general' and/or 'audit' is undefined",
 	}
 }

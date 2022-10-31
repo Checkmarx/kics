@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_role_definition[%s].permissions.actions", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("azurerm_role_definition[%s].permissions.actions does not allow custom role creation", [name]),
+		"keyExpectedValue": sprintf("azurerm_role_definition[%s].permissions.actions should not allow custom role creation", [name]),
 		"keyActualValue": sprintf("azurerm_role_definition[%s].permissions.actions allows custom role creation", [name]),
 	}
 }

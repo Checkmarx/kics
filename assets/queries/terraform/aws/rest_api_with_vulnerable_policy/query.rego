@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_api_gateway_rest_api_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_api_gateway_rest_api_policy[%s].policy does not have wildcard in 'Action' and 'Principal'", [name]),
+		"keyExpectedValue": sprintf("aws_api_gateway_rest_api_policy[%s].policy should not have wildcard in 'Action' and 'Principal'", [name]),
 		"keyActualValue": sprintf("aws_api_gateway_rest_api_policy[%s].policy has wildcard in 'Action' or 'Principal'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_api_gateway_rest_api_policy", name, "policy"], []),
 	}

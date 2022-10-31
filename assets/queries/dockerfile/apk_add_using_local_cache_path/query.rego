@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, command.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'RUN' does not contain 'apk add' command without '--no-cache' switch",
+		"keyExpectedValue": "'RUN' should not contain 'apk add' command without '--no-cache' switch",
 		"keyActualValue": "'RUN' contains 'apk add' command without '--no-cache' switch",
 	}
 }

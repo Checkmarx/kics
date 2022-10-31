@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_cosmosdb_account[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("azurerm_cosmosdb_account[%s].tags is defined'", [name]),
+		"keyExpectedValue": sprintf("azurerm_cosmosdb_account[%s].tags should be defined'", [name]),
 		"keyActualValue": sprintf("azurerm_cosmosdb_account[%s].tags is undefined'", [name]),
 	}
 }

@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_ecs_task_definition[{{%s}}].volume.efs_volume_configuration.transit_encryption", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_ecs_task_definition", name, "volume", "efs_volume_configuration", "transit_encryption"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value is 'ENABLED'",
+		"keyExpectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value should be 'ENABLED'",
 		"keyActualValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value is 'DISABLED'",
 		"remediation": json.marshal({
 			"before": "DISABLED",
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_ecs_task_definition[{{%s}}].volume.efs_volume_configuration", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_ecs_task_definition", name, "volume", "efs_volume_configuration"], []),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value is 'ENABLED'",
+		"keyExpectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value should be 'ENABLED'",
 		"keyActualValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption is missing",
 		"remediation": "transit_encryption = \"ENABLED\"",
 		"remediationType": "addition",
