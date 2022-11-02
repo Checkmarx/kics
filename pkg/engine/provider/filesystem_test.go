@@ -477,6 +477,7 @@ func TestProvider_getExcludePaths(t *testing.T) {
 			},
 			want: []string{
 				filepath.Join("test", "fixtures", "analyzer_test", "azureResourceManager.json"),
+				filepath.Join("test", "fixtures", "analyzer_test", "not_openapi.json"),
 				filepath.Join("test", "fixtures", "analyzer_test", "openAPI.json"),
 				filepath.Join("test", "fixtures", "analyzer_test", "openAPI_test", "openAPI.json"),
 			},
