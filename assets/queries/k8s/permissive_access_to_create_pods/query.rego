@@ -1,6 +1,7 @@
 package Cx
 
-import data.generic.k8s as k8sLib
+import data.generic.k8s as k8s_lib
+import data.generic.common as common_lib
 
 create := "create"
 
@@ -23,6 +24,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name=%s.rules.verbs should not contain the value 'create' when metadata.name=%s.rules.resources contains the value 'pods'", [metadata.name, metadata.name]),
 		"keyActualValue": sprintf("metadata.name=%s.rules.verbs contains the value 'create' and metadata.name=%s.rules.resources contains the value 'pods'", [metadata.name, metadata.name]),
+		"searchLine": common_lib.build_search_line(["rules", j, "verbs"], []),
 	}
 }
 
@@ -33,8 +35,7 @@ CxPolicy[result] {
 
 	isRoleKind(document.kind)
 	rules[j].verbs[l] == create
-	isWildCardValue(rules[j].resources[k])
-
+    isWildCardValue(rules[j].resources[k])
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": document.kind,
@@ -43,6 +44,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name=%s.rules.verbs should not contain the value 'create' when metadata.name=%s.rules.resources contains a wildcard value", [metadata.name, metadata.name]),
 		"keyActualValue": sprintf("metadata.name=%s.rules.verbs contains the value 'create' and metadata.name=%s.rules.resources contains a wildcard value", [metadata.name, metadata.name]),
+		"searchLine": common_lib.build_search_line(["rules", j, "verbs"], []),
 	}
 }
 
@@ -63,6 +65,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name=%s.rules.verbs should not contain a wildcard value when metadata.name=%s.rules.resources contains the value 'pods'", [metadata.name, metadata.name]),
 		"keyActualValue": sprintf("metadata.name=%s.rules.verbs contains a wildcard value and metadata.name=%s.rules.resources contains the value 'pods'", [metadata.name, metadata.name]),
+	    "searchLine": common_lib.build_search_line(["rules", j, "verbs"], []),
 	}
 }
 
@@ -83,14 +86,15 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name=%s.rules.verbs should not contain a wildcard value when metadata.name=%s.rules.resources contains a wildcard value", [metadata.name, metadata.name]),
 		"keyActualValue": sprintf("metadata.name=%s.rules.verbs contains a wildcard value and metadata.name=%s.rules.resources contains a wildcard value", [metadata.name, metadata.name]),
+	    "searchLine": common_lib.build_search_line(["rules", j, "verbs"], []),
 	}
 }
 
 isWildCardValue(val) {
-	regex.match(".*\\*.*", val)
+	contains(val, "*")
 }
 
 isRoleKind(kind) {
     listKinds := ["ClusterRole", "Role"]
-	k8sLib.checkKind(kind, listKinds)
+	k8s_lib.checkKind(kind, listKinds)
 }
