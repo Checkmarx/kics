@@ -36,6 +36,7 @@ CxPolicy[result] {
 	isRoleKind(document.kind)
 	rules[j].verbs[l] == create
     isWildCardValue(rules[j].resources[k])
+	
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": document.kind,
