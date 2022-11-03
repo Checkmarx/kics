@@ -59,7 +59,7 @@ Use succinct but descriptive name (prefix with *feature/issue#-descriptive-name>
    ```sh
    git commit -m "feat(CLI): add new flag --blabla"
    ```
-   ```sh«
+   ```sh
    git push --set-upstream origin <name-of-your-issue>
    ```
 8. Submit a pull request on GitHub website.
