@@ -30,7 +30,7 @@ By participating and contributing to the project, you agree to uphold our [Code 
 Follow the instructions below to setup local KICS development environment and push your changes.
 
 1. Fork the `kics` repo on GitHub.
-2. Download and install Go 1.16 or higher from <a href="https://golang.org/dl/" target="_blank">https://golang.org/dl/</a>
+2. Download and install Go 1.16 or higher from <a href="https://golang.org/dl/" target="_blank">https://golang.org/dl/</a>.
 3. Clone your fork locally:
    ```shell
    git clone https://github.com/Checkmarx/kics.git
