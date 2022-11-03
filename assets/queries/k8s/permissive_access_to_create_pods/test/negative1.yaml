@@ -28,4 +28,3 @@ rules:
   verbs:
     - "get"
     - "watch"
-    - create
