@@ -35,6 +35,7 @@ CxPolicy[result] {
 
 	isRoleKind(document.kind)
 	rules[j].verbs[l] == create
+    notCustom(rules[j].apiGroups)
     isWildCardValue(rules[j].resources[k])
 	
 	result := {
@@ -77,6 +78,7 @@ CxPolicy[result] {
 
 	isRoleKind(document.kind)
 	isWildCardValue(rules[j].verbs[l])
+	notCustom(rules[j].apiGroups)
 	isWildCardValue(rules[j].resources[k])
 
 	result := {
@@ -98,4 +100,14 @@ isWildCardValue(val) {
 isRoleKind(kind) {
     listKinds := ["ClusterRole", "Role"]
 	k8s_lib.checkKind(kind, listKinds)
+}
+
+notCustom(apiGroups) {
+    k8s := {
+		"", "*", "apps", "core", "batch",
+	    "rbac.authorization.k8s.io", "networking.k8s.io",
+	    "policy", 
+	}
+
+	apiGroups[z] == k8s[p]
 }
