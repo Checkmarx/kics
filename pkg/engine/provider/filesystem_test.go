@@ -467,7 +467,7 @@ func TestProvider_getExcludePaths(t *testing.T) {
 			args: args{
 				pathExpressions: "*.sh",
 			},
-			want:    []string{"install.sh"},
+			want:    []string(nil),
 			wantErr: false,
 		},
 		{
