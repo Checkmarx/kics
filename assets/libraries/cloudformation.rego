@@ -78,7 +78,7 @@ get_encryption(resource) = encryption {
 	resource.Properties.Encrypted == true
 	encryption := "encrypted"
 } else = encryption {
-	fields := {"KmsMasterKeyId", "EncryptionInfo", "EncryptionOptions", "BucketEncryption"}
+	fields := {"EncryptionSpecification", "KmsMasterKeyId", "EncryptionInfo", "EncryptionOptions", "BucketEncryption"}
 	common_lib.valid_key(resource.Properties, fields[_])
 	encryption := "encrypted"
 } else = encryption {
