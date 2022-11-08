@@ -1,0 +1,11 @@
+{
+  "id": "0e59d33e-bba2-4037-8f88-9765647ca7ad",
+  "queryName": "BOM - AWS Kinesis",
+  "severity": "TRACE",
+  "category": "Bill Of Materials",
+  "descriptionText": "A list of Kinesis resources found. Amazon Kinesis is a real-time streaming service that provides collection, processing, and analysis of video and data streams in real-time",
+  "descriptionUrl": "https://kics.io",
+  "platform": "Terraform",
+  "descriptionID": "45271dee",
+  "cloudProvider": "aws"
+}
