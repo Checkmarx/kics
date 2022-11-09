@@ -12,6 +12,12 @@ KICS (from the version 1.4.4 to the latest) has been awarded the following certi
 - CIS Amazon Web Services Foundations Benchmark v1.4.0, Level 1
 - CIS Amazon Web Services Foundations Benchmark v1.4.0, Level 2
 
+KICS (from the version 1.6.0 to the latest) has been awarded the following certifications:
+- CIS Kubernetes Benchmark v1.6.1, Level 1 - Master Node
+- CIS Kubernetes Benchmark v1.6.1, Level 1 - Worker Node
+- CIS Kubernetes Benchmark v1.6.1, Level 2 - Master Node
+- CIS Kubernetes Benchmark v1.6.1, Level 2 - Worker Node
+
 ## What are the Level 1, Level 2 certifications?
 Most CIS Benchmarks include multiple configuration profiles. A profile definition describes the configurations assigned to benchmark recommendations.
 <br> The Level 1 profile is considered a base recommendation that can be implemented fairly promptly and is designed to not have an extensive performance impact. The intent of the Level 1 profile benchmark is to lower the attack surface of your organization while keeping machines usable and not hindering business functionality.
