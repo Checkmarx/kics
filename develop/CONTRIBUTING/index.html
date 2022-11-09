@@ -1456,28 +1456,29 @@
 <p>Follow the instructions below to setup local KICS development environment and push your changes.</p>
 <ol>
 <li>Fork the <code>kics</code> repo on GitHub.</li>
+<li>Download and install Go 1.16 or higher from <a href="https://golang.org/dl/" target="_blank">https://golang.org/dl/</a>.</li>
 <li>Clone your fork locally:
    <code>shell
    git clone https://github.com/Checkmarx/kics.git</code></li>
 <li>Create a branch for local development.
 Use succinct but descriptive name (prefix with <em>feature/issue#-descriptive-name&gt;</em> or <em>hotfix/issue#-descriptive-name</em>):
-   <code>shell
+   <code>sh
    git checkout -b &lt;name-of-your-issue&gt;</code></li>
 <li>Make your changes locally.</li>
 <li>Validate your changes to reassure they meet project quality and contribution standards:
-   <code>shell
+   <code>sh
    golint .</code>
-   <code>shell
+   <code>sh
    go mod vendor</code>
-   <code>shell
+   <code>sh
    go test -mod=vendor -v ./...</code></li>
 <li>Commit your changes and push your branch to GitHub:
-   <code>shell
+   <code>sh
    git add .</code>
    We recommend following <a href="https://www.conventionalcommits.org/en/v1.0.0-beta.2/">conventional commits messages</a>
-   <code>shell
+   <code>sh
    git commit -m "feat(CLI): add new flag --blabla"</code>
-   <code>shell
+   <code>sh
    git push --set-upstream origin &lt;name-of-your-issue&gt;</code></li>
 <li>Submit a pull request on GitHub website.</li>
 </ol>
