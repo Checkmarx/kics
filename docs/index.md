@@ -9,7 +9,7 @@
     <div class="col-6 text-center">
         <br/><br/>
         <h4>Version 1.6.3</h4>
-        <p style="font-size:8pt">2022.10.26<p>
+        <p style="font-size:8pt">2022.11.09<p>
         <a class="btn btn-outline-success"  href="https://docs.kics.io/latest/CONTRIBUTING">Contribute!</a>
     </div>
 </div>
