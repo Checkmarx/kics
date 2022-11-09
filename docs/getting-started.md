@@ -27,18 +27,28 @@ Another option is [rebuilding the dockerfile](https://github.com/Checkmarx/kics/
 
 #### Build from Sources
 
-1. Download and install Go from <a href="https://golang.org/dl/" target="_blank">https://golang.org/dl/</a>
+1. Download and install Go 1.16 or higher from <a href="https://golang.org/dl/" target="_blank">https://golang.org/dl/</a>.
 2. Clone the repository:
-    ```shell
+    ```sh
     git clone https://github.com/Checkmarx/kics.git
     ```
 3. Build the binaries:
-    ```shell
+    ```sh
     cd kics
+    go mod vendor
     make build
     ```
+
+    or 
+
+    ```sh
+    cd kics
+    go mod vendor
+    LINUX/MAC: go build -o ./bin/kics cmd/console/main.go
+    WINDOWS: go build -o ./bin/kics.exe cmd/console/main.go (make sure to create the bin folder)
+    ```
 4. Kick a scan!
-    ```shell
+    ```sh
     ./bin/kics scan -p '<path-of-your-project-to-scan>' --report-formats json -o ./results
     ```
 
