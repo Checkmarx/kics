@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.PortRange is set", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.PortRange should be set", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.PortRange is undefined", [name]),
 	}
 }
@@ -42,7 +42,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.PortRange", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.PortRange.%s is set", [name, y]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.PortRange.%s should be set", [name, y]),
 		"keyActualValue": sprintf("Resources.%s.Properties.PortRange.%s is undefined", [name, y]),
 	}
 }
@@ -63,7 +63,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.PortRange", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.PortRange does not allow all ports", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.PortRange should not allow all ports", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.PortRange allows all ports", [name]),
 	}
 }

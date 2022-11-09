@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(active, name),
 		"searchKey": sprintf("azurerm_service_fabric_cluster[%s].azure_active_directory", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_service_fabric_cluster[%s].azure_active_directory.tenant_id' is defined and not null", [name]),
+		"keyExpectedValue": sprintf("'azurerm_service_fabric_cluster[%s].azure_active_directory.tenant_id' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'azurerm_service_fabric_cluster[%s].azure_active_directory.tenant_id' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_service_fabric_cluster", name, "azure_active_directory"], []),
 	}
@@ -31,7 +31,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(azure, name),
 		"searchKey": sprintf("azurerm_service_fabric_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_service_fabric_cluster[%s].azure_active_directory' is defined and not null", [name]),
+		"keyExpectedValue": sprintf("'azurerm_service_fabric_cluster[%s].azure_active_directory' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'azurerm_service_fabric_cluster[%s].azure_active_directory' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_service_fabric_cluster", name], []),
 	}

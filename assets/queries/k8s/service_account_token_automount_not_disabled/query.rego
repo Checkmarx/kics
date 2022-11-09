@@ -41,7 +41,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s", [metadata.name, specInfo.path]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.automountServiceAccountToken is defined and set to false", [metadata.name, specInfo.path]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.automountServiceAccountToken should be defined and set to false", [metadata.name, specInfo.path]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.automountServiceAccountToken is undefined", [metadata.name, specInfo.path]),
 	}
 }

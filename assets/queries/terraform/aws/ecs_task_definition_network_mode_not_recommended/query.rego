@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_ecs_task_definition[%s].network_mode", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_ecs_task_definition", name, "network_mode"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'network_mode' is equal to 'awsvpc'",
+		"keyExpectedValue": "'network_mode' should equal to 'awsvpc'",
 		"keyActualValue": sprintf("'network_mode' is equal to '%s'", [resource.network_mode]),
 		"remediation": json.marshal({
 			"before": sprintf("%s",[resource.network_mode]),

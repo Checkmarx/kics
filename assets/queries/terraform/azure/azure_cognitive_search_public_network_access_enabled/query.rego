@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(search, name),
 		"searchKey": sprintf("azurerm_search_service[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_search_service[%s].public_network_access_enabled' is defined and set to false", [name]),
+		"keyExpectedValue": sprintf("'azurerm_search_service[%s].public_network_access_enabled' should be defined and set to false", [name]),
 		"keyActualValue": sprintf("'azurerm_search_service[%s].public_network_access_enabled' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_search_service", name], []),
 		"remediation": "public_network_access_enabled = false",

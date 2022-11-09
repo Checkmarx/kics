@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'resource_labels' is defined",
+		"keyExpectedValue": "Attribute 'resource_labels' should be defined",
 		"keyActualValue": "Attribute 'resource_labels' is undefined",
 	}
 }

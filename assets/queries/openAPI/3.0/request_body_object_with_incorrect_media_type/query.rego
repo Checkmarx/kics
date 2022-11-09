@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}", [path, operation, x]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}} is 'multipart' or 'application/x-www-form-urlencoded' when 'encoding' is set", [path, operation, x]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}} should be 'multipart' or 'application/x-www-form-urlencoded' when 'encoding' is set", [path, operation, x]),
 		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}} is not 'multipart' or 'application/x-www-form-urlencoded' when 'encoding' is set", [path, operation, x]),
 	}
 }
@@ -30,7 +30,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.requestBodies.{{%s}}.content.{{%s}}.encoding.{{%s}}", [r, x]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("components.requestBodies.{{%s}}.content.{{%s}} is 'multipart' or 'application/x-www-form-urlencoded' when 'encoding' is set", [r, x]),
+		"keyExpectedValue": sprintf("components.requestBodies.{{%s}}.content.{{%s}} should be 'multipart' or 'application/x-www-form-urlencoded' when 'encoding' is set", [r, x]),
 		"keyActualValue": sprintf("components.requestBodies.{{%s}}.content.{{%s}} is not 'multipart' or 'application/x-www-form-urlencoded' when 'encoding' is set", [r, x]),
 	}
 }

@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_api_gateway_rest_api[%s].endpoint_configuration.types[%s]", [name,index]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_api_gateway_rest_api", name, "endpoint_configuration", "types", index], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'aws_api_gateway_rest_api.aws_api_gateway_rest_api.types' is 'PRIVATE'.",
+		"keyExpectedValue": "'aws_api_gateway_rest_api.aws_api_gateway_rest_api.types' should be 'PRIVATE'.",
 		"keyActualValue": "'aws_api_gateway_rest_api.aws_api_gateway_rest_api.types' is not 'PRIVATE'.",
 		"remediation": json.marshal({
 			"before": sprintf("%s",[resource.types[index]]),

@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_security_group[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_security_group[{{%s}}] description is defined and not null", [name]),
+		"keyExpectedValue": sprintf("aws_security_group[{{%s}}] description should be defined and not null", [name]),
 		"keyActualValue": sprintf("aws_security_group[{{%s}}] description is undefined or null", [name]),
 	}
 }

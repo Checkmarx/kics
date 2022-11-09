@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(compute_instance, appserver),
 		"searchKey": sprintf("google_compute_instance[%s]", [appserver]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'shielded_instance_config' is defined and not null",
+		"keyExpectedValue": "Attribute 'shielded_instance_config' should be defined and not null",
 		"keyActualValue": "Attribute 'shielded_instance_config' is undefined or null",
 	}
 }
@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(compute_instance, appserver),
 		"searchKey": sprintf("google_compute_instance[%s].shielded_instance_config", [appserver]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Attribute 'shielded_instance_config.%s' is defined", [fieldTypes]),
+		"keyExpectedValue": sprintf("Attribute 'shielded_instance_config.%s' should be defined", [fieldTypes]),
 		"keyActualValue": sprintf("Attribute 'shielded_instance_config.%s' is undefined", [fieldTypes]),
 	}
 }
@@ -49,7 +49,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(compute_instance, appserver),
 		"searchKey": sprintf("google_compute_instance[%s].shielded_instance_config.%s", [appserver, fields[j]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Attribute 'shielded_instance_config.%s' is true", [fields[j]]),
+		"keyExpectedValue": sprintf("Attribute 'shielded_instance_config.%s' should be true", [fields[j]]),
 		"keyActualValue": sprintf("Attribute 'shielded_instance_config.%s' is false", [fields[j]]),
 	}
 }

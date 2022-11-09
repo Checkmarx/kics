@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_deployment[%s].spec.template.spec", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("kubernetes_deployment[%s].spec.template.spec.affinity is set", [name]),
+		"keyExpectedValue": sprintf("kubernetes_deployment[%s].spec.template.spec.affinity should be set", [name]),
 		"keyActualValue": sprintf("kubernetes_deployment[%s].spec.template.spec.affinity is undefined", [name]),
 	}
 }
@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_deployment[%s].spec.template.spec.affinity", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("kubernetes_deployment[%s].spec.template.spec.affinity.pod_anti_affinity is set", [name]),
+		"keyExpectedValue": sprintf("kubernetes_deployment[%s].spec.template.spec.affinity.pod_anti_affinity should be set", [name]),
 		"keyActualValue": sprintf("kubernetes_deployment[%s].spec.template.spec.affinity.pod_anti_affinity is undefined", [name]),
 	}
 }
@@ -59,7 +59,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_deployment[%s].spec.template.spec.affinity", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("kubernetes_deployment[%s].spec.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution and/or kubernetes_deployment[%s].spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution are/is set", [name, name]),
+		"keyExpectedValue": sprintf("kubernetes_deployment[%s].spec.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution and/or kubernetes_deployment[%s].spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution should be set", [name, name]),
 		"keyActualValue": sprintf("kubernetes_deployment[%s].spec.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution and/or kubernetes_deployment[%s].spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution are undefined", [name, name]),
 	}
 }

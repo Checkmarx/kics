@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_redshift_cluster[%s]", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_redshift_cluster", name], []),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_redshift_cluster.encrypted is defined and not null",
+		"keyExpectedValue": "aws_redshift_cluster.encrypted should be defined and not null",
 		"keyActualValue": "aws_redshift_cluster.encrypted is undefined or null",
 		"remediation": "encrypted = true",
 		"remediationType": "addition",

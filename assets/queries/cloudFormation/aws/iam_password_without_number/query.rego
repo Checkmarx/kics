@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.LoginProfile.Password", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'Resources.Properties.LoginProfile.Password' contains number",
+		"keyExpectedValue": "'Resources.Properties.LoginProfile.Password' should contain number",
 		"keyActualValue": "'Resources.Properties.LoginProfile.Password' doesn't contain number",
 	}
 }

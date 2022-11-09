@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("aws_eks_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'encryption_config' is defined and not null",
+		"keyExpectedValue": "'encryption_config' should be defined and not null",
 		"keyActualValue": "'encryption_config' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resource", "aws_eks_cluster", name], []),
 	}
@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("aws_eks_cluster[%s].encryption_config.resources", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'secrets' is defined",
+		"keyExpectedValue": "'secrets' should be defined",
 		"keyActualValue": "'secrets' is undefined",
 		"searchLine": common_lib.build_search_line(["resource", "aws_eks_cluster", name, "resources"], []),
 	}

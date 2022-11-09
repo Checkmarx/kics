@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s", [env.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'container_definitions.environment.name' doesn't have password value",
+		"keyExpectedValue": "'container_definitions.environment.name' shouldn't have password value",
 		"keyActualValue": "'container_definitions.environment.name' has password value",
 	}
 }

@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.type", [openapi_lib.concat_path(path)]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'maxLength' is defined",
+		"keyExpectedValue": "'maxLength' should be defined",
 		"keyActualValue": "'maxLength' is undefined",
 		"overrideKey": version,
 	}
@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.type", [openapi_lib.concat_path(path)]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'maxLength' is defined",
+		"keyExpectedValue": "'maxLength' should be defined",
 		"keyActualValue": "'maxLength' is undefined",
 		"overrideKey": version,
 	}

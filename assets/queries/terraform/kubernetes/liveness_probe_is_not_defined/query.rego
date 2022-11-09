@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s", [x, name, resource_prefix]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'livenessProbe' is defined and not null",
+		"keyExpectedValue": "Attribute 'livenessProbe' should be defined and not null",
 		"keyActualValue": "Attribute 'livenessProbe' is undefined or null",
 	}
 }

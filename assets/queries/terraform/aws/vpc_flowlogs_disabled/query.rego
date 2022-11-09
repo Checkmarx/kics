@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": name_vpc,
 		"searchKey": sprintf("aws_vpc[%s]", [name_vpc]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_vpc[%s] is the same as Flow Logs VPC id", [name_vpc]),
+		"keyExpectedValue": sprintf("aws_vpc[%s] should be the same as Flow Logs VPC id", [name_vpc]),
 		"keyActualValue": sprintf("aws_vpc[%s] is not the same as Flow Logs VPC id", [name_vpc]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_vpc", name_vpc], []),
 	}
@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"resourceName": name_logs,
 		"searchKey": sprintf("aws_flow_log[%s]", [name_logs]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_flow_log[%s].vpc_id is defined and not null", [name_logs]),
+		"keyExpectedValue": sprintf("aws_flow_log[%s].vpc_id should be defined and not null", [name_logs]),
 		"keyActualValue": sprintf("aws_flow_log[%s].vpc_id is undefined or null", [name_logs]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_flow_log", name_logs], []),
 	}

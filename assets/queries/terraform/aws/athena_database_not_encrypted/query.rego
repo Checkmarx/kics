@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_athena_database[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_athena_database[{{%s}}] encryption_configuration is defined", [name]),
+		"keyExpectedValue": sprintf("aws_athena_database[{{%s}}] encryption_configuration should be defined", [name]),
 		"keyActualValue": sprintf("aws_athena_database[{{%s}}] encryption_configuration is missing", [name]),
 	}
 }

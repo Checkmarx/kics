@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(route, name),
 		"searchKey": sprintf("aws_route53_record[%s].records", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_route53_record.records is defined",
+		"keyExpectedValue": "aws_route53_record.records should be defined",
 		"keyActualValue": "aws_route53_record.records is undefined",
 	}
 }

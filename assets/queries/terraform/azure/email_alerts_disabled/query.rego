@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_security_center_contact[%s].alert_notifications", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_security_center_contact.%s.alert_notifications' is true", [name]),
+		"keyExpectedValue": sprintf("'azurerm_security_center_contact.%s.alert_notifications' should be true", [name]),
 		"keyActualValue": sprintf("'azurerm_security_center_contact.%s.alert_notifications' is false", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_security_center_contact", name, "alert_notifications"], []),
 		"remediation": json.marshal({

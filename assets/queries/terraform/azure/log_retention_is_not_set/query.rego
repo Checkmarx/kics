@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, var0),
 		"searchKey": sprintf("azurerm_postgresql_configuration[%s].value", [var0]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_postgresql_configuration.%s.value' is 'ON'", [var0]),
+		"keyExpectedValue": sprintf("'azurerm_postgresql_configuration.%s.value' should be 'ON'", [var0]),
 		"keyActualValue": sprintf("'azurerm_postgresql_configuration.%s.value' is 'OFF'", [var0]),
 		"searchLine": common_lib.build_search_line(["resource","azurerm_postgresql_configuration" ,var0, "value"], []),
 		"remediation": json.marshal({

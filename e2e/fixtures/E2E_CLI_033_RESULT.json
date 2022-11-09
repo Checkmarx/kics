@@ -45,7 +45,7 @@
 					"search_key": "aws_redshift_cluster[default1]",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "'aws_redshift_cluster.logging' is true",
+					"expected_value": "'aws_redshift_cluster.logging' should be true",
 					"actual_value": "'aws_redshift_cluster.logging' is undefined",
 					"remediation": "logging {\n\t\tenable = true \n\t}",
 					"remediation_type": "addition"
@@ -73,7 +73,7 @@
 					"search_key": "aws_redshift_cluster[default1]",
 					"search_line": 0,
 					"search_value": "cluster_subnet_group_name",
-					"expected_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is set",
+					"expected_value": "aws_redshift_cluster[default1].cluster_subnet_group_name should be set",
 					"actual_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is undefined"
 				},
 				{
@@ -86,7 +86,7 @@
 					"search_key": "aws_redshift_cluster[default1]",
 					"search_line": 0,
 					"search_value": "vpc_security_group_ids",
-					"expected_value": "aws_redshift_cluster[default1].vpc_security_group_ids is set",
+					"expected_value": "aws_redshift_cluster[default1].vpc_security_group_ids should be set",
 					"actual_value": "aws_redshift_cluster[default1].vpc_security_group_ids is undefined"
 				}
 			]
@@ -112,7 +112,7 @@
 					"search_key": "resource",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "'aws_accessanalyzer_analyzer' is set",
+					"expected_value": "'aws_accessanalyzer_analyzer' should be set",
 					"actual_value": "'aws_accessanalyzer_analyzer' is undefined"
 				}
 			]
@@ -138,7 +138,7 @@
 					"search_key": "aws_redshift_cluster[default1]",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "aws_redshift_cluster.port is defined and not null",
+					"expected_value": "aws_redshift_cluster.port should be defined and not null",
 					"actual_value": "aws_redshift_cluster.port is undefined or null"
 				}
 			]
@@ -164,7 +164,7 @@
 					"search_key": "aws_redshift_cluster[{{default1}}]",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "aws_redshift_cluster[{{default1}}].tags is defined and not null",
+					"expected_value": "aws_redshift_cluster[{{default1}}].tags should be defined and not null",
 					"actual_value": "aws_redshift_cluster[{{default1}}].tags is undefined or null"
 				}
 			]

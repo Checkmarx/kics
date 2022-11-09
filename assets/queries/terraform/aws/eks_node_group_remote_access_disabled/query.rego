@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(eksNodeGroup, name),
 		"searchKey": sprintf("aws_eks_node_group[%s].remote_access", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'aws_eks_node_group[%s].remote_access.source_security_groups_ids' is defined and not null", [name]),
+		"keyExpectedValue": sprintf("'aws_eks_node_group[%s].remote_access.source_security_groups_ids' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'aws_eks_node_group[%s].remote_access.source_security_groups_ids' is undefined or null", [name]),
 	}
 }

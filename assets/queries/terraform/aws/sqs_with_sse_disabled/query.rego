@@ -41,7 +41,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_sqs_queue[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_sqs_queue[%s].kms_master_key_id or aws_sqs_queue[%s].sqs_managed_sse_enabled are defined and not null", [name, name]),
+		"keyExpectedValue": sprintf("aws_sqs_queue[%s].kms_master_key_id or aws_sqs_queue[%s].sqs_managed_sse_enabled should be defined and not null", [name, name]),
 		"keyActualValue": sprintf("aws_sqs_queue[%s].kms_master_key_id and aws_sqs_queue[%s].sqs_managed_sse_enabled are undefined or null", [name, name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_sqs_queue", name], []),
 	}
@@ -59,7 +59,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'kms_master_key_id' is defined and not null",
+		"keyExpectedValue": "'kms_master_key_id' should be defined and not null",
 		"keyActualValue": "'kms_master_key_id' is undefined or null",
 		"searchLine": common_lib.build_search_line(["module", name], []),
 	}

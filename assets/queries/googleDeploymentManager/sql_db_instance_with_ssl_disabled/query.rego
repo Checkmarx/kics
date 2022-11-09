@@ -15,8 +15,8 @@ CxPolicy[result] {
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.settings", [resource.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'settings.ipConfiguration' is defined and not null",
-		"keyActualValue": "'settings.ipConfiguration' is undefined or null", 
+		"keyExpectedValue": "'settings.ipConfiguration' should be defined and not null",
+		"keyActualValue": "'settings.ipConfiguration' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "settings"], []),
 	}
 }
@@ -34,8 +34,8 @@ CxPolicy[result] {
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.settings.ipConfiguration", [resource.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'settings.ipConfiguration.requireSsl' is defined and not null",
-		"keyActualValue": "'settings.ipConfiguration.requireSsl' is undefined or null", 
+		"keyExpectedValue": "'settings.ipConfiguration.requireSsl' should be defined and not null",
+		"keyActualValue": "'settings.ipConfiguration.requireSsl' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "settings", "ipConfiguration"], []),
 	}
 }
@@ -54,7 +54,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources.name={{%s}}.properties.settings.ipConfiguration.requireSsl", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'settings.ipConfiguration.requireSsl' should be true",
-		"keyActualValue": "'settings.ipConfiguration.requireSsl' is false", 
+		"keyActualValue": "'settings.ipConfiguration.requireSsl' is false",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "settings", "ipConfiguration", "requireSsl"], []),
 	}
 }

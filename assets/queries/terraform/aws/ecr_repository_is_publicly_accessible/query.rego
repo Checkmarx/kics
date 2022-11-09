@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_ecr_repository_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'Statement.Principal' doesn't contain '*'",
+		"keyExpectedValue": "'Statement.Principal' shouldn't contain '*'",
 		"keyActualValue": "'Statement.Principal' contains '*'",
 		"searchLine": common_lib.build_search_line(["resource", "aws_ecr_repository_policy", name, "policy"], []),
 	}

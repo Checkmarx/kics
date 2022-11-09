@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.type", [openapi_lib.concat_path(path)]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Numeric schema has 'format' defined",
+		"keyExpectedValue": "Numeric schema should have 'format' defined",
 		"keyActualValue": "Numeric schema does not have 'format' defined",
 		"overrideKey": version,
 	}

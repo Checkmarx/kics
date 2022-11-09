@@ -15,8 +15,8 @@ CxPolicy[result] {
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.disks", [resource.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'diskEncryptionKey' is defined and not null",
-		"keyActualValue": "'diskEncryptionKey' is undefined or null", 
+		"keyExpectedValue": "'diskEncryptionKey' should be defined and not null",
+		"keyActualValue": "'diskEncryptionKey' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "disks", d], []),
 	}
 }
@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.disks.diskEncryptionKey", [resource.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'disk_encryption_key.rawKey' or 'disk_encryption_key.kmsKeyName' is defined and not null",
+		"keyExpectedValue": "'disk_encryption_key.rawKey' or 'disk_encryption_key.kmsKeyName' should be defined and not null",
 		"keyActualValue": "'disk_encryption_key.rawKey' and 'disk_encryption_key.kmsKeyName' are undefined or null",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "disks", d, "diskEncryptionKey"], []),
 	}

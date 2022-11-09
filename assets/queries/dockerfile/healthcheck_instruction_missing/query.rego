@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Dockerfile contains instruction 'HEALTHCHECK'",
+		"keyExpectedValue": "Dockerfile should contain instruction 'HEALTHCHECK'",
 		"keyActualValue": "Dockerfile doesn't contain instruction 'HEALTHCHECK'",
 	}
 }

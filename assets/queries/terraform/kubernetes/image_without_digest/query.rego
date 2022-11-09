@@ -22,7 +22,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].image is set", [resourceType, name, specInfo.path, types[x], containerTypes]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].image should be set", [resourceType, name, specInfo.path, types[x], containerTypes]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].image is undefined", [resourceType, name, specInfo.path, types[x], containerTypes]),
 	}
 }
@@ -63,7 +63,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s.image is set", [resourceType, name, specInfo.path, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s.image should be set", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.image is undefined", [resourceType, name, specInfo.path, types[x]]),
 	}
 }

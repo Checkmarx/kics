@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.schema.$ref", [openapi_lib.concat_path(path)]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Schema of the JSON object has 'type' defined",
+		"keyExpectedValue": "Schema of the JSON object should have 'type' defined",
 		"keyActualValue": "Schema of the JSON object does not have 'type' defined",
 		"overrideKey": version,
 	}

@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("resource.aws_cloudfront_distribution[%s].default_cache_behavior.viewer_protocol_policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("resource.aws_cloudfront_distribution[%s].default_cache_behavior.viewer_protocol_policy is 'https-only' or 'redirect-to-https'", [name]),
+		"keyExpectedValue": sprintf("resource.aws_cloudfront_distribution[%s].default_cache_behavior.viewer_protocol_policy should be 'https-only' or 'redirect-to-https'", [name]),
 		"keyActualValue": sprintf("resource.aws_cloudfront_distribution[%s].default_cache_behavior.viewer_protocol_policy isn't 'https-only' or 'redirect-to-https'", [name]),
 	}
 }
@@ -27,7 +27,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("resource.aws_cloudfront_distribution[%s].ordered_cache_behavior.{{%s}}.viewer_protocol_policy", [name, path[_].path_pattern]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("resource.aws_cloudfront_distribution[%s].ordered_cache_behavior.viewer_protocol_policy is 'https-only' or 'redirect-to-https'", [name]),
+		"keyExpectedValue": sprintf("resource.aws_cloudfront_distribution[%s].ordered_cache_behavior.viewer_protocol_policy should be 'https-only' or 'redirect-to-https'", [name]),
 		"keyActualValue": sprintf("resource.aws_cloudfront_distribution[%s].ordered_cache_behavior.viewer_protocol_policy isn't 'https-only' or 'redirect-to-https'", [name]),
 	}
 }

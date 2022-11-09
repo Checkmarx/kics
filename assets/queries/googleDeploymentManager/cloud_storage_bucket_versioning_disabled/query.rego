@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'versioning' is defined and not null",
+		"keyExpectedValue": "'versioning' should be defined and not null",
 		"keyActualValue": "'versioning' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties"], []),
 	}

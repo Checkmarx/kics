@@ -31,7 +31,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_glue_data_catalog_encryption_settings[%s].data_catalog_encryption_settings.encryption_at_rest", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'sse_aws_kms_key_id' is defined and not null",
+		"keyExpectedValue": "'sse_aws_kms_key_id' should be defined and not null",
 		"keyActualValue": "'sse_aws_kms_key_id' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resource", "aws_glue_data_catalog_encryption_settings", name, "data_catalog_encryption_settings","encryption_at_rest"], []),
 	}
@@ -70,7 +70,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_glue_data_catalog_encryption_settings[%s].data_catalog_encryption_settings.connection_password_encryption", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'aws_kms_key_id' is defined and not null",
+		"keyExpectedValue": "'aws_kms_key_id' should be defined and not null",
 		"keyActualValue": "'aws_kms_key_id' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resource", "aws_glue_data_catalog_encryption_settings", name, "data_catalog_encryption_settings","connection_password_encryption"], []),
 

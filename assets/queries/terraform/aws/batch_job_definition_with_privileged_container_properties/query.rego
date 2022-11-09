@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_batch_job_definition[%s].container_properties.privileged", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_batch_job_definition", name, "container_properties", "privileged"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_batch_job_definition[%s].container_properties.privileged is 'false' or not set", [name]),
+		"keyExpectedValue": sprintf("aws_batch_job_definition[%s].container_properties.privileged should be 'false' or not set", [name]),
 		"keyActualValue": sprintf("aws_batch_job_definition[%s].container_properties.privileged is 'true'", [name]),
 		"remediation": json.marshal({
 			"before": "true",

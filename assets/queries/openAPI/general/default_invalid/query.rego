@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.default", [openapi_lib.concat_path(path)]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "The field 'default' is consistent with the type",
+		"keyExpectedValue": "The field 'default' should be consistent with the type",
 		"keyActualValue": "The field 'default' is not consistent with the type",
 		"overrideKey": version,
 	}

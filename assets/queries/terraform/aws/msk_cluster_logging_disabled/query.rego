@@ -33,22 +33,22 @@ CxPolicy[result] {
 		"searchKey": sprintf("msk_cluster[%s].logging_info.broker_logs", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Should have at least one of the following keys: 'cloudwatch_logs', 'firehose' or 's3'",
-		"keyActualValue": "'rule.logging_info.broker_logs.cloudwatch_logs', 'rule.logging_info.broker_logs.firehose' and 'rule.logging_info.broker_logs.s3' do not exists",
+		"keyActualValue": "'rule.logging_info.broker_logs.cloudwatch_logs', 'rule.logging_info.broker_logs.firehose' and 'rule.logging_info.broker_logs.s3' do not exist",
 	}
 }
 
 CxPolicy[result] {
 	msk_cluster := input.document[i].resource.aws_msk_cluster[name]
 	not msk_cluster.logging_info
-	
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_msk_cluster",
 		"resourceName": tf_lib.get_specific_resource_name(msk_cluster, "aws_msk_cluster", name),
 		"searchKey": sprintf("aws_msk_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Should exists 'rule.logging_info'",
-		"keyActualValue": "'rule.logging_info' does not exists",
+		"keyExpectedValue": "'rule.logging_info' should exist",
+		"keyActualValue": "'rule.logging_info' does not exist",
 	}
 }
 

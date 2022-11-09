@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(mariadbServer, name),
 		"searchKey": sprintf("azurerm_mariadb_server[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_mariadb_server[%s].public_network_access_enabled' is defined and not null", [name]),
+		"keyExpectedValue": sprintf("'azurerm_mariadb_server[%s].public_network_access_enabled' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'azurerm_mariadb_server[%s].public_network_access_enabled' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource","azurerm_mariadb_server" ,name], []),
 		"remediation": "public_network_access_enabled = true",

@@ -8,7 +8,7 @@ require (
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20211114212643-ec144ca0d701
-	github.com/aws/aws-sdk-go v1.44.116
+	github.com/aws/aws-sdk-go v1.44.121
 	github.com/cheggaaa/pb/v3 v3.1.0
 	github.com/emicklei/proto v1.11.0
 	github.com/getsentry/sentry-go v0.14.0
@@ -37,9 +37,9 @@ require (
 	github.com/tidwall/gjson v1.14.3
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/yargevad/filepathx v1.0.0
-	github.com/zclconf/go-cty v1.11.0
+	github.com/zclconf/go-cty v1.12.0
 	golang.org/x/net v0.0.0-20221002022538-bcab6841153b
-	golang.org/x/text v0.3.8
+	golang.org/x/text v0.4.0
 	golang.org/x/tools v0.1.12
 	gopkg.in/yaml.v3 v3.0.1
 	helm.sh/helm/v3 v3.9.4

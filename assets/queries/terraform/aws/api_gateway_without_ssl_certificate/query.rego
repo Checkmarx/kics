@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_api_gateway_stage[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'client_certificate_id' is set",
+		"keyExpectedValue": "Attribute 'client_certificate_id' should be set",
 		"keyActualValue": "Attribute 'client_certificate_id' is undefined",
 	}
 }

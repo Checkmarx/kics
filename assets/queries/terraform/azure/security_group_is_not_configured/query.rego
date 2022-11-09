@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azure_virtual_network[%s].subnet", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azure_virtual_network[%s].subnet.security_group' is defined and not null", [name]),
+		"keyExpectedValue": sprintf("'azure_virtual_network[%s].subnet.security_group' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'azure_virtual_network[%s].subnet.security_group' is undefined or null", [name]),
 	}
 }

@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_iam_account_password_policy[%s]", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_iam_account_password_policy", name], []),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'max_password_age' exists",
+		"keyExpectedValue": "'max_password_age' should exist",
 		"keyActualValue": "'max_password_age' is missing",
 		"remediation": "max_password_age = 90",
 		"remediationType": "addition",
@@ -32,8 +32,8 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_iam_account_password_policy[%s].max_password_age", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_iam_account_password_policy", name, "max_password_age"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'max_password_age' is lower 90",
-		"keyActualValue": "'max_password_age' is higher 90",
+		"keyExpectedValue": "'max_password_age' should be lower than 90",
+		"keyActualValue": "'max_password_age' is higher than 90",
 		"remediation": json.marshal({
 			"before": sprintf("%d", [expr.max_password_age]),
 			"after": "90"

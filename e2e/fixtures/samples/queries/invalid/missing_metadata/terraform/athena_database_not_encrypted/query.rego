@@ -10,7 +10,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_athena_database[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_athena_database[{{%s}}] encryption_configuration is defined", [name]),
+		"keyExpectedValue": sprintf("aws_athena_database[{{%s}}] encryption_configuration should be defined", [name]),
 		"keyActualValue": sprintf("aws_athena_database[{{%s}}] encryption_configuration is missing", [name]),
 	}
 }

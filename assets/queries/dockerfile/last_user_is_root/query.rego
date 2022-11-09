@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, userCmd[minus(count(userCmd), 1)].Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Last User isn't root",
+		"keyExpectedValue": "Last User shouldn't be root",
 		"keyActualValue": "Last User is root",
 	}
 }

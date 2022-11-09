@@ -35,12 +35,12 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_elasticsearch_domain[%s].encrypt_at_rest.enabled", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_elasticsearch_domain", name, "encrypt_at_rest", "enabled"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'encrypt_at_rest.enabled' is true",
+		"keyExpectedValue": "'encrypt_at_rest.enabled' should be true",
 		"keyActualValue": "'encrypt_at_rest.enabled' is false",
 		"remediation": json.marshal({
 			"before": "false",
 			"after": "true"
 		}),
 		"remediationType": "replacement",
-	}	
+	}
 }

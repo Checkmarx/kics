@@ -1,0 +1,13 @@
+{
+  "Description": "Kinesis",
+  "Resources": {
+    "MyStream2": {
+      "Type": "AWS::Kinesis::Stream",
+      "Properties": {
+        "Name": "MyKinesisStream2",
+        "RetentionPeriodHours": 168,
+        "ShardCount": 3
+      }
+    }
+  }
+}
