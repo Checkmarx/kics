@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/bom/">
       
       <link rel="icon" href="../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.9">
     
     
       
@@ -24,7 +24,7 @@
       <link rel="stylesheet" href="../assets/stylesheets/main.20d9efc8.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.08040f6c.min.css">
         
       
       
@@ -60,7 +60,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="kics" data-md-color-primary="" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="kics" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     
@@ -121,7 +121,8 @@
         
           
           
-          <input class="md-option" data-md-color-media="" data-md-color-scheme="kics" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="kics" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
@@ -130,7 +131,8 @@
         
           
           
-          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
           
             <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
@@ -1437,14 +1439,14 @@
 </tr>
 <tr>
 <td align="center">resource_accessibility</td>
-<td align="center">public, private, hasPolicy or unknown for <br /> <code>aws_ebs_volume</code>,<br /> <code>aws_efs_file_system</code>,<br /> <code>aws_mq_broker</code>,<br /> <code>aws_msk_cluster</code>,<br /> <code>aws_s3_bucket</code>,<br />  <code>aws_sns_topic</code>,<br /> <code>aws_sqs_queue</code>,<br /> <code>aws_db_instance</code>, <br /> <code>aws_rds_cluster_instance</code>,<br /> and <code>aws_dynamodb_table</code> <br /> <br /> at least one security group associated with the elasticache is unrestricted, all security groups associated with the elasticache are restricted or unknown for <code>aws_elasticache_cluster</code></td>
+<td align="center">public, private, hasPolicy or unknown for <br /> <code>aws_ebs_volume</code>,<br /> <code>aws_efs_file_system</code>,<br /> <code>aws_mq_broker</code>,<br /> <code>aws_msk_cluster</code>,<br /> <code>aws_s3_bucket</code>,<br />  <code>aws_sns_topic</code>,<br /> <code>aws_sqs_queue</code>,<br /> <code>aws_db_instance</code>, <br /> <code>aws_rds_cluster_instance</code>,<br /> <code>aws_kinesis_stream</code>,<br /> and <code>aws_dynamodb_table</code> <br /> <br /> at least one security group associated with the elasticache is unrestricted, all security groups associated with the elasticache are restricted or unknown for <code>aws_elasticache_cluster</code></td>
 <td align="center">Yes</td>
 <td align="center">all</td>
 <td align="center">string</td>
 </tr>
 <tr>
 <td align="center">resource_category</td>
-<td align="center">In Memory Data Structure for <code>aws_elasticache_cluster</code><br /><br />  Messaging for <code>aws_sns_topic</code><br /><br />  Queues for <code>aws_mq_broker</code> and <code>aws_sqs_queue</code><br /><br />  Storage for <code>aws_ebs_volume</code>, <code>aws_efs_file_system</code>, <code>aws_s3_bucket</code>,<br /> <code>aws_db_instance</code>, <br /> <code>aws_rds_cluster_instance</code>, and <code>aws_dynamodb_table</code>  <br /><br />  Streaming for <code>aws_msk_cluster</code></td>
+<td align="center">In Memory Data Structure for <code>aws_elasticache_cluster</code><br /><br />  Messaging for <code>aws_sns_topic</code><br /><br />  Queues for <code>aws_mq_broker</code> and <code>aws_sqs_queue</code><br /><br />  Storage for <code>aws_ebs_volume</code>, <code>aws_efs_file_system</code>, <code>aws_s3_bucket</code>,<br /> <code>aws_db_instance</code>, <br /> <code>aws_rds_cluster_instance</code>, and <code>aws_dynamodb_table</code>  <br /><br />  Streaming for <code>aws_msk_cluster</code> and <code>aws_kinesis_stream</code></td>
 <td align="center">Yes</td>
 <td align="center">all</td>
 <td align="center">string</td>
@@ -1472,7 +1474,7 @@
 </tr>
 <tr>
 <td align="center">resource_type</td>
-<td align="center">aws_ebs_volume for <code>aws_ebs_volume</code>,<br /> aws_efs_file_system for <code>aws_efs_file_system</code>,<br /> aws_elasticache_cluster for <code>aws_elasticache_cluster</code>,<br /> aws_mq_broker for <code>aws_mq_broker</code>,<br /> aws_msk_cluster for <code>aws_msk_cluster</code>,<br /> aws_s3_bucket for <code>aws_s3_bucket</code>,<br /> aws_sns_topic for <code>aws_sns_topic</code>,<br /> aws_sqs_queue for <code>aws_sqs_queue</code> <br /> aws_db_instance for <code>aws_db_instance</code>,<br /> aws_rds_cluster_instance for <code>aws_rds_cluster_instance</code>,<br /> aws_dynamodb_table for <code>aws_dynamodb_table</code></td>
+<td align="center">aws_ebs_volume for <code>aws_ebs_volume</code>,<br /> aws_efs_file_system for <code>aws_efs_file_system</code>,<br /> aws_elasticache_cluster for <code>aws_elasticache_cluster</code>,<br /> aws_mq_broker for <code>aws_mq_broker</code>,<br /> aws_msk_cluster for <code>aws_msk_cluster</code>,<br /> aws_s3_bucket for <code>aws_s3_bucket</code>,<br /> aws_sns_topic for <code>aws_sns_topic</code>,<br /> aws_sqs_queue for <code>aws_sqs_queue</code> <br /> aws_db_instance for <code>aws_db_instance</code>,<br /> aws_rds_cluster_instance for <code>aws_rds_cluster_instance</code>,<br /> aws_dynamodb_table for <code>aws_dynamodb_table</code>, <br /> aws_kinesis_stream for <code>aws_kinesis_stream</code></td>
 <td align="center">Yes</td>
 <td align="center">all</td>
 <td align="center">string</td>
@@ -1597,14 +1599,14 @@
 </tr>
 <tr>
 <td align="center">resource_accessibility</td>
-<td align="center">public, private, hasPolicy or unknown for <br /><code>AWS::EC2::Volume</code>,<br /><code>AWS::EFS::FileSystem</code>,<br /><code>AWS::AmazonMQ::Broker</code>,<br /><code>AWS::MSK::Cluster</code>,<br /><code>AWS::S3::Bucket</code>, <br /><code>AWS::SNS::Topic</code>,<br /><code>AWS::SQS::Queue</code>,<br /><code>AWS::RDS::DBInstance</code>,<br />and <code>AWS::DynamoDB::Table</code> <br /> <br /> at least one security group associated with the elasticache is unrestricted, all security groups associated with the elasticache are restricted or unknown for <code>AWS::ElastiCache::CacheCluster</code></td>
+<td align="center">public, private, hasPolicy or unknown for <br /><code>AWS::EC2::Volume</code>,<br /><code>AWS::EFS::FileSystem</code>,<br /><code>AWS::AmazonMQ::Broker</code>,<br /><code>AWS::MSK::Cluster</code>,<br /><code>AWS::S3::Bucket</code>, <br /><code>AWS::SNS::Topic</code>,<br /><code>AWS::SQS::Queue</code>,<br /><code>AWS::RDS::DBInstance</code>, <br /><code>AWS::Kinesis::Stream</code>, <br /><code>AWS::DynamoDB::Table</code>, <br /> and <code>AWS::Cassandra::Table</code> <br /> <br /> at least one security group associated with the elasticache is unrestricted, all security groups associated with the elasticache are restricted or unknown for <code>AWS::ElastiCache::CacheCluster</code></td>
 <td align="center">Yes</td>
 <td align="center">all</td>
 <td align="center">string</td>
 </tr>
 <tr>
 <td align="center">resource_category</td>
-<td align="center">In Memory Data Structure for <code>AWS::ElastiCache::CacheCluster</code><br /><br />  Messaging for <code>AWS::SNS::Topic</code><br /><br />  Queues for <code>AWS::AmazonMQ::Broker</code> and <code>AWS::SQS::Queue</code><br /><br />  Storage for <code>AWS::EC2::Volume</code>, <code>AWS::EFS::FileSystem</code>, <code>AWS::S3::Bucket</code>, <code>AWS::RDS::DBInstance</code>, and <code>AWS::DynamoDB::Table</code><br /><br />  Streaming for <code>AWS::MSK::Cluster</code></td>
+<td align="center">In Memory Data Structure for <code>AWS::ElastiCache::CacheCluster</code><br /><br />  Messaging for <code>AWS::SNS::Topic</code><br /><br />  Queues for <code>AWS::AmazonMQ::Broker</code> and <code>AWS::SQS::Queue</code><br /><br />  Storage for <code>AWS::EC2::Volume</code>, <code>AWS::EFS::FileSystem</code>, <code>AWS::S3::Bucket</code>, <code>AWS::RDS::DBInstance</code>, <code>AWS::DynamoDB::Table</code>, <code>AWS::Cassandra::Table</code>, and <code>AWS::Kinesis::Stream</code><br /><br />  Streaming for <code>AWS::MSK::Cluster</code></td>
 <td align="center">Yes</td>
 <td align="center">all</td>
 <td align="center">string</td>
@@ -1632,7 +1634,7 @@
 </tr>
 <tr>
 <td align="center">resource_type</td>
-<td align="center">AWS::EC2::Volume for <code>AWS::EC2::Volume</code>,<br /> AWS::EFS::FileSystem for <code>AWS::EFS::FileSystem</code>,<br /> AWS::ElastiCache::CacheCluster for <code>AWS::ElastiCache::CacheCluster</code>,<br /> AWS::AmazonMQ::Broker for <code>AWS::AmazonMQ::Broker</code>,<br /> AWS::MSK::Cluster for <code>AWS::MSK::Cluster</code>,<br /> AWS::S3::Bucket for <code>AWS::S3::Bucket</code>,<br /> AWS::SNS::Topic for <code>AWS::SNS::Topic</code>, <br/>AWS::SQS::Queue for <code>AWS::SQS::Queue</code>,<br/> AWS::RDS::DBInstance for <code>AWS::RDS::DBInstance</code>,<br /> AWS::DynamoDB::Table for <code>AWS::DynamoDB::Table</code></td>
+<td align="center">AWS::EC2::Volume for <code>AWS::EC2::Volume</code>,<br /> AWS::EFS::FileSystem for <code>AWS::EFS::FileSystem</code>,<br /> AWS::ElastiCache::CacheCluster for <code>AWS::ElastiCache::CacheCluster</code>,<br /> AWS::AmazonMQ::Broker for <code>AWS::AmazonMQ::Broker</code>,<br /> AWS::MSK::Cluster for <code>AWS::MSK::Cluster</code>,<br /> AWS::S3::Bucket for <code>AWS::S3::Bucket</code>,<br /> AWS::SNS::Topic for <code>AWS::SNS::Topic</code>, <br/>AWS::SQS::Queue for <code>AWS::SQS::Queue</code>,<br/> AWS::RDS::DBInstance for <code>AWS::RDS::DBInstance</code>,<br /> AWS::DynamoDB::Table for <code>AWS::DynamoDB::Table</code>,<br /> AWS::Kinesis::Stream for <code>AWS::Kinesis::Stream</code>, <br /> AWS::Cassandra::Table for <code>AWS::Cassandra::Table</code></td>
 <td align="center">Yes</td>
 <td align="center">all</td>
 <td align="center">string</td>
@@ -1802,7 +1804,7 @@
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      <script src="../assets/javascripts/bundle.d6c3db9e.min.js"></script>
       
         <script src="../js/version-mike.js"></script>
       
