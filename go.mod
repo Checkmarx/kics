@@ -21,7 +21,7 @@ require (
 	github.com/hashicorp/hcl v1.0.0
 	github.com/hashicorp/hcl/v2 v2.14.1
 	github.com/hashicorp/terraform-json v0.14.0
-	github.com/johnfercher/maroto v0.38.0
+	github.com/johnfercher/maroto v0.39.0
 	github.com/mackerelio/go-osstat v0.2.3
 	github.com/mailru/easyjson v0.7.7
 	github.com/moby/buildkit v0.10.4
