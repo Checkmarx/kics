@@ -3,7 +3,7 @@
   "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
   "severity": "MEDIUM",
   "category": "Availability",
-  "descriptionText": "ElastiCache Nodes should have 'AZMode' set to 'cross-az' in in multi nodes cluster",
+  "descriptionText": "ElastiCache Nodes should be created across multi az, which means 'AZMode' should be set to 'cross-az' in multi nodes cluster",
   "descriptionUrl": "https://www.pulumi.com/registry/packages/aws/api-docs/elasticache/cluster/#azmode_yaml",
   "platform": "Pulumi",
   "descriptionID": "149de780",
