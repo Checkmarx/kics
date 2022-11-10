@@ -481,7 +481,7 @@ func (q QueryLoader) LoadQuery(ctx context.Context, query *model.QueryMetadata) 
 
 	select {
 	case <-ctx.Done():
-		return nil, nil
+		return nil, ctx.Err()
 	default:
 		mergedInputData, err := source.MergeInputData(platformGeneralQuery.LibraryInputData, query.InputData)
 		if err != nil {
