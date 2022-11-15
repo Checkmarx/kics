@@ -103,11 +103,6 @@ isRoleKind(kind) {
 }
 
 notCustom(apiGroups) {
-    k8s := {
-		"", "*", "apps", "core", "batch",
-	    "rbac.authorization.k8s.io", "networking.k8s.io",
-	    "policy", 
-	}
-
+    k8s := {"", "*"}
 	apiGroups[z] == k8s[p]
 }
