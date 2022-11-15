@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/queries/terraform-queries/">
       
       <link rel="icon" href="../../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.9">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.472b142f.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.08040f6c.min.css">
@@ -60,7 +60,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="kics" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="kics" data-md-color-primary="" data-md-color-accent="">
   
     
     
@@ -122,7 +122,7 @@
           
           
           
-          <input class="md-option" data-md-color-media="" data-md-color-scheme="kics" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="kics" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
@@ -132,7 +132,7 @@
           
           
           
-          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
           
             <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
@@ -2873,13 +2873,6 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#shielded_instance_config">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Serial Ports Are Enabled For VM Instances<br/><sup><sub>97fa667a-d05b-4f16-9071-58b939f34751</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Insecure Configurations</td>
-<td>Google Compute Engine VM instances should not enable serial ports. When enabled, anyone can access your VM, if they know the username, project ID, SSH key, instance name and zone</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Using Default Service Account<br/><sup><sub>3cb4af0b-056d-4fb1-8b95-fdc4593625ff</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Defaults</td>
@@ -2927,6 +2920,13 @@
 <td>Networking and Firewall</td>
 <td>Check if the Google compute firewall allows unrestricted RDP access. Allowed ports should not contain RDP port 3389</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serial Ports Are Enabled For VM Instances<br/><sup><sub>97fa667a-d05b-4f16-9071-58b939f34751</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Google Compute Engine VM instances should not enable serial ports. When enabled, anyone can access your VM, if they know the username, project ID, SSH key, instance name and zone</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Google Compute Subnetwork Logging Disabled<br/><sup><sub>40430747-442d-450a-a34f-dc57149f4609</sub></sup></td>
@@ -4902,7 +4902,7 @@
 <td>ElastiCache Nodes Not Created Across Multi AZ<br/><sup><sub>6db03a91-f933-4f13-ab38-a8b87a7de54d</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Availability</td>
-<td>ElastiCache Nodes should have 'az_mode' set to 'cross-az' in in multi nodes cluster</td>
+<td>ElastiCache Nodes should be created across multi az, which means 'az_mode' should be set to 'cross-az' in multi nodes cluster</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -5634,6 +5634,13 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository_policy">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>CloudTrail Log Files Not Encrypted With KMS<br/><sup><sub>5d9e3164-9265-470c-9a10-57ae454ac0c7</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Encryption</td>
+<td>Logs delivered by CloudTrail should be encrypted using KMS to increase security of your CloudTrail</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#kms_key_id">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>ECR Repository Not Encrypted With CMK<br/><sup><sub>0e32d561-4b5a-4664-a6e3-a3fa85649157</sub></sup></td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Encryption</td>
@@ -5765,13 +5772,6 @@
 <td>Observability</td>
 <td>Ensure a log metric filter and alarm exist for route table changes</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>CloudTrail Log Files Not Encrypted With KMS<br/><sup><sub>5d9e3164-9265-470c-9a10-57ae454ac0c7</sub></sup></td>
-<td><span style="color:#CC0">Low</span></td>
-<td>Observability</td>
-<td>Logs delivered by CloudTrail should be encrypted using KMS</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#kms_key_id">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>CloudWatch AWS Config Configuration Changes Alarm Missing<br/><sup><sub>5b8d7527-de8e-4114-b9dd-9d988f1f418f</sub></sup></td>

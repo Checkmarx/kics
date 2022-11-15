@@ -13,7 +13,7 @@
         <link rel="canonical" href="http://docs.kics.io/develop/queries/all-queries/">
       
       <link rel="icon" href="../../img/logo/kics-hat.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.9">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.472b142f.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.08040f6c.min.css">
@@ -60,7 +60,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="kics" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="kics" data-md-color-primary="" data-md-color-accent="">
   
     
     
@@ -122,7 +122,7 @@
           
           
           
-          <input class="md-option" data-md-color-media="" data-md-color-scheme="kics" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="kics" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
@@ -132,7 +132,7 @@
           
           
           
-          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
           
             <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
@@ -1450,7 +1450,7 @@
 <td>Pulumi</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Availability</td>
-<td>ElastiCache Nodes should have 'AZMode' set to 'cross-az' in in multi nodes cluster</td>
+<td>ElastiCache Nodes should be created across multi az, which means 'AZMode' should be set to 'cross-az' in multi nodes cluster</td>
 <td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/elasticache/cluster/#azmode_yaml">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -3510,14 +3510,6 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#shielded_instance_config">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Serial Ports Are Enabled For VM Instances<br/><sup><sub>97fa667a-d05b-4f16-9071-58b939f34751</sub></sup></td>
-<td>Terraform</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Insecure Configurations</td>
-<td>Google Compute Engine VM instances should not enable serial ports. When enabled, anyone can access your VM, if they know the username, project ID, SSH key, instance name and zone</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Using Default Service Account<br/><sup><sub>3cb4af0b-056d-4fb1-8b95-fdc4593625ff</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -3572,6 +3564,14 @@
 <td>Networking and Firewall</td>
 <td>Check if the Google compute firewall allows unrestricted RDP access. Allowed ports should not contain RDP port 3389</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Serial Ports Are Enabled For VM Instances<br/><sup><sub>97fa667a-d05b-4f16-9071-58b939f34751</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Google Compute Engine VM instances should not enable serial ports. When enabled, anyone can access your VM, if they know the username, project ID, SSH key, instance name and zone</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Google Compute Subnetwork Logging Disabled<br/><sup><sub>40430747-442d-450a-a34f-dc57149f4609</sub></sup></td>
@@ -5706,7 +5706,7 @@
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Availability</td>
-<td>ElastiCache Nodes should have 'az_mode' set to 'cross-az' in in multi nodes cluster</td>
+<td>ElastiCache Nodes should be created across multi az, which means 'az_mode' should be set to 'cross-az' in multi nodes cluster</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -6542,6 +6542,14 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository_policy">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>CloudTrail Log Files Not Encrypted With KMS<br/><sup><sub>5d9e3164-9265-470c-9a10-57ae454ac0c7</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Encryption</td>
+<td>Logs delivered by CloudTrail should be encrypted using KMS to increase security of your CloudTrail</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#kms_key_id">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>ECR Repository Not Encrypted With CMK<br/><sup><sub>0e32d561-4b5a-4664-a6e3-a3fa85649157</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#CC0">Low</span></td>
@@ -6692,14 +6700,6 @@
 <td>Observability</td>
 <td>Ensure a log metric filter and alarm exist for route table changes</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>CloudTrail Log Files Not Encrypted With KMS<br/><sup><sub>5d9e3164-9265-470c-9a10-57ae454ac0c7</sub></sup></td>
-<td>Terraform</td>
-<td><span style="color:#CC0">Low</span></td>
-<td>Observability</td>
-<td>Logs delivered by CloudTrail should be encrypted using KMS</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#kms_key_id">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>CloudWatch AWS Config Configuration Changes Alarm Missing<br/><sup><sub>5b8d7527-de8e-4114-b9dd-9d988f1f418f</sub></sup></td>
@@ -9030,6 +9030,14 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-authentication.html">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>IAM Database Auth Not Enabled<br/><sup><sub>9fcd0a0a-9b6f-4670-a215-d94e6bf3f184</sub></sup></td>
+<td>CloudFormation</td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>IAM Database Auth Enabled should be configured to true when using compatible engine and version</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-enableiamdatabaseauthentication">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>ELB Using Insecure Protocols<br/><sup><sub>61a94903-3cd3-4780-88ec-fc918819b9c8</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#C00">High</span></td>
@@ -9060,14 +9068,6 @@
 <td>Encryption</td>
 <td>AWS DynamoDb should be encrypted using AWS Managed CMK, instead of AWS-owned CMK. To verify this, SSEEnabled must be verified if false for AWS-owned CMK or true for AWS-Managed CMK. Default value is false.</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-ssespecification.html">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>RDS DB Instance With IAM Auth Disabled<br/><sup><sub>9fcd0a0a-9b6f-4670-a215-d94e6bf3f184</sub></sup></td>
-<td>CloudFormation</td>
-<td><span style="color:#C00">High</span></td>
-<td>Encryption</td>
-<td>IAM Database Auth Enabled should be configured to true when compatible with engine and version</td>
-<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-enableiamdatabaseauthentication">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Redshift Not Encrypted<br/><sup><sub>3b316b05-564c-44a7-9c3f-405bb95e211e</sub></sup></td>
@@ -9602,7 +9602,7 @@
 <td>CloudFormation</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Availability</td>
-<td>ElastiCache Nodes should have 'AZMode' set to 'cross-az' in in multi nodes cluster</td>
+<td>ElastiCache Nodes should be created across multi az, which means 'AZMode' should be set to 'cross-az' in multi nodes cluster</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -12998,7 +12998,7 @@
 <td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/ec2.aws.crossplane.io/SecurityGroup/v1beta1@v0.29.0#spec-forProvider-ingress-ipRanges-cidrIp">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>SQS with SSE disabled<br/><sup><sub>9296f1cc-7a40-45de-bd41-f31745488a0e</sub></sup></td>
+<td>SQS With SSE Disabled<br/><sup><sub>9296f1cc-7a40-45de-bd41-f31745488a0e</sub></sup></td>
 <td>Crossplane</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Encryption</td>
@@ -13018,7 +13018,7 @@
 <td>Crossplane</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
-<td>AWS CloudFront distributions must have logging enabled, which means the attribute 'logging' must be defined with 'enabled' set to true</td>
+<td>AWS CloudFront distributions should have logging enabled to collect all viewer requests, which means the attribute 'logging' must be defined with 'enabled' set to true</td>
 <td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/cloudfront.aws.crossplane.io/Distribution/v1alpha1@v0.29.0#spec-forProvider-distributionConfig-logging">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -13614,6 +13614,14 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>COS Node Image Not Used<br/><sup><sub>be41f891-96b1-4b9d-b74f-b922a918c778</sub></sup></td>
+<td>Ansible</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>The node image should be Container-Optimized OS(COS)</td>
+<td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_node_pool_module.html#parameter-config/image_type">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Google Container Node Pool Auto Repair Disabled<br/><sup><sub>d58c6f24-3763-4269-9f5b-86b2569a003b</sub></sup></td>
 <td>Ansible</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -13716,14 +13724,6 @@
 <td>Observability</td>
 <td>PostgreSQL database 'log_min_messages' flag isn't set to a valid value</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>COS Node Image Not Used<br/><sup><sub>be41f891-96b1-4b9d-b74f-b922a918c778</sub></sup></td>
-<td>Ansible</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Resource Management</td>
-<td>The node image should be Container-Optimized OS(COS)</td>
-<td><a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_node_pool_module.html#parameter-config/image_type">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>High Google KMS Crypto Key Rotation Period<br/><sup><sub>f9b7086b-deb8-4034-9330-d7fd38f1b8de</sub></sup></td>
