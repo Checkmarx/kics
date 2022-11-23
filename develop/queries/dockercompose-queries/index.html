@@ -1397,18 +1397,18 @@
 </thead>
 <tbody>
 <tr>
-<td>Volume Mounted In Multiple Containers<br/><sup><sub>baa452f0-1f21-4a25-ace5-844e7a5f410d</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Build Process</td>
-<td>Volume mounts should not be shared, which means that 'propagation' should not be set to 'shared', 'rshared', 'slave', or 'rslave'</td>
-<td><a href="https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Docker Socket Mounted In Container<br/><sup><sub>d6355c88-1e8d-49e9-b2f2-f8a1ca12c75b</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Build Process</td>
 <td>Docker socket docker.sock should not be mounted on host. If the docker socket is mounted, it can allow its processes to execute docker commands.</td>
 <td><a href="https://docs.docker.com/compose/compose-file/#volumes">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Volume Mounted In Multiple Containers<br/><sup><sub>baa452f0-1f21-4a25-ace5-844e7a5f410d</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Build Process</td>
+<td>Volume mounts should not be shared, which means that 'propagation' should not be set to 'shared', 'rshared', 'slave', or 'rslave'</td>
+<td><a href="https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Volume Has Sensitive Host Directory<br/><sup><sub>1c1325ff-831d-43a1-973e-839ae57dfcc0</sub></sup></td>
@@ -1453,6 +1453,13 @@
 <td><a href="https://docs.docker.com/config/containers/start-containers-automatically/#use-a-restart-policy">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Networks Not Set<br/><sup><sub>ce14a68b-1668-41a0-ab7d-facd9f784742</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Setting networks in services ensures you are not using dockers default bridge (docker0), which shares traffic bewteen all containers.</td>
+<td><a href="https://docs.docker.com/compose/compose-file/compose-file-v3/#networks">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Container Traffic Not Bound To Host Interface<br/><sup><sub>451d79dc-0588-476a-ad03-3c7f0320abb3</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
@@ -1467,11 +1474,11 @@
 <td><a href="https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Networks Not Set<br/><sup><sub>ce14a68b-1668-41a0-ab7d-facd9f784742</sub></sup></td>
+<td>Shared Host User Namespace<br/><sup><sub>8af7162d-6c98-482f-868e-0d33fb675ca8</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
-<td>Networking and Firewall</td>
-<td>Setting networks in services ensures you are not using dockers default bridge (docker0), which shares traffic bewteen all containers.</td>
-<td><a href="https://docs.docker.com/compose/compose-file/compose-file-v3/#networks">Documentation</a><br/></td>
+<td>Resource Management</td>
+<td>The host's user namespace should not be shared.</td>
+<td><a href="https://docs.docker.com/compose/compose-file/compose-file-v3/#userns_mode">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Memory Not Limited<br/><sup><sub>bb9ac4f7-e13b-423d-a010-c74a1bfbe492</sub></sup></td>
@@ -1481,18 +1488,18 @@
 <td><a href="https://docs.docker.com/compose/compose-file/compose-file-v3/#resources">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Default Seccomp Profile Disabled<br/><sup><sub>404fde2c-bc4b-4371-9747-7054132ac953</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Resource Management</td>
+<td>Seccomp offers a whitelist of common system calls, blocking all others. Having less kernel exposed to an app then increases security.</td>
+<td><a href="https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Security Opt Not Set<br/><sup><sub>610e266e-6c12-4bca-9925-1ed0cd29742b</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Resource Management</td>
 <td>Attribute 'security_opt' should be defined.</td>
 <td><a href="https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Shared Host IPC Namespace<br/><sup><sub>baa3890f-bed7-46f5-ab8f-1da8fc91c729</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Resource Management</td>
-<td>Container should not share the host IPC namespace</td>
-<td><a href="https://docs.docker.com/compose/compose-file/compose-file-v3/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Host Namespace is Shared<br/><sup><sub>4f31dd9f-2cc3-4751-9b53-67e4af83dac0</sub></sup></td>
@@ -1509,6 +1516,13 @@
 <td><a href="https://docs.docker.com/compose/compose-file/compose-file-v3/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Shared Host IPC Namespace<br/><sup><sub>baa3890f-bed7-46f5-ab8f-1da8fc91c729</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Resource Management</td>
+<td>Container should not share the host IPC namespace</td>
+<td><a href="https://docs.docker.com/compose/compose-file/compose-file-v3/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Shared Host Network Namespace<br/><sup><sub>071a71ff-f868-47a4-ac0b-3c59e4ab5443</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Resource Management</td>
@@ -1516,18 +1530,11 @@
 <td><a href="https://docs.docker.com/compose/compose-file/compose-file-v3/#network_mode">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Default Seccomp Profile Disabled<br/><sup><sub>404fde2c-bc4b-4371-9747-7054132ac953</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
+<td>Cpus Not Limited<br/><sup><sub>6b610c50-99fb-4ef0-a5f3-e312fd945bc3</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
 <td>Resource Management</td>
-<td>Seccomp offers a whitelist of common system calls, blocking all others. Having less kernel exposed to an app then increases security.</td>
-<td><a href="https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Shared Host User Namespace<br/><sup><sub>8af7162d-6c98-482f-868e-0d33fb675ca8</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Resource Management</td>
-<td>The host's user namespace should not be shared.</td>
-<td><a href="https://docs.docker.com/compose/compose-file/compose-file-v3/#userns_mode">Documentation</a><br/></td>
+<td>CPU limits should be set because if the system has CPU time free, a container is guaranteed to be allocated as much CPU as it requests</td>
+<td><a href="https://docs.docker.com/compose/compose-file/compose-file-v3/#resources">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Container Capabilities Unrestricted<br/><sup><sub>ce76b7d0-9e77-464d-b86f-c5c48e03e22d</sub></sup></td>
@@ -1535,13 +1542,6 @@
 <td>Resource Management</td>
 <td>Some capabilities are not needed in certain (or any) containers. Make sure that you only add capabilities that your container needs. Drop unnecessary capabilities as well.</td>
 <td><a href="https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Cpus Not Limited<br/><sup><sub>6b610c50-99fb-4ef0-a5f3-e312fd945bc3</sub></sup></td>
-<td><span style="color:#CC0">Low</span></td>
-<td>Resource Management</td>
-<td>CPU limits should be set because if the system has CPU time free, a container is guaranteed to be allocated as much CPU as it requests</td>
-<td><a href="https://docs.docker.com/compose/compose-file/compose-file-v3/#resources">Documentation</a><br/></td>
 </tr>
 </tbody>
 </table>
