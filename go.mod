@@ -19,7 +19,7 @@ require (
 	github.com/gookit/color v1.5.2
 	github.com/hashicorp/go-getter v1.6.2
 	github.com/hashicorp/hcl v1.0.0
-	github.com/hashicorp/hcl/v2 v2.14.1
+	github.com/hashicorp/hcl/v2 v2.15.0
 	github.com/hashicorp/terraform-json v0.14.0
 	github.com/johnfercher/maroto v0.39.0
 	github.com/mackerelio/go-osstat v0.2.3
@@ -37,7 +37,7 @@ require (
 	github.com/tidwall/gjson v1.14.3
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/yargevad/filepathx v1.0.0
-	github.com/zclconf/go-cty v1.12.0
+	github.com/zclconf/go-cty v1.12.1
 	golang.org/x/net v0.0.0-20221002022538-bcab6841153b
 	golang.org/x/text v0.4.0
 	golang.org/x/tools v0.1.12
