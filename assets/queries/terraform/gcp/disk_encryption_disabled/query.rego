@@ -37,7 +37,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_compute_disk[name]
-	key := check_key_empty(resource.disk_encryption_key)
+	key := tf_lib.check_key_empty(resource.disk_encryption_key)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -50,12 +50,4 @@ CxPolicy[result] {
 	}
 }
 
-check_key_empty(disk_encryption_key) = key {
-	common_lib.valid_key(disk_encryption_key, "raw_key")
-	common_lib.emptyOrNull(disk_encryption_key.raw_key)
-	key := "raw_key"
-} else = key {
-	common_lib.valid_key(disk_encryption_key, "kms_key_self_link")
-	common_lib.emptyOrNull(disk_encryption_key.kms_key_self_link)
-	key := "kms_key_self_link"
-}
+

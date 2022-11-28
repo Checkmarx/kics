@@ -205,7 +205,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
 			requiredProperties := requiredQueryResultProperties
 
 			for i := range platformsWithResourceInfo {
-				if entry.platform == platformsWithResourceInfo[i] && !strings.Contains(entry.dir, "aws_bom") {
+				if entry.platform == platformsWithResourceInfo[i] && !strings.Contains(entry.dir, "aws_bom") && !strings.Contains(entry.dir, "gcp_bom") {
 					requiredProperties = append(requiredProperties, requiredQueryResultExtraProperties...)
 
 				}
