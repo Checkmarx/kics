@@ -13,3 +13,8 @@ resources:
         sourceImage: projects/debian-cloud/global/images/family/debian-9
     networkInterfaces:
     - network: global/networks/default
+- type: compute.v1.disk
+  name: disk-3-data
+  properties:
+    sizeGb: 10
+    zone: us-east1-c

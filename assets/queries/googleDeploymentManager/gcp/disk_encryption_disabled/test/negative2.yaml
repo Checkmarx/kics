@@ -16,3 +16,11 @@ resources:
         kmsKeyName: disk-crypto-key
     networkInterfaces:
     - network: global/networks/default
+- type: compute.v1.disk
+  name: disk-2-data
+  properties:
+    sizeGb: 10
+    zone: us-east1-c
+    diskEncryptionKey:
+      sha_256: 68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29
+      kmsKeyName: disk-crypto-key
