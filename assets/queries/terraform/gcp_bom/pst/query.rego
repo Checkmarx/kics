@@ -33,8 +33,6 @@ check_encrytion(resource) = enc_status {
 	enc_status := "unencrypted"
 }
 
-
-
 get_accessibility(topic_name) = accessibility_status{
  	iam_binding :=	input.document[i].resource.google_pubsub_topic_iam_binding[_]
 	topicRefArray := split(iam_binding.topic, ".")

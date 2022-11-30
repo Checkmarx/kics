@@ -10,7 +10,7 @@ CxPolicy[result] {
 		"resource_type": pubsub_topic.type,
 		"resource_name": pubsub_topic.name,
 		"resource_accessibility": "unknown",
-		"resource_encryption": check_encrytion(pubsub_topic),
+		"resource_encryption": check_encrytion(pubsub_topic.properties),
 		"resource_vendor": "GCP",
 		"resource_category": "Messaging",
 	}
