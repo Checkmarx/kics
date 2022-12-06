@@ -39,7 +39,6 @@ get_accessibility(topic_name) = accessibility_status{
 	topicRefArray[1] == topic_name
 	iam_binding.role == "roles/pubsub.publisher"
 	checkMembers(iam_binding)
-	#equalsOrInArray(iam_binding.members, consideredPublicPolicyMembers[member])	
 	accessibility_status :="public"
 } else = accessibility_status {
 	iam_binding :=	input.document[i].resource.google_pubsub_topic_iam_member[_]
@@ -47,7 +46,6 @@ get_accessibility(topic_name) = accessibility_status{
 	topicRefArray[1] == topic_name
 	iam_binding.role == "roles/pubsub.publisher"
 	checkMembers(iam_binding)
-	#equalsOrInArray(iam_binding.member, consideredPublicPolicyMembers[member])	
 	accessibility_status := "public"
 } else = accessibility_status{
 	accessibility_status := "unknown"
