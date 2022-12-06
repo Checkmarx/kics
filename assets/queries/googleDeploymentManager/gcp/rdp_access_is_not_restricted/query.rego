@@ -34,6 +34,9 @@ isRDPport(allow) {
 	isTCPorUDP(allow.IPProtocol)
 	contains(allow.ports[j], "-") == false
 	to_number(allow.ports[j]) == 3389
+} else {
+	not allow.ports
+    isTCPorUDP(allow.IPProtocol)
 }
 
 isInBounds(low, high) {
@@ -42,6 +45,6 @@ isInBounds(low, high) {
 }
 
 isTCPorUDP(protocol) {
-	protocols := {"tcp", "udp"}
+	protocols := {"tcp", "udp", "all"}
 	lower(protocol) == protocols[_]
 }

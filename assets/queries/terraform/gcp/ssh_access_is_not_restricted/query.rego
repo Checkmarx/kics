@@ -48,6 +48,17 @@ isSSHport(allow) = ports {
     ports := allow.ports[j]
 }
 
+isSSHport(allow) = ports {
+	not allow.ports
+    isTCPorAll(allow.protocol)
+    ports := "0-65535"
+}
+
+isTCPorAll(protocol) {
+	protocols := {"tcp", "all"}
+	lower(protocol) == protocols[_]
+}
+
 isInBounds(low, high) {
 	low <= 22
 	high >= 22
