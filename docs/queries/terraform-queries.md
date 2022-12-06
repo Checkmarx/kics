@@ -101,6 +101,7 @@ Bellow are listed queries related with Terraform AZURE:
 |Azure Front Door WAF Disabled<br/><sup><sub>835a4f2f-df43-437d-9943-545ccfc55961</sub></sup>|<span style="color:#CC0">Low</span>|Networking and Firewall|Azure Front Door WAF should be enabled|<a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/frontdoor#web_application_firewall_policy_link_id">Documentation</a><br/>|
 |App Service Authentication Disabled<br/><sup><sub>c7fc1481-2899-4490-bbd8-544a3a61a2f3</sub></sup>|<span style="color:#00C">Info</span>|Access Control|Azure App Service authentication settings should be enabled|<a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#enabled">Documentation</a><br/>|
 |SQL Server Alert Email Disabled<br/><sup><sub>55975007-f6e7-4134-83c3-298f1fe4b519</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|SQL Server alert email should be enabled|<a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_server_security_alert_policy#email_account_admins">Documentation</a><br/>|
+
 ### ALICLOUD
 Bellow are listed queries related with Terraform ALICLOUD:
 
@@ -163,6 +164,7 @@ Bellow are listed queries related with Terraform ALICLOUD:
 |RDS Instance Log Connections Disabled<br/><sup><sub>140869ea-25f2-40d4-a595-0c0da135114e</sub></sup>|<span style="color:#CC0">Low</span>|Observability|'log_connections' parameter should be set to ON for RDS instances|<a href="https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#parameters">Documentation</a><br/>|
 |VPC Flow Logs Disabled<br/><sup><sub>d2731f3d-a992-44ed-812e-f4f1c2747d71</sub></sup>|<span style="color:#CC0">Low</span>|Observability|Every VPC resource should have an associated Flow Log|<a href="https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/vpc_flow_log">Documentation</a><br/>|
 |RDS Instance Log Disconnections Disabled<br/><sup><sub>d53f4123-f8d8-4224-8cb3-f920b151cc98</sub></sup>|<span style="color:#CC0">Low</span>|Observability|log_disconnections parameter should be set to ON for RDS instances|<a href="https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#parameters">Documentation</a><br/>|
+
 ### GCP
 Bellow are listed queries related with Terraform GCP:
 
@@ -224,6 +226,7 @@ Bellow are listed queries related with Terraform GCP:
 |User with IAM Role<br/><sup><sub>704fcc44-a58f-4af5-82e2-93f2a58ef918</sub></sup>|<span style="color:#CC0">Low</span>|Best Practices|As a best practice, it is better to assign an IAM Role to a group than to a user|<a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/iam_policy#role">Documentation</a><br/>|
 |Google Compute Subnetwork with Private Google Access Disabled<br/><sup><sub>ee7b93c1-b3f8-4a3b-9588-146d481814f5</sub></sup>|<span style="color:#CC0">Low</span>|Networking and Firewall|Google Compute Subnetwork should have Private Google Access enabled, which means 'private_ip_google_access' should be set to true|<a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork#private_ip_google_access">Documentation</a><br/>|
 |Google Compute Network Using Firewall Rule that Allows Port Range<br/><sup><sub>e6f61c37-106b-449f-a5bb-81bfcaceb8b4</sub></sup>|<span style="color:#CC0">Low</span>|Networking and Firewall|Google Compute Network should not use a firewall rule that allows port range|<a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall#allow">Documentation</a><br/>|
+
 ### GITHUB
 Bellow are listed queries related with Terraform GITHUB:
 
@@ -233,6 +236,7 @@ Bellow are listed queries related with Terraform GITHUB:
 |------------------------------|--------|--------|-----------|----|
 |Github Organization Webhook With SSL Disabled<br/><sup><sub>ce7c874e-1b88-450b-a5e4-cb76ada3c8a9</sub></sup>|<span style="color:#C60">Medium</span>|Encryption|Check if insecure SSL is being used in the GitHub organization webhooks|<a href="https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/organization_webhook">Documentation</a><br/>|
 |GitHub Repository Set To Public<br/><sup><sub>15d8a7fd-465a-4d15-a868-add86552f17b</sub></sup>|<span style="color:#C60">Medium</span>|Insecure Configurations|Repositories must be set to private, which means the attribute 'visibility' must be set to 'private' and/or the attribute 'private' must be set to true (the attribute 'visibility' overrides 'private')|<a href="https://www.terraform.io/docs/providers/github/r/repository.html">Documentation</a><br/>|
+
 ### SHARED (V2/V3)
 Bellow are listed queries related with Terraform SHARED (V2/V3):
 
@@ -245,6 +249,7 @@ Bellow are listed queries related with Terraform SHARED (V2/V3):
 |Variable Without Description<br/><sup><sub>2a153952-2544-4687-bcc9-cc8fea814a9b</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|All variables should contain a valid description.|<a href="https://www.terraform.io/docs/language/values/variables.html#input-variable-documentation">Documentation</a><br/>|
 |Generic Git Module Without Revision<br/><sup><sub>3a81fc06-566f-492a-91dd-7448e409e2cd</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|All generic git repositories should reference a revision.|<a href="https://www.terraform.io/docs/language/modules/sources.html#selecting-a-revision">Documentation</a><br/>|
 |Name Is Not Snake Case<br/><sup><sub>1e434b25-8763-4b00-a5ca-ca03b7abbb66</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|All names should follow snake case pattern.|<a href="https://www.terraform.io/docs/extend/best-practices/naming.html#naming">Documentation</a><br/>|
+
 ### KUBERNETES
 Bellow are listed queries related with Terraform KUBERNETES:
 
@@ -315,6 +320,7 @@ Bellow are listed queries related with Terraform KUBERNETES:
 |CronJob Deadline Not Configured<br/><sup><sub>58876b44-a690-4e9f-9214-7735fa0dd15d</sub></sup>|<span style="color:#CC0">Low</span>|Resource Management|Cronjobs must have a configured deadline, which means the attribute 'starting_deadline_seconds' must be defined|<a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cron_job#starting_deadline_seconds">Documentation</a><br/>|
 |Secrets As Environment Variables<br/><sup><sub>6d8f1a10-b6cd-48f0-b960-f7c535d5cdb8</sub></sup>|<span style="color:#CC0">Low</span>|Secret Management|Container should not use secrets as environment variables|<a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#secret_key_ref">Documentation</a><br/>|
 |Invalid Image<br/><sup><sub>e76cca7c-c3f9-4fc9-884c-b2831168ebd8</sub></sup>|<span style="color:#CC0">Low</span>|Supply-Chain|Image must be defined and not be empty or equal to latest.|<a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#image">Documentation</a><br/>|
+
 ### AWS_BOM
 Bellow are listed queries related with Terraform AWS_BOM:
 
@@ -333,6 +339,7 @@ Bellow are listed queries related with Terraform AWS_BOM:
 |BOM - AWS SQS<br/><sup><sub>baecd2da-492a-4d59-b9dc-29540a1398e0</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of SQS resources specified. Amazon Simple Queue Service (SQS) is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications.|<a href="https://kics.io">Documentation</a><br/>|
 |BOM - AWS MSK<br/><sup><sub>051f2063-2517-4295-ad8e-ba88c1bf5cfc</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of MSK resources specified. Amazon Managed Streaming for Apache Kafka (Amazon MSK) is a fully managed service that enables you to build and run applications that use Apache Kafka to process streaming data.|<a href="https://kics.io">Documentation</a><br/>|
 |BOM - AWS RDS<br/><sup><sub>12933609-c5bf-44b4-9a41-a6467c3b685b</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of RDS resources found. Amazon Relational Database Service (Amazon RDS) is a collection of managed services that makes it simple to set up, operate, and scale databases in the cloud.|<a href="https://kics.io">Documentation</a><br/>|
+
 ### AWS
 Bellow are listed queries related with Terraform AWS:
 
