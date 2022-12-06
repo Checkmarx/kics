@@ -8,31 +8,7 @@
 	{
 		"queryName": "BOM - GCP Redis",
 		"severity": "TRACE",
-		"line": 12,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP PD",
-		"severity": "TRACE",
-		"line": 28,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP PD",
-		"severity": "TRACE",
-		"line": 44,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP PD",
-		"severity": "TRACE",
-		"line": 60,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP PD",
-		"severity": "TRACE",
-		"line": 76,
+		"line": 20,
 		"fileName": "positive.tf"
 	}
 ]
