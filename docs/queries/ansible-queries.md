@@ -46,6 +46,7 @@ Bellow are listed queries related with Ansible AZURE:
 |Monitoring Log Profile Without All Activities<br/><sup><sub>89f84a1e-75f8-47c5-83b5-bee8e2de4168</sub></sup>|<span style="color:#C60">Medium</span>|Observability|Monitoring log profile captures all the activities (Action, Write, Delete)|<a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_monitorlogprofile_module.html">Documentation</a><br/>|
 |PostgreSQL Log Connections Not Set<br/><sup><sub>7b47138f-ec0e-47dc-8516-e7728fe3cc17</sub></sup>|<span style="color:#C60">Medium</span>|Observability|Make sure that for PostgreSQL Database, server parameter 'log_connections' is set to 'ON'|<a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlconfiguration_module.html">Documentation</a><br/>|
 |PostgreSQL Log Disconnections Not Set<br/><sup><sub>054d07b5-941b-4c28-8eef-18989dc62323</sub></sup>|<span style="color:#C60">Medium</span>|Observability|Make sure that for PostgreSQL Database, server parameter 'log_disconnections' is set to 'ON'|<a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlconfiguration_module.html">Documentation</a><br/>|
+
 ### GCP
 Bellow are listed queries related with Ansible GCP:
 
@@ -102,6 +103,7 @@ Bellow are listed queries related with Ansible GCP:
 |High Google KMS Crypto Key Rotation Period<br/><sup><sub>f9b7086b-deb8-4034-9330-d7fd38f1b8de</sub></sup>|<span style="color:#C60">Medium</span>|Secret Management|KMS encryption keys should be rotated every 90 days or less. A short lifetime of encryption keys reduces the potential blast radius in case of compromise.|<a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_kms_crypto_key_module.html">Documentation</a><br/>|
 |Google Compute Subnetwork with Private Google Access Disabled<br/><sup><sub>6a4080ae-79bd-42f6-a924-8f534c1c018b</sub></sup>|<span style="color:#CC0">Low</span>|Networking and Firewall|Google Compute Subnetwork should have Private Google Access enabled, which means 'private_ip_google_access' should be set to yes|<a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_subnetwork_module.html#parameter-private_ip_google_access">Documentation</a><br/>|
 |Google Compute Network Using Firewall Rule that Allows Port Range<br/><sup><sub>7289eebd-a477-4064-8ad4-3c044bd70b00</sub></sup>|<span style="color:#CC0">Low</span>|Networking and Firewall|Google Compute Network should not use a firewall rule that allows port range|<a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_firewall_module.html#parameter-allowed">Documentation</a><br/>|
+
 ### AWS
 Bellow are listed queries related with Ansible AWS:
 
