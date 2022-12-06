@@ -1,0 +1,12 @@
+{
+    "id": "dd7d70aa-a6ec-460d-b5d2-38b40253b16f",
+    "queryName": "BOM - GCP PD",
+    "severity": "TRACE",
+    "category": "Bill Of Materials",
+    "descriptionText": "A list of Persistent Disk resources found. Persistent Disk is Google's local durable storage service, fully integrated with Google Cloud products, Compute Engine and Google Kubernetes Engine.",
+    "descriptionUrl": "https://kics.io",
+    "platform": "Terraform",
+    "descriptionID": "4b72e52d",
+    "cloudProvider": "gcp"
+  }
+  

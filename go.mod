@@ -19,7 +19,7 @@ require (
 	github.com/gookit/color v1.5.2
 	github.com/hashicorp/go-getter v1.6.2
 	github.com/hashicorp/hcl v1.0.0
-	github.com/hashicorp/hcl/v2 v2.14.1
+	github.com/hashicorp/hcl/v2 v2.15.0
 	github.com/hashicorp/terraform-json v0.14.0
 	github.com/johnfercher/maroto v0.39.0
 	github.com/mackerelio/go-osstat v0.2.3
@@ -32,12 +32,12 @@ require (
 	github.com/spf13/cobra v1.6.1
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.13.0
-	github.com/stretchr/testify v1.8.0
+	github.com/stretchr/testify v1.8.1
 	github.com/tdewolff/minify/v2 v2.12.4
 	github.com/tidwall/gjson v1.14.3
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/yargevad/filepathx v1.0.0
-	github.com/zclconf/go-cty v1.12.0
+	github.com/zclconf/go-cty v1.12.1
 	golang.org/x/net v0.0.0-20221002022538-bcab6841153b
 	golang.org/x/text v0.4.0
 	golang.org/x/tools v0.1.12
@@ -193,12 +193,12 @@ require (
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	k8s.io/api v0.25.3
+	k8s.io/api v0.25.4
 	k8s.io/apiextensions-apiserver v0.24.2 // indirect
-	k8s.io/apimachinery v0.25.3
+	k8s.io/apimachinery v0.25.4
 	k8s.io/apiserver v0.24.2 // indirect
 	k8s.io/cli-runtime v0.24.2 // indirect
-	k8s.io/client-go v0.25.3
+	k8s.io/client-go v0.25.4
 	k8s.io/component-base v0.24.2 // indirect
 	k8s.io/klog/v2 v2.70.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20220803162953-67bda5d908f1 // indirect

@@ -3,7 +3,7 @@ Our community meetings are held virtually on the first Thursday of every month a
 
 Upcoming meetings:
 - November 3rd, 2022
-- December 1st, 2022
+- December 5th, 2022 (notice the date was changed from Dec 1st)
 - January 5th, 2023
 
 You're welcome to join us.
