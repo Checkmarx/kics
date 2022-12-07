@@ -2205,7 +2205,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="16">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -19790,7 +19790,7 @@ func splitManifestYAML(template *release.Release) (*[]splitManifest, error) <spa
                                 break</span>
                         }
                 }
-                <span class="cov4" title="5">path := strings.Split(strings.TrimLeft(splited, "\n# Source:"), "\n") // get source of split yaml
+                <span class="cov4" title="5">path := strings.Split(strings.TrimPrefix(splited, "\n# Source: "), "\n") // get source of split yaml
                 // ignore auxiliary files used to render chart
                 if path[0] == "" </span><span class="cov2" title="2">{
                         continue</span>
