@@ -24,7 +24,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].policy", [resources[r], name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].policy doesn't have 'Effect: Allow' and 'NotAction' simultaneously", [resources[r], name]),
+		"keyExpectedValue": sprintf("%s[%s].policy shouldn't have 'Effect: Allow' and 'NotAction' simultaneously", [resources[r], name]),
 		"keyActualValue": sprintf("%s[%s].policy has 'Effect: Allow' and 'NotAction' simultaneously", [resources[r], name]),
 		"searchLine": common_lib.build_search_line(["resource", resources[r], name, "policy"], []),
 	}
@@ -51,7 +51,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("module[%s].policy doesn't have 'Effect: Allow' and 'NotAction' simultaneously", [name]),
+		"keyExpectedValue": sprintf("module[%s].policy shouldn't have 'Effect: Allow' and 'NotAction' simultaneously", [name]),
 		"keyActualValue": sprintf("module[%s].policy has 'Effect: Allow' and 'NotAction' simultaneously", [name]),
 		"searchLine": common_lib.build_search_line(["module", name, keyToCheck], []),
 	}

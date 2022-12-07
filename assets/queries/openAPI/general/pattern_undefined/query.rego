@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.type", [openapi_lib.concat_path(path)]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'pattern' is defined",
+		"keyExpectedValue": "'pattern' should be defined",
 		"keyActualValue": "'pattern' is undefined",
 		"overrideKey": version,
 	}
@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.type", [openapi_lib.concat_path(path)]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'pattern' is defined",
+		"keyExpectedValue": "'pattern' should be defined",
 		"keyActualValue": "'pattern' is undefined",
 		"overrideKey": version,
 	}

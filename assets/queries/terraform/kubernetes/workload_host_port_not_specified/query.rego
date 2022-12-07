@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.port", [x, name, resource_prefix]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Attribute 'host_port' is defined and not null",
+		"keyExpectedValue": "Attribute 'host_port' should be defined and not null",
 		"keyActualValue": "Attribute 'host_port' is undefined or null",
 	}
 }

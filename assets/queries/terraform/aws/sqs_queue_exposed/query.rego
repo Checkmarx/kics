@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_sqs_queue[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("resource.aws_sqs_queue[%s].policy.Principal doesn't get the queue publicly accessible", [name]),
+		"keyExpectedValue": sprintf("resource.aws_sqs_queue[%s].policy.Principal shouldn't get the queue publicly accessible", [name]),
 		"keyActualValue": sprintf("resource.aws_sqs_queue[%s].policy.Principal does get the queue publicly accessible", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_sqs_queue", name, "policy"], []),
 	}
@@ -32,7 +32,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'policy.Principal' doesn't get the queue publicly accessible",
+		"keyExpectedValue": "'policy.Principal' shouldn't get the queue publicly accessible",
 		"keyActualValue": "'policy.Principal' does get the queue publicly accessible",
 		"searchLine": common_lib.build_search_line(["module", name, "policy"], []),
 	}

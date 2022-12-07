@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Instances", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.Instances.Ec2SubnetId is defined and not null", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Instances.Ec2SubnetId should be defined and not null", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.Instances.Ec2SubnetId is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "Instances"], []),
 	}

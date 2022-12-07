@@ -94,7 +94,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_cloudtrail[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "CloudTrail Multi Region is defined",
+		"keyExpectedValue": "CloudTrail Multi Region should be defined",
 		"keyActualValue": "CloudTrail Multi Region is undefined",
 	}
 }
@@ -107,7 +107,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_cloudtrail[%s].is_multi_region_trail", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "CloudTrail Multi Region is set to true",
+		"keyExpectedValue": "CloudTrail Multi Region should be set to true",
 		"keyActualValue": "CloudTrail Multi Region is set to false",
 	}
 }

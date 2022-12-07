@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.%s.responses.{{%s}}.examples.{{%s}}", [path, operation, status, mimeType]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Example MimeType is listed on produces",
+		"keyExpectedValue": "Example MimeType should be listed on produces",
 		"keyActualValue": "Example MimeType is not listed on produces",
 	}
 }

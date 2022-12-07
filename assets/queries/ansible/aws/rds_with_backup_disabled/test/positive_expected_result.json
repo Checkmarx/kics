@@ -3,10 +3,5 @@
     "queryName": "RDS With Backup Disabled",
     "severity": "MEDIUM",
     "line": 10
-  },
-  {
-    "queryName": "RDS With Backup Disabled",
-    "severity": "MEDIUM",
-    "line": 12
   }
 ]

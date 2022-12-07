@@ -52,7 +52,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_project_iam_audit_config[%s].audit_log_config.exempted_members", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'exempted_members' is empty",
+		"keyExpectedValue": "'exempted_members' should be empty",
 		"keyActualValue": "'exempted_members' is not empty",
 	}
 }

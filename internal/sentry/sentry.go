@@ -28,7 +28,9 @@ type Report struct {
 func ReportSentry(report *Report, shouldLog bool) {
 	sentry.WithScope(func(scope *sentry.Scope) {
 		report.Flags = flags.GetAllFlags()
-		scope.SetContext("Issue", report)
+		value := make(map[string]interface{})
+		value["report"] = report
+		scope.SetContext("Issue", value)
 		sentry.CaptureException(report.Err)
 	})
 

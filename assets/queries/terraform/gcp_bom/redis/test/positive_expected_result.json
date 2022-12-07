@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "BOM - GCP Redis",
+		"severity": "TRACE",
+		"line": 1,
+		"fileName": "positive.tf"
+	},
+	{
+		"queryName": "BOM - GCP Redis",
+		"severity": "TRACE",
+		"line": 20,
+		"fileName": "positive.tf"
+	}
+]

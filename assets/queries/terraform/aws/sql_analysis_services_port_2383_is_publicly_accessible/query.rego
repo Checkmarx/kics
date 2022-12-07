@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_security_group[%s].ingress", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_security_group doesn't openSQL Analysis Services Port 2383",
+		"keyExpectedValue": "aws_security_group shouldn't open SQL Analysis Services Port 2383",
 		"keyActualValue": "aws_security_group opens SQL Analysis Services Port 2383",
 	}
 }

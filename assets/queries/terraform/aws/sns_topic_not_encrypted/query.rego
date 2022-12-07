@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_sns_topic[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "SNS Topic is encrypted",
+		"keyExpectedValue": "SNS Topic should be encrypted",
 		"keyActualValue": "SNS Topic is not encrypted",
 	}
 }
@@ -30,7 +30,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_sns_topic[%s].kms_master_key_id", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "SNS Topic is encrypted",
+		"keyExpectedValue": "SNS Topic should be encrypted",
 		"keyActualValue": "SNS Topic is not encrypted",
 	}
 }

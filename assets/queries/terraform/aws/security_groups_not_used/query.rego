@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, securityGroupName),
 		"searchKey": sprintf("aws_security_group[%s]", [securityGroupName]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'aws_security_group[%s]' is used", [securityGroupName]),
+		"keyExpectedValue": sprintf("'aws_security_group[%s]' should be used", [securityGroupName]),
 		"keyActualValue": sprintf("'aws_security_group[%s]' is not used", [securityGroupName]),
 	}
 }

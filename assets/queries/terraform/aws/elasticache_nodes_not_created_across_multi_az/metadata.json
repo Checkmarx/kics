@@ -3,7 +3,7 @@
   "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
   "severity": "MEDIUM",
   "category": "Availability",
-  "descriptionText": "ElastiCache Nodes should have 'az_mode' set to 'cross-az' in in multi nodes cluster",
+  "descriptionText": "ElastiCache Nodes should be created across multi az, which means 'az_mode' should be set to 'cross-az' in multi nodes cluster",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster",
   "platform": "Terraform",
   "descriptionID": "1bbfe45b",

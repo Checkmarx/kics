@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.securityContext.capabilities", [metadata.name, types[x], containers[c].name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("spec.%s[%s].securityContext.capabilities.drop is defined", [types[x], containers[c].name]),
+		"keyExpectedValue": sprintf("spec.%s[%s].securityContext.capabilities.drop should be defined", [types[x], containers[c].name]),
 		"keyActualValue": sprintf("spec.%s[%s].securityContext.capabilities.drop is not defined", [types[x], containers[c].name]),
 	}
 }
@@ -41,7 +41,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.securityContext", [metadata.name, types[x], containers[k].name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.securityContext.capabilities is set", [metadata.name, types[x], containers[k].name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.securityContext.capabilities should be set", [metadata.name, types[x], containers[k].name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.securityContext.capabilities is undefined", [metadata.name, types[x], containers[k].name]),
 	}
 }
@@ -61,7 +61,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name=%s", [metadata.name, types[x], containers[k].name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.%s.name=%s.securityContext is set", [metadata.name, types[x], containers[k].name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.%s.name=%s.securityContext should be set", [metadata.name, types[x], containers[k].name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.spec.%s.name=%s.securityContext is undefined", [metadata.name, types[x], containers[k].name]),
 	}
 }

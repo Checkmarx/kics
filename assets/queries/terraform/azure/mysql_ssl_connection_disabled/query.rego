@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_mysql_server[%s].ssl_enforcement_enabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_mysql_server.%s.ssl_enforcement_enabled' is equal 'true'", [name]),
+		"keyExpectedValue": sprintf("'azurerm_mysql_server.%s.ssl_enforcement_enabled' should equal 'true'", [name]),
 		"keyActualValue": sprintf("'azurerm_mysql_server.%s.ssl_enforcement_enabled' is equal 'false'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "ssl_enforcement_enabled", name], []),
 		"remediation": json.marshal({

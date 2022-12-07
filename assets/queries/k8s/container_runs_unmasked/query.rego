@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": document.metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.allowedProcMountTypes", [document.metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "AllowedProcMountTypes contains the value Default",
+		"keyExpectedValue": "AllowedProcMountTypes should contain the value Default",
 		"keyActualValue": "AllowedProcMountTypes contains the value Unmasked",
 	}
 }

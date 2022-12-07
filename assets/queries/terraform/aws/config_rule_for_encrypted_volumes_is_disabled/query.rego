@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"resourceName": "unknown",
 		"searchKey": "aws_config_config_rule", #refer to the first rule
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "There is a 'aws_config_config_rule' resource has source id: 'ENCRYPTED_VOLUMES'",
+		"keyExpectedValue": "There should be a 'aws_config_config_rule' resource with source id: 'ENCRYPTED_VOLUMES'",
 		"keyActualValue": "No 'aws_config_config_rule' resource has source id: 'ENCRYPTED_VOLUMES'",
 	}
 }

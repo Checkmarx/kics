@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s", [openapi_lib.concat_path(path)]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Array items property is defined",
+		"keyExpectedValue": "Array items property should be defined",
 		"keyActualValue": "Array items property is undefined",
 		"overrideKey": version,
 	}

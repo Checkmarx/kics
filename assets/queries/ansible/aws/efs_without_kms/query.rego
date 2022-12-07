@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "efs.kms_key_id is set",
+		"keyExpectedValue": "efs.kms_key_id should be set",
 		"keyActualValue": "efs.kms_key_id is undefined",
 	}
 }

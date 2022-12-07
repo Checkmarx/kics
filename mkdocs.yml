@@ -4,7 +4,7 @@ site_url: http://docs.kics.io
 site_description: >-
   Open source solution for static code analysis of Infrastructure as Code. Finding security vulnerabilities, compliance issues, and infrastructure misconfigurations during project development cycle.
 copyright: >-
-  &copy; 2021 Checkmarx Ltd. All Rights Reserved.
+  &copy; 2023 Checkmarx Ltd. All Rights Reserved.
 
 # Repo
 repo_name: GitHub
@@ -16,8 +16,8 @@ extra:
 
 theme:
   name: material
-  logo: img/logo/kics_hat_color_new.png
-  favicon: img/logo/kics-hat.ico
+  logo: img/logo/kics_new_logo_2022_dark.png
+  favicon: img/logo/kics-donkey.ico
   features:
     - navigation.tabs
     - navigation.tabs.sticky

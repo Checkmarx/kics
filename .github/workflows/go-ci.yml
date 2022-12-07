@@ -15,7 +15,7 @@ jobs:
         with:
           go-version: 1.18.x
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@v3.2.0
+        uses: golangci/golangci-lint-action@v3.3.1
         with:
           version: v1.46.1
           args: -c .golangci.yml --timeout 20m
@@ -75,7 +75,7 @@ jobs:
           go mod vendor
       - name: Set Windows Page size
         if: matrix.os == 'windows-latest'
-        uses: al-cheb/configure-pagefile-action@v1.2
+        uses: al-cheb/configure-pagefile-action@v1.3
         with:
           minimum-size: 32GB
           maximum-size: 32GB

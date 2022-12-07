@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_default_security_group[{{%s}}].%s", [name, block]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_default_security_group[{{%s}}] does not have '%s' defined", [name, block]),
+		"keyExpectedValue": sprintf("aws_default_security_group[{{%s}}] should not have '%s' defined", [name, block]),
 		"keyActualValue": sprintf("aws_default_security_group[{{%s}}] has '%s' defined", [name, block]),
 	}
 }

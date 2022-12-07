@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.%s", [path, operation, field]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.security[%d].%s is defined in '#/components/securitySchemes'", [path, operation, s, field]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.security[%d].%s should be defined in '#/components/securitySchemes'", [path, operation, s, field]),
 		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.security[%d].%s is not defined in '#/components/securitySchemes'", [path, operation, s, field]),
 	}
 }

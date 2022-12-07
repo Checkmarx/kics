@@ -1,0 +1,10 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  myNewTable1:
+    Type: 'AWS::Cassandra::Table'
+    Properties:
+      KeyspaceName: my_keyspace
+      TableName: my_table
+      PartitionKeyColumns:
+        - ColumnName: Message
+          ColumnType: ASCII

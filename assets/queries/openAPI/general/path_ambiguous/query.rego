@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.%s", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "There is no ambiguous path",
+		"keyExpectedValue": "There shouldn't be ambiguous path",
 		"keyActualValue": "There is ambiguous path",
 		"overrideKey": version,
 	}

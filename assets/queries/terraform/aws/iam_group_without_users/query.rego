@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(iam_group, name),
 		"searchKey": sprintf("aws_iam_group[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_iam_group[%s] is associated with an aws_iam_group_membership that has at least one user set", [name]),
+		"keyExpectedValue": sprintf("aws_iam_group[%s] should be associated with an aws_iam_group_membership that has at least one user set", [name]),
 		"keyActualValue": sprintf("aws_iam_group[%s] is not associated with an aws_iam_group_membership that has at least one user set", [name]),
 	}
 }

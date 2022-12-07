@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_instance[%s].iam_instance_profile", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Public and private instances do not share the same role",
+		"keyExpectedValue": "Public and private instances should not share the same role",
 		"keyActualValue": "Public and private instances share the same role",
 		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name, "iam_instance_profile"], []),
 	}
@@ -40,7 +40,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].iam_instance_profile", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Public and private instances do not share the same role",
+		"keyExpectedValue": "Public and private instances should not share the same role",
 		"keyActualValue": "Public and private instances share the same role",
 		"searchLine": common_lib.build_search_line(["module", name, "iam_instance_profile"], []),
 	}

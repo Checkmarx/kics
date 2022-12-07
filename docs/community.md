@@ -1,11 +1,14 @@
 ## Community Meetings
--   [GitHub discussion regarding Community Meetings](https://github.com/Checkmarx/kics/discussions/5675).
-    -   Here you have access to the PDfs that contains the topics mentioned in each session.
-- Calendar for the upcoming sessions:
-    - October 6, 2022 at 15h00 UTC +0
-    - October 20, 2022 at 15h00 UTC +0
-    - November 3, 2022 at 15h00 UTC +0
-- [To participate in our community meetings you can use this link](https://tinyurl.com/kics-community)
+Our community meetings are held virtually on the first Thursday of every month at 15:00 UTC(+0) by [Zoom](https://tinyurl.com/kics-community).
+
+Upcoming meetings:
+- November 3rd, 2022
+- December 5th, 2022 (notice the date was changed from Dec 1st)
+- January 5th, 2023
+
+You're welcome to join us.
+
+If want to see summary of previous meetings, have questions about them or want to add a topic to the agenda, you can join our [community thread](https://github.com/Checkmarx/kics/discussions/5675).
 
 ## Hacktoberfest
 *"[Hacktoberfest](https://github.com/topics/hacktoberfest) is a month-long celebration of open source projects, their maintainers, and the entire community of contributors. Each October, open source maintainers give new contributors extra attention as they guide developers through their first pull requests on GitHub."*<br />

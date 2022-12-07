@@ -10,7 +10,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, command.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'EXPOSE' doesn't contain the port 22 ",
+		"keyExpectedValue": "'EXPOSE' shouldn't contain the port 22 ",
 		"keyActualValue": "'EXPOSE' contains the port 22 ",
 	}
 }

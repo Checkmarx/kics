@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s.vpc_subnet_id is set", [modules[m]]),
+		"keyExpectedValue": sprintf("%s.vpc_subnet_id should be set", [modules[m]]),
 		"keyActualValue": sprintf("%s.vpc_subnet_id is undefined", [modules[m]]),
 	}
 }

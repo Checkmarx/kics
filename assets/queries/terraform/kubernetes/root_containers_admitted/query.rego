@@ -68,7 +68,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod_security_policy[%s].spec.%s.range.min", [name, groups[p]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_pod_security_policy[%s].spec.%s.range.min does not allow range '0' (root)", [name, groups[p]]),
+		"keyExpectedValue": sprintf("kubernetes_pod_security_policy[%s].spec.%s.range.min should not allow range '0' (root)", [name, groups[p]]),
 		"keyActualValue": sprintf("kubernetes_pod_security_policy[%s].spec.%s.range.min allows range '0' (root)", [name, groups[p]]),
 	}
 }

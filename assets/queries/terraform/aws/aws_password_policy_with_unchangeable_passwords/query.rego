@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_iam_account_password_policy[%s].allow_users_to_change_password", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_iam_account_password_policy", name,"allow_users_to_change_password"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'allow_users_to_change_password' is equal 'true'",
+		"keyExpectedValue": "'allow_users_to_change_password' should equal 'true'",
 		"keyActualValue": "'allow_users_to_change_password' is equal 'false'",
 		"remediation": json.marshal({
 			"before": "false",

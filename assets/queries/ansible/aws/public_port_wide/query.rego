@@ -22,7 +22,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.rules", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("ec2_group.rules[%d] doesn't have public port wide", [index]),
+		"keyExpectedValue": sprintf("ec2_group.rules[%d] shouldn't have public port wide", [index]),
 		"keyActualValue": sprintf("ec2_group.rules[%d] has public port wide", [index]),
 	}
 }
@@ -45,7 +45,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.rules", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("ec2_group.rules[%d] doesn't have public port wide", [index]),
+		"keyExpectedValue": sprintf("ec2_group.rules[%d] shouldn't have public port wide", [index]),
 		"keyActualValue": sprintf("ec2_group.rules[%d] has public port wide", [index]),
 	}
 }

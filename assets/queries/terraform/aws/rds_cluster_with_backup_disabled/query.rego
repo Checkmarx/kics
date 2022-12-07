@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_rds_cluster[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_rds_cluster.backup_retention_period is defined and not null",
+		"keyExpectedValue": "aws_rds_cluster.backup_retention_period should be defined and not null",
 		"keyActualValue": "aws_rds_cluster.backup_retention_period is undefined or null",
 	}
 }
