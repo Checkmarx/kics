@@ -19,6 +19,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyActualValue": "Array schema has 'maxItems' set",
 		"keyExpectedValue": "Array schema has 'maxItems' undefined",
+		"searchLine": common_lib.build_search_line(path, []) ,
 		"overrideKey": version,
 	}
 }
@@ -38,6 +39,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyActualValue": "Array schema has 'maxItems' set",
 		"keyExpectedValue": "Array schema has 'maxItems' undefined",
+		"searchLine": common_lib.build_search_line(path, []) ,
 		"overrideKey": version,
 	}
 }
