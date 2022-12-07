@@ -1,0 +1,12 @@
+{
+    "id": "4b82202a-b18e-4891-a1eb-a0989850bbb3",
+    "queryName": "BOM - GCP PST",
+    "severity": "TRACE",
+    "category": "Bill Of Materials",
+    "descriptionText": "A list of Pub/Sub Topic resources found. Cloud Pub/Sub is designed to provide reliable, many-to-many, asynchronous messaging between applications. Publisher applications can send messages to a 'topic' and other applications can subscribe to that topic to receive the messages.",
+    "descriptionUrl": "https://kics.io",
+    "platform": "Terraform",
+    "descriptionID": "aa371a3b",
+    "cloudProvider": "gcp"
+  }
+  
