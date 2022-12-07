@@ -3,6 +3,6 @@
     "queryName": "ECS Service Without Running Tasks",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive.tf"
   }
 ]
