@@ -1,0 +1,12 @@
+{
+    "id": "895ed0d9-6fec-4567-8614-d7a74b599a53",
+    "queryName": "BOM - GCP Dataflow",
+    "severity": "TRACE",
+    "category": "Bill Of Materials",
+    "descriptionText": "A list of Dataflow resources found. Unified stream and batch data processing that's serverless, fast, and cost-effective.",
+    "descriptionUrl": "https://kics.io",
+    "platform": "Terraform",
+    "descriptionID": "5d614ad5",
+    "cloudProvider": "gcp"
+  }
+  

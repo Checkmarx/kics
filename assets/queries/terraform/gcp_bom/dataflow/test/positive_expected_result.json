@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "BOM - GCP Dataflow",
+		"severity": "TRACE",
+		"line": 1,
+		"fileName": "positive.tf"
+	},
+	{
+		"queryName": "BOM - GCP Dataflow",
+		"severity": "TRACE",
+		"line": 17,
+		"fileName": "positive.tf"
+	}
+]
