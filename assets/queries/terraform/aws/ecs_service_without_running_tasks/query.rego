@@ -7,6 +7,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_ecs_service[name]
 
 	not checkContent(resource)
+	checkDesiredCount(resource)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -21,8 +22,18 @@ CxPolicy[result] {
 
 checkContent(deploymentConfiguration) {
 	common_lib.valid_key(deploymentConfiguration, "deployment_maximum_percent")
+} else {
+	common_lib.valid_key(deploymentConfiguration, "deployment_minimum_healthy_percent")
 }
 
-checkContent(deploymentConfiguration) {
-	common_lib.valid_key(deploymentConfiguration, "deployment_minimum_healthy_percent")
+checkDesiredCount(deploymentConfiguration) {
+	deploymentConfiguration.desired_count == 0
+	getSchedulingStrategy(deploymentConfiguration) != "DAEMON"
+}
+
+getSchedulingStrategy(resource) = ss {
+	common_lib.valid_key(resource, "scheduling_strategy")
+	ss := resource.scheduling_strategy
+} else = ss {
+	ss := "REPLICA"
 }
