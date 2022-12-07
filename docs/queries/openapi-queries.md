@@ -54,6 +54,7 @@ Bellow are listed queries related with OpenAPI 2.0:
 |Property Not Unique<br/><sup><sub>750b40be-4bac-4f59-bdc4-1ca0e6c3450e</sub></sup>|<span style="color:#00C">Info</span>|Structure and Semantics|Every defined property must be unique throughout the whole API|<a href="https://swagger.io/specification/v2/#schemaObject">Documentation</a><br/>|
 |Schema JSON Reference Does Not Exists (v2)<br/><sup><sub>98295b32-ec09-4b5b-89a9-39853197f914</sub></sup>|<span style="color:#00C">Info</span>|Structure and Semantics|Schema reference should exists on definitions field|<a href="https://swagger.io/specification/v2/#definitionsObject">Documentation</a><br/>|
 |Schema Object Incorrect Ref (v2)<br/><sup><sub>0220e1c5-65d1-49dd-b7c2-cef6d6cb5283</sub></sup>|<span style="color:#00C">Info</span>|Structure and Semantics|Schema Object reference must always point to '#/definitions'|<a href="https://swagger.io/specification/v2/#schema-object">Documentation</a><br/>|
+
 ### SHARED (V2/V3)
 Bellow are listed queries related with OpenAPI SHARED (V2/V3):
 
@@ -209,6 +210,7 @@ Bellow are listed queries related with OpenAPI SHARED (V2/V3):
 |Properties Missing Required Property (v3)<br/><sup><sub>3fb03214-25d4-4bd4-867c-c2d8d708a483</sub></sup>|<span style="color:#00C">Info</span>|Structure and Semantics|Schema Object should have all required properties defined|<a href="https://swagger.io/specification/#schema-object">Documentation</a><br/>|
 |Type Has Invalid Keyword (v2)<br/><sup><sub>492c6cbb-f3f8-4807-aa4f-42b8b1c46b59</sub></sup>|<span style="color:#00C">Info</span>|Structure and Semantics|Schema/Parameter/Header Object define type should not use a keyword of another type|<a href="https://swagger.io/specification/v2/#schemaObject">Documentation</a><br/>|
 |Type Has Invalid Keyword (v3)<br/><sup><sub>a9228976-10cf-4b5f-b902-9e962aad037a</sub></sup>|<span style="color:#00C">Info</span>|Structure and Semantics|Schema Object define type should not use a keyword of another type|<a href="https://swagger.io/specification/#schema-object">Documentation</a><br/>|
+
 ### 3.0
 Bellow are listed queries related with OpenAPI 3.0:
 

@@ -17,6 +17,7 @@ Bellow are listed queries related with CloudFormation AWS_SAM:
 |Serverless Function Without Dead Letter Queue<br/><sup><sub>cb2f612b-ed42-4ff5-9fb9-255c73d39a18</sub></sup>|<span style="color:#CC0">Low</span>|Insecure Configurations|AWS Serverless Function should be configured for a Dead Letter Queue(DLQ)|<a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-deadletterqueue">Documentation</a><br/>|
 |Serverless API Cache Cluster Disabled<br/><sup><sub>60a05ede-0a68-4d0d-a58f-f538cf55ff79</sub></sup>|<span style="color:#CC0">Low</span>|Insecure Configurations|AWS Serverless API should have cache clustering enabled|<a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-api.html#sam-api-cacheclusterenabled">Documentation</a><br/>|
 |Serverless Function Without X-Ray Tracing<br/><sup><sub>dc1ab429-1481-4540-9b1d-280e3f15f1f8</sub></sup>|<span style="color:#CC0">Low</span>|Observability|AWS Serverless Function should have Tracing enabled. For this, property 'Tracing' should have the value 'Active'|<a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-tracing">Documentation</a><br/>|
+
 ### AWS_BOM
 Bellow are listed queries related with CloudFormation AWS_BOM:
 
@@ -36,6 +37,7 @@ Bellow are listed queries related with CloudFormation AWS_BOM:
 |BOM - AWS MSK<br/><sup><sub>2730c169-51d7-4ae7-99b5-584379eff1bb</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of MSK resources specified. Amazon Managed Streaming for Apache Kafka (Amazon MSK) is a fully managed service that enables you to build and run applications that use Apache Kafka to process streaming data.|<a href="https://kics.io">Documentation</a><br/>|
 |BOM - AWS Cassandra<br/><sup><sub>124b173b-e06d-48a6-8acd-f889443d97a4</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of Cassandra resources found. Amazon Cassandra is an open-source NoSQL database designed to store data for applications that require fast read and write performance|<a href="https://kics.io">Documentation</a><br/>|
 |BOM - AWS RDS<br/><sup><sub>6ef03ff6-a2bd-483c-851f-631f248bc0ea</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of RDS resources found. Amazon Relational Database Service (Amazon RDS) is a collection of managed services that makes it simple to set up, operate, and scale databases in the cloud.|<a href="https://kics.io">Documentation</a><br/>|
+
 ### AWS
 Bellow are listed queries related with CloudFormation AWS:
 
