@@ -553,10 +553,10 @@ resourceFieldName = {
 }
 
 get_resource_name(resource, resourceDefinitionName) = name {
-	possibleNames := {"name", "display_name"}
-	targetName := possibleNames[_]
-	name := resource[targetName]
+	name := resource["name"]
 } else = name {
+	name := resource["display_name"]
+}  else = name {
 	name := resource.metadata.name
 } else = name {
 	prefix := resource.name_prefix
