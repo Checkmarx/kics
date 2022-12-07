@@ -256,6 +256,7 @@ Bellow are listed queries related with CloudFormation AWS:
 |SDB Domain Declared As A Resource<br/><sup><sub>6ea57c8b-f9c0-4ec7-bae3-bd75a9dee27d</sub></sup>|<span style="color:#CC0">Low</span>|Resource Management|SimpleDB Domain resource should not be declared|<a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-simpledb.html">Documentation</a><br/>|
 |EC2 Not EBS Optimized<br/><sup><sub>8dd0ff1f-0da4-48df-9bb3-7f338ae36a40</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|It's considered a best practice for an EC2 instance to use an EBS optimized instance. This provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance|<a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-ebsoptimized">Documentation</a><br/>|
 |Security Group Rule Without Description<br/><sup><sub>5e6c9c68-8a82-408e-8749-ddad78cbb9c5</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|It's considered a best practice for AWS Security Group to have a description|<a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/>|
+
 ### AWS_SAM
 Bellow are listed queries related with CloudFormation AWS_SAM:
 
@@ -273,6 +274,7 @@ Bellow are listed queries related with CloudFormation AWS_SAM:
 |Serverless API Cache Cluster Disabled<br/><sup><sub>60a05ede-0a68-4d0d-a58f-f538cf55ff79</sub></sup>|<span style="color:#CC0">Low</span>|Insecure Configurations|AWS Serverless API should have cache clustering enabled|<a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-api.html#sam-api-cacheclusterenabled">Documentation</a><br/>|
 |Serverless Function Without Dead Letter Queue<br/><sup><sub>cb2f612b-ed42-4ff5-9fb9-255c73d39a18</sub></sup>|<span style="color:#CC0">Low</span>|Insecure Configurations|AWS Serverless Function should be configured for a Dead Letter Queue(DLQ)|<a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-deadletterqueue">Documentation</a><br/>|
 |Serverless Function Without X-Ray Tracing<br/><sup><sub>dc1ab429-1481-4540-9b1d-280e3f15f1f8</sub></sup>|<span style="color:#CC0">Low</span>|Observability|AWS Serverless Function should have Tracing enabled. For this, property 'Tracing' should have the value 'Active'|<a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-tracing">Documentation</a><br/>|
+
 ### AWS_BOM
 Bellow are listed queries related with CloudFormation AWS_BOM:
 

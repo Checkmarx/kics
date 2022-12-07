@@ -137,6 +137,7 @@ Bellow are listed queries related with Ansible AWS:
 |CloudTrail Log File Validation Disabled<br/><sup><sub>4d8681a2-3d30-4c89-8070-08acd142748e</sub></sup>|<span style="color:#CC0">Low</span>|Observability|CloudTrail log file validation should be enabled to determine whether a log file has not been tampered|<a href="https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html">Documentation</a><br/>|
 |Lambda Functions Without X-Ray Tracing<br/><sup><sub>71397b34-1d50-4ee1-97cb-c96c34676f74</sub></sup>|<span style="color:#CC0">Low</span>|Observability|AWS Lambda functions should have TracingConfig enabled. For this, property 'tracing_mode' should have the value 'Active'|<a href="https://docs.ansible.com/ansible/latest/collections/community/aws/lambda_module.html">Documentation</a><br/>|
 |EC2 Not EBS Optimized<br/><sup><sub>338b6cab-961d-4998-bb49-e5b6a11c9a5c</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|It's considered a best practice for an EC2 instance to use an EBS optimized instance. This provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance|<a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_module.html#parameter-ebs_optimized">Documentation</a><br/>|
+
 ### AZURE
 Bellow are listed queries related with Ansible AZURE:
 
@@ -183,6 +184,7 @@ Bellow are listed queries related with Ansible AZURE:
 |AKS Monitoring Logging Disabled<br/><sup><sub>d5e83b32-56dd-4247-8c2e-074f43b38a5e</sub></sup>|<span style="color:#C60">Medium</span>|Observability|Azure Container Service (AKS) instance should have logging enabled to Azure Monitoring|<a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_aks_module.html">Documentation</a><br/>|
 |PostgreSQL Server Without Connection Throttling<br/><sup><sub>a9becca7-892a-4af7-b9e1-44bf20a4cd9a</sub></sup>|<span style="color:#C60">Medium</span>|Observability|Ensure that Connection Throttling is set for the PostgreSQL server|<a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlconfiguration_module.html">Documentation</a><br/>|
 |PostgreSQL Log Connections Not Set<br/><sup><sub>7b47138f-ec0e-47dc-8516-e7728fe3cc17</sub></sup>|<span style="color:#C60">Medium</span>|Observability|Make sure that for PostgreSQL Database, server parameter 'log_connections' is set to 'ON'|<a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlconfiguration_module.html">Documentation</a><br/>|
+
 ### GCP
 Bellow are listed queries related with Ansible GCP:
 

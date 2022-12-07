@@ -155,6 +155,7 @@ Bellow are listed queries related with OpenAPI SHARED (V2/V3):
 |Responses With Wrong HTTP Status Code (v3)<br/><sup><sub>d86655c0-92f6-4ffc-b4d5-5b5775804c27</sub></sup>|<span style="color:#00C">Info</span>|Structure and Semantics|HTTP Responses status code should be in range of [200-599]|<a href="https://swagger.io/specification/#responses-object">Documentation</a><br/>|
 |Schema Has A Required Property Undefined (v2)<br/><sup><sub>811762c8-2e99-4f70-88f9-a63875a953b1</sub></sup>|<span style="color:#00C">Info</span>|Structure and Semantics|Schema Object should not be have a required property that is not defined on properties|<a href="https://swagger.io/specification/v2/#schemaObject">Documentation</a><br/>|
 |Schema Has A Required Property Undefined (v3)<br/><sup><sub>2bd608ae-8a1f-457f-b710-c237883cb313</sub></sup>|<span style="color:#00C">Info</span>|Structure and Semantics|Schema Object should not be have a required property that is not defined on properties|<a href="https://swagger.io/specification/#schema-object">Documentation</a><br/>|
+
 ### 2.0
 Bellow are listed queries related with OpenAPI 2.0:
 
@@ -209,6 +210,7 @@ Bellow are listed queries related with OpenAPI 2.0:
 |BasePath With Wrong Format<br/><sup><sub>b4803607-ed72-4d60-99e2-3fa6edf471c6</sub></sup>|<span style="color:#00C">Info</span>|Structure and Semantics|The 'basePath' value format must match the pattern '^/'|<a href="https://swagger.io/specification/v2/#schema">Documentation</a><br/>|
 |Object Without Required Property (v2)<br/><sup><sub>5e5ecb9d-04b5-4e4f-b5a5-6ee04279b275</sub></sup>|<span style="color:#00C">Info</span>|Structure and Semantics|OpenAPI Object should contain all of its required fields|<a href="https://swagger.io/specification/v2/">Documentation</a><br/>|
 |Response Object With Incorrect Ref (v2)<br/><sup><sub>bccfa089-89e4-47e0-a0e5-185fe6902220</sub></sup>|<span style="color:#00C">Info</span>|Structure and Semantics|Response Object reference must always point to '#/responses'|<a href="https://swagger.io/specification/v2/#responses-object">Documentation</a><br/>|
+
 ### 3.0
 Bellow are listed queries related with OpenAPI 3.0:
 
