@@ -33,6 +33,7 @@ theme:
 
 # Navigation
 nav:
+  - Getting Started: getting-started.md
   - Documentation:
       - Installation: documentation.md
       - Command Line Interface: commands.md
@@ -46,7 +47,6 @@ nav:
       - Certifications: certifications.md
       - Changes in v1.3.0: changes.md
       - Changes in v1.6.0: changes1_6.md
-  - Getting Started: getting-started.md
   - Queries:
       - General Info: queries.md
       - Creating Queries: creating-queries.md
