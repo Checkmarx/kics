@@ -8,7 +8,19 @@
   {
     "queryName": "SQS With SSE Disabled",
     "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "SQS With SSE Disabled",
+    "severity": "MEDIUM",
     "line": 5,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "SQS With SSE Disabled",
+    "severity": "MEDIUM",
+    "line": 11,
     "fileName": "positive2.json"
   }
 ]

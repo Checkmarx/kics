@@ -6,6 +6,13 @@
         "QueueName": "SampleQueue",
         "KmsMasterKeyId": "wewewewewewe"
       }
+    },
+    "MyQueue2": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "SampleQueue",
+        "SqsManagedSseEnabled": "true"
+      }
     }
   }
 }
