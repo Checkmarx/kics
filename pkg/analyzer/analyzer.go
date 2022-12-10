@@ -281,7 +281,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 
 			return nil
 		}); err != nil {
-			log.Error().Msgf("failed to analize path %s: %s", path, err)
+			log.Error().Msgf("failed to analyze path %s: %s", path, err)
 		}
 	}
 
