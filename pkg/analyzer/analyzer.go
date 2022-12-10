@@ -37,7 +37,6 @@ var (
 	cloudRegex                                      = regexp.MustCompile("\\s*(\"Resources\"|Resources)\\s*:")
 	k8sRegex                                        = regexp.MustCompile("\\s*(\"apiVersion\"|apiVersion)\\s*:")
 	k8sRegexKind                                    = regexp.MustCompile("\\s*(\"kind\"|kind)\\s*:")
-	ansibleVaultRegex                               = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
 	tfPlanRegexPV                                   = regexp.MustCompile("\\s*\"planned_values\"\\s*:")
 	tfPlanRegexRC                                   = regexp.MustCompile("\\s*\"resource_changes\"\\s*:")
 	tfPlanRegexConf                                 = regexp.MustCompile("\\s*\"configuration\"\\s*:")
@@ -491,13 +490,10 @@ func checkYamlPlatform(content []byte, path string) string {
 			return gdm
 		}
 	}
-	// check if it is an ansible vault
-	if !ansibleVaultRegex.Match(content) {
-		// Since Ansible has no defining property
-		// and no other type matched for YAML file extension, assume the file type is Ansible
-		return ansible
-	}
-	return ""
+
+	// Since Ansible has no defining property
+	// and no other type matched for YAML file extension, assume the file type is Ansible
+	return ansible
 }
 
 // createSlice creates a slice from the channel given removing any duplicates
