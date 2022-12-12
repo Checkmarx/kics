@@ -92,7 +92,7 @@ func splitManifestYAML(template *release.Release) (*[]splitManifest, error) {
 				break
 			}
 		}
-		path := strings.Split(strings.TrimLeft(splited, "\n# Source:"), "\n") // get source of split yaml
+		path := strings.Split(strings.TrimPrefix(splited, "\n# Source: "), "\n") // get source of split yaml
 		// ignore auxiliary files used to render chart
 		if path[0] == "" {
 			continue
