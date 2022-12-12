@@ -9,7 +9,9 @@ CxPolicy[result] {
 
 	value.type == "Microsoft.Compute/virtualMachines"
 	not is_windows(value)
-	not value.properties.osProfile.linuxConfiguration.disablePasswordAuthentication
+
+	linuxConfiguration := value.properties.osProfile.linuxConfiguration
+	not linuxConfiguration.disablePasswordAuthentication
 
 	issue := prepare_issue(value)
 
