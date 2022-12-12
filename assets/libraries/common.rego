@@ -574,7 +574,7 @@ weakCipher(aux) {
 
 
 #aurora is equivelent to mysql 5.6 https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth.Availability
-#all aurora-postgresql versions that do not support IAM auth are deprecated Source:console.aws (launch rds instance) 
+#all aurora-postgresql versions that do not support IAM auth are deprecated Source:console.aws (launch rds instance)
 valid_for_iam_engine_and_version_check(resource, engineVar, engineVersionVar, instanceClassVar) {
 	key_list := [engineVar, engineVersionVar]
 	contains(lower(resource[engineVar]), "mariadb")
@@ -710,3 +710,4 @@ user_unrecommended_permission_policy_scenarios(targetUser, permission) {
 	# verify that the policy is unrecommended
 	unrecommended_permission_policy(resourcePolicy, permission)
 }
+is
