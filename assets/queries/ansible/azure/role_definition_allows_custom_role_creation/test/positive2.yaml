@@ -1,0 +1,10 @@
+---
+- name: Create a role definition2
+  azure_rm_roledefinition:
+    name: myTestRole2
+    scope: /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/myresourceGroup
+    permissions:
+      - actions:
+          - "*"
+    assignable_scopes:
+      - "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"

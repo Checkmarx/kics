@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.security.{{%s}}", [p, oper, key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Operation Object is not using 'password' flow in OAuth2 authentication",
+		"keyExpectedValue": "Operation Object should not be using 'password' flow in OAuth2 authentication",
 		"keyActualValue": "Operation Object is using 'password' flow in OAuth2 authentication",
 	}
 }

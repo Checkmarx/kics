@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.headers.{{%s}}", [n, oper, r, h]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.headers does not contains '%s'", [n, oper, r, h]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.headers should not contain '%s'", [n, oper, r, h]),
 		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.headers contains '%s'", [n, oper, r, h]),
 		"overrideKey": version,
 	}
@@ -32,7 +32,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("responses.{{%s}}.headers.{{%s}}", [r, h]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("responses.{{%s}}.headers does not contains '%s'", [r, h]),
+		"keyExpectedValue": sprintf("responses.{{%s}}.headers should not contain '%s'", [r, h]),
 		"keyActualValue": sprintf("responses.{{%s}}.headers contains '%s'", [r, h]),
 		"overrideKey": "2.0",
 	}
@@ -50,7 +50,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.responses.{{%s}}.headers.{{%s}}", [r, h]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("components.responses.{{%s}}.headers does not contains '%s'", [r, h]),
+		"keyExpectedValue": sprintf("components.responses.{{%s}}.headers should not contain '%s'", [r, h]),
 		"keyActualValue": sprintf("components.responses.{{%s}}.headers contains '%s'", [r, h]),
 	}
 }

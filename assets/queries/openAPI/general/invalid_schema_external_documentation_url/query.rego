@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.schema.externalDocs.url", [openapi_lib.concat_path(path)]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Schema External Documentation URL is a valid URL",
+		"keyExpectedValue": "Schema External Documentation URL should be a valid URL",
 		"keyActualValue": "Schema External Documentation URL is not a valid URL",
 		"overrideKey": version,
 	}
@@ -34,7 +34,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.{{%s}}.externalDocs.url", [schemaInfo.path, s]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Schema External Documentation URL is a valid URL",
+		"keyExpectedValue": "Schema External Documentation URL should be a valid URL",
 		"keyActualValue": "Schema External Documentation URL is not a valid URL",
 		"overrideKey": version,
 	}

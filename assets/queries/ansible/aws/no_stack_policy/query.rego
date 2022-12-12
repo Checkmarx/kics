@@ -13,9 +13,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "cloudformation.stack_policy is set",
+		"keyExpectedValue": "cloudformation.stack_policy should be set",
 		"keyActualValue": "cloudformation.stack_policy is undefined",
 	}
 }

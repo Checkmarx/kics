@@ -4,6 +4,7 @@ import (
 	"context"
 	"path/filepath"
 	"testing"
+	"time"
 
 	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/internal/storage"
@@ -29,6 +30,11 @@ var (
 	sourcePath = []string{filepath.FromSlash("../../assets/queries")}
 )
 
+type testContext struct {
+	ctx    context.Context
+	cancel context.CancelFunc
+}
+
 func TestScanner_StartScan(t *testing.T) {
 	type args struct {
 		scanID     string
@@ -38,13 +44,16 @@ func TestScanner_StartScan(t *testing.T) {
 		types          []string
 		cloudProviders []string
 	}
+
+	ctx := context.Background()
 	tests := []struct {
 		name   string
 		args   args
 		fields fields
+		ctx    testContext
 	}{
 		{
-			name: "testing_start_scan",
+			name: "testing_start_scan_no_ctx_timeout",
 			args: args{
 				scanID:     "console",
 				noProgress: true,
@@ -53,14 +62,28 @@ func TestScanner_StartScan(t *testing.T) {
 				types:          []string{""},
 				cloudProviders: []string{""},
 			},
+			ctx: createContext(ctx, time.Second*99999),
+		},
+		{
+			name: "testing_start_scan_with_ctx_timeout",
+			args: args{
+				scanID:     "console",
+				noProgress: true,
+			},
+			fields: fields{
+				types:          []string{""},
+				cloudProviders: []string{""},
+			},
+			ctx: createContext(ctx, time.Second*1),
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			defer tt.ctx.cancel()
 			services, store, err := createServices(tt.fields.types, tt.fields.cloudProviders)
 			require.NoError(t, err)
-			err = StartScan(context.Background(), tt.args.scanID, progress.PbBuilder{}, services)
+			err = StartScan(tt.ctx.ctx, tt.args.scanID, progress.PbBuilder{}, services)
 			require.NoError(t, err)
 			require.NotEmpty(t, &store)
 		})
@@ -78,7 +101,7 @@ func createServices(types, cloudProviders []string) (serviceSlice, *storage.Memo
 
 	inspector, err := engine.NewInspector(context.Background(),
 		querySource, engine.DefaultVulnerabilityBuilder,
-		t, &source.QueryInspectorParameters{}, map[string]bool{}, 60)
+		t, &source.QueryInspectorParameters{}, map[string]bool{}, 60, true)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -130,4 +153,12 @@ func createServices(types, cloudProviders []string) (serviceSlice, *storage.Memo
 		})
 	}
 	return services, store, nil
+}
+
+func createContext(ctx context.Context, timeout time.Duration) testContext {
+	ctx, cancel := context.WithTimeout(ctx, timeout)
+	return testContext{
+		ctx,
+		cancel,
+	}
 }

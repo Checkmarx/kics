@@ -19,9 +19,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.securityRules", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("resource with type '%s' restricts access to RDP", [value.type]),
+		"keyExpectedValue": sprintf("resource with type '%s' should restrict access to RDP", [value.type]),
 		"keyActualValue": sprintf("resource with type '%s' does not restrict access to RDP", [value.type]),
 		"searchLine": common_lib.build_search_line(path, ["properties", "securityRules", x, "properties"]),
 	}
@@ -43,9 +45,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s", [typeInfo.path]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("resource with type '%s' restricts access to RDP", [typeInfo.type]),
+		"keyExpectedValue": sprintf("resource with type '%s' should restrict access to RDP", [typeInfo.type]),
 		"keyActualValue": sprintf("resource with type '%s' does not restrict access to RDP", [typeInfo.type]),
 		"searchLine": common_lib.build_search_line(path, typeInfo.sl),
 	}

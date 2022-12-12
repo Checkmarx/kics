@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	doc := input.document[i].Resources
@@ -15,9 +16,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.%s", [name, sgs[s]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.%s' is not using default security group", [name, sgs[s]]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.%s' should not be using default security group", [name, sgs[s]]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.%s' is using default security group", [name, sgs[s]]),
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", sgs[s]], [idx]),
 	}

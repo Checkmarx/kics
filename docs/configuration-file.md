@@ -1,8 +1,14 @@
 ## Configuration File
 
-KICS allow you to provide all configurations either as command line arguments or as code.
+KICS allow you to provide all configurations either as command line arguments or as code. You can see all possible configurations in the [CLI](commands.md#scan-command-options).
+You can disable scanning in certain parts of file using inline comments. More can be found in [Running KICS](running-kics.md#using-commands-on-scanned-files-as-comments) section.
 
-Here is a Configuration file example:
+KICS supports JSON, TOML, YAML, and HCL formats for the configuration files, and it is able to infer the formats without the need of file extension.
+
+  > 📝 &nbsp; flags that can receive multiple values can be either provided as a comma separated string or an array as in the example above
+
+## Examples
+#### JSON
 
 ```JSON
 {
@@ -19,6 +25,7 @@ Here is a Configuration file example:
 }
 ```
 
+#### YAML
 The same example now in YAML format passing `type` as an array of strings:
 
 ```YAML
@@ -35,147 +42,28 @@ exclude-paths:
 output-path: "results"
 ```
 
-> 📝 &nbsp; flags that can receive multiple values can be either provided as a comma separated string or an array as in the example above
-
----
-
-## Supported Formats
-
-KICS supports the following formats for the configuration files.
-
--   JSON
--   TOML
--   YAML
--   HCL
-
-Notice that format is about the content and not the file extension.
-
-KICS is able to infer the format without the need of file extension.
-
----
-
-## Templates
-
-#### JSON Format
-
-```JSON
-{
-  "exclude-categories": "exclude categories by providing its name",
-  "exclude-paths": "exclude paths or files from scan",
-  "exclude-queries": "exclude queries by providing the query ID",
-  "exclude-results": "exclude results by providing a list of similarity IDs of a result",
-  "exclude-severities": "exclude results by providing the severity of a result",
-  "libraries-path": "path to directory with libraries (default \"./assets/libraries\")",
-  "log-file": true,
-  "log-level": "INFO",
-  "log-path": "path to the log file",
-  "silent": false,
-  "minimal-ui": false,
-  "no-color": false,
-  "no-progress": false,
-  "output-name": "name used on report creations (default \"results\")",
-  "output-path": "directory path to store reports",
-  "path": "path to file or directory to scan",
-  "payload-path": "file path to store source internal representation in JSON format",
-  "preview-lines": 3,
-  "queries-path": "path to directory with queries (default ./assets/queries) (default './assets/queries')",
-  "report-formats": "formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])",
-  "type": "type of queries to use in the scan",
-  "timeout": "number of seconds the query has to execute before being canceled",
-  "verbose": true,
-  "profiling": "enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)",
-  "disable-full-descriptions": "disable request for full descriptions and use default vulnerability descriptions"
-}
-```
-
-#### YAML Format
-
-```YAML
-exclude-categories: "exclude categories by providing its name"
-exclude-paths: "exclude paths or files from scan"
-exclude-queries: "exclude queries by providing the query ID"
-exclude-results: "exclude results by providing a list of similarity IDs of a result"
-exclude-severities: "exclude results by providing the severity of a result"
-libraries-path: "path to directory with libraries (default "./assets/libraries")"
-log-file: true
-log-level: INFO
-log-path: path to the log file
-minimal-ui: false
-no-color: false
-no-progress: false
-output-name: "name used on report creations (default \"results\")"
-output-path: "directory path to store reports"
-path: "path to file or directory to scan"
-payload-path: "file path to store source internal representation in JSON format"
-preview-lines: 3
-profiling: "enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)"
-queries-path: "path to directory with queries (default ./assets/queries) (default './assets/queries')"
-report-formats: "formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])"
-silent: false
-type: "type of queries to use in the scan"
-timeout: "number of seconds the query has to execute before being canceled"
-verbose: true
-disable-full-descriptions: "disable request for full descriptions and use default vulnerability descriptions"
-```
-
-#### TOML Format
+#### TOML
 
 ```TOML
-exclude-categories = "exclude categories by providing its name"
-exclude-paths = "exclude paths or files from scan"
-exclude-queries = "exclude queries by providing the query ID"
-exclude-results = "exclude results by providing a list of similarity IDs of a result"
-exclude-severities = "exclude results by providing the severity of a result"
-libraries-path = "path to directory with libraries (default \"./assets/libraries\")"
-log-file = true
-log-level = "INFO"
-log-path = "path to the log file"
-minimal-ui = false
-no-color = false
-no-progress = false
-output-name = "name used on report creations (default \"results\")"
-output-path = "directory path to store reports"
-path = "path to file or directory to scan"
-payload-path = "file path to store source internal representation in JSON format"
-preview-lines = 3
-profiling = "enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)"
-queries-path = "path to directory with queries (default ./assets/queries) (default './assets/queries')"
-report-formats = "formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])"
-silent = false
-type = "type of queries to use in the scan"
-timeout = "number of seconds the query has to execute before being canceled"
+path = "assets/iac_samples"
 verbose = true
-disable-full-descriptions = "disable request for full descriptions and use default vulnerability descriptions"
+log-file = true
+type = "Dockerfile,Kubernetes"
+queries-path = "assets/queries"
+exclude-paths = [ "foo/", "bar/" ]
+output-path = "results"
 ```
 
-#### HCL Format
+#### HCL
 
 ```hcl
-"exclude-categories" = "exclude categories by providing its name"
-"exclude-paths" = "exclude paths or files from scan"
-"exclude-queries" = "exclude queries by providing the query ID"
-"exclude-results" = "exclude results by providing a list of similarity IDs of a result"
-"exclude-severities" = "exclude results by providing the severity of a result"
-"libraries-path" = "path to directory with libraries (default \"./assets/libraries\")"
-"log-file" = true
-"log-level" = "INFO"
-"log-path" = "path to the log file"
-"minimal-ui" = false
-"no-color" = false
-"no-progress" = false
-"output-name" = "name used on report creations (default \"results\")"
-"output-path" = "directory path to store reports"
-"path" = "path to file or directory to scan"
-"payload-path" = "file path to store source internal representation in JSON format"
-"preview-lines" = 3
-"profiling" = "enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)"
-"queries-path" = "path to directory with queries (default ./assets/queries) (default './assets/queries')"
-"report-formats" = "formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])"
-"silent" = false
-"type" = "type of queries to use in the scan"
-"timeout" = "number of seconds the query has to execute before being canceled"
+"path" = "assets/iac_samples"
 "verbose" = true
-"disable-full-descriptions" = "disable request for full descriptions and use default vulnerability descriptions"
+"log-file" = true
+"type" = "Dockerfile,Kubernetes"
+"queries-path" = "assets/queries"
+"exclude-paths" = ["foo/", "bar/"]
+"output-path" = "results"
 ```
 
 ---
@@ -191,7 +79,7 @@ You can enclose all your configurations in a file and use it in two different wa
 3. Pass the configuration file as argument:
 
 ```
-docker run -v {​​​​path_to_kics_config}​​​​:/kics -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p "/path" --config /kics/kics-config.json
+docker run -t -v {​​​​path_to_kics_config}​​​​:/kics -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p /path --config /kics/kics-config.json
 ```
 
 #### Configuration as Code
@@ -201,7 +89,7 @@ docker run -v {​​​​path_to_kics_config}​​​​:/kics -v {path_to_ho
 3. Invoke KICS without arguments (KICS will search for the specific file in the root)
 
 ```
-docker run -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p "/path"
+docker run -t -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p /path
 ```
 
 **Note**: If more than one path is given, KICS will warn that `--config` must be used to explicit decide.

@@ -1,0 +1,32 @@
+[
+  {
+    "queryName": "Service With External Load Balancer",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Service With External Load Balancer",
+    "severity": "MEDIUM",
+    "line": 24,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Service With External Load Balancer",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Service With External Load Balancer",
+    "severity": "MEDIUM",
+    "line": 25,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Service With External Load Balancer",
+    "severity": "MEDIUM",
+    "line": 46,
+    "fileName": "positive2.tf"
+  }
+]

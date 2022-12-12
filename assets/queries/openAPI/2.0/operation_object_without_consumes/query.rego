@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.%s", [path, operation]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("paths.{{%s}}.%s 'consumes' is defined", [path, operation]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.%s 'consumes' should be defined", [path, operation]),
 		"keyActualValue": sprintf("paths.{{%s}}.%s 'consumes' is missing", [path, operation]),
 	}
 }

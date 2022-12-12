@@ -1,0 +1,12 @@
+{
+    "id": "124b173b-e06d-48a6-8acd-f889443d97a4",
+    "queryName": "BOM - AWS Cassandra",
+    "severity": "TRACE",
+    "category": "Bill Of Materials",
+    "descriptionText": "A list of Cassandra resources found. Amazon Cassandra is an open-source NoSQL database designed to store data for applications that require fast read and write performance",
+    "descriptionUrl": "https://kics.io",
+    "platform": "CloudFormation",
+    "descriptionID": "bd2db07c",
+    "cloudProvider": "aws"
+  }
+  

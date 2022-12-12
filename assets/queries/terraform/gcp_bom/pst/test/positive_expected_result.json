@@ -1,0 +1,26 @@
+[
+	{
+		"queryName": "BOM - GCP PST",
+		"severity": "TRACE",
+		"line": 34,
+		"fileName": "positive.tf"
+	},
+	{
+		"queryName": "BOM - GCP PST",
+		"severity": "TRACE",
+		"line": 39,
+		"fileName": "positive.tf"
+	},
+	{
+		"queryName": "BOM - GCP PST",
+		"severity": "TRACE",
+		"line": 44,
+		"fileName": "positive.tf"
+	},
+	{
+		"queryName": "BOM - GCP PST",
+		"severity": "TRACE",
+		"line": 54,
+		"fileName": "positive.tf"
+	}
+]

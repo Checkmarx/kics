@@ -14,9 +14,9 @@ jobs:
       - name: Checkout Source
         uses: actions/checkout@v3
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: Build ANTLR image
-        uses: docker/build-push-action@v3.0.0
+        uses: docker/build-push-action@v3.2.0
         id: build_antlr_image
         with:
           context: .

@@ -8,7 +8,7 @@ module "acm" {
   tags        = var.tags
 
   providers = {
-    aws = "aws.us_east_1" # cloudfront needs acm certificate to be from "us-east-1" region
+    aws = aws.us_east_1 # cloudfront needs acm certificate to be from "us-east-1" region
   }
 }
 

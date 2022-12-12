@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "BOM - AWS RDS",
+    "severity": "TRACE",
+    "line": 4,
+    "fileName": "positive1.json"
+  },
+  {
+    "queryName": "BOM - AWS RDS",
+    "severity": "TRACE",
+    "line": 4,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "BOM - AWS RDS",
+    "severity": "TRACE",
+    "line": 14,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "BOM - AWS RDS",
+    "severity": "TRACE",
+    "line": 4,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "BOM - AWS RDS",
+    "severity": "TRACE",
+    "line": 14,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "BOM - AWS RDS",
+    "severity": "TRACE",
+    "line": 3,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "BOM - AWS RDS",
+    "severity": "TRACE",
+    "line": 3,
+    "fileName": "positive5.yaml"
+  },
+  {
+    "queryName": "BOM - AWS RDS",
+    "severity": "TRACE",
+    "line": 3,
+    "fileName": "positive6.yaml"
+  }
+]

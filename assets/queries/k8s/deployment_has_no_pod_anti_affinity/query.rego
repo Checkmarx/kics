@@ -14,9 +14,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": deployment.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec", [metadata.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'spec.template.spec.affinity' is set",
+		"keyExpectedValue": "'spec.template.spec.affinity' should be set",
 		"keyActualValue": "'spec.template.spec.affinity' is undefined",
 	}
 }
@@ -33,9 +35,11 @@ CxPolicy[result] {
 	metadata := deployment.metadata
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": deployment.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.affinity", [metadata.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'spec.template.spec.affinity.podAntiAffinity' is set",
+		"keyExpectedValue": "'spec.template.spec.affinity.podAntiAffinity' should be set",
 		"keyActualValue": "'spec.template.spec.affinity.podAntiAffinity' is undefined",
 	}
 }
@@ -57,9 +61,11 @@ CxPolicy[result] {
 	metadata := deployment.metadata
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": deployment.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.affinity.podAntiAffinity", [metadata.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'spec.template.spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution' and/or 'spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution' are/is set",
+		"keyExpectedValue": "'spec.template.spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution' and/or 'spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution' should be set",
 		"keyActualValue": "'spec.template.spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution' and 'spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution' are undefined",
 	}
 }
@@ -84,9 +90,11 @@ CxPolicy[result] {
 	metadata := deployment.metadata
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": deployment.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution.podAffinityTerm", [metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'spec.template.spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[%s].podAffinityTerm.topologyKey' is set and is 'kubernetes.io/hostname'", [j]),
+		"keyExpectedValue": sprintf("'spec.template.spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[%s].podAffinityTerm.topologyKey' should be set to 'kubernetes.io/hostname'", [j]),
 		"keyActualValue": sprintf("'spec.template.spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[%s].podAffinityTerm.topologyKey' is invalid or undefined", [j]),
 	}
 }
@@ -116,6 +124,8 @@ CxPolicy[result] {
 	metadata := deployment.metadata
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": deployment.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution.podAffinityTerm.labelSelector.matchLabels", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'spec.template.spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[%d].podAffinityTerm.labelSelector.matchLabels' match any label on template metadata", [j]),
@@ -143,9 +153,11 @@ CxPolicy[result] {
 	metadata := deployment.metadata
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": deployment.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution", [metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[%d].topologyKey' is set and is 'kubernetes.io/hostname'", [j]),
+		"keyExpectedValue": sprintf("'spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[%d].topologyKey' should be set to 'kubernetes.io/hostname'", [j]),
 		"keyActualValue": sprintf("'spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[%d].topologyKey' is invalid or undefined", [j]),
 	}
 }
@@ -175,6 +187,8 @@ CxPolicy[result] {
 	metadata := deployment.metadata
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": deployment.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution.labelSelector.matchLabels", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[%d].labelSelector.matchLabels' match any label on template metadata", [j]),

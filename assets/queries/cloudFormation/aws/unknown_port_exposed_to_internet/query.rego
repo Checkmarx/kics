@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as commonLib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
@@ -13,9 +14,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d] doesn't open unknown ports to the Internet", [name, index]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d] shouldn't open unknown ports to the Internet", [name, index]),
 		"keyActualValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d] opens unknown ports to the Internet", [name, index]),
 		"searchLine": commonLib.build_search_line(["Resources", name, "Properties", "SecurityGroupIngress", index], []),
 	}

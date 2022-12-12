@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_elasticsearch_domain_policy[name]
@@ -15,9 +16,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_elasticsearch_domain_policy",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_elasticsearch_domain_policy[%s].access_policies", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_elasticsearch_domain_policy[%s].access_policies does not have wildcard in 'Action' and 'Principal'", [name]),
+		"keyExpectedValue": sprintf("aws_elasticsearch_domain_policy[%s].access_policies should not have wildcard in 'Action' and 'Principal'", [name]),
 		"keyActualValue": sprintf("aws_elasticsearch_domain_policy[%s].access_policies has wildcard in 'Action' or 'Principal'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_elasticsearch_domain_policy", name, "access_policies"], []),
 	}

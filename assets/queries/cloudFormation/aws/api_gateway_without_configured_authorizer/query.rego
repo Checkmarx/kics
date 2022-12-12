@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
 
 types := {"AWS::ApiGateway::RestApi": "AWS::ApiGateway::Authorizer", "AWS::ApiGatewayV2::Api": "AWS::ApiGatewayV2::Authorizer"}
 
@@ -14,9 +15,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "API Gateway REST API is associated with an API Gateway Authorizer",
+		"keyExpectedValue": "API Gateway REST API should be associated with an API Gateway Authorizer",
 		"keyActualValue": "API Gateway REST API is not associated with an API Gateway Authorizer",
 		"searchLine": common_lib.build_search_line(["Resources", name], []),
 	}
@@ -31,7 +34,7 @@ has_authorizer_associated(apiName, type) {
 }
 
 get_value(properties, field) = value {
-	value = properties[field].Ref 
+	value = properties[field].Ref
 } else = value {
 	value = properties[field]
 }

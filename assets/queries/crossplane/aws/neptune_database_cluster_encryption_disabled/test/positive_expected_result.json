@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Neptune Database Cluster Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive.yaml"
+  },
+  {
+    "queryName": "Neptune Database Cluster Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 40,
+    "fileName": "positive.yaml"
+  },
+  {
+    "queryName": "Neptune Database Cluster Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 15,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Neptune Database Cluster Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 50,
+    "fileName": "positive2.yaml"
+  }
+]

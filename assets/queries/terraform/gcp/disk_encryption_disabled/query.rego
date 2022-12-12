@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_compute_disk[name]
@@ -8,9 +9,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_compute_disk",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_compute_disk[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'google_compute_disk[%s].disk_encryption_key' is defined and not null", [name]),
+		"keyExpectedValue": sprintf("'google_compute_disk[%s].disk_encryption_key' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'google_compute_disk[%s].disk_encryption_key' is undefined or null", [name]),
 	}
 }
@@ -23,32 +26,28 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_compute_disk",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_compute_disk[%s].disk_encryption_key", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'google_compute_disk[%s].disk_encryption_key.raw_key' or 'google_compute_disk[%s].disk_encryption_key.kms_key_self_link' is defined and not null", [name]),
+		"keyExpectedValue": sprintf("'google_compute_disk[%s].disk_encryption_key.raw_key' or 'google_compute_disk[%s].disk_encryption_key.kms_key_self_link' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'google_compute_disk[%s].disk_encryption_key.raw_key' and 'google_compute_disk[%s].disk_encryption_key.kms_key_self_link' are undefined or null", [name]),
 	}
 }
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_compute_disk[name]
-	key := check_key_empty(resource.disk_encryption_key)
+	key := tf_lib.check_key_empty(resource.disk_encryption_key)
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_compute_disk",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_compute_disk[%s].disk_encryption_key.%s", [name, key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'google_compute_disk[%s].disk_encryption_key.%s' is not empty or null", [name, key]),
+		"keyExpectedValue": sprintf("'google_compute_disk[%s].disk_encryption_key.%s' should not be empty or null", [name, key]),
 		"keyActualValue": sprintf("'google_compute_disk[%s].disk_encryption_key.%s' is not empty or null", [name, key]),
 	}
 }
 
-check_key_empty(disk_encryption_key) = key {
-	common_lib.valid_key(disk_encryption_key, "raw_key")
-	common_lib.emptyOrNull(disk_encryption_key.raw_key)
-	key := "raw_key"
-} else = key {
-	common_lib.valid_key(disk_encryption_key, "kms_key_self_link")
-	common_lib.emptyOrNull(disk_encryption_key.kms_key_self_link)
-	key := "kms_key_self_link"
-}
+

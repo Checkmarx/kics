@@ -1,25 +1,25 @@
 [
   {
-    "queryName": "ELB Access Logging Disabled",
-    "severity": "INFO",
+    "queryName": "ELB Access Log Disabled",
+    "severity": "MEDIUM",
     "line": 9,
     "filename": "positive1.tf"
   },
   {
-    "queryName": "ELB Access Logging Disabled",
-    "severity": "INFO",
+    "queryName": "ELB Access Log Disabled",
+    "severity": "MEDIUM",
     "line": 1,
     "filename": "positive2.tf"
   },
   {
-    "queryName": "ELB Access Logging Disabled",
-    "severity": "INFO",
+    "queryName": "ELB Access Log Disabled",
+    "severity": "MEDIUM",
     "line": 39,
     "filename": "positive4.tf"
   },
   {
-    "queryName": "ELB Access Logging Disabled",
-    "severity": "INFO",
+    "queryName": "ELB Access Log Disabled",
+    "severity": "MEDIUM",
     "line": 1,
     "filename": "positive3.tf"
   }

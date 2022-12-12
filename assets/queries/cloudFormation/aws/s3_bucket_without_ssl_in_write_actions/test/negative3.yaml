@@ -3,6 +3,7 @@ Resources:
   S3Bucket33:
     Type: AWS::S3::Bucket
     Properties:
+      BucketName: S3Bucket33
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html

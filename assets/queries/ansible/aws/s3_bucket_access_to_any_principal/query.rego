@@ -17,9 +17,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "s3_bucket.policy.Statement doesn't make the bucket accessible to all AWS Accounts",
+		"keyExpectedValue": "s3_bucket.policy.Statement shouldn't make the bucket accessible to all AWS Accounts",
 		"keyActualValue": "s3_bucket.policy.Statement does make the bucket accessible to all AWS Accounts",
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}

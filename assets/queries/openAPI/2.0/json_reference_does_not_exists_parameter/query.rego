@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.$ref={{%s}}", [openapi_lib.concat_path(path), ref]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s from %s is declared on parameters", [checkComponents, ref]),
+		"keyExpectedValue": sprintf("%s from %s should be declared on parameters", [checkComponents, ref]),
 		"keyActualValue": sprintf("%s from %s is not declared on parameters", [checkComponents, ref]),
 	}
 }

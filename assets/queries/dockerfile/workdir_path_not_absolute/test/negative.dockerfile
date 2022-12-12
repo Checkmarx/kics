@@ -2,6 +2,7 @@ FROM alpine:3.5
 RUN apk add --update py2-pip
 RUN pip install --upgrade pip
 WORKDIR /path/to/workdir
+WORKDIR "/path/to/workdir"
 WORKDIR /
 WORKDIR c:\\windows
 ENV DIRPATH=/path

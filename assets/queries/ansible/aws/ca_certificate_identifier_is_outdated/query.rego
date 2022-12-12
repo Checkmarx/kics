@@ -14,6 +14,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "rds_instance.ca_certificate_identifier should be defined",
@@ -30,9 +32,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.ca_certificate_identifier", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "rds_instance.ca_certificate_identifier is equal to 'rds-ca-2019'",
+		"keyExpectedValue": "rds_instance.ca_certificate_identifier should equal to 'rds-ca-2019'",
 		"keyActualValue": "rds_instance.ca_certificate_identifier is not equal to 'rds-ca-2019'",
 	}
 }

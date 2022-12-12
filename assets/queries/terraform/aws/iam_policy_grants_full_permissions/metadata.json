@@ -3,7 +3,7 @@
   "queryName": "IAM Policy Grants Full Permissions",
   "severity": "HIGH",
   "category": "Access Control",
-  "descriptionText": "IAM policies allow all ('*') in a statement action",
+  "descriptionText": "IAM policy should not grant full permissions to resources from the get-go, instead of granting permissions gradually as necessary.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy",
   "platform": "Terraform",
   "descriptionID": "f20cf2cf",

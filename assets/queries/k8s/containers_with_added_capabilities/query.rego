@@ -17,6 +17,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"issueType": "IncorrectValue",
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.capabilities.add", [metadata.name, specInfo.path, types[x], container.name]),
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}} has no capability added other than NET_BIND_SERVICE", [metadata.name, specInfo.path, types[x], container.name]),

@@ -88,7 +88,7 @@ resource "kubernetes_deployment" "example3" {
 
     selector {
       match_labels = {
-        k8s-app2 = "${kubernetes_pod_disruption_budget.demo2.spec.selector.0.match_labels.k8s-app2}"
+        k8s-app2 = "kubernetes_pod_disruption_budget.demo2.spec.selector.0.match_labels.k8s-app2"
       }
     }
 

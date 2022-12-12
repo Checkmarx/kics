@@ -4,6 +4,7 @@
     "S3Bucket": {
       "Type": "AWS::S3::Bucket",
       "Properties": {
+        "BucketName": "S3Bucket",
         "AccessControl": "PublicRead",
         "WebsiteConfiguration": {
           "IndexDocument": "index.html",

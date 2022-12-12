@@ -1,0 +1,11 @@
+{
+  "id": "5d9e3164-9265-470c-9a10-57ae454ac0c7",
+  "queryName": "CloudTrail Log Files Not Encrypted With KMS",
+  "severity": "LOW",
+  "category": "Encryption",
+  "descriptionText": "Logs delivered by CloudTrail should be encrypted using KMS to increase security of your CloudTrail",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#kms_key_id",
+  "platform": "Terraform",
+  "descriptionID": "ee8a4d47",
+  "cloudProvider": "aws"
+}

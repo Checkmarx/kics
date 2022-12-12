@@ -1,25 +1,25 @@
 [
   {
     "queryName": "High KMS Key Rotation Period",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 5,
     "fileName": "positive.tf"
   },
   {
     "queryName": "High KMS Key Rotation Period",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 6,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "High KMS Key Rotation Period",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 6,
     "fileName": "positive3.tf"
   },
   {
     "queryName": "High KMS Key Rotation Period",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive4.tf"
   }

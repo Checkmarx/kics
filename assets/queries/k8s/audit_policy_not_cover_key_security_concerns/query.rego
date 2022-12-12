@@ -17,20 +17,22 @@ resources := {
 }
 
 CxPolicy[result] {
-    resource:= input.document[i]
+    resource := input.document[i]
     resource.kind == "Policy"
-    startswith(resource.apiVersion, "audit") 
-	res_rules := {res_rule | rule := resource.rules[_]; rule.resources[_].resources[_] == resources[x].resource; res_rule:= {"resource": resources[x].resource , "level": rule.level}}    
+    startswith(resource.apiVersion, "audit")
+	res_rules := {res_rule | rule := resource.rules[_]; rule.resources[_].resources[_] == resources[x].resource; res_rule:= {"resource": resources[x].resource , "level": rule.level}}
 	resource_cont := resources[_]
     resource_rule := resource_cont.resource
     levels := resource_cont.levels
     not hasResourceLevel(resource_rule, levels, res_rules)
-    
+
 	result := {
 		"documentId": input.document[i].id,
+        "resourceType": resource.kind,
+		"resourceName": "n/a",
 		"searchKey": "kind={{Policy}}.rules",
 		"issueType": "MissingAttribute",
-		"keyExpectedValue":sprintf("Resource '%s' is defined in the following levels '%s'",[resource_rule, levels]),
+		"keyExpectedValue":sprintf("Resource '%s' should be defined in the following levels '%s'",[resource_rule, levels]),
 		"keyActualValue": sprintf("Resource '%s' is not defined in the following levels '%s'",[resource_rule, levels]),
 	}
 }

@@ -14,9 +14,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[index],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[index]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "azure_rm_storageaccount.https_only is defined",
+		"keyExpectedValue": "azure_rm_storageaccount.https_only should be defined",
 		"keyActualValue": "azure_rm_storageaccount.https_only is undefined (defaults to false)",
 	}
 }
@@ -30,6 +32,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[index],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.https_only", [task.name, modules[index]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "azure_rm_storageaccount should have https_only set to true",

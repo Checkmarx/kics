@@ -11,7 +11,7 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s",[name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("There is a network declared for the service '%s'", [name]),
+		"keyExpectedValue": sprintf("There should be a network declared for the service '%s'", [name]),
 		"keyActualValue": sprintf("There is no network declared for the service '%s'", [name]),
 		"searchLine": common_lib.build_search_line(["services", name], []),
 	}

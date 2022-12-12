@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.cloudformation as cf_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
@@ -13,9 +15,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.Environment.Variables", [key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.Environment.Variables doesn't contain access key", [key]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Environment.Variables shouldn't contain access key", [key]),
 		"keyActualValue": sprintf("Resources.%s.Properties.Environment.Variables contains access key", [key]),
 	}
 }

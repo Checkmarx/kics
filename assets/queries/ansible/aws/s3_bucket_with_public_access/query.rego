@@ -12,9 +12,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.permission", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_s3.permission doesn't allow public access",
+		"keyExpectedValue": "aws_s3.permission shouldn't allow public access",
 		"keyActualValue": "aws_s3.permission allows public access",
 	}
 }

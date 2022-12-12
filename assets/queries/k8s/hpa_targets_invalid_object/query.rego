@@ -2,14 +2,15 @@ package Cx
 
 CxPolicy[result] {
 	resource := input.document[i].spec.metrics[index]
+	input.document[i].kind == "HorizontalPodAutoscaler"
 
-	resourceKind := input.document[i].kind
-
-	IsHPA(resourceKind)
+	resource.type == "Object"
 	not checkIsValidObject(resource)
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": input.document[i].kind,
+		"resourceName": input.document[i].metadata.name,
 		"searchKey": "spec.metrics",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("spec.metrics[%d] is a valid object ", [index]),
@@ -17,12 +18,7 @@ CxPolicy[result] {
 	}
 }
 
-IsHPA(resourceKind) {
-	resourceKind == "HorizontalPodAutoscaler"
-}
-
-checkIsValidObject(resource) {
-	resource.type == "Object"
+checkIsValidObject(resource) {	
 	resource.object != null
 	resource.object.metric != null
 	resource.object.target != null

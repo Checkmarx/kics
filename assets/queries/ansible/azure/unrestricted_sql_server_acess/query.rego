@@ -17,9 +17,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "The difference between the value of azure_rm_sqlfirewallrule end_ip_address and start_ip_address is lesser than 256",
+		"keyExpectedValue": "The difference between the value of azure_rm_sqlfirewallrule end_ip_address and start_ip_address should be less than 256",
 		"keyActualValue": "The difference between the value of azure_rm_sqlfirewallrule end_ip_address and start_ip_address is greater than or equal to 256",
 	}
 }

@@ -14,9 +14,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "--enable-admission-plugins flag contains 'ImagePolicyWebhook' plugin",
+		"keyExpectedValue": "--enable-admission-plugins flag should contain 'ImagePolicyWebhook' plugin",
 		"keyActualValue": "--enable-admission-plugins flag does not contain 'ImagePolicyWebhook' plugin",
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),
 	}

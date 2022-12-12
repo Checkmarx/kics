@@ -1,13 +1,14 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	ebs_volume := input.document[i].resource.aws_ebs_volume[name]
 
 	bom_output = {
 		"resource_type": "aws_ebs_volume",
-		"resource_name": common_lib.get_tag_name_if_exists(ebs_volume),
+		"resource_name": tf_lib.get_resource_name(ebs_volume, name),
 		"resource_accessibility": "unknown",
 		"resource_encryption": common_lib.get_encryption_if_exists(ebs_volume),
 		"resource_vendor": "AWS",

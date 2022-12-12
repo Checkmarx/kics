@@ -11,9 +11,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' has the 'clientCertEnabled' property defined",
+		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property defined",
 		"keyActualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' property defined",
 		"searchLine": common_lib.build_search_line(path, ["properties"]),
 	}
@@ -28,9 +30,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.clientCertEnabled", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' has the 'clientCertEnabled' property set to true",
+		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property set to true",
 		"keyActualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' set to true",
 		"searchLine": common_lib.build_search_line(path, ["properties", "clientCertEnabled"]),
 	}

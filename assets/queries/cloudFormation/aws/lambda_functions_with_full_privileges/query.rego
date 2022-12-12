@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	resources := input.document[i].Resources
@@ -19,9 +20,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Policies.PolicyDocument", [role]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.Policies[%s].PolicyDocument does not give admin privileges to Resources.%s ", [role, policy.PolicyName, name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Policies[%s].PolicyDocument should not give admin privileges to Resources.%s ", [role, policy.PolicyName, name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.Policies[%s].PolicyDocument gives admin privileges to Resources.%s ", [role, policy.PolicyName, name]),
 		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "Policies", p], ["PolicyDocument"]),
 	}

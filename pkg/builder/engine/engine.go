@@ -115,7 +115,7 @@ func (e *Engine) walkAttribute(attr *hclsyntax.Attribute, walkHistory []build.Pa
 		*hclsyntax.LiteralValueExpr,
 		*hclsyntax.ScopeTraversalExpr:
 
-		v, err := e.expToString(attr.Expr)
+		v, err := e.ExpToString(attr.Expr)
 		if err != nil {
 			return err
 		}
@@ -136,7 +136,8 @@ func (e *Engine) walkAttribute(attr *hclsyntax.Attribute, walkHistory []build.Pa
 	return nil
 }
 
-func (e *Engine) expToString(expr hclsyntax.Expression) (string, error) {
+// ExpToString converts an expression into a string
+func (e *Engine) ExpToString(expr hclsyntax.Expression) (string, error) {
 	switch t := expr.(type) {
 	case *hclsyntax.LiteralValueExpr:
 		s, err := ctyConvert.Convert(t.Val, cty.String)
@@ -152,55 +153,52 @@ func (e *Engine) expToString(expr hclsyntax.Expression) (string, error) {
 			}
 			return v.AsString(), nil
 		}
-		builder, err := e.buildString(t.Parts)
+		builderString, err := e.buildString(t.Parts)
 		if err != nil {
 			return "", err
 		}
 
-		return builder.String(), nil
+		return builderString, nil
 	case *hclsyntax.TemplateWrapExpr:
-		return e.expToString(t.Wrapped)
+		return e.ExpToString(t.Wrapped)
 	case *hclsyntax.ObjectConsKeyExpr:
-		return e.expToString(t.Wrapped)
+		return e.ExpToString(t.Wrapped)
 	case *hclsyntax.ScopeTraversalExpr:
-		var items []string
-		for _, part := range t.Traversal {
-			switch tt := part.(type) {
-			case hcl.TraverseAttr:
-				items = append(items, tt.Name)
-			case hcl.TraverseRoot:
-				items = append(items, tt.Name)
-			case hcl.TraverseIndex:
-				items = append(items, tt.Key.AsString())
-			}
-		}
+		items := evaluateScopeTraversalExpr(t.Traversal)
 		return strings.Join(items, "."), nil
 	}
 
 	return "", fmt.Errorf("can't convert expression %T to string", expr)
 }
 
-func (e *Engine) buildString(parts []hclsyntax.Expression) (strings.Builder, error) {
-	var builder strings.Builder
+func (e *Engine) buildString(parts []hclsyntax.Expression) (string, error) {
+	builder := &strings.Builder{}
+
 	for _, part := range parts {
-		s, err := e.expToString(part)
+		s, err := e.ExpToString(part)
 		if err != nil {
-			return strings.Builder{}, err
+			return "", err
 		}
 		builder.WriteString(s)
 	}
-	return builder, nil
+
+	s := builder.String()
+
+	builder.Reset()
+	builder = nil
+
+	return s, nil
 }
 
 func (e *Engine) walkConstantItem(item hclsyntax.ObjectConsItem, walkHistory []build.PathItem) error {
-	k, err := e.expToString(item.KeyExpr)
+	k, err := e.ExpToString(item.KeyExpr)
 	if err != nil {
 		return err
 	}
 
 	walkHistory = append(walkHistory, build.PathItem{Type: build.PathTypeDefault, Name: k})
 
-	v, err := e.expToString(item.ValueExpr)
+	v, err := e.ExpToString(item.ValueExpr)
 	if err != nil {
 		return err
 	}
@@ -243,4 +241,24 @@ func (e *Engine) addRule(walkHistory []build.PathItem, comment commentParser.Com
 			Attributes: t.Attributes,
 		})
 	}
+}
+
+func evaluateScopeTraversalExpr(t hcl.Traversal) []string {
+	items := make([]string, 0)
+	for _, part := range t {
+		switch tt := part.(type) {
+		case hcl.TraverseAttr:
+			items = append(items, tt.Name)
+		case hcl.TraverseRoot:
+			items = append(items, tt.Name)
+		case hcl.TraverseIndex:
+			switch tt.Key.Type() {
+			case cty.Number:
+				items = append(items, tt.Key.AsBigFloat().String())
+			case cty.String:
+				items = append(items, tt.Key.AsString())
+			}
+		}
+	}
+	return items
 }

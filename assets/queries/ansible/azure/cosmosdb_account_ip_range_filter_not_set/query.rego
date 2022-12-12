@@ -12,9 +12,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'azurerm_cosmosdb_account.ip_range_filter' is defined",
+		"keyExpectedValue": "'azurerm_cosmosdb_account.ip_range_filter' should be defined",
 		"keyActualValue": "'azurerm_cosmosdb_account.ip_range_filter' is undefined",
 	}
 }

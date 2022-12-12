@@ -1,16 +1,18 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.terraform as terra_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-
-	json_policy := input.document[i].resource.alicloud_oss_bucket[name].policy
+	resource := input.document[i].resource.alicloud_oss_bucket[name]
+	json_policy := resource.policy
     
-    terra_lib.allows_action_from_all_principals(json_policy, "delete")
+    tf_lib.allows_action_from_all_principals(json_policy, "delete")
 	
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "alicloud_oss_bucket",
+		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_oss_bucket", name),
 		"searchKey": sprintf("alicloud_oss_bucket[%s].policy",[name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("alicloud_oss_bucket[%s].policy to not accept delete action from all principals",[name]),

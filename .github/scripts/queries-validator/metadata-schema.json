@@ -86,14 +86,18 @@
                 "AzureResourceManager",
                 "Buildah",
                 "CloudFormation",
+                "Crossplane",
                 "Common",
                 "Dockerfile",
                 "DockerCompose",
                 "GRPC",
                 "GoogleDeploymentManager",
+                "Knative",
                 "Kubernetes",
+                "ServerlessFW",
                 "OpenAPI",
-                "Terraform"
+                "Terraform",
+                "Pulumi"
             ]
         },
         "descriptionID": {

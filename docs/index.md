@@ -1,6 +1,7 @@
 <div class="row" >
     <div class="col-6 text-center" >
-        <img alt="KICS - Keeping Infrastructure as Code Secure" src="img/logo/kics-logo-docs.png" width="250">
+        <img alt="KICS - Keeping Infrastructure as Code Secure" src="img/logo/kics_new_logo_2022_dark.png#only-light#gh-light-mode-only" width="500">
+        <img alt="KICS - Keeping Infrastructure as Code Secure" src="img/logo/kics_new_logo_2022_white.png#only-dark#gh-dark-mode-only" width="500">
         <br/>
          <br/>
         <p>Find security vulnerabilities, compliance issues, and infrastructure misconfigurations early in the development cycle of your infrastructure-as-code with <b>KICS</b> by Checkmarx.</p>
@@ -8,8 +9,8 @@
     </div>
     <div class="col-6 text-center">
         <br/><br/>
-        <h4>Version 1.5.8</h4>
-        <p style="font-size:8pt">2022.05.11<p>
+        <h4>Version 1.6.6</h4>
+        <p style="font-size:8pt">2022.12.07<p>
         <a class="btn btn-outline-success"  href="https://docs.kics.io/latest/CONTRIBUTING">Contribute!</a>
     </div>
 </div>
@@ -45,20 +46,35 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
 <div style="min-width:120;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
         <img alt="gRPC" src="img/logo-grpc.png"  width="120" style="min-width:120px">&nbsp;&nbsp;&nbsp;
 </div>
-<div style="min-width:55;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <img alt="Azure Resource Manager" src="img/logo-arm.png"  width="55" style="min-width:55px">&nbsp;&nbsp;&nbsp;
+<div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="Cloud Deployment Kit" src="img/logo-cdk.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
+</div>
+<div style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="Crossplane" src="img/logo-crossplane.png"  width="170" style="min-width:170px">&nbsp;&nbsp;&nbsp;
+</div>
+<div style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="Pulumi" src="img/logo-pulumi.png"  width="170" style="min-width:170px">&nbsp;&nbsp;&nbsp;
+</div>
+<div style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="ServerlessFW" src="img/logo-serverlessfw.png"  width="170" style="min-width:170px">&nbsp;&nbsp;&nbsp;
 </div>
 <div style="min-width:55;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
         <img alt="Google Deployment Manager" src="img/logo-gdm.png"  width="55" style="min-width:55px">&nbsp;&nbsp;&nbsp;
 </div>
-<div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <img alt="Cloud Deployment Kit" src="img/logo-cdk.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
+<div style="min-width:55;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="Azure Resource Manager" src="img/logo-arm.png"  width="55" style="min-width:55px">&nbsp;&nbsp;&nbsp;
 </div>
 <div style="min-width:55;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
         <img alt="SAM" src="img/logo-sam.png"  width="55" style="min-width:55px">&nbsp;&nbsp;&nbsp;
 </div>
 <div style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
         <img alt="Docker Compose" src="img/logo-dockercompose.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
+</div>
+<div style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="Knative" src="img/logo-knative.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
+</div>
+<div style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="Azure Blueprints" src="img/logo-azure-blueprints.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
 </div>
 </div>
 

@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses", [n, oper]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s response is set", [wantedResponses]),
+		"keyExpectedValue": sprintf("%s response should be set", [wantedResponses]),
 		"keyActualValue": sprintf("%s response is undefined", [wantedResponses]),
 		"overrideKey": version,
 	}
@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses", [n, oper]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "415 response is set",
+		"keyExpectedValue": "415 response should be set",
 		"keyActualValue": "415 response is undefined",
 		"overrideKey": version,
 	}
@@ -58,7 +58,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses", [n, oper]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "404 response is set",
+		"keyExpectedValue": "404 response should be set",
 		"keyActualValue": "404 response is undefined",
 		"overrideKey": version,
 	}
@@ -77,7 +77,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses", [n, oper]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "200 response is set",
+		"keyExpectedValue": "200 response should be set",
 		"keyActualValue": "200 response is undefined",
 		"overrideKey": version,
 	}
@@ -98,7 +98,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses", [n, oper]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s response is set when security field is defined", [wantedResponses]),
+		"keyExpectedValue": sprintf("%s response should be set when security field is defined", [wantedResponses]),
 		"keyActualValue": sprintf("%s response is undefined when security field is defined", [wantedResponses]),
 		"overrideKey": version,
 	}

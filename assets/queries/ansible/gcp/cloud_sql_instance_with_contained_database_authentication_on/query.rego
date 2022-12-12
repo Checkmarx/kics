@@ -13,9 +13,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.settings.database_flags", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "cloud_gcp_sql_instance.settings.database_flags are correct",
+		"keyExpectedValue": "cloud_gcp_sql_instance.settings.database_flags should be correct",
 		"keyActualValue": "cloud_gcp_sql_instance.settings.database_flags.name is 'contained database authentication' and cloud_gcp_sql_instance.settings.database_flags.value is not 'off'",
 	}
 }

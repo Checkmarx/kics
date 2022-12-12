@@ -13,9 +13,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'cache_subnet_group' is defined and not null",
+		"keyExpectedValue": "'cache_subnet_group' should be defined and not null",
 		"keyActualValue": "'cache_subnet_group' is undefined or null",
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m]], []),
 	}

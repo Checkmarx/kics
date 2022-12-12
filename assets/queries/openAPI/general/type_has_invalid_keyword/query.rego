@@ -22,7 +22,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), invalidKey]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "There isn't any invalid keywords",
+		"keyExpectedValue": "There shouldn't be any invalid keywords",
 		"keyActualValue": sprintf("Keyword %s is not valid for type %s", [invalidKey, value.type]),
 		"overrideKey": version,
 	}

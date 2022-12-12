@@ -119,6 +119,10 @@ func Test_E2E_CLI(t *testing.T) {
 		if err != nil {
 			t.Logf("\nError when trying to remove tests output folder\n")
 		}
+		err = os.RemoveAll("tmp-kics-ar")
+		if err != nil {
+			t.Logf("\nError when trying to remove tmp-kics-ar folder\n")
+		}
 		t.Logf("E2E tests ::ellapsed time:: %v", time.Since(scanStartTime))
 	})
 }
@@ -202,9 +206,15 @@ func prepareTemplates() testcases.TestTemplates {
 		scanHelp = []string{}
 	}
 
+	var remediateHelp, errFH = utils.PrepareExpected("remediate_help", "fixtures/assets")
+	if errFH != nil {
+		remediateHelp = []string{}
+	}
+
 	return testcases.TestTemplates{
-		Help:     strings.Join(help, "\n"),
-		ScanHelp: strings.Join(scanHelp, "\n"),
+		Help:          strings.Join(help, "\n"),
+		ScanHelp:      strings.Join(scanHelp, "\n"),
+		RemediateHelp: strings.Join(remediateHelp, "\n"),
 	}
 }
 
@@ -221,7 +231,12 @@ func loadTemplates(lines []string, templates testcases.TestTemplates) []string {
 		return []string{}
 	}
 
-	return strings.Split(builder.String(), "\n")
+	t := builder.String()
+
+	builder.Reset()
+	builder = nil
+
+	return strings.Split(t, "\n")
 }
 
 func printTestDetails(output []string) {

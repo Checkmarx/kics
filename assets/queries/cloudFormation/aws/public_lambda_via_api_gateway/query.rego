@@ -1,8 +1,11 @@
 package Cx
 
+import data.generic.cloudformation as cf_lib
+
 CxPolicy[result] {
-	document := input.document
-	resource = document[i].Resources[name]
+	docs := input.document[i]
+	[path, Resources] := walk(docs)
+	resource := Resources[name]
 	resource.Type == "AWS::Lambda::Permission"
 	properties := resource.Properties
 
@@ -12,9 +15,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.SourceArn", [name]),
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
+		"searchKey": sprintf("%s%s.Properties.SourceArn", [cf_lib.getPath(path), name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.SourceArn should not be equal to '/*/*'", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.SourceArn should not equal to '/*/*'", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.SourceArn is equal to '/*/*' or contains '/*/*'", [name]),
 	}
 }

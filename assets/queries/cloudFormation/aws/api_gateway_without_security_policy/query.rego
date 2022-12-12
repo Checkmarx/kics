@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	document := input.document
@@ -12,9 +13,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityPolicy", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityPolicy is not defined", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityPolicy should not be defined", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.SecurityPolicy is defined", [name]),
 	}
 }
@@ -29,9 +32,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityPolicy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityPolicy is %s", [name, tls]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityPolicy should be %s", [name, tls]),
 		"keyActualValue": sprintf("Resources.%s.Properties.SecurityPolicy should be %s", [name, tls]),
 	}
 }

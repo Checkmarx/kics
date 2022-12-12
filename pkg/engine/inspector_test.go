@@ -20,6 +20,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/progress"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/Checkmarx/kics/test"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -220,12 +221,13 @@ func TestInspect(t *testing.T) { //nolint
 				scanID: "scanID",
 				files: model.FileMetadatas{
 					{
-						ID:           "3a3be8f7-896e-4ef8-9db3-d6c19e60510b",
-						ScanID:       "scanID",
-						Document:     mockedFileMetadataDocument,
-						OriginalData: "orig_data",
-						Kind:         "DOCKERFILE",
-						FilePath:     "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
+						ID:                "3a3be8f7-896e-4ef8-9db3-d6c19e60510b",
+						ScanID:            "scanID",
+						Document:          mockedFileMetadataDocument,
+						OriginalData:      "orig_data",
+						Kind:              "DOCKERFILE",
+						FilePath:          "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
+						LinesOriginalData: utils.SplitLines("orig_data"),
 					},
 				},
 			},
@@ -244,7 +246,7 @@ func TestInspect(t *testing.T) { //nolint
 					Severity:         model.SeverityInfo,
 					Line:             1,
 					SearchLine:       -1,
-					VulnLines:        []model.CodeLine{},
+					VulnLines:        &[]model.CodeLine{},
 					IssueType:        "IncorrectValue",
 					SearchKey:        "{{ADD ${JAR_FILE} app.jar}}",
 					KeyExpectedValue: "'COPY' app.jar",
@@ -282,12 +284,13 @@ func TestInspect(t *testing.T) { //nolint
 				scanID: "scanID",
 				files: model.FileMetadatas{
 					{
-						ID:           "3a3be8f7-896e-4ef8-9db3-d6c19e60510b",
-						ScanID:       "scanID",
-						Document:     mockedFileMetadataDocument,
-						OriginalData: "orig_data",
-						Kind:         "DOCKERFILE",
-						FilePath:     "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
+						ID:                "3a3be8f7-896e-4ef8-9db3-d6c19e60510b",
+						ScanID:            "scanID",
+						Document:          mockedFileMetadataDocument,
+						OriginalData:      "orig_data",
+						Kind:              "DOCKERFILE",
+						FilePath:          "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
+						LinesOriginalData: utils.SplitLines("orig_data"),
 					},
 				},
 			},
@@ -399,6 +402,7 @@ func TestNewInspector(t *testing.T) { // nolint
 		queryFilter      source.QueryInspectorParameters
 		excludeResults   map[string]bool
 		queryExecTimeout int
+		needsLog         bool
 	}
 	tests := []struct {
 		name    string
@@ -424,6 +428,7 @@ func TestNewInspector(t *testing.T) { // nolint
 				},
 				excludeResults:   map[string]bool{},
 				queryExecTimeout: 60,
+				needsLog:         true,
 			},
 			want: &Inspector{
 				vb:      vbs,
@@ -443,7 +448,8 @@ func TestNewInspector(t *testing.T) { // nolint
 				tt.args.tracker,
 				&tt.args.queryFilter,
 				tt.args.excludeResults,
-				tt.args.queryExecTimeout)
+				tt.args.queryExecTimeout,
+				tt.args.needsLog)
 
 			if (err != nil) != tt.wantErr {
 				t.Errorf("NewInspector() error: got = %v,\n wantErr = %v", err, tt.wantErr)
@@ -674,8 +680,8 @@ func TestShouldSkipFile(t *testing.T) {
 func newInspectorInstance(t *testing.T, queryPath []string) *Inspector {
 	querySource := source.NewFilesystemSource(queryPath, []string{""}, []string{""}, filepath.FromSlash("./assets/libraries"))
 	var vb = func(ctx *QueryContext, tracker Tracker, v interface{},
-		detector *detector.DetectLine) (model.Vulnerability, error) {
-		return model.Vulnerability{}, nil
+		detector *detector.DetectLine) (*model.Vulnerability, error) {
+		return &model.Vulnerability{}, nil
 	}
 	ins, err := NewInspector(
 		context.Background(),
@@ -683,7 +689,7 @@ func newInspectorInstance(t *testing.T, queryPath []string) *Inspector {
 		vb,
 		&tracker.CITracker{},
 		&source.QueryInspectorParameters{},
-		map[string]bool{}, 60,
+		map[string]bool{}, 60, true,
 	)
 	require.NoError(t, err)
 	return ins

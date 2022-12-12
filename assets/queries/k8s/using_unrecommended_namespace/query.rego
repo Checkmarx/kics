@@ -1,9 +1,9 @@
 package Cx
 
-listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob", "Service", "Secret", "ServiceAccount", "Role", "RoleBinding", "ConfigMap", "Ingress"]
+listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob", "Service", "Secret", "ServiceAccount", "Role", "RoleBinding", "ConfigMap", "Ingress", "Configuration", "Service", "Revision", "ContainerSource"]
 
-import data.generic.k8s as k8s_lib
 import data.generic.common as common_lib
+import data.generic.k8s as k8s_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -17,11 +17,13 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"issueType": "MissingAttribute",
 		"searchKey": sprintf("kind={{%s}}.metadata.name={{%s}}", [kind, metadata.name]),
-		"keyExpectedValue": "metadata.namespace is defined and not null",
+		"keyExpectedValue": "metadata.namespace should be defined and not null",
 		"keyActualValue": "metadata.namespace is undefined or null",
-		"searchLine": common_lib.build_search_line(["metadata", "name"], [])
+		"searchLine": common_lib.build_search_line(["metadata", "name"], []),
 	}
 }
 
@@ -38,10 +40,12 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"issueType": "IncorrectValue",
 		"searchKey": sprintf("metadata.name={{%s}}.namespace", [metadata.name]),
-		"keyExpectedValue": "'metadata.namespace' is not set to default, kube-system or kube-public",
+		"keyExpectedValue": "'metadata.namespace' should not be set to default, kube-system or kube-public",
 		"keyActualValue": sprintf("'metadata.namespace' is set to %s", [options[x]]),
-		"searchLine": common_lib.build_search_line(["metadata", "namespace"], [])
+		"searchLine": common_lib.build_search_line(["metadata", "namespace"], []),
 	}
 }

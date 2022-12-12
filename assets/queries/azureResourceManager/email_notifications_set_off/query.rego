@@ -13,9 +13,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("resource with type 'Microsoft.Security/securityContacts' has '%s.state' property set to 'On'", [emailType[x]]),
+		"keyExpectedValue": sprintf("resource with type 'Microsoft.Security/securityContacts' should have '%s.state' property set to 'On'", [emailType[x]]),
 		"keyActualValue": sprintf("resource with type 'Microsoft.Security/securityContacts' doesn't have '%s' property defined", [emailType[x]]),
 		"searchLine": common_lib.build_search_line(path, ["properties"]),
 	}
@@ -30,9 +32,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.%s", [common_lib.concat_path(path), value.name, emailType[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("resource with type 'Microsoft.Security/securityContacts' has '%s.state' property set to 'On'", [emailType[x]]),
+		"keyExpectedValue": sprintf("resource with type 'Microsoft.Security/securityContacts' should have '%s.state' property set to 'On'", [emailType[x]]),
 		"keyActualValue": sprintf("resource with type 'Microsoft.Security/securityContacts' doesn't have '%s.state' property defined", [emailType[x]]),
 		"searchLine": common_lib.build_search_line(path, ["properties", emailType[x]]),
 	}
@@ -47,10 +51,12 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.%s.state", [common_lib.concat_path(path), value.name, emailType[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("resource with type 'Microsoft.Security/securityContacts' has '%s.state' property set to 'On'", [emailType[x]]),
-		"keyActualValue": sprintf("resource with type 'Microsoft.Security/securityContacts' has '%s.state' property set to 'Off'", [emailType[x]]),
+		"keyExpectedValue": sprintf("resource with type 'Microsoft.Security/securityContacts' should have '%s.state' property set to 'On'", [emailType[x]]),
+		"keyActualValue": sprintf("resource with type 'Microsoft.Security/securityContacts' should have '%s.state' property set to 'Off'", [emailType[x]]),
 		"searchLine": common_lib.build_search_line(path, ["properties", emailType[x], "state"]),
 	}
 }

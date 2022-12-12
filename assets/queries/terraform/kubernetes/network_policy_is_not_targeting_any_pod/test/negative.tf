@@ -124,7 +124,7 @@ resource "kubernetes_network_policy" "example222" {
         values   = ["webfront", "api"]
       }
       match_labels = {
-            app = "${kubernetes_pod.test2.metadata.0.labels.app}"
+            app = "kubernetes_pod.test2.metadata.0.labels.app"
       }
 
     }

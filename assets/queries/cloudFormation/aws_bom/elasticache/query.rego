@@ -10,7 +10,7 @@ CxPolicy[result] {
 
 	bom_output = {
 		"resource_type": "AWS::ElastiCache::CacheCluster",
-		"resource_name": get_name(elasticache),
+		"resource_name": cf_lib.get_resource_name(elasticache, name),
 		# memcached or redis
 		"resource_engine": elasticache.Properties.Engine,
 		"resource_accessibility": get_accessibility(elasticache),
@@ -28,14 +28,6 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["Resources", name], []),
 		"value": json.marshal(bom_output),
 	}
-}
-
-get_name(elasticache) = name {
-	name := elasticache.Properties.ClusterName
-} else = name {
-	name := common_lib.get_tag_name_if_exists(elasticache)
-} else = name {
-	name := "unknown"
 }
 
 get_accessibility(elasticache) = accessibility {

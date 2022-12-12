@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_workspaces_workspace[name]
@@ -11,9 +12,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_workspaces_workspace",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_workspaces_workspace[{{%s}}].workspace_properties.%s", [name, volumes[n].value]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_workspaces_workspace.%s is set to true", [volumesKey]),
+		"keyExpectedValue": sprintf("aws_workspaces_workspace.%s should be set to true", [volumesKey]),
 		"keyActualValue": sprintf("aws_workspaces_workspace.%s is missing", [volumesKey]),
 	}
 }
@@ -26,9 +29,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_workspaces_workspace",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_workspaces_workspace[{{%s}}].%s", [name, volumes[n].key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_workspaces_workspace.%s is set to true", [volumes[n].key]),
+		"keyExpectedValue": sprintf("aws_workspaces_workspace.%s should be set to true", [volumes[n].key]),
 		"keyActualValue": sprintf("aws_workspaces_workspace.%s is set to false", [volumes[n].key]),
 	}
 }

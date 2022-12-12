@@ -8,8 +8,8 @@ examples
 .editorconfig
 .gitignore
 .golangci.yml
-.goreleaser.nightly.yml
-.goreleaser.yml
+release/.goreleaser.nightly.yml
+release/.goreleaser.yml
 cx.configuration
 docker-compose.yml
 mkdocs.yml
@@ -17,6 +17,6 @@ sonar-project.properties
 *.sarif
 *.zip
 Dockerfile
-Dockerfile.*
+docker
 assets/queries/**/test
 assets/template

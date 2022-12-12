@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.properties.{{%s}}.default", [openapi_lib.concat_path(path), prop]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Required properties does not have default defined",
+		"keyExpectedValue": "Required properties should not have default defined",
 		"keyActualValue": "Required properties with default defined",
 		"overrideKey": version,
 	}

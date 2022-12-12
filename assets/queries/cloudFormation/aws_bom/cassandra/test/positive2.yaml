@@ -1,0 +1,11 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  myNewTable2:
+    Type: AWS::Cassandra::Table
+    Properties:
+      KeyspaceName: my_keyspace
+      TableName: my_table
+      EncryptionSpecification:
+        EncryptionType: CUSTOMER_MANAGED_KMS_KEY
+        KmsKeyIdentifier: arn:aws:kms:eu-west-1:5555555555555:key/11111111-1111-111-1111-111111111111
+      PointInTimeRecoveryEnabled: true

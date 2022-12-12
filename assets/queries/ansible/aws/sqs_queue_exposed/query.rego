@@ -18,9 +18,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "sqs_queue.policy.Principal doesn't get the queue publicly accessible",
+		"keyExpectedValue": "sqs_queue.policy.Principal shouldn't get the queue publicly accessible",
 		"keyActualValue": "sqs_queue.policy.Principal does get the queue publicly accessible",
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}

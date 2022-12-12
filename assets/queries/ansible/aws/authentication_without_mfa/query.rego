@@ -14,9 +14,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("sts_assume_role.%s is set", [attributes[j]]),
+		"keyExpectedValue": sprintf("sts_assume_role.%s should be set", [attributes[j]]),
 		"keyActualValue": sprintf("sts_assume_role.%s is undefined", [attributes[j]]),
 	}
 }

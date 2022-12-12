@@ -15,9 +15,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, issue.sk]),
 		"issueType": issue.issueType,
-		"keyExpectedValue": "resource authsettings has 'properties.enabled' property set to true",
+		"keyExpectedValue": "resource authsettings should have 'properties.enabled' property set to true",
 		"keyActualValue": issue.keyActualValue,
 		"searchLine": common_lib.build_search_line(path, issue.sl),
 	}
@@ -39,9 +41,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.resources.name=authsettings%s", [common_lib.concat_path(path), value.name, issue.sk]),
 		"issueType": issue.issueType,
-		"keyExpectedValue": "resource authsettings has 'properties.enabled' property set to true",
+		"keyExpectedValue": "resource authsettings should have 'properties.enabled' property set to true",
 		"keyActualValue": issue.keyActualValue,
 		"searchLine": common_lib.build_search_line(childPath, issue.sl),
 	}
@@ -51,6 +55,8 @@ prepare_issue(resource) = issue {
 	common_lib.valid_key(resource, "properties")
 	common_lib.valid_key(resource.properties, "enabled")
 	issue := {
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"issueType": "IncorrectValue",
 		"keyActualValue": "'enabled' is false on authsettings properties",
 		"sk": ".properties.enabled",
@@ -58,6 +64,8 @@ prepare_issue(resource) = issue {
 	}
 } else = issue {
 	issue := {
+		"resourceType": resource.type,
+		"resourceName": resource.name,
 		"issueType": "MissingAttribute",
 		"keyActualValue": "'enabled' is undefined",
 		"sk": "",

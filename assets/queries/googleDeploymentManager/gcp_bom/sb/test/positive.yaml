@@ -1,0 +1,59 @@
+resources:
+- name: sample-input
+  type: storage.v1.bucket
+  properties:
+    storageClass: STANDARD
+    location: EUROPE-WEST3
+    iamConfiguration:
+      uniformBucketLevelAccess:
+        enabled: true
+    encryption:
+      defaultKmsKeyName: some-key
+- name: sample-input2
+  type: storage.v1.bucket
+  properties:
+    storageClass: STANDARD
+    location: EUROPE-WEST3
+    iamConfiguration:
+      uniformBucketLevelAccess:
+        enabled: true
+- name: sample-input3
+  type: storage.v1.bucket
+  properties:
+    storageClass: STANDARD
+    location: EUROPE-WEST3
+    iamConfiguration:
+      uniformBucketLevelAccess:
+        enabled: true
+    acl:
+    - entity: "project-viewers-ucg-configuration-project"
+      role: READER
+    - entity: allUsers
+      role: READER
+- name: sample-input4
+  type: storage.v1.bucket
+  properties:
+    storageClass: STANDARD
+    location: EUROPE-WEST3
+    iamConfiguration:
+      uniformBucketLevelAccess:
+        enabled: true
+    defaultObjectAcl:
+    - entity: allUsers
+      role: READER
+- name: sample-input5
+  type: storage.v1.bucket
+  properties:
+    storageClass: STANDARD
+    location: EUROPE-WEST3
+    iamConfiguration:
+      uniformBucketLevelAccess:
+        enabled: true
+- name: sample-ac
+  type: storage.v1.bucketAccessControl
+  properties:
+    bucket: sample-input5
+    entity: allUsers
+    role: OWNER
+
+

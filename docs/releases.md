@@ -22,5 +22,5 @@ KICS docker images are pushed to [DockerHub](https://hub.docker.com/repository/d
 
 List of images digests:
 
--   [Release versions](./docker-img/digests.md)
--   [Nightly images](./docker-img/nightly.md)
+-   [Release versions](./docker/digests.md)
+-   [Nightly images](./docker/nightly.md)

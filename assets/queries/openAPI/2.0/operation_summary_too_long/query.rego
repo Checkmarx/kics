@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.summary", [n, oper]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Operation summary is not less than 120 characters",
+		"keyExpectedValue": "Operation summary should not be less than 120 characters",
 		"keyActualValue": "Operation summary is less than 120 characters",
 	}
 }

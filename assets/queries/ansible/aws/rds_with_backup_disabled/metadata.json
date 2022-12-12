@@ -3,7 +3,7 @@
   "queryName": "RDS With Backup Disabled",
   "severity": "MEDIUM",
   "category": "Backup",
-  "descriptionText": "RDS configured without backup",
+  "descriptionText": "Make sure the AWS RDS configuration has automatic backup configured. If the retention period is equal to 0 there is no backup",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-backup_retention_period",
   "platform": "Ansible",
   "descriptionID": "51f94eee",

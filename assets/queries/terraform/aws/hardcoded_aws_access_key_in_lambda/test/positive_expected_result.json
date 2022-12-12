@@ -2,11 +2,13 @@
   {
     "queryName": "Hardcoded AWS Access Key In Lambda",
     "severity": "MEDIUM",
-    "line": 56
+    "line": 56,
+    "fileName": "positive.tf"
   },
   {
     "queryName": "Hardcoded AWS Access Key In Lambda",
     "severity": "MEDIUM",
-    "line": 35
+    "line": 35,
+    "fileName": "positive.tf"
   }
 ]

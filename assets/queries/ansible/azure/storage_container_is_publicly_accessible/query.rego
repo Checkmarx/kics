@@ -12,9 +12,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.public_access", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "azure_rm_storageblob.public_access is not set",
+		"keyExpectedValue": "azure_rm_storageblob.public_access should not be set",
 		"keyActualValue": "azure_rm_storageblob.public_access is equal to 'blob' or 'container'",
 	}
 }

@@ -41,14 +41,14 @@ jobs:
           image: tonistiigi/binfmt:latest
           platforms: linux/amd64,linux/arm64
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
-        uses: docker/login-action@v2.0.0
+        uses: docker/login-action@v2.1.0
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push alpine to Docker Hub
-        uses: docker/build-push-action@v3.0.0
+        uses: docker/build-push-action@v3.2.0
         id: build_alpine
         with:
           context: .
@@ -62,10 +62,10 @@ jobs:
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
       - name: Build and push debian to Docker Hub
         id: build_debian
-        uses: docker/build-push-action@v3.0.0
+        uses: docker/build-push-action@v3.2.0
         with:
           context: .
-          file: ./Dockerfile.debian
+          file: ./docker/Dockerfile.debian
           push: true
           platforms: linux/amd64,linux/arm64
           tags: checkmarx/kics:debian,checkmarx/kics:${{ steps.get-version.outputs.version }}-debian
@@ -76,10 +76,10 @@ jobs:
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
       - name: Build and push ubi8 to Docker Hub
         id: build_ubi8
-        uses: docker/build-push-action@v3.0.0
+        uses: docker/build-push-action@v3.2.0
         with:
           context: .
-          file: ./Dockerfile.ubi8
+          file: ./docker/Dockerfile.ubi8
           push: true
           tags: checkmarx/kics:ubi8,checkmarx/kics:${{ steps.get-version.outputs.version }}-ubi8
           platforms: linux/amd64
@@ -112,7 +112,7 @@ jobs:
           echo "${VERSION}-alpine,${ALPINE_DIGEST}" >> docs/docker/digests.csv
           echo "${VERSION}-debian,${DEBIAN_DIGEST}" >> docs/docker/digests.csv
           echo "${VERSION}-ubi8,${UBI8_DIGEST}" >> docs/docker/digests.csv
-      - uses: actions/setup-python@v3
+      - uses: actions/setup-python@v4
         with:
           python-version: 3.x
       - name: Generate .md table

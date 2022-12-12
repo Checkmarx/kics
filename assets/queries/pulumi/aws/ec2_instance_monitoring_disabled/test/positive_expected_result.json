@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "EC2 Instance Monitoring Disabled",
+		"severity": "INFO",
+		"line": 7,
+		"fileName": "positive.yaml"
+	},
+	{
+		"queryName": "EC2 Instance Monitoring Disabled",
+		"severity": "INFO",
+		"line": 16,
+		"fileName": "positive.yaml"
+	}
+]

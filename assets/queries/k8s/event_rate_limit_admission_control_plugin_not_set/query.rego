@@ -14,9 +14,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "--enable-admission-plugins flag contains 'EventRateLimit' plugin",
+		"keyExpectedValue": "--enable-admission-plugins flag should contain 'EventRateLimit' plugin",
 		"keyActualValue": "--enable-admission-plugins flag does not contain 'EventRateLimit' plugin",
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),
 	}

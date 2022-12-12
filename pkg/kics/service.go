@@ -13,6 +13,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	"github.com/Checkmarx/kics/pkg/resolver"
+
 	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
@@ -62,11 +63,12 @@ type Service struct {
 func (s *Service) PrepareSources(ctx context.Context, scanID string, wg *sync.WaitGroup, errCh chan<- error) {
 	defer wg.Done()
 	// CxSAST query under review
+	data := make([]byte, mbConst)
 	if err := s.SourceProvider.GetSources(
 		ctx,
 		s.Parser.SupportedExtensions(),
 		func(ctx context.Context, filename string, rc io.ReadCloser) error {
-			return s.sink(ctx, filename, scanID, rc)
+			return s.sink(ctx, filename, scanID, rc, data)
 		},
 		func(ctx context.Context, filename string) ([]string, error) { // Sink used for resolver files and templates
 			return s.resolverSink(ctx, filename, scanID)
@@ -109,6 +111,8 @@ func (s *Service) StartScan(
 	}
 	vulnerabilities = append(vulnerabilities, secretsVulnerabilities...)
 
+	updateMaskedSecrets(&vulnerabilities, s.SecretsInspector.SecretTracker)
+
 	err = s.Storage.SaveVulnerabilities(ctx, vulnerabilities)
 	if err != nil {
 		errCh <- errors.Wrap(err, "failed to save vulnerabilities")
@@ -125,11 +129,10 @@ type Content struct {
    getContent will read the passed file 1MB at a time
    to prevent resource exhaustion and return its content
 */
-func getContent(rc io.Reader) (*Content, error) {
+func getContent(rc io.Reader, data []byte) (*Content, error) {
 	maxSizeMB := 5 // Max size of file in MBs
 	var content []byte
 	countLines := 0
-	data := make([]byte, mbConst)
 
 	c := &Content{
 		Content:    &[]byte{},
@@ -177,14 +180,14 @@ func (s *Service) saveToFile(ctx context.Context, file *model.FileMetadata) {
 
 // PrepareScanDocument removes _kics_lines from payload and parses json filters
 func PrepareScanDocument(body map[string]interface{}, kind model.FileKind) map[string]interface{} {
-	bodyMap := make(map[string]interface{})
+	var bodyMap map[string]interface{}
 	j, err := json.Marshal(body)
 	if err != nil {
 		log.Error().Msgf("failed to remove kics line information")
 		return body
 	}
 	if err := json.Unmarshal(j, &bodyMap); err != nil {
-		log.Error().Msgf("failed to remove kics line information")
+		log.Error().Msgf("failed to remove kics line information: '%s'", err)
 		return body
 	}
 	prepareScanDocumentRoot(bodyMap, kind)
@@ -215,6 +218,24 @@ func prepareScanDocumentValue(bodyType map[string]interface{}, kind model.FileKi
 		case string:
 			if field, ok := lines[kind]; ok && utils.Contains(key, field) {
 				bodyType[key] = resolveJSONFilter(value)
+			}
+		}
+	}
+}
+
+func updateMaskedSecrets(vulnerabilities *[]model.Vulnerability, maskedSecretsTracked []secrets.SecretTracker) {
+	for idx := range *vulnerabilities {
+		for _, secretT := range maskedSecretsTracked {
+			updateMaskedSecretLine(&(*vulnerabilities)[idx], secretT)
+		}
+	}
+}
+
+func updateMaskedSecretLine(vulnerability *model.Vulnerability, secretT secrets.SecretTracker) {
+	if vulnerability.FileName == secretT.ResolvedFilePath {
+		for vlidx := range *vulnerability.VulnLines {
+			if (*vulnerability.VulnLines)[vlidx].Position == secretT.Line {
+				(*vulnerability.VulnLines)[vlidx].Line = secretT.MaskedContent
 			}
 		}
 	}

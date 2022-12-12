@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "Changing Default Shell Using RUN Command",
+		"severity": "MEDIUM",
+		"line": 5,
+		"filename": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Changing Default Shell Using RUN Command",
+		"severity": "MEDIUM",
+		"line": 5,
+		"filename": "positive2.dockerfile"
+	}
+]

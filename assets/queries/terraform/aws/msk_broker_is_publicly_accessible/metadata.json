@@ -1,0 +1,11 @@
+{
+  "id": "54378d69-dd7c-4b08-a43e-80d563396857",
+  "queryName": "MSK Broker Is Publicly Accessible",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Public AWS MSK allows anyone to interact with the Apache Kafka broker, therefore increasing the opportunity for malicious activity. To prevent such a scenario, it is recommended for AWS MSK to not be publicly accessible",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/msk_cluster#public_access",
+  "platform": "Terraform",
+  "descriptionID": "6ad9c2af",
+  "cloudProvider": "aws"
+}

@@ -16,6 +16,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.categories", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "azure_rm_monitorlogprofile.categories should have all categories, Write, Action and Delete",
@@ -32,9 +34,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "azure_rm_monitorlogprofile.categories is defined",
+		"keyExpectedValue": "azure_rm_monitorlogprofile.categories should be defined",
 		"keyActualValue": "azure_rm_monitorlogprofile.categories is undefined",
 	}
 }

@@ -27,6 +27,20 @@ module "s3_bucket" {
             "aws:SecureTransport": "false"
           }
         }
+      },
+      {
+        "Sid": "IPAllow",
+        "Effect": "Deny",
+        "Principal": "*",
+        "Action": "s3:*",
+        "Resource": [
+          "aws_s3_bucket.c.arn"
+        ],
+        "Condition": {
+          "Bool": {
+            "aws:SecureTransport": "false"
+          }
+        }
       }
     ]
 }

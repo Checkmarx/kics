@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.schema", [openapi_lib.concat_path(path)]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "The Schema Object is not empty",
+		"keyExpectedValue": "The Schema Object should not be empty",
 		"keyActualValue": "The Schema Object is empty",
 		"overrideKey": version,
 	}
@@ -34,7 +34,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.{{%s}}", [schemaInfo.path, s]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "The Schema Object is not empty",
+		"keyExpectedValue": "The Schema Object should not be empty",
 		"keyActualValue": "The Schema Object is empty",
 		"overrideKey": version,
 	}

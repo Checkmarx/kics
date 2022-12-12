@@ -3,7 +3,7 @@
   "queryName": "Cloud Storage Bucket Versioning Disabled",
   "severity": "HIGH",
   "category": "Observability",
-  "descriptionText": "Object Versioning Not Enabled on Cloud Storage Bucket",
+  "descriptionText": "Cloud Storage Bucket should have versioning enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#enabled",
   "platform": "Terraform",
   "descriptionID": "9fda4554",

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	document := input.document
@@ -11,9 +12,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.TracingEnabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.TracingEnabled is true", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.TracingEnabled should be true", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.TracingEnabled is false", [name]),
 	}
 }
@@ -27,9 +30,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.TracingEnabled is defined", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.TracingEnabled should be defined", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.TracingEnabled is undefined", [name]),
 	}
 }

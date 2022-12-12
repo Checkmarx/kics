@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "COPY --from does not reference the current FROM alias",
+		"keyExpectedValue": "COPY --from should not reference the current FROM alias",
 		"keyActualValue": "COPY --from references the current FROM alias",
 	}
 }

@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Redis Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive.tf"
+  }
+]

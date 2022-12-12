@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_redshift_cluster[%s]", [name]),
 		# change :: original is MissingAttribute
 		"issueType": "WrongValue",
-		"keyExpectedValue": "aws_redshift_cluster.publicly_accessible is defined",
+		"keyExpectedValue": "aws_redshift_cluster.publicly_accessible should be defined",
 		"keyActualValue": "aws_redshift_cluster.publicly_accessible is undefined",
 	}
 }
@@ -27,7 +27,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_redshift_cluster[%s].publicly_accessible", [name]),
 		"issueType": "IncorrectValue",
 		# change
-		"keyExpectedValue": "aws_redshift_cluster.publicly_accessible is false",
+		"keyExpectedValue": "aws_redshift_cluster.publicly_accessible should be set to false",
 		"keyActualValue": "aws_redshift_cluster.publicly_accessible is true",
 	}
 }
