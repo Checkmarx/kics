@@ -1,0 +1,18 @@
+Transform: 'AWS::Serverless-2016-10-31'
+Metadata:
+  'AWS::ServerlessRepo::Application':
+    Name: AthenaJdbcConnector
+    Description: 'This connector enables Amazon Athena to communicate with your Database instance(s) using JDBC driver.'
+    Author: 'default author'
+    SpdxLicenseId: Apache-2.0
+    LicenseUrl: LICENSE.txt
+    ReadmeUrl: README.md
+    Labels:
+      - athena-federation
+    HomePageUrl: 'https://github.com/awslabs/aws-athena-query-federation'
+    SemanticVersion: 2021.41.1
+    SourceCodeUrl: 'https://github.com/awslabs/aws-athena-query-federation'
+Parameters:
+  SecretNamePrefix:
+      Description: 'Used to create resource-based authorization policy for "secretsmanager:GetSecretValue" action. E.g. All Athena JDBC Federation secret names can be prefixed with "AthenaJdbcFederation" and authorization policy will allow "arn:${AWS::Partition}:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:AthenaJdbcFederation*". Parameter value in this case should be "AthenaJdbcFederation". If you do not have a prefix, you can manually update the IAM policy to add allow any secret names.'
+      Type: String
