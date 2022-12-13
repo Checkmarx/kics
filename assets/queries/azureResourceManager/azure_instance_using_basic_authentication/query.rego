@@ -39,11 +39,12 @@ prepare_issue(resource) = issue {
 		"sl": ["properties", "osProfile", "linuxConfiguration", "disablePasswordAuthentication"],
 	}
 } else = issue {
+	not resource.properties.osProfile.linuxConfiguration.disablePasswordAuthentication
 	issue := {
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"issueType": "MissingAttribute",
-		"keyActualValue": "'disablePasswordAuthentication' is undefined",
+		"keyActualValue": "'linuxConfiguration.disablePasswordAuthentication' is not defined",
 		"sk": "",
 		"sl": ["name"],
 
