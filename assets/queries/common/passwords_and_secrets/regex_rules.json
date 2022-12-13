@@ -257,6 +257,10 @@
         {
           "description": "Avoiding TF creation token",
           "regex": "(?i)['\"]?creation_token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
+        },
+        {
+          "description": "Avoiding CLoudformation ServiceToken",
+          "regex": "['\"]?ServiceToken['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]+)['\"]?"
         }
       ],
       "specialMask": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[:=]\\s*"
