@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.azureresourcemanager as arm_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -8,7 +9,7 @@ CxPolicy[result] {
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Security/pricings"
-    not isParameterReference(value.properties.pricingTier)
+    not arm_lib.isParameterReference(value.properties.pricingTier)
 	lower(value.properties.pricingTier) != "standard"
 
 	result := {
@@ -30,8 +31,8 @@ CxPolicy[result] {
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Security/pricings"
-    isParameterReference(value.properties.pricingTier)
-	parameterDefValue := getDefaultValueFromParameters(doc, value.properties.pricingTier)
+    arm_lib.isParameterReference(value.properties.pricingTier)
+	parameterDefValue := arm_lib.getDefaultValueFromParameters(doc, value.properties.pricingTier)
     lower(parameterDefValue) != "standard"
 
 	result := {
@@ -44,16 +45,4 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("'pricingTier' associated parameter default value is set to %s", [parameterDefValue]),
 		"searchLine": common_lib.build_search_line(path, ["properties", "pricingTier"]),
 	}
-}
-
-getDefaultValueFromParameters(doc, valueToCheck) = value {
-	parameterName := isParameterReference(valueToCheck)
-	parameter := doc.parameters[parameterName].defaultValue
-	value := parameter
-}
-
-isParameterReference(valueToCheck) = parameterName {
-	startswith(valueToCheck, "[parameters('")
-	endswith(valueToCheck, "')]")
-	parameterName := trim_right(trim_left(valueToCheck, "[parameters('"),"')]")
 }

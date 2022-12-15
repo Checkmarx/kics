@@ -66,3 +66,39 @@ get_outer_children(doc, nameParent) = outerArr {
 		x := {"value": value, "path": path}
 	]
 }
+
+getDefaultValueFromParameters(doc, valueToCheck) = value {
+	parameterName := isParameterReference(valueToCheck)
+	parameter := doc.parameters[parameterName].defaultValue
+	value := parameter
+} 
+
+getDefaultValueFromParametersIfPresent(doc, valueToCheck) = [value, propertyType] {
+	parameterName := isParameterReference(valueToCheck)
+	parameter := doc.parameters[parameterName].defaultValue
+	value := parameter
+	propertyType := "parameter default value"
+} else = [value, propertyType] {
+	not isParameterReference(valueToCheck)
+	value := valueToCheck
+	propertyType := "property value"
+}
+
+anyIsParameterReference(parameters){
+	isParameterReference(parameters[_])
+}
+
+isParameterReference(valueToCheck) = parameterName {
+	startswith(valueToCheck, "[parameters('")
+	endswith(valueToCheck, "')]")
+	parameterName := trim_right(trim_left(valueToCheck, "[parameters('"),"')]")
+}
+
+
+isDisabledOrUndefined(doc, resource, parametersPath){
+	object.get(resource, split(parametersPath, "."), "not defined") == "not defined"
+} else {
+	value := object.get(resource, split(parametersPath, "."),"")
+	[check, _] := getDefaultValueFromParametersIfPresent(doc, value)
+	check == false
+}
