@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.azureresourcemanager as arm_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -8,9 +9,9 @@ CxPolicy[result] {
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Compute/disks"
-	not value.properties.encryptionSettingsCollection.enabled
+	arm_lib.isDisabledOrUndefined(doc, value.properties, "encryptionSettingsCollection.enabled")
 
-	issue := prepare_issue(value)
+	issue := prepare_issue(doc, value)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -24,13 +25,14 @@ CxPolicy[result] {
 	}
 }
 
-prepare_issue(resource) = issue {
-	resource.properties.encryptionSettingsCollection.enabled == false
+prepare_issue(doc, resource) = issue {
+	[e_value, e_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, resource.properties.encryptionSettingsCollection.enabled)
+	e_value == false
 	issue := {
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"issueType": "IncorrectValue",
-		"keyActualValue": "'encryptionSettingsCollection.enabled' is set to false",
+		"keyActualValue": sprintf("'encryptionSettingsCollection.enabled' %s is set to false", [e_type]),
 		"sk": ".properties.encryptionSettingsCollection.enabled",
 		"sl": ["properties", "encryptionSettingsCollection", "enabled"],
 	}

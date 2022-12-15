@@ -9,8 +9,8 @@ CxPolicy[result] {
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Security/pricings"
-    not arm_lib.isParameterReference(value.properties.pricingTier)
-	lower(value.properties.pricingTier) != "standard"
+	[val, val_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, value.properties.pricingTier)
+	lower(val) != "standard"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -19,30 +19,8 @@ CxPolicy[result] {
 		"searchKey": sprintf("%s.name=%s.properties.pricingTier", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'pricingTier' should be set to standard",
-		"keyActualValue": sprintf("'pricingTier' is set to %s", [value.properties.pricingTier]),
+		"keyActualValue": sprintf("'pricingTier' %s is set to %s", [val_type, val]),
 		"searchLine": common_lib.build_search_line(path, ["properties", "pricingTier"]),
 
-	}
-}
-
-CxPolicy[result] {
-	doc := input.document[i]
-
-	[path, value] = walk(doc)
-
-	value.type == "Microsoft.Security/pricings"
-    arm_lib.isParameterReference(value.properties.pricingTier)
-	parameterDefValue := arm_lib.getDefaultValueFromParameters(doc, value.properties.pricingTier)
-    lower(parameterDefValue) != "standard"
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": value.type,
-		"resourceName": value.name,
-		"searchKey": sprintf("%s.name=%s.properties.pricingTier", [common_lib.concat_path(path), value.name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'pricingTier' associated parameter default value should be set to standard",
-		"keyActualValue": sprintf("'pricingTier' associated parameter default value is set to %s", [parameterDefValue]),
-		"searchLine": common_lib.build_search_line(path, ["properties", "pricingTier"]),
 	}
 }
