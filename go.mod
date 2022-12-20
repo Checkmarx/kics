@@ -42,7 +42,7 @@ require (
 	golang.org/x/text v0.5.0
 	golang.org/x/tools v0.4.0
 	gopkg.in/yaml.v3 v3.0.1
-	helm.sh/helm/v3 v3.9.4
+	helm.sh/helm/v3 v3.10.3
 	mvdan.cc/sh/v3 v3.5.1
 )
 
@@ -77,7 +77,7 @@ require (
 	github.com/boombuler/barcode v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/chai2010/gettext-go v0.0.0-20160711120539-c6fed771bfd5 // indirect
-	github.com/containerd/containerd v1.6.8 // indirect
+	github.com/containerd/containerd v1.6.12 // indirect
 	github.com/containerd/typeurl v1.0.2 // indirect
 	github.com/cyphar/filepath-securejoin v0.2.3 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
@@ -219,7 +219,7 @@ require (
 )
 
 replace (
-	github.com/containerd/containerd => github.com/containerd/containerd v1.6.8
+	github.com/containerd/containerd => github.com/containerd/containerd v1.6.12
 	github.com/docker/cli => github.com/docker/cli v20.10.12+incompatible
 	github.com/moby/buildkit => github.com/moby/buildkit v0.10.4
 	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
