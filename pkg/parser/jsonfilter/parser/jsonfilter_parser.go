@@ -1,4 +1,4 @@
-// Code generated from JSONFilter.g4 by ANTLR 4.9.2. DO NOT EDIT.
+// Code generated from JSONFilter.g4 by ANTLR 4.7.2. DO NOT EDIT.
 
 package parser // JSONFilter
 
@@ -55,6 +55,9 @@ var parserATN = []uint16{
 	89, 85, 3, 2, 2, 2, 89, 86, 3, 2, 2, 2, 89, 87, 3, 2, 2, 2, 89, 88, 3,
 	2, 2, 2, 90, 19, 3, 2, 2, 2, 11, 32, 40, 42, 49, 59, 69, 71, 80, 89,
 }
+var deserializer = antlr.NewATNDeserializer(nil)
+var deserializedATN = deserializer.DeserializeFromUInt16(parserATN)
+
 var literalNames = []string{
 	"", "'$.'", "'*'", "'{'", "'}'", "'('", "')'", "'['", "']'", "'.'", "'&&'",
 	"'||'", "'='", "'!='", "'>'", "'<'", "'>='", "'<='", "'IS'", "'NOT'", "'NULL'",
@@ -71,25 +74,21 @@ var ruleNames = []string{
 	"awsjsonfilter", "dotnotation", "filter_expr", "exp", "selector", "qualifiedidentifier",
 	"member", "operator", "literal",
 }
+var decisionToDFA = make([]*antlr.DFA, len(deserializedATN.DecisionToState))
+
+func init() {
+	for index, ds := range deserializedATN.DecisionToState {
+		decisionToDFA[index] = antlr.NewDFA(ds, index)
+	}
+}
 
 type JSONFilterParser struct {
 	*antlr.BaseParser
 }
 
-// NewJSONFilterParser produces a new parser instance for the optional input antlr.TokenStream.
-//
-// The *JSONFilterParser instance produced may be reused by calling the SetInputStream method.
-// The initial parser configuration is expensive to construct, and the object is not thread-safe;
-// however, if used within a Golang sync.Pool, the construction cost amortizes well and the
-// objects can be used in a thread-safe manner.
 func NewJSONFilterParser(input antlr.TokenStream) *JSONFilterParser {
 	this := new(JSONFilterParser)
-	deserializer := antlr.NewATNDeserializer(nil)
-	deserializedATN := deserializer.DeserializeFromUInt16(parserATN)
-	decisionToDFA := make([]*antlr.DFA, len(deserializedATN.DecisionToState))
-	for index, ds := range deserializedATN.DecisionToState {
-		decisionToDFA[index] = antlr.NewDFA(ds, index)
-	}
+
 	this.BaseParser = antlr.NewBaseParser(input)
 
 	this.Interpreter = antlr.NewParserATNSimulator(this, deserializedATN, decisionToDFA, antlr.NewPredictionContextCache())
@@ -202,13 +201,15 @@ func (s *AwsjsonfilterContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *AwsjsonfilterContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case JSONFilterVisitor:
-		return t.VisitAwsjsonfilter(s)
+func (s *AwsjsonfilterContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.EnterAwsjsonfilter(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *AwsjsonfilterContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.ExitAwsjsonfilter(s)
 	}
 }
 
@@ -305,13 +306,15 @@ func (s *DotnotationContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DotnotationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case JSONFilterVisitor:
-		return t.VisitDotnotation(s)
+func (s *DotnotationContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.EnterDotnotation(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *DotnotationContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.ExitDotnotation(s)
 	}
 }
 
@@ -438,13 +441,15 @@ func (s *Filter_expr_parenthesizedContext) RPAREN() antlr.TerminalNode {
 	return s.GetToken(JSONFilterParserRPAREN, 0)
 }
 
-func (s *Filter_expr_parenthesizedContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case JSONFilterVisitor:
-		return t.VisitFilter_expr_parenthesized(s)
+func (s *Filter_expr_parenthesizedContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.EnterFilter_expr_parenthesized(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *Filter_expr_parenthesizedContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.ExitFilter_expr_parenthesized(s)
 	}
 }
 
@@ -503,13 +508,15 @@ func (s *Filter_expr_andContext) Filter_expr(i int) IFilter_exprContext {
 	return t.(IFilter_exprContext)
 }
 
-func (s *Filter_expr_andContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case JSONFilterVisitor:
-		return t.VisitFilter_expr_and(s)
+func (s *Filter_expr_andContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.EnterFilter_expr_and(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *Filter_expr_andContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.ExitFilter_expr_and(s)
 	}
 }
 
@@ -541,13 +548,15 @@ func (s *Filter_expr_expContext) Exp() IExpContext {
 	return t.(IExpContext)
 }
 
-func (s *Filter_expr_expContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case JSONFilterVisitor:
-		return t.VisitFilter_expr_exp(s)
+func (s *Filter_expr_expContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.EnterFilter_expr_exp(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *Filter_expr_expContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.ExitFilter_expr_exp(s)
 	}
 }
 
@@ -606,13 +615,15 @@ func (s *Filter_expr_orContext) Filter_expr(i int) IFilter_exprContext {
 	return t.(IFilter_exprContext)
 }
 
-func (s *Filter_expr_orContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case JSONFilterVisitor:
-		return t.VisitFilter_expr_or(s)
+func (s *Filter_expr_orContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.EnterFilter_expr_or(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *Filter_expr_orContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.ExitFilter_expr_or(s)
 	}
 }
 
@@ -837,13 +848,15 @@ func (s *ExpContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) st
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ExpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case JSONFilterVisitor:
-		return t.VisitExp(s)
+func (s *ExpContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.EnterExp(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *ExpContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.ExitExp(s)
 	}
 }
 
@@ -956,13 +969,15 @@ func (s *SelectorContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SelectorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case JSONFilterVisitor:
-		return t.VisitSelector(s)
+func (s *SelectorContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.EnterSelector(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *SelectorContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.ExitSelector(s)
 	}
 }
 
@@ -1076,13 +1091,15 @@ func (s *QualifiedidentifierContext) ToStringTree(ruleNames []string, recog antl
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *QualifiedidentifierContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case JSONFilterVisitor:
-		return t.VisitQualifiedidentifier(s)
+func (s *QualifiedidentifierContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.EnterQualifiedidentifier(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *QualifiedidentifierContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.ExitQualifiedidentifier(s)
 	}
 }
 
@@ -1211,13 +1228,15 @@ func (s *MemberContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *MemberContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case JSONFilterVisitor:
-		return t.VisitMember(s)
+func (s *MemberContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.EnterMember(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *MemberContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.ExitMember(s)
 	}
 }
 
@@ -1370,13 +1389,15 @@ func (s *OperatorContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *OperatorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case JSONFilterVisitor:
-		return t.VisitOperator(s)
+func (s *OperatorContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.EnterOperator(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *OperatorContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.ExitOperator(s)
 	}
 }
 
@@ -1511,13 +1532,15 @@ func (s *LiteralContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case JSONFilterVisitor:
-		return t.VisitLiteral(s)
+func (s *LiteralContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.EnterLiteral(s)
+	}
+}
 
-	default:
-		return t.VisitChildren(s)
+func (s *LiteralContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(JSONFilterListener); ok {
+		listenerT.ExitLiteral(s)
 	}
 }
 
