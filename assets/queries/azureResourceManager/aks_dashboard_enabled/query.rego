@@ -2,27 +2,6 @@ package Cx
 
 import data.generic.common as common_lib
 
-# addonProfiles not implemented (apiVersion < 2017-08-03)
-CxPolicy[result] {
-	doc := input.document[i]
-
-	[path, value] = walk(doc)
-
-	value.type == "Microsoft.ContainerService/managedClusters"
-	value.apiVersion == "2017-08-03"
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": value.type,
-		"resourceName": value.name,
-		"searchKey": sprintf("%s.name=%s.apiVersion", [common_lib.concat_path(path), value.name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'apiVersion' should not be '2017-08-03'",
-		"keyActualValue": "'apiVersion' is '2017-08-03'",
-		"searchLine": common_lib.build_search_line(path, ["apiVersion"]),
-	}
-}
-
 CxPolicy[result] {
 	doc := input.document[i]
 
@@ -62,14 +41,5 @@ prepare_issue(resource) = issue {
 		"keyActualValue": "'addonProfiles.kubeDashboard.enabled' is false",
 		"sk": ".properties.addonProfiles.kubeDashboard.enabled",
 		"sl": ["properties", "addonProfiles", "kubeDashboard", "enabled"],
-	}
-} else = issue {
-	issue := {
-		"resourceType": resource.type,
-		"resourceName": resource.name,
-		"issueType": "MissingAttribute",
-		"keyActualValue": "'addonProfiles.kubeDashboard.enabled' is undefined",
-		"sk": "",
-		"sl": ["name"],
 	}
 }
