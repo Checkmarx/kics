@@ -54,10 +54,9 @@
   width: 100%;
 }
 
-.md-header__button.md-logo img{
+.md-header__button.md-logo :-webkit-any(img,svg) {
   display: block;
-  width: 110px;
-  height: 100px;
+  height: 2rem;
   fill: currentColor;
 }
 
