@@ -60,7 +60,7 @@ func TestMemoryStorage_SaveFile(t *testing.T) {
 }
 
 // TestMemoryStorage_SaveFile tests the functions [GetFiles(), GetVulnerabilities(), GetScanSummary()]
-func TestMemoryStorage(t *testing.T) { // nolint
+func TestMemoryStorage(t *testing.T) { //nolint
 	type fields struct {
 		vulnerabilities []model.Vulnerability
 		allFiles        model.FileMetadatas
