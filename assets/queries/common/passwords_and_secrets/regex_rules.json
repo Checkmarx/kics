@@ -43,6 +43,10 @@
         {
           "description": "Avoiding CloudFormation Parameters Descriptions",
           "regex": "['\"]?Description['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*${}+-.'\"]+)['\"]?"
+        },
+        {
+          "description": "Avoiding Paths",
+          "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*['\"]?((\\|/)?([A-z0-9-_+]+(\\|/)?)+)([A-z0-9]+(\\.([a-z0-9]{1,5})))?['\"]?"
         }
       ],
       "specialMask": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*"
@@ -261,6 +265,22 @@
         {
           "description": "Avoiding CLoudformation ServiceToken",
           "regex": "['\"]?ServiceToken['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]+)['\"]?"
+        },
+        {
+          "description": "Avoiding LifecycleActionToken Var",
+          "regex": "(?i)['\"]?LifecycleActionToken['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
+        },
+        {
+          "description": "Avoiding result_token Var",
+          "regex": "(?i)['\"]?result(_)?token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
+        },
+        {
+          "description": "Avoiding next_token Var",
+          "regex": "(?i)['\"]?next(_)?token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
+        },
+        {
+          "description": "Avoiding next_token Var",
+          "regex": "(?i)['\"]?next(_)?token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
         }
       ],
       "specialMask": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[:=]\\s*"
