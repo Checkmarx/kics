@@ -84,6 +84,17 @@ func testRemediationQuery(t testing.TB, entry queryEntry, vulnerabilities []mode
 			source.ListSupportedCloudProviders(),
 		)
 
+		data, err = os.ReadFile(filepath.FromSlash("../internal/console/assets/remediate-flags.json"))
+		require.NoError(t, err)
+
+		flags.InitJSONFlags(
+			mockCmd,
+			string(data),
+			true,
+			source.ListSupportedPlatforms(),
+			source.ListSupportedCloudProviders(),
+		)
+
 		temporaryRemediationSets := make(map[string]interface{})
 
 		for k := range remediationSets {
@@ -96,7 +107,7 @@ func testRemediationQuery(t testing.TB, entry queryEntry, vulnerabilities []mode
 		for filePath := range temporaryRemediationSets {
 			fix := temporaryRemediationSets[filePath].(remediation.Set)
 
-			err = summary.RemediateFile(filePath, fix)
+			err = summary.RemediateFile(filePath, fix, false)
 			os.Remove(filePath)
 			if err != nil {
 				require.NoError(t, err)

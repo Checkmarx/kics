@@ -4,7 +4,7 @@ package testcases
 // --help flag and it should describe the options related with remediate plus the global options
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should display the kics remediate help text [E2E-CLI-059]",
+		Name: "should display the KICS remediate help text [E2E-CLI-059]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"remediate", "--help"},

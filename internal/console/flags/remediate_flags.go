@@ -4,4 +4,5 @@ package flags
 const (
 	Results    = "results"
 	IncludeIds = "include-ids"
+	Queries    = "queries"
 )

@@ -10,6 +10,12 @@
       "shorthandFlag": "",
       "defaultValue": "",
       "usage": "points to the JSON results file with remediation"
+    },
+    "queries": {
+      "flagType": "multiStr",
+      "shorthandFlag": "",
+      "defaultValue": "./assets/queries",
+      "usage": "paths to directory with queries"
     }
   }
   
