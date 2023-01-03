@@ -126,8 +126,8 @@ type Content struct {
 }
 
 /*
-   getContent will read the passed file 1MB at a time
-   to prevent resource exhaustion and return its content
+getContent will read the passed file 1MB at a time
+to prevent resource exhaustion and return its content
 */
 func getContent(rc io.Reader, data []byte) (*Content, error) {
 	maxSizeMB := 5 // Max size of file in MBs

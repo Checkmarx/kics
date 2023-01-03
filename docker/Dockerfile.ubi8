@@ -4,10 +4,10 @@ WORKDIR /build
 
 ENV PATH=$PATH:/usr/local/go/bin
 
-ADD https://golang.org/dl/go1.18.2.linux-amd64.tar.gz .
+ADD https://golang.org/dl/go1.19.4.linux-amd64.tar.gz .
 RUN yum install git gcc -y \
-  && rm -rf /usr/local/go && tar -C /usr/local -xzf go1.18.2.linux-amd64.tar.gz \
-  && rm -f go1.18.2.linux-amd64.tar.gz
+  && rm -rf /usr/local/go && tar -C /usr/local -xzf go1.19.4.linux-amd64.tar.gz \
+  && rm -f go1.19.4.linux-amd64.tar.gz
 
 ENV GOPRIVATE=github.com/Checkmarx/*
 ARG VERSION="development"

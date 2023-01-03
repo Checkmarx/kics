@@ -276,7 +276,7 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 }
 
 // TestFilesystemSource_GetQueryLibrary tests the functions [GetQueryLibrary()] and all the methods called by them
-func TestFilesystemSource_GetQueryLibrary(t *testing.T) { // nolint
+func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 	if err := test.ChangeCurrentDir("kics"); err != nil {
 		t.Fatal(err)
 	}
