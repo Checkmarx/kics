@@ -136,6 +136,7 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 		ChangedDefaultLibrariesPath: changedDefaultLibrariesPath,
 		ChangedDefaultQueryPath:     changedDefaultQueryPath,
 		BillOfMaterials:             flags.GetBoolFlag(flags.BomFlag),
+		ExcludeGitIgnore:            flags.GetBoolFlag(flags.ExcludeGitIgnore),
 	}
 
 	return &scanParams
@@ -173,7 +174,7 @@ func executeScan(scanParams *scan.Parameters) error {
 func gracefulShutdown() {
 	c := make(chan os.Signal)
 	// This line should not be lint, since golangci-lint has an issue about it (https://github.com/golang/go/issues/45043)
-	signal.Notify(c, os.Interrupt, syscall.SIGTERM) // nolint
+	signal.Notify(c, os.Interrupt, syscall.SIGTERM) //nolint
 	showErrors := consoleHelpers.ShowError("errors")
 	interruptCode := constants.SignalInterruptCode
 	go func(showErrors bool, interruptCode int) {

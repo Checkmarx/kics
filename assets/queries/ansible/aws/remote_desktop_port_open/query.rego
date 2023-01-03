@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.rules", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "ec2_group.rules doesn't open the remote desktop port (3389)",
+		"keyExpectedValue": "ec2_group.rules shouldn't open the remote desktop port (3389)",
 		"keyActualValue": "ec2_group.rules opens the remote desktop port (3389)",
 	}
 }

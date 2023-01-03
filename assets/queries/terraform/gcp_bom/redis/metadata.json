@@ -1,0 +1,12 @@
+{
+    "id": "bc75ce52-a60a-4660-b533-bce837a5019b",
+    "queryName": "BOM - GCP Redis",
+    "severity": "TRACE",
+    "category": "Bill Of Materials",
+    "descriptionText": "A list of Redis Instance resources found. Memorystore for Redis is a fully managed Redis service for Google Cloud. Applications running on Google Cloud can achieve extreme performance by leveraging the highly scalable, available, secure Redis service without the burden of managing complex Redis deployments.",
+    "descriptionUrl": "https://kics.io",
+    "platform": "Terraform",
+    "descriptionID": "1db9d01f",
+    "cloudProvider": "gcp"
+  }
+  

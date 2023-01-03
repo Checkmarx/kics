@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.content.{{%s}}.encoding.{{%s}}", [path, operation, r, c, e]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.content.{{%s}}.encoding.{{%s}} is set in schema defined properties", [path, operation, r, c, e]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.content.{{%s}}.encoding.{{%s}} should be set in schema defined properties", [path, operation, r, c, e]),
 		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.content.{{%s}}.encoding.{{%s}} is not set in schema defined properties", [path, operation, r, c, e]),
 	}
 }
@@ -34,7 +34,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}.encoding.{{%s}}", [path, operation, c, e]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}.encoding.{{%s}} is set in schema defined properties", [path, operation, c, e]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}.encoding.{{%s}} should be set in schema defined properties", [path, operation, c, e]),
 		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}.encoding.{{%s}} is not set in schema defined properties", [path, operation, c, e]),
 	}
 }
@@ -52,7 +52,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.requestBodies.{{%s}}.content.{{%s}}.encoding.{{%s}}", [r, c, e]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("components.requestBodies.{{%s}}.content.{{%s}}.encoding.{{%s}} is set in schema defined properties", [r, c, e]),
+		"keyExpectedValue": sprintf("components.requestBodies.{{%s}}.content.{{%s}}.encoding.{{%s}} should be set in schema defined properties", [r, c, e]),
 		"keyActualValue": sprintf("components.requestBodies.{{%s}}.content.{{%s}}.encoding.{{%s}} is not set in schema defined properties", [r, c, e]),
 	}
 }
@@ -70,7 +70,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.responses.{{%s}}.content.{{%s}}.encoding.{{%s}}", [r, c, e]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("components.responses.{{%s}}.content.{{%s}}.encoding.{{%s}} is set in schema defined properties", [r, c, e]),
+		"keyExpectedValue": sprintf("components.responses.{{%s}}.content.{{%s}}.encoding.{{%s}} should be set in schema defined properties", [r, c, e]),
 		"keyActualValue": sprintf("components.responses.{{%s}}.content.{{%s}}.encoding.{{%s}} is not set in schema defined properties", [r, c, e]),
 	}
 }

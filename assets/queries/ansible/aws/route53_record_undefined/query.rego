@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "route53.value is defined or not null",
+		"keyExpectedValue": "route53.value should be defined or not null",
 		"keyActualValue": "route53.value is undefined or null",
 	}
 }

@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.Port' is defined", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.Port' should be defined", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.Port' is not defined", [name]),
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties"], []),
 	}

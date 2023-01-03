@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.parameters.name={{%s}}", [openapi_lib.concat_path(path), params.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'parameters' has 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+		"keyExpectedValue": "'parameters' should have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
 		"keyActualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
 		"overrideKey": version,
 	}

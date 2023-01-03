@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.TracingConfig.Mode", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "TracingConfig.Mode is set to 'Active'",
+		"keyExpectedValue": "TracingConfig.Mode should be set to 'Active'",
 		"keyActualValue": "TracingConfig.Mode is set to 'PassThrough'",
 	}
 }
@@ -34,7 +34,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Property 'TracingConfig' is defined",
+		"keyExpectedValue": "Property 'TracingConfig' should be defined",
 		"keyActualValue": "Property 'TracingConfig' is undefined",
 	}
 }

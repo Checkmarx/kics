@@ -1,0 +1,10 @@
+{
+  "id": "e8bb41e4-2f24-4e84-8bea-8c7c070cf93d",
+  "queryName": "Serving Revision Spec Without Timeout Seconds",
+  "severity": "INFO",
+  "category": "Insecure Configurations",
+  "descriptionText": "Serving Revision Spec should have Timeout Seconds defined to avoid Denial of Service",
+  "descriptionUrl": "https://knative.dev/docs/reference/api/serving-api/#serving.knative.dev/v1.RevisionSpec",
+  "platform": "Knative",
+  "descriptionID": "0b6ca133"
+}

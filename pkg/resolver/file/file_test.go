@@ -1,6 +1,7 @@
 package file
 
 import (
+	"encoding/json"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -55,6 +56,18 @@ func TestResolver_Resolve(t *testing.T) {
 								type: string		
 		NullResponse:
             description: Null response`),
+		},
+		{
+			name: "json test",
+			fields: fields{
+				Resolver: NewResolver(json.Unmarshal, json.Marshal, []string{".json"}),
+			},
+			args: args{
+				path: filepath.ToSlash("test/fixtures/unresolved_openapi_json/openapi.json"),
+			},
+			want: []byte(
+				"{\"info\":{\"title\":\"Reference in reference example\",\"version\":\"1.0.0\"},\"openapi\":\"3.0.3\",\"paths\":{\"/api/test/ref/in/ref\":{\"post\":{\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"definition_reference\":{\"$ref\":\"definitions.json#/definitions/External\"}},\"required\":[\"definition_reference\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"id\":{\"format\":\"int32\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}}}}}}",
+			),
 		},
 	}
 	for _, tt := range tests {

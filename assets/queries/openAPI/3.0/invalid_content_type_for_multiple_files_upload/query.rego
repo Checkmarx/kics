@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}", [path, operation, c]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}} is set to 'multipart/form-data'", [path, operation, c]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}} should be set to 'multipart/form-data'", [path, operation, c]),
 		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}} is not set to 'multipart/form-data'", [path, operation, c]),
 	}
 }
@@ -39,7 +39,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.requestBodies.{{%s}}.content.{{%s}}", [r, c]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("components.requestBodies.{{%s}}.content.{{%s}} is set to 'multipart/form-data'", [r, c]),
+		"keyExpectedValue": sprintf("components.requestBodies.{{%s}}.content.{{%s}} should be set to 'multipart/form-data'", [r, c]),
 		"keyActualValue": sprintf("components.requestBodies.{{%s}}.content.{{%s}} is not set to 'multipart/form-data'", [r, c]),
 	}
 }

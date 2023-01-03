@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), keyword]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Type %s does not have enum and constraining keywords", [type]),
+		"keyExpectedValue": sprintf("Type %s should not have enum and constraining keywords", [type]),
 		"keyActualValue": sprintf("Type %s has enum and %s", [type, keyword]),
 	}
 }

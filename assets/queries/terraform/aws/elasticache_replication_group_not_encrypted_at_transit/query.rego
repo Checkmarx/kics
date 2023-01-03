@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_elasticache_replication_group[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "The attribute 'transit_encryption_enabled' is set to true",
+		"keyExpectedValue": "The attribute 'transit_encryption_enabled' should be set to true",
 		"keyActualValue": "The attribute 'transit_encryption_enabled' is undefined",
 	}
 }
@@ -30,7 +30,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_elasticache_replication_group[%s].transit_encryption_enabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "The attribute 'transit_encryption_enabled' is set to true",
+		"keyExpectedValue": "The attribute 'transit_encryption_enabled' should be set to true",
 		"keyActualValue": "The attribute 'transit_encryption_enabled' is not set to true",
 	}
 }

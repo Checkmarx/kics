@@ -55,7 +55,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(deployment, name),
 		"searchKey": sprintf("aws_api_gateway_deployment[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_api_gateway_deployment[%s].stage_description is set", [name]),
+		"keyExpectedValue": sprintf("aws_api_gateway_deployment[%s].stage_description should be set", [name]),
 		"keyActualValue": sprintf("aws_api_gateway_deployment[%s].stage_description is undefined", [name]),
 	}
 }

@@ -1,0 +1,10 @@
+{
+  "id": "d5d1fe08-89db-440c-8725-b93223387309",
+  "queryName": "Serverless API Without Content Encoding",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Serverless should have API Gateway with Content Encoding enabled through the attribute 'minimumCompressionSize'. This value should be greater than -1 and smaller than 10485760",
+  "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/events/apigateway#compression",
+  "platform": "ServerlessFW",
+  "descriptionID": "2a9e728c"
+}

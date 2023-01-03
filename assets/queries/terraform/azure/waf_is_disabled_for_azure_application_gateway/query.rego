@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(gateway, name),
 		"searchKey": sprintf("azurerm_application_gateway[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_application_gateway[%s]' is set", [name]),
+		"keyExpectedValue": sprintf("'azurerm_application_gateway[%s]' should be set", [name]),
 		"keyActualValue": sprintf("'azurerm_application_gateway[%s]' is undefined", [name]),
 		"searchLine": common_lib.build_search_line(["resource","azurerm_application_gateway", name], []),
 	}

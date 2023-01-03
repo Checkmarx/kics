@@ -3,7 +3,7 @@
   "queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
   "severity": "MEDIUM",
   "category": "Build Process",
-  "descriptionText": "Use WORKDIR instead of proliferating instructions like RUN cd \u2026 && do-something, which are hard to read, troubleshoot, and maintain.",
+  "descriptionText": "When using RUN command 'cd' should only be used for full path. For relative path make use of WORKDIR command instead.",
   "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#workdir",
   "platform": "Dockerfile",
   "descriptionID": "edd9f7d3"

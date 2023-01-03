@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"issueType": "IncorrectValue",
 		"searchKey": sprintf("metadata.name={{%s}}.%s.allowedCapabilities", [metadata.name, specInfo.path]),
-		"keyExpectedValue": "PodSecurityPolicy does not have allowed capabilities",
+		"keyExpectedValue": "PodSecurityPolicy should not have allowed capabilities",
 		"keyActualValue": "PodSecurityPolicy has allowed capabilities",
 	}
 }

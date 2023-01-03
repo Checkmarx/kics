@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_compute_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'google_compute_instance[%s].service_account' is defined and not null", [name]),
+		"keyExpectedValue": sprintf("'google_compute_instance[%s].service_account' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'google_compute_instance[%s].service_account' is undefined or null", [name]),
 	}
 }
@@ -28,7 +28,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_compute_instance[%s].service_account", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'google_compute_instance[%s].service_account.email' is defined and not null", [name]),
+		"keyExpectedValue": sprintf("'google_compute_instance[%s].service_account.email' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'google_compute_instance[%s].service_account.email' is undefined or null", [name]),
 	}
 }

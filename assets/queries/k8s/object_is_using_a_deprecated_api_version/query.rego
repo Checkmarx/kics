@@ -35,6 +35,12 @@ CxPolicy[result] {
 			"Role": "rbac.authorization.k8s.io/v1",
 			"RoleBinding": "rbac.authorization.k8s.io/v1",
 		},
+		"batch/v1beta1": {
+			"CronJob": "batch/v1",
+		},
+		"policy/v1beta1": {
+			"PodDisruptionBudget": "policy/v1",
+		}
 	}
 
 	common_lib.valid_key(recommendedVersions[document.apiVersion], document.kind)

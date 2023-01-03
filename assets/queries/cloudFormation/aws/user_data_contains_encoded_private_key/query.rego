@@ -15,8 +15,8 @@ CxPolicy[result] {
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.UserData", [name]),
-		"issueType": "IncorrectValue", 
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.UserData' doesn't contain RSA Private Key", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.UserData' shouldn't contain RSA Private Key", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.UserData' contains RSA Private Key", [name]),
 	}
 }

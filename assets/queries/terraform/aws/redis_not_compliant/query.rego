@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_elasticache_cluster", name),
 		"searchKey": sprintf("aws_elasticache_cluster[%s].engine_version", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_elasticache_cluster[%s].engine_version is compliant with the requirements", [name]),
+		"keyExpectedValue": sprintf("aws_elasticache_cluster[%s].engine_version should be compliant with the requirements", [name]),
 		"keyActualValue": sprintf("aws_elasticache_cluster[%s].engine_version isn't compliant with the requirements", [name]),
 	}
 }

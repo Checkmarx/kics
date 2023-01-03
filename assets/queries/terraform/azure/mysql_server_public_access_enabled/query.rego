@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_mysql_server[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_mysql_server[%s].public_network_access_enabled' is defined", [name]),
+		"keyExpectedValue": sprintf("'azurerm_mysql_server[%s].public_network_access_enabled' should be defined", [name]),
 		"keyActualValue": sprintf("'azurerm_mysql_server[%s].public_network_access_enabled' is undefined", [name]),
 		"searchLine": common_lib.build_search_line(["resource","azurerm_mysql_server" ,name], []),
 		"remediation": "public_network_access_enabled = false",
@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_mysql_server[%s].public_network_access_enabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_mysql_server[%s].public_network_access_enabled' is set to false", [name]),
+		"keyExpectedValue": sprintf("'azurerm_mysql_server[%s].public_network_access_enabled' should be set to false", [name]),
 		"keyActualValue": sprintf("'azurerm_mysql_server[%s].public_network_access_enabled' is set to true", [name]),
 		"searchLine": common_lib.build_search_line(["resource","azurerm_mysql_server" ,name, "public_network_access_enabled"], []),
 		"remediation": json.marshal({

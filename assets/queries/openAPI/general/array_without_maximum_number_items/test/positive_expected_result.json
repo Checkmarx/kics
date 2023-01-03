@@ -2,37 +2,37 @@
   {
     "queryName": "Array Without Maximum Number of Items (v3)",
     "severity": "HIGH",
-    "line": 57,
+    "line": 56,
     "filename": "positive1.json"
   },
   {
     "queryName": "Array Without Maximum Number of Items (v3)",
     "severity": "HIGH",
-    "line": 29,
+    "line": 28,
     "filename": "positive2.json"
   },
   {
     "queryName": "Array Without Maximum Number of Items (v3)",
     "severity": "HIGH",
-    "line": 33,
+    "line": 32,
     "filename": "positive3.yaml"
   },
   {
     "queryName": "Array Without Maximum Number of Items (v3)",
     "severity": "HIGH",
-    "line": 21,
+    "line": 20,
     "filename": "positive4.yaml"
   },
   {
     "queryName": "Array Without Maximum Number of Items (v2)",
     "severity": "HIGH",
-    "line": 32,
+    "line": 31,
     "filename": "positive5.json"
   },
   {
     "queryName": "Array Without Maximum Number of Items (v2)",
     "severity": "HIGH",
-    "line": 24,
+    "line": 23,
     "filename": "positive6.yaml"
   }
 ]

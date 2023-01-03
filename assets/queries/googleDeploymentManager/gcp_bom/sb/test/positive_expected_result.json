@@ -1,0 +1,32 @@
+[
+	{
+		"queryName": "BOM - GCP SB",
+		"severity": "TRACE",
+		"line": 2,
+		"fileName": "positive.yaml"
+	},
+	{
+		"queryName": "BOM - GCP SB",
+		"severity": "TRACE",
+		"line": 12,
+		"fileName": "positive.yaml"
+	},
+	{
+		"queryName": "BOM - GCP SB",
+		"severity": "TRACE",
+		"line": 20,
+		"fileName": "positive.yaml"
+	},
+	{
+		"queryName": "BOM - GCP SB",
+		"severity": "TRACE",
+		"line": 33,
+		"fileName": "positive.yaml"
+	},
+	{
+		"queryName": "BOM - GCP SB",
+		"severity": "TRACE",
+		"line": 44,
+		"fileName": "positive.yaml"
+	}
+]

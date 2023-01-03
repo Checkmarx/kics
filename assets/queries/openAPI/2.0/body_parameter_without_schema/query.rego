@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.name=%s", [searchKey, param.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'schema' is set",
+		"keyExpectedValue": "'schema' should be set",
 		"keyActualValue": "'schema' is undefined",
 	}
 }

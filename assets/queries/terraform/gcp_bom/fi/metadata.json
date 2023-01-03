@@ -1,0 +1,12 @@
+{
+    "id": "c9d81239-c818-4869-9917-1570c62b81fd",
+    "queryName": "BOM - GCP FI",
+    "severity": "TRACE",
+    "category": "Bill Of Materials",
+    "descriptionText": "A list of Filestore Instance resources found. Filestore instances are fully managed file servers on Google Cloud that can be connected to Compute Engine VMs, GKE clusters, and your on-premises machines. Once provisioned, you can scale the capacity of your instances according to need without any downtime.",
+    "descriptionUrl": "https://kics.io",
+    "platform": "Terraform",
+    "descriptionID": "4a45b126",
+    "cloudProvider": "gcp"
+  }
+  

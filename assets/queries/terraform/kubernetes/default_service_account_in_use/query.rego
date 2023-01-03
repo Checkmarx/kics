@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_service_account[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("kubernetes_service_account[%s].automount_service_account_token is set", [name]),
+		"keyExpectedValue": sprintf("kubernetes_service_account[%s].automount_service_account_token should be set", [name]),
 		"keyActualValue": sprintf("kubernetes_service_account[%s].automount_service_account_token is undefined", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "kubernetes_service_account", name],[]),
 		"remediation": "automount_service_account_token = false",
@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_service_account[%s].automount_service_account_token", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_service_account[%s].automount_service_account_token is set to false", [name]),
+		"keyExpectedValue": sprintf("kubernetes_service_account[%s].automount_service_account_token should be set to false", [name]),
 		"keyActualValue": sprintf("kubernetes_service_account[%s].automount_service_account_token is not set to false", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "kubernetes_service_account", name],["automount_service_account_token"]),
 		"remediation": json.marshal({

@@ -1,0 +1,27 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "MSK Cluster with required properties.",
+  "Resources": {
+    "TestCluster": {
+      "Properties": {
+        "BrokerNodeGroupInfo": {
+          "ClientSubnets": [
+            "ReplaceWithSubnetId1",
+            "ReplaceWithSubnetId2",
+            "ReplaceWithSubnetId3"
+          ],
+          "ConnectivityInfo": {
+            "PublicAccess": {
+              "Type": "SERVICE_PROVIDED_EIPS"
+            }
+          },
+          "InstanceType": "kafka.m5.large"
+        },
+        "ClusterName": "ClusterWithRequiredProperties",
+        "KafkaVersion": "2.2.1",
+        "NumberOfBrokerNodes": 3
+      },
+      "Type": "AWS::MSK::Cluster"
+    }
+  }
+}

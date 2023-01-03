@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec", [metadata.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'spec.allowedHostPaths' is defined and not null",
+		"keyExpectedValue": "'spec.allowedHostPaths' should be defined and not null",
 		"keyActualValue": "'spec.allowedHostPaths' is undefined or null",
 		"searchLine": common_lib.build_search_line(["spec"], [])
 	}
@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.allowedHostPaths", [metadata.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'spec.allowedHostPaths[%d].readOnly' is set to true", [idx]),
+		"keyExpectedValue": sprintf("'spec.allowedHostPaths[%d].readOnly' should be set to true", [idx]),
 		"keyActualValue": sprintf("'spec.allowedHostPaths[%d].readOnly' is undefined or null", [idx]),
 		"searchLine": common_lib.build_search_line(["spec", "allowedHostPaths"], [idx])
 	}
@@ -55,7 +55,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.allowedHostPaths.readOnly", [metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'spec.allowedHostPaths[%d].readOnly' is set to true", [idx]),
+		"keyExpectedValue": sprintf("'spec.allowedHostPaths[%d].readOnly' should be set to true", [idx]),
 		"keyActualValue": sprintf("'spec.allowedHostPaths[%d].readOnly' is set to false", [idx]),
 		"searchLine": common_lib.build_search_line(["spec", "allowedHostPaths", idx], ["readOnly"])
 	}

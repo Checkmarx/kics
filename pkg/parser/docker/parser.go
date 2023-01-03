@@ -54,6 +54,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 	ignoreStruct := newIgnore()
 
 	args := make(map[string]string, 0)
+	envs := make(map[string]string, 0)
 
 	for _, child := range parsed.AST.Children {
 		child.Value = strings.ToLower(child.Value)
@@ -86,9 +87,15 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 		}
 
 		if child.Value != "arg" {
-			cmd.Value = resolveArgs(cmd.Value, args)
+			cmd.Value = resolveArgsAndEnvs(cmd.Value, args)
 		} else {
 			args = saveArgs(args, cmd.Value[0])
+		}
+
+		if child.Value != "env" {
+			cmd.Value = resolveArgsAndEnvs(cmd.Value, envs)
+		} else {
+			envs = saveEnvs(envs, cmd.Value)
 		}
 
 		if fromValue == "" {
@@ -149,11 +156,13 @@ func (p *Parser) GetResolvedFiles() map[string]model.ResolvedFile {
 	return make(map[string]model.ResolvedFile)
 }
 
-func resolveArgs(values []string, args map[string]string) []string {
+func resolveArgsAndEnvs(values []string, args map[string]string) []string {
 	for i := range values {
 		for arg := range args {
-			ref := fmt.Sprintf("${%s}", arg)
-			values[i] = strings.Replace(values[i], ref, args[arg], 1)
+			ref1 := fmt.Sprintf("${%s}", arg)
+			values[i] = strings.Replace(values[i], ref1, args[arg], 1)
+			ref2 := fmt.Sprintf("$%s", arg)
+			values[i] = strings.Replace(values[i], ref2, args[arg], 1)
 		}
 	}
 
@@ -171,4 +180,11 @@ func saveArgs(args map[string]string, argValue string) map[string]string {
 	}
 
 	return args
+}
+
+func saveEnvs(envs map[string]string, envValues []string) map[string]string {
+	if len(envValues) == 2 {
+		envs[envValues[0]] = envValues[1]
+	}
+	return envs
 }

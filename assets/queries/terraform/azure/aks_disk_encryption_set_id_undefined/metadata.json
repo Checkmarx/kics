@@ -3,7 +3,7 @@
   "queryName": "AKS Disk Encryption Set ID Undefined",
   "severity": "MEDIUM",
   "category": "Encryption",
-  "descriptionText": "Azure Container Service (AKS) should use Disk Encryption Set ID",
+  "descriptionText": "Azure Container Service (AKS) should use Disk Encryption Set ID in supported types of disk",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster#disk_encryption_set_id",
   "platform": "Terraform",
   "descriptionID": "4eddeb5c",

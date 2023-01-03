@@ -9,7 +9,8 @@ CxPolicy[result] {
 	resourceType := resources[r]
 	resource := input.document[i].resource[resourceType][name]
 
-	not deny_http_requests(resource.policy)
+	policy_unmarshaled := common_lib.json_unmarshal(resource.policy)
+	not deny_http_requests(policy_unmarshaled)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -17,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_s3_bucket", name),
 		"searchKey": sprintf("%s[%s].policy", [resourceType, name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].policy does not accept HTTP Requests", [resourceType, name]),
+		"keyExpectedValue": sprintf("%s[%s].policy should not accept HTTP Requests", [resourceType, name]),
 		"keyActualValue": sprintf("%s[%s].policy accepts HTTP Requests", [resourceType, name]),
 		"searchLine": common_lib.build_search_line(["resource", resourceType, name, "policy"], []),
 	}
@@ -30,7 +31,8 @@ CxPolicy[result] {
 
 	policy := module[keyToCheck]
 
-	not deny_http_requests(policy)
+	policy_unmarshaled := common_lib.json_unmarshal(policy)
+	not deny_http_requests(policy_unmarshaled)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -38,7 +40,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'policy' does not accept HTTP Requests",
+		"keyExpectedValue": "'policy' should not accept HTTP Requests",
 		"keyActualValue": "'policy' accepts HTTP Requests",
 		"searchLine": common_lib.build_search_line(["module", name, "policy"], []),
 	}
@@ -67,15 +69,13 @@ is_equal(secure, target)
 }
 
 deny_http_requests(policyValue) {
-    policy := common_lib.json_unmarshal(policyValue)
-    st := common_lib.get_statement(policy)
+    st := common_lib.get_statement(policyValue)
     statement := st[_]
     check_action(statement)
     statement.Effect == "Deny"
     is_equal(statement.Condition.Bool["aws:SecureTransport"], "false")
 } else {
-    policy := common_lib.json_unmarshal(policyValue)
-    st := common_lib.get_statement(policy)
+    st := common_lib.get_statement(policyValue)
     statement := st[_]
     check_action(statement)
     statement.Effect == "Allow"

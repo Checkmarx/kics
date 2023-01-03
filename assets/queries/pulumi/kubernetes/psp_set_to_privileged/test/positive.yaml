@@ -1,0 +1,11 @@
+name: aws-eks
+runtime: yaml
+description: An EKS cluster
+resources:
+  example:
+    type: kubernetes:policy/v1beta1:PodSecurityPolicy
+    properties:
+      metadata:
+        name: example
+      spec:
+        privileged: true

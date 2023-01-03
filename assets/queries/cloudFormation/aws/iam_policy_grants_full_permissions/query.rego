@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.PolicyDocument", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' should not be equal to '*'",
+		"keyExpectedValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' should not equal to '*'",
 		"keyActualValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' are equal to '*'",
 		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "PolicyDocument"], []),
 	}

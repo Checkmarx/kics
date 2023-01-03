@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_security_group[{{%s}}].%s", [name, types[y]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_security_group[{{%s}}].%s description is defined and not null", [name, types[y]]),
+		"keyExpectedValue": sprintf("aws_security_group[{{%s}}].%s description should be defined and not null", [name, types[y]]),
 		"keyActualValue": sprintf("aws_security_group[{{%s}}].%s description is undefined or null", [name, types[y]]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, types[y]], []),
 	}
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_security_group[{{%s}}].%s", [name, types[y]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_security_group[{{%s}}].%s description is defined and not null", [name, types[y]]),
+		"keyExpectedValue": sprintf("aws_security_group[{{%s}}].%s description should be defined and not null", [name, types[y]]),
 		"keyActualValue": sprintf("aws_security_group[{{%s}}].%s description is undefined or null", [name, types[y]]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, types[y], resourceIndex], []),
 	}

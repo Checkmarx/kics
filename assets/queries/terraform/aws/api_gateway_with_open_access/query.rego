@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_api_gateway_method[%s].http_method", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_api_gateway_method.authorization is only 'NONE' if http_method is 'OPTIONS'",
+		"keyExpectedValue": "aws_api_gateway_method.authorization should only be 'NONE' if http_method is 'OPTIONS'",
 		"keyActualValue": sprintf("aws_api_gateway_method[%s].authorization type is 'NONE' and http_method is not ''OPTIONS'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_api_gateway_method", name, "http_method"], []),
 		"remediation": json.marshal({

@@ -22,7 +22,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].policy", [resourceType[idx], name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'policy.Statement.Action' doesn't contain '*'",
+		"keyExpectedValue": "'policy.Statement.Action' shouldn't contain '*'",
 		"keyActualValue": "'policy.Statement.Action' contains '*'",
 		"searchLine": common_lib.build_search_line(["resource", resourceType[idx], name, "policy"], []),
 	}

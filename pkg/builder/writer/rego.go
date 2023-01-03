@@ -48,11 +48,11 @@ func NewRegoWriter() (*RegoWriter, error) {
 				return r.Conditions[len(r.Conditions)-1]
 			},
 			"unescape": func(v string) template.HTML {
-				return template.HTML(v) // nolint:gosec
+				return template.HTML(v) //nolint:gosec
 			},
 			"innerKey": func(r RegoRule) template.HTML {
 				condition := r.Conditions[len(r.Conditions)-1]
-				return template.HTML(conditionKey(r.Block, condition, false, true)) // nolint:gosec
+				return template.HTML(conditionKey(r.Block, condition, false, true)) //nolint:gosec
 			},
 			"searchKey": func(r RegoRule) template.HTML {
 				format := "%%s[%%s].%s"
@@ -71,7 +71,7 @@ func NewRegoWriter() (*RegoWriter, error) {
 				}
 				format = fmt.Sprintf(format, conditionKey(r.Block, condition, false, true))
 
-				return template.HTML(fmt.Sprintf("sprintf(\"%s\", [%s])", format, strings.Join(vars, ", "))) // nolint
+				return template.HTML(fmt.Sprintf("sprintf(\"%s\", [%s])", format, strings.Join(vars, ", "))) //nolint
 			},
 		}).
 		ParseFiles("./pkg/builder/writer/template.gorego")

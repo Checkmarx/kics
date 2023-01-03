@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].extended_auditing_policy", [resource_type[t], name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'%s.extended_auditing_policy.retention_in_days' is bigger than 90", [name]),
+		"keyExpectedValue": sprintf("'%s.extended_auditing_policy.retention_in_days' should be bigger than 90", [name]),
 		"keyActualValue": "'extended_auditing_policy.retention_in_days' is not defined",
 		"searchLine": common_lib.build_search_line(["resource",resource_type[t] ,name, "extended_auditing_policy"], []),
 		"remediation": "retention_in_days = 200",
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].extended_auditing_policy.retention_in_days", [resource_type[t], name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s.extended_auditing_policy.retention_in_days' is bigger than 90", [name]),
+		"keyExpectedValue": sprintf("'%s.extended_auditing_policy.retention_in_days' should be bigger than 90", [name]),
 		"keyActualValue": sprintf("'extended_auditing_policy.retention_in_days' is %d", [var]),
 		"searchLine": common_lib.build_search_line(["resource",resource_type[t] ,name, "extended_auditing_policy", "retention_in_days"], []),
 		"remediation": json.marshal({

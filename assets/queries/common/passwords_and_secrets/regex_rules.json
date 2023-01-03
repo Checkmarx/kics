@@ -13,7 +13,8 @@
           "description": "Avoiding CF AllowUsersToChangePassword",
           "regex": "['\"]?AllowUsersToChangePassword['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]{4,})['\"]?"
         }
-      ]
+      ],
+      "specialMask": "(?i)['\"]?password['\"]?\\s*[:=]\\s*"
     },
     {
       "id": "3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99",
@@ -39,12 +40,13 @@
           "description": "Avoiding Secrets Manager arn",
           "regex": ":secretsmanager:[a-z0-9-]+:[0-9]+:(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{10,})['\"]?"
         }
-      ]
+      ],
+      "specialMask": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*"
     },
     {
       "id": "51b5b840-cd0c-4556-98a7-fe5f4def80cf",
       "name": "Asymmetric private key",
-      "regex": "-----BEGIN ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----(\\s*([A-Za-z0-9+\\/=\\n\\r]+))+\\s*-----END ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----",
+      "regex": "-----BEGIN ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----(\\s*([A-Za-z0-9+,:\\-\\/=\\n\\r]+))+\\s*-----END ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----",
       "multiline": {
         "detectLineGroup": 5
       },
@@ -54,7 +56,8 @@
           "min": 3.7,
           "max": 12
         }
-      ]
+      ],
+      "specialMask": "all"
     },
     {
       "id": "a007a85e-a2a7-4a81-803a-7a2ca0c65abb",
@@ -91,7 +94,8 @@
           "min": 4.8,
           "max": 7
         }
-      ]
+      ],
+      "specialMask": "(?i)AWS_SECRET(_ACCESS)?(_KEY)?\\s*[:=]\\s*"
     },
     {
       "id": "4b2b5fd3-364d-4093-bac2-17391b2a5297",
@@ -99,7 +103,8 @@
       "regex": "apiVersion((.*)\\s*)*env:((.*)\\s*)*name:\\s*\\w+(?i)pass((?i)word)?\\w*\\s*(value):\\s*([\"|'].*[\"|'])",
       "multiline": {
         "detectLineGroup": 7
-      }
+      },
+      "specialMask": "\\s*(value):\\s*"
     },
     {
       "id": "d651cca2-2156-4d17-8e76-423e68de5c8b",
@@ -188,7 +193,8 @@
           "description": "Avoiding Twilio API Key",
           "regex": "(?i)['\"]?api[_]?key['\"]?\\s*[:=]\\s*['\"]?(SK[0-9a-fA-F]{32})['\"]?"
         }
-      ]
+      ],
+      "specialMask": "(?i)['\"]?api[_]?key['\"]?\\s*[:=]\\s*"
     },
     {
       "id": "62d0025d-9575-4eff-b60b-d3b4fcec0d04",
@@ -208,7 +214,8 @@
     {
       "id": "2f665079-c383-4b33-896e-88268c1fa258",
       "name": "Generic Private Key",
-      "regex": "(?i)['\"]?private[_]?key['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
+      "regex": "(?i)['\"]?private[_]?key['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?",
+      "specialMask": "(?i)['\"]?private[_]?key['\"]?\\s*[:=]\\s*"
     },
     {
       "id": "baee238e-1921-4801-9c3f-79ae1d7b2cbc",
@@ -247,12 +254,15 @@
           "description": "Avoiding TF creation token",
           "regex": "(?i)['\"]?creation_token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
         }
-      ]
+      ],
+      "specialMask": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[:=]\\s*"
+
     },
     {
       "id": "e0f01838-b1c2-4669-b84b-981949ebe5ed",
       "name": "CloudFormation Secret Template",
-      "regex": "(?i)['\"]?SecretStringTemplate['\"]?\\s*:\\s*['\"]?{([\\\":A-Za-z0-9/~^_!@&%()=?*+-]{10,})}"
+      "regex": "(?i)['\"]?SecretStringTemplate['\"]?\\s*:\\s*['\"]?{([\\\":A-Za-z0-9/~^_!@&%()=?*+-]{10,})}",
+      "specialMask": "(?i)['\"]?SecretStringTemplate['\"]?\\s*:\\s*"
     },
     {
       "id": "9fb1cd65-7a07-4531-9bcf-47589d0f82d6",
@@ -263,7 +273,8 @@
           "description": "Avoiding TF resource access",
           "regex": "(?i)['\"]?encryption[_]?key['\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
         }
-      ]
+      ],
+      "specialMask": "(?i)['\"]?encryption[_]?key['\"]?\\s*[:=]\\s*"
     }
   ],
   "allowRules": [

@@ -87,6 +87,11 @@ resource "aws_msk_cluster" "positive1" {
   number_of_broker_nodes = 3
 
   broker_node_group_info {
+    connectivity_info {
+      public_access {
+        type = "SERVICE_PROVIDED_EIPS"
+      }
+    }
     instance_type   = "kafka.m5.large"
     ebs_volume_size = 1000
     client_subnets = [

@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(pg, name),
 		"searchKey": sprintf("azurerm_postgresql_server[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_postgresql_server[%s].infrastructure_encryption_enabled' is defined and set to true", [name]),
+		"keyExpectedValue": sprintf("'azurerm_postgresql_server[%s].infrastructure_encryption_enabled' should be defined and set to true", [name]),
 		"keyActualValue": sprintf("'azurerm_postgresql_server[%s].infrastructure_encryption_enabled' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_postgresql_server", name], []),
 		"remediation": "infrastructure_encryption_enabled = true",
@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(pg, name),
 		"searchKey": sprintf("azurerm_postgresql_server[%s].infrastructure_encryption_enabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_postgresql_server[%s].infrastructure_encryption_enabled' is set to true", [name]),
+		"keyExpectedValue": sprintf("'azurerm_postgresql_server[%s].infrastructure_encryption_enabled' should be set to true", [name]),
 		"keyActualValue": sprintf("'azurerm_postgresql_server[%s].infrastructure_encryption_enabled' is set to false", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_postgresql_server", name, "infrastructure_encryption_enabled"], []),
 		"remediation": json.marshal({

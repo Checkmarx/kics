@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.SubnetId", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.SubnetId is defined", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.SubnetId should be defined", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.SubnetId is not defined", [name]),
 	}
 }

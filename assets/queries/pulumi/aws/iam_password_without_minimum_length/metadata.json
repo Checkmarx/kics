@@ -1,0 +1,11 @@
+{
+  "id": "9850d621-7485-44f7-8bdd-b3cf426315cf",
+  "queryName": "IAM Password Without Minimum Length",
+  "severity": "MEDIUM",
+  "category": "Best Practices",
+  "descriptionText": "IAM password should have the required minimum length",
+  "descriptionUrl": "https://www.pulumi.com/registry/packages/aws/api-docs/iam/accountpasswordpolicy/#minimumpasswordlength_yaml",
+  "platform": "Pulumi",
+  "descriptionID": "5e46720a",
+  "cloudProvider": "aws"
+}

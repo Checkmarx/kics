@@ -1,0 +1,32 @@
+[
+	{
+		"queryName": "BOM - GCP PD",
+		"severity": "TRACE",
+		"line": 3,
+		"fileName": "positive.yaml"
+	},
+	{
+		"queryName": "BOM - GCP PD",
+		"severity": "TRACE",
+		"line": 11,
+		"fileName": "positive.yaml"
+	},
+	{
+		"queryName": "BOM - GCP PD",
+		"severity": "TRACE",
+		"line": 19,
+		"fileName": "positive.yaml"
+	},
+	{
+		"queryName": "BOM - GCP PD",
+		"severity": "TRACE",
+		"line": 24,
+		"fileName": "positive.yaml"
+	},
+	{
+		"queryName": "BOM - GCP PD",
+		"severity": "TRACE",
+		"line": 31,
+		"fileName": "positive.yaml"
+	}
+]

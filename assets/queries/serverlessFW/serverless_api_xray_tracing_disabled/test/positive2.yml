@@ -1,0 +1,7 @@
+service: my-service
+frameworkVersion: '2'
+provider:
+  name: aws
+  apiGateway:
+    minimumCompressionSize: 1024
+  tracing:

@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_network_watcher_flow_log[%s].retention_policy.days", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s.retention_policy.days' is bigger than 90)", [name]),
+		"keyExpectedValue": sprintf("'%s.retention_policy.days' should be bigger than 90)", [name]),
 		"keyActualValue": sprintf("'retention_policy.days' is less than 90 [%d])", [var]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_network_watcher_flow_log", name, "retention_policy", "days"], []),
 		"remediation": json.marshal({
@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_network_watcher_flow_log[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'%s.retention_policy' exists)", [name]),
+		"keyExpectedValue": sprintf("'%s.retention_policy' should exist)", [name]),
 		"keyActualValue": sprintf("'%s.retention_policy' doesn't exist)", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_network_watcher_flow_log", name], []),
 		"remediation": "retention_policy {\n\t\tenabled = true\n\t\tdays = 90\n\t}\n",

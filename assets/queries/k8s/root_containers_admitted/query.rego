@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.%s", [metadata.name, privilege[p]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.%s is set to 'false'", [metadata.name, privilege[p]]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.%s should be set to 'false'", [metadata.name, privilege[p]]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.spec.%s is set to 'true'", [metadata.name, privilege[p]]),
 	}
 }
@@ -80,7 +80,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.%s", [metadata.name, groups[p]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name{{%s}}.spec.%s does not allow range '0' (root)", [metadata.name, groups[p]]),
+		"keyExpectedValue": sprintf("metadata.name{{%s}}.spec.%s should not allow range '0' (root)", [metadata.name, groups[p]]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.spec.%s allows range '0' (root)", [metadata.name, groups[p]]),
 	}
 }

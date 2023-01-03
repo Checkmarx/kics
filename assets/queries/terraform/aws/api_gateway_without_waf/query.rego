@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(apiGateway, name),
 		"searchKey": sprintf("aws_api_gateway_stage[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "API Gateway Stage is associated with a Web Application Firewall",
+		"keyExpectedValue": "API Gateway Stage should be associated with a Web Application Firewall",
 		"keyActualValue": "API Gateway Stage is not associated with a Web Application Firewall",
         "searchLine": common_lib.build_search_line(["resource", "aws_api_gateway_stage", name], []),
 	}

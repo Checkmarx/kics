@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "--enable-admission-plugins flag contains 'AlwaysPullImages' plugin",
+		"keyExpectedValue": "--enable-admission-plugins flag should contain 'AlwaysPullImages' plugin",
 		"keyActualValue": "--enable-admission-plugins flag does not contain 'AlwaysPullImages' plugin",
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),
 	}

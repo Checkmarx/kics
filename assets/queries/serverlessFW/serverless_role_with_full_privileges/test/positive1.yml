@@ -1,0 +1,27 @@
+service: service
+frameworkVersion: '2' 
+provider:
+  name: aws
+  runtime: nodejs12.x
+  iam:
+    role:
+      name: custom-role-name
+      path: /custom-role-path/
+      statements:
+        - Effect: 'Allow'
+          Resource: '*'
+          Action: '*'
+      managedPolicies:
+        - 'arn:aws:iam::123456789012:user/*'
+      permissionsBoundary: arn:aws:iam::123456789012:policy/boundaries
+      tags:
+        key: value
+ 
+functions:
+  hello:
+    handler: handler.hello
+    onError: arn:aws:sns:us-east-1:XXXXXX:test
+    tags:
+      foo: bar
+    role: arn:aws:iam::XXXXXX:role/role
+    tracing: Active

@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_redshift_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_redshift_cluster[%s].%s is set", [name, attr]),
+		"keyExpectedValue": sprintf("aws_redshift_cluster[%s].%s should be set", [name, attr]),
 		"keyActualValue": sprintf("aws_redshift_cluster[%s].%s is undefined", [name, attr]),
 		"searchValue": sprintf("%s", [attr]),
 	}

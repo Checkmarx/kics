@@ -6,7 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	doc := input.document[i]
     resource := doc.resource.azurerm_app_service[name]
-    
+
     not common_lib.valid_key(resource, "client_cert_enabled")
 
 	result := {
@@ -15,11 +15,11 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_app_service[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_app_service[%s].client_cert_enabled' is defined", [name]),
+		"keyExpectedValue": sprintf("'azurerm_app_service[%s].client_cert_enabled' should be defined", [name]),
 		"keyActualValue": sprintf("'azurerm_app_service[%s].client_cert_enabeld' is undefined", [name]),
 		"searchLine": common_lib.build_search_line(["resource","azurerm_app_service" ,name], []),
 		"remediation": "client_cert_enabled = true",
-		"remediationType": "addition",		
+		"remediationType": "addition",
 	}
 }
 

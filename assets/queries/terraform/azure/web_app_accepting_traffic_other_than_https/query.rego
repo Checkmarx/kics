@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_app_service[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_app_service[%s].https_only' is set", [name]),
+		"keyExpectedValue": sprintf("'azurerm_app_service[%s].https_only' should be set", [name]),
 		"keyActualValue": sprintf("'azurerm_app_service[%s].https_only' is undefined", [name]),
 		"searchLine": common_lib.build_search_line(["resource","azurerm_app_service" ,name], []),
 		"remediation": "https_only = true",
@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_app_service[%s].https_only", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_app_service[%s].https_only' is set to true", [name]),
+		"keyExpectedValue": sprintf("'azurerm_app_service[%s].https_only' should be set to true", [name]),
 		"keyActualValue": sprintf("'azurerm_app_service[%s].https_only' is not set to true", [name]),
 		"searchLine": common_lib.build_search_line(["resource","azurerm_app_service" ,name, "https_only"], []),
 		"remediation": json.marshal({

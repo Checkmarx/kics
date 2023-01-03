@@ -22,7 +22,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.name={{%s}}", [resourceType, name, specInfo.path, types[x], containersType.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context is set", [resourceType, name, specInfo.path, types[x], containersType]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context should be set", [resourceType, name, specInfo.path, types[x], containersType]),
 		"keyActualValue": sprintf("k%s[%s].%s.%s[%d].security_context is undefined", [resourceType, name, specInfo.path, types[x], containersType]),
 		"searchLine": common_lib.build_search_line([resourceType, name, specInfo.path],[types[x]]),
 	}
@@ -43,7 +43,7 @@ CxPolicy[result] {
 		"resourceType": resourceType,
 		"searchKey": sprintf("%s[%s].%s.%s.name={{%s}}.security_context", [resourceType, name, specInfo.path, types[x], containers[j].name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.read_only_root_filesystem is set", [resourceType, name, specInfo.path, types[x], j]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.read_only_root_filesystem should be set", [resourceType, name, specInfo.path, types[x], j]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].security_context.read_only_root_filesystem is undefined", [resourceType, name, specInfo.path, types[x], j]),
 		"searchLine": common_lib.build_search_line([resourceType, name, specInfo.path],[types[x], "security_context"]),
 		"remediation": "read_only_root_filesystem = true",
@@ -55,7 +55,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 
 	specInfo := tf_lib.getSpecInfo(resource[name])
-	containers := specInfo.spec[types[x]]	
+	containers := specInfo.spec[types[x]]
 
 	is_array(containers) == true
 
@@ -68,7 +68,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.name={{%s}}.security_context.read_only_root_filesystem", [resourceType, name, specInfo.path, types[x], containers[y].name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.read_only_root_filesystem is set to true", [resourceType, name, specInfo.path, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.read_only_root_filesystem should be set to true", [resourceType, name, specInfo.path, types[x], y]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].security_context.read_only_root_filesystem is not set to true", [resourceType, name, specInfo.path, types[x], y]),
 		"searchLine": common_lib.build_search_line([resourceType, name, specInfo.path],[types[x], "security_context", "read_only_root_filesystem"]),
 		"remediation": json.marshal({
@@ -94,7 +94,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context is set", [resourceType, name, specInfo.path, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context should be set", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.security_context is undefined", [resourceType, name, specInfo.path, types[x]]),
 		"searchLine": common_lib.build_search_line([resourceType, name, specInfo.path],[types[x]]),
 	}
@@ -115,7 +115,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.security_context", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context.read_only_root_filesystem is set", [resourceType, name, specInfo.path, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context.read_only_root_filesystem should be set", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.security_context.read_only_root_filesystem is undefined", [resourceType, name, specInfo.path, types[x]]),
 		"searchLine": common_lib.build_search_line([resourceType, name, specInfo.path],[types[x], "security_context"]),
 		"remediation": "read_only_root_filesystem = true",
@@ -138,7 +138,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.security_context.read_only_root_filesystem", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context.read_only_root_filesystem is set to true", [resourceType, name, specInfo.path, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context.read_only_root_filesystem should be set to true", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.security_context.read_only_root_filesystem is not set to true", [resourceType, name, specInfo.path, types[x]]),
 		"searchLine": common_lib.build_search_line([resourceType, name, specInfo.path],[types[x], "security_context" ,"read_only_root_filesystem"]),
 		"remediation": json.marshal({

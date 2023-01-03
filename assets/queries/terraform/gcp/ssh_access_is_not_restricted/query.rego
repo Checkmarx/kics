@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(firewall, name),
 		"searchKey": sprintf("google_compute_firewall[%s].allow.ports=%s", [name, ports]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'google_compute_firewall[%s].allow.ports' does not include SSH port 22", [name]),
+		"keyExpectedValue": sprintf("'google_compute_firewall[%s].allow.ports' should not include SSH port 22", [name]),
 		"keyActualValue": sprintf("'google_compute_firewall[%s].allow.ports' includes SSH port 22", [name]),
 		"searchLine": common_lib.build_search_line(["google_compute_firewall", name, "allow", a, "ports"], []),
 	}
@@ -46,6 +46,17 @@ isSSHport(allow) = ports {
 	contains(allow.ports[j], "-") == false
 	to_number(allow.ports[j]) == 22
     ports := allow.ports[j]
+}
+
+isSSHport(allow) = ports {
+	not allow.ports
+    isTCPorAll(allow.protocol)
+    ports := "0-65535"
+}
+
+isTCPorAll(protocol) {
+	protocols := {"tcp", "all"}
+	lower(protocol) == protocols[_]
 }
 
 isInBounds(low, high) {

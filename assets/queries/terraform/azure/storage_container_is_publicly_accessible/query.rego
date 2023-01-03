@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_storage_container[%s].container_access_type", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'container_access_type' is equal to 'private'",
+		"keyExpectedValue": "'container_access_type' should equal to 'private'",
 		"keyActualValue": "'container_access_type' is not equal to 'private'",
 		"searchLine": common_lib.build_search_line(["resource","azurerm_storage_container" ,name, "container_access_type"], []),
 		"remediation": json.marshal({

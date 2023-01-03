@@ -1,0 +1,8 @@
+name: aws-eks
+runtime: yaml
+description: An EKS cluster
+resources:
+  example:
+    type: aws:iam:AccountPasswordPolicy
+    properties:
+      minimumPasswordLength: 14

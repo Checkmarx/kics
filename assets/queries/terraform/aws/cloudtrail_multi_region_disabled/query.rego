@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_cloudtrail", name], []),
 		"searchKey": sprintf("aws_cloudtrail[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_cloudtrail[%s].is_multi_region_trail is defined and not null", [name]),
+		"keyExpectedValue": sprintf("aws_cloudtrail[%s].is_multi_region_trail should be defined and not null", [name]),
 		"keyActualValue": sprintf("aws_cloudtrail[%s].is_multi_region_trail is undefined or null", [name]),
 		"remediation": "is_multi_region_trail = true",
 		"remediationType": "addition",
@@ -34,7 +34,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_cloudtrail[%s].is_multi_region_trail", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_cloudtrail", name, "is_multi_region_trail"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_cloudtrail[%s].is_multi_region_trail is set to true", [name]),
+		"keyExpectedValue": sprintf("aws_cloudtrail[%s].is_multi_region_trail should be set to true", [name]),
 		"keyActualValue": sprintf("aws_cloudtrail[%s].is_multi_region_trail is set to false", [name]),
 		"remediation": json.marshal({
 			"before": "false",
@@ -56,7 +56,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_cloudtrail[%s].include_global_service_events", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_cloudtrail", name, "include_global_service_events"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_cloudtrail[%s].include_global_service_events undefined or is set to true", [name]),
+		"keyExpectedValue": sprintf("aws_cloudtrail[%s].include_global_service_events should be undefined or set to true", [name]),
 		"keyActualValue": sprintf("aws_cloudtrail[%s].include_global_service_events is set to false", [name]),
 		"remediation": json.marshal({
 			"before": "false",

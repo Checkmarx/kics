@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "--authorization-mode flag contains 'RBAC' mode",
+		"keyExpectedValue": "--authorization-mode flag should contain 'RBAC' mode",
 		"keyActualValue": "--authorization-mode flag does not contain 'RBAC' mode",
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),
 	}

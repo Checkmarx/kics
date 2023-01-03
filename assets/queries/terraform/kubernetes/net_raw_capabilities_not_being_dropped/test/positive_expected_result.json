@@ -1,22 +1,22 @@
 [
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 8
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 8
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 8
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 140
   }
 ]

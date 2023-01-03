@@ -12,8 +12,8 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, cmdInst[0].Original]),
-		"issueType": "RedundantAttribute", 
-		"keyExpectedValue": "There is only one ENTRYPOINT instruction",
+		"issueType": "RedundantAttribute",
+		"keyExpectedValue": "There should be only one ENTRYPOINT instruction",
 		"keyActualValue": sprintf("There are %d ENTRYPOINT instructions", [count(cmdInst)]),
 	}
 }

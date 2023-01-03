@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cloudtrail[%s].event_selector", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'read_write_type' is defined and not null",
+		"keyExpectedValue": "'read_write_type' should be defined and not null",
 		"keyActualValue": "'read_write_type' is undefined or null",
 	}
 }
@@ -32,7 +32,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cloudtrail[%s].event_selector.read_write_type", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'read_write_type' is set to 'All'",
+		"keyExpectedValue": "'read_write_type' should be set to 'All'",
 		"keyActualValue": "'read_write_type' is not set to 'All'",
 	}
 }

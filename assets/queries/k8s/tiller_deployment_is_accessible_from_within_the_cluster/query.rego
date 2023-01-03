@@ -22,7 +22,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name=%s.spec.%s", [metadata.name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'spec.%s[%s].args' is set", [types[x], container.name]),
+		"keyExpectedValue": sprintf("'spec.%s[%s].args' should be set", [types[x], container.name]),
 		"keyActualValue": sprintf("'spec.%s[%s].args' is undefined", [types[x], container.name]),
 	}
 }
@@ -69,7 +69,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name=%s.spec.template.spec.%s", [metadata.name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'spec.template.spec.%s[%s].args' is set", [types[x], container.name]),
+		"keyExpectedValue": sprintf("'spec.template.spec.%s[%s].args' should be set", [types[x], container.name]),
 		"keyActualValue": sprintf("'spec.template.spec.%s[%s].args' is undefined", [types[x], container.name]),
 	}
 }

@@ -78,7 +78,7 @@ get_encryption(resource) = encryption {
 	resource.Properties.Encrypted == true
 	encryption := "encrypted"
 } else = encryption {
-	fields := {"KmsMasterKeyId", "EncryptionInfo", "EncryptionOptions", "BucketEncryption"}
+	fields := {"EncryptionSpecification", "KmsMasterKeyId", "EncryptionInfo", "EncryptionOptions", "BucketEncryption", "StreamEncryption"}
 	common_lib.valid_key(resource.Properties, fields[_])
 	encryption := "encrypted"
 } else = encryption {
@@ -247,4 +247,14 @@ get_resource_name(resource, resourceDefinitionName) = name {
 	name := common_lib.get_tag_name_if_exists(resource)
 } else = name {
 	name := resourceDefinitionName
+}
+
+getPath(path) = result {
+	count(path) > 0
+	path_string := common_lib.concat_path(path)
+	out := array.concat([path_string], ["."])
+	result := concat("", out)
+} else = result {
+	count(path) == 0
+	result := ""
 }

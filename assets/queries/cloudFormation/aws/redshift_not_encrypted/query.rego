@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.Encrypted is set", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Encrypted should be set", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.Encrypted is undefined", [name]),
 	}
 }
@@ -34,7 +34,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Encrypted", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.Encrypted is set to true", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Encrypted should be set to true", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.Encryped is set to false", [name]),
 	}
 }

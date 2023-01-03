@@ -4,6 +4,10 @@ You can integrate KICS into your Github Actions CI/CD pipelines with a specific 
 
 This provides you the ability to run KICS scans in your Github repositories and streamline vulnerabilities and misconfiguration checks to your infrastructure as code (IaC).
 
+#### Important note
+If you use a version from **v1.2 to v1.5 of the kics-github-action** it means you will be scanning your IaC files with **KICS version 1.5.15**.</br></br>
+In order to use **KICS version 1.6.x** to scan your files, you should use the **v1.6 of the kics-github-action**.
+
 #### Tutorial
 
 1. Edit the workflow file you want to integrate KICS in
@@ -12,7 +16,7 @@ This provides you the ability to run KICS scans in your Github repositories and 
 
 ```yaml
 - name: KICS Github Action
-  uses: Checkmarx/kics-github-action@latest
+  uses: Checkmarx/kics-github-action@v1.6
   with:
     # path to file or directory to scan
     path:
@@ -41,7 +45,7 @@ steps:
     # make sure results dir is created
     run: mkdir -p results-dir
   - name: run kics Scan
-    uses: checkmarx/kics-action@latest
+    uses: Checkmarx/kics-github-action@v1.6
     with:
       path: 'terraform'
       output_path: results-dir
@@ -71,7 +75,7 @@ An entry should describe the error and in which line it occurred:
       run: mkdir -p results-dir
     # Scan Iac with kics
     - name: run kics Scan
-      uses: checkmarx/kics-action@latest
+      uses: checkmarx/kics-github-action@latest
       with:
         path: 'terraform'
         output_path: results-dir
@@ -103,7 +107,7 @@ If you want your pipeline just to fail on HIGH, MEDIUM severity results and KICS
       # make sure results dir is created
       run: mkdir -p results-dir
     - name: run kics Scan
-      uses: checkmarx/kics-action@latest
+      uses: checkmarx/kics-github-action@latest
       with:
         path: 'terraform,my-other-sub-folder/Dockerfile'
         fail_on: high,medium
@@ -124,7 +128,7 @@ If you want KICS to ignore the results and return exit status code 0 unless a KI
       # make sure results dir is created
       run: mkdir -p results-dir
     - name: run kics Scan
-      uses: checkmarx/kics-action@latest
+      uses: checkmarx/kics-github-action@latest
       with:
         path: 'terraform'
         ignore_on_exit: results
@@ -148,7 +152,7 @@ You can only enable one profiler at a time, CPU or MEM.
       # make sure results dir is created
       run: mkdir -p results-dir
     - name: run kics Scan
-      uses: checkmarx/kics-action@latest
+      uses: checkmarx/kics-github-action@latest
       with:
         path: 'terraform'
         profiling: MEM
@@ -171,7 +175,7 @@ on:
 jobs:
   kics-job:
     runs-on: ubuntu-latest
-    name: kics-action
+    name: kics-github-action
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -179,7 +183,7 @@ jobs:
         # make sure results dir is created
         run: mkdir -p results-dir
       - name: Run KICS Scan with SARIF result
-        uses: checkmarx/kics-action@latest
+        uses: checkmarx/kics-github-action@latest
         with:
           path: 'terraform'
           # when provided with a directory on output_path
@@ -217,7 +221,7 @@ on:
 jobs:
   kics-job:
     runs-on: ubuntu-latest
-    name: kics-action
+    name: kics-github-action
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -244,7 +248,7 @@ jobs:
           }
           EOF
       - name: Run KICS Scan using config
-        uses: checkmarx/kics-action@latest
+        uses: checkmarx/kics-github-action@latest
         with:
           path: 'terraform'
           config_path: ./kics.config

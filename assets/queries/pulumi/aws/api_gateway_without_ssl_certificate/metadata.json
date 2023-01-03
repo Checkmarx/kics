@@ -1,0 +1,11 @@
+{
+  "id": "f27791a5-e2ae-4905-8910-6f995c576d09",
+  "queryName": "API Gateway Without SSL Certificate",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "SSL Client Certificate should be defined",
+  "descriptionUrl": "https://www.pulumi.com/registry/packages/aws/api-docs/apigatewayv2/stage/#clientcertificateid_yaml",
+  "platform": "Pulumi",
+  "descriptionID": "f7ced1f3",
+  "cloudProvider": "aws"
+}

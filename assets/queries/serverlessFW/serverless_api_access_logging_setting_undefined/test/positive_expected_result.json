@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Serverless API Access Logging Setting Undefined",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive1.yml"
+  }
+]
