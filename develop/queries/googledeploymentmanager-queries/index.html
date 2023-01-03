@@ -19,7 +19,7 @@
         <link rel="next" href="../grpc-queries/">
       
       <link rel="icon" href="../../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.0">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.1">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.f79797b0.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.3bd4f189.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
@@ -1399,6 +1399,8 @@
 
 <h2 id="googledeploymentmanager_queries_list">GoogleDeploymentManager Queries List<a class="headerlink" href="#googledeploymentmanager_queries_list" title="Permanent link">&para;</a></h2>
 <p>This page contains all queries from GoogleDeploymentManager.</p>
+<h3 id="gcp">GCP<a class="headerlink" href="#gcp" title="Permanent link">&para;</a></h3>
+<p>Bellow are listed queries related with GoogleDeploymentManager GCP:</p>
 <table>
 <thead>
 <tr>
@@ -1410,6 +1412,13 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>BigQuery Dataset Is Public<br/><sup><sub>83103dff-d57f-42a8-bd81-40abab64c1a7</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>BigQuery dataset is anonymously or publicly accessible. Attribute access.specialGroup should not contain 'allAuthenticatedUsers'</td>
+<td><a href="https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets">Documentation</a><br/></td>
+</tr>
 <tr>
 <td>Cloud Storage Bucket Is Publicly Accessible<br/><sup><sub>77c1fa3f-83dc-4c9d-bfed-e1d0cc8fd9dc</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
@@ -1423,13 +1432,6 @@
 <td>Access Control</td>
 <td>Cloud Storage Buckets must not be anonymously or publicly accessible, which means the subattribute 'entity' from attributes 'acl' and 'defaultObjectAcl' must not be 'allUsers' or 'allAuthenticatedUsers'</td>
 <td><a href="https://cloud.google.com/storage/docs/json_api/v1/buckets">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>BigQuery Dataset Is Public<br/><sup><sub>83103dff-d57f-42a8-bd81-40abab64c1a7</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Access Control</td>
-<td>BigQuery dataset is anonymously or publicly accessible. Attribute access.specialGroup should not contain 'allAuthenticatedUsers'</td>
-<td><a href="https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>SQL DB Instance Backup Disabled<br/><sup><sub>a5bf1a1c-92c7-401c-b4c6-ebdc8b686c01</sub></sup></td>
@@ -1453,13 +1455,6 @@
 <td><a href="https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/instances">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>GKE Legacy Authorization Enabled<br/><sup><sub>df58d46c-783b-43e0-bdd0-d99164f712ee</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Insecure Configurations</td>
-<td>Kubernetes Engine Clusters must have Legacy Authorization set to disabled, which means the attribute 'legacyAbac.enabled' must be false.</td>
-<td><a href="https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.LegacyAbac">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Cluster Master Authentication Disabled<br/><sup><sub>7ef7d141-9fbb-4679-a977-fd0883436906</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
@@ -1467,25 +1462,18 @@
 <td><a href="https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Cluster Labels Disabled<br/><sup><sub>8810968b-4b15-421d-918b-d91eb4bb8d1d</sub></sup></td>
+<td>Private Cluster Disabled<br/><sup><sub>48c61fbd-09c9-46cc-a521-012e0c325412</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
-<td>Kubernetes Clusters must be configured with labels, which means the attribute 'resourceLabels' must be defined</td>
+<td>Kubernetes Clusters must be created with Private Clusters enabled, meaning the 'privateClusterConfig' must be defined and the attributes 'enablePrivateEndpoint' and 'enablePrivateNodes' must be true.</td>
 <td><a href="https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>IP Aliasing Disabled<br/><sup><sub>28727987-e398-49b8-aef1-8a3e7789d111</sub></sup></td>
+<td>GKE Legacy Authorization Enabled<br/><sup><sub>df58d46c-783b-43e0-bdd0-d99164f712ee</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
-<td>Kubernetes Clusters must be created with Alias IP ranges enabled, which means the attribute 'ipAllocationPolicy' must be defined and the subattribute 'useIpAliases' must be set to 'true'.</td>
-<td><a href="https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Not Proper Email Account In Use<br/><sup><sub>a21b8df3-c840-4b3d-a41a-10fb2afda171</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Insecure Configurations</td>
-<td>Gmail accounts are being used instead of corporate credentials</td>
-<td><a href="https://cloud.google.com/deployment-manager/docs/configuration/set-access-control-resources">Documentation</a><br/></td>
+<td>Kubernetes Engine Clusters must have Legacy Authorization set to disabled, which means the attribute 'legacyAbac.enabled' must be false.</td>
+<td><a href="https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.LegacyAbac">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Network Policy Disabled<br/><sup><sub>c47f90e8-4a19-43f0-8413-cc434d286c4e</sub></sup></td>
@@ -1502,11 +1490,11 @@
 <td><a href="https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/instances">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Private Cluster Disabled<br/><sup><sub>48c61fbd-09c9-46cc-a521-012e0c325412</sub></sup></td>
+<td>Not Proper Email Account In Use<br/><sup><sub>a21b8df3-c840-4b3d-a41a-10fb2afda171</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
-<td>Kubernetes Clusters must be created with Private Clusters enabled, meaning the 'privateClusterConfig' must be defined and the attributes 'enablePrivateEndpoint' and 'enablePrivateNodes' must be true.</td>
-<td><a href="https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters">Documentation</a><br/></td>
+<td>Gmail accounts are being used instead of corporate credentials</td>
+<td><a href="https://cloud.google.com/deployment-manager/docs/configuration/set-access-control-resources">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Client Certificate Disabled<br/><sup><sub>dd690686-2bf9-4012-a821-f61912dd77be</sub></sup></td>
@@ -1516,11 +1504,18 @@
 <td><a href="https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>GKE Master Authorized Networks Disabled<br/><sup><sub>62c8cf50-87f0-4295-a974-8184ed78fe02</sub></sup></td>
+<td>Cluster Labels Disabled<br/><sup><sub>8810968b-4b15-421d-918b-d91eb4bb8d1d</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
-<td>Networking and Firewall</td>
-<td>Master authorized networks must be enabled in GKE clusters</td>
+<td>Insecure Configurations</td>
+<td>Kubernetes Clusters must be configured with labels, which means the attribute 'resourceLabels' must be defined</td>
 <td><a href="https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IP Aliasing Disabled<br/><sup><sub>28727987-e398-49b8-aef1-8a3e7789d111</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Kubernetes Clusters must be created with Alias IP ranges enabled, which means the attribute 'ipAllocationPolicy' must be defined and the subattribute 'useIpAliases' must be set to 'true'.</td>
+<td><a href="https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Compute Instance Is Publicly Accessible<br/><sup><sub>8212e2d7-e683-49bc-bf78-d6799075c5a7</sub></sup></td>
@@ -1528,6 +1523,13 @@
 <td>Networking and Firewall</td>
 <td>Compute instances shouldn't be accessible from the Internet.</td>
 <td><a href="https://cloud.google.com/compute/docs/reference/rest/v1/instances">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>GKE Master Authorized Networks Disabled<br/><sup><sub>62c8cf50-87f0-4295-a974-8184ed78fe02</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>Master authorized networks must be enabled in GKE clusters</td>
+<td><a href="https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Stackdriver Monitoring Disabled<br/><sup><sub>bbfc97ab-e92a-4a7b-954c-e88cec815011</sub></sup></td>
@@ -1565,27 +1567,6 @@
 <td><a href="https://cloud.google.com/compute/docs/reference/rest/v1/instances">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>OSLogin Is Disabled In VM Instance<br/><sup><sub>e66e1b71-c810-4b4e-a737-0ab59e7f5e41</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Insecure Configurations</td>
-<td>VM instance should have OSLogin enabled</td>
-<td><a href="https://cloud.google.com/compute/docs/reference/rest/v1/instances">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Cloud DNS Without DNSSEC<br/><sup><sub>313d6deb-3b67-4948-b41d-35b699c2492e</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Insecure Configurations</td>
-<td>DNSSEC must be enabled for Cloud DNS</td>
-<td><a href="https://cloud.google.com/dns/docs/reference/v1/managedZones">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Shielded VM Disabled<br/><sup><sub>9038b526-4c19-4928-bca2-c03d503bdb79</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Insecure Configurations</td>
-<td>Compute instances must be launched with Shielded VM enabled, which means the attribute 'shieldedInstanceConfig' must be defined and its sub attributes 'enableSecureBoot', 'enableVtpm' and 'enableIntegrityMonitoring' must be set to true</td>
-<td><a href="https://cloud.google.com/compute/docs/reference/rest/v1/instances">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>COS Node Image Not Used<br/><sup><sub>dbe058d7-b82e-430b-8426-992b2e4677e7</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
@@ -1600,11 +1581,25 @@
 <td><a href="https://cloud.google.com/storage/docs/json_api/v1/buckets">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>IP Forwarding Enabled<br/><sup><sub>7c98538a-81c6-444b-bf04-e60bc3ceeec0</sub></sup></td>
+<td>OSLogin Is Disabled In VM Instance<br/><sup><sub>e66e1b71-c810-4b4e-a737-0ab59e7f5e41</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
-<td>Networking and Firewall</td>
-<td>Instances must not have IP forwarding enabled, which means the attribute 'canIpForward' must not be true</td>
+<td>Insecure Configurations</td>
+<td>VM instance should have OSLogin enabled</td>
 <td><a href="https://cloud.google.com/compute/docs/reference/rest/v1/instances">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Shielded VM Disabled<br/><sup><sub>9038b526-4c19-4928-bca2-c03d503bdb79</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Compute instances must be launched with Shielded VM enabled, which means the attribute 'shieldedInstanceConfig' must be defined and its sub attributes 'enableSecureBoot', 'enableVtpm' and 'enableIntegrityMonitoring' must be set to true</td>
+<td><a href="https://cloud.google.com/compute/docs/reference/rest/v1/instances">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Cloud DNS Without DNSSEC<br/><sup><sub>313d6deb-3b67-4948-b41d-35b699c2492e</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>DNSSEC must be enabled for Cloud DNS</td>
+<td><a href="https://cloud.google.com/dns/docs/reference/v1/managedZones">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>SSH Access Is Not Restricted<br/><sup><sub>dee21308-2a7a-49de-8ff7-c9b87e188575</sub></sup></td>
@@ -1621,6 +1616,13 @@
 <td><a href="https://cloud.google.com/compute/docs/reference/rest/v1/firewalls">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>IP Forwarding Enabled<br/><sup><sub>7c98538a-81c6-444b-bf04-e60bc3ceeec0</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Instances must not have IP forwarding enabled, which means the attribute 'canIpForward' must not be true</td>
+<td><a href="https://cloud.google.com/compute/docs/reference/rest/v1/instances">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Bucket Without Versioning<br/><sup><sub>227c2f58-70c6-4432-8e9a-a89c1a548cf5</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
@@ -1633,6 +1635,54 @@
 <td>Secret Management</td>
 <td>VM Instance should block project-wide SSH keys</td>
 <td><a href="https://cloud.google.com/compute/docs/reference/rest/v1/instances">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>### GCP_BOM</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Bellow are listed queries related with GoogleDeploymentManager GCP_BOM:</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Severity</th>
+<th>Category</th>
+<th>Description</th>
+<th>Help</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BOM - GCP SB<br/><sup><sub>c7781feb-a955-4f9f-b9cf-0d7c6f54bb59</sub></sup></td>
+<td><span style="color:#CCC">Trace</span></td>
+<td>Bill Of Materials</td>
+<td>A list of Storage Bucket resources found. Buckets are the basic containers that hold your data. Everything that you store in Cloud Storage must be contained in a bucket.</td>
+<td><a href="https://kics.io">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>BOM - GCP PD<br/><sup><sub>268c65a8-58ad-43e4-9019-1a9bbc56749f</sub></sup></td>
+<td><span style="color:#CCC">Trace</span></td>
+<td>Bill Of Materials</td>
+<td>A list of Persistent Disk resources found. Persistent Disk is Google's local durable storage service, fully integrated with Google Cloud products, Compute Engine and Google Kubernetes Engine.</td>
+<td><a href="https://kics.io">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>BOM - GCP PST<br/><sup><sub>9ed08714-b2f3-4c6d-8fb0-ac0b74ad71d8</sub></sup></td>
+<td><span style="color:#CCC">Trace</span></td>
+<td>Bill Of Materials</td>
+<td>A list of Pub/Sub Topic resources found. Cloud Pub/Sub is designed to provide reliable, many-to-many, asynchronous messaging between applications. Publisher applications can send messages to a 'topic' and other applications can subscribe to that topic to receive the messages.</td>
+<td><a href="https://kics.io">Documentation</a><br/></td>
 </tr>
 </tbody>
 </table>

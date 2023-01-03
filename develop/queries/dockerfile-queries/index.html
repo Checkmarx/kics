@@ -19,7 +19,7 @@
         <link rel="next" href="../dockercompose-queries/">
       
       <link rel="icon" href="../../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.0">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.1">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.f79797b0.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.3bd4f189.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
@@ -1418,6 +1418,20 @@
 <td><a href="https://docs.docker.com/engine/reference/builder/#expose">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Missing User Instruction<br/><sup><sub>fd54f200-402c-4333-a5a4-36ef6709af2f</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Build Process</td>
+<td>A user should be specified in the dockerfile, otherwise the image will run as root</td>
+<td><a href="https://docs.docker.com/engine/reference/builder/#user">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Same Alias In Different Froms<br/><sup><sub>f2daed12-c802-49cd-afed-fe41d0b82fed</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Build Process</td>
+<td>Different FROMS cant have the same alias defined</td>
+<td><a href="https://docs.docker.com/develop/develop-images/multistage-build/">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>COPY '--from' References Current FROM Alias<br/><sup><sub>cdddb86f-95f6-4fc4-b5a1-483d9afceb2b</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Build Process</td>
@@ -1437,20 +1451,6 @@
 <td>Build Process</td>
 <td>There can only be one ENTRYPOINT instruction in a Dockerfile. Only the last ENTRYPOINT instruction in the Dockerfile will have an effect</td>
 <td><a href="https://docs.docker.com/engine/reference/builder/#entrypoint">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Same Alias In Different Froms<br/><sup><sub>f2daed12-c802-49cd-afed-fe41d0b82fed</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Build Process</td>
-<td>Different FROMS cant have the same alias defined</td>
-<td><a href="https://docs.docker.com/develop/develop-images/multistage-build/">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Missing User Instruction<br/><sup><sub>fd54f200-402c-4333-a5a4-36ef6709af2f</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Build Process</td>
-<td>A user should be specified in the dockerfile, otherwise the image will run as root</td>
-<td><a href="https://docs.docker.com/engine/reference/builder/#user">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>WORKDIR Path Not Absolute<br/><sup><sub>6b376af8-cfe8-49ab-a08d-f32de23661a4</sub></sup></td>
@@ -1474,13 +1474,6 @@
 <td><a href="https://mta.openssl.org/pipermail/openssl-announce/2022-October/000238.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Last User Is 'root'<br/><sup><sub>67fd0c4a-68cf-46d7-8c41-bc9fba7e40ae</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Best Practices</td>
-<td>Leaving the last user as root can cause security risks. Change to another user after running the commands the need privileges</td>
-<td><a href="https://docs.docker.com/engine/reference/builder/#user">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Changing Default Shell Using RUN Command<br/><sup><sub>8a301064-c291-4b20-adcb-403fe7fd95fd</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Best Practices</td>
@@ -1488,18 +1481,11 @@
 <td><a href="https://docs.docker.com/engine/reference/builder/#shell">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Update Instruction Alone<br/><sup><sub>9bae49be-0aa3-4de5-bab2-4c3a069e40cd</sub></sup></td>
+<td>Last User Is 'root'<br/><sup><sub>67fd0c4a-68cf-46d7-8c41-bc9fba7e40ae</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
-<td>Build Process</td>
-<td>Instruction 'RUN <package-manager> update' should always be followed by '<package-manager> install' in the same RUN statement</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>RUN Instruction Using 'cd' Instead of WORKDIR<br/><sup><sub>f4a6bcd3-e231-4acf-993c-aa027be50d2e</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Build Process</td>
-<td>When using RUN command 'cd' should only be used for full path. For relative path make use of WORKDIR command instead.</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#workdir">Documentation</a><br/></td>
+<td>Best Practices</td>
+<td>Leaving the last user as root can cause security risks. Change to another user after running the commands the need privileges</td>
+<td><a href="https://docs.docker.com/engine/reference/builder/#user">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Multiple CMD Instructions Listed<br/><sup><sub>41c195f4-fc31-4a5c-8a1b-90605538d49f</sub></sup></td>
@@ -1509,11 +1495,25 @@
 <td><a href="https://docs.docker.com/engine/reference/builder/#cmd">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>RUN Instruction Using 'cd' Instead of WORKDIR<br/><sup><sub>f4a6bcd3-e231-4acf-993c-aa027be50d2e</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Build Process</td>
+<td>When using RUN command 'cd' should only be used for full path. For relative path make use of WORKDIR command instead.</td>
+<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#workdir">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Not Using JSON In CMD And ENTRYPOINT Arguments<br/><sup><sub>b86987e1-6397-4619-81d5-8807f2387c79</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Build Process</td>
 <td>Ensure that we are using JSON in the CMD and ENTRYPOINT Arguments</td>
 <td><a href="https://docs.docker.com/engine/reference/builder/#entrypoint">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Update Instruction Alone<br/><sup><sub>9bae49be-0aa3-4de5-bab2-4c3a069e40cd</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Build Process</td>
+<td>Instruction 'RUN <package-manager> update' should always be followed by '<package-manager> install' in the same RUN statement</td>
+<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Shell Running A Pipe Without Pipefail Flag<br/><sup><sub>efbf148a-67e9-42d2-ac47-02fa1c0d0b22</sub></sup></td>
@@ -1523,11 +1523,18 @@
 <td><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>APT-GET Missing '-y' To Avoid Manual Input<br/><sup><sub>77783205-c4ca-4f80-bb80-c777f267c547</sub></sup></td>
+<td>Yum Clean All Missing<br/><sup><sub>00481784-25aa-4a55-8633-3136dfcf4f37</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Supply-Chain</td>
-<td>Check if apt-get calls use the flag -y to avoid user manual input.</td>
-<td><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
+<td>Need to use 'yum clean all' after using a 'yum install' command to clean package cached data and reduce image size</td>
+<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Image Version Using 'latest'<br/><sup><sub>f45ea400-6bbe-4501-9fc7-1c3d75c32067</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Supply-Chain</td>
+<td>When building images, always tag them with useful tags which codify version information, intended destination (prod or test, for instance), stability, or other information that is useful when deploying the application in different environments. Do not rely on the automatically-created latest tag</td>
+<td><a href="https://docs.docker.com/develop/dev-best-practices/">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Add Instead of Copy<br/><sup><sub>9513a694-aa0d-41d8-be61-3271e056f36b</sub></sup></td>
@@ -1537,32 +1544,18 @@
 <td><a href="https://docs.docker.com/engine/reference/builder/#add">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Unpinned Package Version in Apk Add<br/><sup><sub>d3499f6d-1651-41bb-a9a7-de925fea487b</sub></sup></td>
+<td>Zypper Install Without Version<br/><sup><sub>562952e4-0348-4dea-9826-44f3a2c6117b</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Supply-Chain</td>
-<td>Package version pinning reduces the range of versions that can be installed, reducing the chances of failure due to unanticipated changes</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Missing Flag From Dnf Install<br/><sup><sub>7ebd323c-31b7-4e5b-b26f-de5e9e477af8</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Supply-Chain</td>
-<td>The '-y' or '--assumeyes' flag should be added when invoking dnf install. If omitted, it can cause the command to fail during the build process, because dnf would expect manual input.</td>
+<td>Not specifying the package version can cause failures due to unanticipated changes in required packages</td>
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Yum Clean All Missing<br/><sup><sub>00481784-25aa-4a55-8633-3136dfcf4f37</sub></sup></td>
+<td>Gem Install Without Version<br/><sup><sub>22cd11f7-9c6c-4f6e-84c0-02058120b341</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Supply-Chain</td>
-<td>Need to use 'yum clean all' after using a 'yum install' command to clean package cached data and reduce image size</td>
+<td>Instead of 'gem install <gem>' we should use 'gem install <gem>:<version>'</td>
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Pip install Keeping Cached Packages<br/><sup><sub>f2f903fb-b977-461e-98d7-b3e2185c6118</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Supply-Chain</td>
-<td>When installing packages with pip, the '--no-cache-dir' flag should be set to make Docker images smaller</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>NPM Install Command Without Pinned Version<br/><sup><sub>e36d8880-3f78-4546-b9a1-12f0745ca0d5</sub></sup></td>
@@ -1579,6 +1572,48 @@
 <td><a href="https://docs.docker.com/engine/reference/builder/#from">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Yum Install Allows Manual Input<br/><sup><sub>6e19193a-8753-436d-8a09-76dcff91bb03</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Supply-Chain</td>
+<td>Need to use -y to avoid manual input 'yum install -y <package>'</td>
+<td><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Missing Zypper Clean<br/><sup><sub>38300d1a-feb2-4a48-936a-d1ef1cd24313</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Supply-Chain</td>
+<td>Reduce layer and image size by deleting unneeded caches after running zypper</td>
+<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Run Using apt<br/><sup><sub>b84a0b47-2e99-4c9f-8933-98bcabe2b94d</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Supply-Chain</td>
+<td>apt is discouraged by the linux distributions as an unattended tool as its interface may suffer changes between versions. Better use the more stable apt-get and apt-cache</td>
+<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Pip install Keeping Cached Packages<br/><sup><sub>f2f903fb-b977-461e-98d7-b3e2185c6118</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Supply-Chain</td>
+<td>When installing packages with pip, the '--no-cache-dir' flag should be set to make Docker images smaller</td>
+<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Using Platform Flag with FROM Command<br/><sup><sub>b16e8501-ef3c-44e1-a543-a093238099c9</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Supply-Chain</td>
+<td>Don't use '--platform' flag with FROM</td>
+<td><a href="https://docs.docker.com/engine/reference/builder/#from">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Missing Dnf Clean All<br/><sup><sub>295acb63-9246-4b21-b441-7c1f1fb62dc0</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Supply-Chain</td>
+<td>Cached package data should be cleaned after installation to reduce image size</td>
+<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Missing Zypper Non-interactive Switch<br/><sup><sub>45e1fca5-f90e-465d-825f-c2cb63fa3944</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Supply-Chain</td>
@@ -1586,17 +1621,10 @@
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Zypper Install Without Version<br/><sup><sub>562952e4-0348-4dea-9826-44f3a2c6117b</sub></sup></td>
+<td>Unpinned Package Version in Apk Add<br/><sup><sub>d3499f6d-1651-41bb-a9a7-de925fea487b</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Supply-Chain</td>
-<td>Not specifying the package version can cause failures due to unanticipated changes in required packages</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Apt Get Install Pin Version Not Defined<br/><sup><sub>965a08d7-ef86-4f14-8792-4a3b2098937e</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Supply-Chain</td>
-<td>When installing a package, its pin version should be defined</td>
+<td>Package version pinning reduces the range of versions that can be installed, reducing the chances of failure due to unanticipated changes</td>
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -1607,13 +1635,6 @@
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Missing Dnf Clean All<br/><sup><sub>295acb63-9246-4b21-b441-7c1f1fb62dc0</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Supply-Chain</td>
-<td>Cached package data should be cleaned after installation to reduce image size</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Unpinned Package Version in Pip Install<br/><sup><sub>02d9c71f-3ee8-4986-9c27-1a20d0d19bfc</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Supply-Chain</td>
@@ -1621,39 +1642,11 @@
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Run Using apt<br/><sup><sub>b84a0b47-2e99-4c9f-8933-98bcabe2b94d</sub></sup></td>
+<td>APT-GET Missing '-y' To Avoid Manual Input<br/><sup><sub>77783205-c4ca-4f80-bb80-c777f267c547</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Supply-Chain</td>
-<td>apt is discouraged by the linux distributions as an unattended tool as its interface may suffer changes between versions. Better use the more stable apt-get and apt-cache</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Using Platform Flag with FROM Command<br/><sup><sub>b16e8501-ef3c-44e1-a543-a093238099c9</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Supply-Chain</td>
-<td>Don't use '--platform' flag with FROM</td>
-<td><a href="https://docs.docker.com/engine/reference/builder/#from">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Missing Zypper Clean<br/><sup><sub>38300d1a-feb2-4a48-936a-d1ef1cd24313</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Supply-Chain</td>
-<td>Reduce layer and image size by deleting unneeded caches after running zypper</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Run Using 'wget' and 'curl'<br/><sup><sub>fc775e75-fcfb-4c98-b2f2-910c5858b359</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Supply-Chain</td>
-<td>Shouldn't use both 'wget' and 'curl' since they are two tools that have the same effect</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Image Version Using 'latest'<br/><sup><sub>f45ea400-6bbe-4501-9fc7-1c3d75c32067</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Supply-Chain</td>
-<td>When building images, always tag them with useful tags which codify version information, intended destination (prod or test, for instance), stability, or other information that is useful when deploying the application in different environments. Do not rely on the automatically-created latest tag</td>
-<td><a href="https://docs.docker.com/develop/dev-best-practices/">Documentation</a><br/></td>
+<td>Check if apt-get calls use the flag -y to avoid user manual input.</td>
+<td><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Missing Version Specification In dnf install<br/><sup><sub>93d88cf7-f078-46a8-8ddc-178e03aeacf1</sub></sup></td>
@@ -1663,25 +1656,25 @@
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Yum Install Allows Manual Input<br/><sup><sub>6e19193a-8753-436d-8a09-76dcff91bb03</sub></sup></td>
+<td>Missing Flag From Dnf Install<br/><sup><sub>7ebd323c-31b7-4e5b-b26f-de5e9e477af8</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Supply-Chain</td>
-<td>Need to use -y to avoid manual input 'yum install -y <package>'</td>
-<td><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Gem Install Without Version<br/><sup><sub>22cd11f7-9c6c-4f6e-84c0-02058120b341</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Supply-Chain</td>
-<td>Instead of 'gem install <gem>' we should use 'gem install <gem>:<version>'</td>
+<td>The '-y' or '--assumeyes' flag should be added when invoking dnf install. If omitted, it can cause the command to fail during the build process, because dnf would expect manual input.</td>
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Chown Flag Exists<br/><sup><sub>aa93e17f-b6db-4162-9334-c70334e7ac28</sub></sup></td>
-<td><span style="color:#CC0">Low</span></td>
-<td>Best Practices</td>
-<td>It is considered a best practice for every executable in a container to be owned by the root user even if it is executed by a non-root user, only execution permissions are required on the file, not ownership</td>
+<td>Apt Get Install Pin Version Not Defined<br/><sup><sub>965a08d7-ef86-4f14-8792-4a3b2098937e</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Supply-Chain</td>
+<td>When installing a package, its pin version should be defined</td>
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Run Using 'wget' and 'curl'<br/><sup><sub>fc775e75-fcfb-4c98-b2f2-910c5858b359</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Supply-Chain</td>
+<td>Shouldn't use both 'wget' and 'curl' since they are two tools that have the same effect</td>
+<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>MAINTAINER Instruction Being Used<br/><sup><sub>99614418-f82b-4852-a9ae-5051402b741c</sub></sup></td>
@@ -1712,6 +1705,13 @@
 <td><a href="https://sysdig.com/blog/dockerfile-best-practices/">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Chown Flag Exists<br/><sup><sub>aa93e17f-b6db-4162-9334-c70334e7ac28</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Best Practices</td>
+<td>It is considered a best practice for every executable in a container to be owned by the root user even if it is executed by a non-root user, only execution permissions are required on the file, not ownership</td>
+<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Using Unnamed Build Stages<br/><sup><sub>68a51e22-ae5a-4d48-8e87-b01a323605c9</sub></sup></td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Build Process</td>
@@ -1740,18 +1740,18 @@
 <td><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Run Utilities And POSIX Commands<br/><sup><sub>9b6b0f38-92a2-41f9-b881-3a1083d99f1b</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Supply-Chain</td>
-<td>Some POSIX commands and interactive utilities shouldn't run inside a Docker Container</td>
-<td><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Apt Get Install Lists Were Not Deleted<br/><sup><sub>df746b39-6564-4fed-bf85-e9c44382303c</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Supply-Chain</td>
 <td>After using apt-get install, it is needed to delete apt-get lists</td>
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Run Utilities And POSIX Commands<br/><sup><sub>9b6b0f38-92a2-41f9-b881-3a1083d99f1b</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Supply-Chain</td>
+<td>Some POSIX commands and interactive utilities shouldn't run inside a Docker Container</td>
+<td><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
 </tr>
 </tbody>
 </table>
