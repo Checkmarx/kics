@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.properties.%s.required.%s", [openapi_lib.concat_path(path), name, requiredProperty]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s.properties.%s.required.%s is defined", [openapi_lib.concat_path(path), name, requiredProperty]),
+		"keyExpectedValue": sprintf("%s.properties.%s.required.%s should be defined", [openapi_lib.concat_path(path), name, requiredProperty]),
 		"keyActualValue": sprintf("%s.properties.%s.required.%s is missing", [openapi_lib.concat_path(path), name, requiredProperty]),
 		"overrideKey": version,
 	}

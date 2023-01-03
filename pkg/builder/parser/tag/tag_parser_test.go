@@ -7,7 +7,7 @@ import (
 )
 
 // TestParseTags tests the functions [Parse()] and all the methods called by them (check for equal flags)
-func TestParseTags(t *testing.T) { // nolint
+func TestParseTags(t *testing.T) { //nolint
 	t.Run("empty", func(t *testing.T) {
 		tags, err := Parse("", []string{"test2"})
 		require.NoError(t, err)
@@ -44,7 +44,7 @@ func TestParseTags(t *testing.T) { // nolint
 	})
 
 	t.Run("just_many_comments", func(t *testing.T) {
-		tags, err := Parse("// a:\"something,expected=private,test=false,test2=true,iii=123.3,tt=['a','c']\" commentB a:\"test=1,b,c=!=\"", []string{"a", "commentB"}) // nolint:lll
+		tags, err := Parse("// a:\"something,expected=private,test=false,test2=true,iii=123.3,tt=['a','c']\" commentB a:\"test=1,b,c=!=\"", []string{"a", "commentB"}) //nolint:lll
 		require.NoError(t, err)
 		assertEqualTags(t, tags, []Tag{
 			{
@@ -110,7 +110,7 @@ func TestParseTags(t *testing.T) { // nolint
 	})
 
 	t.Run("parse_escape", func(t *testing.T) {
-		tags, err := Parse("// a:tt=['a\\a','b\\b','f\\f','n\\n','r\\r','t\\t','v\\v']", []string{"a"}) // nolint:lll
+		tags, err := Parse("// a:tt=['a\\a','b\\b','f\\f','n\\n','r\\r','t\\t','v\\v']", []string{"a"}) //nolint:lll
 		require.NoError(t, err)
 		assertEqualTags(t, tags, []Tag{
 			{

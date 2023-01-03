@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(sagemakerEndpoint, name),
 		"searchKey": sprintf("aws_sagemaker_endpoint_configuration[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_sagemaker_endpoint_configuration[%s] is defined and not null", [name]),
+		"keyExpectedValue": sprintf("aws_sagemaker_endpoint_configuration[%s] should be defined and not null", [name]),
 		"keyActualValue": sprintf("aws_sagemaker_endpoint_configuration[%s] is undefined or null", [name]),
 	}
 }

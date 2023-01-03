@@ -1,0 +1,10 @@
+{
+  "id": "5fa731ea-e844-47a6-a1e8-abc25e95847e",
+  "queryName": "Vulnerable OpenSSL Version",
+  "severity": "HIGH",
+  "category": "Supply-Chain",
+  "descriptionText": "OpenSSL versions from 3.0.0 to 3.0.5 are affected by a critical vulnerability",
+  "descriptionUrl": "https://mta.openssl.org/pipermail/openssl-announce/2022-October/000238.html",
+  "platform": "Dockerfile",
+  "descriptionID": "e0d6ef5e"
+}

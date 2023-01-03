@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resources[resource], resource),
 		"searchKey": sprintf("Resources.%s.Properties", [resource]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.BucketEncryption is set", [resource]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.BucketEncryption should be set", [resource]),
 		"keyActualValue": sprintf("Resources.%s.Properties.BucketEncryption is undefined", [resource]),
 	}
 }

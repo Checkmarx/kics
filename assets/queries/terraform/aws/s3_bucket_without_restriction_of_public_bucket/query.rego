@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(pubACL, name),
 		"searchKey": sprintf("aws_s3_bucket_public_access_block[%s].restrict_public_buckets", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'restrict_public_buckets' is equal 'true'",
+		"keyExpectedValue": "'restrict_public_buckets' should equal 'true'",
 		"keyActualValue": "'restrict_public_buckets' is missing",
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_public_access_block", name], []),
 		"remediation": "restrict_public_buckets = true",
@@ -32,7 +32,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(pubACL, name),
 		"searchKey": sprintf("aws_s3_bucket_public_access_block[%s].restrict_public_buckets", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'restrict_public_buckets' is equal 'true'",
+		"keyExpectedValue": "'restrict_public_buckets' should equal 'true'",
 		"keyActualValue": "'restrict_public_buckets' is equal 'false'",
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_public_access_block", name, "restrict_public_buckets"], []),
 		"remediation": json.marshal({
@@ -54,12 +54,12 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'restrict_public_buckets' is equal 'true'",
+		"keyExpectedValue": "'restrict_public_buckets' should equal 'true'",
 		"keyActualValue": "'restrict_public_buckets' is missing",
 		"searchLine": common_lib.build_search_line(["module", name], []),
 		"remediation": sprintf("%s = true",[keyToCheck]),
 		"remediationType": "addition",
-		
+
 	}
 }
 
@@ -74,7 +74,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].restrict_public_buckets", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'restrict_public_buckets' is equal 'true'",
+		"keyExpectedValue": "'restrict_public_buckets' should equal 'true'",
 		"keyActualValue": "'restrict_public_buckets' is equal 'false'",
 		"searchLine": common_lib.build_search_line(["module", name, keyToCheck], []),
 		"remediation": json.marshal({

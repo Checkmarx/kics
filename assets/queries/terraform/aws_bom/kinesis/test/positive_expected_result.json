@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "BOM - AWS Kinesis",
+    "severity": "TRACE",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "BOM - AWS Kinesis",
+    "severity": "TRACE",
+    "line": 20,
+    "fileName": "positive1.tf"
+  }
+]

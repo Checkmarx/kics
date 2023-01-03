@@ -7,7 +7,7 @@ privilegeEscalationActions := data.common_lib.aws_privilege_escalation_actions
 
 # This query only evaluates the allowance of a set of privileged actions within a given policy context.
 # It does not evaluate holistically across all attached policies.
-# It considers the only presence of a certain set of actions and its allowance 
+# It considers the only presence of a certain set of actions and its allowance
 # in the policy without the context of which resource(s) it applies to.
 
 CxPolicy[result] {
@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(lambda, function_id),
 		"searchKey": sprintf("aws_lambda_function[%s].role", [function_id]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_lambda_function[%s].role has no privileged permissions through attached inline policy.", [function_id]),
+		"keyExpectedValue": sprintf("aws_lambda_function[%s].role shouldn't have privileged permissions through attached inline policy.", [function_id]),
 		"keyActualValue": sprintf("aws_lambda_function[%s].role has been provided privileged permissions through attached inline policy. Provided privileged permissions: '%v'. List of privileged permissions '%v'", [function_id, concat("' , '", matching_actions), privilegeEscalationActions]),
 	}
 }
@@ -77,7 +77,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(lambda, function_id),
 		"searchKey": sprintf("aws_lambda_function[%s].role", [function_id]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_lambda_function[%s].role has no privileged permissions through attached managed policy", [function_id]),
+		"keyExpectedValue": sprintf("aws_lambda_function[%s].role shouldn't have privileged permissions through attached managed policy", [function_id]),
 		"keyActualValue": sprintf("aws_lambda_function[%s].role has been provided privileged permissions through attached managed policy '%v'. Provided privileged permissions: '%v'. List of privileged permissions '%v'", [function_id, attached_customer_managed_policy_id,  concat("' , '",matching_actions), privilegeEscalationActions]),
 	}
 }
@@ -106,7 +106,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(lambda, function_id),
 		"searchKey": sprintf("aws_lambda_function[%s].role", [function_id]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_lambda_function[%s].role has no privileged permissions", [function_id]),
+		"keyExpectedValue": sprintf("aws_lambda_function[%s].role shouldn't have privileged permissions", [function_id]),
 		"keyActualValue": sprintf("aws_lambda_function[%s].role has been provided privileged permissions through attached pre-existing managed policy '%v'.", [function_id, attachment.policy_arn]),
 	}
 }

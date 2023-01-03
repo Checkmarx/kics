@@ -32,7 +32,7 @@ CxPolicy[result] {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s",[name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'deploy.resources.limits.cpus' is defined",
+		"keyExpectedValue": "'deploy.resources.limits.cpus' should be defined",
 		"keyActualValue": "'deploy' is not defined",
 		"searchLine": common_lib.build_search_line(["services", name], []),
 	}

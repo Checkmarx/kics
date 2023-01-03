@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(efs, name),
 		"searchKey": sprintf("aws_efs_file_system[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_efs_file_system[%s].kms_key_id' is defined'", [name]),
+		"keyExpectedValue": sprintf("aws_efs_file_system[%s].kms_key_id' should be defined'", [name]),
 		"keyActualValue": sprintf("aws_efs_file_system[%s].kms_key_id' is undefined", [name]),
 	}
 }

@@ -17,7 +17,7 @@ CxPolicy[result] {
         "resourceName": tf_lib.get_resource_name(role, targetRole),
 		"searchKey": sprintf("aws_iam_role[%s]", [targetRole]),
 		"issueType": "IncorrectValue",
-        "keyExpectedValue": sprintf("role %s is not associated with a policy that has Action set to 'iam:PutUserPolicy' and Resource set to '*'", [targetRole]),
+        "keyExpectedValue": sprintf("role %s should not be associated with a policy that has Action set to 'iam:PutUserPolicy' and Resource set to '*'", [targetRole]),
 		"keyActualValue": sprintf("role %s is associated with a policy that has Action set to 'iam:PutUserPolicy' and Resource set to '*'", [targetRole]),
         "searchLine": common_lib.build_search_line(["resource", "aws_iam_role", targetRole], []),
 	}

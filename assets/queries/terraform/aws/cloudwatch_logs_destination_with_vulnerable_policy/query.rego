@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cloudwatch_log_destination_policy[%s].access_policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_cloudwatch_log_destination_policy[%s].access_policy does not have wildcard in 'principals' and 'actions'", [name]),
+		"keyExpectedValue": sprintf("aws_cloudwatch_log_destination_policy[%s].access_policy should not have wildcard in 'principals' and 'actions'", [name]),
 		"keyActualValue": sprintf("aws_cloudwatch_log_destination_policy[%s].access_policy has wildcard in 'principals' or 'actions'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_cloudwatch_log_destination_policy", name, "access_policy"], []),
 	}

@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_instance.{{%s}}", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'monitoring' is defined and not null", [name]),
+		"keyExpectedValue": sprintf("'monitoring' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'monitoring' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name], []),
 		"remediation": "monitoring = true",
@@ -34,10 +34,10 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'monitoring' is defined and not null", [name]),
+		"keyExpectedValue": sprintf("'monitoring' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'monitoring' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["module", name], []),
-		"remediation": sprintf("%s = true",[keyToCheck]), 
+		"remediation": sprintf("%s = true",[keyToCheck]),
 		"remediationType": "addition",
 	}
 }

@@ -46,15 +46,15 @@ getCommands(commands) = output{
 }
 
 withVersion(pack) {
-	regex.match("[A-Za-z0-9_-]+[-:][$](.+)", pack)
+	regex.match("[A-Za-z0-9_\\+-]+[-:][$](.+)", pack)
 }
 
 withVersion(pack) {
-	regex.match("[A-Za-z0-9_-]+[:-]([0-9]+.)+[0-9]+", pack)
+	regex.match("[A-Za-z0-9_\\+-]+[:-]([0-9]+.)+[0-9]+", pack)
 }
 
 withVersion(pack) {
-	regex.match("[A-Za-z0-9_-]+=(.+)", pack)
+	regex.match("[A-Za-z0-9_\\+-]+=(.+)", pack)
 }
 
 arrayContains(array, list) {

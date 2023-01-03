@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(function, name),
 		"searchKey": sprintf("azurerm_function_app[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_function_app[%s].client_cert_mode' is defined and not null", [name]),
+		"keyExpectedValue": sprintf("'azurerm_function_app[%s].client_cert_mode' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'azurerm_function_app[%s].client_cert_mode' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_function_app", name], []),
 		"remediation": "client_cert_mode = \"Required\"",

@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'logging_service' is defined",
+		"keyExpectedValue": "Attribute 'logging_service' should be defined",
 		"keyActualValue": "Attribute 'logging_service' is undefined",
 	}
 }

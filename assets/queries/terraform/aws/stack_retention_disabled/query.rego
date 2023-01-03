@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_cloudformation_stack_set_instance[%s]", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_cloudformation_stack_set_instance", name], []),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_cloudformation_stack_set_instance[%s].retain_stack is defined and not null", [name]),
+		"keyExpectedValue": sprintf("aws_cloudformation_stack_set_instance[%s].retain_stack should be defined and not null", [name]),
 		"keyActualValue": sprintf("aws_cloudformation_stack_set_instance[%s].retain_stack is undefined or null", [name]),
 		"remediation": "retain_stack = true",
 		"remediationType": "addition",
@@ -34,7 +34,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_cloudformation_stack_set_instance[%s].retain_stack", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_cloudformation_stack_set_instance", name, "retain_stack"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_cloudformation_stack_set_instance[%s].retain_stack is true ", [name]),
+		"keyExpectedValue": sprintf("aws_cloudformation_stack_set_instance[%s].retain_stack should be true ", [name]),
 		"keyActualValue": sprintf("aws_cloudformation_stack_set_instance[%s].retain_stack is false", [name]),
 		"remediation": json.marshal({
 			"before": "false",

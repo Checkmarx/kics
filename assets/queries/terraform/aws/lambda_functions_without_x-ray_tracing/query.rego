@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_lambda_function[%s]", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_lambda_function", name ], []),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_lambda_function[%s].tracing_config is defined and not null", [name]),
+		"keyExpectedValue": sprintf("aws_lambda_function[%s].tracing_config should be defined and not null", [name]),
 		"keyActualValue": sprintf("aws_lambda_function[%s].tracing_config is undefined or null", [name]),
 		"remediation": "tracing_config {\n\t\tmode = Active\n\t}",
 		"remediationType": "addition",

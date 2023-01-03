@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_key_vault_secret[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'expiration_date' exists",
+		"keyExpectedValue": "'expiration_date' should exist",
 		"keyActualValue": "'expiration_date' is missing",
 	}
 }

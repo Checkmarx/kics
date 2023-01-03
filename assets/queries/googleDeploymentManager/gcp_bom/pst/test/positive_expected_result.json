@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "BOM - GCP PST",
+		"severity": "TRACE",
+		"line": 3,
+		"fileName": "positive.yaml"
+	},
+	{
+		"queryName": "BOM - GCP PST",
+		"severity": "TRACE",
+		"line": 8,
+		"fileName": "positive.yaml"
+	}
+]

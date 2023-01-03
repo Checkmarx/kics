@@ -1,0 +1,24 @@
+resources:
+- name: vm-template2
+  type: compute.v1.instance
+  properties:
+    zone: us-central1-a
+    machineType: zones/us-central1-a/machineTypes/n1-standard-1
+    disks:
+    - deviceName: boot
+      type: PERSISTENT
+      boot: true
+      autoDelete: true
+      initializeParams:
+        sourceImage: projects/debian-cloud/global/images/family/debian-9
+      diskEncryptionKey:
+        sha_256: 68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29
+    networkInterfaces:
+    - network: global/networks/default
+- type: compute.v1.disk
+  name: disk-4-data
+  properties:
+    sizeGb: 10
+    zone: us-east1-c
+    diskEncryptionKey:
+      sha_256: 68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29

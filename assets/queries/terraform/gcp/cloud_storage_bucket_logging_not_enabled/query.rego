@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_storage_bucket[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'google_storage_bucket.logging' is set",
+		"keyExpectedValue": "'google_storage_bucket.logging' should be set",
 		"keyActualValue": "'google_storage_bucket.logging' is undefined",
 	}
 }

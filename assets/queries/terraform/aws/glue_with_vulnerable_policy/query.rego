@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_glue_resource_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_glue_resource_policy[%s].policy does not have wildcard in 'principals' and 'actions'", [name]),
+		"keyExpectedValue": sprintf("aws_glue_resource_policy[%s].policy should not have wildcard in 'principals' and 'actions'", [name]),
 		"keyActualValue": sprintf("aws_glue_resource_policy[%s].policy has wildcard in 'principals' or 'actions'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_glue_resource_policy", name, "policy"], []),
 	}

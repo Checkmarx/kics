@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties", [key]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.EncryptionInfo is defined", [key]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.EncryptionInfo should be defined", [key]),
 		"keyActualValue": sprintf("Resources.%s.Properties.EncryptionInfo is undefined", [key]),
 	}
 }

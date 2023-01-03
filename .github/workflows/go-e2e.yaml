@@ -10,20 +10,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        go-version: [1.18.x]
+        go-version: [1.19.x]
         os: [ubuntu-latest]
         kics-docker: ["Dockerfile", "docker/Dockerfile.ubi8"]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.10.1
+        uses: styfle/cancel-workflow-action@0.11.0
         with:
           access_token: ${{ github.token }}
       - name: Check out code
         uses: actions/checkout@v3
         with:
           persist-credentials: false
-      - name: Set up Go 1.18.x
+      - name: Set up Go 1.19.x
         uses: actions/setup-go@v3
         with:
           go-version: ${{ matrix.go-version }}
@@ -55,7 +55,7 @@ jobs:
         run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-8)" >> $GITHUB_ENV
       - name: Build
         id: docker_build
-        uses: docker/build-push-action@v3.1.1
+        uses: docker/build-push-action@v3.2.0
         with:
           load: true
           context: ./

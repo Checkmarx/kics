@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.LoginProfile.Password", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'Resources.Properties.LoginProfile.Password' contains uppercase letter",
+		"keyExpectedValue": "'Resources.Properties.LoginProfile.Password' should contain uppercase letter",
 		"keyActualValue": "'Resources.Properties.LoginProfile.Password' doesnt contains uppercase letter",
 	}
 }

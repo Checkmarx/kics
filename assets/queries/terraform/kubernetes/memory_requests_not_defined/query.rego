@@ -22,7 +22,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].resources.requests.memory is set", [resourceType, name, specInfo.path, types[x], containersRequest]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].resources.requests.memory should be set", [resourceType, name, specInfo.path, types[x], containersRequest]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].resources.requests.memory is undefined", [resourceType, name, specInfo.path, types[x], containersRequest]),
 	}
 }
@@ -43,7 +43,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.resources.requests", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s.resources.requests.memory is set", [resourceType, name, specInfo.path, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s.resources.requests.memory should be set", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.resources.requests.memory is undefined", [resourceType, name, specInfo.path, types[x]]),
 	}
 }
@@ -65,7 +65,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].resources is set", [resourceType, name, specInfo.path, types[x], containersType]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].resources should be set", [resourceType, name, specInfo.path, types[x], containersType]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].resources is undefined", [resourceType, name, specInfo.path, types[x], containersType]),
 	}
 }
@@ -85,7 +85,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s.resources is set", [resourceType, name, specInfo.path, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s.resources should be set", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.resources is undefined", [resourceType, name, specInfo.path, types[x]]),
 	}
 }
@@ -107,7 +107,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].resources.requests is set", [resourceType, name, specInfo.path, types[x], containersType]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].resources.requests should be set", [resourceType, name, specInfo.path, types[x], containersType]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].resources.requests is undefined", [resourceType, name, specInfo.path, types[x], containersType]),
 	}
 }
@@ -128,7 +128,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.resources", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s.resources.requests is set", [resourceType, name, specInfo.path, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s.resources.requests should be set", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.resources.requests is undefined", [resourceType, name, specInfo.path, types[x]]),
 	}
 }

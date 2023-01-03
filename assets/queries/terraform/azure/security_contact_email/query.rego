@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(scc, name),
 		"searchKey": sprintf("azurerm_security_center_contact[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_security_center_contact[%s].email' is defined and not null", [name]),
+		"keyExpectedValue": sprintf("'azurerm_security_center_contact[%s].email' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'azurerm_security_center_contact[%s].email' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_security_center_contact", name], []),
 	}

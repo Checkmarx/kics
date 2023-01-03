@@ -405,7 +405,7 @@ block "label_one" {
 }
 
 // TestLabelsWithNestedBlock tests the functions [DefaultConverted] and all the methods called by them
-func TestConversion(t *testing.T) { // nolint
+func TestConversion(t *testing.T) { //nolint
 	const input = `
 locals {
 	test3 = 1 + 2
@@ -571,7 +571,7 @@ variable "region" {
 				}
 			},
 			{
-				"heredoc2": "\t\tAnother heredoc, that\n\t\tdoesn't remove indentation\n\t\t${local.other.3}\n\t\t%{if true ? false : true}\"gotcha\"\\n%{else}4%{endif}\n",` + // nolint
+				"heredoc2": "\t\tAnother heredoc, that\n\t\tdoesn't remove indentation\n\t\t${local.other.3}\n\t\t%{if true ? false : true}\"gotcha\"\\n%{else}4%{endif}\n",` + //nolint
 		`"_kics_lines": {
 					"_kics__default": {
 						"_kics_line": 28

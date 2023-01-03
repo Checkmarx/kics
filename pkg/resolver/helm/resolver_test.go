@@ -20,7 +20,7 @@ func TestHelm_SupportedTypes(t *testing.T) {
 	})
 }
 
-func TestHelm_Resolve(t *testing.T) { // nolint
+func TestHelm_Resolve(t *testing.T) { //nolint
 	res := &Resolver{}
 	type args struct {
 		filePath string

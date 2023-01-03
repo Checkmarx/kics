@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_sql_firewall_rule[%s].start_ip_address", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_sql_firewall_rule[%s].start_ip_address' The difference between the value of the 'end_ip_address' and of 'start_ip_address' is less than 256", [name]),
+		"keyExpectedValue": sprintf("'azurerm_sql_firewall_rule[%s].start_ip_address' The difference between the value of the 'end_ip_address' and of 'start_ip_address' should be less than 256", [name]),
 		"keyActualValue": sprintf("'azurerm_sql_firewall_rule[%s].start_ip_address' The difference between the value of the 'end_ip_address' and of 'start_ip_address' is greater than or equal to 256", [name]),
 	}
 }

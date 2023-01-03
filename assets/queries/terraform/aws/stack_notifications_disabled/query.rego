@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cloudformation_stack[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'notification_arns' is set",
+		"keyExpectedValue": "Attribute 'notification_arns' should be set",
 		"keyActualValue": "Attribute 'notification_arns' is undefined",
 	}
 }

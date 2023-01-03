@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.Environment.Variables", [key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.Environment.Variables doesn't contain access key", [key]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Environment.Variables shouldn't contain access key", [key]),
 		"keyActualValue": sprintf("Resources.%s.Properties.Environment.Variables contains access key", [key]),
 	}
 }

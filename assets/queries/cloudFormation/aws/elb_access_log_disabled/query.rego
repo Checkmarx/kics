@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.AccessLoggingPolicy' exists", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.AccessLoggingPolicy' should exist", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.AccessLoggingPolicy' is missing", [name]),
 	}
 }

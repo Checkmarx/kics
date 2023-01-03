@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cloudfront_distribution[%s].web_acl_id", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'web_acl_id' exists",
+		"keyExpectedValue": "'web_acl_id'  should exist",
 		"keyActualValue": "'web_acl_id' is missing",
 	}
 }

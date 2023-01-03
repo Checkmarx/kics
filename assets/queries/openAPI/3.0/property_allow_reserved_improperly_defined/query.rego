@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.parameters.name={{%s}}", [name, params.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("paths.{{%s}}.parameters.name={{%s}} has 'in' set to 'query' when 'allowReserved' is set", [name, params.name]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.parameters.name={{%s}} should have 'in' set to 'query' when 'allowReserved' is set", [name, params.name]),
 		"keyActualValue": sprintf("paths.{{%s}}.parameters.name={{%s}} does not have 'in' set to 'query' when 'allowReserved' is set", [name, params.name]),
 	}
 }
@@ -30,7 +30,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.%s.%s.parameters.name={{%s}}", [name, oper, params.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("paths.%s.%s.parameters.name={{%s}} has 'in' set to 'query' when 'allowReserved' is set", [name, oper, params.name]),
+		"keyExpectedValue": sprintf("paths.%s.%s.parameters.name={{%s}} should have 'in' set to 'query' when 'allowReserved' is set", [name, oper, params.name]),
 		"keyActualValue": sprintf("paths.%s.%s.parameters.name={{%s}} does not have 'in' set to 'query' when 'allowReserved' is set", [name, oper, params.name]),
 	}
 }
@@ -46,7 +46,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("openapi.components.parameters.name={{%s}}", [params.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("openapi.components.parameters.name={{%s}} has 'in' set to 'query' when 'allowReserved' is set", [params.name]),
+		"keyExpectedValue": sprintf("openapi.components.parameters.name={{%s}} should have 'in' set to 'query' when 'allowReserved' is set", [params.name]),
 		"keyActualValue": sprintf("openapi.components.parameters.name={{%s}} does not have 'in' set to 'query' when 'allowReserved' is set", [params.name]),
 	}
 }

@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_instance.%s", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'associate_public_ip_address' is defined and not null",
+		"keyExpectedValue": "'associate_public_ip_address' should be defined and not null",
 		"keyActualValue": "'associate_public_ip_address' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name], []),
 	}
@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'associate_public_ip_address' is defined and not null",
+		"keyExpectedValue": "'associate_public_ip_address' should be defined and not null",
 		"keyActualValue": "'associate_public_ip_address' is undefined or null",
 		"searchLine": common_lib.build_search_line(["module", name], []),
 	}

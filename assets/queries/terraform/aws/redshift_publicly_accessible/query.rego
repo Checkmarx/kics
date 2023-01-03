@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(public, name),
 		"searchKey": sprintf("aws_redshift_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_redshift_cluster.publicly_accessible is defined and not null",
+		"keyExpectedValue": "aws_redshift_cluster.publicly_accessible should be defined and not null",
 		"keyActualValue": "aws_redshift_cluster.publicly_accessible is undefined or null",
 		"remediation": "publicly_accessible = false",
 		"remediationType": "addition",
