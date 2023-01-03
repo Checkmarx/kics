@@ -20,7 +20,7 @@ func TestHelm_SupportedTypes(t *testing.T) {
 	})
 }
 
-func TestHelm_Resolve(t *testing.T) { // nolint
+func TestHelm_Resolve(t *testing.T) { //nolint
 	res := &Resolver{}
 	type args struct {
 		filePath string
@@ -37,7 +37,7 @@ func TestHelm_Resolve(t *testing.T) { // nolint
 				filePath: filepath.FromSlash("../../../test/fixtures/test_helm"),
 			},
 			want: model.ResolvedFiles{
-				File: []model.ResolvedFile{
+				File: []model.ResolvedHelm{
 					{
 						SplitID:  "# KICS_HELM_ID_0:",
 						FileName: filepath.FromSlash("../../../test/fixtures/test_helm/templates/service.yaml"),
@@ -103,7 +103,7 @@ spec:
 				filePath: filepath.FromSlash("../../../test/fixtures/test_helm_subchart"),
 			},
 			want: model.ResolvedFiles{
-				File: []model.ResolvedFile{
+				File: []model.ResolvedHelm{
 					{
 						FileName: filepath.FromSlash("../../../test/fixtures/test_helm_subchart/templates/serviceaccount.yaml"),
 						SplitID:  "# KICS_HELM_ID_1:",

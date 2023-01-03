@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.content.%s", [openapi_lib.concat_path(path), mime]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "The Media Type is a valid value",
+		"keyExpectedValue": "The Media Type should be a valid value",
 		"keyActualValue": "The Media Type is a invalid value",
 	}
 }

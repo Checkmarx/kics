@@ -4,7 +4,7 @@ on:
   push:
     tags:
       - "v*"
-      
+
 jobs:
   release-commits:
     name: get-release-commits
@@ -12,11 +12,11 @@ jobs:
     steps:
       - name: Checkout Source
         uses: actions/checkout@v3
-      - name: Set up Go 1.17.x
+      - name: Set up Go 1.19.x
         uses: actions/setup-go@v3
         with:
-          go-version: 1.17.x
-      - uses: actions/setup-python@v3
+          go-version: 1.19.x
+      - uses: actions/setup-python@v4
         with:
           python-version: "3.x"
       - name: Run get release commits script
@@ -24,4 +24,3 @@ jobs:
         run: |
           pip3 install -r .github/scripts/release-commits/requirements.txt
           python3 .github/scripts/release-commits/get_commits.py
-      

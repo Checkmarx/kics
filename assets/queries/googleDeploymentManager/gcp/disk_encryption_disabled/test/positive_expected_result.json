@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "Disk Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Disk Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Disk Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 16,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Disk Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Disk Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 23,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Disk Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 26,
+    "filename": "positive3.yaml"
+  }
+]

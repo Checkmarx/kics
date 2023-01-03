@@ -18,9 +18,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.%s", [task.name, modules[m], sgs[s]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s' is not using default security group", [sgs[s]]),
+		"keyExpectedValue": sprintf("'%s' should not be using default security group", [sgs[s]]),
 		"keyActualValue":  sprintf("'%s' is using default security group", [sgs[s]]),
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], sgs[s]], [idx]),
 	}
@@ -41,9 +43,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.%s", [task.name, modules[m], sgs[s]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s' is not using default security group", [sgs[s]]),
+		"keyExpectedValue": sprintf("'%s' should not be using default security group", [sgs[s]]),
 		"keyActualValue":  sprintf("'%s' is using default security group", [sgs[s]]),
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], sgs[s]], []),
 	}

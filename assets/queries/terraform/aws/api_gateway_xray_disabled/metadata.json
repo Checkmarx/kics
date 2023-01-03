@@ -3,7 +3,7 @@
   "queryName": "API Gateway X-Ray Disabled",
   "severity": "MEDIUM",
   "category": "Observability",
-  "descriptionText": "X-ray Tracing is not enabled",
+  "descriptionText": "API Gateway should have X-Ray Tracing enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_stage#xray_tracing_enabled",
   "platform": "Terraform",
   "descriptionID": "21e236a0",

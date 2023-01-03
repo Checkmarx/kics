@@ -8,6 +8,7 @@ import (
 
 	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/test"
+	"github.com/rs/zerolog"
 	"github.com/stretchr/testify/require"
 )
 
@@ -102,6 +103,11 @@ func TestFileAnalyzer(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestFileAnalyzer_Error_File(t *testing.T) {
+	_, err := FileAnalyzer(filepath.FromSlash("test/fixtures/config_test/kicsNoFileExists.js"))
+	require.Error(t, err)
 }
 
 func TestHelpers_GenerateReport(t *testing.T) {
@@ -224,4 +230,14 @@ func TestHelpers_ListReportFormats(t *testing.T) {
 		_, ok := reportGenerators[format]
 		require.True(t, ok)
 	}
+}
+
+func TestHelpers_GetNumCPU(t *testing.T) {
+	cpu := GetNumCPU()
+	require.NotEqual(t, cpu, nil)
+}
+
+func TestHelpers_CustomConsoleWriter(t *testing.T) {
+	v := CustomConsoleWriter(&zerolog.ConsoleWriter{NoColor: true})
+	require.IsType(t, zerolog.ConsoleWriter{}, v)
 }

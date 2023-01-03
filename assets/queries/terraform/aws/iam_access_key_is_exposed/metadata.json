@@ -3,7 +3,7 @@
   "queryName": "IAM Access Key Is Exposed",
   "severity": "MEDIUM",
   "category": "Access Control",
-  "descriptionText": "Check if IAM Access Key is active for some user besides 'root'",
+  "descriptionText": "IAM Access Key should not be active for root users",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_access_key",
   "platform": "Terraform",
   "descriptionID": "99b02242",

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -17,9 +18,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.SubnetId", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.SubnetId is not associated with a default VPC", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.SubnetId should not be associated with a default VPC", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.SubnetId is associated with a default VPC", [name]),
 		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "SubnetId"], []),
 	}

@@ -12,9 +12,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.is_multi_region_trail", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "cloudtrail.is_multi_region_trail is true",
+		"keyExpectedValue": "cloudtrail.is_multi_region_trail should be true",
 		"keyActualValue": "cloudtrail.is_multi_region_trail is false",
 	}
 }

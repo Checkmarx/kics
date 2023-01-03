@@ -1,0 +1,11 @@
+{
+  "id": "965e8830-2bec-4b9b-a7f0-24dbc200a68f",
+  "queryName": "Google Compute SSL Policy Weak Cipher In Use",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "This query confirms if Google Compute SSL Policy Weak Chyper Suits is Enabled, to do so we need to check if TLS is TLS_1_2, because other version have Weak Chypers",
+  "descriptionUrl": "https://www.pulumi.com/registry/packages/gcp/api-docs/compute/sslpolicy/#mintlsversion_yaml",
+  "platform": "Pulumi",
+  "descriptionID": "58a27cbf",
+  "cloudProvider": "gcp"
+}

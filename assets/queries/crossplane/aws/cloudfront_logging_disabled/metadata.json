@@ -1,0 +1,11 @@
+{
+  "id": "7b590235-1ff4-421b-b9ff-5227134be9bb",
+  "queryName": "CloudFront Logging Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "AWS CloudFront distributions should have logging enabled to collect all viewer requests, which means the attribute 'logging' must be defined with 'enabled' set to true",
+  "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-aws/cloudfront.aws.crossplane.io/Distribution/v1alpha1@v0.29.0#spec-forProvider-distributionConfig-logging",
+  "platform": "Crossplane",
+  "descriptionID": "48cd0b5a",
+  "cloudProvider": "aws"
+}

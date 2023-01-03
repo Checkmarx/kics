@@ -1,0 +1,38 @@
+resources:
+- type: compute.v1.disk
+  name: disk-1-data
+  properties:
+    sizeGb: 10
+    zone: us-east1-c
+    diskEncryptionKey:
+      sha_256: 68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29
+      rawKey: SGVsbG8gZnJvbSBHb29nbGUgQ2xvdWQgUGxhdGZvcm0=
+- type: compute.v1.disk
+  name: disk-2-data
+  properties:
+    sizeGb: 10
+    zone: us-east1-c
+    diskEncryptionKey:
+      sha_256: 68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29
+      kmsKeyName: disk-crypto-key
+- type: compute.v1.disk
+  name: disk-3-data
+  properties:
+    sizeGb: 10
+    zone: us-east1-c
+- type: compute.v1.disk
+  name: disk-4-data
+  properties:
+    sizeGb: 10
+    zone: us-east1-c
+    diskEncryptionKey:
+      sha_256: 68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29
+- type: compute.v1.disk
+  name: disk-5-data
+  properties:
+    sizeGb: 10
+    zone: us-east1-c
+    diskEncryptionKey:
+      sha_256: 68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29
+      rawKey: ""
+

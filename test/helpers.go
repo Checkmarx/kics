@@ -3,6 +3,7 @@ package test
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -33,14 +34,14 @@ func CaptureOutput(funcToExec execute) (string, error) {
 
 	go func() {
 		var buf bytes.Buffer
-		if _, errors := io.Copy(&buf, r); errors != nil { // nolint
+		if _, errs := io.Copy(&buf, r); errs != nil {
 			return
 		}
 		outC <- buf.String()
 	}()
 
-	if errors := w.Close(); errors != nil {
-		return "", errors
+	if errs := w.Close(); errs != nil {
+		return "", errs
 	}
 	os.Stdout = old
 	out := <-outC
@@ -64,10 +65,10 @@ func ChangeCurrentDir(desiredDir string) error {
 		if err == nil {
 			if err = os.Chdir(".."); err != nil {
 				fmt.Print(formatCurrentDirError(err))
-				return fmt.Errorf(formatCurrentDirError(err))
+				return errors.New(formatCurrentDirError(err))
 			}
 		} else {
-			return fmt.Errorf(formatCurrentDirError(err))
+			return errors.New(formatCurrentDirError(err))
 		}
 	}
 	return nil
@@ -125,6 +126,7 @@ var queryHigh = model.QueryResult{
 			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
 			KeyActualValue:   "'default_action.redirect.protocol' is missing",
 			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
 		},
 		{
 			FileName:         positive,
@@ -134,6 +136,7 @@ var queryHigh = model.QueryResult{
 			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
 			KeyActualValue:   "'default_action.redirect.protocol' is equal 'HTTP'",
 			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
 		},
 	},
 }
@@ -154,6 +157,7 @@ var queryMedium = model.QueryResult{
 			KeyExpectedValue: "resource.aws_mq_broker[positive1].encryption_options is defined",
 			KeyActualValue:   "resource.aws_mq_broker[positive1].encryption_options is not defined",
 			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
 		},
 	},
 }
@@ -171,6 +175,7 @@ var queryMedium2 = model.QueryResult{
 			KeyExpectedValue: "GuardDuty Detector should be Enabled",
 			KeyActualValue:   "GuardDuty Detector is not Enabled",
 			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
 		},
 	},
 	Platform:    "Terraform",
@@ -190,6 +195,7 @@ var queryInfo = model.QueryResult{
 			KeyExpectedValue: "aws_guardduty_detector[{{negative1}}].tags is defined and not null",
 			KeyActualValue:   "aws_guardduty_detector[{{negative1}}].tags is undefined or null",
 			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
 		},
 		{
 			FileName:         filepath.Join("assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "positive.tf"),
@@ -199,6 +205,7 @@ var queryInfo = model.QueryResult{
 			KeyExpectedValue: "aws_guardduty_detector[{{positive1}}].tags is defined and not null",
 			KeyActualValue:   "aws_guardduty_detector[{{positive1}}].tags is undefined or null",
 			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
 		},
 	},
 	Platform:    "Terraform",

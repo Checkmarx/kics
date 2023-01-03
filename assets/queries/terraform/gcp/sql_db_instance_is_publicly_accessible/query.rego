@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_sql_database_instance[name]
@@ -14,9 +15,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_sql_database_instance",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_sql_database_instance[%s].settings.ip_configuration.authorized_networks.value=%s", [name, authorized_network[j].value]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'authorized_network' address is trusted",
+		"keyExpectedValue": "'authorized_network' address should be trusted",
 		"keyActualValue": "'authorized_network' address is not restricted: '0.0.0.0/0'",
 	}
 }
@@ -31,9 +34,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_sql_database_instance",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_sql_database_instance[%s].settings.ip_configuration.ipv4_enabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'ipv4_enabled' is disabled and 'private_network' is defined when there are no authorized networks",
+		"keyExpectedValue": "'ipv4_enabled' should be disabled and 'private_network' should be defined when there are no authorized networks",
 		"keyActualValue": "'ipv4_enabled' is enabled when there are no authorized networks",
 	}
 }
@@ -49,9 +54,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_sql_database_instance",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_sql_database_instance[%s].settings.ip_configuration", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'ipv4_enabled' is disabled and 'privatenetwork' is defined when there are no authorized networks",
+		"keyExpectedValue": "'ipv4_enabled' should be disabled and 'private_network' should be defined when there are no authorized networks",
 		"keyActualValue": "'private_network' is not defined when there are no authorized networks",
 	}
 }
@@ -64,9 +71,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_sql_database_instance",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_sql_database_instance[%s].settings", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'ip_configuration' is defined and allow only trusted networks",
+		"keyExpectedValue": "'ip_configuration' should be defined and allow only trusted networks",
 		"keyActualValue": "'ip_configuration' is not defined",
 	}
 }

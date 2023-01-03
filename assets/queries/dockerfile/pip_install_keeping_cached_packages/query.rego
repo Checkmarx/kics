@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, values]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "The '--no-cache-dir' flag is set when running 'pip/pip3 install'",
+		"keyExpectedValue": "The '--no-cache-dir' flag should be set when running 'pip/pip3 install'",
 		"keyActualValue": "The '--no-cache-dir' flag isn't set when running 'pip/pip3 install'",
 	}
 }
@@ -34,7 +34,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "The '--no-cache-dir' flag is set when running 'pip/pip3 install'",
+		"keyExpectedValue": "The '--no-cache-dir' flag should be set when running 'pip/pip3 install'",
 		"keyActualValue": "The '--no-cache-dir' flag isn't set when running 'pip/pip3 install'",
 	}
 }

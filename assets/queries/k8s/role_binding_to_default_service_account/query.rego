@@ -9,9 +9,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": document.metadata.name,
 		"searchKey": sprintf("subjects.name=%s", [subjects[c].name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "subjects.kind=ServiceAccount.name is not default",
+		"keyExpectedValue": "subjects.kind=ServiceAccount.name should not be default",
 		"keyActualValue": "subjects.kind=ServiceAccount.name is default",
 	}
 }

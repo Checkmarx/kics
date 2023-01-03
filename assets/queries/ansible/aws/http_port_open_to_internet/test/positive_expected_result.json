@@ -1,0 +1,37 @@
+[
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "HIGH",
+    "line": 9
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "HIGH",
+    "line": 23
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "HIGH",
+    "line": 36
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "HIGH",
+    "line": 49
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "HIGH",
+    "line": 64
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "HIGH",
+    "line": 79
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "HIGH",
+    "line": 93
+  }
+]

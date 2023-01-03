@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.%s.parameters", [path, operation]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Operation or global 'consumes' field have declared 'multipart/form-data', 'application/x-www-form-urlencoded' or both when there is a file type parameter",
+		"keyExpectedValue": "Operation or global 'consumes' field should have declared 'multipart/form-data', 'application/x-www-form-urlencoded' or both when there is a file type parameter",
 		"keyActualValue": "Operation or global 'consumes' field doesn't have declared 'multipart/form-data', 'application/x-www-form-urlencoded' or both when there is a file type parameter",
 	}
 }

@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 readVerbs := ["get", "watch", "list"]
 
 CxPolicy[result] {
@@ -9,6 +11,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceTypes[t],
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].rule", [resourceTypes[t], name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Rules don't give access to 'secrets' resources",

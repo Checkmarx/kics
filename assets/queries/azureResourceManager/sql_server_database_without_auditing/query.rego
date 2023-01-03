@@ -22,9 +22,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("resource '%s' has an enabled 'auditingsettings' resource", [value.name]),
+		"keyExpectedValue": sprintf("resource '%s' should have an enabled 'auditingsettings' resource", [value.name]),
 		"keyActualValue": sprintf("resource '%s' is missing an enabled 'auditingsettings' resource", [value.name]),
 		"searchLine": common_lib.build_search_line(path, ["name"]),
 	}

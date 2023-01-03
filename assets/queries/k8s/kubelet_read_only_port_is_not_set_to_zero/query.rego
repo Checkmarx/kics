@@ -16,9 +16,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "--read-only-port flag to be '0'",
+		"keyExpectedValue": "--read-only-port flag should be '0'",
 		"keyActualValue": "--read-only-port flag is not set to '0'",
 	}
 }
@@ -31,6 +33,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}.readOnlyPort",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "readOnlyPort attribute to have value of 0",

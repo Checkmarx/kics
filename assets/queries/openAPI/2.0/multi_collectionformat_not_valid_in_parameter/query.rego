@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.name=%s.in", [searchKey, param.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'in' field is 'query' or 'formData'",
+		"keyExpectedValue": "'in' field should be 'query' or 'formData'",
 		"keyActualValue": sprintf("'in' field is %s", [param.in]),
 	}
 }

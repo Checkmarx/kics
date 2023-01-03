@@ -13,9 +13,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.allowedUnsafeSysctls", [metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.allowedUnsafeSysctls is undefined", [metadata.name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.allowedUnsafeSysctls should be undefined", [metadata.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.spec.allowedUnsafeSysctls is defined", [metadata.name]),
 	}
 }
@@ -30,9 +32,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.securityContext.sysctls.name={{%s}}", [metadata.name, specInfo.path, sysctl]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.securityContext.sysctls.name={{%s}} is not used", [metadata.name, specInfo.path, sysctl]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.securityContext.sysctls.name={{%s}} should not be used", [metadata.name, specInfo.path, sysctl]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.securityContext.sysctls.name={{%s}} is an unsafe sysctl", [metadata.name, specInfo.path, sysctl]),
 	}
 }

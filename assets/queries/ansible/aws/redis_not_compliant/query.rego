@@ -13,9 +13,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.cache_engine_version", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "elasticache.cache_engine_version is compliant with the AWS PCI DSS requirements",
+		"keyExpectedValue": "elasticache.cache_engine_version should be compliant with the AWS PCI DSS requirements",
 		"keyActualValue": "elasticache.cache_engine_version isn't compliant with the AWS PCI DSS requirements",
 	}
 }

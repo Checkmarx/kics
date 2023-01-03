@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -10,9 +11,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": "aws_cognito_user_pool",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cognito_user_pool[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_cognito_user_pool[%s].mfa_configuration is set", [name]),
+		"keyExpectedValue": sprintf("aws_cognito_user_pool[%s].mfa_configuration should be set", [name]),
 		"keyActualValue": sprintf("aws_cognito_user_pool[%s].mfa_configuration is undefined", [name]),
 	}
 }
@@ -25,9 +28,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": "aws_cognito_user_pool",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cognito_user_pool[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_cognito_user_pool[%s].mfa_configuration is set to 'ON' or 'OPTIONAL", [name]),
+		"keyExpectedValue": sprintf("aws_cognito_user_pool[%s].mfa_configuration should be set to 'ON' or 'OPTIONAL", [name]),
 		"keyActualValue": sprintf("aws_cognito_user_pool[%s].mfa_configuration is set to '%s'", [name, resource.mfa_configuration]),
 	}
 }
@@ -41,9 +46,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
+		"resourceType": "aws_cognito_user_pool",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cognito_user_pool[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_cognito_user_pool[%s] has 'sms_configuration' or 'software_token_mfa_configuration' defined", [name]),
+		"keyExpectedValue": sprintf("aws_cognito_user_pool[%s] should have 'sms_configuration' or 'software_token_mfa_configuration' defined", [name]),
 		"keyActualValue": sprintf("aws_cognito_user_pool[%s] doesn't have 'sms_configuration' or 'software_token_mfa_configuration' defined", [name]),
 	}
 }

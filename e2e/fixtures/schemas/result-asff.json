@@ -13,7 +13,7 @@
             "pattern": "^arn:aws:securityhub:[\\w-]+:\\w+:product\/\\w+\/default$"
         },
         "recommendation_text_pattern": {
-            "pattern": "^In line \\d+ of file (.)+, a result was found. (.)+, but (.)+$"
+            "pattern": "^Problem found on '(.)+' file in line \\d+. Expected value: (.)+. Actual value: (.)+.$"
         }
     },
     "items": {

@@ -1,0 +1,42 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Resources": {
+        "DBInstanceSample2":{
+            "Type": "AWS::RDS::DBInstance",
+            "Properties": {
+                "Engine": "oracle-ee",
+                "DBSubnetGroupName": "DBSubnetGroupSample2",
+                "SourceDBInstanceIdentifier": {
+                    "Ref":"DBInstanceRefSample2"
+                }
+            }
+        },
+        "DBInstanceRefSample2":{
+            "Type": "AWS::RDS::DBInstance",
+            "Properties": {
+                "Engine": "oracle-ee",
+                "DBSubnetGroupName": "DBSubnetGroupSample2",
+                "StorageEncrypted": false
+            }
+        },
+        "SubnetSample2": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "CidrBlock": "172.16.1.0/24",
+                "VpcId": {
+                    "Ref": "VPCSample2"
+                }
+            }
+        },
+        "DBSubnetGroupSample2": {
+            "Type": "AWS::RDS::DBSubnetGroup",
+            "Properties": {
+                "SubnetIds": [
+                    {
+                        "Ref": "SubnetSample2"
+                    }
+                ]
+            }
+        }
+    }
+}

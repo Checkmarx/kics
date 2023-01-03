@@ -1,9 +1,8 @@
 Resources:
-  Bucket1:
+  Bucket2:
     Type: AWS::S3::Bucket
     Properties:
-      PublicAccessBlockConfiguration:
-        BlockPublicAcls       : false
-        BlockPublicPolicy     : false
-        IgnorePublicAcls      : false
-        RestrictPublicBuckets : false
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html

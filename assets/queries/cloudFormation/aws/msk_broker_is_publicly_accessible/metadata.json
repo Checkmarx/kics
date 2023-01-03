@@ -1,0 +1,11 @@
+{
+  "id": "0ce1ba20-8ba8-4364-836f-40c24b8cb0ab",
+  "queryName": "MSK Broker Is Publicly Accessible",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Public AWS MSK allows anyone to interact with the Apache Kafka broker, therefore increasing the opportunity for malicious activity. To prevent such a scenario, it is recommended for AWS MSK to not be publicly accessible",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-publicaccess.html",
+  "platform": "CloudFormation",
+  "descriptionID": "dcf6ab9f",
+  "cloudProvider": "aws"
+}

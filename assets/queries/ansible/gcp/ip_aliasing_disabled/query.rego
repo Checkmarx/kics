@@ -14,9 +14,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "gcp_container_cluster.ip_allocation_policy is defined",
+		"keyExpectedValue": "gcp_container_cluster.ip_allocation_policy should be defined",
 		"keyActualValue": "gcp_container_cluster.ip_allocation_policy is undefined",
 	}
 }
@@ -30,9 +32,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.ip_allocation_policy", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "gcp_container_cluster.ip_allocation_policy.use_ip_aliases is set to true",
+		"keyExpectedValue": "gcp_container_cluster.ip_allocation_policy.use_ip_aliases should be set to true",
 		"keyActualValue": "gcp_container_cluster.ip_allocation_policy.use_ip_aliases is undefined",
 	}
 }
@@ -46,9 +50,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.ip_allocation_policy.use_ip_aliases", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_container_cluster.ip_allocation_policy.use_ip_aliases is true",
+		"keyExpectedValue": "gcp_container_cluster.ip_allocation_policy.use_ip_aliases should be true",
 		"keyActualValue": "gcp_container_cluster.ip_allocation_policy.use_ip_aliases is false",
 	}
 }

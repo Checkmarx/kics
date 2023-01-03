@@ -16,6 +16,7 @@ Available Commands:
   generate-id    Generates uuid for query
   help           Help about any command
   list-platforms List supported platforms
+  remediate      Auto remediates the project
   scan           Executes a scan analysis
   version        Displays the current version
 
@@ -43,7 +44,7 @@ Usage:
 
 Flags:
   -m, --bom                           include bill of materials (BoM) in results output
-      --cloud-provider strings        list of cloud providers to scan (aws, azure, gcp)
+      --cloud-provider strings        list of cloud providers to scan (alicloud, aws, azure, gcp)
       --config string                 path to configuration file
       --disable-full-descriptions     disable request for full descriptions and use default vulnerability descriptions
       --disable-secrets               disable secrets scanning
@@ -51,6 +52,7 @@ Flags:
                                       cannot be provided with query inclusion flags
                                       can be provided multiple times or as a comma separated string
                                       example: 'Access control,Best practices'
+      --exclude-gitignore             disables the exclusion of paths specified within .gitignore file                                
   -e, --exclude-paths strings         exclude paths from scan
                                       supports glob and can be provided multiple times or as a quoted comma separated string
                                       example: './shouldNotScan/*,somefile.txt'
@@ -64,6 +66,7 @@ Flags:
       --exclude-severities strings    exclude results by providing the severity of a result
                                       can be provided multiple times or as a comma separated string
                                       example: 'info,low'
+                                      possible values: 'high, medium, low, info, trace'
       --fail-on strings               which kind of results should return an exit code different from 0
                                       accepts: high, medium, low and info
                                       example: "high,low" (default [high,medium,low,info])
@@ -91,7 +94,7 @@ Flags:
   -r, --secrets-regexes-path string   path to secrets regex rules configuration file
       --timeout int                   number of seconds the query has to execute before being canceled (default 60)
   -t, --type strings                  case insensitive list of platform types to scan
-                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Kubernetes, OpenAPI, Terraform)
+                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
 
 Global Flags:
       --ci                  display only log messages to CLI output (mutually exclusive with silent)
@@ -104,7 +107,25 @@ Global Flags:
   -v, --verbose             write logs to stdout too (mutually exclusive with silent)
 ```
 
+## Auto Remediate Command Options
+
+```txt
+Auto remediates the project
+
+Usage:
+  kics remediate [flags]
+
+Flags:
+  -h, --help                  help for remediate
+      --include-ids strings   which remediation (similarity ids) should be remediated 
+                              example "f6b7acac2d541d8c15c88d2be51b0e6abd576750b71c580f2e3a9346f7ed0e67,6af5fc5d7c0ad0077348a090f7c09949369d24d5608bbdbd14376a15de62afd1" (default [all])
+      --results string        points to the JSON results file with remediation
+```
+
 The other commands have no further options.
+
+## Exclude Paths
+By default, KICS excludes paths specified in the .gitignore file in the root of the repository. To disable this behavior, use flag `--exclude-gitignore`.
 
 ## Library Flag Usage
 

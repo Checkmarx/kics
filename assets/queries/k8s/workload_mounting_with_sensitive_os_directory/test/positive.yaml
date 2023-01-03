@@ -278,3 +278,22 @@ spec:
     - ReadWriteOnce
   hostPath:
     path: "/boot"
+---
+apiVersion: serving.knative.dev/v1
+kind: Configuration
+metadata:
+  name: dummy-config
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+        - name: evil-container
+          image: alpine
+          volumeMounts:
+            - name: rootdir
+              mountPath: /
+      volumes:
+        - name: rootdir
+          hostPath:
+            path: /    

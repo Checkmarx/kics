@@ -12,9 +12,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.action", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name={{%s}}.{{%s}}.action is 'lambda:InvokeFunction'", [task.name, modules[m]]),
+		"keyExpectedValue": sprintf("name={{%s}}.{{%s}}.action should be 'lambda:InvokeFunction'", [task.name, modules[m]]),
 		"keyActualValue": sprintf("name={{%s}}.{{%s}}.action is %s", [task.name, modules[m], lambda.action]),
 	}
 }

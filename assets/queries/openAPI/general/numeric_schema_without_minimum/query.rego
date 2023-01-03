@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.type", [openapi_lib.concat_path(path)]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Numeric schema has 'minimum' defined",
+		"keyExpectedValue": "Numeric schema should have 'minimum' defined",
 		"keyActualValue": "Numeric schema does not have 'minimum' defined",
 		"overrideKey": version,
 	}

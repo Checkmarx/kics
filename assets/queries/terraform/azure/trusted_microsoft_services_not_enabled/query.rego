@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_storage_account[name]
@@ -8,9 +9,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_storage_account",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_storage_account[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'network_rules' is defined and not null",
+		"keyExpectedValue": "'network_rules' should be defined and not null",
 		"keyActualValue": "'network_rules' is undefined or null",
 	}
 }
@@ -21,9 +24,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_storage_account",
+		"resourceName": tf_lib.get_resource_name(input.document[i].resource.azurerm_storage_account[name], name),
 		"searchKey": sprintf("azurerm_storage_account[%s].network_rules", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'network_rules.bypass' is defined and not null",
+		"keyExpectedValue": "'network_rules.bypass' should be defined and not null",
 		"keyActualValue": "'network_rules.bypass' is undefined or null",
 	}
 }
@@ -35,9 +40,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_storage_account",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_storage_account[%s].network_rules.bypass", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'network_rules.bypass' contains 'AzureServices'",
+		"keyExpectedValue": "'network_rules.bypass' should contain 'AzureServices'",
 		"keyActualValue": "'network_rules.bypass' does not contain 'AzureServices'",
 	}
 }
@@ -48,9 +55,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_storage_account_network_rules",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_storage_account_network_rules[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'bypass' is defined and not null",
+		"keyExpectedValue": "'bypass' should be defined and not null",
 		"keyActualValue": "'bypass' is undefined or null",
 	}
 }
@@ -62,9 +71,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_storage_account_network_rules",
+		"resourceName": tf_lib.get_resource_name(network_rules, name),
 		"searchKey": sprintf("azurerm_storage_account_network_rules[%s].bypass", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'bypass' contains 'AzureServices'",
+		"keyExpectedValue": "'bypass' should contain 'AzureServices'",
 		"keyActualValue": "'bypass' does not contain 'AzureServices'",
 	}
 }

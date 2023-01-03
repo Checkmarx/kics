@@ -35,14 +35,22 @@ CxPolicy[result] {
 			"Role": "rbac.authorization.k8s.io/v1",
 			"RoleBinding": "rbac.authorization.k8s.io/v1",
 		},
+		"batch/v1beta1": {
+			"CronJob": "batch/v1",
+		},
+		"policy/v1beta1": {
+			"PodDisruptionBudget": "policy/v1",
+		}
 	}
 
 	common_lib.valid_key(recommendedVersions[document.apiVersion], document.kind)
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("apiVersion={{%s}}", [document.apiVersion]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.apiVersion should be {{%s}}", [metadata.name, recommendedVersions[document.apiVersion][document.kind]]),
-		"keyActualValue": sprintf("metadata.name={{%s}}.apiVersion is deprecated and is {{%s}}", [metadata.name, document.apiVersion]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.apiVersion of %s should be {{%s}}", [metadata.name,  document.kind, recommendedVersions[document.apiVersion][document.kind]]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.apiVersion of %s  is deprecated and is {{%s}}", [metadata.name, document.kind, document.apiVersion]),
 	}
 }

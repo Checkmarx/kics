@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -8,15 +9,18 @@ CxPolicy[result] {
 	ec2 := task[modules[m]]
 	checkState(ec2)
 
+	not common_lib.valid_key(ec2, "network_interfaces")
 	ansLib.isAnsibleTrue(ec2.assign_public_ip)
 
 	# There is no default value for assign_public_ip
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.assign_public_ip", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "ec2.assign_public_ip is false, 'no' or undefined",
+		"keyExpectedValue": "ec2.assign_public_ip should be set to false, 'no' or undefined",
 		"keyActualValue": sprintf("ec2.assign_public_ip is '%s'", [ec2.assign_public_ip]),
 	}
 }
@@ -34,9 +38,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.network_interfaces.associate_public_ip_address", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "ec2_launch_template.network_interfaces.associate_public_ip_address is false, 'no' or undefined",
+		"keyExpectedValue": "ec2_launch_template.network_interfaces.associate_public_ip_address should be set to false, 'no' or undefined",
 		"keyActualValue": sprintf("ec2_launch_template.network_interfaces.associate_public_ip_address is '%s'", [ipValue]),
 	}
 }
@@ -54,9 +60,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.network.assign_public_ip", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "ec2_instance.network.assign_public_ip is false, 'no' or undefined",
+		"keyExpectedValue": "ec2_instance.network.assign_public_ip should be set to false, 'no' or undefined",
 		"keyActualValue": sprintf("ec2_instance.network.assign_public_ip is '%s'", [ipValue]),
 	}
 }

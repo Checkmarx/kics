@@ -1,0 +1,11 @@
+{
+    "id": "6ef03ff6-a2bd-483c-851f-631f248bc0ea",
+    "queryName": "BOM - AWS RDS",
+    "severity": "TRACE",
+    "category": "Bill Of Materials",
+    "descriptionText": "A list of RDS resources found. Amazon Relational Database Service (Amazon RDS) is a collection of managed services that makes it simple to set up, operate, and scale databases in the cloud.",
+    "descriptionUrl": "https://kics.io",
+    "platform": "CloudFormation",
+    "descriptionID": "77215b57",
+    "cloudProvider": "aws"
+  }

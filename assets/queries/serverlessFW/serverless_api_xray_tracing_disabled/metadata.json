@@ -1,0 +1,10 @@
+{
+  "id": "434945e5-4dfd-41b1-aba1-47075ccd9265",
+  "queryName": "Serverless API X-Ray Tracing Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Serverless API Gateway should have X-Ray Tracing enabled",
+  "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/events/apigateway#aws-x-ray-tracing",
+  "platform": "ServerlessFW",
+  "descriptionID": "4af7c06f"
+}

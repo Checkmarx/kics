@@ -10,7 +10,8 @@ import (
 	sentryReport "github.com/Checkmarx/kics/internal/sentry"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser/jsonfilter/parser"
-	"github.com/antlr/antlr4/runtime/Go/antlr"
+	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
@@ -24,11 +25,11 @@ var (
 	}
 )
 
-func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reader) error {
+func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reader, data []byte) error {
 	s.Tracker.TrackFileFound()
 	log.Debug().Msgf("Starting to process file %s", filename)
 
-	c, err := getContent(rc)
+	c, err := getContent(rc, data)
 
 	content := c.Content
 
@@ -64,16 +65,19 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 		}
 
 		file := model.FileMetadata{
-			ID:               uuid.New().String(),
-			ScanID:           scanID,
-			Document:         PrepareScanDocument(document, documents.Kind),
-			LineInfoDocument: document,
-			OriginalData:     documents.Content,
-			Kind:             documents.Kind,
-			FilePath:         filename,
-			Commands:         fileCommands,
-			LinesIgnore:      documents.IgnoreLines,
+			ID:                uuid.New().String(),
+			ScanID:            scanID,
+			Document:          PrepareScanDocument(document, documents.Kind),
+			LineInfoDocument:  document,
+			OriginalData:      documents.Content,
+			Kind:              documents.Kind,
+			FilePath:          filename,
+			Commands:          fileCommands,
+			LinesIgnore:       documents.IgnoreLines,
+			ResolvedFiles:     documents.ResolvedFiles,
+			LinesOriginalData: utils.SplitLines(documents.Content),
 		}
+
 		s.saveToFile(ctx, &file)
 	}
 	s.Tracker.TrackFileParse()

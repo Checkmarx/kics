@@ -23,9 +23,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"issueType": "IncorrectValue",
 		"searchKey": sprintf("metadata.name={{%s}}.%s.rules.http.paths.backend", [metadata.name, specInfo.path]),
-		"keyExpectedValue": sprintf("metadata.name=%s is not exposing the workload", [metadata.name]),
+		"keyExpectedValue": sprintf("metadata.name=%s should not be exposing the workload", [metadata.name]),
 		"keyActualValue": sprintf("metadata.name=%s is exposing the workload", [metadata.name]),
 	}
 }

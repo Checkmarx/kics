@@ -41,7 +41,7 @@ func preRun(cmd *cobra.Command) error {
 	if err != nil {
 		return errors.New(initError + err.Error())
 	}
-	err = metrics.InitializeMetrics(flags.GetStrFlag(flags.ProfilingFlag), flags.GetStrFlag(flags.CIFlag))
+	err = metrics.InitializeMetrics(flags.GetStrFlag(flags.ProfilingFlag), flags.GetBoolFlag(flags.CIFlag))
 	if err != nil {
 		return errors.New(initError + err.Error())
 	}
@@ -156,8 +156,8 @@ func (console *console) preScan() {
 		log.Info().Msgf("Total memory: %s", bytefmt.ByteSize(mem.Total))
 	}
 
-	cpu := runtime.NumCPU()
-	log.Info().Msgf("CPU: %d", cpu)
+	cpu := consoleHelpers.GetNumCPU()
+	log.Info().Msgf("CPU: %.1f", cpu)
 
 	noProgress := flags.GetBoolFlag(flags.NoProgressFlag)
 	if strings.EqualFold(flags.GetStrFlag(flags.LogLevelFlag), "debug") {

@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resource.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--protect-kernel-defaults flag should not be set to false",
@@ -30,6 +32,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": doc.kind,
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "protectKernelDefaults flag should defined to true",
@@ -44,6 +48,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": doc.kind,
+		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}.protectKernelDefaults",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "protectKernelDefaults flag should defined to true",

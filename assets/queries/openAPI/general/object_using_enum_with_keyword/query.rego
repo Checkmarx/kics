@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.properties.%s does not contain 'enum' and schema keyword", [concat(".", path_c), name]),
+		"keyExpectedValue": sprintf("%s.properties.%s should not contain 'enum' and schema keyword", [concat(".", path_c), name]),
 		"keyActualValue": sprintf("%s.properties.%s contains 'enum' and schema keyword '%s'", [concat(".", path_c), name, keywords[x]]),
 		"overrideKey": version,
 	}

@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "DB Security Group Has Public Interface",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive.yaml"
+  },
+  {
+    "queryName": "DB Security Group Has Public Interface",
+    "severity": "HIGH",
+    "line": 55,
+    "fileName": "positive.yaml"
+  }  
+]

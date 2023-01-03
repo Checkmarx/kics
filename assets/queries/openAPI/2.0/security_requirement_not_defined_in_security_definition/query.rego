@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.%s", [openapi_lib.concat_default_value(openapi_lib.concat_path(path), "security"), name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s is defined in 'securityDefinitions'", [name]),
+		"keyExpectedValue": sprintf("%s should be defined in 'securityDefinitions'", [name]),
 		"keyActualValue": sprintf("%s is not defined in 'securityDefinitions'", [name]),
 	}
 }

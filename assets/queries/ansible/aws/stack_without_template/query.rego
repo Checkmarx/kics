@@ -16,6 +16,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s has template, template_body or template_url set", [modules[m]]),
@@ -31,9 +33,11 @@ CxPolicy[result] {
 	count([x | template := attributes[x]; common_lib.valid_key(cloudformation, template)]) > 1
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s does not have more than one of the attributes template, template_body and template_url set", [modules[m]]),
+		"keyExpectedValue": sprintf("%s should not have more than one of the attributes template, template_body and template_url set", [modules[m]]),
 		"keyActualValue": sprintf("%s has more than one of the attributes template, template_body and template_url set", [modules[m]]),
 	}
 }

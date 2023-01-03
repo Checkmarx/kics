@@ -3,7 +3,7 @@
   "queryName": "Security Group With Unrestricted Access To SSH",
   "severity": "HIGH",
   "category": "Networking and Firewall",
-  "descriptionText": "Security Groups allows all traffic for SSH (port:22)",
+  "descriptionText": "'SSH' (TCP:22) should not be public in AWS Security Group",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
   "platform": "CloudFormation",
   "descriptionID": "d515d6dc",

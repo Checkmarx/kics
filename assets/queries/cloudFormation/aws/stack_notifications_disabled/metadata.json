@@ -3,7 +3,7 @@
   "queryName": "Stack Notifications Disabled",
   "severity": "MEDIUM",
   "category": "Observability",
-  "descriptionText": "Enable AWS CloudFormation Stack Notifications",
+  "descriptionText": "AWS CloudFormation should have stack notifications enabled to be notified when an event occurs",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html",
   "platform": "CloudFormation",
   "descriptionID": "1e12925e",

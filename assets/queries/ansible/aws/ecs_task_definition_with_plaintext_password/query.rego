@@ -14,9 +14,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.containers.name={{%s}}.env", [task.name, modules[m], container.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'ecs_taskdefinition.containers.env' doesn't have 'password' value",
+		"keyExpectedValue": "'ecs_taskdefinition.containers.env' shouldn't have 'password' value",
 		"keyActualValue": "'ecs_taskdefinition.containers.env' has 'password' value",
 	}
 }

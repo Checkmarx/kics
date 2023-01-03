@@ -15,9 +15,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.emailAccountAdmins", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "securityAlertPolicies.properties.emailAccountAdmins is set to true",
+		"keyExpectedValue": "securityAlertPolicies.properties.emailAccountAdmins should be set to true",
 		"keyActualValue": "securityAlertPolicies.properties.emailAccountAdmins is set to false",
 		"searchLine": common_lib.build_search_line(path, ["properties", "emailAccountAdmins"]),
 	}
@@ -36,9 +38,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "securityAlertPolicies.properties.emailAccountAdmins is set to true",
+		"keyExpectedValue": "securityAlertPolicies.properties.emailAccountAdmins should be set to true",
 		"keyActualValue": "securityAlertPolicies.properties.emailAccountAdmins is missing",
 		"searchLine": common_lib.build_search_line(path, ["properties"]),
 	}

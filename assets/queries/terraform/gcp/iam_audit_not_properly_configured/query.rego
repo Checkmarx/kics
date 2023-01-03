@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.google_project_iam_audit_config[name]
 
@@ -7,6 +9,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_project_iam_audit_config",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_project_iam_audit_config[%s].service", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'service' must be 'allServices'",
@@ -26,6 +30,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_project_iam_audit_config",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_project_iam_audit_config[%s].audit_log_config.log_type", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'log_type' must be one of 'DATA_READ', 'DATA_WRITE', or 'ADMIN_READ'",
@@ -42,9 +48,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "google_project_iam_audit_config",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_project_iam_audit_config[%s].audit_log_config.exempted_members", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'exempted_members' is empty",
+		"keyExpectedValue": "'exempted_members' should be empty",
 		"keyActualValue": "'exempted_members' is not empty",
 	}
 }

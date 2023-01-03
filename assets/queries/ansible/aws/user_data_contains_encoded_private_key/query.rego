@@ -12,6 +12,8 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.user_data", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "ec2_lc.user_data should not contain RSA Private Key",

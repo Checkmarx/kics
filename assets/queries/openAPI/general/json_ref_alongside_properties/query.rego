@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s", [openapi_lib.concat_path(path)]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Only '$ref' property declared or other properties declared without '$ref'",
+		"keyExpectedValue": "Only '$ref' property should be declared or other properties declared without '$ref'",
 		"keyActualValue": "Property '$ref'alongside other properties",
 		"overrideKey": version,
 	}

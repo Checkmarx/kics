@@ -1,0 +1,11 @@
+{
+  "id": "f5587077-3f57-4370-9b4e-4eb5b1bac85b",
+  "queryName": "CloudTrail Log Files Not Encrypted With KMS",
+  "severity": "LOW",
+  "category": "Encryption",
+  "descriptionText": "Logs delivered by CloudTrail should be encrypted using KMS to increase security of your CloudTrail",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html",
+  "platform": "Ansible",
+  "descriptionID": "d3b81fde",
+  "cloudProvider": "aws"
+}

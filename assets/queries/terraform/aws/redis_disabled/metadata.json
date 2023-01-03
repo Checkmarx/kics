@@ -1,0 +1,11 @@
+{
+  "id": "4bd15dd9-8d5e-4008-8532-27eb0c3706d3",
+  "queryName": "Redis Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "ElastiCache should have Redis enabled, since it covers Compliance Certifications such as FedRAMP, HIPAA, and PCI DSS. For more information, take a look at 'https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/SelectEngine.html'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#engine",
+  "platform": "Terraform",
+  "descriptionID": "68984bf2",
+  "cloudProvider": "aws"
+}

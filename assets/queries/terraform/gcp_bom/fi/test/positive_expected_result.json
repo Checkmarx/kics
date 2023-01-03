@@ -1,0 +1,20 @@
+[
+	{
+		"queryName": "BOM - GCP FI",
+		"severity": "TRACE",
+		"line": 1,
+		"fileName": "positive.tf"
+	},
+	{
+		"queryName": "BOM - GCP FI",
+		"severity": "TRACE",
+		"line": 32,
+		"fileName": "positive.tf"
+	},
+	{
+		"queryName": "BOM - GCP FI",
+		"severity": "TRACE",
+		"line": 59,
+		"fileName": "positive.tf"
+	}
+]

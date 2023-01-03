@@ -15,9 +15,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("resource with type 'Microsoft.Network/networkWatchers/FlowLogs' has '%s' property defined", [fields[x]]),
+		"keyExpectedValue": sprintf("resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have '%s' property defined", [fields[x]]),
 		"keyActualValue": sprintf("resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have '%s' property defined", [fields[x]]),
 		"searchLine": common_lib.build_search_line(path, ["properties"]),
 	}
@@ -36,9 +38,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.retentionPolicy", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("resource with type 'Microsoft.Network/networkWatchers/FlowLogs' has '%s' property defined", [fields[x]]),
+		"keyExpectedValue": sprintf("resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have '%s' property defined", [fields[x]]),
 		"keyActualValue": sprintf("resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have '%s' property defined", [fields[x]]),
 		"searchLine": common_lib.build_search_line(path, ["properties", "retentionPolicy"]),
 	}
@@ -55,9 +59,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.retentionPolicy.enabled", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' has 'enabled' property set to true",
+		"keyExpectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'enabled' property set to true",
 		"keyActualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'enabled' set to true",
 		"searchLine": common_lib.build_search_line(path, ["properties", "retentionPolicy", "enabled"]),
 	}
@@ -74,9 +80,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.retentionPolicy.days", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' has 'days' property higher than 90",
+		"keyExpectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'days' property higher than 90",
 		"keyActualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'days' property higher than 90",
 		"searchLine": common_lib.build_search_line(path, ["properties", "retentionPolicy", "days"]),
 	}

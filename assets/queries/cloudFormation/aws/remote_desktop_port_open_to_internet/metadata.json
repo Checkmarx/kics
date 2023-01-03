@@ -1,0 +1,11 @@
+{
+  "id": "c9846969-d066-431f-9b34-8c4abafe422a",
+  "queryName": "Remote Desktop Port Open To Internet",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "The Remote Desktop port is open to the internet in a Security Group",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
+  "platform": "CloudFormation",
+  "descriptionID": "2e4ef03f",
+  "cloudProvider": "aws"
+}

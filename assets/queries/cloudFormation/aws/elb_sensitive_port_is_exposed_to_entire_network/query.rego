@@ -1,6 +1,6 @@
 package Cx
 
-import data.generic.cloudformation as cloudFormationLib
+import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
 
 isAccessibleFromEntireNetwork(ingress) {
@@ -73,7 +73,7 @@ CxPolicy[result] {
 
 	protocols := getProtocolList(ingress.IpProtocol)
 	protocol := protocols[n]
-	portsMap = getProtocolPorts(protocols, common_lib.tcpPortsMap, cloudFormationLib.udpPortsMap)
+	portsMap = getProtocolPorts(protocols, common_lib.tcpPortsMap, cf_lib.udpPortsMap)
 
 	#############	Checks
 	isAccessibleFromEntireNetwork(ingress)
@@ -87,6 +87,8 @@ CxPolicy[result] {
 	##############	Result
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": secGroup.properties.Type,
+		"resourceName": cf_lib.get_resource_name(secGroup.properties, secGroup.name),
 		"searchKey": sprintf("Resources.%s.SecurityGroupIngress", [secGroup.name]),
 		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
 		"issueType": "IncorrectValue",

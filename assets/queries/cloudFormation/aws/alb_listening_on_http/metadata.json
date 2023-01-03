@@ -3,7 +3,7 @@
   "queryName": "ALB Listening on HTTP",
   "severity": "HIGH",
   "category": "Networking and Firewall",
-  "descriptionText": "All Application Load Balancers (ALB) should block connection requests over HTTP",
+  "descriptionText": "AWS Application Load Balancer (alb) should not listen on HTTP",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-listener.html#cfn-ec2-elb-listener-protocol",
   "platform": "CloudFormation",
   "descriptionID": "55f05412",

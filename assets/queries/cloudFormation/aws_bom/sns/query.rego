@@ -12,7 +12,7 @@ CxPolicy[result] {
 
 	bom_output = {
 		"resource_type": "AWS::SNS::Topic",
-		"resource_name": get_topic_name(sns_topic),
+		"resource_name": cf_lib.get_resource_name(sns_topic, name),
 		"resource_accessibility": info.accessibility,
 		"resource_encryption": cf_lib.get_encryption(sns_topic),
 		"resource_vendor": "AWS",
@@ -31,12 +31,3 @@ CxPolicy[result] {
 		"value": json.marshal(final_bom_output),
 	}
 }
-
-get_topic_name(sns_topic) = name {
-	name := sns_topic.Properties.TopicName
-} else = name {
-	name := common_lib.get_tag_name_if_exists(sns_topic)
-} else = name {
-	name := "unknown"
-}
-

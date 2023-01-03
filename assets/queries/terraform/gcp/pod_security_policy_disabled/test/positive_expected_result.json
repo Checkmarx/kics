@@ -7,6 +7,6 @@
   {
     "queryName": "Pod Security Policy Disabled",
     "severity": "HIGH",
-    "line": 17
+    "line": 18
   }
 ]

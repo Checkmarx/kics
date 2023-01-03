@@ -17,9 +17,11 @@ CxPolicy[result] {
 	metadata := document.metadata
 	result := {
 		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}", [metadata.name, specInfo.path, types[t], container.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.resources.limits.memory is defined", [metadata.name, specInfo.path, types[t], container.name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.resources.limits.memory should be defined", [metadata.name, specInfo.path, types[t], container.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.resources.limits.memory is undefined", [metadata.name, specInfo.path, types[t], container.name]),
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[t], c, "resources", "limits"])
 	}

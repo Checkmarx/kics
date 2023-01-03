@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.securitySchemes.{{%s}}", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("components.securitySchemes.{{%s}} does not use oauth 1.0 security scheme", [name]),
+		"keyExpectedValue": sprintf("components.securitySchemes.{{%s}} should not use oauth 1.0 security scheme", [name]),
 		"keyActualValue": sprintf("components.securitySchemes.{{%s}} uses oauth 1.0 security scheme", [name]),
 	}
 }

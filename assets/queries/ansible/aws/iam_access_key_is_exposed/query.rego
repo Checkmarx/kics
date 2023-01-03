@@ -13,9 +13,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.access_key_state", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "iam.name is 'root' for an active access key",
+		"keyExpectedValue": "iam.name should be 'root' for an active access key",
 		"keyActualValue": sprintf("iam.name is '%s' for an active access key", [iamuser.name]),
 	}
 }

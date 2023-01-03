@@ -21,9 +21,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.properties.logs.%s", [common_lib.concat_path(path), value.name, cats[l]]),
 		"issueType": issue.type,
-		"keyExpectedValue": sprintf("'diagnosticsettings.properties.logs.%s' is defined and enabled", [cats[l]]),
+		"keyExpectedValue": sprintf("'diagnosticsettings.properties.logs.%s' should be defined and enabled", [cats[l]]),
 		"keyActualValue": sprintf("'diagnosticsettings.properties.logs.%s' is %s", [issue.msg]),
 		"searchLine": common_lib.build_search_line(path, ["properties", "logs", cats[l]]),
 	}

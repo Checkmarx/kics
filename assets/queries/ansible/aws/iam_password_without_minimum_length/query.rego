@@ -14,9 +14,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "iam_password_policy.min_pw_length/minimum_password_length is set and no less than 8",
+		"keyExpectedValue": "iam_password_policy.min_pw_length/minimum_password_length should be set and no less than 8",
 		"keyActualValue": "iam_password_policy.min_pw_length/minimum_password_length is undefined",
 	}
 }
@@ -31,9 +33,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.{{min_pw_length}}", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("iam_password_policy.%s is set and no less than 8", [variableName]),
+		"keyExpectedValue": sprintf("iam_password_policy.%s should be set and no less than 8", [variableName]),
 		"keyActualValue": sprintf("iam_password_policy.%s is less than 8", [variableName]),
 	}
 }

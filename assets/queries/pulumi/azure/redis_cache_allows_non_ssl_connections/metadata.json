@@ -1,0 +1,11 @@
+{
+  "id": "49e30ac8-f58e-4222-b488-3dcb90158ec1",
+  "queryName": "Redis Cache Allows Non SSL Connections",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Redis Cache resource should not allow non-SSL connections.",
+  "descriptionUrl": "https://www.pulumi.com/registry/packages/azure-native/api-docs/cache/redis/#enablenonsslport_yaml",
+  "platform": "Pulumi",
+  "descriptionID": "64acf7a6",
+  "cloudProvider": "azure"
+}

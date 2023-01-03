@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "RUN instruction doesn't contain sudo",
+		"keyExpectedValue": "RUN instruction shouldn't contain sudo",
 		"keyActualValue": "RUN instruction contains sudo",
 	}
 }
@@ -29,7 +29,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "RUN instruction doesn't contain sudo",
+		"keyExpectedValue": "RUN instruction shouldn't contain sudo",
 		"keyActualValue": "RUN instruction contains sudo",
 	}
 }

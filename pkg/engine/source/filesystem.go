@@ -80,7 +80,7 @@ func ListSupportedPlatforms() []string {
 
 // ListSupportedCloudProviders returns a list of supported cloud providers
 func ListSupportedCloudProviders() []string {
-	return []string{"aws", "azure", "gcp"}
+	return []string{"alicloud", "aws", "azure", "gcp"}
 }
 
 func getLibraryInDir(platform, libraryDirPath string) string {
@@ -406,35 +406,32 @@ func ReadMetadata(queryDir string) (map[string]interface{}, error) {
 	return metadata, nil
 }
 
+type supportedPlatforms map[string]string
+
+var supPlatforms = &supportedPlatforms{
+	"Ansible":                 "ansible",
+	"CloudFormation":          "cloudFormation",
+	"Common":                  "common",
+	"Crossplane":              "crossplane",
+	"Dockerfile":              "dockerfile",
+	"DockerCompose":           "dockerCompose",
+	"Knative":                 "knative",
+	"Kubernetes":              "k8s",
+	"OpenAPI":                 "openAPI",
+	"Terraform":               "terraform",
+	"AzureResourceManager":    "azureResourceManager",
+	"GRPC":                    "grpc",
+	"GoogleDeploymentManager": "googleDeploymentManager",
+	"Buildah":                 "buildah",
+	"Pulumi":                  "pulumi",
+	"ServerlessFW":            "serverlessFW",
+}
+
 func getPlatform(metadataPlatform string) string {
-	switch metadataPlatform {
-	case "Ansible":
-		return "ansible"
-	case "CloudFormation":
-		return "cloudFormation"
-	case "Common":
-		return "common"
-	case "Dockerfile":
-		return "dockerfile"
-	case "DockerCompose":
-		return "dockerCompose"
-	case "Kubernetes":
-		return "k8s"
-	case "OpenAPI":
-		return "openAPI"
-	case "Terraform":
-		return "terraform"
-	case "AzureResourceManager":
-		return "azureResourceManager"
-	case "GRPC":
-		return "grpc"
-	case "GoogleDeploymentManager":
-		return "googleDeploymentManager"
-	case "Buildah":
-		return "buildah"
-	default:
-		return "unknown"
+	if p, ok := (*supPlatforms)[metadataPlatform]; ok {
+		return p
 	}
+	return "unknown"
 }
 
 func readInputData(inputDataPath string) (string, error) {

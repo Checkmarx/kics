@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	resources := input.document[i].Resources[name]
@@ -10,9 +11,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resources.Type,
+		"resourceName": cf_lib.get_resource_name(resources, name),
 		"searchKey": sprintf("Resources.%s.Properties.EnableKeyRotation", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.EnableKeyRotation is not 'true'", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.EnableKeyRotation should not be 'true'", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.EnableKeyRotation is true", [name]),
 	}
 }
@@ -25,9 +28,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resources.Type,
+		"resourceName": cf_lib.get_resource_name(resources, name),
 		"searchKey": sprintf("Resources.%s.Properties.EnableKeyRotation", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.EnableKeyRotation is defined", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.EnableKeyRotation should be defined", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.EnableKeyRotation is undefined", [name]),
 	}
 }

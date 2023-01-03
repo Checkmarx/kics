@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document
@@ -12,8 +12,8 @@ CxPolicy[result] {
 
 	bom_output = {
 		"resource_type": "AWS::S3::Bucket",
-		"resource_name": get_bucket_name(bucket_resource),
-		"resource_accessibility": info.accessibility,
+		"resource_name": cf_lib.get_resource_name(bucket_resource, name),
+		"resource_accessibility": lower(info.accessibility),
 		"resource_encryption": cf_lib.get_encryption(bucket_resource),
 		"resource_vendor": "AWS",
 		"resource_category": "Storage",
@@ -36,15 +36,7 @@ CxPolicy[result] {
 get_bucket_acl(bucket_resource) = acl {
 	acl := bucket_resource.Properties.AccessControl
 } else = acl {
-	acl := "Private"
-}
-
-get_bucket_name(bucket_resource) = name {
-	name := bucket_resource.Properties.BucketName
-} else = name {
-	name := common_lib.get_tag_name_if_exists(bucket_resource)
-} else = name {
-	name := "unknown"
+	acl := "private"
 }
 
 is_public_access_blocked(properties) {
@@ -53,12 +45,25 @@ is_public_access_blocked(properties) {
 }
 
 get_resource_accessibility(resource, name) = info {
+	acc := cf_lib.get_resource_accessibility(name, "AWS::S3::BucketPolicy", "Bucket")
 	is_public_access_blocked(resource.Properties.PublicAccessBlockConfiguration)
-	info := {"accessibility": "Private", "policy": ""}
+	info := {"accessibility": "private", "policy": acc.policy}
+} else = info {
+	acc := cf_lib.get_resource_accessibility(name, "AWS::S3::BucketPolicy", "Bucket")
+	acl := get_bucket_acl(resource)
+	lower(acl) == "private"
+	info := {"accessibility": "private", "policy": acc.policy}
 } else = info {
 	acc := cf_lib.get_resource_accessibility(name, "AWS::S3::BucketPolicy", "Bucket")
 	acc.accessibility == "hasPolicy"
 	info := {"accessibility": "hasPolicy", "policy": acc.policy}
 } else = info {
-	info := {"accessibility": "unknown", "policy": ""}
+	acc := cf_lib.get_resource_accessibility(name, "AWS::S3::BucketPolicy", "Bucket")
+	acl := get_bucket_acl(resource)
+	lower(acl) != "private"
+	info := {"accessibility": "public", "policy": acc.policy}
+} else = info {
+	acc := cf_lib.get_resource_accessibility(name, "AWS::S3::BucketPolicy", "Bucket")
+	acc.accessibility != "hasPolicy"
+	info := {"accessibility": acc.accessibility, "policy": acc.policy}
 }

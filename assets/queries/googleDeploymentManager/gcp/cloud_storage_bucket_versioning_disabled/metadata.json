@@ -1,0 +1,11 @@
+{
+  "id": "ad0875c1-0b39-4890-9149-173158ba3bba",
+  "queryName": "Cloud Storage Bucket Versioning Disabled",
+  "severity": "HIGH",
+  "category": "Observability",
+  "descriptionText": "Cloud Storage Bucket should have versioning enabled",
+  "descriptionUrl": "https://cloud.google.com/storage/docs/json_api/v1/buckets",
+  "platform": "GoogleDeploymentManager",
+  "descriptionID": "9b7ba7de",
+  "cloudProvider": "gcp"
+}

@@ -2,8 +2,12 @@ package terraform
 
 import (
 	"path/filepath"
+	"reflect"
 	"strings"
 	"testing"
+
+	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
+	"github.com/hashicorp/hcl/v2"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/stretchr/testify/require"
@@ -42,6 +46,24 @@ resource "aws_s3_bucket" "b" {
 	subnet_id     = var.subnet_ids[count.index]
 
   }`
+
+	parentheses = `
+variable "default" {
+		type    = "string"
+		default = "default_var_file"
+}
+	
+data "aws_ami" "example" {
+		most_recent = true
+	  
+		owners = ["self"]
+		tags = {
+		  Name   = "app-server"
+		  Tested = "true"
+		  ("Tag/${var.default}") = "test"
+		}
+}
+  `
 )
 
 type fileTest struct {
@@ -93,13 +115,25 @@ func Test_Count(t *testing.T) {
 	require.NotContains(t, document[0]["resource"].(model.Document)["aws_instance"], "server")
 }
 
+// Test_Parentheses_Expr tests if parentheses expr is well parsed
+func Test_Parentheses_Expr(t *testing.T) {
+	parser := NewDefault()
+	getInputVariables(filepath.FromSlash("../../../test/fixtures/test-tf-parentheses"))
+	document, _, err := parser.Parse("parentheses.tf", []byte(parentheses))
+	require.NoError(t, err)
+	require.Len(t, document, 1)
+	require.Contains(t, document[0], "data")
+	ami := document[0]["data"].(model.Document)["aws_ami"].(model.Document)["example"]
+	require.Contains(t, ami.(model.Document)["tags"], "Tag/default_var_file")
+}
+
 // Test_Resolve tests the functions [Resolve()] and all the methods called by them
 func Test_Resolve(t *testing.T) {
 	parser := NewDefault()
 
 	resolved, err := parser.Resolve([]byte(have), "test.tf")
 	require.NoError(t, err)
-	require.Equal(t, []byte(have), *resolved)
+	require.Equal(t, []byte(have), resolved)
 }
 
 func TestTerraform_ProcessContent(t *testing.T) {
@@ -193,7 +227,7 @@ resource "aws_s3_bucket" "b" {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := tt.fields.parser.StringifyContent(tt.args.content)
-			require.Equal(t, tt.wantErr, (err != nil))
+			require.Equal(t, tt.wantErr, err != nil)
 			require.Equal(t, tt.want, got)
 		})
 	}
@@ -291,6 +325,39 @@ data "aws_iam_policy_document" "test_destination_policy" {
 			} else {
 				require.NoError(t, err)
 				require.Equal(t, tt.want, strings.ReplaceAll(string(parsedFile.Bytes), "\r", ""))
+			}
+		})
+	}
+}
+
+func TestParser_GetResolvedFiles(t *testing.T) {
+	type fields struct {
+		convertFunc  Converter
+		numOfRetries int
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		want   map[string]model.ResolvedFile
+	}{
+		{
+			name: "Should get resolved files",
+			fields: fields{
+				convertFunc: func(file *hcl.File, inputVariables converter.VariableMap) (model.Document, error) {
+					return nil, nil
+				},
+			},
+			want: map[string]model.ResolvedFile{},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			p := &Parser{
+				convertFunc:  tt.fields.convertFunc,
+				numOfRetries: tt.fields.numOfRetries,
+			}
+			if got := p.GetResolvedFiles(); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("GetResolvedFiles() = %v, want %v", got, tt.want)
 			}
 		})
 	}

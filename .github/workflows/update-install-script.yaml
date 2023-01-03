@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.1
+        uses: styfle/cancel-workflow-action@0.11.0
         with:
           access_token: ${{ github.token }}
       - name: Checkout project
@@ -30,7 +30,7 @@ jobs:
             && chmod +x godownloader \
             && rm -vf $(basename "${FULL_URL}") \
             && cd "${PROJDIR}"
-      - uses: actions/setup-python@v3
+      - uses: actions/setup-python@v4
         with:
           python-version: "3.x"
       - name: Install dependencies
@@ -41,7 +41,7 @@ jobs:
         run: |
           #!/usr/bin/env python3
           import ruamel.yaml
-          with open('.goreleaser.yml', 'r') as file:
+          with open('./docker/.goreleaser.yml', 'r') as file:
             file_obj = ruamel.yaml.load(file, Loader=ruamel.yaml.RoundTripLoader)
             del file_obj['brews']
             file_content = ruamel.yaml.dump(file_obj, Dumper=ruamel.yaml.RoundTripDumper)

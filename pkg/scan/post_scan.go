@@ -2,7 +2,6 @@ package scan
 
 import (
 	_ "embed" // Embed kics CLI img and scan-flags
-	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -10,6 +9,7 @@ import (
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/pkg/descriptions"
+	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/model"
 	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
 	"github.com/Checkmarx/kics/pkg/progress"
@@ -96,8 +96,12 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 func (c *Client) postScan(scanResults *Results) error {
 	if scanResults == nil {
 		log.Info().Msg("No files were scanned")
-		fmt.Println("No files were scanned")
-		return nil
+		scanResults = &Results{
+			Results:        []model.Vulnerability{},
+			ExtractedPaths: provider.ExtractedPath{},
+			Files:          model.FileMetadatas{},
+			FailedQueries:  map[string]error{},
+		}
 	}
 
 	summary := c.getSummary(scanResults.Results, time.Now(), model.PathParameters{

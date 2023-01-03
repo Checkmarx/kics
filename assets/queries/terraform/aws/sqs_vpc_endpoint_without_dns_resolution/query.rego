@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_vpc_endpoint[name]
@@ -14,9 +15,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_vpc_endpoint",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_vpc_endpoint[%s].vpc_id", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'enable_dns_support' is set to true or undefined",
+		"keyExpectedValue": "'enable_dns_support' should be set to true or undefined",
 		"keyActualValue": "'enable_dns_support' is set to false",
 		"searchLine": common_lib.build_search_line(["resource", "aws_vpc_endpoint", name, "vpc_id"], []),
 	}
@@ -31,9 +34,11 @@ CxPolicy[result] {
 	
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].enable_dns_support", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'enable_dns_support' is set to true or undefined",
+		"keyExpectedValue": "'enable_dns_support' should be set to true or undefined",
 		"keyActualValue": "'enable_dns_support' is set to false",
 		"searchLine": common_lib.build_search_line(["module", name, "vpc_id"], []),
 	}

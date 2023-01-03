@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 
@@ -7,9 +9,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].metadata", [resourceType, name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].metadata does not refer any to a Tiller resource", [resourceType, name]),
+		"keyExpectedValue": sprintf("%s[%s].metadata should not refer any to a Tiller resource", [resourceType, name]),
 		"keyActualValue": sprintf("%s[%s].metadata refers to a Tiller resource", [resourceType, name]),
 	}
 }
@@ -28,9 +32,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.%s", [resourceType, name, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].spec.%s[%d].image doesn't have any Tiller containers", [resourceType, name, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s[%d].image shouldn't have any Tiller containers", [resourceType, name, types[x], y]),
 		"keyActualValue": sprintf("%s[%s].spec.%s[%d].image contains a Tiller container", [resourceType, name, types[x], y]),
 	}
 }
@@ -46,9 +52,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.%s.image", [resourceType, name, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].spec.%s.image doesn't have any Tiller containers", [resourceType, name, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s.image shouldn't have any Tiller containers", [resourceType, name, types[x]]),
 		"keyActualValue": sprintf("%s[%s].spec.%s.image contains a Tiller container", [resourceType, name, types[x]]),
 	}
 }
@@ -62,9 +70,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.template.metadata", [resourceType, name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].spec.template.metadata does not refer to any Tiller resource", [resourceType, name]),
+		"keyExpectedValue": sprintf("%s[%s].spec.template.metadata should not refer to any Tiller resource", [resourceType, name]),
 		"keyActualValue": sprintf("%s[%s].spec.template.metadata does not refer to any Tiller resource", [resourceType, name]),
 	}
 }
@@ -81,9 +91,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.template.spec.%s.image", [resourceType, name, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].spec.template.spec.%s.image doesn't have any Tiller containers", [resourceType, name, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].spec.template.spec.%s.image shouldn't have any Tiller containers", [resourceType, name, types[x]]),
 		"keyActualValue": sprintf("%s[%s].spec.template.spec.%s.image contains a Tiller container", [resourceType, name, types[x]]),
 	}
 }
@@ -100,9 +112,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": resourceType,
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.template.%s", [resourceType, name, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].spec.template.spec.%s[%d].image doesn't have any Tiller containers", [resourceType, name, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].spec.template.spec.%s[%d].image shouldn't have any Tiller containers", [resourceType, name, types[x], y]),
 		"keyActualValue": sprintf("%s[%s].spec.template.spec.%s[%d].image contains a Tiller container", [resourceType, name, types[x], y]),
 	}
 }

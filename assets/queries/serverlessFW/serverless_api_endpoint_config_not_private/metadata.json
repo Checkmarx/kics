@@ -1,0 +1,10 @@
+{
+  "id": "4d424558-c6d1-453c-be98-9a7f877abd9a",
+  "queryName": "Serverless API Endpoint Config Not Private",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Serverless should have endpointType set to 'PRIVATE'. This way, it's not exposed to the public internet",
+  "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/events/apigateway#configuring-endpoint-types",
+  "platform": "ServerlessFW",
+  "descriptionID": "7837a4b9"
+}

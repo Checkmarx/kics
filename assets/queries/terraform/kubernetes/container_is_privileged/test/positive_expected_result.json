@@ -2,12 +2,12 @@
   {
     "queryName": "Container Is Privileged",
     "severity": "HIGH",
-    "line": 8
+    "line": 14
   },
   {
     "queryName": "Container Is Privileged",
     "severity": "HIGH",
-    "line": 8
+    "line": 47
   },
   {
     "queryName": "Container Is Privileged",

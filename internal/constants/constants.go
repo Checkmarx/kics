@@ -42,8 +42,10 @@ var (
 	AvailablePlatforms = map[string]string{
 		"Ansible":                 "ansible",
 		"CloudFormation":          "cloudFormation",
+		"Crossplane":              "crossplane",
 		"Dockerfile":              "dockerfile",
 		"DockerCompose":           "dockerCompose",
+		"Knative":                 "knative",
 		"Kubernetes":              "k8s",
 		"OpenAPI":                 "openAPI",
 		"Terraform":               "terraform",
@@ -51,6 +53,8 @@ var (
 		"GoogleDeploymentManager": "googleDeploymentManager",
 		"GRPC":                    "grpc",
 		"Buildah":                 "buildah",
+		"Pulumi":                  "pulumi",
+		"ServerlessFW":            "serverlessFW",
 	}
 
 	// AvailableSeverities - All severities available
@@ -74,9 +78,10 @@ var (
 
 	// AvailableCloudProviders - All cloud providers available
 	AvailableCloudProviders = map[string]string{
-		"aws":   "",
-		"azure": "",
-		"gcp":   "",
+		"alicloud": "",
+		"aws":      "",
+		"azure":    "",
+		"gcp":      "",
 	}
 )
 
@@ -116,6 +121,9 @@ const (
 
 	// LogFormatPretty - print log more readable
 	LogFormatPretty = "pretty"
+
+	// MaxResolvedFiles - max files kics will resolve to prevent circular cycles
+	MaxResolvedFiles = 50
 )
 
 // GetRelease - returns the current release in the format 'kics@version' to be used by sentry

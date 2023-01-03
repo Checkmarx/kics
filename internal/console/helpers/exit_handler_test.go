@@ -244,3 +244,17 @@ func TestExitHandler_ShowError(t *testing.T) {
 		})
 	}
 }
+
+func Test_RemediateAll(t *testing.T) {
+	t.Run("RemediateAllExitCode", func(t *testing.T) {
+		statusCode := RemediateExitCode(11, 11)
+		require.Equal(t, statusCode, 0)
+	})
+}
+
+func Test_RemediateNotAll(t *testing.T) {
+	t.Run("RemediateNotAllExitCode", func(t *testing.T) {
+		statusCode := RemediateExitCode(11, 6)
+		require.Equal(t, statusCode, 70)
+	})
+}

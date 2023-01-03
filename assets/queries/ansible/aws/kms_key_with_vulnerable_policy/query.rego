@@ -19,9 +19,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_kms.policy does not have wildcard in 'Action' and 'Principal'",
+		"keyExpectedValue": "aws_kms.policy should not have wildcard in 'Action' and 'Principal'",
 		"keyActualValue": "aws_kms.policy has wildcard in 'Action' or 'Principal'",
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}
@@ -37,9 +39,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'policy' is undefined or null",
+		"keyExpectedValue": "'policy' should be undefined or null",
 		"keyActualValue": "'policy' is defined and not null",
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m]], []),
 	}

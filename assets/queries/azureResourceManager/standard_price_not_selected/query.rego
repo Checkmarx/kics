@@ -12,9 +12,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.properties.pricingTier", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'pricingTier' is set to standard",
+		"keyExpectedValue": "'pricingTier' should be set to standard",
 		"keyActualValue": sprintf("'pricingTier' is set to %s", [value.properties.pricingTier]),
 		"searchLine": common_lib.build_search_line(path, ["properties", "pricingTier"]),
 

@@ -3,7 +3,7 @@
   "queryName": "RDP Access Is Not Restricted",
   "severity": "MEDIUM",
   "category": "Networking and Firewall",
-  "descriptionText": "Check if Google Firewall ingress allows RDP access (port 3389)",
+  "descriptionText": "Check if the Google compute firewall allows unrestricted RDP access. Allowed ports should not contain RDP port 3389",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall",
   "platform": "Terraform",
   "descriptionID": "f8156d3b",

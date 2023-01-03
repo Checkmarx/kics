@@ -1,15 +1,20 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_network_security_rule[var0]
 	upper(resource.access) == "ALLOW"
-
+	upper(resource.direction) == "INBOUND"
+	
 	isRelevantProtocol(resource.protocol)
 	isRelevantPort(resource.destination_port_range)
 	isRelevantAddressPrefix(resource.source_address_prefix)
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "azurerm_network_security_rule",
+		"resourceName": tf_lib.get_resource_name(resource, var0),
 		"searchKey": sprintf("azurerm_network_security_rule[%s].destination_port_range", [var0]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_network_security_rule.%s.destination_port_range' cannot be 3389", [var0]),

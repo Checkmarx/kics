@@ -14,9 +14,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "ecs_ecr.image_tag_mutability is set ",
+		"keyExpectedValue": "ecs_ecr.image_tag_mutability should be set ",
 		"keyActualValue": "ecs_ecr.image_tag_mutability is undefined",
 	}
 }
@@ -30,9 +32,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.image_tag_mutability", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "ecs_ecr.image_tag_mutability is set to 'immutable'",
+		"keyExpectedValue": "ecs_ecr.image_tag_mutability should be set to 'immutable'",
 		"keyActualValue": "ecs_ecr.image_tag_mutability is not set to 'immutable'",
 	}
 }

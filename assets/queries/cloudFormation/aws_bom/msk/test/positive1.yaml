@@ -41,3 +41,6 @@ Resources:
           - ReplaceWithSubnetId1
           - ReplaceWithSubnetId2
           - ReplaceWithSubnetId3
+        ConnectivityInfo:
+          PublicAccess:
+            Type: SERVICE_PROVIDED_EIPS

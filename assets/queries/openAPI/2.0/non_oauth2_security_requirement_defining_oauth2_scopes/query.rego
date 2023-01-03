@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.%s", [openapi_lib.concat_default_value(openapi_lib.concat_path(path), "security"), name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("security scheme %s doesn't specify scopes for type '%s'", [name, type]),
-		"keyActualValue": sprintf("security scheme %s doesn't specifies scopes for type '%s'", [name, type]),
+		"keyExpectedValue": sprintf("security scheme %s should specify scopes for type '%s'", [name, type]),
+		"keyActualValue": sprintf("security scheme %s doesn't specify scopes for type '%s'", [name, type]),
 	}
 }

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_launch_configuration[name]
@@ -10,9 +11,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_launch_configuration",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_launch_configuration[%s].%s.encrypted", [name, block]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_launch_configuration[%s].%s.encrypted is true", [name, block]),
+		"keyExpectedValue": sprintf("aws_launch_configuration[%s].%s.encrypted should be true", [name, block]),
 		"keyActualValue": sprintf("aws_launch_configuration[%s].%s.encrypted is false", [name, block]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_launch_configuration", name, block, "encrypted"], []),
 	}
@@ -27,9 +30,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "aws_launch_configuration",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_launch_configuration[%s].%s", [name, block]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_launch_configuration[%s].%s.encrypted is set", [name, block]),
+		"keyExpectedValue": sprintf("aws_launch_configuration[%s].%s.encrypted should be set", [name, block]),
 		"keyActualValue": sprintf("aws_launch_configuration[%s].%s.encrypted is undefined", [name, block]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_launch_configuration", name, block], []),
 	}
@@ -47,9 +52,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].%s.encrypted", [name, block]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'encrypted' is true",
+		"keyExpectedValue": "'encrypted' should be true",
 		"keyActualValue": "'encrypted' is false",
 		"searchLine": common_lib.build_search_line(["module", name, block, idx], ["encrypted"]),
 	}
@@ -62,16 +69,18 @@ CxPolicy[result] {
 
 	v := value[block][idx]
 	not common_lib.valid_key(v, "encrypted")
-	
+
 	common_lib.get_module_equivalent_key("aws", module.source, "aws_launch_configuration", block)
 
 	valid_block(block)
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].%s", [name, block]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'encrypted' is set",
+		"keyExpectedValue": "'encrypted' should be set",
 		"keyActualValue": "'encrypted' is undefined",
 		"searchLine": common_lib.build_search_line(["module", name, block], [idx]),
 	}

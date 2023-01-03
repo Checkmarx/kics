@@ -1,0 +1,11 @@
+{
+  "id": "b2418936-cd47-4ea2-8346-623c0bdb87bd",
+  "queryName": "AKS RBAC Disabled",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Azure Container Service (AKS) instance should have role-based access control (RBAC) enabled",
+  "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-azure/compute.azure.crossplane.io/AKSCluster/v1alpha3@v0.19.0#spec-disableRBAC",
+  "platform": "Crossplane",
+  "descriptionID": "b9f4440e",
+  "cloudProvider": "azure"
+}

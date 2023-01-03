@@ -24,9 +24,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"searchKey": "Resources",
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'AWS::AccessAnalyzer::Analyzer' is set",
+		"keyExpectedValue": "'AWS::AccessAnalyzer::Analyzer' should be set",
 		"keyActualValue": "'AWS::AccessAnalyzer::Analyzer' is undefined",
 		"searchLine": common_lib.build_search_line(["Resources"], []),
 	}

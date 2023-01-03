@@ -326,7 +326,7 @@ func (c *converter) convertTemplate(t *hclsyntax.TemplateExpr) (string, error) {
 		}
 		return v.AsString(), nil
 	}
-	var builder strings.Builder
+	builder := &strings.Builder{}
 	for _, part := range t.Parts {
 		s, err := c.convertStringPart(part)
 		if err != nil {
@@ -340,7 +340,13 @@ func (c *converter) convertTemplate(t *hclsyntax.TemplateExpr) (string, error) {
 		}
 		builder.WriteString(s)
 	}
-	return builder.String(), nil
+
+	s := builder.String()
+
+	builder.Reset()
+	builder = nil
+
+	return s, nil
 }
 
 func (c *converter) convertStringPart(expr hclsyntax.Expression) (string, error) {
@@ -365,6 +371,8 @@ func (c *converter) convertStringPart(expr hclsyntax.Expression) (string, error)
 		return c.convertTemplateConditional(v)
 	case *hclsyntax.TemplateJoinExpr:
 		return c.convertTemplateFor(v.Tuple.(*hclsyntax.ForExpr))
+	case *hclsyntax.ParenthesesExpr:
+		return c.convertStringPart(v.Expression)
 	default:
 		// try to evaluate with variables
 		valueConverted, _ := expr.Value(&hcl.EvalContext{
@@ -379,7 +387,7 @@ func (c *converter) convertStringPart(expr hclsyntax.Expression) (string, error)
 }
 
 func (c *converter) convertTemplateConditional(expr *hclsyntax.ConditionalExpr) (string, error) {
-	var builder strings.Builder
+	builder := &strings.Builder{}
 	builder.WriteString("%{if ")
 	builder.WriteString(c.rangeSource(expr.Condition.Range()))
 	builder.WriteString("}")
@@ -410,11 +418,16 @@ func (c *converter) convertTemplateConditional(expr *hclsyntax.ConditionalExpr) 
 	}
 	builder.WriteString("%{endif}")
 
-	return builder.String(), nil
+	s := builder.String()
+
+	builder.Reset()
+	builder = nil
+
+	return s, nil
 }
 
 func (c *converter) convertTemplateFor(expr *hclsyntax.ForExpr) (string, error) {
-	var builder strings.Builder
+	builder := &strings.Builder{}
 	builder.WriteString("%{for ")
 	if len(expr.KeyVar) > 0 {
 		builder.WriteString(expr.KeyVar)
@@ -437,7 +450,11 @@ func (c *converter) convertTemplateFor(expr *hclsyntax.ForExpr) (string, error) 
 	builder.WriteString(templ)
 	builder.WriteString("%{endfor}")
 
-	return builder.String(), nil
+	s := builder.String()
+
+	builder.Reset()
+	builder = nil
+	return s, nil
 }
 
 func (c *converter) wrapExpr(expr hclsyntax.Expression) (string, error) {
@@ -485,10 +502,10 @@ func createEntryInputVar(path []string, defaultValue string) (cty.Value, error) 
 	closeMap := "}"
 	for idx, key := range path {
 		if idx+1 < len(path) {
-			mapJSON += fmt.Sprintf("\"%s\":{", key)
+			mapJSON += fmt.Sprintf("%q:{", key)
 			closeMap += "}"
 		} else {
-			mapJSON += fmt.Sprintf("\"%s\": \"%s\"", key, defaultValue)
+			mapJSON += fmt.Sprintf("%q: %q", key, defaultValue)
 		}
 	}
 	mapJSON += closeMap

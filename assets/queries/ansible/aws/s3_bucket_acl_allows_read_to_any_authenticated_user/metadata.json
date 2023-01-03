@@ -3,7 +3,7 @@
   "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
   "severity": "HIGH",
   "category": "Access Control",
-  "descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion",
+  "descriptionText": "S3 Buckets should not be readable to any authenticated user",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/aws_s3_module.html#parameter-permission",
   "platform": "Ansible",
   "descriptionID": "e9e4ca47",

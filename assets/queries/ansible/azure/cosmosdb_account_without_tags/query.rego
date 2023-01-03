@@ -13,9 +13,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
+		"resourceType": modules[m],
+		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.tags", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "azure_rm_cosmosdbaccount.tags is defined",
+		"keyExpectedValue": "azure_rm_cosmosdbaccount.tags should be defined",
 		"keyActualValue": "azure_rm_cosmosdbaccount.tags is undefined",
 	}
 }

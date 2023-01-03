@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod_security_policy[name]
@@ -9,9 +10,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_pod_security_policy",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod_security_policy[%s].spec.allowed_unsafe_sysctls", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_pod_security_policy[%s].spec.allowed_unsafe_sysctls is undefined", [name]),
+		"keyExpectedValue": sprintf("kubernetes_pod_security_policy[%s].spec.allowed_unsafe_sysctls should be undefined", [name]),
 		"keyActualValue": sprintf("kubernetes_pod_security_policy[%s].spec.allowed_unsafe_sysctls is set", [name]),
 	}
 }
@@ -24,9 +27,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"resourceType": "kubernetes_pod",
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod[%s].spec.security_context.sysctl", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.security_context.sysctl[%s].name does not have an unsafe sysctl", [name, x]),
+		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.security_context.sysctl[%s].name should not have an unsafe sysctl", [name, x]),
 		"keyActualValue": sprintf("kubernetes_pod[%s].spec.security_context.sysctl[%s].name has an unsafe sysctl", [name, x]),
 	}
 }

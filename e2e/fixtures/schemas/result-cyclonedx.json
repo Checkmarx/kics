@@ -251,7 +251,7 @@
                                                 "properties": {
                                                     "Recommendation": {
                                                         "type": "string",
-                                                        "pattern": "In line \\d+, a result was found. '(.)+', but '(.)+'",
+                                                        "pattern": "Problem found in line \\d+. Expected value: (.)+. Actual value: (.)+.",
                                                         "minLength": 1
                                                     }
                                                 }

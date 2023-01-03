@@ -13,6 +13,7 @@ import (
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
+	ctyjson "github.com/zclconf/go-cty/cty/json"
 )
 
 // RetriesDefaultValue is default number of times a parser will retry to execute
@@ -36,10 +37,10 @@ func NewDefault() *Parser {
 }
 
 // Resolve - replace or modifies in-memory content before parsing
-func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
+func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) {
 	getInputVariables(filepath.Dir(filename))
 	getDataSourcePolicy(filepath.Dir(filename))
-	return &fileContent, nil
+	return fileContent, nil
 }
 
 func processContent(elements model.Document, content, path string) {
@@ -57,8 +58,14 @@ func processElements(elements model.Document, path string) {
 		if k != "certificate_body" {
 			continue
 		}
-		content := utils.CheckCertificate(v3.(string))
-		processContent(elements, content, path)
+		switch value := v3.(type) {
+		case string:
+			content := utils.CheckCertificate(value)
+			processContent(elements, content, path)
+		case ctyjson.SimpleJSONValue:
+			content := utils.CheckCertificate(value.Value.AsString())
+			processContent(elements, content, path)
+		}
 	}
 }
 
@@ -154,4 +161,9 @@ func (p *Parser) GetCommentToken() string {
 // StringifyContent converts original content into string formated version
 func (p *Parser) StringifyContent(content []byte) (string, error) {
 	return string(content), nil
+}
+
+// GetResolvedFiles returns the files that are resolved
+func (p *Parser) GetResolvedFiles() map[string]model.ResolvedFile {
+	return make(map[string]model.ResolvedFile)
 }

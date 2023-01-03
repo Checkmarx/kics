@@ -10,24 +10,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Go 1.17.x
+      - name: Set up Go 1.19.x
         uses: actions/setup-go@v3
         with:
-          go-version: 1.17.x
+          go-version: 1.19.x
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@v3.1.0
+        uses: golangci/golangci-lint-action@v3.3.1
         with:
-          version: v1.37
-          args: -c .golangci.yml --timeout 15m
-          skip-go-installation: true
+          version: v1.50.1
+          args: -c .golangci.yml --timeout 20m
   go-generate:
     name: go-generate
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Go 1.17.x
+      - name: Set up Go 1.19.x
         uses: actions/setup-go@v3
         with:
-          go-version: 1.17.x
+          go-version: 1.19.x
       - name: Check out code
         uses: actions/checkout@v3
         with:
@@ -39,11 +38,11 @@ jobs:
     name: unit-tests
     strategy:
       matrix:
-        go-version: [1.17.x]
+        go-version: [1.19.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - name: Set up Go 1.17.x
+      - name: Set up Go 1.19.x
         uses: actions/setup-go@v3
         with:
           go-version: ${{ matrix.go-version }}
@@ -76,7 +75,7 @@ jobs:
           go mod vendor
       - name: Set Windows Page size
         if: matrix.os == 'windows-latest'
-        uses: al-cheb/configure-pagefile-action@v1.2
+        uses: al-cheb/configure-pagefile-action@v1.3
         with:
           minimum-size: 32GB
           maximum-size: 32GB
@@ -84,26 +83,26 @@ jobs:
       - name: Test and Generate Report
         if: matrix.os != 'windows-latest' && steps.changes.outputs.src == 'true'
         run: |
-          go test -mod=vendor -v $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
+          go test -mod=vendor -v -timeout 1500s $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
           result_code=${PIPESTATUS[0]}
           exit $result_code
       - name: Test and Generate Report Dev
         if: matrix.os != 'windows-latest'  && steps.changes.outputs.src == 'false'
         run: |
-          go test -tags dev -mod=vendor -v $(go list -tags dev ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
+          go test -tags dev -mod=vendor -v -timeout 1500s $(go list -tags dev ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
           result_code=${PIPESTATUS[0]}
           exit $result_code
       - name: Test and Generate Report Windows
         if: matrix.os == 'windows-latest' && steps.changes.outputs.src == 'true'
         run: |
-          go test -mod=vendor -v $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
+          go test -mod=vendor -v -timeout 1500s $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
       - name: Test and Generate Report Windows Dev
         if: matrix.os == 'windows-latest' && steps.changes.outputs.src == 'false'
         run: |
-          go test -mod=vendor -tags dev -v $(go list -tags dev ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
+          go test -mod=vendor -tags dev -v -timeout 1500s $(go list -tags dev ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
       - name: Archive test logs
         if: always()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: unit-test-${{ runner.os }}-${{ github.event.pull_request.head.sha }}.log
           path: unit-test.log
