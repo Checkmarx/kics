@@ -30,6 +30,7 @@ is_windows(resource) {
 
 prepare_issue(resource) = issue {
 	resource.properties.osProfile.linuxConfiguration.disablePasswordAuthentication == false
+
 	issue := {
 		"resourceType": resource.type,
 		"resourceName": resource.name,
@@ -40,6 +41,7 @@ prepare_issue(resource) = issue {
 	}
 } else = issue {
 	not resource.properties.osProfile.linuxConfiguration.disablePasswordAuthentication
+	
 	issue := {
 		"resourceType": resource.type,
 		"resourceName": resource.name,
