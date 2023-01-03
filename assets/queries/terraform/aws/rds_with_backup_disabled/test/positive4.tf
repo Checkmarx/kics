@@ -10,6 +10,7 @@ module "db" {
   allocated_storage = 5
   auto_minor_version_upgrade = true
 
+
   name     = "demodb"
   username = "user"
   password = "YourPwdShouldBeLongAndSecure!"
