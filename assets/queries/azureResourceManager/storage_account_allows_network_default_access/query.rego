@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.azureresourcemanager as arm_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -51,7 +52,8 @@ CxPolicy[result] {
 	value.type == "Microsoft.Storage/storageAccounts"
 	to_number(split(value.apiVersion, "-")[0]) >= 2017
 
-	lower(value.properties.networkAcls.defaultAction) == "allow"
+	[val, val_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, value.properties.networkAcls.defaultAction)
+	lower(val) == "allow"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -59,7 +61,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.properties.networkAcls.defaultAction", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have the 'properties.networkAcls.defaultAction' set to 'Deny'",
+		"keyExpectedValue": sprintf("resource with type 'Microsoft.Storage/storageAccounts' %s should have the 'properties.networkAcls.defaultAction' set to 'Deny'", [val_type]),
 		"keyActualValue": "resource with type 'Microsoft.Storage/storageAccounts' has the 'properties.networkAcls.defaultAction' set to 'Allow'",
 		"searchLine": common_lib.build_search_line(path, ["properties", "networkAcls", "defaultAction"]),
 	}

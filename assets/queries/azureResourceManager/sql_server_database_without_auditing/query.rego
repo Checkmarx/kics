@@ -16,7 +16,8 @@ CxPolicy[result] {
 	count([x |
 		child := childrenArr[_].value
 		child.type == types[_]
-		lower(child.properties.state) == "enabled"
+		[val, _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, child.properties.state)
+		lower(val) == "enabled"
 		x := child
 	]) == 0
 

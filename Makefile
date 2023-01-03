@@ -68,7 +68,7 @@ generate: mod-tidy ## go generate
 
 .PHONY: generate-antlr
 generate-antlr: ## generate parser with ANTLRv4, needs JRE (Java Runtime Environment) on the system
-	@cd pkg/parser/jsonfilter/ && java -jar $(LIB)/antlr-4.9.2-tool.jar -Dlanguage=Go -visitor -no-listener -o parser JSONFilter.g4
+	@cd pkg/parser/jsonfilter/ && java -jar $(LIB)/antlr-4.11.1-complete.jar -Dlanguage=Go -visitor -no-listener -o parser JSONFilter.g4
 
 .PHONY: test
 test-short: # Run sanity unit tests

@@ -32,7 +32,7 @@ func NewRemediateCmd() *cobra.Command {
 			return preRemediate(cmd)
 		},
 		RunE: func(cmd *cobra.Command, args []string) error {
-			return remediate(cmd)
+			return remediate()
 		},
 	}
 }
@@ -75,7 +75,7 @@ func preRemediate(cmd *cobra.Command) error {
 	return err
 }
 
-func remediate(cmd *cobra.Command) error {
+func remediate() error {
 	resultsPath := flags.GetStrFlag(flags.Results)
 	include := flags.GetMultiStrFlag(flags.IncludeIds)
 
