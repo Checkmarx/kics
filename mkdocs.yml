@@ -16,7 +16,7 @@ extra:
 
 theme:
   name: material
-  logo: img/logo/kics_new_logo_2022_dark.png
+  logo: img/logo/Checkmarx_Kics_Logo_fit_to_content.png
   favicon: img/logo/kics-donkey.ico
   features:
     - navigation.tabs
