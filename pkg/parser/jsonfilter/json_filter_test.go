@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/parser/jsonfilter/parser"
-	"github.com/antlr/antlr4/runtime/Go/antlr"
+	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
 	"github.com/stretchr/testify/require"
 )
 
