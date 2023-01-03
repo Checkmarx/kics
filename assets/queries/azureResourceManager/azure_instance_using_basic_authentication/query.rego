@@ -9,8 +9,6 @@ CxPolicy[result] {
 
 	value.type == "Microsoft.Compute/virtualMachines"
 	not is_windows(value)
-	not value.properties.osProfile.linuxConfiguration.disablePasswordAuthentication
-
 	issue := prepare_issue(value)
 
 	result := {
@@ -26,11 +24,13 @@ CxPolicy[result] {
 }
 
 is_windows(resource) {
-	contains(lower(resource.properties.storageProfile.imageReference.publisher), "windows")
+	validMSWindowsVer := ["windows", "microsoft"]
+	contains(lower(resource.properties.storageProfile.imageReference.publisher), validMSWindowsVer[_])
 }
 
 prepare_issue(resource) = issue {
 	resource.properties.osProfile.linuxConfiguration.disablePasswordAuthentication == false
+
 	issue := {
 		"resourceType": resource.type,
 		"resourceName": resource.name,
@@ -40,11 +40,13 @@ prepare_issue(resource) = issue {
 		"sl": ["properties", "osProfile", "linuxConfiguration", "disablePasswordAuthentication"],
 	}
 } else = issue {
+	not resource.properties.osProfile.linuxConfiguration.disablePasswordAuthentication
+	
 	issue := {
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"issueType": "MissingAttribute",
-		"keyActualValue": "'disablePasswordAuthentication' is undefined",
+		"keyActualValue": "'linuxConfiguration.disablePasswordAuthentication' is not defined",
 		"sk": "",
 		"sl": ["name"],
 
