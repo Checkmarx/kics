@@ -14,6 +14,7 @@ CxPolicy[result] {
 
 	issue := prepare_issue(doc, value)
 
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": value.type,
@@ -27,13 +28,16 @@ CxPolicy[result] {
 }
 
 is_windows(resource) {
-	contains(lower(resource.properties.storageProfile.imageReference.publisher), "windows")
+	validMSWindowsVer := ["windows", "microsoft"]
+	contains(lower(resource.properties.storageProfile.imageReference.publisher), validMSWindowsVer[_])
 }
+
 
 prepare_issue(doc, resource) = issue {
 	disablePasswordAuthentication:= resource.properties.osProfile.linuxConfiguration.disablePasswordAuthentication
 	[dpa_value, dpa_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, disablePasswordAuthentication)
 	dpa_value == false
+
 	issue := {
 		"resourceType": resource.type,
 		"resourceName": resource.name,
@@ -43,11 +47,13 @@ prepare_issue(doc, resource) = issue {
 		"sl": ["properties", "osProfile", "linuxConfiguration", "disablePasswordAuthentication"],
 	}
 } else = issue {
+	not resource.properties.osProfile.linuxConfiguration.disablePasswordAuthentication
+	
 	issue := {
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"issueType": "MissingAttribute",
-		"keyActualValue": "'disablePasswordAuthentication' is undefined",
+		"keyActualValue": "'linuxConfiguration.disablePasswordAuthentication' is not defined",
 		"sk": "",
 		"sl": ["name"],
 
