@@ -4,10 +4,10 @@ WORKDIR /build
 
 ENV PATH=$PATH:/usr/local/go/bin
 
-ADD https://golang.org/dl/go1.18.2.linux-amd64.tar.gz .
+ADD https://golang.org/dl/go1.19.4.linux-amd64.tar.gz .
 RUN yum install git gcc -y \
-  && rm -rf /usr/local/go && tar -C /usr/local -xzf go1.18.2.linux-amd64.tar.gz \
-  && rm -f go1.18.2.linux-amd64.tar.gz
+  && rm -rf /usr/local/go && tar -C /usr/local -xzf go1.19.4.linux-amd64.tar.gz \
+  && rm -f go1.19.4.linux-amd64.tar.gz
 
 ENV GOPRIVATE=github.com/Checkmarx/*
 ARG VERSION="development"
@@ -44,7 +44,7 @@ LABEL name="KICS" \
   description="Checkmarx/kics is an opensource project that enable you to find security vulnerabilities, compliance issues, and infrastructure misconfigurations early in the development cycle of your infrastructure-as-code find more in https://kics.io" \
   maintainer="kics@checkmarx.com" \
   vendor="Checkmarx" \
-  version="v1.6.5" \
+  version="v1.6.6" \
   release="1" \
   io.k8s.display-name="KICS by Checkmarx" \
   io.openshift.tags="kics checkmarx"

@@ -6,7 +6,7 @@ import (
 
 // E2E-CLI-057 - Kics remediate command
 // should remediate all remediation found
-func init() { // nolint
+func init() { //nolint
 	generateResults("results-remediate-all")
 
 	testSample := TestCase{
