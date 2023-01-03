@@ -31,7 +31,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod[%s].spec.security_context.sysctl", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.security_context.sysctl[%s].name does not have an unsafe sysctl", [name, x]),
+		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.security_context.sysctl[%s].name should not have an unsafe sysctl", [name, x]),
 		"keyActualValue": sprintf("kubernetes_pod[%s].spec.security_context.sysctl[%s].name has an unsafe sysctl", [name, x]),
 	}
 }

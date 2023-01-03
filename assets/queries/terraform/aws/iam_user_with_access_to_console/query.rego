@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s", [search[0][1]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s doesn't have aws_iam_user_login_profile", [search[0][1]]),
+		"keyExpectedValue": sprintf("%s shouldn't have aws_iam_user_login_profile", [search[0][1]]),
 		"keyActualValue": sprintf("%s has aws_iam_user_login_profile", [search[0][1]]),
 	}
 }

@@ -32,7 +32,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_eks_cluster[%s].vpc_config.public_access_cidrs", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'vpc_config.public_access_cidrs' exists",
+		"keyExpectedValue": "'vpc_config.public_access_cidrs' should exist",
 		"keyActualValue": "'vpc_config.public_access_cidrs' is missing",
 	}
 }

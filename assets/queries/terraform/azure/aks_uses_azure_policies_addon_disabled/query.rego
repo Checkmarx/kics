@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s].addon_profile", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].addon_profile.azure_policy' is defined and set to true", [name]),
+		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].addon_profile.azure_policy' should be defined and set to true", [name]),
 		"keyActualValue": sprintf("'azurerm_kubernetes_cluster[%s].addon_profile.azure_policy' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_kubernetes_cluster", name, "addon_profile"], []),
 	}

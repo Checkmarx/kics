@@ -11,7 +11,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(sql_server, name),
 		"searchKey": sprintf("azurerm_sql_server[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("A 'azurerm_sql_active_directory_administrator' is defined for 'azurerm_sql_server[%s]'", [name]),
+		"keyExpectedValue": sprintf("A 'azurerm_sql_active_directory_administrator' should be defined for 'azurerm_sql_server[%s]'", [name]),
 		"keyActualValue": sprintf("A 'azurerm_sql_active_directory_administrator' is not defined for 'azurerm_sql_server[%s]'", [name]),
 	}
 }

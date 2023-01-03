@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(door, name),
 		"searchKey": sprintf("azurerm_frontdoor[%s].frontend_endpoint", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_frontdoor[%s].frontend_endpoint.web_application_firewall_policy_link_id' is defined and not null", [name]),
+		"keyExpectedValue": sprintf("'azurerm_frontdoor[%s].frontend_endpoint.web_application_firewall_policy_link_id' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'azurerm_frontdoor[%s].frontend_endpoint.web_application_firewall_policy_link_id' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_frontdoor", name, "frontend_endpoint"], []),
 	}

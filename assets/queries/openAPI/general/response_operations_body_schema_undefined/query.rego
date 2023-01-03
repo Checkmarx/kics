@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.%s.%s.responses.%s", [p, op, code]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("paths.%s.%s.responses.%s.%s is defined", [p, op, code, key]),
+		"keyExpectedValue": sprintf("paths.%s.%s.responses.%s.%s should be defined", [p, op, code, key]),
 		"keyActualValue": sprintf("paths.%s.%s.responses.%s.%s is undefined", [p, op, code, key]),
 		"overrideKey": version,
 	}

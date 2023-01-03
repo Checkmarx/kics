@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{community.aws.aws_kms}}", [task.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "community.aws.aws_kms.enable_key_rotation is set",
+		"keyExpectedValue": "community.aws.aws_kms.enable_key_rotation should be set",
 		"keyActualValue": "community.aws.aws_kms.enable_key_rotation is undefined",
 	}
 }

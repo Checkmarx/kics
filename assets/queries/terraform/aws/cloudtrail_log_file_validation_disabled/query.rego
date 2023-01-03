@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_cloudtrail[%s].enable_log_file_validation", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_cloudtrail", name, "enable_log_file_validation"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'aws_cloudtrail[%s].enable_log_file_validation' is true", [name]),
+		"keyExpectedValue": sprintf("'aws_cloudtrail[%s].enable_log_file_validation' should be true", [name]),
 		"keyActualValue": sprintf("'aws_cloudtrail[%s].enable_log_file_validation' is false", [name]),
 		"remediation": json.marshal({
 			"before": "false",
@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_cloudtrail[%s]", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_cloudtrail", name], []),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'aws_cloudtrail[%s].enable_log_file_validation' is set", [name]),
+		"keyExpectedValue": sprintf("'aws_cloudtrail[%s].enable_log_file_validation' should be set", [name]),
 		"keyActualValue": sprintf("'aws_cloudtrail[%s].enable_log_file_validation' is undefined", [name]),
 		"remediation": "enable_log_file_validation = true",
 		"remediationType": "addition",

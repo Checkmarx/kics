@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_ebs_encryption_by_default[%s].enabled", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_ebs_encryption_by_default", name, "enabled"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'aws_ebs_encryption_by_default.encrypted' is true",
+		"keyExpectedValue": "'aws_ebs_encryption_by_default.encrypted' should be true",
 		"keyActualValue": "'aws_ebs_encryption_by_default.encrypted' is false",
 		"remediation": json.marshal({
 			"before": "false",

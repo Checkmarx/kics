@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": "host",
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Host is a valid name or IP",
+		"keyExpectedValue": "Host should be a valid name or IP",
 		"keyActualValue": sprintf("%s is not valid IP or name", [host]),
 	}
 }

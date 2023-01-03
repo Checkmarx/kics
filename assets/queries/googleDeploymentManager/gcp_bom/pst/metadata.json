@@ -1,0 +1,11 @@
+{
+  "id": "9ed08714-b2f3-4c6d-8fb0-ac0b74ad71d8",
+  "queryName": "BOM - GCP PST",
+  "severity": "TRACE",
+  "category": "Bill Of Materials",
+  "descriptionText": "A list of Pub/Sub Topic resources found. Cloud Pub/Sub is designed to provide reliable, many-to-many, asynchronous messaging between applications. Publisher applications can send messages to a 'topic' and other applications can subscribe to that topic to receive the messages.",
+  "descriptionUrl": "https://kics.io",
+  "platform": "GoogleDeploymentManager",
+  "descriptionID": "e96debd4",
+  "cloudProvider": "gcp"
+}

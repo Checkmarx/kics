@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_service[%s].metadata.name", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'metadata.annotations' is set",
+		"keyExpectedValue": "'metadata.annotations' should be set",
 		"keyActualValue": "'metadata.annotations' is undefined",
 	}
 }

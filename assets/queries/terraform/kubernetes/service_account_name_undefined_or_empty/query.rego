@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod[%s].spec", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.service_account_name is defined and not null", [name]),
+		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.service_account_name should be defined and not null", [name]),
 		"keyActualValue": sprintf("kubernetes_pod[%s].spec.service_account_name is undefined or null", [name]),
 	}
 }

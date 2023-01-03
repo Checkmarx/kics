@@ -39,7 +39,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_dynamodb_table[{{%s}}]", [m]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_dynamodb_table", name], []),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_dynamodb_table.point_in_time_recovery.enabled is enabled",
+		"keyExpectedValue": "aws_dynamodb_table.point_in_time_recovery.enabled should be enabled",
 		"keyActualValue": "aws_dynamodb_table.point_in_time_recovery is missing",
 		"remediation": "point_in_time_recovery {\n\t\t enabled = true \n\t}",
 		"remediationType": "addition",

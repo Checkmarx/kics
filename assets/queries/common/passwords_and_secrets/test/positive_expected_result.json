@@ -346,5 +346,11 @@
     "severity": "HIGH",
     "line": 15,
     "fileName": "positive41.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Asymmetric private key",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive42.tf"
   }
 ]

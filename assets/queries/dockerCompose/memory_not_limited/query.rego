@@ -10,7 +10,7 @@ CxPolicy[result] {
 	service_parameters := resource.services[name]
    	limits := service_parameters.deploy.resources.limits
     not common_lib.valid_key(limits, "memory")
-   
+
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy.resources.limits",[name]),
@@ -27,12 +27,12 @@ CxPolicy[result] {
     to_number(version) >= 3
 	service_parameters := resource.services[name]
     not common_lib.valid_key(service_parameters, "deploy")
-   
+
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s",[name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'deploy.resources.limits.memory' is defined",
+		"keyExpectedValue": "'deploy.resources.limits.memory' should be defined",
 		"keyActualValue": "'deploy' is not defined",
 		"searchLine": common_lib.build_search_line(["services", name], []),
 	}
@@ -44,7 +44,7 @@ CxPolicy[result] {
     to_number(version) >= 3
 	service_parameters := resource.services[name]
     not common_lib.valid_key(service_parameters.deploy, "resources")
-   
+
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy",[name]),
@@ -62,7 +62,7 @@ CxPolicy[result] {
 	service_parameters := resource.services[name]
    	resources := service_parameters.deploy.resources
     not common_lib.valid_key(resources, "limits")
-   
+
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s.deploy.resources",[name]),
@@ -80,7 +80,7 @@ CxPolicy[result] {
     to_number(version) < 3
 	service_parameters := resource.services[name]
     not common_lib.valid_key(service_parameters, "mem_limit")
-   
+
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
 		"searchKey": sprintf("services.%s",[name]),

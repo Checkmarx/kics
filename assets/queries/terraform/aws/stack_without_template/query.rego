@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cloudformation_stack[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'template_body' or Attribute 'template_url' is set",
+		"keyExpectedValue": "Attribute 'template_body' or Attribute 'template_url' should be set",
 		"keyActualValue": "Both Attribute 'template_body' and Attribute 'template_url' are undefined",
 	}
 }

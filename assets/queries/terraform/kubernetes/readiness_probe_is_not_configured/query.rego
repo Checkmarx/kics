@@ -23,7 +23,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s.readiness_probe is set", [resourceType, name, specInfo.path, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s.readiness_probe should be set", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.readiness_probe is undefined", [resourceType, name, specInfo.path, types[x]]),
 	}
 }
@@ -47,7 +47,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].readiness_probe is set", [resourceType, name, specInfo.path, types[x], containersType]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].readiness_probe should be set", [resourceType, name, specInfo.path, types[x], containersType]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].readiness_probe is undefined", [resourceType, name, specInfo.path, types[x], containersType]),
 	}
 }

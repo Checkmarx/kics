@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.%d is defined and not null", [name, field]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.%d should be defined and not null", [name, field]),
 		"keyActualValue": sprintf("Resources.%s.Properties.%d is undefined or null", [name, field]),
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties"], []),
 	}

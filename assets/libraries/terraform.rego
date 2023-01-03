@@ -553,10 +553,10 @@ resourceFieldName = {
 }
 
 get_resource_name(resource, resourceDefinitionName) = name {
-	possibleNames := {"name", "display_name"}
-	targetName := possibleNames[_]
-	name := resource[targetName]
+	name := resource["name"]
 } else = name {
+	name := resource["display_name"]
+}  else = name {
 	name := resource.metadata.name
 } else = name {
 	prefix := resource.name_prefix
@@ -572,4 +572,14 @@ get_specific_resource_name(resource, resourceType, resourceDefinitionName) = nam
 	name := resource[field]
 } else = name {
 	name := get_resource_name(resource, resourceDefinitionName)
+}
+
+check_key_empty(disk_encryption_key) = key {
+	common_lib.valid_key(disk_encryption_key, "raw_key")
+	common_lib.emptyOrNull(disk_encryption_key.raw_key)
+	key := "raw_key"
+} else = key {
+	common_lib.valid_key(disk_encryption_key, "kms_key_self_link")
+	common_lib.emptyOrNull(disk_encryption_key.kms_key_self_link)
+	key := "kms_key_self_link"
 }

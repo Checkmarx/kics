@@ -1,0 +1,11 @@
+{
+    "packages": {
+        "": {
+            "dependencies": {
+                "example1/swagger": "^5.2.1",
+                "example2-paths": "^4.1.0",
+                "example3-info": "^3.2.0"
+            }
+        }
+    }
+}

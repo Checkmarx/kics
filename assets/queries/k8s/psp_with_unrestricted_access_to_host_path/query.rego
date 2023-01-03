@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec", [metadata.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'spec.allowedHostPaths' is defined and not null",
+		"keyExpectedValue": "'spec.allowedHostPaths' should be defined and not null",
 		"keyActualValue": "'spec.allowedHostPaths' is undefined or null",
 		"searchLine": common_lib.build_search_line(["spec"], [])
 	}

@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_elasticsearch_domain_policy[%s].access_policies", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_elasticsearch_domain_policy[%s].access_policies does not have wildcard in 'Action' and 'Principal'", [name]),
+		"keyExpectedValue": sprintf("aws_elasticsearch_domain_policy[%s].access_policies should not have wildcard in 'Action' and 'Principal'", [name]),
 		"keyActualValue": sprintf("aws_elasticsearch_domain_policy[%s].access_policies has wildcard in 'Action' or 'Principal'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_elasticsearch_domain_policy", name, "access_policies"], []),
 	}

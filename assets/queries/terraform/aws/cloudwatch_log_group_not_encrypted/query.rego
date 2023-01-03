@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cloudwatch_log_group[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'kms_key_id' is set",
+		"keyExpectedValue": "Attribute 'kms_key_id' should be set",
 		"keyActualValue": "Attribute 'kms_key_id' is undefined",
 	}
 }

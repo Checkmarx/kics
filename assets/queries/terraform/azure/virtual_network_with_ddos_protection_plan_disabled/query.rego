@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_virtual_network[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_virtual_network[%s].ddos_protection_plan' is defined and not null", [name]),
+		"keyExpectedValue": sprintf("'azurerm_virtual_network[%s].ddos_protection_plan' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'azurerm_virtual_network[%s].ddos_protection_plan' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_virtual_network", name], []),
 	}

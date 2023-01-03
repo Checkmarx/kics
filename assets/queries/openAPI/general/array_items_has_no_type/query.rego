@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.items", [openapi_lib.concat_path(path)]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s.items have type, anyOf.type, $ref or anyOf.$ref is defined", [openapi_lib.concat_path(path)]),
+		"keyExpectedValue": sprintf("%s.items should have type, anyOf.type, $ref or anyOf.$ref should be defined", [openapi_lib.concat_path(path)]),
 		"keyActualValue": sprintf("%s.items have type, anyOf.type, $ref or anyOf.$ref is undefined", [openapi_lib.concat_path(path)]),
 		"overrideKey": version,
 	}

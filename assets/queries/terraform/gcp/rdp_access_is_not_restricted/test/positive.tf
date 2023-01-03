@@ -28,3 +28,15 @@ resource "google_compute_firewall" "positive2" {
   source_tags = ["web"]
   source_ranges = ["::/0"]
 }
+
+resource "google_compute_firewall" "positive3" {
+  name    = "test-firewall"
+  network = google_compute_network.default.name
+
+  allow {
+    protocol = "all"
+  }
+
+  source_tags = ["web"]
+  source_ranges = ["::/0"]
+}

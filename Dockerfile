@@ -1,4 +1,4 @@
-FROM golang:1.19.2-alpine as build_env
+FROM golang:1.19.4-alpine as build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
@@ -33,7 +33,7 @@ HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM alpine:3.16.2
+FROM alpine:3.16.3
 
 ENV TERM xterm-256color
 

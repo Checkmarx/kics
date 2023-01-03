@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.require_numbers", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "iam_password_policy.require_numbers is true",
+		"keyExpectedValue": "iam_password_policy.require_numbers should be true",
 		"keyActualValue": "iam_password_policy.require_numbers is false",
 	}
 }

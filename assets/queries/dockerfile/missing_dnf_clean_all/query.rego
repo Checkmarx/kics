@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "After installing a package with dnf, command 'dnf clean all' is run.",
+		"keyExpectedValue": "After installing a package with dnf, command 'dnf clean all' should run.",
 		"keyActualValue": "Command `dnf clean all` is not being run after installing packages.",
 	}
 }

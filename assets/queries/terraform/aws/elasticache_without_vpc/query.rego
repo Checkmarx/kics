@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_elasticache_cluster", name),
 		"searchKey": sprintf("aws_elasticache_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'aws_elasticache_cluster[%s].subnet_group_name' is defined and not null'", [name]),
+		"keyExpectedValue": sprintf("'aws_elasticache_cluster[%s].subnet_group_name' should be defined and not null'", [name]),
 		"keyActualValue": sprintf("'aws_elasticache_cluster[%s].subnet_group_name' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_elasticache_cluster", name], []),
 	}

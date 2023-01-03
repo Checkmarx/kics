@@ -2,10 +2,9 @@ package Cx
 
 CxPolicy[result] {
 	resource := input.document[i].spec.metrics[index]
+	input.document[i].kind == "HorizontalPodAutoscaler"
 
-	resourceKind := input.document[i].kind
-
-	IsHPA(resourceKind)
+	resource.type == "Object"
 	not checkIsValidObject(resource)
 
 	result := {
@@ -19,12 +18,7 @@ CxPolicy[result] {
 	}
 }
 
-IsHPA(resourceKind) {
-	resourceKind == "HorizontalPodAutoscaler"
-}
-
-checkIsValidObject(resource) {
-	resource.type == "Object"
+checkIsValidObject(resource) {	
 	resource.object != null
 	resource.object.metric != null
 	resource.object.target != null

@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_ecr_repository[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'encryption_configuration' is defined with 'KMS' as encryption type and a KMS key ARN",
+		"keyExpectedValue": "'encryption_configuration' should be defined with 'KMS' as encryption type and a KMS key ARN",
 		"keyActualValue": "'encryption_configuration' is undefined or null",
 	}
 }

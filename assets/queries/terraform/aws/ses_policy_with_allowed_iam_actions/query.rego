@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_ses_identity_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'policy' does not allow IAM actions to all principals",
+		"keyExpectedValue": "'policy' should not allow IAM actions to all principals",
 		"keyActualValue": "'policy' allows IAM actions to all principals",
 		"searchLine": common_lib.build_search_line(["resource", "aws_ses_identity_policy", name, "policy"], []),
 	}

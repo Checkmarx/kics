@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": document.metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.resources.%s", [document.metadata.name,specInfo.path, types[x], container.name, rec[t]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("spec.%s[%s].resources.%s.memory is defined", [types[x], container.name, rec[t]]),
+		"keyExpectedValue": sprintf("spec.%s[%s].resources.%s.memory should be defined", [types[x], container.name, rec[t]]),
 		"keyActualValue": sprintf("spec.%s[%s].resources.%s.memory is not defined", [types[x], container.name, rec[t]]),
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], c, "resources", rec[t]])
 	}

@@ -12,7 +12,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-func generateReport(tmpFile, jsonPath, reportName string) { // nolint
+func generateReport(tmpFile, jsonPath, reportName string) { //nolint
 	var queryHigh = model.QueryResult{
 		QueryName:                   "Ram Account Password Policy Not Required Minimum Length",
 		QueryID:                     "a9dfec39-a740-4105-bbd6-721ba163c053",
@@ -46,7 +46,7 @@ func generateReport(tmpFile, jsonPath, reportName string) { // nolint
 		},
 	}
 
-	var queryMedium1 = model.QueryResult{ // nolint
+	var queryMedium1 = model.QueryResult{ //nolint
 		QueryName:                   "RAM Account Password Policy Not Required Symbols",
 		QueryID:                     "41a38329-d81b-4be4-aef4-55b2615d3282",
 		QueryURI:                    "",
@@ -95,7 +95,7 @@ func generateReport(tmpFile, jsonPath, reportName string) { // nolint
 		},
 	}
 
-	var queryMedium2 = model.QueryResult{ // nolint
+	var queryMedium2 = model.QueryResult{ //nolint
 		QueryName:                   "Ram Account Password Policy Max Password Age Unrecommended",
 		QueryID:                     "2bb13841-7575-439e-8e0a-cccd9ede2fa8",
 		Description:                 "Ram Account Password Policy Password 'max_password_age' should be higher than 0 and lower than 91",

@@ -75,7 +75,7 @@ An entry should describe the error and in which line it occurred:
       run: mkdir -p results-dir
     # Scan Iac with kics
     - name: run kics Scan
-      uses: checkmarx/kics-action@latest
+      uses: checkmarx/kics-github-action@latest
       with:
         path: 'terraform'
         output_path: results-dir
@@ -107,7 +107,7 @@ If you want your pipeline just to fail on HIGH, MEDIUM severity results and KICS
       # make sure results dir is created
       run: mkdir -p results-dir
     - name: run kics Scan
-      uses: checkmarx/kics-action@latest
+      uses: checkmarx/kics-github-action@latest
       with:
         path: 'terraform,my-other-sub-folder/Dockerfile'
         fail_on: high,medium
@@ -128,7 +128,7 @@ If you want KICS to ignore the results and return exit status code 0 unless a KI
       # make sure results dir is created
       run: mkdir -p results-dir
     - name: run kics Scan
-      uses: checkmarx/kics-action@latest
+      uses: checkmarx/kics-github-action@latest
       with:
         path: 'terraform'
         ignore_on_exit: results
@@ -152,7 +152,7 @@ You can only enable one profiler at a time, CPU or MEM.
       # make sure results dir is created
       run: mkdir -p results-dir
     - name: run kics Scan
-      uses: checkmarx/kics-action@latest
+      uses: checkmarx/kics-github-action@latest
       with:
         path: 'terraform'
         profiling: MEM
@@ -175,7 +175,7 @@ on:
 jobs:
   kics-job:
     runs-on: ubuntu-latest
-    name: kics-action
+    name: kics-github-action
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -183,7 +183,7 @@ jobs:
         # make sure results dir is created
         run: mkdir -p results-dir
       - name: Run KICS Scan with SARIF result
-        uses: checkmarx/kics-action@latest
+        uses: checkmarx/kics-github-action@latest
         with:
           path: 'terraform'
           # when provided with a directory on output_path
@@ -221,7 +221,7 @@ on:
 jobs:
   kics-job:
     runs-on: ubuntu-latest
-    name: kics-action
+    name: kics-github-action
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -248,7 +248,7 @@ jobs:
           }
           EOF
       - name: Run KICS Scan using config
-        uses: checkmarx/kics-action@latest
+        uses: checkmarx/kics-github-action@latest
         with:
           path: 'terraform'
           config_path: ./kics.config

@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.type", [openapi_lib.concat_path(path)]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Numeric schema has 'maximum' defined",
+		"keyExpectedValue": "Numeric schema should have 'maximum' defined",
 		"keyActualValue": "Numeric schema does not have 'maximum' defined",
 		"overrideKey": version,
 	}

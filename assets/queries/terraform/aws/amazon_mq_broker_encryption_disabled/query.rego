@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_mq_broker", name),
 		"searchKey": sprintf("resource.aws_mq_broker[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("resource.aws_mq_broker[%s].encryption_options is defined", [name]),
+		"keyExpectedValue": sprintf("resource.aws_mq_broker[%s].encryption_options should be defined", [name]),
 		"keyActualValue": sprintf("resource.aws_mq_broker[%s].encryption_options is not defined", [name]),
 	}
 }

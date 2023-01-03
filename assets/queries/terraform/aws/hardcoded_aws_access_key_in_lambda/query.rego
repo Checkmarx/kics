@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_lambda_function[%s].environment.variables", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'environment.variables' doesn't contain AWS Access Key",
+		"keyExpectedValue": "'environment.variables' shouldn't contain AWS Access Key",
 		"keyActualValue": "'environment.variables' contains AWS Access Key",
 		"searchLine": common_lib.build_search_line(["resource", "aws_lambda_function", name, "environment", "variables", idx], []),
 	}

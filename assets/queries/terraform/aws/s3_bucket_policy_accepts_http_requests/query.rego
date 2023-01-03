@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_s3_bucket", name),
 		"searchKey": sprintf("%s[%s].policy", [resourceType, name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].policy does not accept HTTP Requests", [resourceType, name]),
+		"keyExpectedValue": sprintf("%s[%s].policy should not accept HTTP Requests", [resourceType, name]),
 		"keyActualValue": sprintf("%s[%s].policy accepts HTTP Requests", [resourceType, name]),
 		"searchLine": common_lib.build_search_line(["resource", resourceType, name, "policy"], []),
 	}
@@ -40,7 +40,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'policy' does not accept HTTP Requests",
+		"keyExpectedValue": "'policy' should not accept HTTP Requests",
 		"keyActualValue": "'policy' accepts HTTP Requests",
 		"searchLine": common_lib.build_search_line(["module", name, "policy"], []),
 	}

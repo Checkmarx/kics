@@ -28,7 +28,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_storage_bucket_iam_binding[%s].members", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'google_storage_bucket_iam_binding[%s].members' does not have 'allUsers'", [name]),
+		"keyExpectedValue": sprintf("'google_storage_bucket_iam_binding[%s].members' should not have 'allUsers'", [name]),
 		"keyActualValue": sprintf("'google_storage_bucket_iam_binding[%s].members' has 'allUsers'", [name]),
 	}
 }
@@ -44,7 +44,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_storage_bucket_iam_binding[%s].members", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'google_storage_bucket_iam_binding[%s].members' does not have 'allAuthenticatedUsers'", [name]),
+		"keyExpectedValue": sprintf("'google_storage_bucket_iam_binding[%s].members' should not have 'allAuthenticatedUsers'", [name]),
 		"keyActualValue": sprintf("'google_storage_bucket_iam_binding[%s].members' has 'allAuthenticatedUsers'", [name]),
 	}
 }

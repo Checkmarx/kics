@@ -23,7 +23,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Package version is specified when using 'dnf install'",
+		"keyExpectedValue": "Package version should be specified when using 'dnf install'",
 		"keyActualValue": "Package version should be pinned when running ´dnf install´",
 	}
 }
@@ -46,7 +46,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Package version is specified when using 'dnf install'",
+		"keyExpectedValue": "Package version should be specified when using 'dnf install'",
 		"keyActualValue": "Package version should be pinned when running ´dnf install´",
 	}
 }

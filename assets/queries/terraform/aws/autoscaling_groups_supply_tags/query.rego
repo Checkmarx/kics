@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(auto, name),
 		"searchKey": sprintf("aws_autoscaling_group[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'tags' or 'tag' are defined and not null",
+		"keyExpectedValue": "'tags' or 'tag' should be defined and not null",
 		"keyActualValue": "'tags' and 'tag' are undefined or null",
 		"searchLine": common_lib.build_search_line(["resource", "aws_autoscaling_group", name], []),
 	}
@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'tags' is defined and not null",
+		"keyExpectedValue": "'tags' should be defined and not null",
 		"keyActualValue": "'tags' is undefined or null",
 		"searchLine": common_lib.build_search_line(["module", name], []),
 	}
