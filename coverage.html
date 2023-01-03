@@ -1460,7 +1460,7 @@ func NewRemediateCmd() *cobra.Command <span class="cov10" title="18">{
                         return preRemediate(cmd)
                 }</span>,
                 RunE: func(cmd *cobra.Command, args []string) error <span class="cov5" title="4">{
-                        return remediate(cmd)
+                        return remediate()
                 }</span>,
         }
 }
@@ -1503,7 +1503,7 @@ func preRemediate(cmd *cobra.Command) error <span class="cov6" title="5">{
         <span class="cov6" title="5">return err</span>
 }
 
-func remediate(cmd *cobra.Command) error <span class="cov5" title="4">{
+func remediate() error <span class="cov5" title="4">{
         resultsPath := flags.GetStrFlag(flags.Results)
         include := flags.GetMultiStrFlag(flags.IncludeIds)
 
@@ -1727,7 +1727,7 @@ func executeScan(scanParams *scan.Parameters) error <span class="cov6" title="7"
 func gracefulShutdown() <span class="cov6" title="7">{
         c := make(chan os.Signal)
         // This line should not be lint, since golangci-lint has an issue about it (https://github.com/golang/go/issues/45043)
-        signal.Notify(c, os.Interrupt, syscall.SIGTERM) // nolint
+        signal.Notify(c, os.Interrupt, syscall.SIGTERM) //nolint
         showErrors := consoleHelpers.ShowError("errors")
         interruptCode := constants.SignalInterruptCode
         go func(showErrors bool, interruptCode int) </span><span class="cov6" title="7">{
@@ -2164,13 +2164,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov8" title="31">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2195,7 +2195,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -3616,11 +3616,11 @@ func NewRegoWriter() (*RegoWriter, error) <span class="cov1" title="1">{
                                 return r.Conditions[len(r.Conditions)-1]
                         }</span>,
                         "unescape": func(v string) template.HTML <span class="cov1" title="1">{
-                                return template.HTML(v) // nolint:gosec
+                                return template.HTML(v) //nolint:gosec
                         }</span>,
                         "innerKey": func(r RegoRule) template.HTML <span class="cov2" title="2">{
                                 condition := r.Conditions[len(r.Conditions)-1]
-                                return template.HTML(conditionKey(r.Block, condition, false, true)) // nolint:gosec
+                                return template.HTML(conditionKey(r.Block, condition, false, true)) //nolint:gosec
                         }</span>,
                         "searchKey": func(r RegoRule) template.HTML <span class="cov1" title="1">{
                                 format := "%%s[%%s].%s"
@@ -3639,7 +3639,7 @@ func NewRegoWriter() (*RegoWriter, error) <span class="cov1" title="1">{
                                 }</span>
                                 <span class="cov1" title="1">format = fmt.Sprintf(format, conditionKey(r.Block, condition, false, true))
 
-                                return template.HTML(fmt.Sprintf("sprintf(\"%s\", [%s])", format, strings.Join(vars, ", ")))</span> // nolint
+                                return template.HTML(fmt.Sprintf("sprintf(\"%s\", [%s])", format, strings.Join(vars, ", ")))</span> //nolint
                         },
                 }).
                 ParseFiles("./pkg/builder/writer/template.gorego")
@@ -3923,7 +3923,7 @@ func (c *Client) CheckConnection() error <span class="cov7" title="3">{
         }</span>
 
         <span class="cov4" title="2">endpointURL := fmt.Sprintf("%s/api/", baseURL)
-        req, err := http.NewRequest(http.MethodGet, endpointURL, http.NoBody)
+        req, err := http.NewRequest(http.MethodGet, endpointURL, http.NoBody) //nolint
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
@@ -3953,7 +3953,7 @@ func (c *Client) CheckLatestVersion(version string) (model.Version, error) <span
                 return model.Version{}, err
         }</span>
 
-        <span class="cov1" title="1">req, err := http.NewRequest(http.MethodPost, endpointURL, bytes.NewReader(requestBody))
+        <span class="cov1" title="1">req, err := http.NewRequest(http.MethodPost, endpointURL, bytes.NewReader(requestBody)) //nolint
         if err != nil </span><span class="cov0" title="0">{
                 return model.Version{}, err
         }</span>
@@ -4001,7 +4001,7 @@ func (c *Client) RequestDescriptions(descriptionIDs []string) (map[string]descMo
                 return nil, err
         }</span>
 
-        <span class="cov1" title="1">req, err := http.NewRequest(http.MethodPost, endpointURL, bytes.NewReader(requestBody))
+        <span class="cov1" title="1">req, err := http.NewRequest(http.MethodPost, endpointURL, bytes.NewReader(requestBody)) //nolint
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
@@ -7925,8 +7925,8 @@ type Content struct {
 }
 
 /*
-   getContent will read the passed file 1MB at a time
-   to prevent resource exhaustion and return its content
+getContent will read the passed file 1MB at a time
+to prevent resource exhaustion and return its content
 */
 func getContent(rc io.Reader, data []byte) (*Content, error) <span class="cov0" title="0">{
         maxSizeMB := 5 // Max size of file in MBs
