@@ -68,6 +68,7 @@ Interested in more advanced stuff?
 -   Deep dive into KICS [queries](docs/queries.md).
 -   Understand how to [integrate](docs/integrations.md) KICS in your favourite CI/CD pipelines.
 
+See [KICS documentation](https://docs.kics.io/) for more details and topics.
 
 ## How it Works
 
@@ -76,17 +77,12 @@ What makes KICS really powerful and popular is its built-in extensibility. This 
 -   Fully customizable and adjustable heuristics rules, called [queries](docs/queries.md). These can be easily edited, extended and added.
 -   Robust but yet simple [architecture](docs/architecture.md), which allows quick addition of support for new Infrastructure as Code solutions.
 
-## Release process
-
-KICS release process is quite simple. We have nightly builds that will pack and pre-release all changes merged into master.
-The nightly release will have a "nightly" prefix with the last commit hash code. We have binaries available for Windows, Linux and MacOS, as well as a Docker image in <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">DockerHub</a>
-
 ## Contribution
 
 KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.
 [Check out how](docs/CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
-You're welcome to join our monthly [community meetings](docs/community.md)
+You're welcome to join our monthly [community meetings](docs/community.md), talk with us on <a href="https://github.com/Checkmarx/kics/discussions" target="_blank">GitHub discussions</a> or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com).
 
 ## Meet us at conferences
 
@@ -103,10 +99,6 @@ You're welcome to join our monthly [community meetings](docs/community.md)
 -   [GISEC Global 2021](https://www.gisec.ae/gisec-2021-conference/insecure-infrastructure-as-code-leaves-the-door-open-for-hackers-1wez)
 -   [Blackhat ASIA 2021](https://www.blackhat.com/asia-21/arsenal/schedule/#kics-22475) ([video](https://www.youtube.com/watch?v=56AM1wiIOss))
 
-## More
-
-[KICS public documentation](https://docs.kics.io/) has all the project aspects covered.
-Join the <a href="https://github.com/Checkmarx/kics/discussions" target="_blank">GitHub discussions</a> or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
 
 **Keeping Infrastructure as Code Secure!**
 

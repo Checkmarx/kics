@@ -72,7 +72,7 @@ func (c *Client) CheckConnection() error {
 	}
 
 	endpointURL := fmt.Sprintf("%s/api/", baseURL)
-	req, err := http.NewRequest(http.MethodGet, endpointURL, http.NoBody)
+	req, err := http.NewRequest(http.MethodGet, endpointURL, http.NoBody) //nolint
 	if err != nil {
 		return err
 	}
@@ -102,7 +102,7 @@ func (c *Client) CheckLatestVersion(version string) (model.Version, error) {
 		return model.Version{}, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, endpointURL, bytes.NewReader(requestBody))
+	req, err := http.NewRequest(http.MethodPost, endpointURL, bytes.NewReader(requestBody)) //nolint
 	if err != nil {
 		return model.Version{}, err
 	}
@@ -150,7 +150,7 @@ func (c *Client) RequestDescriptions(descriptionIDs []string) (map[string]descMo
 		return nil, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, endpointURL, bytes.NewReader(requestBody))
+	req, err := http.NewRequest(http.MethodPost, endpointURL, bytes.NewReader(requestBody)) //nolint
 	if err != nil {
 		return nil, err
 	}
