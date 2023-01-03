@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.azureresourcemanager as arm_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -8,7 +9,7 @@ CxPolicy[result] {
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Web/sites"
-	not is_last_tls(value)
+	not is_last_tls(doc, value)
 
 	issue := prepare_issue(value)
 
@@ -24,8 +25,9 @@ CxPolicy[result] {
 	}
 }
 
-is_last_tls(resource) {
-	resource.properties.siteConfig.minTlsVersion == "1.2"
+is_last_tls(doc, resource) {
+	[val, _] :=  arm_lib.getDefaultValueFromParametersIfPresent(doc, resource.properties.siteConfig.minTlsVersion)
+	val == "1.2"
 }
 
 prepare_issue(resource) = issue {

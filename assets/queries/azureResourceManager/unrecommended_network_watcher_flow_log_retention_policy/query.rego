@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.azureresourcemanager as arm_lib
 
 types := {"Microsoft.Network/networkWatchers/flowLogs", "Microsoft.Network/networkWatchers/FlowLogs"}
 
@@ -31,7 +32,8 @@ CxPolicy[result] {
 
 	value.type == types[t]
 
-	value.properties.enabled == true
+	[val, _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, value.properties.enabled)
+	val == true
 
 	fields := {"enabled", "days"}
 	not common_lib.valid_key(value.properties.retentionPolicy, fields[x])
@@ -54,8 +56,10 @@ CxPolicy[result] {
 
 	value.type == types[t]
 
-	value.properties.enabled == true
-	value.properties.retentionPolicy.enabled == false
+	[val, val_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, value.properties.enabled)
+	val == true
+	[val_rp, _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, value.properties.retentionPolicy.enabled)
+	val_rp == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -63,7 +67,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.retentionPolicy.enabled", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'enabled' property set to true",
+		"keyExpectedValue": sprintf("resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'enabled' %s set to true", [val_type]),
 		"keyActualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'enabled' set to true",
 		"searchLine": common_lib.build_search_line(path, ["properties", "retentionPolicy", "enabled"]),
 	}
@@ -75,8 +79,10 @@ CxPolicy[result] {
 
 	value.type == types[t]
 
-	value.properties.enabled == true
-	value.properties.retentionPolicy.days <= 90
+	[val, _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, value.properties.enabled)
+	val == true
+	[val_rp, val_rp_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, value.properties.retentionPolicy.days)
+	val_rp <= 90
 
 	result := {
 		"documentId": input.document[i].id,
@@ -84,7 +90,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.retentionPolicy.days", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'days' property higher than 90",
+		"keyExpectedValue": sprintf("resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'days' %s higher than 90", [val_rp_type]),
 		"keyActualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'days' property higher than 90",
 		"searchLine": common_lib.build_search_line(path, ["properties", "retentionPolicy", "days"]),
 	}

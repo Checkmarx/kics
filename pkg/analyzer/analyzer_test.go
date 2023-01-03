@@ -146,6 +146,17 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			gitIgnoreFileName: "",
 			excludeGitIgnore:  false,
 		},
+		{
+			name: "analyze_test_undetected_yaml",
+			paths: []string{
+				filepath.FromSlash("../../test/fixtures/analyzer_test/undetected.yaml"),
+			},
+			wantTypes:         []string{"ansible"},
+			wantExclude:       []string{},
+			wantErr:           false,
+			gitIgnoreFileName: "",
+			excludeGitIgnore:  false,
+		},
 	}
 
 	for _, tt := range tests {

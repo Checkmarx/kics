@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.azureresourcemanager as arm_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -31,7 +32,9 @@ CxPolicy[result] {
 	value.type == "Microsoft.KeyVault/vaults"
 
 	fields := {"enableSoftDelete", "enablePurgeProtection"}
-	value.properties[fields[x]] == false
+
+	[val, type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, value.properties[fields[x]])
+	val == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -39,7 +42,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.%s", [common_lib.concat_path(path), value.name, fields[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("resource with type 'Microsoft.KeyVault/vaults' should have '%s' property set to true", [fields[x]]),
+		"keyExpectedValue": sprintf("resource with type 'Microsoft.KeyVault/vaults' %s should have '%s' property set to true", [type, fields[x]]),
 		"keyActualValue": sprintf("resource with type 'Microsoft.KeyVault/vaults' doesn't have '%s' property set to true", [fields[x]]),
 		"searchLine": common_lib.build_search_line(path, ["properties", fields[x]]),
 	}

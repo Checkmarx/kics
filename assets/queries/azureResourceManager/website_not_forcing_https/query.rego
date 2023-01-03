@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.azureresourcemanager as arm_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -26,7 +27,8 @@ CxPolicy[result] {
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Web/sites"
-	value.properties.httpsOnly == false
+	[val, val_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, value.properties.httpsOnly)
+	val == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -34,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.httpsOnly", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' property set to true",
+		"keyExpectedValue": sprintf("resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' %s set to true", [val]),
 		"keyActualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true",
 		"searchLine": common_lib.build_search_line(path, ["properties", "httpsOnly"]),
 	}
