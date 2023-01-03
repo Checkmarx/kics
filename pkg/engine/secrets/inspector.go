@@ -341,13 +341,6 @@ func (c *Inspector) isSecret(s string, query *RegexQuery) (isSecretRet bool, gro
 
 func isAllowRule(s string, allowRules []AllowRule) bool {
 	for i := range allowRules {
-		if allowRules[i].Description == "Avoiding Paths" {
-			if allowRules[i].Regex.MatchString(s) {
-				rt := true
-				return rt
-			}
-		}
-
 		if allowRules[i].Regex.MatchString(s) {
 			return true
 		}
