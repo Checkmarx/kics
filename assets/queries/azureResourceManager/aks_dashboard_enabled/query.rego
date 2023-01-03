@@ -1,27 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
-
-# addonProfiles not implemented (apiVersion < 2017-08-03)
-CxPolicy[result] {
-	doc := input.document[i]
-
-	[path, value] = walk(doc)
-
-	value.type == "Microsoft.ContainerService/managedClusters"
-	value.apiVersion == "2017-08-03"
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": value.type,
-		"resourceName": value.name,
-		"searchKey": sprintf("%s.name=%s.apiVersion", [common_lib.concat_path(path), value.name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'apiVersion' should not be '2017-08-03'",
-		"keyActualValue": "'apiVersion' is '2017-08-03'",
-		"searchLine": common_lib.build_search_line(path, ["apiVersion"]),
-	}
-}
+import data.generic.azureresourcemanager as arm_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -29,9 +9,9 @@ CxPolicy[result] {
 	[path, value] = walk(doc)
 	value.type == "Microsoft.ContainerService/managedClusters"
 	value.apiVersion != "2017-08-03"
-	not dashboard_is_disabled(value)
+	not dashboard_is_disabled(doc, value)
 
-	issue := prepare_issue(value)
+	issue := prepare_issue(doc, value)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -45,31 +25,23 @@ CxPolicy[result] {
 	}
 }
 
-dashboard_is_disabled(resource) {
+dashboard_is_disabled(doc, resource) {
 	common_lib.valid_key(resource, "properties")
 	common_lib.valid_key(resource.properties, "addonProfiles")
 	common_lib.valid_key(resource.properties.addonProfiles, "kubeDashboard")
 	common_lib.valid_key(resource.properties.addonProfiles.kubeDashboard, "enabled")
-	resource.properties.addonProfiles.kubeDashboard.enabled == false
+	[enabled_value, _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, resource.properties.addonProfiles.kubeDashboard.enabled)
+	enabled_value == false
 }
 
-prepare_issue(resource) = issue {
-	_ = resource.properties.addonProfiles.kubeDashboard.enabled
+prepare_issue(doc, resource) = issue {
+	[_, type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, resource.properties.addonProfiles.kubeDashboard.enabled)
 	issue := {
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"issueType": "IncorrectValue",
-		"keyActualValue": "'addonProfiles.kubeDashboard.enabled' is false",
+		"keyActualValue": sprintf("'addonProfiles.kubeDashboard.enabled' %s is false", [type]),
 		"sk": ".properties.addonProfiles.kubeDashboard.enabled",
 		"sl": ["properties", "addonProfiles", "kubeDashboard", "enabled"],
-	}
-} else = issue {
-	issue := {
-		"resourceType": resource.type,
-		"resourceName": resource.name,
-		"issueType": "MissingAttribute",
-		"keyActualValue": "'addonProfiles.kubeDashboard.enabled' is undefined",
-		"sk": "",
-		"sl": ["name"],
 	}
 }

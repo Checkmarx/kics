@@ -1,102 +1,122 @@
-// Code generated from JSONFilter.g4 by ANTLR 4.9.2. DO NOT EDIT.
+// Code generated from java-escape by ANTLR 4.11.1. DO NOT EDIT.
 
 package parser // JSONFilter
 
 import (
 	"fmt"
-	"reflect"
 	"strconv"
+	"sync"
 
-	"github.com/antlr/antlr4/runtime/Go/antlr"
+	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
 )
 
 // Suppress unused import errors
 var _ = fmt.Printf
-var _ = reflect.Copy
 var _ = strconv.Itoa
-
-var parserATN = []uint16{
-	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 29, 92, 4,
-	2, 9, 2, 4, 3, 9, 3, 4, 4, 9, 4, 4, 5, 9, 5, 4, 6, 9, 6, 4, 7, 9, 7, 4,
-	8, 9, 8, 4, 9, 9, 9, 4, 10, 9, 10, 3, 2, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3,
-	3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 5, 4, 33, 10, 4, 3, 4, 3, 4, 3, 4,
-	3, 4, 3, 4, 3, 4, 7, 4, 41, 10, 4, 12, 4, 14, 4, 44, 11, 4, 3, 5, 3, 5,
-	3, 5, 3, 5, 5, 5, 50, 10, 5, 3, 6, 3, 6, 3, 6, 3, 7, 3, 7, 3, 7, 7, 7,
-	58, 10, 7, 12, 7, 14, 7, 61, 11, 7, 3, 8, 3, 8, 3, 8, 3, 8, 3, 8, 6, 8,
-	68, 10, 8, 13, 8, 14, 8, 69, 5, 8, 72, 10, 8, 3, 9, 3, 9, 3, 10, 3, 10,
-	3, 10, 6, 10, 79, 10, 10, 13, 10, 14, 10, 80, 3, 10, 3, 10, 3, 10, 3, 10,
-	3, 10, 3, 10, 3, 10, 5, 10, 90, 10, 10, 3, 10, 2, 3, 6, 11, 2, 4, 6, 8,
-	10, 12, 14, 16, 18, 2, 4, 3, 2, 14, 21, 4, 2, 4, 4, 28, 28, 2, 97, 2, 20,
-	3, 2, 2, 2, 4, 22, 3, 2, 2, 2, 6, 32, 3, 2, 2, 2, 8, 45, 3, 2, 2, 2, 10,
-	51, 3, 2, 2, 2, 12, 54, 3, 2, 2, 2, 14, 71, 3, 2, 2, 2, 16, 73, 3, 2, 2,
-	2, 18, 89, 3, 2, 2, 2, 20, 21, 5, 4, 3, 2, 21, 3, 3, 2, 2, 2, 22, 23, 7,
-	5, 2, 2, 23, 24, 5, 6, 4, 2, 24, 25, 7, 6, 2, 2, 25, 5, 3, 2, 2, 2, 26,
-	27, 8, 4, 1, 2, 27, 28, 7, 7, 2, 2, 28, 29, 5, 6, 4, 2, 29, 30, 7, 8, 2,
-	2, 30, 33, 3, 2, 2, 2, 31, 33, 5, 8, 5, 2, 32, 26, 3, 2, 2, 2, 32, 31,
-	3, 2, 2, 2, 33, 42, 3, 2, 2, 2, 34, 35, 12, 5, 2, 2, 35, 36, 7, 12, 2,
-	2, 36, 41, 5, 6, 4, 6, 37, 38, 12, 4, 2, 2, 38, 39, 7, 13, 2, 2, 39, 41,
-	5, 6, 4, 5, 40, 34, 3, 2, 2, 2, 40, 37, 3, 2, 2, 2, 41, 44, 3, 2, 2, 2,
-	42, 40, 3, 2, 2, 2, 42, 43, 3, 2, 2, 2, 43, 7, 3, 2, 2, 2, 44, 42, 3, 2,
-	2, 2, 45, 46, 5, 10, 6, 2, 46, 49, 5, 16, 9, 2, 47, 50, 5, 18, 10, 2, 48,
-	50, 5, 12, 7, 2, 49, 47, 3, 2, 2, 2, 49, 48, 3, 2, 2, 2, 50, 9, 3, 2, 2,
-	2, 51, 52, 7, 3, 2, 2, 52, 53, 5, 12, 7, 2, 53, 11, 3, 2, 2, 2, 54, 59,
-	5, 14, 8, 2, 55, 56, 7, 11, 2, 2, 56, 58, 5, 14, 8, 2, 57, 55, 3, 2, 2,
-	2, 58, 61, 3, 2, 2, 2, 59, 57, 3, 2, 2, 2, 59, 60, 3, 2, 2, 2, 60, 13,
-	3, 2, 2, 2, 61, 59, 3, 2, 2, 2, 62, 72, 7, 26, 2, 2, 63, 67, 7, 26, 2,
-	2, 64, 65, 7, 9, 2, 2, 65, 66, 7, 28, 2, 2, 66, 68, 7, 10, 2, 2, 67, 64,
-	3, 2, 2, 2, 68, 69, 3, 2, 2, 2, 69, 67, 3, 2, 2, 2, 69, 70, 3, 2, 2, 2,
-	70, 72, 3, 2, 2, 2, 71, 62, 3, 2, 2, 2, 71, 63, 3, 2, 2, 2, 72, 15, 3,
-	2, 2, 2, 73, 74, 9, 2, 2, 2, 74, 17, 3, 2, 2, 2, 75, 78, 7, 28, 2, 2, 76,
-	77, 7, 11, 2, 2, 77, 79, 9, 3, 2, 2, 78, 76, 3, 2, 2, 2, 79, 80, 3, 2,
-	2, 2, 80, 78, 3, 2, 2, 2, 80, 81, 3, 2, 2, 2, 81, 90, 3, 2, 2, 2, 82, 90,
-	7, 27, 2, 2, 83, 90, 7, 28, 2, 2, 84, 90, 7, 22, 2, 2, 85, 90, 7, 23, 2,
-	2, 86, 90, 7, 24, 2, 2, 87, 90, 7, 25, 2, 2, 88, 90, 7, 26, 2, 2, 89, 75,
-	3, 2, 2, 2, 89, 82, 3, 2, 2, 2, 89, 83, 3, 2, 2, 2, 89, 84, 3, 2, 2, 2,
-	89, 85, 3, 2, 2, 2, 89, 86, 3, 2, 2, 2, 89, 87, 3, 2, 2, 2, 89, 88, 3,
-	2, 2, 2, 90, 19, 3, 2, 2, 2, 11, 32, 40, 42, 49, 59, 69, 71, 80, 89,
-}
-var literalNames = []string{
-	"", "'$.'", "'*'", "'{'", "'}'", "'('", "')'", "'['", "']'", "'.'", "'&&'",
-	"'||'", "'='", "'!='", "'>'", "'<'", "'>='", "'<='", "'IS'", "'NOT'", "'NULL'",
-	"'EXISTS'", "'TRUE'", "'FALSE'",
-}
-var symbolicNames = []string{
-	"", "SEL_START", "STAR", "LCURLY", "RCURLY", "LPAREN", "RPAREN", "LBRACKET",
-	"RBRACKET", "DOT", "AND", "OR", "EQUALS", "NOT_EQUALS", "GT", "LT", "GE",
-	"LE", "IS", "NOT", "NULL", "EXISTS", "TRUE", "FALSE", "INDENTIFIER", "STRING",
-	"NUMBER", "WS",
-}
-
-var ruleNames = []string{
-	"awsjsonfilter", "dotnotation", "filter_expr", "exp", "selector", "qualifiedidentifier",
-	"member", "operator", "literal",
-}
+var _ = sync.Once{}
 
 type JSONFilterParser struct {
 	*antlr.BaseParser
 }
 
-// NewJSONFilterParser produces a new parser instance for the optional input antlr.TokenStream.
-//
-// The *JSONFilterParser instance produced may be reused by calling the SetInputStream method.
-// The initial parser configuration is expensive to construct, and the object is not thread-safe;
-// however, if used within a Golang sync.Pool, the construction cost amortizes well and the
-// objects can be used in a thread-safe manner.
-func NewJSONFilterParser(input antlr.TokenStream) *JSONFilterParser {
-	this := new(JSONFilterParser)
-	deserializer := antlr.NewATNDeserializer(nil)
-	deserializedATN := deserializer.DeserializeFromUInt16(parserATN)
-	decisionToDFA := make([]*antlr.DFA, len(deserializedATN.DecisionToState))
-	for index, ds := range deserializedATN.DecisionToState {
-		decisionToDFA[index] = antlr.NewDFA(ds, index)
-	}
-	this.BaseParser = antlr.NewBaseParser(input)
+var jsonfilterParserStaticData struct {
+	once                   sync.Once
+	serializedATN          []int32
+	literalNames           []string
+	symbolicNames          []string
+	ruleNames              []string
+	predictionContextCache *antlr.PredictionContextCache
+	atn                    *antlr.ATN
+	decisionToDFA          []*antlr.DFA
+}
 
-	this.Interpreter = antlr.NewParserATNSimulator(this, deserializedATN, decisionToDFA, antlr.NewPredictionContextCache())
-	this.RuleNames = ruleNames
-	this.LiteralNames = literalNames
-	this.SymbolicNames = symbolicNames
-	this.GrammarFileName = "JSONFilter.g4"
+func jsonfilterParserInit() {
+	staticData := &jsonfilterParserStaticData
+	staticData.literalNames = []string{
+		"", "'$.'", "'*'", "'{'", "'}'", "'('", "')'", "'['", "']'", "'.'",
+		"'&&'", "'||'", "'='", "'!='", "'>'", "'<'", "'>='", "'<='", "'IS'",
+		"'NOT'", "'NULL'", "'EXISTS'", "'TRUE'", "'FALSE'",
+	}
+	staticData.symbolicNames = []string{
+		"", "SEL_START", "STAR", "LCURLY", "RCURLY", "LPAREN", "RPAREN", "LBRACKET",
+		"RBRACKET", "DOT", "AND", "OR", "EQUALS", "NOT_EQUALS", "GT", "LT",
+		"GE", "LE", "IS", "NOT", "NULL", "EXISTS", "TRUE", "FALSE", "INDENTIFIER",
+		"STRING", "NUMBER", "WS",
+	}
+	staticData.ruleNames = []string{
+		"awsjsonfilter", "dotnotation", "filter_expr", "exp", "selector", "qualifiedidentifier",
+		"member", "operator", "literal",
+	}
+	staticData.predictionContextCache = antlr.NewPredictionContextCache()
+	staticData.serializedATN = []int32{
+		4, 1, 27, 90, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 1, 0, 1, 0, 1, 1, 1,
+		1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 3, 2, 31, 8, 2, 1, 2,
+		1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 5, 2, 39, 8, 2, 10, 2, 12, 2, 42, 9, 2, 1,
+		3, 1, 3, 1, 3, 1, 3, 3, 3, 48, 8, 3, 1, 4, 1, 4, 1, 4, 1, 5, 1, 5, 1, 5,
+		5, 5, 56, 8, 5, 10, 5, 12, 5, 59, 9, 5, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 4,
+		6, 66, 8, 6, 11, 6, 12, 6, 67, 3, 6, 70, 8, 6, 1, 7, 1, 7, 1, 8, 1, 8,
+		1, 8, 4, 8, 77, 8, 8, 11, 8, 12, 8, 78, 1, 8, 1, 8, 1, 8, 1, 8, 1, 8, 1,
+		8, 1, 8, 3, 8, 88, 8, 8, 1, 8, 0, 1, 4, 9, 0, 2, 4, 6, 8, 10, 12, 14, 16,
+		0, 2, 1, 0, 12, 19, 2, 0, 2, 2, 26, 26, 95, 0, 18, 1, 0, 0, 0, 2, 20, 1,
+		0, 0, 0, 4, 30, 1, 0, 0, 0, 6, 43, 1, 0, 0, 0, 8, 49, 1, 0, 0, 0, 10, 52,
+		1, 0, 0, 0, 12, 69, 1, 0, 0, 0, 14, 71, 1, 0, 0, 0, 16, 87, 1, 0, 0, 0,
+		18, 19, 3, 2, 1, 0, 19, 1, 1, 0, 0, 0, 20, 21, 5, 3, 0, 0, 21, 22, 3, 4,
+		2, 0, 22, 23, 5, 4, 0, 0, 23, 3, 1, 0, 0, 0, 24, 25, 6, 2, -1, 0, 25, 26,
+		5, 5, 0, 0, 26, 27, 3, 4, 2, 0, 27, 28, 5, 6, 0, 0, 28, 31, 1, 0, 0, 0,
+		29, 31, 3, 6, 3, 0, 30, 24, 1, 0, 0, 0, 30, 29, 1, 0, 0, 0, 31, 40, 1,
+		0, 0, 0, 32, 33, 10, 3, 0, 0, 33, 34, 5, 10, 0, 0, 34, 39, 3, 4, 2, 4,
+		35, 36, 10, 2, 0, 0, 36, 37, 5, 11, 0, 0, 37, 39, 3, 4, 2, 3, 38, 32, 1,
+		0, 0, 0, 38, 35, 1, 0, 0, 0, 39, 42, 1, 0, 0, 0, 40, 38, 1, 0, 0, 0, 40,
+		41, 1, 0, 0, 0, 41, 5, 1, 0, 0, 0, 42, 40, 1, 0, 0, 0, 43, 44, 3, 8, 4,
+		0, 44, 47, 3, 14, 7, 0, 45, 48, 3, 16, 8, 0, 46, 48, 3, 10, 5, 0, 47, 45,
+		1, 0, 0, 0, 47, 46, 1, 0, 0, 0, 48, 7, 1, 0, 0, 0, 49, 50, 5, 1, 0, 0,
+		50, 51, 3, 10, 5, 0, 51, 9, 1, 0, 0, 0, 52, 57, 3, 12, 6, 0, 53, 54, 5,
+		9, 0, 0, 54, 56, 3, 12, 6, 0, 55, 53, 1, 0, 0, 0, 56, 59, 1, 0, 0, 0, 57,
+		55, 1, 0, 0, 0, 57, 58, 1, 0, 0, 0, 58, 11, 1, 0, 0, 0, 59, 57, 1, 0, 0,
+		0, 60, 70, 5, 24, 0, 0, 61, 65, 5, 24, 0, 0, 62, 63, 5, 7, 0, 0, 63, 64,
+		5, 26, 0, 0, 64, 66, 5, 8, 0, 0, 65, 62, 1, 0, 0, 0, 66, 67, 1, 0, 0, 0,
+		67, 65, 1, 0, 0, 0, 67, 68, 1, 0, 0, 0, 68, 70, 1, 0, 0, 0, 69, 60, 1,
+		0, 0, 0, 69, 61, 1, 0, 0, 0, 70, 13, 1, 0, 0, 0, 71, 72, 7, 0, 0, 0, 72,
+		15, 1, 0, 0, 0, 73, 76, 5, 26, 0, 0, 74, 75, 5, 9, 0, 0, 75, 77, 7, 1,
+		0, 0, 76, 74, 1, 0, 0, 0, 77, 78, 1, 0, 0, 0, 78, 76, 1, 0, 0, 0, 78, 79,
+		1, 0, 0, 0, 79, 88, 1, 0, 0, 0, 80, 88, 5, 25, 0, 0, 81, 88, 5, 26, 0,
+		0, 82, 88, 5, 20, 0, 0, 83, 88, 5, 21, 0, 0, 84, 88, 5, 22, 0, 0, 85, 88,
+		5, 23, 0, 0, 86, 88, 5, 24, 0, 0, 87, 73, 1, 0, 0, 0, 87, 80, 1, 0, 0,
+		0, 87, 81, 1, 0, 0, 0, 87, 82, 1, 0, 0, 0, 87, 83, 1, 0, 0, 0, 87, 84,
+		1, 0, 0, 0, 87, 85, 1, 0, 0, 0, 87, 86, 1, 0, 0, 0, 88, 17, 1, 0, 0, 0,
+		9, 30, 38, 40, 47, 57, 67, 69, 78, 87,
+	}
+	deserializer := antlr.NewATNDeserializer(nil)
+	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
+	atn := staticData.atn
+	staticData.decisionToDFA = make([]*antlr.DFA, len(atn.DecisionToState))
+	decisionToDFA := staticData.decisionToDFA
+	for index, state := range atn.DecisionToState {
+		decisionToDFA[index] = antlr.NewDFA(state, index)
+	}
+}
+
+// JSONFilterParserInit initializes any static state used to implement JSONFilterParser. By default the
+// static state used to implement the parser is lazily initialized during the first call to
+// NewJSONFilterParser(). You can call this function if you wish to initialize the static state ahead
+// of time.
+func JSONFilterParserInit() {
+	staticData := &jsonfilterParserStaticData
+	staticData.once.Do(jsonfilterParserInit)
+}
+
+// NewJSONFilterParser produces a new parser instance for the optional input antlr.TokenStream.
+func NewJSONFilterParser(input antlr.TokenStream) *JSONFilterParser {
+	JSONFilterParserInit()
+	this := new(JSONFilterParser)
+	this.BaseParser = antlr.NewBaseParser(input)
+	staticData := &jsonfilterParserStaticData
+	this.Interpreter = antlr.NewParserATNSimulator(this, staticData.atn, staticData.decisionToDFA, staticData.predictionContextCache)
+	this.RuleNames = staticData.ruleNames
+	this.LiteralNames = staticData.literalNames
+	this.SymbolicNames = staticData.symbolicNames
+	this.GrammarFileName = "java-escape"
 
 	return this
 }
@@ -185,7 +205,13 @@ func NewAwsjsonfilterContext(parser antlr.Parser, parent antlr.ParserRuleContext
 func (s *AwsjsonfilterContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *AwsjsonfilterContext) Dotnotation() IDotnotationContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IDotnotationContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IDotnotationContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -213,6 +239,9 @@ func (s *AwsjsonfilterContext) Accept(visitor antlr.ParseTreeVisitor) interface{
 }
 
 func (p *JSONFilterParser) Awsjsonfilter() (localctx IAwsjsonfilterContext) {
+	this := p
+	_ = this
+
 	localctx = NewAwsjsonfilterContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 0, JSONFilterParserRULE_awsjsonfilter)
 
@@ -284,7 +313,13 @@ func (s *DotnotationContext) LCURLY() antlr.TerminalNode {
 }
 
 func (s *DotnotationContext) Filter_expr() IFilter_exprContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IFilter_exprContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IFilter_exprContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -316,6 +351,9 @@ func (s *DotnotationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} 
 }
 
 func (p *JSONFilterParser) Dotnotation() (localctx IDotnotationContext) {
+	this := p
+	_ = this
+
 	localctx = NewDotnotationContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 2, JSONFilterParserRULE_dotnotation)
 
@@ -425,7 +463,13 @@ func (s *Filter_expr_parenthesizedContext) LPAREN() antlr.TerminalNode {
 }
 
 func (s *Filter_expr_parenthesizedContext) Filter_expr() IFilter_exprContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IFilter_exprContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IFilter_exprContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -481,12 +525,20 @@ func (s *Filter_expr_andContext) AND() antlr.TerminalNode {
 }
 
 func (s *Filter_expr_andContext) AllFilter_expr() []IFilter_exprContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IFilter_exprContext)(nil)).Elem())
-	var tst = make([]IFilter_exprContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IFilter_exprContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]IFilter_exprContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IFilter_exprContext); ok {
 			tst[i] = t.(IFilter_exprContext)
+			i++
 		}
 	}
 
@@ -494,7 +546,17 @@ func (s *Filter_expr_andContext) AllFilter_expr() []IFilter_exprContext {
 }
 
 func (s *Filter_expr_andContext) Filter_expr(i int) IFilter_exprContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IFilter_exprContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IFilter_exprContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -532,7 +594,13 @@ func (s *Filter_expr_expContext) GetRuleContext() antlr.RuleContext {
 }
 
 func (s *Filter_expr_expContext) Exp() IExpContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IExpContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IExpContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -584,12 +652,20 @@ func (s *Filter_expr_orContext) OR() antlr.TerminalNode {
 }
 
 func (s *Filter_expr_orContext) AllFilter_expr() []IFilter_exprContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IFilter_exprContext)(nil)).Elem())
-	var tst = make([]IFilter_exprContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IFilter_exprContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]IFilter_exprContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IFilter_exprContext); ok {
 			tst[i] = t.(IFilter_exprContext)
+			i++
 		}
 	}
 
@@ -597,7 +673,17 @@ func (s *Filter_expr_orContext) AllFilter_expr() []IFilter_exprContext {
 }
 
 func (s *Filter_expr_orContext) Filter_expr(i int) IFilter_exprContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IFilter_exprContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IFilter_exprContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -621,6 +707,9 @@ func (p *JSONFilterParser) Filter_expr() (localctx IFilter_exprContext) {
 }
 
 func (p *JSONFilterParser) filter_expr(_p int) (localctx IFilter_exprContext) {
+	this := p
+	_ = this
+
 	var _parentctx antlr.ParserRuleContext = p.GetParserRuleContext()
 	_parentState := p.GetState()
 	localctx = NewFilter_exprContext(p, p.GetParserRuleContext(), _parentState)
@@ -790,7 +879,13 @@ func NewExpContext(parser antlr.Parser, parent antlr.ParserRuleContext, invoking
 func (s *ExpContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *ExpContext) Selector() ISelectorContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ISelectorContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ISelectorContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -800,7 +895,13 @@ func (s *ExpContext) Selector() ISelectorContext {
 }
 
 func (s *ExpContext) Operator() IOperatorContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IOperatorContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IOperatorContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -810,7 +911,13 @@ func (s *ExpContext) Operator() IOperatorContext {
 }
 
 func (s *ExpContext) Literal() ILiteralContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ILiteralContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ILiteralContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -820,7 +927,13 @@ func (s *ExpContext) Literal() ILiteralContext {
 }
 
 func (s *ExpContext) Qualifiedidentifier() IQualifiedidentifierContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IQualifiedidentifierContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IQualifiedidentifierContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -848,6 +961,9 @@ func (s *ExpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 }
 
 func (p *JSONFilterParser) Exp() (localctx IExpContext) {
+	this := p
+	_ = this
+
 	localctx = NewExpContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 6, JSONFilterParserRULE_exp)
 
@@ -939,7 +1055,13 @@ func (s *SelectorContext) SEL_START() antlr.TerminalNode {
 }
 
 func (s *SelectorContext) Qualifiedidentifier() IQualifiedidentifierContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IQualifiedidentifierContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IQualifiedidentifierContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -967,6 +1089,9 @@ func (s *SelectorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 }
 
 func (p *JSONFilterParser) Selector() (localctx ISelectorContext) {
+	this := p
+	_ = this
+
 	localctx = NewSelectorContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 8, JSONFilterParserRULE_selector)
 
@@ -1038,12 +1163,20 @@ func NewQualifiedidentifierContext(parser antlr.Parser, parent antlr.ParserRuleC
 func (s *QualifiedidentifierContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *QualifiedidentifierContext) AllMember() []IMemberContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IMemberContext)(nil)).Elem())
-	var tst = make([]IMemberContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IMemberContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]IMemberContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IMemberContext); ok {
 			tst[i] = t.(IMemberContext)
+			i++
 		}
 	}
 
@@ -1051,7 +1184,17 @@ func (s *QualifiedidentifierContext) AllMember() []IMemberContext {
 }
 
 func (s *QualifiedidentifierContext) Member(i int) IMemberContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IMemberContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IMemberContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -1087,6 +1230,9 @@ func (s *QualifiedidentifierContext) Accept(visitor antlr.ParseTreeVisitor) inte
 }
 
 func (p *JSONFilterParser) Qualifiedidentifier() (localctx IQualifiedidentifierContext) {
+	this := p
+	_ = this
+
 	localctx = NewQualifiedidentifierContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 10, JSONFilterParserRULE_qualifiedidentifier)
 
@@ -1222,6 +1368,9 @@ func (s *MemberContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 }
 
 func (p *JSONFilterParser) Member() (localctx IMemberContext) {
+	this := p
+	_ = this
+
 	localctx = NewMemberContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 12, JSONFilterParserRULE_member)
 
@@ -1381,6 +1530,9 @@ func (s *OperatorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 }
 
 func (p *JSONFilterParser) Operator() (localctx IOperatorContext) {
+	this := p
+	_ = this
+
 	localctx = NewOperatorContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 14, JSONFilterParserRULE_operator)
 	var _la int
@@ -1406,7 +1558,7 @@ func (p *JSONFilterParser) Operator() (localctx IOperatorContext) {
 		p.SetState(71)
 		_la = p.GetTokenStream().LA(1)
 
-		if !(((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<JSONFilterParserEQUALS)|(1<<JSONFilterParserNOT_EQUALS)|(1<<JSONFilterParserGT)|(1<<JSONFilterParserLT)|(1<<JSONFilterParserGE)|(1<<JSONFilterParserLE)|(1<<JSONFilterParserIS)|(1<<JSONFilterParserNOT))) != 0) {
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&1044480) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -1522,6 +1674,9 @@ func (s *LiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 }
 
 func (p *JSONFilterParser) Literal() (localctx ILiteralContext) {
+	this := p
+	_ = this
+
 	localctx = NewLiteralContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 16, JSONFilterParserRULE_literal)
 	var _la int
@@ -1653,6 +1808,9 @@ func (p *JSONFilterParser) Sempred(localctx antlr.RuleContext, ruleIndex, predIn
 }
 
 func (p *JSONFilterParser) Filter_expr_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	this := p
+	_ = this
+
 	switch predIndex {
 	case 0:
 		return p.Precpred(p.GetParserRuleContext(), 3)

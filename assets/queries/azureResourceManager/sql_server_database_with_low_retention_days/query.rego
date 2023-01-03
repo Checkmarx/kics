@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.azureresourcemanager as arm_lib
 
 types := ["Microsoft.Sql/servers/databases/auditingSettings", "auditingSettings"]
 
@@ -11,7 +12,8 @@ CxPolicy[result] {
 
 	value.type == types[_]
 	properties := value.properties
-	lower(properties.state) == "enabled"
+	[val, _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, properties.state)
+	lower(val) == "enabled"
 	not common_lib.valid_key(properties, "retentionDays")
 
 	result := {
@@ -33,8 +35,10 @@ CxPolicy[result] {
 
 	value.type == types[_]
 	properties := value.properties
-	lower(properties.state) == "enabled"
-	properties.retentionDays < 90
+	[val, _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, properties.state)
+	lower(val) == "enabled"
+	[val_rd, val_rd_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, properties.retentionDays)
+	val_rd < 90
 
 	result := {
 		"documentId": input.document[i].id,
@@ -42,8 +46,8 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.retentionDays", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'auditingSettings.properties.retentionDays' should be defined and above 90 days",
-		"keyActualValue": sprintf("'auditingSettings.properties.retentionDays' is %d", [properties.retentionDays]),
+		"keyExpectedValue": sprintf("'auditingSettings.properties.retentionDays' %s should be defined and above 90 days", [val_rd_type]),
+		"keyActualValue": sprintf("'auditingSettings.properties.retentionDays' %s is %d", [val_rd_type, properties.retentionDays]),
 		"searchLine": common_lib.build_search_line(path, ["properties", "retentionDays"]),
 	}
 }

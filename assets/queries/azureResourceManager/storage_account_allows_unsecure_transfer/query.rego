@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.azureresourcemanager as arm_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -32,7 +33,8 @@ CxPolicy[result] {
 	value.type == "Microsoft.Storage/storageAccounts"
 	to_number(split(value.apiVersion, "-")[0]) >= 2019
 
-	value.properties.supportsHttpsTrafficOnly == false
+	[val, val_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, value.properties.supportsHttpsTrafficOnly)
+	val == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -40,7 +42,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.properties.supportsHttpsTrafficOnly", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have the 'supportsHttpsTrafficOnly' property set to true",
+		"keyExpectedValue": sprintf("resource with type 'Microsoft.Storage/storageAccounts' %s should have the 'supportsHttpsTrafficOnly' property set to true", [val_type]),
 		"keyActualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' set to true",
 		"searchLine": common_lib.build_search_line(path, ["properties", "supportsHttpsTrafficOnly"]),
 	}
