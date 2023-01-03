@@ -95,7 +95,7 @@
 				
 				<option value="file19">github.com/Checkmarx/kics/internal/tracker/ci.go (100.0%)</option>
 				
-				<option value="file20">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (85.5%)</option>
+				<option value="file20">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (86.0%)</option>
 				
 				<option value="file21">github.com/Checkmarx/kics/pkg/builder/engine/engine.go (71.8%)</option>
 				
@@ -2164,13 +2164,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="33">total += v
+                <span class="cov8" title="34">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2436,42 +2436,40 @@ import (
 // k8sRegexMetadata - Regex that finds Kubernetes defining property "metadata"
 // k8sRegexSpec - Regex that finds Kubernetes defining property "spec"
 var (
-        openAPIRegex     = regexp.MustCompile("\\s*(\"(openapi|swagger)\"|(openapi|swagger))\\s*:")
-        openAPIRegexInfo = regexp.MustCompile("\\s*(\"info\"|info)\\s*:")
-        openAPIRegexPath = regexp.MustCompile(
-                "\\s*(\"(paths|components|webhooks)\"|(paths|components|webhooks))\\s*:")
-        armRegexContentVersion                          = regexp.MustCompile("\\s*\"contentVersion\"\\s*:")
-        armRegexResources                               = regexp.MustCompile("\\s*\"resources\"\\s*:")
-        cloudRegex                                      = regexp.MustCompile("\\s*(\"Resources\"|Resources)\\s*:")
-        k8sRegex                                        = regexp.MustCompile("\\s*(\"apiVersion\"|apiVersion)\\s*:")
-        k8sRegexKind                                    = regexp.MustCompile("\\s*(\"kind\"|kind)\\s*:")
-        ansibleVaultRegex                               = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
-        tfPlanRegexPV                                   = regexp.MustCompile("\\s*\"planned_values\"\\s*:")
-        tfPlanRegexRC                                   = regexp.MustCompile("\\s*\"resource_changes\"\\s*:")
-        tfPlanRegexConf                                 = regexp.MustCompile("\\s*\"configuration\"\\s*:")
-        tfPlanRegexTV                                   = regexp.MustCompile("\\s*\"terraform_version\"\\s*:")
-        cdkTfRegexMetadata                              = regexp.MustCompile("\\s*\"metadata\"\\s*:")
-        cdkTfRegexStackName                             = regexp.MustCompile("\\s*\"stackName\"\\s*:")
-        cdkTfRegexTerraform                             = regexp.MustCompile("\\s*\"terraform\"\\s*:")
-        artifactsRegexKind                              = regexp.MustCompile("\\s*(\"kind\"|kind)\\s*:")
-        artifactsRegexProperties                        = regexp.MustCompile("\\s*(\"properties\"|properties)\\s*:")
-        artifactsRegexParametes                         = regexp.MustCompile("\\s*(\"parameters\"|parameters)\\s*:")
-        policyAssignmentArtifactRegexPolicyDefinitionID = regexp.MustCompile("\\s*(\"policyDefinitionId\"|policyDefinitionId)\\s*:")
-        roleAssignmentArtifactRegexPrincipalIds         = regexp.MustCompile("\\s*(\"principalIds\"|principalIds)\\s*:")
-        roleAssignmentArtifactRegexRoleDefinitionID     = regexp.MustCompile("\\s*(\"roleDefinitionId\"|roleDefinitionId)\\s*:")
-        templateArtifactRegexParametes                  = regexp.MustCompile("\\s*(\"template\"|template)\\s*:")
-        blueprintpRegexTargetScope                      = regexp.MustCompile("\\s*(\targetScope\"|targetScope)\\s*:")
-        blueprintpRegexProperties                       = regexp.MustCompile("\\s*(\"properties\"|properties)\\s*:")
-        buildahRegex                                    = regexp.MustCompile(`\s*buildah\s*from\s*\w+`)
-        dockerComposeVersionRegex                       = regexp.MustCompile(`\s*version\s*:`)
-        dockerComposeServicesRegex                      = regexp.MustCompile(`\s*services\s*:`)
-        crossPlaneRegex                                 = regexp.MustCompile(`\s*\"?apiVersion\"?\s*:\s*(\w+\.)+crossplane\.io/v\w+\s*`)
-        knativeRegex                                    = regexp.MustCompile(`\s*\"?apiVersion\"?\s*:\s*(\w+\.)+knative\.dev/v\w+\s*`)
-        pulumiNameRegex                                 = regexp.MustCompile(`\s*name\s*:`)
-        pulumiRuntimeRegex                              = regexp.MustCompile(`\s*runtime\s*:`)
-        pulumiResourcesRegex                            = regexp.MustCompile(`\s*resources\s*:`)
-        serverlessServiceRegex                          = regexp.MustCompile(`\s*service\s*:`)
-        serverlessProviderRegex                         = regexp.MustCompile(`\s*provider\s*:`)
+        openAPIRegex                                    = regexp.MustCompile(`("(openapi|swagger)"|(openapi|swagger))\s*:`)
+        openAPIRegexInfo                                = regexp.MustCompile(`("info"|info)\s*:`)
+        openAPIRegexPath                                = regexp.MustCompile(`("(paths|components|webhooks)"|(paths|components|webhooks))\s*:`)
+        armRegexContentVersion                          = regexp.MustCompile(`"contentVersion"\s*:`)
+        armRegexResources                               = regexp.MustCompile(`"resources"\s*:`)
+        cloudRegex                                      = regexp.MustCompile(`("Resources"|Resources)\s*:`)
+        k8sRegex                                        = regexp.MustCompile(`("apiVersion"|apiVersion)\s*:`)
+        k8sRegexKind                                    = regexp.MustCompile(`("kind"|kind)\s*:`)
+        tfPlanRegexPV                                   = regexp.MustCompile(`"planned_values"\s*:`)
+        tfPlanRegexRC                                   = regexp.MustCompile(`"resource_changes"\s*:`)
+        tfPlanRegexConf                                 = regexp.MustCompile(`"configuration"\s*:`)
+        tfPlanRegexTV                                   = regexp.MustCompile(`"terraform_version"\s*:`)
+        cdkTfRegexMetadata                              = regexp.MustCompile(`"metadata"\s*:`)
+        cdkTfRegexStackName                             = regexp.MustCompile(`"stackName"\s*:`)
+        cdkTfRegexTerraform                             = regexp.MustCompile(`"terraform"\s*:`)
+        artifactsRegexKind                              = regexp.MustCompile(`("kind"|kind)\s*:`)
+        artifactsRegexProperties                        = regexp.MustCompile(`("properties"|properties)\s*:`)
+        artifactsRegexParametes                         = regexp.MustCompile(`("parameters"|parameters)\s*:`)
+        policyAssignmentArtifactRegexPolicyDefinitionID = regexp.MustCompile(`("policyDefinitionId"|policyDefinitionId)\s*:`)
+        roleAssignmentArtifactRegexPrincipalIds         = regexp.MustCompile(`("principalIds"|principalIds)\s*:`)
+        roleAssignmentArtifactRegexRoleDefinitionID     = regexp.MustCompile(`("roleDefinitionId"|roleDefinitionId)\s*:`)
+        templateArtifactRegexParametes                  = regexp.MustCompile(`("template"|template)\s*:`)
+        blueprintpRegexTargetScope                      = regexp.MustCompile(`("targetScope"|targetScope)\s*:`)
+        blueprintpRegexProperties                       = regexp.MustCompile(`("properties"|properties)\s*:`)
+        buildahRegex                                    = regexp.MustCompile(`buildah\s*from\s*\w+`)
+        dockerComposeVersionRegex                       = regexp.MustCompile(`version\s*:`)
+        dockerComposeServicesRegex                      = regexp.MustCompile(`services\s*:`)
+        crossPlaneRegex                                 = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+crossplane\.io/v\w+\s*`)
+        knativeRegex                                    = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+knative\.dev/v\w+\s*`)
+        pulumiNameRegex                                 = regexp.MustCompile(`name\s*:`)
+        pulumiRuntimeRegex                              = regexp.MustCompile(`runtime\s*:`)
+        pulumiResourcesRegex                            = regexp.MustCompile(`resources\s*:`)
+        serverlessServiceRegex                          = regexp.MustCompile(`service\s*:`)
+        serverlessProviderRegex                         = regexp.MustCompile(`provider\s*:`)
 )
 
 var (
@@ -2652,7 +2650,7 @@ var types = map[string]regexSlice{
 
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
 // should be loaded based on the extension of the file and the content
-func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov4" title="12">{
+func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov4" title="13">{
         // start metrics for file analyzer
         metrics.Metric.Start("file_type_analyzer")
         returnAnalyzedPaths := model.AnalyzedPaths{
@@ -2668,40 +2666,40 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov4" title=
         hasGitIgnoreFile, gitIgnore := shouldConsiderGitIgnoreFile(a.Paths[0], a.GitIgnoreFileName, a.ExcludeGitIgnore)
 
         // get all the files inside the given paths
-        for _, path := range a.Paths </span><span class="cov4" title="13">{
+        for _, path := range a.Paths </span><span class="cov4" title="14">{
                 if _, err := os.Stat(path); err != nil </span><span class="cov1" title="1">{
                         return returnAnalyzedPaths, errors.Wrap(err, "failed to analyze path")
                 }</span>
-                <span class="cov4" title="12">if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov6" title="55">{
+                <span class="cov4" title="13">if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov6" title="57">{
                         if err != nil </span><span class="cov0" title="0">{
                                 return err
                         }</span>
 
-                        <span class="cov6" title="55">ext := utils.GetExtension(path)
+                        <span class="cov6" title="57">ext := utils.GetExtension(path)
 
                         if hasGitIgnoreFile &amp;&amp; gitIgnore.MatchesPath(path) </span><span class="cov1" title="2">{
                                 ignoreFiles = append(ignoreFiles, path)
                                 a.Exc = append(a.Exc, path)
                         }</span>
 
-                        <span class="cov6" title="55">if _, ok := possibleFileTypes[ext]; ok &amp;&amp; !isExcludedFile(path, a.Exc) </span><span class="cov6" title="37">{
+                        <span class="cov6" title="57">if _, ok := possibleFileTypes[ext]; ok &amp;&amp; !isExcludedFile(path, a.Exc) </span><span class="cov6" title="39">{
                                 files = append(files, path)
                         }</span>
 
-                        <span class="cov6" title="55">return nil</span>
+                        <span class="cov6" title="57">return nil</span>
                 }); err != nil <span class="cov0" title="0">{
-                        log.Error().Msgf("failed to analize path %s: %s", path, err)
+                        log.Error().Msgf("failed to analyze path %s: %s", path, err)
                 }</span>
         }
 
         // unwanted is the channel shared by the workers that contains the unwanted files that the parser will ignore
-        <span class="cov4" title="11">unwanted := make(chan string, len(files))
+        <span class="cov4" title="12">unwanted := make(chan string, len(files))
 
-        for i := range a.Types </span><span class="cov4" title="11">{
+        for i := range a.Types </span><span class="cov4" title="12">{
                 a.Types[i] = strings.ToLower(a.Types[i])
         }</span>
 
-        <span class="cov4" title="11">for _, file := range files </span><span class="cov6" title="37">{
+        <span class="cov4" title="12">for _, file := range files </span><span class="cov6" title="39">{
                 wg.Add(1)
                 // analyze the files concurrently
                 a := &amp;analyzerInfo{
@@ -2711,16 +2709,16 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov4" title=
                 go a.worker(results, unwanted, &amp;wg)
         }</span>
 
-        <span class="cov4" title="11">go func() </span><span class="cov4" title="11">{
+        <span class="cov4" title="12">go func() </span><span class="cov4" title="12">{
                 // close channel results when the worker has finished writing into it
-                defer func() </span><span class="cov4" title="11">{
+                defer func() </span><span class="cov4" title="12">{
                         close(unwanted)
                         close(results)
                 }</span>()
-                <span class="cov4" title="11">wg.Wait()</span>
+                <span class="cov4" title="12">wg.Wait()</span>
         }()
 
-        <span class="cov4" title="11">availableTypes := createSlice(results)
+        <span class="cov4" title="12">availableTypes := createSlice(results)
         multiPlatformTypeCheck(&amp;availableTypes)
         unwantedPaths := createSlice(unwanted)
         unwantedPaths = append(unwantedPaths, ignoreFiles...)
@@ -2734,7 +2732,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov4" title=
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
 // writes the answer to the results channel
 // if no types were found, the worker will write the path of the file in the unwanted channel
-func (a *analyzerInfo) worker(results, unwanted chan&lt;- string, wg *sync.WaitGroup) <span class="cov6" title="37">{
+func (a *analyzerInfo) worker(results, unwanted chan&lt;- string, wg *sync.WaitGroup) <span class="cov6" title="39">{
         defer wg.Done()
 
         ext := utils.GetExtension(a.filePath)
@@ -2765,7 +2763,7 @@ func (a *analyzerInfo) worker(results, unwanted chan&lt;- string, wg *sync.WaitG
                         results &lt;- grpc
                 }</span>
         // Cloud Formation, Ansible, OpenAPI, Buildah
-        case yaml, yml, json, sh:<span class="cov5" title="29">
+        case yaml, yml, json, sh:<span class="cov5" title="31">
                 a.checkContent(results, unwanted, ext)</span>
         }
 }
@@ -2795,18 +2793,18 @@ func isDockerfile(path string) bool <span class="cov1" title="2">{
 }
 
 // overrides k8s match when all regexs passes for azureresourcemanager key and extension is set to json
-func needsOverride(check bool, returnType, key, ext string) bool <span class="cov9" title="444">{
+func needsOverride(check bool, returnType, key, ext string) bool <span class="cov9" title="476">{
         if check &amp;&amp; returnType == kubernetes &amp;&amp; key == arm &amp;&amp; ext == json </span><span class="cov0" title="0">{
                 return true
-        }</span> else<span class="cov9" title="444"> if check &amp;&amp; returnType == kubernetes &amp;&amp; (key == knative || key == crossplane) &amp;&amp; ext == yaml </span><span class="cov2" title="3">{
+        }</span> else<span class="cov9" title="476"> if check &amp;&amp; returnType == kubernetes &amp;&amp; (key == knative || key == crossplane) &amp;&amp; ext == yaml </span><span class="cov2" title="3">{
                 return true
         }</span>
-        <span class="cov9" title="441">return false</span>
+        <span class="cov9" title="473">return false</span>
 }
 
 // checkContent will determine the file type by content when worker was unable to
 // determine by ext, if no type was determined checkContent adds it to unwanted channel
-func (a *analyzerInfo) checkContent(results, unwanted chan&lt;- string, ext string) <span class="cov5" title="29">{
+func (a *analyzerInfo) checkContent(results, unwanted chan&lt;- string, ext string) <span class="cov5" title="31">{
         typesFlag := a.typesFlag
         // get file content
         content, err := os.ReadFile(a.filePath)
@@ -2815,38 +2813,38 @@ func (a *analyzerInfo) checkContent(results, unwanted chan&lt;- string, ext stri
                 return
         }</span>
 
-        <span class="cov5" title="29">returnType := ""
+        <span class="cov5" title="31">returnType := ""
 
         // Sort map so that CloudFormation (type that as less requireds) goes last
         keys := make([]string, 0, len(types))
-        for k := range types </span><span class="cov9" title="464">{
+        for k := range types </span><span class="cov9" title="496">{
                 keys = append(keys, k)
         }</span>
 
-        <span class="cov5" title="29">if typesFlag[0] != "" </span><span class="cov0" title="0">{
+        <span class="cov5" title="31">if typesFlag[0] != "" </span><span class="cov0" title="0">{
                 keys = getKeysFromTypesFlag(typesFlag)
         }</span>
 
-        <span class="cov5" title="29">sort.Sort(sort.Reverse(sort.StringSlice(keys)))
+        <span class="cov5" title="31">sort.Sort(sort.Reverse(sort.StringSlice(keys)))
 
-        for _, key := range keys </span><span class="cov9" title="464">{
+        for _, key := range keys </span><span class="cov9" title="496">{
                 check := true
-                for _, typeRegex := range types[key].regex </span><span class="cov10" title="545">{
-                        if !typeRegex.Match(content) </span><span class="cov9" title="437">{
+                for _, typeRegex := range types[key].regex </span><span class="cov10" title="577">{
+                        if !typeRegex.Match(content) </span><span class="cov9" title="469">{
                                 check = false
                                 break</span>
                         }
                 }
                 // If all regexs passed and there wasn't a type already assigned
-                <span class="cov9" title="464">if check &amp;&amp; returnType == "" </span><span class="cov5" title="20">{
+                <span class="cov9" title="496">if check &amp;&amp; returnType == "" </span><span class="cov5" title="20">{
                         returnType = key
-                }</span> else<span class="cov9" title="444"> if needsOverride(check, returnType, key, ext) </span><span class="cov2" title="3">{
+                }</span> else<span class="cov9" title="476"> if needsOverride(check, returnType, key, ext) </span><span class="cov2" title="3">{
                         returnType = key
                 }</span>
         }
-        <span class="cov5" title="29">returnType = checkReturnType(a.filePath, returnType, ext, content)
-        if returnType != "" </span><span class="cov5" title="26">{
-                if typesFlag[0] == "" || utils.Contains(returnType, typesFlag) </span><span class="cov5" title="26">{
+        <span class="cov5" title="31">returnType = checkReturnType(a.filePath, returnType, ext, content)
+        if returnType != "" </span><span class="cov5" title="28">{
+                if typesFlag[0] == "" || utils.Contains(returnType, typesFlag) </span><span class="cov5" title="28">{
                         results &lt;- returnType
                         return
                 }</span>
@@ -2855,7 +2853,7 @@ func (a *analyzerInfo) checkContent(results, unwanted chan&lt;- string, ext stri
         <span class="cov2" title="3">unwanted &lt;- a.filePath</span>
 }
 
-func checkReturnType(path, returnType, ext string, content []byte) string <span class="cov5" title="29">{
+func checkReturnType(path, returnType, ext string, content []byte) string <span class="cov5" title="31">{
         if returnType != "" </span><span class="cov5" title="20">{
                 if returnType == "cdkTf" </span><span class="cov0" title="0">{
                         return terraform
@@ -2863,21 +2861,21 @@ func checkReturnType(path, returnType, ext string, content []byte) string <span 
                 <span class="cov5" title="20">if utils.Contains(returnType, armRegexTypes) </span><span class="cov0" title="0">{
                         return arm
                 }</span>
-        } else<span class="cov4" title="9"> if ext == yaml || ext == yml </span><span class="cov3" title="6">{
+        } else<span class="cov4" title="11"> if ext == yaml || ext == yml </span><span class="cov3" title="8">{
                 if checkHelm(path) </span><span class="cov2" title="4">{
                         return kubernetes
                 }</span>
-                <span class="cov1" title="2">platform := checkYamlPlatform(content, path)
-                if platform != "" </span><span class="cov1" title="2">{
+                <span class="cov2" title="4">platform := checkYamlPlatform(content, path)
+                if platform != "" </span><span class="cov2" title="4">{
                         return platform
                 }</span>
         }
         <span class="cov5" title="23">return returnType</span>
 }
 
-func checkHelm(path string) bool <span class="cov3" title="6">{
+func checkHelm(path string) bool <span class="cov3" title="8">{
         _, err := os.Stat(filepath.Join(filepath.Dir(path), "Chart.yaml"))
-        if errors.Is(err, os.ErrNotExist) </span><span class="cov1" title="2">{
+        if errors.Is(err, os.ErrNotExist) </span><span class="cov2" title="4">{
                 return false
         }</span> else<span class="cov2" title="4"> if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msgf("failed to check helm: %s", err)
@@ -2886,7 +2884,7 @@ func checkHelm(path string) bool <span class="cov3" title="6">{
         <span class="cov2" title="4">return true</span>
 }
 
-func checkYamlPlatform(content []byte, path string) string <span class="cov1" title="2">{
+func checkYamlPlatform(content []byte, path string) string <span class="cov2" title="4">{
         content = utils.DecryptAnsibleVault(content, os.Getenv("ANSIBLE_VAULT_PASSWORD_FILE"))
 
         var yamlContent model.Document
@@ -2894,29 +2892,26 @@ func checkYamlPlatform(content []byte, path string) string <span class="cov1" ti
                 log.Warn().Msgf("failed to parse yaml file (%s): %s", path, err)
         }</span>
         // check if it is google deployment manager platform
-        <span class="cov1" title="2">for _, keyword := range listKeywordsGoogleDeployment </span><span class="cov1" title="2">{
+        <span class="cov2" title="4">for _, keyword := range listKeywordsGoogleDeployment </span><span class="cov2" title="4">{
                 if _, ok := yamlContent[keyword]; ok </span><span class="cov1" title="1">{
                         return gdm
                 }</span>
         }
-        // check if it is an ansible vault
-        <span class="cov1" title="1">if !ansibleVaultRegex.Match(content) </span><span class="cov1" title="1">{
-                // Since Ansible has no defining property
-                // and no other type matched for YAML file extension, assume the file type is Ansible
-                return ansible
-        }</span>
-        <span class="cov0" title="0">return ""</span>
+
+        // Since Ansible has no defining property
+        // and no other type matched for YAML file extension, assume the file type is Ansible
+        <span class="cov2" title="3">return ansible</span>
 }
 
 // createSlice creates a slice from the channel given removing any duplicates
-func createSlice(chanel chan string) []string <span class="cov5" title="22">{
+func createSlice(chanel chan string) []string <span class="cov5" title="24">{
         slice := make([]string, 0)
-        for i := range chanel </span><span class="cov6" title="37">{
-                if !utils.Contains(i, slice) </span><span class="cov5" title="29">{
+        for i := range chanel </span><span class="cov6" title="39">{
+                if !utils.Contains(i, slice) </span><span class="cov5" title="30">{
                         slice = append(slice, i)
                 }</span>
         }
-        <span class="cov5" title="22">return slice</span>
+        <span class="cov5" title="24">return slice</span>
 }
 
 // getKeysFromTypesFlag gets all the regexes keys related to the types flag
@@ -2933,30 +2928,30 @@ func getKeysFromTypesFlag(typesFlag []string) []string <span class="cov0" title=
 }
 
 // isExcludedFile verifies if the path is pointed in the --exclude-paths flag
-func isExcludedFile(path string, exc []string) bool <span class="cov6" title="39">{
-        for i := range exc </span><span class="cov6" title="43">{
+func isExcludedFile(path string, exc []string) bool <span class="cov6" title="41">{
+        for i := range exc </span><span class="cov6" title="45">{
                 exclude, err := provider.GetExcludePaths(exc[i])
                 if err != nil </span><span class="cov0" title="0">{
                         log.Err(err).Msg("failed to get exclude paths")
                 }</span>
-                <span class="cov6" title="43">for j := range exclude </span><span class="cov6" title="43">{
+                <span class="cov6" title="45">for j := range exclude </span><span class="cov6" title="45">{
                         if exclude[j] == path </span><span class="cov1" title="2">{
                                 log.Info().Msgf("Excluded file %s from analyzer", path)
                                 return true
                         }</span>
                 }
         }
-        <span class="cov6" title="37">return false</span>
+        <span class="cov6" title="39">return false</span>
 }
 
 // shouldConsiderGitIgnoreFile verifies if the scan should exclude the files according to the .gitignore file
-func shouldConsiderGitIgnoreFile(path, gitIgnore string, excludeGitIgnoreFile bool) (bool, *ignore.GitIgnore) <span class="cov4" title="12">{
+func shouldConsiderGitIgnoreFile(path, gitIgnore string, excludeGitIgnoreFile bool) (bool, *ignore.GitIgnore) <span class="cov4" title="13">{
         gitIgnorePath := filepath.ToSlash(filepath.Join(path, gitIgnore))
         _, err := os.Stat(gitIgnorePath)
 
-        if !excludeGitIgnoreFile &amp;&amp; err == nil </span><span class="cov4" title="10">{
+        if !excludeGitIgnoreFile &amp;&amp; err == nil </span><span class="cov4" title="11">{
                 gitIgnore, _ := ignore.CompileIgnoreFile(gitIgnorePath)
-                if gitIgnore != nil </span><span class="cov3" title="6">{
+                if gitIgnore != nil </span><span class="cov3" title="7">{
                         log.Info().Msgf(".gitignore file was found in '%s' and it will be used to automatically exclude paths", path)
                         return true, gitIgnore
                 }</span>
@@ -2964,11 +2959,11 @@ func shouldConsiderGitIgnoreFile(path, gitIgnore string, excludeGitIgnoreFile bo
         <span class="cov3" title="6">return false, nil</span>
 }
 
-func multiPlatformTypeCheck(typesSelected *[]string) <span class="cov4" title="11">{
+func multiPlatformTypeCheck(typesSelected *[]string) <span class="cov4" title="12">{
         if utils.Contains("serverlessfw", *typesSelected) &amp;&amp; !utils.Contains("cloudformation", *typesSelected) </span><span class="cov1" title="1">{
                 *typesSelected = append(*typesSelected, "cloudformation")
         }</span>
-        <span class="cov4" title="11">if utils.Contains("knative", *typesSelected) &amp;&amp; !utils.Contains("kubernetes", *typesSelected) </span><span class="cov1" title="1">{
+        <span class="cov4" title="12">if utils.Contains("knative", *typesSelected) &amp;&amp; !utils.Contains("kubernetes", *typesSelected) </span><span class="cov1" title="1">{
                 *typesSelected = append(*typesSelected, "kubernetes")
         }</span>
 }
@@ -4778,7 +4773,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="11">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="11">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
