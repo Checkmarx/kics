@@ -1,6 +1,8 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.azureresourcemanager as arm_lib
+
 
 # Check outside parent resource
 CxPolicy[result] {
@@ -9,9 +11,9 @@ CxPolicy[result] {
 
 	value.type == "Microsoft.Web/sites/config"
 	endswith(value.name, "authsettings")
-	not value.properties.enabled
+	arm_lib.isDisabledOrUndefined(doc, value.properties, "enabled")
 
-	issue := prepare_issue(value)
+	issue := prepare_issue(doc,value)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -35,9 +37,9 @@ CxPolicy[result] {
 	[childPath, childValue] := walk(value.resources)
 
 	childValue.name == "authsettings"
-	not childValue.properties.enabled
+	arm_lib.isDisabledOrUndefined(doc, childValue.properties, "enabled")
 
-	issue := prepare_issue(childValue)
+	issue := prepare_issue(doc, childValue)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -51,14 +53,14 @@ CxPolicy[result] {
 	}
 }
 
-prepare_issue(resource) = issue {
+prepare_issue(doc, resource) = issue {
 	common_lib.valid_key(resource, "properties")
-	common_lib.valid_key(resource.properties, "enabled")
+	[_ , type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, resource.properties.enabled)
 	issue := {
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"issueType": "IncorrectValue",
-		"keyActualValue": "'enabled' is false on authsettings properties",
+		"keyActualValue": sprintf("'enabled' %s is false on authsettings properties",[type]),
 		"sk": ".properties.enabled",
 		"sl": ["properties", "enabled"],
 	}

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.azureresourcemanager as arm_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -10,7 +11,8 @@ CxPolicy[result] {
 	[childPath, childValue] := walk(parentValue)
 	childValue.type == "configurations"
 	childValue.name == "log_connections"
-	childValue.properties.value == "off"
+	[val, val_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, childValue.properties.value)
+	val == "off"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -18,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": parentName,
 		"searchKey": sprintf("%s.name={{%s}}.resources.name=log_connections.properties.value", [common_lib.concat_path(parentPath), parentName]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' should have 'log_connections' set to 'on'",
+		"keyExpectedValue": sprintf("child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' should have 'log_connections' %s set to 'on'", [val_type]),
 		"keyActualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' has 'log_connections' set to 'off'",
 		"searchLine": common_lib.build_search_line(parentPath, ["resources", "properties", "value"]),
 	}
@@ -51,7 +53,8 @@ CxPolicy[result] {
 	[path, value] = walk(doc)
 	value.type == "Microsoft.DBforPostgreSQL/servers/configurations"
 	endswith(value.name, "log_connections")
-	value.properties.value == "off"
+	[val, val_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, value.properties.value)
+	val == "off"
 
 	result := {
 		"documentId": doc.id,
@@ -59,7 +62,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.value", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' should have 'log_connections' property set to 'on'",
+		"keyExpectedValue": sprintf("resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' should have 'log_connections' %s set to 'on'", [val_type]),
 		"keyActualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' doesn't have 'log_connections' property set to 'on'",
 		"searchLine": common_lib.build_search_line(path, ["properties", "value"]),
 	}

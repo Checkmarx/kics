@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.azureresourcemanager as arm_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -26,7 +27,8 @@ CxPolicy[result] {
 	[path, value] = walk(doc)
 	value.type == "Microsoft.ContainerService/managedClusters"
 
-	value.properties.enableRBAC == false
+	[enableRBAC_value, enableRBAC_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, value.properties.enableRBAC)
+	enableRBAC_value == false
 
 	result := {
 		"documentId": doc.id,
@@ -34,8 +36,8 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.enableRBAC", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' property set to true",
-		"keyActualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' set to true",
+		"keyExpectedValue": sprintf("resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' %s set to true",[enableRBAC_type]),
+		"keyActualValue": sprintf("resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' set to true",[enableRBAC_type]),
 		"searchLine": common_lib.build_search_line(path, ["properties", "enableRBAC"]),
 	}
 }

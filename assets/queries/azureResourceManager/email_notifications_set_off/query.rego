@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.azureresourcemanager as arm_lib
 
 emailType := ["alertNotifications", "notificationsByRole"]
 
@@ -47,7 +48,8 @@ CxPolicy[result] {
 	[path, value] = walk(doc)
 	value.type == "Microsoft.Security/securityContacts"
 
-	lower(value.properties[emailType[x]].state) == "off"
+	[val, type]:= arm_lib.getDefaultValueFromParametersIfPresent(doc, value.properties[emailType[x]].state)
+	lower(val) == "off"
 
 	result := {
 		"documentId": doc.id,
@@ -55,7 +57,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.%s.state", [common_lib.concat_path(path), value.name, emailType[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("resource with type 'Microsoft.Security/securityContacts' should have '%s.state' property set to 'On'", [emailType[x]]),
+		"keyExpectedValue": sprintf("resource with type 'Microsoft.Security/securityContacts' %s should have '%s.state' property set to 'On'", [type ,emailType[x]]),
 		"keyActualValue": sprintf("resource with type 'Microsoft.Security/securityContacts' should have '%s.state' property set to 'Off'", [emailType[x]]),
 		"searchLine": common_lib.build_search_line(path, ["properties", emailType[x], "state"]),
 	}
