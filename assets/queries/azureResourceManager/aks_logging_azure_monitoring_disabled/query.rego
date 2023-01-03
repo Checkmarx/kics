@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.azureresourcemanager as arm_lib
 
 # addonProfiles not implemented (apiVersion < 2017-08-03)
 CxPolicy[result] {
@@ -29,9 +30,9 @@ CxPolicy[result] {
 	[path, value] = walk(doc)
 	value.type == "Microsoft.ContainerService/managedClusters"
 	value.apiVersion != "2017-08-03"
-	not value.properties.addonProfiles.omsagent.enabled
+	arm_lib.isDisabledOrUndefined(doc, value.properties, "addonProfiles.omsagent.enabled")
 
-	issue := prepare_issue(value)
+	issue := prepare_issue(doc, value)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -45,13 +46,13 @@ CxPolicy[result] {
 	}
 }
 
-prepare_issue(resource) = issue {
-	_ = resource.properties.addonProfiles.omsagent.enabled
+prepare_issue(doc, resource) = issue {
+	[ _ ,type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, resource.properties.addonProfiles.omsagent.enabled)
 	issue := {
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"issueType": "IncorrectValue",
-		"keyActualValue": "'addonProfiles.omsagent.enabled' is false",
+		"keyActualValue":sprintf("'addonProfiles.omsagent.enabled' %s is set to false", [type]),
 		"sk": ".properties.addonProfiles.omsagent.enabled",
 		"sl": ["properties", "addonProfiles", "omsagent", "enabled"],
 	}

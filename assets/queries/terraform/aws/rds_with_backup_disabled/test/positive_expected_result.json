@@ -10,5 +10,17 @@
     "severity": "MEDIUM",
     "line": 12,
     "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "RDS With Backup Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "RDS With Backup Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive4.tf"
   }
 ]

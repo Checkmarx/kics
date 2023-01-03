@@ -9,7 +9,7 @@ func init() { //nolint
 			Args: []cmdArgs{
 				[]string{"scan", "--output-path", "/path/e2e/output", "--output-name", "E2E_CLI_042_RESULT",
 					"--report-formats", "json,sarif,glsast",
-					"-p", "https://raw.githubusercontent.com/dockersamples/example-voting-app/master/docker-compose-simple.yml"},
+					"-p", "https://raw.githubusercontent.com/dockersamples/example-voting-app/main/docker-compose.yml"},
 			},
 			ExpectedResult: []ResultsValidation{
 				{

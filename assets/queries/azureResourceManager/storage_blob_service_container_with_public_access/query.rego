@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.azureresourcemanager as arm_lib
 
 publicOptions := {"Container", "Blob"}
 
@@ -10,7 +11,8 @@ CxPolicy[result] {
 
 	value.type == "Microsoft.Storage/storageAccounts/blobServices/containers"
 
-	value.properties.publicAccess == publicOptions[o]
+	[val, val_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, value.properties.publicAccess)
+	val == publicOptions[o]
 
 	result := {
 		"documentId": input.document[i].id,
@@ -18,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.properties.publicAccess", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' shouldn't have 'publicAccess' property set to 'Container' or 'Blob'",
+		"keyExpectedValue": sprintf("resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' shouldn't have 'publicAccess' %s set to 'Container' or 'Blob'", [val_type]),
 		"keyActualValue": sprintf("resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' has 'publicAccess' property set to '%s'", [publicOptions[o]]),
 		"searchLine": common_lib.build_search_line(path, ["properties", "publicAccess"]),
 	}
@@ -33,7 +35,8 @@ CxPolicy[result] {
 	[childPath, childValue] := walk(value.resources)
 
 	childValue.type == "containers"
-	childValue.properties.publicAccess == publicOptions[o]
+	[val, val_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, childValue.properties.publicAccess)
+	val == publicOptions[o]
 
 	result := {
 		"documentId": input.document[i].id,
@@ -41,7 +44,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.resources.name=%s.properties.publicAccess", [common_lib.concat_path(path), value.name, childValue.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "resource with type 'containers' shouldn't have 'publicAccess' property set to 'Container' or 'Blob'",
+		"keyExpectedValue": sprintf("resource with type 'containers' shouldn't have 'publicAccess' %s set to 'Container' or 'Blob'",[val_type]),
 		"keyActualValue": sprintf("resource with type 'containers' has 'publicAccess' property set to '%s'", [publicOptions[o]]),
 		"searchLine": common_lib.build_search_line(childPath, ["properties", "publicAccess"]),
 	}
@@ -56,7 +59,8 @@ CxPolicy[result] {
 	[childPath, childValue] := walk(value.resources)
 
 	childValue.type == "blobServices/containers"
-	childValue.properties.publicAccess == publicOptions[o]
+	[val, val_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, childValue.properties.publicAccess)
+	val == publicOptions[o]
 
 	result := {
 		"documentId": input.document[i].id,
@@ -64,7 +68,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
         "searchKey": sprintf("%s.name=%s.resources.name=%s.properties.publicAccess", [common_lib.concat_path(path), value.name, childValue.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "resource with type 'blobServices/containers' shouldn't have 'publicAccess' property set to 'Container' or 'Blob'",
+		"keyExpectedValue": sprintf("resource with type 'blobServices/containers' shouldn't have 'publicAccess' %s set to 'Container' or 'Blob'", [val_type]),
 		"keyActualValue": sprintf("resource with type 'blobServices/containers' has 'publicAccess' property set to '%s'", [publicOptions[o]]),
 		"searchLine": common_lib.build_search_line(childPath, ["properties", "publicAccess"]),
 	}
