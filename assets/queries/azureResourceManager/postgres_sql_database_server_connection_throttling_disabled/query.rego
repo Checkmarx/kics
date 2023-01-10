@@ -16,7 +16,9 @@ CxPolicy[result] {
 	children.type == types[_]
 	endswith(children.name, "connection_throttling")
 
-	lower(children.properties.value) != "on"
+	[c_value, c_type]:= arm_lib.getDefaultValueFromParametersIfPresent(doc, children.properties.value)
+
+	lower(c_value) != "on"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -24,7 +26,7 @@ CxPolicy[result] {
 		"resourceName": children.name,
 		"searchKey": sprintf("%s.name=%s.properties.value", [common_lib.concat_path(childrenArr[c].path), children.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("resource '%s' should have an 'auditingsettings' resource enabled", [value.name]),
+		"keyExpectedValue": sprintf("resource '%s' should have an 'auditingsettings' %s resource enabled", [c_type, value.name]),
 		"keyActualValue": sprintf("resource '%s' doesn't have an 'auditingsettings' resource enabled", [value.name]),
 		"searchLine": common_lib.build_search_line(childrenArr[c].path, ["properties", "value"]),
 	}

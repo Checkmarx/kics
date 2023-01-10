@@ -28,42 +28,40 @@ import (
 // k8sRegexMetadata - Regex that finds Kubernetes defining property "metadata"
 // k8sRegexSpec - Regex that finds Kubernetes defining property "spec"
 var (
-	openAPIRegex     = regexp.MustCompile("\\s*(\"(openapi|swagger)\"|(openapi|swagger))\\s*:")
-	openAPIRegexInfo = regexp.MustCompile("\\s*(\"info\"|info)\\s*:")
-	openAPIRegexPath = regexp.MustCompile(
-		"\\s*(\"(paths|components|webhooks)\"|(paths|components|webhooks))\\s*:")
-	armRegexContentVersion                          = regexp.MustCompile("\\s*\"contentVersion\"\\s*:")
-	armRegexResources                               = regexp.MustCompile("\\s*\"resources\"\\s*:")
-	cloudRegex                                      = regexp.MustCompile("\\s*(\"Resources\"|Resources)\\s*:")
-	k8sRegex                                        = regexp.MustCompile("\\s*(\"apiVersion\"|apiVersion)\\s*:")
-	k8sRegexKind                                    = regexp.MustCompile("\\s*(\"kind\"|kind)\\s*:")
-	ansibleVaultRegex                               = regexp.MustCompile(`^\s*\$ANSIBLE_VAULT.*`)
-	tfPlanRegexPV                                   = regexp.MustCompile("\\s*\"planned_values\"\\s*:")
-	tfPlanRegexRC                                   = regexp.MustCompile("\\s*\"resource_changes\"\\s*:")
-	tfPlanRegexConf                                 = regexp.MustCompile("\\s*\"configuration\"\\s*:")
-	tfPlanRegexTV                                   = regexp.MustCompile("\\s*\"terraform_version\"\\s*:")
-	cdkTfRegexMetadata                              = regexp.MustCompile("\\s*\"metadata\"\\s*:")
-	cdkTfRegexStackName                             = regexp.MustCompile("\\s*\"stackName\"\\s*:")
-	cdkTfRegexTerraform                             = regexp.MustCompile("\\s*\"terraform\"\\s*:")
-	artifactsRegexKind                              = regexp.MustCompile("\\s*(\"kind\"|kind)\\s*:")
-	artifactsRegexProperties                        = regexp.MustCompile("\\s*(\"properties\"|properties)\\s*:")
-	artifactsRegexParametes                         = regexp.MustCompile("\\s*(\"parameters\"|parameters)\\s*:")
-	policyAssignmentArtifactRegexPolicyDefinitionID = regexp.MustCompile("\\s*(\"policyDefinitionId\"|policyDefinitionId)\\s*:")
-	roleAssignmentArtifactRegexPrincipalIds         = regexp.MustCompile("\\s*(\"principalIds\"|principalIds)\\s*:")
-	roleAssignmentArtifactRegexRoleDefinitionID     = regexp.MustCompile("\\s*(\"roleDefinitionId\"|roleDefinitionId)\\s*:")
-	templateArtifactRegexParametes                  = regexp.MustCompile("\\s*(\"template\"|template)\\s*:")
-	blueprintpRegexTargetScope                      = regexp.MustCompile("\\s*(\targetScope\"|targetScope)\\s*:")
-	blueprintpRegexProperties                       = regexp.MustCompile("\\s*(\"properties\"|properties)\\s*:")
-	buildahRegex                                    = regexp.MustCompile(`\s*buildah\s*from\s*\w+`)
-	dockerComposeVersionRegex                       = regexp.MustCompile(`\s*version\s*:`)
-	dockerComposeServicesRegex                      = regexp.MustCompile(`\s*services\s*:`)
-	crossPlaneRegex                                 = regexp.MustCompile(`\s*\"?apiVersion\"?\s*:\s*(\w+\.)+crossplane\.io/v\w+\s*`)
-	knativeRegex                                    = regexp.MustCompile(`\s*\"?apiVersion\"?\s*:\s*(\w+\.)+knative\.dev/v\w+\s*`)
-	pulumiNameRegex                                 = regexp.MustCompile(`\s*name\s*:`)
-	pulumiRuntimeRegex                              = regexp.MustCompile(`\s*runtime\s*:`)
-	pulumiResourcesRegex                            = regexp.MustCompile(`\s*resources\s*:`)
-	serverlessServiceRegex                          = regexp.MustCompile(`\s*service\s*:`)
-	serverlessProviderRegex                         = regexp.MustCompile(`\s*provider\s*:`)
+	openAPIRegex                                    = regexp.MustCompile(`("(openapi|swagger)"|(openapi|swagger))\s*:`)
+	openAPIRegexInfo                                = regexp.MustCompile(`("info"|info)\s*:`)
+	openAPIRegexPath                                = regexp.MustCompile(`("(paths|components|webhooks)"|(paths|components|webhooks))\s*:`)
+	armRegexContentVersion                          = regexp.MustCompile(`"contentVersion"\s*:`)
+	armRegexResources                               = regexp.MustCompile(`"resources"\s*:`)
+	cloudRegex                                      = regexp.MustCompile(`("Resources"|Resources)\s*:`)
+	k8sRegex                                        = regexp.MustCompile(`("apiVersion"|apiVersion)\s*:`)
+	k8sRegexKind                                    = regexp.MustCompile(`("kind"|kind)\s*:`)
+	tfPlanRegexPV                                   = regexp.MustCompile(`"planned_values"\s*:`)
+	tfPlanRegexRC                                   = regexp.MustCompile(`"resource_changes"\s*:`)
+	tfPlanRegexConf                                 = regexp.MustCompile(`"configuration"\s*:`)
+	tfPlanRegexTV                                   = regexp.MustCompile(`"terraform_version"\s*:`)
+	cdkTfRegexMetadata                              = regexp.MustCompile(`"metadata"\s*:`)
+	cdkTfRegexStackName                             = regexp.MustCompile(`"stackName"\s*:`)
+	cdkTfRegexTerraform                             = regexp.MustCompile(`"terraform"\s*:`)
+	artifactsRegexKind                              = regexp.MustCompile(`("kind"|kind)\s*:`)
+	artifactsRegexProperties                        = regexp.MustCompile(`("properties"|properties)\s*:`)
+	artifactsRegexParametes                         = regexp.MustCompile(`("parameters"|parameters)\s*:`)
+	policyAssignmentArtifactRegexPolicyDefinitionID = regexp.MustCompile(`("policyDefinitionId"|policyDefinitionId)\s*:`)
+	roleAssignmentArtifactRegexPrincipalIds         = regexp.MustCompile(`("principalIds"|principalIds)\s*:`)
+	roleAssignmentArtifactRegexRoleDefinitionID     = regexp.MustCompile(`("roleDefinitionId"|roleDefinitionId)\s*:`)
+	templateArtifactRegexParametes                  = regexp.MustCompile(`("template"|template)\s*:`)
+	blueprintpRegexTargetScope                      = regexp.MustCompile(`("targetScope"|targetScope)\s*:`)
+	blueprintpRegexProperties                       = regexp.MustCompile(`("properties"|properties)\s*:`)
+	buildahRegex                                    = regexp.MustCompile(`buildah\s*from\s*\w+`)
+	dockerComposeVersionRegex                       = regexp.MustCompile(`version\s*:`)
+	dockerComposeServicesRegex                      = regexp.MustCompile(`services\s*:`)
+	crossPlaneRegex                                 = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+crossplane\.io/v\w+\s*`)
+	knativeRegex                                    = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+knative\.dev/v\w+\s*`)
+	pulumiNameRegex                                 = regexp.MustCompile(`name\s*:`)
+	pulumiRuntimeRegex                              = regexp.MustCompile(`runtime\s*:`)
+	pulumiResourcesRegex                            = regexp.MustCompile(`resources\s*:`)
+	serverlessServiceRegex                          = regexp.MustCompile(`service\s*:`)
+	serverlessProviderRegex                         = regexp.MustCompile(`provider\s*:`)
 )
 
 var (
@@ -282,7 +280,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 
 			return nil
 		}); err != nil {
-			log.Error().Msgf("failed to analize path %s: %s", path, err)
+			log.Error().Msgf("failed to analyze path %s: %s", path, err)
 		}
 	}
 
@@ -491,13 +489,10 @@ func checkYamlPlatform(content []byte, path string) string {
 			return gdm
 		}
 	}
-	// check if it is an ansible vault
-	if !ansibleVaultRegex.Match(content) {
-		// Since Ansible has no defining property
-		// and no other type matched for YAML file extension, assume the file type is Ansible
-		return ansible
-	}
-	return ""
+
+	// Since Ansible has no defining property
+	// and no other type matched for YAML file extension, assume the file type is Ansible
+	return ansible
 }
 
 // createSlice creates a slice from the channel given removing any duplicates

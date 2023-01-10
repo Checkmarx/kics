@@ -1,0 +1,29 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.1",
+    "parameters": {
+        "virtualMachineTier": {
+            "type": "string",
+            "defaultValue": "Free",
+            "allowedValues": [
+                "Standard",
+                "Free"
+            ],
+            "metadata": {
+                "description": "Specifiy whether you want to enable Standard tier for Virtual Machine resource type"
+            }
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Security/pricings",
+            "apiVersion": "2018-06-01",
+            "name": "VirtualMachines",
+            "properties": {
+                "pricingTier": "[parameters('virtualMachineTier')]"
+            }
+        }
+    ],
+    "outputs": {
+    }
+}

@@ -18,7 +18,7 @@ queries_path = {
     'dockerfile': os.path.join(queries_basepath, 'dockerfile', '*'),
     'terraform': os.path.join(queries_basepath, 'terraform', '**', '*'),
     'grpc': os.path.join(queries_basepath, 'grpc', '*'),
-    'gdm': os.path.join(queries_basepath, 'googleDeploymentManager', '*'),
+    'gdm': os.path.join(queries_basepath, 'googleDeploymentManager', '**', '*'),
     'dockerCompose': os.path.join(queries_basepath, 'dockerCompose', '*'),
     'pulumi': os.path.join(queries_basepath, 'pulumi', "**", '*'),
     'serverlessFW': os.path.join(queries_basepath, 'serverlessFW', '*'),

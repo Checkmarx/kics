@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.azureresourcemanager as arm_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -26,7 +27,8 @@ CxPolicy[result] {
 	[path, value] = walk(doc)
 	value.type == "Microsoft.DBforPostgreSQL/servers"
 
-	lower(value.properties.sslEnforcement) == "disabled"
+	[val, val_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, value.properties.sslEnforcement)
+	lower(val) == "disabled"
 
 	result := {
 		"documentId": doc.id,
@@ -34,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.sslEnforcement", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' should have 'sslEnforcement' property set to 'Enabled'",
+		"keyExpectedValue": sprintf("resource with type 'Microsoft.DBforPostgreSQL/servers' should have 'sslEnforcement' %s set to 'Enabled'", [val_type]),
 		"keyActualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property set to 'Enabled'",
 		"searchLine": common_lib.build_search_line(path, ["properties", "sslEnforcement"]),
 	}
