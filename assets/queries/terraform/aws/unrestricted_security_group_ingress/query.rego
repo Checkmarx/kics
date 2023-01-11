@@ -89,7 +89,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(rule, name),
 		"searchKey": sprintf("aws_security_group_rule[%s].ipv6_cidr_blocks", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "One of 'rule.ipv6_cidr_blocks' not equal '::/0'",
+		"keyExpectedValue": "One of 'rule.ipv6_cidr_blocks' should not be equal to '::/0'",
 		"keyActualValue": "One of 'rule.ipv6_cidr_blocks' is equal '::/0'",
 		"searchLine": common_lib.build_search_line(["resource", "aws_security_group_rule", name, "ipv6_cidr_blocks"], []),
 	}
@@ -107,8 +107,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(input.document[i].resource.aws_security_group[name], name),
 		"searchKey": sprintf("aws_security_group[%s].ingress.ipv6_cidr_blocks", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "One of 'ingress.ipv6_cidr_blocks' not equal '::/0'",
-		"keyActualValue": "One of 'ingress.ipv6_cidr_blocks' equal '::/0'",
+		"keyExpectedValue": "One of 'ingress.ipv6_cidr_blocks' should not be equal to '::/0'",
+		"keyActualValue": "One of 'ingress.ipv6_cidr_blocks' is equal '::/0'",
 		"searchLine": common_lib.build_search_line(["resource", "aws_security_group_rule", name, "ingress", "ipv6_cidr_blocks"], []),
 	}
 }
@@ -123,8 +123,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(input.document[i].resource.aws_security_group[name], name),
 		"searchKey": sprintf("aws_security_group[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "One of 'ingress.ipv6_cidr_blocks' not equal '::/0'",
-		"keyActualValue": "One of 'ingress.ipv6_cidr_blocks' equal '::/0'",
+		"keyExpectedValue": "One of 'ingress.ipv6_cidr_blocks' should not be equal to '::/0'",
+		"keyActualValue": "One of 'ingress.ipv6_cidr_blocks' is equal '::/0'",
 		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", j, "ipv6_cidr_blocks", idx], []),
 	}
 }
@@ -143,8 +143,8 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].%s", [name, keyToCheck]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "One of 'ingress.ipv6_cidr_blocks' not equal '::/0'",
-		"keyActualValue": "One of 'ingress.ipv6_cidr_blocks' equal '::/0'",
+		"keyExpectedValue": "One of 'ingress.ipv6_cidr_blocks' should not be equal to '::/0'",
+		"keyActualValue": "One of 'ingress.ipv6_cidr_blocks' is equal '::/0'",
 		"searchLine": common_lib.build_search_line(["module", name, "ingress_ipv6_cidr_blocks", idxCidr], []),
 	}
 }
