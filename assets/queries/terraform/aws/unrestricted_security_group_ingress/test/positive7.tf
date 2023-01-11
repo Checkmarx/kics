@@ -1,4 +1,4 @@
-resource "aws_security_group" "positive2" {
+resource "aws_security_group" "positive7" {
   ingress {
     from_port         = 3306
     to_port           = 3306
