@@ -495,7 +495,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 
 	c.mu.Lock()
 	if _, ok := c.excludeResults[engine.PtrStringToString(simID)]; !ok {
-		linesVuln := c.detector.GetAdjecent(file, lineNumber+1)
+		linesVuln := c.detector.GetAdjacent(file, lineNumber+1)
 		if !ignoreLine(linesVuln.Line, file.LinesIgnore) {
 			vuln := model.Vulnerability{
 				QueryID:          query.ID,

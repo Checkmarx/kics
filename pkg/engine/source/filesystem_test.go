@@ -723,7 +723,7 @@ func TestSource_validateMetadata(t *testing.T) {
 // TestSource_ListSupportedCloudProviders tests the function ListSupportedCloudProviders.
 func TestSource_ListSupportedCloudProviders(t *testing.T) {
 	want := []string{"alicloud", "aws", "azure", "gcp"}
-	t.Run("test List Suported CP", func(t *testing.T) {
+	t.Run("test List Supported CP", func(t *testing.T) {
 		got := ListSupportedCloudProviders()
 		require.Equal(t, want, got)
 	})

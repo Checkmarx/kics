@@ -27,15 +27,15 @@ func initPlatforms() map[string]string {
 func HTMLValidation(t *testing.T, file string) {
 	// Read & Parse Expected HTML Report
 	expectHTMLString, errExpStr := os.ReadFile(filepath.Join("fixtures", file))
-	require.NoError(t, errExpStr, "Openning Expected HTML File should not yield an error")
+	require.NoError(t, errExpStr, "Opening Expected HTML File should not yield an error")
 	expectedHTML, errExp := html.Parse(strings.NewReader(string(expectHTMLString)))
-	require.NoError(t, errExp, "Openning Expected HTML File should not yield an error")
+	require.NoError(t, errExp, "Opening Expected HTML File should not yield an error")
 
 	// Read & Parse Output HTML Report
 	actualHTMLString, errActStr := os.ReadFile(filepath.Join("output", file))
-	require.NoError(t, errActStr, "Openning Actual HTML File should not yield an error")
+	require.NoError(t, errActStr, "Opening Actual HTML File should not yield an error")
 	actualHTML, errAct := html.Parse(strings.NewReader(string(actualHTMLString)))
-	require.NoError(t, errAct, "Openning Actual HTML File should not yield an error")
+	require.NoError(t, errAct, "Opening Actual HTML File should not yield an error")
 
 	// Compare Header Data (Paths, Platforms)
 	headerIds := []string{"scan-paths", "scan-platforms"}
@@ -92,10 +92,10 @@ func HTMLValidation(t *testing.T, file string) {
 	platformsClasses := getElementsByClass(actualHTML, platformClassname)
 	for _, node := range platformsClasses {
 		require.NotNil(t, node.FirstChild,
-			"[%s] Invalid plataform in class element <%s>", file, platformClassname)
+			"[%s] Invalid platform in class element <%s>", file, platformClassname)
 
 		require.NotEmpty(t, availablePlatforms[node.FirstChild.Data],
-			"[%s] Invalid plataform in class element <%s>: %s\n", file, platformClassname, node.FirstChild.Data)
+			"[%s] Invalid platform in class element <%s>: %s\n", file, platformClassname, node.FirstChild.Data)
 	}
 
 	// Validate Categories

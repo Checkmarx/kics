@@ -10,7 +10,7 @@ func init() { //nolint
 	generateResults("results-remediate-include-ids")
 
 	testSample := TestCase{
-		Name: "should remediate the recomendations pointed in include-ids flag [E2E-CLI-058]",
+		Name: "should remediate the recommendations pointed in include-ids flag [E2E-CLI-058]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"remediate", "--results", "/path/e2e/tmp-kics-ar/results-remediate-include-ids.json",

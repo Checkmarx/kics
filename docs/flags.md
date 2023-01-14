@@ -93,4 +93,4 @@ Usage field has a special function that replace variables found in this field, u
 - `supportedPlatforms`: The result of `ListSupportedPlatforms` function converted to string, which gets all KICS supported platforms;
 - `supportedProviders`: The result of `ListSupportedCloudProviders` function converted to string, which gets all KICS supported providers;
 
-You can add variables by modifing `variables` map on `evalUsage` function of flags.go file.
+You can add variables by modifying `variables` map on `evalUsage` function of flags.go file.

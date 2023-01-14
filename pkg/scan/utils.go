@@ -24,7 +24,7 @@ var (
 )
 
 func (c *Client) prepareAndAnalyzePaths(ctx context.Context) (provider.ExtractedPath, error) {
-	err := c.preparePaths()
+	queryExPaths, libExPaths, err := c.preparePaths()
 	if err != nil {
 		return provider.ExtractedPath{}, err
 	}
@@ -46,7 +46,7 @@ func (c *Client) prepareAndAnalyzePaths(ctx context.Context) (provider.Extracted
 		return provider.ExtractedPath{}, err
 	}
 
-	allPaths := combinePaths(terraformerExPaths, kuberneterExPaths, regularExPaths)
+	allPaths := combinePaths(terraformerExPaths, kuberneterExPaths, regularExPaths, queryExPaths, libExPaths)
 
 	log.Info().Msgf("Total files in the project: %d", getTotalFiles(allPaths.Path))
 
@@ -74,7 +74,7 @@ func (c *Client) prepareAndAnalyzePaths(ctx context.Context) (provider.Extracted
 	return allPaths, nil
 }
 
-func combinePaths(terraformer, kuberneter, regular provider.ExtractedPath) provider.ExtractedPath {
+func combinePaths(terraformer, kuberneter, regular, query, library provider.ExtractedPath) provider.ExtractedPath {
 	var combinedPaths provider.ExtractedPath
 	paths := make([]string, 0)
 	combinedPathsEx := make(map[string]model.ExtractedPathObject)
@@ -91,69 +91,86 @@ func combinePaths(terraformer, kuberneter, regular provider.ExtractedPath) provi
 	for k, v := range kuberneter.ExtractionMap {
 		combinedPathsEx[k] = v
 	}
+	for k, v := range query.ExtractionMap {
+		combinedPathsEx[k] = v
+	}
+	for k, v := range library.ExtractionMap {
+		combinedPathsEx[k] = v
+	}
 
 	combinedPaths.ExtractionMap = combinedPathsEx
 	return combinedPaths
 }
 
-func (c *Client) preparePaths() error {
-	var err error
-	err = c.GetQueryPath()
+func (c *Client) preparePaths() (queryExtPath, libExtPath provider.ExtractedPath, err error) {
+	queryExtPath, err = c.GetQueryPath()
 	if err != nil {
-		return err
+		return provider.ExtractedPath{}, provider.ExtractedPath{}, err
 	}
-	err = c.getLibraryPath()
+
+	libExtPath, err = c.getLibraryPath()
 	if err != nil {
-		return err
+		return queryExtPath, provider.ExtractedPath{}, err
 	}
-	return nil
+
+	return queryExtPath, libExtPath, nil
 }
 
 // GetQueryPath gets all the queries paths
-func (c *Client) GetQueryPath() error {
+func (c *Client) GetQueryPath() (provider.ExtractedPath, error) {
 	queriesPath := make([]string, 0)
+	extPath := provider.ExtractedPath{
+		Path:          []string{},
+		ExtractionMap: make(map[string]model.ExtractedPathObject),
+	}
 	if c.ScanParams.ChangedDefaultQueryPath {
 		for _, queryPath := range c.ScanParams.QueriesPath {
-			extractedQueriesPath, errExtractQueries := resolvePath(queryPath, "queries-path")
+			extractedPath, errExtractQueries := resolvePath(queryPath, "queries-path")
 			if errExtractQueries != nil {
-				return errExtractQueries
+				return extPath, errExtractQueries
 			}
-			queriesPath = append(queriesPath, extractedQueriesPath)
+			extPath = extractedPath
+			queriesPath = append(queriesPath, extractedPath.Path[0])
 		}
 	} else {
 		log.Debug().Msgf("Looking for queries in executable path and in current work directory")
 		defaultQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(c.ScanParams.QueriesPath[0])
 		if errDefaultQueryPath != nil {
-			return errors.Wrap(errDefaultQueryPath, "unable to find queries")
+			return extPath, errors.Wrap(errDefaultQueryPath, "unable to find queries")
 		}
 		queriesPath = append(queriesPath, defaultQueryPath)
 	}
 	c.ScanParams.QueriesPath = queriesPath
-	return nil
+	return extPath, nil
 }
 
-func (c *Client) getLibraryPath() error {
+func (c *Client) getLibraryPath() (provider.ExtractedPath, error) {
+	extPath := provider.ExtractedPath{
+		Path:          []string{},
+		ExtractionMap: make(map[string]model.ExtractedPathObject),
+	}
 	if c.ScanParams.ChangedDefaultLibrariesPath {
 		extractedLibrariesPath, errExtractLibraries := resolvePath(c.ScanParams.LibrariesPath, "libraries-path")
 		if errExtractLibraries != nil {
-			return errExtractLibraries
+			return extPath, errExtractLibraries
 		}
 
-		c.ScanParams.LibrariesPath = extractedLibrariesPath
+		extPath = extractedLibrariesPath
+		c.ScanParams.LibrariesPath = extractedLibrariesPath.Path[0]
 	}
-	return nil
+	return extPath, nil
 }
 
-func resolvePath(flagContent, flagName string) (string, error) {
+func resolvePath(flagContent, flagName string) (provider.ExtractedPath, error) {
 	extractedPath, errExtractPath := provider.GetSources([]string{flagContent})
 	if errExtractPath != nil {
-		return "", errExtractPath
+		return extractedPath, errExtractPath
 	}
 	if len(extractedPath.Path) != 1 {
-		return "", fmt.Errorf("could not find a valid path (--%s) on %s", flagName, flagContent)
+		return extractedPath, fmt.Errorf("could not find a valid path (--%s) on %s", flagName, flagContent)
 	}
 	log.Debug().Msgf("Trying to load path (--%s) from %s", flagName, flagContent)
-	return extractedPath.Path[0], nil
+	return extractedPath, nil
 }
 
 // analyzePaths will analyze the paths to scan to determine which type of queries to load

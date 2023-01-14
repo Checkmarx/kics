@@ -80,7 +80,7 @@ type Printer struct {
 }
 
 // WordWrap Wraps text at the specified number of words
-func WordWrap(s, identation string, limit int) string {
+func WordWrap(s, indentation string, limit int) string {
 	if strings.TrimSpace(s) == "" {
 		return s
 	}
@@ -89,7 +89,7 @@ func WordWrap(s, identation string, limit int) string {
 	var result string
 
 	for len(wordSlice) >= 1 {
-		result = result + identation + strings.Join(wordSlice[:limit], " ") + "\r\n"
+		result = result + indentation + strings.Join(wordSlice[:limit], " ") + "\r\n"
 
 		wordSlice = wordSlice[limit:]
 		if len(wordSlice) < limit {

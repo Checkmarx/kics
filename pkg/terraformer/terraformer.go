@@ -149,7 +149,7 @@ func runTerraformer(pathOptions *Path, destination string) (string, error) {
 }
 
 // saveTerraformerOutput verifies if the destination folder exists
-// if not, it means that someting went wrong in the terraformer command
+// if not, it means that something went wrong in the terraformer command
 // it also saves the terraformer command output in the destination folder
 func saveTerraformerOutput(destination, output string) error {
 	_, err := os.Stat(destination)

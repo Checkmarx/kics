@@ -17,23 +17,23 @@ func (m *MockHTTPClient) Do(req *http.Request) (*http.Response, error) {
 	return GetDoFunc(req)
 }
 
-// MockDecriptionsClient - the mock CIS descriptions client
-type MockDecriptionsClient struct {
+// MockDescriptionsClient - the mock CIS descriptions client
+type MockDescriptionsClient struct {
 	RequestDescriptionsFunc func(descriptionIDs []string) (map[string]model.CISDescriptions, error)
 }
 
 // RequestDescriptions - mock descriptions client request descriptions function
-func (m *MockDecriptionsClient) RequestDescriptions(descriptionIDs []string) (map[string]model.CISDescriptions, error) {
+func (m *MockDescriptionsClient) RequestDescriptions(descriptionIDs []string) (map[string]model.CISDescriptions, error) {
 	return GetDescriptions(descriptionIDs)
 }
 
 // CheckConnection - mock CIS descriptions client check connection function
-func (m *MockDecriptionsClient) CheckConnection() error {
+func (m *MockDescriptionsClient) CheckConnection() error {
 	return CheckConnection()
 }
 
 // CheckLatestVersion - mock client request version function
-func (m *MockDecriptionsClient) CheckLatestVersion(version string) (genModel.Version, error) {
+func (m *MockDescriptionsClient) CheckLatestVersion(version string) (genModel.Version, error) {
 	return CheckVersion(version)
 }
 

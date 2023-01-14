@@ -12,7 +12,7 @@ KICS is able to perform scans on these types of paths:
 -   Git
 -   GSC
 
-Files and directories that are not local will be placed in a temporarly folder during KICS execution.
+Files and directories that are not local will be placed in a temporarily folder during KICS execution.
 
 ### Local Files
 

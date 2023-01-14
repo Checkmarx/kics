@@ -121,7 +121,7 @@ func Test_GetSummary(t *testing.T) {
 	}
 }
 
-func Test_PrintOuput(t *testing.T) {
+func Test_PrintOutput(t *testing.T) {
 
 	tests := []struct {
 		name          string

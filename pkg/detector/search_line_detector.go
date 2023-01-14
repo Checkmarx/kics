@@ -50,7 +50,7 @@ func (d *searchLineDetector) preparePath(pathItems []string) int {
 
 	arrayObject := ""
 
-	// Iterate reversely through the path componets and get the key of the last array in the path
+	// Iterate reversely through the path components and get the key of the last array in the path
 	// needed for cases where the fields in the array are <"key": "value"> type and not <object>
 	foundArrayIdx := false
 	for i := len(pathItems) - 1; i >= 0; i-- {
