@@ -1,0 +1,10 @@
+{
+  "id": "953c0cc6-5f30-44cb-a803-bf4ef2571be8",
+  "queryName": "Databricks Autoscale Badly Setup",
+  "severity": "MEDIUM",
+  "category": "MissingAttribute",
+  "descriptionText": "Databricks should have min and max worker setup for autoscale",
+  "descriptionUrl": "https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/cluster",
+  "platform": "Terraform",
+  "cloudProvider": "databricks"
+}
