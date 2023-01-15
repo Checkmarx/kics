@@ -1,0 +1,10 @@
+{
+  "id": "7d05ca25-91b4-42ee-b6f6-b06611a87ce8",
+  "queryName": "Indefinitely Databricks Token Lifetime",
+  "severity": "MEDIUM",
+  "category": "Insecure Defaults",
+  "descriptionText": "Token has an indefinitely lifetime",
+  "descriptionUrl": "https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/token",
+  "platform": "Terraform",
+  "cloudProvider": "databricks"
+}
