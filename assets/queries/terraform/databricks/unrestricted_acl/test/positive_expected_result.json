@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Unrestricted Databricks ACL",
+		"severity": "HIGH",
+		"line": 10
+	},
+	{
+		"queryName": "Unrestricted Databricks ACL",
+		"severity": "HIGH",
+		"line": 10
+	}
+]

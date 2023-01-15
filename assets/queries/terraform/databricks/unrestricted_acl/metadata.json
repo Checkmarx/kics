@@ -1,0 +1,10 @@
+{
+  "id": "2c4fe4a9-f44b-4c70-b09b-5b75cd251805",
+  "queryName": "Unrestricted Databricks ACL",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "ACL allow ingress from 0.0.0.0/0 and/or ::/0",
+  "descriptionUrl": "https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/ip_access_list",
+  "platform": "Terraform",
+  "cloudProvider": "databricks"
+}

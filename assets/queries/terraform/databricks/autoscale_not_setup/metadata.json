@@ -1,0 +1,10 @@
+{
+  "id": "543e77a0-4ce0-45f9-b34e-9eec1e885c71",
+  "queryName": "Databricks Autoscale Not Setup",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Databricks should have autoscale",
+  "descriptionUrl": "https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/cluster",
+  "platform": "Terraform",
+  "cloudProvider": "databricks"
+}
