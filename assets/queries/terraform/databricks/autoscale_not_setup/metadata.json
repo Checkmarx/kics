@@ -5,6 +5,5 @@
   "category": "Best Practices",
   "descriptionText": "Databricks should have autoscale",
   "descriptionUrl": "https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/cluster",
-  "platform": "Terraform",
-  "cloudProvider": "databricks"
+  "platform": "Terraform"
 }
