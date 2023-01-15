@@ -5,6 +5,5 @@
   "category": "Insecure Defaults",
   "descriptionText": "Token has an indefinitely lifetime",
   "descriptionUrl": "https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/token",
-  "platform": "Terraform",
-  "cloudProvider": "databricks"
+  "platform": "Terraform"
 }

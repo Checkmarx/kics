@@ -5,6 +5,5 @@
   "category": "MissingAttribute",
   "descriptionText": "Databricks should have min and max worker setup for autoscale",
   "descriptionUrl": "https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/cluster",
-  "platform": "Terraform",
-  "cloudProvider": "databricks"
+  "platform": "Terraform"
 }
