@@ -5,5 +5,6 @@
   "category": "Insecure Defaults",
   "descriptionText": "OBO Token has an indefinitely lifetime",
   "descriptionUrl": "https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/obo_token",
+  "descriptionID": "df3aa7ed",
   "platform": "Terraform"
 }
