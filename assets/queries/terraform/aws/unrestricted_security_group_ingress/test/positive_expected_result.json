@@ -28,5 +28,35 @@
     "severity": "HIGH",
     "line": 9,
     "filename": "positive5.tf"
+  },
+  {
+    "queryName": "Unrestricted Security Group Ingress",
+    "severity": "HIGH",
+    "line": 6,
+    "filename": "positive6.tf"
+  },
+  {
+    "queryName": "Unrestricted Security Group Ingress",
+    "severity": "HIGH",
+    "line": 6,
+    "filename": "positive7.tf"
+  },
+  {
+    "queryName": "Unrestricted Security Group Ingress",
+    "severity": "HIGH",
+    "line": 13,
+    "filename": "positive8.tf"
+  },
+  {
+    "queryName": "Unrestricted Security Group Ingress",
+    "severity": "HIGH",
+    "line": 9,
+    "filename": "positive9.tf"
+  },
+  {
+    "queryName": "Unrestricted Security Group Ingress",
+    "severity": "HIGH",
+    "line": 9,
+    "filename": "positive10.tf"
   }
 ]
