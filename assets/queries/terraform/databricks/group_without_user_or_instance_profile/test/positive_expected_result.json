@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Databricks Group Without User Or Instance Profile",
+		"severity": "LOW",
+		"line": 16
+	},
+	{
+		"queryName": "Databricks Group Without User Or Instance Profile",
+		"severity": "LOW",
+		"line": 14
+	}
+]
