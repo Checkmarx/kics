@@ -1,0 +1,9 @@
+{
+  "id": "23c3067a-8cc9-480c-b645-7c1e0ad4bf60",
+  "queryName": "Databricks Group Without User",
+  "severity": "LOW",
+  "category": "Access Control",
+  "descriptionText": "Databricks Group should have at least one user associated",
+  "descriptionUrl": "https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/group",
+  "platform": "Terraform"
+}
