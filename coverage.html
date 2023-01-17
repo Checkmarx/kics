@@ -205,7 +205,7 @@
 				
 				<option value="file74">github.com/Checkmarx/kics/pkg/printer/utils.go (82.4%)</option>
 				
-				<option value="file75">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (80.0%)</option>
+				<option value="file75">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
 				<option value="file76">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
@@ -2111,7 +2111,7 @@ func InitializeMetrics(metric string, ci bool) error <span class="cov5" title="7
         default:<span class="cov1" title="1">
                 Metric.total = 0
                 Metric.Disable = true
-                err = fmt.Errorf("unknonwn metric: %s (available metrics: CPU, MEM)", metric)</span>
+                err = fmt.Errorf("unknown metric: %s (available metrics: CPU, MEM)", metric)</span>
         }
 
         // Create temporary dir to keep pprof file
@@ -2164,13 +2164,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="33">total += v
+                <span class="cov8" title="31">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2182,7 +2182,7 @@ func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2"
         <span class="cov2" title="2">return total</span>
 }
 
-// formatTotal parses total value into a human readble way
+// formatTotal parses total value into a human readable way
 func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric string) string <span class="cov6" title="11">{
         value := float64(b)
         var formatter float64
@@ -2195,7 +2195,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -3312,7 +3312,7 @@ const (
         bitSize64 = 64
 )
 
-// Tag contains the tag name reference and its atributtes
+// Tag contains the tag name reference and its attributes
 type Tag struct {
         Name       string
         Attributes map[string]interface{}
@@ -4270,8 +4270,8 @@ func (d *DetectLine) DetectLine(file *model.FileMetadata, searchKey string, logW
         <span class="cov1" title="1">return d.defaultDetector.DetectLine(file, searchKey, d.outputLines, logWithFields)</span>
 }
 
-// GetAdjecent finds and returns the lines adjecent to the line containing the vulnerability
-func (d *DetectLine) GetAdjecent(file *model.FileMetadata, line int) model.VulnerabilityLines <span class="cov4" title="2">{
+// GetAdjacent finds and returns the lines adjacent to the line containing the vulnerability
+func (d *DetectLine) GetAdjacent(file *model.FileMetadata, line int) model.VulnerabilityLines <span class="cov4" title="2">{
         return model.VulnerabilityLines{
                 Line:         line,
                 VulnLines:    GetAdjacentVulnLines(line-1, d.outputLines, *file.LinesOriginalData),
@@ -4474,10 +4474,10 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
                 // Update found line
                 <span class="cov2" title="3">curLineRes.lineRes = removeLines(curLineRes.lineRes, lineRemove)
                 return model.VulnerabilityLines{
-                        Line:                 curLineRes.lineRes + 1,
-                        VulnLines:            detector.GetAdjacentVulnLines(curLineRes.lineRes, outputLines, lines),
-                        LineWithVulnerabilty: strings.Split(lines[curLineRes.lineRes], ": ")[0],
-                        ResolvedFile:         file.FilePath,
+                        Line:                  curLineRes.lineRes + 1,
+                        VulnLines:             detector.GetAdjacentVulnLines(curLineRes.lineRes, outputLines, lines),
+                        LineWithVulnerability: strings.Split(lines[curLineRes.lineRes], ": ")[0],
+                        ResolvedFile:          file.FilePath,
                 }</span>
         }
 
@@ -4951,7 +4951,7 @@ func (d *searchLineDetector) preparePath(pathItems []string) int <span class="co
 
         arrayObject := ""
 
-        // Iterate reversely through the path componets and get the key of the last array in the path
+        // Iterate reversely through the path components and get the key of the last array in the path
         // needed for cases where the fields in the array are &lt;"key": "value"&gt; type and not &lt;object&gt;
         foundArrayIdx := false
         for i := len(pathItems) - 1; i &gt;= 0; i-- </span><span class="cov10" title="14">{
@@ -6549,7 +6549,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 
         <span class="cov2" title="5">c.mu.Lock()
         if _, ok := c.excludeResults[engine.PtrStringToString(simID)]; !ok </span><span class="cov2" title="5">{
-                linesVuln := c.detector.GetAdjecent(file, lineNumber+1)
+                linesVuln := c.detector.GetAdjacent(file, lineNumber+1)
                 if !ignoreLine(linesVuln.Line, file.LinesIgnore) </span><span class="cov1" title="3">{
                         vuln := model.Vulnerability{
                                 QueryID:          query.ID,
@@ -6884,7 +6884,7 @@ func getLibraryInDir(platform, libraryDirPath string) string <span class="cov2" 
                 <span class="cov8" title="36">return nil</span>
         })
         <span class="cov2" title="2">if err != nil </span><span class="cov0" title="0">{
-                log.Error().Msgf("Failed to analize path %s: %s", libraryDirPath, err)
+                log.Error().Msgf("Failed to analyze path %s: %s", libraryDirPath, err)
         }</span>
         <span class="cov2" title="2">return libraryFilePath</span>
 }
@@ -7606,7 +7606,7 @@ func (s *searchLineCalculator) calculate() <span class="cov4" title="7">{
                 }</span>
                 <span class="cov1" title="1">if s.lineNr &gt;= 0 </span><span class="cov1" title="1">{
                         s.similarityIDLineInfo = strconv.Itoa(s.lineNr)
-                        s.linesVulne = s.detector.GetAdjecent(&amp;s.file, s.lineNr)
+                        s.linesVulne = s.detector.GetAdjacent(&amp;s.file, s.lineNr)
                 }</span>
         }
 }
@@ -8319,10 +8319,10 @@ import (
 )
 
 type k8sAPICall struct {
-        client           client.Client
-        options          *K8sAPIOptions
-        ctx              *context.Context
-        destionationPath string
+        client          client.Client
+        options         *K8sAPIOptions
+        ctx             *context.Context
+        destinationPath string
 }
 
 type supportedKinds map[string]map[string]interface{}
@@ -8359,10 +8359,10 @@ func Import(ctx context.Context, kuberneterPath, destinationPath string) (string
         }</span>
 
         <span class="cov0" title="0">info := &amp;k8sAPICall{
-                client:           c,
-                options:          k8sAPIOptions,
-                ctx:              &amp;ctx,
-                destionationPath: destination,
+                client:          c,
+                options:         k8sAPIOptions,
+                ctx:             &amp;ctx,
+                destinationPath: destination,
         }
 
         // list and save k8s resources
@@ -8390,7 +8390,7 @@ func (info *k8sAPICall) listKinds(apiVersion string, kinds map[string]interface{
         defer wg.Done()
         sb := &amp;strings.Builder{}
 
-        apiVersionFolder := filepath.Join(info.destionationPath, apiVersion)
+        apiVersionFolder := filepath.Join(info.destinationPath, apiVersion)
 
         if err := os.MkdirAll(apiVersionFolder, os.ModePerm); err != nil </span><span class="cov0" title="0">{
                 log.Error().Msgf("unable to create folder %s: %s", apiVersionFolder, err)
@@ -8999,10 +8999,10 @@ type Version struct {
 
 // VulnerabilityLines is the representation of the found line for issue
 type VulnerabilityLines struct {
-        Line                 int
-        VulnLines            *[]CodeLine
-        LineWithVulnerabilty string
-        ResolvedFile         string
+        Line                  int
+        VulnLines             *[]CodeLine
+        LineWithVulnerability string
+        ResolvedFile          string
 }
 
 // CommentCommand represents a command given from a comment
@@ -9017,7 +9017,7 @@ type Severity string
 // IssueType is the issue's type string representation
 type IssueType string
 
-// CodeLine is the lines containing and adjecent to the vulnerability line with their respective positions
+// CodeLine is the lines containing and adjacent to the vulnerability line with their respective positions
 type CodeLine struct {
         Position int
         Line     string
@@ -9466,7 +9466,7 @@ func GetIgnoreLines(file *FileMetadata) []int <span class="cov1" title="1">{
         YAML Node TYPES
 
         SequenceNode -&gt; array
-        ScalarNode -&gt; generic (execpt for arrays, objects and maps)
+        ScalarNode -&gt; generic (except for arrays, objects and maps)
         MappingNode -&gt; map
 
 */
@@ -10177,7 +10177,7 @@ func (p *Parser) GetCommentToken() string <span class="cov0" title="0">{
         return "#"
 }</span>
 
-// StringifyContent converts original content into string formated version
+// StringifyContent converts original content into string formatted version
 func (p *Parser) StringifyContent(content []byte) (string, error) <span class="cov0" title="0">{
         return string(content), nil
 }</span>
@@ -10411,7 +10411,7 @@ func (p *Parser) GetCommentToken() string <span class="cov1" title="1">{
         return "#"
 }</span>
 
-// StringifyContent converts original content into string formated version
+// StringifyContent converts original content into string formatted version
 func (p *Parser) StringifyContent(content []byte) (string, error) <span class="cov1" title="1">{
         return string(content), nil
 }</span>
@@ -11233,8 +11233,8 @@ type jsonLine struct {
 // jsonLineStruct is the struct that keeps important information for the creation of line Information Map
 // tmpParent is the parent key of the value we are currently on
 // pathArr is an array containing the path elements of the value we are currently on
-// noremoveidx keeps information of which elements should not be removed from pathArr on closing delimeters
-// lastWasRune keeps information if last Token was a delimeter
+// noremoveidx keeps information of which elements should not be removed from pathArr on closing delimiters
+// lastWasRune keeps information if last Token was a delimiter
 // parent is the string path of the element we are currently on
 type jsonLineStruct struct {
         tmpParent   string
@@ -11270,7 +11270,7 @@ func initializeJSONLine(doc []byte) *jsonLine <span class="cov4" title="17">{
                 }
 
                 <span class="cov6" title="141">if v, ok := tok.(json.Delim); ok </span><span class="cov6" title="80">{
-                        // token is a delimeter
+                        // token is a delimiter
                         jstruct.delimSetup(v)
                 }</span> else<span class="cov5" title="61"> {
                         jstruct.lastWasRune = false
@@ -11332,23 +11332,23 @@ func initializeJSONLine(doc []byte) *jsonLine <span class="cov4" title="17">{
         }</span>
 }
 
-// delimSetup updates the jsonLineStruct when a json delimeter (ex: { [ ...) is found
+// delimSetup updates the jsonLineStruct when a json delimiter (ex: { [ ...) is found
 func (j *jsonLineStruct) delimSetup(v json.Delim) <span class="cov6" title="80">{
         lenPathArr := len(j.pathArr) - 1
         switch rune(v) </span>{
         case '{', '[':<span class="cov5" title="40">
-                // check if last element was a json delimeter
+                // check if last element was a json delimiter
                 if !j.lastWasRune </span><span class="cov5" title="38">{
                         j.pathArr = append(j.pathArr, j.tmpParent)
                 }</span> else<span class="cov1" title="2"> {
                         // check if temporary parent is in path array, if not last element must be the tempParent
                         // and added to noremoveidx
-                        // the next close delimeter should not remove the last element from the pathArr
+                        // the next close delimiter should not remove the last element from the pathArr
                         if j.tmpParent != j.pathArr[lenPathArr] </span><span class="cov0" title="0">{
                                 j.tmpParent = j.pathArr[lenPathArr]
                                 j.noremoveidx[lenPathArr] = j.tmpParent
                         }</span> else<span class="cov1" title="2"> {
-                                // the next close delimeter should not remove the last element from the pathArr
+                                // the next close delimiter should not remove the last element from the pathArr
                                 j.noremoveidx[lenPathArr] = j.tmpParent
                         }</span>
                 }
@@ -11603,7 +11603,7 @@ func (p *Parser) GetCommentToken() string <span class="cov1" title="1">{
         return ""
 }</span>
 
-// StringifyContent converts original content into string formated version
+// StringifyContent converts original content into string formatted version
 func (p *Parser) StringifyContent(content []byte) (string, error) <span class="cov10" title="2">{
         if p.shouldIdent </span><span class="cov1" title="1">{
                 var out bytes.Buffer
@@ -13066,7 +13066,7 @@ func (p *Parser) GetCommentToken() string <span class="cov1" title="1">{
         return "#"
 }</span>
 
-// StringifyContent converts original content into string formated version
+// StringifyContent converts original content into string formatted version
 func (p *Parser) StringifyContent(content []byte) (string, error) <span class="cov1" title="1">{
         return string(content), nil
 }</span>
@@ -13476,7 +13476,7 @@ func (p *Parser) GetCommentToken() string <span class="cov1" title="1">{
         return "#"
 }</span>
 
-// StringifyContent converts original content into string formated version
+// StringifyContent converts original content into string formatted version
 func (p *Parser) StringifyContent(content []byte) (string, error) <span class="cov1" title="1">{
         return string(content), nil
 }</span>
@@ -13715,7 +13715,7 @@ type Printer struct {
 }
 
 // WordWrap Wraps text at the specified number of words
-func WordWrap(s, identation string, limit int) string <span class="cov4" title="3">{
+func WordWrap(s, indentation string, limit int) string <span class="cov4" title="3">{
         if strings.TrimSpace(s) == "" </span><span class="cov1" title="1">{
                 return s
         }</span>
@@ -13724,7 +13724,7 @@ func WordWrap(s, identation string, limit int) string <span class="cov4" title="
         var result string
 
         for len(wordSlice) &gt;= 1 </span><span class="cov4" title="3">{
-                result = result + identation + strings.Join(wordSlice[:limit], " ") + "\r\n"
+                result = result + indentation + strings.Join(wordSlice[:limit], " ") + "\r\n"
 
                 wordSlice = wordSlice[limit:]
                 if len(wordSlice) &lt; limit </span><span class="cov3" title="2">{
@@ -13969,7 +13969,7 @@ const (
         sleepTimeout = 100
 )
 
-// ProgressBar is a struct that holds the required feilds for
+// ProgressBar is a struct that holds the required fields for
 // a Circle Progress Bar
 type ProgressBar struct {
         label string
@@ -13999,8 +13999,8 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
 }
 
 // Start initializes the Circle Progress Bar
-func (p ProgressBar) Start() <span class="cov0" title="0">{
-        for </span><span class="cov0" title="0">{ // increment until the Close func is called
+func (p ProgressBar) Start() <span class="cov1" title="1">{
+        for </span><span class="cov1" title="1">{ // increment until the Close func is called
                 p.pBar.Increment()
                 // lower cpu usage from infinite loop
                 time.Sleep(time.Millisecond * sleepTimeout)
@@ -14025,7 +14025,7 @@ import (
         "github.com/rs/zerolog/log"
 )
 
-// ProgressBar is a struct that holds the required feilds for
+// ProgressBar is a struct that holds the required fields for
 // a Counter Progress Bar
 type ProgressBar struct {
         label           string
@@ -14505,7 +14505,7 @@ func initScan(queryID string) (*engine.Inspector, error) <span class="cov10" tit
                 ScanParams: scanParams,
         }
 
-        err := c.GetQueryPath()
+        _, err := c.GetQueryPath()
 
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err)
@@ -17809,7 +17809,7 @@ func (b *Builder) Add(p kindResolver) *Builder <span class="cov10" title="2">{
         return b
 }</span>
 
-// Build will create a new intance of a resolver
+// Build will create a new instance of a resolver
 func (b *Builder) Build() (*Resolver, error) <span class="cov10" title="2">{
         log.Debug().Msg("resolver.Build()")
 
@@ -18394,7 +18394,7 @@ var (
 )
 
 func (c *Client) prepareAndAnalyzePaths(ctx context.Context) (provider.ExtractedPath, error) <span class="cov0" title="0">{
-        err := c.preparePaths()
+        queryExPaths, libExPaths, err := c.preparePaths()
         if err != nil </span><span class="cov0" title="0">{
                 return provider.ExtractedPath{}, err
         }</span>
@@ -18416,7 +18416,7 @@ func (c *Client) prepareAndAnalyzePaths(ctx context.Context) (provider.Extracted
                 return provider.ExtractedPath{}, err
         }</span>
 
-        <span class="cov0" title="0">allPaths := combinePaths(terraformerExPaths, kuberneterExPaths, regularExPaths)
+        <span class="cov0" title="0">allPaths := combinePaths(terraformerExPaths, kuberneterExPaths, regularExPaths, queryExPaths, libExPaths)
 
         log.Info().Msgf("Total files in the project: %d", getTotalFiles(allPaths.Path))
 
@@ -18444,7 +18444,7 @@ func (c *Client) prepareAndAnalyzePaths(ctx context.Context) (provider.Extracted
         return allPaths, nil</span>
 }
 
-func combinePaths(terraformer, kuberneter, regular provider.ExtractedPath) provider.ExtractedPath <span class="cov4" title="4">{
+func combinePaths(terraformer, kuberneter, regular, query, library provider.ExtractedPath) provider.ExtractedPath <span class="cov4" title="4">{
         var combinedPaths provider.ExtractedPath
         paths := make([]string, 0)
         combinedPathsEx := make(map[string]model.ExtractedPathObject)
@@ -18461,69 +18461,86 @@ func combinePaths(terraformer, kuberneter, regular provider.ExtractedPath) provi
         <span class="cov4" title="4">for k, v := range kuberneter.ExtractionMap </span><span class="cov1" title="1">{
                 combinedPathsEx[k] = v
         }</span>
+        <span class="cov4" title="4">for k, v := range query.ExtractionMap </span><span class="cov0" title="0">{
+                combinedPathsEx[k] = v
+        }</span>
+        <span class="cov4" title="4">for k, v := range library.ExtractionMap </span><span class="cov0" title="0">{
+                combinedPathsEx[k] = v
+        }</span>
 
         <span class="cov4" title="4">combinedPaths.ExtractionMap = combinedPathsEx
         return combinedPaths</span>
 }
 
-func (c *Client) preparePaths() error <span class="cov3" title="3">{
-        var err error
-        err = c.GetQueryPath()
+func (c *Client) preparePaths() (queryExtPath, libExtPath provider.ExtractedPath, err error) <span class="cov3" title="3">{
+        queryExtPath, err = c.GetQueryPath()
         if err != nil </span><span class="cov0" title="0">{
-                return err
+                return provider.ExtractedPath{}, provider.ExtractedPath{}, err
         }</span>
-        <span class="cov3" title="3">err = c.getLibraryPath()
+
+        <span class="cov3" title="3">libExtPath, err = c.getLibraryPath()
         if err != nil </span><span class="cov1" title="1">{
-                return err
+                return queryExtPath, provider.ExtractedPath{}, err
         }</span>
-        <span class="cov2" title="2">return nil</span>
+
+        <span class="cov2" title="2">return queryExtPath, libExtPath, nil</span>
 }
 
 // GetQueryPath gets all the queries paths
-func (c *Client) GetQueryPath() error <span class="cov5" title="6">{
+func (c *Client) GetQueryPath() (provider.ExtractedPath, error) <span class="cov5" title="6">{
         queriesPath := make([]string, 0)
+        extPath := provider.ExtractedPath{
+                Path:          []string{},
+                ExtractionMap: make(map[string]model.ExtractedPathObject),
+        }
         if c.ScanParams.ChangedDefaultQueryPath </span><span class="cov4" title="5">{
                 for _, queryPath := range c.ScanParams.QueriesPath </span><span class="cov5" title="8">{
-                        extractedQueriesPath, errExtractQueries := resolvePath(queryPath, "queries-path")
+                        extractedPath, errExtractQueries := resolvePath(queryPath, "queries-path")
                         if errExtractQueries != nil </span><span class="cov0" title="0">{
-                                return errExtractQueries
+                                return extPath, errExtractQueries
                         }</span>
-                        <span class="cov5" title="8">queriesPath = append(queriesPath, extractedQueriesPath)</span>
+                        <span class="cov5" title="8">extPath = extractedPath
+                        queriesPath = append(queriesPath, extractedPath.Path[0])</span>
                 }
         } else<span class="cov1" title="1"> {
                 log.Debug().Msgf("Looking for queries in executable path and in current work directory")
                 defaultQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(c.ScanParams.QueriesPath[0])
                 if errDefaultQueryPath != nil </span><span class="cov1" title="1">{
-                        return errors.Wrap(errDefaultQueryPath, "unable to find queries")
+                        return extPath, errors.Wrap(errDefaultQueryPath, "unable to find queries")
                 }</span>
                 <span class="cov0" title="0">queriesPath = append(queriesPath, defaultQueryPath)</span>
         }
         <span class="cov4" title="5">c.ScanParams.QueriesPath = queriesPath
-        return nil</span>
+        return extPath, nil</span>
 }
 
-func (c *Client) getLibraryPath() error <span class="cov5" title="6">{
+func (c *Client) getLibraryPath() (provider.ExtractedPath, error) <span class="cov5" title="6">{
+        extPath := provider.ExtractedPath{
+                Path:          []string{},
+                ExtractionMap: make(map[string]model.ExtractedPathObject),
+        }
         if c.ScanParams.ChangedDefaultLibrariesPath </span><span class="cov4" title="4">{
                 extractedLibrariesPath, errExtractLibraries := resolvePath(c.ScanParams.LibrariesPath, "libraries-path")
                 if errExtractLibraries != nil </span><span class="cov2" title="2">{
-                        return errExtractLibraries
+                        return extPath, errExtractLibraries
                 }</span>
 
-                <span class="cov2" title="2">c.ScanParams.LibrariesPath = extractedLibrariesPath</span>
+                <span class="cov2" title="2">extPath = extractedLibrariesPath
+                c.ScanParams.LibrariesPath = extractedLibrariesPath.Path[0]</span>
         }
-        <span class="cov4" title="4">return nil</span>
+        <span class="cov4" title="4">return extPath, nil</span>
 }
 
-func resolvePath(flagContent, flagName string) (string, error) <span class="cov6" title="12">{
+func resolvePath(flagContent, flagName string) (provider.ExtractedPath, error) <span class="cov6" title="12">{
         extractedPath, errExtractPath := provider.GetSources([]string{flagContent})
         if errExtractPath != nil </span><span class="cov2" title="2">{
-                return "", errExtractPath
+                return extractedPath, errExtractPath
         }</span>
         <span class="cov6" title="10">if len(extractedPath.Path) != 1 </span><span class="cov0" title="0">{
-                return "", fmt.Errorf("could not find a valid path (--%s) on %s", flagName, flagContent)
+                return extractedPath, fmt.Errorf("could not find a valid path (--%s) on %s", flagName, flagContent)
         }</span>
         <span class="cov6" title="10">log.Debug().Msgf("Trying to load path (--%s) from %s", flagName, flagContent)
-        return extractedPath.Path[0], nil</span>
+        return extractedPath, nil</span>
 }
 
 // analyzePaths will analyze the paths to scan to determine which type of queries to load
@@ -18881,7 +18898,7 @@ func runTerraformer(pathOptions *Path, destination string) (string, error) <span
 }</span>
 
 // saveTerraformerOutput verifies if the destination folder exists
-// if not, it means that someting went wrong in the terraformer command
+// if not, it means that something went wrong in the terraformer command
 // it also saves the terraformer command output in the destination folder
 func saveTerraformerOutput(destination, output string) error <span class="cov0" title="0">{
         _, err := os.Stat(destination)
