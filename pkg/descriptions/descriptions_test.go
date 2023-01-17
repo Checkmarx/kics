@@ -12,7 +12,7 @@ import (
 
 func TestRequestAndOverrideDescriptions_NoBaseURL(t *testing.T) {
 	mock := test.SummaryMock
-	descClient = &mockclient.MockDecriptionsClient{}
+	descClient = &mockclient.MockDescriptionsClient{}
 	mockclient.CheckConnection = func() error {
 		return nil
 	}

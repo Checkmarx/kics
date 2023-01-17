@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestConstains(t *testing.T) {
+func TestContains(t *testing.T) {
 	tests := []struct {
 		name   string
 		list   interface{}

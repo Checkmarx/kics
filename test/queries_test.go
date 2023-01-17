@@ -64,7 +64,7 @@ func testRemediationQuery(t testing.TB, entry queryEntry, vulnerabilities []mode
 	remediationSets := summary.GetRemediationSetsFromVulns(vulnerabilities, []string{"all"})
 
 	if len(remediationSets) > 0 {
-		// verify if the remediations vulns actually remediates the results
+		// verify if the remediation vulns actually remediates the results
 		data, err := os.ReadFile(filepath.FromSlash("../internal/console/assets/scan-flags.json"))
 		require.NoError(t, err)
 
@@ -277,18 +277,18 @@ func vulnerabilityCompare(vulnerabilitySlice []model.Vulnerability, i, j int) bo
 	return vulnerabilitySlice[i].Line < vulnerabilitySlice[j].Line
 }
 
-func validateQueryResultFields(tb testing.TB, vulnerabilies []model.Vulnerability) {
-	for idx := range vulnerabilies {
-		issueType := string(vulnerabilies[idx].IssueType)
+func validateQueryResultFields(tb testing.TB, vulnerabilities []model.Vulnerability) {
+	for idx := range vulnerabilities {
+		issueType := string(vulnerabilities[idx].IssueType)
 		_, ok := issueTypes[issueType]
 		require.True(tb, ok, "Results 'issueType' is not valid :: %v", issueType)
-		if vulnerabilies[idx].Severity == model.SeverityTrace {
-			require.Equal(tb, "Bill Of Materials", vulnerabilies[idx].Category, "TRACE results should have category 'Bill Of Materials'")
-			require.Equal(tb, model.IssueType("BillOfMaterials"), vulnerabilies[idx].IssueType, "TRACE results should have issueType 'BillOfMaterials'")
-			require.NotEmpty(tb, vulnerabilies[idx].Value, "TRACE results should not have empty value")
+		if vulnerabilities[idx].Severity == model.SeverityTrace {
+			require.Equal(tb, "Bill Of Materials", vulnerabilities[idx].Category, "TRACE results should have category 'Bill Of Materials'")
+			require.Equal(tb, model.IssueType("BillOfMaterials"), vulnerabilities[idx].IssueType, "TRACE results should have issueType 'BillOfMaterials'")
+			require.NotEmpty(tb, vulnerabilities[idx].Value, "TRACE results should not have empty value")
 
 			bomResult := make(map[string]string)
-			json.Unmarshal([]byte(*vulnerabilies[idx].Value), &bomResult)
+			json.Unmarshal([]byte(*vulnerabilities[idx].Value), &bomResult)
 			bomOutputRequiredFields := map[string]bool{
 				"acl": false,
 				// "is_default_password":    false,

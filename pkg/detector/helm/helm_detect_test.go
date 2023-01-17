@@ -125,8 +125,8 @@ func TestEngine_detectHelmLine(t *testing.T) { //nolint
 						Line:     "  containers:",
 					},
 				},
-				LineWithVulnerabilty: "  containers:",
-				ResolvedFile:         "test-connection.yaml",
+				LineWithVulnerability: "  containers:",
+				ResolvedFile:          "test-connection.yaml",
 			},
 		},
 		{
@@ -158,8 +158,8 @@ func TestEngine_detectHelmLine(t *testing.T) { //nolint
 						Line:     "spec:",
 					},
 				},
-				LineWithVulnerabilty: "spec:",
-				ResolvedFile:         "test-dup_values.yaml",
+				LineWithVulnerability: "spec:",
+				ResolvedFile:          "test-dup_values.yaml",
 			},
 		},
 		{
@@ -188,8 +188,8 @@ func TestEngine_detectHelmLine(t *testing.T) { //nolint
 						Line:     "  containers:",
 					},
 				},
-				LineWithVulnerabilty: "  containers:",
-				ResolvedFile:         "test-dups.yaml",
+				LineWithVulnerability: "  containers:",
+				ResolvedFile:          "test-dups.yaml",
 			},
 		},
 	}

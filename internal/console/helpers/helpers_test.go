@@ -24,67 +24,67 @@ func TestFileAnalyzer(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name:    "file_analizer_json",
+			name:    "file_analyzer_json",
 			arg:     "test/fixtures/config_test/kics.json",
 			want:    "json",
 			wantErr: false,
 		},
 		{
-			name:    "file_analizer_json_no_extension",
+			name:    "file_analyzer_json_no_extension",
 			arg:     "test/fixtures/config_test/kics.config_json",
 			want:    "json",
 			wantErr: false,
 		},
 		{
-			name:    "file_analizer_yaml",
+			name:    "file_analyzer_yaml",
 			arg:     "test/fixtures/config_test/kics.yaml",
 			want:    "yaml",
 			wantErr: false,
 		},
 		{
-			name:    "file_analizer_yaml_no_extension",
+			name:    "file_analyzer_yaml_no_extension",
 			arg:     "test/fixtures/config_test/kics.config_yaml",
 			want:    "yaml",
 			wantErr: false,
 		},
 		{
-			name:    "file_analizer_hcl",
+			name:    "file_analyzer_hcl",
 			arg:     "test/fixtures/config_test/kics.hcl",
 			want:    "hcl",
 			wantErr: false,
 		},
 		{
-			name:    "file_analizer_hcl_no_extension",
+			name:    "file_analyzer_hcl_no_extension",
 			arg:     "test/fixtures/config_test/kics.config_hcl",
 			want:    "hcl",
 			wantErr: false,
 		},
 		{
-			name:    "file_analizer_toml",
+			name:    "file_analyzer_toml",
 			arg:     "test/fixtures/config_test/kics.toml",
 			want:    "toml",
 			wantErr: false,
 		},
 		{
-			name:    "file_analizer_toml_no_extension",
+			name:    "file_analyzer_toml_no_extension",
 			arg:     "test/fixtures/config_test/kics.config_toml",
 			want:    "toml",
 			wantErr: false,
 		},
 		{
-			name:    "file_analizer_js_incorrect",
+			name:    "file_analyzer_js_incorrect",
 			arg:     "test/fixtures/config_test/kics.config_js",
 			want:    "",
 			wantErr: true,
 		},
 		{
-			name:    "file_analizer_js_no_extension_incorrect",
+			name:    "file_analyzer_js_no_extension_incorrect",
 			arg:     "test/fixtures/config_test/kics.js",
 			want:    "",
 			wantErr: true,
 		},
 		{
-			name:    "file_analizer_js_wrong_extension",
+			name:    "file_analyzer_js_wrong_extension",
 			arg:     "test/fixtures/config_test/kics_wrong.js",
 			want:    "yaml",
 			wantErr: false,
@@ -198,13 +198,13 @@ func TestHelpers_GetDefaultQueryPath(t *testing.T) {
 		wantErr     bool
 	}{
 		{
-			name:        "test_get_defaul_query_path",
+			name:        "test_get_default_query_path",
 			queriesPath: filepath.FromSlash("assets/queries"),
 			want:        filepath.Join(cd, filepath.FromSlash("assets/queries")),
 			wantErr:     false,
 		},
 		{
-			name:        "test_get_defaul_query_path_error",
+			name:        "test_get_default_query_path_error",
 			queriesPath: filepath.FromSlash("error"),
 			want:        "",
 			wantErr:     true,

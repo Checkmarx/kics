@@ -17,8 +17,8 @@ type jsonLine struct {
 // jsonLineStruct is the struct that keeps important information for the creation of line Information Map
 // tmpParent is the parent key of the value we are currently on
 // pathArr is an array containing the path elements of the value we are currently on
-// noremoveidx keeps information of which elements should not be removed from pathArr on closing delimeters
-// lastWasRune keeps information if last Token was a delimeter
+// noremoveidx keeps information of which elements should not be removed from pathArr on closing delimiters
+// lastWasRune keeps information if last Token was a delimiter
 // parent is the string path of the element we are currently on
 type jsonLineStruct struct {
 	tmpParent   string
@@ -54,7 +54,7 @@ func initializeJSONLine(doc []byte) *jsonLine {
 		}
 
 		if v, ok := tok.(json.Delim); ok {
-			// token is a delimeter
+			// token is a delimiter
 			jstruct.delimSetup(v)
 		} else {
 			jstruct.lastWasRune = false
@@ -116,23 +116,23 @@ func initializeJSONLine(doc []byte) *jsonLine {
 	}
 }
 
-// delimSetup updates the jsonLineStruct when a json delimeter (ex: { [ ...) is found
+// delimSetup updates the jsonLineStruct when a json delimiter (ex: { [ ...) is found
 func (j *jsonLineStruct) delimSetup(v json.Delim) {
 	lenPathArr := len(j.pathArr) - 1
 	switch rune(v) {
 	case '{', '[':
-		// check if last element was a json delimeter
+		// check if last element was a json delimiter
 		if !j.lastWasRune {
 			j.pathArr = append(j.pathArr, j.tmpParent)
 		} else {
 			// check if temporary parent is in path array, if not last element must be the tempParent
 			// and added to noremoveidx
-			// the next close delimeter should not remove the last element from the pathArr
+			// the next close delimiter should not remove the last element from the pathArr
 			if j.tmpParent != j.pathArr[lenPathArr] {
 				j.tmpParent = j.pathArr[lenPathArr]
 				j.noremoveidx[lenPathArr] = j.tmpParent
 			} else {
-				// the next close delimeter should not remove the last element from the pathArr
+				// the next close delimiter should not remove the last element from the pathArr
 				j.noremoveidx[lenPathArr] = j.tmpParent
 			}
 		}

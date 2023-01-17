@@ -72,7 +72,7 @@ func TestFlags_BindFlags(t *testing.T) {
 		name                    string
 		cmd                     *cobra.Command
 		flagsListContent        string
-		persintentFlag          bool
+		persistentFlag          bool
 		supportedPlatforms      []string
 		supportedCloudProviders []string
 		wantErr                 bool
@@ -97,7 +97,7 @@ func TestFlags_BindFlags(t *testing.T) {
 				"defaultValue": "./assets/queries",
 				"usage": "paths to directory with queries"
 			}}`,
-			persintentFlag:          false,
+			persistentFlag:          false,
 			supportedPlatforms:      []string{"terraform"},
 			supportedCloudProviders: []string{"aws"},
 			wantErr:                 false,
@@ -106,7 +106,7 @@ func TestFlags_BindFlags(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			InitJSONFlags(test.cmd, test.flagsListContent, test.persintentFlag, test.supportedPlatforms, test.supportedCloudProviders)
+			InitJSONFlags(test.cmd, test.flagsListContent, test.persistentFlag, test.supportedPlatforms, test.supportedCloudProviders)
 			got := BindFlags(test.cmd, v)
 			if !test.wantErr {
 				require.NoError(t, got)

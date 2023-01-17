@@ -86,7 +86,7 @@ func main() {
 		err := decoder.Decode(&log)
 		if err != nil {
 			fmt.Printf("Error when trying to decode: %v\n", err)
-			fmt.Printf("Verify if the JSON File has UTF8 enconding")
+			fmt.Printf("Verify if the JSON File has UTF8 encoding")
 		}
 
 		if log.Action == "pass" || log.Action == "fail" {

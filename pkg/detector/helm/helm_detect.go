@@ -86,10 +86,10 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 		// Update found line
 		curLineRes.lineRes = removeLines(curLineRes.lineRes, lineRemove)
 		return model.VulnerabilityLines{
-			Line:                 curLineRes.lineRes + 1,
-			VulnLines:            detector.GetAdjacentVulnLines(curLineRes.lineRes, outputLines, lines),
-			LineWithVulnerabilty: strings.Split(lines[curLineRes.lineRes], ": ")[0],
-			ResolvedFile:         file.FilePath,
+			Line:                  curLineRes.lineRes + 1,
+			VulnLines:             detector.GetAdjacentVulnLines(curLineRes.lineRes, outputLines, lines),
+			LineWithVulnerability: strings.Split(lines[curLineRes.lineRes], ": ")[0],
+			ResolvedFile:          file.FilePath,
 		}
 	}
 

@@ -29,13 +29,13 @@ func Test_detectLine(t *testing.T) { //nolint
 		file      *model.FileMetadata
 		searchKey string
 	}
-	type feilds struct {
+	type fields struct {
 		outputLines int
 	}
 	tests := []struct {
 		name   string
 		args   args
-		feilds feilds
+		fields fields
 		want   model.VulnerabilityLines
 	}{
 		{
@@ -50,7 +50,7 @@ func Test_detectLine(t *testing.T) { //nolint
 				},
 				searchKey: "aws_s3_bucket[b].acl",
 			},
-			feilds: feilds{
+			fields: fields{
 				outputLines: 3,
 			},
 			want: model.VulnerabilityLines{
@@ -69,7 +69,7 @@ func Test_detectLine(t *testing.T) { //nolint
 						Line:     "",
 					},
 				},
-				LineWithVulnerabilty: "",
+				LineWithVulnerability: "",
 			},
 		},
 		{
@@ -84,7 +84,7 @@ func Test_detectLine(t *testing.T) { //nolint
 				},
 				searchKey: "aws_s3_bucket[b].Environment={{Dev.123}}",
 			},
-			feilds: feilds{
+			fields: fields{
 				outputLines: 3,
 			},
 			want: model.VulnerabilityLines{
@@ -103,7 +103,7 @@ func Test_detectLine(t *testing.T) { //nolint
 						Line: `	  Environment = "test"`,
 					},
 				},
-				LineWithVulnerabilty: "",
+				LineWithVulnerability: "",
 			},
 		},
 		{
@@ -118,7 +118,7 @@ func Test_detectLine(t *testing.T) { //nolint
 				},
 				searchKey: "testing.error",
 			},
-			feilds: feilds{
+			fields: fields{
 				outputLines: 3,
 			},
 			want: model.VulnerabilityLines{
@@ -128,7 +128,7 @@ func Test_detectLine(t *testing.T) { //nolint
 		},
 	}
 	for _, tt := range tests {
-		detector := NewDetectLine(tt.feilds.outputLines)
+		detector := NewDetectLine(tt.fields.outputLines)
 		t.Run(tt.name, func(t *testing.T) {
 			got := detector.defaultDetector.DetectLine(tt.args.file, tt.args.searchKey, 3, &zerolog.Logger{})
 			gotStrVulnerabilities, err := test.StringifyStruct(got)
