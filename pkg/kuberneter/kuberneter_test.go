@@ -299,7 +299,7 @@ func Test_GetClient(t *testing.T) {
 					value: getValidCertPath([]string{"..", "..", "test", "assets", "sample_K8S_CONFIG_FILE.yaml"}),
 				},
 			},
-			wantErr: false,
+			wantErr: true,
 		},
 		{
 			name: "has_no_valid_K8S_CONFIG_FILE",
