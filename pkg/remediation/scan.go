@@ -197,7 +197,7 @@ func initScan(queryID string) (*engine.Inspector, error) {
 		ScanParams: scanParams,
 	}
 
-	err := c.GetQueryPath()
+	_, err := c.GetQueryPath()
 
 	if err != nil {
 		log.Err(err)

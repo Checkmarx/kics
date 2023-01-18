@@ -12,10 +12,10 @@ import (
 func TestHelm_SupportedTypes(t *testing.T) {
 	res := &Resolver{}
 	want := []model.FileKind{model.KindHELM}
-	t.Run("get_suported_type", func(t *testing.T) {
+	t.Run("get_supported_type", func(t *testing.T) {
 		got := res.SupportedTypes()
 		if !reflect.DeepEqual(got, want) {
-			t.Errorf("SuportedTypes() = %v, want = %v", got, want)
+			t.Errorf("SupportedTypes() = %v, want = %v", got, want)
 		}
 	})
 }
@@ -98,7 +98,7 @@ spec:
 			wantErr: true,
 		},
 		{
-			name: "test_with_dependecies",
+			name: "test_with_dependencies",
 			args: args{
 				filePath: filepath.FromSlash("../../../test/fixtures/test_helm_subchart"),
 			},

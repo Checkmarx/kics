@@ -78,10 +78,10 @@ type Version struct {
 
 // VulnerabilityLines is the representation of the found line for issue
 type VulnerabilityLines struct {
-	Line                 int
-	VulnLines            *[]CodeLine
-	LineWithVulnerabilty string
-	ResolvedFile         string
+	Line                  int
+	VulnLines             *[]CodeLine
+	LineWithVulnerability string
+	ResolvedFile          string
 }
 
 // CommentCommand represents a command given from a comment
@@ -96,7 +96,7 @@ type Severity string
 // IssueType is the issue's type string representation
 type IssueType string
 
-// CodeLine is the lines containing and adjecent to the vulnerability line with their respective positions
+// CodeLine is the lines containing and adjacent to the vulnerability line with their respective positions
 type CodeLine struct {
 	Position int
 	Line     string

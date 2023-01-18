@@ -1,4 +1,4 @@
-# CIS Certfications
+# CIS Certifications
 
 ## About CIS
 CIS is an independent, nonprofit organization with a mission to create confidence in the connected world.

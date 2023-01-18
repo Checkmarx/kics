@@ -38,7 +38,7 @@ func (b *Builder) Add(p kindResolver) *Builder {
 	return b
 }
 
-// Build will create a new intance of a resolver
+// Build will create a new instance of a resolver
 func (b *Builder) Build() (*Resolver, error) {
 	log.Debug().Msg("resolver.Build()")
 

@@ -1,7 +1,7 @@
 import requests
 
-def get_version(latest_realease_url):
-    latest_resp = requests.get(latest_realease_url)
+def get_version(latest_release_url):
+    latest_resp = requests.get(latest_release_url)
     if latest_resp.status_code == 200:
         response_body = latest_resp.json()
         version = response_body['name']

@@ -57,7 +57,7 @@ func InitializeMetrics(metric string, ci bool) error {
 	default:
 		Metric.total = 0
 		Metric.Disable = true
-		err = fmt.Errorf("unknonwn metric: %s (available metrics: CPU, MEM)", metric)
+		err = fmt.Errorf("unknown metric: %s (available metrics: CPU, MEM)", metric)
 	}
 
 	// Create temporary dir to keep pprof file
@@ -128,7 +128,7 @@ func getTotal(prof *profile.Profile, idx int) int64 {
 	return total
 }
 
-// formatTotal parses total value into a human readble way
+// formatTotal parses total value into a human readable way
 func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric string) string {
 	value := float64(b)
 	var formatter float64

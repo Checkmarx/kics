@@ -14,7 +14,7 @@ const (
 	sleepTimeout = 100
 )
 
-// ProgressBar is a struct that holds the required feilds for
+// ProgressBar is a struct that holds the required fields for
 // a Circle Progress Bar
 type ProgressBar struct {
 	label string

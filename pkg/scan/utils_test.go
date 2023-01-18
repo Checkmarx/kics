@@ -407,8 +407,11 @@ func Test_CombinePaths(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-
-			v := combinePaths(tt.terraformer, tt.kuberneter, tt.regular)
+			extPath := provider.ExtractedPath{
+				Path:          []string{},
+				ExtractionMap: make(map[string]model.ExtractedPathObject),
+			}
+			v := combinePaths(tt.terraformer, tt.kuberneter, tt.regular, extPath, extPath)
 
 			require.Equal(t, tt.expectedOutput, v)
 		})
@@ -453,7 +456,7 @@ func Test_GetLibraryPath(t *testing.T) {
 			c := &Client{}
 
 			c.ScanParams = &tt.scanParameters
-			v := c.getLibraryPath()
+			_, v := c.getLibraryPath()
 
 			if tt.expectedError {
 				require.Error(t, v)
@@ -519,7 +522,7 @@ func Test_PreparePaths(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			c := &Client{}
 			c.ScanParams = &tt.scanParameters
-			v := c.preparePaths()
+			_, _, v := c.preparePaths()
 
 			require.Equal(t, tt.queriesQuantity, len(c.ScanParams.QueriesPath))
 			if tt.expectedError {

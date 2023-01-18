@@ -14,7 +14,7 @@ const (
 	bitSize64 = 64
 )
 
-// Tag contains the tag name reference and its atributtes
+// Tag contains the tag name reference and its attributes
 type Tag struct {
 	Name       string
 	Attributes map[string]interface{}

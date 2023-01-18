@@ -13,13 +13,13 @@ from get_metrics import queries_count, queries_path, samples_ext
 
 
 def get_statistics(test_coverage, total_tests, go_loc):
-    latest_realease_url = "https://api.github.com/repos/Checkmarx/kics/releases/latest"
+    latest_release_url = "https://api.github.com/repos/Checkmarx/kics/releases/latest"
     releases_url = "https://api.github.com/repos/Checkmarx/kics/releases"
     dockerhub_url = "https://hub.docker.com/v2/repositories/checkmarx/kics"
     repo_url = "https://api.github.com/repos/Checkmarx/kics"
 
     date = get_date()
-    version = get_version(latest_realease_url)
+    version = get_version(latest_release_url)
     total_queries, code_samples = get_total_queries()
     all_dockerhub_pulls = get_dockerhub_pulls(dockerhub_url)
     stars, forks = get_info_from_repo(repo_url)
@@ -119,8 +119,8 @@ def get_total_queries():
 
     return total_queries, total_samples
 
-def get_version(latest_realease_url):
-    latest_resp = requests.get(latest_realease_url)
+def get_version(latest_release_url):
+    latest_resp = requests.get(latest_release_url)
     if latest_resp.status_code == 200:
         response_body = latest_resp.json()
         version = response_body['name']

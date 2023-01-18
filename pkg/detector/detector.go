@@ -47,8 +47,8 @@ func (d *DetectLine) DetectLine(file *model.FileMetadata, searchKey string, logW
 	return d.defaultDetector.DetectLine(file, searchKey, d.outputLines, logWithFields)
 }
 
-// GetAdjecent finds and returns the lines adjecent to the line containing the vulnerability
-func (d *DetectLine) GetAdjecent(file *model.FileMetadata, line int) model.VulnerabilityLines {
+// GetAdjacent finds and returns the lines adjacent to the line containing the vulnerability
+func (d *DetectLine) GetAdjacent(file *model.FileMetadata, line int) model.VulnerabilityLines {
 	return model.VulnerabilityLines{
 		Line:         line,
 		VulnLines:    GetAdjacentVulnLines(line-1, d.outputLines, *file.LinesOriginalData),

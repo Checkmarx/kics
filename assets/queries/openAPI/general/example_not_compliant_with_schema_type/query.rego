@@ -96,7 +96,7 @@ CxPolicy[result] {
 	}
 }
 
-# compare_prop() - checks if the example is complient with schema type, returns a set with all feilds that are not valid
+# compare_prop() - checks if the example is compliant with schema type, returns a set with all fields that are not valid
 compare_prop(ex_obj, prop) = items {
 	prop.object == true
 	items := {x | prop_item := prop.properties[n]; not check_prop(prop_item, ex_obj, n); x := {"name": n}}
@@ -140,7 +140,7 @@ get_ref(obj, docs, type, version) = example {
 	example := docs[type][path[minus(count(path), 1)]]
 }
 
-# get_properties() - returns properties, type, and feilds to compare
+# get_properties() - returns properties, type, and fields to compare
 get_properties(schema) = properties {
 	schema.type == "object"
 	properties := {"object": true, "type": schema.type, "properties": schema.properties}

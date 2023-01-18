@@ -373,7 +373,7 @@ func TestFileSystemSourceProvider_AddExcluded(t *testing.T) {
 	if err != nil {
 		t.Errorf("failed to initialize a new File System Source Provider")
 	}
-	type feilds struct {
+	type fields struct {
 		fs *FileSystemSourceProvider
 	}
 	type args struct {
@@ -381,14 +381,14 @@ func TestFileSystemSourceProvider_AddExcluded(t *testing.T) {
 	}
 	tests := []struct {
 		name    string
-		feilds  feilds
+		fields  fields
 		args    args
 		want    []string
 		wantErr bool
 	}{
 		{
 			name: "test_add_excluded",
-			feilds: feilds{
+			fields: fields{
 				fs: fsystem,
 			},
 			args: args{
@@ -405,11 +405,11 @@ func TestFileSystemSourceProvider_AddExcluded(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := tt.feilds.fs.AddExcluded(tt.args.excludePaths)
+			err := tt.fields.fs.AddExcluded(tt.args.excludePaths)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("AddExcluded() = %v, wantErr = %v", err, tt.wantErr)
 			}
-			got := getFSExcludes(tt.feilds.fs)
+			got := getFSExcludes(tt.fields.fs)
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("AddExcluded() = %v, want = %v", got, tt.want)
 			}
@@ -463,7 +463,7 @@ func TestProvider_getExcludePaths(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name: "test_getExludedPaths",
+			name: "test_getExcludedPaths",
 			args: args{
 				pathExpressions: "*.sh",
 			},
@@ -471,7 +471,7 @@ func TestProvider_getExcludePaths(t *testing.T) {
 			wantErr: false,
 		},
 		{
-			name: "test_getExludedPaths with double start",
+			name: "test_getExcludedPaths with double start",
 			args: args{
 				pathExpressions: filepath.Join("test", "fixtures", "analyzer_test", "**", "*.json"),
 			},

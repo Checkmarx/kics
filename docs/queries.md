@@ -97,7 +97,7 @@ Summarizing, the following is the expected file tree for a query:
 ```
 
 Also, a query can contains multiples positive and negative files, but all cases files names must start with negative or positive and
-each positive file must be referencered on `positive_expected_result.json`, as shown below:
+each positive file must be referenced on `positive_expected_result.json`, as shown below:
 
 ```json
 [

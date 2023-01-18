@@ -95,7 +95,7 @@ func getLibraryInDir(platform, libraryDirPath string) string {
 		return nil
 	})
 	if err != nil {
-		log.Error().Msgf("Failed to analize path %s: %s", libraryDirPath, err)
+		log.Error().Msgf("Failed to analyze path %s: %s", libraryDirPath, err)
 	}
 	return libraryFilePath
 }

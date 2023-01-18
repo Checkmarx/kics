@@ -72,7 +72,7 @@ func (p *Parser) GetCommentToken() string {
 	return ""
 }
 
-// StringifyContent converts original content into string formated version
+// StringifyContent converts original content into string formatted version
 func (p *Parser) StringifyContent(content []byte) (string, error) {
 	if p.shouldIdent {
 		var out bytes.Buffer

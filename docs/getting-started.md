@@ -5,7 +5,7 @@ docker run -t -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan 
 
 ## Scan a single file
 ```
-docker run -t -v {path_to_host_folder}:/path checkmarx/kics:latest scan -p /path/{filename}.{extention} -o "/path/"
+docker run -t -v {path_to_host_folder}:/path checkmarx/kics:latest scan -p /path/{filename}.{extension} -o "/path/"
 ```
 
 ## Scan Example

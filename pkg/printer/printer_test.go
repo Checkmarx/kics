@@ -170,9 +170,9 @@ func TestPrintResult(t *testing.T) {
 
 func TestHelpers_WordWrap(t *testing.T) {
 	type args struct {
-		s          string
-		identation string
-		limit      int
+		s           string
+		indentation string
+		limit       int
 	}
 
 	tests := []struct {
@@ -183,27 +183,27 @@ func TestHelpers_WordWrap(t *testing.T) {
 		{
 			name: "test_word_wrap",
 			args: args{
-				s:          "testing",
-				identation: "-",
-				limit:      1,
+				s:           "testing",
+				indentation: "-",
+				limit:       1,
 			},
 			want: "-testing\r\n",
 		},
 		{
 			name: "test_word_wrap",
 			args: args{
-				s:          "",
-				identation: "-",
-				limit:      1,
+				s:           "",
+				indentation: "-",
+				limit:       1,
 			},
 			want: "",
 		},
 		{
 			name: "test_word_wrap",
 			args: args{
-				s:          "testing string word wrap",
-				identation: "-",
-				limit:      2,
+				s:           "testing string word wrap",
+				indentation: "-",
+				limit:       2,
 			},
 			want: "-testing string\r\n-word wrap\r\n",
 		},
@@ -211,7 +211,7 @@ func TestHelpers_WordWrap(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := WordWrap(tt.args.s, tt.args.identation, tt.args.limit)
+			got := WordWrap(tt.args.s, tt.args.indentation, tt.args.limit)
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("WordWrap =\n%v, want = \n%v", got, tt.want)
 			}

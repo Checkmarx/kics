@@ -186,7 +186,7 @@ func TestDetector_GetAdjacent(t *testing.T) {
 						Line:     "\tacl    = \"authenticated-read\"",
 					},
 				},
-				LineWithVulnerabilty: "",
+				LineWithVulnerability: "",
 			},
 		},
 		{
@@ -213,14 +213,14 @@ func TestDetector_GetAdjacent(t *testing.T) {
 						Line:     "\tacl    = \"authenticated-read\"",
 					},
 				},
-				LineWithVulnerabilty: "",
+				LineWithVulnerability: "",
 			},
 		},
 	}
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			got := det.GetAdjecent(test.fileMetadata, test.line)
+			got := det.GetAdjacent(test.fileMetadata, test.line)
 			require.Equal(t, test.expected, got)
 		})
 	}
