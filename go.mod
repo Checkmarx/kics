@@ -10,7 +10,7 @@ require (
 	github.com/antlr/antlr4/runtime/Go/antlr/v4 v4.0.0-20221202181307-76fa05c21b12
 	github.com/aws/aws-sdk-go v1.44.121
 	github.com/cheggaaa/pb/v3 v3.1.0
-	github.com/emicklei/proto v1.11.0
+	github.com/emicklei/proto v1.11.1
 	github.com/getsentry/sentry-go v0.14.0
 	github.com/gocarina/gocsv v0.0.0-20220310154401-d4df709ca055
 	github.com/golang/mock v1.6.0
