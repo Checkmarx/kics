@@ -6,5 +6,6 @@
   "descriptionText": "Databricks should have autoscale",
   "descriptionUrl": "https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/cluster",
   "descriptionID": "700067d9",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "cloudProvider": "common"
 }
