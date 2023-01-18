@@ -6,5 +6,6 @@
   "descriptionText": "ACL allow ingress from 0.0.0.0/0 and/or ::/0",
   "descriptionUrl": "https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/ip_access_list",
   "descriptionID": "9670a9f6",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "cloudProvider": "common"
 }

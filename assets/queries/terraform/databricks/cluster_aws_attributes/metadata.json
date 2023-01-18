@@ -6,5 +6,6 @@
   "descriptionText": "One or some Databricks Cluster AWS Attribute Best Practices are not respected",
   "descriptionUrl": "https://docs.databricks.com/clusters/cluster-config-best-practices.html",
   "descriptionID": "b6345aa6",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "cloudProvider": "common"
 }

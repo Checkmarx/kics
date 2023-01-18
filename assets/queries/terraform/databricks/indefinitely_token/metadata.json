@@ -6,5 +6,6 @@
   "descriptionText": "Token has an indefinitely lifetime",
   "descriptionUrl": "https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/token",
   "descriptionID": "79759163",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "cloudProvider": "common"
 }
