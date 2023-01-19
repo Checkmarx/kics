@@ -1,0 +1,11 @@
+{
+  "id": "375cdab9-3f94-4ae0-b1e3-8fbdf9cdf4d7",
+  "queryName": "Job's Task is Legacy (spark_submit_task)",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Job's Task Is spark_submit_task",
+  "descriptionUrl": "https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/job#spark_submit_task-configuration-block",
+  "descriptionID": "fdaa059f",
+  "platform": "Terraform",
+  "cloudProvider": "common"
+}
