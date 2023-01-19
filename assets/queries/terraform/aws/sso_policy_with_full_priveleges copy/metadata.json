@@ -1,0 +1,11 @@
+{
+  "id": "4003118b-046b-4640-b200-b8c7a4c8b89f",
+  "queryName": "SSO Identity User Unsafe Creation",
+  "severity": "LOW",
+  "category": "Access Control",
+  "descriptionText": "The use of AWS SSO for user creation may be dangerous because it will not be updated in external IdP or AD",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/identitystore_user",
+  "platform": "Terraform",
+  "descriptionID": "a30fa3d3",
+  "cloudProvider": "aws"
+}

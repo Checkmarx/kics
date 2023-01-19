@@ -1,0 +1,11 @@
+{
+  "id": "ce9dfce0-5fc8-433b-944a-3b16153111a8",
+  "queryName": "SSO Permission With Inadequate User Session Duration",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "SSO Permission shouldn't should not permit user sessions longer than 1 hour",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssoadmin_permission_set",
+  "platform": "Terraform",
+  "descriptionID": "755ecfdf",
+  "cloudProvider": "aws"
+}

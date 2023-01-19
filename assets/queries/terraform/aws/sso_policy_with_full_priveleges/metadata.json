@@ -1,0 +1,11 @@
+{
+  "id": "132a8c31-9837-4203-9fd1-15ca210c7b73",
+  "queryName": "SSO Policy with full privileges",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "SSO policies shouldn't allow full administrative privileges (for all resources)",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssoadmin_permission_set_inline_policy",
+  "platform": "Terraform",
+  "descriptionID": "cae7c4fc",
+  "cloudProvider": "aws"
+}
