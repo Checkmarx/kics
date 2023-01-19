@@ -9,8 +9,8 @@ resource "databricks_cluster" "this" {
   }
   aws_attributes {
     availability           = "SPOT_WITH_FALLBACK"
-    zone_id                = "auto"
-    first_on_demand        = 0
+    zone_id                = "us-west-2a"
+    first_on_demand        = 1
     spot_bid_price_percent = 100
   }
 }

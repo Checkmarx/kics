@@ -2,10 +2,9 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-#use spot instance
 CxPolicy[result] {
 	resource := input.document[i].resource.databricks_cluster[name]
-	contains(resource.aws_attributes.availability, "ON_DEMAND")
+	resource.aws_attributes.availability == "SPOT"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -13,8 +12,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("databricks_cluster[%s].aws_attributes.availability", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'databricks_cluster[%s].aws_attributes.availability' should not equal to 'ON_DEMAND'", [name]),
-		"keyActualValue": sprintf("'databricks_cluster[%s].aws_attributes.availability' is equal to 'ON_DEMAND'", [name]),
+		"keyExpectedValue": sprintf("'databricks_cluster[%s].aws_attributes.availability' should not equal to 'SPOT'", [name]),
+		"keyActualValue": sprintf("'databricks_cluster[%s].aws_attributes.availability' is equal to 'SPOT'", [name]),
 	}
 }
 
@@ -45,5 +44,20 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'databricks_cluster[%s].aws_attributes.first_on_demand' should present", [name]),
 		"keyActualValue": sprintf("'databricks_cluster[%s].aws_attributes.first_on_demand' is not present", [name]),
+	}
+}
+
+CxPolicy[result] {
+	resource := input.document[i].resource.databricks_cluster[name]
+	not resource.aws_attributes.zone_id == "auto"
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": "databricks_cluster",
+		"resourceName": tf_lib.get_resource_name(resource, name),
+		"searchKey": sprintf("databricks_cluster[%s].aws_attributes.zone_id", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'databricks_cluster[%s].aws_attributes.zone_id' should be egal to 'auto'", [name]),
+		"keyActualValue": sprintf("'databricks_cluster[%s].aws_attributes.zone_id' is not equal to 'auto'", [name]),
 	}
 }

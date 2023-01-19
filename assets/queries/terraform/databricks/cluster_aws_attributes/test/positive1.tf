@@ -8,8 +8,8 @@ resource "databricks_cluster" "this" {
     max_workers = 50
   }
   aws_attributes {
-    availability           = "ON_DEMAND"
-    zone_id                = "us-east-1"
+    availability           = "SPOT"
+    zone_id                = "auto"
     first_on_demand        = 1
     spot_bid_price_percent = 100
   }
