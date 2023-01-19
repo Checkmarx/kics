@@ -10,6 +10,5 @@ resource "databricks_cluster" "this" {
   gcp_attributes {
     availability           = "PREEMPTIBLE_GCP"
     zone_id                = "AUTO"
-    spot_bid_price_percent = 100
   }
 }
