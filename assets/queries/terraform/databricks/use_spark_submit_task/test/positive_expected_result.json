@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Job's Task is Legacy (spark_submit_task)",
+		"severity": "MEDIUM",
+		"line": 18
+	},
+	{
+		"queryName": "Job's Task is Legacy (spark_submit_task)",
+		"severity": "MEDIUM",
+		"line": 26
+	}
+]
