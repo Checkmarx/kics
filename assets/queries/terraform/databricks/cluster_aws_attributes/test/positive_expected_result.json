@@ -13,5 +13,10 @@
 		"queryName": "Check Databricks Cluster AWS Attribute Best Practices",
 		"severity": "LOW",
 		"line": 10
+	},
+	{
+		"queryName": "Check Databricks Cluster AWS Attribute Best Practices",
+		"severity": "LOW",
+		"line": 12
 	}
 ]
