@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "Check Databricks Cluster Azure Attribute Best Practices",
+		"severity": "LOW",
+		"line": 11
+	},
+	{
+		"queryName": "Check Databricks Cluster Azure Attribute Best Practices",
+		"severity": "LOW",
+		"line": 13
+	},
+	{
+		"queryName": "Check Databricks Cluster Azure Attribute Best Practices",
+		"severity": "LOW",
+		"line": 10
+	}
+]
