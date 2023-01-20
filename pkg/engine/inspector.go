@@ -13,6 +13,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/detector"
 	"github.com/Checkmarx/kics/pkg/detector/docker"
 	"github.com/Checkmarx/kics/pkg/detector/helm"
+	"github.com/Checkmarx/kics/pkg/engine/kicsgpt"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/open-policy-agent/opa/ast"
@@ -209,6 +210,9 @@ func (c *Inspector) Inspect(
 	if err != nil {
 		return vulnerabilities, err
 	}
+
+	aiFoundVulns := c.checkGPTVulnerabilities(ctx, scanID, files, baseScanPaths, platforms)
+	_ = aiFoundVulns
 
 	queries := c.getQueriesByPlat(platforms)
 	for i, queryMeta := range queries {
@@ -516,4 +520,29 @@ func (q QueryLoader) LoadQuery(ctx context.Context, query *model.QueryMetadata) 
 
 		return &opaQuery, nil
 	}
+}
+
+func (c *Inspector) checkGPTVulnerabilities(
+	ctx context.Context,
+	scanID string,
+	files model.FileMetadatas,
+	baseScanPaths []string,
+	platforms []string,
+) []model.Vulnerability {
+	if hasGPTSupportedPlatform(platforms) {
+		for _, file := range files {
+			kicsgpt.GetFileEvaluation(file.OriginalData)
+			return make([]model.Vulnerability, 0)
+		}
+	}
+	return make([]model.Vulnerability, 0)
+}
+
+func hasGPTSupportedPlatform(platforms []string) bool {
+	for _, a := range platforms {
+		if strings.EqualFold(a, "kicsgpt") || strings.EqualFold(a, "ansible") {
+			return true
+		}
+	}
+	return false
 }

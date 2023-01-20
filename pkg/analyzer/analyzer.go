@@ -461,6 +461,8 @@ func checkReturnType(path, returnType, ext string, content []byte) string {
 		if platform != "" {
 			return platform
 		}
+	} else if ext == json && returnType == "" {
+		return "kicsgpt"
 	}
 	return returnType
 }
