@@ -27,7 +27,7 @@ require (
 	github.com/moby/buildkit v0.10.4
 	github.com/open-policy-agent/opa v0.47.3
 	github.com/pkg/errors v0.9.1
-	github.com/rs/zerolog v1.26.1
+	github.com/rs/zerolog v1.28.0
 	github.com/sosedoff/ansible-vault-go v0.1.1
 	github.com/spf13/cobra v1.6.1
 	github.com/spf13/pflag v1.0.5
