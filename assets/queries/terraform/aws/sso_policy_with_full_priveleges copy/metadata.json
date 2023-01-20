@@ -3,7 +3,7 @@
   "queryName": "SSO Identity User Unsafe Creation",
   "severity": "LOW",
   "category": "Access Control",
-  "descriptionText": "The use of AWS SSO for user creation may be dangerous because it will not be updated in external IdP or AD",
+  "descriptionText": "The use of AWS SSO for creating users may pose a security risk as it does not synchronize with external Identity Providers (IdP) or Active Directory (AD). This can lead to inconsistencies and potential unauthorized access to resources. It is recommended to review and update user creation processes to ensure proper security protocols are in place.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/identitystore_user",
   "platform": "Terraform",
   "descriptionID": "a30fa3d3",

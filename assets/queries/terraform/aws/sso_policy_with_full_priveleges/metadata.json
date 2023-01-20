@@ -3,7 +3,7 @@
   "queryName": "SSO Policy with full privileges",
   "severity": "HIGH",
   "category": "Access Control",
-  "descriptionText": "SSO policies shouldn't allow full administrative privileges (for all resources)",
+  "descriptionText": "SSO policies should be configured to grant limited administrative privileges, rather than full access to all resources. This approach allows for better security and control over the resources being accessed.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssoadmin_permission_set_inline_policy",
   "platform": "Terraform",
   "descriptionID": "cae7c4fc",
