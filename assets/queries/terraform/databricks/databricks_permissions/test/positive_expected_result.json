@@ -16,5 +16,11 @@
     "severity": "HIGH",
     "line": 16,
     "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Databricks Cluster or Job With None Or Insecure Permission(s)",
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive4.tf"
   }
 ]

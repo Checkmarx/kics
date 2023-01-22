@@ -51,6 +51,22 @@ is_associated_to_cluster(databricks_cluster_name, doc) {
 CxPolicy[result] {
 	databricks_permissions := input.document[i].resource.databricks_permissions[name]
 
+	databricks_permissions.access_control.permission_level == "IS_OWNER"; not databricks_permissions.access_control.service_principal_name
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": "databricks_permissions",
+		"resourceName": tf_lib.get_specific_resource_name(databricks_permissions, "databricks_permissions", name),
+		"searchKey": sprintf("databricks_permissions.[%s]", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'databricks_permissions[%s]' should not have permission_level == 'IS_OWNER' without service_principal_name associated", [name]),
+		"keyActualValue": sprintf("'databricks_permissions[%s]' have permission_level == 'IS_OWNER' without service_principal_name associated", [name]),
+	}
+}
+
+CxPolicy[result] {
+	databricks_permissions := input.document[i].resource.databricks_permissions[name]
+
 	some j
 	databricks_permissions.access_control[j].permission_level == "IS_OWNER"; not databricks_permissions.access_control[j].service_principal_name
 
