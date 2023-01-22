@@ -1,6 +1,6 @@
 {
   "id": "38028698-e663-4ef7-aa92-773fef0ca86f",
-  "queryName": "Check Databricks Cluster AWS Attribute Best Practices",
+  "queryName": "Check Databricks Cluster Azure Attribute Best Practices",
   "severity": "LOW",
   "category": "Best Practices",
   "descriptionText": "One or some Databricks Cluster Azure Attribute Best Practices are not respected",
