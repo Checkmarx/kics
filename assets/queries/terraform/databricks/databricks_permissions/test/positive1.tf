@@ -28,7 +28,7 @@ resource "databricks_job" "positive1_error" {
   }
 }
 
-resource "databricks_permissions" "job_usage" {
+resource "databricks_permissions" "positive1" {
   job_id = databricks_job.positive1.id
 
   access_control {

@@ -11,5 +11,5 @@ resource "databricks_ip_access_list" "negative" {
     "1.2.3.0/24",
     "1.2.5.0/24"
   ]
-  depends_on = [databricks_workspace_conf.this]
+  depends_on = [databricks_workspace_conf.negative]
 }

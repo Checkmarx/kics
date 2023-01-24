@@ -20,7 +20,7 @@ resource "databricks_cluster" "positive2_error" {
   }
 }
 
-resource "databricks_permissions" "cluster_usage" {
+resource "databricks_permissions" "positive2" {
   cluster_id = databricks_cluster.positive2.id
 
   access_control {

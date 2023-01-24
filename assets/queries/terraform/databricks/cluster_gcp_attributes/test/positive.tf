@@ -1,5 +1,5 @@
-resource "databricks_cluster" "this" {
-  cluster_name            = "Shared Autoscaling"
+resource "databricks_cluster" "positive" {
+  cluster_name            = "data"
   spark_version           = data.databricks_spark_version.latest.id
   node_type_id            = data.databricks_node_type.smallest.id
   autotermination_minutes = 20
@@ -8,9 +8,7 @@ resource "databricks_cluster" "this" {
     max_workers = 50
   }
   gcp_attributes {
-    availability           = "PREEMPTIBLE_WITH_FALLBACK_GCP"
-    zone_id                = "auto"
-    first_on_demand        = 1
-    spot_bid_price_percent = 100
+    availability           = "PREEMPTIBLE_GCP"
+    zone_id                = "AUTO"
   }
 }

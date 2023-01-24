@@ -1,4 +1,4 @@
-resource "databricks_workspace_conf" "this" {
+resource "databricks_workspace_conf" "positive2" {
   custom_config = {
     "enableIpAccessLists" : true
   }
@@ -11,5 +11,5 @@ resource "databricks_ip_access_list" "positive2" {
     "::/0",
     "1.2.5.0/24"
   ]
-  depends_on = [databricks_workspace_conf.this]
+  depends_on = [databricks_workspace_conf.positive2]
 }

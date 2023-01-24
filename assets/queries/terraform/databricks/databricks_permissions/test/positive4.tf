@@ -13,7 +13,7 @@ resource "databricks_job" "positive4" {
   }
 }
 
-resource "databricks_permissions" "job_usage" {
+resource "databricks_permissions" "positive4" {
   job_id = databricks_job.positive4.id
 
   access_control {
