@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("databricks_ip_access_list[%s].ip_addresses", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'databricks_ip_access_list[%s].ip_addresses' should not equal to '0.0.0.0/0' or '::/0'", [name]),
+		"keyExpectedValue": sprintf("'databricks_ip_access_list[%s].ip_addresses' should not be equal to '0.0.0.0/0' or '::/0'", [name]),
 		"keyActualValue": sprintf("'databricks_ip_access_list[%s].ip_addresses' is equal to '0.0.0.0/0' or '::/0'", [name]),
 	}
 }

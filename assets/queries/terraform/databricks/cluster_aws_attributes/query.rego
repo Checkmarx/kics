@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("databricks_cluster[%s].aws_attributes.availability", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'databricks_cluster[%s].aws_attributes.availability' should not equal to 'SPOT'", [name]),
+		"keyExpectedValue": sprintf("'databricks_cluster[%s].aws_attributes.availability' should not be equal to 'SPOT'", [name]),
 		"keyActualValue": sprintf("'databricks_cluster[%s].aws_attributes.availability' is equal to 'SPOT'", [name]),
 	}
 }
@@ -27,7 +27,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("databricks_cluster[%s].aws_attributes.first_on_demand", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'databricks_cluster[%s].aws_attributes.first_on_demand' should not equal to '0'", [name]),
+		"keyExpectedValue": sprintf("'databricks_cluster[%s].aws_attributes.first_on_demand' should not be equal to '0'", [name]),
 		"keyActualValue": sprintf("'databricks_cluster[%s].aws_attributes.first_on_demand' is equal to '0'", [name]),
 	}
 }
