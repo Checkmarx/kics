@@ -48,5 +48,6 @@ func buildVulnerability(vuln model.GPTVulnerability, fileID string) interface{} 
 		"category":         vuln.VulnerabilityName,
 		"descriptionText":  vuln.Description,
 		"cloudProvider":    vuln.CloudProvider,
+		"codeLines":        vuln.Code,
 	}
 }

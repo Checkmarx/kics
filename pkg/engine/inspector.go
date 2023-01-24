@@ -563,11 +563,16 @@ func (c *Inspector) checkGPTVulnerabilities(
 						}
 
 						vulnerability, err := c.vb(queryContext, c.tracker, value, c.detector)
+						codeLines := value["codeLines"].([]int)
+						for _, lineVal := range codeLines {
+							vulnerability.Line = lineVal
+							vulnerability.VulnLines = getVulnLines(lineVal, c.tracker.GetOutputLines(), *file.LinesOriginalData)
+							aiVulns = append(aiVulns, *vulnerability)
+						}
 						if err != nil {
 							log.Debug().Msg("Could not use vulnerability builder for result from KICS GPT service")
 							continue
 						}
-						aiVulns = append(aiVulns, *vulnerability)
 					}
 
 				}
@@ -600,4 +605,9 @@ func getGPTQueryMetadata(vuln map[string]interface{}) map[string]interface{} {
 		"category":        vuln["category"].(string),
 		"descriptionUrl":  vuln["descriptionUrl"].(string),
 	}
+}
+
+// GetAdjacent finds and returns the lines adjacent to the line containing the vulnerability
+func getVulnLines(line int, outputLines int, originalData []string) *[]model.CodeLine {
+	return detector.GetAdjacentVulnLines(line-1, outputLines, originalData)
 }
