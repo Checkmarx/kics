@@ -9,7 +9,7 @@ resource "databricks_cluster" "negative2" {
   }
 }
 
-resource "databricks_permissions" "cluster_usage" {
+resource "databricks_permissions" "negative2" {
   cluster_id = databricks_cluster.negative2.id
 
   access_control {

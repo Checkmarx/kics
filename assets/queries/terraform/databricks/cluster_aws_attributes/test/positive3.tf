@@ -1,4 +1,4 @@
-resource "databricks_cluster" "this" {
+resource "databricks_cluster" "positive3" {
   cluster_name            = "data"
   spark_version           = data.databricks_spark_version.latest.id
   node_type_id            = data.databricks_node_type.smallest.id
