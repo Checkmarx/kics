@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("databricks_cluster[%s].gcp_attributes.availability", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'databricks_cluster[%s].gcp_attributes.availability' should not equal to 'SPOT'", [name]),
+		"keyExpectedValue": sprintf("'databricks_cluster[%s].gcp_attributes.availability' should not be equal to 'SPOT'", [name]),
 		"keyActualValue": sprintf("'databricks_cluster[%s].gcp_attributes.availability' is equal to 'SPOT'", [name]),
 	}
 }
