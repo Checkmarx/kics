@@ -36,7 +36,7 @@ type HTTPClient interface {
 // HTTPDescription - HTTP client interface to use for requesting descriptions
 type HTTPKicsGPT interface {
 	CheckConnection() error
-	RequestEvaluation(fileData string) ([]model.GPTResponse, error)
+	RequestEvaluation(fileData string) (model.GPTResponse, error)
 }
 
 // Client - client for making CIS descriptions requests
@@ -65,11 +65,12 @@ func (c *Client) CheckConnection() error {
 }
 
 // RequestDescriptions - gets CIS descriptions from endpoint
-func (c *Client) RequestEvaluation(fileData string) ([]model.GPTResponse, error) {
+func (c *Client) RequestEvaluation(fileData string) (model.GPTResponse, error) {
+	var getGPTCallResponse model.GPTResponse
 	baseURL, err := getBaseURL()
 	if err != nil {
 		log.Debug().Msg("Unable to get baseURL")
-		return nil, err
+		return getGPTCallResponse, err
 	}
 
 	endpointURL := fmt.Sprintf("%s/api/%s", baseURL, "getEvaluation")
@@ -81,12 +82,12 @@ func (c *Client) RequestEvaluation(fileData string) ([]model.GPTResponse, error)
 	requestBody, err := json.Marshal(gptRequest)
 	if err != nil {
 		log.Err(err).Msg("Unable to marshal request body")
-		return nil, err
+		return getGPTCallResponse, err
 	}
 
 	req, err := http.NewRequest(http.MethodGet, endpointURL, bytes.NewReader(requestBody)) //nolint
 	if err != nil {
-		return nil, err
+		return getGPTCallResponse, err
 	}
 	req.Header.Add("Content-Type", "application/json")
 	//req.Header.Add("Authorization", fmt.Sprintf("Basic %s", base64.StdEncoding.EncodeToString([]byte(getBasicAuth()))))
@@ -96,26 +97,31 @@ func (c *Client) RequestEvaluation(fileData string) ([]model.GPTResponse, error)
 	resp, err := doRequest(req)
 	if err != nil {
 		log.Err(err).Msgf("Unable to GET to KicsGPT endpoint")
-		return nil, err
+		return getGPTCallResponse, err
 	}
 	defer resp.Body.Close()
 	endTime := time.Since(startTime)
 	log.Debug().Msgf("HTTP Status: %d %s %v", resp.StatusCode, http.StatusText(resp.StatusCode), endTime)
 
 	b, err := io.ReadAll(resp.Body)
-	if err != nil {
+	if err != nil || len(b) == 0 {
 		log.Err(err).Msg("Unable to read response body")
-		return nil, err
+		return getGPTCallResponse, err
 	}
 
-	var getGPTCallResponse model.GPTResponse
-	err = json.Unmarshal(b, &getGPTCallResponse.Vulnerabilities)
+	/*stringUnquoted, err := strconv.Unquote("\"" + string(b) + "\"")
+	#if err != nil {
+		log.Err(err).Msg("Unable to unquote response body")
+		return nil, err
+	}*/
+
+	err = json.Unmarshal([]byte(b), &getGPTCallResponse.Vulnerabilities)
 	if err != nil {
 		log.Err(err).Msg("Unable to unmarshal response body")
-		return nil, err
+		return getGPTCallResponse, err
 	}
 
-	return append(make([]model.GPTResponse, 0), getGPTCallResponse), nil
+	return getGPTCallResponse, nil
 }
 
 // doRequest - make HTTP request

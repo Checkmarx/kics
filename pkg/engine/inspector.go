@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"reflect"
 	"strings"
 	"time"
 
@@ -212,7 +213,7 @@ func (c *Inspector) Inspect(
 	}
 
 	aiFoundVulns := c.checkGPTVulnerabilities(ctx, scanID, files, baseScanPaths, platforms)
-	_ = aiFoundVulns
+	vulnerabilities = append(vulnerabilities, aiFoundVulns...)
 
 	queries := c.getQueriesByPlat(platforms)
 	for i, queryMeta := range queries {
@@ -531,8 +532,47 @@ func (c *Inspector) checkGPTVulnerabilities(
 ) []model.Vulnerability {
 	if hasGPTSupportedPlatform(platforms) {
 		for _, file := range files {
-			kicsgpt.GetFileEvaluation(file.OriginalData)
-			return make([]model.Vulnerability, 0)
+			aiVulns := make([]model.Vulnerability, 0)
+			//queryResultItems := kicsgpt.GetFileEvaluation(file.OriginalData, )
+			queryResultItems, err := kicsgpt.GetFileEvaluation(file.OriginalData, file.ID)
+			if err != nil {
+				log.Debug().Msg("Could not get evaluation from KICS GPT service")
+				continue
+			}
+
+			queryContext := &QueryContext{
+				Ctx:           ctx,
+				scanID:        scanID,
+				Files:         files.ToMap(),
+				Query:         nil,
+				payload:       nil,
+				BaseScanPaths: baseScanPaths,
+			}
+
+			switch reflect.TypeOf(queryResultItems).Kind() {
+			case reflect.Slice:
+				v := reflect.ValueOf(queryResultItems)
+
+				for i := 0; i < v.Len(); i++ {
+					value := v.Index(i).Interface().(map[string]interface{})
+					if value != nil {
+						queryContext.Query = &PreparedQuery{
+							Metadata: model.QueryMetadata{
+								Metadata: getGPTQueryMetadata(value),
+							},
+						}
+
+						vulnerability, err := c.vb(queryContext, c.tracker, value, c.detector)
+						if err != nil {
+							log.Debug().Msg("Could not use vulnerability builder for result from KICS GPT service")
+							continue
+						}
+						aiVulns = append(aiVulns, *vulnerability)
+					}
+
+				}
+			}
+			return aiVulns
 		}
 	}
 	return make([]model.Vulnerability, 0)
@@ -545,4 +585,19 @@ func hasGPTSupportedPlatform(platforms []string) bool {
 		}
 	}
 	return false
+}
+
+func getGPTQueryMetadata(vuln map[string]interface{}) map[string]interface{} {
+
+	return map[string]interface{}{
+		"queryName":       vuln["queryName"].(string),
+		"descriptionText": vuln["descriptionText"].(string),
+		"platform":        vuln["platform"].(string),
+		"descriptionID":   vuln["descriptionID"].(string),
+		"cloudProvider":   vuln["cloudProvider"].(string),
+		"id":              vuln["id"].(string),
+		"severity":        vuln["severity"].(string),
+		"category":        vuln["category"].(string),
+		"descriptionUrl":  vuln["descriptionUrl"].(string),
+	}
 }
