@@ -31,6 +31,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("The metadata.name={{%s}}.rules.verbs should not contain the following verbs: [%s]", [metadata.name, rules]),
 		"keyActualValue": sprintf("The metadata.name={{%s}}.rules.verbs contain the following verbs: [%s]", [metadata.name, rules]),
+		"searchLine": commonLib.build_search_line(["rules", resource, "verbs"],[]),
 	}
 }
 
