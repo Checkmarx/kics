@@ -7,7 +7,7 @@ data "databricks_node_type" "positive3_with_gpu" {
 
 resource "databricks_cluster" "positive3_research" {
   cluster_name            = "Research Cluster"
-  spark_version           = "3.5"
+  spark_version           = "3.3.1"
   node_type_id            = data.databricks_node_type.positive2_with_gpu.id
   autotermination_minutes = 20
   autoscale {
