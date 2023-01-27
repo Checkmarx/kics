@@ -21,7 +21,8 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource.databricks_cluster[name]
 
-	not contains(resource.spark_version, "LTS"); not contains(resource.spark_version, "data.databricks_spark_version")
+	not isLtsVersion(resource.spark_version)
+	not contains(resource.spark_version, "data.databricks_spark_version")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -32,4 +33,9 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'databricks_cluster[%s].spark_version' should be a LTS version'", [name]),
 		"keyActualValue": sprintf("'databricks_cluster[%s].spark_version' is not a LTS version'", [name]),
 	}
+}
+
+isLtsVersion(version) {
+	versions = {"3.0.1", "3.1.2", "3.2.1", "3.3.0"}
+	version = versions[j]
 }
