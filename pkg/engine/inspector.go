@@ -77,6 +77,7 @@ type Inspector struct {
 	enableCoverageReport bool
 	coverageReport       cover.Report
 	queryExecTimeout     time.Duration
+	enableGPTIntegration bool
 }
 
 // QueryContext contains the context where the query is executed, which scan it belongs, basic information of query,
@@ -106,7 +107,8 @@ func NewInspector(
 	queryParameters *source.QueryInspectorParameters,
 	excludeResults map[string]bool,
 	queryTimeout int,
-	needsLog bool) (*Inspector, error) {
+	needsLog bool,
+	enableGPT bool) (*Inspector, error) {
 	log.Debug().Msg("engine.NewInspector()")
 
 	metrics.Metric.Start("get_queries")
@@ -150,13 +152,14 @@ func NewInspector(
 	}
 
 	return &Inspector{
-		QueryLoader:      &queryLoader,
-		vb:               vb,
-		tracker:          tracker,
-		failedQueries:    failedQueries,
-		excludeResults:   excludeResults,
-		detector:         lineDetector,
-		queryExecTimeout: queryExecTimeout,
+		QueryLoader:          &queryLoader,
+		vb:                   vb,
+		tracker:              tracker,
+		failedQueries:        failedQueries,
+		excludeResults:       excludeResults,
+		detector:             lineDetector,
+		queryExecTimeout:     queryExecTimeout,
+		enableGPTIntegration: enableGPT,
 	}, nil
 }
 
@@ -212,8 +215,11 @@ func (c *Inspector) Inspect(
 		return vulnerabilities, err
 	}
 
-	aiFoundVulns := c.checkGPTVulnerabilities(ctx, scanID, files, baseScanPaths, platforms)
-	vulnerabilities = append(vulnerabilities, aiFoundVulns...)
+	if c.enableGPTIntegration {
+		log.Debug().Msgf("Starting to run GPT Queries requests")
+		aiFoundVulns := c.checkGPTVulnerabilities(ctx, scanID, files, baseScanPaths, platforms)
+		vulnerabilities = append(vulnerabilities, aiFoundVulns...)
+	}
 
 	queries := c.getQueriesByPlat(platforms)
 	for i, queryMeta := range queries {

@@ -27,6 +27,12 @@
     "defaultValue": "false",
     "usage": "disable request for full descriptions and use default vulnerability descriptions"
   },
+  "enable-gpt": {
+    "flagType": "bool",
+    "shorthandFlag": "",
+    "defaultValue": "false",
+    "usage": "enable chat gpt queries"
+  },
   "exclude-categories": {
     "flagType": "multiStr",
     "shorthandFlag": "",
