@@ -240,7 +240,7 @@
     "fileName": "positive25.dockerfile"
   },
   {
-    "queryName": "Passwords And Secrets - MailChimp API Key",
+    "queryName": "Passwords And Secrets - SendGrid API Key",
     "severity": "HIGH",
     "line": 11,
     "fileName": "positive25.dockerfile"
