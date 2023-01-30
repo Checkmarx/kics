@@ -2,7 +2,6 @@
 Our community meetings are held virtually on the first Thursday of every month at 15:00 UTC(+0) by [Zoom](https://tinyurl.com/kics-community).
 
 Upcoming meetings:
-- January 5th, 2023
 - March 2nd, 2023
 - April 6th, 2023
 
