@@ -3,8 +3,8 @@ Our community meetings are held virtually on the first Thursday of every month a
 
 Upcoming meetings:
 - January 5th, 2023
-- February 2nd, 2023
 - March 2nd, 2023
+- April 6th, 2023
 
 You're welcome to join us.
 
