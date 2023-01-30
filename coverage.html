@@ -2164,13 +2164,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="35">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2195,7 +2195,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -6229,29 +6229,29 @@ func NewInspector(
 }
 
 func (c *Inspector) inspectQuery(ctx context.Context, basePaths []string,
-        files model.FileMetadatas, i int) ([]model.Vulnerability, error) <span class="cov5" title="264">{
+        files model.FileMetadatas, i int) ([]model.Vulnerability, error) <span class="cov5" title="272">{
         timeoutCtx, cancel := context.WithTimeout(ctx, c.queryExecutionTimeout)
         defer cancel()
 
         cleanFiles := cleanFiles(files)
 
-        for idx := range cleanFiles </span><span class="cov5" title="264">{
-                if _, ok := cleanFiles[idx].Commands["ignore"]; !ok </span><span class="cov5" title="231">{
+        for idx := range cleanFiles </span><span class="cov5" title="272">{
+                if _, ok := cleanFiles[idx].Commands["ignore"]; !ok </span><span class="cov5" title="238">{
                         select </span>{
                         case &lt;-timeoutCtx.Done():<span class="cov0" title="0">
                                 return c.vulnerabilities, timeoutCtx.Err()</span>
-                        default:<span class="cov5" title="231">
+                        default:<span class="cov5" title="238">
                                 c.checkContent(i, idx, basePaths, cleanFiles)</span>
                         }
                 }
         }
-        <span class="cov5" title="264">return c.vulnerabilities, nil</span>
+        <span class="cov5" title="272">return c.vulnerabilities, nil</span>
 }
 
 // Inspect inspects the source code for passwords &amp; secrets and returns the list of vulnerabilities
 func (c *Inspector) Inspect(ctx context.Context, basePaths []string,
         files model.FileMetadatas, currentQuery chan&lt;- int64) ([]model.Vulnerability, error) <span class="cov2" title="8">{
-        for i := range c.regexQueries </span><span class="cov5" title="264">{
+        for i := range c.regexQueries </span><span class="cov5" title="272">{
                 currentQuery &lt;- 1
 
                 vulns, err := c.inspectQuery(ctx, basePaths, files, i)
@@ -6286,13 +6286,13 @@ func compileRegexQueries(
                 regexQueries = kicsRegexQueries.Rules</span>
         }
 
-        <span class="cov3" title="15">for i := range allRegexQueries </span><span class="cov5" title="276">{
+        <span class="cov3" title="15">for i := range allRegexQueries </span><span class="cov5" title="284">{
                 includeSpecificSecretQuery = isValueInArray(allRegexQueries[i].ID, queryFilter.IncludeQueries.ByIDs)
                 if len(queryFilter.IncludeQueries.ByIDs) &gt; 0 &amp;&amp; !allSecretsQueryAndCustom </span><span class="cov1" title="3">{
                         if includeAllSecretsQuery || includeSpecificSecretQuery </span><span class="cov1" title="1">{
                                 regexQueries = append(regexQueries, allRegexQueries[i])
                         }</span>
-                } else<span class="cov5" title="273"> {
+                } else<span class="cov5" title="281"> {
                         if !shouldExecuteQuery(
                                 allRegexQueries[i].ID,
                                 allRegexQueries[i].ID,
@@ -6302,7 +6302,7 @@ func compileRegexQueries(
                         ) </span><span class="cov1" title="1">{
                                 continue</span>
                         }
-                        <span class="cov5" title="272">if !shouldExecuteQuery(
+                        <span class="cov5" title="280">if !shouldExecuteQuery(
                                 SecretsQueryMetadata["category"],
                                 allRegexQueries[i].ID,
                                 SecretsQueryMetadata["category"],
@@ -6311,7 +6311,7 @@ func compileRegexQueries(
                         ) </span><span class="cov0" title="0">{
                                 continue</span>
                         }
-                        <span class="cov5" title="272">if !shouldExecuteQuery(
+                        <span class="cov5" title="280">if !shouldExecuteQuery(
                                 SecretsQueryMetadata["severity"],
                                 allRegexQueries[i].ID,
                                 SecretsQueryMetadata["category"],
@@ -6320,15 +6320,15 @@ func compileRegexQueries(
                         ) </span><span class="cov0" title="0">{
                                 continue</span>
                         }
-                        <span class="cov5" title="272">regexQueries = append(regexQueries, allRegexQueries[i])</span>
+                        <span class="cov5" title="280">regexQueries = append(regexQueries, allRegexQueries[i])</span>
                 }
         }
-        <span class="cov3" title="15">for i := range regexQueries </span><span class="cov5" title="273">{
+        <span class="cov3" title="15">for i := range regexQueries </span><span class="cov5" title="281">{
                 compiledRegexp, err := regexp.Compile(regexQueries[i].RegexStr)
                 if err != nil </span><span class="cov0" title="0">{
                         return regexQueries, err
                 }</span>
-                <span class="cov5" title="273">regexQueries[i].Regex = compiledRegexp
+                <span class="cov5" title="281">regexQueries[i].Regex = compiledRegexp
                 for j := range regexQueries[i].AllowRules </span><span class="cov5" title="176">{
                         regexQueries[i].AllowRules[j].Regex = regexp.MustCompile(regexQueries[i].AllowRules[j].RegexStr)
                 }</span>
@@ -6351,21 +6351,21 @@ func (c *Inspector) GetQueriesLength() int <span class="cov2" title="8">{
         return len(c.regexQueries)
 }</span>
 
-func isValueInArray(value string, array []string) bool <span class="cov7" title="1120">{
+func isValueInArray(value string, array []string) bool <span class="cov7" title="1152">{
         for i := range array </span><span class="cov2" title="7">{
                 if strings.EqualFold(value, array[i]) </span><span class="cov1" title="2">{
                         return true
                 }</span>
         }
-        <span class="cov7" title="1118">return false</span>
+        <span class="cov7" title="1150">return false</span>
 }
 
-func (c *Inspector) isSecret(s string, query *RegexQuery) (isSecretRet bool, groups [][]string) <span class="cov7" title="2871">{
-        if isAllowRule(s, query.AllowRules) || isAllowRule(s, c.allowRules) </span><span class="cov4" title="66">{
+func (c *Inspector) isSecret(s string, query *RegexQuery) (isSecretRet bool, groups [][]string) <span class="cov7" title="2966">{
+        if isAllowRule(s, query.AllowRules) || isAllowRule(s, c.allowRules) </span><span class="cov4" title="68">{
                 return false, [][]string{}
         }</span>
 
-        <span class="cov7" title="2805">groups = query.Regex.FindAllStringSubmatch(s, -1)
+        <span class="cov7" title="2898">groups = query.Regex.FindAllStringSubmatch(s, -1)
 
         for _, group := range groups </span><span class="cov2" title="6">{
                 splitedText := strings.Split(s, "\n")
@@ -6387,19 +6387,19 @@ func (c *Inspector) isSecret(s string, query *RegexQuery) (isSecretRet bool, gro
                 <span class="cov0" title="0">groups = append(groups, newGroups...)</span>
         }
 
-        <span class="cov7" title="2805">if len(groups) &gt; 0 </span><span class="cov2" title="6">{
+        <span class="cov7" title="2898">if len(groups) &gt; 0 </span><span class="cov2" title="6">{
                 return true, groups
         }</span>
-        <span class="cov7" title="2799">return false, [][]string{}</span>
+        <span class="cov7" title="2892">return false, [][]string{}</span>
 }
 
-func isAllowRule(s string, allowRules []AllowRule) bool <span class="cov8" title="5742">{
-        for i := range allowRules </span><span class="cov10" title="30470">{
-                if allowRules[i].Regex.MatchString(s) </span><span class="cov4" title="66">{
+func isAllowRule(s string, allowRules []AllowRule) bool <span class="cov8" title="5932">{
+        for i := range allowRules </span><span class="cov10" title="31410">{
+                if allowRules[i].Regex.MatchString(s) </span><span class="cov4" title="68">{
                         return true
                 }</span>
         }
-        <span class="cov8" title="5676">return false</span>
+        <span class="cov8" title="5864">return false</span>
 }
 
 func (c *Inspector) checkFileContent(query *RegexQuery, basePaths []string, file *model.FileMetadata) <span class="cov3" title="21">{
@@ -6488,10 +6488,10 @@ func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadat
 }
 
 func (c *Inspector) checkLineByLine(wg *sync.WaitGroup, query *RegexQuery,
-        basePaths []string, file *model.FileMetadata, lineNumber int, currentLine string) <span class="cov7" title="2850">{
+        basePaths []string, file *model.FileMetadata, lineNumber int, currentLine string) <span class="cov7" title="2945">{
         defer wg.Done()
         isSecret, groups := c.isSecret(currentLine, query)
-        if !isSecret </span><span class="cov7" title="2845">{
+        if !isSecret </span><span class="cov7" title="2940">{
                 return
         }</span>
 
@@ -6612,7 +6612,7 @@ func calculateEntropy(token, charSet string) float64 <span class="cov3" title="1
         <span class="cov3" title="12">return math.Log2(length) - freq/length</span>
 }
 
-func shouldExecuteQuery(filterTarget, id, category, severity string, filter []string) bool <span class="cov6" title="817">{
+func shouldExecuteQuery(filterTarget, id, category, severity string, filter []string) bool <span class="cov6" title="841">{
         if isValueInArray(filterTarget, filter) </span><span class="cov1" title="1">{
                 log.Debug().
                         Msgf("Excluding query ID: %s category: %s severity: %s",
@@ -6621,7 +6621,7 @@ func shouldExecuteQuery(filterTarget, id, category, severity string, filter []st
                                 severity)
                 return false
         }</span>
-        <span class="cov6" title="816">return true</span>
+        <span class="cov6" title="840">return true</span>
 }
 
 func getPasswordsAndSecretsQueryID() (string, error) <span class="cov3" title="13">{
@@ -6643,20 +6643,20 @@ func validateCustomSecretsQueriesID(allRegexQueries []RegexQuery) error <span cl
         <span class="cov0" title="0">return nil</span>
 }
 
-func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.FileMetadatas) <span class="cov5" title="231">{
+func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.FileMetadatas) <span class="cov5" title="238">{
         // lines ignore can have the lines from the resolved files
         // since inspector secrets only looks to original data, the lines ignore should be replaced
         files[idx].LinesIgnore = model.GetIgnoreLines(&amp;files[idx])
 
         wg := &amp;sync.WaitGroup{}
         // check file content line by line
-        if c.regexQueries[i].Multiline == (MultilineResult{}) </span><span class="cov5" title="210">{
+        if c.regexQueries[i].Multiline == (MultilineResult{}) </span><span class="cov5" title="217">{
                 lines := (&amp;files[idx]).LinesOriginalData
-                for lineNumber, currentLine := range *lines </span><span class="cov7" title="2850">{
+                for lineNumber, currentLine := range *lines </span><span class="cov7" title="2945">{
                         wg.Add(1)
                         go c.checkLineByLine(wg, &amp;c.regexQueries[i], basePaths, &amp;files[idx], lineNumber, currentLine)
                 }</span>
-                <span class="cov5" title="210">wg.Wait()
+                <span class="cov5" title="217">wg.Wait()
                 return</span>
         }
 
@@ -6674,20 +6674,20 @@ func ignoreLine(lineNumber int, linesIgnore []int) bool <span class="cov2" title
 }
 
 // cleanFiles keeps one file per filePath
-func cleanFiles(files model.FileMetadatas) model.FileMetadatas <span class="cov5" title="264">{
+func cleanFiles(files model.FileMetadatas) model.FileMetadatas <span class="cov5" title="272">{
         keys := make(map[string]bool)
 
         cleanFiles := model.FileMetadatas{}
 
-        for i := range files </span><span class="cov5" title="264">{
+        for i := range files </span><span class="cov5" title="272">{
                 filePath := files[i].FilePath
-                if _, value := keys[filePath]; !value </span><span class="cov5" title="264">{
+                if _, value := keys[filePath]; !value </span><span class="cov5" title="272">{
                         keys[filePath] = true
                         cleanFiles = append(cleanFiles, files[i])
                 }</span>
         }
 
-        <span class="cov5" title="264">return cleanFiles</span>
+        <span class="cov5" title="272">return cleanFiles</span>
 }
 
 func hideSecret(linesVuln *model.VulnerabilityLines,
