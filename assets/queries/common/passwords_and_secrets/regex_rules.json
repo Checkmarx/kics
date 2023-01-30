@@ -303,6 +303,11 @@
         }
       ],
       "specialMask": "(?i)['\"]?encryption[_]?key['\"]?\\s*[:=]\\s*"
+    },
+    {
+      "id": "8a879bc7-6f82-40fd-bb48-74d25d557fe8",
+      "name": "SendGrid API Key",
+      "regex": "(?i)SG\\.[a-zA-Z0-9\\-\\_]{22}\\.[a-zA-Z0-9\\-\\_]{43}\\s*"
     }
   ],
   "allowRules": [
