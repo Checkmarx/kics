@@ -15,3 +15,16 @@ resource "aws_iam_role_policy" "positive1" {
 }
 EOF
 }
+
+data "aws_iam_policy_document" "example" {
+  statement {
+    sid = "1"
+    effect = "Allow"
+    actions = [
+      "*"
+    ]
+    resources = [
+      "*",
+    ]
+  }
+}
