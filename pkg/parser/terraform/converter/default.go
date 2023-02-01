@@ -251,12 +251,12 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
 			Functions: functions.TerraformFuncs,
 		})
 		if err != nil {
-			sentryReport.ReportSentry(&sentryReport.Report{
+			/*sentryReport.ReportSentry(&sentryReport.Report{
 				Location: "func convertExpression",
 				Err:      err,
 				Kind:     model.KindTerraform,
 				Message:  "Failed to get value in terraform parser",
-			}, false)
+			}, false)*/
 			return c.wrapExpr(expr)
 		}
 		return ctyjson.SimpleJSONValue{Value: expressionEvaluated}, nil
@@ -316,12 +316,12 @@ func (c *converter) convertTemplate(t *hclsyntax.TemplateExpr) (string, error) {
 		// safe because the value is just the string
 		v, err := t.Value(nil)
 		if err != nil {
-			sentryReport.ReportSentry(&sentryReport.Report{
+			/*sentryReport.ReportSentry(&sentryReport.Report{
 				Location: "func convertTemplate",
 				Err:      err,
 				Kind:     model.KindTerraform,
 				Message:  "Failed to get value in terraform parser",
-			}, false)
+			}, false)*/
 			return "", err
 		}
 		return v.AsString(), nil
