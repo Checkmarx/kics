@@ -187,7 +187,7 @@
 				
 				<option value="file65">github.com/Checkmarx/kics/pkg/parser/terraform/comment/comment.go (96.8%)</option>
 				
-				<option value="file66">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (77.1%)</option>
+				<option value="file66">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (77.3%)</option>
 				
 				<option value="file67">github.com/Checkmarx/kics/pkg/parser/terraform/data_source.go (76.8%)</option>
 				
@@ -207,7 +207,7 @@
 				
 				<option value="file75">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (80.0%)</option>
 				
-				<option value="file76">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file76">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (90.9%)</option>
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -2164,13 +2164,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="33">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2195,7 +2195,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="15">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4773,7 +4773,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="11">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -12305,12 +12305,6 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
                         Functions: functions.TerraformFuncs,
                 })
                 if err != nil </span><span class="cov1" title="1">{
-                        sentryReport.ReportSentry(&amp;sentryReport.Report{
-                                Location: "func convertExpression",
-                                Err:      err,
-                                Kind:     model.KindTerraform,
-                                Message:  "Failed to get value in terraform parser",
-                        }, false)
                         return c.wrapExpr(expr)
                 }</span>
                 <span class="cov0" title="0">return ctyjson.SimpleJSONValue{Value: expressionEvaluated}, nil</span>
@@ -12370,18 +12364,12 @@ func (c *converter) convertTemplate(t *hclsyntax.TemplateExpr) (string, error) <
                 // safe because the value is just the string
                 v, err := t.Value(nil)
                 if err != nil </span><span class="cov0" title="0">{
-                        sentryReport.ReportSentry(&amp;sentryReport.Report{
-                                Location: "func convertTemplate",
-                                Err:      err,
-                                Kind:     model.KindTerraform,
-                                Message:  "Failed to get value in terraform parser",
-                        }, false)
                         return "", err
                 }</span>
                 <span class="cov7" title="24">return v.AsString(), nil</span>
         }
         <span class="cov5" title="7">builder := &amp;strings.Builder{}
-        for _, part := range t.Parts </span><span class="cov7" title="23">{
+        for _, part := range t.Parts </span><span class="cov7" title="19">{
                 s, err := c.convertStringPart(part)
                 if err != nil </span><span class="cov0" title="0">{
                         sentryReport.ReportSentry(&amp;sentryReport.Report{
@@ -12392,7 +12380,7 @@ func (c *converter) convertTemplate(t *hclsyntax.TemplateExpr) (string, error) <
                         }, false)
                         return "", err
                 }</span>
-                <span class="cov7" title="23">builder.WriteString(s)</span>
+                <span class="cov7" title="19">builder.WriteString(s)</span>
         }
 
         <span class="cov5" title="7">s := builder.String()
@@ -12403,9 +12391,9 @@ func (c *converter) convertTemplate(t *hclsyntax.TemplateExpr) (string, error) <
         return s, nil</span>
 }
 
-func (c *converter) convertStringPart(expr hclsyntax.Expression) (string, error) <span class="cov8" title="33">{
+func (c *converter) convertStringPart(expr hclsyntax.Expression) (string, error) <span class="cov8" title="29">{
         switch v := expr.(type) </span>{
-        case *hclsyntax.LiteralValueExpr:<span class="cov6" title="15">
+        case *hclsyntax.LiteralValueExpr:<span class="cov6" title="11">
                 s, err := ctyconvert.Convert(v.Val, cty.String)
                 if err != nil </span><span class="cov0" title="0">{
                         sentryReport.ReportSentry(&amp;sentryReport.Report{
@@ -12416,7 +12404,7 @@ func (c *converter) convertStringPart(expr hclsyntax.Expression) (string, error)
                         }, false)
                         return "", err
                 }</span>
-                <span class="cov6" title="15">return s.AsString(), nil</span>
+                <span class="cov6" title="11">return s.AsString(), nil</span>
         case *hclsyntax.TemplateExpr:<span class="cov5" title="8">
                 return c.convertTemplate(v)</span>
         case *hclsyntax.TemplateWrapExpr:<span class="cov1" title="1">
@@ -14058,7 +14046,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov1" title="1">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -14067,7 +14055,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov1" title="1">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
@@ -14079,14 +14067,14 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov1" title="1">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov1" title="1">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file77" style="display: none">package progress
