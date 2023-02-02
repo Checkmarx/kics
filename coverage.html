@@ -2164,13 +2164,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="36">total += v
+                <span class="cov8" title="33">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2195,7 +2195,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="16">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="15">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -12381,7 +12381,7 @@ func (c *converter) convertTemplate(t *hclsyntax.TemplateExpr) (string, error) <
                 <span class="cov7" title="24">return v.AsString(), nil</span>
         }
         <span class="cov5" title="7">builder := &amp;strings.Builder{}
-        for _, part := range t.Parts </span><span class="cov7" title="19">{
+        for _, part := range t.Parts </span><span class="cov7" title="23">{
                 s, err := c.convertStringPart(part)
                 if err != nil </span><span class="cov0" title="0">{
                         sentryReport.ReportSentry(&amp;sentryReport.Report{
@@ -12392,7 +12392,7 @@ func (c *converter) convertTemplate(t *hclsyntax.TemplateExpr) (string, error) <
                         }, false)
                         return "", err
                 }</span>
-                <span class="cov7" title="19">builder.WriteString(s)</span>
+                <span class="cov7" title="23">builder.WriteString(s)</span>
         }
 
         <span class="cov5" title="7">s := builder.String()
@@ -12403,9 +12403,9 @@ func (c *converter) convertTemplate(t *hclsyntax.TemplateExpr) (string, error) <
         return s, nil</span>
 }
 
-func (c *converter) convertStringPart(expr hclsyntax.Expression) (string, error) <span class="cov8" title="29">{
+func (c *converter) convertStringPart(expr hclsyntax.Expression) (string, error) <span class="cov8" title="33">{
         switch v := expr.(type) </span>{
-        case *hclsyntax.LiteralValueExpr:<span class="cov6" title="11">
+        case *hclsyntax.LiteralValueExpr:<span class="cov6" title="15">
                 s, err := ctyconvert.Convert(v.Val, cty.String)
                 if err != nil </span><span class="cov0" title="0">{
                         sentryReport.ReportSentry(&amp;sentryReport.Report{
@@ -12416,7 +12416,7 @@ func (c *converter) convertStringPart(expr hclsyntax.Expression) (string, error)
                         }, false)
                         return "", err
                 }</span>
-                <span class="cov6" title="11">return s.AsString(), nil</span>
+                <span class="cov6" title="15">return s.AsString(), nil</span>
         case *hclsyntax.TemplateExpr:<span class="cov5" title="8">
                 return c.convertTemplate(v)</span>
         case *hclsyntax.TemplateWrapExpr:<span class="cov1" title="1">
