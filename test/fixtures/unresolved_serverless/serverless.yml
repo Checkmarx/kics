@@ -7,7 +7,4 @@ provider:
   runtime: nodejs14.x
 
 functions:
-  eventRouterHandler: 
-    handler: handler.hello
-    role: eventRouterHandlerRole
-    timeout: 30
+  eventRouterHandler: ${file(eventRouterHandler.yml)}
