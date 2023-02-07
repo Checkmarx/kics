@@ -105,7 +105,7 @@
 				
 				<option value="file24">github.com/Checkmarx/kics/pkg/builder/writer/rego.go (89.8%)</option>
 				
-				<option value="file25">github.com/Checkmarx/kics/pkg/descriptions/client.go (76.2%)</option>
+				<option value="file25">github.com/Checkmarx/kics/pkg/descriptions/client.go (74.4%)</option>
 				
 				<option value="file26">github.com/Checkmarx/kics/pkg/descriptions/descriptions.go (85.7%)</option>
 				
@@ -205,7 +205,7 @@
 				
 				<option value="file74">github.com/Checkmarx/kics/pkg/printer/utils.go (82.4%)</option>
 				
-				<option value="file75">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (80.0%)</option>
+				<option value="file75">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
 				<option value="file76">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
@@ -229,7 +229,7 @@
 				
 				<option value="file86">github.com/Checkmarx/kics/pkg/report/gitlab_sast.go (93.3%)</option>
 				
-				<option value="file87">github.com/Checkmarx/kics/pkg/report/html.go (90.0%)</option>
+				<option value="file87">github.com/Checkmarx/kics/pkg/report/html.go (88.1%)</option>
 				
 				<option value="file88">github.com/Checkmarx/kics/pkg/report/json.go (92.3%)</option>
 				
@@ -2164,13 +2164,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="36">total += v
+                <span class="cov8" title="32">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2195,7 +2195,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -3927,8 +3927,12 @@ func (c *Client) CheckConnection() error <span class="cov7" title="3">{
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
-        <span class="cov4" title="2">defer resp.Body.Close()
-        return err</span>
+        <span class="cov4" title="2">defer func() </span><span class="cov4" title="2">{
+                if closeErr := resp.Body.Close(); err != nil </span><span class="cov0" title="0">{
+                        log.Err(closeErr).Msg("Error closing file")
+                }</span>
+        }()
+        <span class="cov4" title="2">return err</span>
 }
 
 // CheckLatestVersion - Check if using KICS latest version from endpoint
@@ -3959,9 +3963,13 @@ func (c *Client) CheckLatestVersion(version string) (model.Version, error) <span
         if err != nil </span><span class="cov0" title="0">{
                 return model.Version{}, err
         }</span>
-        <span class="cov1" title="1">defer resp.Body.Close()
+        <span class="cov1" title="1">defer func() </span><span class="cov1" title="1">{
+                if closeErr := resp.Body.Close(); err != nil </span><span class="cov0" title="0">{
+                        log.Err(closeErr).Msg("Error closing file")
+                }</span>
+        }()
 
-        b, err := io.ReadAll(resp.Body)
+        <span class="cov1" title="1">b, err := io.ReadAll(resp.Body)
         if err != nil </span><span class="cov0" title="0">{
                 return model.Version{}, err
         }</span>
@@ -4010,8 +4018,12 @@ func (c *Client) RequestDescriptions(descriptionIDs []string) (map[string]descMo
                 log.Err(err).Msgf("Unable to POST to descriptions endpoint")
                 return nil, err
         }</span>
-        <span class="cov1" title="1">defer resp.Body.Close()
-        endTime := time.Since(startTime)
+        <span class="cov1" title="1">defer func() </span><span class="cov1" title="1">{
+                if closeErr := resp.Body.Close(); err != nil </span><span class="cov0" title="0">{
+                        log.Err(closeErr).Msg("Error closing file")
+                }</span>
+        }()
+        <span class="cov1" title="1">endTime := time.Since(startTime)
         log.Debug().Msgf("HTTP Status: %d %s %v", resp.StatusCode, http.StatusText(resp.StatusCode), endTime)
 
         b, err := io.ReadAll(resp.Body)
@@ -13987,8 +13999,8 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
 }
 
 // Start initializes the Circle Progress Bar
-func (p ProgressBar) Start() <span class="cov0" title="0">{
-        for </span><span class="cov0" title="0">{ // increment until the Close func is called
+func (p ProgressBar) Start() <span class="cov1" title="1">{
+        for </span><span class="cov1" title="1">{ // increment until the Close func is called
                 p.pBar.Increment()
                 // lower cpu usage from infinite loop
                 time.Sleep(time.Millisecond * sleepTimeout)
@@ -15090,6 +15102,7 @@ import (
         "strings"
 
         "github.com/Checkmarx/kics/internal/constants"
+        "github.com/rs/zerolog/log"
         "github.com/tdewolff/minify/v2"
         minifyCSS "github.com/tdewolff/minify/v2/css"
         minifyHtml "github.com/tdewolff/minify/v2/html"
@@ -15192,9 +15205,13 @@ func PrintHTMLReport(path, filename string, body interface{}) error <span class=
         })
 
         minifierWriter := minifier.Writer(textHTML, f)
-        defer minifierWriter.Close()
+        defer func() </span><span class="cov1" title="1">{
+                if closeErr := minifierWriter.Close(); err != nil </span><span class="cov0" title="0">{
+                        log.Err(closeErr).Msg("Error closing file")
+                }</span>
+        }()
 
-        _, err = minifierWriter.Write(buffer.Bytes())
+        <span class="cov1" title="1">_, err = minifierWriter.Write(buffer.Bytes())
         return err</span>
 }
 </pre>
