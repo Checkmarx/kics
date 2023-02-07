@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/rs/zerolog/log"
 	"github.com/tdewolff/minify/v2"
 	minifyCSS "github.com/tdewolff/minify/v2/css"
 	minifyHtml "github.com/tdewolff/minify/v2/html"
@@ -112,6 +113,11 @@ func PrintHTMLReport(path, filename string, body interface{}) error {
 
 	minifierWriter := minifier.Writer(textHTML, f)
 	defer minifierWriter.Close()
+	defer func() {
+		if err := minifierWriter.Close(); err != nil {
+			log.Err(err).Msg("Error closing file")
+		}
+	}()
 
 	_, err = minifierWriter.Write(buffer.Bytes())
 	return err
