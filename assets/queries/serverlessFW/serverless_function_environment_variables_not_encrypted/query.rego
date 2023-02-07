@@ -9,6 +9,7 @@ CxPolicy[result] {
 	function := functions[fname]
 
 	not common_lib.valid_key(function, "kmsKeyArn")
+	not hasKMSarnAtProvider(document)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -20,4 +21,8 @@ CxPolicy[result] {
 		"keyActualValue": "'kmsKeyArn' is not defined",
 		"searchLine": common_lib.build_search_line(["functions", fname], []),
 	}
+}
+
+hasKMSarnAtProvider(doc){
+	common_lib.valid_key(doc.provider, "kmsKeyArn")
 }
