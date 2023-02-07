@@ -8,13 +8,13 @@
   {
     "queryName": "Website with 'Http20Enabled' Disabled",
     "severity": "LOW",
-    "line": 19,
+    "line": 15,
     "fileName": "positive2.json"
   },
   {
     "queryName": "Website with 'Http20Enabled' Disabled",
     "severity": "LOW",
-    "line": 18,
+    "line": 15,
     "fileName": "positive3.json"
   },
   {
@@ -26,13 +26,13 @@
   {
     "queryName": "Website with 'Http20Enabled' Disabled",
     "severity": "LOW",
-    "line": 21,
+    "line": 17,
     "fileName": "positive5.json"
   },
   {
     "queryName": "Website with 'Http20Enabled' Disabled",
     "severity": "LOW",
-    "line": 20,
+    "line": 17,
     "fileName": "positive6.json"
   }
 ]
