@@ -3,8 +3,8 @@
   "queryName": "Cluster Master Authentication Disabled",
   "severity": "HIGH",
   "category": "Insecure Configurations",
-  "descriptionText": "Kubernetes Engine Clusters must have Master Authentication set to enabled, which means the attribute 'master_auth' must have the subattributes 'username' and 'password' defined and not empty",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
+  "descriptionText": "Kubernetes Engine Clusters at GKE < 1.19 must have Master Authentication set to enabled, which means the attribute 'master_auth' must have the subattributes 'username' and 'password' defined and not empty",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/4.7.0/docs/resources/container_cluster#nested_master_auth",
   "platform": "Terraform",
   "descriptionID": "70e5d429",
   "cloudProvider": "gcp"
