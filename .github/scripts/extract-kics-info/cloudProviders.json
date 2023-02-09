@@ -5,24 +5,20 @@
             "id": 1
         },
         {
-            "cloudProvider": "",
+            "cloudProvider": "azure",
             "id": 2
         },
         {
-            "cloudProvider": "azure",
+            "cloudProvider": "gcp",
             "id": 3
         },
         {
-            "cloudProvider": "gcp",
+            "cloudProvider": "common",
             "id": 4
         },
         {
-            "cloudProvider": "common",
-            "id": 5
-        },
-        {
             "cloudProvider": "alicloud",
-            "id": 6
+            "id": 5
         }
     ]
 }

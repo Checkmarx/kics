@@ -3507,7 +3507,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 2,
+            "cloudProviderId": null,
             "descriptionID": "a780a54d",
             "descriptionText": "All Enum Names should follow CamelCase and start with Capital Letter",
             "descriptionUrl": "https://developers.google.com/protocol-buffers/docs/reference/proto3-spec#enum_definition",
@@ -3519,7 +3519,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "6ae0507e",
             "descriptionText": "'Microsoft.Storage/storageAccounts' should force the use of HTTPS",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts?tabs=json#storageaccountpropertiescreateparameters-object",
@@ -3531,7 +3531,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "e8a4e321",
             "descriptionText": "All Alerts should be enabled in SQL Database Server SecurityAlerts Policy Properties",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/servers/databases/securityalertpolicies?tabs=json",
@@ -3543,7 +3543,7 @@
         {
             "aggregation": 2,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "7f5b9ef4",
             "descriptionText": "Email notifications about new security alerts, should be set to 'On', and be sent to persons with specific RBAC roles on the subscription",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.security/securitycontacts",
@@ -3555,7 +3555,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "e09bde32",
             "descriptionText": "Port 3389 (Remote Desktop) is exposed to the Internet",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.network/2020-07-01/networksecuritygroups?tabs=json#securityrulepropertiesformat-object",
@@ -3567,7 +3567,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "88ca11b3",
             "descriptionText": "Trusted Microsoft Services should be enabled for Storage Account access",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts?tabs=json#networkruleset",
@@ -3579,7 +3579,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "b5c851d5a",
             "descriptionText": "Resources of type 'Microsoft.Web/sites' should define 'properties.siteConfig.minTlsVersion' with '1.2'",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteconfig-object",
@@ -3591,7 +3591,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "bb5f96a2",
             "descriptionText": "All Secrets must have an expiration date defined",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.keyvault/vaults/secrets?tabs=json#SecretAttributes",
@@ -3603,7 +3603,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "b07ac0d6",
             "descriptionText": "Microsoft.ContainerService/managedClusters should have enableRBAC set to true",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json",
@@ -3615,7 +3615,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "f87b26ea",
             "descriptionText": "'Microsoft.Storage/storageAccounts' should force the use of HTTPS",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts?tabs=json#storageaccountpropertiescreateparameters-object",
@@ -3627,7 +3627,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "831efa07",
             "descriptionText": "Azure App Service should have App Service Authentication set",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites/config-web?tabs=json",
@@ -3639,7 +3639,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "8b9ef792",
             "descriptionText": "Microsoft.Security securityContacts should have a phone number defined",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.security/securitycontacts?tabs=json",
@@ -3651,7 +3651,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "e2fa6cda",
             "descriptionText": "Azure Disk Encryption should be enabled",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.compute/disks?tabs=json#encryptionsettingscollection-object",
@@ -3663,7 +3663,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "3769181b",
             "descriptionText": "Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' property set to 'on'",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.dbforpostgresql/servers/configurations?tabs=json#configurationproperties-object",
@@ -3675,7 +3675,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "97b6233c",
             "descriptionText": "Port 22 (SSH) is exposed to the Internet",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.network/2020-07-01/networksecuritygroups?tabs=json#securityrulepropertiesformat-object",
@@ -3687,7 +3687,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "7d8860a5",
             "descriptionText": "Role Definitions should not allow custom subscription role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/roledefinitions?tabs=json#permission-object",
@@ -3699,7 +3699,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "9b09c3e1",
             "descriptionText": "Azure Kubernetes Service should have logging to Azure Monitoring enabled.",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json#managedclusteraddonprofile",
@@ -3711,7 +3711,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "71ce9f8c",
             "descriptionText": "Network Watcher Flow Log Retention Policy should be enabled and the recommended number of days for the retention should be higher than 90",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.network/2019-11-01/networkwatchers/flowlogs?tabs=json#retentionpolicyparameters-object",
@@ -3723,7 +3723,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "2081c7dc",
             "descriptionText": "Azure Security Center provides more features for standard pricing mode, so it must be activated.",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.security/pricings?tabs=json#pricingproperties-object",
@@ -3735,7 +3735,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "16d077a1",
             "descriptionText": "Every 'Microsoft.Sql/servers/databases' resource should have Auditing Enabled",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/servers/databases/auditingsettings",
@@ -3747,7 +3747,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "ead4e0f2",
             "descriptionText": "Log Profile Categories should be set to 'Write', 'Delete', and/or 'Action'",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.insights/2016-03-01/logprofiles?tabs=json#logprofileproperties-object",
@@ -3759,7 +3759,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "6664d4d6",
             "descriptionText": "SQL Database Server Firewall endIpAddress should not be '255.255.255.255' when startIpAddress is '0.0.0.0' since this allows all IPS",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/2014-04-01/servers/firewallrules?tabs=json",
@@ -3771,7 +3771,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "67cfaa3b",
             "descriptionText": "Microsoft.DBforPostgreSQL/servers sslEnforcement property should be set to 'Enabled'",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.dbforpostgresql/2017-12-01/servers?tabs=json",
@@ -3783,7 +3783,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "98ba05ca",
             "descriptionText": "Azure Instances should use SSH Key instead of basic authentication",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.compute/virtualmachines?tabs=json#linuxconfiguration-object",
@@ -3795,7 +3795,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "f5d9a1fc",
             "descriptionText": "Log Profile Retention Policy should be enabled and the recommended number of days for the retention should be higher than 365 or 0 (0 will retain the events indefinitely)",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.insights/2016-03-01/logprofiles?tabs=json#retentionpolicy-object",
@@ -3807,7 +3807,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "f7c29c0d",
             "descriptionText": "Account admins should be notified by email in the event of security alerts",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/2017-03-01-preview/servers/securityalertpolicies?tabs=json",
@@ -3819,7 +3819,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "e0cdbc75",
             "descriptionText": "'Microsoft.Web/sites' should have 'Http20Enabled' enabled",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteproperties-object",
@@ -3831,7 +3831,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "be873a2e",
             "descriptionText": "Microsoft.DBforPostgreSQL/servers/configurations should have 'log_checkpoint' property set to 'on'",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.dbforpostgresql/2017-12-01/servers/configurations?tabs=json",
@@ -3843,7 +3843,7 @@
         {
             "aggregation": 1,
             "categoryId": 10,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "a7bb7cb1",
             "descriptionText": "Secure parameters should not have hardcoded default value",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/template-test-cases#secure-parameters-cant-have-hardcoded-default",
@@ -3855,7 +3855,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "7867ae74",
             "descriptionText": "SQL Server Database Auditing Settings should keep the audit logs in the storage account for at least 90 days",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/servers/databases/auditingsettings?tabs=json",
@@ -3867,7 +3867,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "258efab1",
             "descriptionText": "Azure Kubernetes Service must have an authorized IP range for API Services enabled",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json#managedclusterapiserveraccessprofile-object",
@@ -3879,7 +3879,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "f50ec4cb",
             "descriptionText": "WebApp should have Azure Active Directory  enabled with 'identity.type' set to 'SystemAssigned' or 'userAssignedIdentities' set to 'true'",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.web/2019-08-01/sites?tabs=json#ManagedServiceIdentity",
@@ -3891,7 +3891,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "49e52e15",
             "descriptionText": "Storage Blob Service Container should not publicly accessible",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts/blobservices/containers?tabs=json#containerproperties-object",
@@ -3903,7 +3903,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "83fa7bb6",
             "descriptionText": "Storage Logging should be enabled for read, write and delete methods",
             "descriptionUrl": "https://docs.microsoft.com/pt-pt/azure/azure-monitor/essentials/resource-manager-diagnostic-settings#diagnostic-setting-for-azure-storage",
@@ -3915,7 +3915,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "3af52329",
             "descriptionText": "'Microsoft.Web/sites' should force the use of HTTPS",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteproperties-object",
@@ -3927,7 +3927,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "c12d3b42",
             "descriptionText": "Azure Kubernetes Service should have the Kubernetes dashboard disabled.",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json#managedclusteraddonprofile",
@@ -3939,7 +3939,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "69fea5b1",
             "descriptionText": "'Microsoft.DBforMySQL/servers' should enforce SSL",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.dbformysql/servers?tabs=json#serverpropertiesforcreate-object",
@@ -3951,7 +3951,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "2eb0e3a8",
             "descriptionText": "Microsoft.DBforPostgreSQL/servers/configurations should have 'connection_throttling' property set to 'on'",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.dbforpostgresql/servers/configurations?tabs=json",
@@ -3963,7 +3963,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "1b3c50da",
             "descriptionText": "'Microsoft.Web/sites' should have client certificate authentication enabled",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteproperties-object",
@@ -3975,7 +3975,7 @@
         {
             "aggregation": 1,
             "categoryId": 4,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "8e3ca202",
             "descriptionText": "Key Vault should have 'enableSoftDelete' and 'enablePurgeProtection' set to true",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.keyvault/2019-09-01/vaults?tabs=json#vaultproperties-object",
@@ -3987,7 +3987,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "3b84ba2d",
             "descriptionText": "SQL Database Server should contain emails to be notified in the event of a Security Alert",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/servers/databases/securityalertpolicies?tabs=json",
@@ -3999,7 +3999,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "25c0df8e",
             "descriptionText": "Azure Kubernetes Service must have a network policy defined.",
             "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json#containerservicenetworkprofile-object",
@@ -4011,7 +4011,7 @@
         {
             "aggregation": 62,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "33745204",
             "descriptionText": "A sensitive port, such as port 23 or port 110, is open for the whole network in either TCP or UDP protocol",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_securitygroup_module.html#parameter-rules",
@@ -4023,7 +4023,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "75bbf826",
             "descriptionText": "Azure Kubernetes Service should have the proper network policy configuration to ensure the principle of least privileges, which means that 'network_profile.network_policy' should be defined",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_aks_module.html#parameter-network_profile/network_policy",
@@ -4035,7 +4035,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "cb93f630",
             "descriptionText": "Monitoring log profile captures all the activities (Action, Write, Delete)",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_monitorlogprofile_module.html",
@@ -4047,7 +4047,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "6296166a",
             "descriptionText": "Role Definition should not allow custom role creation (Microsoft.Authorization/roleDefinitions/write)",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_roledefinition_module.html#parameter-permissions/actions",
@@ -4059,7 +4059,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "e86db9c1",
             "descriptionText": "Trusted Microsoft Services should be enabled for Storage Account access",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-network_acls/bypass",
@@ -4071,7 +4071,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "7cb8bdbe",
             "descriptionText": "The IP range filter should be defined to secure the data stored",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_cosmosdbaccount_module.html#parameter-ip_range_filter",
@@ -4083,7 +4083,7 @@
         {
             "aggregation": 1,
             "categoryId": 4,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "ca1a9cde",
             "descriptionText": "Make sure Soft Delete is enabled for Key Vault",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_keyvault_module.html#parameter-enable_soft_delete",
@@ -4095,7 +4095,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "99f14985",
             "descriptionText": "Check if any firewall rule allows too many hosts to access Redis Cache.",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_rediscachefirewallrule_module.html",
@@ -4107,7 +4107,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "bf371036",
             "descriptionText": "Make sure that for PostgreSQL Database, server parameter 'log_retention' is set to 'ON'",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlconfiguration_module.html",
@@ -4119,7 +4119,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "6d8d362e",
             "descriptionText": "Azure Container Service (AKS) instance should have logging enabled to Azure Monitoring",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_aks_module.html",
@@ -4131,7 +4131,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "afa96f09",
             "descriptionText": "The Active Directory Administrator is not configured for a SQL server",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_sqlserver_module.html#parameter-ad_user",
@@ -4143,7 +4143,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "d8ca5381",
             "descriptionText": "Admin user is enabled for Container Registry",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_containerregistry_module.html",
@@ -4155,7 +4155,7 @@
         {
             "aggregation": 1,
             "categoryId": 11,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "e65b6273",
             "descriptionText": "Default Network Access rule for Storage Accounts must be set to deny, which means the attribute 'default_action' must be 'Deny'",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html",
@@ -4167,7 +4167,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "ddcfea46",
             "descriptionText": "Make sure that for Postgre SQL Database Server, parameter 'log_checkpoints' is set to 'ON'",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlconfiguration_module.html",
@@ -4179,7 +4179,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "03235d5d",
             "descriptionText": "Azure SQL Server Accessibility should be set to a minimal address range to grant the principle of least privileges, which means the difference between the values of the 'end_ip_address' and 'start_ip_address' should be less than 256. Additionally, both ips should be different from '0.0.0.0'",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_sqlfirewallrule_module.html",
@@ -4191,7 +4191,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "31e56819",
             "descriptionText": "Redis Cache resources should not allow non-SSL connections",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_rediscache_module.html",
@@ -4203,7 +4203,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "9709164b",
             "descriptionText": "Make sure that for MySQL Database Server, 'Enforce SSL connection' is enabled",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_mysqlserver_module.html",
@@ -4215,7 +4215,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "16276251",
             "descriptionText": "Azure Container Service (AKS) instance should have role-based access control (RBAC) enabled",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_aks_module.html",
@@ -4227,7 +4227,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "47504c54",
             "descriptionText": "Ensure that Connection Throttling is set for the PostgreSQL server",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlconfiguration_module.html",
@@ -4239,7 +4239,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "c518b2f2",
             "descriptionText": "Web app should only accept HTTPS traffic in Azure Web App Service.",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_webapp_module.html#parameter-https_only",
@@ -4251,7 +4251,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "8d159e5e",
             "descriptionText": "Make sure that for PostgreSQL Database, server parameter 'log_disconnections' is set to 'ON'",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlconfiguration_module.html",
@@ -4263,7 +4263,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "8526646e",
             "descriptionText": "Azure SQL Server's Admin account login must avoid using names like 'Admin', that are too predictable, which means the attribute 'admin_username' must be set to a name that is not easy to predict",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_sqlserver_module.html",
@@ -4275,7 +4275,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "b4bcb2d1",
             "descriptionText": "Make sure that for PosgreSQL, the 'Enforce SSL connection' is set to 'ENABLED'",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlserver_module.html#parameter-enforce_ssl",
@@ -4287,7 +4287,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "30144827",
             "descriptionText": "Anonymous, public read access to a container and its blobs are enabled in Azure Blob Storage",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageblob_module.html#parameter-public_access",
@@ -4299,7 +4299,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "33a5e5ec",
             "descriptionText": "No Network Security Group is attached to the Virtual Machine",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_virtualmachine_module.html#parameter-network_interface_names",
@@ -4311,7 +4311,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "f9f40edb",
             "descriptionText": "Azure SQL Server must avoid using predictable Active Directory Administrator Account names, like 'Admin', which means the attribute 'ad_user' must be set to a name that is not easy to predict",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_adserviceprincipal_module.html",
@@ -4323,7 +4323,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "140392b3",
             "descriptionText": "Firewall rule allowing unrestricted access to Redis from other Azure sources",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_rediscachefirewallrule_module.html#parameter-start_ip_address",
@@ -4335,7 +4335,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "381f57a0",
             "descriptionText": "Azure Virtual Network subnet must be configured with a Network Security Group, which means the attribute 'security_group' must be defined and not empty",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_subnet_module.html",
@@ -4347,7 +4347,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "a30f009d",
             "descriptionText": "Make sure that for PostgreSQL Database, server parameter 'log_duration' is set to 'ON'",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlconfiguration_module.html",
@@ -4359,7 +4359,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "ea086cca",
             "descriptionText": "Check if all IPs are allowed, check from start 0.0.0.0 to end 255.255.255.255.",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_sqlfirewallrule_module.html",
@@ -4371,7 +4371,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "eda7b816",
             "descriptionText": "Check if Web Application Firewall is disabled or not configured for Azure's Application Gateway.",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_appgateway_module.html",
@@ -4383,7 +4383,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "7489a85f",
             "descriptionText": "Azurerm Container Registry should contain associated locks, which means 'azure_rm_lock.managed_resource_id' or 'azure_rm_lock.resource_group' association should be defined",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_lock_module.html",
@@ -4395,7 +4395,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "774a65e4",
             "descriptionText": "Make sure that for PostgreSQL Database, server parameter 'log_connections' is set to 'ON'",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlconfiguration_module.html",
@@ -4407,7 +4407,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "30a0bdeb",
             "descriptionText": "Firewall rule allowing unrestricted access to Redis from the Internet",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_rediscachefirewallrule_module.html#parameter-start_ip_address",
@@ -4419,7 +4419,7 @@
         {
             "aggregation": 1,
             "categoryId": 12,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "8469d3ac",
             "descriptionText": "Cosmos DB Account must have a mapping of tags.",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_cosmosdbaccount_module.html",
@@ -4431,7 +4431,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "5bad8aed",
             "descriptionText": "Ensure that Activity Log Retention is set 365 days or greater",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_monitorlogprofile_module.html",
@@ -4443,7 +4443,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "bc830876",
             "descriptionText": "Storage Accounts should enforce the use of HTTPS",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-https_only",
@@ -4455,7 +4455,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "f050a4f3",
             "descriptionText": "Ensure Storage Account is using the latest version of TLS encryption",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-minimum_tls_version",
@@ -4467,7 +4467,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "78d2c5b3",
             "descriptionText": "Storage Account should not be public to grant the principle of least privileges",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-network_acls",
@@ -6039,7 +6039,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "4cdc64c3",
             "descriptionText": "PostgreSQL database instance should have a 'log_checkpoints' flag with its value set to 'on'",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags",
@@ -6051,7 +6051,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "096b3fbe",
             "descriptionText": "Compute instances must be launched with Shielded VM enabled, which means the attribute 'shielded_instance_config' must be defined and its sub attributes 'enable_secure_boot', 'enable_vtpm' and 'enable_integrity_monitoring' must be set to true",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html",
@@ -6063,7 +6063,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "14cf26ed",
             "descriptionText": "Google Container Node Pool Auto Repair should be enabled. This service periodically checks for failing nodes and repairs them to ensure a smooth running state.",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_node_pool_module.html",
@@ -6075,7 +6075,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "2a2f1164",
             "descriptionText": "GCP SQL Instance should not have Cross DB Ownership Chaining On",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags",
@@ -6087,7 +6087,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "a4ad3884",
             "descriptionText": "Kubernetes Clusters must be created with Alias IP ranges enabled, which means the attribute 'ip_allocation_policy' must be defined and the subattribute 'use_ip_aliases' must be set to 'yes'.",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html",
@@ -6099,7 +6099,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "1bcc90d0",
             "descriptionText": "The node image should be Container-Optimized OS(COS)",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_node_pool_module.html#parameter-config/image_type",
@@ -6111,7 +6111,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "f26d0d51",
             "descriptionText": "Kubernetes Engine Clusters must have Legacy Authorization set to disabled, which means the attribute 'legacy_abac.enabled' must be false.",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html",
@@ -6123,7 +6123,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "2b7880b0",
             "descriptionText": "Google Compute Network should not use a firewall rule that allows port range",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_firewall_module.html#parameter-allowed",
@@ -6135,7 +6135,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "c1bb13ce",
             "descriptionText": "Cloud SQL instances should not be publicly accessible.",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html",
@@ -6147,7 +6147,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "d49df828",
             "descriptionText": "GCP - Google Kubernetes Engine (GKE) Basic Authentication must be disabled, which means the username and password provided in the master_auth block must be empty",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html",
@@ -6159,7 +6159,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "339b0278",
             "descriptionText": "PostgreSQL database 'log_min_messages' flag isn't set to a valid value",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags",
@@ -6171,7 +6171,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "764f0b06",
             "descriptionText": "PostgreSQL database 'log_temp_files' flag isn't set to '0'",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags",
@@ -6183,7 +6183,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "17fbbbd2",
             "descriptionText": "PostgreSQL database 'log_min_duration_statement' flag isn't set to '-1'",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags",
@@ -6195,7 +6195,7 @@
         {
             "aggregation": 1,
             "categoryId": 11,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "d6e87258",
             "descriptionText": "Kubernetes Engine Clusters should not be configured to use the default service account",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html#parameter-node_config/service_account",
@@ -6207,7 +6207,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "7f8ab7a4",
             "descriptionText": "Google Compute Engine VM instances should not enable serial ports. When enabled, anyone can access your VM, if they know the username, project ID, SSH key, instance name and zone",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html",
@@ -6219,7 +6219,7 @@
         {
             "aggregation": 1,
             "categoryId": 10,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "9072f426",
             "descriptionText": "KMS encryption keys should be rotated every 90 days or less. A short lifetime of encryption keys reduces the potential blast radius in case of compromise.",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_kms_crypto_key_module.html",
@@ -6231,7 +6231,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "6452ea1e",
             "descriptionText": "Kubernetes Engine Clusters must have Master Authentication set to enabled, which means the attribute 'master_auth' must have the subattributes 'username' and 'password' defined and not empty",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html",
@@ -6243,7 +6243,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "72ba0b75",
             "descriptionText": "BigQuery dataset is anonymously or publicly accessible",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_bigquery_dataset_module.html#parameter-access/special_group",
@@ -6255,7 +6255,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "f5dece39",
             "descriptionText": "Google Compute Subnetwork should have Private Google Access enabled, which means 'private_ip_google_access' should be set to yes",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_subnetwork_module.html#parameter-private_ip_google_access",
@@ -6267,7 +6267,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "ba5af65f",
             "descriptionText": "Cloud storage bucket should have logging enabled",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_storage_bucket_module.html#parameter-logging",
@@ -6279,7 +6279,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "23f68cd6",
             "descriptionText": "Check if the Google compute firewall allows unrestricted RDP access. Allowed ports should not contain RDP port 3389",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_firewall_module.html",
@@ -6291,7 +6291,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "da7c0346",
             "descriptionText": "Google Compute Network should not use a firewall rule that allows all ports",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_firewall_module.html#parameter-allowed",
@@ -6303,7 +6303,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "7b4c3b32",
             "descriptionText": "Kubernetes Clusters must be created with Private Clusters enabled, meaning the 'private_cluster_config' must be defined and the attributes 'enable_private_endpoint' and 'enable_private_nodes' must be true.",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html",
@@ -6315,7 +6315,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "aad4eec4",
             "descriptionText": "Kubernetes Engine Clusters must have Stackdriver Logging enabled, which means the attribute 'logging_service' must be defined and different from 'none'",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html",
@@ -6327,7 +6327,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "212e4955",
             "descriptionText": "Kubernetes Engine Clusters must have Stackdriver Monitoring enabled, which means the attribute 'monitoring_service' must be defined and different than 'none'",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html",
@@ -6339,7 +6339,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "50bb06d6",
             "descriptionText": "Cloud SQL Database Instance should have SLL enabled",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/ip_configuration/require_ssl",
@@ -6351,7 +6351,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "bd405766",
             "descriptionText": "Instances must not have IP forwarding enabled, which means the attribute 'can_ip_forward' must not be true",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html",
@@ -6363,7 +6363,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "e6a4b99b",
             "descriptionText": "DNSSEC should not use the RSASHA1 algorithm",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_dns_managed_zone_module.html#return-dnssecConfig/defaultKeySpecs/algorithm",
@@ -6375,7 +6375,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "b1a5b8f0",
             "descriptionText": "SQL Instance should not have Contained Database Authentication On",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags",
@@ -6387,7 +6387,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "1c9178bb",
             "descriptionText": "Google Compute Network should not use default firewall rule",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_firewall_module.html#parameter-name",
@@ -6399,7 +6399,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "6fc9b7a0",
             "descriptionText": "Kubernetes Engine Clusters must have Network Policy enabled, meaning that the attribute 'network_policy.enabled' must be true and the attribute 'addons_config.network_policy_config.disabled' must be false",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html",
@@ -6411,7 +6411,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "2d791672",
             "descriptionText": "Cloud Storage Bucket should have versioning enabled",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_storage_bucket_module.html#parameter-versioning",
@@ -6423,7 +6423,7 @@
         {
             "aggregation": 1,
             "categoryId": 10,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "bf6076f0",
             "descriptionText": "VM Instance should block project-wide SSH keys",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html",
@@ -6435,7 +6435,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "53a8ab26",
             "descriptionText": "Kubernetes Clusters must be created with Client Certificate enabled, which means 'master_auth' must have 'client_certificate_config' with the attribute 'issue_client_certificate' equal to true",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html",
@@ -6447,7 +6447,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "ef20d5fb",
             "descriptionText": "Compute instances shouldn't be accessible from the Internet.",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html#parameter-network_interfaces/access_configs",
@@ -6459,7 +6459,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "1b0564ad",
             "descriptionText": "Google Firewall should not allow SSH access (port 22) from the Internet (public CIDR block) to ensure the principle of least privileges",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_firewall_module.html",
@@ -6471,7 +6471,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "5eba6fad",
             "descriptionText": "A VM instance is configured to use the default service account with full access to all Cloud APIs",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html#parameter-service_accounts/scopes",
@@ -6483,7 +6483,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "a5896260",
             "descriptionText": "Instances must not be configured to use the Default Service Account, that has full access to all Cloud APIs, which means the attribute 'service_account_email' must be defined. Additionally, it must not be empty and must also not be a default Google Compute Engine service account.",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html",
@@ -6495,7 +6495,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "67294baa",
             "descriptionText": "Master authorized networks must be enabled in GKE clusters",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html#parameter-master_authorized_networks_config/enabled",
@@ -6507,7 +6507,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "16bc53a4",
             "descriptionText": "MySQL Instance should not have Local Infile On",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags",
@@ -6519,7 +6519,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "bb785f44",
             "descriptionText": "This query confirms if Google Compute SSL Policy Weak Chyper Suits is Enabled, to do so we need to check if TLS is TLS_1_2, because other version have Weak Chypers",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_ssl_policy_module.html",
@@ -6531,7 +6531,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "dc1b3288",
             "descriptionText": "Kubernetes Clusters must be configured with labels, which means the attribute 'resource_labels' must be defined",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html",
@@ -6543,7 +6543,7 @@
         {
             "aggregation": 1,
             "categoryId": 13,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "4b200606",
             "descriptionText": "Kubernetes nodes must have auto upgrades set to true, which means Node 'auto_upgrade' should be enabled for Kubernetes Clusters",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_node_pool_module.html#parameter-management/auto_upgrade",
@@ -6555,7 +6555,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "2cc130e4",
             "descriptionText": "VM instance should have OSLogin enabled",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html",
@@ -6567,7 +6567,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "1272593c",
             "descriptionText": "VM disks for critical VMs must be encrypted with Customer Supplied Encryption Keys (CSEK) or with Customer-managed encryption keys (CMEK), which means the attribute 'disk_encryption_key' must be defined and its sub attributes 'raw_key' or 'kms_key_self_link' must also be defined",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_disk_module.html",
@@ -6579,7 +6579,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "1797efc5",
             "descriptionText": "DNSSEC must be enabled for Cloud DNS",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_dns_managed_zone_module.html#return-dnssecConfig/state",
@@ -6591,7 +6591,7 @@
         {
             "aggregation": 1,
             "categoryId": 4,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "006274d4",
             "descriptionText": "Checks if backup configuration is enabled for all Cloud SQL Database instances",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/backup_configuration/enabled",
@@ -6603,7 +6603,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "bdebc5b5",
             "descriptionText": "Cloud Storage Buckets must not be anonymously or publicly accessible, which means the attribute 'entity' must not be 'allUsers' or 'allAuthenticatedUsers'",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_storage_bucket_module.html",
@@ -6615,7 +6615,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "f22853f8",
             "descriptionText": "PostgreSQL database instance should have a 'log_connections' flag with its value set to 'on'",
             "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags",
@@ -8511,7 +8511,7 @@
         {
             "aggregation": 1,
             "categoryId": 1,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "7f40edaa",
             "descriptionText": "A list of Storage Bucket resources found. Buckets are the basic containers that hold your data. Everything that you store in Cloud Storage must be contained in a bucket.",
             "descriptionUrl": "https://kics.io",
@@ -8523,7 +8523,7 @@
         {
             "aggregation": 1,
             "categoryId": 1,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "3db91dc6",
             "descriptionText": "A list of Persistent Disk resources found. Persistent Disk is Google's local durable storage service, fully integrated with Google Cloud products, Compute Engine and Google Kubernetes Engine.",
             "descriptionUrl": "https://kics.io",
@@ -8535,7 +8535,7 @@
         {
             "aggregation": 1,
             "categoryId": 1,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "e96debd4",
             "descriptionText": "A list of Pub/Sub Topic resources found. Cloud Pub/Sub is designed to provide reliable, many-to-many, asynchronous messaging between applications. Publisher applications can send messages to a 'topic' and other applications can subscribe to that topic to receive the messages.",
             "descriptionUrl": "https://kics.io",
@@ -8547,7 +8547,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "c67722e8",
             "descriptionText": "Compute instances must be launched with Shielded VM enabled, which means the attribute 'shieldedInstanceConfig' must be defined and its sub attributes 'enableSecureBoot', 'enableVtpm' and 'enableIntegrityMonitoring' must be set to true",
             "descriptionUrl": "https://cloud.google.com/compute/docs/reference/rest/v1/instances",
@@ -8559,7 +8559,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "44d06a6",
             "descriptionText": "Kubernetes Clusters must be created with Alias IP ranges enabled, which means the attribute 'ipAllocationPolicy' must be defined and the subattribute 'useIpAliases' must be set to 'true'.",
             "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters",
@@ -8571,7 +8571,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "5915a575",
             "descriptionText": "The node image should be Container-Optimized OS(COS)",
             "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools",
@@ -8583,7 +8583,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "3de820a0",
             "descriptionText": "Kubernetes Engine Clusters must have Legacy Authorization set to disabled, which means the attribute 'legacyAbac.enabled' must be false.",
             "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.LegacyAbac",
@@ -8595,7 +8595,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "4a9cd0c6",
             "descriptionText": "Kubernetes Engine Clusters must have Master Authentication set to enabled, which means the attribute 'masterAuth' must have the subattributes 'username' and 'password' defined and not empty",
             "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters",
@@ -8607,7 +8607,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "cae2eeea",
             "descriptionText": "Check if the Google compute firewall allows unrestricted RDP access. Allowed ports should not contain RDP port 3389",
             "descriptionUrl": "https://cloud.google.com/compute/docs/reference/rest/v1/firewalls",
@@ -8619,7 +8619,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "c65a868d",
             "descriptionText": "Kubernetes Clusters must be created with Private Clusters enabled, meaning the 'privateClusterConfig' must be defined and the attributes 'enablePrivateEndpoint' and 'enablePrivateNodes' must be true.",
             "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters",
@@ -8631,7 +8631,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "a21b8df4",
             "descriptionText": "Gmail accounts are being used instead of corporate credentials",
             "descriptionUrl": "https://cloud.google.com/deployment-manager/docs/configuration/set-access-control-resources",
@@ -8643,7 +8643,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "ba92577c",
             "descriptionText": "Kubernetes Engine Clusters must have Stackdriver Logging enabled, which means the attribute 'loggingService' must be defined and different from 'none'",
             "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters",
@@ -8655,7 +8655,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "c1eb34ef",
             "descriptionText": "Kubernetes Engine Clusters must have Stackdriver Monitoring enabled, which means the attribute 'monitoringService' must be defined and different than 'none'",
             "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters",
@@ -8667,7 +8667,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "b42ee5a9",
             "descriptionText": "Cloud SQL Database Instance should have SLL enabled",
             "descriptionUrl": "https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/instances",
@@ -8679,7 +8679,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "dc6dbaa9",
             "descriptionText": "Instances must not have IP forwarding enabled, which means the attribute 'canIpForward' must not be true",
             "descriptionUrl": "https://cloud.google.com/compute/docs/reference/rest/v1/instances",
@@ -8691,7 +8691,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "7f322f20",
             "descriptionText": "DNSSEC should not use the RSASHA1 algorithm",
             "descriptionUrl": "https://cloud.google.com/dns/docs/reference/v1/managedZones",
@@ -8703,7 +8703,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "e28f5312",
             "descriptionText": "Kubernetes Engine Clusters must have Network Policy enabled, meaning that the attribute 'networkPolicy.enabled' must be true and the attribute 'addonsConfig.networkPolicyConfig.disabled' must be false",
             "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters",
@@ -8715,7 +8715,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "9b7ba7de",
             "descriptionText": "Cloud Storage Bucket should have versioning enabled",
             "descriptionUrl": "https://cloud.google.com/storage/docs/json_api/v1/buckets",
@@ -8727,7 +8727,7 @@
         {
             "aggregation": 1,
             "categoryId": 10,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "5e36c46d",
             "descriptionText": "VM Instance should block project-wide SSH keys",
             "descriptionUrl": "https://cloud.google.com/compute/docs/reference/rest/v1/instances",
@@ -8739,7 +8739,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "e74562aa",
             "descriptionText": "Kubernetes Clusters must be created with Client Certificate enabled, which means 'masterAuth' must have 'clientCertificateConfig' with the attribute 'issueClientCertificate' equal to true",
             "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters",
@@ -8751,7 +8751,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "9f60c421",
             "descriptionText": "Compute instances shouldn't be accessible from the Internet.",
             "descriptionUrl": "https://cloud.google.com/compute/docs/reference/rest/v1/instances",
@@ -8763,7 +8763,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "0908cbc4",
             "descriptionText": "VM instance should have OSLogin enabled",
             "descriptionUrl": "https://cloud.google.com/compute/docs/reference/rest/v1/instances",
@@ -8775,7 +8775,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "10629ac9",
             "descriptionText": "Google Firewall should not allow SSH access (port 22) from the Internet (public CIDR block) to ensure the principle of least privileges",
             "descriptionUrl": "https://cloud.google.com/compute/docs/reference/rest/v1/firewalls",
@@ -8787,7 +8787,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "d9594b64",
             "descriptionText": "Google Storage Bucket Level Access should be enabled",
             "descriptionUrl": "https://cloud.google.com/storage/docs/json_api/v1/buckets",
@@ -8799,7 +8799,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "f767772d",
             "descriptionText": "Cloud Storage Bucket is anonymously or publicly accessible",
             "descriptionUrl": "https://cloud.google.com/storage/docs/json_api/v1/bucketAccessControls",
@@ -8811,7 +8811,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "6737ca8f",
             "descriptionText": "BigQuery dataset is anonymously or publicly accessible. Attribute access.specialGroup should not contain 'allAuthenticatedUsers'",
             "descriptionUrl": "https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets",
@@ -8823,7 +8823,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "be3364b4",
             "descriptionText": "Master authorized networks must be enabled in GKE clusters",
             "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters",
@@ -8835,7 +8835,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "66f8ba25",
             "descriptionText": "MySQL Instance should not have Local Infile On",
             "descriptionUrl": "https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/instances",
@@ -8847,7 +8847,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "8c094804",
             "descriptionText": "Kubernetes Clusters must be configured with labels, which means the attribute 'resourceLabels' must be defined",
             "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters",
@@ -8859,7 +8859,7 @@
         {
             "aggregation": 1,
             "categoryId": 13,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "40051d4a",
             "descriptionText": "Kubernetes nodes must have auto upgrades set to true, which means the attribute 'nodePools' must be defined and the subattribute 'managment' must be defined and have the attribute 'autoUpgrade' set to true",
             "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters",
@@ -8871,7 +8871,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "97c49cde",
             "descriptionText": "Bucket should have versioning enabled",
             "descriptionUrl": "https://cloud.google.com/storage/docs/json_api/v1/buckets",
@@ -8883,7 +8883,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "107eb8fb",
             "descriptionText": "VM disks for critical VMs must be encrypted with Customer Supplied Encryption Keys (CSEK) or with Customer-managed encryption keys (CMEK), which means the attribute 'diskEncryptionKey' must be defined and its sub attributes 'rawKey' or 'kmsKeyName' must also be defined",
             "descriptionUrl": "https://cloud.google.com/compute/docs/reference/rest/v1/instances",
@@ -8895,7 +8895,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "d926ffb6",
             "descriptionText": "DNSSEC must be enabled for Cloud DNS",
             "descriptionUrl": "https://cloud.google.com/dns/docs/reference/v1/managedZones",
@@ -8907,7 +8907,7 @@
         {
             "aggregation": 1,
             "categoryId": 4,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "45790b7e",
             "descriptionText": "Checks if backup configuration is enabled for all Cloud SQL Database instances",
             "descriptionUrl": "https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/instances",
@@ -8919,7 +8919,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "2146c969",
             "descriptionText": "Cloud Storage Buckets must not be anonymously or publicly accessible, which means the subattribute 'entity' from attributes 'acl' and 'defaultObjectAcl' must not be 'allUsers' or 'allAuthenticatedUsers'",
             "descriptionUrl": "https://cloud.google.com/storage/docs/json_api/v1/buckets",
@@ -8931,7 +8931,7 @@
         {
             "aggregation": 1,
             "categoryId": 10,
-            "cloudProviderId": 5,
+            "cloudProviderId": 4,
             "descriptionID": "d69d8a89",
             "descriptionText": "Query to find passwords and secrets in infrastructure code.",
             "descriptionUrl": "https://docs.kics.io/latest/secrets/",
@@ -11319,7 +11319,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "d7cbff51",
             "descriptionText": "Redis Cache resource should not allow non-SSL connections.",
             "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-azure/cache.azure.crossplane.io/Redis/v1beta1@v0.19.0#spec-forProvider-enableNonSslPort",
@@ -11331,7 +11331,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "b9f4440e",
             "descriptionText": "Azure Container Service (AKS) instance should have role-based access control (RBAC) enabled",
             "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-azure/compute.azure.crossplane.io/AKSCluster/v1alpha3@v0.19.0#spec-disableRBAC",
@@ -11475,7 +11475,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "bc1c198b",
             "descriptionText": "Google Container Node Pool Auto Repair should be enabled. This service periodically checks for failing nodes and repairs them to ensure a smooth running state.",
             "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-gcp/container.gcp.crossplane.io/NodePool/v1beta1@v0.21.0#spec-forProvider-management-autoRepair",
@@ -11487,7 +11487,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "49295adb",
             "descriptionText": "Cloud storage bucket should have logging enabled",
             "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-gcp/storage.gcp.crossplane.io/Bucket/v1alpha3@v0.21.0#spec-logging",
@@ -12279,7 +12279,7 @@
         {
             "aggregation": 1,
             "categoryId": 1,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "4a45b126",
             "descriptionText": "A list of Filestore Instance resources found. Filestore instances are fully managed file servers on Google Cloud that can be connected to Compute Engine VMs, GKE clusters, and your on-premises machines. Once provisioned, you can scale the capacity of your instances according to need without any downtime.",
             "descriptionUrl": "https://kics.io",
@@ -12291,7 +12291,7 @@
         {
             "aggregation": 1,
             "categoryId": 1,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "38a18539",
             "descriptionText": "A list of Storage Bucket resources found. Buckets are the basic containers that hold your data. Everything that you store in Cloud Storage must be contained in a bucket.",
             "descriptionUrl": "https://kics.io",
@@ -12303,7 +12303,7 @@
         {
             "aggregation": 1,
             "categoryId": 1,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "4b72e52d",
             "descriptionText": "A list of Persistent Disk resources found. Persistent Disk is Google's local durable storage service, fully integrated with Google Cloud products, Compute Engine and Google Kubernetes Engine.",
             "descriptionUrl": "https://kics.io",
@@ -12315,7 +12315,7 @@
         {
             "aggregation": 1,
             "categoryId": 1,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "5d614ad5",
             "descriptionText": "A list of Dataflow resources found. Unified stream and batch data processing that's serverless, fast, and cost-effective.",
             "descriptionUrl": "https://kics.io",
@@ -12327,7 +12327,7 @@
         {
             "aggregation": 1,
             "categoryId": 1,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "aa371a3b",
             "descriptionText": "A list of Pub/Sub Topic resources found. Cloud Pub/Sub is designed to provide reliable, many-to-many, asynchronous messaging between applications. Publisher applications can send messages to a 'topic' and other applications can subscribe to that topic to receive the messages.",
             "descriptionUrl": "https://kics.io",
@@ -12339,7 +12339,7 @@
         {
             "aggregation": 1,
             "categoryId": 1,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "1db9d01f",
             "descriptionText": "A list of Redis Instance resources found. Memorystore for Redis is a fully managed Redis service for Google Cloud. Applications running on Google Cloud can achieve extreme performance by leveraging the highly scalable, available, secure Redis service without the burden of managing complex Redis deployments.",
             "descriptionUrl": "https://kics.io",
@@ -12351,7 +12351,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "11d4fc85",
             "descriptionText": "OSS Log Store should have logging enabled for longer than 90 days, for better visibility of resources and objects.",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/log_store#retention_period",
@@ -12363,7 +12363,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "243a4fb4",
             "descriptionText": "RDS Instance SQL Retention Period should be greater than 180",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#sql_collector_config_value",
@@ -12375,7 +12375,7 @@
         {
             "aggregation": 1,
             "categoryId": 10,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "2210f1f7",
             "descriptionText": "RAM Account Password Policy 'password_reuse_prevention' should be defined and set to 24 or less",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#password_reuse_prevention",
@@ -12387,7 +12387,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "75d71dc8",
             "descriptionText": "Application Load Balancer (alb) Listener should not listen on HTTP",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/alb_listener",
@@ -12399,7 +12399,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "4a568dd7",
             "descriptionText": "ssl_action parameter should be set to Open for RDS instances",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#ssl_action",
@@ -12411,7 +12411,7 @@
         {
             "aggregation": 1,
             "categoryId": 10,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "b482b843",
             "descriptionText": "Ram Account Password Policy should have 'require_lowercase_characters' set to true",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#require_lowercase_characters",
@@ -12423,7 +12423,7 @@
         {
             "aggregation": 1,
             "categoryId": 10,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "7961c2d3",
             "descriptionText": "KMS Key should have automatic rotation enabled and the rotation period should not be higher than a year",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/kms_key",
@@ -12435,7 +12435,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "d23dc3f9",
             "descriptionText": "The field 'address' should not be set to '0.0.0.0/0'",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#address",
@@ -12447,7 +12447,7 @@
         {
             "aggregation": 1,
             "categoryId": 10,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "6a2e9c34",
             "descriptionText": "Ram Account Password Policy should have 'max_login_attempts' to a maximum of 5 incorrect login attempts",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#max_login_attempts",
@@ -12459,7 +12459,7 @@
         {
             "aggregation": 1,
             "categoryId": 4,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "749f1287",
             "descriptionText": "OSS Bucket should have versioning enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#versioning",
@@ -12471,7 +12471,7 @@
         {
             "aggregation": 63,
             "categoryId": 3,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "717c49e0",
             "descriptionText": "A sensitive port, such as port 23 or port 110, is open to the public in either TCP or UDP protocol",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/security_group_rule#port_range",
@@ -12483,7 +12483,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "ae8fb315",
             "descriptionText": "tde_status parameter should be Enabled for supported RDS instances",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#tde_status",
@@ -12495,7 +12495,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "6dcb70e8",
             "descriptionText": "Alicloud Security Group Rule should not allow all ports or all protocols to the public",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/security_group_rule#cidr_ip",
@@ -12507,7 +12507,7 @@
         {
             "aggregation": 1,
             "categoryId": 10,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "a8b47743",
             "descriptionText": "Ram Account Password Policy should have 'minimum_password_length' defined and set to 14 or above",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#minimum_password_length",
@@ -12519,7 +12519,7 @@
         {
             "aggregation": 1,
             "categoryId": 10,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "6056f5ca",
             "descriptionText": "Ram Account Password Policy Password 'max_password_age' should be higher than 0 and lower than 91",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#max_password_age",
@@ -12531,7 +12531,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "31f4c870",
             "descriptionText": "API Gateway API protocol should be set to HTTPS",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/api_gateway_api#protocol",
@@ -12543,7 +12543,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "67ec659b",
             "descriptionText": "log_disconnections parameter should be set to ON for RDS instances",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#parameters",
@@ -12555,7 +12555,7 @@
         {
             "aggregation": 1,
             "categoryId": 9,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "52a5ea7c",
             "descriptionText": "Alicloud KMS must only possess usable Customer Master Keys (CMK), which means the CMKs must have the attribute 'is_enabled' set to true",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/kms_key#is_enabled",
@@ -12579,7 +12579,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "72180b32",
             "descriptionText": "Action Trail Logging for all regions should be enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/actiontrail_trail#trail_region",
@@ -12591,7 +12591,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "c731d8ad",
             "descriptionText": "All RDS Instance events trackers should be 'true'",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/log_audit",
@@ -12603,7 +12603,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "aac97545",
             "descriptionText": "'0.0.0.0' or '0.0.0.0/0' should not be in 'security_ips' list",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#security_ips",
@@ -12615,7 +12615,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "2841dac6",
             "descriptionText": "Every VPC resource should have an associated Flow Log",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/vpc_flow_log",
@@ -12627,7 +12627,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "5507d429",
             "descriptionText": "OSS Buckets should not allow all actions (wildcard) from all principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering/deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is *, for all Principals.",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#policy",
@@ -12639,7 +12639,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "5907ee8c",
             "descriptionText": "OSS Bucket should have encryption enabled using Customer Master Key",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#server_side_encryption_rule",
@@ -12651,7 +12651,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "6131e90d",
             "descriptionText": "RAM Security preferences should enforce MFA login for RAM users",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_security_preference#enforce_mfa_for_login",
@@ -12663,7 +12663,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "7c27643e",
             "descriptionText": "Kubernetes Cluster should have Terway as CNI Network Plugin to configure network policies",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/cs_kubernetes#cluster_network_type",
@@ -12675,7 +12675,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "c3be65a4",
             "descriptionText": "Ram policies should not be attached to users",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_user_policy_attachment",
@@ -12687,7 +12687,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "a2097952",
             "descriptionText": "A unknown port, such as port 24 or port 111, is open to the public in either TCP or UDP or ALL protocol/protocols mentioned",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/security_group_rule#port_range",
@@ -12699,7 +12699,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "e9336717",
             "descriptionText": "ECS Launch Template should have the data in the disk encrypted. To encrypt the data, the 'encrypted' argument should be set to true.",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/launch_template#encrypted",
@@ -12711,7 +12711,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "c4a5fdbb",
             "descriptionText": "OSS Bucket should have logging enabled, for better visibility of resources and objects.",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#logging",
@@ -12723,7 +12723,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "3096639c",
             "descriptionText": "Verifies if Alicloud Container Service Node Pool Auto Repair is Enabled. This service periodically checks for failing nodes and repairs them to ensure a smooth running state.",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/cs_kubernetes_node_pool#auto_repair",
@@ -12735,7 +12735,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "0b91a8b5",
             "descriptionText": "ActionTrail Trail OSS Bucket should not be publicly accessible",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/actiontrail_trail",
@@ -12747,7 +12747,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "04c57e20",
             "descriptionText": "Ecs Data Disk Kms Key Id should be set",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/disk#kms_key_id",
@@ -12759,7 +12759,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "d8096622",
             "descriptionText": "OSS Bucket should have public access disabled",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#acl",
@@ -12771,7 +12771,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "9552bb69",
             "descriptionText": "The ROS Stack Notifications should be defined and populated to receive stack related events",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ros_stack#notification_urls",
@@ -12783,7 +12783,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "ee07e6f5",
             "descriptionText": "OSS Bucket should not allow delete action from all principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering/deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is DeleteBucket, for all Principals.",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#policy",
@@ -12795,7 +12795,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "dcc71406",
             "descriptionText": "SLB Policy should not support insecure versions of TLS protocol",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/slb_tls_cipher_policy",
@@ -12807,7 +12807,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "c4027901",
             "descriptionText": "log_duration parameter should be set to ON for RDS instances",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#parameters",
@@ -12819,7 +12819,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "d529825f",
             "descriptionText": "Ram policies with admin access should not be associated to users, groups or roles",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_policy",
@@ -12831,7 +12831,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "93cebe21",
             "descriptionText": "OSS Bucket should have ip restricted access",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#policy",
@@ -12843,7 +12843,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "b22a7d83",
             "descriptionText": "OSS Bucket should not allow list action from all principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering/deletion. This means the 'Effect' must not be 'Allow' when the 'Action' contains 'List', for all Principals.",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#policy",
@@ -12855,7 +12855,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "4c0903ce",
             "descriptionText": "Checks if any static websties are hosted on buckets. Be aware of any website you are running.",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#website",
@@ -12867,7 +12867,7 @@
         {
             "aggregation": 1,
             "categoryId": 10,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "5adbc73e",
             "descriptionText": "Ram Account Password Policy should have 'require_uppercase_characters' set to true",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#require_uppercase_characters",
@@ -12879,7 +12879,7 @@
         {
             "aggregation": 1,
             "categoryId": 4,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "66609561",
             "descriptionText": "OSS Bucket should have lifecycle rule enabled and set to true",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#lifecycle_rule",
@@ -12891,7 +12891,7 @@
         {
             "aggregation": 1,
             "categoryId": 10,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "0ee40b1d",
             "descriptionText": "Ram Account Password Policy should have 'require_numbers' set to true",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#require_numbers",
@@ -12903,7 +12903,7 @@
         {
             "aggregation": 1,
             "categoryId": 13,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "199b3f61",
             "descriptionText": "ROS Stack should have a stack policy in order to protect stack resources from and during update actions",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ros_stack",
@@ -12915,7 +12915,7 @@
         {
             "aggregation": 1,
             "categoryId": 9,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "19899aaa",
             "descriptionText": "OSS Bucket should have transfer acceleration enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#transfer_acceleration",
@@ -12927,7 +12927,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "0a96bec0",
             "descriptionText": "'log_connections' parameter should be set to ON for RDS instances",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#parameters",
@@ -12939,7 +12939,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "5fb1326b",
             "descriptionText": "NAS File System should have encryption provided by user KMS ",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/nas_file_system#kms_key_id",
@@ -12951,7 +12951,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "fb3675d5",
             "descriptionText": "NAS File System must be encrypted",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/nas_file_system#encrypt_type",
@@ -12963,7 +12963,7 @@
         {
             "aggregation": 1,
             "categoryId": 4,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "7d4885db",
             "descriptionText": "The retain_stacks should be enabled to keep the Stack upon deleting the stack instance from the stack group",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ros_stack_instance#retain_stacks",
@@ -12975,7 +12975,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "14d65676",
             "descriptionText": "OSS Bucket should not allow put action from all principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering/deletion. This means the 'Effect' must not be 'Allow' when the 'Action' contains 'Put', for all Principals.",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#policy",
@@ -12987,7 +12987,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "2b43b0a7",
             "descriptionText": "OSS Buckets should have secure transport enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#policy",
@@ -12999,7 +12999,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "68bbdfee",
             "descriptionText": "Disks should have encryption enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/disk#encrypted",
@@ -13011,7 +13011,7 @@
         {
             "aggregation": 1,
             "categoryId": 10,
-            "cloudProviderId": 6,
+            "cloudProviderId": 5,
             "descriptionID": "f3616c34",
             "descriptionText": "RAM account password security should require at least one symbol",
             "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#require_symbols",
@@ -13155,7 +13155,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 5,
+            "cloudProviderId": 4,
             "descriptionID": "81535d16",
             "descriptionText": "All outputs should contain a valid description.",
             "descriptionUrl": "https://www.terraform.io/docs/language/values/outputs.html#description-output-value-documentation",
@@ -13167,7 +13167,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 5,
+            "cloudProviderId": 4,
             "descriptionID": "bba696eb",
             "descriptionText": "All variables should contain a valid type.",
             "descriptionUrl": "https://www.terraform.io/docs/language/values/variables.html#input-variable-documentation",
@@ -13179,7 +13179,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 5,
+            "cloudProviderId": 4,
             "descriptionID": "ac707cad",
             "descriptionText": "All names should follow snake case pattern.",
             "descriptionUrl": "https://www.terraform.io/docs/extend/best-practices/naming.html#naming",
@@ -13191,7 +13191,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 5,
+            "cloudProviderId": 4,
             "descriptionID": "2ee26fd1",
             "descriptionText": "All generic git repositories should reference a revision.",
             "descriptionUrl": "https://www.terraform.io/docs/language/modules/sources.html#selecting-a-revision",
@@ -13203,7 +13203,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 5,
+            "cloudProviderId": 4,
             "descriptionID": "b44986be",
             "descriptionText": "All variables should contain a valid description.",
             "descriptionUrl": "https://www.terraform.io/docs/language/values/variables.html#input-variable-documentation",
@@ -13215,7 +13215,7 @@
         {
             "aggregation": 1,
             "categoryId": 13,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "8f1137db",
             "descriptionText": "Ensure that 'Threat Detection' is enabled for Azure SQL Database",
             "descriptionUrl": "https://www.terraform.io/docs/providers/azurerm/r/sql_database.html",
@@ -13227,7 +13227,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "1ec96250",
             "descriptionText": "Check if PostgreSQL Database Server retains logs for less than 3 Days",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_configuration",
@@ -13239,7 +13239,7 @@
         {
             "aggregation": 1,
             "categoryId": 4,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "f9f97af4",
             "descriptionText": "MariaDB Server Geo-redundant Backup should be enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mariadb_server#geo_redundant_backup_enabled",
@@ -13251,7 +13251,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "7526dc36",
             "descriptionText": "Azure Function App authentication settings should be enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/function_app#auth_settings",
@@ -13263,7 +13263,7 @@
         {
             "aggregation": 63,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "a5d60df9",
             "descriptionText": "A sensitive port, such as port 23 or port 110, is open for the whole network in either TCP or UDP protocol",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_rule",
@@ -13275,7 +13275,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "7708dadb",
             "descriptionText": "Azure Kubernetes Service should have the proper network policy configuration to ensure the principle of least privileges, which means that 'network_profile.network_policy' should be defined",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/kubernetes_cluster",
@@ -13287,7 +13287,7 @@
         {
             "aggregation": 1,
             "categoryId": 10,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "172cf4e6",
             "descriptionText": "Make sure that for all secrets the expiration date is set",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_secret",
@@ -13299,7 +13299,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "21b8be3f",
             "descriptionText": "Port 3389 (Remote Desktop) is exposed to the internet",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_rule",
@@ -13311,7 +13311,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "23aadb20",
             "descriptionText": "Make sure that alerts notifications are set to 'On' in the Azure Security Center Contact",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/security_center_contact",
@@ -13323,7 +13323,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "4eb880dd",
             "descriptionText": "SQL Server alert email should be enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_server_security_alert_policy#email_account_admins",
@@ -13335,7 +13335,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "a96dc1b9",
             "descriptionText": "Role Definition should not allow custom role creation (Microsoft.Authorization/roleDefinitions/write)",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_definition#actions",
@@ -13347,7 +13347,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "2d2af667",
             "descriptionText": "Trusted Microsoft Services should be enabled for Storage Account access",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#bypass",
@@ -13359,7 +13359,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "fd34a2d6",
             "descriptionText": "The IP range filter should be defined to secure the data stored",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cosmosdb_account#ip_range_filter",
@@ -13371,7 +13371,7 @@
         {
             "aggregation": 1,
             "categoryId": 4,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "4646e954",
             "descriptionText": "Make sure that on PostgreSQL Geo Redundant Backups is enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server",
@@ -13383,7 +13383,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "01751e5a",
             "descriptionText": "Azure Storage Table should not allow all ACL (Access Control List) permissions - r (read), w (write), d (delete), and l (list).",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_table#permissions",
@@ -13395,7 +13395,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "6ac1bc00",
             "descriptionText": "Check if any firewall rule allows too many hosts to access Redis Cache",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_firewall_rule",
@@ -13407,7 +13407,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "e14a3a02",
             "descriptionText": "Make sure that for PostgreSQL Database, server parameter 'log_retention' is set to 'ON'",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_configuration",
@@ -13419,7 +13419,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "02e10365",
             "descriptionText": "Flow logs enable capturing information about IP traffic flowing in and out of the network security groups. Network Security Group Flow Logs must be enabled with retention period greater than or equal to 90 days. This is important, because these logs are used to check for anomalies and give information of suspected breaches",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_watcher_flow_log",
@@ -13431,7 +13431,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "33aa1747",
             "descriptionText": "Azure Storage Share File should not allow all ACL (Access Control List) permissions - r (read), w (write), d (delete), and l (list).",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_share_file",
@@ -13443,7 +13443,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "bccbda19",
             "descriptionText": "The Active Directory Administrator is not configured for a SQL server",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_active_directory_administrator",
@@ -13455,7 +13455,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "f0be3ea8",
             "descriptionText": "Make sure that for MSSQL Servers, that 'Auditing' is set to 'On'",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_server",
@@ -13467,7 +13467,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "837de8dd",
             "descriptionText": "Azure SQL Server Accessibility should be set to a minimal address range to grant the principle of least privileges, which means the difference between the values of the 'end_ip_address' and 'start_ip_address' must be less than 256. Additionally, both ips must be different from '0.0.0.0'.",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_firewall_rule",
@@ -13479,7 +13479,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "fd29818c",
             "descriptionText": "Check if enable field in the resource azurerm_network_watcher_flow_log is false.",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_watcher_flow_log",
@@ -13491,7 +13491,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "5250257b",
             "descriptionText": "Admin user is enabled for Container Registry",
             "descriptionUrl": "https://www.terraform.io/docs/providers/azurerm/r/container_registry.html",
@@ -13503,7 +13503,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "49907665",
             "descriptionText": "Network Interfaces should not be exposed with a public IP address. If configured, additional security baselines should be followed (https://docs.microsoft.com/en-us/security/benchmark/azure/baselines/virtual-network-security-baseline, https://docs.microsoft.com/en-us/security/benchmark/azure/baselines/public-ip-security-baseline)",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface#public_ip_address_id",
@@ -13515,7 +13515,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "69753abf",
             "descriptionText": "Ensure Function App is using the latest version of TLS encryption",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/function_app#min_tls_version",
@@ -13527,7 +13527,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "6a9ab071",
             "descriptionText": "Make sure that the 'Standard' pricing tiers were selected.",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/security_center_subscription_pricing",
@@ -13539,7 +13539,7 @@
         {
             "aggregation": 1,
             "categoryId": 11,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "09c295e8",
             "descriptionText": "Default Network Access rule for Storage Accounts must be set to deny, which means the attribute 'default_action' must be 'Deny'",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account_network_rules",
@@ -13551,7 +13551,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "d4766039",
             "descriptionText": "Public Network Access should be disabled for Azure Cognitive Search",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/search_service#public_network_access_enabled",
@@ -13563,7 +13563,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "e1decb5e",
             "descriptionText": "MariaDB Server Public Network Access should be disabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mariadb_server#public_network_access_enabled",
@@ -13575,7 +13575,7 @@
         {
             "aggregation": 63,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "c09ca1eb",
             "descriptionText": "A sensitive port, such as port 23 or port 110, is open for small public network in either TCP or UDP protocol",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_rule",
@@ -13587,7 +13587,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "df6d2dcb",
             "descriptionText": "Azure Container Service (AKS) should use Azure Policies Add-On",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster#azure_policy",
@@ -13599,7 +13599,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "ec37a064",
             "descriptionText": "Azure App Service authentication settings should be enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#enabled",
@@ -13611,7 +13611,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "fa055646",
             "descriptionText": "There is a role assignment for guest user",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment",
@@ -13623,7 +13623,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "06d14345",
             "descriptionText": "Make sure that for Postgre SQL Database Server, parameter 'log_checkpoints' is set to 'ON'",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_configuration",
@@ -13635,7 +13635,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "d1ee9c09",
             "descriptionText": "MSSQL Server public network access should be disabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_server#public_network_access_enabled",
@@ -13647,7 +13647,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "b7160c8c",
             "descriptionText": "Redis Cache resources should not allow non-SSL connections",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache",
@@ -13659,7 +13659,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "96124822",
             "descriptionText": "Make sure for SQL Servers that Auditing Retention is greater than 90 days",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_server",
@@ -13671,7 +13671,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "3ec5eed5",
             "descriptionText": "Azure Kubernetes Service (AKS) API should not be exposed to the internet",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster#private_cluster_enabled",
@@ -13683,7 +13683,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "37e5ef3f",
             "descriptionText": "Azure Function App should have managed identity enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/function_app#identity",
@@ -13695,7 +13695,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "dee0c164",
             "descriptionText": "App Service should have 'http2_enabled' enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#http2_enabled",
@@ -13707,7 +13707,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "81500787",
             "descriptionText": "Make sure that for MySQL Database Server, 'Enforce SSL connection' is enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mysql_server",
@@ -13719,7 +13719,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "609638cc",
             "descriptionText": "Make sure that for SQL Servers, 'Auditing' is set to 'On'",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_server",
@@ -13731,7 +13731,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "d27166a7",
             "descriptionText": "Azure Container Service (AKS) instance should have role-based access control (RBAC) enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster#role_based_access_control",
@@ -13743,7 +13743,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "6f6649db",
             "descriptionText": "Ensure that Connection Throttling is set for the PostgreSQL server",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_configuration",
@@ -13755,7 +13755,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "a1ada318",
             "descriptionText": "Azure App Service should only enforce FTPS when 'ftps_state' is enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#ftps_state",
@@ -13767,7 +13767,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "8632da7c",
             "descriptionText": "Security Contact Email should be defined",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/security_center_contact#email",
@@ -13779,7 +13779,7 @@
         {
             "aggregation": 1,
             "categoryId": 11,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "a5613650",
             "descriptionText": "Default Azure Storage Account network access should be set to Deny",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account_network_rules#default_action",
@@ -13791,7 +13791,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "0054cbe3",
             "descriptionText": "Periodically newer versions are released for PHP software either due to security flaws or to include additional functionality. Using the latest PHP version for web apps is recommended in order to take advantage of security fixes, if any, and/or additional functionalities of the newer version.",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#php_version",
@@ -13803,7 +13803,7 @@
         {
             "aggregation": 1,
             "categoryId": 13,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "c8096e2d",
             "descriptionText": "Azure App Service should have managed identity enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#identity",
@@ -13815,7 +13815,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "74140c3d",
             "descriptionText": "Web app should only accept HTTPS traffic in Azure Web App Service.",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#https_only",
@@ -13827,7 +13827,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "b982dca0",
             "descriptionText": "PostgreSQL Server Infrastructure Encryption should be enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server#infrastructure_encryption_enabled",
@@ -13839,7 +13839,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "848bf695",
             "descriptionText": "Periodically, newer versions are released for Python software either due to security flaws or to include additional functionality. Using the latest full Python version for web apps is recommended in order to take advantage of security fixes, if any, and/or additional functionalities of the newer version.",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#python_version",
@@ -13851,7 +13851,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "63399f46",
             "descriptionText": "Ensure App Service is using the latest version of TLS encryption",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#min_tls_version",
@@ -13863,7 +13863,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "d183d853",
             "descriptionText": "Make sure that for PostgreSQL Database, server parameter 'log_disconnections' is set to 'ON'",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_configuration",
@@ -13875,7 +13875,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "2c27e24e",
             "descriptionText": "Azure Active Directory must be used for authentication for Service Fabric",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/service_fabric_cluster#tenant_id",
@@ -13887,7 +13887,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "d0bed58e",
             "descriptionText": "Azure SQL Server's Admin account login must avoid using names like 'Admin', that are too predictable, which means the attribute 'administrator_login' must be set to a name that is not easy to predict",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_server",
@@ -13899,7 +13899,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "9549423a",
             "descriptionText": "Make sure that for PosgreSQL, the 'Enforce SSL connection' is set to 'ENABLED'",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server",
@@ -13911,7 +13911,7 @@
         {
             "aggregation": 1,
             "categoryId": 12,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "f0bce814",
             "descriptionText": "Cosmos DB Account must have a mapping of tags.",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cosmosdb_account",
@@ -13923,7 +13923,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "a9e178f3",
             "descriptionText": "Anonymous, public read access to a container and its blobs are enabled in Azure Blob Storage",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_container#container_access_type",
@@ -13935,7 +13935,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "a827491d",
             "descriptionText": "Role Assignment should limit guest user permissions",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment",
@@ -13947,7 +13947,7 @@
         {
             "aggregation": 1,
             "categoryId": 13,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "ed803b39",
             "descriptionText": "PostgreSQL Server Threat Detection Policy should be enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server#threat_detection_policy",
@@ -13959,7 +13959,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "9f51f6b1",
             "descriptionText": "No Network Security Group is attached to the Virtual Machine",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine#network_interface_ids",
@@ -13971,7 +13971,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "6ed21e26",
             "descriptionText": "Azure SQL Server must avoid using predictable Active Directory Administrator Account names, like 'Admin', which means the attribute 'login' must be set to a name that is not easy to predict",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_active_directory_administrator",
@@ -13983,7 +13983,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "f98cf1dc",
             "descriptionText": "Port 22 (SSH) is exposed to the internet",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_rule",
@@ -13995,7 +13995,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "0017c1c6",
             "descriptionText": "Firewall rule allowing unrestricted access to Redis from other Azure sources",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_firewall_rule",
@@ -14007,7 +14007,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "e64d2982",
             "descriptionText": "Azure Virtual Network subnet must be configured with a Network Security Group, which means the attribute 'security_group' must be defined and not empty",
             "descriptionUrl": "https://www.terraform.io/docs/providers/azure/r/virtual_network.html",
@@ -14019,7 +14019,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "2961eac3",
             "descriptionText": "Make sure that for PostgreSQL Database, server parameter 'log_duration' is set to 'ON'",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_configuration",
@@ -14031,7 +14031,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "4eddeb5c",
             "descriptionText": "Azure Container Service (AKS) should use Disk Encryption Set ID in supported types of disk",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster#disk_encryption_set_id",
@@ -14043,7 +14043,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "ecd42771",
             "descriptionText": "Make sure that for MSSQL Server, the Auditing Retention is greater than 90 days",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_server",
@@ -14055,7 +14055,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "a84ac10d",
             "descriptionText": "Azure Front Door WAF should be enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/frontdoor#web_application_firewall_policy_link_id",
@@ -14067,7 +14067,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "eb6d3eca",
             "descriptionText": "Check if all IPs are allowed, check from start 0.0.0.0 to end 255.255.255.255.",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_firewall_rule",
@@ -14079,7 +14079,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "97c222ec",
             "descriptionText": "Check if Web Application Firewall is disabled or not configured for Azure's Application Gateway.",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_gateway",
@@ -14091,7 +14091,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "7c364a67",
             "descriptionText": "Function App should have 'http2_enabled' enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/function_app#http2_enabled",
@@ -14103,7 +14103,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "4aacc07b",
             "descriptionText": "Key Vault Secrets should have set Content Type",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_secret#content_type",
@@ -14115,7 +14115,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "436752d7",
             "descriptionText": "Azure Function App should have 'client_cert_mode' set to required",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/function_app#client_cert_mode",
@@ -14127,7 +14127,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "adb235b6",
             "descriptionText": "Azurerm Container Registry should contain associated locks, which means 'azurerm_management_lock.scope' should be associated with 'azurerm_container_registry'",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_registry",
@@ -14139,7 +14139,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "e5c71632",
             "descriptionText": "MySQL Server public access should be disabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mysql_server#public_network_access_enabled",
@@ -14151,7 +14151,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "743324e3",
             "descriptionText": "Make sure that for PostgreSQL Database, server parameter 'log_connections' is set to 'ON'",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_configuration",
@@ -14163,7 +14163,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "7beaf18e",
             "descriptionText": "Azure App Service client certificate should be enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#client_cert_enabled",
@@ -14175,7 +14175,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "a9726898",
             "descriptionText": "Redis Cache is not configured to be updated regularly with security and operational updates",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache#patch_schedule",
@@ -14187,7 +14187,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "8f6e1fa8",
             "descriptionText": "Ensure that the encryption is active on the disk",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/managed_disk#encryption_settings",
@@ -14199,7 +14199,7 @@
         {
             "aggregation": 1,
             "categoryId": 9,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "c08cb91b",
             "descriptionText": "Virtual Network should have DDoS Protection Plan enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network#ddos_protection_plan",
@@ -14211,7 +14211,7 @@
         {
             "aggregation": 63,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "6b1bfbd5",
             "descriptionText": "A sensitive port, such as port 23 or port 110, is open for wide private network in either TCP or UDP protocol",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_rule",
@@ -14223,7 +14223,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "2144ef13",
             "descriptionText": "Azure Function App should only enforce FTPS when 'ftps_state' is enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/function_app#ftps_state",
@@ -14235,7 +14235,7 @@
         {
             "aggregation": 1,
             "categoryId": 10,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "bb99ceb7",
             "descriptionText": "Make sure that for all keys the expiration date is set",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_key",
@@ -14247,7 +14247,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "047ab315",
             "descriptionText": "Ensure that logging for Azure KeyVault is 'Enabled'",
             "descriptionUrl": "https://www.terraform.io/docs/providers/azurerm/r/key_vault.html",
@@ -14259,7 +14259,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "3f384e51",
             "descriptionText": "Check if the Kubernetes Dashboard is enabled.",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster",
@@ -14271,7 +14271,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "890cf9a4",
             "descriptionText": "Network Interfaces IP Forwarding should be disabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface#enable_ip_forwarding",
@@ -14283,7 +14283,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "d18de348",
             "descriptionText": "Firewall rule allowing unrestricted access to Redis from the Internet",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_firewall_rule",
@@ -14295,7 +14295,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "224ff4f9",
             "descriptionText": "Ensure that Activity Log Retention is set 365 days or greater",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_log_profile",
@@ -14307,7 +14307,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "ab6688ca",
             "descriptionText": "Storage Accounts should enforce the use of HTTPS",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account",
@@ -14319,7 +14319,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "a38872a7",
             "descriptionText": "Ensure Storage Account is using the latest version of TLS encryption",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account",
@@ -14331,7 +14331,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "88948514",
             "descriptionText": "Storage Account should not be public to grant the principle of least privileges",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account",
@@ -18339,7 +18339,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "3a0a17c4",
             "descriptionText": "Compute instances must be launched with Shielded VM enabled, which means the attribute 'shielded_instance_config' must be defined and its sub attributes 'enable_secure_boot', 'enable_vtpm' and 'enable_integrity_monitoring' must be set to true",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#shielded_instance_config",
@@ -18351,7 +18351,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "39487293",
             "descriptionText": "Google Container Node Pool Auto Repair should be enabled. This service periodically checks for failing nodes and repairs them to ensure a smooth running state.",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool",
@@ -18363,7 +18363,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "36d82ecd",
             "descriptionText": "Google Project IAM Policy should not assign a KMS admin role and CryptoKey role to the same member",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#policy_data",
@@ -18375,7 +18375,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "e7d9862a",
             "descriptionText": "Kubernetes Clusters must be created with Alias IP ranges enabled, which means the attribut 'ip_allocation_policy' must be defined and, if defined, the attribute 'networking_mode' must be VPC_NATIVE ",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
@@ -18387,7 +18387,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "4bdfef01",
             "descriptionText": "The node image should be Container-Optimized OS(COS)",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool#node_config",
@@ -18399,7 +18399,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "a2e814bc",
             "descriptionText": "Kubernetes Engine Clusters must have Legacy Authorization set to disabled, which means the attribute 'enable_legacy_abac' must not be true",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
@@ -18411,7 +18411,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "9beef444",
             "descriptionText": "Cloud SQL instances should not be publicly accessible.",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance",
@@ -18423,7 +18423,7 @@
         {
             "aggregation": 1,
             "categoryId": 13,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "1b2dbbea",
             "descriptionText": "Service account should not have improper privileges like admin, editor, owner, or write roles",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/iam_policy#role",
@@ -18435,7 +18435,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "c59b567e",
             "descriptionText": "GCP - Google Kubernetes Engine (GKE) Basic Authentication must be disabled, which means the username and password provided in the master_auth block must be empty",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
@@ -18447,7 +18447,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "689ef05b",
             "descriptionText": "This query checks if logs are enabled for a Google Compute Subnetwork resource.",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork",
@@ -18459,7 +18459,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "546c4012",
             "descriptionText": "Kubernetes Clusters must have Pod Security Policy controller enabled, which means there must be a 'pod_security_policy_config' with the 'enabled' attribute equal to true",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
@@ -18471,7 +18471,7 @@
         {
             "aggregation": 1,
             "categoryId": 11,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "efe7e7b0",
             "descriptionText": "Kubernetes Engine Clusters should not be configured to use the default service account",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster#node_config",
@@ -18483,7 +18483,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "2967cde6",
             "descriptionText": "Google Compute Engine VM instances should not enable serial ports. When enabled, anyone can access your VM, if they know the username, project ID, SSH key, instance name and zone",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance",
@@ -18495,7 +18495,7 @@
         {
             "aggregation": 1,
             "categoryId": 10,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "d43302d0",
             "descriptionText": "KMS encryption keys should be rotated every 90 days or less. A short lifetime of encryption keys reduces the potential blast radius in case of compromise.",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/kms_crypto_key",
@@ -18507,7 +18507,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "70e5d429",
             "descriptionText": "Kubernetes Engine Clusters must have Master Authentication set to enabled, which means the attribute 'master_auth' must have the subattributes 'username' and 'password' defined and not empty",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
@@ -18519,7 +18519,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "cb5081a0",
             "descriptionText": "BigQuery dataset is anonymously or publicly accessible",
             "descriptionUrl": "https://www.terraform.io/docs/providers/google/r/bigquery_dataset.html",
@@ -18531,7 +18531,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "87e8a4f7",
             "descriptionText": "Google Compute Subnetwork should have Private Google Access enabled, which means 'private_ip_google_access' should be set to true",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork#private_ip_google_access",
@@ -18543,7 +18543,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "9e9984aa",
             "descriptionText": "Cloud storage bucket should have logging enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#log_bucket",
@@ -18555,7 +18555,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "f8156d3b",
             "descriptionText": "Check if the Google compute firewall allows unrestricted RDP access. Allowed ports should not contain RDP port 3389",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall",
@@ -18567,7 +18567,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "20fce4e9",
             "descriptionText": "Google Compute Network should not use a firewall rule that allows all ports",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall#allow",
@@ -18579,7 +18579,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "e9bbb09e",
             "descriptionText": "Kubernetes Clusters must be created with Private Clusters enabled, meaning the 'private_cluster_config' must be defined and the attributes 'enable_private_nodes' and 'enable_private_endpoint' must be true",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
@@ -18591,7 +18591,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "55ff1131",
             "descriptionText": "Gmail accounts are being used instead of corporate credentials",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_binding",
@@ -18603,7 +18603,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "dd31f3ec",
             "descriptionText": "Audit Logging Configuration is defective",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_audit_config",
@@ -18615,7 +18615,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "5598ed06",
             "descriptionText": "DNSSEC must be enabled for Cloud DNS",
             "descriptionUrl": "https://www.terraform.io/docs/providers/google/d/dns_managed_zone.html",
@@ -18627,7 +18627,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "b292106d",
             "descriptionText": "Kubernetes Engine Clusters must have Stackdriver Logging enabled, which means the attribute 'logging_service' must be defined and different from 'none'",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
@@ -18639,7 +18639,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "97635f79",
             "descriptionText": "Kubernetes Engine Clusters must have Stackdriver Monitoring enabled, which means the attribute 'monitoring_service' must be defined and different than 'none'",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
@@ -18651,7 +18651,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "b1146d1f",
             "descriptionText": "KMS Crypto Key should not be publicly accessible. In other words, the KMS Crypto Key policy should not set 'allUsers' or 'allAuthenticatedUsers' in the attribute 'member'/'members'",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_kms_crypto_key_iam#google_kms_crypto_key_iam_policy",
@@ -18663,7 +18663,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "8983549e",
             "descriptionText": "Cloud SQL Database Instance should have SLL enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance#require_ssl",
@@ -18675,7 +18675,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "2c1a3242",
             "descriptionText": "Instances must not have IP forwarding enabled, which means the attribute 'can_ip_forward' must not be true",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/compute_instance",
@@ -18687,7 +18687,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "07664c32",
             "descriptionText": "DNSSEC should not use the RSASHA1 algorithm, which means if, within the 'dnssec_config' block, the 'default_key_specs' block exists with the 'algorithm' field is 'rsasha1' which is bad.",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/dns_managed_zone#algorithm",
@@ -18699,7 +18699,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "beb4558c",
             "descriptionText": "Verifies if Google Poject IAM Member Service Account doesn't have a Account User or Token Creator associated",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_member",
@@ -18711,7 +18711,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "68898cf7",
             "descriptionText": "Google Compute Network should not use default firewall rule",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall#name",
@@ -18723,7 +18723,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "afcf7c4b",
             "descriptionText": "Kubernetes Engine Clusters must have Network Policy enabled, meaning that the attribute 'network_policy.enabled' must be true and the attribute 'addons_config.network_policy_config.disabled' must be false ",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
@@ -18735,7 +18735,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "9fda4554",
             "descriptionText": "Cloud Storage Bucket should have versioning enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#enabled",
@@ -18747,7 +18747,7 @@
         {
             "aggregation": 1,
             "categoryId": 10,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "4b9307cd",
             "descriptionText": "VM Instance should block project-wide SSH keys",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance",
@@ -18759,7 +18759,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "3ed07bfa",
             "descriptionText": "Verifies that the OSLogin is enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_project_metadata#metadata",
@@ -18771,7 +18771,7 @@
         {
             "aggregation": 1,
             "categoryId": 7,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "256939e9",
             "descriptionText": "As a best practice, it is better to assign an IAM Role to a group than to a user",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/iam_policy#role",
@@ -18783,7 +18783,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "965c0d1c",
             "descriptionText": "Verifies that Google Project IAM Member Service Account doesn't have an Admin Role associated",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_member",
@@ -18795,7 +18795,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "94728b0c",
             "descriptionText": "Kubernetes Clusters must be created with Client Certificate enabled, which means 'master_auth' must have 'client_certificate_config' with the attribute 'issue_client_certificate' equal to true",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
@@ -18807,7 +18807,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "9bcdbe82",
             "descriptionText": "Verifies if the Google Project Auto Create Network is Disabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project",
@@ -18819,7 +18819,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "a0cc649c",
             "descriptionText": "Check if any VM instance disables OSLogin",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance",
@@ -18831,7 +18831,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "c0e4fb6f",
             "descriptionText": "Google Firewall should not allow SSH access (port 22) from the Internet (public CIDR block) to ensure the principle of least privileges",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall",
@@ -18843,7 +18843,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "6a48f2c6",
             "descriptionText": "Google Storage Bucket Level Access should be enabled",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket",
@@ -18855,7 +18855,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "2b311b42",
             "descriptionText": "Verifies if Google Project IAM Binding Service Account doesn't have an Account User or Token Creator Role associated",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_binding",
@@ -18867,7 +18867,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "7a54f7e2",
             "descriptionText": "Cloud Storage Bucket is anonymously or publicly accessible",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_iam#member/members",
@@ -18879,7 +18879,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "a0c651be",
             "descriptionText": "A VM instance is configured to use the default service account with full access to all Cloud APIs",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#scopes",
@@ -18891,7 +18891,7 @@
         {
             "aggregation": 1,
             "categoryId": 11,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "5c3e219f",
             "descriptionText": "Instances should not be configured to use the Default Service Account, that has full access to all Cloud APIs, which means the attribute 'service_account' and its sub attribute 'email' must be defined. Additionally, 'email' must not be empty and must also not be a default Google Compute Engine service account.",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance",
@@ -18903,7 +18903,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "27c7da5e",
             "descriptionText": "This query confirms if Google Compute SSL Policy Weak Chyper Suits is Enabled, to do so we need to check if TLS is TLS_1_2, because other version have Weak Chypers",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_ssl_policy",
@@ -18915,7 +18915,7 @@
         {
             "aggregation": 1,
             "categoryId": 2,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "947385a5",
             "descriptionText": "Kubernetes Clusters must be configured with labels, which means the attribute 'resource_labels' must be defined",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
@@ -18927,7 +18927,7 @@
         {
             "aggregation": 1,
             "categoryId": 13,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "46e4c29f",
             "descriptionText": "Kubernetes nodes must have auto upgrades set to true, which means Node 'auto_upgrade' should be enabled for Kubernetes Clusters",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool#auto_upgrade",
@@ -18939,7 +18939,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "33fb7fa7",
             "descriptionText": "VM disks for critical VMs must be encrypted with Customer Supplied Encryption Keys (CSEK) or with Customer-managed encryption keys (CMEK), which means the attribute 'disk_encryption_key' must be defined and its sub attributes 'raw_key' or 'kms_key_self_link' must also be defined",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_disk",
@@ -18951,7 +18951,7 @@
         {
             "aggregation": 1,
             "categoryId": 3,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "7289eebd",
             "descriptionText": "Google Compute Network should not use a firewall rule that allows port range",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall#allow",
@@ -18963,7 +18963,7 @@
         {
             "aggregation": 1,
             "categoryId": 4,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "ab1d4131",
             "descriptionText": "Checks if backup configuration is enabled for all Cloud SQL Database instances",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance",
@@ -18975,7 +18975,7 @@
         {
             "aggregation": 1,
             "categoryId": 5,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "fd990360",
             "descriptionText": "Cloud Storage Buckets must not be anonymously or publicly accessible, which means the attribute 'members' must not possess 'allUsers' or 'allAuthenticatedUsers'",
             "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_iam#google_storage_bucket_iam_binding",
@@ -19599,7 +19599,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "64acf7a6",
             "descriptionText": "Redis Cache resource should not allow non-SSL connections.",
             "descriptionUrl": "https://www.pulumi.com/registry/packages/azure-native/api-docs/cache/redis/#enablenonsslport_yaml",
@@ -19611,7 +19611,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 3,
+            "cloudProviderId": 2,
             "descriptionID": "406540e1",
             "descriptionText": "Storage Accounts should enforce the use of HTTPS",
             "descriptionUrl": "https://www.pulumi.com/registry/packages/azure-native/api-docs/storage/storageaccount/#enablehttpstrafficonly_yaml",
@@ -19743,7 +19743,7 @@
         {
             "aggregation": 1,
             "categoryId": 8,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "cc15c4d8",
             "descriptionText": "Cloud storage bucket should have logging enabled",
             "descriptionUrl": "https://www.pulumi.com/registry/packages/gcp/api-docs/storage/bucket/#logging_yaml",
@@ -19755,7 +19755,7 @@
         {
             "aggregation": 1,
             "categoryId": 6,
-            "cloudProviderId": 4,
+            "cloudProviderId": 3,
             "descriptionID": "58a27cbf",
             "descriptionText": "This query confirms if Google Compute SSL Policy Weak Chyper Suits is Enabled, to do so we need to check if TLS is TLS_1_2, because other version have Weak Chypers",
             "descriptionUrl": "https://www.pulumi.com/registry/packages/gcp/api-docs/compute/sslpolicy/#mintlsversion_yaml",
