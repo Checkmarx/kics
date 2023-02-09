@@ -4,6 +4,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 
 	"github.com/Checkmarx/kics/internal/constants"
@@ -139,6 +140,9 @@ func (r *Resolver) resolveYamlPath(v *yaml.Node, filePath string, resolveCount i
 	if resolveCount > constants.MaxResolvedFiles {
 		return *v, false
 	}
+
+	value = checkServerlessFileReference(value)
+
 	path := filepath.Join(filepath.Dir(filePath), value)
 	_, err := os.Stat(path)
 	if err != nil {
@@ -256,4 +260,13 @@ func contains(elem string, list []string) bool {
 		}
 	}
 	return false
+}
+
+func checkServerlessFileReference(value string) string {
+	re := regexp.MustCompile(`^\${file\((.*\.(yaml|yml))\)}$`)
+	matches := re.FindStringSubmatch(value)
+	if len(matches) > 1 {
+		return matches[1]
+	}
+	return value
 }

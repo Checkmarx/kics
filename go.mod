@@ -8,7 +8,7 @@ require (
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
 	github.com/antlr/antlr4/runtime/Go/antlr/v4 v4.0.0-20221202181307-76fa05c21b12
-	github.com/aws/aws-sdk-go v1.44.194
+	github.com/aws/aws-sdk-go v1.44.195
 	github.com/cheggaaa/pb/v3 v3.1.0
 	github.com/emicklei/proto v1.11.1
 	github.com/getsentry/sentry-go v0.17.0
@@ -208,7 +208,7 @@ require (
 	k8s.io/kubectl v0.26.0 // indirect
 	k8s.io/utils v0.0.0-20221128185143-99ec85e7a448 // indirect
 	oras.land/oras-go v1.2.2 // indirect
-	sigs.k8s.io/controller-runtime v0.14.2
+	sigs.k8s.io/controller-runtime v0.14.4
 	sigs.k8s.io/json v0.0.0-20220713155537-f223a00ba0e2 // indirect
 	sigs.k8s.io/kustomize/api v0.12.1 // indirect
 	sigs.k8s.io/kustomize/kyaml v0.13.9 // indirect
