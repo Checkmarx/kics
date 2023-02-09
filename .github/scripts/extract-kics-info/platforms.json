@@ -1,0 +1,68 @@
+{
+    "platforms": [
+        {
+            "id": 1,
+            "platform": "CloudFormation"
+        },
+        {
+            "id": 2,
+            "platform": "DockerCompose"
+        },
+        {
+            "id": 3,
+            "platform": "GRPC"
+        },
+        {
+            "id": 4,
+            "platform": "AzureResourceManager"
+        },
+        {
+            "id": 5,
+            "platform": "Ansible"
+        },
+        {
+            "id": 6,
+            "platform": "Knative"
+        },
+        {
+            "id": 7,
+            "platform": "Kubernetes"
+        },
+        {
+            "id": 8,
+            "platform": "ServerlessFW"
+        },
+        {
+            "id": 9,
+            "platform": "GoogleDeploymentManager"
+        },
+        {
+            "id": 10,
+            "platform": "Common"
+        },
+        {
+            "id": 11,
+            "platform": "Buildah"
+        },
+        {
+            "id": 12,
+            "platform": "OpenAPI"
+        },
+        {
+            "id": 13,
+            "platform": "Crossplane"
+        },
+        {
+            "id": 14,
+            "platform": "Terraform"
+        },
+        {
+            "id": 15,
+            "platform": "Dockerfile"
+        },
+        {
+            "id": 16,
+            "platform": "Pulumi"
+        }
+    ]
+}
