@@ -1,5 +1,6 @@
 ## Ansible Queries List
 This page contains all queries from Ansible.
+
 ### AWS
 Bellow are listed queries related with Ansible AWS:
 
@@ -137,6 +138,7 @@ Bellow are listed queries related with Ansible AWS:
 |CloudTrail Log File Validation Disabled<br/><sup><sub>4d8681a2-3d30-4c89-8070-08acd142748e</sub></sup>|<span style="color:#CC0">Low</span>|Observability|CloudTrail log file validation should be enabled to determine whether a log file has not been tampered|<a href="https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html">Documentation</a><br/>|
 |Lambda Functions Without X-Ray Tracing<br/><sup><sub>71397b34-1d50-4ee1-97cb-c96c34676f74</sub></sup>|<span style="color:#CC0">Low</span>|Observability|AWS Lambda functions should have TracingConfig enabled. For this, property 'tracing_mode' should have the value 'Active'|<a href="https://docs.ansible.com/ansible/latest/collections/community/aws/lambda_module.html">Documentation</a><br/>|
 |EC2 Not EBS Optimized<br/><sup><sub>338b6cab-961d-4998-bb49-e5b6a11c9a5c</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|It's considered a best practice for an EC2 instance to use an EBS optimized instance. This provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance|<a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_module.html#parameter-ebs_optimized">Documentation</a><br/>|
+
 ### GCP
 Bellow are listed queries related with Ansible GCP:
 
@@ -193,6 +195,7 @@ Bellow are listed queries related with Ansible GCP:
 |High Google KMS Crypto Key Rotation Period<br/><sup><sub>f9b7086b-deb8-4034-9330-d7fd38f1b8de</sub></sup>|<span style="color:#C60">Medium</span>|Secret Management|KMS encryption keys should be rotated every 90 days or less. A short lifetime of encryption keys reduces the potential blast radius in case of compromise.|<a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_kms_crypto_key_module.html">Documentation</a><br/>|
 |Google Compute Network Using Firewall Rule that Allows Port Range<br/><sup><sub>7289eebd-a477-4064-8ad4-3c044bd70b00</sub></sup>|<span style="color:#CC0">Low</span>|Networking and Firewall|Google Compute Network should not use a firewall rule that allows port range|<a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_firewall_module.html#parameter-allowed">Documentation</a><br/>|
 |Google Compute Subnetwork with Private Google Access Disabled<br/><sup><sub>6a4080ae-79bd-42f6-a924-8f534c1c018b</sub></sup>|<span style="color:#CC0">Low</span>|Networking and Firewall|Google Compute Subnetwork should have Private Google Access enabled, which means 'private_ip_google_access' should be set to yes|<a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_subnetwork_module.html#parameter-private_ip_google_access">Documentation</a><br/>|
+
 ### AZURE
 Bellow are listed queries related with Ansible AZURE:
 

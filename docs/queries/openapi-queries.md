@@ -1,5 +1,6 @@
 ## OpenAPI Queries List
 This page contains all queries from OpenAPI.
+
 ### 2.0
 Bellow are listed queries related with OpenAPI 2.0:
 
@@ -54,6 +55,7 @@ Bellow are listed queries related with OpenAPI 2.0:
 |File Parameter With Wrong Consumes Property<br/><sup><sub>7f91992f-b4c8-43bf-9bf9-fae9ecdb6e3a</sub></sup>|<span style="color:#00C">Info</span>|Structure and Semantics|Operations file parameters consumes must be 'multipart/form-data', 'application/x-www-form-urlencoded' or both|<a href="https://swagger.io/specification/v2/#operation-object">Documentation</a><br/>|
 |Non Body Parameter Without Schema<br/><sup><sub>73c3bc54-3cc6-4c0a-b30a-e19f2abfc951</sub></sup>|<span style="color:#00C">Info</span>|Structure and Semantics|The Body Parameter Object should have the attribute 'schema' defined|<a href="https://swagger.io/specification/v2/#parameterObject">Documentation</a><br/>|
 |Body Parameter Without Schema<br/><sup><sub>ed48229d-d43e-4da7-b453-5f98d964a57a</sub></sup>|<span style="color:#00C">Info</span>|Structure and Semantics|The Body Parameter Object should have the attribute 'schema' defined|<a href="https://swagger.io/specification/v2/#parameterObject">Documentation</a><br/>|
+
 ### SHARED (V2/V3)
 Bellow are listed queries related with OpenAPI SHARED (V2/V3):
 
@@ -209,6 +211,7 @@ Bellow are listed queries related with OpenAPI SHARED (V2/V3):
 |Properties Missing Required Property (v3)<br/><sup><sub>3fb03214-25d4-4bd4-867c-c2d8d708a483</sub></sup>|<span style="color:#00C">Info</span>|Structure and Semantics|Schema Object should have all required properties defined|<a href="https://swagger.io/specification/#schema-object">Documentation</a><br/>|
 |Schema Discriminator Mismatch Defined Properties (v2)<br/><sup><sub>addc0eab-27f6-4c26-8526-d2ccd3732662</sub></sup>|<span style="color:#00C">Info</span>|Structure and Semantics|Schema discriminator values should match defined properties.|<a href="https://swagger.io/specification/v2/#schema-object">Documentation</a><br/>|
 |Schema Discriminator Mismatch Defined Properties (v3)<br/><sup><sub>40d3df21-c170-4dbe-9c02-4289b51f994f</sub></sup>|<span style="color:#00C">Info</span>|Structure and Semantics|Schema discriminator values should match defined properties.|<a href="https://swagger.io/specification/#schema-object">Documentation</a><br/>|
+
 ### 3.0
 Bellow are listed queries related with OpenAPI 3.0:
 

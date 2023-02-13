@@ -1,5 +1,6 @@
 ## Crossplane Queries List
 This page contains all queries from Crossplane.
+
 ### AWS
 Bellow are listed queries related with Crossplane AWS:
 
@@ -18,6 +19,7 @@ Bellow are listed queries related with Crossplane AWS:
 |CloudFront Logging Disabled<br/><sup><sub>7b590235-1ff4-421b-b9ff-5227134be9bb</sub></sup>|<span style="color:#C60">Medium</span>|Observability|AWS CloudFront distributions should have logging enabled to collect all viewer requests, which means the attribute 'logging' must be defined with 'enabled' set to true|<a href="https://doc.crds.dev/github.com/crossplane/provider-aws/cloudfront.aws.crossplane.io/Distribution/v1alpha1@v0.29.0#spec-forProvider-distributionConfig-logging">Documentation</a><br/>|
 |CloudWatch Without Retention Period Specified<br/><sup><sub>934613fe-b12c-4e5a-95f5-c1dcdffac1ff</sub></sup>|<span style="color:#C60">Medium</span>|Observability|AWS CloudWatch should have CloudWatch Logs enabled in order to monitor, store, and access log events|<a href="https://doc.crds.dev/github.com/crossplane/provider-aws/cloudwatchlogs.aws.crossplane.io/LogGroup/v1alpha1@v0.29.0#spec-forProvider-retentionInDays">Documentation</a><br/>|
 |CloudFront Without WAF<br/><sup><sub>6d19ce0f-b3d8-4128-ac3d-1064e0f00494</sub></sup>|<span style="color:#CC0">Low</span>|Networking and Firewall|All AWS CloudFront distributions should be integrated with the Web Application Firewall (AWS WAF) service|<a href="https://doc.crds.dev/github.com/crossplane/provider-aws/cloudfront.aws.crossplane.io/Distribution/v1alpha1@v0.29.0#spec-forProvider-distributionConfig-webACLID">Documentation</a><br/>|
+
 ### GCP
 Bellow are listed queries related with Crossplane GCP:
 
@@ -27,6 +29,7 @@ Bellow are listed queries related with Crossplane GCP:
 |------------------------------|--------|--------|-----------|----|
 |Cloud Storage Bucket Logging Not Enabled<br/><sup><sub>6c2d627c-de0f-45fb-b33d-dad9bffbb421</sub></sup>|<span style="color:#C00">High</span>|Observability|Cloud storage bucket should have logging enabled|<a href="https://doc.crds.dev/github.com/crossplane/provider-gcp/storage.gcp.crossplane.io/Bucket/v1alpha3@v0.21.0#spec-logging">Documentation</a><br/>|
 |Google Container Node Pool Auto Repair Disabled<br/><sup><sub>b4f65d13-a609-4dc1-af7c-63d2e08bffe9</sub></sup>|<span style="color:#C60">Medium</span>|Insecure Configurations|Google Container Node Pool Auto Repair should be enabled. This service periodically checks for failing nodes and repairs them to ensure a smooth running state.|<a href="https://doc.crds.dev/github.com/crossplane/provider-gcp/container.gcp.crossplane.io/NodePool/v1beta1@v0.21.0#spec-forProvider-management-autoRepair">Documentation</a><br/>|
+
 ### AZURE
 Bellow are listed queries related with Crossplane AZURE:
 

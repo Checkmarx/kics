@@ -1,5 +1,6 @@
 ## CloudFormation Queries List
 This page contains all queries from CloudFormation.
+
 ### AWS
 Bellow are listed queries related with CloudFormation AWS:
 
@@ -256,6 +257,7 @@ Bellow are listed queries related with CloudFormation AWS:
 |ECS Task Definition Invalid CPU or Memory<br/><sup><sub>f4c9b5f5-68b8-491f-9e48-4f96644a1d51</sub></sup>|<span style="color:#CC0">Low</span>|Resource Management|In ECS Task Definition of FARGATE launch type if you specify an invalid CPU or Memory value, you will receive an error|<a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-cpu-memory-error.html">Documentation</a><br/>|
 |Security Group Rule Without Description<br/><sup><sub>5e6c9c68-8a82-408e-8749-ddad78cbb9c5</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|It's considered a best practice for AWS Security Group to have a description|<a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html">Documentation</a><br/>|
 |EC2 Not EBS Optimized<br/><sup><sub>8dd0ff1f-0da4-48df-9bb3-7f338ae36a40</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|It's considered a best practice for an EC2 instance to use an EBS optimized instance. This provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance|<a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-ebsoptimized">Documentation</a><br/>|
+
 ### AWS_BOM
 Bellow are listed queries related with CloudFormation AWS_BOM:
 
@@ -275,6 +277,7 @@ Bellow are listed queries related with CloudFormation AWS_BOM:
 |BOM - AWS EBS<br/><sup><sub>0b0556ea-9cd9-476f-862e-20679dda752b</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of EBS resources found. Amazon Elastic Block Store (Amazon EBS) is an easy-to-use, scalable, high-performance block-storage service designed for Amazon Elastic Compute Cloud (Amazon EC2).|<a href="https://kics.io">Documentation</a><br/>|
 |BOM - AWS S3 Buckets<br/><sup><sub>b5d6a2e0-8f15-4664-bd5b-68ec5c9bab83</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of S3 resources found. Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance.|<a href="https://kics.io">Documentation</a><br/>|
 |BOM - AWS SQS<br/><sup><sub>59a849c2-1127-4023-85a5-ef906dcd458c</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of SQS resources specified. Amazon Simple Queue Service (SQS) is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications.|<a href="https://kics.io">Documentation</a><br/>|
+
 ### AWS_SAM
 Bellow are listed queries related with CloudFormation AWS_SAM:
 
