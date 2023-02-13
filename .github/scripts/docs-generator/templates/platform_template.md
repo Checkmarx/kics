@@ -3,6 +3,7 @@ This page contains all queries from {{platform}}.
 
 {%- for sub_platform in data -%}
 {%- if sub_platform != 'default' %}
+
 ### {{sub_platform | upper}}
 Bellow are listed queries related with {{platform}} {{sub_platform | upper}}:
 
