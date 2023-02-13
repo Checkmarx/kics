@@ -1,5 +1,6 @@
 ## GoogleDeploymentManager Queries List
 This page contains all queries from GoogleDeploymentManager.
+
 ### GCP_BOM
 Bellow are listed queries related with GoogleDeploymentManager GCP_BOM:
 
@@ -10,6 +11,7 @@ Bellow are listed queries related with GoogleDeploymentManager GCP_BOM:
 |BOM - GCP PD<br/><sup><sub>268c65a8-58ad-43e4-9019-1a9bbc56749f</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of Persistent Disk resources found. Persistent Disk is Google's local durable storage service, fully integrated with Google Cloud products, Compute Engine and Google Kubernetes Engine.|<a href="https://kics.io">Documentation</a><br/>|
 |BOM - GCP PST<br/><sup><sub>9ed08714-b2f3-4c6d-8fb0-ac0b74ad71d8</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of Pub/Sub Topic resources found. Cloud Pub/Sub is designed to provide reliable, many-to-many, asynchronous messaging between applications. Publisher applications can send messages to a 'topic' and other applications can subscribe to that topic to receive the messages.|<a href="https://kics.io">Documentation</a><br/>|
 |BOM - GCP SB<br/><sup><sub>c7781feb-a955-4f9f-b9cf-0d7c6f54bb59</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of Storage Bucket resources found. Buckets are the basic containers that hold your data. Everything that you store in Cloud Storage must be contained in a bucket.|<a href="https://kics.io">Documentation</a><br/>|
+
 ### GCP
 Bellow are listed queries related with GoogleDeploymentManager GCP:
 
