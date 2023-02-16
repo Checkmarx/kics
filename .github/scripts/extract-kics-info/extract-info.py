@@ -1,6 +1,7 @@
 import os
 from fnmatch import fnmatch
 import json
+import zipfile
 
 
 class Query:
@@ -36,14 +37,14 @@ class Query:
         self.platformId = platforms.getPlatformId(queryData['platform'])
         self.descriptionID = queryData['descriptionID']
         if queryData.__contains__('cloudProvider'):
-            self.cloudProviderId = cloudProviders.getCloudProviderId(queryData['cloudProvider'])
+            self.cloudProviderId = cloudProviders.getCloudProviderId(
+                queryData['cloudProvider'])
         else:
             self.cloudProviderId = None
         if queryData.__contains__('aggregation'):
             self.aggregation = queryData['aggregation']
         else:
             self.aggregation = 1
-        
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
@@ -250,7 +251,9 @@ def loadQueriesData():
                 queries.addQuery(Query(data))
     #categoriesList.remove('Bill Of Materials')
 
+
 exportFolderPath = ".github/scripts/extract-kics-info/"
+
 
 def exportData():
     with open(exportFolderPath+"categories.json", "w") as outfile:
@@ -268,6 +271,16 @@ def exportData():
     with open(exportFolderPath+"queries.json", "w") as outfile:
         outfile.write(queries.toJSON())
 
+    with zipfile.ZipFile(exportFolderPath+"extracted-info.zip", mode="w") as archive:
+        archive.write(exportFolderPath+"categories.json",
+                      arcname="categories.json")
+        archive.write(exportFolderPath+"platforms.json",
+                      arcname="platforms.json")
+        archive.write(exportFolderPath+"cloudProviders.json",
+                      arcname="cloudProviders.json")
+        archive.write(exportFolderPath+"severities.json",
+                      arcname="severities.json")
+        archive.write(exportFolderPath+"queries.json", arcname="queries.json")
 
 
 if __name__ == "__main__":
