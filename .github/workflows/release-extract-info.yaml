@@ -1,0 +1,40 @@
+name: release-extract-info
+on:
+  workflow_dispatch:
+  release:
+    type: [published]
+jobs:
+  statistics:
+    name: extract-info
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+      - name: Run test statistics script
+        id: extract
+        run: |
+          pip3 install -r .github/scripts/extract-kics-info/requirements.txt
+          python3 .github/scripts/extract-kics-info/extract-info.py
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: .github/scripts/extract-kics-info/extracted-info.zip
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
+      - name: Clean generated files
+        run : |
+          rm -f \
+          .github/scripts/extract-kics-info/categories.json \
+          .github/scripts/extract-kics-info/cloudProviders.json \
+          .github/scripts/extract-kics-info/platforms.json \
+          .github/scripts/extract-kics-info/queries.json \
+          .github/scripts/extract-kics-info/severities.json \
+          .github/scripts/extract-kics-info/extracted-info.zip
+
+
+
