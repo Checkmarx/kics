@@ -1,5 +1,6 @@
 ## Terraform Queries List
 This page contains all queries from Terraform.
+
 ### AWS
 Bellow are listed queries related with Terraform AWS:
 
@@ -41,7 +42,7 @@ Bellow are listed queries related with Terraform AWS:
 |EFS Without KMS<br/><sup><sub>25d251f3-f348-4f95-845c-1090e41a615c</sub></sup>|<span style="color:#C00">High</span>|Encryption|Amazon Elastic Filesystem should have filesystem encryption enabled using KMS CMK customer-managed keys instead of AWS managed-keys|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/efs_file_system#kms_key_id">Documentation</a><br/>|
 |Secure Ciphers Disabled<br/><sup><sub>5c0003fb-9aa0-42c1-9da3-eb0e332bef21</sub></sup>|<span style="color:#C00">High</span>|Encryption|Check if secure ciphers aren't used in CloudFront|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution">Documentation</a><br/>|
 |API Gateway Method Settings Cache Not Encrypted<br/><sup><sub>b7c9a40c-23e4-4a2d-8d39-a3352f10f288</sub></sup>|<span style="color:#C00">High</span>|Encryption|API Gateway Method Settings Cache should be encrypted|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_method_settings#cache_data_encrypted">Documentation</a><br/>|
-|Launch Configuration Is Not Encrypted<br/><sup><sub>4de9de27-254e-424f-bd70-4c1e95790838</sub></sup>|<span style="color:#C00">High</span>|Encryption|Launch Configuration EBS should have the data in the volumes encrypted. To encrypt the data, the 'encrypted' argument should be set to true in each volume block|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_configuration#encrypted">Documentation</a><br/>|
+|Launch Configuration Is Not Encrypted<br/><sup><sub>4de9de27-254e-424f-bd70-4c1e95790838</sub></sup>|<span style="color:#C00">High</span>|Encryption|Launch Configurations should have the data in the volumes encrypted. To encrypt the data, the 'encrypted' parameter should be set to true in each volume|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_configuration#encrypted">Documentation</a><br/>|
 |DB Instance Storage Not Encrypted<br/><sup><sub>08bd0760-8752-44e1-9779-7bb369b2b4e4</sub></sup>|<span style="color:#C00">High</span>|Encryption|AWS DB Instance should have its storage encrypted by setting the parameter to 'true'. The storage_encrypted default value is 'false'.|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#storage_encrypted">Documentation</a><br/>|
 |S3 Bucket Object Not Encrypted<br/><sup><sub>5fb49a69-8d46-4495-a2f8-9c8c622b2b6e</sub></sup>|<span style="color:#C00">High</span>|Encryption|S3 Bucket Object should have server-side encryption enabled|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_object#server_side_encryption">Documentation</a><br/>|
 |Glue Security Configuration Encryption Disabled<br/><sup><sub>ad5b4e97-2850-4adf-be17-1d293e0b85ee</sub></sup>|<span style="color:#C00">High</span>|Encryption|Glue Security Configuration Encryption should have 'cloudwatch_encryption', 'job_bookmarks_encryption' and 's3_encryption' enabled|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/glue_security_configuration#encryption_configuration">Documentation</a><br/>|
@@ -340,6 +341,7 @@ Bellow are listed queries related with Terraform AWS:
 |EC2 Instance Monitoring Disabled<br/><sup><sub>23b70e32-032e-4fa6-ba5c-82f56b9980e6</sub></sup>|<span style="color:#00C">Info</span>|Observability|EC2 Instance should have detailed monitoring enabled. With detailed monitoring enabled data is available in 1-minute periods|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#monitoring">Documentation</a><br/>|
 |Neptune Logging Is Disabled<br/><sup><sub>45cff7b6-3b80-40c1-ba7b-2cf480678bb8</sub></sup>|<span style="color:#00C">Info</span>|Observability|Neptune logging should be enabled|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/neptune_cluster#enable_cloudwatch_logs_exports">Documentation</a><br/>|
 |RDS Without Logging<br/><sup><sub>8d7f7b8c-6c7c-40f8-baa6-62006c6c7b56</sub></sup>|<span style="color:#00C">Info</span>|Observability|RDS does not have any kind of logger|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#enabled_cloudwatch_logs_exports">Documentation</a><br/>|
+
 ### GITHUB
 Bellow are listed queries related with Terraform GITHUB:
 
@@ -349,6 +351,7 @@ Bellow are listed queries related with Terraform GITHUB:
 |------------------------------|--------|--------|-----------|----|
 |Github Organization Webhook With SSL Disabled<br/><sup><sub>ce7c874e-1b88-450b-a5e4-cb76ada3c8a9</sub></sup>|<span style="color:#C60">Medium</span>|Encryption|Check if insecure SSL is being used in the GitHub organization webhooks|<a href="https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/organization_webhook">Documentation</a><br/>|
 |GitHub Repository Set To Public<br/><sup><sub>15d8a7fd-465a-4d15-a868-add86552f17b</sub></sup>|<span style="color:#C60">Medium</span>|Insecure Configurations|Repositories must be set to private, which means the attribute 'visibility' must be set to 'private' and/or the attribute 'private' must be set to true (the attribute 'visibility' overrides 'private')|<a href="https://www.terraform.io/docs/providers/github/r/repository.html">Documentation</a><br/>|
+
 ### SHARED (V2/V3)
 Bellow are listed queries related with Terraform SHARED (V2/V3):
 
@@ -361,6 +364,7 @@ Bellow are listed queries related with Terraform SHARED (V2/V3):
 |Variable Without Description<br/><sup><sub>2a153952-2544-4687-bcc9-cc8fea814a9b</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|All variables should contain a valid description.|<a href="https://www.terraform.io/docs/language/values/variables.html#input-variable-documentation">Documentation</a><br/>|
 |Generic Git Module Without Revision<br/><sup><sub>3a81fc06-566f-492a-91dd-7448e409e2cd</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|All generic git repositories should reference a revision.|<a href="https://www.terraform.io/docs/language/modules/sources.html#selecting-a-revision">Documentation</a><br/>|
 |Name Is Not Snake Case<br/><sup><sub>1e434b25-8763-4b00-a5ca-ca03b7abbb66</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|All names should follow snake case pattern.|<a href="https://www.terraform.io/docs/extend/best-practices/naming.html#naming">Documentation</a><br/>|
+
 ### KUBERNETES
 Bellow are listed queries related with Terraform KUBERNETES:
 
@@ -413,7 +417,7 @@ Bellow are listed queries related with Terraform KUBERNETES:
 |Docker Daemon Socket is Exposed to Containers<br/><sup><sub>4e203a65-c8d8-49a2-b749-b124d43c9dc1</sub></sup>|<span style="color:#CC0">Low</span>|Access Control|Sees if Docker Daemon Socket is not exposed to Containers|<a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#host_path">Documentation</a><br/>|
 |Missing App Armor Config<br/><sup><sub>bd6bd46c-57db-4887-956d-d372f21291b6</sub></sup>|<span style="color:#CC0">Low</span>|Access Control|Containers should be configured with AppArmor for any application to reduce its potential attack|<a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#annotations">Documentation</a><br/>|
 |Cluster Admin Rolebinding With Superuser Permissions<br/><sup><sub>17172bc2-56fb-4f17-916f-a014147706cd</sub></sup>|<span style="color:#CC0">Low</span>|Access Control|Ensure that the cluster-admin role is only used where required (RBAC)|<a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role_binding#name">Documentation</a><br/>|
-|HPA Targets Invalid Object<br/><sup><sub>17e52ca3-ddd0-4610-9d56-ce107442e110</sub></sup>|<span style="color:#CC0">Low</span>|Availability|The Horizontal Pod Autoscale must target a valid object|<a href="hhttps://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/horizontal_pod_autoscaler#metric">Documentation</a><br/>|
+|HPA Targets Invalid Object<br/><sup><sub>17e52ca3-ddd0-4610-9d56-ce107442e110</sub></sup>|<span style="color:#CC0">Low</span>|Availability|The Horizontal Pod Autoscaler must target a valid object|<a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/horizontal_pod_autoscaler#metric">Documentation</a><br/>|
 |Deployment Without PodDisruptionBudget<br/><sup><sub>a05331ee-1653-45cb-91e6-13637a76e4f0</sub></sup>|<span style="color:#CC0">Low</span>|Availability|Deployments should be assigned with a PodDisruptionBudget to ensure high availability|<a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/deployment#selector">Documentation</a><br/>|
 |Liveness Probe Is Not Defined<br/><sup><sub>5b6d53dd-3ba3-4269-b4d7-f82e880e43c3</sub></sup>|<span style="color:#CC0">Low</span>|Availability|In case of an unresponsive container, a Liveness Probe can help your application become more available since it restarts the container. However, it can lead to cascading failures. Define one if you really need it|<a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#liveness_probe">Documentation</a><br/>|
 |StatefulSet Without PodDisruptionBudget<br/><sup><sub>7249e3b0-9231-4af3-bc5f-5daf4988ecbf</sub></sup>|<span style="color:#CC0">Low</span>|Availability|StatefulSets should be assigned with a PodDisruptionBudget to ensure high availability|<a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/stateful_set#selector">Documentation</a><br/>|
@@ -431,6 +435,7 @@ Bellow are listed queries related with Terraform KUBERNETES:
 |Deployment Has No PodAntiAffinity<br/><sup><sub>461ed7e4-f8d5-4bc1-b3c6-64ddb4fd00a3</sub></sup>|<span style="color:#CC0">Low</span>|Resource Management|Check if Deployment resources don't have a podAntiAffinity policy, which prevents multiple pods from being scheduled on the same node.|<a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/deployment#affinity">Documentation</a><br/>|
 |Secrets As Environment Variables<br/><sup><sub>6d8f1a10-b6cd-48f0-b960-f7c535d5cdb8</sub></sup>|<span style="color:#CC0">Low</span>|Secret Management|Container should not use secrets as environment variables|<a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#secret_key_ref">Documentation</a><br/>|
 |Invalid Image<br/><sup><sub>e76cca7c-c3f9-4fc9-884c-b2831168ebd8</sub></sup>|<span style="color:#CC0">Low</span>|Supply-Chain|Image must be defined and not be empty or equal to latest.|<a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#image">Documentation</a><br/>|
+
 ### ALICLOUD
 Bellow are listed queries related with Terraform ALICLOUD:
 
@@ -493,6 +498,7 @@ Bellow are listed queries related with Terraform ALICLOUD:
 |RDS Instance Log Disconnections Disabled<br/><sup><sub>d53f4123-f8d8-4224-8cb3-f920b151cc98</sub></sup>|<span style="color:#CC0">Low</span>|Observability|log_disconnections parameter should be set to ON for RDS instances|<a href="https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#parameters">Documentation</a><br/>|
 |RDS Instance Log Duration Disabled<br/><sup><sub>a597e05a-c065-44e7-9cc8-742f572a504a</sub></sup>|<span style="color:#CC0">Low</span>|Observability|log_duration parameter should be set to ON for RDS instances|<a href="https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#parameters">Documentation</a><br/>|
 |RDS Instance Log Connections Disabled<br/><sup><sub>140869ea-25f2-40d4-a595-0c0da135114e</sub></sup>|<span style="color:#CC0">Low</span>|Observability|'log_connections' parameter should be set to ON for RDS instances|<a href="https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#parameters">Documentation</a><br/>|
+
 ### GCP_BOM
 Bellow are listed queries related with Terraform GCP_BOM:
 
@@ -506,6 +512,7 @@ Bellow are listed queries related with Terraform GCP_BOM:
 |BOM - GCP FI<br/><sup><sub>c9d81239-c818-4869-9917-1570c62b81fd</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of Filestore Instance resources found. Filestore instances are fully managed file servers on Google Cloud that can be connected to Compute Engine VMs, GKE clusters, and your on-premises machines. Once provisioned, you can scale the capacity of your instances according to need without any downtime.|<a href="https://kics.io">Documentation</a><br/>|
 |BOM - GCP Redis<br/><sup><sub>bc75ce52-a60a-4660-b533-bce837a5019b</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of Redis Instance resources found. Memorystore for Redis is a fully managed Redis service for Google Cloud. Applications running on Google Cloud can achieve extreme performance by leveraging the highly scalable, available, secure Redis service without the burden of managing complex Redis deployments.|<a href="https://kics.io">Documentation</a><br/>|
 |BOM - GCP Dataflow<br/><sup><sub>895ed0d9-6fec-4567-8614-d7a74b599a53</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of Dataflow resources found. Unified stream and batch data processing that's serverless, fast, and cost-effective.|<a href="https://kics.io">Documentation</a><br/>|
+
 ### AWS_BOM
 Bellow are listed queries related with Terraform AWS_BOM:
 
@@ -524,6 +531,7 @@ Bellow are listed queries related with Terraform AWS_BOM:
 |BOM - AWS EBS<br/><sup><sub>86571149-eef3-4280-a645-01e60df854b0</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of EBS resources found. Amazon Elastic Block Store (Amazon EBS) is an easy-to-use, scalable, high-performance block-storage service designed for Amazon Elastic Compute Cloud (Amazon EC2).|<a href="https://kics.io">Documentation</a><br/>|
 |BOM - AWS S3 Buckets<br/><sup><sub>2d16c3fb-35ba-4ec0-b4e4-06ee3cbd4045</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of S3 resources found. Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance.|<a href="https://kics.io">Documentation</a><br/>|
 |BOM - AWS SQS<br/><sup><sub>baecd2da-492a-4d59-b9dc-29540a1398e0</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of SQS resources specified. Amazon Simple Queue Service (SQS) is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications.|<a href="https://kics.io">Documentation</a><br/>|
+
 ### GCP
 Bellow are listed queries related with Terraform GCP:
 
@@ -585,6 +593,7 @@ Bellow are listed queries related with Terraform GCP:
 |User with IAM Role<br/><sup><sub>704fcc44-a58f-4af5-82e2-93f2a58ef918</sub></sup>|<span style="color:#CC0">Low</span>|Best Practices|As a best practice, it is better to assign an IAM Role to a group than to a user|<a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/iam_policy#role">Documentation</a><br/>|
 |Google Compute Network Using Firewall Rule that Allows Port Range<br/><sup><sub>e6f61c37-106b-449f-a5bb-81bfcaceb8b4</sub></sup>|<span style="color:#CC0">Low</span>|Networking and Firewall|Google Compute Network should not use a firewall rule that allows port range|<a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall#allow">Documentation</a><br/>|
 |Google Compute Subnetwork with Private Google Access Disabled<br/><sup><sub>ee7b93c1-b3f8-4a3b-9588-146d481814f5</sub></sup>|<span style="color:#CC0">Low</span>|Networking and Firewall|Google Compute Subnetwork should have Private Google Access enabled, which means 'private_ip_google_access' should be set to true|<a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork#private_ip_google_access">Documentation</a><br/>|
+
 ### AZURE
 Bellow are listed queries related with Terraform AZURE:
 
