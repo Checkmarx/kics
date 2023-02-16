@@ -1,0 +1,28 @@
+"resource \"aws_lambda_function\" \"analysis_lambda\" {\n  \n  environment {\n    variables = {\n      access_key = \"AKIAIOSFODNN7EXAMPLE\"\n      secret_key = \"wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\"\n    }\n  }\n}\n"
+"resource \"aws_lambda_function\" \"analysis_lambda\" {\n  # lambda have plain text secrets in environment variables\n  environment {\n    variables = {\n      access_key = \"AKIAIOSFODNN7EXAMPLE\"\n      secret_key = \"wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\"\n    }\n  }\n}\n"
+
+
+	"file_name": "../../kics_code_samples/bugs_gh_i/6150/test.tf",
+					"similarity_id": "dd4fc9427bc07581c7a3432567d3aacb83d8efc6e51825d77dd8bd772f6c5641",
+					"line": 4,
+					"resource_type": "aws_lambda_function",
+					"resource_name": "analysis_lambda",
+					"issue_type": "IncorrectValue",
+					"search_key": "aws_lambda_function[analysis_lambda].environment.variables",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "access_key",
+					"actual_value": "AKIAIOSFODNN7EXAMPLE"
+				},
+				{
+					"file_name": "../../kics_code_samples/bugs_gh_i/6150/test.tf",
+					"similarity_id": "dd4fc9427bc07581c7a3432567d3aacb83d8efc6e51825d77dd8bd772f6c5641",
+					"line": 4,
+					"resource_type": "aws_lambda_function",
+					"resource_name": "analysis_lambda",
+					"issue_type": "IncorrectValue",
+					"search_key": "aws_lambda_function[analysis_lambda].environment.variables",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "secret_key",
+					"actual_value": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
