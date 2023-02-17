@@ -16,17 +16,6 @@ class Query:
     aggregation: int
     cloudProviderId: int
 
-    def __init__(self, id, queryName, severity, category, descriptionText, descriptionUrl, platform, descriptionID, aggregation):
-        self.id = id
-        self.queryName = queryName
-        self.severityId = severities.getSeverityId(severity)
-        self.categoryId = categories.getCategoryId(category)
-        self.descriptionText = descriptionText
-        self.descriptionUrl = descriptionUrl
-        self.platformId = platforms.getPlatformId(platform)
-        self.descriptionID = descriptionID
-        self.aggregation = aggregation
-
     def __init__(self, queryData):
         self.id = queryData['id']
         self.queryName = queryData['queryName']
