@@ -2,7 +2,7 @@
 This page contains all queries from Ansible.
 
 ### AWS
-Bellow are listed queries related with Ansible AWS:
+Below are listed queries related with Ansible AWS:
 
 
 
@@ -140,7 +140,7 @@ Bellow are listed queries related with Ansible AWS:
 |EC2 Not EBS Optimized<br/><sup><sub>338b6cab-961d-4998-bb49-e5b6a11c9a5c</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|It's considered a best practice for an EC2 instance to use an EBS optimized instance. This provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance|<a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_module.html#parameter-ebs_optimized">Documentation</a><br/>|
 
 ### GCP
-Bellow are listed queries related with Ansible GCP:
+Below are listed queries related with Ansible GCP:
 
 
 
@@ -197,7 +197,7 @@ Bellow are listed queries related with Ansible GCP:
 |Google Compute Subnetwork with Private Google Access Disabled<br/><sup><sub>6a4080ae-79bd-42f6-a924-8f534c1c018b</sub></sup>|<span style="color:#CC0">Low</span>|Networking and Firewall|Google Compute Subnetwork should have Private Google Access enabled, which means 'private_ip_google_access' should be set to yes|<a href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_subnetwork_module.html#parameter-private_ip_google_access">Documentation</a><br/>|
 
 ### AZURE
-Bellow are listed queries related with Ansible AZURE:
+Below are listed queries related with Ansible AZURE:
 
 
 

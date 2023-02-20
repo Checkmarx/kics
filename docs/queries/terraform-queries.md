@@ -2,7 +2,7 @@
 This page contains all queries from Terraform.
 
 ### AWS
-Bellow are listed queries related with Terraform AWS:
+Below are listed queries related with Terraform AWS:
 
 
 
@@ -343,7 +343,7 @@ Bellow are listed queries related with Terraform AWS:
 |RDS Without Logging<br/><sup><sub>8d7f7b8c-6c7c-40f8-baa6-62006c6c7b56</sub></sup>|<span style="color:#00C">Info</span>|Observability|RDS does not have any kind of logger|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#enabled_cloudwatch_logs_exports">Documentation</a><br/>|
 
 ### GITHUB
-Bellow are listed queries related with Terraform GITHUB:
+Below are listed queries related with Terraform GITHUB:
 
 
 
@@ -353,7 +353,7 @@ Bellow are listed queries related with Terraform GITHUB:
 |GitHub Repository Set To Public<br/><sup><sub>15d8a7fd-465a-4d15-a868-add86552f17b</sub></sup>|<span style="color:#C60">Medium</span>|Insecure Configurations|Repositories must be set to private, which means the attribute 'visibility' must be set to 'private' and/or the attribute 'private' must be set to true (the attribute 'visibility' overrides 'private')|<a href="https://www.terraform.io/docs/providers/github/r/repository.html">Documentation</a><br/>|
 
 ### SHARED (V2/V3)
-Bellow are listed queries related with Terraform SHARED (V2/V3):
+Below are listed queries related with Terraform SHARED (V2/V3):
 
 
 
@@ -366,7 +366,7 @@ Bellow are listed queries related with Terraform SHARED (V2/V3):
 |Name Is Not Snake Case<br/><sup><sub>1e434b25-8763-4b00-a5ca-ca03b7abbb66</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|All names should follow snake case pattern.|<a href="https://www.terraform.io/docs/extend/best-practices/naming.html#naming">Documentation</a><br/>|
 
 ### KUBERNETES
-Bellow are listed queries related with Terraform KUBERNETES:
+Below are listed queries related with Terraform KUBERNETES:
 
 
 
@@ -437,7 +437,7 @@ Bellow are listed queries related with Terraform KUBERNETES:
 |Invalid Image<br/><sup><sub>e76cca7c-c3f9-4fc9-884c-b2831168ebd8</sub></sup>|<span style="color:#CC0">Low</span>|Supply-Chain|Image must be defined and not be empty or equal to latest.|<a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#image">Documentation</a><br/>|
 
 ### ALICLOUD
-Bellow are listed queries related with Terraform ALICLOUD:
+Below are listed queries related with Terraform ALICLOUD:
 
 
 
@@ -500,7 +500,7 @@ Bellow are listed queries related with Terraform ALICLOUD:
 |RDS Instance Log Connections Disabled<br/><sup><sub>140869ea-25f2-40d4-a595-0c0da135114e</sub></sup>|<span style="color:#CC0">Low</span>|Observability|'log_connections' parameter should be set to ON for RDS instances|<a href="https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#parameters">Documentation</a><br/>|
 
 ### GCP_BOM
-Bellow are listed queries related with Terraform GCP_BOM:
+Below are listed queries related with Terraform GCP_BOM:
 
 
 
@@ -514,7 +514,7 @@ Bellow are listed queries related with Terraform GCP_BOM:
 |BOM - GCP Dataflow<br/><sup><sub>895ed0d9-6fec-4567-8614-d7a74b599a53</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of Dataflow resources found. Unified stream and batch data processing that's serverless, fast, and cost-effective.|<a href="https://kics.io">Documentation</a><br/>|
 
 ### AWS_BOM
-Bellow are listed queries related with Terraform AWS_BOM:
+Below are listed queries related with Terraform AWS_BOM:
 
 
 
@@ -533,7 +533,7 @@ Bellow are listed queries related with Terraform AWS_BOM:
 |BOM - AWS SQS<br/><sup><sub>baecd2da-492a-4d59-b9dc-29540a1398e0</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of SQS resources specified. Amazon Simple Queue Service (SQS) is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications.|<a href="https://kics.io">Documentation</a><br/>|
 
 ### GCP
-Bellow are listed queries related with Terraform GCP:
+Below are listed queries related with Terraform GCP:
 
 
 
@@ -595,7 +595,7 @@ Bellow are listed queries related with Terraform GCP:
 |Google Compute Subnetwork with Private Google Access Disabled<br/><sup><sub>ee7b93c1-b3f8-4a3b-9588-146d481814f5</sub></sup>|<span style="color:#CC0">Low</span>|Networking and Firewall|Google Compute Subnetwork should have Private Google Access enabled, which means 'private_ip_google_access' should be set to true|<a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork#private_ip_google_access">Documentation</a><br/>|
 
 ### AZURE
-Bellow are listed queries related with Terraform AZURE:
+Below are listed queries related with Terraform AZURE:
 
 
 

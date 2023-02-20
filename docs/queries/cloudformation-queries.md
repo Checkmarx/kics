@@ -2,7 +2,7 @@
 This page contains all queries from CloudFormation.
 
 ### AWS
-Bellow are listed queries related with CloudFormation AWS:
+Below are listed queries related with CloudFormation AWS:
 
 
 
@@ -259,7 +259,7 @@ Bellow are listed queries related with CloudFormation AWS:
 |EC2 Not EBS Optimized<br/><sup><sub>8dd0ff1f-0da4-48df-9bb3-7f338ae36a40</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|It's considered a best practice for an EC2 instance to use an EBS optimized instance. This provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance|<a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-ebsoptimized">Documentation</a><br/>|
 
 ### AWS_BOM
-Bellow are listed queries related with CloudFormation AWS_BOM:
+Below are listed queries related with CloudFormation AWS_BOM:
 
 
 
@@ -279,7 +279,7 @@ Bellow are listed queries related with CloudFormation AWS_BOM:
 |BOM - AWS SQS<br/><sup><sub>59a849c2-1127-4023-85a5-ef906dcd458c</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of SQS resources specified. Amazon Simple Queue Service (SQS) is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications.|<a href="https://kics.io">Documentation</a><br/>|
 
 ### AWS_SAM
-Bellow are listed queries related with CloudFormation AWS_SAM:
+Below are listed queries related with CloudFormation AWS_SAM:
 
 
 

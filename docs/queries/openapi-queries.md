@@ -2,7 +2,7 @@
 This page contains all queries from OpenAPI.
 
 ### 2.0
-Bellow are listed queries related with OpenAPI 2.0:
+Below are listed queries related with OpenAPI 2.0:
 
 
 
@@ -57,7 +57,7 @@ Bellow are listed queries related with OpenAPI 2.0:
 |Body Parameter Without Schema<br/><sup><sub>ed48229d-d43e-4da7-b453-5f98d964a57a</sub></sup>|<span style="color:#00C">Info</span>|Structure and Semantics|The Body Parameter Object should have the attribute 'schema' defined|<a href="https://swagger.io/specification/v2/#parameterObject">Documentation</a><br/>|
 
 ### SHARED (V2/V3)
-Bellow are listed queries related with OpenAPI SHARED (V2/V3):
+Below are listed queries related with OpenAPI SHARED (V2/V3):
 
 
 
@@ -213,7 +213,7 @@ Bellow are listed queries related with OpenAPI SHARED (V2/V3):
 |Schema Discriminator Mismatch Defined Properties (v3)<br/><sup><sub>40d3df21-c170-4dbe-9c02-4289b51f994f</sub></sup>|<span style="color:#00C">Info</span>|Structure and Semantics|Schema discriminator values should match defined properties.|<a href="https://swagger.io/specification/#schema-object">Documentation</a><br/>|
 
 ### 3.0
-Bellow are listed queries related with OpenAPI 3.0:
+Below are listed queries related with OpenAPI 3.0:
 
 
 

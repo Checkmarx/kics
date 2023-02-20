@@ -2,7 +2,7 @@
 This page contains all queries from Crossplane.
 
 ### AWS
-Bellow are listed queries related with Crossplane AWS:
+Below are listed queries related with Crossplane AWS:
 
 
 
@@ -21,7 +21,7 @@ Bellow are listed queries related with Crossplane AWS:
 |CloudFront Without WAF<br/><sup><sub>6d19ce0f-b3d8-4128-ac3d-1064e0f00494</sub></sup>|<span style="color:#CC0">Low</span>|Networking and Firewall|All AWS CloudFront distributions should be integrated with the Web Application Firewall (AWS WAF) service|<a href="https://doc.crds.dev/github.com/crossplane/provider-aws/cloudfront.aws.crossplane.io/Distribution/v1alpha1@v0.29.0#spec-forProvider-distributionConfig-webACLID">Documentation</a><br/>|
 
 ### GCP
-Bellow are listed queries related with Crossplane GCP:
+Below are listed queries related with Crossplane GCP:
 
 
 
@@ -31,7 +31,7 @@ Bellow are listed queries related with Crossplane GCP:
 |Google Container Node Pool Auto Repair Disabled<br/><sup><sub>b4f65d13-a609-4dc1-af7c-63d2e08bffe9</sub></sup>|<span style="color:#C60">Medium</span>|Insecure Configurations|Google Container Node Pool Auto Repair should be enabled. This service periodically checks for failing nodes and repairs them to ensure a smooth running state.|<a href="https://doc.crds.dev/github.com/crossplane/provider-gcp/container.gcp.crossplane.io/NodePool/v1beta1@v0.21.0#spec-forProvider-management-autoRepair">Documentation</a><br/>|
 
 ### AZURE
-Bellow are listed queries related with Crossplane AZURE:
+Below are listed queries related with Crossplane AZURE:
 
 
 

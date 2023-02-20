@@ -267,7 +267,7 @@ If the **query.rego** file implements more than one query, the **metadata.json**
 }
 ```
 
-2. It implements the same query for different platforms in the same **query.rego**, the metadata bellow defines the query metadata for both OpenAPI 2.0 and 3.0 in the same file:
+2. It implements the same query for different platforms in the same **query.rego**, the metadata below defines the query metadata for both OpenAPI 2.0 and 3.0 in the same file:
 
 ```json
 {

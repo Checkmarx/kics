@@ -2,7 +2,7 @@
 This page contains all queries from Pulumi.
 
 ### AWS
-Bellow are listed queries related with Pulumi AWS:
+Below are listed queries related with Pulumi AWS:
 
 
 
@@ -20,7 +20,7 @@ Bellow are listed queries related with Pulumi AWS:
 |EC2 Instance Monitoring Disabled<br/><sup><sub>daa581ef-731c-4121-832d-cf078f67759d</sub></sup>|<span style="color:#00C">Info</span>|Observability|EC2 Instance should have detailed monitoring enabled. With detailed monitoring enabled data is available in 1-minute periods|<a href="https://www.pulumi.com/registry/packages/aws/api-docs/ec2/instance/#monitoring_yaml">Documentation</a><br/>|
 
 ### KUBERNETES
-Bellow are listed queries related with Pulumi KUBERNETES:
+Below are listed queries related with Pulumi KUBERNETES:
 
 
 
@@ -30,7 +30,7 @@ Bellow are listed queries related with Pulumi KUBERNETES:
 |Missing App Armor Config<br/><sup><sub>95588189-1abd-4df1-9588-b0a5034f9e87</sub></sup>|<span style="color:#CC0">Low</span>|Access Control|Containers should be configured with AppArmor for any application to reduce its potential attack|<a href="https://www.pulumi.com/registry/packages/kubernetes/api-docs/core/v1/pod/#objectmeta">Documentation</a><br/>|
 
 ### GCP
-Bellow are listed queries related with Pulumi GCP:
+Below are listed queries related with Pulumi GCP:
 
 
 
@@ -40,7 +40,7 @@ Bellow are listed queries related with Pulumi GCP:
 |Google Compute SSL Policy Weak Cipher In Use<br/><sup><sub>965e8830-2bec-4b9b-a7f0-24dbc200a68f</sub></sup>|<span style="color:#C60">Medium</span>|Encryption|This query confirms if Google Compute SSL Policy Weak Chyper Suits is Enabled, to do so we need to check if TLS is TLS_1_2, because other version have Weak Chypers|<a href="https://www.pulumi.com/registry/packages/gcp/api-docs/compute/sslpolicy/#mintlsversion_yaml">Documentation</a><br/>|
 
 ### AZURE
-Bellow are listed queries related with Pulumi AZURE:
+Below are listed queries related with Pulumi AZURE:
 
 
 
