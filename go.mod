@@ -20,7 +20,7 @@ require (
 	github.com/hashicorp/go-getter v1.7.0
 	github.com/hashicorp/hcl v1.0.0
 	github.com/hashicorp/hcl/v2 v2.16.1
-	github.com/hashicorp/terraform-json v0.14.0
+	github.com/hashicorp/terraform-json v0.15.0
 	github.com/johnfercher/maroto v0.39.0
 	github.com/mackerelio/go-osstat v0.2.3
 	github.com/mailru/easyjson v0.7.7
