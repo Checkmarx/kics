@@ -8,7 +8,7 @@ The structure of a flag on JSON definition should use the following structure:
         "flagType": "<multiStr|str|bool|int>The type of the flag",
         "shorthandFlag": "<optional>Shorthand for the flag, MUST be one character only",
         "defaultValue": "The default value of the flag, MUST be string or null",
-        "usage": "Usage description of the flag, can use variables, which is described bellow"
+        "usage": "Usage description of the flag, can use variables, which is described below"
     }
 }
 ```

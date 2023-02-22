@@ -2,7 +2,7 @@
 This page contains all queries from GoogleDeploymentManager.
 
 ### GCP_BOM
-Bellow are listed queries related with GoogleDeploymentManager GCP_BOM:
+Below are listed queries related with GoogleDeploymentManager GCP_BOM:
 
 
 
@@ -13,7 +13,7 @@ Bellow are listed queries related with GoogleDeploymentManager GCP_BOM:
 |BOM - GCP SB<br/><sup><sub>c7781feb-a955-4f9f-b9cf-0d7c6f54bb59</sub></sup>|<span style="color:#CCC">Trace</span>|Bill Of Materials|A list of Storage Bucket resources found. Buckets are the basic containers that hold your data. Everything that you store in Cloud Storage must be contained in a bucket.|<a href="https://kics.io">Documentation</a><br/>|
 
 ### GCP
-Bellow are listed queries related with GoogleDeploymentManager GCP:
+Below are listed queries related with GoogleDeploymentManager GCP:
 
 
 
