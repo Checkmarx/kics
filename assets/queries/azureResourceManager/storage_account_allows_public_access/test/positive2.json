@@ -1,0 +1,21 @@
+{
+    "document": [
+        {
+            "resources": [
+                {
+                    "apiVersion": "[variables('storageApiVersion')]",
+                    "dependsOn": [],
+                    "kind": "Storage",
+                    "location": "[variables('computeLocation')]",
+                    "name": "positive2",
+                    "properties": {},
+                    "sku": {
+                        "name": "[parameters('supportLogStorageAccountType')]"
+                    },
+                    "tags": {},
+                    "type": "Microsoft.Storage/storageAccounts"
+                }
+            ]
+        }
+    ]
+}

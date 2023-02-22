@@ -1,0 +1,10 @@
+---
+- name: create an account
+  azure.azcollection.azure_rm_storageaccount:
+    resource_group: myResourceGroup
+    name: clh0002
+    type: Standard_RAGRS
+    tags:
+      testing: testing
+      delete: on-exit
+    public_network_access: Disabled
