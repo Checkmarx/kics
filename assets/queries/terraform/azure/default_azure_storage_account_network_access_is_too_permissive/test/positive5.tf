@@ -3,13 +3,12 @@ resource "azurerm_resource_group" "example" {
   location = "West Europe"
 }
 
-resource "azurerm_storage_account" "positive1" {
-  name                     = "positive1"
+resource "azurerm_storage_account" "positive5" {
+  name                     = "positive5storageaccount"
   resource_group_name      = azurerm_resource_group.example.name
   location                 = azurerm_resource_group.example.location
   account_tier             = "Standard"
   account_replication_type = "GRS"
-  public_network_access_enabled = true
 
   tags = {
     environment = "staging"
