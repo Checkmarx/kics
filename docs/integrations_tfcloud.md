@@ -24,7 +24,7 @@ And Create event hook.
 
 Note: You can choose which kind of severity you wish for KICS to fail on by passing `failOn` as query parameter in the URL. KICS will fail on any result found with that severity and above.
 
-Availble Severities are:
+Available Severities are:
  - high
  - medium
  - low

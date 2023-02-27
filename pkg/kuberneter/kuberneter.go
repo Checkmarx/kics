@@ -17,10 +17,10 @@ import (
 )
 
 type k8sAPICall struct {
-	client           client.Client
-	options          *K8sAPIOptions
-	ctx              *context.Context
-	destionationPath string
+	client          client.Client
+	options         *K8sAPIOptions
+	ctx             *context.Context
+	destinationPath string
 }
 
 type supportedKinds map[string]map[string]interface{}
@@ -57,10 +57,10 @@ func Import(ctx context.Context, kuberneterPath, destinationPath string) (string
 	}
 
 	info := &k8sAPICall{
-		client:           c,
-		options:          k8sAPIOptions,
-		ctx:              &ctx,
-		destionationPath: destination,
+		client:          c,
+		options:         k8sAPIOptions,
+		ctx:             &ctx,
+		destinationPath: destination,
 	}
 
 	// list and save k8s resources
@@ -88,7 +88,7 @@ func (info *k8sAPICall) listKinds(apiVersion string, kinds map[string]interface{
 	defer wg.Done()
 	sb := &strings.Builder{}
 
-	apiVersionFolder := filepath.Join(info.destionationPath, apiVersion)
+	apiVersionFolder := filepath.Join(info.destinationPath, apiVersion)
 
 	if err := os.MkdirAll(apiVersionFolder, os.ModePerm); err != nil {
 		log.Error().Msgf("unable to create folder %s: %s", apiVersionFolder, err)

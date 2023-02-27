@@ -8,7 +8,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-// ProgressBar is a struct that holds the required feilds for
+// ProgressBar is a struct that holds the required fields for
 // a Counter Progress Bar
 type ProgressBar struct {
 	label           string

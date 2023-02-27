@@ -1,0 +1,160 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  Test values for GetAtt and Ref and conditions
+Parameters:
+  pSubnets:
+    Type: List<String>
+    Default: ''
+  pSubnet:
+    Type: String
+    Default: ''
+  pSsmSubnets:
+    Type: AWS::SSM::Parameter::Value<List<AWS::EC2::Subnet::Id>>
+    Default: ''
+Conditions:
+  cCreateSubnets: !Not [!Equals [!Ref pSubnets, '']]
+  cNotCreateSubnets: !Not [!Condition cCreateSubnets]
+  cUseSsmSubnets: !And [!Condition cNotCreateSubnets, !Not [!Equals [pSsmSubnets, '']]]
+Resources:
+  Subnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: 'vpc-1234567'
+      CidrBlock: 10.0.0.0/24
+  Subnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: 'vpc-1234567'
+      CidrBlock: 10.0.0.2/24
+  LoadBalancer:
+    Type: AWS::ElasticLoadBalancing::LoadBalancer
+    Properties:
+      Listeners:
+      -
+        InstancePort: '80'
+        LoadBalancerPort: '80'
+        Protocol: HTTP
+      Subnets:
+        Fn::If:
+        - cCreateSubnets
+        - - !Ref Subnet1
+          - !Ref Subnet2
+          - !Ref pSubnet  # extra check to validate singular parameter works
+        - Fn::If:
+          - cUseSsmSubnets
+          - !Ref pSsmSubnets
+          - !Ref pSubnets
+  LoadBalancer2:
+    Type: AWS::ElasticLoadBalancing::LoadBalancer
+    Properties:
+      Fn::If:
+      - cCreateSubnets
+      - Listeners:
+        -
+          InstancePort: '80'
+          LoadBalancerPort: '80'
+          Protocol: HTTP
+        Subnets:
+          - !Ref Subnet1
+          - !Ref Subnet2
+      - Fn::If:
+        - cUseSsmSubnets
+        - Listeners:
+          -
+            InstancePort: '80'
+            LoadBalancerPort: '80'
+            Protocol: HTTP
+          Subnets: !Ref pSsmSubnets
+        - Listeners:
+          -
+            InstancePort: '80'
+            LoadBalancerPort: '80'
+            Protocol: HTTP
+          Subnets: !Ref pSubnets
+  ### Test Custom Resources Don't fail
+  GetSubnets:
+    Type: AWS::CloudFormation::CustomResource
+    Properties:
+      ServiceToken: anArn
+  LoadBalancer3:
+    Type: AWS::ElasticLoadBalancing::LoadBalancer
+    Properties:
+      Listeners:
+      -
+        InstancePort: '80'
+        LoadBalancerPort: '80'
+        Protocol: HTTP
+      Subnets: !GetAtt GetSubnets.Subnets
+  ### Test getatt to another resource and a list getatt
+  SecurityGroup1:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: LoadBalancer Security Group
+  alb1:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Scheme: internal
+      Subnets: !Ref pSubnets
+      LoadBalancerAttributes:
+      - Key: idle_timeout.timeout_seconds
+        Value: '50'
+      SecurityGroups:
+      - Ref: SecurityGroup1
+  alb2:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Scheme: internal
+      Subnets: !Ref pSubnets
+      LoadBalancerAttributes:
+      - Key: idle_timeout.timeout_seconds
+        Value: '50'
+      SecurityGroups: !GetAtt alb1.SecurityGroups
+  ### Test CloudFormation resource for Get Atts
+  SubStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://example.com
+  albCfn2:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Scheme: internal
+      Subnets: !Ref pSubnets
+      LoadBalancerAttributes:
+      - Key: idle_timeout.timeout_seconds
+        Value: '50'
+      SecurityGroups:
+      - !GetAtt SubStack.Outputs.SecurityGroups
+  Listener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      Protocol:
+        Fn::GetAtt:
+        - SubStack
+        - Outputs.Protocol
+      LoadBalancerArn: !GetAtt SubStack.Outputs.LoadBalancerArn
+  KinesisStream:
+    Type: AWS::Kinesis::Stream
+    Properties:
+      ShardCount: 1
+  StreamConsumer:
+    Type: AWS::Kinesis::StreamConsumer
+    Properties:
+      ConsumerName: MyConsumer
+      StreamARN: !GetAtt KinesisStream.Arn
+  03EventSourceMapping:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      BatchSize: 500
+      Enabled: true
+      EventSourceArn: !GetAtt StreamConsumer.ConsumerARN
+      FunctionName: !Ref LambdaFunctionArn
+      StartingPosition: LATEST
+  04EventSourceMapping:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      BatchSize: 500
+      Enabled: true
+      EventSourceArn: !GetAtt StreamConsumer.StreamARN
+      FunctionName: !Ref LambdaFunctionArn
+      StartingPosition: LATEST

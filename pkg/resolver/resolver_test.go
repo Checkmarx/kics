@@ -10,7 +10,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func initilizeBuilder() *Resolver {
+func initializeBuilder() *Resolver {
 	bd, _ := NewBuilder().
 		Add(&helm.Resolver{}).
 		Build()
@@ -18,7 +18,7 @@ func initilizeBuilder() *Resolver {
 }
 
 func TestGetType(t *testing.T) {
-	res := initilizeBuilder()
+	res := initializeBuilder()
 	type args struct {
 		filepath string
 	}
@@ -54,7 +54,7 @@ func TestGetType(t *testing.T) {
 }
 
 func TestResolver_Resolve(t *testing.T) {
-	res := initilizeBuilder()
+	res := initializeBuilder()
 	type args struct {
 		filePath string
 		kind     model.FileKind

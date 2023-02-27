@@ -9,6 +9,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/rs/zerolog/log"
 	"github.com/tdewolff/minify/v2"
 	minifyCSS "github.com/tdewolff/minify/v2/css"
 	minifyHtml "github.com/tdewolff/minify/v2/html"
@@ -99,7 +100,11 @@ func generateE2EReport(path, filename string, body interface{}) error {
 	})
 
 	minifierWriter := minifier.Writer(textHTML, f)
-	defer minifierWriter.Close()
+	defer func() {
+		if closeErr := minifierWriter.Close(); err != nil {
+			log.Err(closeErr).Msg("Error closing file")
+		}
+	}()
 
 	_, err = minifierWriter.Write(buffer.Bytes())
 	return err

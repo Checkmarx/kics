@@ -81,7 +81,11 @@ func (c *Client) CheckConnection() error {
 	if err != nil {
 		return err
 	}
-	defer resp.Body.Close()
+	defer func() {
+		if closeErr := resp.Body.Close(); err != nil {
+			log.Err(closeErr).Msg("Error closing file")
+		}
+	}()
 	return err
 }
 
@@ -113,7 +117,11 @@ func (c *Client) CheckLatestVersion(version string) (model.Version, error) {
 	if err != nil {
 		return model.Version{}, err
 	}
-	defer resp.Body.Close()
+	defer func() {
+		if closeErr := resp.Body.Close(); err != nil {
+			log.Err(closeErr).Msg("Error closing file")
+		}
+	}()
 
 	b, err := io.ReadAll(resp.Body)
 	if err != nil {
@@ -164,7 +172,11 @@ func (c *Client) RequestDescriptions(descriptionIDs []string) (map[string]descMo
 		log.Err(err).Msgf("Unable to POST to descriptions endpoint")
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func() {
+		if closeErr := resp.Body.Close(); err != nil {
+			log.Err(closeErr).Msg("Error closing file")
+		}
+	}()
 	endTime := time.Since(startTime)
 	log.Debug().Msgf("HTTP Status: %d %s %v", resp.StatusCode, http.StatusText(resp.StatusCode), endTime)
 

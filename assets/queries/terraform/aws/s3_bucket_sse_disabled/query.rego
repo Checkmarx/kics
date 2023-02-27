@@ -107,12 +107,11 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	
 	bucket := input.document[i].resource.aws_s3_bucket[bucketName]
-	
+
+	not is_associated(bucketName, input.document[i])
 	not tf_lib.has_target_resource(bucketName, "aws_s3_bucket_server_side_encryption_configuration") # version after TF AWS 4.0
 	not common_lib.valid_key(bucket, "server_side_encryption_configuration") # version before TF AWS 4.0
-	
 
 	result := {
 		"documentId": input.document[i].id,
@@ -128,9 +127,8 @@ CxPolicy[result] {
 
 # version after TF AWS 4.0
 CxPolicy[result] {
-	
 	input.document[_].resource.aws_s3_bucket[bucketName]
-	
+
 	sse := input.document[i].resource.aws_s3_bucket_server_side_encryption_configuration[name]
 	split(sse.bucket, ".")[1] == bucketName
 	not common_lib.valid_key(sse.rule, "apply_server_side_encryption_by_default")
@@ -149,9 +147,8 @@ CxPolicy[result] {
 
 # version after TF AWS 4.0
 CxPolicy[result] {
-	
 	input.document[_].resource.aws_s3_bucket[bucketName]
-	
+
 	sse := input.document[i].resource.aws_s3_bucket_server_side_encryption_configuration[name]
 	split(sse.bucket, ".")[1] == bucketName
 	algorithm := sse.rule.apply_server_side_encryption_by_default
@@ -172,7 +169,6 @@ CxPolicy[result] {
 
 # version after TF AWS 4.0
 CxPolicy[result] {
-
 	input.document[_].resource.aws_s3_bucket[bucketName]
 
 	sse := input.document[i].resource.aws_s3_bucket_server_side_encryption_configuration[name]
@@ -198,4 +194,10 @@ check_master_key(assed) {
 	not common_lib.valid_key(assed, "kms_master_key_id")
 } else {
 	common_lib.emptyOrNull(assed.kms_master_key_id)
+}
+
+is_associated(aws_s3_bucket_name, doc) {
+	[_, value] := walk(doc)
+	sse_configurations := value.aws_s3_bucket_server_side_encryption_configuration[_]
+	contains(sse_configurations.bucket, sprintf("aws_s3_bucket.%s", [aws_s3_bucket_name]))
 }

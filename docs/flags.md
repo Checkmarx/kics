@@ -8,7 +8,7 @@ The structure of a flag on JSON definition should use the following structure:
         "flagType": "<multiStr|str|bool|int>The type of the flag",
         "shorthandFlag": "<optional>Shorthand for the flag, MUST be one character only",
         "defaultValue": "The default value of the flag, MUST be string or null",
-        "usage": "Usage description of the flag, can use variables, which is described bellow"
+        "usage": "Usage description of the flag, can use variables, which is described below"
     }
 }
 ```
@@ -93,4 +93,4 @@ Usage field has a special function that replace variables found in this field, u
 - `supportedPlatforms`: The result of `ListSupportedPlatforms` function converted to string, which gets all KICS supported platforms;
 - `supportedProviders`: The result of `ListSupportedCloudProviders` function converted to string, which gets all KICS supported providers;
 
-You can add variables by modifing `variables` map on `evalUsage` function of flags.go file.
+You can add variables by modifying `variables` map on `evalUsage` function of flags.go file.

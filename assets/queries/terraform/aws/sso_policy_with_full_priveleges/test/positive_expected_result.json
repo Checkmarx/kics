@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "SSO Policy with full privileges",
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive.tf"
+  }
+]

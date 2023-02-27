@@ -12,7 +12,7 @@ import (
 
 func TestDescriptions_CheckVersion(t *testing.T) {
 	mt := &tracker.CITracker{}
-	descClient = &mockclient.MockDecriptionsClient{}
+	descClient = &mockclient.MockDescriptionsClient{}
 	mockclient.CheckConnection = func() error {
 		return nil
 	}

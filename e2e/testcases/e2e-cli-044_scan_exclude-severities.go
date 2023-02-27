@@ -1,7 +1,7 @@
 package testcases
 
 // E2E-CLI-044 - Kics scan command with --exclude-severities
-// should only execute query-ids provided in the flag.
+// should exclude results with the specified severities
 func init() { //nolint
 	testSample := TestCase{
 		Name: "should exclude queries by given severities [E2E-CLI-044]",

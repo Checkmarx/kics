@@ -113,7 +113,7 @@ func getDescriptionServer(useDocker, useMock bool) string {
 	return descriptionServer
 }
 
-// Contains returns if a string list contains an especific term
+// Contains returns if a string list contains an specific term
 func Contains(list []string, searchTerm string) bool {
 	for _, a := range list {
 		if a == searchTerm {

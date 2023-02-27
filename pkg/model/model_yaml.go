@@ -54,7 +54,7 @@ func GetIgnoreLines(file *FileMetadata) []int {
 	YAML Node TYPES
 
 	SequenceNode -> array
-	ScalarNode -> generic (execpt for arrays, objects and maps)
+	ScalarNode -> generic (except for arrays, objects and maps)
 	MappingNode -> map
 
 */
