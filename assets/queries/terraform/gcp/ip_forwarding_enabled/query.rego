@@ -4,7 +4,7 @@ import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	dt := input.document[i].data.google_compute_instance[appserver]
+	dt := input.document[i].resource.google_compute_instance[appserver]
 	dt.can_ip_forward == true
 
 	result := {
