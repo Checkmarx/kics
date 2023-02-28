@@ -10,11 +10,6 @@ resource "azurerm_storage_account" "positive4" {
   account_tier             = "Standard"
   account_replication_type = "GRS"
 
-  network_rules {
-    default_action             = "Allow"
-    ip_rules                   = ["100.0.0.1"]
-  }
-
   tags = {
     environment = "staging"
   }
