@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Outdated GKE Version",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive.tf"
+  },
+  {
+    "queryName": "Outdated GKE Version",
+    "severity": "LOW",
+    "line": 25,
+    "fileName": "positive.tf"
+  }
+]

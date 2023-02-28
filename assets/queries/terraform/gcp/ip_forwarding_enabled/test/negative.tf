@@ -1,6 +1,15 @@
-#this code is a correct code for which the query should not find any result
-data "google_compute_instance" "appserver" {
-  name = "primary-application-server"
-  zone = "us-central1-a"
+resource "google_compute_instance" "appserver" {
+  name           = "primary-application-server"
+  machine_type   = "e2-medium"
   can_ip_forward = false
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-11"
+    }
+  }
+
+  network_interface {
+    network = "default"
+  }
 }
