@@ -6,7 +6,7 @@ resource "azurerm_virtual_machine" "negative1" {
   vm_size               = "Standard_DS1_v2"
 
   os_profile_linux_config {
-    disable_password_authentication = false
+    disable_password_authentication = true
   }
 
   admin_ssh_key {

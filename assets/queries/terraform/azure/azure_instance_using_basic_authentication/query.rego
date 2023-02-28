@@ -6,7 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	vm := input.document[i].resource.azurerm_virtual_machine[name]
     object.get(vm, "os_profile_linux_config", false)
-	not vm.disable_password_authentication
+	vm.os_profile_linux_config.disable_password_authentication == false
     resource_type := "azurerm_virtual_machine"
 	result := {
 		"documentId": input.document[i].id,
@@ -21,7 +21,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	vm := input.document[i].resource.azurerm_linux_virtual_machine[name]
-	not vm.disable_password_authentication
+	vm.disable_password_authentication == false
     resource_type := "azurerm_linux_virtual_machine"
 	result := {
 		"documentId": input.document[i].id,
