@@ -1,19 +1,21 @@
 # given:
 #  - unused security group
 #  - used security group
-#  - aws_instance
+#  - aws_eks_cluster
 # when:
-#  - used security group attached to aws_instance
-#  - unused security group not attached to aws_instance
+#  - used security group attached to aws_eks_cluster
+#  - unused security group not attached to aws_eks_cluster
 # then:
 #  - detect only unused security group as unused
 
-resource "aws_instance" "positive1" {
-  ami = "ami-003634241a8fcdec0"
+resource "aws_eks_cluster" "positive4" {
+  name = "beautiful-eks"
 
-  instance_type = "t2.micro"
+  role_arn = aws_iam_role.example.arn
 
-  vpc_security_group_ids = [ aws_security_group.used_sg.id ]
+  vpc_config {
+    security_group_ids = [ aws_security_group.used_sg.id ]
+  }
 }
 
 resource "aws_security_group" "unused_sg" {
@@ -63,4 +65,3 @@ resource "aws_security_group" "used_sg" {
   }
 
 }
-

@@ -16,5 +16,11 @@
     "severity": "INFO",
     "line": 19,
     "filename": "positive3.tf"
+  },
+  {
+    "queryName": "Security Group Not Used",
+    "severity": "INFO",
+    "line": 21,
+    "filename": "positive4.tf"
   }
 ]

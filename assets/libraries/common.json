@@ -1693,12 +1693,17 @@
     {
       "name": "python",
       "apiUrl": "https://endoflife.date/api/python.json",
-      "version": "3.10.7"
+      "version": "3.11.2"
     },
     {
       "name": "php",
       "apiUrl": "https://endoflife.date/api/php.json",
-      "version": "8.1.11"
+      "version": "8.2.3"
+    },
+    {
+      "name": "gke",
+      "apiUrl": "https://endoflife.date/api/google-kubernetes-engine.json",
+      "version": "1.25.6-gke.1000"
     }
   ]
 }

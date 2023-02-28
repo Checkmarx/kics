@@ -710,3 +710,15 @@ user_unrecommended_permission_policy_scenarios(targetUser, permission) {
 	# verify that the policy is unrecommended
 	unrecommended_permission_policy(resourcePolicy, permission)
 }
+
+get_latest_software_version(name) = version {
+	software_info := data.version_numbers_to_check
+	software_info[i].name == name
+	version := software_info[i].version
+}
+
+get_version(name) = version {
+	val := get_latest_software_version(name)
+	splited := split(val, ".")
+	version := concat(".", [splited[0],splited[1]])
+}
