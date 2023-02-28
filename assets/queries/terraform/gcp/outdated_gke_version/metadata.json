@@ -1,0 +1,11 @@
+{
+  "id": "128df7ec-f185-48bc-8913-ce756a3ccb85",
+  "queryName": "Outdated GKE Version",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "Running outdated versions of Google Kubernetes Engine (GKE) can expose it to known vulnerabilities and attacks. To reduce these risks, it is recommended to ensure that GKE is always running the latest version.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster#master_version",
+  "platform": "Terraform",
+  "descriptionID": "65a3bf94",
+  "cloudProvider": "gcp"
+}
