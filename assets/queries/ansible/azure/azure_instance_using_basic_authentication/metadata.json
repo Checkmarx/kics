@@ -4,7 +4,7 @@
   "severity": "HIGH",
   "category": "Best Practices",
   "descriptionText": "Azure Instances should use SSH Key instead of basic authentication",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine#admin_ssh_key",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_virtualmachine_module.html#parameter-linux_config/disable_password_authentication",
   "platform": "Ansible",
   "descriptionID": "e2d834b7",
   "cloudProvider": "azure"

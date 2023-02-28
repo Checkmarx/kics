@@ -5,7 +5,7 @@ import future.keywords.if
 CxPolicy[result] {
 	vm := input.document[i].playbooks[k].azure_rm_virtualmachine
     is_linux_vm(vm)
-    not vm.ssh_public_keys
+    not vm.linux_config.disable_password_authentication
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azure_rm_virtualmachine",
