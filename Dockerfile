@@ -38,8 +38,8 @@ FROM alpine:3.17.2
 ENV TERM xterm-256color
 
 # Install Terraform and Terraform plugins
-RUN wget https://releases.hashicorp.com/terraform/1.2.3/terraform_1.2.3_linux_amd64.zip \
-    && unzip terraform_1.2.3_linux_amd64.zip && rm terraform_1.2.3_linux_amd64.zip \
+RUN wget https://releases.hashicorp.com/terraform/1.3.9/terraform_1.3.9_linux_amd64.zip \
+    && unzip terraform_1.3.9_linux_amd64.zip && rm terraform_1.3.9_linux_amd64.zip \
     && mv terraform /usr/bin/terraform \
     && wget https://releases.hashicorp.com/terraform-provider-azurerm/3.18.0/terraform-provider-azurerm_3.18.0_linux_amd64.zip \
     && wget https://releases.hashicorp.com/terraform-provider-aws/3.72.0/terraform-provider-aws_3.72.0_linux_amd64.zip \
