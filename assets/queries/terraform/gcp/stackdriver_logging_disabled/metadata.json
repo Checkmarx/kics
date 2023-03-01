@@ -3,7 +3,7 @@
   "queryName": "Stackdriver Logging Disabled",
   "severity": "HIGH",
   "category": "Observability",
-  "descriptionText": "Kubernetes Engine Clusters must have Stackdriver Logging enabled, which means the attribute 'logging_service' must be defined and different from 'none'",
+  "descriptionText": "Kubernetes Engine Clusters must have Stackdriver Logging enabled, which means the attribute 'logging_service' must either be undefined or set to 'logging.googleapis.com/kubernetes'",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
   "platform": "Terraform",
   "descriptionID": "b292106d",
