@@ -9,6 +9,7 @@ CxPolicy[result] {
 	function := functions[fname]
 
 	not common_lib.valid_key(function, "tags")
+	hasNoStackTags(document)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -20,4 +21,9 @@ CxPolicy[result] {
 		"keyActualValue": "'tags' is not defined",
 		"searchLine": common_lib.build_search_line(["functions", fname], []),
 	}
+}
+
+hasNoStackTags(document){
+	provider := document.provider
+	not common_lib.valid_key(provider, "stackTags")
 }
