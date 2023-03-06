@@ -1,0 +1,11 @@
+{
+  "id": "e2d834b7-8b25-4935-af53-4a60668dcbe0",
+  "queryName": "Azure Instance Using Basic Authentication",
+  "severity": "HIGH",
+  "category": "Best Practices",
+  "descriptionText": "Azure Instances should use SSH Key instead of basic authentication",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_virtualmachine_module.html#parameter-linux_config/disable_password_authentication",
+  "platform": "Ansible",
+  "descriptionID": "e2d834b7",
+  "cloudProvider": "azure"
+}
