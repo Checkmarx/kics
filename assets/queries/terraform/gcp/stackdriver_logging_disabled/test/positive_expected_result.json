@@ -7,11 +7,6 @@
   {
     "queryName": "Stackdriver Logging Disabled",
     "severity": "HIGH",
-    "line": 13
-  },
-  {
-    "queryName": "Stackdriver Logging Disabled",
-    "severity": "HIGH",
-    "line": 25
+    "line": 14
   }
 ]
