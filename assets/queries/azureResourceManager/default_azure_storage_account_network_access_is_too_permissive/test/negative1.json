@@ -1,0 +1,23 @@
+{
+    "document": [
+        {
+            "resources": [
+                {
+                    "apiVersion": "[variables('storageApiVersion')]",
+                    "dependsOn": [],
+                    "kind": "Storage",
+                    "location": "[variables('computeLocation')]",
+                    "name": "negative1",
+                    "properties": {
+                        "publicNetworkAccess": "Disabled"
+                    },
+                    "sku": {
+                        "name": "[parameters('supportLogStorageAccountType')]"
+                    },
+                    "tags": {},
+                    "type": "Microsoft.Storage/storageAccounts"
+                }
+            ]
+        }
+    ]
+}

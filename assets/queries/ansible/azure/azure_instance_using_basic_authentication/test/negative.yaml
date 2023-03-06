@@ -1,0 +1,12 @@
+---
+- name: Create a VM with a custom image
+  azure_rm_virtualmachine:
+    resource_group: myResourceGroup
+    name: testvm001
+    vm_size: Standard_DS1_v2
+    ssh_password_enabled: false
+    ssh_public_keys:
+      - path: ~/.ssh/id_rsa.pub
+        key_data: somegeneratedkeydata
+    image: customimage001
+    os_type: Linux

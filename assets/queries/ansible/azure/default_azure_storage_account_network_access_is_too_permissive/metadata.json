@@ -1,0 +1,11 @@
+{
+  "id": "ca4df748-613a-4fbf-9c76-f02cbd580307",
+  "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Make sure that your Azure Storage Account access is limited to those who require it.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-public_network_access",
+  "platform": "Ansible",
+  "descriptionID": "ca4df748",
+  "cloudProvider": "azure"
+}
