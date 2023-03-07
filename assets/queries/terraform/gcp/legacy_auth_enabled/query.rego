@@ -16,7 +16,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'client_certificate_config' in 'master_auth' should be defined",
 		"keyActualValue": "Attribute 'client_certificate_config' in 'master_auth' is undefined",
-		"searchLine": common_lib.build_search_line(["resource", "google_container_cluster", primary, "master_auth"],[]),
 	}
 }
 
@@ -33,11 +32,5 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'issue_client_certificate' in 'client_certificate_config' should be false",
 		"keyActualValue": "Attribute 'issue_client_certificate' in 'client_certificate_config' is true",
-		"searchLine": common_lib.build_search_line(["resource", "google_container_cluster", primary, "master_auth", "client_certificate_config", "issue_client_certificate"],[]),
-		"remediation": json.marshal({
-			"before": "true",
-			"after": "false"
-		}),
-		"remediationType": "replacement",
 	}
 }
