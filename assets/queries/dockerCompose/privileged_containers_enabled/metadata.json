@@ -4,7 +4,7 @@
     "severity": "HIGH",
     "category": "Resource Management",
     "descriptionText": "Privileged containers should be used with extreme caution, they have all of the capabilities that the linux kernel offers for docker.",
-    "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir",
+    "descriptionUrl": "https://docs.docker.com/compose/compose-file/#privileged",
     "platform": "DockerCompose",
     "descriptionID": "029f6145"
   }
