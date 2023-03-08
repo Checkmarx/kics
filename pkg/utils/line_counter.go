@@ -1,35 +1,28 @@
+// Package that contains
 package utils
 
 import (
-	"bytes"
-	"io"
+	"bufio"
 	"os"
-	"path/filepath"
-
-	"github.com/rs/zerolog/log"
 )
 
+// Get file number of lines
 func LineCounter(path string) (int, error) {
-	content, err := os.OpenFile(filepath.Clean(path), os.O_RDONLY, os.ModePerm)
+	file, err := os.Open(path)
 	if err != nil {
-		log.Error().Msgf("failed to open file: %s", err)
+		return 0, err
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	lineCount := 0
+	for scanner.Scan() {
+		lineCount++
+	}
+
+	if err := scanner.Err(); err != nil {
 		return 0, err
 	}
 
-	buf := make([]byte, 32*1024)
-	count := 0
-	lineSep := []byte{'\n'}
-
-	for {
-		c, err := content.Read(buf)
-		count += bytes.Count(buf[:c], lineSep)
-
-		switch {
-		case err == io.EOF:
-			return count, nil
-
-		case err != nil:
-			return count, err
-		}
-	}
+	return lineCount, nil
 }
