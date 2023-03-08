@@ -16,7 +16,7 @@ func LineCounter(path string) (int, error) {
 		return 0, err
 	}
 	defer func() {
-		if err := f.Close(); err != nil {
+		if err := file.Close(); err != nil {
 			log.Err(err).Msgf("failed to close '%s'", filepath.Clean(path))
 		}
 	}()
