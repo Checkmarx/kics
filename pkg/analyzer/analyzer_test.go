@@ -14,6 +14,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 		paths             []string
 		wantTypes         []string
 		wantExclude       []string
+		wantLOC           int
 		wantErr           bool
 		gitIgnoreFileName string
 		excludeGitIgnore  bool
@@ -23,6 +24,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			paths:             []string{filepath.FromSlash("../../test/fixtures/analyzer_test")},
 			wantTypes:         []string{"dockerfile", "googledeploymentmanager", "cloudformation", "crossplane", "knative", "kubernetes", "openapi", "terraform", "ansible", "azureresourcemanager", "dockercompose", "pulumi", "serverlessfw"},
 			wantExclude:       []string{filepath.FromSlash("../../test/fixtures/analyzer_test/not_openapi.json")},
+			wantLOC:           563,
 			wantErr:           false,
 			gitIgnoreFileName: "",
 			excludeGitIgnore:  false,
@@ -32,6 +34,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			paths:             []string{filepath.FromSlash("../../test/fixtures/analyzer_test/helm")},
 			wantTypes:         []string{"kubernetes"},
 			wantExclude:       []string{},
+			wantLOC:           118,
 			wantErr:           false,
 			gitIgnoreFileName: "",
 			excludeGitIgnore:  false,
@@ -43,6 +46,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 				filepath.FromSlash("../../test/fixtures/analyzer_test/terraform.tf")},
 			wantTypes:         []string{"dockerfile", "terraform"},
 			wantExclude:       []string{},
+			wantLOC:           13,
 			wantErr:           false,
 			gitIgnoreFileName: "",
 			excludeGitIgnore:  false,
@@ -53,6 +57,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 				filepath.FromSlash("../../test/fixtures/analyzer_test/openAPI_test")},
 			wantTypes:         []string{"openapi"},
 			wantExclude:       []string{},
+			wantLOC:           107,
 			wantErr:           false,
 			gitIgnoreFileName: "",
 			excludeGitIgnore:  false,
@@ -63,6 +68,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 				filepath.FromSlash("../../test/fixtures/analyzer_test/not_openapi.json")},
 			wantTypes:         []string{},
 			wantExclude:       []string{filepath.FromSlash("../../test/fixtures/analyzer_test/not_openapi.json")},
+			wantLOC:           0,
 			wantErr:           false,
 			gitIgnoreFileName: "",
 			excludeGitIgnore:  false,
@@ -74,6 +80,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 				filepath.FromSlash("../../test/fixtures/analyzer_test/terraform.tf")},
 			wantTypes:         []string{},
 			wantExclude:       []string{},
+			wantLOC:           0,
 			wantErr:           true,
 			gitIgnoreFileName: "",
 			excludeGitIgnore:  false,
@@ -85,6 +92,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			},
 			wantTypes:         []string{},
 			wantExclude:       []string{filepath.FromSlash("../../test/fixtures/type-test01/template01/metadata.json")},
+			wantLOC:           0,
 			wantErr:           false,
 			gitIgnoreFileName: "",
 			excludeGitIgnore:  false,
@@ -96,6 +104,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			},
 			wantTypes:         []string{"terraform"},
 			wantExclude:       []string{},
+			wantLOC:           26,
 			wantErr:           false,
 			gitIgnoreFileName: "",
 			excludeGitIgnore:  false,
@@ -109,6 +118,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			wantExclude: []string{filepath.FromSlash("../../test/fixtures/gitignore/positive.dockerfile"),
 				filepath.FromSlash("../../test/fixtures/gitignore/secrets.tf"),
 				filepath.FromSlash("../../test/fixtures/gitignore/gitignore")},
+			wantLOC:           13,
 			wantErr:           false,
 			gitIgnoreFileName: "gitignore",
 			excludeGitIgnore:  false,
@@ -120,6 +130,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			},
 			wantTypes:         []string{"dockerfile", "kubernetes", "terraform"},
 			wantExclude:       []string{filepath.FromSlash("../../test/fixtures/gitignore/gitignore")},
+			wantLOC:           42,
 			wantErr:           false,
 			gitIgnoreFileName: "gitignore",
 			excludeGitIgnore:  true,
@@ -131,6 +142,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			},
 			wantTypes:         []string{"knative", "kubernetes"},
 			wantExclude:       []string{},
+			wantLOC:           15,
 			wantErr:           false,
 			gitIgnoreFileName: "",
 			excludeGitIgnore:  false,
@@ -142,6 +154,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			},
 			wantTypes:         []string{"serverlessfw", "cloudformation"},
 			wantExclude:       []string{},
+			wantLOC:           88,
 			wantErr:           false,
 			gitIgnoreFileName: "",
 			excludeGitIgnore:  false,
@@ -153,6 +166,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			},
 			wantTypes:         []string{"ansible"},
 			wantExclude:       []string{},
+			wantLOC:           1,
 			wantErr:           false,
 			gitIgnoreFileName: "",
 			excludeGitIgnore:  false,
@@ -182,6 +196,8 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			sort.Strings(got.Exc)
 			require.Equal(t, tt.wantTypes, got.Types, "wrong types from analyzer")
 			require.Equal(t, tt.wantExclude, got.Exc, "wrong excludes from analyzer")
+			require.Equal(t, tt.wantLOC, got.ExpectedLOC, "wrong loc from analyzer")
+
 		})
 	}
 }
