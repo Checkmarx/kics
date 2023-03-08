@@ -10,7 +10,7 @@ import (
 )
 
 func LineCounter(path string) (int, error) {
-	content, err := os.OpenFile(filepath.Clean(path), os.O_RDONLY, 0755)
+	content, err := os.OpenFile(filepath.Clean(path), os.O_RDONLY, os.ModePerm)
 	if err != nil {
 		log.Error().Msgf("failed to open file: %s", err)
 		return 0, err
