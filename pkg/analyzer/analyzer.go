@@ -506,7 +506,8 @@ func checkYamlPlatform(content []byte, path string) string {
 	return ansible
 }
 
-// computeExpectedLOC computes expected Lines of Code to be scanned from locCount channel
+// computeValues computes expected Lines of Code to be scanned from locCount channel
+// and creates the types and unwanted slices from the channels removing any duplicates
 func computeValues(types, unwanted chan string, locCount chan int, done chan bool) ([]string, []string, int) {
 	var val int
 	unwantedSlice := make([]string, 0)
