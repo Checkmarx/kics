@@ -1,4 +1,4 @@
-// Package that contains
+// Package utils contains various utility functions to use in other packages
 package utils
 
 import (
@@ -9,7 +9,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-// Get file number of lines
+// LineCounter get the number of lines of a given file
 func LineCounter(path string) (int, error) {
 	file, err := os.Open(filepath.Clean(path))
 	if err != nil {
