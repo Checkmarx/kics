@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Legacy Auth Enabled",
+    "severity": "HIGH",
+    "line": 2
+  },
+  {
+    "queryName": "Legacy Auth Enabled",
+    "severity": "HIGH",
+    "line": 17
+  }
+]
