@@ -19,7 +19,7 @@
         <link rel="next" href="../../integrations/">
       
       <link rel="icon" href="../../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.1">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.2">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.402914a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7bf56d0a.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
@@ -1466,6 +1466,13 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Azure Instance Using Basic Authentication<br/><sup><sub>dafe30ec-325d-4516-85d1-e8e6776f012c</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Best Practices</td>
+<td>Azure Instances should use SSH Key instead of basic authentication</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine#admin_ssh_key">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>MySQL SSL Connection Disabled<br/><sup><sub>73e42469-3a86-4f39-ad78-098f325b4e9f</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
@@ -1814,13 +1821,6 @@
 <td>Insecure Configurations</td>
 <td>Redis Cache resources should not allow non-SSL connections</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Default Network Access is Allowed<br/><sup><sub>9be09caf-2ba4-4fa9-9787-a670dc32c639</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Insecure Defaults</td>
-<td>Default Network Access rule for Storage Accounts must be set to deny, which means the attribute 'default_action' must be 'Deny'</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account_network_rules">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Default Azure Storage Account Network Access Is Too Permissive<br/><sup><sub>a5613650-32ec-4975-a305-31af783153ea</sub></sup></td>
@@ -5943,7 +5943,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.b78d2936.min.js"></script>
+      <script src="../../assets/javascripts/bundle.fc8c2696.min.js"></script>
       
         <script src="../../js/version-mike.js"></script>
       
