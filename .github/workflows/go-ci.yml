@@ -58,13 +58,11 @@ jobs:
               - 'pkg/terraformer/**'
       - name: Get cache paths
         id: go-cache-paths
-        run: |
-          echo "go-build=$(go env GOCACHE)" >>"$GITHUB_OUTPUT"
-          echo "go-mod=$(go env GOMODCACHE)" >>"$GITHUB_OUTPUT"
+        run: echo "GO_BUILD=$(go env GOCACHE)" >> $GITHUB_OUTPUT
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
-          path: ${{ steps.go-cache-paths.outputs.go-build }}
+          path: ${{ steps.go-cache-paths.outputs.GO_BUILD }}
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.OS }}-build-${{ env.cache-name }}
