@@ -1,0 +1,100 @@
+:root {
+  --md-primary-fg-color:        #ffbc42;
+  --md-primary-fg-color--light: #ffbc42;
+  --md-primary-fg-color--dark:  #ffbc42;
+  --md-accent-fg-color:         #ffbc42;
+}
+
+[data-md-color-scheme="kics"] {
+  --md-primary-fg-color:        #ffbc42;
+  --md-primary-fg-color--light: #ffbc42;
+  --md-primary-fg-color--dark:  #ffbc42;
+  --md-accent-fg-color:         #ffac22;
+}
+
+.md-header {
+  color: black;
+}
+
+.md-tabs {
+  color: black;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-hue: 210; /* [0, 360] */
+}
+
+.table {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+.hide-column-query-table {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  #navbar-collapse {
+    overflow-y: hidden;
+  }
+}
+
+#version-selector {
+  width: 200px;
+}
+
+.queries-th {
+  max-width: 5rem;
+  background-color: #ffbc42 !important;
+  color: #212529 !important;
+}
+
+.border-input-queries{
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.md-header__button.md-logo :-webkit-any(img,svg) {
+  display: block;
+  height: 2rem;
+  fill: currentColor;
+}
+
+/* ########## Bootstrap Button CSS ########## */
+
+/* ########## Bootstrap Button CSS ########## */
+.btn-success {
+  color: #212529 !important;
+  background-color: #ffbc42 !important;
+  border-color: #ffbc42 !important;
+ }
+ .btn-success:hover, .btn-outline-success:hover {
+  color: #212529 !important;
+  background-color: #ffcd53 !important;
+  border-color: #ffcd53 !important;
+ }
+ .btn-outline-success {
+  color: #ffbc42 !important;
+  border-color: #ffbc42 !important;
+ }
+
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+
+/* ########## End Bootstrap Button CSS ########## */
