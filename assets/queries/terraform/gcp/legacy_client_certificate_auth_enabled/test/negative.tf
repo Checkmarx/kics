@@ -5,13 +5,22 @@ resource "google_container_cluster" "negative1" {
   initial_node_count = 3
 
   master_auth {
-    username = ""
-    password = ""
-
     client_certificate_config {
-      issue_client_certificate = true
+      issue_client_certificate = false
     }
   }
+
+  timeouts {
+    create = "30m"
+    update = "40m"
+  }
+}
+
+# leaving the field undefined is acceptable
+resource "google_container_cluster" "negative2" {
+  name               = "marcellus-wallace"
+  location           = "us-central1-a"
+  initial_node_count = 3
 
   timeouts {
     create = "30m"
