@@ -5596,10 +5596,10 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Client Certificate Disabled<br/><sup><sub>73fb21a1-b19a-45b1-b648-b47b1678681e</sub></sup></td>
+<td>Legacy Client Certificate Auth Enabled<br/><sup><sub>73fb21a1-b19a-45b1-b648-b47b1678681e</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
-<td>Kubernetes Clusters must be created with Client Certificate enabled, which means 'master_auth' must have 'client_certificate_config' with the attribute 'issue_client_certificate' equal to true</td>
+<td>Kubernetes Clusters must use the default OAuth authentication, which means 'master_auth' must either be undefined or have 'client_certificate_config' with the attribute 'issue_client_certificate' equal to false</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster">Documentation</a><br/></td>
 </tr>
 <tr>
