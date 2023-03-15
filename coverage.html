@@ -95,7 +95,7 @@
 				
 				<option value="file19">github.com/Checkmarx/kics/internal/tracker/ci.go (100.0%)</option>
 				
-				<option value="file20">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (86.0%)</option>
+				<option value="file20">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (86.1%)</option>
 				
 				<option value="file21">github.com/Checkmarx/kics/pkg/builder/engine/engine.go (71.8%)</option>
 				
@@ -287,13 +287,15 @@
 				
 				<option value="file115">github.com/Checkmarx/kics/pkg/utils/get_extension.go (77.3%)</option>
 				
-				<option value="file116">github.com/Checkmarx/kics/pkg/utils/map.go (100.0%)</option>
+				<option value="file116">github.com/Checkmarx/kics/pkg/utils/line_counter.go (84.6%)</option>
 				
-				<option value="file117">github.com/Checkmarx/kics/pkg/utils/random.go (100.0%)</option>
+				<option value="file117">github.com/Checkmarx/kics/pkg/utils/map.go (100.0%)</option>
 				
-				<option value="file118">github.com/Checkmarx/kics/pkg/utils/split_lines.go (100.0%)</option>
+				<option value="file118">github.com/Checkmarx/kics/pkg/utils/random.go (100.0%)</option>
 				
-				<option value="file119">github.com/Checkmarx/kics/test/helpers.go (37.5%)</option>
+				<option value="file119">github.com/Checkmarx/kics/pkg/utils/split_lines.go (100.0%)</option>
+				
+				<option value="file120">github.com/Checkmarx/kics/test/helpers.go (37.5%)</option>
 				
 				</select>
 			</div>
@@ -2164,13 +2166,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="33">total += v
+                <span class="cov8" title="32">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2654,15 +2656,18 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov4" title=
         // start metrics for file analyzer
         metrics.Metric.Start("file_type_analyzer")
         returnAnalyzedPaths := model.AnalyzedPaths{
-                Types: make([]string, 0),
-                Exc:   make([]string, 0),
+                Types:       make([]string, 0),
+                Exc:         make([]string, 0),
+                ExpectedLOC: 0,
         }
 
         var files []string
         var wg sync.WaitGroup
         // results is the channel shared by the workers that contains the types found
         results := make(chan string)
+        locCount := make(chan int)
         ignoreFiles := make([]string, 0)
+        done := make(chan bool)
         hasGitIgnoreFile, gitIgnore := shouldConsiderGitIgnoreFile(a.Paths[0], a.GitIgnoreFileName, a.ExcludeGitIgnore)
 
         // get all the files inside the given paths
@@ -2699,6 +2704,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov4" title=
                 a.Types[i] = strings.ToLower(a.Types[i])
         }</span>
 
+        // Start the workers
         <span class="cov4" title="12">for _, file := range files </span><span class="cov6" title="39">{
                 wg.Add(1)
                 // analyze the files concurrently
@@ -2706,7 +2712,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov4" title=
                         typesFlag: a.Types,
                         filePath:  file,
                 }
-                go a.worker(results, unwanted, &amp;wg)
+                go a.worker(results, unwanted, locCount, &amp;wg)
         }</span>
 
         <span class="cov4" title="12">go func() </span><span class="cov4" title="12">{
@@ -2714,16 +2720,18 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov4" title=
                 defer func() </span><span class="cov4" title="12">{
                         close(unwanted)
                         close(results)
+                        close(locCount)
                 }</span>()
-                <span class="cov4" title="12">wg.Wait()</span>
+                <span class="cov4" title="12">wg.Wait()
+                done &lt;- true</span>
         }()
 
-        <span class="cov4" title="12">availableTypes := createSlice(results)
+        <span class="cov4" title="12">availableTypes, unwantedPaths, loc := computeValues(results, unwanted, locCount, done)
         multiPlatformTypeCheck(&amp;availableTypes)
-        unwantedPaths := createSlice(unwanted)
         unwantedPaths = append(unwantedPaths, ignoreFiles...)
         returnAnalyzedPaths.Types = availableTypes
         returnAnalyzedPaths.Exc = unwantedPaths
+        returnAnalyzedPaths.ExpectedLOC = loc
         // stop metrics for file analyzer
         metrics.Metric.Stop()
         return returnAnalyzedPaths, nil</span>
@@ -2732,11 +2740,11 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov4" title=
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
 // writes the answer to the results channel
 // if no types were found, the worker will write the path of the file in the unwanted channel
-func (a *analyzerInfo) worker(results, unwanted chan&lt;- string, wg *sync.WaitGroup) <span class="cov6" title="39">{
+func (a *analyzerInfo) worker(results, unwanted chan&lt;- string, locCount chan&lt;- int, wg *sync.WaitGroup) <span class="cov6" title="39">{
         defer wg.Done()
 
         ext := utils.GetExtension(a.filePath)
-
+        linesCount, _ := utils.LineCounter(a.filePath)
         typesFlag := a.typesFlag
 
         switch ext </span>{
@@ -2744,11 +2752,13 @@ func (a *analyzerInfo) worker(results, unwanted chan&lt;- string, wg *sync.WaitG
         case ".dockerfile", "Dockerfile":<span class="cov2" title="3">
                 if typesFlag[0] == "" || utils.Contains(dockerfile, typesFlag) </span><span class="cov2" title="3">{
                         results &lt;- dockerfile
+                        locCount &lt;- linesCount
                 }</span>
         // Dockerfile (indirect identification)
         case "possibleDockerfile", ".ubi8", ".debian":<span class="cov1" title="2">
                 if (typesFlag[0] == "" || utils.Contains(dockerfile, typesFlag)) &amp;&amp; isDockerfile(a.filePath) </span><span class="cov0" title="0">{
                         results &lt;- dockerfile
+                        locCount &lt;- linesCount
                 }</span> else<span class="cov1" title="2"> {
                         unwanted &lt;- a.filePath
                 }</span>
@@ -2756,15 +2766,17 @@ func (a *analyzerInfo) worker(results, unwanted chan&lt;- string, wg *sync.WaitG
         case ".tf", "tfvars":<span class="cov2" title="3">
                 if typesFlag[0] == "" || utils.Contains(terraform, typesFlag) </span><span class="cov2" title="3">{
                         results &lt;- terraform
+                        locCount &lt;- linesCount
                 }</span>
         // GRPC
         case ".proto":<span class="cov0" title="0">
                 if typesFlag[0] == "" || utils.Contains(grpc, typesFlag) </span><span class="cov0" title="0">{
                         results &lt;- grpc
+                        locCount &lt;- linesCount
                 }</span>
         // Cloud Formation, Ansible, OpenAPI, Buildah
         case yaml, yml, json, sh:<span class="cov5" title="31">
-                a.checkContent(results, unwanted, ext)</span>
+                a.checkContent(results, unwanted, locCount, linesCount, ext)</span>
         }
 }
 
@@ -2804,7 +2816,7 @@ func needsOverride(check bool, returnType, key, ext string) bool <span class="co
 
 // checkContent will determine the file type by content when worker was unable to
 // determine by ext, if no type was determined checkContent adds it to unwanted channel
-func (a *analyzerInfo) checkContent(results, unwanted chan&lt;- string, ext string) <span class="cov5" title="31">{
+func (a *analyzerInfo) checkContent(results, unwanted chan&lt;- string, locCount chan&lt;- int, linesCount int, ext string) <span class="cov5" title="31">{
         typesFlag := a.typesFlag
         // get file content
         content, err := os.ReadFile(a.filePath)
@@ -2846,6 +2858,7 @@ func (a *analyzerInfo) checkContent(results, unwanted chan&lt;- string, ext stri
         if returnType != "" </span><span class="cov5" title="28">{
                 if typesFlag[0] == "" || utils.Contains(returnType, typesFlag) </span><span class="cov5" title="28">{
                         results &lt;- returnType
+                        locCount &lt;- linesCount
                         return
                 }</span>
         }
@@ -2903,15 +2916,28 @@ func checkYamlPlatform(content []byte, path string) string <span class="cov2" ti
         <span class="cov2" title="3">return ansible</span>
 }
 
-// createSlice creates a slice from the channel given removing any duplicates
-func createSlice(chanel chan string) []string <span class="cov5" title="24">{
-        slice := make([]string, 0)
-        for i := range chanel </span><span class="cov6" title="39">{
-                if !utils.Contains(i, slice) </span><span class="cov5" title="30">{
-                        slice = append(slice, i)
-                }</span>
+// computeValues computes expected Lines of Code to be scanned from locCount channel
+// and creates the types and unwanted slices from the channels removing any duplicates
+func computeValues(types, unwanted chan string, locCount chan int, done chan bool) (typesS, unwantedS []string, locTotal int) <span class="cov4" title="12">{
+        var val int
+        unwantedSlice := make([]string, 0)
+        typeSlice := make([]string, 0)
+        for </span><span class="cov7" title="85">{
+                select </span>{
+                case i := &lt;-locCount:<span class="cov5" title="34">
+                        val += i</span>
+                case i := &lt;-unwanted:<span class="cov3" title="5">
+                        if !utils.Contains(i, unwantedSlice) </span><span class="cov3" title="5">{
+                                unwantedSlice = append(unwantedSlice, i)
+                        }</span>
+                case i := &lt;-types:<span class="cov5" title="34">
+                        if !utils.Contains(i, typeSlice) </span><span class="cov5" title="25">{
+                                typeSlice = append(typeSlice, i)
+                        }</span>
+                case &lt;-done:<span class="cov4" title="12">
+                        return typeSlice, unwantedSlice, val</span>
+                }
         }
-        <span class="cov5" title="24">return slice</span>
 }
 
 // getKeysFromTypesFlag gets all the regexes keys related to the types flag
@@ -4576,7 +4602,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -9209,8 +9235,9 @@ func (m FileMetadatas) Combine(lineInfo bool) Documents <span class="cov8" title
 
 // AnalyzedPaths is a slice of types and excluded files obtained from the Analyzer
 type AnalyzedPaths struct {
-        Types []string
-        Exc   []string
+        Types       []string
+        Exc         []string
+        ExpectedLOC int
 }
 
 // ResolvedFileSplit is a struct that contains the information of a resolved file, the path and the lines of the file
@@ -18641,16 +18668,16 @@ func printVersionCheck(customPrint *consolePrinter.Printer, s *model.Summary) <s
 func getTotalFiles(paths []string) int <span class="cov4" title="4">{
         files := 0
         for _, path := range paths </span><span class="cov4" title="5">{
-                if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov10" title="45">{
+                if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov10" title="49">{
                         if err != nil </span><span class="cov1" title="1">{
                                 return err
                         }</span>
 
-                        <span class="cov9" title="44">if !info.IsDir() </span><span class="cov9" title="36">{
+                        <span class="cov9" title="48">if !info.IsDir() </span><span class="cov9" title="40">{
                                 files++
                         }</span>
 
-                        <span class="cov9" title="44">return nil</span>
+                        <span class="cov9" title="48">return nil</span>
                 }); err != nil <span class="cov1" title="1">{
                         log.Error().Msgf("failed to walk path %s: %s", path, err)
                 }</span>
@@ -19105,7 +19132,44 @@ func isTextFile(path string) bool <span class="cov1" title="1">{
 }
 </pre>
 		
-		<pre class="file" id="file116" style="display: none">package utils
+		<pre class="file" id="file116" style="display: none">// Package utils contains various utility functions to use in other packages
+package utils
+
+import (
+        "bufio"
+        "os"
+        "path/filepath"
+
+        "github.com/rs/zerolog/log"
+)
+
+// LineCounter get the number of lines of a given file
+func LineCounter(path string) (int, error) <span class="cov3" title="3">{
+        file, err := os.Open(filepath.Clean(path))
+        if err != nil </span><span class="cov1" title="1">{
+                return 0, err
+        }</span>
+        <span class="cov2" title="2">defer func() </span><span class="cov2" title="2">{
+                if err := file.Close(); err != nil </span><span class="cov0" title="0">{
+                        log.Err(err).Msgf("failed to close '%s'", filepath.Clean(path))
+                }</span>
+        }()
+
+        <span class="cov2" title="2">scanner := bufio.NewScanner(file)
+        lineCount := 0
+        for scanner.Scan() </span><span class="cov10" title="32">{
+                lineCount++
+        }</span>
+
+        <span class="cov2" title="2">if err := scanner.Err(); err != nil </span><span class="cov0" title="0">{
+                return 0, err
+        }</span>
+
+        <span class="cov2" title="2">return lineCount, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file117" style="display: none">package utils
 
 import "sort"
 
@@ -19127,7 +19191,7 @@ func MergeMaps(map1, map2 map[string]interface{}) <span class="cov1" title="1">{
 }
 </pre>
 		
-		<pre class="file" id="file117" style="display: none">package utils
+		<pre class="file" id="file118" style="display: none">package utils
 
 import (
         "os"
@@ -19162,7 +19226,7 @@ func NextRandom() string <span class="cov10" title="2">{
 // ==============================================================================
 </pre>
 		
-		<pre class="file" id="file118" style="display: none">package utils
+		<pre class="file" id="file119" style="display: none">package utils
 
 import "strings"
 
@@ -19175,7 +19239,7 @@ func SplitLines(content string) *[]string <span class="cov8" title="1">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file119" style="display: none">package test
+		<pre class="file" id="file120" style="display: none">package test
 
 import (
         "bytes"
