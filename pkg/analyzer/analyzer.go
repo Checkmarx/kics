@@ -246,15 +246,18 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	// start metrics for file analyzer
 	metrics.Metric.Start("file_type_analyzer")
 	returnAnalyzedPaths := model.AnalyzedPaths{
-		Types: make([]string, 0),
-		Exc:   make([]string, 0),
+		Types:       make([]string, 0),
+		Exc:         make([]string, 0),
+		ExpectedLOC: 0,
 	}
 
 	var files []string
 	var wg sync.WaitGroup
 	// results is the channel shared by the workers that contains the types found
 	results := make(chan string)
+	locCount := make(chan int)
 	ignoreFiles := make([]string, 0)
+	done := make(chan bool)
 	hasGitIgnoreFile, gitIgnore := shouldConsiderGitIgnoreFile(a.Paths[0], a.GitIgnoreFileName, a.ExcludeGitIgnore)
 
 	// get all the files inside the given paths
@@ -291,6 +294,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 		a.Types[i] = strings.ToLower(a.Types[i])
 	}
 
+	// Start the workers
 	for _, file := range files {
 		wg.Add(1)
 		// analyze the files concurrently
@@ -298,7 +302,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 			typesFlag: a.Types,
 			filePath:  file,
 		}
-		go a.worker(results, unwanted, &wg)
+		go a.worker(results, unwanted, locCount, &wg)
 	}
 
 	go func() {
@@ -306,16 +310,18 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 		defer func() {
 			close(unwanted)
 			close(results)
+			close(locCount)
 		}()
 		wg.Wait()
+		done <- true
 	}()
 
-	availableTypes := createSlice(results)
+	availableTypes, unwantedPaths, loc := computeValues(results, unwanted, locCount, done)
 	multiPlatformTypeCheck(&availableTypes)
-	unwantedPaths := createSlice(unwanted)
 	unwantedPaths = append(unwantedPaths, ignoreFiles...)
 	returnAnalyzedPaths.Types = availableTypes
 	returnAnalyzedPaths.Exc = unwantedPaths
+	returnAnalyzedPaths.ExpectedLOC = loc
 	// stop metrics for file analyzer
 	metrics.Metric.Stop()
 	return returnAnalyzedPaths, nil
@@ -324,11 +330,11 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
 // writes the answer to the results channel
 // if no types were found, the worker will write the path of the file in the unwanted channel
-func (a *analyzerInfo) worker(results, unwanted chan<- string, wg *sync.WaitGroup) {
+func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- int, wg *sync.WaitGroup) {
 	defer wg.Done()
 
 	ext := utils.GetExtension(a.filePath)
-
+	linesCount, _ := utils.LineCounter(a.filePath)
 	typesFlag := a.typesFlag
 
 	switch ext {
@@ -336,11 +342,13 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, wg *sync.WaitGrou
 	case ".dockerfile", "Dockerfile":
 		if typesFlag[0] == "" || utils.Contains(dockerfile, typesFlag) {
 			results <- dockerfile
+			locCount <- linesCount
 		}
 	// Dockerfile (indirect identification)
 	case "possibleDockerfile", ".ubi8", ".debian":
 		if (typesFlag[0] == "" || utils.Contains(dockerfile, typesFlag)) && isDockerfile(a.filePath) {
 			results <- dockerfile
+			locCount <- linesCount
 		} else {
 			unwanted <- a.filePath
 		}
@@ -348,15 +356,17 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, wg *sync.WaitGrou
 	case ".tf", "tfvars":
 		if typesFlag[0] == "" || utils.Contains(terraform, typesFlag) {
 			results <- terraform
+			locCount <- linesCount
 		}
 	// GRPC
 	case ".proto":
 		if typesFlag[0] == "" || utils.Contains(grpc, typesFlag) {
 			results <- grpc
+			locCount <- linesCount
 		}
 	// Cloud Formation, Ansible, OpenAPI, Buildah
 	case yaml, yml, json, sh:
-		a.checkContent(results, unwanted, ext)
+		a.checkContent(results, unwanted, locCount, linesCount, ext)
 	}
 }
 
@@ -396,7 +406,7 @@ func needsOverride(check bool, returnType, key, ext string) bool {
 
 // checkContent will determine the file type by content when worker was unable to
 // determine by ext, if no type was determined checkContent adds it to unwanted channel
-func (a *analyzerInfo) checkContent(results, unwanted chan<- string, ext string) {
+func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount chan<- int, linesCount int, ext string) {
 	typesFlag := a.typesFlag
 	// get file content
 	content, err := os.ReadFile(a.filePath)
@@ -438,6 +448,7 @@ func (a *analyzerInfo) checkContent(results, unwanted chan<- string, ext string)
 	if returnType != "" {
 		if typesFlag[0] == "" || utils.Contains(returnType, typesFlag) {
 			results <- returnType
+			locCount <- linesCount
 			return
 		}
 	}
@@ -495,15 +506,28 @@ func checkYamlPlatform(content []byte, path string) string {
 	return ansible
 }
 
-// createSlice creates a slice from the channel given removing any duplicates
-func createSlice(chanel chan string) []string {
-	slice := make([]string, 0)
-	for i := range chanel {
-		if !utils.Contains(i, slice) {
-			slice = append(slice, i)
+// computeValues computes expected Lines of Code to be scanned from locCount channel
+// and creates the types and unwanted slices from the channels removing any duplicates
+func computeValues(types, unwanted chan string, locCount chan int, done chan bool) (typesS, unwantedS []string, locTotal int) {
+	var val int
+	unwantedSlice := make([]string, 0)
+	typeSlice := make([]string, 0)
+	for {
+		select {
+		case i := <-locCount:
+			val += i
+		case i := <-unwanted:
+			if !utils.Contains(i, unwantedSlice) {
+				unwantedSlice = append(unwantedSlice, i)
+			}
+		case i := <-types:
+			if !utils.Contains(i, typeSlice) {
+				typeSlice = append(typeSlice, i)
+			}
+		case <-done:
+			return typeSlice, unwantedSlice, val
 		}
 	}
-	return slice
 }
 
 // getKeysFromTypesFlag gets all the regexes keys related to the types flag
