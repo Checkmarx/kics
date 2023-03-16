@@ -86,6 +86,7 @@ Flags:
       --config string                 path to configuration file
       --disable-full-descriptions     disable request for full descriptions and use default vulnerability descriptions
       --disable-secrets               disable secrets scanning
+      --enable-gpt                    enable chat gpt queries
       --exclude-categories strings    exclude categories by providing its name
                                       cannot be provided with query inclusion flags
                                       can be provided multiple times or as a comma separated string

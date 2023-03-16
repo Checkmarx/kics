@@ -7,6 +7,7 @@ const (
 	ConfigFlag             = "config"
 	DisableCISDescFlag     = "disable-cis-descriptions"
 	DisableFullDescFlag    = "disable-full-descriptions"
+	EnableGPTFlag          = "enable-gpt"
 	ExcludeCategoriesFlag  = "exclude-categories"
 	ExcludePathsFlag       = "exclude-paths"
 	ExcludeQueriesFlag     = "exclude-queries"

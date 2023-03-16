@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"reflect"
 	"strings"
 	"time"
 
@@ -13,6 +14,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/detector"
 	"github.com/Checkmarx/kics/pkg/detector/docker"
 	"github.com/Checkmarx/kics/pkg/detector/helm"
+	"github.com/Checkmarx/kics/pkg/engine/kicsgpt"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/open-policy-agent/opa/ast"
@@ -75,6 +77,7 @@ type Inspector struct {
 	enableCoverageReport bool
 	coverageReport       cover.Report
 	queryExecTimeout     time.Duration
+	enableGPTIntegration bool
 }
 
 // QueryContext contains the context where the query is executed, which scan it belongs, basic information of query,
@@ -104,7 +107,8 @@ func NewInspector(
 	queryParameters *source.QueryInspectorParameters,
 	excludeResults map[string]bool,
 	queryTimeout int,
-	needsLog bool) (*Inspector, error) {
+	needsLog bool,
+	enableGPT bool) (*Inspector, error) {
 	log.Debug().Msg("engine.NewInspector()")
 
 	metrics.Metric.Start("get_queries")
@@ -148,13 +152,14 @@ func NewInspector(
 	}
 
 	return &Inspector{
-		QueryLoader:      &queryLoader,
-		vb:               vb,
-		tracker:          tracker,
-		failedQueries:    failedQueries,
-		excludeResults:   excludeResults,
-		detector:         lineDetector,
-		queryExecTimeout: queryExecTimeout,
+		QueryLoader:          &queryLoader,
+		vb:                   vb,
+		tracker:              tracker,
+		failedQueries:        failedQueries,
+		excludeResults:       excludeResults,
+		detector:             lineDetector,
+		queryExecTimeout:     queryExecTimeout,
+		enableGPTIntegration: enableGPT,
 	}, nil
 }
 
@@ -208,6 +213,12 @@ func (c *Inspector) Inspect(
 	astPayload, err := ast.InterfaceToValue(p)
 	if err != nil {
 		return vulnerabilities, err
+	}
+
+	if c.enableGPTIntegration {
+		log.Debug().Msgf("Starting to run GPT Queries requests")
+		aiFoundVulns := c.checkGPTVulnerabilities(ctx, scanID, files, baseScanPaths, platforms)
+		vulnerabilities = append(vulnerabilities, aiFoundVulns...)
 	}
 
 	queries := c.getQueriesByPlat(platforms)
@@ -516,4 +527,93 @@ func (q QueryLoader) LoadQuery(ctx context.Context, query *model.QueryMetadata) 
 
 		return &opaQuery, nil
 	}
+}
+
+func (c *Inspector) checkGPTVulnerabilities(
+	ctx context.Context,
+	scanID string,
+	files model.FileMetadatas,
+	baseScanPaths []string,
+	platforms []string,
+) []model.Vulnerability {
+	if hasGPTSupportedPlatform(platforms) {
+		for _, file := range files {
+			aiVulns := make([]model.Vulnerability, 0)
+			//queryResultItems := kicsgpt.GetFileEvaluation(file.OriginalData, )
+			queryResultItems, err := kicsgpt.GetFileEvaluation(file.OriginalData, file.ID)
+			if err != nil {
+				log.Debug().Msg("Could not get evaluation from KICS GPT service")
+				continue
+			}
+
+			queryContext := &QueryContext{
+				Ctx:           ctx,
+				scanID:        scanID,
+				Files:         files.ToMap(),
+				Query:         nil,
+				payload:       nil,
+				BaseScanPaths: baseScanPaths,
+			}
+
+			switch reflect.TypeOf(queryResultItems).Kind() {
+			case reflect.Slice:
+				v := reflect.ValueOf(queryResultItems)
+
+				for i := 0; i < v.Len(); i++ {
+					value := v.Index(i).Interface().(map[string]interface{})
+					if value != nil {
+						queryContext.Query = &PreparedQuery{
+							Metadata: model.QueryMetadata{
+								Metadata: getGPTQueryMetadata(value),
+							},
+						}
+
+						vulnerability, err := c.vb(queryContext, c.tracker, value, c.detector)
+						codeLines := value["codeLines"].([]int)
+						for _, lineVal := range codeLines {
+							vulnerability.Line = lineVal
+							vulnerability.VulnLines = getVulnLines(lineVal, c.tracker.GetOutputLines(), *file.LinesOriginalData)
+							aiVulns = append(aiVulns, *vulnerability)
+						}
+						if err != nil {
+							log.Debug().Msg("Could not use vulnerability builder for result from KICS GPT service")
+							continue
+						}
+					}
+
+				}
+			}
+			return aiVulns
+		}
+	}
+	return make([]model.Vulnerability, 0)
+}
+
+func hasGPTSupportedPlatform(platforms []string) bool {
+	for _, a := range platforms {
+		if strings.EqualFold(a, "kicsgpt") || strings.EqualFold(a, "ansible") {
+			return true
+		}
+	}
+	return false
+}
+
+func getGPTQueryMetadata(vuln map[string]interface{}) map[string]interface{} {
+
+	return map[string]interface{}{
+		"queryName":       vuln["queryName"].(string),
+		"descriptionText": vuln["descriptionText"].(string),
+		"platform":        vuln["platform"].(string),
+		"descriptionID":   vuln["descriptionID"].(string),
+		"cloudProvider":   vuln["cloudProvider"].(string),
+		"id":              vuln["id"].(string),
+		"severity":        vuln["severity"].(string),
+		"category":        vuln["category"].(string),
+		"descriptionUrl":  vuln["descriptionUrl"].(string),
+	}
+}
+
+// GetAdjacent finds and returns the lines adjacent to the line containing the vulnerability
+func getVulnLines(line int, outputLines int, originalData []string) *[]model.CodeLine {
+	return detector.GetAdjacentVulnLines(line-1, outputLines, originalData)
 }

@@ -112,6 +112,7 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 		CloudProvider:               flags.GetMultiStrFlag(flags.CloudProviderFlag),
 		DisableCISDesc:              flags.GetBoolFlag(flags.DisableCISDescFlag),
 		DisableFullDesc:             flags.GetBoolFlag(flags.DisableFullDescFlag),
+		EnableGPT:                   flags.GetBoolFlag(flags.EnableGPTFlag),
 		ExcludeCategories:           flags.GetMultiStrFlag(flags.ExcludeCategoriesFlag),
 		ExcludePaths:                flags.GetMultiStrFlag(flags.ExcludePathsFlag),
 		ExcludeQueries:              flags.GetMultiStrFlag(flags.ExcludeQueriesFlag),

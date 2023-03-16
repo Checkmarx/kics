@@ -137,11 +137,16 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 		printFiles(&summary.Queries[idx], printer)
 	}
 	fmt.Printf("\nResults Summary:\n")
-	printSeverityCounter(model.SeverityHigh, summary.SeveritySummary.SeverityCounters[model.SeverityHigh], printer.High)
-	printSeverityCounter(model.SeverityMedium, summary.SeveritySummary.SeverityCounters[model.SeverityMedium], printer.Medium)
-	printSeverityCounter(model.SeverityLow, summary.SeveritySummary.SeverityCounters[model.SeverityLow], printer.Low)
-	printSeverityCounter(model.SeverityInfo, summary.SeveritySummary.SeverityCounters[model.SeverityInfo], printer.Info)
-	fmt.Printf("TOTAL: %d\n\n", summary.SeveritySummary.TotalCounter)
+	//var tbl table.Table = table.New("Severity", "KICS", "GPT", "TOTAL")
+	printSeverityHeader()
+	printSeverityCounter(model.SeverityHigh, summary.SeveritySummary.SeverityCounters["KICS"+model.SeverityHigh], summary.SeveritySummary.SeverityCounters["GPT"+model.SeverityHigh], summary.SeveritySummary.SeverityCounters[model.SeverityHigh], printer.High)
+	printSeverityCounter(model.SeverityMedium, summary.SeveritySummary.SeverityCounters["KICS"+model.SeverityMedium], summary.SeveritySummary.SeverityCounters["GPT"+model.SeverityMedium], summary.SeveritySummary.SeverityCounters[model.SeverityMedium], printer.Medium)
+	printSeverityCounter(model.SeverityLow, summary.SeveritySummary.SeverityCounters["KICS"+model.SeverityLow], summary.SeveritySummary.SeverityCounters["GPT"+model.SeverityLow], summary.SeveritySummary.SeverityCounters[model.SeverityLow], printer.Low)
+	printSeverityCounter(model.SeverityInfo, summary.SeveritySummary.SeverityCounters["KICS"+model.SeverityInfo], summary.SeveritySummary.SeverityCounters["GPT"+model.SeverityInfo], summary.SeveritySummary.SeverityCounters[model.SeverityInfo], printer.Info)
+	totalStr := fmt.Sprintf("%d", summary.SeveritySummary.TotalCounter)
+	//tbl.AddRow("", "", "TOTAL:", totalStr)
+	//tbl.Print()
+	fmt.Printf("TOTAL: " + totalStr + "\n\n")
 
 	log.Info().Msgf("Files scanned: %d", summary.ScannedFiles)
 	log.Info().Msgf("Lines scanned: %d", summary.ScannedFilesLines)
@@ -154,8 +159,15 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 	return nil
 }
 
-func printSeverityCounter(severity string, counter int, printColor color.RGBColor) {
-	fmt.Printf("%s: %d\n", printColor.Sprint(severity), counter)
+func printSeverityHeader() {
+	fmt.Printf("%-10s %5s %5s %5s\n", "Severity", "KICS", "GPT", "TOTAL")
+}
+
+func printSeverityCounter(severity string, conterKICS int, counterGPT int, counterTotal int, printColor color.RGBColor) {
+	//tbl.AddRow(severity, fmt.Sprintf("%d", counter), fmt.Sprintf("%d", counter), fmt.Sprintf("%d", counter))
+	//fmt.Printf("%s: %d\t", , counter)
+	fmt.Printf("%s %5s %5s %5s\n", printColor.Sprint(fmt.Sprintf("%-10s", severity)), fmt.Sprintf("%d", conterKICS), fmt.Sprintf("%d", counterGPT), fmt.Sprintf("%d", counterTotal))
+	//fmt.Printf("%s: %d\n", printColor.Sprint(severity), counter)
 }
 
 func printFiles(query *model.QueryResult, printer *Printer) {

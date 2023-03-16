@@ -17,6 +17,7 @@ type Parameters struct {
 	CloudProvider               []string
 	DisableCISDesc              bool
 	DisableFullDesc             bool
+	EnableGPT                   bool
 	ExcludeCategories           []string
 	ExcludePaths                []string
 	ExcludeQueries              []string

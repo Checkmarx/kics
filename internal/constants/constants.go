@@ -15,7 +15,7 @@ var (
 	// SentryDSN - sentry DSN, unset for disabling
 	SentryDSN = ""
 	// BaseURL - CIS descriptions endpoint URL
-	BaseURL = ""
+	BaseURL = "http://127.0.0.1:5000"
 	// APIScanner - API scanner feature switch
 	APIScanner = ""
 

@@ -231,9 +231,30 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 	}
 
 	queries := make([]QueryResult, 0, len(q))
-	sevs := map[Severity]int{SeverityTrace: 0, SeverityInfo: 0, SeverityLow: 0, SeverityMedium: 0, SeverityHigh: 0}
+	sevs := map[Severity]int{
+		SeverityTrace:           0,
+		SeverityInfo:            0,
+		SeverityLow:             0,
+		SeverityMedium:          0,
+		SeverityHigh:            0,
+		"KICS" + SeverityTrace:  0,
+		"KICS" + SeverityInfo:   0,
+		"KICS" + SeverityLow:    0,
+		"KICS" + SeverityMedium: 0,
+		"KICS" + SeverityHigh:   0,
+		"GPT" + SeverityTrace:   0,
+		"GPT" + SeverityInfo:    0,
+		"GPT" + SeverityLow:     0,
+		"GPT" + SeverityMedium:  0,
+		"GPT" + SeverityHigh:    0,
+	}
 	for idx := range q {
 		sevs[q[idx].Severity] += len(q[idx].Files)
+		if strings.HasPrefix(q[idx].QueryName, "CHAT GPT: ") {
+			sevs["GPT"+q[idx].Severity] += len(q[idx].Files)
+		} else {
+			sevs["KICS"+q[idx].Severity] += len(q[idx].Files)
+		}
 
 		if q[idx].Severity == SeverityTrace {
 			continue

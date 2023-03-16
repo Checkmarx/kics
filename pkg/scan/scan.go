@@ -70,6 +70,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		c.ExcludeResultsMap,
 		c.ScanParams.QueryExecTimeout,
 		true,
+		c.ScanParams.EnableGPT,
 	)
 	if err != nil {
 		return nil, err
