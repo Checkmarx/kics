@@ -412,7 +412,7 @@ is_allow_effect(statement) {
 } else {
 	statement.Effect == "Allow"
 } else {
-    satement.effect == "Allow"
+    statement.effect == "Allow"
 }
 
 get_policy(p) = policy {
