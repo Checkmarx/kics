@@ -125,6 +125,10 @@ func TestOptions_LogLevel(t *testing.T) {
 }
 
 func TestOptions_CI(t *testing.T) {
+	res := os.Stdout
+	defer func() {
+		os.Stdout = res
+	}()
 	type args struct {
 		opt bool
 	}
