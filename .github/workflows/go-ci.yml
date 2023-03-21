@@ -58,6 +58,7 @@ jobs:
               - 'pkg/terraformer/**'
       - name: Get cache paths
         id: go-cache-paths
+        shell: bash
         run: echo "GO_BUILD=$(go env GOCACHE)" >>$GITHUB_OUTPUT
       - name: Cache dependencies
         uses: actions/cache@v3
