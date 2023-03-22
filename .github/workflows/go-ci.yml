@@ -10,23 +10,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Go 1.19.x
+      - name: Set up Go 1.20.x
         uses: actions/setup-go@v3
         with:
-          go-version: 1.19.x
+          go-version: 1.20.x
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3.4.0
         with:
-          version: v1.50.1
+          version: v1.51.2
           args: -c .golangci.yml --timeout 20m
   go-generate:
     name: go-generate
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Go 1.19.x
+      - name: Set up Go 1.20.x
         uses: actions/setup-go@v3
         with:
-          go-version: 1.19.x
+          go-version: 1.20.x
       - name: Check out code
         uses: actions/checkout@v3
         with:
@@ -38,11 +38,11 @@ jobs:
     name: unit-tests
     strategy:
       matrix:
-        go-version: [1.19.x]
+        go-version: [1.20.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - name: Set up Go 1.19.x
+      - name: Set up Go 1.20.x
         uses: actions/setup-go@v3
         with:
           go-version: ${{ matrix.go-version }}
@@ -58,13 +58,12 @@ jobs:
               - 'pkg/terraformer/**'
       - name: Get cache paths
         id: go-cache-paths
-        run: |
-          echo "::set-output name=go-build::$(go env GOCACHE)"
-          echo "::set-output name=go-mod::$(go env GOMODCACHE)"
+        shell: bash
+        run: echo "GO_BUILD=$(go env GOCACHE)" >>$GITHUB_OUTPUT
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
-          path: ${{ steps.go-cache-paths.outputs.go-build }}
+          path: ${{ steps.go-cache-paths.outputs.GO_BUILD }}
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.OS }}-build-${{ env.cache-name }}

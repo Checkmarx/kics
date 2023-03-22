@@ -1,6 +1,6 @@
 module github.com/Checkmarx/kics
 
-go 1.19
+go 1.20
 
 require (
 	code.cloudfoundry.org/bytefmt v0.0.0-20211005130812-5bb3c17173e5
@@ -27,7 +27,7 @@ require (
 	github.com/moby/buildkit v0.10.4
 	github.com/open-policy-agent/opa v0.49.2
 	github.com/pkg/errors v0.9.1
-	github.com/rs/zerolog v1.26.1
+	github.com/rs/zerolog v1.29.0
 	github.com/sosedoff/ansible-vault-go v0.1.1
 	github.com/spf13/cobra v1.6.1
 	github.com/spf13/pflag v1.0.5
