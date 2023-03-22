@@ -408,8 +408,11 @@ get_statement(policy) = st {
 
 is_allow_effect(statement) {
 	not valid_key(statement, "Effect")
+	not valid_key(statement, "effect")
 } else {
 	statement.Effect == "Allow"
+} else {
+    statement.effect == "Allow"
 }
 
 get_policy(p) = policy {
