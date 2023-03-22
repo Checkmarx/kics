@@ -17,7 +17,7 @@ require (
 	github.com/google/pprof v0.0.0-20210720184732-4bb14d4b1be1
 	github.com/google/uuid v1.3.0
 	github.com/gookit/color v1.5.2
-	github.com/hashicorp/go-getter v1.7.0
+	github.com/hashicorp/go-getter v1.7.1
 	github.com/hashicorp/hcl v1.0.0
 	github.com/hashicorp/hcl/v2 v2.16.1
 	github.com/hashicorp/terraform-json v0.15.0
