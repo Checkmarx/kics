@@ -199,15 +199,15 @@
 				
 				<option value="file71">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (82.4%)</option>
 				
-				<option value="file72">github.com/Checkmarx/kics/pkg/printer/options.go (90.0%)</option>
+				<option value="file72">github.com/Checkmarx/kics/pkg/printer/options.go (85.7%)</option>
 				
 				<option value="file73">github.com/Checkmarx/kics/pkg/printer/printer.go (82.4%)</option>
 				
 				<option value="file74">github.com/Checkmarx/kics/pkg/printer/utils.go (82.4%)</option>
 				
-				<option value="file75">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (80.0%)</option>
+				<option value="file75">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file76">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file76">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (95.5%)</option>
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -2166,13 +2166,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="28">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="30">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="28">total += v
+                <span class="cov8" title="30">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2197,7 +2197,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -3954,7 +3954,7 @@ func (c *Client) CheckConnection() error <span class="cov7" title="3">{
                 return err
         }</span>
         <span class="cov4" title="2">defer func() </span><span class="cov4" title="2">{
-                if closeErr := resp.Body.Close(); err != nil </span><span class="cov0" title="0">{
+                if closeErr := resp.Body.Close(); closeErr != nil </span><span class="cov0" title="0">{
                         log.Err(closeErr).Msg("Error closing file")
                 }</span>
         }()
@@ -3990,7 +3990,7 @@ func (c *Client) CheckLatestVersion(version string) (model.Version, error) <span
                 return model.Version{}, err
         }</span>
         <span class="cov1" title="1">defer func() </span><span class="cov1" title="1">{
-                if closeErr := resp.Body.Close(); err != nil </span><span class="cov0" title="0">{
+                if closeErr := resp.Body.Close(); closeErr != nil </span><span class="cov0" title="0">{
                         log.Err(closeErr).Msg("Error closing file")
                 }</span>
         }()
@@ -4045,7 +4045,7 @@ func (c *Client) RequestDescriptions(descriptionIDs []string) (map[string]descMo
                 return nil, err
         }</span>
         <span class="cov1" title="1">defer func() </span><span class="cov1" title="1">{
-                if closeErr := resp.Body.Close(); err != nil </span><span class="cov0" title="0">{
+                if closeErr := resp.Body.Close(); closeErr != nil </span><span class="cov0" title="0">{
                         log.Err(closeErr).Msg("Error closing file")
                 }</span>
         }()
@@ -4811,7 +4811,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="11">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -13555,14 +13555,14 @@ func Verbose(opt interface{}, changed bool) error <span class="cov4" title="2">{
 }
 
 // Silent - disables stdout output
-func Silent(opt interface{}) error <span class="cov4" title="2">{
+func Silent(opt interface{}) error <span class="cov1" title="1">{
         silent := opt.(bool)
-        if silent </span><span class="cov1" title="1">{
+        if silent </span><span class="cov0" title="0">{
                 color.SetOutput(io.Discard)
                 os.Stdout = nil
                 log.Logger = log.Output(zerolog.MultiLevelWriter(io.Discard, outFileLogger.(io.Writer)))
         }</span>
-        <span class="cov4" title="2">return nil</span>
+        <span class="cov1" title="1">return nil</span>
 }
 
 // CI - enable only log messages to CLI output
@@ -14026,8 +14026,8 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
 }
 
 // Start initializes the Circle Progress Bar
-func (p ProgressBar) Start() <span class="cov0" title="0">{
-        for </span><span class="cov0" title="0">{ // increment until the Close func is called
+func (p ProgressBar) Start() <span class="cov1" title="1">{
+        for </span><span class="cov1" title="1">{ // increment until the Close func is called
                 p.pBar.Increment()
                 // lower cpu usage from infinite loop
                 time.Sleep(time.Millisecond * sleepTimeout)
@@ -14085,7 +14085,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov3" title="2">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -14094,26 +14094,26 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov3" title="2">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
                 }</span>
-                <span class="cov0" title="0">p.wg.Done()</span>
+                <span class="cov3" title="2">p.wg.Done()</span>
         }()
 
         <span class="cov3" title="2">for </span><span class="cov10" title="20">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov3" title="2">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov3" title="2">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file77" style="display: none">package progress
@@ -15233,7 +15233,7 @@ func PrintHTMLReport(path, filename string, body interface{}) error <span class=
 
         minifierWriter := minifier.Writer(textHTML, f)
         defer func() </span><span class="cov1" title="1">{
-                if closeErr := minifierWriter.Close(); err != nil </span><span class="cov0" title="0">{
+                if closeErr := minifierWriter.Close(); closeErr != nil </span><span class="cov0" title="0">{
                         log.Err(closeErr).Msg("Error closing file")
                 }</span>
         }()
