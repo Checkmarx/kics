@@ -207,7 +207,7 @@
 				
 				<option value="file75">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file76">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file76">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (95.5%)</option>
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -2166,13 +2166,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="29">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="30">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="29">total += v
+                <span class="cov8" title="30">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -5976,12 +5976,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="30111">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="30113">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="30111">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="29802">{
+                <span class="cov9" title="30113">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="29804">{
                         return skipFolder
                 }</span>
 
@@ -6053,7 +6053,7 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov6" title="308">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="30114">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="30116">{
         s.mu.RLock()
         defer s.mu.RUnlock()
         if info.IsDir() </span><span class="cov8" title="6688">{
@@ -6068,12 +6068,12 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="23426">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="23428">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="23426">ext := utils.GetExtension(path)
-        if !extensions.Include(ext) </span><span class="cov9" title="23118">{
+        <span class="cov9" title="23428">ext := utils.GetExtension(path)
+        if !extensions.Include(ext) </span><span class="cov9" title="23120">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
@@ -6367,7 +6367,7 @@ func compileRegexQueries(
                         return regexQueries, err
                 }</span>
                 <span class="cov5" title="281">regexQueries[i].Regex = compiledRegexp
-                for j := range regexQueries[i].AllowRules </span><span class="cov5" title="176">{
+                for j := range regexQueries[i].AllowRules </span><span class="cov5" title="184">{
                         regexQueries[i].AllowRules[j].Regex = regexp.MustCompile(regexQueries[i].AllowRules[j].RegexStr)
                 }</span>
         }
@@ -6432,7 +6432,7 @@ func (c *Inspector) isSecret(s string, query *RegexQuery) (isSecretRet bool, gro
 }
 
 func isAllowRule(s string, allowRules []AllowRule) bool <span class="cov8" title="5932">{
-        for i := range allowRules </span><span class="cov10" title="31410">{
+        for i := range allowRules </span><span class="cov10" title="31505">{
                 if allowRules[i].Regex.MatchString(s) </span><span class="cov4" title="68">{
                         return true
                 }</span>
@@ -14085,7 +14085,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov3" title="2">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -14094,26 +14094,26 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov3" title="2">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
                 }</span>
-                <span class="cov0" title="0">p.wg.Done()</span>
+                <span class="cov3" title="2">p.wg.Done()</span>
         }()
 
         <span class="cov3" title="2">for </span><span class="cov10" title="20">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov3" title="2">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov3" title="2">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file77" style="display: none">package progress
