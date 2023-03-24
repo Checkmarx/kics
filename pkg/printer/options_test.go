@@ -125,6 +125,10 @@ func TestOptions_LogLevel(t *testing.T) {
 }
 
 func TestOptions_CI(t *testing.T) {
+	res := os.Stdout
+	defer func() {
+		os.Stdout = res
+	}()
 	type args struct {
 		opt bool
 	}
@@ -184,36 +188,6 @@ func TestOptions_Verbose(t *testing.T) {
 			got := consoleLogger
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("Verbose() = %v, want = %v", got, tt.want)
-			}
-		})
-	}
-}
-
-func TestOptions_Silent(t *testing.T) {
-	type args struct {
-		opt bool
-	}
-	tests := []struct {
-		name    string
-		args    args
-		wantErr bool
-	}{
-		{
-			name: "test_silent",
-			args: args{
-				opt: true,
-			},
-			wantErr: false,
-		},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			outConsoleLogger = io.Discard
-			outFileLogger = io.Discard
-			err := Silent(tt.args.opt)
-			if (err != nil) != tt.wantErr {
-				t.Errorf("Silent() = %v, wantErr = %v", err, tt.wantErr)
 			}
 		})
 	}

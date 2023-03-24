@@ -113,7 +113,7 @@ func PrintHTMLReport(path, filename string, body interface{}) error {
 
 	minifierWriter := minifier.Writer(textHTML, f)
 	defer func() {
-		if closeErr := minifierWriter.Close(); err != nil {
+		if closeErr := minifierWriter.Close(); closeErr != nil {
 			log.Err(closeErr).Msg("Error closing file")
 		}
 	}()
