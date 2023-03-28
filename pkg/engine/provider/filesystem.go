@@ -224,7 +224,7 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 	s.mu.RLock()
 	defer s.mu.RUnlock()
 	if info.IsDir() {
-		// exlude terraform cache files
+		// exlude terraform cache folders
 		if strings.Contains(info.Name(), ".terra") {
 			s.excludes[info.Name()] = append(s.excludes[info.Name()], info)
 		}
