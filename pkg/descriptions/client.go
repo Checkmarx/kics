@@ -82,7 +82,7 @@ func (c *Client) CheckConnection() error {
 		return err
 	}
 	defer func() {
-		if closeErr := resp.Body.Close(); err != nil {
+		if closeErr := resp.Body.Close(); closeErr != nil {
 			log.Err(closeErr).Msg("Error closing file")
 		}
 	}()
@@ -118,7 +118,7 @@ func (c *Client) CheckLatestVersion(version string) (model.Version, error) {
 		return model.Version{}, err
 	}
 	defer func() {
-		if closeErr := resp.Body.Close(); err != nil {
+		if closeErr := resp.Body.Close(); closeErr != nil {
 			log.Err(closeErr).Msg("Error closing file")
 		}
 	}()
@@ -173,7 +173,7 @@ func (c *Client) RequestDescriptions(descriptionIDs []string) (map[string]descMo
 		return nil, err
 	}
 	defer func() {
-		if closeErr := resp.Body.Close(); err != nil {
+		if closeErr := resp.Body.Close(); closeErr != nil {
 			log.Err(closeErr).Msg("Error closing file")
 		}
 	}()

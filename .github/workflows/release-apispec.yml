@@ -34,7 +34,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
-          go-version: 1.19.x
+          go-version: 1.20.x
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v4.2.0
         with:
@@ -46,7 +46,7 @@ jobs:
           DESCRIPTIONS_URL: ${{ secrets.DESCRIPTIONS_URL }}
           APISCANNER: "true"
       - name: delete release
-        uses: dev-drprasad/delete-tag-and-release@v0.2.0
+        uses: dev-drprasad/delete-tag-and-release@v0.2.1
         with:
           delete_release: true # default: false
           tag_name: apispec # tag name to delete

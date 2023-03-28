@@ -1,6 +1,6 @@
 module github.com/Checkmarx/kics
 
-go 1.19
+go 1.20
 
 require (
 	code.cloudfoundry.org/bytefmt v0.0.0-20211005130812-5bb3c17173e5
@@ -8,7 +8,7 @@ require (
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
 	github.com/antlr/antlr4/runtime/Go/antlr/v4 v4.0.0-20221202181307-76fa05c21b12
-	github.com/aws/aws-sdk-go v1.44.215
+	github.com/aws/aws-sdk-go v1.44.227
 	github.com/cheggaaa/pb/v3 v3.1.2
 	github.com/emicklei/proto v1.11.1
 	github.com/getsentry/sentry-go v0.18.0
@@ -17,7 +17,7 @@ require (
 	github.com/google/pprof v0.0.0-20210720184732-4bb14d4b1be1
 	github.com/google/uuid v1.3.0
 	github.com/gookit/color v1.5.2
-	github.com/hashicorp/go-getter v1.7.0
+	github.com/hashicorp/go-getter v1.7.1
 	github.com/hashicorp/hcl v1.0.0
 	github.com/hashicorp/hcl/v2 v2.16.1
 	github.com/hashicorp/terraform-json v0.15.0
@@ -27,7 +27,7 @@ require (
 	github.com/moby/buildkit v0.10.4
 	github.com/open-policy-agent/opa v0.49.2
 	github.com/pkg/errors v0.9.1
-	github.com/rs/zerolog v1.26.1
+	github.com/rs/zerolog v1.29.0
 	github.com/sosedoff/ansible-vault-go v0.1.1
 	github.com/spf13/cobra v1.6.1
 	github.com/spf13/pflag v1.0.5
@@ -37,8 +37,8 @@ require (
 	github.com/tidwall/gjson v1.14.4
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/yargevad/filepathx v1.0.0
-	github.com/zclconf/go-cty v1.13.0
-	golang.org/x/net v0.7.0
+	github.com/zclconf/go-cty v1.13.1
+	golang.org/x/net v0.8.0
 	golang.org/x/text v0.8.0
 	golang.org/x/tools v0.6.0
 	gopkg.in/yaml.v3 v3.0.1
@@ -184,8 +184,8 @@ require (
 	golang.org/x/crypto v0.5.0 // indirect
 	golang.org/x/oauth2 v0.1.0 // indirect
 	golang.org/x/sync v0.1.0 // indirect
-	golang.org/x/sys v0.5.0 // indirect
-	golang.org/x/term v0.5.0 // indirect
+	golang.org/x/sys v0.6.0 // indirect
+	golang.org/x/term v0.6.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
 	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2 // indirect
 	google.golang.org/api v0.107.0 // indirect
@@ -196,12 +196,12 @@ require (
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	k8s.io/api v0.26.2
+	k8s.io/api v0.26.3
 	k8s.io/apiextensions-apiserver v0.26.1 // indirect
-	k8s.io/apimachinery v0.26.2
+	k8s.io/apimachinery v0.26.3
 	k8s.io/apiserver v0.26.1 // indirect
 	k8s.io/cli-runtime v0.26.0 // indirect
-	k8s.io/client-go v0.26.1
+	k8s.io/client-go v0.26.3
 	k8s.io/component-base v0.26.1 // indirect
 	k8s.io/klog/v2 v2.80.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20221012153701-172d655c2280 // indirect

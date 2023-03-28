@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  S3Bucket88:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: S3Bucket88
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html
+    DeletionPolicy: Retain
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      PolicyDocument:
+        Id: MyPolicy
+        Version: 2012-10-17T00:00:00Z
+        Statement:
+            Effect: Allow
+            Principal: '*'
+            Action: 's3:*'
+            Condition:
+              Bool:
+                'aws:SecureTransport': true
+      Bucket: !Ref S3Bucket88
