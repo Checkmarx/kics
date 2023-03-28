@@ -19,7 +19,7 @@
         <link rel="next" href="../../integrations/">
       
       <link rel="icon" href="../../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.2">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.4">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.7bf56d0a.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.240905d7.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
@@ -4458,11 +4458,11 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#enabled">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Stackdriver Logging Disabled<br/><sup><sub>4c7ebcb2-eae2-461e-bc83-456ee2d4f694</sub></sup></td>
+<td>Stackdriver Monitoring Disabled<br/><sup><sub>30e8dfd2-3591-4d19-8d11-79e93106c93d</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Observability</td>
-<td>Kubernetes Engine Clusters must have Stackdriver Logging enabled, which means the attribute 'logging_service' must be defined and different from 'none'</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster">Documentation</a><br/></td>
+<td>Kubernetes Engine Clusters must have Stackdriver Monitoring enabled, which means the attribute 'monitoring_service' must either be undefined or set to 'monitoring.googleapis.com/kubernetes'</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster#monitoring_service">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>IAM Audit Not Properly Configured<br/><sup><sub>89fe890f-b480-460c-8b6b-7d8b1468adb4</sub></sup></td>
@@ -4470,6 +4470,13 @@
 <td>Observability</td>
 <td>Audit Logging Configuration is defective</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_audit_config">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Stackdriver Logging Disabled<br/><sup><sub>4c7ebcb2-eae2-461e-bc83-456ee2d4f694</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Observability</td>
+<td>Kubernetes Engine Clusters must have Stackdriver Logging enabled, which means the attribute 'logging_service' must either be undefined or set to 'logging.googleapis.com/kubernetes'</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster#logging_service">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Node Auto Upgrade Disabled<br/><sup><sub>b139213e-7d24-49c2-8025-c18faa21ecaa</sub></sup></td>
@@ -5943,7 +5950,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.fc8c2696.min.js"></script>
+      <script src="../../assets/javascripts/bundle.19047be9.min.js"></script>
       
         <script src="../../js/version-mike.js"></script>
       
