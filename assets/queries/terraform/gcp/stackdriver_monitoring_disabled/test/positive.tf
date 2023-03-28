@@ -3,6 +3,7 @@ resource "google_container_cluster" "positive1" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
   initial_node_count = 3
+  monitoring_service = "none"
 
   timeouts {
     create = "30m"
@@ -14,7 +15,7 @@ resource "google_container_cluster" "positive2" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
   initial_node_count = 3
-  monitoring_service = "none"
+  monitoring_service = "monitoring.googleapis.com"
 
   timeouts {
     create = "30m"

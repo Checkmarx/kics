@@ -22,7 +22,7 @@
           "Statement": [
             {
               "Sid": "EnsureSSL",
-              "Effect": "Allow",
+              "Effect": "Deny",
               "Principal": "*",
               "Action": "s3:PutObject",
               "Condition": {

@@ -26,7 +26,7 @@ Resources:
         Version: 2012-10-17
         Statement:
           - Sid: EnsureSSL
-            Effect: Deny
+            Effect: Allow
             Principal: '*'
             Action: 's3:*'
             Condition:
