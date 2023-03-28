@@ -259,8 +259,7 @@ func (c *Client) createService(
 }
 
 func (c *Client) getFileSystemSourceProvider(paths []string) (*provider.FileSystemSourceProvider, error) {
-	//ignore terraform cache folders
-	excludePaths := []string{".terra*", "./.terra*", ".//.terra*", ".terra*/", "./.terra/*", ".//.terra*/*"}
+	var excludePaths []string
 	if c.ScanParams.PayloadPath != "" {
 		excludePaths = append(excludePaths, c.ScanParams.PayloadPath)
 	}
