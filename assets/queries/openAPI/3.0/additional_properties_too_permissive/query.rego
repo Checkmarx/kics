@@ -74,7 +74,7 @@ test_schema(schema) = issue {
 		"type": "IncorrectValue",
 		"path": ".additionalProperties",
 		"message": "'additionalProperties' is set true",
-		"solution": "'additionalProperties' needs to be set to false",
+		"solution": "'additionalProperties' should be set to false",
 	}
 }
 
