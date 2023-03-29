@@ -267,6 +267,10 @@
           "regex": "(?i)['\"]?LifecycleActionToken['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
         },
         {
+          "description": "Avoiding Github id-token Default Values",
+          "regex": "(?i)['\"]?id-token\\s*[:=]\\s*(write|read|none)\\s*$"
+        },
+        {
           "description": "Avoiding result_token Var",
           "regex": "(?i)['\"]?result(_)?token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
         },
