@@ -1,8 +1,6 @@
 package detector
 
 import (
-	"fmt"
-
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/rs/zerolog"
 )
@@ -43,9 +41,6 @@ func (d *DetectLine) Add(detector kindDetectLine, kind model.FileKind) *DetectLi
 // DetectLine will use the correct kindDetectLine according to the files kind
 // if file kind is not in detectors default detect line is called
 func (d *DetectLine) DetectLine(file *model.FileMetadata, searchKey string, logWithFields *zerolog.Logger) model.VulnerabilityLines {
-	if searchKey == "resources.name={{[parameters('siteName')]}}" {
-		fmt.Print("---")
-	}
 	if det, ok := d.detectors[file.Kind]; ok {
 		return det.DetectLine(file, searchKey, d.outputLines, logWithFields)
 	}

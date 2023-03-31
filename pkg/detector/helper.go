@@ -261,9 +261,6 @@ func (d *DefaultDetectLineResponse) DetectCurrentLine(str1, str2 string, recurse
 				return res, newLines
 			}
 		}
-		if i == 563 {
-			fmt.Print("...")
-		}
 		distances = checkLine(str1, str2, distances, lines[i], i)
 	}
 
