@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "Nifcloud Computing Has Public Ingress Security Group Rule",
+		"severity": "HIGH",
+		"line": 1,
+		"fileName": "positive.tf"
+	}
+]

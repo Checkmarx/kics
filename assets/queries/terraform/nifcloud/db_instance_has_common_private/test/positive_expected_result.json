@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "Nifcloud RDB Has Common Private Network",
+		"severity": "LOW",
+		"line": 1,
+		"fileName": "positive.tf"
+	}
+]

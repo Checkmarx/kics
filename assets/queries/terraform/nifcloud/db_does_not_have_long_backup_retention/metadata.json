@@ -1,0 +1,11 @@
+{
+    "id": "e5071f76-cbe7-468d-bb2b-d10f02d2b713",
+    "queryName": "Nifcloud RDB Has Backup Retention Less Than 2 Day",
+    "severity": "MEDIUM",
+    "category": "Backup",
+    "descriptionText": "The rdb has backup retention less than 2 day",
+    "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/db_instance#backup_retention_period",
+    "platform": "Terraform",
+    "descriptionID": "5fadf94a",
+    "cloudProvider": "nifcloud"
+}

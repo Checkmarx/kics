@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "Nifcloud ELB Use HTTP Protocol",
+		"severity": "HIGH",
+		"line": 1,
+		"fileName": "positive.tf"
+	}
+]

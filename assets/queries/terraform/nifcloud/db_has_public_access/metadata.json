@@ -1,0 +1,11 @@
+{
+    "id": "fb387023-e4bb-42a8-9a70-6708aa7ff21b",
+    "queryName": "Nifcloud RDB Has Public DB Access",
+    "severity": "HIGH",
+    "category": "Networking and Firewall",
+    "descriptionText": "The rdb has public db access",
+    "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/db_instance#publicly_accessible",
+    "platform": "Terraform",
+    "descriptionID": "e4ce28b6",
+    "cloudProvider": "nifcloud"
+}

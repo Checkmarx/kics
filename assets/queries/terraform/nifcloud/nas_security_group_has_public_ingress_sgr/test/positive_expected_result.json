@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "Nifcloud NAS Has Public Ingress NAS Security Group Rule",
+		"severity": "HIGH",
+		"line": 1,
+		"fileName": "positive.tf"
+	}
+]

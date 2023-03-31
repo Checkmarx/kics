@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "Nifcloud LB Use HTTP Port",
+		"severity": "HIGH",
+		"line": 1,
+		"fileName": "positive1.tf"
+	},
+	{
+		"queryName": "Nifcloud LB Use HTTP Port",
+		"severity": "HIGH",
+		"line": 1,
+		"fileName": "positive2.tf"
+	}
+]
