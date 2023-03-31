@@ -1,4 +1,4 @@
-// Package path implements testcases for E2E Tests
+// Package testcases provides end-to-end (E2E) testing functionality for the application.
 package testcases
 
 // E2E-CLI-061 - KICS  scan with a valid case insensitive --exclude-type flag
