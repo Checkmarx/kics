@@ -148,12 +148,12 @@ run-local: build
 .PHONY: generate-queries-docs
 generate-queries-docs: ## generate queries catalog md files
 	$(call print-target)
-	@pip3 install -r .github/generators/requirements.txt
-	@python3 -u .github/generators/docs_generator.py \
+	@pip3 install -r .github/scripts/docs-generator/requirements.txt
+	@python3 -u .github/scripts/docs-generator/docs_generator.py \
 		-p ./assets/queries/ \
 		-o ./docs/queries/ \
 		-f md \
-		-t .github/generators/templates
+		-t .github/scripts/docs-generator/templates
 	@echo "\033[36mQueries catalog updated\033[0m"
 
 .PHONY: integration

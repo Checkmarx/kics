@@ -1,6 +1,16 @@
 ## Pulumi Queries List
 This page contains all queries from Pulumi.
 
+### GCP
+Bellow are listed queries related with Pulumi GCP:
+
+
+
+|            Query             |Severity|Category|Description|Help|
+|------------------------------|--------|--------|-----------|----|
+|Cloud Storage Bucket Logging Not Enabled<br/><sup><sub>48f7e44d-d1d1-44c2-b336-9f11b65c4fb0</sub></sup>|<span style="color:#C00">High</span>|Observability|Cloud storage bucket should have logging enabled|<a href="https://www.pulumi.com/registry/packages/gcp/api-docs/storage/bucket/#logging_yaml">Documentation</a><br/>|
+|Google Compute SSL Policy Weak Cipher In Use<br/><sup><sub>965e8830-2bec-4b9b-a7f0-24dbc200a68f</sub></sup>|<span style="color:#C60">Medium</span>|Encryption|This query confirms if Google Compute SSL Policy Weak Chyper Suits is Enabled, to do so we need to check if TLS is TLS_1_2, because other version have Weak Chypers|<a href="https://www.pulumi.com/registry/packages/gcp/api-docs/compute/sslpolicy/#mintlsversion_yaml">Documentation</a><br/>|
+
 ### KUBERNETES
 Bellow are listed queries related with Pulumi KUBERNETES:
 
@@ -28,16 +38,6 @@ Bellow are listed queries related with Pulumi AWS:
 |EC2 Not EBS Optimized<br/><sup><sub>d991e4ae-42ab-429b-ab43-d5e5fa9ca633</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|It's considered a best practice for an EC2 instance to use an EBS optimized instance. This provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance|<a href="https://www.pulumi.com/registry/packages/aws/api-docs/ec2/instance/#ebsoptimized_yaml">Documentation</a><br/>|
 |DynamoDB Table Point In Time Recovery Disabled<br/><sup><sub>327b0729-4c5c-4c44-8b5c-e476cd9c7290</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|It's considered a best practice to have point in time recovery enabled for DynamoDB Table|<a href="https://www.pulumi.com/registry/packages/aws/api-docs/dynamodb/table/#pointintimerecovery_yaml">Documentation</a><br/>|
 |EC2 Instance Monitoring Disabled<br/><sup><sub>daa581ef-731c-4121-832d-cf078f67759d</sub></sup>|<span style="color:#00C">Info</span>|Observability|EC2 Instance should have detailed monitoring enabled. With detailed monitoring enabled data is available in 1-minute periods|<a href="https://www.pulumi.com/registry/packages/aws/api-docs/ec2/instance/#monitoring_yaml">Documentation</a><br/>|
-
-### GCP
-Bellow are listed queries related with Pulumi GCP:
-
-
-
-|            Query             |Severity|Category|Description|Help|
-|------------------------------|--------|--------|-----------|----|
-|Cloud Storage Bucket Logging Not Enabled<br/><sup><sub>48f7e44d-d1d1-44c2-b336-9f11b65c4fb0</sub></sup>|<span style="color:#C00">High</span>|Observability|Cloud storage bucket should have logging enabled|<a href="https://www.pulumi.com/registry/packages/gcp/api-docs/storage/bucket/#logging_yaml">Documentation</a><br/>|
-|Google Compute SSL Policy Weak Cipher In Use<br/><sup><sub>965e8830-2bec-4b9b-a7f0-24dbc200a68f</sub></sup>|<span style="color:#C60">Medium</span>|Encryption|This query confirms if Google Compute SSL Policy Weak Chyper Suits is Enabled, to do so we need to check if TLS is TLS_1_2, because other version have Weak Chypers|<a href="https://www.pulumi.com/registry/packages/gcp/api-docs/compute/sslpolicy/#mintlsversion_yaml">Documentation</a><br/>|
 
 ### AZURE
 Bellow are listed queries related with Pulumi AZURE:
