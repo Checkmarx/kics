@@ -186,6 +186,13 @@
     "usage": "case insensitive list of platform types to scan\n(${supportedPlatforms})",
     "validation": "validateMultiStrEnum"
   },
+  "exclude-type": {
+    "flagType": "multiStr",
+    "shorthandFlag": "",
+    "defaultValue": "",
+    "usage": "case insensitive list of platform types not to scan\n(${supportedPlatforms})",
+    "validation": "validateMultiStrEnum"
+  },
   "exclude-gitignore": {
     "flagType": "bool",
     "shorthandFlag": "",

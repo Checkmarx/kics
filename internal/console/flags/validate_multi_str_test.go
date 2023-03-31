@@ -1,4 +1,4 @@
-//nolint
+// nolint
 package flags
 
 import (
@@ -63,6 +63,18 @@ func TestFlags_validateMultiStrEnum(t *testing.T) {
 			name:      "should return an error when an invalid enum value",
 			flagName:  "exclude-categories",
 			flagValue: &[]string{"Backup", "Undefined"},
+			wantErr:   true,
+		},
+		{
+			name:      "should execute type selection fine",
+			flagName:  "type",
+			flagValue: &[]string{"Ansible"},
+			wantErr:   false,
+		},
+		{
+			name:      "should return an error when an invalid type enum value",
+			flagName:  "exclude-categories",
+			flagValue: &[]string{"Ansible", "Terrraform"},
 			wantErr:   true,
 		},
 	}

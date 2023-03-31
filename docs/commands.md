@@ -95,6 +95,8 @@ Flags:
       --timeout int                   number of seconds the query has to execute before being canceled (default 60)
   -t, --type strings                  case insensitive list of platform types to scan
                                       (Ansible, AzureResourceManager, Buildah, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
+      --exclude-type strings          case insensitive list of platform types not to scan
+                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)                                      
 
 Global Flags:
       --ci                  display only log messages to CLI output (mutually exclusive with silent)
