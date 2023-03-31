@@ -18,7 +18,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' should have the 'identity' property defined",
 		"keyActualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'identity' property defined",
-		"searchLine": common_lib.build_search_line(path, []),
 	}
 }
 
@@ -37,7 +36,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined",
 		"keyActualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined",
-		"searchLine": common_lib.build_search_line(path, ["identity"]),
 	}
 }
 
