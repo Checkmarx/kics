@@ -1,6 +1,174 @@
 {
 	"document": [
 		{
+			"args": [],
+			"command": {
+				"golang:1.16.2-alpine3.12 as build_env": [
+					{
+						"Cmd": "from",
+						"EndLine": 1,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM golang:1.16.2-alpine3.12 as build_env",
+						"SubCmd": "",
+						"Value": [
+							"golang:1.16.2-alpine3.12",
+							"as",
+							"build_env"
+						],
+						"_kics_line": 1
+					},
+					{
+						"Cmd": "run",
+						"EndLine": 3,
+						"Flags": [],
+						"JSON": false,
+						"Original": "RUN command",
+						"SubCmd": "",
+						"Value": [
+							"command"
+						],
+						"_kics_line": 3
+					}
+				]
+			},
+			"id": "0",
+			"file": "file"
+		},
+		{
+			"id": "0",
+			"components": {
+				"securitySchemes": {
+					"oAuth2AuthCodeNeg2": {
+						"description": "For more information, see https://api.my.company.com/docs/oauth",
+						"flows": {
+							"authorizationCode": {
+								"authorizationUrl": "https://api.my.company.com/oauth/authorize",
+								"scopes": {
+									"read:api": "read your apis",
+									"write:api": "modify apis in your account"
+								},
+								"tokenUrl": "https://api.my.company.com/oauth/token"
+							}
+						},
+						"type": "oauth2"
+					}
+				}
+			},
+			"info": {
+				"title": "Simple API Overview",
+				"version": "1.0.0"
+			},
+			"openapi": "3.0.0",
+			"paths": {
+				"/": {
+					"get": {
+						"operationId": "listVersionsv2",
+						"responses": {
+							"200": {
+								"content": {
+									"application/json": {
+										"examples": {
+											"foo": {
+												"value": {
+													"versions": [
+														{
+															"id": "v2.0",
+															"links": [
+																{
+																	"href": "http://127.0.0.1:8774/v2/",
+																	"rel": "self"
+																}
+															],
+															"status": "CURRENT",
+															"updated": "2011-01-21T11:33:21Z"
+														}
+													]
+												}
+											}
+										}
+									}
+								},
+								"description": "200 response"
+							}
+						},
+						"summary": "List API versions"
+					}
+				}
+			},
+			"file": "file"
+		},
+		{
+			"paths": {
+				"/": {
+					"get": {
+						"operationId": "listVersionsv2",
+						"responses": {
+							"200": {
+								"content": {
+									"application/json": {
+										"examples": {
+											"foo": {
+												"value": {
+													"versions": [
+														{
+															"id": "v2.0",
+															"links": [
+																{
+																	"href": "http://127.0.0.1:8774/v2/",
+																	"rel": "self"
+																}
+															],
+															"status": "CURRENT",
+															"updated": "2011-01-21T11:33:21Z"
+														}
+													]
+												}
+											}
+										}
+									}
+								},
+								"description": "200 response"
+							}
+						},
+						"summary": "List API versions"
+					}
+				}
+			},
+			"security": [
+				{
+					"OAuth2": [
+						"write",
+						"read"
+					]
+				}
+			],
+			"file": "file",
+			"id": "0",
+			"components": {
+				"securitySchemes": {
+					"OAuth2": {
+						"flows": {
+							"authorizationCode": {
+								"authorizationUrl": "https://example.com/oauth/authorize",
+								"scopes": {
+									"read": "read objects in your account",
+									"write": "modify objects in your account"
+								},
+								"tokenUrl": "https://example.com/oauth/token"
+							}
+						},
+						"type": "oauth2"
+					}
+				}
+			},
+			"info": {
+				"title": "Simple API Overview",
+				"version": "1.0.0"
+			},
+			"openapi": "3.0.0"
+		},
+		{
 			"id": "0",
 			"playbooks": [
 				{
@@ -69,139 +237,10 @@
 			"file": "file"
 		},
 		{
-			"components": {
-				"securitySchemes": {
-					"oAuth2AuthCodeNeg2": {
-						"description": "For more information, see https://api.my.company.com/docs/oauth",
-						"flows": {
-							"authorizationCode": {
-								"authorizationUrl": "https://api.my.company.com/oauth/authorize",
-								"scopes": {
-									"read:api": "read your apis",
-									"write:api": "modify apis in your account"
-								},
-								"tokenUrl": "https://api.my.company.com/oauth/token"
-							}
-						},
-						"type": "oauth2"
-					}
-				}
-			},
-			"info": {
-				"title": "Simple API Overview",
-				"version": "1.0.0"
-			},
-			"openapi": "3.0.0",
-			"paths": {
-				"/": {
-					"get": {
-						"operationId": "listVersionsv2",
-						"responses": {
-							"200": {
-								"content": {
-									"application/json": {
-										"examples": {
-											"foo": {
-												"value": {
-													"versions": [
-														{
-															"id": "0",
-															"links": [
-																{
-																	"href": "http://127.0.0.1:8774/v2/",
-																	"rel": "self"
-																}
-															],
-															"status": "CURRENT",
-															"updated": "2011-01-21T11:33:21Z"
-														}
-													]
-												}
-											}
-										}
-									}
-								},
-								"description": "200 response"
-							}
-						},
-						"summary": "List API versions"
-					}
-				}
-			},
 			"file": "file",
-			"id": "0"
-		},
-		{
 			"id": "0",
-			"components": {
-				"securitySchemes": {
-					"OAuth2": {
-						"flows": {
-							"authorizationCode": {
-								"authorizationUrl": "https://example.com/oauth/authorize",
-								"scopes": {
-									"read": "read objects in your account",
-									"write": "modify objects in your account"
-								},
-								"tokenUrl": "https://example.com/oauth/token"
-							}
-						},
-						"type": "oauth2"
-					}
-				}
-			},
-			"info": {
-				"title": "Simple API Overview",
-				"version": "1.0.0"
-			},
-			"openapi": "3.0.0",
-			"paths": {
-				"/": {
-					"get": {
-						"operationId": "listVersionsv2",
-						"responses": {
-							"200": {
-								"content": {
-									"application/json": {
-										"examples": {
-											"foo": {
-												"value": {
-													"versions": [
-														{
-															"id": "0",
-															"links": [
-																{
-																	"href": "http://127.0.0.1:8774/v2/",
-																	"rel": "self"
-																}
-															],
-															"status": "CURRENT",
-															"updated": "2011-01-21T11:33:21Z"
-														}
-													]
-												}
-											}
-										}
-									}
-								},
-								"description": "200 response"
-							}
-						},
-						"summary": "List API versions"
-					}
-				}
-			},
-			"security": [
-				{
-					"OAuth2": [
-						"write",
-						"read"
-					]
-				}
-			],
-			"file": "file"
-		},
-		{
+			"apiVersion": "aws.stacks.crossplane.io/v1alpha1",
+			"kind": "AWSSample",
 			"metadata": {
 				"name": "test"
 			},
@@ -212,11 +251,7 @@
 					"namespace": "crossplane-system"
 				},
 				"region": "us-west-2"
-			},
-			"file": "file",
-			"id": "0",
-			"apiVersion": "aws.stacks.crossplane.io/v1alpha1",
-			"kind": "AWSSample"
+			}
 		},
 		{
 			"services": {
@@ -237,62 +272,6 @@
 			"version": "3.9",
 			"file": "file",
 			"id": "0"
-		},
-		{
-			"id": "0",
-			"resource": {
-				"aws_alb": {
-					"foo33": {
-						"internal": false,
-						"subnets": [
-							"${aws_subnet.foo.id}",
-							"${aws_subnet.bar.id}"
-						]
-					}
-				},
-				"aws_wafregional_web_acl_association": {
-					"foo_waf33": {
-						"resource_arn": "${aws_alb.foo33.arn}",
-						"web_acl_id": "${aws_wafregional_web_acl.foo.id}"
-					}
-				}
-			},
-			"file": "file"
-		},
-		{
-			"args": [],
-			"command": {
-				"golang:1.16.2-alpine3.12 as build_env": [
-					{
-						"Cmd": "from",
-						"EndLine": 1,
-						"Flags": [],
-						"JSON": false,
-						"Original": "FROM golang:1.16.2-alpine3.12 as build_env",
-						"SubCmd": "",
-						"Value": [
-							"golang:1.16.2-alpine3.12",
-							"as",
-							"build_env"
-						],
-						"_kics_line": 1
-					},
-					{
-						"Cmd": "run",
-						"EndLine": 3,
-						"Flags": [],
-						"JSON": false,
-						"Original": "RUN command",
-						"SubCmd": "",
-						"Value": [
-							"command"
-						],
-						"_kics_line": 3
-					}
-				]
-			},
-			"id": "0",
-			"file": "file"
 		},
 		{
 			"id": "0",
@@ -331,6 +310,20 @@
 			"file": "file"
 		},
 		{
+			"file": "file",
+			"id": "0",
+			"apiVersion": "v1",
+			"kind": "Service",
+			"metadata": {
+				"labels": {
+					"app.kubernetes.io/instance": "kics-helm",
+					"app.kubernetes.io/managed-by": "Helm",
+					"app.kubernetes.io/name": "test_helm",
+					"app.kubernetes.io/version": "1.16.0",
+					"helm.sh/chart": "test_helm-0.1.0"
+				},
+				"name": "kics-helm-test_helm"
+			},
 			"spec": {
 				"ports": [
 					{
@@ -345,23 +338,10 @@
 					"app.kubernetes.io/name": "test_helm"
 				},
 				"type": "ClusterIP"
-			},
-			"file": "file",
-			"id": "0",
-			"apiVersion": "v1",
-			"kind": "Service",
-			"metadata": {
-				"labels": {
-					"app.kubernetes.io/instance": "kics-helm",
-					"app.kubernetes.io/managed-by": "Helm",
-					"app.kubernetes.io/name": "test_helm",
-					"app.kubernetes.io/version": "1.16.0",
-					"helm.sh/chart": "test_helm-0.1.0"
-				},
-				"name": "kics-helm-test_helm"
 			}
 		},
 		{
+			"id": "0",
 			"apiVersion": "rbac.authorization.k8s.io/v1beta1",
 			"kind": "ClusterRoleBinding",
 			"metadata": {
@@ -380,10 +360,16 @@
 					"namespace": "kube-system"
 				}
 			],
-			"file": "file",
-			"id": "0"
+			"file": "file"
 		},
 		{
+			"id": "0",
+			"apiVersion": "serving.knative.dev/v1",
+			"kind": "Service",
+			"metadata": {
+				"name": "autoscale-go",
+				"namespace": "default"
+			},
 			"spec": {
 				"template": {
 					"metadata": {
@@ -401,16 +387,33 @@
 					}
 				}
 			},
-			"file": "file",
-			"id": "0",
-			"apiVersion": "serving.knative.dev/v1",
-			"kind": "Service",
-			"metadata": {
-				"name": "autoscale-go",
-				"namespace": "default"
-			}
+			"file": "file"
 		},
 		{
+			"file": "file",
+			"id": "0",
+			"components": {
+				"securitySchemes": {
+					"OAuth2": {
+						"flows": {
+							"authorizationCode": {
+								"authorizationUrl": "https://example.com/oauth/authorize",
+								"scopes": {
+									"read": "read objects in your account",
+									"write": "modify objects in your account"
+								},
+								"tokenUrl": "https://example.com/oauth/token"
+							}
+						},
+						"type": "oauth2"
+					}
+				}
+			},
+			"info": {
+				"title": "Simple API Overview",
+				"version": "1.0.0"
+			},
+			"openapi": "3.0.0",
 			"paths": {
 				"/": {
 					"get": {
@@ -424,7 +427,7 @@
 												"value": {
 													"versions": [
 														{
-															"id": "0",
+															"id": "v2.0",
 															"links": [
 																{
 																	"href": "http://127.0.0.1:8774/v2/",
@@ -454,33 +457,50 @@
 						"read"
 					]
 				}
-			],
-			"file": "file",
+			]
+		},
+		{
 			"id": "0",
-			"components": {
-				"securitySchemes": {
-					"OAuth2": {
-						"flows": {
-							"authorizationCode": {
-								"authorizationUrl": "https://example.com/oauth/authorize",
-								"scopes": {
-									"read": "read objects in your account",
-									"write": "modify objects in your account"
-								},
-								"tokenUrl": "https://example.com/oauth/token"
-							}
-						},
-						"type": "oauth2"
+			"resource": {
+				"aws_alb": {
+					"foo33": {
+						"internal": false,
+						"subnets": [
+							"${aws_subnet.foo.id}",
+							"${aws_subnet.bar.id}"
+						]
+					}
+				},
+				"aws_wafregional_web_acl_association": {
+					"foo_waf33": {
+						"resource_arn": "${aws_alb.foo33.arn}",
+						"web_acl_id": "${aws_wafregional_web_acl.foo.id}"
 					}
 				}
 			},
-			"info": {
-				"title": "Simple API Overview",
-				"version": "1.0.0"
-			},
-			"openapi": "3.0.0"
+			"file": "file"
 		},
 		{
+			"id": "0",
+			"description": "An EKS cluster",
+			"name": "aws-eks",
+			"outputs": {
+				"kubeconfig": "${cluster.kubeconfig}"
+			},
+			"resources": {
+				"cluster": {
+					"properties": {
+						"desiredCapacity": 2,
+						"instanceType": "t2.medium",
+						"maxSize": 2,
+						"minSize": 1,
+						"subnetIds": "${subnetIds}",
+						"vpcId": "${vpcId}"
+					},
+					"type": "eks:Cluster"
+				}
+			},
+			"runtime": "yaml",
 			"variables": {
 				"subnetIds": {
 					"Fn::Invoke": {
@@ -501,34 +521,9 @@
 					}
 				}
 			},
-			"file": "file",
-			"id": "0",
-			"description": "An EKS cluster",
-			"name": "aws-eks",
-			"outputs": {
-				"kubeconfig": "${cluster.kubeconfig}"
-			},
-			"resources": {
-				"cluster": {
-					"properties": {
-						"desiredCapacity": 2,
-						"instanceType": "t2.medium",
-						"maxSize": 2,
-						"minSize": 1,
-						"subnetIds": "${subnetIds}",
-						"vpcId": "${vpcId}"
-					},
-					"type": "eks:Cluster"
-				}
-			},
-			"runtime": "yaml"
+			"file": "file"
 		},
 		{
-			"custom": {
-				"settings": {
-					"POSTS_TABLE": "posts"
-				}
-			},
 			"frameworkVersion": "2",
 			"functions": {
 				"createPost": {
@@ -650,7 +645,12 @@
 			},
 			"service": "myservice",
 			"file": "file",
-			"id": "0"
+			"id": "0",
+			"custom": {
+				"settings": {
+					"POSTS_TABLE": "posts"
+				}
+			}
 		},
 		{
 			"id": "0",

@@ -612,16 +612,10 @@ func (a *analyzerInfo) isAvailableType(typeName string) bool {
 		return true
 	} else if len(a.typesFlag) > 1 || a.typesFlag[0] != "" {
 		// type flag is set
-		if utils.Contains(typeName, a.typesFlag) {
-			return true
-		}
-		return false
+		return utils.Contains(typeName, a.typesFlag)
 	} else if len(a.excludeTypesFlag) > 1 || a.excludeTypesFlag[0] != "" {
 		// exclude type flag is set
-		if utils.Contains(typeName, a.excludeTypesFlag) {
-			return false
-		}
-		return true
+		return !utils.Contains(typeName, a.excludeTypesFlag)
 	}
 	// no valid behavior detected
 	return false
