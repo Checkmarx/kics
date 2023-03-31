@@ -7,9 +7,9 @@ func init() { //nolint
 		Name: "should perform a valid scan with --exclude-type flag [E2E-CLI-061]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "-p", "/path/test/fixtures/analyzer_test",
+				[]string{"scan", "-p", "\"/path/e2e/fixtures/samples/positive.dockerfile\",\"/path/e2e/fixtures/samples/terraform.tf\"",
 					"--silent", "--payload-path", "/path/e2e/output/E2E_CLI_061_PAYLOAD.json", "--exclude-type",
-					"AzureResourceManager,CloudFormation,DockerCompose,Knative,ServerlessFW"},
+					"TeRRafOrm"},
 			},
 			ExpectedPayload: []string{
 				"E2E_CLI_061_PAYLOAD.json",
