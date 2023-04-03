@@ -79,8 +79,38 @@ isValidSslPolicyStatement(stmt) {
 	isUnsafeAction(st.Action)
 	equalsFalse(st.Condition.Bool["aws:SecureTransport"])
 } else {
+	is_array(stmt)
+	st := stmt[s]
+	st.Effect == "Deny"
+	is_array(st.Action)
+	action := st.Action[i]
+	isUnsafeAction(action)
+	equalsFalse(st.Condition.Bool["aws:SecureTransport"])
+} 
+else {
 	is_object(stmt)
 	stmt.Effect == "Deny"
 	isUnsafeAction(stmt.Action)
 	equalsFalse(stmt.Condition.Bool["aws:SecureTransport"])
+}
+else {
+	is_array(stmt)
+	st := stmt[s]
+	st.Effect == "Allow"
+	isUnsafeAction(st.Action)
+	not equalsFalse(st.Condition.Bool["aws:SecureTransport"])
+} else {
+	is_array(stmt)
+	st := stmt[s]
+	st.Effect == "Allow"
+	is_array(st.Action)
+	action := st.Action[i]
+	isUnsafeAction(action)
+	not equalsFalse(st.Condition.Bool["aws:SecureTransport"])
+} 
+else {
+	is_object(stmt)
+	stmt.Effect == "Allow"
+	isUnsafeAction(stmt.Action)
+	not equalsFalse(stmt.Condition.Bool["aws:SecureTransport"])
 }
