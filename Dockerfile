@@ -33,7 +33,7 @@ HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM alpine:3.17.2
+FROM alpine:3.17.3
 
 ENV TERM xterm-256color
 
