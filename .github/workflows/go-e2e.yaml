@@ -24,7 +24,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Set up Go 1.20.x
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v4
         with:
           go-version: ${{ matrix.go-version }}
       - name: Print go env
