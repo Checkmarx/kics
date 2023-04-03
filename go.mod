@@ -8,7 +8,7 @@ require (
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
 	github.com/antlr/antlr4/runtime/Go/antlr/v4 v4.0.0-20221202181307-76fa05c21b12
-	github.com/aws/aws-sdk-go v1.44.215
+	github.com/aws/aws-sdk-go v1.44.227
 	github.com/cheggaaa/pb/v3 v3.1.2
 	github.com/emicklei/proto v1.11.1
 	github.com/getsentry/sentry-go v0.18.0
@@ -17,7 +17,7 @@ require (
 	github.com/google/pprof v0.0.0-20210720184732-4bb14d4b1be1
 	github.com/google/uuid v1.3.0
 	github.com/gookit/color v1.5.2
-	github.com/hashicorp/go-getter v1.7.0
+	github.com/hashicorp/go-getter v1.7.1
 	github.com/hashicorp/hcl v1.0.0
 	github.com/hashicorp/hcl/v2 v2.16.1
 	github.com/hashicorp/terraform-json v0.15.0
@@ -37,7 +37,7 @@ require (
 	github.com/tidwall/gjson v1.14.4
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/yargevad/filepathx v1.0.0
-	github.com/zclconf/go-cty v1.13.0
+	github.com/zclconf/go-cty v1.13.1
 	golang.org/x/net v0.8.0
 	golang.org/x/text v0.8.0
 	golang.org/x/tools v0.6.0
@@ -201,7 +201,7 @@ require (
 	k8s.io/apimachinery v0.26.3
 	k8s.io/apiserver v0.26.1 // indirect
 	k8s.io/cli-runtime v0.26.0 // indirect
-	k8s.io/client-go v0.26.1
+	k8s.io/client-go v0.26.3
 	k8s.io/component-base v0.26.1 // indirect
 	k8s.io/klog/v2 v2.80.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20221012153701-172d655c2280 // indirect

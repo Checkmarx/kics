@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.schema%s", [openapi_lib.concat_path(path), issue.path]),
 		"issueType": issue.type,
-		"keyExpectedValue": "'additionalProperties' should be set to true",
+		"keyExpectedValue": issue.solution,
 		"keyActualValue": issue.message,
 	}
 }
@@ -31,7 +31,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.schemas.{{%s}}%s", [schema, issue.path]),
 		"issueType": issue.type,
-		"keyExpectedValue": "'additionalProperties' should be set to true",
+		"keyExpectedValue": issue.solution,
 		"keyActualValue": issue.message,
 	}
 }
@@ -51,7 +51,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), multiSchemas.kind]),
 		"issueType": issue.type,
-		"keyExpectedValue": "'additionalProperties' should be set to true",
+		"keyExpectedValue": issue.solution,
 		"keyActualValue": issue.message,
 	}
 }
@@ -65,6 +65,7 @@ test_schema(schema) = issue {
 		"type": "MissingAttribute",
 		"path": "",
 		"message": "'additionalProperties' is not set",
+		"solution": "'additionalProperties' needs to be set and to false",
 	}
 } else = issue {
 	should_test_schema(schema)
@@ -72,7 +73,8 @@ test_schema(schema) = issue {
 	issue := {
 		"type": "IncorrectValue",
 		"path": ".additionalProperties",
-		"message": "'additionalProperties' is set true instead of false",
+		"message": "'additionalProperties' is set true",
+		"solution": "'additionalProperties' should be set to false",
 	}
 }
 
