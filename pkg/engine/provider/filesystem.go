@@ -227,7 +227,10 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 		// exlude terraform cache folders
 		if strings.Contains(info.Name(), ".terra") {
 			log.Info().Msgf("Directory ignored: %s", path)
-			s.AddExcluded([]string{info.Name()})
+			err := s.AddExcluded([]string{info.Name()})
+			if err != nil {
+				return true, err
+			}
 			return true, filepath.SkipDir
 		}
 		if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
