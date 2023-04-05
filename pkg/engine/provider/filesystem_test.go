@@ -277,6 +277,11 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 	}
 	infoHelm, errHelm := os.Stat(filepath.FromSlash("test/fixtures/test_helm"))
 	checkStatErr(t, errHelm)
+	infoTerraCache, errTerraCache := os.Stat(filepath.FromSlash("test/fixtures/test_terra_cache"))
+	checkStatErr(t, errTerraCache)
+	infoTerraCacheFolder, errTerraCacheFolder := os.Stat(filepath.FromSlash("test/fixtures/test_terra_cache/.terraform"))
+	checkStatErr(t, errTerraCacheFolder)
+
 	type fields struct {
 		paths    []string
 		excludes map[string][]os.FileInfo
@@ -344,6 +349,38 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 					".dockerfile": dockerParser.Parser{},
 				},
 				path: filepath.FromSlash("assets/queries"),
+			},
+			want: want{
+				got: true,
+				err: filepath.SkipDir,
+			},
+		},
+		{
+			name: "check_condition_ignore_terra_cache",
+			fields: fields{
+				paths:    []string{filepath.FromSlash("test/fixtures/test_terra_cache")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCache,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash("test/fixtures/test_terra_cache"),
+			},
+			want: want{
+				got: true,
+				err: nil,
+			},
+		},
+		{
+			name: "should_skip_terra_cache_folder",
+			fields: fields{
+				paths:    []string{filepath.FromSlash("test/fixtures/test_terra_cache/.terraform")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCacheFolder,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash("test/fixtures/test_terra_cache/.terraform"),
 			},
 			want: want{
 				got: true,
