@@ -241,7 +241,7 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 		_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
 		if errors.Is(err, os.ErrNotExist) {
 			return false, nil
-		} else if err != nil {
+		} else if err != nil || resolved {
 			log.Error().Msgf("failed to check helm: %s", err)
 			return true, nil
 		}
