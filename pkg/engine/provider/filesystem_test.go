@@ -315,7 +315,7 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 				path: filepath.FromSlash("assets/queries"),
 			},
 			want: want{
-				got: true,
+				got: false,
 				err: nil,
 			},
 		},
@@ -367,7 +367,7 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 				path:       filepath.FromSlash("test/fixtures/test_terra_cache"),
 			},
 			want: want{
-				got: true,
+				got: false,
 				err: nil,
 			},
 		},

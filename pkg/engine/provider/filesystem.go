@@ -237,8 +237,12 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 			log.Info().Msgf("Directory ignored: %s", path)
 			return true, filepath.SkipDir
 		}
+
 		_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
-		if err != nil || resolved {
+		if errors.Is(err, os.ErrNotExist) {
+			return false, nil
+		} else if err != nil {
+			log.Error().Msgf("failed to check helm: %s", err)
 			return true, nil
 		}
 		return false, nil
