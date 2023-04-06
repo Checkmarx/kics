@@ -149,7 +149,7 @@ run-local: build
 generate-queries-docs: ## generate queries catalog md files
 	$(call print-target)
 	@pip3 install -r .github/scripts/docs-generator/requirements.txt
-	@python3 -u .github/scripts/docs-generator/docs_generator.py \
+	@python3 -u .github/scripts/docs-generator/docs-generator.py \
 		-p ./assets/queries/ \
 		-o ./docs/queries/ \
 		-f md \
