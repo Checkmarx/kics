@@ -76,7 +76,8 @@
                 "aws",
                 "azure",
                 "common",
-                "gcp"
+                "gcp",
+                "nifcloud"
             ]
         },
         "platform": {
