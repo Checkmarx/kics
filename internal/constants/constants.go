@@ -82,6 +82,7 @@ var (
 		"aws":      "",
 		"azure":    "",
 		"gcp":      "",
+		"nifcloud": "",
 	}
 )
 

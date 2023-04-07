@@ -80,7 +80,7 @@ func ListSupportedPlatforms() []string {
 
 // ListSupportedCloudProviders returns a list of supported cloud providers
 func ListSupportedCloudProviders() []string {
-	return []string{"alicloud", "aws", "azure", "gcp"}
+	return []string{"alicloud", "aws", "azure", "gcp", "nifcloud"}
 }
 
 func getLibraryInDir(platform, libraryDirPath string) string {

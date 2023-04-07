@@ -37,6 +37,7 @@ var (
 		"../assets/queries/terraform/kubernetes":            {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/general":               {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/alicloud":              {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/nifcloud":              {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/crossplane/aws":                  {FileKind: []model.FileKind{model.KindYAML}, Platform: "crossplane"},
 		"../assets/queries/crossplane/azure":                {FileKind: []model.FileKind{model.KindYAML}, Platform: "crossplane"},
 		"../assets/queries/crossplane/gcp":                  {FileKind: []model.FileKind{model.KindYAML}, Platform: "crossplane"},
