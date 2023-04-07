@@ -38,7 +38,7 @@
         },
         {
           "description": "Avoiding Secrets Manager arn",
-          "regex": ":secretsmanager:[a-z0-9-]+:[0-9]+:(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{10,})['\"]?"
+          "regex": ":secretsmanager:[a-z0-9-*?]+:[0-9*?]+:(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
         },
         {
           "description": "Avoiding CloudFormation Parameters Descriptions",
