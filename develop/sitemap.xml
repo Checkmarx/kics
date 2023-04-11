@@ -2,342 +2,342 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>http://docs.kics.io/develop/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/BADGE/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/CONTRIBUTING/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/about/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/architecture/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/bom/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/certifications-cis/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/certifications/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/changes/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/changes1_6/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/code-of-conduct/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/commands/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/community/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/configuration-file/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/creating-queries/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/dockerhub/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/documentation/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/environment_variables_list/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/flags/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/getting-started/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/integrations/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/integrations_auto_scanning_visual_studio/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/integrations_aws_codebuild/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/integrations_azurepipelines/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/integrations_bamboo/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/integrations_bitbucketpipelines/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/integrations_circleci/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/integrations_codefresh/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/integrations_ghactions/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/integrations_gitlabci/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/integrations_jenkins/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/integrations_kuberneter/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/integrations_pre_commit/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/integrations_teamcity/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/integrations_terraformer/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/integrations_tfcloud/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/integrations_travisci/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/kics_auto_remediation/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/performance/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/platforms/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/release_checklist/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/releases/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/results/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/roadmap/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/running-kics/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/secrets/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/utilities/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/docker/digests/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/docker/nightly/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/img/logo/logo/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/all-queries/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/ansible-queries/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/azureresourcemanager-queries/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/buildah-queries/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/cloudformation-queries/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/common-queries/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/crossplane-queries/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/dockercompose-queries/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/dockerfile-queries/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/googledeploymentmanager-queries/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/grpc-queries/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/knative-queries/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/kubernetes-queries/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/openapi-queries/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/pulumi-queries/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/serverlessfw-queries/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/terraform-queries/</loc>
-         <lastmod>2023-03-28</lastmod>
+         <lastmod>2023-04-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
