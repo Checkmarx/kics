@@ -1413,18 +1413,18 @@
 <td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/elasticache/cluster/#snapshotretentionlimit_yaml">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>IAM Password Without Minimum Length<br/><sup><sub>9850d621-7485-44f7-8bdd-b3cf426315cf</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Best Practices</td>
-<td>IAM password should have the required minimum length</td>
-<td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/iam/accountpasswordpolicy/#minimumpasswordlength_yaml">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>IAM Password Without Lowercase Letter<br/><sup><sub>de92dd34-1b88-43e8-b825-6e02d73c4549</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Best Practices</td>
 <td>IAM Password should have at least one lowercase letter</td>
 <td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/iam/accountpasswordpolicy/#requirelowercasecharacters_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Password Without Minimum Length<br/><sup><sub>9850d621-7485-44f7-8bdd-b3cf426315cf</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Best Practices</td>
+<td>IAM password should have the required minimum length</td>
+<td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/iam/accountpasswordpolicy/#minimumpasswordlength_yaml">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>DynamoDB Table Not Encrypted<br/><sup><sub>b6a7e0ae-aed8-4a19-a993-a95760bf8836</sub></sup></td>
@@ -1448,13 +1448,6 @@
 <td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/apigatewayv2/stage/#accesslogsettings_yaml">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>EC2 Not EBS Optimized<br/><sup><sub>d991e4ae-42ab-429b-ab43-d5e5fa9ca633</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Best Practices</td>
-<td>It's considered a best practice for an EC2 instance to use an EBS optimized instance. This provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance</td>
-<td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/ec2/instance/#ebsoptimized_yaml">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>DynamoDB Table Point In Time Recovery Disabled<br/><sup><sub>327b0729-4c5c-4c44-8b5c-e476cd9c7290</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Best Practices</td>
@@ -1462,40 +1455,18 @@
 <td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/dynamodb/table/#pointintimerecovery_yaml">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>EC2 Not EBS Optimized<br/><sup><sub>d991e4ae-42ab-429b-ab43-d5e5fa9ca633</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>It's considered a best practice for an EC2 instance to use an EBS optimized instance. This provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance</td>
+<td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/ec2/instance/#ebsoptimized_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>EC2 Instance Monitoring Disabled<br/><sup><sub>daa581ef-731c-4121-832d-cf078f67759d</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Observability</td>
 <td>EC2 Instance should have detailed monitoring enabled. With detailed monitoring enabled data is available in 1-minute periods</td>
 <td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/ec2/instance/#monitoring_yaml">Documentation</a><br/></td>
-</tr>
-</tbody>
-</table>
-<h3 id="gcp">GCP<a class="headerlink" href="#gcp" title="Permanent link">&para;</a></h3>
-<p>Bellow are listed queries related with Pulumi GCP:</p>
-<table>
-<thead>
-<tr>
-<th>Query</th>
-<th>Severity</th>
-<th>Category</th>
-<th>Description</th>
-<th>Help</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Cloud Storage Bucket Logging Not Enabled<br/><sup><sub>48f7e44d-d1d1-44c2-b336-9f11b65c4fb0</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Observability</td>
-<td>Cloud storage bucket should have logging enabled</td>
-<td><a href="https://www.pulumi.com/registry/packages/gcp/api-docs/storage/bucket/#logging_yaml">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Google Compute SSL Policy Weak Cipher In Use<br/><sup><sub>965e8830-2bec-4b9b-a7f0-24dbc200a68f</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Encryption</td>
-<td>This query confirms if Google Compute SSL Policy Weak Chyper Suits is Enabled, to do so we need to check if TLS is TLS_1_2, because other version have Weak Chypers</td>
-<td><a href="https://www.pulumi.com/registry/packages/gcp/api-docs/compute/sslpolicy/#mintlsversion_yaml">Documentation</a><br/></td>
 </tr>
 </tbody>
 </table>
@@ -1525,6 +1496,35 @@
 <td>Encryption</td>
 <td>Redis Cache resource should not allow non-SSL connections.</td>
 <td><a href="https://www.pulumi.com/registry/packages/azure-native/api-docs/cache/redis/#enablenonsslport_yaml">Documentation</a><br/></td>
+</tr>
+</tbody>
+</table>
+<h3 id="gcp">GCP<a class="headerlink" href="#gcp" title="Permanent link">&para;</a></h3>
+<p>Bellow are listed queries related with Pulumi GCP:</p>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Severity</th>
+<th>Category</th>
+<th>Description</th>
+<th>Help</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cloud Storage Bucket Logging Not Enabled<br/><sup><sub>48f7e44d-d1d1-44c2-b336-9f11b65c4fb0</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Observability</td>
+<td>Cloud storage bucket should have logging enabled</td>
+<td><a href="https://www.pulumi.com/registry/packages/gcp/api-docs/storage/bucket/#logging_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Google Compute SSL Policy Weak Cipher In Use<br/><sup><sub>965e8830-2bec-4b9b-a7f0-24dbc200a68f</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>This query confirms if Google Compute SSL Policy Weak Chyper Suits is Enabled, to do so we need to check if TLS is TLS_1_2, because other version have Weak Chypers</td>
+<td><a href="https://www.pulumi.com/registry/packages/gcp/api-docs/compute/sslpolicy/#mintlsversion_yaml">Documentation</a><br/></td>
 </tr>
 </tbody>
 </table>
