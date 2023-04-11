@@ -53,6 +53,7 @@ func (c *Client) prepareAndAnalyzePaths(ctx context.Context) (provider.Extracted
 	a := &analyzer.Analyzer{
 		Paths:             allPaths.Path,
 		Types:             c.ScanParams.Platform,
+		ExcludeTypes:      c.ScanParams.ExcludePlatform,
 		Exc:               c.ScanParams.ExcludePaths,
 		GitIgnoreFileName: ".gitignore",
 		ExcludeGitIgnore:  c.ScanParams.ExcludeGitIgnore,
