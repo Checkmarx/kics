@@ -550,6 +550,7 @@ func Test_AnalyzePaths(t *testing.T) {
 					filepath.Join("..", "..", "assets", "queries", "terraform", "alicloud", "actiontrail_trail_oss_bucket_is_publicly_accessible"),
 				},
 				Types:             []string{""},
+				ExcludeTypes:      []string{""},
 				Exc:               []string{},
 				GitIgnoreFileName: ".gitignore",
 				ExcludeGitIgnore:  false,

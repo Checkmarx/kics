@@ -37,6 +37,12 @@ func preRun(cmd *cobra.Command) error {
 	if err != nil {
 		return err
 	}
+
+	err = flags.ValidateTypeSelectionFlags()
+	if err != nil {
+		return err
+	}
+
 	err = internalPrinter.SetupPrinter(cmd.InheritedFlags())
 	if err != nil {
 		return errors.New(initError + err.Error())

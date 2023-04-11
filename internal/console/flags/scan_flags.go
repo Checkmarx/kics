@@ -27,6 +27,7 @@ const (
 	LibrariesPath          = "libraries-path"
 	ReportFormatsFlag      = "report-formats"
 	TypeFlag               = "type"
+	ExcludeTypeFlag        = "exclude-type"
 	QueryExecTimeoutFlag   = "timeout"
 	LineInfoPayloadFlag    = "payload-lines"
 	DisableSecretsFlag     = "disable-secrets"
