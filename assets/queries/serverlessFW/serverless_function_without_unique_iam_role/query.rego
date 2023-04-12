@@ -39,6 +39,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'role' should be defined inside the function",
 		"keyActualValue": "'role' is not defined",
-		"searchLine": common_lib.build_search_line(["functions", fname], []),
+		"searchLine": common_lib.build_search_line(["functions",k ,fname], []),
 	}
 }
