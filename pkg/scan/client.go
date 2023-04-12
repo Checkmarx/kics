@@ -33,6 +33,7 @@ type Parameters struct {
 	LibrariesPath               string
 	ReportFormats               []string
 	Platform                    []string
+	ExcludePlatform             []string
 	QueryExecTimeout            int
 	LineInfoPayload             bool
 	DisableSecrets              bool
