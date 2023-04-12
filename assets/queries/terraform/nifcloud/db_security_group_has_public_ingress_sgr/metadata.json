@@ -6,6 +6,6 @@
     "descriptionText": "An db ingress security group rule allows traffic from /0",
     "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/db_security_group#cidr_ip",
     "platform": "Terraform",
-    "descriptionID": "54f48b3e",
+    "descriptionID": "05a9f362",
     "cloudProvider": "nifcloud"
 }
