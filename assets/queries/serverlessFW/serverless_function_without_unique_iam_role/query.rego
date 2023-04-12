@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": sfw_lib.resourceTypeMapping("function", document.provider.name),
 		"resourceName": fname,
-		"searchKey": sprintf("functions.%s", [fname]),
+		"searchKey": sprintf("functions[%s].%s", [k,fname]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'role' should be defined inside the function",
 		"keyActualValue": "'role' is not defined",
