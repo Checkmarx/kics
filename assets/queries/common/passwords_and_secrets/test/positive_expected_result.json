@@ -352,5 +352,11 @@
     "severity": "HIGH",
     "line": 7,
     "fileName": "positive41.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Access Key",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive42.tf"
   }
 ]
