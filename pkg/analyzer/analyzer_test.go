@@ -223,12 +223,14 @@ func TestAnalyzer_Analyze(t *testing.T) {
 		{
 			name:      "analyze_test_dir_single_path_exclude_type_value",
 			paths:     []string{filepath.FromSlash("../../test/fixtures/analyzer_test")},
-			wantTypes: []string{""},
+			wantTypes: []string{"dockerfile", "googledeploymentmanager", "cloudformation", "crossplane", "knative", "kubernetes", "openapi", "terraform", "azureresourcemanager", "dockercompose", "serverlessfw"},
 			wantExclude: []string{
 				filepath.FromSlash("../../test/fixtures/analyzer_test/ansible.yaml"),
+				filepath.FromSlash("../../test/fixtures/analyzer_test/not_openapi.json"),
+				filepath.FromSlash("../../test/fixtures/analyzer_test/undetected.yaml"),
 			},
 			typesFromFlag:        []string{""},
-			excludeTypesFromFlag: []string{},
+			excludeTypesFromFlag: []string{"ansible", "pulumi"},
 			wantLOC:              534,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
@@ -237,12 +239,12 @@ func TestAnalyzer_Analyze(t *testing.T) {
 		{
 			name:      "analyze_test_ignore_pnpm_lock_yaml_file",
 			paths:     []string{filepath.FromSlash("../../test/fixtures/analyzer_test")},
-			wantTypes: []string{"dockerfile", "googledeploymentmanager", "cloudformation", "crossplane", "knative", "kubernetes", "openapi", "terraform", "azureresourcemanager", "dockercompose", "serverlessfw"},
+			wantTypes: []string{"ansible"},
 			wantExclude: []string{
 				filepath.FromSlash("../../test/fixtures/analyzer_test/pnpm-lock.yaml"),
 			},
 			typesFromFlag:        []string{""},
-			excludeTypesFromFlag: []string{"ansible", "pulumi"},
+			excludeTypesFromFlag: []string{""},
 			wantLOC:              0,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
