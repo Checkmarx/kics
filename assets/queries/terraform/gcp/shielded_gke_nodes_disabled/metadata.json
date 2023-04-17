@@ -7,6 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster#enable_shielded_nodes",
   "descriptionID": "579a0727",
   "platform": "Terraform",
-  "cloudProvider": "gcp",
-  "aggregation": 2
+  "cloudProvider": "gcp"
 }
