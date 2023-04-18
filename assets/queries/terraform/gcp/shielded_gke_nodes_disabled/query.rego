@@ -1,4 +1,4 @@
-ackage Cx
+package Cx
 
 import data.generic.terraform as tf_lib
 
