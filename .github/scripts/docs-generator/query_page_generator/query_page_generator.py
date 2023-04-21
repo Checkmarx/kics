@@ -206,7 +206,7 @@ def generate_md_docs(queries_database : str, output_path : str, template_file_pa
 
         file_name = sanitize_filename(query_data.get('queryName'))
         # If you are having problems rendering the ".md" pages, try adding encoding='utf-8' as a parameter of "open" function invocation
-        with open(f"{platform_folder_path}/{file_name}.md", "w", encoding='utf-8') as f:
+        with open(f"{platform_folder_path}/{file_name}.md", "w") as f:
             f.write(query_doc)
 
 # Export a dictionary to a "json" file
