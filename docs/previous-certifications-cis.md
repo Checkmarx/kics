@@ -27,4 +27,3 @@ Most CIS Benchmarks include multiple configuration profiles. A profile definitio
 
 ## Additional Info
 - https://www.cisecurity.org/cis-benchmarks/cis-benchmarks-faq/
-- https://www.cisecurity.org/partner/checkmarx/
