@@ -6,6 +6,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"regexp"
 
 	consoleFlags "github.com/Checkmarx/kics/internal/console/flags"
 	"github.com/Checkmarx/kics/pkg/model"
@@ -132,7 +133,21 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 			} else {
 				fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].Description)
 			}
-			fmt.Printf("%s %s\n\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
+			fmt.Printf("%s %s\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
+			
+			cloudProvider := summary.Queries[idx].CloudProvider
+			if cloudProvider == "" {
+				cloudProvider = "common"
+			} else {
+				cloudProvider = sanitizeFilename(cloudProvider)
+			}
+
+			fmt.Printf("%s %s\n\n",
+				printer.Bold("Learn more about this vulnerability:"),
+				fmt.Sprintf("https://docs.kics.io/latest/queries/%s-queries/%s/%s",
+					sanitizeFilename(summary.Queries[idx].Platform),
+					cloudProvider,
+					sanitizeFilename(summary.Queries[idx].QueryName)))
 		}
 		printFiles(&summary.Queries[idx], printer)
 	}
@@ -272,4 +287,20 @@ func (p *Printer) PrintBySev(content, sev string) string {
 // Bold returns the output in a bold format
 func (p *Printer) Bold(content string) string {
 	return color.Bold.Sprintf(content)
+}
+
+// Transforms a string into a valid file/folder name
+func sanitizeFilename(filename string) string {
+    // Remove any characters that are not allowed in filenames
+    regex := regexp.MustCompile(`[^\w\s-]`)
+    filename = regex.ReplaceAllString(filename, "")
+
+    // Replace remaining special characters with an underscore or hyphen
+    regex = regexp.MustCompile(`[\s]+`)
+    filename = regex.ReplaceAllString(filename, "-")
+
+    // Trim any leading or trailing whitespace
+    filename = strings.TrimSpace(filename)
+
+    return strings.ToLower(filename)
 }
