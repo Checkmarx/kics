@@ -5,7 +5,7 @@ import os
 import argparse
 import json
 import copy
-from query_page.utils.sanitizers import sanitize_filename
+from query_page_generator.utils.sanitizers import sanitize_filename
 
 severities = {'High': 'HIGH', 'Medium': 'MEDIUM', 'Low': 'LOW', 'Info': 'INFO', 'Trace': 'TRACE'}
 colors = {'High': '#C00', 'Medium': '#C60', 'Low': '#CC0', 'Info': '#00C', 'Trace' : '#CCC'}
