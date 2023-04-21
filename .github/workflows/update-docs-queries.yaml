@@ -34,7 +34,7 @@ jobs:
             -p ./assets/queries/ \
             -o ./docs/queries/ \
             -f md \
-            --t .github/scripts/docs-generator/query_page_generator/query_page_template.md
+            --t .github/scripts/docs-generator/query_page_generator/templates/query_page_template.md
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
