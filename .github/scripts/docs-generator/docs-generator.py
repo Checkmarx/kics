@@ -5,6 +5,7 @@ import os
 import argparse
 import json
 import copy
+from query_page.utils.sanitizers import sanitize_filename
 
 severities = {'High': 'HIGH', 'Medium': 'MEDIUM', 'Low': 'LOW', 'Info': 'INFO', 'Trace': 'TRACE'}
 colors = {'High': '#C00', 'Medium': '#C60', 'Low': '#CC0', 'Info': '#00C', 'Trace' : '#CCC'}
@@ -91,6 +92,8 @@ for path in all_metadata:
 
         check_and_create_override_entry(meta_dict, template_dict)
         q_id = meta_dict['id']
+        query_name = sanitize_filename(meta_dict.get('cloudProvider', 'common')) + sanitize_filename(meta_dict.get('queryName'))
+        meta_dict['descriptionText'] += f' (<a href="{query_name}" target="_blank">read more</a>)'
         template_dict[platform][sub_platform][severity][category][q_id] = meta_dict
 #
 # template dict ex:
