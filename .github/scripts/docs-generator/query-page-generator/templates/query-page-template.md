@@ -15,12 +15,12 @@ hide:
   }
 </style>
 
-- **Query id:**  <QUERY_ID>
-- **Query name:**  <QUERY_NAME>
-- **Platform:**  <PLATFORM>
-- **Severity:**  <SEVERITY>
-- **Category:**  <CATEGORY>
-- **URL:** [Github](<GITHUB_URL>)
+-  **Query id:** <QUERY_ID>
+-  **Query name:** <QUERY_NAME>
+-  **Platform:** <PLATFORM>
+-  **Severity:** <SEVERITY>
+-  **Category:** <CATEGORY>
+-  **URL:** [Github](<GITHUB_URL>)
 
 ### Description
 <DESCRIPTION_TEXT><br>
