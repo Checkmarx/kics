@@ -1,9 +1,10 @@
 ---
-title: <QUERYNAME>
+title: <QUERY_NAME>
 hide:
   toc: true
   navigation: true
 ---
+
 <style>
   .highlight .hll {
     background-color: #ff171742;
@@ -13,12 +14,13 @@ hide:
     margin: 0 auto;
   }
 </style>
-  - **Query id:** <QUERYID>
-  - **Query name:** <QUERYNAME>
-  - **Platform:** <PLATFORM>
-  - **Severity:** <SEVERITY>
-  - **Category:** <CATEGORY>
-  - **URL:** [Github](<GITHUB_URL>)
+
+- **Query id:** <QUERY_ID>
+- **Query name:** <QUERY_NAME>
+- **Platform:** <PLATFORM>
+- **Severity:** <SEVERITY>
+- **Category:** <CATEGORY>
+- **URL:** [Github](<GITHUB_URL>)
 
 ### Description
 <DESCRIPTION_TEXT><br>

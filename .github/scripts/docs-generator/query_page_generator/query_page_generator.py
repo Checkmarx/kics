@@ -196,8 +196,8 @@ def generate_md_docs(queries_database : str, output_path : str, template_file_pa
 
     for key, query_data in queries_database.items():
         query_doc = doc_template
-        query_doc = doc_template.replace("<QUERYID>", key).replace(
-            "<QUERYNAME>", query_data.get('queryName')).replace(
+        query_doc = doc_template.replace("<QUERY_ID>", key).replace(
+            "<QUERY_NAME>", query_data.get('queryName')).replace(
             "<PLATFORM>", query_data.get('platform')).replace(
             "<SEVERITY>", format_severity(query_data.get('severity'))).replace(
             "<CATEGORY>", query_data.get('category')).replace(
