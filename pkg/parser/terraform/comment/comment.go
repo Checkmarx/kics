@@ -136,7 +136,7 @@ func processTokens(tokens hclsyntax.Tokens) (ig Ignore) {
 			continue
 		}
 		// case: CONFIGURATION = X # comment
-		if i > 0 && tokens[i-1].Range.End.Line == tokens[i].Range.Start.Line {
+		if i > 0 && tokens[i-1].Range.Start.Line == tokens[i].Range.Start.Line {
 			continue
 		}
 		ignoreLines, ignoreBlocks, ignoreComments = processComment((*comment)(&tokens[i]),
