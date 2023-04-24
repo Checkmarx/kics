@@ -132,7 +132,19 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 			} else {
 				fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].Description)
 			}
-			fmt.Printf("%s %s\n\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
+			fmt.Printf("%s %s\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
+
+			queryCloudProvider := summary.Queries[idx].CloudProvider
+			if queryCloudProvider != "" {
+				queryCloudProvider = strings.ToLower(queryCloudProvider) + "/"
+			}
+
+			fmt.Printf("%s %s\n\n",
+				printer.Bold("Learn more about this vulnerability:"),
+				fmt.Sprintf("https://docs.kics.io/latest/queries/%s-queries/%s%s",
+					strings.ToLower(summary.Queries[idx].Platform),
+					queryCloudProvider,
+					summary.Queries[idx].QueryID))
 		}
 		printFiles(&summary.Queries[idx], printer)
 	}
