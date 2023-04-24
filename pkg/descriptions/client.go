@@ -56,7 +56,7 @@ type HTTPClient interface {
 // HTTPDescription - HTTP client interface to use for requesting descriptions
 type HTTPDescription interface {
 	CheckConnection() error
-	RequestDescriptions() error
+	RequestUpdateMetrics() error
 	CheckLatestVersion(version string) (model.Version, error)
 }
 
@@ -137,8 +137,8 @@ func (c *Client) CheckLatestVersion(version string) (model.Version, error) {
 	return VersionResponse, nil
 }
 
-// RequestDescriptions - gets CIS descriptions from endpoint
-func (c *Client) RequestDescriptions() error {
+// RequestUpdateMetrics - request for metrics update
+func (c *Client) RequestUpdateMetrics() error {
 	baseURL, err := getBaseURL()
 	if err != nil {
 		log.Debug().Msg("Unable to get baseURL")
@@ -148,8 +148,7 @@ func (c *Client) RequestDescriptions() error {
 	endpointURL := fmt.Sprintf("%s/api/%s", baseURL, "descriptions")
 
 	descriptionRequest := descModel.DescriptionRequest{
-		Version:        constants.Version,
-		DescriptionIDs: descriptionIDs,
+		Version: constants.Version,
 	}
 
 	requestBody, err := json.Marshal(descriptionRequest)
