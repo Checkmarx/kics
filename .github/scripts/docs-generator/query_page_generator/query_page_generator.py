@@ -165,7 +165,8 @@ def format_positive_tests(positive_tests : dict) -> str:
     return result
 
 # Utility for generate ".md" documentation
-def format_severity(severity : str, colors = {'High': '#C00', 'Medium': '#C60', 'Low': '#CC0', 'Info': '#00C', 'Trace': '#CCC'}) -> str:
+def format_severity(severity : str) -> str:
+    colors = {'High': '#C00', 'Medium': '#C60', 'Low': '#CC0', 'Info': '#00C', 'Trace': '#CCC'}
     severity = severity.capitalize()
     color = colors.get(severity)
     return f'<span style="color:{color}">{severity}</span>'
@@ -189,14 +190,14 @@ def generate_md_docs(queries_database : str, output_path : str, template_file_pa
 
     if not os.path.exists(template_file_path):
         raise FileNotFoundError("\033[31mtemplate_path doesn't exist in the operating system\033[0m")
-    
+
     with open(template_file_path, 'r') as f:
         doc_template = f.read()
 
     for key, query_data in queries_database.items():
         query_doc = doc_template
-        query_doc = doc_template.replace("<QUERY_ID>", key).replace(
-            "<QUERY_NAME>", query_data.get('queryName')).replace(
+        query_doc = doc_template.replace("<QUERYID>", key).replace(
+            "<QUERYNAME>", query_data.get('queryName')).replace(
             "<PLATFORM>", query_data.get('platform')).replace(
             "<SEVERITY>", format_severity(query_data.get('severity'))).replace(
             "<CATEGORY>", query_data.get('category')).replace(

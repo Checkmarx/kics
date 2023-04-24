@@ -91,8 +91,8 @@ for path in all_metadata:
 
         check_and_create_override_entry(meta_dict, template_dict)
         q_id = meta_dict['id']
-        query_name = os.path.join('..', f"{meta_dict.get('platform').lower()}-queries", meta_dict.get('cloudProvider', '').lower(), meta_dict.get('id'))
-        meta_dict['descriptionText'] += f' (<a href="{query_name}" target="_blank">read more</a>)'
+        query_page = os.path.join('..', f"{meta_dict.get('platform').lower()}-queries", meta_dict.get('cloudProvider', '').lower(), meta_dict.get('id'))
+        meta_dict['descriptionText'] += f' (<a href="{query_page}" target="_blank">read more</a>)'
         template_dict[platform][sub_platform][severity][category][q_id] = meta_dict
 #
 # template dict ex:
