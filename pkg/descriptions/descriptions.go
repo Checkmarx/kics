@@ -10,7 +10,7 @@ func RequestUpdateMetrics() error {
 		return err
 	}
 
-	err := descClient.RequestDescriptions()
+	err := descClient.RequestUpdateMetrics()
 	if err != nil {
 		return err
 	}

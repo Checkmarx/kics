@@ -2,8 +2,7 @@ package model
 
 // DescriptionRequest - is the model for the description request
 type DescriptionRequest struct {
-	DescriptionIDs []string `json:"descriptions"`
-	Version        string   `json:"version"`
+	Version string `json:"version"`
 }
 
 // CISDescriptions - is the model for the description response
@@ -18,9 +17,8 @@ type CISDescriptions struct {
 
 // DescriptionResponse - is the model for the description response
 type DescriptionResponse struct {
-	ID           string                     `json:"RequestID"`
-	Descriptions map[string]CISDescriptions `json:"Descriptions"`
-	Timestamp    string                     `json:"Timestamp"`
+	ID        string `json:"RequestID"`
+	Timestamp string `json:"Timestamp"`
 }
 
 // VersionRequest - is the model for the version request
