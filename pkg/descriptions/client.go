@@ -56,7 +56,7 @@ type HTTPClient interface {
 // HTTPDescription - HTTP client interface to use for requesting descriptions
 type HTTPDescription interface {
 	CheckConnection() error
-	RequestDescriptions(descriptionIDs []string) (map[string]descModel.CISDescriptions, error)
+	RequestDescriptions() error
 	CheckLatestVersion(version string) (model.Version, error)
 }
 
@@ -138,11 +138,11 @@ func (c *Client) CheckLatestVersion(version string) (model.Version, error) {
 }
 
 // RequestDescriptions - gets CIS descriptions from endpoint
-func (c *Client) RequestDescriptions(descriptionIDs []string) (map[string]descModel.CISDescriptions, error) {
+func (c *Client) RequestDescriptions() error {
 	baseURL, err := getBaseURL()
 	if err != nil {
 		log.Debug().Msg("Unable to get baseURL")
-		return nil, err
+		return err
 	}
 
 	endpointURL := fmt.Sprintf("%s/api/%s", baseURL, "descriptions")
@@ -155,12 +155,12 @@ func (c *Client) RequestDescriptions(descriptionIDs []string) (map[string]descMo
 	requestBody, err := json.Marshal(descriptionRequest)
 	if err != nil {
 		log.Err(err).Msg("Unable to marshal request body")
-		return nil, err
+		return err
 	}
 
 	req, err := http.NewRequest(http.MethodPost, endpointURL, bytes.NewReader(requestBody)) //nolint
 	if err != nil {
-		return nil, err
+		return err
 	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("Authorization", fmt.Sprintf("Basic %s", base64.StdEncoding.EncodeToString([]byte(getBasicAuth()))))
@@ -170,7 +170,7 @@ func (c *Client) RequestDescriptions(descriptionIDs []string) (map[string]descMo
 	resp, err := doRequest(req)
 	if err != nil {
 		log.Err(err).Msgf("Unable to POST to descriptions endpoint")
-		return nil, err
+		return err
 	}
 	defer func() {
 		if closeErr := resp.Body.Close(); closeErr != nil {
@@ -183,17 +183,17 @@ func (c *Client) RequestDescriptions(descriptionIDs []string) (map[string]descMo
 	b, err := io.ReadAll(resp.Body)
 	if err != nil {
 		log.Err(err).Msg("Unable to read response body")
-		return nil, err
+		return err
 	}
 
 	var getDescriptionsResponse descModel.DescriptionResponse
 	err = json.Unmarshal(b, &getDescriptionsResponse)
 	if err != nil {
 		log.Err(err).Msg("Unable to unmarshal response body")
-		return nil, err
+		return err
 	}
 
-	return getDescriptionsResponse.Descriptions, nil
+	return nil
 }
 
 // doRequest - make HTTP request
