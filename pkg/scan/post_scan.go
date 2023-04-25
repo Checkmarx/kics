@@ -20,12 +20,6 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type lineVulneInfo struct {
-	lineContent string
-	lineNumber  int
-	groups      []string
-}
-
 func (c *Client) getSummary(results []model.Vulnerability, end time.Time, pathParameters model.PathParameters) model.Summary {
 	counters := model.Counters{
 		ScannedFiles:           c.Tracker.FoundFiles,
@@ -197,7 +191,7 @@ func hideSecret(lines *[]model.CodeLine, allowRules *[]secret.AllowRule, rules *
 
 	for idx, line := range *lines {
 		for _, rule := range *rules {
-			isSecret, _ := isSecret(line.Line, &rule, allowRules)
+			isSecret, groups := isSecret(line.Line, &rule, allowRules)
 			//if isAllowRule is TRUE then this is not a secret so skip to next line
 			if !isSecret {
 				continue
@@ -230,45 +224,17 @@ func hideSecret(lines *[]model.CodeLine, allowRules *[]secret.AllowRule, rules *
 				}
 			}
 
-			// for i := range rule.Entropies {
-			// 	entropy := rule.Entropies[i]
+			//TODO: check if you should remove this entire segment
+			for i := range rule.Entropies {
+				entropy := rule.Entropies[i]
 
-			// 	// if matched group does not exist continue
-			// 	if len(groups[0]) <= entropy.Group {
-			// 		return nil
-			// 	}
+				// if matched group does not exist continue
+				if len(groups[0]) <= entropy.Group {
+					return
+				}
 
-			// 	if len(rule.Entropies) == 0 {
-			// 		if len(rule.SpecialMask) > 0 {
-			// 			regex = "(.+)" + rule.SpecialMask // get key
-			// 		}
-
-			// 		var re = regexp.MustCompile(regex)
-			// 		match := re.FindString(issueLine)
-
-			// 		if len(rule.SpecialMask) > 0 {
-			// 			match = issueLine[len(match):] // get value
-			// 		}
-
-			// 		if match != "" {
-			// 			(*lines)[idx].Line = strings.Replace(issueLine, match, "<SECRET-MASKED-ON-PURPOSE>", 1)
-			// 		} else {
-			// 			(*lines)[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
-			// 		}
-			// 	}
-
-			// 	for i := range rule.Entropies {
-			// 		entropy := rule.Entropies[i]
-
-			// 		// if matched group does not exist continue
-			// 		if len(groups[0]) <= entropy.Group {
-			// 			return nil
-			// 		}
-
-			// 		fmt.Println("mask")
-			// 	}
-
-			// }
+				//TODO: check if we need to mask. when does this happen?
+			}
 
 		}
 	}
