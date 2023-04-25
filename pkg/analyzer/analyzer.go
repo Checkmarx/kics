@@ -242,8 +242,6 @@ var types = map[string]regexSlice{
 	},
 }
 
-var defaultConfigFiles = []string{"pnpm-lock.yaml"}
-
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
 // should be loaded based on the extension of the file and the content
 func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
@@ -261,7 +259,6 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	results := make(chan string)
 	locCount := make(chan int)
 	ignoreFiles := make([]string, 0)
-	projectConfigFiles := make([]string, 0)
 	done := make(chan bool)
 	hasGitIgnoreFile, gitIgnore := shouldConsiderGitIgnoreFile(a.Paths[0], a.GitIgnoreFileName, a.ExcludeGitIgnore)
 
@@ -279,11 +276,6 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 
 			if hasGitIgnoreFile && gitIgnore.MatchesPath(path) {
 				ignoreFiles = append(ignoreFiles, path)
-				a.Exc = append(a.Exc, path)
-			}
-
-			if isConfigFile(path, defaultConfigFiles) {
-				projectConfigFiles = append(projectConfigFiles, path)
 				a.Exc = append(a.Exc, path)
 			}
 
@@ -334,7 +326,6 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	availableTypes, unwantedPaths, loc := computeValues(results, unwanted, locCount, done)
 	multiPlatformTypeCheck(&availableTypes)
 	unwantedPaths = append(unwantedPaths, ignoreFiles...)
-	unwantedPaths = append(unwantedPaths, projectConfigFiles...)
 	returnAnalyzedPaths.Types = availableTypes
 	returnAnalyzedPaths.Exc = unwantedPaths
 	returnAnalyzedPaths.ExpectedLOC = loc
@@ -583,27 +574,6 @@ func isExcludedFile(path string, exc []string) bool {
 		}
 		for j := range exclude {
 			if exclude[j] == path {
-				log.Info().Msgf("Excluded file %s from analyzer", path)
-				return true
-			}
-		}
-	}
-	return false
-}
-
-func isConfigFile(path string, exc []string) bool {
-	for i := range exc {
-		exclude, err := provider.GetExcludePaths(exc[i])
-		if err != nil {
-			log.Err(err).Msg("failed to get exclude paths")
-		}
-		for j := range exclude {
-			fileInfo, _ := os.Stat(path)
-			if fileInfo.IsDir() {
-				continue
-			}
-
-			if len(path)-len(exclude[j]) > 0 && path[len(path)-len(exclude[j]):] == exclude[j] && exclude[j] != "" {
 				log.Info().Msgf("Excluded file %s from analyzer", path)
 				return true
 			}
