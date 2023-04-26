@@ -3,7 +3,6 @@ package mockclient
 import (
 	"net/http"
 
-	"github.com/Checkmarx/kics/pkg/descriptions/model"
 	genModel "github.com/Checkmarx/kics/pkg/model"
 )
 
@@ -19,17 +18,7 @@ func (m *MockHTTPClient) Do(req *http.Request) (*http.Response, error) {
 
 // MockDescriptionsClient - the mock CIS descriptions client
 type MockDescriptionsClient struct {
-	RequestDescriptionsFunc func(descriptionIDs []string) (map[string]model.CISDescriptions, error)
-}
-
-// RequestDescriptions - mock descriptions client request descriptions function
-func (m *MockDescriptionsClient) RequestDescriptions(descriptionIDs []string) (map[string]model.CISDescriptions, error) {
-	return GetDescriptions(descriptionIDs)
-}
-
-// CheckConnection - mock CIS descriptions client check connection function
-func (m *MockDescriptionsClient) CheckConnection() error {
-	return CheckConnection()
+	RequestDescriptionsFunc func() error
 }
 
 // CheckLatestVersion - mock client request version function
@@ -42,8 +31,6 @@ var (
 	GetDoFunc func(req *http.Request) (*http.Response, error)
 	// CheckConnection - mock client's `CheckConnection` func
 	CheckConnection func() error
-	// GetDescriptions - mock client's `RequestDescriptions` func
-	GetDescriptions func(descriptionIDs []string) (map[string]model.CISDescriptions, error)
 	// CheckVersion mock client's `CheckLatestVersion` func
 	CheckVersion func(version string) (genModel.Version, error)
 )
