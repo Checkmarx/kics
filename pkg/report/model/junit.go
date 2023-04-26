@@ -58,9 +58,6 @@ func NewJUnitReport(time string) JUnitReport {
 // GenerateTestEntry generates a new test entry for failed tests on KICS scan
 func (jUnit *junitTestSuites) GenerateTestEntry(query *model.QueryResult) {
 	queryDescription := query.Description
-	if query.CISDescriptionTextFormatted != "" {
-		queryDescription = query.CISDescriptionTextFormatted
-	}
 
 	failedTestCases := []junitTestCase{}
 

@@ -46,18 +46,15 @@ func CSVToJSON(t *testing.T, filename string) []byte {
 		csvStruct.Category = row[6]
 		csvStruct.DescriptionID = row[7]
 		csvStruct.Description = row[8]
-		csvStruct.CISDescriptionIDFormatted = row[9]
-		csvStruct.CISDescriptionTitle = row[10]
-		csvStruct.CISDescriptionTextFormatted = row[11]
-		csvStruct.FileName = row[12]
-		csvStruct.SimilarityID = row[13]
+		csvStruct.FileName = row[9]
+		csvStruct.SimilarityID = row[10]
 		csvStruct.Line = line
-		csvStruct.IssueType = row[15]
-		csvStruct.SearchKey = row[16]
+		csvStruct.IssueType = row[11]
+		csvStruct.SearchKey = row[12]
 		csvStruct.SearchLine = searchLine
-		csvStruct.SearchValue = row[18]
-		csvStruct.ExpectedValue = row[19]
-		csvStruct.ActualValue = row[20]
+		csvStruct.SearchValue = row[13]
+		csvStruct.ExpectedValue = row[14]
+		csvStruct.ActualValue = row[15]
 		csvItems = append(csvItems, csvStruct)
 	}
 
@@ -68,25 +65,22 @@ func CSVToJSON(t *testing.T, filename string) []byte {
 }
 
 type csvSchema struct {
-	QueryName                   string
-	QueryID                     string
-	QueryURI                    string
-	Severity                    string
-	Platform                    string
-	CloudProvider               string
-	Category                    string
-	DescriptionID               string
-	Description                 string
-	CISDescriptionIDFormatted   string
-	CISDescriptionTitle         string
-	CISDescriptionTextFormatted string
-	FileName                    string
-	SimilarityID                string
-	Line                        int
-	IssueType                   string
-	SearchKey                   string
-	SearchLine                  int
-	SearchValue                 string
-	ExpectedValue               string
-	ActualValue                 string
+	QueryName     string
+	QueryID       string
+	QueryURI      string
+	Severity      string
+	Platform      string
+	CloudProvider string
+	Category      string
+	DescriptionID string
+	Description   string
+	FileName      string
+	SimilarityID  string
+	Line          int
+	IssueType     string
+	SearchKey     string
+	SearchLine    int
+	SearchValue   string
+	ExpectedValue string
+	ActualValue   string
 }
