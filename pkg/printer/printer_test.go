@@ -131,10 +131,13 @@ var printTests = []struct {
 			"Queries failed to execute: 0\n\n" +
 			"------------------------------------\n\n" +
 			"AmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\n" +
-			"Description: AmazonMQ Broker should have Encryption Options defined\nPlatform: \n\n\t[1]: positive.tf:1\n\n\n\n" +
+			"Description: AmazonMQ Broker should have Encryption Options defined\nPlatform: \n" + 
+			"Learn more about this vulnerability: https://docs.kics.io/latest/queries/-queries/aws/3db3f534-e3a3-487f-88c7-0a9fbf64b702\n\n" +
+			"\t[1]: positive.tf:1\n\n\n\n" +
 			"ALB protocol is HTTP, Severity: HIGH, Results: 2\n" +
 			"Description: ALB protocol is HTTP Description\n" +
-			"Platform: \n\n" +
+			"Platform: \n" +
+			"Learn more about this vulnerability: https://docs.kics.io/latest/queries/-queries/de7f5e83-da88-4046-871f-ea18504b1d43\n\n" +
 			"\t[1]: positive.tf:25\n\n\n\n" +
 			"\t[2]: positive.tf:19\n\n\n\n\n" +
 			"Results Summary:\n" +
