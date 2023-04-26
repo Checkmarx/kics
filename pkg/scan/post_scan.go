@@ -35,9 +35,9 @@ func (c *Client) getSummary(results []model.Vulnerability, end time.Time, pathPa
 	}
 
 	if c.ScanParams.DisableFullDesc {
-		log.Warn().Msg("Skipping CIS descriptions because provided disable flag is set")
+		log.Warn().Msg("Skipping all descriptions because provided disable flag is set")
 	} else {
-		err := descriptions.RequestUpdateMetrics()
+		err := descriptions.MetricsRequest()
 		if err != nil {
 			log.Warn().Msgf("Unable to request for metrics update: %s", err)
 		}

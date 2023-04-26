@@ -1,16 +1,17 @@
 package descriptions
 
 var (
-	descClient HTTPDescription = &Client{}
+	metricsClient HTTPDescription = &Client{}
 )
 
-// RequestUpdateMetrics - Request to update metrics with new inputs
-func RequestUpdateMetrics() error {
-	if err := descClient.CheckConnection(); err != nil {
+// MetricsRequest - Request to update metrics
+func MetricsRequest() error {
+
+	if err := metricsClient.CheckConnection(); err != nil {
 		return err
 	}
 
-	err := descClient.RequestUpdateMetrics()
+	_, err := metricsClient.RequestUpdateMetrics()
 	if err != nil {
 		return err
 	}

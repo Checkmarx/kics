@@ -56,11 +56,11 @@ type HTTPClient interface {
 // HTTPDescription - HTTP client interface to use for requesting descriptions
 type HTTPDescription interface {
 	CheckConnection() error
-	RequestUpdateMetrics() error
+	RequestUpdateMetrics() (map[string]descModel.Descriptions, error)
 	CheckLatestVersion(version string) (model.Version, error)
 }
 
-// Client - client for making CIS descriptions requests
+// Client - client for making descriptions requests
 type Client struct {
 }
 
@@ -137,39 +137,39 @@ func (c *Client) CheckLatestVersion(version string) (model.Version, error) {
 	return VersionResponse, nil
 }
 
-// RequestUpdateMetrics - request for metrics update
-func (c *Client) RequestUpdateMetrics() error {
+// RequestUpdateMetrics - gets any description override and send metrics request
+func (c *Client) RequestUpdateMetrics() (map[string]descModel.Descriptions, error) {
 	baseURL, err := getBaseURL()
 	if err != nil {
 		log.Debug().Msg("Unable to get baseURL")
-		return err
+		return nil, err
 	}
 
 	endpointURL := fmt.Sprintf("%s/api/%s", baseURL, "descriptions")
 
 	descriptionRequest := descModel.DescriptionRequest{
-		Version: constants.Version,
+		Version:        constants.Version,
+		DescriptionIDs: make([]string, 0),
 	}
 
 	requestBody, err := json.Marshal(descriptionRequest)
 	if err != nil {
 		log.Err(err).Msg("Unable to marshal request body")
-		return err
+		return nil, err
 	}
 
 	req, err := http.NewRequest(http.MethodPost, endpointURL, bytes.NewReader(requestBody)) //nolint
 	if err != nil {
-		return err
+		return nil, err
 	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("Authorization", fmt.Sprintf("Basic %s", base64.StdEncoding.EncodeToString([]byte(getBasicAuth()))))
-
 	log.Debug().Msgf("HTTP POST to descriptions endpoint")
 	startTime := time.Now()
 	resp, err := doRequest(req)
 	if err != nil {
 		log.Err(err).Msgf("Unable to POST to descriptions endpoint")
-		return err
+		return nil, err
 	}
 	defer func() {
 		if closeErr := resp.Body.Close(); closeErr != nil {
@@ -178,21 +178,21 @@ func (c *Client) RequestUpdateMetrics() error {
 	}()
 	endTime := time.Since(startTime)
 	log.Debug().Msgf("HTTP Status: %d %s %v", resp.StatusCode, http.StatusText(resp.StatusCode), endTime)
-
 	b, err := io.ReadAll(resp.Body)
 	if err != nil {
 		log.Err(err).Msg("Unable to read response body")
-		return err
+		return nil, err
 	}
 
 	var getDescriptionsResponse descModel.DescriptionResponse
 	err = json.Unmarshal(b, &getDescriptionsResponse)
 	if err != nil {
 		log.Err(err).Msg("Unable to unmarshal response body")
-		return err
+		return nil, err
 	}
 
-	return nil
+	//
+	return getDescriptionsResponse.Descriptions, nil
 }
 
 // doRequest - make HTTP request

@@ -12,12 +12,12 @@ func CheckVersion(t *tracker.CITracker) {
 		Latest: true,
 	}
 
-	if err := descClient.CheckConnection(); err != nil {
+	if err := metricsClient.CheckConnection(); err != nil {
 		t.TrackVersion(baseVersionInfo)
 		return
 	}
 
-	versionInfo, err := descClient.CheckLatestVersion(constants.Version)
+	versionInfo, err := metricsClient.CheckLatestVersion(constants.Version)
 	if err != nil {
 		t.TrackVersion(baseVersionInfo)
 		return
