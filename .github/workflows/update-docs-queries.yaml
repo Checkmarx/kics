@@ -30,7 +30,7 @@ jobs:
             -o ./docs/queries/ \
             -f md \
             -t .github/scripts/docs-generator/templates
-          python3 -u -B .github/scripts/docs-generator/query-page-generator/query-page_generator.py \
+          python3 -u -B .github/scripts/docs-generator/query-page-generator/query-page-generator.py \
             -p ./assets/queries/ \
             -o ./docs/queries/ \
             -f md \
