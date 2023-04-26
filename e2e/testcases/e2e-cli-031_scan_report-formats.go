@@ -22,7 +22,7 @@ func init() { //nolint
 				},
 				{
 					ResultsFile:    "E2E_CLI_031_RESULT_CIS",
-					ResultsFormats: []string{"junit", "json-cis", "csv-cis"},
+					ResultsFormats: []string{"junit", "json", "csv"},
 				},
 			},
 			UseMock: []bool{false, true},

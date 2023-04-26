@@ -32,9 +32,9 @@ func CSVToJSON(t *testing.T, filename string) []byte {
 	var csvItems []csvSchema
 
 	for _, row := range csvData[1:] {
-		line, lineErr := strconv.Atoi(row[14])
+		line, lineErr := strconv.Atoi(row[11])
 		require.NoError(t, lineErr, "Error when converting CSV: %s", fullPath)
-		searchLine, searchErr := strconv.Atoi(row[17])
+		searchLine, searchErr := strconv.Atoi(row[14])
 		require.NoError(t, searchErr, "Error when converting CSV: %s", fullPath)
 
 		csvStruct.QueryName = row[0]
@@ -49,12 +49,12 @@ func CSVToJSON(t *testing.T, filename string) []byte {
 		csvStruct.FileName = row[9]
 		csvStruct.SimilarityID = row[10]
 		csvStruct.Line = line
-		csvStruct.IssueType = row[11]
-		csvStruct.SearchKey = row[12]
+		csvStruct.IssueType = row[12]
+		csvStruct.SearchKey = row[13]
 		csvStruct.SearchLine = searchLine
-		csvStruct.SearchValue = row[13]
-		csvStruct.ExpectedValue = row[14]
-		csvStruct.ActualValue = row[15]
+		csvStruct.SearchValue = row[15]
+		csvStruct.ExpectedValue = row[16]
+		csvStruct.ActualValue = row[17]
 		csvItems = append(csvItems, csvStruct)
 	}
 

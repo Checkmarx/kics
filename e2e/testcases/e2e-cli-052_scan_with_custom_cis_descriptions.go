@@ -20,7 +20,7 @@ func init() { //nolint
 			ExpectedResult: []ResultsValidation{
 				{
 					ResultsFile:    "E2E_CLI_052_RESULTS_ALL_HAVE_CIS",
-					ResultsFormats: []string{"json-cis"},
+					ResultsFormats: []string{"json"},
 				},
 				{
 					ResultsFile:    "E2E_CLI_052_RESULTS_SOME_HAVE_CIS",
