@@ -12,31 +12,6 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-var (
-	responseJSON = `{
-		"descriptions": {
-			"foo1": {
-				"cisDescriptionText": "",
-				"cisDescriptionID": "",
-				"cisDescriptionRuleID": "",
-				"cisDescriptionTitle": "",
-				"cisRationaleText": "",
-				"cisBenchmarkName": "",
-				"cisBenchmarkVersion": ""
-			},
-			"foo2": {
-				"cisDescriptionText": "",
-				"cisDescriptionID": "",
-				"cisDescriptionRuleID": "",
-				"cisDescriptionTitle": "",
-				"cisRationaleText": "",
-				"cisBenchmarkName": "",
-				"cisBenchmarkVersion": ""
-			}
-		}
-	}`
-)
-
 func TestClient_RequestDescriptions(t *testing.T) {
 	os.Setenv("KICS_DESCRIPTIONS_ENDPOINT", "http://example.com")
 	HTTPRequestClient = &mockclient.MockHTTPClient{}
@@ -49,20 +24,13 @@ func TestClient_RequestDescriptions(t *testing.T) {
 			}, nil
 		}
 
-		r := ioutil.NopCloser(bytes.NewReader([]byte(responseJSON)))
 		return &http.Response{
 			StatusCode: 200,
-			Body:       r,
 		}, nil
 	}
 	descClient := Client{}
-	descriptions, err := descClient.RequestDescriptions([]string{
-		"foo1",
-		"foo2",
-		"foo3",
-	})
+	err := descClient.RequestUpdateMetrics()
 	require.NoError(t, err, "RequestDescriptions() should not return an error")
-	require.NotNil(t, descriptions, "RequestDescriptions() should return a description map")
 	t.Cleanup(func() {
 		os.Setenv("KICS_DESCRIPTIONS_ENDPOINT", "")
 	})
@@ -71,10 +39,8 @@ func TestClient_RequestDescriptions(t *testing.T) {
 func TestClient_post(t *testing.T) {
 	HTTPRequestClient = &mockclient.MockHTTPClient{}
 	mockclient.GetDoFunc = func(*http.Request) (*http.Response, error) {
-		r := ioutil.NopCloser(bytes.NewReader([]byte(responseJSON)))
 		return &http.Response{
 			StatusCode: 200,
-			Body:       r,
 		}, nil
 	}
 	headers := map[string]string{
@@ -116,10 +82,8 @@ func TestClient_CheckLatestVersion(t *testing.T) {
 			}, nil
 		}
 
-		r := ioutil.NopCloser(bytes.NewReader([]byte(responseJSON)))
 		return &http.Response{
 			StatusCode: 200,
-			Body:       r,
 		}, nil
 	}
 	descClient := Client{}
