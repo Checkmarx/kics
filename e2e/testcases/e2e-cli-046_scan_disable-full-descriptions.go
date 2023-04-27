@@ -3,7 +3,7 @@ package testcases
 import "regexp"
 
 // E2E-CLI-046 - Kics scan command with --disable-metrics
-// should fetch CIS metrics from environment URL KICS_DESCRIPTIONS_ENDPOINT.
+// should not fetch metrics from environment URL KICS_DESCRIPTIONS_ENDPOINT.
 func init() { //nolint
 	testSample := TestCase{
 		Name: "should not fetch metrics from environment [E2E-CLI-046]",

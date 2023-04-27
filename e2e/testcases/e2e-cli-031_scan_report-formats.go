@@ -11,7 +11,6 @@ func init() { //nolint
 					"--report-formats", "json,SARIF,glsast,Html,SonarQUBE,Junit,cyclonedx,asff,csv,CodeClimate",
 					"-p", "/path/e2e/fixtures/samples/positive.yaml"},
 
-				// reuse old metrics behavior to check if the correct ids were sent to the api
 				[]string{"scan", "--output-path", "/path/e2e/output", "--output-name", "E2E_CLI_031_RESULT_METRICS",
 					"--report-formats", "json,JUnit,CSV", "--include-queries", "275a3217-ca37-40c1-a6cf-bb57d245ab32",
 					"-p", "/path/e2e/fixtures/samples/positive.yaml"},
