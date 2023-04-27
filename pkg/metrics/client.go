@@ -1,4 +1,4 @@
-package descriptions
+package metrics
 
 import (
 	"bytes"
@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/Checkmarx/kics/internal/constants"
-	descModel "github.com/Checkmarx/kics/pkg/descriptions/model"
+	metricsModel "github.com/Checkmarx/kics/pkg/metrics/model"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/rs/zerolog/log"
 )
@@ -53,14 +53,14 @@ type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
 
-// HTTPDescription - HTTP client interface to use for requesting descriptions
+// HTTPDescription - HTTP client interface to use for requesting metrics
 type HTTPDescription interface {
 	CheckConnection() error
-	RequestUpdateMetrics() (map[string]descModel.Descriptions, error)
+	RequestUpdateMetrics([]string) (map[string]metricsModel.Descriptions, error)
 	CheckLatestVersion(version string) (model.Version, error)
 }
 
-// Client - client for making descriptions requests
+// Client - client for making metrics requests
 type Client struct {
 }
 
@@ -97,7 +97,7 @@ func (c *Client) CheckLatestVersion(version string) (model.Version, error) {
 	}
 	endpointURL := fmt.Sprintf("%s/api/%s", baseURL, "version")
 
-	versionRequest := descModel.VersionRequest{
+	versionRequest := metricsModel.VersionRequest{
 		Version: version,
 	}
 
@@ -137,19 +137,19 @@ func (c *Client) CheckLatestVersion(version string) (model.Version, error) {
 	return VersionResponse, nil
 }
 
-// RequestUpdateMetrics - gets any description override and send metrics request
-func (c *Client) RequestUpdateMetrics() (map[string]descModel.Descriptions, error) {
+// RequestUpdateMetrics - send metrics request
+func (c *Client) RequestUpdateMetrics(descriptionIDs []string) (map[string]metricsModel.Descriptions, error) {
 	baseURL, err := getBaseURL()
 	if err != nil {
 		log.Debug().Msg("Unable to get baseURL")
 		return nil, err
 	}
 
-	endpointURL := fmt.Sprintf("%s/api/%s", baseURL, "descriptions")
+	endpointURL := fmt.Sprintf("%s/api/%s", baseURL, "metrics")
 
-	descriptionRequest := descModel.DescriptionRequest{
+	descriptionRequest := metricsModel.DescriptionRequest{
 		Version:        constants.Version,
-		DescriptionIDs: make([]string, 0),
+		DescriptionIDs: descriptionIDs,
 	}
 
 	requestBody, err := json.Marshal(descriptionRequest)
@@ -164,11 +164,11 @@ func (c *Client) RequestUpdateMetrics() (map[string]descModel.Descriptions, erro
 	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("Authorization", fmt.Sprintf("Basic %s", base64.StdEncoding.EncodeToString([]byte(getBasicAuth()))))
-	log.Debug().Msgf("HTTP POST to descriptions endpoint")
+	log.Debug().Msgf("HTTP POST to metrics endpoint")
 	startTime := time.Now()
 	resp, err := doRequest(req)
 	if err != nil {
-		log.Err(err).Msgf("Unable to POST to descriptions endpoint")
+		log.Err(err).Msgf("Unable to POST to metrics endpoint")
 		return nil, err
 	}
 	defer func() {
@@ -184,7 +184,7 @@ func (c *Client) RequestUpdateMetrics() (map[string]descModel.Descriptions, erro
 		return nil, err
 	}
 
-	var getDescriptionsResponse descModel.DescriptionResponse
+	var getDescriptionsResponse metricsModel.DescriptionResponse
 	err = json.Unmarshal(b, &getDescriptionsResponse)
 	if err != nil {
 		log.Err(err).Msg("Unable to unmarshal response body")

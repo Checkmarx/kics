@@ -1,4 +1,4 @@
-package descriptions
+package metrics
 
 import (
 	"github.com/Checkmarx/kics/internal/constants"

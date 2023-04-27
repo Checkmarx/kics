@@ -1,11 +1,11 @@
-package descriptions
+package metrics
 
 import (
 	"errors"
 	"testing"
 
 	"github.com/Checkmarx/kics/internal/tracker"
-	mockclient "github.com/Checkmarx/kics/pkg/descriptions/mock"
+	mockclient "github.com/Checkmarx/kics/pkg/metrics/mock"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/stretchr/testify/require"
 )

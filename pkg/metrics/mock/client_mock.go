@@ -16,13 +16,13 @@ func (m *MockHTTPClient) Do(req *http.Request) (*http.Response, error) {
 	return GetDoFunc(req)
 }
 
-// MockDescriptionsClient - the mock CIS descriptions client
-type MockDescriptionsClient struct {
-	RequestDescriptionsFunc func() error
+// MockMetricsClient - the mock metrics client
+type MockMetricsClient struct {
+	MetricsRequestFunc func() error
 }
 
 // CheckLatestVersion - mock client request version function
-func (m *MockDescriptionsClient) CheckLatestVersion(version string) (genModel.Version, error) {
+func (m *MockMetricsClient) CheckLatestVersion(version string) (genModel.Version, error) {
 	return CheckVersion(version)
 }
 

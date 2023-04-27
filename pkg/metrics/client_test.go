@@ -1,4 +1,4 @@
-package descriptions
+package metrics
 
 import (
 	"bytes"
@@ -8,7 +8,7 @@ import (
 	"os"
 	"testing"
 
-	mockclient "github.com/Checkmarx/kics/pkg/descriptions/mock"
+	mockclient "github.com/Checkmarx/kics/pkg/metrics/mock"
 	"github.com/stretchr/testify/require"
 )
 
@@ -28,8 +28,12 @@ func TestClient_RequestDescriptions(t *testing.T) {
 			StatusCode: 200,
 		}, nil
 	}
-	descClient := Client{}
-	err := descClient.RequestUpdateMetrics()
+	metricsClient := Client{}
+	_, err := metricsClient.RequestUpdateMetrics([]string{
+		"foo1",
+		"foo2",
+		"foo3",
+	})
 	require.NoError(t, err, "RequestDescriptions() should not return an error")
 	t.Cleanup(func() {
 		os.Setenv("KICS_DESCRIPTIONS_ENDPOINT", "")
@@ -86,8 +90,8 @@ func TestClient_CheckLatestVersion(t *testing.T) {
 			StatusCode: 200,
 		}, nil
 	}
-	descClient := Client{}
-	version, err := descClient.CheckLatestVersion("1.4.0")
+	metricsClient := Client{}
+	version, err := metricsClient.CheckLatestVersion("1.4.0")
 	require.NoError(t, err, "CheckLatestVersion() should not return an error")
 	require.NotNil(t, version, "CheckLatestVersion() should return a version check")
 	t.Cleanup(func() {

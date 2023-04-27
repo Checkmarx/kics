@@ -45,7 +45,7 @@ To mark a flag as hidden use the following configuration:
     "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",
-    "usage": "disable request for full descriptions and use default vulnerability descriptions",
+    "usage": "disable request for full metrics and use default vulnerability metrics",
     "hidden": true
   }
 }
@@ -59,10 +59,10 @@ If you also want to display a flag deprecation warning you can define it like th
     "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",
-    "usage": "disable request for full descriptions and use default vulnerability descriptions",
+    "usage": "disable request for full metrics and use default vulnerability metrics",
     "hidden": true,
     "deprecated": true,
-    "deprecatedInfo": "use --disable-full-descriptions instead"
+    "deprecatedInfo": "use --disable-full-metrics instead"
   }
 }
 ```

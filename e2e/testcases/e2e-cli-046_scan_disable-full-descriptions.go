@@ -2,20 +2,20 @@ package testcases
 
 import "regexp"
 
-// E2E-CLI-046 - Kics scan command with --disable-full-descriptions
-// should fetch CIS descriptions from environment URL KICS_DESCRIPTIONS_ENDPOINT.
+// E2E-CLI-046 - Kics scan command with --disable-full-metrics
+// should fetch CIS metrics from environment URL KICS_DESCRIPTIONS_ENDPOINT.
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should not fetch descriptions from environment [E2E-CLI-046]",
+		Name: "should not fetch metrics from environment [E2E-CLI-046]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-p", "/path/e2e/fixtures/samples/positive.dockerfile",
 					"--no-color", "-v",
-					"--disable-full-descriptions"},
+					"--disable-full-metrics"},
 			},
 		},
 		Validation: func(outputText string) bool {
-			uuidRegex := "Skipping all descriptions because provided disable flag is set"
+			uuidRegex := "Skipping all metrics because provided disable flag is set"
 			match, _ := regexp.MatchString(uuidRegex, outputText)
 			return match
 		},

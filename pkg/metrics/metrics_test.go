@@ -1,4 +1,4 @@
-package descriptions
+package metrics
 
 import (
 	"os"
