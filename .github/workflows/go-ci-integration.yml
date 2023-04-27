@@ -52,7 +52,7 @@ jobs:
           docker run -v ${PWD}/assets/queries:/path \
             kics:${{ github.sha }} scan \
             --silent \
-            --disable-full-descriptions \
+            --disable-metrics \
             --ignore-on-exit "results" \
             --log-level DEBUG \
             --log-path "/path/info.log" \

@@ -34,7 +34,7 @@ func (c *Client) getSummary(results []model.Vulnerability, end time.Time, pathPa
 		End:   end,
 	}
 
-	if c.ScanParams.DisableFullDesc {
+	if c.ScanParams.DisableMetrics {
 		log.Warn().Msg("Skipping all metrics because provided disable flag is set")
 	} else {
 		err := metrics.MetricsRequest(&summary)
