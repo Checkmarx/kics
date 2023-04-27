@@ -3,6 +3,7 @@ package scan
 import (
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 	"time"
 
@@ -333,4 +334,79 @@ func Test_resolveOutputs(t *testing.T) {
 			require.NoError(t, err)
 		})
 	}
+}
+
+func Test_maskSecrets(t *testing.T) {
+	tests := []struct {
+		name           string
+		filename       string
+		scanParameters Parameters
+		tracker        tracker.CITracker
+		scanResults    *Results
+	}{
+		{
+			name:     "print with masked secrets",
+			filename: "results",
+			scanParameters: Parameters{
+				DisableSecrets: true,
+			},
+			tracker: tracker.CITracker{
+				FoundFiles:         1,
+				FoundCountLines:    9,
+				ParsedCountLines:   9,
+				ParsedFiles:        1,
+				LoadedQueries:      146,
+				ExecutingQueries:   146,
+				ExecutedQueries:    146,
+				FailedSimilarityID: 0,
+				Version: model.Version{
+					Latest:           true,
+					LatestVersionTag: "Dev",
+				},
+			},
+			scanResults: &Results{
+				Results: []model.Vulnerability{
+					{
+						VulnLines: &[]model.CodeLine{
+							{
+								Position: 4,
+								Line:     " metadata:",
+							},
+							{
+								Position: 5,
+								Line:     "   name: secret-basic-auth:",
+							}, {
+								Position: 6,
+								Line:     "  password: \"abcd\"",
+							},
+						},
+					},
+				},
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			c := Client{}
+			c.Tracker = &tt.tracker
+			c.ScanParams = &tt.scanParameters
+			c.ProBarBuilder = progress.InitializePbBuilder(true, false, true)
+			c.Printer = printer.NewPrinter(true)
+
+			err := c.postScan(tt.scanResults)
+			require.NoError(t, err)
+
+			for _, line := range (*tt.scanResults).Results {
+				for _, vulnLine := range *line.VulnLines {
+					if strings.Contains(vulnLine.Line, "password") {
+						require.Contains(t, vulnLine.Line, "<SECRET-MASKED-ON-PURPOSE>")
+					}
+				}
+			}
+
+		})
+
+	}
+
 }
