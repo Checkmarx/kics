@@ -12,11 +12,11 @@
     "defaultValue": "",
     "usage": "path to configuration file"
   },
-  "disable-metrics": {
+  "disable-full-descriptions": {
     "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",
-    "usage": "disable requests to report usage metrics"
+    "usage": "disable request for full descriptions and use default vulnerability descriptions"
   },
   "exclude-categories": {
     "flagType": "multiStr",

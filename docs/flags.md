@@ -41,11 +41,11 @@ Example of a valid `flags.json` file:
 To mark a flag as hidden use the following configuration:
 ```json
 {
-  "disable-metrics": {
+  "disable-full-descriptions": {
     "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",
-    "usage": "disable requests to report usage metrics",
+    "usage": "disable request for full descriptions and use default vulnerability descriptions",
     "hidden": true
   }
 }
@@ -55,11 +55,11 @@ If you also want to display a flag deprecation warning you can define it like th
 
 ```json
 {
-  "disable-metrics": {
+  "disable-full-descriptions": {
     "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",
-    "usage": "disable requests to report usage metrics",
+    "usage": "disable request for full descriptions and use default vulnerability descriptions",
     "hidden": true,
     "deprecated": true,
     "deprecatedInfo": "use --disable-full-metrics instead"

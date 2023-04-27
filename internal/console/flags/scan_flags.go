@@ -5,7 +5,7 @@ const (
 	BomFlag                = "bom"
 	CloudProviderFlag      = "cloud-provider"
 	ConfigFlag             = "config"
-	DisableMetrics         = "disable-metrics"
+	DisableFullDesc        = "disable-full-descriptions"
 	ExcludeCategoriesFlag  = "exclude-categories"
 	ExcludePathsFlag       = "exclude-paths"
 	ExcludeQueriesFlag     = "exclude-queries"
