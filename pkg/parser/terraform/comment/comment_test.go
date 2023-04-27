@@ -44,6 +44,13 @@ var (
 		  }
 		  stage_name    = "development"
 		}`),
+		"dnot-ignore-lines-with-comment-in-the-end": []byte(`
+		resource "aws_api_gateway_stage" "positive2" {
+			deployment_id = "some deployment id"
+			rest_api_id   = "some rest api id" # comment
+			stage_name    = "development"     // comment
+			description   = "DEV"             /* comment */
+		}`),
 	}
 )
 
@@ -159,6 +166,12 @@ func TestComment_GetIgnoreLines(t *testing.T) {
 			content:  samples["ignore-inner-block"],
 			filename: "",
 			want:     []int{5, 6, 7, 8},
+		},
+		{
+			name:     "TestComment_GetIgnoreLines: dnot-ignore-lines-with-comment-in-the-end",
+			content:  samples["dnot-ignore-line-with-comment-in-the-end"],
+			filename: "",
+			want:     []int{},
 		},
 	}
 
