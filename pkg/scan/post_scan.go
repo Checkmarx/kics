@@ -132,7 +132,8 @@ func (c *Client) postScan(scanResults *Results) error {
 		return err
 	}
 
-	for _, item := range scanResults.Results {
+	for i := range scanResults.Results {
+		item := scanResults.Results[i]
 		hideSecret(item.VulnLines, &allowRules, &rules)
 	}
 
@@ -189,7 +190,7 @@ func hideSecret(lines *[]model.CodeLine, allowRules *[]secrets.AllowRule, rules 
 	for idx, line := range *lines {
 		for i := range *rules {
 			rule := (*rules)[i]
-			isSecret, groups := isSecret(line.Line, &r, allowRules)
+			isSecret, groups := isSecret(line.Line, &rule, allowRules)
 			// if isAllowRule is TRUE then this is not a secret so skip to next line
 			if !isSecret {
 				continue
