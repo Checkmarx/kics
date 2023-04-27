@@ -29,6 +29,14 @@ You can also change the default name by using the following command:
 
 This will generate an HTML and Gitlab SAST reports on output folder, with `kics-result` and `gl-sast-kics-result` names.
 
+## Metrics
+
+KICS captures usage metrics to help developers identify areas for improvement and enhance user experience. After the scanning process is completed, if an internet connection is available, KICS will automatically send usage metrics to a HTTP endpoint. However, users can disable this feature by using the `--disable-metrics` option. This allows users to maintain privacy and control over the data that KICS sends.
+
+It's important to note that KICS only captures counts of query results and no code or personal information is sent. All metrics are completely anonymous, ensuring that KICS users can contribute to the improvement of the tool without compromising their privacy and security.
+
+If KICS is being used behind a corporate proxy, users can set proxy configurations using environment variables such as `HTTP_PROXY`, `HTTPS_PROXY`, `NO_PROXY`. This allows KICS to send usage metrics through the proxy and maintain network security protocols. By capturing usage metrics and enabling users to configure proxy settings, KICS ensures that it can be used effectively and securely in various network
+
 ## JSON
 
 The JSON report is the default report to be generate, if no arg is passed to `report-formats` flag, also you can explicitly use it with `--report-formats "json"`.

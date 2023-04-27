@@ -6,7 +6,7 @@ const (
 	CloudProviderFlag      = "cloud-provider"
 	ConfigFlag             = "config"
 	DisableCISDescFlag     = "disable-cis-descriptions"
-	DisableFullDescFlag    = "disable-full-descriptions"
+	DisableMetricsFlag     = "disable-metrics"
 	ExcludeCategoriesFlag  = "exclude-categories"
 	ExcludePathsFlag       = "exclude-paths"
 	ExcludeQueriesFlag     = "exclude-queries"
