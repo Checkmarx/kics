@@ -282,7 +282,7 @@ func compileRegexQueries(
 	return regexQueries, nil
 }
 
-// Compile regex
+// CompileRegex compiles the allow rules regex
 func CompileRegex(allowRules []AllowRule) ([]AllowRule, error) {
 	for j := range allowRules {
 		compiledRegex, err := regexp.Compile(allowRules[j].RegexStr)
@@ -340,7 +340,7 @@ func (c *Inspector) isSecret(s string, query *RegexQuery) (isSecretRet bool, gro
 	return false, [][]string{}
 }
 
-// Checks if is an allow rule
+// IsAllowRule checks if the input is an allow rule
 func IsAllowRule(s string, allowRules []AllowRule) bool {
 	for i := range allowRules {
 		if allowRules[i].Regex.MatchString(s) {
