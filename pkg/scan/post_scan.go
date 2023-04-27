@@ -12,7 +12,7 @@ import (
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/pkg/descriptions"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
-	secret "github.com/Checkmarx/kics/pkg/engine/secrets"
+	secrets "github.com/Checkmarx/kics/pkg/engine/secrets"
 	"github.com/Checkmarx/kics/pkg/model"
 	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
 	"github.com/Checkmarx/kics/pkg/progress"
@@ -113,14 +113,14 @@ func (c *Client) postScan(scanResults *Results) error {
 		return err
 	}
 
-	var allRegexQueries secret.RegexRuleStruct
+	var allRegexQueries secrets.RegexRuleStruct
 
 	err = json.Unmarshal([]byte(secretsRegexRulesContent), &allRegexQueries)
 	if err != nil {
 		return err
 	}
 
-	allowRules, err := secret.CompileRegex(allRegexQueries.AllowRules)
+	allowRules, err := secrets.CompileRegex(allRegexQueries.AllowRules)
 
 	if err != nil {
 		return err
@@ -167,12 +167,10 @@ func (c *Client) postScan(scanResults *Results) error {
 	return nil
 }
 
-func compileRegexQueries(allRegexQueries []secret.RegexQuery) ([]secret.RegexQuery, error) {
-	var regexQueries []secret.RegexQuery
+func compileRegexQueries(allRegexQueries []secrets.RegexQuery) ([]secrets.RegexQuery, error) {
+	var regexQueries []secrets.RegexQuery
 
-	for i := range allRegexQueries {
-		regexQueries = append(regexQueries, allRegexQueries[i])
-	}
+	regexQueries = append(regexQueries, allRegexQueries...)
 
 	for i := range regexQueries {
 		compiledRegexp, err := regexp.Compile(regexQueries[i].RegexStr)
@@ -187,12 +185,12 @@ func compileRegexQueries(allRegexQueries []secret.RegexQuery) ([]secret.RegexQue
 	return regexQueries, nil
 }
 
-func hideSecret(lines *[]model.CodeLine, allowRules *[]secret.AllowRule, rules *[]secret.RegexQuery) {
-
+func hideSecret(lines *[]model.CodeLine, allowRules *[]secrets.AllowRule, rules *[]secrets.RegexQuery) {
 	for idx, line := range *lines {
-		for _, rule := range *rules {
-			isSecret, groups := isSecret(line.Line, &rule, allowRules)
-			//if isAllowRule is TRUE then this is not a secret so skip to next line
+		for i := range *rules {
+			rule := (*rules)[i]
+			isSecret, groups := isSecret(line.Line, &r, allowRules)
+			// if isAllowRule is TRUE then this is not a secret so skip to next line
 			if !isSecret {
 				continue
 			}
@@ -235,13 +233,12 @@ func hideSecret(lines *[]model.CodeLine, allowRules *[]secret.AllowRule, rules *
 
 				//TODO: check if we need to mask. when does this happen?
 			}
-
 		}
 	}
 }
 
-func isSecret(s string, query *secret.RegexQuery, allowRules *[]secret.AllowRule) (isSecretRet bool, groups [][]string) {
-	if secret.IsAllowRule(s, *allowRules) {
+func isSecret(s string, query *secrets.RegexQuery, allowRules *[]secrets.AllowRule) (isSecretRet bool, groups [][]string) {
+	if secrets.IsAllowRule(s, *allowRules) {
 		return false, [][]string{}
 	}
 
