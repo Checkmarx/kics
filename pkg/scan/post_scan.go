@@ -37,7 +37,7 @@ func (c *Client) getSummary(results []model.Vulnerability, end time.Time, pathPa
 	if c.ScanParams.DisableTelemetry {
 		log.Warn().Msg("Skipping all telemetry because provided disable flag is set")
 	} else {
-		err := telemetry.MetricsRequest(&summary)
+		err := telemetry.TelemetryRequest(&summary)
 		if err != nil {
 			log.Warn().Msgf("Unable to request for telemetry update: %s", err)
 		}

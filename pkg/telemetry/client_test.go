@@ -12,6 +12,13 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+var (
+	responseJSON = `{
+		"descriptions": {
+		}
+	}`
+)
+
 func TestClient_RequestDescriptions(t *testing.T) {
 	os.Setenv("KICS_DESCRIPTIONS_ENDPOINT", "http://example.com")
 	HTTPRequestClient = &mockclient.MockHTTPClient{}
@@ -24,17 +31,20 @@ func TestClient_RequestDescriptions(t *testing.T) {
 			}, nil
 		}
 
+		r := ioutil.NopCloser(bytes.NewReader([]byte(responseJSON)))
 		return &http.Response{
 			StatusCode: 200,
+			Body:       r,
 		}, nil
 	}
 	telemetryClient := Client{}
-	_, err := telemetryClient.RequestUpdateTelemetry([]string{
+	descriptionIDs := []string{
 		"foo1",
 		"foo2",
 		"foo3",
-	})
-	require.NoError(t, err, "RequestDescriptions() should not return an error")
+	}
+	_, err := telemetryClient.RequestUpdateTelemetry(descriptionIDs)
+	require.NoError(t, err, "RequestUpdateTelemetry() should not return an error")
 	t.Cleanup(func() {
 		os.Setenv("KICS_DESCRIPTIONS_ENDPOINT", "")
 	})
@@ -43,8 +53,10 @@ func TestClient_RequestDescriptions(t *testing.T) {
 func TestClient_post(t *testing.T) {
 	HTTPRequestClient = &mockclient.MockHTTPClient{}
 	mockclient.GetDoFunc = func(*http.Request) (*http.Response, error) {
+		r := ioutil.NopCloser(bytes.NewReader([]byte(responseJSON)))
 		return &http.Response{
 			StatusCode: 200,
+			Body:       r,
 		}, nil
 	}
 	headers := map[string]string{
@@ -86,8 +98,10 @@ func TestClient_CheckLatestVersion(t *testing.T) {
 			}, nil
 		}
 
+		r := ioutil.NopCloser(bytes.NewReader([]byte(responseJSON)))
 		return &http.Response{
 			StatusCode: 200,
+			Body:       r,
 		}, nil
 	}
 	telemetryClient := Client{}

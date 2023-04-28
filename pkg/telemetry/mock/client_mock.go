@@ -1,10 +1,10 @@
 package mockclient
 
 import (
-	"github.com/Checkmarx/kics/pkg/telemetry/model"
 	"net/http"
 
 	genModel "github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/telemetry/model"
 )
 
 // MockHTTPClient - the mock http client
@@ -19,11 +19,11 @@ func (m *MockHTTPClient) Do(req *http.Request) (*http.Response, error) {
 
 // MockTelemetryClient - the mock telemetry client
 type MockTelemetryClient struct {
-	MetricsRequestFunc func() error
+	RequestUpdateTelemetryFunc func(descriptionIDs []string) (map[string]model.Descriptions, error)
 }
 
-// RequestDescriptions - mock descriptions/telemetry client request descriptions function
-func (m *MockTelemetryClient) RequestDescriptions(descriptionIDs []string) (map[string]model.Descriptions, error) {
+// RequestDescriptions - mock telemetry client request telemetry function
+func (m *MockTelemetryClient) RequestUpdateTelemetry(descriptionIDs []string) (map[string]model.Descriptions, error) {
 	return GetDescriptions(descriptionIDs)
 }
 
@@ -40,10 +40,10 @@ func (m *MockTelemetryClient) CheckLatestVersion(version string) (genModel.Versi
 var (
 	// GetDoFunc - mock client's `Do` func
 	GetDoFunc func(req *http.Request) (*http.Response, error)
-	// GetDescriptions - mock client's `RequestDescriptions` func
-	GetDescriptions func(descriptionIDs []string) (map[string]model.Descriptions, error)
 	// CheckConnection - mock client's `CheckConnection` func
 	CheckConnection func() error
+	// GetDescriptions - mock client's `RequestDescriptions` func
+	GetDescriptions func(descriptionIDs []string) (map[string]model.Descriptions, error)
 	// CheckVersion mock client's `CheckLatestVersion` func
 	CheckVersion func(version string) (genModel.Version, error)
 )

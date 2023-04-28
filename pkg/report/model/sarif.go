@@ -34,12 +34,6 @@ type ruleMetadata struct {
 	severity         model.Severity
 }
 
-type ruleCISMetadata struct {
-	descriptionText string
-	id              string
-	title           string
-}
-
 type sarifMessage struct {
 	Text string `json:"text"`
 }
