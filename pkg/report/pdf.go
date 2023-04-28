@@ -32,7 +32,6 @@ const (
 	colFour         = 4
 	colFive         = 5
 	colSix          = 6
-	colEight        = 8
 	colNine         = 9
 	colTen          = 10
 	colFullPage     = 12

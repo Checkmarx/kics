@@ -1,8 +1,9 @@
 package mockclient
 
 import (
-	"github.com/Checkmarx/kics/pkg/telemetry/model"
 	"net/http"
+
+	"github.com/Checkmarx/kics/pkg/telemetry/model"
 
 	genModel "github.com/Checkmarx/kics/pkg/model"
 )
