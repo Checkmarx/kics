@@ -7,11 +7,11 @@ resource "aws_cloudwatch_log_group" "CloudWatch_LogsGroup" {
 }
 
 resource "aws_sns_topic" "alerts_sns_topic" {
-  name = "cis-alerts-sns-topic"
+  name = "alerts-sns-topic"
 }
 
 resource "aws_cloudwatch_metric_alarm" "iam_policy_change" {
-  alarm_name                = "CIS-4.4-IAM-Policy-Change"
+  alarm_name                = "IAM-Policy-Change"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
   metric_name               = aws_cloudwatch_log_metric_filter.iam_policy_change.id
@@ -24,12 +24,12 @@ resource "aws_cloudwatch_metric_alarm" "iam_policy_change" {
 }
 
 resource "aws_cloudwatch_log_metric_filter" "iam_policy_change" {
-  name           = "CIS-4.4-IAM-Policy-Change"
+  name           = "IAM-Policy-Change"
   pattern        = "{($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)}"
   log_group_name = aws_cloudwatch_log_group.CloudWatch_LogsGroup.name
 
   metric_transformation {
-    name      = "CIS-4.4-IAM-Policy-Change"
+    name      = "IAM-Policy-Change"
     namespace = "Metric_Alarm_Namespace"
     value     = "1"
   }

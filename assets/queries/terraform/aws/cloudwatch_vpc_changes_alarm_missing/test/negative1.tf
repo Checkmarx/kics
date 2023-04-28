@@ -1,16 +1,16 @@
 resource "aws_cloudwatch_log_metric_filter" "VPC_Changes_Metric_Filter" {
-  name           = "CIS-VPCChanges"
+  name           = "VPCChanges"
   pattern        = "{ ($.eventName = CreateVpc) || ($.eventName = DeleteVpc) || ($.eventName = ModifyVpcAttribute) || ($.eventName = AcceptVpcPeeringConnection) || ($.eventName = CreateVpcPeeringConnection) || ($.eventName = DeleteVpcPeeringConnection) || ($.eventName = RejectVpcPeeringConnection) || ($.eventName = AttachClassicLinkVpc) || ($.eventName = DetachClassicLinkVpc) || ($.eventName = DisableVpcClassicLink) || ($.eventName = EnableVpcClassicLink) }"
   log_group_name = aws_cloudwatch_log_group.CloudWatch_LogsGroup.name
 
   metric_transformation {
-    name      = "CIS-VPCChanges"
+    name      = "VPCChanges"
     namespace = "Metric_Alarm_Namespace"
     value     = "1"
   }
 }
 resource "aws_cloudwatch_metric_alarm" "VPC_Changes_CW_Alarm" {
-  alarm_name                = "CIS-3.14-VPCChanges"
+  alarm_name                = "VPCChanges"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
   metric_name               = aws_cloudwatch_log_metric_filter.VPC_Changes_Metric_Filter.id

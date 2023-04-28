@@ -7,7 +7,7 @@ resource "aws_cloudwatch_log_group" "CloudWatch_LogsGroup" {
 }
 
 resource "aws_sns_topic" "alerts_sns_topic" {
-  name = "cis-alerts-sns-topic"
+  name = "alerts-sns-topic"
 }
 
 resource "aws_cloudwatch_metric_alarm" "changes_nacl" {

@@ -1,17 +1,17 @@
 resource "aws_cloudwatch_log_metric_filter" "root_account_use_metric_filter" {
-  name           = "CIS-RootAccountUsage"
+  name           = "RootAccountUsage"
   pattern        = "{ $.userIdentity.invokedBy NOT EXISTS && $.eventType != \"AwsServiceEvent\" }"
   log_group_name = aws_cloudwatch_log_group.CloudWatch_LogsGroup.name
 
   metric_transformation {
-    name      = "CIS-RootAccountUsage"
+    name      = "RootAccountUsage"
     namespace = "Metric_Alarm_Namespace"
     value     = "1"
   }
 }
 
 resource "aws_cloudwatch_metric_alarm" "root_account_use_cw_alarm" {
-  alarm_name                = "CIS-3.3-RootAccountUsage"
+  alarm_name                = "RootAccountUsage"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
   metric_name               = aws_cloudwatch_log_metric_filter.root_account_use_metric_filter.id
