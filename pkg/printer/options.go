@@ -14,16 +14,6 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-// NoColor - disables ASCII color codes
-func NoColor(opt interface{}, changed bool) error {
-	noColor := opt.(bool)
-	if noColor {
-		color.Disable()
-		consoleLogger.NoColor = true
-	}
-	return nil
-}
-
 // Verbose - redirects log entries to stdout
 func Verbose(opt interface{}, changed bool) error {
 	verbose := opt.(bool)

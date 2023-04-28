@@ -263,37 +263,3 @@ func TestOptions_LogFormat(t *testing.T) {
 		})
 	}
 }
-
-func TestOptions_NoColor(t *testing.T) {
-	type args struct {
-		opt bool
-	}
-	tests := []struct {
-		name    string
-		args    args
-		wantErr bool
-		want    bool
-	}{
-		{
-			name: "test_no_color",
-			args: args{
-				true,
-			},
-			wantErr: false,
-			want:    true,
-		},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			err := NoColor(tt.args.opt, true)
-			if (err != nil) != tt.wantErr {
-				t.Errorf("NoColor() = %v, wantErr = %v", err, tt.wantErr)
-			}
-			got := consoleLogger.NoColor
-			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("NoColor() consoleLogger.NoColor = %v, want = %v", got, tt.want)
-			}
-		})
-	}
-}
