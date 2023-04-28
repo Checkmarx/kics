@@ -1518,7 +1518,7 @@
     stage('KICS scan') {
       steps {
         sh &quot;mkdir -p results&quot;
-        sh(script: '/usr/bin/kics scan --ci --no-color -p ${WORKSPACE} --output-path results --ignore-on-exit results --report-formats &quot;json,sarif,html&quot;')
+        sh(script: '/usr/bin/kics scan --ci -p ${WORKSPACE} --output-path results --ignore-on-exit results --report-formats &quot;json,sarif,html&quot;')
         junit testResults: 'results/junit-results.xml', skipPublishingChecks: true
         archiveArtifacts(artifacts: 'results/*.html,results/*.sarif,results/*.json', fingerprint: true)
       }

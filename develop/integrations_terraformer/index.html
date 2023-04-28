@@ -1585,32 +1585,32 @@ KICS will then run a scan on these local files.</p>
 <h3 id="aws_run_kics_terraformer_integration_with_docker">[AWS] Run KICS Terraformer integration with Docker<a class="headerlink" href="#aws_run_kics_terraformer_integration_with_docker" title="Permanent link">&para;</a></h3>
 <p>To run KICS Terraformer integration with Docker simply pass the AWS Credentials that were set as environment variables to the <code>docker run</code> command and use the terraformer path syntax</p>
 <p>Examples:</p>
-<pre><code class="language-sh">docker run -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID -e AWS_SESSION_TOKEN checkmarx/kics:latest scan -p &quot;terraformer::aws:vpc:eu-west-2&quot; -v --no-progress
+<pre><code class="language-sh">docker run -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID -e AWS_SESSION_TOKEN checkmarx/kics:latest scan -p &quot;terraformer::aws:vpc:eu-west-2&quot; -v
 </code></pre>
-<pre><code class="language-sh">docker run -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID -e AWS_SESSION_TOKEN -v ${PWD}:/path/ checkmarx/kics:latest scan -p &quot;terraformer::aws:vpc:eu-west-2&quot; -v --no-progress -o /path/results
+<pre><code class="language-sh">docker run -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID -e AWS_SESSION_TOKEN -v ${PWD}:/path/ checkmarx/kics:latest scan -p &quot;terraformer::aws:vpc:eu-west-2&quot; -v -o /path/results
 </code></pre>
 <p><img src="./img/docker_terraformer.gif" /></p>
 <h3 id="azure_run_kics_terraformer_integration_with_docker">[AZURE] Run KICS Terraformer integration with Docker<a class="headerlink" href="#azure_run_kics_terraformer_integration_with_docker" title="Permanent link">&para;</a></h3>
 <p>To run KICS Terraformer integration with Docker simply pass the AZURE Credentials that were set as environment variables to the docker run command and use the terraformer path syntax. Choose one of the following options:</p>
 <h4 id="using_service_principal_with_client_certificate_1">Using Service Principal with Client Certificate<a class="headerlink" href="#using_service_principal_with_client_certificate_1" title="Permanent link">&para;</a></h4>
 <p>Note that you should fill the <code>&lt;certificate_path&gt;</code> with the path that points to the directory where your certificate is located, and the <code>&lt;certificate-name&gt;</code> should point to the certificate name located in <code>&lt;certificate_path&gt;</code>.</p>
-<pre><code class="language-sh">docker run -v &lt;certificate_path&gt;:/certificate -e ARM_CLIENT_CERTIFICATE_PATH=/certificate/&lt;certificate_name&gt;.pfx -e ARM_CLIENT_CERTIFICATE_PASSWORD -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_SUBSCRIPTION_ID checkmarx/kics:latest scan -p &quot;terraformer::azure:storage_account&quot; -v --no-progress
+<pre><code class="language-sh">docker run -v &lt;certificate_path&gt;:/certificate -e ARM_CLIENT_CERTIFICATE_PATH=/certificate/&lt;certificate_name&gt;.pfx -e ARM_CLIENT_CERTIFICATE_PASSWORD -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_SUBSCRIPTION_ID checkmarx/kics:latest scan -p &quot;terraformer::azure:storage_account&quot; -v
 </code></pre>
-<pre><code class="language-sh">docker run -v &lt;certificate_path&gt;:/certificate -v ${PWD}:/path/ -e ARM_CLIENT_CERTIFICATE_PATH=/certificate/&lt;certificate_name&gt;.pfx -e ARM_CLIENT_CERTIFICATE_PASSWORD -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_SUBSCRIPTION_ID checkmarx/kics:latest scan -p &quot;terraformer::azure:storage_account&quot; -v --no-progress -o /path/results
+<pre><code class="language-sh">docker run -v &lt;certificate_path&gt;:/certificate -v ${PWD}:/path/ -e ARM_CLIENT_CERTIFICATE_PATH=/certificate/&lt;certificate_name&gt;.pfx -e ARM_CLIENT_CERTIFICATE_PASSWORD -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_SUBSCRIPTION_ID checkmarx/kics:latest scan -p &quot;terraformer::azure:storage_account&quot; -v -o /path/results
 </code></pre>
 <p><img alt="client_certificate_terraformer_azure" src="https://user-images.githubusercontent.com/74001161/152843317-7e83b70c-2a44-4f22-8a5e-fa9434950269.gif" /></p>
 <h4 id="service_principal_with_client_secret_1">Service Principal with Client Secret<a class="headerlink" href="#service_principal_with_client_secret_1" title="Permanent link">&para;</a></h4>
-<pre><code class="language-sh">docker run -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET -e ARM_TENANT_ID checkmarx/kics:latest scan -p &quot;terraformer::azure:storage_account&quot; -v --no-progress
+<pre><code class="language-sh">docker run -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET -e ARM_TENANT_ID checkmarx/kics:latest scan -p &quot;terraformer::azure:storage_account&quot; -v
 </code></pre>
-<pre><code class="language-sh">docker run -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET -e ARM_TENANT_ID -v ${PWD}:/path/ checkmarx/kics:latest scan -p &quot;terraformer::azure:storage_account&quot; -v --no-progress -o /path/results
+<pre><code class="language-sh">docker run -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET -e ARM_TENANT_ID -v ${PWD}:/path/ checkmarx/kics:latest scan -p &quot;terraformer::azure:storage_account&quot; -v -o /path/results
 </code></pre>
 <p><img alt="client_secret_terraformer_azure" src="https://user-images.githubusercontent.com/74001161/152833926-68b7cc56-23c0-4297-b308-56f4c6746e09.gif" /></p>
 <h3 id="gcp_run_kics_terraformer_integration_with_docker">[GCP] Run KICS Terraformer integration with Docker<a class="headerlink" href="#gcp_run_kics_terraformer_integration_with_docker" title="Permanent link">&para;</a></h3>
 <p>To run KICS Terraformer integration with Docker, pass the path that points to the JSON file that contains your service account key as an environment variable (GOOGLE_APPLICATION_CREDENTIALS) to the docker run command and use the terraformer path syntax. Note that your project should have a region defined, and your account should have read permissions to list resources.</p>
 <p>Also note that you should fill the <code>&lt;credentials_path&gt;</code> with the path that points to the directory where your service account key file is located, and the <code>&lt;credentials-file-name&gt;</code> should point to the service account key file name located in <code>&lt;credentials_path&gt;</code>.</p>
-<pre><code class="language-sh"> docker run -v &lt;credentials_path&gt;:/credentials -e GOOGLE_APPLICATION_CREDENTIALS=/credentials/&lt;credentials-file-name&gt; checkmarx/kics:latest scan -p &quot;terraformer::gcp:gcs:us-east4:project&quot; -v --no-progress --log-level=DEBUG
+<pre><code class="language-sh"> docker run -v &lt;credentials_path&gt;:/credentials -e GOOGLE_APPLICATION_CREDENTIALS=/credentials/&lt;credentials-file-name&gt; checkmarx/kics:latest scan -p &quot;terraformer::gcp:gcs:us-east4:project&quot; -v --log-level=DEBUG
 </code></pre>
-<pre><code class="language-sh"> docker run -v &lt;credentials_path&gt;:/credentials -v ${PWD}:/path/ -e GOOGLE_APPLICATION_CREDENTIALS=/credentials/&lt;credentials-file-name&gt; checkmarx/kics:latest scan -p &quot;terraformer::gcp:gcs:us-east4:project&quot; -v --no-progress --log-level=DEBUG -o /path/results
+<pre><code class="language-sh"> docker run -v &lt;credentials_path&gt;:/credentials -v ${PWD}:/path/ -e GOOGLE_APPLICATION_CREDENTIALS=/credentials/&lt;credentials-file-name&gt; checkmarx/kics:latest scan -p &quot;terraformer::gcp:gcs:us-east4:project&quot; -v --log-level=DEBUG -o /path/results
 </code></pre>
 <p><img alt="credentials_key_gcp" src="https://user-images.githubusercontent.com/74001161/153022195-9d2a1cae-71c3-443a-ac08-4e2697f93469.gif" /></p>
 <h2 id="notes"><strong>NOTES</strong><a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>

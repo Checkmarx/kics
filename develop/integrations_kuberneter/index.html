@@ -1584,16 +1584,16 @@ KICS will then run a scan on these local files.</p>
 <p>To run KICS Kuberneter with Docker, you can simply pass the K8s Credentials that were set as environment variables to the docker run command and use the kuberneter path syntax</p>
 <p>Examples:</p>
 <h4 id="using_config_file_1">Using Config File<a class="headerlink" href="#using_config_file_1" title="Permanent link">&para;</a></h4>
-<pre><code class="language-sh">docker run -v &lt;credentials_path&gt;:/credentials -v ${PWD}:/path/ -e K8S_CONFIG_FILE=/credentials/&lt;config-file-name&gt; checkmarx/kics:latest scan -p &quot;kuberneter::*:*:*&quot; -v --no-progress -o /path/results
+<pre><code class="language-sh">docker run -v &lt;credentials_path&gt;:/credentials -v ${PWD}:/path/ -e K8S_CONFIG_FILE=/credentials/&lt;config-file-name&gt; checkmarx/kics:latest scan -p &quot;kuberneter::*:*:*&quot; -v -o /path/results
 </code></pre>
 <h4 id="using_service_account_token_1">Using Service Account Token<a class="headerlink" href="#using_service_account_token_1" title="Permanent link">&para;</a></h4>
-<pre><code class="language-sh">docker run -v ${PWD}:/path/ -e K8S_HOST -e K8S_CA_DATA -e K8S_SA_TOKEN_DATA kuberneter scan -p &quot;kuberneter::*:*:*&quot; -v --no-progress -o /path/results
+<pre><code class="language-sh">docker run -v ${PWD}:/path/ -e K8S_HOST -e K8S_CA_DATA -e K8S_SA_TOKEN_DATA kuberneter scan -p &quot;kuberneter::*:*:*&quot; -v -o /path/results
 </code></pre>
 <h4 id="using_certificate_1">Using Certificate<a class="headerlink" href="#using_certificate_1" title="Permanent link">&para;</a></h4>
-<pre><code class="language-sh">docker run -v ${PWD}:/path/ -e K8S_HOST -e K8S_CA_DATA -e K8S_SA_TOKEN_DATA kuberneter scan -p &quot;kuberneter::*:*:*&quot; -v --no-progress -o /path/results
+<pre><code class="language-sh">docker run -v ${PWD}:/path/ -e K8S_HOST -e K8S_CA_DATA -e K8S_SA_TOKEN_DATA kuberneter scan -p &quot;kuberneter::*:*:*&quot; -v -o /path/results
 </code></pre>
 <h4 id="using_certificate_2">Using Certificate<a class="headerlink" href="#using_certificate_2" title="Permanent link">&para;</a></h4>
-<pre><code class="language-sh">docker run -v ${PWD}:/path/ -e K8S_HOST -e K8S_CA_DATA -e K8S_CERT_DATA -e K8S_KEY_DATA checkmarx/kics:latest scan -p &quot;kuberneter::*:*:*&quot; -v --no-progress -o /path/results
+<pre><code class="language-sh">docker run -v ${PWD}:/path/ -e K8S_HOST -e K8S_CA_DATA -e K8S_CERT_DATA -e K8S_KEY_DATA checkmarx/kics:latest scan -p &quot;kuberneter::*:*:*&quot; -v -o /path/results
 </code></pre>
 
 
