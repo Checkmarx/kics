@@ -166,7 +166,6 @@ func printFiles(query *model.QueryResult, printer *Printer) {
 			}
 		}
 		fmt.Print("\n\n")
-
 	}
 }
 
