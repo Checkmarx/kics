@@ -1,3 +1,4 @@
+// Package telemetry provides functionality for telemetry
 package telemetry
 
 import "github.com/Checkmarx/kics/pkg/model"
