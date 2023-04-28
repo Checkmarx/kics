@@ -1,3 +1,4 @@
+// Package model provides a model for the telemetry request
 package model
 
 // DescriptionRequest - is the model for the description request
