@@ -118,7 +118,6 @@ Flags:
       --input-data string             path to query input data files
   -b, --libraries-path string         path to directory with libraries (default "./assets/libraries")
       --minimal-ui                    simplified version of CLI output
-      --no-progress                   hides the progress bar
       --output-name string            name used on report creations (default "results")
   -o, --output-path string            directory path to store reports
   -p, --path strings                  paths or directories to scan

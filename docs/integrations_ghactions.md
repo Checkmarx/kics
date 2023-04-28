@@ -238,7 +238,6 @@ jobs:
             "log-file": true,
             "minimal-ui": false,
             "no-color": false,
-            "no-progress": true,
             "output-path": "./results-dir",
             "payload-path": "file path to store source internal representation in JSON format",
             "preview-lines": 5,
