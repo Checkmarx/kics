@@ -1,7 +1,7 @@
 package mockclient
 
 import (
-	"github.com/Checkmarx/kics/pkg/metrics/model"
+	"github.com/Checkmarx/kics/pkg/telemetry/model"
 	"net/http"
 
 	genModel "github.com/Checkmarx/kics/pkg/model"
@@ -17,23 +17,23 @@ func (m *MockHTTPClient) Do(req *http.Request) (*http.Response, error) {
 	return GetDoFunc(req)
 }
 
-// MockMetricsClient - the mock metrics client
-type MockMetricsClient struct {
+// MockTelemetryClient - the mock telemetry client
+type MockTelemetryClient struct {
 	MetricsRequestFunc func() error
 }
 
-// RequestDescriptions - mock descriptions/metrics client request descriptions function
-func (m *MockMetricsClient) RequestDescriptions(descriptionIDs []string) (map[string]model.Descriptions, error) {
+// RequestDescriptions - mock descriptions/telemetry client request descriptions function
+func (m *MockTelemetryClient) RequestDescriptions(descriptionIDs []string) (map[string]model.Descriptions, error) {
 	return GetDescriptions(descriptionIDs)
 }
 
-// CheckConnection - mock metrics client check connection function
-func (m *MockMetricsClient) CheckConnection() error {
+// CheckConnection - mock telemetry client check connection function
+func (m *MockTelemetryClient) CheckConnection() error {
 	return CheckConnection()
 }
 
 // CheckLatestVersion - mock client request version function
-func (m *MockMetricsClient) CheckLatestVersion(version string) (genModel.Version, error) {
+func (m *MockTelemetryClient) CheckLatestVersion(version string) (genModel.Version, error) {
 	return CheckVersion(version)
 }
 

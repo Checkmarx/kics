@@ -1,4 +1,4 @@
-package metrics
+package telemetry
 
 import (
 	"bytes"
@@ -8,7 +8,7 @@ import (
 	"os"
 	"testing"
 
-	mockclient "github.com/Checkmarx/kics/pkg/metrics/mock"
+	mockclient "github.com/Checkmarx/kics/pkg/telemetry/mock"
 	"github.com/stretchr/testify/require"
 )
 
@@ -28,8 +28,8 @@ func TestClient_RequestDescriptions(t *testing.T) {
 			StatusCode: 200,
 		}, nil
 	}
-	metricsClient := Client{}
-	_, err := metricsClient.RequestUpdateMetrics([]string{
+	telemetryClient := Client{}
+	_, err := telemetryClient.RequestUpdateTelemetry([]string{
 		"foo1",
 		"foo2",
 		"foo3",
@@ -90,8 +90,8 @@ func TestClient_CheckLatestVersion(t *testing.T) {
 			StatusCode: 200,
 		}, nil
 	}
-	metricsClient := Client{}
-	version, err := metricsClient.CheckLatestVersion("1.4.0")
+	telemetryClient := Client{}
+	version, err := telemetryClient.CheckLatestVersion("1.4.0")
 	require.NoError(t, err, "CheckLatestVersion() should not return an error")
 	require.NotNil(t, version, "CheckLatestVersion() should return a version check")
 	t.Cleanup(func() {

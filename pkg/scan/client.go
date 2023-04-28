@@ -6,9 +6,9 @@ import (
 
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
-	"github.com/Checkmarx/kics/pkg/metrics"
 	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
 	"github.com/Checkmarx/kics/pkg/progress"
+	"github.com/Checkmarx/kics/pkg/telemetry"
 	"github.com/rs/zerolog/log"
 )
 
@@ -63,7 +63,7 @@ func NewClient(params *Parameters, proBarBuilder *progress.PbBuilder, customPrin
 		return nil, err
 	}
 
-	metrics.CheckVersion(t)
+	telemetry.CheckVersion(t)
 
 	store := storage.NewMemoryStorage()
 

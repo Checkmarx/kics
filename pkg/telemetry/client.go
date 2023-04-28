@@ -1,4 +1,4 @@
-package metrics
+package telemetry
 
 import (
 	"bytes"
@@ -11,8 +11,8 @@ import (
 	"time"
 
 	"github.com/Checkmarx/kics/internal/constants"
-	metricsModel "github.com/Checkmarx/kics/pkg/metrics/model"
 	"github.com/Checkmarx/kics/pkg/model"
+	telemetryModel "github.com/Checkmarx/kics/pkg/telemetry/model"
 	"github.com/rs/zerolog/log"
 )
 
@@ -43,14 +43,14 @@ type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
 
-// HTTPDescription - HTTP client interface to use for requesting metrics
-type HTTPDescription interface {
+// HTTPTelemetry - HTTP client interface to use for requesting telemetry
+type HTTPTelemetry interface {
 	CheckConnection() error
-	RequestUpdateMetrics([]string) (map[string]metricsModel.Descriptions, error)
+	RequestUpdateTelemetry([]string) (map[string]telemetryModel.Descriptions, error)
 	CheckLatestVersion(version string) (model.Version, error)
 }
 
-// Client - client for making metrics requests
+// Client - client for making telemetry requests
 type Client struct {
 }
 
@@ -87,7 +87,7 @@ func (c *Client) CheckLatestVersion(version string) (model.Version, error) {
 	}
 	endpointURL := fmt.Sprintf("%s/api/%s", baseURL, "version")
 
-	versionRequest := metricsModel.VersionRequest{
+	versionRequest := telemetryModel.VersionRequest{
 		Version: version,
 	}
 
@@ -127,17 +127,17 @@ func (c *Client) CheckLatestVersion(version string) (model.Version, error) {
 	return VersionResponse, nil
 }
 
-// RequestUpdateMetrics - send metrics request
-func (c *Client) RequestUpdateMetrics(descriptionIDs []string) (map[string]metricsModel.Descriptions, error) {
+// RequestUpdateTelemetry - send telemetry request
+func (c *Client) RequestUpdateTelemetry(descriptionIDs []string) (map[string]telemetryModel.Descriptions, error) {
 	baseURL, err := getBaseURL()
 	if err != nil {
 		log.Debug().Msg("Unable to get baseURL")
 		return nil, err
 	}
 
-	endpointURL := fmt.Sprintf("%s/api/%s", baseURL, "metrics")
+	endpointURL := fmt.Sprintf("%s/api/%s", baseURL, "telemetry")
 
-	descriptionRequest := metricsModel.DescriptionRequest{
+	descriptionRequest := telemetryModel.DescriptionRequest{
 		Version:        constants.Version,
 		DescriptionIDs: descriptionIDs,
 	}
@@ -154,11 +154,11 @@ func (c *Client) RequestUpdateMetrics(descriptionIDs []string) (map[string]metri
 	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("Authorization", fmt.Sprintf("Basic %s", base64.StdEncoding.EncodeToString([]byte(getBasicAuth()))))
-	log.Debug().Msgf("HTTP POST to metrics endpoint")
+	log.Debug().Msgf("HTTP POST to telemetry endpoint")
 	startTime := time.Now()
 	resp, err := doRequest(req)
 	if err != nil {
-		log.Err(err).Msgf("Unable to POST to metrics endpoint")
+		log.Err(err).Msgf("Unable to POST to telemetry endpoint")
 		return nil, err
 	}
 	defer func() {
@@ -174,15 +174,15 @@ func (c *Client) RequestUpdateMetrics(descriptionIDs []string) (map[string]metri
 		return nil, err
 	}
 
-	var getDescriptionsResponse metricsModel.DescriptionResponse
-	err = json.Unmarshal(b, &getDescriptionsResponse)
+	var getTelemetryResponse telemetryModel.DescriptionResponse
+	err = json.Unmarshal(b, &getTelemetryResponse)
 	if err != nil {
 		log.Err(err).Msg("Unable to unmarshal response body")
 		return nil, err
 	}
 
 	//
-	return getDescriptionsResponse.Descriptions, nil
+	return getTelemetryResponse.Descriptions, nil
 }
 
 // doRequest - make HTTP request

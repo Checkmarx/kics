@@ -9,11 +9,11 @@ import (
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
-	"github.com/Checkmarx/kics/pkg/metrics"
 	"github.com/Checkmarx/kics/pkg/model"
 	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
 	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/pkg/report"
+	"github.com/Checkmarx/kics/pkg/telemetry"
 	"github.com/rs/zerolog/log"
 )
 
@@ -37,7 +37,7 @@ func (c *Client) getSummary(results []model.Vulnerability, end time.Time, pathPa
 	if c.ScanParams.DisableTelemetry {
 		log.Warn().Msg("Skipping all telemetry because provided disable flag is set")
 	} else {
-		err := metrics.MetricsRequest(&summary)
+		err := telemetry.MetricsRequest(&summary)
 		if err != nil {
 			log.Warn().Msgf("Unable to request for telemetry update: %s", err)
 		}
