@@ -100,12 +100,6 @@
     "defaultValue": "./assets/libraries",
     "usage": "path to directory with libraries"
   },
-  "minimal-ui": {
-    "flagType": "bool",
-    "shorthandFlag": "",
-    "defaultValue": "false",
-    "usage": "simplified version of CLI output"
-  },
   "no-progress": {
     "flagType": "bool",
     "shorthandFlag": "",

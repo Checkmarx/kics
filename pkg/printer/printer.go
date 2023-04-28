@@ -76,7 +76,6 @@ type Printer struct {
 	Line                color.RGBColor
 	VersionMessage      color.RGBColor
 	ContributionMessage color.RGBColor
-	minimal             bool
 }
 
 // WordWrap Wraps text at the specified number of words
@@ -124,16 +123,14 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 			printer.PrintBySev(string(summary.Queries[idx].Severity), string(summary.Queries[idx].Severity)),
 			len(summary.Queries[idx].Files),
 		)
-		if !printer.minimal {
-			if summary.Queries[idx].CISDescriptionID != "" {
-				fmt.Printf("%s %s\n", printer.Bold("CIS ID:"), summary.Queries[idx].CISDescriptionIDFormatted)
-				fmt.Printf("%s %s\n", printer.Bold("Title:"), summary.Queries[idx].CISDescriptionTitle)
-				fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].CISDescriptionTextFormatted)
-			} else {
-				fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].Description)
-			}
-			fmt.Printf("%s %s\n\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
+		if summary.Queries[idx].CISDescriptionID != "" {
+			fmt.Printf("%s %s\n", printer.Bold("CIS ID:"), summary.Queries[idx].CISDescriptionIDFormatted)
+			fmt.Printf("%s %s\n", printer.Bold("Title:"), summary.Queries[idx].CISDescriptionTitle)
+			fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].CISDescriptionTextFormatted)
+		} else {
+			fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].Description)
 		}
+		fmt.Printf("%s %s\n\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
 		printFiles(&summary.Queries[idx], printer)
 	}
 	fmt.Printf("\nResults Summary:\n")
@@ -162,20 +159,19 @@ func printFiles(query *model.QueryResult, printer *Printer) {
 	for fileIdx := range query.Files {
 		fmt.Printf("\t%s %s:%s\n", printer.PrintBySev(fmt.Sprintf("[%d]:", fileIdx+1), string(query.Severity)),
 			query.Files[fileIdx].FileName, printer.Success.Sprint(query.Files[fileIdx].Line))
-		if !printer.minimal {
-			fmt.Println()
-			for _, line := range *query.Files[fileIdx].VulnLines {
-				if len(line.Line) > charsLimitPerLine {
-					line.Line = line.Line[:charsLimitPerLine]
-				}
-				if line.Position == query.Files[fileIdx].Line {
-					printer.Line.Printf("\t\t%03d: %s\n", line.Position, line.Line)
-				} else {
-					fmt.Printf("\t\t%03d: %s\n", line.Position, line.Line)
-				}
+		fmt.Println()
+		for _, line := range *query.Files[fileIdx].VulnLines {
+			if len(line.Line) > charsLimitPerLine {
+				line.Line = line.Line[:charsLimitPerLine]
 			}
-			fmt.Print("\n\n")
+			if line.Position == query.Files[fileIdx].Line {
+				printer.Line.Printf("\t\t%03d: %s\n", line.Position, line.Line)
+			} else {
+				fmt.Printf("\t\t%03d: %s\n", line.Position, line.Line)
+			}
 		}
+		fmt.Print("\n\n")
+
 	}
 }
 
@@ -240,7 +236,7 @@ func IsInitialized() bool {
 }
 
 // NewPrinter initializes a new Printer
-func NewPrinter(minimal bool) *Printer {
+func NewPrinter() *Printer {
 	return &Printer{
 		Medium:              color.HEX("#ff7213"),
 		High:                color.HEX("#bb2124"),
@@ -250,7 +246,6 @@ func NewPrinter(minimal bool) *Printer {
 		Line:                color.HEX("#f0ad4e"),
 		VersionMessage:      color.HEX("#ff9913"),
 		ContributionMessage: color.HEX("ffe313"),
-		minimal:             minimal,
 	}
 }
 

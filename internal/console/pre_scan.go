@@ -138,7 +138,7 @@ func (console *console) preScan() {
 		log.Warn().Msgf(warn)
 	}
 
-	printer := internalPrinter.NewPrinter(flags.GetBoolFlag(flags.MinimalUIFlag))
+	printer := internalPrinter.NewPrinter()
 	printer.Success.Printf("\n%s\n", banner)
 
 	versionMsg := fmt.Sprintf("\nScanning with %s\n\n", constants.GetVersion())
