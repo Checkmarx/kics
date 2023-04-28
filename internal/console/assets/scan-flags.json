@@ -21,11 +21,11 @@
     "deprecated": true,
     "deprecatedInfo": "use --disable-full-descriptions instead"
   },
-  "disable-full-descriptions": {
+  "disable-telemetry": {
     "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",
-    "usage": "disable request for full descriptions and use default vulnerability descriptions"
+    "usage": "disable usage telemetry requests"
   },
   "exclude-categories": {
     "flagType": "multiStr",

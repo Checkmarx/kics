@@ -2,7 +2,7 @@ package testcases
 
 import "regexp"
 
-// E2E-CLI-046 - Kics scan command with --disable-full-descriptions
+// E2E-CLI-046 - Kics scan command with --disable-telemetry
 // should fetch CIS descriptions from environment URL KICS_DESCRIPTIONS_ENDPOINT.
 func init() { //nolint
 	testSample := TestCase{
@@ -11,7 +11,7 @@ func init() { //nolint
 			Args: []cmdArgs{
 				[]string{"scan", "-p", "/path/e2e/fixtures/samples/positive.dockerfile",
 					"--no-color", "-v",
-					"--disable-full-descriptions"},
+					"--disable-telemetry"},
 			},
 		},
 		Validation: func(outputText string) bool {
