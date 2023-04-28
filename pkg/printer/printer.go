@@ -153,20 +153,20 @@ func printFiles(query *model.QueryResult, printer *Printer) {
 	for fileIdx := range query.Files {
 		fmt.Printf("\t%s %s:%s\n", printer.PrintBySev(fmt.Sprintf("[%d]:", fileIdx+1), string(query.Severity)),
 			query.Files[fileIdx].FileName, printer.Success.Sprint(query.Files[fileIdx].Line))
-		if !printer.minimal {
-			fmt.Println()
-			for _, line := range *query.Files[fileIdx].VulnLines {
-				if len(line.Line) > charsLimitPerLine {
-					line.Line = line.Line[:charsLimitPerLine]
-				}
-				if line.Position == query.Files[fileIdx].Line {
-					printer.Line.Printf("\t\t%03d: %s\n", line.Position, line.Line)
-				} else {
-					fmt.Printf("\t\t%03d: %s\n", line.Position, line.Line)
-				}
+
+		fmt.Println()
+		for _, line := range *query.Files[fileIdx].VulnLines {
+			if len(line.Line) > charsLimitPerLine {
+				line.Line = line.Line[:charsLimitPerLine]
 			}
-			fmt.Print("\n\n")
+			if line.Position == query.Files[fileIdx].Line {
+				printer.Line.Printf("\t\t%03d: %s\n", line.Position, line.Line)
+			} else {
+				fmt.Printf("\t\t%03d: %s\n", line.Position, line.Line)
+			}
 		}
+		fmt.Print("\n\n")
+
 	}
 }
 
@@ -231,7 +231,7 @@ func IsInitialized() bool {
 }
 
 // NewPrinter initializes a new Printer
-func NewPrinter(minimal bool) *Printer {
+func NewPrinter() *Printer {
 	return &Printer{
 		Medium:              color.HEX("#ff7213"),
 		High:                color.HEX("#bb2124"),
@@ -241,7 +241,6 @@ func NewPrinter(minimal bool) *Printer {
 		Line:                color.HEX("#f0ad4e"),
 		VersionMessage:      color.HEX("#ff9913"),
 		ContributionMessage: color.HEX("ffe313"),
-		minimal:             minimal,
 	}
 }
 
