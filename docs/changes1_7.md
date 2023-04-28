@@ -11,7 +11,6 @@ They are the following:
 
 - --minimal-ui
 - --no-progress
-- --preview-lines
 - --no-color
 
 ### Flag replacement
