@@ -21,7 +21,7 @@
     "deprecated": true,
     "deprecatedInfo": "use --disable-full-descriptions instead"
   },
-  "disable-metrics": {
+  "disable-telemetry": {
     "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",

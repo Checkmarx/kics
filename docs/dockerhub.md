@@ -84,7 +84,7 @@ Flags:
   -m, --bom                           include bill of materials (BoM) in results output
       --cloud-provider strings        list of cloud providers to scan (alicloud, aws, azure, gcp)
       --config string                 path to configuration file
-      --disable-metrics               disable usage metrics requests
+      --disable-telemetry             disable usage telemetry requests
       --disable-secrets               disable secrets scanning
       --exclude-categories strings    exclude categories by providing its name
                                       cannot be provided with query inclusion flags

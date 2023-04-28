@@ -16,7 +16,7 @@ import (
 type Parameters struct {
 	CloudProvider               []string
 	DisableCISDesc              bool
-	DisableMetrics              bool
+	DisableTelemetry            bool
 	ExcludeCategories           []string
 	ExcludePaths                []string
 	ExcludeQueries              []string
