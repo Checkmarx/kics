@@ -20,4 +20,4 @@
 - id: kics-scan
   name: Checkmarx Kics Scan
   language: docker
-  entry: kics scan -p /src --no-progress
+  entry: kics scan -p /src

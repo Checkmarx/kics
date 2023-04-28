@@ -84,8 +84,8 @@ Flags:
   -m, --bom                           include bill of materials (BoM) in results output
       --cloud-provider strings        list of cloud providers to scan (alicloud, aws, azure, gcp)
       --config string                 path to configuration file
-      --disable-telemetry             disable usage telemetry requests
       --disable-secrets               disable secrets scanning
+      --disable-telemetry             disable usage telemetry requests
       --exclude-categories strings    exclude categories by providing its name
                                       cannot be provided with query inclusion flags
                                       can be provided multiple times or as a comma separated string
@@ -117,7 +117,6 @@ Flags:
                                       example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'
       --input-data string             path to query input data files
   -b, --libraries-path string         path to directory with libraries (default "./assets/libraries")
-      --no-progress                   hides the progress bar
       --output-name string            name used on report creations (default "results")
   -o, --output-path string            directory path to store reports
   -p, --path strings                  paths or directories to scan

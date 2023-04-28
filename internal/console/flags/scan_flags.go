@@ -15,7 +15,6 @@ const (
 	InputDataFlag          = "input-data"
 	FailOnFlag             = "fail-on"
 	IgnoreOnExitFlag       = "ignore-on-exit"
-	NoProgressFlag         = "no-progress"
 	OutputNameFlag         = "output-name"
 	OutputPathFlag         = "output-path"
 	PathFlag               = "path"

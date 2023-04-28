@@ -10,7 +10,7 @@ func init() { //nolint
 		Name: "should display verbose information in the CLI [E2E-CLI-017]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "-v", "--no-progress", "-p", "/path/e2e/fixtures/samples/positive.dockerfile"},
+				[]string{"scan", "-v", "-p", "/path/e2e/fixtures/samples/positive.dockerfile"},
 			},
 		},
 		Validation: func(outputText string) bool {

@@ -17,7 +17,7 @@ object Build: BuildType({
         script {
             scriptContent = """
                 #!/bin/bash
-                docker run -v ${'$'}PWD:/path checkmarx/kics:latest scan -p /path -o /path --no-progress --ignore-on-exit results
+                docker run -v ${'$'}PWD:/path checkmarx/kics:latest scan -p /path -o /path --ignore-on-exit results
             """.trimIndent()
         }
     }

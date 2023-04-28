@@ -91,12 +91,6 @@
     "defaultValue": "./assets/libraries",
     "usage": "path to directory with libraries"
   },
-  "no-progress": {
-    "flagType": "bool",
-    "shorthandFlag": "",
-    "defaultValue": "false",
-    "usage": "hides the progress bar"
-  },
   "output-name": {
     "flagType": "str",
     "shorthandFlag": "",
