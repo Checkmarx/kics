@@ -2,24 +2,24 @@ provider "aws" {
   region = "us-east-2"
 }
 
-resource "aws_cloudwatch_log_group" "CIS_CloudWatch_LogsGroup" {
-  name = "CIS_CloudWatch_LogsGroup"
+resource "aws_cloudwatch_log_group" "CloudWatch_LogsGroup" {
+  name = "CloudWatch_LogsGroup"
 }
 
-resource "aws_sns_topic" "cis_alerts_sns_topic" {
+resource "aws_sns_topic" "alerts_sns_topic" {
   name = "cis-alerts-sns-topic"
 }
 
-resource "aws_cloudwatch_metric_alarm" "cis_iam_policy_change" {
+resource "aws_cloudwatch_metric_alarm" "iam_policy_change" {
   alarm_name                = "CIS-4.4-IAM-Policy-Change"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
   metric_name               = "XXXX NOT YOUR FILTER XXXX"
-  namespace                 = "CIS_Metric_Alarm_Namespace"
+  namespace                 = "Metric_Alarm_Namespace"
   period                    = "300"
   statistic                 = "Sum"
   threshold                 = "1"
-  alarm_actions             = [aws_sns_topic.cis_alerts_sns_topic.arn]
+  alarm_actions             = [aws_sns_topic.alerts_sns_topic.arn]
   insufficient_data_actions = []
 }
 

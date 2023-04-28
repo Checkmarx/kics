@@ -1,11 +1,11 @@
-resource "aws_cloudwatch_log_metric_filter" "CIS_Security_Group_Changes_Metric_Filter" {
+resource "aws_cloudwatch_log_metric_filter" "Security_Group_Changes_Metric_Filter" {
   name           = "CIS-SecurityGroupChanges"
   pattern        = "{ ($.eventName = AuthorizeSecurityGroupIngress) || ($.eventName = AuthorizeSecurityGroupEgress) || ($.eventName = RevokeSecurityGroupIngress) || ($.eventName = RevokeSecurityGroupEgress) || ($.eventName = CreateSecurityGroup) || ($.eventName = DeleteSecurityGroup)}"
-  log_group_name = aws_cloudwatch_log_group.CIS_CloudWatch_LogsGroup.name
+  log_group_name = aws_cloudwatch_log_group.CloudWatch_LogsGroup.name
 
   metric_transformation {
     name      = "CIS-SecurityGroupChanges"
-    namespace = "CIS_Metric_Alarm_Namespace"
+    namespace = "Metric_Alarm_Namespace"
     value     = "1"
   }
 }

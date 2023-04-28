@@ -1,4 +1,4 @@
-resource "aws_cloudwatch_log_metric_filter" "cis_route_table_changes_metric_filter" {
+resource "aws_cloudwatch_log_metric_filter" "route_table_changes_metric_filter" {
   name           = "CIS-RouteTableChanges"
   pattern        = "{ ($.eventName = CreateRoute) || ($.eventName = CreateRouteTable) || ($.eventName = ReplaceRoute) || ($.eventName = ReplaceRouteTableAssociation) || ($.eventName = DeleteRouteTable) || ($.eventName = DeleteRoute) || ($.eventName = DisassociateRouteTable) }"
   log_group_name = aws_cloudwatch_log_group.CIS_CloudWatch_LogsGroup.name
