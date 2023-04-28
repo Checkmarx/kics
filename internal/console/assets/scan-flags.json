@@ -25,7 +25,7 @@
     "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",
-    "usage": "disable usage metrics requests"
+    "usage": "disable usage telemetry requests"
   },
   "exclude-categories": {
     "flagType": "multiStr",
