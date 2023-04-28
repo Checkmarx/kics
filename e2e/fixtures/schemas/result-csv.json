@@ -42,9 +42,6 @@
             "Category",
             "DescriptionID",
             "Description",
-            "CISDescriptionIDFormatted",
-            "CISDescriptionTitle",
-            "CISDescriptionTextFormatted",
             "FileName",
             "SimilarityID",
             "Line",
@@ -107,15 +104,6 @@
             "Description": {
                 "type": "string",
                 "minLength": 1
-            },
-            "CISDescriptionIDFormatted": {
-                "type": "string"
-            },
-            "CISDescriptionTitle": {
-                "type": "string"
-            },
-            "CISDescriptionTextFormatted": {
-                "type": "string"
             },
             "FileName": {
                 "$ref": "#/definitions/file_name_pattern"

@@ -144,13 +144,6 @@ func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.QueryRes
 				},
 			},
 		}
-		if issue.CISDescriptionID != "" {
-			vulnerability.Message = issue.CISDescriptionTextFormatted
-			vulnerability.Details = gitlabSASTVulnerabilityDetails{
-				"cisTitle": issue.CISDescriptionTitle,
-				"cisId":    issue.CISDescriptionIDFormatted,
-			}
-		}
 		glsr.Vulnerabilities = append(glsr.Vulnerabilities, vulnerability)
 	}
 }

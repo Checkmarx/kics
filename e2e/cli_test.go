@@ -142,10 +142,6 @@ func checkExpectedOutput(t *testing.T, tt *testcases.TestCase, argIndex int) {
 	if utils.Contains(resultsFormats, "json-bom") {
 		utils.JSONSchemaValidationFromFile(t, jsonFileName, "resultBoM.json")
 	}
-	// Check result file (JSON including CIS Descriptions)
-	if utils.Contains(resultsFormats, "json-cis") {
-		utils.JSONSchemaValidationFromFile(t, jsonFileName, "resultCIS.json")
-	}
 	// Check result file (GLSAST)
 	if utils.Contains(resultsFormats, "glsast") {
 		utils.JSONSchemaValidationFromFile(t, "gl-sast-"+jsonFileName, "result-gl-sast.json")
@@ -183,15 +179,11 @@ func checkExpectedOutput(t *testing.T, tt *testcases.TestCase, argIndex int) {
 		utils.JSONSchemaValidationFromData(t, json, "result-cyclonedx.json")
 	}
 	// Check result file (CSV)
-	if utils.Contains(resultsFormats, "csv") || utils.Contains(resultsFormats, "csv-cis") {
+	if utils.Contains(resultsFormats, "csv") {
 		filename := tt.Args.ExpectedResult[argIndex].ResultsFile + ".csv"
 		json := utils.CSVToJSON(t, filename)
 
-		if utils.Contains(resultsFormats, "csv-cis") {
-			utils.JSONSchemaValidationFromData(t, json, "result-csv-cis.json")
-		} else {
-			utils.JSONSchemaValidationFromData(t, json, "result-csv.json")
-		}
+		utils.JSONSchemaValidationFromData(t, json, "result-csv.json")
 	}
 }
 

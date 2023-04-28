@@ -40,24 +40,16 @@ type VulnerableFile struct {
 
 // QueryResult contains a query that tested positive ID, name, severity and a list of files that tested vulnerable
 type QueryResult struct {
-	QueryName                   string           `json:"query_name"`
-	QueryID                     string           `json:"query_id"`
-	QueryURI                    string           `json:"query_url"`
-	Severity                    Severity         `json:"severity"`
-	Platform                    string           `json:"platform"`
-	CloudProvider               string           `json:"cloud_provider,omitempty"`
-	Category                    string           `json:"category"`
-	Description                 string           `json:"description"`
-	DescriptionID               string           `json:"description_id"`
-	CISDescriptionIDFormatted   string           `json:"cis_description_id,omitempty"`
-	CISDescriptionTitle         string           `json:"cis_description_title,omitempty"`
-	CISDescriptionTextFormatted string           `json:"cis_description_text,omitempty"`
-	CISDescriptionID            string           `json:"cis_description_id_raw,omitempty"`
-	CISDescriptionText          string           `json:"cis_description_text_raw,omitempty"`
-	CISRationaleText            string           `json:"cis_description_rationale,omitempty"`
-	CISBenchmarkName            string           `json:"cis_benchmark_name,omitempty"`
-	CISBenchmarkVersion         string           `json:"cis_benchmark_version,omitempty"`
-	Files                       []VulnerableFile `json:"files"`
+	QueryName     string           `json:"query_name"`
+	QueryID       string           `json:"query_id"`
+	QueryURI      string           `json:"query_url"`
+	Severity      Severity         `json:"severity"`
+	Platform      string           `json:"platform"`
+	CloudProvider string           `json:"cloud_provider,omitempty"`
+	Category      string           `json:"category"`
+	Description   string           `json:"description"`
+	DescriptionID string           `json:"description_id"`
+	Files         []VulnerableFile `json:"files"`
 }
 
 // QueryResultSlice is a slice of QueryResult
