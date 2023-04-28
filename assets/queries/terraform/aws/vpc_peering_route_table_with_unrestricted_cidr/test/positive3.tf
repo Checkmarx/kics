@@ -40,7 +40,7 @@ resource "aws_vpc" "vpc1" {
 
   tags = {
     Name = "tf-test-vpc-1"
-    Project = "CIS Certification"
+    Project = "Certification"
   }
 }
 
@@ -51,7 +51,7 @@ resource "aws_subnet" "public" {
 
   tags = {
     Name    = "public-subnet-1"
-    Project = "CIS Certification"
+    Project = "Certification"
   }
 }
 
@@ -62,7 +62,7 @@ resource "aws_subnet" "private" {
 
   tags = {
     Name    = "private-subnet-1"
-    Project = "CIS Certification"
+    Project = "Certification"
   }
 }
 
@@ -71,7 +71,7 @@ resource "aws_vpc" "vpc2" {
 
   tags = {
     Name = "tf-test-vpc-2"
-    Project = "CIS Certification"
+    Project = "Certification"
   }
 }
 
@@ -80,7 +80,7 @@ resource "aws_internet_gateway" "igw" {
 
   tags                    = {
     Name                  = "igw"
-    Project               = "CIS Certification"
+    Project               = "Certification"
   }
 }
 
@@ -92,7 +92,7 @@ resource "aws_nat_gateway" "nat" {
 
   tags                   = {
     Name                 = "nat"
-    Project              = "CIS Certification"
+    Project              = "Certification"
   }
 
   depends_on             = [aws_internet_gateway.igw]
@@ -108,7 +108,7 @@ resource "aws_vpc_peering_connection" "my_peering" {
 
   tags = {
     Name = "VPC Peering between vpc1 and vpc2"
-    Project = "CIS Certification"
+    Project = "Certification"
   }
 }
 
@@ -134,11 +134,11 @@ resource "aws_route_table" "public_route_table" {
 
     }
   ]
-  
+
 
   tags = {
     Name = "public_route_table"
-    Project = "CIS Certification"
+    Project = "Certification"
   }
 }
 
@@ -152,7 +152,7 @@ resource "aws_route_table" "private_route_table" {
 
   tags = {
     Name = "private_route_table"
-    Project = "CIS Certification"
+    Project = "Certification"
   }
 }
 
