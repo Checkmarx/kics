@@ -148,10 +148,6 @@ func getPurl(filePath, version string) string {
 func getDescription(query *model.QueryResult, format string) string {
 	queryDescription := query.Description
 
-	if query.CISDescriptionTextFormatted != "" {
-		queryDescription = query.CISDescriptionTextFormatted
-	}
-
 	if format == "asff" {
 		return queryDescription
 	}

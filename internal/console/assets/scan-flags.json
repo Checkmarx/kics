@@ -12,15 +12,6 @@
     "defaultValue": "",
     "usage": "path to configuration file"
   },
-  "disable-cis-descriptions": {
-    "flagType": "bool",
-    "shorthandFlag": "",
-    "defaultValue": "false",
-    "usage": "disable request for CIS descriptions and use default vulnerability descriptions",
-    "hidden": true,
-    "deprecated": true,
-    "deprecatedInfo": "use --disable-full-descriptions instead"
-  },
   "disable-telemetry": {
     "flagType": "bool",
     "shorthandFlag": "",

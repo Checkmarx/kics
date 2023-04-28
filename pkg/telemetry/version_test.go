@@ -1,18 +1,17 @@
-package descriptions
+package telemetry
 
 import (
 	"errors"
 	"testing"
 
 	"github.com/Checkmarx/kics/internal/tracker"
-	mockclient "github.com/Checkmarx/kics/pkg/descriptions/mock"
 	"github.com/Checkmarx/kics/pkg/model"
+	mockclient "github.com/Checkmarx/kics/pkg/telemetry/mock"
 	"github.com/stretchr/testify/require"
 )
 
 func TestDescriptions_CheckVersion(t *testing.T) {
 	mt := &tracker.CITracker{}
-	descClient = &mockclient.MockDescriptionsClient{}
 	mockclient.CheckConnection = func() error {
 		return nil
 	}

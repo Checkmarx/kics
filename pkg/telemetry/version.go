@@ -1,4 +1,4 @@
-package descriptions
+package telemetry
 
 import (
 	"github.com/Checkmarx/kics/internal/constants"
@@ -12,12 +12,12 @@ func CheckVersion(t *tracker.CITracker) {
 		Latest: true,
 	}
 
-	if err := descClient.CheckConnection(); err != nil {
+	if err := telemetryClient.CheckConnection(); err != nil {
 		t.TrackVersion(baseVersionInfo)
 		return
 	}
 
-	versionInfo, err := descClient.CheckLatestVersion(constants.Version)
+	versionInfo, err := telemetryClient.CheckLatestVersion(constants.Version)
 	if err != nil {
 		t.TrackVersion(baseVersionInfo)
 		return

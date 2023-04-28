@@ -1,4 +1,4 @@
-package descriptions
+package telemetry
 
 import (
 	"bytes"
@@ -8,33 +8,8 @@ import (
 	"os"
 	"testing"
 
-	mockclient "github.com/Checkmarx/kics/pkg/descriptions/mock"
+	mockclient "github.com/Checkmarx/kics/pkg/telemetry/mock"
 	"github.com/stretchr/testify/require"
-)
-
-var (
-	responseJSON = `{
-		"descriptions": {
-			"foo1": {
-				"cisDescriptionText": "",
-				"cisDescriptionID": "",
-				"cisDescriptionRuleID": "",
-				"cisDescriptionTitle": "",
-				"cisRationaleText": "",
-				"cisBenchmarkName": "",
-				"cisBenchmarkVersion": ""
-			},
-			"foo2": {
-				"cisDescriptionText": "",
-				"cisDescriptionID": "",
-				"cisDescriptionRuleID": "",
-				"cisDescriptionTitle": "",
-				"cisRationaleText": "",
-				"cisBenchmarkName": "",
-				"cisBenchmarkVersion": ""
-			}
-		}
-	}`
 )
 
 func TestClient_RequestDescriptions(t *testing.T) {
@@ -49,20 +24,17 @@ func TestClient_RequestDescriptions(t *testing.T) {
 			}, nil
 		}
 
-		r := ioutil.NopCloser(bytes.NewReader([]byte(responseJSON)))
 		return &http.Response{
 			StatusCode: 200,
-			Body:       r,
 		}, nil
 	}
-	descClient := Client{}
-	descriptions, err := descClient.RequestDescriptions([]string{
+	telemetryClient := Client{}
+	_, err := telemetryClient.RequestUpdateTelemetry([]string{
 		"foo1",
 		"foo2",
 		"foo3",
 	})
 	require.NoError(t, err, "RequestDescriptions() should not return an error")
-	require.NotNil(t, descriptions, "RequestDescriptions() should return a description map")
 	t.Cleanup(func() {
 		os.Setenv("KICS_DESCRIPTIONS_ENDPOINT", "")
 	})
@@ -71,10 +43,8 @@ func TestClient_RequestDescriptions(t *testing.T) {
 func TestClient_post(t *testing.T) {
 	HTTPRequestClient = &mockclient.MockHTTPClient{}
 	mockclient.GetDoFunc = func(*http.Request) (*http.Response, error) {
-		r := ioutil.NopCloser(bytes.NewReader([]byte(responseJSON)))
 		return &http.Response{
 			StatusCode: 200,
-			Body:       r,
 		}, nil
 	}
 	headers := map[string]string{
@@ -116,14 +86,12 @@ func TestClient_CheckLatestVersion(t *testing.T) {
 			}, nil
 		}
 
-		r := ioutil.NopCloser(bytes.NewReader([]byte(responseJSON)))
 		return &http.Response{
 			StatusCode: 200,
-			Body:       r,
 		}, nil
 	}
-	descClient := Client{}
-	version, err := descClient.CheckLatestVersion("1.4.0")
+	telemetryClient := Client{}
+	version, err := telemetryClient.CheckLatestVersion("1.4.0")
 	require.NoError(t, err, "CheckLatestVersion() should not return an error")
 	require.NotNil(t, version, "CheckLatestVersion() should return a version check")
 	t.Cleanup(func() {

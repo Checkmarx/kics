@@ -1,9 +1,9 @@
 package mockclient
 
 import (
+	"github.com/Checkmarx/kics/pkg/telemetry/model"
 	"net/http"
 
-	"github.com/Checkmarx/kics/pkg/descriptions/model"
 	genModel "github.com/Checkmarx/kics/pkg/model"
 )
 
@@ -17,33 +17,33 @@ func (m *MockHTTPClient) Do(req *http.Request) (*http.Response, error) {
 	return GetDoFunc(req)
 }
 
-// MockDescriptionsClient - the mock CIS descriptions client
-type MockDescriptionsClient struct {
-	RequestDescriptionsFunc func(descriptionIDs []string) (map[string]model.CISDescriptions, error)
+// MockTelemetryClient - the mock telemetry client
+type MockTelemetryClient struct {
+	MetricsRequestFunc func() error
 }
 
-// RequestDescriptions - mock descriptions client request descriptions function
-func (m *MockDescriptionsClient) RequestDescriptions(descriptionIDs []string) (map[string]model.CISDescriptions, error) {
+// RequestDescriptions - mock descriptions/telemetry client request descriptions function
+func (m *MockTelemetryClient) RequestDescriptions(descriptionIDs []string) (map[string]model.Descriptions, error) {
 	return GetDescriptions(descriptionIDs)
 }
 
-// CheckConnection - mock CIS descriptions client check connection function
-func (m *MockDescriptionsClient) CheckConnection() error {
+// CheckConnection - mock telemetry client check connection function
+func (m *MockTelemetryClient) CheckConnection() error {
 	return CheckConnection()
 }
 
 // CheckLatestVersion - mock client request version function
-func (m *MockDescriptionsClient) CheckLatestVersion(version string) (genModel.Version, error) {
+func (m *MockTelemetryClient) CheckLatestVersion(version string) (genModel.Version, error) {
 	return CheckVersion(version)
 }
 
 var (
 	// GetDoFunc - mock client's `Do` func
 	GetDoFunc func(req *http.Request) (*http.Response, error)
+	// GetDescriptions - mock client's `RequestDescriptions` func
+	GetDescriptions func(descriptionIDs []string) (map[string]model.Descriptions, error)
 	// CheckConnection - mock client's `CheckConnection` func
 	CheckConnection func() error
-	// GetDescriptions - mock client's `RequestDescriptions` func
-	GetDescriptions func(descriptionIDs []string) (map[string]model.CISDescriptions, error)
 	// CheckVersion mock client's `CheckLatestVersion` func
 	CheckVersion func(version string) (genModel.Version, error)
 )

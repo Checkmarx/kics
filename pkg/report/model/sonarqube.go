@@ -107,9 +107,6 @@ func buildSecondaryLocation(query *model.QueryResult) []*Location {
 // buildLocation builds the location for the SonarQube Report
 func buildLocation(index int, query *model.QueryResult) *Location {
 	message := query.Description
-	if query.CISDescriptionID != "" {
-		message = query.CISDescriptionID
-	}
 	return &Location{
 		Message:  message,
 		FilePath: query.Files[index].FileName,
