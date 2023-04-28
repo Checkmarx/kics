@@ -110,7 +110,7 @@ func updateReportFormats() {
 func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool) *scan.Parameters {
 	scanParams := scan.Parameters{
 		CloudProvider:               flags.GetMultiStrFlag(flags.CloudProviderFlag),
-		DisableFullDesc:             flags.GetBoolFlag(flags.DisableFullDesc),
+		DisableTelemetry:            flags.GetBoolFlag(flags.DisableTelemetryFlag),
 		ExcludeCategories:           flags.GetMultiStrFlag(flags.ExcludeCategoriesFlag),
 		ExcludePaths:                flags.GetMultiStrFlag(flags.ExcludePathsFlag),
 		ExcludeQueries:              flags.GetMultiStrFlag(flags.ExcludeQueriesFlag),

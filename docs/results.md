@@ -29,11 +29,14 @@ You can also change the default name by using the following command:
 
 This will generate an HTML and Gitlab SAST reports on output folder, with `kics-result` and `gl-sast-kics-result` names.
 
-## Descriptions
+## Telemetry
 
-After the scanning process is done, If an internet connection is available, KICS will try to fetch vulnerability descriptions from a HTTP endpoint, this can be disabled with `--disable-full-descriptions`. If used in offline mode or no internet connection is available, KICS should use the default descriptions.
+KICS captures telemetry to help developers identify areas for improvement. After the scanning process is completed, if an internet connection is available, KICS will automatically send usage telemetry to a HTTP endpoint. However, users can disable this feature by using the `--disable-telemetry` option. This allows users to maintain privacy and control over the data that KICS sends.
 
-In case of using KICS behind a corporate proxy, proxy configurations can be set with environment variables such as `HTTP_PROXY`, `HTTPS_PROXY`, `NO_PROXY`
+It's important to note that KICS only captures counts of query results and no code or personal information is sent. All telemetry are completely anonymous, ensuring that KICS users can contribute to the improvement of the tool without compromising their privacy and security.
+The captured telemetry are for internal use only and are not shared with any external third party.
+
+If KICS is being used behind a corporate proxy, users can set proxy configurations using environment variables such as `HTTP_PROXY`, `HTTPS_PROXY`, `NO_PROXY`. This allows KICS to send usage telemetry through the proxy and maintain network security protocols. By capturing usage telemetry and enabling users to configure proxy settings, KICS ensures that it can be used effectively and securely in various network
 
 ## JSON
 

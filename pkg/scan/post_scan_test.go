@@ -41,7 +41,7 @@ func Test_GetSummary(t *testing.T) {
 				},
 			},
 			scanParameters: Parameters{
-				DisableFullDesc: false,
+				DisableTelemetry: false,
 			},
 			results: []model.Vulnerability{
 				{

@@ -34,12 +34,12 @@ func (c *Client) getSummary(results []model.Vulnerability, end time.Time, pathPa
 		End:   end,
 	}
 
-	if c.ScanParams.DisableFullDesc {
-		log.Warn().Msg("Skipping all descriptions because provided disable flag is set")
+	if c.ScanParams.DisableTelemetry {
+		log.Warn().Msg("Skipping all telemetry because provided disable flag is set")
 	} else {
 		err := metrics.MetricsRequest(&summary)
 		if err != nil {
-			log.Warn().Msgf("Unable to request for metrics update: %s", err)
+			log.Warn().Msgf("Unable to request for telemetry update: %s", err)
 		}
 	}
 
