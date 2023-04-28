@@ -10,7 +10,7 @@ func init() { //nolint
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-p", "/path/e2e/fixtures/samples/positive.dockerfile",
-					"--no-color", "-v",
+					"-v",
 					"--disable-full-descriptions"},
 			},
 		},

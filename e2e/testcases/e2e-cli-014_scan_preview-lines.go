@@ -9,7 +9,7 @@ func init() { //nolint
 		Name: "should modify the default preview-lines value [E2E-CLI-014]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "--preview-lines", "1", "--no-color", "--no-progress",
+				[]string{"scan", "--preview-lines", "1", "--no-progress",
 					"-p", "/path/e2e/fixtures/samples/positive.dockerfile"},
 			},
 		},

@@ -35,7 +35,6 @@ var (
 		consoleFlags.LogFormatFlag: func(opt interface{}, changed bool) error {
 			return nil
 		},
-		consoleFlags.NoColorFlag: NoColor,
 	}
 
 	optionsOrderMap = map[int]string{
@@ -46,7 +45,6 @@ var (
 		5: consoleFlags.SilentFlag,
 		6: consoleFlags.VerboseFlag,
 		7: consoleFlags.LogFormatFlag,
-		8: consoleFlags.NoColorFlag,
 	}
 
 	consoleLogger = zerolog.ConsoleWriter{Out: io.Discard}

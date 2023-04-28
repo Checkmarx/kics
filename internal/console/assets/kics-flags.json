@@ -32,12 +32,6 @@
     "defaultValue": "",
     "usage": "path to generate log file (${defaultLogFile})"
   },
-  "no-color": {
-    "flagType": "bool",
-    "shorthandFlag": "",
-    "defaultValue": "false",
-    "usage": "disable CLI color output"
-  },
   "profiling": {
     "flagType": "str",
     "shorthandFlag": "",

@@ -144,7 +144,6 @@ Global Flags:
   -f, --log-format string   determines log format (pretty,json) (default "pretty")
       --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default "INFO")
       --log-path string     path to generate log file (info.log)
-      --no-color            disable CLI color output
       --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
   -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
   -v, --verbose             write logs to stdout too (mutually exclusive with silent)
