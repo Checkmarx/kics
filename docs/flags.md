@@ -55,11 +55,11 @@ If you also want to display a flag deprecation warning you can define it like th
 
 ```json
 {
-  "disable-telemetry": {
+  "disable-full-descriptions": {
     "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",
-    "usage": "disable usage telemetry requests",
+    "usage": "disable request for full descriptions and use default vulnerability descriptions",
     "hidden": true,
     "deprecated": true,
     "deprecatedInfo": "use --disable-telemetry instead"
