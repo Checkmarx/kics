@@ -12,6 +12,7 @@ import (
 
 func TestDescriptions_CheckVersion(t *testing.T) {
 	mt := &tracker.CITracker{}
+	telemetryClient = &mockclient.MockTelemetryClient{}
 	mockclient.CheckConnection = func() error {
 		return nil
 	}

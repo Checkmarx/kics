@@ -135,7 +135,7 @@ func (c *Client) RequestUpdateTelemetry(descriptionIDs []string) (map[string]tel
 		return nil, err
 	}
 
-	endpointURL := fmt.Sprintf("%s/api/%s", baseURL, "telemetry")
+	endpointURL := fmt.Sprintf("%s/api/%s", baseURL, "descriptions")
 
 	descriptionRequest := telemetryModel.DescriptionRequest{
 		Version:        constants.Version,
@@ -154,6 +154,7 @@ func (c *Client) RequestUpdateTelemetry(descriptionIDs []string) (map[string]tel
 	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("Authorization", fmt.Sprintf("Basic %s", base64.StdEncoding.EncodeToString([]byte(getBasicAuth()))))
+
 	log.Debug().Msgf("HTTP POST to telemetry endpoint")
 	startTime := time.Now()
 	resp, err := doRequest(req)
@@ -168,6 +169,7 @@ func (c *Client) RequestUpdateTelemetry(descriptionIDs []string) (map[string]tel
 	}()
 	endTime := time.Since(startTime)
 	log.Debug().Msgf("HTTP Status: %d %s %v", resp.StatusCode, http.StatusText(resp.StatusCode), endTime)
+
 	b, err := io.ReadAll(resp.Body)
 	if err != nil {
 		log.Err(err).Msg("Unable to read response body")
@@ -181,7 +183,6 @@ func (c *Client) RequestUpdateTelemetry(descriptionIDs []string) (map[string]tel
 		return nil, err
 	}
 
-	//
 	return getTelemetryResponse.Descriptions, nil
 }
 

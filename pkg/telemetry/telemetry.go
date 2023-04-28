@@ -6,8 +6,8 @@ var (
 	telemetryClient HTTPTelemetry = &Client{}
 )
 
-// MetricsRequest - Request to update telemetry
-func MetricsRequest(summary *model.Summary) error {
+// TelemetryRequest - Request to update telemetry
+func TelemetryRequest(summary *model.Summary) error {
 	descriptionIDs := make([]string, 0)
 	for idx := range summary.Queries {
 		descriptionIDs = append(descriptionIDs, summary.Queries[idx].DescriptionID)
