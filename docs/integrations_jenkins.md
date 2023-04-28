@@ -120,7 +120,7 @@ pipeline {
     stage('KICS scan') {
       steps {
         sh "mkdir -p results"
-        sh(script: '/usr/bin/kics scan --ci --no-color -p ${WORKSPACE} --output-path results --ignore-on-exit results --report-formats "json,sarif,html"')
+        sh(script: '/usr/bin/kics scan --ci -p ${WORKSPACE} --output-path results --ignore-on-exit results --report-formats "json,sarif,html"')
         junit testResults: 'results/junit-results.xml', skipPublishingChecks: true
         archiveArtifacts(artifacts: 'results/*.html,results/*.sarif,results/*.json', fingerprint: true)
       }

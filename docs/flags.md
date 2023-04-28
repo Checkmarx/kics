@@ -16,12 +16,6 @@ The structure of a flag on JSON definition should use the following structure:
 Example of a valid `flags.json` file:
 ```json
 {
-    "no-progress": {
-        "flagType": "bool",
-        "shorthandFlag": "",
-        "defaultValue": "false",
-        "usage": "hides the progress bar"
-    },
     "output-path": {
         "flagType": "str",
         "shorthandFlag": "o",
