@@ -191,7 +191,7 @@ func hideSecret(lines *[]model.CodeLine, allowRules *[]secrets.AllowRule, rules 
 		for i := range *rules {
 			rule := (*rules)[i]
 			isSecret, groups := isSecret(line.Line, &rule, allowRules)
-			// if isAllowRule is TRUE then this is not a secret so skip to next line
+			// if not a secret skip to next line
 			if !isSecret {
 				continue
 			}
@@ -201,26 +201,8 @@ func hideSecret(lines *[]model.CodeLine, allowRules *[]secrets.AllowRule, rules 
 				continue
 			}
 
-			regex := rule.RegexStr
-			issueLine := line.Line
-
 			if len(rule.Entropies) == 0 {
-				if len(rule.SpecialMask) > 0 {
-					regex = "(.+)" + rule.SpecialMask // get key
-				}
-
-				var re = regexp.MustCompile(regex)
-				match := re.FindString(issueLine)
-
-				if len(rule.SpecialMask) > 0 {
-					match = issueLine[len(match):] // get value
-				}
-
-				if match != "" {
-					(*lines)[idx].Line = strings.Replace(issueLine, match, "<SECRET-MASKED-ON-PURPOSE>", 1)
-				} else {
-					(*lines)[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
-				}
+				maskSecret(rule, lines, idx)
 			}
 
 			//TODO: check if you should remove this entire segment
@@ -233,8 +215,32 @@ func hideSecret(lines *[]model.CodeLine, allowRules *[]secrets.AllowRule, rules 
 				}
 
 				//TODO: check if we need to mask. when does this happen?
+				maskSecret(rule, lines, idx)
 			}
 		}
+	}
+}
+
+func maskSecret(rule secrets.RegexQuery, lines *[]model.CodeLine, idx int) {
+
+	regex := rule.RegexStr
+	line := (*lines)[idx]
+
+	if len(rule.SpecialMask) > 0 {
+		regex = "(.+)" + rule.SpecialMask
+	}
+
+	var re = regexp.MustCompile(regex)
+	match := re.FindString(line.Line)
+
+	if len(rule.SpecialMask) > 0 {
+		match = line.Line[len(match):]
+	}
+
+	if match != "" {
+		(*lines)[idx].Line = strings.Replace(line.Line, match, "<SECRET-MASKED-ON-PURPOSE>", 1)
+	} else {
+		(*lines)[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
 	}
 }
 
