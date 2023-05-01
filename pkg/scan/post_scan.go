@@ -203,7 +203,7 @@ func hideSecret(lines *[]model.CodeLine, allowRules *[]secrets.AllowRule, rules 
 			}
 
 			if len(rule.Entropies) == 0 {
-				maskSecret(rule, lines, idx)
+				maskSecret(&rule, lines, idx)
 			}
 
 			//TODO: check if you should remove this entire segment
@@ -216,14 +216,13 @@ func hideSecret(lines *[]model.CodeLine, allowRules *[]secrets.AllowRule, rules 
 				}
 
 				//TODO: check if we need to mask. when does this happen?
-				maskSecret(rule, lines, idx)
+				maskSecret(&rule, lines, idx)
 			}
 		}
 	}
 }
 
-func maskSecret(rule secrets.RegexQuery, lines *[]model.CodeLine, idx int) {
-
+func maskSecret(rule *secrets.RegexQuery, lines *[]model.CodeLine, idx int) {
 	regex := rule.RegexStr
 	line := (*lines)[idx]
 
