@@ -179,6 +179,7 @@ func compileRegexQueries(allRegexQueries []secrets.RegexQuery) ([]secrets.RegexQ
 			return regexQueries, err
 		}
 		regexQueries[i].Regex = compiledRegexp
+		//TODO: check if you can remove these lines.
 		for j := range regexQueries[i].AllowRules {
 			regexQueries[i].AllowRules[j].Regex = regexp.MustCompile(regexQueries[i].AllowRules[j].RegexStr)
 		}
@@ -244,19 +245,19 @@ func maskSecret(rule secrets.RegexQuery, lines *[]model.CodeLine, idx int) {
 	}
 }
 
-func isSecret(s string, query *secrets.RegexQuery, allowRules *[]secrets.AllowRule) (isSecretRet bool, groups [][]string) {
-	if secrets.IsAllowRule(s, *allowRules) {
+func isSecret(line string, rule *secrets.RegexQuery, allowRules *[]secrets.AllowRule) (isSecretRet bool, groups [][]string) {
+	if secrets.IsAllowRule(line, *allowRules) {
 		return false, [][]string{}
 	}
 
-	groups = query.Regex.FindAllStringSubmatch(s, -1)
+	groups = rule.Regex.FindAllStringSubmatch(line, -1)
 
 	for _, group := range groups {
-		splitedText := strings.Split(s, "\n")
+		splitedText := strings.Split(line, "\n")
 		max := -1
 		for i, splited := range splitedText {
-			if len(groups) < query.Multiline.DetectLineGroup {
-				if strings.Contains(splited, group[query.Multiline.DetectLineGroup]) && i > max {
+			if len(groups) < rule.Multiline.DetectLineGroup {
+				if strings.Contains(splited, group[rule.Multiline.DetectLineGroup]) && i > max {
 					max = i
 				}
 			}
@@ -264,7 +265,7 @@ func isSecret(s string, query *secrets.RegexQuery, allowRules *[]secrets.AllowRu
 		if max == -1 {
 			continue
 		}
-		secret, newGroups := isSecret(strings.Join(append(splitedText[:max], splitedText[max+1:]...), "\n"), query, allowRules)
+		secret, newGroups := isSecret(strings.Join(append(splitedText[:max], splitedText[max+1:]...), "\n"), rule, allowRules)
 		if !secret {
 			continue
 		}
