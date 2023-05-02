@@ -1,9 +1,9 @@
 package testcases
 
-// E2E-CLI-053 - Kics scan can ignore entire files, blocks and lines based in kics-ignore comments
+// E2E-CLI-052 - Kics scan can ignore entire files, blocks and lines based in kics-ignore comments
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should ignore files/code-blocks/code-lines during the scan [E2E-CLI-053]",
+		Name: "should ignore files/code-blocks/code-lines during the scan [E2E-CLI-052]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-p", "/path/e2e/fixtures/samples/scan-ignore/enable.tf"},

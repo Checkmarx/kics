@@ -86,7 +86,7 @@ func TestPrinter(t *testing.T) {
 		},
 	}
 
-	printer := NewPrinter(false)
+	printer := NewPrinter()
 	color.Disable()
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -151,17 +151,10 @@ var failedQueries = map[string]error{}
 // TestPrintResult tests the functions [PrintResult()] and all the methods called by them
 func TestPrintResult(t *testing.T) {
 	color.Disable()
-	for idx, testCase := range printTests {
-		t.Run(fmt.Sprintf("Print test case %d", idx), func(t *testing.T) {
-			out, err := test.CaptureOutput(func() error { return PrintResult(&testCase.caseTest, failedQueries, NewPrinter(true)) })
-			require.NoError(t, err)
-			require.Equal(t, testCase.expectedResult, out)
-		})
-	}
 
 	for idx, testCase := range printTests {
 		t.Run(fmt.Sprintf("Print test case %d no minimal", idx), func(t *testing.T) {
-			out, err := test.CaptureOutput(func() error { return PrintResult(&testCase.caseTest, failedQueries, NewPrinter(false)) })
+			out, err := test.CaptureOutput(func() error { return PrintResult(&testCase.caseTest, failedQueries, NewPrinter()) })
 			require.NoError(t, err)
 			require.Equal(t, testCase.expectedResultFull, out)
 		})

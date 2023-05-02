@@ -2,11 +2,11 @@ package testcases
 
 import "regexp"
 
-// E2E-CLI-055 - Kics scan command with openapi files that are not resolved
+// E2E-CLI-054 - Kics scan command with openapi files that are not resolved
 // should resolve openapi files and return results in different files
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should resolve openapi files and return results in different files [E2E-CLI-055]",
+		Name: "should resolve openapi files and return results in different files [E2E-CLI-054]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-p", "/path/e2e/fixtures/samples/unresolved_openapi"},
