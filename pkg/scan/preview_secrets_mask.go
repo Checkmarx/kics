@@ -2,10 +2,11 @@ package scan
 
 import (
 	"encoding/json"
-	"github.com/Checkmarx/kics/pkg/engine/secrets"
-	"github.com/Checkmarx/kics/pkg/model"
 	"regexp"
 	"strings"
+
+	"github.com/Checkmarx/kics/pkg/engine/secrets"
+	"github.com/Checkmarx/kics/pkg/model"
 )
 
 func maskPreviewLines(secretsPath string, scanResults *Results) error {
@@ -39,7 +40,6 @@ func maskPreviewLines(secretsPath string, scanResults *Results) error {
 }
 
 func compileRegexQueries(allRegexQueries []secrets.RegexQuery) ([]secrets.RegexQuery, error) {
-
 	for i := range allRegexQueries {
 		compiledRegexp, err := regexp.Compile(allRegexQueries[i].RegexStr)
 		if err != nil {
@@ -71,10 +71,9 @@ func hideSecret(lines *[]model.CodeLine, allowRules *[]secrets.AllowRule, rules 
 
 			if len(groups[0]) > 0 {
 				for _, entropy := range rule.Entropies {
-
 					// if matched group does not exist continue
 					if len(groups[0]) <= entropy.Group {
-
+						return
 					}
 					isMatch, _ := secrets.CheckEntropyInterval(
 						entropy,
@@ -83,7 +82,6 @@ func hideSecret(lines *[]model.CodeLine, allowRules *[]secrets.AllowRule, rules 
 					if isMatch {
 						maskSecret(&rule, lines, idx)
 					}
-
 				}
 			}
 		}
@@ -91,7 +89,6 @@ func hideSecret(lines *[]model.CodeLine, allowRules *[]secrets.AllowRule, rules 
 }
 
 func maskSecret(rule *secrets.RegexQuery, lines *[]model.CodeLine, idx int) {
-
 	if rule.SpecialMask == "all" {
 		(*lines)[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
 		return
