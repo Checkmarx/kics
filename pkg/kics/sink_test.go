@@ -27,13 +27,13 @@ func TestKics_prepareDocument(t *testing.T) {
 					  {
 						"resource": {
 						  "aws_cloudwatch_log_metric_filter": {
-							"cis_changes_nacl": {
-							  "name": "CIS-4.11-Changes-NACL",
+							"changes_nacl": {
+							  "name": "Changes-NACL",
 							  "pattern": "{ ($.eventName = CreateNetworkAcl) || ($.eventName = CreateNetworkAclEntry) || ($.eventName = DeleteNetworkAcl) || ($.eventName = DeleteNetworkAclEntry) || ($.eventName = ReplaceNetworkAclEntry) || ($.eventName = ReplaceNetworkAclAssociation) }",
-							  "log_group_name": "${aws_cloudwatch_log_group.CIS_CloudWatch_LogsGroup.name}",
+							  "log_group_name": "${aws_cloudwatch_log_group.CloudWatch_LogsGroup.name}",
 							  "metric_transformation": {
-								"name": "CIS-4.11-Changes-NACL",
-								"namespace": "CIS_Metric_Alarm_Namespace",
+								"name": "Changes-NACL",
+								"namespace": "Metric_Alarm_Namespace",
 								"value": "1",
 								"_kics_lines": {
 								  "_kics__default": {
@@ -90,14 +90,14 @@ func TestKics_prepareDocument(t *testing.T) {
 				  {
 					"resource": {
 					  "aws_cloudwatch_log_metric_filter": {
-						"cis_changes_nacl": {
-						  "log_group_name": "${aws_cloudwatch_log_group.CIS_CloudWatch_LogsGroup.name}",
+						"changes_nacl": {
+						  "log_group_name": "${aws_cloudwatch_log_group.CloudWatch_LogsGroup.name}",
 						  "metric_transformation": {
-							"name": "CIS-4.11-Changes-NACL",
-							"namespace": "CIS_Metric_Alarm_Namespace",
+							"name": "Changes-NACL",
+							"namespace": "Metric_Alarm_Namespace",
 							"value": "1"
 						  },
-						  "name": "CIS-4.11-Changes-NACL",
+						  "name": "Changes-NACL",
 						  "pattern": "{\"_kics_filter_expr\":{\"_op\":\"||\",\"_left\":{\"_op\":\"||\",\"_left\":{\"_op\":\"||\",\"_left\":{\"_op\":\"||\",\"_left\":{\"_op\":\"||\",\"_left\":{\"_selector\":\"$.eventName\",\"_op\":\"=\",\"_value\":\"CreateNetworkAcl\"},\"_right\":{\"_selector\":\"$.eventName\",\"_op\":\"=\",\"_value\":\"CreateNetworkAclEntry\"}},\"_right\":{\"_selector\":\"$.eventName\",\"_op\":\"=\",\"_value\":\"DeleteNetworkAcl\"}},\"_right\":{\"_selector\":\"$.eventName\",\"_op\":\"=\",\"_value\":\"DeleteNetworkAclEntry\"}},\"_right\":{\"_selector\":\"$.eventName\",\"_op\":\"=\",\"_value\":\"ReplaceNetworkAclEntry\"}},\"_right\":{\"_selector\":\"$.eventName\",\"_op\":\"=\",\"_value\":\"ReplaceNetworkAclAssociation\"}}}"
 						}
 					  }

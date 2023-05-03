@@ -16,12 +16,6 @@ The structure of a flag on JSON definition should use the following structure:
 Example of a valid `flags.json` file:
 ```json
 {
-    "no-progress": {
-        "flagType": "bool",
-        "shorthandFlag": "",
-        "defaultValue": "false",
-        "usage": "hides the progress bar"
-    },
     "output-path": {
         "flagType": "str",
         "shorthandFlag": "o",
@@ -41,11 +35,11 @@ Example of a valid `flags.json` file:
 To mark a flag as hidden use the following configuration:
 ```json
 {
-  "disable-cis-descriptions": {
+  "disable-telemetry": {
     "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",
-    "usage": "disable request for full descriptions and use default vulnerability descriptions",
+    "usage": "disable usage telemetry requests",
     "hidden": true
   }
 }
@@ -55,14 +49,14 @@ If you also want to display a flag deprecation warning you can define it like th
 
 ```json
 {
-  "disable-cis-descriptions": {
+  "disable-full-descriptions": {
     "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",
     "usage": "disable request for full descriptions and use default vulnerability descriptions",
     "hidden": true,
     "deprecated": true,
-    "deprecatedInfo": "use --disable-full-descriptions instead"
+    "deprecatedInfo": "use --disable-telemetry instead"
   }
 }
 ```

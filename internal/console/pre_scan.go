@@ -138,7 +138,7 @@ func (console *console) preScan() {
 		log.Warn().Msgf(warn)
 	}
 
-	printer := internalPrinter.NewPrinter(flags.GetBoolFlag(flags.MinimalUIFlag))
+	printer := internalPrinter.NewPrinter()
 	printer.Success.Printf("\n%s\n", banner)
 
 	versionMsg := fmt.Sprintf("\nScanning with %s\n\n", constants.GetVersion())
@@ -157,7 +157,8 @@ func (console *console) preScan() {
 	cpu := consoleHelpers.GetNumCPU()
 	log.Info().Msgf("CPU: %.1f", cpu)
 
-	noProgress := flags.GetBoolFlag(flags.NoProgressFlag)
+	// keep the default behavior of deprecated flag --no-progress
+	noProgress := false
 	if strings.EqualFold(flags.GetStrFlag(flags.LogLevelFlag), "debug") {
 		noProgress = true
 	}

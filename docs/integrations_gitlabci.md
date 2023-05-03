@@ -26,7 +26,7 @@ stages:
 kics-scan:
     stage: kics
     script:
-        - kics scan --no-progress -p ${PWD} -o ${PWD} --report-formats json --output-name kics-results
+        - kics scan -p ${PWD} -o ${PWD} --report-formats json --output-name kics-results
     artifacts:
         name: kics-results.json
         paths:
@@ -103,7 +103,7 @@ stages:
 code_quality:
     stage: test
     script:
-        - kics scan --no-progress -p ${PWD} -o ${PWD} --report-formats codeclimate --output-name codeclimate-result
+        - kics scan -p ${PWD} -o ${PWD} --report-formats codeclimate --output-name codeclimate-result
     artifacts:
         paths:
             - codeclimate-result.json
