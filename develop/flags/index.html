@@ -15,7 +15,7 @@
       
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.8">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
     
     
       
@@ -23,10 +23,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ded33207.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a6bdf11c.min.css">
       
       
 
@@ -537,8 +537,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../previous-certifications/" class="md-nav__link">
-        Previous Certifications
+      <a href="../certifications/" class="md-nav__link">
+        Certifications
       </a>
     </li>
   
@@ -1416,6 +1416,12 @@
 </code></pre>
 <p>Example of a valid <code>flags.json</code> file:</p>
 <pre><code class="language-json">{
+    &quot;no-progress&quot;: {
+        &quot;flagType&quot;: &quot;bool&quot;,
+        &quot;shorthandFlag&quot;: &quot;&quot;,
+        &quot;defaultValue&quot;: &quot;false&quot;,
+        &quot;usage&quot;: &quot;hides the progress bar&quot;
+    },
     &quot;output-path&quot;: {
         &quot;flagType&quot;: &quot;str&quot;,
         &quot;shorthandFlag&quot;: &quot;o&quot;,
@@ -1433,11 +1439,11 @@
 <h2 id="hidden_and_deprecated_flags">Hidden and Deprecated Flags<a class="headerlink" href="#hidden_and_deprecated_flags" title="Permanent link">&para;</a></h2>
 <p>To mark a flag as hidden use the following configuration:</p>
 <pre><code class="language-json">{
-  &quot;disable-telemetry&quot;: {
+  &quot;disable-full-descriptions&quot;: {
     &quot;flagType&quot;: &quot;bool&quot;,
     &quot;shorthandFlag&quot;: &quot;&quot;,
     &quot;defaultValue&quot;: &quot;false&quot;,
-    &quot;usage&quot;: &quot;disable usage telemetry requests&quot;,
+    &quot;usage&quot;: &quot;disable request for full descriptions and use default vulnerability descriptions&quot;,
     &quot;hidden&quot;: true
   }
 }
@@ -1451,7 +1457,7 @@
     &quot;usage&quot;: &quot;disable request for full descriptions and use default vulnerability descriptions&quot;,
     &quot;hidden&quot;: true,
     &quot;deprecated&quot;: true,
-    &quot;deprecatedInfo&quot;: &quot;use --disable-telemetry instead&quot;
+    &quot;deprecatedInfo&quot;: &quot;use --disable-full-descriptions instead&quot;
   }
 }
 </code></pre>
@@ -1521,7 +1527,7 @@
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.51198bba.min.js"></script>
+      <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>
       
         <script src="../js/version-mike.js"></script>
       

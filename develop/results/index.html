@@ -19,7 +19,7 @@
         <link rel="next" href="../platforms/">
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.8">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
     
     
       
@@ -27,10 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ded33207.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a6bdf11c.min.css">
       
       
 
@@ -509,8 +509,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#telemetry" class="md-nav__link">
-    Telemetry
+  <a href="#descriptions" class="md-nav__link">
+    Descriptions
   </a>
   
 </li>
@@ -670,8 +670,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../previous-certifications/" class="md-nav__link">
-        Previous Certifications
+      <a href="../certifications/" class="md-nav__link">
+        Certifications
       </a>
     </li>
   
@@ -1483,8 +1483,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#telemetry" class="md-nav__link">
-    Telemetry
+  <a href="#descriptions" class="md-nav__link">
+    Descriptions
   </a>
   
 </li>
@@ -1607,11 +1607,9 @@ where the output-path will be the directory containing all report files and repo
 <pre><code class="language-bash">./kics scan -p &lt;path-of-your-project-to-scan&gt; -o ./output --report-formats &quot;glsast,html,pdf&quot; --output-name kics-result
 </code></pre>
 <p>This will generate an HTML and Gitlab SAST reports on output folder, with <code>kics-result</code> and <code>gl-sast-kics-result</code> names.</p>
-<h2 id="telemetry">Telemetry<a class="headerlink" href="#telemetry" title="Permanent link">&para;</a></h2>
-<p>KICS captures telemetry to help developers identify areas for improvement. After the scanning process is completed, if an internet connection is available, KICS will automatically send usage telemetry to a HTTP endpoint. However, users can disable this feature by using the <code>--disable-telemetry</code> option. This allows users to maintain privacy and control over the data that KICS sends.</p>
-<p>It's important to note that KICS only captures counts of query results and no code or personal information is sent. All telemetry are completely anonymous, ensuring that KICS users can contribute to the improvement of the tool without compromising their privacy and security.
-The captured telemetry are for internal use only and are not shared with any external third party.</p>
-<p>If KICS is being used behind a corporate proxy, users can set proxy configurations using environment variables such as <code>HTTP_PROXY</code>, <code>HTTPS_PROXY</code>, <code>NO_PROXY</code>. This allows KICS to send usage telemetry through the proxy and maintain network security protocols. By capturing usage telemetry and enabling users to configure proxy settings, KICS ensures that it can be used effectively and securely in various network</p>
+<h2 id="descriptions">Descriptions<a class="headerlink" href="#descriptions" title="Permanent link">&para;</a></h2>
+<p>After the scanning process is done, If an internet connection is available, KICS will try to fetch CIS Proprietary vulnerability descriptions from a HTTP endpoint, this can be disabled with <code>--disable-cis-descriptions</code>. If used in offline mode or no internet connection is available, KICS should use the default descriptions.</p>
+<p>In case of using KICS behind a corporate proxy, proxy configurations can be set with environment variables such as <code>HTTP_PROXY</code>, <code>HTTPS_PROXY</code>, <code>NO_PROXY</code></p>
 <h2 id="json">JSON<a class="headerlink" href="#json" title="Permanent link">&para;</a></h2>
 <p>The JSON report is the default report to be generate, if no arg is passed to <code>report-formats</code> flag, also you can explicitly use it with <code>--report-formats "json"</code>.
 JSON reports are sorted by severity (from high to info) and should looks like as following:</p>
@@ -2280,6 +2278,9 @@ PDF reports are sorted by severity (from high to info), the results will have qu
 <th>category</th>
 <th>description_id</th>
 <th>description</th>
+<th>cis_description_id</th>
+<th>cis_description_title</th>
+<th>cis_description_text</th>
 <th>file_name</th>
 <th>similarity_id</th>
 <th>line</th>
@@ -2302,6 +2303,9 @@ PDF reports are sorted by severity (from high to info), the results will have qu
 <td>Networking and Firewall</td>
 <td>680b7e89</td>
 <td>The EC2 instance has a sensitive port connection exposed to the entire network</td>
+<td></td>
+<td></td>
+<td></td>
 <td>../../assets/queries/cloudFormation/aws/security_groups_with_unrestricted_access_to_ssh/test/positive2.json</td>
 <td>9730156b201b5098479a7b624d01931303a2f27c3991c7a786aeb2c10912894a</td>
 <td>27</td>
@@ -2322,6 +2326,9 @@ PDF reports are sorted by severity (from high to info), the results will have qu
 <td>Networking and Firewall</td>
 <td>680b7e89</td>
 <td>The EC2 instance has a sensitive port connection exposed to the entire network</td>
+<td></td>
+<td></td>
+<td></td>
 <td>../../assets/queries/cloudFormation/aws/security_groups_with_unrestricted_access_to_ssh/test/positive1.yaml</td>
 <td>a93a3f7320a60045c04cd950500a1c3cff5bc9a4aae7f1e0cde73033386e1242</td>
 <td>15</td>
@@ -2342,6 +2349,9 @@ PDF reports are sorted by severity (from high to info), the results will have qu
 <td>Networking and Firewall</td>
 <td>d515d6dc</td>
 <td>Security Groups allows all traffic for SSH (port:22)</td>
+<td></td>
+<td></td>
+<td></td>
 <td>../../assets/queries/cloudFormation/aws/security_groups_with_unrestricted_access_to_ssh/test/positive1.yaml</td>
 <td>ca8ec85623eed6a5cb3d3b8c1b69d145778e28517d2adf5fb856a57f9870c430</td>
 <td>15</td>
@@ -2514,7 +2524,7 @@ PDF reports are sorted by severity (from high to info), the results will have qu
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.51198bba.min.js"></script>
+      <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>
       
         <script src="../js/version-mike.js"></script>
       
