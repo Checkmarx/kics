@@ -35,6 +35,6 @@ repos:
           - id: kics-scan-local
             name: Kics scan
             language: docker_image
-            entry: checkmarx/kics scan -p /src --no-progress
+            entry: checkmarx/kics scan -p /src
             verbose: true
 ```

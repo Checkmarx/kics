@@ -15,7 +15,7 @@ Note that this feature will be only available for Terraform, for now.
 
 1. As a first step, you will need to scan your project/file and generate a JSON report.
 
-   Example: ```docker run -v /home/cosmicgirl/:/path/ kics scan -p /path/sample.tf -i "41a38329-d81b-4be4-aef4-55b2615d3282,a9dfec39-a740-4105-bbd6-721ba163c053,2bb13841-7575-439e-8e0a-cccd9ede2fa8" --no-progress -o /path/results --report-formats json```
+   Example: ```docker run -v /home/cosmicgirl/:/path/ kics scan -p /path/sample.tf -i "41a38329-d81b-4be4-aef4-55b2615d3282,a9dfec39-a740-4105-bbd6-721ba163c053,2bb13841-7575-439e-8e0a-cccd9ede2fa8" -o /path/results --report-formats json```
 
    If KICS makes available a remediation for a result, the result will have the fields `remediation` and `remediation_type` defined. As an example, please see:
    <p align="center">

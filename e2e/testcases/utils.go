@@ -14,18 +14,15 @@ import (
 
 func generateReport(tmpFile, jsonPath, reportName string) { //nolint
 	var queryHigh = model.QueryResult{
-		QueryName:                   "Ram Account Password Policy Not Required Minimum Length",
-		QueryID:                     "a9dfec39-a740-4105-bbd6-721ba163c053",
-		QueryURI:                    "",
-		Description:                 "Ram Account Password Policy should have 'minimum_password_length' defined and set to 14 or above",
-		DescriptionID:               "a8b47743",
-		CISDescriptionIDFormatted:   "testCISID",
-		CISDescriptionTitle:         "testCISTitle",
-		CISDescriptionTextFormatted: "testCISDescription",
-		Severity:                    model.SeverityHigh,
-		Platform:                    "Terraform",
-		CloudProvider:               "ALICLOUD",
-		Category:                    "Secret Management",
+		QueryName:     "Ram Account Password Policy Not Required Minimum Length",
+		QueryID:       "a9dfec39-a740-4105-bbd6-721ba163c053",
+		QueryURI:      "",
+		Description:   "Ram Account Password Policy should have 'minimum_password_length' defined and set to 14 or above",
+		DescriptionID: "a8b47743",
+		Severity:      model.SeverityHigh,
+		Platform:      "Terraform",
+		CloudProvider: "ALICLOUD",
+		Category:      "Secret Management",
 		Files: []model.VulnerableFile{
 			{
 				FileName:         tmpFile,
@@ -47,18 +44,15 @@ func generateReport(tmpFile, jsonPath, reportName string) { //nolint
 	}
 
 	var queryMedium1 = model.QueryResult{ //nolint
-		QueryName:                   "RAM Account Password Policy Not Required Symbols",
-		QueryID:                     "41a38329-d81b-4be4-aef4-55b2615d3282",
-		QueryURI:                    "",
-		Description:                 "RAM account password security should require at least one symbol",
-		DescriptionID:               "f3616c34",
-		CISDescriptionIDFormatted:   "testCISID",
-		CISDescriptionTitle:         "testCISTitle",
-		CISDescriptionTextFormatted: "testCISDescription",
-		Severity:                    model.SeverityMedium,
-		Platform:                    "Terraform",
-		CloudProvider:               "ALICLOUD",
-		Category:                    "Secret Management",
+		QueryName:     "RAM Account Password Policy Not Required Symbols",
+		QueryID:       "41a38329-d81b-4be4-aef4-55b2615d3282",
+		QueryURI:      "",
+		Description:   "RAM account password security should require at least one symbol",
+		DescriptionID: "f3616c34",
+		Severity:      model.SeverityMedium,
+		Platform:      "Terraform",
+		CloudProvider: "ALICLOUD",
+		Category:      "Secret Management",
 		Files: []model.VulnerableFile{
 			{
 				FileName:         tmpFile,
@@ -96,18 +90,15 @@ func generateReport(tmpFile, jsonPath, reportName string) { //nolint
 	}
 
 	var queryMedium2 = model.QueryResult{ //nolint
-		QueryName:                   "Ram Account Password Policy Max Password Age Unrecommended",
-		QueryID:                     "2bb13841-7575-439e-8e0a-cccd9ede2fa8",
-		Description:                 "Ram Account Password Policy Password 'max_password_age' should be higher than 0 and lower than 91",
-		QueryURI:                    "",
-		DescriptionID:               "6056f5ca",
-		CISDescriptionIDFormatted:   "testCISID",
-		CISDescriptionTitle:         "testCISTitle",
-		CISDescriptionTextFormatted: "testCISDescription",
-		Severity:                    model.SeverityMedium,
-		Platform:                    "Terraform",
-		CloudProvider:               "ALICLOUD",
-		Category:                    "Secret Management",
+		QueryName:     "Ram Account Password Policy Max Password Age Unrecommended",
+		QueryID:       "2bb13841-7575-439e-8e0a-cccd9ede2fa8",
+		Description:   "Ram Account Password Policy Password 'max_password_age' should be higher than 0 and lower than 91",
+		QueryURI:      "",
+		DescriptionID: "6056f5ca",
+		Severity:      model.SeverityMedium,
+		Platform:      "Terraform",
+		CloudProvider: "ALICLOUD",
+		Category:      "Secret Management",
 		Files: []model.VulnerableFile{
 			{
 				FileName:         tmpFile,
