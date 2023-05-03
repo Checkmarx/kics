@@ -115,11 +115,9 @@ array contains information about the entropy of the strings that are being searc
 
 The `entropies` array contains information about the minimum and maximum entropy values that are expected for a
 particular group of characters in the regex pattern. Entropy is a measure of the randomness or unpredictability of a
-string or set of strings, and is calculated using the Shannon formula.
-
-The Shannon formula is a mathematical formula used to calculate the entropy of a string or set of strings. It takes into
+string or set of strings, and is calculated using the Shannon formula. It takes into
 account the frequency of occurrence of each character in the string, and the total length of the string. For every given
-entropy, the result of the regex group should not be between the maximum and minimum values specified in the `entropies`
+entropy, the result of the regex group should be between the maximum and minimum values specified in the `entropies`
 array.
 
 
