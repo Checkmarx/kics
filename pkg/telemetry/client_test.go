@@ -1,4 +1,4 @@
-package descriptions
+package telemetry
 
 import (
 	"bytes"
@@ -8,31 +8,13 @@ import (
 	"os"
 	"testing"
 
-	mockclient "github.com/Checkmarx/kics/pkg/descriptions/mock"
+	mockclient "github.com/Checkmarx/kics/pkg/telemetry/mock"
 	"github.com/stretchr/testify/require"
 )
 
 var (
 	responseJSON = `{
 		"descriptions": {
-			"foo1": {
-				"cisDescriptionText": "",
-				"cisDescriptionID": "",
-				"cisDescriptionRuleID": "",
-				"cisDescriptionTitle": "",
-				"cisRationaleText": "",
-				"cisBenchmarkName": "",
-				"cisBenchmarkVersion": ""
-			},
-			"foo2": {
-				"cisDescriptionText": "",
-				"cisDescriptionID": "",
-				"cisDescriptionRuleID": "",
-				"cisDescriptionTitle": "",
-				"cisRationaleText": "",
-				"cisBenchmarkName": "",
-				"cisBenchmarkVersion": ""
-			}
 		}
 	}`
 )
@@ -55,14 +37,14 @@ func TestClient_RequestDescriptions(t *testing.T) {
 			Body:       r,
 		}, nil
 	}
-	descClient := Client{}
-	descriptions, err := descClient.RequestDescriptions([]string{
+	telemetryClient := Client{}
+	descriptionIDs := []string{
 		"foo1",
 		"foo2",
 		"foo3",
-	})
-	require.NoError(t, err, "RequestDescriptions() should not return an error")
-	require.NotNil(t, descriptions, "RequestDescriptions() should return a description map")
+	}
+	_, err := telemetryClient.RequestUpdateTelemetry(descriptionIDs)
+	require.NoError(t, err, "RequestUpdateTelemetry() should not return an error")
 	t.Cleanup(func() {
 		os.Setenv("KICS_DESCRIPTIONS_ENDPOINT", "")
 	})
@@ -122,8 +104,8 @@ func TestClient_CheckLatestVersion(t *testing.T) {
 			Body:       r,
 		}, nil
 	}
-	descClient := Client{}
-	version, err := descClient.CheckLatestVersion("1.4.0")
+	telemetryClient := Client{}
+	version, err := telemetryClient.CheckLatestVersion("1.4.0")
 	require.NoError(t, err, "CheckLatestVersion() should not return an error")
 	require.NotNil(t, version, "CheckLatestVersion() should return a version check")
 	t.Cleanup(func() {

@@ -138,20 +138,20 @@ Examples:
 
 #### Using Config File
 ```sh
-docker run -v <credentials_path>:/credentials -v ${PWD}:/path/ -e K8S_CONFIG_FILE=/credentials/<config-file-name> checkmarx/kics:latest scan -p "kuberneter::*:*:*" -v --no-progress -o /path/results
+docker run -v <credentials_path>:/credentials -v ${PWD}:/path/ -e K8S_CONFIG_FILE=/credentials/<config-file-name> checkmarx/kics:latest scan -p "kuberneter::*:*:*" -v -o /path/results
 ```
 
 #### Using Service Account Token
 ```sh
-docker run -v ${PWD}:/path/ -e K8S_HOST -e K8S_CA_DATA -e K8S_SA_TOKEN_DATA kuberneter scan -p "kuberneter::*:*:*" -v --no-progress -o /path/results
+docker run -v ${PWD}:/path/ -e K8S_HOST -e K8S_CA_DATA -e K8S_SA_TOKEN_DATA kuberneter scan -p "kuberneter::*:*:*" -v -o /path/results
 ```
 
 #### Using Certificate
 ```sh
-docker run -v ${PWD}:/path/ -e K8S_HOST -e K8S_CA_DATA -e K8S_SA_TOKEN_DATA kuberneter scan -p "kuberneter::*:*:*" -v --no-progress -o /path/results
+docker run -v ${PWD}:/path/ -e K8S_HOST -e K8S_CA_DATA -e K8S_SA_TOKEN_DATA kuberneter scan -p "kuberneter::*:*:*" -v -o /path/results
 ```
 
 #### Using Certificate
 ```sh
-docker run -v ${PWD}:/path/ -e K8S_HOST -e K8S_CA_DATA -e K8S_CERT_DATA -e K8S_KEY_DATA checkmarx/kics:latest scan -p "kuberneter::*:*:*" -v --no-progress -o /path/results
+docker run -v ${PWD}:/path/ -e K8S_HOST -e K8S_CA_DATA -e K8S_CERT_DATA -e K8S_KEY_DATA checkmarx/kics:latest scan -p "kuberneter::*:*:*" -v -o /path/results
 ```

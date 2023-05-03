@@ -34,12 +34,6 @@ type ruleMetadata struct {
 	severity         model.Severity
 }
 
-type ruleCISMetadata struct {
-	descriptionText string
-	id              string
-	title           string
-}
-
 type sarifMessage struct {
 	Text string `json:"text"`
 }
@@ -232,7 +226,7 @@ func (sr *sarifReport) findSarifRuleIndex(ruleID string) int {
 	return -1
 }
 
-func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata, cisMetadata ruleCISMetadata) int {
+func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata) int {
 	index := sr.findSarifRuleIndex(queryMetadata.queryID)
 	if index < 0 {
 		helpURI := "https://docs.kics.io/"
@@ -248,13 +242,6 @@ func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata, cisMetadata r
 			RuleRelationships:    []sarifDescriptorRelationship{{Target: sr.buildSarifCategory(queryMetadata.queryCategory)}},
 			HelpURI:              helpURI,
 			RuleProperties:       nil,
-		}
-		if cisMetadata.id != "" {
-			rule.RuleFullDescription.Text = cisMetadata.descriptionText
-			rule.RuleProperties = sarifProperties{
-				"cisId":    cisMetadata.id,
-				"cisTitle": cisMetadata.title,
-			}
 		}
 
 		sr.Runs[0].Tool.Driver.Rules = append(sr.Runs[0].Tool.Driver.Rules, rule)
@@ -274,12 +261,7 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) {
 			queryCategory:    issue.Category,
 			severity:         issue.Severity,
 		}
-		cisDescriptions := ruleCISMetadata{
-			id:              issue.CISDescriptionIDFormatted,
-			title:           issue.CISDescriptionTitle,
-			descriptionText: issue.CISDescriptionTextFormatted,
-		}
-		ruleIndex := sr.buildSarifRule(&metadata, cisDescriptions)
+		ruleIndex := sr.buildSarifRule(&metadata)
 
 		kind := "fail"
 		if severityLevelEquivalence[issue.Severity] == "none" {
