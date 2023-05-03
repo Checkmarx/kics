@@ -113,7 +113,7 @@
 				
 				<option value="file28">github.com/Checkmarx/kics/pkg/detector/helm/helm_detect.go (87.9%)</option>
 				
-				<option value="file29">github.com/Checkmarx/kics/pkg/detector/helper.go (92.9%)</option>
+				<option value="file29">github.com/Checkmarx/kics/pkg/detector/helper.go (93.0%)</option>
 				
 				<option value="file30">github.com/Checkmarx/kics/pkg/detector/search_line_detector.go (95.0%)</option>
 				
@@ -201,7 +201,7 @@
 				
 				<option value="file72">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file73">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (95.5%)</option>
+				<option value="file73">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
 				<option value="file74">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -2185,13 +2185,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="31">total += v
+                <span class="cov8" title="34">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2216,7 +2216,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="16">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4550,102 +4550,105 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 }
 
 // SelectLineWithMinimumDistance will search a map of levenshtein distances to find the minimum distance
-func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
+func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="9">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
-        for line, distance := range distances </span><span class="cov6" title="11">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+        for line, distance := range distances </span><span class="cov6" title="13">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="11">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
         }
 
-        <span class="cov5" title="8">return lineOfMinDistance</span>
+        <span class="cov5" title="9">return lineOfMinDistance</span>
 }
 
 // ExtractLineFragment will prepare substr for line detection
-func ExtractLineFragment(line, substr string, key bool) string <span class="cov5" title="9">{
+func ExtractLineFragment(line, substr string, key bool) string <span class="cov6" title="11">{
         // If detecting line by keys only
         idx := strings.Index(line, ":")
         if key &amp;&amp; idx &gt;= 0 </span><span class="cov0" title="0">{
                 return line[:idx]
         }</span>
-        <span class="cov5" title="9">start := strings.Index(line, substr)
+        <span class="cov6" title="11">start := strings.Index(line, substr)
         end := start + len(substr)
 
         for start &gt;= 0 </span><span class="cov7" title="22">{
-                if line[start] == ' ' </span><span class="cov5" title="7">{
+                if line[start] == ' ' </span><span class="cov4" title="6">{
                         break</span>
                 }
 
-                <span class="cov7" title="15">start--</span>
+                <span class="cov7" title="16">start--</span>
         }
 
-        <span class="cov5" title="9">for end &lt; len(line) </span><span class="cov6" title="13">{
-                if line[end] == ' ' </span><span class="cov5" title="7">{
+        <span class="cov6" title="11">for end &lt; len(line) </span><span class="cov7" title="17">{
+                if line[end] == ' ' </span><span class="cov5" title="9">{
                         break</span>
                 }
 
-                <span class="cov4" title="6">end++</span>
+                <span class="cov5" title="8">end++</span>
         }
 
-        <span class="cov5" title="9">return removeExtras(line, start, end)</span>
+        <span class="cov6" title="11">return removeExtras(line, start, end)</span>
 }
 
-func removeExtras(result string, start, end int) string <span class="cov5" title="9">{
+func removeExtras(result string, start, end int) string <span class="cov6" title="11">{
         // workaround for selecting yaml keys
-        if result[end-1] == ':' </span><span class="cov1" title="1">{
+        if result[end-1] == ':' </span><span class="cov3" title="3">{
                 end--
         }</span>
 
-        <span class="cov5" title="9">if result[end-1] == '"' </span><span class="cov4" title="5">{
+        <span class="cov6" title="11">if result[end-1] == '"' </span><span class="cov5" title="7">{
                 end--
         }</span>
 
-        <span class="cov5" title="9">if result[start+1] == '"' </span><span class="cov4" title="5">{
+        <span class="cov6" title="11">if result[start+1] == '"' </span><span class="cov5" title="7">{
                 start++
         }</span>
 
-        <span class="cov5" title="9">return result[start+1 : end]</span>
+        <span class="cov6" title="11">return result[start+1 : end]</span>
 }
 
 // DetectCurrentLine uses levenshtein distance to find the most accurate line for the vulnerability
 func (d *DefaultDetectLineResponse) DetectCurrentLine(str1, str2 string, recurseCount int,
-        lines []string) (det *DefaultDetectLineResponse, l []string) <span class="cov4" title="6">{
+        lines []string) (det *DefaultDetectLineResponse, l []string) <span class="cov5" title="7">{
         distances := make(map[int]int)
 
-        for i := d.CurrentLine; i &lt; len(lines); i++ </span><span class="cov10" title="58">{
+        for i := d.CurrentLine; i &lt; len(lines); i++ </span><span class="cov10" title="60">{
                 if len(d.ResolvedFiles) &gt; 0 </span><span class="cov3" title="3">{
                         if res, newLines := d.checkResolvedFile(lines[i], str1, str2, recurseCount); res.FoundAtLeastOne </span><span class="cov0" title="0">{
                                 return res, newLines
                         }</span>
                 }
-                <span class="cov10" title="58">distances = checkLine(str1, str2, distances, lines[i], i)</span>
+                <span class="cov10" title="60">distances = checkLine(str1, str2, distances, lines[i], i)</span>
         }
 
-        <span class="cov4" title="6">if len(distances) == 0 </span><span class="cov1" title="1">{
+        <span class="cov5" title="7">if len(distances) == 0 </span><span class="cov1" title="1">{
                 d.IsBreak = true
                 return d, lines
         }</span>
 
-        <span class="cov4" title="5">d.CurrentLine = SelectLineWithMinimumDistance(distances, d.CurrentLine)
+        <span class="cov4" title="6">d.CurrentLine = SelectLineWithMinimumDistance(distances, d.CurrentLine)
         d.IsBreak = false
         d.FoundAtLeastOne = true
 
         return d, lines</span>
 }
 
-func checkLine(str1, str2 string, distances map[int]int, line string, i int) map[int]int <span class="cov10" title="58">{
+func checkLine(str1, str2 string, distances map[int]int, line string, i int) map[int]int <span class="cov10" title="60">{
+        // Tackle initial spaces that were inducing wrong results
+        regex := regexp.MustCompile(`^\s+`)
+        line = regex.ReplaceAllString(line, "")
         if str1 != "" &amp;&amp; str2 != "" &amp;&amp; strings.Contains(line, str1) </span><span class="cov4" title="5">{
                 restLine := line[strings.Index(line, str1)+len(str1):]
                 if strings.Contains(restLine, str2) </span><span class="cov4" title="4">{
                         distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(line, str1, false), str1)
                         distances[i] += levenshtein.ComputeDistance(ExtractLineFragment(restLine, str2, false), str2)
                 }</span>
-        } else<span class="cov9" title="53"> if str1 != "" &amp;&amp; strings.Contains(line, str1) </span><span class="cov1" title="1">{
+        } else<span class="cov9" title="55"> if str1 != "" &amp;&amp; strings.Contains(line, str1) </span><span class="cov3" title="3">{
                 distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(line, str1, false), str1)
         }</span>
 
-        <span class="cov10" title="58">return distances</span>
+        <span class="cov10" title="60">return distances</span>
 }
 
 func (d *DefaultDetectLineResponse) checkResolvedFile(line, str1, st2 string,
@@ -13802,7 +13805,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov3" title="2">{
+                close: func() error </span><span class="cov0" title="0">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -13811,26 +13814,26 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov3" title="2">{
+        defer func() </span><span class="cov0" title="0">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
                 }</span>
-                <span class="cov3" title="2">p.wg.Done()</span>
+                <span class="cov0" title="0">p.wg.Done()</span>
         }()
 
         <span class="cov3" title="2">for </span><span class="cov10" title="20">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov3" title="2">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov3" title="2">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file74" style="display: none">package progress
