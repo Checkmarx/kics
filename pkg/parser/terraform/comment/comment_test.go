@@ -169,7 +169,7 @@ func TestComment_GetIgnoreLines(t *testing.T) {
 		},
 		{
 			name:     "TestComment_GetIgnoreLines: dont-ignore-lines-with-comment-at-the-end",
-			content:  samples["dnot-ignore-line-with-comment-in-the-end"],
+			content:  samples["dont-ignore-lines-with-comment-at-the-end"],
 			filename: "",
 			want:     []int{},
 		},
