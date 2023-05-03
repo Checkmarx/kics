@@ -74,7 +74,7 @@ func Test_PrintVersionCheck(t *testing.T) {
 	}{
 		{
 			name:           "test latest version",
-			consolePrinter: consolePrinter.NewPrinter(true),
+			consolePrinter: consolePrinter.NewPrinter(),
 			modelSummary: &model.Summary{
 				Version: "v1.0.0",
 				LatestVersion: model.Version{
@@ -86,7 +86,7 @@ func Test_PrintVersionCheck(t *testing.T) {
 		},
 		{
 			name:           "test outdated version",
-			consolePrinter: consolePrinter.NewPrinter(true),
+			consolePrinter: consolePrinter.NewPrinter(),
 			modelSummary: &model.Summary{
 				Version: "v1.0.0",
 				LatestVersion: model.Version{
@@ -127,13 +127,13 @@ func Test_ContributionAppeal(t *testing.T) {
 	}{
 		{
 			name:           "test custom query",
-			consolePrinter: consolePrinter.NewPrinter(true),
+			consolePrinter: consolePrinter.NewPrinter(),
 			queriesPath:    []string{filepath.Join("custom", "query", "path")},
 			expectedOutput: "\nAre you using a custom query? If so, feel free to contribute to KICS!\nCheck out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md",
 		},
 		{
 			name:           "test non custom query",
-			consolePrinter: consolePrinter.NewPrinter(true),
+			consolePrinter: consolePrinter.NewPrinter(),
 			queriesPath:    []string{filepath.Join("assets", "queries", "path")},
 			expectedOutput: "",
 		},
