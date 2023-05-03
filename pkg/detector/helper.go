@@ -277,6 +277,7 @@ func (d *DefaultDetectLineResponse) DetectCurrentLine(str1, str2 string, recurse
 }
 
 func checkLine(str1, str2 string, distances map[int]int, line string, i int) map[int]int {
+	// Tackle initial spaces that were inducing wrong results
 	regex := regexp.MustCompile(`^\s+`)
 	line = regex.ReplaceAllString(line, "")
 	if str1 != "" && str2 != "" && strings.Contains(line, str1) {
