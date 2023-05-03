@@ -41,7 +41,7 @@ Example of a valid `flags.json` file:
 To mark a flag as hidden use the following configuration:
 ```json
 {
-  "disable-cis-descriptions": {
+  "disable-full-descriptions": {
     "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",
@@ -55,7 +55,7 @@ If you also want to display a flag deprecation warning you can define it like th
 
 ```json
 {
-  "disable-cis-descriptions": {
+  "disable-full-descriptions": {
     "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",
