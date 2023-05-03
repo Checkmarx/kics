@@ -35,7 +35,7 @@ func (c *Client) getSummary(results []model.Vulnerability, end time.Time, pathPa
 	}
 
 	if c.ScanParams.DisableCISDesc || c.ScanParams.DisableFullDesc {
-		log.Warn().Msg("Skipping CIS descriptions because provided disable flag is set")
+		log.Warn().Msg("Skipping descriptions because provided disable flag is set")
 	} else {
 		err := descriptions.RequestAndOverrideDescriptions(&summary)
 		if err != nil {
