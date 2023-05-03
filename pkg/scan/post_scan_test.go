@@ -391,7 +391,7 @@ func Test_maskSecrets(t *testing.T) {
 			c.Tracker = &tt.tracker
 			c.ScanParams = &tt.scanParameters
 			c.ProBarBuilder = progress.InitializePbBuilder(true, false, true)
-			c.Printer = printer.NewPrinter(true)
+			c.Printer = printer.NewPrinter()
 
 			err := c.postScan(tt.scanResults)
 			require.NoError(t, err)

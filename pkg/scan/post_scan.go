@@ -106,34 +106,13 @@ func (c *Client) postScan(scanResults *Results) error {
 		}
 	}
 
-	secretsRegexRulesContent, err := getSecretsRegexRules(c.ScanParams.SecretsRegexesPath)
-
-	if err != nil {
-		return err
-	}
-
-	var allRegexQueries secrets.RegexRuleStruct
-
-	err = json.Unmarshal([]byte(secretsRegexRulesContent), &allRegexQueries)
-	if err != nil {
-		return err
-	}
-
-	allowRules, err := secrets.CompileRegex(allRegexQueries.AllowRules)
-
-	if err != nil {
-		return err
-	}
-
-	rules, err := compileRegexQueries(allRegexQueries.Rules)
-
-	if err != nil {
-		return err
-	}
-
-	for i := range scanResults.Results {
-		item := scanResults.Results[i]
-		hideSecret(item.VulnLines, &allowRules, &rules)
+	// mask results preview if Secrets Scan is disabled
+	if c.ScanParams.DisableSecrets {
+		err := maskPreviewLines(c.ScanParams.SecretsRegexesPath, scanResults)
+		if err != nil {
+			log.Err(err)
+			return err
+		}
 	}
 
 	summary := c.getSummary(scanResults.Results, time.Now(), model.PathParameters{
@@ -167,23 +146,50 @@ func (c *Client) postScan(scanResults *Results) error {
 	return nil
 }
 
+func maskPreviewLines(secretsPath string, scanResults *Results) error {
+	secretsRegexRulesContent, err := getSecretsRegexRules(secretsPath)
+	if err != nil {
+		return err
+	}
+
+	var allRegexQueries secrets.RegexRuleStruct
+
+	err = json.Unmarshal([]byte(secretsRegexRulesContent), &allRegexQueries)
+	if err != nil {
+		return err
+	}
+
+	allowRules, err := secrets.CompileRegex(allRegexQueries.AllowRules)
+	if err != nil {
+		return err
+	}
+
+	rules, err := compileRegexQueries(allRegexQueries.Rules)
+	if err != nil {
+		return err
+	}
+
+	for i := range scanResults.Results {
+		item := scanResults.Results[i]
+		hideSecret(item.VulnLines, &allowRules, &rules)
+	}
+	return nil
+}
+
 func compileRegexQueries(allRegexQueries []secrets.RegexQuery) ([]secrets.RegexQuery, error) {
-	var regexQueries []secrets.RegexQuery
 
-	regexQueries = append(regexQueries, allRegexQueries...)
-
-	for i := range regexQueries {
-		compiledRegexp, err := regexp.Compile(regexQueries[i].RegexStr)
+	for i := range allRegexQueries {
+		compiledRegexp, err := regexp.Compile(allRegexQueries[i].RegexStr)
 		if err != nil {
-			return regexQueries, err
+			return allRegexQueries, err
 		}
-		regexQueries[i].Regex = compiledRegexp
+		allRegexQueries[i].Regex = compiledRegexp
 		//TODO: check if you can remove these lines.
-		for j := range regexQueries[i].AllowRules {
-			regexQueries[i].AllowRules[j].Regex = regexp.MustCompile(regexQueries[i].AllowRules[j].RegexStr)
+		for j := range allRegexQueries[i].AllowRules {
+			allRegexQueries[i].AllowRules[j].Regex = regexp.MustCompile(allRegexQueries[i].AllowRules[j].RegexStr)
 		}
 	}
-	return regexQueries, nil
+	return allRegexQueries, nil
 }
 
 func hideSecret(lines *[]model.CodeLine, allowRules *[]secrets.AllowRule, rules *[]secrets.RegexQuery) {
