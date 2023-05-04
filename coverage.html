@@ -185,7 +185,7 @@
 				
 				<option value="file64">github.com/Checkmarx/kics/pkg/parser/parser.go (89.8%)</option>
 				
-				<option value="file65">github.com/Checkmarx/kics/pkg/parser/terraform/comment/comment.go (96.8%)</option>
+				<option value="file65">github.com/Checkmarx/kics/pkg/parser/terraform/comment/comment.go (96.9%)</option>
 				
 				<option value="file66">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (77.3%)</option>
 				
@@ -207,7 +207,7 @@
 				
 				<option value="file75">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file76">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file76">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (90.9%)</option>
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -2184,13 +2184,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="30">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="30">total += v
+                <span class="cov8" title="33">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -4855,7 +4855,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="11">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -12002,7 +12002,7 @@ func (c *comment) value() (value model.CommentCommand) <span class="cov4" title=
 type Ignore map[model.CommentCommand][]hcl.Pos
 
 // Build builds the Ignore map
-func (i *Ignore) build(ignoreLine, ignoreBlock, ignoreComment []hcl.Pos) <span class="cov4" title="8">{
+func (i *Ignore) build(ignoreLine, ignoreBlock, ignoreComment []hcl.Pos) <span class="cov4" title="9">{
         ignoreStruct := map[model.CommentCommand][]hcl.Pos{
                 model.IgnoreLine:    ignoreLine,
                 model.IgnoreBlock:   ignoreBlock,
@@ -12017,23 +12017,23 @@ func (i *Ignore) build(ignoreLine, ignoreBlock, ignoreComment []hcl.Pos) <span c
 // ///////////////////////////
 
 // GetIgnoreLines returns the lines to ignore from a comment
-func GetIgnoreLines(ignore Ignore, body *hclsyntax.Body) (lines []int) <span class="cov3" title="4">{
+func GetIgnoreLines(ignore Ignore, body *hclsyntax.Body) (lines []int) <span class="cov3" title="5">{
         lines = make([]int, 0)
         for _, position := range ignore[model.IgnoreBlock] </span><span class="cov3" title="4">{
                 lines = append(lines, checkBlock(body, position)...)
         }</span>
-        <span class="cov3" title="4">lines = append(lines, getLinesFromPos(ignore[model.IgnoreLine])...)
+        <span class="cov3" title="5">lines = append(lines, getLinesFromPos(ignore[model.IgnoreLine])...)
         lines = append(lines, getLinesFromPos(ignore[model.IgnoreComment])...)
         return</span>
 }
 
 // getLinesFromPos will return a list of lines from a list of positions
-func getLinesFromPos(positions []hcl.Pos) (lines []int) <span class="cov4" title="8">{
+func getLinesFromPos(positions []hcl.Pos) (lines []int) <span class="cov4" title="10">{
         lines = make([]int, 0)
         for _, position := range positions </span><span class="cov3" title="4">{
                 lines = append(lines, position.Line)
         }</span>
-        <span class="cov4" title="8">return</span>
+        <span class="cov4" title="10">return</span>
 }
 
 // checkBlock checks if the position is inside a block and returns the lines to ignore
@@ -12082,31 +12082,35 @@ func checkBlockRange(block *hcl.Block, position hcl.Pos) bool <span class="cov2"
 // ///////////////////////////
 
 // ParseComments parses the comments and returns the kics commands
-func ParseComments(src []byte, filename string) (Ignore, error) <span class="cov4" title="8">{
+func ParseComments(src []byte, filename string) (Ignore, error) <span class="cov4" title="9">{
         comments, diags := hclsyntax.LexConfig(src, filename, hcl.Pos{Line: 0, Column: 0})
         if diags != nil &amp;&amp; diags.HasErrors() </span><span class="cov0" title="0">{
                 return Ignore{}, diags.Errs()[0]
         }</span>
 
-        <span class="cov4" title="8">ig := processTokens(comments)
+        <span class="cov4" title="9">ig := processTokens(comments)
 
         return ig, nil</span>
 }
 
 // processTokens goes over the tokens and returns the kics commands
-func processTokens(tokens hclsyntax.Tokens) (ig Ignore) <span class="cov4" title="8">{
+func processTokens(tokens hclsyntax.Tokens) (ig Ignore) <span class="cov4" title="9">{
         ignoreLines := make([]hcl.Pos, 0)
         ignoreBlocks := make([]hcl.Pos, 0)
         ignoreComments := make([]hcl.Pos, 0)
-        for i := range tokens </span><span class="cov10" title="274">{
+        for i := range tokens </span><span class="cov10" title="311">{
                 // token is not a comment
-                if tokens[i].Type != hclsyntax.TokenComment || i+1 &gt; len(tokens) </span><span class="cov9" title="264">{
+                if tokens[i].Type != hclsyntax.TokenComment || i+1 &gt; len(tokens) </span><span class="cov9" title="298">{
+                        continue</span>
+                }
+                // case: CONFIGURATION = X # comment
+                <span class="cov5" title="13">if i &gt; 0 &amp;&amp; tokens[i-1].Range.Start.Line == tokens[i].Range.Start.Line </span><span class="cov2" title="3">{
                         continue</span>
                 }
                 <span class="cov4" title="10">ignoreLines, ignoreBlocks, ignoreComments = processComment((*comment)(&amp;tokens[i]),
                         (*comment)(&amp;tokens[i+1]), ignoreLines, ignoreBlocks, ignoreComments)</span>
         }
-        <span class="cov4" title="8">ig = make(map[model.CommentCommand][]hcl.Pos)
+        <span class="cov4" title="9">ig = make(map[model.CommentCommand][]hcl.Pos)
         ig.build(ignoreLines, ignoreBlocks, ignoreComments)
         return ig</span>
 }
@@ -14129,7 +14133,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov1" title="1">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -14138,7 +14142,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov1" title="1">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
@@ -14150,14 +14154,14 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov1" title="1">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov1" title="1">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file77" style="display: none">package progress
