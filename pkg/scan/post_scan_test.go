@@ -41,7 +41,7 @@ func Test_GetSummary(t *testing.T) {
 				},
 			},
 			scanParameters: Parameters{
-				DisableTelemetry: false,
+				DisableFullDesc: false,
 			},
 			results: []model.Vulnerability{
 				{
@@ -327,7 +327,7 @@ func Test_resolveOutputs(t *testing.T) {
 			c.Tracker = &tt.tracker
 			c.ScanParams = &tt.scanParams
 			c.ProBarBuilder = progress.InitializePbBuilder(true, false, true)
-			c.Printer = printer.NewPrinter()
+			c.Printer = printer.NewPrinter(true)
 			err := c.postScan(tt.scanResults)
 			require.NoError(t, err)
 		})

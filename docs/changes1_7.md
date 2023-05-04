@@ -2,20 +2,6 @@
 
 ---
 
-## Breaking Changes
+### Descriptions API
 
-### Deprecations
-
-KICS 1.7.0 version removed some of our flags and keep using their default values. 
-They are the following: 
-
-- --minimal-ui
-- --no-progress
-- --no-color
-
-### Flag replacement
-
-From v1.7.0, KICS will no longer support the flag `--disable-full-descriptions`. Instead, a new flag can be used: `--disable-telemetry`.
-
-For more details, see this [link](https://docs.kics.io/latest/results/#telemetry).
-
+From May 1st 2023, KICS Descriptions API will return an empty list.

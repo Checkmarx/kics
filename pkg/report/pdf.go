@@ -32,6 +32,7 @@ const (
 	colFour         = 4
 	colFive         = 5
 	colSix          = 6
+	colEight        = 8
 	colNine         = 9
 	colTen          = 10
 	colFullPage     = 12
@@ -119,8 +120,11 @@ func createQueriesTable(m pdf.Maroto, queries []model.QueryResult) error {
 		m.Row(colFive, func() {
 			createQueryEntryMetadataField(m, "Category", category, defaultTextSize)
 		})
-
-		createDescription(m, description)
+		if queries[i].CISDescriptionID != "" {
+			createCISRows(m, &queries[i])
+		} else {
+			createDescription(m, description)
+		}
 		createResultsTable(m, &queries[i])
 	}
 	return nil
@@ -149,6 +153,48 @@ func createDescription(m pdf.Maroto, description string) {
 	m.Row(colFive, func() {
 		m.ColSpace(0)
 	})
+}
+
+func createCISRows(m pdf.Maroto, query *model.QueryResult) {
+	cisID := query.CISDescriptionIDFormatted
+	description := query.CISDescriptionTextFormatted
+	title := query.CISDescriptionTitle
+
+	m.Row(colFive, func() {
+		m.Col(colTwo, func() {
+			m.Text("Description ID", props.Text{
+				Size:        float64(defaultTextSize),
+				Align:       consts.Left,
+				Style:       consts.Bold,
+				Extrapolate: false,
+			})
+		})
+		m.Col(colEight, func() {
+			m.Text(cisID, props.Text{
+				Size:        float64(defaultTextSize),
+				Align:       consts.Left,
+				Extrapolate: false,
+			})
+		})
+	})
+	m.Row(colFive, func() {
+		m.Col(colTwo, func() {
+			m.Text("Title", props.Text{
+				Size:        float64(defaultTextSize),
+				Align:       consts.Left,
+				Style:       consts.Bold,
+				Extrapolate: false,
+			})
+		})
+		m.Col(colEight, func() {
+			m.Text(title, props.Text{
+				Size:        float64(defaultTextSize),
+				Align:       consts.Left,
+				Extrapolate: false,
+			})
+		})
+	})
+	createDescription(m, description)
 }
 
 func getRowLength(value string) float64 {

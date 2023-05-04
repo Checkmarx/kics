@@ -6,16 +6,16 @@ import (
 
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
+	"github.com/Checkmarx/kics/pkg/descriptions"
 	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
 	"github.com/Checkmarx/kics/pkg/progress"
-	"github.com/Checkmarx/kics/pkg/telemetry"
 	"github.com/rs/zerolog/log"
 )
 
 // Parameters represents all available scan parameters
 type Parameters struct {
 	CloudProvider               []string
-	DisableTelemetry            bool
+	DisableFullDesc             bool
 	ExcludeCategories           []string
 	ExcludePaths                []string
 	ExcludeQueries              []string
@@ -63,7 +63,7 @@ func NewClient(params *Parameters, proBarBuilder *progress.PbBuilder, customPrin
 		return nil, err
 	}
 
-	telemetry.CheckVersion(t)
+	descriptions.CheckVersion(t)
 
 	store := storage.NewMemoryStorage()
 

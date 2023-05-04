@@ -12,11 +12,11 @@
     "defaultValue": "",
     "usage": "path to configuration file"
   },
-  "disable-telemetry": {
+  "disable-full-descriptions": {
     "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",
-    "usage": "disable usage telemetry requests"
+    "usage": "disable request for full descriptions and use default vulnerability descriptions"
   },
   "exclude-categories": {
     "flagType": "multiStr",
@@ -90,6 +90,18 @@
     "shorthandFlag": "b",
     "defaultValue": "./assets/libraries",
     "usage": "path to directory with libraries"
+  },
+  "minimal-ui": {
+    "flagType": "bool",
+    "shorthandFlag": "",
+    "defaultValue": "false",
+    "usage": "simplified version of CLI output"
+  },
+  "no-progress": {
+    "flagType": "bool",
+    "shorthandFlag": "",
+    "defaultValue": "false",
+    "usage": "hides the progress bar"
   },
   "output-name": {
     "flagType": "str",
