@@ -1,7 +1,0 @@
-[
-    {
-      "queryName": "Amazon DMS replication instance is publicly accessible",
-      "severity": "HIGH",
-      "line": 10
-    }
-  ]
