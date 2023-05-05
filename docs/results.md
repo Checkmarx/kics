@@ -35,7 +35,7 @@ After the scanning process is done, If an internet connection is available, KICS
 
 In case of using KICS behind a corporate proxy, proxy configurations can be set with environment variables such as `HTTP_PROXY`, `HTTPS_PROXY`, `NO_PROXY`
 
-Note: From May 1st, 2023, If an internet connection is available, KICS will receive an empty list as response.
+Note: From May 1st, 2023, even If an internet connection is available, KICS will receive an empty list as response and will use the default descriptions.
 
 ## JSON
 
