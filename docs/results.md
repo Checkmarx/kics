@@ -29,7 +29,7 @@ You can also change the default name by using the following command:
 
 This will generate an HTML and Gitlab SAST reports on output folder, with `kics-result` and `gl-sast-kics-result` names.
 
-## Descriptions
+## Descriptions (deprecated from May 1st, 2023)
 
 After the scanning process is done, If an internet connection is available, KICS will try to fetch CIS Proprietary vulnerability descriptions from a HTTP endpoint, this can be disabled with `--disable-cis-descriptions`. If used in offline mode or no internet connection is available, KICS should use the default descriptions.
 
