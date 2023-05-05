@@ -1,0 +1,74 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "A sample template",
+    "Resources": {
+      "ECSService": {
+        "Properties": {
+          "LoadBalancers": [
+            {
+              "TargetGroupArn": {
+                "Ref": "TargetGroup"
+              },
+              "ContainerPort": 80,
+              "ContainerName": "sample-app"
+            }
+          ],
+          "Cluster": {
+            "Ref": "ECSCluster"
+          },
+          "LaunchType": "FARGATE",
+          "Role": {
+            "Ref": "ECSServiceRole"
+          },
+          "TaskDefinition": {
+            "Ref": "ECSTaskDefinition"
+          },
+          "DesiredCount": 1
+        },
+        "Type": "AWS::ECS::Service",
+        "DependsOn": [
+          "Listener"
+        ]
+      },
+      "taskdefinition": {
+        "Type": "AWS::ECS::TaskDefinition",
+        "Properties": {
+            "containerDefinitions": [
+                {
+                    "name": "container-using-efs",
+                    "image": "amazonlinux:2",
+                    "entryPoint": [
+                        "sh",
+                        "-c"
+                    ],
+                    "command": [
+                        "ls -la /mount/efs"
+                    ],
+                    "mountPoints": [
+                        {
+                            "sourceVolume": "myEfsVolume",
+                            "containerPath": "/mount/efs",
+                            "readOnly": true
+                        }
+                    ]
+                }
+            ],
+            "volumes": [
+                {
+                    "name": "myEfsVolume",
+                    "efsVolumeConfiguration": {
+                        "fileSystemId": "fs-1234",
+                        "rootDirectory": "/path/to/my/data",
+                        "transitEncryptionPort": 10,
+                        "transitEncryption": "ENABLED",
+                        "authorizationConfig": {
+                            "accessPointId": "fsap-1234",
+                            "iam": "ENABLED"
+                        }
+                    }
+                }
+            ]
+        }
+      }
+    }
+  }
