@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -15,6 +16,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.type", [openapi_lib.concat_path(path)]),
+		"searchLine": common_lib.build_search_line(path, ["type"]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'pattern' should be defined",
 		"keyActualValue": "'pattern' is undefined",
@@ -34,6 +36,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.type", [openapi_lib.concat_path(path)]),
+		"searchLine": common_lib.build_search_line(path, ["type"]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'pattern' should be defined",
 		"keyActualValue": "'pattern' is undefined",
