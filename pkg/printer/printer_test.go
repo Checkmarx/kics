@@ -106,6 +106,7 @@ var printTests = []struct {
 	caseTest           model.Summary
 	expectedResult     string
 	expectedResultFull string
+	customQueries      bool
 }{
 	{
 		caseTest: test.ComplexSummaryMock,
@@ -131,10 +132,13 @@ var printTests = []struct {
 			"Queries failed to execute: 0\n\n" +
 			"------------------------------------\n\n" +
 			"AmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\n" +
-			"Description: AmazonMQ Broker should have Encryption Options defined\nPlatform: \n\n\t[1]: positive.tf:1\n\n\n\n" +
+			"Description: AmazonMQ Broker should have Encryption Options defined\nPlatform: \n" +
+			"Learn more about this vulnerability: https://docs.kics.io/latest/queries/-queries/aws/3db3f534-e3a3-487f-88c7-0a9fbf64b702\n\n" +
+			"\t[1]: positive.tf:1\n\n\n\n" +
 			"ALB protocol is HTTP, Severity: HIGH, Results: 2\n" +
 			"Description: ALB protocol is HTTP Description\n" +
-			"Platform: \n\n" +
+			"Platform: \n" +
+			"Learn more about this vulnerability: https://docs.kics.io/latest/queries/-queries/de7f5e83-da88-4046-871f-ea18504b1d43\n\n" +
 			"\t[1]: positive.tf:25\n\n\n\n" +
 			"\t[2]: positive.tf:19\n\n\n\n\n" +
 			"Results Summary:\n" +
@@ -143,6 +147,46 @@ var printTests = []struct {
 			"LOW: 0\n" +
 			"INFO: 0\n" +
 			"TOTAL: 3\n\n",
+		customQueries: false,
+	},
+	{
+		caseTest: test.ComplexSummaryMock,
+		expectedResult: "Files scanned: 2\n" +
+			"Parsed files: 2\n" +
+			"Queries loaded: 2\n" +
+			"Queries failed to execute: 0\n\n" +
+			"------------------------------------\n\n" +
+			"AmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\n" +
+			"\t[1]: positive.tf:1\n" +
+			"ALB protocol is HTTP, Severity: HIGH, Results: 2\n" +
+			"\t[1]: positive.tf:25\n" +
+			"\t[2]: positive.tf:19\n\n" +
+			"Results Summary:\n" +
+			"HIGH: 2\n" +
+			"MEDIUM: 1\n" +
+			"LOW: 0\n" +
+			"INFO: 0\n" +
+			"TOTAL: 3\n\n",
+		expectedResultFull: "Files scanned: 2\n" +
+			"Parsed files: 2\n" +
+			"Queries loaded: 2\n" +
+			"Queries failed to execute: 0\n\n" +
+			"------------------------------------\n\n" +
+			"AmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\n" +
+			"Description: AmazonMQ Broker should have Encryption Options defined\nPlatform: \n" +
+			"\t[1]: positive.tf:1\n\n\n\n" +
+			"ALB protocol is HTTP, Severity: HIGH, Results: 2\n" +
+			"Description: ALB protocol is HTTP Description\n" +
+			"Platform: \n" +
+			"\t[1]: positive.tf:25\n\n\n\n" +
+			"\t[2]: positive.tf:19\n\n\n\n\n" +
+			"Results Summary:\n" +
+			"HIGH: 2\n" +
+			"MEDIUM: 1\n" +
+			"LOW: 0\n" +
+			"INFO: 0\n" +
+			"TOTAL: 3\n\n",
+		customQueries: true,
 	},
 }
 
@@ -153,7 +197,9 @@ func TestPrintResult(t *testing.T) {
 	color.Disable()
 	for idx, testCase := range printTests {
 		t.Run(fmt.Sprintf("Print test case %d", idx), func(t *testing.T) {
-			out, err := test.CaptureOutput(func() error { return PrintResult(&testCase.caseTest, failedQueries, NewPrinter(true)) })
+			out, err := test.CaptureOutput(func() error {
+				return PrintResult(&testCase.caseTest, failedQueries, NewPrinter(true), testCase.customQueries)
+			})
 			require.NoError(t, err)
 			require.Equal(t, testCase.expectedResult, out)
 		})
@@ -161,7 +207,9 @@ func TestPrintResult(t *testing.T) {
 
 	for idx, testCase := range printTests {
 		t.Run(fmt.Sprintf("Print test case %d no minimal", idx), func(t *testing.T) {
-			out, err := test.CaptureOutput(func() error { return PrintResult(&testCase.caseTest, failedQueries, NewPrinter(false)) })
+			out, err := test.CaptureOutput(func() error {
+				return PrintResult(&testCase.caseTest, failedQueries, NewPrinter(false), testCase.customQueries)
+			})
 			require.NoError(t, err)
 			require.Equal(t, testCase.expectedResultFull, out)
 		})

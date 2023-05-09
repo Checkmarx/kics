@@ -7,6 +7,8 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/Checkmarx/kics/pkg/utils"
+
 	consoleFlags "github.com/Checkmarx/kics/internal/console/flags"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/gookit/color"
@@ -100,7 +102,7 @@ func WordWrap(s, indentation string, limit int) string {
 }
 
 // PrintResult prints on output the summary results
-func PrintResult(summary *model.Summary, failedQueries map[string]error, printer *Printer) error {
+func PrintResult(summary *model.Summary, failedQueries map[string]error, printer *Printer, usingCustomQueries bool) error {
 	log.Debug().Msg("helpers.PrintResult()")
 	fmt.Printf("Files scanned: %d\n", summary.ScannedFiles)
 	fmt.Printf("Parsed files: %d\n", summary.ParsedFiles)
@@ -111,6 +113,7 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 		fmt.Printf("\t- %s:\n", queryName)
 		fmt.Printf("%s", WordWrap(err.Error(), "\t\t", wordWrapCount))
 	}
+
 	fmt.Printf("------------------------------------\n\n")
 	for index := range summary.Queries {
 		idx := len(summary.Queries) - index - 1
@@ -132,7 +135,24 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 			} else {
 				fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].Description)
 			}
-			fmt.Printf("%s %s\n\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
+			fmt.Printf("%s %s\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
+
+			queryCloudProvider := summary.Queries[idx].CloudProvider
+			if queryCloudProvider != "" {
+				queryCloudProvider = strings.ToLower(queryCloudProvider) + "/"
+			}
+
+			// checks if should print queries URL DOCS based on the use of custom queries and invalid ids
+			if !usingCustomQueries {
+				if validQueryID(summary.Queries[idx].QueryID) {
+					fmt.Printf("%s %s\n\n",
+						printer.Bold("Learn more about this vulnerability:"),
+						fmt.Sprintf("https://docs.kics.io/latest/queries/%s-queries/%s%s",
+							strings.ToLower(summary.Queries[idx].Platform),
+							queryCloudProvider,
+							summary.Queries[idx].QueryID))
+				}
+			}
 		}
 		printFiles(&summary.Queries[idx], printer)
 	}
@@ -272,4 +292,13 @@ func (p *Printer) PrintBySev(content, sev string) string {
 // Bold returns the output in a bold format
 func (p *Printer) Bold(content string) string {
 	return color.Bold.Sprintf(content)
+}
+
+func validQueryID(queryID string) bool {
+	if queryID == "" {
+		return false
+	} else if queryID != "" {
+		return utils.ValidateUUID(queryID)
+	}
+	return true
 }

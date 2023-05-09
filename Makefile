@@ -154,6 +154,12 @@ generate-queries-docs: ## generate queries catalog md files
 		-o ./docs/queries/ \
 		-f md \
 		-t .github/generators/templates
+	@python3 -u .github/scripts/docs-generator/query-page-generator/query-page-generator.py \
+    	-p ./assets/queries/ \
+        -o ./docs/queries/ \
+        -f md \
+        --t .github/scripts/docs-generator/query-page-generator/templates/query-page-template.md \
+		--df
 	@echo "\033[36mQueries catalog updated\033[0m"
 
 .PHONY: integration
