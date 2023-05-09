@@ -19,7 +19,7 @@
         <link rel="next" href="../commands/">
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
     
     
       
@@ -1438,45 +1438,45 @@
 <h4 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h4>
 <p>KICS is available as a <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">Docker image</a> and can be used as follows:</p>
 <p>To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the -p KICS parameter (see Scan Command Options section below)</p>
-<pre><code class="language-shell">docker pull checkmarx/kics:latest
-docker run -t -v &quot;{path_to_host_folder_to_scan}&quot;:/path checkmarx/kics scan -p /path -o &quot;/path/&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>checkmarx/kics:latest
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>docker<span class="w"> </span>run<span class="w"> </span>-t<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;{path_to_host_folder_to_scan}&quot;</span>:/path<span class="w"> </span>checkmarx/kics<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span>/path<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;/path/&quot;</span>
+</code></pre></div>
 <p>You can see the list of available tags in <a href="https://hub.docker.com/r/checkmarx/kics/tags?page=1&amp;ordering=-name">dockerhub</a></p>
 <p>ℹ️ <strong>UBI Based Images</strong></p>
 <p>When using <a href="https://catalog.redhat.com">UBI8</a> based image, the KICS process will run under the <code>kics</code> user and <code>kics</code> group with default UID=1000 and GID=1000, when using bind mount to share host files with the container, the UID and GID can be overriden to match current user with the <code>-u</code> flag that overrides the username:group or UID:GID. e.g:</p>
-<pre><code class="language-sh">docker run -it -u $UID:$GID -v $PWD:/path checkmarx/kics:ubi8 scan -p /path/assets/queries/dockerfile -o /path -v
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-u<span class="w"> </span><span class="nv">$UID</span>:<span class="nv">$GID</span><span class="w"> </span>-v<span class="w"> </span><span class="nv">$PWD</span>:/path<span class="w"> </span>checkmarx/kics:ubi8<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span>/path/assets/queries/dockerfile<span class="w"> </span>-o<span class="w"> </span>/path<span class="w"> </span>-v
+</code></pre></div>
 <p>Another option is <a href="https://github.com/Checkmarx/kics/blob/master/docker/Dockerfile.ubi8">rebuilding the dockerfile</a> providing build arguments e.g: <code>--build-arg UID=999 --build-arg GID=999 --build-arg KUSER=myuser --build-arg KUSER=mygroup</code></p>
 <h4 id="build_from_sources">Build from Sources<a class="headerlink" href="#build_from_sources" title="Permanent link">&para;</a></h4>
 <ol>
 <li>Download and install Go 1.16 or higher from <a href="https://golang.org/dl/" target="_blank">https://golang.org/dl/</a>.</li>
 <li>Clone the repository:
-    <code>sh
-    git clone https://github.com/Checkmarx/kics.git</code></li>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Checkmarx/kics.git
+</code></pre></div></li>
 <li>
 <p>Build the binaries:
-    <code>sh
-    cd kics
-    go mod vendor
-    make build</code></p>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>kics
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>go<span class="w"> </span>mod<span class="w"> </span>vendor
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>make<span class="w"> </span>build
+</code></pre></div></p>
 <p>or </p>
-<p><code>sh
-cd kics
-go mod vendor
-LINUX/MAC: go build -o ./bin/kics cmd/console/main.go
-WINDOWS: go build -o ./bin/kics.exe cmd/console/main.go (make sure to create the bin folder)</code>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span>kics
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>go<span class="w"> </span>mod<span class="w"> </span>vendor
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>LINUX/MAC:<span class="w"> </span>go<span class="w"> </span>build<span class="w"> </span>-o<span class="w"> </span>./bin/kics<span class="w"> </span>cmd/console/main.go
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>WINDOWS:<span class="w"> </span>go<span class="w"> </span>build<span class="w"> </span>-o<span class="w"> </span>./bin/kics.exe<span class="w"> </span>cmd/console/main.go<span class="w"> </span><span class="o">(</span>make<span class="w"> </span>sure<span class="w"> </span>to<span class="w"> </span>create<span class="w"> </span>the<span class="w"> </span>bin<span class="w"> </span>folder<span class="o">)</span>
+</code></pre></div>
 4. Kick a scan!
-<code>sh
-./bin/kics scan -p '&lt;path-of-your-project-to-scan&gt;' --report-formats json -o ./results</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>./bin/kics<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span><span class="s1">&#39;&lt;path-of-your-project-to-scan&gt;&#39;</span><span class="w"> </span>--report-formats<span class="w"> </span>json<span class="w"> </span>-o<span class="w"> </span>./results
+</code></pre></div></p>
 </li>
 </ol>
 <h4 id="deprecated_homebrew">[Deprecated] Homebrew<a class="headerlink" href="#deprecated_homebrew" title="Permanent link">&para;</a></h4>
 <p>KICS is available on Checkmarx <a href="https://github.com/Checkmarx/homebrew-tap">homebrew-tap</a> only for versions until 1.5.1. It can be used as follows:</p>
-<pre><code>brew install Checkmarx/tap/kics
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>brew install Checkmarx/tap/kics
+</code></pre></div>
 <p>To use KICS default queries add the KICS_QUERIES_PATH environmental variable to your shell profile, e.g:</p>
-<pre><code>echo 'export KICS_QUERIES_PATH=/usr/local/opt/kics/share/kics/assets/queries' &gt;&gt; ~/.zshrc
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>echo &#39;export KICS_QUERIES_PATH=/usr/local/opt/kics/share/kics/assets/queries&#39; &gt;&gt; ~/.zshrc
+</code></pre></div>
 <h4 id="custom_queries">Custom Queries<a class="headerlink" href="#custom_queries" title="Permanent link">&para;</a></h4>
 <p>You can provide your own path to the queries directory with <code>-q</code> CLI option (see CLI Options section below), otherwise the default directory will be used The default <em>./assets/queries</em> is built-in in the image. You can use this to provide a path to your own custom queries. Check <a href="../creating-queries/">create a new query guide</a> to learn how to define your own queries.</p>
 <h4 id="password_and_secrets">Password and Secrets<a class="headerlink" href="#password_and_secrets" title="Permanent link">&para;</a></h4>

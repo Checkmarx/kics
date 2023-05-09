@@ -19,7 +19,7 @@
         <link rel="next" href="../integrations_teamcity/">
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
     
     
       
@@ -1443,39 +1443,39 @@
 <li><a href="https://plugins.jenkins.io/docker-plugin/">Docker Plugin</a></li>
 <li><a href="https://plugins.jenkins.io/docker-workflow/">Docker Pipeline Plugin</a></li>
 </ul>
-<pre><code class="language-groovy">pipeline {
-    agent {
-        docker {
-            image 'ubuntu:latest'
-        }
-    }
-    options {
-        timeout(time: 30, unit: 'MINUTES')
-        buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
-        disableConcurrentBuilds()
-    }
-    stages {
-        stage('Checkout Code') {
-          steps {
-              git branch: 'master', url: 'https://github.com/GoogleCloudPlatform/terraform-google-examples'
-              stash includes: '**/*', name: 'source'
-          }
-        }
-        stage('KICS scan') {
-            steps {
-                script {
-                    docker.image('checkmarx/kics:latest').inside(&quot;--entrypoint=''&quot;) {
-                      unstash 'source'
-                      sh('/app/bin/kics scan -p \'\$(pwd)\' --ci --report-formats html -o \'\$(pwd)\' --ignore-on-exit results')
-                      archiveArtifacts(artifacts: 'results.html', fingerprint: true)
-                      publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: '.', reportFiles: 'results.html', reportName: 'KICS Results', reportTitles: ''])
-                    }
-                }
-            }
-        }
-    }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">pipeline</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">agent</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="n">docker</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">            </span><span class="n">image</span><span class="w"> </span><span class="s1">&#39;ubuntu:latest&#39;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="n">options</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="n">timeout</span><span class="o">(</span><span class="nl">time:</span><span class="w"> </span><span class="mi">30</span><span class="o">,</span><span class="w"> </span><span class="nl">unit:</span><span class="w"> </span><span class="s1">&#39;MINUTES&#39;</span><span class="o">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="n">buildDiscarder</span><span class="o">(</span><span class="n">logRotator</span><span class="o">(</span><span class="nl">numToKeepStr:</span><span class="w"> </span><span class="s1">&#39;30&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">artifactNumToKeepStr:</span><span class="w"> </span><span class="s1">&#39;30&#39;</span><span class="o">))</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="n">disableConcurrentBuilds</span><span class="o">()</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="n">stages</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Checkout Code&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">          </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">              </span><span class="n">git</span><span class="w"> </span><span class="nl">branch:</span><span class="w"> </span><span class="s1">&#39;master&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">url:</span><span class="w"> </span><span class="s1">&#39;https://github.com/GoogleCloudPlatform/terraform-google-examples&#39;</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">              </span><span class="n">stash</span><span class="w"> </span><span class="nl">includes:</span><span class="w"> </span><span class="s1">&#39;**/*&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">name:</span><span class="w"> </span><span class="s1">&#39;source&#39;</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">          </span><span class="o">}</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;KICS scan&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">            </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">                </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">                    </span><span class="n">docker</span><span class="o">.</span><span class="na">image</span><span class="o">(</span><span class="s1">&#39;checkmarx/kics:latest&#39;</span><span class="o">).</span><span class="na">inside</span><span class="o">(</span><span class="s2">&quot;--entrypoint=&#39;&#39;&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">                      </span><span class="n">unstash</span><span class="w"> </span><span class="s1">&#39;source&#39;</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">                      </span><span class="n">sh</span><span class="o">(</span><span class="s1">&#39;/app/bin/kics scan -p \&#39;\$(pwd)\&#39; --ci --report-formats html -o \&#39;\$(pwd)\&#39; --ignore-on-exit results&#39;</span><span class="o">)</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">                      </span><span class="n">archiveArtifacts</span><span class="o">(</span><span class="nl">artifacts:</span><span class="w"> </span><span class="s1">&#39;results.html&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">fingerprint:</span><span class="w"> </span><span class="kc">true</span><span class="o">)</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">                      </span><span class="n">publishHTML</span><span class="o">([</span><span class="nl">allowMissing:</span><span class="w"> </span><span class="kc">true</span><span class="o">,</span><span class="w"> </span><span class="nl">alwaysLinkToLastBuild:</span><span class="w"> </span><span class="kc">true</span><span class="o">,</span><span class="w"> </span><span class="nl">keepAll:</span><span class="w"> </span><span class="kc">true</span><span class="o">,</span><span class="w"> </span><span class="nl">reportDir:</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">reportFiles:</span><span class="w"> </span><span class="s1">&#39;results.html&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">reportName:</span><span class="w"> </span><span class="s1">&#39;KICS Results&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">reportTitles:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="o">])</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">                    </span><span class="o">}</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">                </span><span class="o">}</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">            </span><span class="o">}</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="o">}</span>
+</code></pre></div>
 <p>The report will be published in pure HTML by default, if you want to enable your browser to load css and javascript embedded in the report.html you'll have to configure a custom Content-Security-Policy HTTP header.</p>
 <table>
 <thead>
@@ -1492,40 +1492,40 @@
 <p></br></p>
 <p>Go to <strong>Manage Jenkins</strong> &gt; <strong>Script Console</strong></p>
 <p>Paste the following script and run:</p>
-<pre><code class="language-groovy">System.setProperty(&quot;hudson.model.DirectoryBrowserSupport.CSP&quot;, &quot;sandbox allow-scripts; default-src *; style-src * http://* 'unsafe-inline' 'unsafe-eval'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'&quot;);
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s2">&quot;hudson.model.DirectoryBrowserSupport.CSP&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;sandbox allow-scripts; default-src *; style-src * http://* &#39;unsafe-inline&#39; &#39;unsafe-eval&#39;; script-src &#39;self&#39; http://* &#39;unsafe-inline&#39; &#39;unsafe-eval&#39;&quot;</span><span class="o">);</span>
+</code></pre></div>
 <p>Jenkins will exhibit the following warning:</p>
-<pre><code>The default Content-Security-Policy is currently overridden using the hudson.model.DirectoryBrowserSupport.CSP system property, which is a potential security issue when browsing untrusted files. As an alternative, you can set up a resource root URL that Jenkins will use to serve some static files without adding Content-Security-Policy headers.
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>The default Content-Security-Policy is currently overridden using the hudson.model.DirectoryBrowserSupport.CSP system property, which is a potential security issue when browsing untrusted files. As an alternative, you can set up a resource root URL that Jenkins will use to serve some static files without adding Content-Security-Policy headers.
+</code></pre></div>
 <h3 id="using_kics_with_junit_plugin">Using KICS with JUnit plugin<a class="headerlink" href="#using_kics_with_junit_plugin" title="Permanent link">&para;</a></h3>
 <p>First of all you need to check if the JUnit plugin is installed:</p>
 <p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-junit-plugin.png" width="850"></p>
 <p>If it is not installed, you can install it by clicking on <strong>Plugins</strong> on the left menu bar, then click on <strong>Install Plugin</strong> and select <strong>JUnit</strong>.</p>
 <p>After that, you can add the following line to your pipeline script:</p>
-<pre><code class="language-groovy">    junit testResults: 'results/junit-results.xml', skipPublishingChecks: true
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span><span class="n">junit</span><span class="w"> </span><span class="nl">testResults:</span><span class="w"> </span><span class="s1">&#39;results/junit-results.xml&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">skipPublishingChecks:</span><span class="w"> </span><span class="kc">true</span>
+</code></pre></div>
 <p>The skipPublishingChecks option is important, otherwise the JUnit plugin will try to publish the results to GitHub in Jenkins. If you want to do this, you should check the <a href="https://plugins.jenkins.io/junit/">JUnit plugin documentation</a> for more information.</p>
 <p>If you are using our example script, it will look like the following:</p>
-<pre><code class="language-groovy">pipeline {
-  agent any
-  stages {
-    stage('Checkout Code') {
-      steps {
-        git(branch: 'master', url: 'https://github.com/GoogleCloudPlatform/terraform-google-examples')
-      }
-    }
-
-    stage('KICS scan') {
-      steps {
-        sh &quot;mkdir -p results&quot;
-        sh(script: '/usr/bin/kics scan --ci --no-color -p ${WORKSPACE} --output-path results --ignore-on-exit results --report-formats &quot;json,sarif,html&quot;')
-        junit testResults: 'results/junit-results.xml', skipPublishingChecks: true
-        archiveArtifacts(artifacts: 'results/*.html,results/*.sarif,results/*.json', fingerprint: true)
-      }
-    }
-  }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">pipeline</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="n">agent</span><span class="w"> </span><span class="n">any</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="n">stages</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Checkout Code&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="n">git</span><span class="o">(</span><span class="nl">branch:</span><span class="w"> </span><span class="s1">&#39;master&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">url:</span><span class="w"> </span><span class="s1">&#39;https://github.com/GoogleCloudPlatform/terraform-google-examples&#39;</span><span class="o">)</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">      </span><span class="o">}</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;KICS scan&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;mkdir -p results&quot;</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">        </span><span class="n">sh</span><span class="o">(</span><span class="nl">script:</span><span class="w"> </span><span class="s1">&#39;/usr/bin/kics scan --ci --no-color -p ${WORKSPACE} --output-path results --ignore-on-exit results --report-formats &quot;json,sarif,html&quot;&#39;</span><span class="o">)</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">        </span><span class="n">junit</span><span class="w"> </span><span class="nl">testResults:</span><span class="w"> </span><span class="s1">&#39;results/junit-results.xml&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">skipPublishingChecks:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">        </span><span class="n">archiveArtifacts</span><span class="o">(</span><span class="nl">artifacts:</span><span class="w"> </span><span class="s1">&#39;results/*.html,results/*.sarif,results/*.json&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">fingerprint:</span><span class="w"> </span><span class="kc">true</span><span class="o">)</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">      </span><span class="o">}</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="o">}</span>
+</code></pre></div>
 <p>This will publish the JUnit results in Jenkins as you can see in the next images:</p>
 <p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-junit-overview.png" width="850"></p>
 <p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-junit-results-overview.png" width="850"></p>

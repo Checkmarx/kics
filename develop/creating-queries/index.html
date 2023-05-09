@@ -19,7 +19,7 @@
         <link rel="next" href="../secrets/">
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
     
     
       
@@ -1421,42 +1421,42 @@
 
 <h2 id="create_a_new_query">Create a new Query<a class="headerlink" href="#create_a_new_query" title="Permanent link">&para;</a></h2>
 <p>The queries are written in Rego and our internal parser transforms every IaC file that supports into a universal JSON format. This way anyone can start working on a query by picking up a small sample of the vulnerability that the query should target, and convert this sample, which can be a .tf or .yaml file, to our JSON structure JSON. To convert the sample you can run the following command:</p>
-<pre><code class="language-bash">go run ./cmd/console/main.go scan -p &quot;pathToTestData&quot; -d &quot;pathToGenerateJson&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>go<span class="w"> </span>run<span class="w"> </span>./cmd/console/main.go<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;pathToTestData&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;pathToGenerateJson&quot;</span>
+</code></pre></div>
 <p>So for example, if we wanted to transform a .tf file in ./code/test we could type:</p>
-<pre><code class="language-bash">go run ./cmd/console/main.go scan -p  &quot;./src/test&quot; -d &quot;src/test/input.json&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>go<span class="w"> </span>run<span class="w"> </span>./cmd/console/main.go<span class="w"> </span>scan<span class="w"> </span>-p<span class="w">  </span><span class="s2">&quot;./src/test&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;src/test/input.json&quot;</span>
+</code></pre></div>
 <p>Example of input.json</p>
-<pre><code class="language-json">{
-    &quot;document&quot;: [
-        {
-            &quot;resource&quot;: {
-                &quot;aws_cloudtrail&quot;: {
-                    &quot;positive1&quot;: {
-                        &quot;name&quot;: &quot;npositive_1&quot;,
-                        &quot;s3_bucket_name&quot;: &quot;bucketlog_1&quot;
-                    }
-                }
-            },
-            &quot;id&quot;: &quot;02926636-f2c1-46c3-93cc-c7dc2a79791f&quot;,
-            &quot;file&quot;: &quot;/assets/queries/terraform/aws/cloudtrail_multi_region_disabled/test/positive1.tf&quot;
-        },
-        {
-            &quot;resource&quot;: {
-                &quot;aws_cloudtrail&quot;: {
-                    &quot;positive2&quot;: {
-                        &quot;name&quot;: &quot;npositive_2&quot;,
-                        &quot;s3_bucket_name&quot;: &quot;bucketlog_2&quot;,
-                        &quot;is_multi_region_trail&quot;: false
-                    }
-                }
-            },
-            &quot;id&quot;: &quot;4b27da84-4d38-4422-b2b5-fa85029dad2a&quot;,
-            &quot;file&quot;: &quot;assets/queries/terraform/aws/cloudtrail_multi_region_disabled/test/positive2.tf&quot;
-        }
-    ]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="nt">&quot;document&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">            </span><span class="nt">&quot;resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">                </span><span class="nt">&quot;aws_cloudtrail&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">                    </span><span class="nt">&quot;positive1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">                        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;npositive_1&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">                        </span><span class="nt">&quot;s3_bucket_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bucketlog_1&quot;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">                    </span><span class="p">}</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">            </span><span class="p">},</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;02926636-f2c1-46c3-93cc-c7dc2a79791f&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">            </span><span class="nt">&quot;file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/assets/queries/terraform/aws/cloudtrail_multi_region_disabled/test/positive1.tf&quot;</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">            </span><span class="nt">&quot;resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">                </span><span class="nt">&quot;aws_cloudtrail&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">                    </span><span class="nt">&quot;positive2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">                        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;npositive_2&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">                        </span><span class="nt">&quot;s3_bucket_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bucketlog_2&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">                        </span><span class="nt">&quot;is_multi_region_trail&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">                    </span><span class="p">}</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">            </span><span class="p">},</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4b27da84-4d38-4422-b2b5-fa85029dad2a&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">            </span><span class="nt">&quot;file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;assets/queries/terraform/aws/cloudtrail_multi_region_disabled/test/positive2.tf&quot;</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">    </span><span class="p">]</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="p">}</span>
+</code></pre></div>
 <p>After having the .json that will be our Rego input, we can begin to write queries.
 To test and debug there are two ways:</p>
 <ul>
@@ -1468,51 +1468,51 @@ To test and debug there are two ways:</p>
 - <strong>query.rego</strong>: Includes the policy and defines the result. The policy builds the pattern that breaks the security of the infrastructure code, which the query is looking for. The result defines the specific data used to present the vulnerability in the infrastructure code.
 - <strong>metadata.json</strong>: Each query has a metadata.json companion file with all the relevant information about the vulnerability, including the severity, category and its description;
 - <strong>test</strong>: Folder that contains at least one negative and positive case and a JSON file with data about the expected results.</p>
-<pre><code>- &lt;technology&gt;
-    |- &lt;provider&gt;
-    |   |- &lt;queryfolder&gt;
-    |   |   |- test
-    |   |   |   |- positive1&lt;.ext&gt;
-    |   |   |   |- positive2&lt;.ext&gt;
-    |   |   |   |- negative1&lt;.ext&gt;
-    |   |   |   |- negative2&lt;.ext&gt;
-    |   |   |   |- positive_expected_result.json
-    |   |   |- metadata.json
-    |   |   |- query.rego
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>- &lt;technology&gt;
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    |- &lt;provider&gt;
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    |   |- &lt;queryfolder&gt;
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    |   |   |- test
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    |   |   |   |- positive1&lt;.ext&gt;
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    |   |   |   |- positive2&lt;.ext&gt;
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    |   |   |   |- negative1&lt;.ext&gt;
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    |   |   |   |- negative2&lt;.ext&gt;
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    |   |   |   |- positive_expected_result.json
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    |   |   |- metadata.json
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    |   |   |- query.rego
+</code></pre></div>
 <p>Now, focus on the content of each file:</p>
 <p>👨‍💻 <strong>REGO File</strong></p>
 <p>As a first step, it is important to be familiar with the libraries available (check them in <code>assets/libraries</code>) and the JSON structure (Rego input). Also, we need to study all the possible cases related to the vulnerability we want to verify before starting the implementation.</p>
 <p>For example, if we want to verify if the AWS CloudTrail has MultiRegion disabled in a Terraform sample, we need to focus on the attribute <code>is_multi_region_trail</code> of the resource <code>aws_cloudtrail</code>. Since this attribute is optional and false by default, we have two cases: (1) <code>is_multi_region_trail</code> is undefined and (2) <code>is_multi_region_trail</code> is set to false. Observe the following implementation as an example and check the Guidelines below.</p>
 <p>:rotating_light: <strong>Make sure you use <code>package Cx</code>. If you give another name, the query will not load.</strong> :rotating_light:</p>
-<pre><code>package Cx
-
-CxPolicy[result] {
-    cloudtrail := input.document[i].resource.aws_cloudtrail[name]
-    object.get(cloudtrail, &quot;is_multi_region_trail&quot;, &quot;undefined&quot;) == &quot;undefined&quot;
-
-    result := {
-        &quot;documentId&quot;: input.document[i].id,
-        &quot;searchKey&quot;: sprintf(&quot;aws_cloudtrail[%s]&quot;, [name]),
-        &quot;issueType&quot;: &quot;MissingAttribute&quot;,
-        &quot;keyExpectedValue&quot;: &quot;CloudTrail Multi Region should be defined&quot;,
-        &quot;keyActualValue&quot;: &quot;CloudTrail Multi Region is undefined&quot;,
-    }
-}
-
-CxPolicy[result] {
-    cloudtrail := input.document[i].resource.aws_cloudtrail[name]
-    cloudtrail.is_multi_region_trail == false
-
-    result := {
-        &quot;documentId&quot;: input.document[i].id,
-        &quot;searchKey&quot;: sprintf(&quot;aws_cloudtrail[%s].is_multi_region_trail&quot;, [name]),
-        &quot;issueType&quot;: &quot;IncorrectValue&quot;,
-        &quot;keyExpectedValue&quot;: &quot;CloudTrail Multi Region should be set to true&quot;,
-        &quot;keyActualValue&quot;: &quot;CloudTrail Multi Region is set to false&quot;,
-    }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>package Cx
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>CxPolicy[result] {
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    cloudtrail := input.document[i].resource.aws_cloudtrail[name]
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    object.get(cloudtrail, &quot;is_multi_region_trail&quot;, &quot;undefined&quot;) == &quot;undefined&quot;
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    result := {
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>        &quot;documentId&quot;: input.document[i].id,
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        &quot;searchKey&quot;: sprintf(&quot;aws_cloudtrail[%s]&quot;, [name]),
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>        &quot;issueType&quot;: &quot;MissingAttribute&quot;,
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>        &quot;keyExpectedValue&quot;: &quot;CloudTrail Multi Region should be defined&quot;,
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>        &quot;keyActualValue&quot;: &quot;CloudTrail Multi Region is undefined&quot;,
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    }
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>}
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>CxPolicy[result] {
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>    cloudtrail := input.document[i].resource.aws_cloudtrail[name]
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>    cloudtrail.is_multi_region_trail == false
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>    result := {
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>        &quot;documentId&quot;: input.document[i].id,
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>        &quot;searchKey&quot;: sprintf(&quot;aws_cloudtrail[%s].is_multi_region_trail&quot;, [name]),
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>        &quot;issueType&quot;: &quot;IncorrectValue&quot;,
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>        &quot;keyExpectedValue&quot;: &quot;CloudTrail Multi Region should be set to true&quot;,
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>        &quot;keyActualValue&quot;: &quot;CloudTrail Multi Region is set to false&quot;,
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>    }
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>}
+</code></pre></div>
 <p>To test the query in the <a href="https://play.openpolicyagent.org/">Rego playground</a>, perform the following steps:
 1. Enable Coverage (highlights which statements were evaluated);
 2. In the input, paste the payload (explained above);
@@ -1522,72 +1522,72 @@ CxPolicy[result] {
 <p><img alt="RegoPlayground" src="img/rego_playground_example_tf.PNG"></p>
 <p>👨‍💻 <strong>Metadata File</strong></p>
 <p>Observe the following metadata.json example and check the Guidelines below for more detailed information.</p>
-<pre><code class="language-json">{
-  &quot;id&quot;: &quot;8173d5eb-96b5-4aa6-a71b-ecfa153c123d&quot;,
-  &quot;queryName&quot;: &quot;CloudTrail Multi Region Disabled&quot;,
-  &quot;severity&quot;: &quot;MEDIUM&quot;,
-  &quot;category&quot;: &quot;Observability&quot;,
-  &quot;descriptionText&quot;: &quot;CloudTrail should have 'is_multi_region_trail' and 'include_global_service_events' enabled&quot;,
-  &quot;descriptionUrl&quot;: &quot;https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#is_multi_region_trail&quot;,
-  &quot;platform&quot;: &quot;Terraform&quot;,
-  &quot;descriptionID&quot;: &quot;feb82a62&quot;,
-  &quot;cloudProvider&quot;: &quot;aws&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;8173d5eb-96b5-4aa6-a71b-ecfa153c123d&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">&quot;queryName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CloudTrail Multi Region Disabled&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MEDIUM&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Observability&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="nt">&quot;descriptionText&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CloudTrail should have &#39;is_multi_region_trail&#39; and &#39;include_global_service_events&#39; enabled&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="nt">&quot;descriptionUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#is_multi_region_trail&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="nt">&quot;platform&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Terraform&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">  </span><span class="nt">&quot;descriptionID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;feb82a62&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">  </span><span class="nt">&quot;cloudProvider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;aws&quot;</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="p">}</span>
+</code></pre></div>
 <p>👨‍💻 <strong>Data File</strong></p>
 <p>This file contains a map, with string keys, which will have default values for keys that can be overwritten as described on <a href="#allowing-users-to-overwrite-query-data">allowing users to overwrite query data section</a> and <a href="../running-kics/#using-custom-input-data">using custom input data section of Running KICS</a></p>
 <p>👨‍💻 <strong>Test Folder</strong></p>
 <p>Keep in mind that all the positive and negative files should contain only one breaking point case. This way, the results are more clear. As a best practice, the test folder should contain all the <a href="https://docs.kics.io/latest/platforms/">extensions available</a> by the platform.</p>
 <p>Each positive case should present a breaking point of the vulnerability. Continuing with the example, we should display two positive files: one without the <code>is_multi_region_trail</code> defined (positive1.tf) and another with the <code>is_multi_region_trail</code> set to false (positive2.tf).</p>
 <p><em>positive1.tf</em></p>
-<pre><code>resource &quot;aws_cloudtrail&quot; &quot;positive1&quot; {
-  name                          = &quot;npositive_1&quot;
-  s3_bucket_name                = &quot;bucketlog_1&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>resource &quot;aws_cloudtrail&quot; &quot;positive1&quot; {
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  name                          = &quot;npositive_1&quot;
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  s3_bucket_name                = &quot;bucketlog_1&quot;
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>}
+</code></pre></div>
 <p><em>positive2.tf</em></p>
-<pre><code>resource &quot;aws_cloudtrail&quot; &quot;positive2&quot; {
-  name                          = &quot;npositive_2&quot;
-  s3_bucket_name                = &quot;bucketlog_2&quot;
-  is_multi_region_trail         = false
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>resource &quot;aws_cloudtrail&quot; &quot;positive2&quot; {
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  name                          = &quot;npositive_2&quot;
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  s3_bucket_name                = &quot;bucketlog_2&quot;
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>  is_multi_region_trail         = false
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>}
+</code></pre></div>
 <p>Each negative case should present the remediation/best practice (a sample with the <code>is_multi_region_trail</code> set to true).</p>
 <p><em>negative1.tf</em></p>
-<pre><code>resource &quot;aws_cloudtrail&quot; &quot;negative1&quot; {
-  name                          = &quot;negative&quot;
-  s3_bucket_name                = &quot;bucketlog&quot;
-  is_multi_region_trail         = true
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>resource &quot;aws_cloudtrail&quot; &quot;negative1&quot; {
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>  name                          = &quot;negative&quot;
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>  s3_bucket_name                = &quot;bucketlog&quot;
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>  is_multi_region_trail         = true
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>}
+</code></pre></div>
 <p>The positive expected result should present where the positive(s) file(s) break(s) the vulnerability (in line 2 (positive1.tf) and line 4 (positive2.tf)).</p>
-<pre><code class="language-json">[
-  {
-    &quot;queryName&quot;: &quot;CloudTrail Multi Region Disabled&quot;,
-    &quot;severity&quot;: &quot;MEDIUM&quot;,
-    &quot;line&quot;: 2,
-    &quot;fileName&quot;: &quot;positive1.tf&quot;
-  },
-  {
-    &quot;queryName&quot;: &quot;CloudTrail Multi Region Disabled&quot;,
-    &quot;severity&quot;: &quot;MEDIUM&quot;,
-    &quot;line&quot;: 4,
-    &quot;fileName&quot;: &quot;positive2.tf&quot;
-  }
-]
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p">[</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nt">&quot;queryName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CloudTrail Multi Region Disabled&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MEDIUM&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="nt">&quot;line&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="nt">&quot;fileName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;positive1.tf&quot;</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">    </span><span class="nt">&quot;queryName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CloudTrail Multi Region Disabled&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MEDIUM&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">    </span><span class="nt">&quot;line&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">    </span><span class="nt">&quot;fileName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;positive2.tf&quot;</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="p">]</span>
+</code></pre></div>
 <h4 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h4>
 <p>For a query to be considered complete, it must be compliant with at least one positive and one negative test case. To run the unit tests you can run this command:</p>
-<pre><code class="language-bash">make test
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>make<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
 <p>Check if the new test was added correctly and if all tests are passing locally. If succeeds, a Pull Request can now be created.</p>
 <h4 id="guidelines">Guidelines<a class="headerlink" href="#guidelines" title="Permanent link">&para;</a></h4>
 <p>Filling metadata.json:</p>
 <ul>
 <li><code>id</code> should be filled with a UUID. You can use the built-in command to generate this:</li>
 </ul>
-<pre><code class="language-bash">go run ./cmd/console/main.go generate-id
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>go<span class="w"> </span>run<span class="w"> </span>./cmd/console/main.go<span class="w"> </span>generate-id
+</code></pre></div>
 <ul>
 <li><code>queryName</code> describes the name of the vulnerability</li>
 <li><code>severity</code> can be filled with <code>HIGH</code>, <code>MEDIUM</code>, <code>LOW</code> or <code>INFO</code></li>
@@ -1617,41 +1617,41 @@ CxPolicy[result] {
 </ul>
 <p>If the <strong>query.rego</strong> file implements more than one query, the <strong>metadata.json</strong> should indicate how many are implemented (through <code>aggregation</code>). That can be necessary due to two cases:
 1. It implements more than one query in the same <strong>query.rego</strong> for the same platform</p>
-<pre><code class="language-json">{
-  &quot;id&quot;: &quot;0ac9abbc-6d7a-41cf-af23-2e57ddb3dbfc&quot;,
-  &quot;queryName&quot;: &quot;Sensitive Port Is Exposed To Entire Network&quot;,
-  &quot;severity&quot;: &quot;HIGH&quot;,
-  &quot;category&quot;: &quot;Networking and Firewall&quot;,
-  &quot;descriptionText&quot;: &quot;A sensitive port, such as port 23 or port 110, is open for the whole network in either TCP or UDP protocol&quot;,
-  &quot;descriptionUrl&quot;: &quot;https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_securitygroup_module.html#parameter-rules&quot;,
-  &quot;platform&quot;: &quot;Ansible&quot;,
-  &quot;descriptionID&quot;: &quot;33745204&quot;,
-  &quot;cloudProvider&quot;: &quot;azure&quot;,
-  &quot;aggregation&quot;: 62
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="p">{</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0ac9abbc-6d7a-41cf-af23-2e57ddb3dbfc&quot;</span><span class="p">,</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span><span class="nt">&quot;queryName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sensitive Port Is Exposed To Entire Network&quot;</span><span class="p">,</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HIGH&quot;</span><span class="p">,</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">  </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Networking and Firewall&quot;</span><span class="p">,</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">  </span><span class="nt">&quot;descriptionText&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A sensitive port, such as port 23 or port 110, is open for the whole network in either TCP or UDP protocol&quot;</span><span class="p">,</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">  </span><span class="nt">&quot;descriptionUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_securitygroup_module.html#parameter-rules&quot;</span><span class="p">,</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">  </span><span class="nt">&quot;platform&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ansible&quot;</span><span class="p">,</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">  </span><span class="nt">&quot;descriptionID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;33745204&quot;</span><span class="p">,</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">  </span><span class="nt">&quot;cloudProvider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;azure&quot;</span><span class="p">,</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">  </span><span class="nt">&quot;aggregation&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">62</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="p">}</span>
+</code></pre></div>
 <ol>
 <li>It implements the same query for different platforms in the same <strong>query.rego</strong>, the metadata below defines the query metadata for both OpenAPI 2.0 and 3.0 in the same file:</li>
 </ol>
-<pre><code class="language-json">{
-  &quot;id&quot;: &quot;332cf2ad-380d-4b90-b436-46f8e635cf38&quot;,
-  &quot;queryName&quot;: &quot;Invalid Contact URL (v3)&quot;,
-  &quot;severity&quot;: &quot;INFO&quot;,
-  &quot;category&quot;: &quot;Best Practices&quot;,
-  &quot;descriptionText&quot;: &quot;Contact Object URL should be a valid URL&quot;,
-  &quot;descriptionUrl&quot;: &quot;https://swagger.io/specification/#contact-object&quot;,
-  &quot;platform&quot;: &quot;OpenAPI&quot;,
-  &quot;override&quot;: {
-    &quot;2.0&quot;: {
-      &quot;id&quot;: &quot;c7000383-16d0-4509-8cd3-585e5ea2e2f2&quot;,
-      &quot;queryName&quot;: &quot;Invalid Contact URL (v2)&quot;,
-      &quot;descriptionUrl&quot;: &quot;https://swagger.io/specification/v2/#contactObject&quot;
-    }
-  },
-  &quot;aggregation&quot;: 2,
-  &quot;descriptionID&quot;: &quot;f3097573&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p">{</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;332cf2ad-380d-4b90-b436-46f8e635cf38&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span><span class="nt">&quot;queryName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Invalid Contact URL (v3)&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;INFO&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">  </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Best Practices&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">  </span><span class="nt">&quot;descriptionText&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Contact Object URL should be a valid URL&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">  </span><span class="nt">&quot;descriptionUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://swagger.io/specification/#contact-object&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">  </span><span class="nt">&quot;platform&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OpenAPI&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">  </span><span class="nt">&quot;override&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">    </span><span class="nt">&quot;2.0&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;c7000383-16d0-4509-8cd3-585e5ea2e2f2&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">      </span><span class="nt">&quot;queryName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Invalid Contact URL (v2)&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">      </span><span class="nt">&quot;descriptionUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://swagger.io/specification/v2/#contactObject&quot;</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="w">  </span><span class="nt">&quot;aggregation&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="w">  </span><span class="nt">&quot;descriptionID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;f3097573&quot;</span>
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="p">}</span>
+</code></pre></div>
 <p>Filling query.rego:</p>
 <ul>
 <li><code>documentId</code> id of the sample where the vulnerability occurs</li>
@@ -1679,102 +1679,102 @@ CxPolicy[result] {
 <li><code>overrideKey</code> [optional] should be used when the query can be applied to more than one platform (for now, it is used for both OpenAPI 3.0 and Swagger)</li>
 </ul>
 <p>For example, the query <code>Invalid Contact URL</code> can be implemented in both OpenAPI 3.0 and Swagger since both versions share the same properties:</p>
-<pre><code>package Cx
-
-import data.generic.openapi as openapi_lib
-
-CxPolicy[result] {
-    doc := input.document[i]
-    version := openapi_lib.check_openapi(doc)
-    version != &quot;undefined&quot;
-
-    not openapi_lib.is_valid_url(doc.info.contact.url)
-
-    result := {
-        &quot;documentId&quot;: doc.id,
-        &quot;searchKey&quot;: &quot;info.contact.url&quot;,
-        &quot;issueType&quot;: &quot;IncorrectValue&quot;,
-        &quot;keyExpectedValue&quot;: &quot;info.contact.url has a valid URL&quot;,
-        &quot;keyActualValue&quot;: &quot;info.contact.url has an invalid URL&quot;,
-        &quot;overrideKey&quot;: version,
-    }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>package Cx
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>import data.generic.openapi as openapi_lib
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>CxPolicy[result] {
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    doc := input.document[i]
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>    version := openapi_lib.check_openapi(doc)
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>    version != &quot;undefined&quot;
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>    not openapi_lib.is_valid_url(doc.info.contact.url)
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>    result := {
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>        &quot;documentId&quot;: doc.id,
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>        &quot;searchKey&quot;: &quot;info.contact.url&quot;,
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>        &quot;issueType&quot;: &quot;IncorrectValue&quot;,
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>        &quot;keyExpectedValue&quot;: &quot;info.contact.url has a valid URL&quot;,
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>        &quot;keyActualValue&quot;: &quot;info.contact.url has an invalid URL&quot;,
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>        &quot;overrideKey&quot;: version,
+<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>    }
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>}
+</code></pre></div>
 <ul>
 <li><code>searchValue</code> [optional] should be used when the query returns more than one result for the same line</li>
 <li><code>searchLine</code> [optional] path where the breaking point occurs in the sample</li>
 </ul>
 <p>For example, the query <strong>Sensitive Port Is Exposed To Entire Network</strong> can return more than one result in the same line (the ingress covers a range of ports). To avoid it, the <em>searchValue</em> should be used.</p>
-<pre><code>package Cx
-
-import data.generic.terraform as terraLib
-import data.generic.common as commonLib
-
-CxPolicy[result] {
-    resource := input.document[i].resource.aws_security_group[name]
-
-    portContent := commonLib.tcpPortsMap[port]
-    portNumber = port
-    portName = portContent
-    protocol := terraLib.getProtocolList(resource.ingress.protocol)[_]
-
-    endswith(resource.ingress.cidr_blocks[_], &quot;/0&quot;)
-    terraLib.containsPort(resource.ingress, portNumber)
-    isTCPorUDP(protocol)
-
-    result := {
-        &quot;documentId&quot;: input.document[i].id,
-        &quot;searchKey&quot;: sprintf(&quot;aws_security_group[%s].ingress&quot;, [name]),
-        &quot;searchValue&quot;: sprintf(&quot;%s,%d&quot;, [protocol, portNumber]),
-        &quot;issueType&quot;: &quot;IncorrectValue&quot;,
-        &quot;keyExpectedValue&quot;: sprintf(&quot;%s (%s:%d) should not be allowed&quot;, [portName, protocol, portNumber]),
-        &quot;keyActualValue&quot;: sprintf(&quot;%s (%s:%d) is allowed&quot;, [portName, protocol, portNumber]),
-    }
-}
-
-isTCPorUDP(&quot;TCP&quot;) = true
-isTCPorUDP(&quot;UDP&quot;) = true
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>package Cx
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>import data.generic.terraform as terraLib
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>import data.generic.common as commonLib
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>CxPolicy[result] {
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    resource := input.document[i].resource.aws_security_group[name]
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>    portContent := commonLib.tcpPortsMap[port]
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    portNumber = port
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>    portName = portContent
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    protocol := terraLib.getProtocolList(resource.ingress.protocol)[_]
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>    endswith(resource.ingress.cidr_blocks[_], &quot;/0&quot;)
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>    terraLib.containsPort(resource.ingress, portNumber)
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>    isTCPorUDP(protocol)
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>    result := {
+<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>        &quot;documentId&quot;: input.document[i].id,
+<a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a>        &quot;searchKey&quot;: sprintf(&quot;aws_security_group[%s].ingress&quot;, [name]),
+<a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a>        &quot;searchValue&quot;: sprintf(&quot;%s,%d&quot;, [protocol, portNumber]),
+<a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a>        &quot;issueType&quot;: &quot;IncorrectValue&quot;,
+<a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a>        &quot;keyExpectedValue&quot;: sprintf(&quot;%s (%s:%d) should not be allowed&quot;, [portName, protocol, portNumber]),
+<a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a>        &quot;keyActualValue&quot;: sprintf(&quot;%s (%s:%d) is allowed&quot;, [portName, protocol, portNumber]),
+<a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a>    }
+<a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a>}
+<a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a>
+<a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a>isTCPorUDP(&quot;TCP&quot;) = true
+<a id="__codelineno-15-29" name="__codelineno-15-29" href="#__codelineno-15-29"></a>isTCPorUDP(&quot;UDP&quot;) = true
+</code></pre></div>
 <h4 id="search_line">Search Line<a class="headerlink" href="#search_line" title="Permanent link">&para;</a></h4>
 <p>To improve the KICS line detection mechanism, <code>searchLine</code> was introduced.</p>
 <p>SearchLine uses json path to get the correct line information from the payload (which can be seen with the flag <code>payload-lines</code>).</p>
-<p>Original Content:</p>
-<pre><code>father:
-  name: son
-</code></pre>
-<p>Payload With Line Information:</p>
-<pre><code>{
-    &quot;_kics_lines&quot;: {
-        &quot;_kics__default&quot;: {
-            &quot;_kics_line&quot;: 0
-        },
-        &quot;_kics_father&quot;: {
-            &quot;_kics_line&quot;: 2
-        }
-    },
-    &quot;father&quot;: {
-        &quot;_kics_lines&quot;: {
-            &quot;_kics__default&quot;: {
-                &quot;_kics_line&quot;: 2
-            },
-            &quot;_kics_name&quot;: {
-                &quot;_kics_line&quot;: 3
-            }
-        },
-        &quot;name&quot;: &quot;son&quot;
-    }
-},
-</code></pre>
+<p>Original Content:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>father:
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>  name: son
+</code></pre></div></p>
+<p>Payload With Line Information:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>{
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    &quot;_kics_lines&quot;: {
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>        &quot;_kics__default&quot;: {
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>            &quot;_kics_line&quot;: 0
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>        },
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>        &quot;_kics_father&quot;: {
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>            &quot;_kics_line&quot;: 2
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>        }
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>    },
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>    &quot;father&quot;: {
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>        &quot;_kics_lines&quot;: {
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>            &quot;_kics__default&quot;: {
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>                &quot;_kics_line&quot;: 2
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>            },
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>            &quot;_kics_name&quot;: {
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>                &quot;_kics_line&quot;: 3
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>            }
+<a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>        },
+<a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>        &quot;name&quot;: &quot;son&quot;
+<a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>    }
+<a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>},
+</code></pre></div></p>
 <p>Usage:</p>
-<pre><code>import data.generic.common as commonLib
-
-result := {
-        &quot;documentId&quot;: doc.id,
-        &quot;searchKey&quot;: &quot;father.son&quot;,
-        &quot;issueType&quot;: &quot;IncorrectValue&quot;,
-        &quot;searchLine&quot;: commonLib.build_search_line([&quot;father&quot;, &quot;son&quot;], []),
-    }
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>import data.generic.common as commonLib
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>result := {
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>        &quot;documentId&quot;: doc.id,
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>        &quot;searchKey&quot;: &quot;father.son&quot;,
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>        &quot;issueType&quot;: &quot;IncorrectValue&quot;,
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>        &quot;searchLine&quot;: commonLib.build_search_line([&quot;father&quot;, &quot;son&quot;], []),
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>    }
+</code></pre></div>
 <p>Function <code>build_search_line(path, obj)</code>:</p>
 <p>The function <code>build_search_line</code> is a helper that builds the searchLine for the engine to create and use the json path.
 It take two arguments:</p>
@@ -1787,17 +1787,17 @@ It take two arguments:</p>
 </li>
 </ul>
 <p>Examples:</p>
-<pre><code>    build_search_line([&quot;father&quot;], [&quot;son&quot;])
-</code></pre>
-<pre><code>    build_search_line([&quot;father&quot;, &quot;son&quot;], [])
-</code></pre>
-<pre><code>    build_search_line([&quot;father&quot;, &quot;son&quot;], [&quot;grandson&quot;, 1])
-</code></pre>
-<pre><code>    [path, value] := walk(x)
-    son := value.son
-    son == false
-    build_search_line(path, [&quot;son&quot;])
-</code></pre>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>    build_search_line([&quot;father&quot;], [&quot;son&quot;])
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>    build_search_line([&quot;father&quot;, &quot;son&quot;], [])
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>    build_search_line([&quot;father&quot;, &quot;son&quot;], [&quot;grandson&quot;, 1])
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>    [path, value] := walk(x)
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>    son := value.son
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>    son == false
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>    build_search_line(path, [&quot;son&quot;])
+</code></pre></div></p>
 <h4 id="allowing_users_to_overwrite_query_data">Allowing users to overwrite query data<a class="headerlink" href="#allowing_users_to_overwrite_query_data" title="Permanent link">&para;</a></h4>
 <p>Starting on v1.3.5, KICS started to support custom data overwriting on queries. This can be useful if users want to provide their own dataset or if users have different datasets for multiple environments. This can be supported easily following some steps:</p>
 <ol>

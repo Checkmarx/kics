@@ -19,7 +19,7 @@
         <link rel="next" href="../results/">
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
     
     
       
@@ -1464,8 +1464,8 @@
 </ul>
 <p>Files and directories that are not local will be placed in a temporarily folder during KICS execution.</p>
 <h3 id="local_files">Local Files<a class="headerlink" href="#local_files" title="Permanent link">&para;</a></h3>
-<pre><code>docker run -t -v {​​​​path_to_scan}​​​​:/path checkmarx/kics scan -p /path
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker run -t -v {​​​​path_to_scan}​​​​:/path checkmarx/kics scan -p /path
+</code></pre></div>
 <h3 id="archived_files">Archived Files<a class="headerlink" href="#archived_files" title="Permanent link">&para;</a></h3>
 <p>Available archive formats:</p>
 <ul>
@@ -1477,13 +1477,13 @@
 <li><code>bz2</code></li>
 <li><code>xz</code></li>
 </ul>
-<pre><code>docker run -t -v {​​​​path_to_scan_zip}​​​​:/path checkmarx/kics scan -p /path
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker run -t -v {​​​​path_to_scan_zip}​​​​:/path checkmarx/kics scan -p /path
+</code></pre></div>
 <p>More information can be seen <a href="https://github.com/hashicorp/go-getter#unarchiving">here</a></p>
 <h3 id="s3">S3<a class="headerlink" href="#s3" title="Permanent link">&para;</a></h3>
 <p>S3 Bucket path syntax:</p>
-<pre><code>s3::{S3 Bucket URL}?{query parameters}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>s3::{S3 Bucket URL}?{query parameters}
+</code></pre></div>
 <h4 id="query_parameters">Query Parameters:<a class="headerlink" href="#query_parameters" title="Permanent link">&para;</a></h4>
 <ul>
 <li><code>aws_access_key_id</code> - AWS access key.</li>
@@ -1491,20 +1491,20 @@
 <li><code>aws_access_token</code> - AWS access token if this is being used.</li>
 <li><code>aws_profile</code> - Use this profile from local ~/.aws/ config. Takes - priority over the other three.</li>
 </ul>
-<pre><code>docker run -t -v ~/.aws:/path checkmarx/kics scan -p &quot;s3::https://s3.amazonaws.com/bucket/foo?aws_profile=/path/.aws/profile&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker run -t -v ~/.aws:/path checkmarx/kics scan -p &quot;s3::https://s3.amazonaws.com/bucket/foo?aws_profile=/path/.aws/profile&quot;
+</code></pre></div>
 <p>More information can be seen <a href="https://github.com/hashicorp/go-getter#s3-s3">here</a></p>
 <h3 id="git">Git<a class="headerlink" href="#git" title="Permanent link">&para;</a></h3>
-<pre><code>docker run -t checkmarx/kics scan -p &quot;git::https://github.com/Checkmarx/kics&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker run -t checkmarx/kics scan -p &quot;git::https://github.com/Checkmarx/kics&quot;
+</code></pre></div>
 <h4 id="ssh">SSH<a class="headerlink" href="#ssh" title="Permanent link">&para;</a></h4>
-<pre><code>docker run -t checkmarx/kics scan -p &quot;git::git@github.com:Checkmarx/kics.git&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker run -t checkmarx/kics scan -p &quot;git::git@github.com:Checkmarx/kics.git&quot;
+</code></pre></div>
 <p>Please make sure you have SSH private key configured with your github account</p>
 <p>More information can be seen <a href="https://github.com/hashicorp/go-getter#git-git">here</a></p>
 <h3 id="gsc">GSC<a class="headerlink" href="#gsc" title="Permanent link">&para;</a></h3>
-<pre><code>docker run -t checkmarx/kics scan -p &quot;gcs::https://www.googleapis.com/storage/v1/bucket&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker run -t checkmarx/kics scan -p &quot;gcs::https://www.googleapis.com/storage/v1/bucket&quot;
+</code></pre></div>
 <p>Please make sure you have set GSC authentication credentials to your application code by environment variables</p>
 <p>More information can be seen <a href="https://github.com/hashicorp/go-getter#gcs-gcs">here</a></p>
 <h2 id="using_custom_input_data">Using custom input data<a class="headerlink" href="#using_custom_input_data" title="Permanent link">&para;</a></h2>
@@ -1512,50 +1512,49 @@
 To overwrite the key, you need to create files following the pattern <code>&lt;query_id&gt;.json</code>, each file representing <strong>one</strong> query and passing folder path containing these files to the flag <code>input-data</code>, this will get all files from this folder and replace all keys on queries found.</p>
 <p><strong>NOTE</strong>: Keys that are not overwritten will use the default value proposed by <code>data.json</code> file of targeted query.</p>
 <p>For example, on <code>queries/common/passwords_and_secrets_in_infrastructure_code/</code> contains the following <code>data.json</code>:</p>
-<pre><code class="language-json">{
-  &quot;defaultPasswords&quot;: [
-    &quot;!@&quot;,
-    &quot;root&quot;,
-    &quot;wubao&quot;,
-    ...
-  ],
-  &quot;blackList&quot;: [
-    &quot;RESOURCE&quot;,
-    &quot;GROUP&quot;,
-    &quot;SUBNET&quot;,
-    ...
-  ]
-}
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">{</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">&quot;defaultPasswords&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="s2">&quot;!@&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="s2">&quot;root&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="s2">&quot;wubao&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="err">...</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span><span class="p">],</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">  </span><span class="nt">&quot;blackList&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="s2">&quot;RESOURCE&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="s2">&quot;GROUP&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span><span class="s2">&quot;SUBNET&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">    </span><span class="err">...</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">  </span><span class="p">]</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="p">}</span>
+</code></pre></div>
 <p>This means there are two keys, <code>defaultPasswords</code> and <code>blackList</code>, that can be overwritten. On the query, you can search them on <code>query.rego</code> file with: <code>data.defaultPasswords</code> and <code>data.blackList</code>, to understand how it is used by the query.</p>
 <p>To overwrite <code>defaultPasswords</code>, you can create a file <code>f996f3cb-00fc-480c-8973-8ab04d44a8cc.json</code> on a folder <code>custom-input</code>, for example, as following:</p>
-<pre><code class="language-json">{
-    &quot;defaultPasswords&quot;: [&quot;myCustomValue1&quot;, &quot;myCustomValue2&quot;, &quot;myCustomValue3&quot;]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">{</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="nt">&quot;defaultPasswords&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;myCustomValue1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;myCustomValue2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;myCustomValue3&quot;</span><span class="p">]</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">}</span>
+</code></pre></div>
 <p>Then you can execute KICS normally adding <code>--input-data ./custom-input/</code>, if <code>custom-input</code> folder is in current path, and it will replace the key <code>defaultPasswords</code> on <code>passwords_and_secrets_in_infrastructure_code</code> query with the custom value you defined.</p>
 <p><strong>NOTE</strong>: The value which will replace the default value, <strong>MUST</strong> be the same type as the default key (e.g. <code>defaultPasswords</code> must be an array of strings)</p>
 <h2 id="using_commands_on_scanned_files_as_comments">Using commands on scanned files as comments<a class="headerlink" href="#using_commands_on_scanned_files_as_comments" title="Permanent link">&para;</a></h2>
 <p>KICS scan supports some special commands in the comments. To use this feature you need to create a comment that starts with <code>kics-scan</code> and wanted command with values (if necessary).</p>
 <p>For example, if you want to ignore a tf file when running a scan, you can start your file as following:</p>
-<pre><code class="language-hcl"># kics-scan ignore
-# rest of the file...
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># kics-scan ignore</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1"># rest of the file...</span>
+</code></pre></div>
 <p>If you need to start with a header comment, you can add another line below with the <code>kics-scan</code> command you want, but <code>kics-scan</code> will not works if there is any valid line above it, as you can see on the following example:</p>
-<pre><code class="language-hcl"># Some comment
-# This works
-# kics-scan ignore
-resource &quot;google_storage_bucket&quot; &quot;example&quot; {
-  # This does not works
-  # kics-scan ignore
-  name          = &quot;image-store.com&quot;
-  location      = &quot;EU&quot;
-  force_destroy = true
-}
-# This also not works, since there is valid script before this comment
-# kics-scan ignore
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Some comment</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1"># This works</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="c1"># kics-scan ignore</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_storage_bucket&quot;</span><span class="w"> </span><span class="nv">&quot;example&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1">  # This does not works</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="c1">  # kics-scan ignore</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">  </span><span class="na">name</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;image-store.com&quot;</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">  </span><span class="na">location</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;EU&quot;</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">  </span><span class="na">force_destroy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="p">}</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="c1"># This also not works, since there is valid script before this comment</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="c1"># kics-scan ignore</span>
+</code></pre></div>
 <p>KICS currently supports five commands:</p>
 <ul>
 <li>Must be in file's start:<ul>
@@ -1579,47 +1578,47 @@ resource &quot;google_storage_bucket&quot; &quot;example&quot; {
 <li>disable</li>
 </ol>
 <p>For example:</p>
-<pre><code class="language-hcl"># kics-scan disable=0afa6ab8-a047-48cf-be07-93a2f8c34cf7
-# kics-scan
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># kics-scan disable=0afa6ab8-a047-48cf-be07-93a2f8c34cf7</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="c1"># kics-scan</span>
+</code></pre></div>
 <p>In this case, this file will be ignored by KICS, instead of ignoring results for query with id 0afa6ab8-a047-48cf-be07-93a2f8c34cf7.</p>
 <p><code>kics-scan ignore-line</code> example:</p>
-<pre><code class="language-hcl">1: resource &quot;google_storage_bucket&quot; &quot;example&quot; {
-2:  # kics-scan ignore-line
-3:  name          = &quot;image-store.com&quot;
-4:  location      = &quot;EU&quot;
-5:  force_destroy = true
-6: }
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="m">1</span><span class="p">:</span><span class="w"> </span><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_storage_bucket&quot;</span><span class="w"> </span><span class="nv">&quot;example&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="m">2</span><span class="p">:</span><span class="c1">  # kics-scan ignore-line</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="m">3</span><span class="p">:</span><span class="w">  </span><span class="na">name</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;image-store.com&quot;</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="m">4</span><span class="p">:</span><span class="w">  </span><span class="na">location</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;EU&quot;</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="m">5</span><span class="p">:</span><span class="w">  </span><span class="na">force_destroy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="m">6</span><span class="p">:</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <p>Results that point to lines 2 and 3 will be ignored.</p>
 <p><code>kics-scan ignore-block</code> example:</p>
-<pre><code class="language-hcl">1: # kics-scan ignore-block
-2: resource &quot;google_storage_bucket&quot; &quot;example&quot; {
-3:  name          = &quot;image-store.com&quot;
-4:  location      = &quot;EU&quot;
-5:  force_destroy = true
-6: }
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="m">1</span><span class="p">:</span><span class="c1"> # kics-scan ignore-block</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="m">2</span><span class="p">:</span><span class="w"> </span><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_storage_bucket&quot;</span><span class="w"> </span><span class="nv">&quot;example&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="m">3</span><span class="p">:</span><span class="w">  </span><span class="na">name</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;image-store.com&quot;</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="m">4</span><span class="p">:</span><span class="w">  </span><span class="na">location</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;EU&quot;</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="m">5</span><span class="p">:</span><span class="w">  </span><span class="na">force_destroy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="m">6</span><span class="p">:</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <p>Results that point from line 1 to 6 will be ignored.</p>
 <p>For Dockerfile <code>ignore-block</code> is only usable when the whole <code>FROM</code> block should be ignored.</p>
-<pre><code class="language-Dockerfile">1: # kics-scan ignore-block
-2: FROM kics
-3: USER Checkmarx
-4:
-5: FROM kics:2.0
-6: USER Checkmarx
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="m">1</span>:<span class="w"> </span>#<span class="w"> </span>kics-scan<span class="w"> </span>ignore-block
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="m">2</span>:<span class="w"> </span>FROM<span class="w"> </span>kics
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="m">3</span>:<span class="w"> </span>USER<span class="w"> </span>Checkmarx
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="m">4</span>:
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="m">5</span>:<span class="w"> </span>FROM<span class="w"> </span>kics:2.0
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="m">6</span>:<span class="w"> </span>USER<span class="w"> </span>Checkmarx
+</code></pre></div>
 <p>in this case only lines from 1 to 3 will be ignored.</p>
 <p><code>ignore-line</code> will ignore all lines of a multi-line command in Docker.</p>
 <p><strong>NOTE</strong>: For YAML when trying to ignore the whole resource this file should start with <code>---</code> and then the KICS comment command as you can see on the following example:</p>
-<pre><code class="language-yaml">1: ---
-2: # kics-scan ignore-block
-3: apiVersion: v1
-4: kind: Pod
-5: metadata:
-6:  name: memory-demo-1
-7:  namespace: mem-example
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nt">1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">---</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nt">2</span><span class="p">:</span><span class="w"> </span><span class="c1"># kics-scan ignore-block</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nt">3: apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="nt">4: kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="nt">5: metadata</span><span class="p">:</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="nt">6:  name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">memory-demo-1</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="nt">7:  namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mem-example</span>
+</code></pre></div>
 <p>This feature is supported by all extensions that supports comments. Currently, KICS supports this feature for:</p>
 <ul>
 <li>Dockerfile;</li>

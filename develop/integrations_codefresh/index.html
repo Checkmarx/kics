@@ -19,7 +19,7 @@
         <link rel="next" href="../integrations_ghactions/">
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
     
     
       
@@ -1634,91 +1634,91 @@
 </table>
 <h2 id="examples">EXAMPLES<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <h3 id="running_kics">RUNNING KICS<a class="headerlink" href="#running_kics" title="Permanent link">&para;</a></h3>
-<pre><code>steps:
-    clone:
-      title: Clone a project
-      type: git-clone
-      repo: 'rafaela-soares/query'
-      git: github
-    run_kics:
-          title: Scanning IaC files
-          type: checkmarx/kics
-          arguments:
-              PROJECT_PATH: ./query
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>steps:
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    clone:
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>      title: Clone a project
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>      type: git-clone
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>      repo: &#39;rafaela-soares/query&#39;
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>      git: github
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    run_kics:
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>          title: Scanning IaC files
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>          type: checkmarx/kics
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>          arguments:
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>              PROJECT_PATH: ./query
+</code></pre></div>
 <h3 id="running_kics_and_saving_kics_reports">RUNNING KICS AND SAVING KICS REPORTS<a class="headerlink" href="#running_kics_and_saving_kics_reports" title="Permanent link">&para;</a></h3>
 <p>🚨 Be aware that you should set <code>IGNORE_ON_EXIT: results</code> to be able to avoid the KICS exit code and run the step that saves the report.</p>
 <h4 id="github_repository">GITHUB REPOSITORY<a class="headerlink" href="#github_repository" title="Permanent link">&para;</a></h4>
-<pre><code>steps:
-    clone:
-      title: Clone a project
-      type: git-clone
-      repo: 'rafaela-soares/query'
-      git: github
-    run_kics:
-          title: Scanning IaC files
-          type: checkmarx/kics
-          arguments:
-              PROJECT_PATH: ./query
-              QUERIES_PATH: ./query/alb_listening_on_http
-              OUTPUT_PATH: /codefresh/volume/query/reports
-              OUTPUT_FORMATS: all
-              VERBOSE: true
-              EXCLUDE_PATHS: ./query/alb_listening_on_http/test/negative.yaml
-              TYPES: Ansible
-              LOG_LEVEL: DEBUG
-              PAYLOAD_PATH: /codefresh/volume/query/payload.json
-              IGNORE_ON_EXIT: results
-    save_reports_and_payload:
-          title: Saving KICS payload and KICS reports
-          type: git-commit
-        arguments:
-              repo: 'rafaela-soares/query'
-              git: github
-              working_directory: '/codefresh/volume/query'
-              commit_message: saved payload and reports
-              git_user_name: git-user-name
-              git_user_email: git-user@email.com
-              allow_empty: false
-              add:
-                - payload.json
-                - ./reports
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>steps:
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    clone:
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>      title: Clone a project
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>      type: git-clone
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>      repo: &#39;rafaela-soares/query&#39;
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>      git: github
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    run_kics:
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>          title: Scanning IaC files
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>          type: checkmarx/kics
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>          arguments:
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>              PROJECT_PATH: ./query
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>              QUERIES_PATH: ./query/alb_listening_on_http
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>              OUTPUT_PATH: /codefresh/volume/query/reports
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>              OUTPUT_FORMATS: all
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>              VERBOSE: true
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>              EXCLUDE_PATHS: ./query/alb_listening_on_http/test/negative.yaml
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>              TYPES: Ansible
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>              LOG_LEVEL: DEBUG
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>              PAYLOAD_PATH: /codefresh/volume/query/payload.json
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>              IGNORE_ON_EXIT: results
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>    save_reports_and_payload:
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>          title: Saving KICS payload and KICS reports
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>          type: git-commit
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>        arguments:
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>              repo: &#39;rafaela-soares/query&#39;
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>              git: github
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>              working_directory: &#39;/codefresh/volume/query&#39;
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>              commit_message: saved payload and reports
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>              git_user_name: git-user-name
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>              git_user_email: git-user@email.com
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>              allow_empty: false
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>              add:
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>                - payload.json
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>                - ./reports
+</code></pre></div>
 <h4 id="s3_bucket">S3 BUCKET<a class="headerlink" href="#s3_bucket" title="Permanent link">&para;</a></h4>
-<pre><code>steps:
-    clone:
-      title: Clone a project
-      type: git-clone
-      repo: 'rafaela-soares/query'
-      git: github
-    run_kics:
-          title: Scanning IaC files
-          type: checkmarx/kics
-          arguments:
-              PROJECT_PATH: ./query
-              QUERIES_PATH: ./query/alb_listening_on_http
-              OUTPUT_PATH: /codefresh/volume/query/reports
-              OUTPUT_FORMATS: all
-              VERBOSE: true
-              EXCLUDE_PATHS: ./query/alb_listening_on_http/test/negative.yaml
-              TYPES: Ansible
-              LOG_LEVEL: DEBUG
-              IGNORE_ON_EXIT: results
-    save_reports_in_s3_bucket:
-             title: Saving KICS reports
-             image: 'amazon/aws-cli'
-             working_directory: '/codefresh/volume/query'
-             commands:
-                 - mkdir ~/.aws
-                 - touch ~/.aws/config
-                 - chmod 600 ~/.aws/config
-                 - echo &quot;[default]&quot; &gt; ~/.aws/config
-                 - echo &quot;aws_access_key_id=${AWS_ACCESS_KEY_ID}&quot; &gt;&gt; ~/.aws/config
-                 - echo &quot;aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}&quot; &gt;&gt; ~/.aws/config
-                 - echo &quot;aws_session_token=${AWS_SESSION_TOKEN}&quot; &gt;&gt; ~/.aws/config
-                 - echo &quot;region=${AWS_REGION}&quot; &gt;&gt; ~/.aws/config
-                 - aws s3 cp ./reports s3://${{BUCKET_NAME}}/ --recursive
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>steps:
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    clone:
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>      title: Clone a project
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>      type: git-clone
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>      repo: &#39;rafaela-soares/query&#39;
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>      git: github
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    run_kics:
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>          title: Scanning IaC files
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>          type: checkmarx/kics
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>          arguments:
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>              PROJECT_PATH: ./query
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>              QUERIES_PATH: ./query/alb_listening_on_http
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>              OUTPUT_PATH: /codefresh/volume/query/reports
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>              OUTPUT_FORMATS: all
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>              VERBOSE: true
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>              EXCLUDE_PATHS: ./query/alb_listening_on_http/test/negative.yaml
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>              TYPES: Ansible
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>              LOG_LEVEL: DEBUG
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>              IGNORE_ON_EXIT: results
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>    save_reports_in_s3_bucket:
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>             title: Saving KICS reports
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>             image: &#39;amazon/aws-cli&#39;
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>             working_directory: &#39;/codefresh/volume/query&#39;
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>             commands:
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>                 - mkdir ~/.aws
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>                 - touch ~/.aws/config
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>                 - chmod 600 ~/.aws/config
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>                 - echo &quot;[default]&quot; &gt; ~/.aws/config
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>                 - echo &quot;aws_access_key_id=${AWS_ACCESS_KEY_ID}&quot; &gt;&gt; ~/.aws/config
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>                 - echo &quot;aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}&quot; &gt;&gt; ~/.aws/config
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>                 - echo &quot;aws_session_token=${AWS_SESSION_TOKEN}&quot; &gt;&gt; ~/.aws/config
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>                 - echo &quot;region=${AWS_REGION}&quot; &gt;&gt; ~/.aws/config
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>                 - aws s3 cp ./reports s3://${{BUCKET_NAME}}/ --recursive
+</code></pre></div>
 
 
 

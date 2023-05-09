@@ -19,7 +19,7 @@
         <link rel="next" href="../community/">
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
     
     
       
@@ -1496,28 +1496,28 @@
 <li>Fork the <code>kics</code> repo on GitHub.</li>
 <li>Download and install Go 1.16 or higher from <a href="https://golang.org/dl/" target="_blank">https://golang.org/dl/</a>.</li>
 <li>Clone your fork locally:
-   <code>shell
-   git clone https://github.com/Checkmarx/kics.git</code></li>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Checkmarx/kics.git
+</code></pre></div></li>
 <li>Create a branch for local development.
 Use succinct but descriptive name (prefix with <em>feature/issue#-descriptive-name&gt;</em> or <em>hotfix/issue#-descriptive-name</em>):
-   <code>sh
-   git checkout -b &lt;name-of-your-issue&gt;</code></li>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>&lt;name-of-your-issue&gt;
+</code></pre></div></li>
 <li>Make your changes locally.</li>
 <li>Validate your changes to reassure they meet project quality and contribution standards:
-   <code>sh
-   golint .</code>
-   <code>sh
-   go mod vendor</code>
-   <code>sh
-   go test -mod=vendor -v ./...</code></li>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>golint<span class="w"> </span>.
+</code></pre></div>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>go<span class="w"> </span>mod<span class="w"> </span>vendor
+</code></pre></div>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>go<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-mod<span class="o">=</span>vendor<span class="w"> </span>-v<span class="w"> </span>./...
+</code></pre></div></li>
 <li>Commit your changes and push your branch to GitHub:
-   <code>sh
-   git add .</code>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>git<span class="w"> </span>add<span class="w"> </span>.
+</code></pre></div>
    We recommend following <a href="https://www.conventionalcommits.org/en/v1.0.0-beta.2/">conventional commits messages</a>
-   <code>sh
-   git commit -m "feat(CLI): add new flag --blabla"</code>
-   <code>sh
-   git push --set-upstream origin &lt;name-of-your-issue&gt;</code></li>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;feat(CLI): add new flag --blabla&quot;</span>
+</code></pre></div>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git<span class="w"> </span>push<span class="w"> </span>--set-upstream<span class="w"> </span>origin<span class="w"> </span>&lt;name-of-your-issue&gt;
+</code></pre></div></li>
 <li>Submit a pull request on GitHub website.</li>
 </ol>
 <hr />
@@ -1552,18 +1552,18 @@ Use succinct but descriptive name (prefix with <em>feature/issue#-descriptive-na
 </ol>
 <p><code>&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</code>
 where <code>(&lt;scope&gt;)</code> is optional</p>
-<pre><code>feat - A new feature (example scopes: engine, parser, flags, query)
-fix - A bug fix
-docs - Documentation only changes, (example scopes: catalog, guides, platforms, architecture)
-test - Adding missing tests or correcting existing tests (example scopes: unit, e2e)
-ci - Changes to our CI configuration files and scripts (example scopes: ghactions, linters)
-chore - Other changes that don't modify src or test files
-build - Changes that affect the build system or external dependencies (example scope: makefile)
-style - Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
-refactor - A code change that neither fixes a bug nor adds a feature
-perf - A code change that improves performance
-revert - Reverts a previous commit
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>feat - A new feature (example scopes: engine, parser, flags, query)
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>fix - A bug fix
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>docs - Documentation only changes, (example scopes: catalog, guides, platforms, architecture)
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>test - Adding missing tests or correcting existing tests (example scopes: unit, e2e)
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>ci - Changes to our CI configuration files and scripts (example scopes: ghactions, linters)
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>chore - Other changes that don&#39;t modify src or test files
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>build - Changes that affect the build system or external dependencies (example scope: makefile)
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>style - Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>refactor - A code change that neither fixes a bug nor adds a feature
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>perf - A code change that improves performance
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>revert - Reverts a previous commit
+</code></pre></div>
 <p>e.g: <code>build(makefile): enhance make clean task</code></p>
 <h4 id="templates">Templates<a class="headerlink" href="#templates" title="Permanent link">&para;</a></h4>
 <p>The following templates will be used when <a href="https://github.com/Checkmarx/kics/issues/new/choose">creating a new issue</a>:</p>

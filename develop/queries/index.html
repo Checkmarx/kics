@@ -19,7 +19,7 @@
         <link rel="next" href="../creating-queries/">
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
     
     
       
@@ -1454,20 +1454,20 @@
 </ul>
 <h2 id="queries">Queries<a class="headerlink" href="#queries" title="Permanent link">&para;</a></h2>
 <p>KICS queries are written in OPA (Rego).</p>
-<pre><code class="language-rego">CxPolicy [ result ] {
-   resource := input.document[i].resource.aws_s3_bucket[name]
-   role = &quot;public-read&quot;
-   resource.acl == role
-
-   result := {
-        &quot;documentId&quot;:       input.document[i].id,
-        &quot;searchKey&quot;:        sprintf(&quot;aws_s3_bucket[%s].acl&quot;, [name]),
-        &quot;issueType&quot;:        &quot;IncorrectValue&quot;,
-        &quot;keyExpectedValue&quot;: sprintf(&quot;aws_s3_bucket[%s].acl is private&quot;, [name]),
-        &quot;keyActualValue&quot;:   sprintf(&quot;aws_s3_bucket[%s].acl is %s&quot;, [name, role])
-    }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>CxPolicy [ result ] {
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>   resource := input.document[i].resource.aws_s3_bucket[name]
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>   role = &quot;public-read&quot;
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>   resource.acl == role
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>   result := {
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        &quot;documentId&quot;:       input.document[i].id,
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        &quot;searchKey&quot;:        sprintf(&quot;aws_s3_bucket[%s].acl&quot;, [name]),
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        &quot;issueType&quot;:        &quot;IncorrectValue&quot;,
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        &quot;keyExpectedValue&quot;: sprintf(&quot;aws_s3_bucket[%s].acl is private&quot;, [name]),
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        &quot;keyActualValue&quot;:   sprintf(&quot;aws_s3_bucket[%s].acl is %s&quot;, [name, role])
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    }
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>}
+</code></pre></div>
 <h4 id="anatomy">Anatomy<a class="headerlink" href="#anatomy" title="Permanent link">&para;</a></h4>
 <p>The anatomy of a query is straightforward. It builds up a policy and defines the result.</p>
 <p>The <strong>policy</strong> builds the pattern that breaks the <em>security</em> of the infrastructure code and which the query is looking for.</p>
@@ -1475,71 +1475,71 @@
 <h4 id="metadata">Metadata<a class="headerlink" href="#metadata" title="Permanent link">&para;</a></h4>
 <p>Each query has a metadata.json companion file with all the relevant information about the <em>vulnerability</em>, including
 the severity, category and its description.</p>
-<p>For example, the JSON code above is the metadata corresponding to the query in the beginning of this document.</p>
-<pre><code class="language-json">{
-  &quot;id&quot;: &quot;5738faf3-3fe6-4614-a93d-f0003242d4f9&quot;,
-  &quot;queryName&quot;: &quot;All Users Group Gets Read Access&quot;,
-  &quot;severity&quot;: &quot;HIGH&quot;,
-  &quot;category&quot;: &quot;Identity and Access Management&quot;,
-  &quot;descriptionText&quot;: &quot;It's not recommended to allow read access for all user groups.&quot;,
-  &quot;descriptionUrl&quot;: &quot;https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl&quot;,
-  &quot;platform&quot;: &quot;Terraform&quot;
-}
-</code></pre>
+<p>For example, the JSON code above is the metadata corresponding to the query in the beginning of this document.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;5738faf3-3fe6-4614-a93d-f0003242d4f9&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&quot;queryName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;All Users Group Gets Read Access&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HIGH&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Identity and Access Management&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">&quot;descriptionText&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;It&#39;s not recommended to allow read access for all user groups.&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">&quot;descriptionUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">&quot;platform&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Terraform&quot;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">}</span>
+</code></pre></div></p>
 <h4 id="organization">Organization<a class="headerlink" href="#organization" title="Permanent link">&para;</a></h4>
 <p>Filesystem-wise, KICS queries are organized per IaC technology or tool (e.g., terraform, k8s, dockerfile, etc.) and grouped
 under provider (e.g., aws, gcp, azure, etc.) when applicable.</p>
 <p>Per each query created, it is mandatory the creation of <strong>test cases</strong> with, at least, one negative and positive case and a JSON file
-with data about the expected results, as shown below:</p>
-<pre><code class="language-json">[
-  {
-    &quot;queryName&quot;: &quot;All Users Group Gets Read Access&quot;,
-    &quot;severity&quot;: &quot;HIGH&quot;,
-    &quot;line&quot;: 3
-  }
-]
-</code></pre>
-<p>Summarizing, the following is the expected file tree for a query:</p>
-<pre><code class="language-none">- &lt;technology&gt;
-    |- &lt;provider&gt;
-    |   |- &lt;queryfolder&gt;
-    |   |   |- test
-    |   |   |   |- positive&lt;.ext&gt;
-    |   |   |   |- negative&lt;.ext&gt;
-    |   |   |   |- positive_expected_result.json
-    |   |   |- metadata.json
-    |   |   |- query.rego
-</code></pre>
+with data about the expected results, as shown below:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">[</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">&quot;queryName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;All Users Group Gets Read Access&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HIGH&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">&quot;line&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">]</span>
+</code></pre></div></p>
+<p>Summarizing, the following is the expected file tree for a query:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>- &lt;technology&gt;
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    |- &lt;provider&gt;
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    |   |- &lt;queryfolder&gt;
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    |   |   |- test
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    |   |   |   |- positive&lt;.ext&gt;
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    |   |   |   |- negative&lt;.ext&gt;
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    |   |   |   |- positive_expected_result.json
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    |   |   |- metadata.json
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    |   |   |- query.rego
+</code></pre></div></p>
 <p>Also, a query can contains multiples positive and negative files, but all cases files names must start with negative or positive and
 each positive file must be referenced on <code>positive_expected_result.json</code>, as shown below:</p>
-<pre><code class="language-json">[
-  {
-    &quot;queryName&quot;: &quot;ELB Sensitive Port Is Exposed To Entire Network&quot;,
-    &quot;severity&quot;: &quot;HIGH&quot;,
-    &quot;line&quot;: 37,
-    &quot;fileName&quot;: &quot;positive1.yaml&quot;
-  },
-  {
-    &quot;queryName&quot;: &quot;ELB Sensitive Port Is Exposed To Entire Network&quot;,
-    &quot;severity&quot;: &quot;HIGH&quot;,
-    &quot;line&quot;: 22,
-    &quot;fileName&quot;: &quot;positive2.yaml&quot;
-  }
-]
-</code></pre>
-<p>And the file tree should be as follows:</p>
-<pre><code class="language-none">- &lt;technology&gt;
-    |- &lt;provider&gt;
-    |   |- &lt;queryfolder&gt;
-    |   |   |- test
-    |   |   |   |- positive1&lt;.ext&gt;
-    |   |   |   |- positive2&lt;.ext&gt;
-    |   |   |   |- negative1&lt;.ext&gt;
-    |   |   |   |- negative2&lt;.ext&gt;
-    |   |   |   |- positive_expected_result.json
-    |   |   |- metadata.json
-    |   |   |- query.rego
-</code></pre>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">[</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">&quot;queryName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ELB Sensitive Port Is Exposed To Entire Network&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HIGH&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="nt">&quot;line&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nt">&quot;fileName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;positive1.yaml&quot;</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="nt">&quot;queryName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ELB Sensitive Port Is Exposed To Entire Network&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HIGH&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="nt">&quot;line&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">    </span><span class="nt">&quot;fileName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;positive2.yaml&quot;</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="p">]</span>
+</code></pre></div>
+And the file tree should be as follows:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>- &lt;technology&gt;
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    |- &lt;provider&gt;
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    |   |- &lt;queryfolder&gt;
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    |   |   |- test
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    |   |   |   |- positive1&lt;.ext&gt;
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    |   |   |   |- positive2&lt;.ext&gt;
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    |   |   |   |- negative1&lt;.ext&gt;
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    |   |   |   |- negative2&lt;.ext&gt;
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    |   |   |   |- positive_expected_result.json
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    |   |   |- metadata.json
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    |   |   |- query.rego
+</code></pre></div>
 <h4 id="query_dependencies">Query Dependencies<a class="headerlink" href="#query_dependencies" title="Permanent link">&para;</a></h4>
 <p>If you want to use the functions defined in your own library, you should use the flag <code>-b</code> to indicate the directory where the libraries are placed. The functions need to be grouped by platform and the library name should follow the following format: <code>&lt;platform&gt;.rego</code>. It doesn't matter your directory structure. In other words, for example, if you want to indicate a directory that contains a library for your terraform queries, you should group your functions (used in your terraform queries) in a file named <code>terraform.rego</code> wherever you want.</p>
 

@@ -17,7 +17,7 @@
         <link rel="next" href="../documentation/">
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
     
     
       
@@ -1444,11 +1444,11 @@
   <h1>Getting Started</h1>
 
 <h2 id="scan_a_directory">Scan a directory<a class="headerlink" href="#scan_a_directory" title="Permanent link">&para;</a></h2>
-<pre><code>docker run -t -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan -p /path -o &quot;/path/&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker run -t -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan -p /path -o &quot;/path/&quot;
+</code></pre></div>
 <h2 id="scan_a_single_file">Scan a single file<a class="headerlink" href="#scan_a_single_file" title="Permanent link">&para;</a></h2>
-<pre><code>docker run -t -v {path_to_host_folder}:/path checkmarx/kics:latest scan -p /path/{filename}.{extension} -o &quot;/path/&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker run -t -v {path_to_host_folder}:/path checkmarx/kics:latest scan -p /path/{filename}.{extension} -o &quot;/path/&quot;
+</code></pre></div>
 <h2 id="scan_example">Scan Example<a class="headerlink" href="#scan_example" title="Permanent link">&para;</a></h2>
 <p><a href="https://user-images.githubusercontent.com/111127232/206156696-283f9d43-1ff1-4cf4-8fa6-6bf37a282360.gif"><img alt="" src="https://user-images.githubusercontent.com/111127232/206156696-283f9d43-1ff1-4cf4-8fa6-6bf37a282360.gif" /></a></p>
 

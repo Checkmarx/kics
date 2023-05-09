@@ -19,7 +19,7 @@
         <link rel="next" href="../utilities/">
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
     
     
       
@@ -1677,25 +1677,25 @@
 <ol>
 <li>Create a new CDK project using the CLI. e.g:</li>
 </ol>
-<pre><code class="language-bash">mkdir test-cdk
-cd test-cdk
-cdk init app --language go
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mkdir<span class="w"> </span>test-cdk
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>test-cdk
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>cdk<span class="w"> </span>init<span class="w"> </span>app<span class="w"> </span>--language<span class="w"> </span>go
+</code></pre></div>
 <ol>
 <li>Download dependencies</li>
 </ol>
-<pre><code class="language-bash">go mod download
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>go<span class="w"> </span>mod<span class="w"> </span>download
+</code></pre></div>
 <ol>
 <li>Synthetize CloudFormation template</li>
 </ol>
-<pre><code class="language-bash">cdk synth &gt; cfn-stack.yaml
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cdk<span class="w"> </span>synth<span class="w"> </span>&gt;<span class="w"> </span>cfn-stack.yaml
+</code></pre></div>
 <ol>
 <li>Execute KICS against the template and check the results. Note that KICS will recognized it as CloudFormation (for queries purpose).</li>
 </ol>
-<pre><code class="language-bash">docker run -t -v $PWD/cfn-stack.yaml:/path/cfn-stack.yaml -it checkmarx/kics:latest scan -p /path/cfn-stack.yaml
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-t<span class="w"> </span>-v<span class="w"> </span><span class="nv">$PWD</span>/cfn-stack.yaml:/path/cfn-stack.yaml<span class="w"> </span>-it<span class="w"> </span>checkmarx/kics:latest<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span>/path/cfn-stack.yaml
+</code></pre></div>
 <h2 id="cloudformation">CloudFormation<a class="headerlink" href="#cloudformation" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning CloudFormation templates with <code>.json</code> or <code>.yaml</code> extension.</p>
 <h2 id="crossplane">Crossplane<a class="headerlink" href="#crossplane" title="Permanent link">&para;</a></h2>
@@ -1713,17 +1713,16 @@ cdk init app --language go
 <p>KICS supports scanning Helm by rendering charts and running Kubernetes queries against the rendered manifest.</p>
 <p>The charts file structure must be as explained by Helm: https://helm.sh/docs/topics/charts/#the-chart-file-structure.</p>
 <p>Results are displayed against original Helm files:</p>
-<pre><code>Service With External Load Balance, Severity: MEDIUM, Results: 1
-Description: Service has an external load balancer, which may cause accessibility from other networks and the Internet
-Platform: Kubernetes
-
-        [1]: /charts/nginx-ingress/templates/controller-service.yaml:20
-
-                019:     release: {{ template &quot;nginx-ingress.releaseLabel&quot; . }}
-                020:   name: {{ template &quot;nginx-ingress.controller.fullname&quot; . }}
-                021: spec:
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Service With External Load Balance, Severity: MEDIUM, Results: 1
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Description: Service has an external load balancer, which may cause accessibility from other networks and the Internet
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Platform: Kubernetes
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        [1]: /charts/nginx-ingress/templates/controller-service.yaml:20
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>                019:     release: {{ template &quot;nginx-ingress.releaseLabel&quot; . }}
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>                020:   name: {{ template &quot;nginx-ingress.controller.fullname&quot; . }}
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>                021: spec:
+</code></pre></div>
 <h2 id="knative">Knative<a class="headerlink" href="#knative" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning Knative manifests with <code>.yaml</code> extension.
 Due to the possibility of the definition of the <a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#podspec-v1-core">PodSpec and PodTemplate</a> in Knative files, Kubernetes Security Queries are also loaded once the presence of the Knative files is detected.</p>
@@ -1746,16 +1745,16 @@ Due to the possibility of the definition of the CloudFormation template,  inside
 <p>KICS supports scanning terraform plans given in JSON. The <code>planned_values</code> will be extracted, built in a way that KICS can understand, and scanned as a normal terraform file.</p>
 <p>Results will point to the plan file.</p>
 <p>To get terraform plan in JSON format simply run the command:</p>
-<pre><code>terraform show -json plan-sample.tfplan &gt; plan-sample.tfplan.json
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>terraform show -json plan-sample.tfplan &gt; plan-sample.tfplan.json
+</code></pre></div>
 <h3 id="terraform_modules">Terraform Modules<a class="headerlink" href="#terraform_modules" title="Permanent link">&para;</a></h3>
 <p>KICS supports some official modules for AWS that can be found on <a href="https://registry.terraform.io/providers/hashicorp/aws/latest">Terraform registry</a>, you can see the supported modules list in the libraries folder <a href="https://github.com/Checkmarx/kics/blob/master/assets/libraries/common.json">common.json file</a>. This means KICS can find issues in verified modules listed on this json.</p>
 <p>Currently, KICS does not support unofficial or custom modules.</p>
 <h3 id="cloud_development_kit_for_terraform_cdktf">Cloud Development Kit for Terraform (CDKTF)<a class="headerlink" href="#cloud_development_kit_for_terraform_cdktf" title="Permanent link">&para;</a></h3>
 <p>KICS supports scanning CDKTF output JSON. It recognizes it through the fields <code>metadata</code>, <code>stackName</code>, and <code>terraform</code>.</p>
 <p>To get your CDKTF output JSON, run the following command inside the directory that contains your app:</p>
-<pre><code>cdktf synth
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>cdktf synth
+</code></pre></div>
 <p>You can also run the command <code>cdktf synth --json</code> to display it in the terminal.</p>
 <h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
 <h4 id="ansible_1">Ansible<a class="headerlink" href="#ansible_1" title="Permanent link">&para;</a></h4>
@@ -1763,21 +1762,21 @@ Due to the possibility of the definition of the CloudFormation template,  inside
 <p>Thus, KICS recognize other YAML samples (that are not Ansible) as Ansible, e.g. GitHub Actions samples. However, you can ignore these samples by writing <code>#kics-scan ignore</code> on the top of the file. For more details, please read this <a href="https://github.com/Checkmarx/kics/blob/25b6b703e924ed42067d9ab7772536864aee900b/docs/running-kics.md#using-commands-on-scanned-files-as-comments">documentation</a>.</p>
 <h4 id="terraform_1">Terraform<a class="headerlink" href="#terraform_1" title="Permanent link">&para;</a></h4>
 <p>Although KICS support variables and interpolations, KICS does not support functions and enviroment variables. In case of variables used as function parameters, it will parse as wrapped expression, so the following function call:</p>
-<pre><code class="language-hcl">resource &quot;aws_launch_configuration&quot; &quot;example&quot; {
-  image_id      = data.aws_ami.ubuntu.id
-  instance_type = &quot;${concat(list(&quot;${var.name}&quot;, &quot;${var.other_name}&quot;), var.node_tags)}&quot;
-  spot_price    = var.price
-  user_data_base64 = &quot;${var.data}==&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_launch_configuration&quot;</span><span class="w"> </span><span class="nv">&quot;example&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="na">image_id</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_ami.ubuntu.id</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="na">instance_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${concat(list(&quot;${var.name}&quot;, &quot;${var.other_name}&quot;), var.node_tags)}&quot;</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="na">spot_price</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">var.price</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="na">user_data_base64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${var.data}==&quot;</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">}</span>
+</code></pre></div>
 <p>Considering <code>var.data = "a123B"</code> and <code>var.price = 1.023</code>, it would be parsed like the following example:</p>
-<pre><code class="language-hcl">resource &quot;aws_launch_configuration&quot; &quot;example&quot; {
-  image_id      = data.aws_ami.ubuntu.id
-  instance_type = &quot;${concat(list(&quot;${var.name}&quot;, &quot;${var.other_name}&quot;), var.node_tags)}&quot;
-  spot_price    = 1.023
-  user_data_base64 = &quot;a123B==&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_launch_configuration&quot;</span><span class="w"> </span><span class="nv">&quot;example&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="na">image_id</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_ami.ubuntu.id</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="na">instance_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${concat(list(&quot;${var.name}&quot;, &quot;${var.other_name}&quot;), var.node_tags)}&quot;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="na">spot_price</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">1.023</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="na">user_data_base64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;a123B==&quot;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">}</span>
+</code></pre></div>
 
 
 

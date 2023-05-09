@@ -19,7 +19,7 @@
         <link rel="next" href="../queries/all-queries/">
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
     
     
       
@@ -1437,18 +1437,18 @@
 <p>This feature uses Rego queries to extract a list of used Terraform resources along with its metadata in the scanned IaC.</p>
 <p>Find the existing queries under: <a href="https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws_bom">assets/queries/terraform/aws_bom</a></p>
 <p>BoM queries extracts metadata about the resources and organizes it in the following structure:</p>
-<pre><code class="language-go">billOfMaterialsRequiredFields := map[string]bool{
-    &quot;acl&quot;:                    false,
-    &quot;policy&quot;:                 false,
-    &quot;resource_accessibility&quot;: true,
-    &quot;resource_category&quot;:      true,
-    &quot;resource_encryption&quot;:    true,
-    &quot;resource_engine&quot;:        false,
-    &quot;resource_name&quot;:          true,
-    &quot;resource_type&quot;:          true,
-    &quot;resource_vendor&quot;:        true,
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">billOfMaterialsRequiredFields</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">bool</span><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="s">&quot;acl&quot;</span><span class="p">:</span><span class="w">                    </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="s">&quot;policy&quot;</span><span class="p">:</span><span class="w">                 </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="s">&quot;resource_accessibility&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="s">&quot;resource_category&quot;</span><span class="p">:</span><span class="w">      </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="s">&quot;resource_encryption&quot;</span><span class="p">:</span><span class="w">    </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="s">&quot;resource_engine&quot;</span><span class="p">:</span><span class="w">        </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="s">&quot;resource_name&quot;</span><span class="p">:</span><span class="w">          </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="s">&quot;resource_type&quot;</span><span class="p">:</span><span class="w">          </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="s">&quot;resource_vendor&quot;</span><span class="p">:</span><span class="w">        </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">}</span>
+</code></pre></div>
 <p>Observe more detailed information about it in the table below.</p>
 <table>
 <thead>
@@ -1527,67 +1527,67 @@
 </tbody>
 </table>
 <h3 id="bom_query_example">BoM query example<a class="headerlink" href="#bom_query_example" title="Permanent link">&para;</a></h3>
-<pre><code class="language-rego">CxPolicy[result] {
-    bucket_resource := input.document[i].resource.aws_s3_bucket[name]
-
-    info := get_accessibility(bucket_resource, name)
-
-    bom_output = {
-        &quot;resource_type&quot;: &quot;aws_s3_bucket&quot;,
-        &quot;resource_name&quot;: get_bucket_name(bucket_resource),
-        &quot;resource_accessibility&quot;: info.accessibility,
-        &quot;resource_encryption&quot;: common_lib.get_encryption_if_exists(bucket_resource),
-        &quot;resource_vendor&quot;: &quot;AWS&quot;,
-        &quot;resource_category&quot;: &quot;Storage&quot;,
-        &quot;acl&quot;: get_bucket_acl(bucket_resource),
-    }
-
-    final_bom_output = common_lib.get_bom_output(bom_output, info.policy)
-
-    result := {
-        &quot;documentId&quot;: input.document[i].id,
-        &quot;searchKey&quot;: sprintf(&quot;aws_s3_bucket[%s]&quot;, [name]),
-        &quot;issueType&quot;: &quot;BillOfMaterials&quot;,
-        &quot;keyExpectedValue&quot;: &quot;&quot;,
-        &quot;keyActualValue&quot;: &quot;&quot;,
-        &quot;searchLine&quot;: common_lib.build_search_line([&quot;resource&quot;, &quot;aws_s3_bucket&quot;, name], []),
-        &quot;value&quot;: json.marshal(final_bom_output),
-    }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>CxPolicy[result] {
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    bucket_resource := input.document[i].resource.aws_s3_bucket[name]
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    info := get_accessibility(bucket_resource, name)
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    bom_output = {
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        &quot;resource_type&quot;: &quot;aws_s3_bucket&quot;,
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        &quot;resource_name&quot;: get_bucket_name(bucket_resource),
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        &quot;resource_accessibility&quot;: info.accessibility,
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        &quot;resource_encryption&quot;: common_lib.get_encryption_if_exists(bucket_resource),
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        &quot;resource_vendor&quot;: &quot;AWS&quot;,
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        &quot;resource_category&quot;: &quot;Storage&quot;,
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        &quot;acl&quot;: get_bucket_acl(bucket_resource),
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    }
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    final_bom_output = common_lib.get_bom_output(bom_output, info.policy)
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    result := {
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>        &quot;documentId&quot;: input.document[i].id,
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>        &quot;searchKey&quot;: sprintf(&quot;aws_s3_bucket[%s]&quot;, [name]),
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>        &quot;issueType&quot;: &quot;BillOfMaterials&quot;,
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>        &quot;keyExpectedValue&quot;: &quot;&quot;,
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>        &quot;keyActualValue&quot;: &quot;&quot;,
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>        &quot;searchLine&quot;: common_lib.build_search_line([&quot;resource&quot;, &quot;aws_s3_bucket&quot;, name], []),
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>        &quot;value&quot;: json.marshal(final_bom_output),
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>    }
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>}
+</code></pre></div>
 <h3 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h3>
 <p>Results will be found in the <a href="../results/">JSON</a> output and placed separately under <code>bill_of_materials</code> key:</p>
-<pre><code class="language-json">{
-    // etc...
-    &quot;bill_of_materials&quot;: [
-        {
-            &quot;query_name&quot;: &quot;BOM - AWS S3 Buckets&quot;,
-            &quot;query_id&quot;: &quot;2d16c3fb-35ba-4ec0-b4e4-06ee3cbd4045&quot;,
-            &quot;query_url&quot;: &quot;https://kics.io&quot;,
-            &quot;severity&quot;: &quot;TRACE&quot;,
-            &quot;platform&quot;: &quot;Terraform&quot;,
-            &quot;cloud_provider&quot;: &quot;AWS&quot;,
-            &quot;category&quot;: &quot;Bill Of Materials&quot;,
-            &quot;description&quot;: &quot;A list of S3 resources found. Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance.&quot;,
-            &quot;description_id&quot;: &quot;0bdf2341&quot;,
-            &quot;files&quot;: [
-                {
-                    &quot;file_name&quot;: &quot;assets\\queries\\terraform\\aws_bom\\s3_bucket\\test\\positive8.tf&quot;,
-                    &quot;similarity_id&quot;: &quot;aaf7959a055b67a35369c2b02aad327f28e85cca02e2daff3d3e40e2b460f36a&quot;,
-                    &quot;line&quot;: 1,
-                    &quot;issue_type&quot;: &quot;BillOfMaterials&quot;,
-                    &quot;search_key&quot;: &quot;aws_s3_bucket[positive8]&quot;,
-                    &quot;search_line&quot;: 0,
-                    &quot;search_value&quot;: &quot;&quot;,
-                    &quot;expected_value&quot;: &quot;&quot;,
-                    &quot;actual_value&quot;: &quot;&quot;,
-                    &quot;value&quot;: &quot;{\&quot;acl\&quot;:\&quot;public-read\&quot;,\&quot;policy\&quot;:{\&quot;Id\&quot;:\&quot;MYBUCKETPOLICY\&quot;,\&quot;Statement\&quot;:[{\&quot;Action\&quot;:\&quot;s3:GetObject\&quot;,\&quot;Condition\&quot;:{\&quot;IpAddress\&quot;:{\&quot;aws:SourceIp\&quot;:\&quot;8.8.8.8/32\&quot;}},\&quot;Effect\&quot;:\&quot;Allow\&quot;,\&quot;Principal\&quot;:{\&quot;AWS\&quot;:[\&quot;arn:aws:iam::123456789012:root\&quot;,\&quot;arn:aws:iam::555555555555:root\&quot;]},\&quot;Resource\&quot;:\&quot;arn:aws:s3:::my_tf_test_bucket/*\&quot;,\&quot;Sid\&quot;:\&quot;IPAllow\&quot;}],\&quot;Version\&quot;:\&quot;2012-10-17\&quot;},\&quot;resource_accessibility\&quot;:\&quot;hasPolicy\&quot;,\&quot;resource_category\&quot;:\&quot;Storage\&quot;,\&quot;resource_encryption\&quot;:\&quot;encrypted\&quot;,\&quot;resource_name\&quot;:\&quot;my-tf-test-bucket\&quot;,\&quot;resource_type\&quot;:\&quot;aws_s3_bucket\&quot;,\&quot;resource_vendor\&quot;:\&quot;AWS\&quot;}&quot;
-                }
-            ]
-        }
-    ]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="c1">// etc...</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">&quot;bill_of_materials&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">            </span><span class="nt">&quot;query_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BOM - AWS S3 Buckets&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">            </span><span class="nt">&quot;query_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2d16c3fb-35ba-4ec0-b4e4-06ee3cbd4045&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">            </span><span class="nt">&quot;query_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://kics.io&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">            </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TRACE&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">            </span><span class="nt">&quot;platform&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Terraform&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">            </span><span class="nt">&quot;cloud_provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AWS&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">            </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bill Of Materials&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">            </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A list of S3 resources found. Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance.&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">            </span><span class="nt">&quot;description_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0bdf2341&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">            </span><span class="nt">&quot;files&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">                </span><span class="p">{</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">                    </span><span class="nt">&quot;file_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;assets\\queries\\terraform\\aws_bom\\s3_bucket\\test\\positive8.tf&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">                    </span><span class="nt">&quot;similarity_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;aaf7959a055b67a35369c2b02aad327f28e85cca02e2daff3d3e40e2b460f36a&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">                    </span><span class="nt">&quot;line&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">                    </span><span class="nt">&quot;issue_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BillOfMaterials&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">                    </span><span class="nt">&quot;search_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;aws_s3_bucket[positive8]&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">                    </span><span class="nt">&quot;search_line&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">                    </span><span class="nt">&quot;search_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">                    </span><span class="nt">&quot;expected_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">                    </span><span class="nt">&quot;actual_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">                    </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{\&quot;acl\&quot;:\&quot;public-read\&quot;,\&quot;policy\&quot;:{\&quot;Id\&quot;:\&quot;MYBUCKETPOLICY\&quot;,\&quot;Statement\&quot;:[{\&quot;Action\&quot;:\&quot;s3:GetObject\&quot;,\&quot;Condition\&quot;:{\&quot;IpAddress\&quot;:{\&quot;aws:SourceIp\&quot;:\&quot;8.8.8.8/32\&quot;}},\&quot;Effect\&quot;:\&quot;Allow\&quot;,\&quot;Principal\&quot;:{\&quot;AWS\&quot;:[\&quot;arn:aws:iam::123456789012:root\&quot;,\&quot;arn:aws:iam::555555555555:root\&quot;]},\&quot;Resource\&quot;:\&quot;arn:aws:s3:::my_tf_test_bucket/*\&quot;,\&quot;Sid\&quot;:\&quot;IPAllow\&quot;}],\&quot;Version\&quot;:\&quot;2012-10-17\&quot;},\&quot;resource_accessibility\&quot;:\&quot;hasPolicy\&quot;,\&quot;resource_category\&quot;:\&quot;Storage\&quot;,\&quot;resource_encryption\&quot;:\&quot;encrypted\&quot;,\&quot;resource_name\&quot;:\&quot;my-tf-test-bucket\&quot;,\&quot;resource_type\&quot;:\&quot;aws_s3_bucket\&quot;,\&quot;resource_vendor\&quot;:\&quot;AWS\&quot;}&quot;</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">            </span><span class="p">]</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">    </span><span class="p">]</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="p">}</span>
+</code></pre></div>
 <p>To enable bill-of-materials in the results use the <code>--bom</code> flag.</p>
 <p><strong>NOTE</strong> Bill of Materials queries should always have:
 - <code>severity: "TRACE"</code>
@@ -1597,18 +1597,18 @@
 <p>This feature uses Rego queries to extract a list of used CloudFormation resources along with its metadata in the scanned IaC.</p>
 <p>Find the existing queries under: <a href="https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws_bom">assets/queries/cloudFormation/aws_bom</a></p>
 <p>BoM queries extracts metadata about the resources and organizes it in the following structure:</p>
-<pre><code class="language-go">billOfMaterialsRequiredFields := map[string]bool{
-    &quot;acl&quot;:                    false,
-    &quot;policy&quot;:                 false,
-    &quot;resource_accessibility&quot;: true,
-    &quot;resource_category&quot;:      true,
-    &quot;resource_encryption&quot;:    true,
-    &quot;resource_engine&quot;:        false,
-    &quot;resource_name&quot;:          true,
-    &quot;resource_type&quot;:          true,
-    &quot;resource_vendor&quot;:        true,
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">billOfMaterialsRequiredFields</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">bool</span><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="s">&quot;acl&quot;</span><span class="p">:</span><span class="w">                    </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="s">&quot;policy&quot;</span><span class="p">:</span><span class="w">                 </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="s">&quot;resource_accessibility&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="s">&quot;resource_category&quot;</span><span class="p">:</span><span class="w">      </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="s">&quot;resource_encryption&quot;</span><span class="p">:</span><span class="w">    </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="s">&quot;resource_engine&quot;</span><span class="p">:</span><span class="w">        </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="s">&quot;resource_name&quot;</span><span class="p">:</span><span class="w">          </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="s">&quot;resource_type&quot;</span><span class="p">:</span><span class="w">          </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="s">&quot;resource_vendor&quot;</span><span class="p">:</span><span class="w">        </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="p">}</span>
+</code></pre></div>
 <p>Observe more detailed information about it in the table below.</p>
 <table>
 <thead>
@@ -1687,81 +1687,81 @@
 </tbody>
 </table>
 <h3 id="bom_query_example_1">BoM query example<a class="headerlink" href="#bom_query_example_1" title="Permanent link">&para;</a></h3>
-<pre><code>CxPolicy[result] {
-    document := input.document
-    bucket_resource := document[i].Resources[name]
-    bucket_resource.Type == &quot;AWS::S3::Bucket&quot;
-
-    info := get_resource_accessibility(bucket_resource, name)
-
-    bom_output = {
-        &quot;resource_type&quot;: &quot;AWS::S3::Bucket&quot;,
-        &quot;resource_name&quot;: get_bucket_name(bucket_resource),
-        &quot;resource_accessibility&quot;: info.accessibility,
-        &quot;resource_encryption&quot;: cf_lib.get_encryption(bucket_resource),
-        &quot;resource_vendor&quot;: &quot;AWS&quot;,
-        &quot;resource_category&quot;: &quot;Storage&quot;,
-        &quot;acl&quot;: get_bucket_acl(bucket_resource),
-    }
-
-    final_bom_output := common_lib.get_bom_output(bom_output, info.policy)
-
-    result := {
-        &quot;documentId&quot;: input.document[i].id,
-        &quot;searchKey&quot;: sprintf(&quot;Resources.%s&quot;, [name]),
-        &quot;issueType&quot;: &quot;BillOfMaterials&quot;,
-        &quot;keyExpectedValue&quot;: &quot;&quot;,
-        &quot;keyActualValue&quot;: &quot;&quot;,
-        &quot;searchLine&quot;: common_lib.build_search_line([&quot;Resources&quot;, name], []),
-        &quot;value&quot;: json.marshal(final_bom_output),
-    }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>CxPolicy[result] {
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    document := input.document
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    bucket_resource := document[i].Resources[name]
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    bucket_resource.Type == &quot;AWS::S3::Bucket&quot;
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    info := get_resource_accessibility(bucket_resource, name)
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    bom_output = {
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        &quot;resource_type&quot;: &quot;AWS::S3::Bucket&quot;,
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>        &quot;resource_name&quot;: get_bucket_name(bucket_resource),
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>        &quot;resource_accessibility&quot;: info.accessibility,
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>        &quot;resource_encryption&quot;: cf_lib.get_encryption(bucket_resource),
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>        &quot;resource_vendor&quot;: &quot;AWS&quot;,
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>        &quot;resource_category&quot;: &quot;Storage&quot;,
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>        &quot;acl&quot;: get_bucket_acl(bucket_resource),
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>    }
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>    final_bom_output := common_lib.get_bom_output(bom_output, info.policy)
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>    result := {
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>        &quot;documentId&quot;: input.document[i].id,
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>        &quot;searchKey&quot;: sprintf(&quot;Resources.%s&quot;, [name]),
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>        &quot;issueType&quot;: &quot;BillOfMaterials&quot;,
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>        &quot;keyExpectedValue&quot;: &quot;&quot;,
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>        &quot;keyActualValue&quot;: &quot;&quot;,
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>        &quot;searchLine&quot;: common_lib.build_search_line([&quot;Resources&quot;, name], []),
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>        &quot;value&quot;: json.marshal(final_bom_output),
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>    }
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>}
+</code></pre></div>
 <h3 id="results_1">Results<a class="headerlink" href="#results_1" title="Permanent link">&para;</a></h3>
 <p>Results will be found in the <a href="../results/">JSON</a> output and placed separately under <code>bill_of_materials</code> key:</p>
-<pre><code class="language-json">{ 
-    // etc...
-    &quot;bill_of_materials&quot;: [
-        {
-            &quot;query_name&quot;: &quot;BOM - AWS S3 Buckets&quot;,
-            &quot;query_id&quot;: &quot;b5d6a2e0-8f15-4664-bd5b-68ec5c9bab83&quot;,
-            &quot;query_url&quot;: &quot;https://kics.io&quot;,
-            &quot;severity&quot;: &quot;TRACE&quot;,
-            &quot;platform&quot;: &quot;CloudFormation&quot;,
-            &quot;cloud_provider&quot;: &quot;AWS&quot;,
-            &quot;category&quot;: &quot;Bill Of Materials&quot;,
-            &quot;description&quot;: &quot;A list of S3 resources found. Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance.&quot;,
-            &quot;description_id&quot;: &quot;a46851fb&quot;,
-            &quot;files&quot;: [
-                {
-                    &quot;file_name&quot;: &quot;positive2.json&quot;,
-                    &quot;similarity_id&quot;: &quot;a307e0f377932f42880de350fc69f83084aa8451a2e1e2a37cc97fc4eae7cf94&quot;,
-                    &quot;line&quot;: 5,
-                    &quot;issue_type&quot;: &quot;BillOfMaterials&quot;,
-                    &quot;search_key&quot;: &quot;Resources.JenkinsArtifacts03&quot;,
-                    &quot;search_line&quot;: 0,
-                    &quot;search_value&quot;: &quot;&quot;,
-                    &quot;expected_value&quot;: &quot;&quot;,
-                    &quot;actual_value&quot;: &quot;&quot;,
-                    &quot;value&quot;: &quot;{\&quot;acl\&quot;:\&quot;BucketOwnerFullControl\&quot;,\&quot;resource_accessibility\&quot;:\&quot;unknown\&quot;,\&quot;resource_category\&quot;:\&quot;Storage\&quot;,\&quot;resource_encryption\&quot;:\&quot;unencrypted\&quot;,\&quot;resource_name\&quot;:\&quot;jenkins-artifacts\&quot;,\&quot;resource_type\&quot;:\&quot;AWS::S3::Bucket\&quot;,\&quot;resource_vendor\&quot;:\&quot;AWS\&quot;}&quot;
-                },
-                {
-                    &quot;file_name&quot;: &quot;positive1.yaml&quot;,
-                    &quot;similarity_id&quot;: &quot;24a0036d2e94676f33c505c5cfd6686ef414072a14e576b08283e9a77596f7eb&quot;,
-                    &quot;line&quot;: 4,
-                    &quot;issue_type&quot;: &quot;BillOfMaterials&quot;,
-                    &quot;search_key&quot;: &quot;Resources.MyBucket&quot;,
-                    &quot;search_line&quot;: 0,
-                    &quot;search_value&quot;: &quot;&quot;,
-                    &quot;expected_value&quot;: &quot;&quot;,
-                    &quot;actual_value&quot;: &quot;&quot;,
-                    &quot;value&quot;: &quot;{\&quot;acl\&quot;:\&quot;BucketOwnerFullControl\&quot;,\&quot;policy\&quot;:{\&quot;Statement\&quot;:[{\&quot;Action\&quot;:[\&quot;s3:GetObject\&quot;],\&quot;Condition\&quot;:{\&quot;StringLike\&quot;:{\&quot;aws:Referer\&quot;:[\&quot;http://www.example.com/*\&quot;,\&quot;http://example.net/*\&quot;]}},\&quot;Effect\&quot;:\&quot;Allow\&quot;,\&quot;Principal\&quot;:\&quot;*\&quot;,\&quot;Resource\&quot;:[\&quot;\&quot;,{\&quot;playbooks\&quot;:[\&quot;arn:aws:s3:::\&quot;,\&quot;DOC-EXAMPLE-BUCKET\&quot;,\&quot;/*\&quot;]}]}],\&quot;Version\&quot;:\&quot;2012-10-17\&quot;},\&quot;resource_accessibility\&quot;:\&quot;hasPolicy\&quot;,\&quot;resource_category\&quot;:\&quot;Storage\&quot;,\&quot;resource_encryption\&quot;:\&quot;encrypted\&quot;,\&quot;resource_name\&quot;:\&quot;jenkins-artifacts\&quot;,\&quot;resource_type\&quot;:\&quot;AWS::S3::Bucket\&quot;,\&quot;resource_vendor\&quot;:\&quot;AWS\&quot;}&quot;
-                }
-            ]
-        }
-    ]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span><span class="w"> </span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="c1">// etc...</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">&quot;bill_of_materials&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">            </span><span class="nt">&quot;query_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BOM - AWS S3 Buckets&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">            </span><span class="nt">&quot;query_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;b5d6a2e0-8f15-4664-bd5b-68ec5c9bab83&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">            </span><span class="nt">&quot;query_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://kics.io&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">            </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TRACE&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">            </span><span class="nt">&quot;platform&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CloudFormation&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">            </span><span class="nt">&quot;cloud_provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AWS&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">            </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bill Of Materials&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">            </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A list of S3 resources found. Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance.&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">            </span><span class="nt">&quot;description_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a46851fb&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">            </span><span class="nt">&quot;files&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">                </span><span class="p">{</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">                    </span><span class="nt">&quot;file_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;positive2.json&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">                    </span><span class="nt">&quot;similarity_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a307e0f377932f42880de350fc69f83084aa8451a2e1e2a37cc97fc4eae7cf94&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">                    </span><span class="nt">&quot;line&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">                    </span><span class="nt">&quot;issue_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BillOfMaterials&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">                    </span><span class="nt">&quot;search_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Resources.JenkinsArtifacts03&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">                    </span><span class="nt">&quot;search_line&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">                    </span><span class="nt">&quot;search_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">                    </span><span class="nt">&quot;expected_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">                    </span><span class="nt">&quot;actual_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="w">                    </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{\&quot;acl\&quot;:\&quot;BucketOwnerFullControl\&quot;,\&quot;resource_accessibility\&quot;:\&quot;unknown\&quot;,\&quot;resource_category\&quot;:\&quot;Storage\&quot;,\&quot;resource_encryption\&quot;:\&quot;unencrypted\&quot;,\&quot;resource_name\&quot;:\&quot;jenkins-artifacts\&quot;,\&quot;resource_type\&quot;:\&quot;AWS::S3::Bucket\&quot;,\&quot;resource_vendor\&quot;:\&quot;AWS\&quot;}&quot;</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="w">                </span><span class="p">},</span>
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="w">                </span><span class="p">{</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="w">                    </span><span class="nt">&quot;file_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;positive1.yaml&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="w">                    </span><span class="nt">&quot;similarity_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;24a0036d2e94676f33c505c5cfd6686ef414072a14e576b08283e9a77596f7eb&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="w">                    </span><span class="nt">&quot;line&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="w">                    </span><span class="nt">&quot;issue_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BillOfMaterials&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a><span class="w">                    </span><span class="nt">&quot;search_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Resources.MyBucket&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="w">                    </span><span class="nt">&quot;search_line&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="w">                    </span><span class="nt">&quot;search_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a><span class="w">                    </span><span class="nt">&quot;expected_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a><span class="w">                    </span><span class="nt">&quot;actual_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a><span class="w">                    </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{\&quot;acl\&quot;:\&quot;BucketOwnerFullControl\&quot;,\&quot;policy\&quot;:{\&quot;Statement\&quot;:[{\&quot;Action\&quot;:[\&quot;s3:GetObject\&quot;],\&quot;Condition\&quot;:{\&quot;StringLike\&quot;:{\&quot;aws:Referer\&quot;:[\&quot;http://www.example.com/*\&quot;,\&quot;http://example.net/*\&quot;]}},\&quot;Effect\&quot;:\&quot;Allow\&quot;,\&quot;Principal\&quot;:\&quot;*\&quot;,\&quot;Resource\&quot;:[\&quot;\&quot;,{\&quot;playbooks\&quot;:[\&quot;arn:aws:s3:::\&quot;,\&quot;DOC-EXAMPLE-BUCKET\&quot;,\&quot;/*\&quot;]}]}],\&quot;Version\&quot;:\&quot;2012-10-17\&quot;},\&quot;resource_accessibility\&quot;:\&quot;hasPolicy\&quot;,\&quot;resource_category\&quot;:\&quot;Storage\&quot;,\&quot;resource_encryption\&quot;:\&quot;encrypted\&quot;,\&quot;resource_name\&quot;:\&quot;jenkins-artifacts\&quot;,\&quot;resource_type\&quot;:\&quot;AWS::S3::Bucket\&quot;,\&quot;resource_vendor\&quot;:\&quot;AWS\&quot;}&quot;</span>
+<a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a><span class="w">            </span><span class="p">]</span>
+<a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a><span class="w">    </span><span class="p">]</span>
+<a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a><span class="p">}</span>
+</code></pre></div>
 
 
 

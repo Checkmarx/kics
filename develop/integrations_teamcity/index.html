@@ -19,7 +19,7 @@
         <link rel="next" href="../integrations_travisci/">
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
     
     
       
@@ -1382,31 +1382,31 @@
 <p>This provide you the ability to run KICS scans as a stage of your pipeline.</p>
 <p>Just make sure that the <a href="https://www.jetbrains.com/help/teamcity/2021.2/setting-up-and-running-additional-build-agents.html">TeamCity agent</a> has Docker configured to run containers.</p>
 <p>Checkout <a href="https://www.jetbrains.com/help/teamcity/2021.2/kotlin-dsl.html#Getting+Started+with+Kotlin+DSL">Getting Started with Kotlin DSL</a> and modify you <code>.teamcity/settings.kts</code> as the example:</p>
-<pre><code class="language-kotlin">import jetbrains.buildServer.configs.kotlin.v2019_2.*
-import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.script
-version = &quot;2021.1&quot;
-
-project {
-    description = &quot;KICS TeamCity integration test&quot;
-    buildType(Build)
-}
-
-object Build: BuildType({
-    name = &quot;KICS TeamCity integration test&quot;
-    vcs {
-        root(DslContext.settingsRoot)
-    }
-
-    steps {
-        script {
-            scriptContent = &quot;&quot;&quot;
-                #!/bin/bash
-                docker run -v ${'$'}PWD:/path checkmarx/kics:latest scan -p /path -o /path --no-progress --ignore-on-exit results
-            &quot;&quot;&quot;.trimIndent()
-        }
-    }
-})
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">jetbrains.buildServer.configs.kotlin.v2019_2.*</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">import</span><span class="w"> </span><span class="nn">jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.script</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2021.1&quot;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">project</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;KICS TeamCity integration test&quot;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="n">buildType</span><span class="p">(</span><span class="n">Build</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">}</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kd">object</span><span class="w"> </span><span class="nc">Build</span><span class="p">:</span><span class="w"> </span><span class="n">BuildType</span><span class="p">({</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;KICS TeamCity integration test&quot;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="n">vcs</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="n">root</span><span class="p">(</span><span class="n">DslContext</span><span class="p">.</span><span class="na">settingsRoot</span><span class="p">)</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="n">steps</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">        </span><span class="n">script</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">            </span><span class="n">scriptContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="s">                #!/bin/bash</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="s">                docker run -v </span><span class="si">${</span><span class="sc">&#39;$&#39;</span><span class="si">}</span><span class="s">PWD:/path checkmarx/kics:latest scan -p /path -o /path --no-progress --ignore-on-exit results</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="s">            &quot;&quot;&quot;</span><span class="p">.</span><span class="na">trimIndent</span><span class="p">()</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="p">})</span>
+</code></pre></div>
 <p>With <a href="https://www.jetbrains.com/help/teamcity/2021.2/storing-project-settings-in-version-control.html#SynchronizingSettingswithVCS">versioned settings</a> enabled, after pushing the changes to the repository you'll be able to see the build progress, logs and success status.</p>
 <p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/teamcity-scan-logs.png" width="850"></p>
 <p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/teamcity-success-status.png" width="850"></p>

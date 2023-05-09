@@ -19,7 +19,7 @@
         <link rel="next" href="../integrations_auto_scanning_visual_studio/">
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
     
     
       
@@ -1488,74 +1488,74 @@
 <h2 id="configure_aws_credentials">Configure AWS Credentials<a class="headerlink" href="#configure_aws_credentials" title="Permanent link">&para;</a></h2>
 <p>For KICS to get the runtime information of your resources you need to provide AWS account Credentials as environment variables. Please note the AWS account provided should have read permissions to list service resources.</p>
 <p>Setting AWS credentials as environment variables</p>
-<p>MacOS and Linux:</p>
-<pre><code class="language-sh">export AWS_ACCESS_KEY_ID=&quot;&lt;AWS_ACCESS_KEY_ID&gt;&quot;
-export AWS_SECRET_ACCESS_KEY=&quot;&lt;AWS_SECRET_ACCESS_KEY&gt;&quot;
-export AWS_SESSION_TOKEN=&quot;&lt;AWS_SESSION_TOKEN&gt;&quot;
-</code></pre>
+<p>MacOS and Linux:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span><span class="s2">&quot;&lt;AWS_ACCESS_KEY_ID&gt;&quot;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span><span class="s2">&quot;&lt;AWS_SECRET_ACCESS_KEY&gt;&quot;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_SESSION_TOKEN</span><span class="o">=</span><span class="s2">&quot;&lt;AWS_SESSION_TOKEN&gt;&quot;</span>
+</code></pre></div></p>
 <p>Windows:</p>
-<pre><code class="language-sh">SET AWS_ACCESS_KEY_ID=&lt;AWS_ACCESS_KEY_ID&gt;
-SET AWS_SECRET_ACCESS_KEY=&lt;AWS_SECRET_ACCESS_KEY&gt;
-SET AWS_SESSION_TOKEN=&lt;AWS_SESSION_TOKEN&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>SET<span class="w"> </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>&lt;AWS_ACCESS_KEY_ID&gt;
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>SET<span class="w"> </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>&lt;AWS_SECRET_ACCESS_KEY&gt;
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>SET<span class="w"> </span><span class="nv">AWS_SESSION_TOKEN</span><span class="o">=</span>&lt;AWS_SESSION_TOKEN&gt;
+</code></pre></div>
 <p>Powershell:</p>
-<pre><code class="language-sh">$Env:AWS_ACCESS_KEY_ID=&quot;&lt;AWS_ACCESS_KEY_ID&gt;&quot;
-$Env:AWS_SECRET_ACCESS_KEY=&quot;&lt;AWS_SECRET_ACCESS_KEY&gt;&quot;
-$Env:AWS_SESSION_TOKEN=&quot;&lt;AWS_SESSION_TOKEN&gt;&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nv">$Env</span>:AWS_ACCESS_KEY_ID<span class="o">=</span><span class="s2">&quot;&lt;AWS_ACCESS_KEY_ID&gt;&quot;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nv">$Env</span>:AWS_SECRET_ACCESS_KEY<span class="o">=</span><span class="s2">&quot;&lt;AWS_SECRET_ACCESS_KEY&gt;&quot;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nv">$Env</span>:AWS_SESSION_TOKEN<span class="o">=</span><span class="s2">&quot;&lt;AWS_SESSION_TOKEN&gt;&quot;</span>
+</code></pre></div>
 <h2 id="configure_azure_credentials">Configure AZURE Credentials<a class="headerlink" href="#configure_azure_credentials" title="Permanent link">&para;</a></h2>
 <p>KICS provides two possibilities to use Terraformer with AZURE. Each one requires AZURE account credentials that you need to set as environment variables.</p>
 <h4 id="using_service_principal_with_client_certificate">Using Service Principal with Client Certificate<a class="headerlink" href="#using_service_principal_with_client_certificate" title="Permanent link">&para;</a></h4>
-<p>MacOS and Linux:</p>
-<pre><code class="language-sh">export ARM_SUBSCRIPTION_ID=&quot;&lt;ARM_SUBSCRIPTION_ID&gt;&quot;
-export ARM_CLIENT_ID=&quot;&lt;ARM_CLIENT_ID&gt;&quot;
-export ARM_CLIENT_CERTIFICATE_PATH=&quot;&lt;ARM_CLIENT_CERTIFICATE_PATH&gt;&quot;
-export ARM_CLIENT_CERTIFICATE_PASSWORD=&quot;&lt;ARM_CLIENT_CERTIFICATE_PASSWORD&gt;&quot;
-export ARM_TENANT_ID=&quot;&lt;ARM_TENANT_ID&gt;&quot;
-</code></pre>
+<p>MacOS and Linux:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ARM_SUBSCRIPTION_ID</span><span class="o">=</span><span class="s2">&quot;&lt;ARM_SUBSCRIPTION_ID&gt;&quot;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ARM_CLIENT_ID</span><span class="o">=</span><span class="s2">&quot;&lt;ARM_CLIENT_ID&gt;&quot;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ARM_CLIENT_CERTIFICATE_PATH</span><span class="o">=</span><span class="s2">&quot;&lt;ARM_CLIENT_CERTIFICATE_PATH&gt;&quot;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ARM_CLIENT_CERTIFICATE_PASSWORD</span><span class="o">=</span><span class="s2">&quot;&lt;ARM_CLIENT_CERTIFICATE_PASSWORD&gt;&quot;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ARM_TENANT_ID</span><span class="o">=</span><span class="s2">&quot;&lt;ARM_TENANT_ID&gt;&quot;</span>
+</code></pre></div></p>
 <p>Windows:</p>
-<pre><code class="language-sh">SET ARM_SUBSCRIPTION_ID=&lt;ARM_SUBSCRIPTION_ID&gt;
-SET ARM_CLIENT_ID=&quot;&lt;ARM_CLIENT_ID&gt;&quot;
-SET ARM_CLIENT_CERTIFICATE_PATH=&quot;&lt;ARM_CLIENT_CERTIFICATE_PATH&gt;&quot;
-SET ARM_CLIENT_CERTIFICATE_PASSWORD=&quot;&lt;ARM_CLIENT_CERTIFICATE_PASSWORD&gt;&quot;
-SET ARM_TENANT_ID=&quot;&lt;ARM_TENANT_ID&gt;&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>SET<span class="w"> </span><span class="nv">ARM_SUBSCRIPTION_ID</span><span class="o">=</span>&lt;ARM_SUBSCRIPTION_ID&gt;
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>SET<span class="w"> </span><span class="nv">ARM_CLIENT_ID</span><span class="o">=</span><span class="s2">&quot;&lt;ARM_CLIENT_ID&gt;&quot;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>SET<span class="w"> </span><span class="nv">ARM_CLIENT_CERTIFICATE_PATH</span><span class="o">=</span><span class="s2">&quot;&lt;ARM_CLIENT_CERTIFICATE_PATH&gt;&quot;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>SET<span class="w"> </span><span class="nv">ARM_CLIENT_CERTIFICATE_PASSWORD</span><span class="o">=</span><span class="s2">&quot;&lt;ARM_CLIENT_CERTIFICATE_PASSWORD&gt;&quot;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>SET<span class="w"> </span><span class="nv">ARM_TENANT_ID</span><span class="o">=</span><span class="s2">&quot;&lt;ARM_TENANT_ID&gt;&quot;</span>
+</code></pre></div>
 <p>Powershell:</p>
-<pre><code class="language-sh">$Env:ARM_SUBSCRIPTION_ID=&quot;&lt;ARM_SUBSCRIPTION_ID&gt;&quot;
-$Env:ARM_CLIENT_ID=&quot;&lt;ARM_CLIENT_ID&gt;&quot;
-$Env:ARM_CLIENT_CERTIFICATE_PATH=&quot;&lt;ARM_CLIENT_CERTIFICATE_PATH&gt;&quot;
-$Env:ARM_CLIENT_CERTIFICATE_PASSWORD=&quot;&lt;ARM_CLIENT_CERTIFICATE_PASSWORD&gt;&quot;
-$Env:ARM_TENANT_ID=&quot;&lt;ARM_TENANT_ID&gt;&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nv">$Env</span>:ARM_SUBSCRIPTION_ID<span class="o">=</span><span class="s2">&quot;&lt;ARM_SUBSCRIPTION_ID&gt;&quot;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nv">$Env</span>:ARM_CLIENT_ID<span class="o">=</span><span class="s2">&quot;&lt;ARM_CLIENT_ID&gt;&quot;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nv">$Env</span>:ARM_CLIENT_CERTIFICATE_PATH<span class="o">=</span><span class="s2">&quot;&lt;ARM_CLIENT_CERTIFICATE_PATH&gt;&quot;</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nv">$Env</span>:ARM_CLIENT_CERTIFICATE_PASSWORD<span class="o">=</span><span class="s2">&quot;&lt;ARM_CLIENT_CERTIFICATE_PASSWORD&gt;&quot;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nv">$Env</span>:ARM_TENANT_ID<span class="o">=</span><span class="s2">&quot;&lt;ARM_TENANT_ID&gt;&quot;</span>
+</code></pre></div>
 <h4 id="service_principal_with_client_secret">Service Principal with Client Secret<a class="headerlink" href="#service_principal_with_client_secret" title="Permanent link">&para;</a></h4>
-<p>MacOS and Linux:</p>
-<pre><code class="language-sh">export ARM_SUBSCRIPTION_ID=&quot;&lt;ARM_SUBSCRIPTION_ID&gt;&quot;
-export ARM_CLIENT_ID=&quot;&lt;ARM_CLIENT_ID&gt;&quot;
-export ARM_CLIENT_SECRET=&quot;&lt;ARM_CLIENT_SECRET&gt;&quot;
-export ARM_TENANT_ID=&quot;&lt;ARM_TENANT_ID&gt;&quot;
-</code></pre>
+<p>MacOS and Linux:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ARM_SUBSCRIPTION_ID</span><span class="o">=</span><span class="s2">&quot;&lt;ARM_SUBSCRIPTION_ID&gt;&quot;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ARM_CLIENT_ID</span><span class="o">=</span><span class="s2">&quot;&lt;ARM_CLIENT_ID&gt;&quot;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ARM_CLIENT_SECRET</span><span class="o">=</span><span class="s2">&quot;&lt;ARM_CLIENT_SECRET&gt;&quot;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ARM_TENANT_ID</span><span class="o">=</span><span class="s2">&quot;&lt;ARM_TENANT_ID&gt;&quot;</span>
+</code></pre></div></p>
 <p>Windows:</p>
-<pre><code class="language-sh">SET ARM_SUBSCRIPTION_ID=&lt;ARM_SUBSCRIPTION_ID&gt;
-SET ARM_CLIENT_ID=&quot;&lt;ARM_CLIENT_ID&gt;&quot;
-SET ARM_CLIENT_SECRET=&quot;&lt;ARM_CLIENT_SECRET&gt;&quot;
-SET ARM_TENANT_ID=&quot;&lt;ARM_TENANT_ID&gt;&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>SET<span class="w"> </span><span class="nv">ARM_SUBSCRIPTION_ID</span><span class="o">=</span>&lt;ARM_SUBSCRIPTION_ID&gt;
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>SET<span class="w"> </span><span class="nv">ARM_CLIENT_ID</span><span class="o">=</span><span class="s2">&quot;&lt;ARM_CLIENT_ID&gt;&quot;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>SET<span class="w"> </span><span class="nv">ARM_CLIENT_SECRET</span><span class="o">=</span><span class="s2">&quot;&lt;ARM_CLIENT_SECRET&gt;&quot;</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>SET<span class="w"> </span><span class="nv">ARM_TENANT_ID</span><span class="o">=</span><span class="s2">&quot;&lt;ARM_TENANT_ID&gt;&quot;</span>
+</code></pre></div>
 <p>Powershell:</p>
-<pre><code class="language-sh">$Env:ARM_SUBSCRIPTION_ID=&quot;&lt;ARM_SUBSCRIPTION_ID&gt;&quot;
-$Env:ARM_CLIENT_ID=&quot;&lt;ARM_CLIENT_ID&gt;&quot;
-$Env:ARM_CLIENT_SECRET=&quot;&lt;ARM_CLIENT_SECRET&gt;&quot;
-$Env:ARM_TENANT_ID=&quot;&lt;ARM_TENANT_ID&gt;&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">$Env</span>:ARM_SUBSCRIPTION_ID<span class="o">=</span><span class="s2">&quot;&lt;ARM_SUBSCRIPTION_ID&gt;&quot;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nv">$Env</span>:ARM_CLIENT_ID<span class="o">=</span><span class="s2">&quot;&lt;ARM_CLIENT_ID&gt;&quot;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nv">$Env</span>:ARM_CLIENT_SECRET<span class="o">=</span><span class="s2">&quot;&lt;ARM_CLIENT_SECRET&gt;&quot;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nv">$Env</span>:ARM_TENANT_ID<span class="o">=</span><span class="s2">&quot;&lt;ARM_TENANT_ID&gt;&quot;</span>
+</code></pre></div>
 <h2 id="kics_terraformer_path_syntax">KICS Terraformer Path Syntax<a class="headerlink" href="#kics_terraformer_path_syntax" title="Permanent link">&para;</a></h2>
 <h3 id="aws">AWS<a class="headerlink" href="#aws" title="Permanent link">&para;</a></h3>
-<pre><code class="language-sh">terraformer::{CloudProvider}:{Resources}:{Regions}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>terraformer::<span class="o">{</span>CloudProvider<span class="o">}</span>:<span class="o">{</span>Resources<span class="o">}</span>:<span class="o">{</span>Regions<span class="o">}</span>
+</code></pre></div>
 <h3 id="azure">AZURE<a class="headerlink" href="#azure" title="Permanent link">&para;</a></h3>
-<pre><code class="language-sh">terraformer::{CloudProvider}:{Resources}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>terraformer::<span class="o">{</span>CloudProvider<span class="o">}</span>:<span class="o">{</span>Resources<span class="o">}</span>
+</code></pre></div>
 <h3 id="gcp">GCP<a class="headerlink" href="#gcp" title="Permanent link">&para;</a></h3>
-<pre><code class="language-sh">terraformer::{CloudProvider}:{Resources}:{Regions}:{Projects}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>terraformer::<span class="o">{</span>CloudProvider<span class="o">}</span>:<span class="o">{</span>Resources<span class="o">}</span>:<span class="o">{</span>Regions<span class="o">}</span>:<span class="o">{</span>Projects<span class="o">}</span>
+</code></pre></div>
 <p><strong>CloudProvider</strong>: The name of the Cloud Provider to import from.</p>
 <p>Possible values:
 - <code>aws</code>
@@ -1574,44 +1574,44 @@ You can find a complete list of possible values in the links below:
 KICS will then run a scan on these local files.</p>
 <p>If the flag <code>-o, --output-path</code> is passed the folder <code>kics-extract-terraformer</code> will be generated in the reports directory instead.</p>
 <h3 id="imported_resources_tree_structure">Imported Resources tree structure:<a class="headerlink" href="#imported_resources_tree_structure" title="Permanent link">&para;</a></h3>
-<pre><code> ▾ kics-extract-terraformer/
-    ▾ {region}/
-        ▾ {resource}/
-            provider.tf
-            {resource}.tf
-            terraform.tfstate
-            variables.tf
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a> ▾ kics-extract-terraformer/
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    ▾ {region}/
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>        ▾ {resource}/
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>            provider.tf
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>            {resource}.tf
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>            terraform.tfstate
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>            variables.tf
+</code></pre></div>
 <h3 id="aws_run_kics_terraformer_integration_with_docker">[AWS] Run KICS Terraformer integration with Docker<a class="headerlink" href="#aws_run_kics_terraformer_integration_with_docker" title="Permanent link">&para;</a></h3>
 <p>To run KICS Terraformer integration with Docker simply pass the AWS Credentials that were set as environment variables to the <code>docker run</code> command and use the terraformer path syntax</p>
 <p>Examples:</p>
-<pre><code class="language-sh">docker run -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID -e AWS_SESSION_TOKEN checkmarx/kics:latest scan -p &quot;terraformer::aws:vpc:eu-west-2&quot; -v --no-progress
-</code></pre>
-<pre><code class="language-sh">docker run -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID -e AWS_SESSION_TOKEN -v ${PWD}:/path/ checkmarx/kics:latest scan -p &quot;terraformer::aws:vpc:eu-west-2&quot; -v --no-progress -o /path/results
-</code></pre>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span>AWS_SECRET_ACCESS_KEY<span class="w"> </span>-e<span class="w"> </span>AWS_ACCESS_KEY_ID<span class="w"> </span>-e<span class="w"> </span>AWS_SESSION_TOKEN<span class="w"> </span>checkmarx/kics:latest<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;terraformer::aws:vpc:eu-west-2&quot;</span><span class="w"> </span>-v<span class="w"> </span>--no-progress
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span>AWS_SECRET_ACCESS_KEY<span class="w"> </span>-e<span class="w"> </span>AWS_ACCESS_KEY_ID<span class="w"> </span>-e<span class="w"> </span>AWS_SESSION_TOKEN<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>:/path/<span class="w"> </span>checkmarx/kics:latest<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;terraformer::aws:vpc:eu-west-2&quot;</span><span class="w"> </span>-v<span class="w"> </span>--no-progress<span class="w"> </span>-o<span class="w"> </span>/path/results
+</code></pre></div></p>
 <p><img src="./img/docker_terraformer.gif" /></p>
 <h3 id="azure_run_kics_terraformer_integration_with_docker">[AZURE] Run KICS Terraformer integration with Docker<a class="headerlink" href="#azure_run_kics_terraformer_integration_with_docker" title="Permanent link">&para;</a></h3>
 <p>To run KICS Terraformer integration with Docker simply pass the AZURE Credentials that were set as environment variables to the docker run command and use the terraformer path syntax. Choose one of the following options:</p>
 <h4 id="using_service_principal_with_client_certificate_1">Using Service Principal with Client Certificate<a class="headerlink" href="#using_service_principal_with_client_certificate_1" title="Permanent link">&para;</a></h4>
 <p>Note that you should fill the <code>&lt;certificate_path&gt;</code> with the path that points to the directory where your certificate is located, and the <code>&lt;certificate-name&gt;</code> should point to the certificate name located in <code>&lt;certificate_path&gt;</code>.</p>
-<pre><code class="language-sh">docker run -v &lt;certificate_path&gt;:/certificate -e ARM_CLIENT_CERTIFICATE_PATH=/certificate/&lt;certificate_name&gt;.pfx -e ARM_CLIENT_CERTIFICATE_PASSWORD -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_SUBSCRIPTION_ID checkmarx/kics:latest scan -p &quot;terraformer::azure:storage_account&quot; -v --no-progress
-</code></pre>
-<pre><code class="language-sh">docker run -v &lt;certificate_path&gt;:/certificate -v ${PWD}:/path/ -e ARM_CLIENT_CERTIFICATE_PATH=/certificate/&lt;certificate_name&gt;.pfx -e ARM_CLIENT_CERTIFICATE_PASSWORD -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_SUBSCRIPTION_ID checkmarx/kics:latest scan -p &quot;terraformer::azure:storage_account&quot; -v --no-progress -o /path/results
-</code></pre>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span>&lt;certificate_path&gt;:/certificate<span class="w"> </span>-e<span class="w"> </span><span class="nv">ARM_CLIENT_CERTIFICATE_PATH</span><span class="o">=</span>/certificate/&lt;certificate_name&gt;.pfx<span class="w"> </span>-e<span class="w"> </span>ARM_CLIENT_CERTIFICATE_PASSWORD<span class="w"> </span>-e<span class="w"> </span>ARM_TENANT_ID<span class="w"> </span>-e<span class="w"> </span>ARM_CLIENT_ID<span class="w"> </span>-e<span class="w"> </span>ARM_SUBSCRIPTION_ID<span class="w"> </span>checkmarx/kics:latest<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;terraformer::azure:storage_account&quot;</span><span class="w"> </span>-v<span class="w"> </span>--no-progress
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span>&lt;certificate_path&gt;:/certificate<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>:/path/<span class="w"> </span>-e<span class="w"> </span><span class="nv">ARM_CLIENT_CERTIFICATE_PATH</span><span class="o">=</span>/certificate/&lt;certificate_name&gt;.pfx<span class="w"> </span>-e<span class="w"> </span>ARM_CLIENT_CERTIFICATE_PASSWORD<span class="w"> </span>-e<span class="w"> </span>ARM_TENANT_ID<span class="w"> </span>-e<span class="w"> </span>ARM_CLIENT_ID<span class="w"> </span>-e<span class="w"> </span>ARM_SUBSCRIPTION_ID<span class="w"> </span>checkmarx/kics:latest<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;terraformer::azure:storage_account&quot;</span><span class="w"> </span>-v<span class="w"> </span>--no-progress<span class="w"> </span>-o<span class="w"> </span>/path/results
+</code></pre></div></p>
 <p><img alt="client_certificate_terraformer_azure" src="https://user-images.githubusercontent.com/74001161/152843317-7e83b70c-2a44-4f22-8a5e-fa9434950269.gif" /></p>
 <h4 id="service_principal_with_client_secret_1">Service Principal with Client Secret<a class="headerlink" href="#service_principal_with_client_secret_1" title="Permanent link">&para;</a></h4>
-<pre><code class="language-sh">docker run -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET -e ARM_TENANT_ID checkmarx/kics:latest scan -p &quot;terraformer::azure:storage_account&quot; -v --no-progress
-</code></pre>
-<pre><code class="language-sh">docker run -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET -e ARM_TENANT_ID -v ${PWD}:/path/ checkmarx/kics:latest scan -p &quot;terraformer::azure:storage_account&quot; -v --no-progress -o /path/results
-</code></pre>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span>ARM_SUBSCRIPTION_ID<span class="w"> </span>-e<span class="w"> </span>ARM_CLIENT_ID<span class="w"> </span>-e<span class="w"> </span>ARM_CLIENT_SECRET<span class="w"> </span>-e<span class="w"> </span>ARM_TENANT_ID<span class="w"> </span>checkmarx/kics:latest<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;terraformer::azure:storage_account&quot;</span><span class="w"> </span>-v<span class="w"> </span>--no-progress
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span>ARM_SUBSCRIPTION_ID<span class="w"> </span>-e<span class="w"> </span>ARM_CLIENT_ID<span class="w"> </span>-e<span class="w"> </span>ARM_CLIENT_SECRET<span class="w"> </span>-e<span class="w"> </span>ARM_TENANT_ID<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>:/path/<span class="w"> </span>checkmarx/kics:latest<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;terraformer::azure:storage_account&quot;</span><span class="w"> </span>-v<span class="w"> </span>--no-progress<span class="w"> </span>-o<span class="w"> </span>/path/results
+</code></pre></div></p>
 <p><img alt="client_secret_terraformer_azure" src="https://user-images.githubusercontent.com/74001161/152833926-68b7cc56-23c0-4297-b308-56f4c6746e09.gif" /></p>
 <h3 id="gcp_run_kics_terraformer_integration_with_docker">[GCP] Run KICS Terraformer integration with Docker<a class="headerlink" href="#gcp_run_kics_terraformer_integration_with_docker" title="Permanent link">&para;</a></h3>
 <p>To run KICS Terraformer integration with Docker, pass the path that points to the JSON file that contains your service account key as an environment variable (GOOGLE_APPLICATION_CREDENTIALS) to the docker run command and use the terraformer path syntax. Note that your project should have a region defined, and your account should have read permissions to list resources.</p>
 <p>Also note that you should fill the <code>&lt;credentials_path&gt;</code> with the path that points to the directory where your service account key file is located, and the <code>&lt;credentials-file-name&gt;</code> should point to the service account key file name located in <code>&lt;credentials_path&gt;</code>.</p>
-<pre><code class="language-sh"> docker run -v &lt;credentials_path&gt;:/credentials -e GOOGLE_APPLICATION_CREDENTIALS=/credentials/&lt;credentials-file-name&gt; checkmarx/kics:latest scan -p &quot;terraformer::gcp:gcs:us-east4:project&quot; -v --no-progress --log-level=DEBUG
-</code></pre>
-<pre><code class="language-sh"> docker run -v &lt;credentials_path&gt;:/credentials -v ${PWD}:/path/ -e GOOGLE_APPLICATION_CREDENTIALS=/credentials/&lt;credentials-file-name&gt; checkmarx/kics:latest scan -p &quot;terraformer::gcp:gcs:us-east4:project&quot; -v --no-progress --log-level=DEBUG -o /path/results
-</code></pre>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span>&lt;credentials_path&gt;:/credentials<span class="w"> </span>-e<span class="w"> </span><span class="nv">GOOGLE_APPLICATION_CREDENTIALS</span><span class="o">=</span>/credentials/&lt;credentials-file-name&gt;<span class="w"> </span>checkmarx/kics:latest<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;terraformer::gcp:gcs:us-east4:project&quot;</span><span class="w"> </span>-v<span class="w"> </span>--no-progress<span class="w"> </span>--log-level<span class="o">=</span>DEBUG
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span>&lt;credentials_path&gt;:/credentials<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>:/path/<span class="w"> </span>-e<span class="w"> </span><span class="nv">GOOGLE_APPLICATION_CREDENTIALS</span><span class="o">=</span>/credentials/&lt;credentials-file-name&gt;<span class="w"> </span>checkmarx/kics:latest<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;terraformer::gcp:gcs:us-east4:project&quot;</span><span class="w"> </span>-v<span class="w"> </span>--no-progress<span class="w"> </span>--log-level<span class="o">=</span>DEBUG<span class="w"> </span>-o<span class="w"> </span>/path/results
+</code></pre></div></p>
 <p><img alt="credentials_key_gcp" src="https://user-images.githubusercontent.com/74001161/153022195-9d2a1cae-71c3-443a-ac08-4e2697f93469.gif" /></p>
 <h2 id="notes"><strong>NOTES</strong><a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>

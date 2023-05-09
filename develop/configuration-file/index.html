@@ -19,7 +19,7 @@
         <link rel="next" href="../running-kics/">
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
     
     
       
@@ -1470,51 +1470,51 @@ You can disable scanning in certain parts of file using inline comments. More ca
 </blockquote>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <h4 id="json">JSON<a class="headerlink" href="#json" title="Permanent link">&para;</a></h4>
-<pre><code class="language-JSON">{
-  &quot;path&quot;: &quot;assets/iac_samples&quot;,
-  &quot;verbose&quot;: true,
-  &quot;log-file&quot;: true,
-  &quot;type&quot;: &quot;Dockerfile,Kubernetes&quot;,
-  &quot;queries-path&quot;: &quot;assets/queries&quot;,
-  &quot;exclude-paths&quot;: [
-     &quot;foo/&quot;,
-     &quot;bar/&quot;,
-  ],
-  &quot;output-path&quot;: &quot;results&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;assets/iac_samples&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">&quot;verbose&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">&quot;log-file&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dockerfile,Kubernetes&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">&quot;queries-path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;assets/queries&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">&quot;exclude-paths&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">     </span><span class="s2">&quot;foo/&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">     </span><span class="s2">&quot;bar/&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="p">],</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">&quot;output-path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;results&quot;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">}</span>
+</code></pre></div>
 <h4 id="yaml">YAML<a class="headerlink" href="#yaml" title="Permanent link">&para;</a></h4>
 <p>The same example now in YAML format passing <code>type</code> as an array of strings:</p>
-<pre><code class="language-YAML">path: assets/iac_samples
-verbose: true
-log-file: true
-type:
-  - Dockerfile
-  - Kubernetes
-queries-path: &quot;assets/queries&quot;
-exclude-paths:
-  - &quot;foo/&quot;
-  - &quot;bar/&quot;
-output-path: &quot;results&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/iac_samples</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">verbose</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nt">log-file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nt">type</span><span class="p">:</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dockerfile</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Kubernetes</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nt">queries-path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;assets/queries&quot;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nt">exclude-paths</span><span class="p">:</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;foo/&quot;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;bar/&quot;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="nt">output-path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;results&quot;</span>
+</code></pre></div>
 <h4 id="toml">TOML<a class="headerlink" href="#toml" title="Permanent link">&para;</a></h4>
-<pre><code class="language-TOML">path = &quot;assets/iac_samples&quot;
-verbose = true
-log-file = true
-type = &quot;Dockerfile,Kubernetes&quot;
-queries-path = &quot;assets/queries&quot;
-exclude-paths = [ &quot;foo/&quot;, &quot;bar/&quot; ]
-output-path = &quot;results&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;assets/iac_samples&quot;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">log-file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Dockerfile,Kubernetes&quot;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">queries-path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;assets/queries&quot;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">exclude-paths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s">&quot;foo/&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bar/&quot;</span><span class="w"> </span><span class="p">]</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">output-path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;results&quot;</span>
+</code></pre></div>
 <h4 id="hcl">HCL<a class="headerlink" href="#hcl" title="Permanent link">&para;</a></h4>
-<pre><code class="language-hcl">&quot;path&quot; = &quot;assets/iac_samples&quot;
-&quot;verbose&quot; = true
-&quot;log-file&quot; = true
-&quot;type&quot; = &quot;Dockerfile,Kubernetes&quot;
-&quot;queries-path&quot; = &quot;assets/queries&quot;
-&quot;exclude-paths&quot; = [&quot;foo/&quot;, &quot;bar/&quot;]
-&quot;output-path&quot; = &quot;results&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="s2">&quot;path&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;assets/iac_samples&quot;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="s2">&quot;verbose&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="s2">&quot;log-file&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="s2">&quot;type&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Dockerfile,Kubernetes&quot;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="s2">&quot;queries-path&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;assets/queries&quot;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="s2">&quot;exclude-paths&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;foo/&quot;, &quot;bar/&quot;</span><span class="p">]</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="s2">&quot;output-path&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;results&quot;</span>
+</code></pre></div>
 <hr />
 <h2 id="how_to_use">How to Use<a class="headerlink" href="#how_to_use" title="Permanent link">&para;</a></h2>
 <p>You can enclose all your configurations in a file and use it in two different ways.</p>
@@ -1524,16 +1524,16 @@ output-path = &quot;results&quot;
 <li>Add the necessary configurations as shown in the templates section in any of the supported formats.</li>
 <li>Pass the configuration file as argument:</li>
 </ol>
-<pre><code>docker run -t -v {​​​​path_to_kics_config}​​​​:/kics -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p /path --config /kics/kics-config.json
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker run -t -v {​​​​path_to_kics_config}​​​​:/kics -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p /path --config /kics/kics-config.json
+</code></pre></div>
 <h4 id="configuration_as_code">Configuration as Code<a class="headerlink" href="#configuration_as_code" title="Permanent link">&para;</a></h4>
 <ol>
 <li>Create a file named <code>kics.config</code> and place it in the root of your project repository.</li>
 <li>Add the necessary configurations as shown in the templates section in any of the supported formats.</li>
 <li>Invoke KICS without arguments (KICS will search for the specific file in the root)</li>
 </ol>
-<pre><code>docker run -t -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p /path
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker run -t -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p /path
+</code></pre></div>
 <p><strong>Note</strong>: If more than one path is given, KICS will warn that <code>--config</code> must be used to explicit decide.</p>
 <h4 id="environment_variables">Environment variables<a class="headerlink" href="#environment_variables" title="Permanent link">&para;</a></h4>
 <p>KICS also accepts environment variables to fill flags values. To use it you just need to have the flag with a <code>KICS_</code> prefix. For example:</p>

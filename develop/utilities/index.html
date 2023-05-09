@@ -19,7 +19,7 @@
         <link rel="next" href="../architecture/">
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
     
     
       
@@ -1447,19 +1447,19 @@
 <p><img alt="image" src="https://user-images.githubusercontent.com/74001161/161734076-f6cfcf33-6096-4712-80b5-02d367ae73e0.png" /></p>
 <h2 id="resource_type_and_resource_name">RESOURCE TYPE AND RESOURCE NAME<a class="headerlink" href="#resource_type_and_resource_name" title="Permanent link">&para;</a></h2>
 <p>KICS presents the resource type and the resource name fields in the JSON result of each query. These fields are available for the following platforms: Ansible, Azure Resource Manager, CloudFormation, CrossPlane, Knative, Kubernetes, Google Deployment Manager, Pulumi, ServerlessFW and Terraform.</p>
-<pre><code>{
-    &quot;file_name&quot;: &quot;assets/queries/azureResourceManager/account_admins_not_notified_by_email/test/positive3.json&quot;,
-    &quot;similarity_id&quot;: &quot;4db29b15c254f0d6b2226a9bea87e1db9098ba24ceab992646536cd33061d03f&quot;,
-    &quot;line&quot;: 16,
-    &quot;resource_type&quot;: &quot;Microsoft.Sql/servers/databases/securityAlertPolicies&quot;,
-    &quot;resource_name&quot;: &quot;sample/server/default&quot;,
-    &quot;issue_type&quot;: &quot;IncorrectValue&quot;,
-    &quot;search_key&quot;: &quot;properties.template.resources.name={{sample/server/default}}.properties.emailAccountAdmins&quot;,
-    &quot;search_line&quot;: 0,
-    &quot;search_value&quot;: &quot;&quot;,
-    &quot;expected_value&quot;: &quot;securityAlertPolicies.properties.emailAccountAdmins is set to true&quot;,
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>{
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    &quot;file_name&quot;: &quot;assets/queries/azureResourceManager/account_admins_not_notified_by_email/test/positive3.json&quot;,
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    &quot;similarity_id&quot;: &quot;4db29b15c254f0d6b2226a9bea87e1db9098ba24ceab992646536cd33061d03f&quot;,
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    &quot;line&quot;: 16,
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    &quot;resource_type&quot;: &quot;Microsoft.Sql/servers/databases/securityAlertPolicies&quot;,
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    &quot;resource_name&quot;: &quot;sample/server/default&quot;,
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    &quot;issue_type&quot;: &quot;IncorrectValue&quot;,
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    &quot;search_key&quot;: &quot;properties.template.resources.name={{sample/server/default}}.properties.emailAccountAdmins&quot;,
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    &quot;search_line&quot;: 0,
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    &quot;search_value&quot;: &quot;&quot;,
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    &quot;expected_value&quot;: &quot;securityAlertPolicies.properties.emailAccountAdmins is set to true&quot;,
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>}
+</code></pre></div>
 
 
 

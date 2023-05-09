@@ -19,7 +19,7 @@
         <link rel="next" href="../roadmap/">
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
     
     
       
@@ -1456,55 +1456,55 @@
 <h2 id="configure_k8s_credentials">Configure K8s Credentials<a class="headerlink" href="#configure_k8s_credentials" title="Permanent link">&para;</a></h2>
 <p>For KICS to get the runtime information of your resources, you need to provide your K8s Credentials as environment variables.</p>
 <h3 id="using_config_file">Using Config File<a class="headerlink" href="#using_config_file" title="Permanent link">&para;</a></h3>
-<p>MacOS and Linux:</p>
-<pre><code class="language-sh">export K8S_CONFIG_FILE=&quot;&lt;K8S_CONFIG_FILE&gt;&quot;
-</code></pre>
+<p>MacOS and Linux:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">K8S_CONFIG_FILE</span><span class="o">=</span><span class="s2">&quot;&lt;K8S_CONFIG_FILE&gt;&quot;</span>
+</code></pre></div></p>
 <p>Windows:</p>
-<pre><code class="language-sh">SET K8S_CONFIG_FILE=&lt;K8S_CONFIG_FILE&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>SET<span class="w"> </span><span class="nv">K8S_CONFIG_FILE</span><span class="o">=</span>&lt;K8S_CONFIG_FILE&gt;
+</code></pre></div>
 <p>Powershell:</p>
-<pre><code class="language-sh">$Env:K8S_CONFIG_FILE=&quot;&lt;K8S_CONFIG_FILE&gt;&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nv">$Env</span>:K8S_CONFIG_FILE<span class="o">=</span><span class="s2">&quot;&lt;K8S_CONFIG_FILE&gt;&quot;</span>
+</code></pre></div>
 <h3 id="using_service_account_token">Using Service Account Token<a class="headerlink" href="#using_service_account_token" title="Permanent link">&para;</a></h3>
 <p>Note that your Service Account Token should have list permissions for the chosen resources. Additionally to that, note that <code>K8S_CA_DATA</code> and <code>K8S_SA_TOKEN_DATA</code> should be base64 encoded.</p>
-<p>MacOS and Linux:</p>
-<pre><code class="language-sh">export K8S_HOST=&quot;&lt;K8S_HOST&gt;&quot;
-export K8S_CA_FILE=&quot;&lt;K8S_CA_FILE&gt;&quot; or export K8S_CA_DATA=&quot;K8S_CA_DATA&quot;
-export K8S_SA_TOKEN_FILE=&quot;K8S_SA_TOKEN_FILE&gt;&quot; or export K8S_SA_TOKEN_DATA=&quot;K8S_SA_TOKEN_DATA&quot;
-</code></pre>
+<p>MacOS and Linux:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">K8S_HOST</span><span class="o">=</span><span class="s2">&quot;&lt;K8S_HOST&gt;&quot;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">K8S_CA_FILE</span><span class="o">=</span><span class="s2">&quot;&lt;K8S_CA_FILE&gt;&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">K8S_CA_DATA</span><span class="o">=</span><span class="s2">&quot;K8S_CA_DATA&quot;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">K8S_SA_TOKEN_FILE</span><span class="o">=</span><span class="s2">&quot;K8S_SA_TOKEN_FILE&gt;&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">K8S_SA_TOKEN_DATA</span><span class="o">=</span><span class="s2">&quot;K8S_SA_TOKEN_DATA&quot;</span>
+</code></pre></div></p>
 <p>Windows:</p>
-<pre><code class="language-sh">SET K8S_HOST=&lt;K8S_HOST&gt;
-SET K8S_CA_FILE=&lt;K8S_CA_FILE&gt; or SET K8S_CA_DATA=&lt;K8S_CA_DATA&gt;
-SET K8S_SA_TOKEN_FILE=&lt;K8S_SA_TOKEN_FILE&gt; or SET K8S_SA_TOKEN_DATA=&lt;K8S_SA_TOKEN_DATA&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>SET<span class="w"> </span><span class="nv">K8S_HOST</span><span class="o">=</span>&lt;K8S_HOST&gt;
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>SET<span class="w"> </span><span class="nv">K8S_CA_FILE</span><span class="o">=</span>&lt;K8S_CA_FILE&gt;<span class="w"> </span>or<span class="w"> </span>SET<span class="w"> </span><span class="nv">K8S_CA_DATA</span><span class="o">=</span>&lt;K8S_CA_DATA&gt;
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>SET<span class="w"> </span><span class="nv">K8S_SA_TOKEN_FILE</span><span class="o">=</span>&lt;K8S_SA_TOKEN_FILE&gt;<span class="w"> </span>or<span class="w"> </span>SET<span class="w"> </span><span class="nv">K8S_SA_TOKEN_DATA</span><span class="o">=</span>&lt;K8S_SA_TOKEN_DATA&gt;
+</code></pre></div>
 <p>Powershell:</p>
-<pre><code class="language-sh">$Env:K8S_HOST=&quot;&lt;K8S_HOST&gt;&quot;
-$Env:K8S_CA_FILE=&quot;&lt;K8S_CA_FILE&gt;&quot; or $Env:K8S_CA_DATA=&quot;&lt;K8S_CA_DATA&gt;&quot;
-$Env:K8S_CA_FILE=&quot;&lt;K8S_SA_TOKEN_FILE&gt;&quot; or $Env:K8S_CA_DATA=&quot;&lt;K8S_SA_TOKEN_DATA&gt;&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nv">$Env</span>:K8S_HOST<span class="o">=</span><span class="s2">&quot;&lt;K8S_HOST&gt;&quot;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nv">$Env</span>:K8S_CA_FILE<span class="o">=</span><span class="s2">&quot;&lt;K8S_CA_FILE&gt;&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="nv">$Env</span>:K8S_CA_DATA<span class="o">=</span><span class="s2">&quot;&lt;K8S_CA_DATA&gt;&quot;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nv">$Env</span>:K8S_CA_FILE<span class="o">=</span><span class="s2">&quot;&lt;K8S_SA_TOKEN_FILE&gt;&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="nv">$Env</span>:K8S_CA_DATA<span class="o">=</span><span class="s2">&quot;&lt;K8S_SA_TOKEN_DATA&gt;&quot;</span>
+</code></pre></div>
 <h3 id="using_certificate">Using Certificate<a class="headerlink" href="#using_certificate" title="Permanent link">&para;</a></h3>
 <p>Note that your "certificate user" should have list permissions for the chosen resources. Additionally to that, note that <code>K8S_CA_DATA</code>, <code>K8S_CERT_DATA</code>, and <code>K8S_KEY_DATA</code> should be base64 encoded.</p>
-<p>MacOS and Linux:</p>
-<pre><code class="language-sh">export K8S_HOST=&quot;&lt;K8S_HOST&gt;&quot;
-export K8S_CA_FILE=&quot;&lt;K8S_CA_FILE&gt;&quot; or export K8S_CA_DATA=&quot;K8S_CA_DATA&quot;
-export K8S_CERT_FILE=&quot;&lt;K8S_CERT_FILE&gt;&quot; or export K8S_CERT_DATA=&quot;K8S_CERT_DATA&quot;
-export K8S_KEY_FILE=&quot;&lt;K8S_KEY_FILE&gt;&quot; or export K8S_KEY_DATA=&quot;K8S_KEY_DATA&quot;
-</code></pre>
+<p>MacOS and Linux:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">K8S_HOST</span><span class="o">=</span><span class="s2">&quot;&lt;K8S_HOST&gt;&quot;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">K8S_CA_FILE</span><span class="o">=</span><span class="s2">&quot;&lt;K8S_CA_FILE&gt;&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">K8S_CA_DATA</span><span class="o">=</span><span class="s2">&quot;K8S_CA_DATA&quot;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">K8S_CERT_FILE</span><span class="o">=</span><span class="s2">&quot;&lt;K8S_CERT_FILE&gt;&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">K8S_CERT_DATA</span><span class="o">=</span><span class="s2">&quot;K8S_CERT_DATA&quot;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">K8S_KEY_FILE</span><span class="o">=</span><span class="s2">&quot;&lt;K8S_KEY_FILE&gt;&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">K8S_KEY_DATA</span><span class="o">=</span><span class="s2">&quot;K8S_KEY_DATA&quot;</span>
+</code></pre></div></p>
 <p>Windows:</p>
-<pre><code class="language-sh">SET K8S_HOST=&lt;K8S_HOST&gt;
-SET K8S_CA_FILE=&lt;K8S_CA_FILE&gt; or SET K8S_CA_DATA=&lt;K8S_CA_DATA&gt;
-SET K8S_CERT_FILE=&lt;K8S_CERT_FILE&gt; or SET K8S_CERT_DATA=&lt;K8S_CERT_DATA&gt;
-SET K8S_KEY_FILE=&lt;K8S_KEY_FILE&gt; or SET K8S_KEY_DATA=&lt;K8S_KEY_DATA&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>SET<span class="w"> </span><span class="nv">K8S_HOST</span><span class="o">=</span>&lt;K8S_HOST&gt;
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>SET<span class="w"> </span><span class="nv">K8S_CA_FILE</span><span class="o">=</span>&lt;K8S_CA_FILE&gt;<span class="w"> </span>or<span class="w"> </span>SET<span class="w"> </span><span class="nv">K8S_CA_DATA</span><span class="o">=</span>&lt;K8S_CA_DATA&gt;
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>SET<span class="w"> </span><span class="nv">K8S_CERT_FILE</span><span class="o">=</span>&lt;K8S_CERT_FILE&gt;<span class="w"> </span>or<span class="w"> </span>SET<span class="w"> </span><span class="nv">K8S_CERT_DATA</span><span class="o">=</span>&lt;K8S_CERT_DATA&gt;
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>SET<span class="w"> </span><span class="nv">K8S_KEY_FILE</span><span class="o">=</span>&lt;K8S_KEY_FILE&gt;<span class="w"> </span>or<span class="w"> </span>SET<span class="w"> </span><span class="nv">K8S_KEY_DATA</span><span class="o">=</span>&lt;K8S_KEY_DATA&gt;
+</code></pre></div>
 <p>Powershell:</p>
-<pre><code class="language-sh">$Env:K8S_HOST=&quot;&lt;K8S_HOST&gt;&quot;
-$Env:K8S_CA_FILE=&quot;&lt;K8S_CA_FILE&gt;&quot; or $Env:K8S_CA_DATA=&quot;&lt;K8S_CA_DATA&gt;&quot;
-$Env:K8S_CERT_FILE=&quot;&lt;K8S_CERT_FILE&gt;&quot; or $Env:K8S_CERT_DATA=&quot;&lt;K8S_CERT_DATA&gt;&quot;
-$Env:K8S_KEY_FILE=&quot;&lt;K8S_KEY_FILE&gt;&quot; or $Env:K8S_KEY_DATA=&quot;&lt;K8S_KEY_DATA&gt;&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">$Env</span>:K8S_HOST<span class="o">=</span><span class="s2">&quot;&lt;K8S_HOST&gt;&quot;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nv">$Env</span>:K8S_CA_FILE<span class="o">=</span><span class="s2">&quot;&lt;K8S_CA_FILE&gt;&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="nv">$Env</span>:K8S_CA_DATA<span class="o">=</span><span class="s2">&quot;&lt;K8S_CA_DATA&gt;&quot;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nv">$Env</span>:K8S_CERT_FILE<span class="o">=</span><span class="s2">&quot;&lt;K8S_CERT_FILE&gt;&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="nv">$Env</span>:K8S_CERT_DATA<span class="o">=</span><span class="s2">&quot;&lt;K8S_CERT_DATA&gt;&quot;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nv">$Env</span>:K8S_KEY_FILE<span class="o">=</span><span class="s2">&quot;&lt;K8S_KEY_FILE&gt;&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="nv">$Env</span>:K8S_KEY_DATA<span class="o">=</span><span class="s2">&quot;&lt;K8S_KEY_DATA&gt;&quot;</span>
+</code></pre></div>
 <h2 id="kics_kuberneter_path_syntax">KICS Kuberneter Path Syntax<a class="headerlink" href="#kics_kuberneter_path_syntax" title="Permanent link">&para;</a></h2>
-<pre><code class="language-sh">kuberneter::{namespaces}:{apiVersions}:{kinds}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kuberneter::<span class="o">{</span>namespaces<span class="o">}</span>:<span class="o">{</span>apiVersions<span class="o">}</span>:<span class="o">{</span>kinds<span class="o">}</span>
+</code></pre></div>
 <p>To import all the namespaces, apiVersions, or kinds, please use: <code>*</code>. For example, <code>kuberneter::*:*:*</code>.</p>
 <p>To specify the namespaces, apiVersions, or kinds, please use: separator <code>+</code>. For example,<code>kuberneter::*:apps/v1+v1:ServiceAccount</code>.</p>
 <p>The API Versions and their respective kinds (both case sensitive) are listed below:</p>
@@ -1575,26 +1575,26 @@ $Env:K8S_KEY_FILE=&quot;&lt;K8S_KEY_FILE&gt;&quot; or $Env:K8S_KEY_DATA=&quot;&l
 KICS will then run a scan on these local files.</p>
 <p>If the flag <code>-o, --output-path</code> is passed, the folder <code>kics-extract-kuberneter</code> will be generated in the reports directory instead.</p>
 <h3 id="imported_resources_tree_structure">Imported Resources tree structure:<a class="headerlink" href="#imported_resources_tree_structure" title="Permanent link">&para;</a></h3>
-<pre><code> ▾ kics-extract-kuberneter/
-    ▾ {apiGroup}/
-        ▾ {apiVersion}/
-            ▾ {kind}.yaml
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a> ▾ kics-extract-kuberneter/
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    ▾ {apiGroup}/
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>        ▾ {apiVersion}/
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>            ▾ {kind}.yaml
+</code></pre></div>
 <h3 id="run_kics_to_scan_runtime_k8s_cluster_with_docker">Run KICS to scan runtime K8s cluster with Docker<a class="headerlink" href="#run_kics_to_scan_runtime_k8s_cluster_with_docker" title="Permanent link">&para;</a></h3>
 <p>To run KICS Kuberneter with Docker, you can simply pass the K8s Credentials that were set as environment variables to the docker run command and use the kuberneter path syntax</p>
 <p>Examples:</p>
 <h4 id="using_config_file_1">Using Config File<a class="headerlink" href="#using_config_file_1" title="Permanent link">&para;</a></h4>
-<pre><code class="language-sh">docker run -v &lt;credentials_path&gt;:/credentials -v ${PWD}:/path/ -e K8S_CONFIG_FILE=/credentials/&lt;config-file-name&gt; checkmarx/kics:latest scan -p &quot;kuberneter::*:*:*&quot; -v --no-progress -o /path/results
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span>&lt;credentials_path&gt;:/credentials<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>:/path/<span class="w"> </span>-e<span class="w"> </span><span class="nv">K8S_CONFIG_FILE</span><span class="o">=</span>/credentials/&lt;config-file-name&gt;<span class="w"> </span>checkmarx/kics:latest<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;kuberneter::*:*:*&quot;</span><span class="w"> </span>-v<span class="w"> </span>--no-progress<span class="w"> </span>-o<span class="w"> </span>/path/results
+</code></pre></div>
 <h4 id="using_service_account_token_1">Using Service Account Token<a class="headerlink" href="#using_service_account_token_1" title="Permanent link">&para;</a></h4>
-<pre><code class="language-sh">docker run -v ${PWD}:/path/ -e K8S_HOST -e K8S_CA_DATA -e K8S_SA_TOKEN_DATA kuberneter scan -p &quot;kuberneter::*:*:*&quot; -v --no-progress -o /path/results
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>:/path/<span class="w"> </span>-e<span class="w"> </span>K8S_HOST<span class="w"> </span>-e<span class="w"> </span>K8S_CA_DATA<span class="w"> </span>-e<span class="w"> </span>K8S_SA_TOKEN_DATA<span class="w"> </span>kuberneter<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;kuberneter::*:*:*&quot;</span><span class="w"> </span>-v<span class="w"> </span>--no-progress<span class="w"> </span>-o<span class="w"> </span>/path/results
+</code></pre></div>
 <h4 id="using_certificate_1">Using Certificate<a class="headerlink" href="#using_certificate_1" title="Permanent link">&para;</a></h4>
-<pre><code class="language-sh">docker run -v ${PWD}:/path/ -e K8S_HOST -e K8S_CA_DATA -e K8S_SA_TOKEN_DATA kuberneter scan -p &quot;kuberneter::*:*:*&quot; -v --no-progress -o /path/results
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>:/path/<span class="w"> </span>-e<span class="w"> </span>K8S_HOST<span class="w"> </span>-e<span class="w"> </span>K8S_CA_DATA<span class="w"> </span>-e<span class="w"> </span>K8S_SA_TOKEN_DATA<span class="w"> </span>kuberneter<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;kuberneter::*:*:*&quot;</span><span class="w"> </span>-v<span class="w"> </span>--no-progress<span class="w"> </span>-o<span class="w"> </span>/path/results
+</code></pre></div>
 <h4 id="using_certificate_2">Using Certificate<a class="headerlink" href="#using_certificate_2" title="Permanent link">&para;</a></h4>
-<pre><code class="language-sh">docker run -v ${PWD}:/path/ -e K8S_HOST -e K8S_CA_DATA -e K8S_CERT_DATA -e K8S_KEY_DATA checkmarx/kics:latest scan -p &quot;kuberneter::*:*:*&quot; -v --no-progress -o /path/results
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>:/path/<span class="w"> </span>-e<span class="w"> </span>K8S_HOST<span class="w"> </span>-e<span class="w"> </span>K8S_CA_DATA<span class="w"> </span>-e<span class="w"> </span>K8S_CERT_DATA<span class="w"> </span>-e<span class="w"> </span>K8S_KEY_DATA<span class="w"> </span>checkmarx/kics:latest<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;kuberneter::*:*:*&quot;</span><span class="w"> </span>-v<span class="w"> </span>--no-progress<span class="w"> </span>-o<span class="w"> </span>/path/results
+</code></pre></div>
 
 
 
