@@ -242,10 +242,7 @@ func contributionAppeal(customPrint *consolePrinter.Printer, queriesPath []strin
 }
 
 func usingCustomQueries(queriesPath []string) bool {
-	if !utils.ContainsInString(filepath.Join("assets", "queries"), queriesPath) {
-		return true
-	}
-	return false
+	return !utils.ContainsInString(filepath.Join("assets", "queries"), queriesPath)
 }
 
 // printVersionCheck - Prints and logs warning if not using KICS latest version
