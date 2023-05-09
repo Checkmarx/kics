@@ -201,7 +201,7 @@
 				
 				<option value="file72">github.com/Checkmarx/kics/pkg/printer/options.go (85.7%)</option>
 				
-				<option value="file73">github.com/Checkmarx/kics/pkg/printer/printer.go (82.4%)</option>
+				<option value="file73">github.com/Checkmarx/kics/pkg/printer/printer.go (82.3%)</option>
 				
 				<option value="file74">github.com/Checkmarx/kics/pkg/printer/utils.go (82.4%)</option>
 				
@@ -269,11 +269,11 @@
 				
 				<option value="file106">github.com/Checkmarx/kics/pkg/scan/client.go (44.4%)</option>
 				
-				<option value="file107">github.com/Checkmarx/kics/pkg/scan/post_scan.go (82.5%)</option>
+				<option value="file107">github.com/Checkmarx/kics/pkg/scan/post_scan.go (82.9%)</option>
 				
 				<option value="file108">github.com/Checkmarx/kics/pkg/scan/scan.go (16.3%)</option>
 				
-				<option value="file109">github.com/Checkmarx/kics/pkg/scan/utils.go (71.3%)</option>
+				<option value="file109">github.com/Checkmarx/kics/pkg/scan/utils.go (71.5%)</option>
 				
 				<option value="file110">github.com/Checkmarx/kics/pkg/scanner/scanner.go (56.4%)</option>
 				
@@ -295,7 +295,9 @@
 				
 				<option value="file119">github.com/Checkmarx/kics/pkg/utils/split_lines.go (100.0%)</option>
 				
-				<option value="file120">github.com/Checkmarx/kics/test/helpers.go (37.5%)</option>
+				<option value="file120">github.com/Checkmarx/kics/pkg/utils/validations.go (100.0%)</option>
+				
+				<option value="file121">github.com/Checkmarx/kics/test/helpers.go (37.5%)</option>
 				
 				</select>
 			</div>
@@ -2184,13 +2186,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="36">total += v
+                <span class="cov8" title="31">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2215,7 +2217,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4676,7 +4678,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -4885,7 +4887,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="9">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="13">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="12">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="11">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -13749,6 +13751,8 @@ import (
         "strconv"
         "strings"
 
+        "github.com/Checkmarx/kics/pkg/utils"
+
         consoleFlags "github.com/Checkmarx/kics/internal/console/flags"
         "github.com/Checkmarx/kics/pkg/model"
         "github.com/gookit/color"
@@ -13822,27 +13826,27 @@ type Printer struct {
 }
 
 // WordWrap Wraps text at the specified number of words
-func WordWrap(s, indentation string, limit int) string <span class="cov4" title="3">{
+func WordWrap(s, indentation string, limit int) string <span class="cov3" title="3">{
         if strings.TrimSpace(s) == "" </span><span class="cov1" title="1">{
                 return s
         }</span>
 
-        <span class="cov3" title="2">wordSlice := strings.Fields(s)
+        <span class="cov2" title="2">wordSlice := strings.Fields(s)
         var result string
 
-        for len(wordSlice) &gt;= 1 </span><span class="cov4" title="3">{
+        for len(wordSlice) &gt;= 1 </span><span class="cov3" title="3">{
                 result = result + indentation + strings.Join(wordSlice[:limit], " ") + "\r\n"
 
                 wordSlice = wordSlice[limit:]
-                if len(wordSlice) &lt; limit </span><span class="cov3" title="2">{
+                if len(wordSlice) &lt; limit </span><span class="cov2" title="2">{
                         limit = len(wordSlice)
                 }</span>
         }
-        <span class="cov3" title="2">return result</span>
+        <span class="cov2" title="2">return result</span>
 }
 
 // PrintResult prints on output the summary results
-func PrintResult(summary *model.Summary, failedQueries map[string]error, printer *Printer) error <span class="cov3" title="2">{
+func PrintResult(summary *model.Summary, failedQueries map[string]error, printer *Printer, usingCustomQueries bool) error <span class="cov4" title="4">{
         log.Debug().Msg("helpers.PrintResult()")
         fmt.Printf("Files scanned: %d\n", summary.ScannedFiles)
         fmt.Printf("Parsed files: %d\n", summary.ParsedFiles)
@@ -13853,32 +13857,50 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
                 fmt.Printf("\t- %s:\n", queryName)
                 fmt.Printf("%s", WordWrap(err.Error(), "\t\t", wordWrapCount))
         }</span>
-        <span class="cov3" title="2">fmt.Printf("------------------------------------\n\n")
-        for index := range summary.Queries </span><span class="cov5" title="4">{
+
+        <span class="cov4" title="4">fmt.Printf("------------------------------------\n\n")
+        for index := range summary.Queries </span><span class="cov6" title="8">{
                 idx := len(summary.Queries) - index - 1
                 if summary.Queries[idx].Severity == model.SeverityTrace </span><span class="cov0" title="0">{
                         continue</span>
                 }
 
-                <span class="cov5" title="4">fmt.Printf(
+                <span class="cov6" title="8">fmt.Printf(
                         "%s, Severity: %s, Results: %d\n",
                         printer.PrintBySev(summary.Queries[idx].QueryName, string(summary.Queries[idx].Severity)),
                         printer.PrintBySev(string(summary.Queries[idx].Severity), string(summary.Queries[idx].Severity)),
                         len(summary.Queries[idx].Files),
                 )
-                if !printer.minimal </span><span class="cov3" title="2">{
+                if !printer.minimal </span><span class="cov4" title="4">{
                         if summary.Queries[idx].CISDescriptionID != "" </span><span class="cov0" title="0">{
                                 fmt.Printf("%s %s\n", printer.Bold("Description ID:"), summary.Queries[idx].CISDescriptionIDFormatted)
                                 fmt.Printf("%s %s\n", printer.Bold("Title:"), summary.Queries[idx].CISDescriptionTitle)
                                 fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].CISDescriptionTextFormatted)
-                        }</span> else<span class="cov3" title="2"> {
+                        }</span> else<span class="cov4" title="4"> {
                                 fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].Description)
                         }</span>
-                        <span class="cov3" title="2">fmt.Printf("%s %s\n\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)</span>
+                        <span class="cov4" title="4">fmt.Printf("%s %s\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
+
+                        queryCloudProvider := summary.Queries[idx].CloudProvider
+                        if queryCloudProvider != "" </span><span class="cov2" title="2">{
+                                queryCloudProvider = strings.ToLower(queryCloudProvider) + "/"
+                        }</span>
+
+                        // checks if should print queries URL DOCS based on the use of custom queries and invalid ids
+                        <span class="cov4" title="4">if !usingCustomQueries </span><span class="cov2" title="2">{
+                                if validQueryID(summary.Queries[idx].QueryID) </span><span class="cov2" title="2">{
+                                        fmt.Printf("%s %s\n\n",
+                                                printer.Bold("Learn more about this vulnerability:"),
+                                                fmt.Sprintf("https://docs.kics.io/latest/queries/%s-queries/%s%s",
+                                                        strings.ToLower(summary.Queries[idx].Platform),
+                                                        queryCloudProvider,
+                                                        summary.Queries[idx].QueryID))
+                                }</span>
+                        }
                 }
-                <span class="cov5" title="4">printFiles(&amp;summary.Queries[idx], printer)</span>
+                <span class="cov6" title="8">printFiles(&amp;summary.Queries[idx], printer)</span>
         }
-        <span class="cov3" title="2">fmt.Printf("\nResults Summary:\n")
+        <span class="cov4" title="4">fmt.Printf("\nResults Summary:\n")
         printSeverityCounter(model.SeverityHigh, summary.SeveritySummary.SeverityCounters[model.SeverityHigh], printer.High)
         printSeverityCounter(model.SeverityMedium, summary.SeveritySummary.SeverityCounters[model.SeverityMedium], printer.Medium)
         printSeverityCounter(model.SeverityLow, summary.SeveritySummary.SeverityCounters[model.SeverityLow], printer.Low)
@@ -13896,15 +13918,15 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
         return nil</span>
 }
 
-func printSeverityCounter(severity string, counter int, printColor color.RGBColor) <span class="cov7" title="8">{
+func printSeverityCounter(severity string, counter int, printColor color.RGBColor) <span class="cov8" title="16">{
         fmt.Printf("%s: %d\n", printColor.Sprint(severity), counter)
 }</span>
 
-func printFiles(query *model.QueryResult, printer *Printer) <span class="cov5" title="4">{
-        for fileIdx := range query.Files </span><span class="cov6" title="6">{
+func printFiles(query *model.QueryResult, printer *Printer) <span class="cov6" title="8">{
+        for fileIdx := range query.Files </span><span class="cov7" title="12">{
                 fmt.Printf("\t%s %s:%s\n", printer.PrintBySev(fmt.Sprintf("[%d]:", fileIdx+1), string(query.Severity)),
                         query.Files[fileIdx].FileName, printer.Success.Sprint(query.Files[fileIdx].Line))
-                if !printer.minimal </span><span class="cov4" title="3">{
+                if !printer.minimal </span><span class="cov5" title="6">{
                         fmt.Println()
                         for _, line := range *query.Files[fileIdx].VulnLines </span><span class="cov0" title="0">{
                                 if len(line.Line) &gt; charsLimitPerLine </span><span class="cov0" title="0">{
@@ -13916,7 +13938,7 @@ func printFiles(query *model.QueryResult, printer *Printer) <span class="cov5" t
                                         fmt.Printf("\t\t%03d: %s\n", line.Position, line.Line)
                                 }</span>
                         }
-                        <span class="cov4" title="3">fmt.Print("\n\n")</span>
+                        <span class="cov5" title="6">fmt.Print("\n\n")</span>
                 }
         }
 }
@@ -13929,16 +13951,16 @@ func SetupPrinter(flags *pflag.FlagSet) error <span class="cov1" title="1">{
         }</span>
 
         <span class="cov1" title="1">keys := make([]int, 0, len(optionsOrderMap))
-        for k := range optionsOrderMap </span><span class="cov7" title="8">{
+        for k := range optionsOrderMap </span><span class="cov6" title="8">{
                 keys = append(keys, k)
         }</span>
 
         <span class="cov1" title="1">sort.Ints(keys)
 
-        for _, key := range keys </span><span class="cov7" title="8">{
+        for _, key := range keys </span><span class="cov6" title="8">{
                 f := flags.Lookup(optionsOrderMap[key])
                 switch f.Value.Type() </span>{
-                case "string":<span class="cov4" title="3">
+                case "string":<span class="cov3" title="3">
                         value := f.Value.String()
                         err = optionsMap[optionsOrderMap[key]](value, f.Changed)
                         if err != nil </span><span class="cov0" title="0">{
@@ -13982,7 +14004,7 @@ func IsInitialized() bool <span class="cov1" title="1">{
 }</span>
 
 // NewPrinter initializes a new Printer
-func NewPrinter(minimal bool) *Printer <span class="cov4" title="3">{
+func NewPrinter(minimal bool) *Printer <span class="cov5" title="5">{
         return &amp;Printer{
                 Medium:              color.HEX("#ff7213"),
                 High:                color.HEX("#bb2124"),
@@ -13997,11 +14019,11 @@ func NewPrinter(minimal bool) *Printer <span class="cov4" title="3">{
 }</span>
 
 // PrintBySev will print the output with the specific severity color given the severity of the result
-func (p *Printer) PrintBySev(content, sev string) string <span class="cov10" title="19">{
+func (p *Printer) PrintBySev(content, sev string) string <span class="cov10" title="33">{
         switch strings.ToUpper(sev) </span>{
-        case model.SeverityHigh:<span class="cov7" title="9">
+        case model.SeverityHigh:<span class="cov8" title="17">
                 return p.High.Sprintf(content)</span>
-        case model.SeverityMedium:<span class="cov6" title="7">
+        case model.SeverityMedium:<span class="cov7" title="13">
                 return p.Medium.Sprintf(content)</span>
         case model.SeverityLow:<span class="cov1" title="1">
                 return p.Low.Sprintf(content)</span>
@@ -14012,9 +14034,18 @@ func (p *Printer) PrintBySev(content, sev string) string <span class="cov10" tit
 }
 
 // Bold returns the output in a bold format
-func (p *Printer) Bold(content string) string <span class="cov5" title="4">{
+func (p *Printer) Bold(content string) string <span class="cov6" title="10">{
         return color.Bold.Sprintf(content)
 }</span>
+
+func validQueryID(queryID string) bool <span class="cov2" title="2">{
+        if queryID == "" </span><span class="cov0" title="0">{
+                return false
+        }</span> else<span class="cov2" title="2"> if queryID != "" </span><span class="cov2" title="2">{
+                return utils.ValidateUUID(queryID)
+        }</span>
+        <span class="cov0" title="0">return true</span>
+}
 </pre>
 		
 		<pre class="file" id="file74" style="display: none">package printer
@@ -18135,7 +18166,8 @@ func (c *Client) resolveOutputs(
 ) error <span class="cov1" title="1">{
         log.Debug().Msg("console.resolveOutputs()")
 
-        if err := consolePrinter.PrintResult(summary, failedQueries, printer); err != nil </span><span class="cov0" title="0">{
+        usingCustomQueries := usingCustomQueries(c.ScanParams.QueriesPath)
+        if err := consolePrinter.PrintResult(summary, failedQueries, printer, usingCustomQueries); err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
         <span class="cov1" title="1">if c.ScanParams.PayloadPath != "" </span><span class="cov0" title="0">{
@@ -18727,7 +18759,7 @@ func deleteExtractionFolder(extractionMap map[string]model.ExtractedPathObject) 
 }
 
 func contributionAppeal(customPrint *consolePrinter.Printer, queriesPath []string) <span class="cov3" title="3">{
-        if !utils.ContainsInString(filepath.Join("assets", "queries"), queriesPath) </span><span class="cov2" title="2">{
+        if usingCustomQueries(queriesPath) </span><span class="cov2" title="2">{
                 msg := "\nAre you using a custom query? If so, feel free to contribute to KICS!\n"
                 contributionPage := "Check out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md\n"
 
@@ -18735,6 +18767,10 @@ func contributionAppeal(customPrint *consolePrinter.Printer, queriesPath []strin
                 fmt.Println(output)
         }</span>
 }
+
+func usingCustomQueries(queriesPath []string) bool <span class="cov4" title="4">{
+        return !utils.ContainsInString(filepath.Join("assets", "queries"), queriesPath)
+}</span>
 
 // printVersionCheck - Prints and logs warning if not using KICS latest version
 func printVersionCheck(customPrint *consolePrinter.Printer, s *model.Summary) <span class="cov3" title="3">{
@@ -18749,16 +18785,16 @@ func printVersionCheck(customPrint *consolePrinter.Printer, s *model.Summary) <s
 func getTotalFiles(paths []string) int <span class="cov4" title="4">{
         files := 0
         for _, path := range paths </span><span class="cov4" title="5">{
-                if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov10" title="49">{
+                if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov10" title="53">{
                         if err != nil </span><span class="cov1" title="1">{
                                 return err
                         }</span>
 
-                        <span class="cov9" title="48">if !info.IsDir() </span><span class="cov9" title="40">{
+                        <span class="cov9" title="52">if !info.IsDir() </span><span class="cov9" title="44">{
                                 files++
                         }</span>
 
-                        <span class="cov9" title="48">return nil</span>
+                        <span class="cov9" title="52">return nil</span>
                 }); err != nil <span class="cov1" title="1">{
                         log.Error().Msgf("failed to walk path %s: %s", path, err)
                 }</span>
@@ -19320,7 +19356,22 @@ func SplitLines(content string) *[]string <span class="cov8" title="1">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file120" style="display: none">package test
+		<pre class="file" id="file120" style="display: none">// Package utils contains various utility functions to use in other packages
+package utils
+
+import "regexp"
+
+// ValidateUUID checks if the given id is valid by the format UUID using regex expression
+func ValidateUUID(id string) bool <span class="cov10" title="4">{
+        uuidRegex := "^[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12}$"
+        if matched, _ := regexp.MatchString(uuidRegex, id); matched </span><span class="cov1" title="1">{
+                return true
+        }</span>
+        <span class="cov8" title="3">return false</span>
+}
+</pre>
+		
+		<pre class="file" id="file121" style="display: none">package test
 
 import (
         "bytes"
