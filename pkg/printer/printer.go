@@ -2,11 +2,12 @@ package printer
 
 import (
 	"fmt"
-	"github.com/Checkmarx/kics/pkg/utils"
 	"io"
 	"sort"
 	"strconv"
 	"strings"
+
+	"github.com/Checkmarx/kics/pkg/utils"
 
 	consoleFlags "github.com/Checkmarx/kics/internal/console/flags"
 	"github.com/Checkmarx/kics/pkg/model"
@@ -152,7 +153,6 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 							summary.Queries[idx].QueryID))
 				}
 			}
-
 		}
 		printFiles(&summary.Queries[idx], printer)
 	}
@@ -294,11 +294,11 @@ func (p *Printer) Bold(content string) string {
 	return color.Bold.Sprintf(content)
 }
 
-func validQueryID(queryId string) bool {
-	if queryId == "" {
+func validQueryID(queryID string) bool {
+	if queryID == "" {
 		return false
-	} else if queryId != "" {
-		return utils.ValidateUUID(queryId)
+	} else if queryID != "" {
+		return utils.ValidateUUID(queryID)
 	}
 	return true
 }
