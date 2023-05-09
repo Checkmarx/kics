@@ -56,7 +56,8 @@ func (c *Client) resolveOutputs(
 ) error {
 	log.Debug().Msg("console.resolveOutputs()")
 
-	if err := consolePrinter.PrintResult(summary, failedQueries, printer); err != nil {
+	usingCustomQueries := usingCustomQueries(c.ScanParams.QueriesPath)
+	if err := consolePrinter.PrintResult(summary, failedQueries, printer, usingCustomQueries); err != nil {
 		return err
 	}
 	if c.ScanParams.PayloadPath != "" {
