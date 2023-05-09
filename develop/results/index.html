@@ -509,8 +509,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#descriptions" class="md-nav__link">
-    Descriptions
+  <a href="#descriptions_deprecated_from_may_1st_2023" class="md-nav__link">
+    Descriptions (deprecated from May 1st, 2023)
   </a>
   
 </li>
@@ -1483,8 +1483,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#descriptions" class="md-nav__link">
-    Descriptions
+  <a href="#descriptions_deprecated_from_may_1st_2023" class="md-nav__link">
+    Descriptions (deprecated from May 1st, 2023)
   </a>
   
 </li>
@@ -1607,9 +1607,10 @@ where the output-path will be the directory containing all report files and repo
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>./kics<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span>&lt;path-of-your-project-to-scan&gt;<span class="w"> </span>-o<span class="w"> </span>./output<span class="w"> </span>--report-formats<span class="w"> </span><span class="s2">&quot;glsast,html,pdf&quot;</span><span class="w"> </span>--output-name<span class="w"> </span>kics-result
 </code></pre></div>
 <p>This will generate an HTML and Gitlab SAST reports on output folder, with <code>kics-result</code> and <code>gl-sast-kics-result</code> names.</p>
-<h2 id="descriptions">Descriptions<a class="headerlink" href="#descriptions" title="Permanent link">&para;</a></h2>
-<p>After the scanning process is done, If an internet connection is available, KICS will try to fetch CIS Proprietary vulnerability descriptions from a HTTP endpoint, this can be disabled with <code>--disable-cis-descriptions</code>. If used in offline mode or no internet connection is available, KICS should use the default descriptions.</p>
+<h2 id="descriptions_deprecated_from_may_1st_2023">Descriptions (deprecated from May 1st, 2023)<a class="headerlink" href="#descriptions_deprecated_from_may_1st_2023" title="Permanent link">&para;</a></h2>
+<p>After the scanning process is done, If an internet connection is available, KICS will try to fetch CIS Proprietary vulnerability descriptions from a HTTP endpoint, this can be disabled with <code>--disable-full-descriptions</code>. If used in offline mode or no internet connection is available, KICS should use the default descriptions.</p>
 <p>In case of using KICS behind a corporate proxy, proxy configurations can be set with environment variables such as <code>HTTP_PROXY</code>, <code>HTTPS_PROXY</code>, <code>NO_PROXY</code></p>
+<p>Note: From May 1st, 2023, even If an internet connection is available, KICS will receive an empty list as response and will use the default descriptions.</p>
 <h2 id="json">JSON<a class="headerlink" href="#json" title="Permanent link">&para;</a></h2>
 <p>The JSON report is the default report to be generate, if no arg is passed to <code>report-formats</code> flag, also you can explicitly use it with <code>--report-formats "json"</code>.
 JSON reports are sorted by severity (from high to info) and should looks like as following:</p>
