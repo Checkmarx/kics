@@ -17,7 +17,7 @@ func (m *MockHTTPClient) Do(req *http.Request) (*http.Response, error) {
 	return GetDoFunc(req)
 }
 
-// MockDescriptionsClient - the mock CIS descriptions client
+// MockDescriptionsClient - the mock descriptions client
 type MockDescriptionsClient struct {
 	RequestDescriptionsFunc func(descriptionIDs []string) (map[string]model.CISDescriptions, error)
 }
@@ -27,7 +27,7 @@ func (m *MockDescriptionsClient) RequestDescriptions(descriptionIDs []string) (m
 	return GetDescriptions(descriptionIDs)
 }
 
-// CheckConnection - mock CIS descriptions client check connection function
+// CheckConnection - mock descriptions client check connection function
 func (m *MockDescriptionsClient) CheckConnection() error {
 	return CheckConnection()
 }

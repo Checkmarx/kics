@@ -41,7 +41,6 @@ func Test_GetSummary(t *testing.T) {
 				},
 			},
 			scanParameters: Parameters{
-				DisableCISDesc:  false,
 				DisableFullDesc: false,
 			},
 			results: []model.Vulnerability{

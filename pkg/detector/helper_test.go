@@ -509,3 +509,69 @@ func TestDefaultDetectLineResponse_checkResolvedFile(t *testing.T) {
 		})
 	}
 }
+
+func TestDetectCurrentLine(t *testing.T) {
+	type fields struct {
+		defaultDetectLineResponse *DefaultDetectLineResponse
+	}
+
+	type args struct {
+		lines []string
+		str1  string
+		str2  string
+	}
+
+	type want struct {
+		defaultDetectLineResponse *DefaultDetectLineResponse
+	}
+
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   want
+	}{
+		{
+			name: "test_checkLines",
+			args: args{
+				lines: []string{
+					"		\"type\": \"string\"",
+					"	\"type\": \"array\"",
+				},
+				str1: "\"type\"",
+				str2: "",
+			},
+			fields: fields{
+				&DefaultDetectLineResponse{
+					CurrentLine:     0,
+					IsBreak:         false,
+					FoundAtLeastOne: false,
+					ResolvedFile:    "",
+					ResolvedFiles:   map[string]model.ResolvedFileSplit{},
+				},
+			},
+			want: want{
+				&DefaultDetectLineResponse{
+					CurrentLine:     0,
+					IsBreak:         false,
+					FoundAtLeastOne: false,
+					ResolvedFile:    "",
+					ResolvedFiles:   map[string]model.ResolvedFileSplit{},
+				},
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			d := tt.fields.defaultDetectLineResponse
+
+			d, _ = d.DetectCurrentLine(tt.args.str1, tt.args.str2, 0, tt.args.lines)
+
+			if d.CurrentLine != tt.want.defaultDetectLineResponse.CurrentLine {
+				t.Errorf("DetectCurrentLine() = %v, want %v", d.CurrentLine, tt.want.defaultDetectLineResponse.CurrentLine)
+			}
+		})
+	}
+
+}
