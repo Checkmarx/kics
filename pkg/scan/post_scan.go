@@ -105,6 +105,15 @@ func (c *Client) postScan(scanResults *Results) error {
 		}
 	}
 
+	// mask results preview if Secrets Scan is disabled
+	if c.ScanParams.DisableSecrets {
+		err := maskPreviewLines(c.ScanParams.SecretsRegexesPath, scanResults)
+		if err != nil {
+			log.Err(err)
+			return err
+		}
+	}
+
 	summary := c.getSummary(scanResults.Results, time.Now(), model.PathParameters{
 		ScannedPaths:      c.ScanParams.Path,
 		PathExtractionMap: scanResults.ExtractedPaths.ExtractionMap,
