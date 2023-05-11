@@ -8,7 +8,7 @@
   {
     "queryName": "RDS Storage Encryption Disabled",
     "severity": "MEDIUM",
-    "line": 4,
+    "line": 5,
     "fileName": "positive2.yaml"
   },
   {
@@ -21,12 +21,12 @@
     "fileName": "positive4.json",
     "queryName": "RDS Storage Encryption Disabled",
     "severity": "MEDIUM",
-    "line": 58
+    "line": 59
   },
   {
     "fileName": "positive5.yaml",
     "queryName": "RDS Storage Encryption Disabled",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 5
   }
 ]
