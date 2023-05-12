@@ -53,6 +53,7 @@ func (c *Client) prepareAndAnalyzePaths(ctx context.Context) (provider.Extracted
 	a := &analyzer.Analyzer{
 		Paths:             allPaths.Path,
 		Types:             c.ScanParams.Platform,
+		ExcludeTypes:      c.ScanParams.ExcludePlatform,
 		Exc:               c.ScanParams.ExcludePaths,
 		GitIgnoreFileName: ".gitignore",
 		ExcludeGitIgnore:  c.ScanParams.ExcludeGitIgnore,
@@ -231,13 +232,17 @@ func deleteExtractionFolder(extractionMap map[string]model.ExtractedPathObject) 
 }
 
 func contributionAppeal(customPrint *consolePrinter.Printer, queriesPath []string) {
-	if !utils.ContainsInString(filepath.Join("assets", "queries"), queriesPath) {
+	if usingCustomQueries(queriesPath) {
 		msg := "\nAre you using a custom query? If so, feel free to contribute to KICS!\n"
 		contributionPage := "Check out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md\n"
 
 		output := customPrint.ContributionMessage.Sprintf(msg + contributionPage)
 		fmt.Println(output)
 	}
+}
+
+func usingCustomQueries(queriesPath []string) bool {
+	return !utils.ContainsInString(filepath.Join("assets", "queries"), queriesPath)
 }
 
 // printVersionCheck - Prints and logs warning if not using KICS latest version

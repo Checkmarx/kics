@@ -12,15 +12,6 @@
     "defaultValue": "",
     "usage": "path to configuration file"
   },
-  "disable-cis-descriptions": {
-    "flagType": "bool",
-    "shorthandFlag": "",
-    "defaultValue": "false",
-    "usage": "disable request for CIS descriptions and use default vulnerability descriptions",
-    "hidden": true,
-    "deprecated": true,
-    "deprecatedInfo": "use --disable-full-descriptions instead"
-  },
   "disable-full-descriptions": {
     "flagType": "bool",
     "shorthandFlag": "",
@@ -183,7 +174,14 @@
     "flagType": "multiStr",
     "shorthandFlag": "t",
     "defaultValue": "",
-    "usage": "case insensitive list of platform types to scan\n(${supportedPlatforms})",
+    "usage": "case insensitive list of platform types to scan\n(${supportedPlatforms})\ncannot be provided with type exclusion flags",
+    "validation": "validateMultiStrEnum"
+  },
+  "exclude-type": {
+    "flagType": "multiStr",
+    "shorthandFlag": "",
+    "defaultValue": "",
+    "usage": "case insensitive list of platform types not to scan\n(${supportedPlatforms})\ncannot be provided with type inclusion flags",
     "validation": "validateMultiStrEnum"
   },
   "exclude-gitignore": {

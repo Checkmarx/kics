@@ -15,7 +15,6 @@ import (
 // Parameters represents all available scan parameters
 type Parameters struct {
 	CloudProvider               []string
-	DisableCISDesc              bool
 	DisableFullDesc             bool
 	ExcludeCategories           []string
 	ExcludePaths                []string
@@ -33,6 +32,7 @@ type Parameters struct {
 	LibrariesPath               string
 	ReportFormats               []string
 	Platform                    []string
+	ExcludePlatform             []string
 	QueryExecTimeout            int
 	LineInfoPayload             bool
 	DisableSecrets              bool
