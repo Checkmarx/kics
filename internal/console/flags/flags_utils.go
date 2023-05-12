@@ -29,6 +29,17 @@ func ValidateQuerySelectionFlags() error {
 	return nil
 }
 
+// ValidateTypeSelectionFlags reports the impossibility of include and exclude flags usage simultaneously
+func ValidateTypeSelectionFlags() error {
+	if len(GetMultiStrFlag(TypeFlag)) > 1 && len(GetMultiStrFlag(ExcludeTypeFlag)) > 1 {
+		return FormatNewError(TypeFlag, ExcludeTypeFlag)
+	}
+	if GetMultiStrFlag(TypeFlag)[0] != "" && GetMultiStrFlag(ExcludeTypeFlag)[0] != "" {
+		return FormatNewError(TypeFlag, ExcludeTypeFlag)
+	}
+	return nil
+}
+
 // BindFlags fill flags values with config file or environment variables data
 func BindFlags(cmd *cobra.Command, v *viper.Viper) error {
 	log.Debug().Msg("console.bindFlags()")
