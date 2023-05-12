@@ -1,17 +1,25 @@
-AWSTemplateFormatVersion: "2010-09-09"
-Description: "Router53"
 Resources:
-  MyStage:
-    Type: 'AWS::ApiGatewayV2::Stage'
+  Prod:
+    Type: AWS::ApiGateway::Stage
     Properties:
       StageName: Prod
       Description: Prod Stage
-      DeploymentId: !Ref MyDeployment
-      ApiId: !Ref CFNWebSocket
-      DefaultRouteSettings:
-        DetailedMetricsEnabled: true
-        LoggingLevel: INFO
-        DataTraceEnabled: false
-        ThrottlingBurstLimit: 10
-        ThrottlingRateLimit: 10
-
+      RestApiId: !Ref MyRestApi
+      DeploymentId: !Ref TestDeployment
+      DocumentationVersion: ""
+      ClientCertificateId: ""
+      Variables:
+        Stack: Prod
+      MethodSettings:
+        - ResourcePath: /
+          HttpMethod: GET
+          MetricsEnabled: false
+          DataTraceEnabled: false
+        - ResourcePath: /stack
+          HttpMethod: POST
+          MetricsEnabled: false
+          DataTraceEnabled: false
+        - ResourcePath: /stack
+          HttpMethod: GET
+          MetricsEnabled: true
+          DataTraceEnabled: false

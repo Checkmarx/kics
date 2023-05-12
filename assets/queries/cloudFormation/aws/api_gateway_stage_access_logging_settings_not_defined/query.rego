@@ -10,6 +10,7 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 	not common_lib.valid_key(resource.Properties, "AccessLogSettings")
+	not common_lib.valid_key(resource.Properties, "DefaultRouteSettings")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -29,6 +30,7 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 	not common_lib.valid_key(resource.Properties, "AccessLogSettings")
+	not common_lib.valid_key(resource.Properties, "DefaultRouteSettings")
 
 	result := {
 		"documentId": input.document[i].id,
