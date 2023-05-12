@@ -118,14 +118,16 @@ type regexSlice struct {
 }
 
 type analyzerInfo struct {
-	typesFlag []string
-	filePath  string
+	typesFlag        []string
+	excludeTypesFlag []string
+	filePath         string
 }
 
 // Analyzer keeps all the relevant info for the function Analyze
 type Analyzer struct {
 	Paths             []string
 	Types             []string
+	ExcludeTypes      []string
 	Exc               []string
 	GitIgnoreFileName string
 	ExcludeGitIgnore  bool
@@ -240,6 +242,8 @@ var types = map[string]regexSlice{
 	},
 }
 
+var defaultConfigFiles = []string{"pnpm-lock.yaml"}
+
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
 // should be loaded based on the extension of the file and the content
 func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
@@ -257,6 +261,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	results := make(chan string)
 	locCount := make(chan int)
 	ignoreFiles := make([]string, 0)
+	projectConfigFiles := make([]string, 0)
 	done := make(chan bool)
 	hasGitIgnoreFile, gitIgnore := shouldConsiderGitIgnoreFile(a.Paths[0], a.GitIgnoreFileName, a.ExcludeGitIgnore)
 
@@ -277,6 +282,11 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 				a.Exc = append(a.Exc, path)
 			}
 
+			if isConfigFile(path, defaultConfigFiles) {
+				projectConfigFiles = append(projectConfigFiles, path)
+				a.Exc = append(a.Exc, path)
+			}
+
 			if _, ok := possibleFileTypes[ext]; ok && !isExcludedFile(path, a.Exc) {
 				files = append(files, path)
 			}
@@ -294,13 +304,18 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 		a.Types[i] = strings.ToLower(a.Types[i])
 	}
 
+	for i := range a.ExcludeTypes {
+		a.ExcludeTypes[i] = strings.ToLower(a.ExcludeTypes[i])
+	}
+
 	// Start the workers
 	for _, file := range files {
 		wg.Add(1)
 		// analyze the files concurrently
 		a := &analyzerInfo{
-			typesFlag: a.Types,
-			filePath:  file,
+			typesFlag:        a.Types,
+			excludeTypesFlag: a.ExcludeTypes,
+			filePath:         file,
 		}
 		go a.worker(results, unwanted, locCount, &wg)
 	}
@@ -319,6 +334,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	availableTypes, unwantedPaths, loc := computeValues(results, unwanted, locCount, done)
 	multiPlatformTypeCheck(&availableTypes)
 	unwantedPaths = append(unwantedPaths, ignoreFiles...)
+	unwantedPaths = append(unwantedPaths, projectConfigFiles...)
 	returnAnalyzedPaths.Types = availableTypes
 	returnAnalyzedPaths.Exc = unwantedPaths
 	returnAnalyzedPaths.ExpectedLOC = loc
@@ -335,18 +351,17 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 
 	ext := utils.GetExtension(a.filePath)
 	linesCount, _ := utils.LineCounter(a.filePath)
-	typesFlag := a.typesFlag
 
 	switch ext {
 	// Dockerfile (direct identification)
 	case ".dockerfile", "Dockerfile":
-		if typesFlag[0] == "" || utils.Contains(dockerfile, typesFlag) {
+		if a.isAvailableType(dockerfile) {
 			results <- dockerfile
 			locCount <- linesCount
 		}
 	// Dockerfile (indirect identification)
 	case "possibleDockerfile", ".ubi8", ".debian":
-		if (typesFlag[0] == "" || utils.Contains(dockerfile, typesFlag)) && isDockerfile(a.filePath) {
+		if a.isAvailableType(dockerfile) && isDockerfile(a.filePath) {
 			results <- dockerfile
 			locCount <- linesCount
 		} else {
@@ -354,13 +369,13 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 		}
 	// Terraform
 	case ".tf", "tfvars":
-		if typesFlag[0] == "" || utils.Contains(terraform, typesFlag) {
+		if a.isAvailableType(terraform) {
 			results <- terraform
 			locCount <- linesCount
 		}
 	// GRPC
 	case ".proto":
-		if typesFlag[0] == "" || utils.Contains(grpc, typesFlag) {
+		if a.isAvailableType(grpc) {
 			results <- grpc
 			locCount <- linesCount
 		}
@@ -408,6 +423,7 @@ func needsOverride(check bool, returnType, key, ext string) bool {
 // determine by ext, if no type was determined checkContent adds it to unwanted channel
 func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount chan<- int, linesCount int, ext string) {
 	typesFlag := a.typesFlag
+	excludeTypesFlag := a.excludeTypesFlag
 	// get file content
 	content, err := os.ReadFile(a.filePath)
 	if err != nil {
@@ -425,6 +441,8 @@ func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount ch
 
 	if typesFlag[0] != "" {
 		keys = getKeysFromTypesFlag(typesFlag)
+	} else if excludeTypesFlag[0] != "" {
+		keys = getKeysFromExcludeTypesFlag(excludeTypesFlag)
 	}
 
 	sort.Sort(sort.Reverse(sort.StringSlice(keys)))
@@ -446,7 +464,7 @@ func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount ch
 	}
 	returnType = checkReturnType(a.filePath, returnType, ext, content)
 	if returnType != "" {
-		if typesFlag[0] == "" || utils.Contains(returnType, typesFlag) {
+		if a.isAvailableType(returnType) {
 			results <- returnType
 			locCount <- linesCount
 			return
@@ -543,6 +561,19 @@ func getKeysFromTypesFlag(typesFlag []string) []string {
 	return ks
 }
 
+// getKeysFromExcludeTypesFlag gets all the regexes keys related to the excluding unwanted types from flag
+func getKeysFromExcludeTypesFlag(excludeTypesFlag []string) []string {
+	ks := make([]string, 0, len(types))
+	for k := range supportedRegexes {
+		if !utils.Contains(k, excludeTypesFlag) {
+			if regexes, ok := supportedRegexes[k]; ok {
+				ks = append(ks, regexes...)
+			}
+		}
+	}
+	return ks
+}
+
 // isExcludedFile verifies if the path is pointed in the --exclude-paths flag
 func isExcludedFile(path string, exc []string) bool {
 	for i := range exc {
@@ -552,6 +583,27 @@ func isExcludedFile(path string, exc []string) bool {
 		}
 		for j := range exclude {
 			if exclude[j] == path {
+				log.Info().Msgf("Excluded file %s from analyzer", path)
+				return true
+			}
+		}
+	}
+	return false
+}
+
+func isConfigFile(path string, exc []string) bool {
+	for i := range exc {
+		exclude, err := provider.GetExcludePaths(exc[i])
+		if err != nil {
+			log.Err(err).Msg("failed to get exclude paths")
+		}
+		for j := range exclude {
+			fileInfo, _ := os.Stat(path)
+			if fileInfo.IsDir() {
+				continue
+			}
+
+			if len(path)-len(exclude[j]) > 0 && path[len(path)-len(exclude[j]):] == exclude[j] && exclude[j] != "" {
 				log.Info().Msgf("Excluded file %s from analyzer", path)
 				return true
 			}
@@ -582,4 +634,19 @@ func multiPlatformTypeCheck(typesSelected *[]string) {
 	if utils.Contains("knative", *typesSelected) && !utils.Contains("kubernetes", *typesSelected) {
 		*typesSelected = append(*typesSelected, "kubernetes")
 	}
+}
+
+func (a *analyzerInfo) isAvailableType(typeName string) bool {
+	// no flag is set
+	if len(a.typesFlag) == 1 && a.typesFlag[0] == "" && len(a.excludeTypesFlag) == 1 && a.excludeTypesFlag[0] == "" {
+		return true
+	} else if len(a.typesFlag) > 1 || a.typesFlag[0] != "" {
+		// type flag is set
+		return utils.Contains(typeName, a.typesFlag)
+	} else if len(a.excludeTypesFlag) > 1 || a.excludeTypesFlag[0] != "" {
+		// exclude type flag is set
+		return !utils.Contains(typeName, a.excludeTypesFlag)
+	}
+	// no valid behavior detected
+	return false
 }

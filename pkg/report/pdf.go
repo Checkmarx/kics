@@ -162,7 +162,7 @@ func createCISRows(m pdf.Maroto, query *model.QueryResult) {
 
 	m.Row(colFive, func() {
 		m.Col(colTwo, func() {
-			m.Text("CIS ID", props.Text{
+			m.Text("Description ID", props.Text{
 				Size:        float64(defaultTextSize),
 				Align:       consts.Left,
 				Style:       consts.Bold,

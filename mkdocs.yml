@@ -47,6 +47,7 @@ nav:
       - Certifications: certifications.md
       - Changes in v1.3.0: changes.md
       - Changes in v1.6.0: changes1_6.md
+      - Changes in v1.7.0: changes1_7.md
   - Queries:
       - General Info: queries.md
       - Creating Queries: creating-queries.md
@@ -110,6 +111,9 @@ google_analytics:
   - auto
 
 markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
   - toc:
       permalink: true
       toc_depth: 2
