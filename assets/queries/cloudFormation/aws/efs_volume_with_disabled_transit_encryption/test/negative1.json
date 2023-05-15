@@ -33,38 +33,34 @@
       "taskdefinition": {
         "Type": "AWS::ECS::TaskDefinition",
         "Properties": {
-            "containerDefinitions": [
+            "ContainerDefinitions": [
                 {
-                    "name": "container-using-efs",
-                    "image": "amazonlinux:2",
-                    "entryPoint": [
+                    "Name": "container-using-efs",
+                    "Image": "amazonlinux:2",
+                    "EntryPoint": [
                         "sh",
                         "-c"
                     ],
-                    "command": [
+                    "Command": [
                         "ls -la /mount/efs"
                     ],
-                    "mountPoints": [
+                    "MountPoints": [
                         {
-                            "sourceVolume": "myEfsVolume",
-                            "containerPath": "/mount/efs",
-                            "readOnly": true
+                            "SourceVolume": "myEfsVolume",
+                            "ContainerPath": "/mount/efs",
+                            "ReadOnly": true
                         }
                     ]
                 }
             ],
-            "volumes": [
+            "Volumes": [
                 {
-                    "name": "myEfsVolume",
-                    "efsVolumeConfiguration": {
-                        "fileSystemId": "fs-1234",
-                        "rootDirectory": "/path/to/my/data",
-                        "transitEncryptionPort": 10,
-                        "transitEncryption": "ENABLED",
-                        "authorizationConfig": {
-                            "accessPointId": "fsap-1234",
-                            "iam": "ENABLED"
-                        }
+                    "Name": "myEfsVolume",
+                    "EfsVolumeConfiguration": {
+                        "FileSystemId": "fs-1234",
+                        "RootDirectory": "/path/to/my/data",
+                        "TransitEncryptionPort": 10,
+                        "TransitEncryption": "ENABLED"
                     }
                 }
             ]

@@ -8,7 +8,7 @@
     {
       "queryName": "EFS Volume With Disabled Transit Encryption",
       "severity": "HIGH",
-      "line": 57,
+      "line": 59,
       "fileName": "positive2.json"
     }
   ]
