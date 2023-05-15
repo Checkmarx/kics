@@ -1,6 +1,7 @@
 package helpers
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -184,11 +185,9 @@ func TestHelpers_GenerateReport(t *testing.T) {
 }
 
 func TestHelpers_GetDefaultQueryPath(t *testing.T) {
-	if err := test.ChangeCurrentDir("kics"); err != nil {
-		t.Fatal(err)
-	}
-
 	cd, err := os.Getwd()
+	kicsPath := filepath.Dir(filepath.Dir(filepath.Dir(cd)))
+	fmt.Printf("kicsPath='%s', cd='%s'", kicsPath, cd)
 	require.NoError(t, err)
 
 	tests := []struct {
@@ -200,7 +199,7 @@ func TestHelpers_GetDefaultQueryPath(t *testing.T) {
 		{
 			name:        "test_get_default_query_path",
 			queriesPath: filepath.FromSlash("assets/queries"),
-			want:        filepath.Join(cd, filepath.FromSlash("assets/queries")),
+			want:        filepath.Join(kicsPath, filepath.FromSlash("assets/queries")),
 			wantErr:     false,
 		},
 		{
@@ -213,7 +212,7 @@ func TestHelpers_GetDefaultQueryPath(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := GetDefaultQueryPath(tt.queriesPath)
+			got, err := GetDefaultQueryPath(cd, tt.queriesPath)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("GetDefaultQueryPath() = %v, wantErr = %v", err, tt.wantErr)
 			}
