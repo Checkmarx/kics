@@ -156,7 +156,7 @@ func NewInspector(
 		return nil, err
 	}
 
-	allowRules, err := compileRegex(allRegexQueries.AllowRules)
+	allowRules, err := CompileRegex(allRegexQueries.AllowRules)
 	if err != nil {
 		return nil, err
 	}
@@ -282,7 +282,8 @@ func compileRegexQueries(
 	return regexQueries, nil
 }
 
-func compileRegex(allowRules []AllowRule) ([]AllowRule, error) {
+// CompileRegex compiles the regex allow rules
+func CompileRegex(allowRules []AllowRule) ([]AllowRule, error) {
 	for j := range allowRules {
 		compiledRegex, err := regexp.Compile(allowRules[j].RegexStr)
 		if err != nil {
@@ -307,7 +308,7 @@ func isValueInArray(value string, array []string) bool {
 }
 
 func (c *Inspector) isSecret(s string, query *RegexQuery) (isSecretRet bool, groups [][]string) {
-	if isAllowRule(s, query.AllowRules) || isAllowRule(s, c.allowRules) {
+	if IsAllowRule(s, query.AllowRules) || IsAllowRule(s, c.allowRules) {
 		return false, [][]string{}
 	}
 
@@ -339,7 +340,8 @@ func (c *Inspector) isSecret(s string, query *RegexQuery) (isSecretRet bool, gro
 	return false, [][]string{}
 }
 
-func isAllowRule(s string, allowRules []AllowRule) bool {
+// IsAllowRule check if string matches any of the allow rules for the secret queries
+func IsAllowRule(s string, allowRules []AllowRule) bool {
 	for i := range allowRules {
 		if allowRules[i].Regex.MatchString(s) {
 			return true

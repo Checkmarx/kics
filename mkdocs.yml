@@ -111,6 +111,9 @@ google_analytics:
   - auto
 
 markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
   - toc:
       permalink: true
       toc_depth: 2
