@@ -98,7 +98,7 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int
 	}
 
 	// resolve the paths
-	obj, _ = r.yamlWalk(&obj, path, resolveCount)
+	obj, _ = r.yamlWalk(&obj, path, resolveCount, 1)
 
 	if obj.Kind == 1 && len(obj.Content) == 1 {
 		obj = *obj.Content[0]
@@ -112,7 +112,11 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int
 	return b
 }
 
-func (r *Resolver) yamlWalk(value *yaml.Node, path string, resolveCount int) (yaml.Node, bool) {
+func (r *Resolver) yamlWalk(value *yaml.Node, path string, resolveCount int, depth int) (yaml.Node, bool) {
+	if depth > 7 {
+		return *value, false
+	}
+	maxResolvedAmount := 0
 	// go over the value and replace paths with the real conten
 	switch value.Kind {
 	case yaml.ScalarNode:
@@ -122,13 +126,17 @@ func (r *Resolver) yamlWalk(value *yaml.Node, path string, resolveCount int) (ya
 		return *value, false
 	default:
 		for i := range value.Content {
-			resolved, ok := r.yamlWalk(value.Content[i], path, resolveCount)
+			resolved, ok := r.yamlWalk(value.Content[i], path, resolveCount, depth+1)
 			if ok && i >= 1 {
 				if strings.Contains(value.Content[i-1].Value, "ref") { // openapi
 					return resolved, false
 				}
 			}
 			value.Content[i] = &resolved
+			maxResolvedAmount++
+			if maxResolvedAmount == 20 {
+				return *value, false
+			}
 		}
 		return *value, false
 	}
