@@ -56,7 +56,8 @@ func (c *Client) resolveOutputs(
 ) error {
 	log.Debug().Msg("console.resolveOutputs()")
 
-	if err := consolePrinter.PrintResult(summary, failedQueries, printer); err != nil {
+	usingCustomQueries := usingCustomQueries(c.ScanParams.QueriesPath)
+	if err := consolePrinter.PrintResult(summary, failedQueries, printer, usingCustomQueries); err != nil {
 		return err
 	}
 	if c.ScanParams.PayloadPath != "" {
@@ -101,6 +102,15 @@ func (c *Client) postScan(scanResults *Results) error {
 			ExtractedPaths: provider.ExtractedPath{},
 			Files:          model.FileMetadatas{},
 			FailedQueries:  map[string]error{},
+		}
+	}
+
+	// mask results preview if Secrets Scan is disabled
+	if c.ScanParams.DisableSecrets {
+		err := maskPreviewLines(c.ScanParams.SecretsRegexesPath, scanResults)
+		if err != nil {
+			log.Err(err)
+			return err
 		}
 	}
 
