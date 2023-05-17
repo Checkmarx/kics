@@ -15,6 +15,11 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+type ResolvedFile struct {
+	fileContent        []byte
+	resolvedFileObject any
+}
+
 // Resolver - replace or modifies in-memory content before parsing
 type Resolver struct {
 	unmarshler    func(fileContent []byte, v any) error
@@ -37,9 +42,9 @@ func NewResolver(
 }
 
 // Resolve - replace or modifies in-memory content before parsing
-func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int) []byte {
+func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) []byte {
 	if utils.Contains(filepath.Ext(path), []string{".yml", ".yaml"}) {
-		return r.yamlResolve(fileContent, path, resolveCount)
+		return r.yamlResolve(fileContent, path, resolveCount, resolvedFilesCache)
 	}
 	var obj any
 	err := r.unmarshler(fileContent, &obj)
@@ -48,7 +53,7 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int) []
 	}
 
 	// resolve the paths
-	obj, _ = r.walk(obj, path, resolveCount)
+	obj, _ = r.walk(obj, path, resolveCount, resolvedFilesCache)
 
 	b, err := r.marshler(obj)
 	if err != nil {
@@ -58,29 +63,29 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int) []
 	return b
 }
 
-func (r *Resolver) walk(value any, path string, resolveCount int) (any, bool) {
+func (r *Resolver) walk(value any, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) {
 	// go over the value and replace paths with the real content
 	switch typedValue := value.(type) {
 	case string:
 		if filepath.Base(path) != typedValue {
-			return r.resolvePath(typedValue, path, resolveCount)
+			return r.resolvePath(typedValue, path, resolveCount, resolvedFilesCache)
 		}
 		return value, false
 	case []any:
 		for i, v := range typedValue {
-			typedValue[i], _ = r.walk(v, path, resolveCount)
+			typedValue[i], _ = r.walk(v, path, resolveCount, resolvedFilesCache)
 		}
 		return typedValue, false
 	case map[string]any:
-		return r.handleMap(typedValue, path, resolveCount)
+		return r.handleMap(typedValue, path, resolveCount, resolvedFilesCache)
 	default:
 		return value, false
 	}
 }
 
-func (r *Resolver) handleMap(value map[string]interface{}, path string, resolveCount int) (any, bool) {
+func (r *Resolver) handleMap(value map[string]interface{}, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) {
 	for k, v := range value {
-		val, res := r.walk(v, path, resolveCount)
+		val, res := r.walk(v, path, resolveCount, resolvedFilesCache)
 		// check if it is a ref than everything needs to be changed
 		if res && strings.Contains(strings.ToLower(k), "ref") {
 			return val, false
@@ -90,7 +95,7 @@ func (r *Resolver) handleMap(value map[string]interface{}, path string, resolveC
 	return value, false
 }
 
-func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int) []byte {
+func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) []byte {
 	var obj yaml.Node
 	err := r.unmarshler(fileContent, &obj)
 	if err != nil {
@@ -98,7 +103,7 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int
 	}
 
 	// resolve the paths
-	obj, _ = r.yamlWalk(&obj, path, resolveCount, 1)
+	obj, _ = r.yamlWalk(&obj, path, resolveCount, resolvedFilesCache)
 
 	if obj.Kind == 1 && len(obj.Content) == 1 {
 		obj = *obj.Content[0]
@@ -112,38 +117,30 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int
 	return b
 }
 
-func (r *Resolver) yamlWalk(value *yaml.Node, path string, resolveCount int, depth int) (yaml.Node, bool) {
-	if depth > 7 {
-		return *value, false
-	}
-	maxResolvedAmount := 0
+func (r *Resolver) yamlWalk(value *yaml.Node, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) (yaml.Node, bool) {
 	// go over the value and replace paths with the real conten
 	switch value.Kind {
 	case yaml.ScalarNode:
 		if filepath.Base(path) != value.Value {
-			return r.resolveYamlPath(value, path, resolveCount)
+			return r.resolveYamlPath(value, path, resolveCount, resolvedFilesCache)
 		}
 		return *value, false
 	default:
 		for i := range value.Content {
-			resolved, ok := r.yamlWalk(value.Content[i], path, resolveCount, depth+1)
+			resolved, ok := r.yamlWalk(value.Content[i], path, resolveCount, resolvedFilesCache)
 			if ok && i >= 1 {
 				if strings.Contains(value.Content[i-1].Value, "ref") { // openapi
 					return resolved, false
 				}
 			}
 			value.Content[i] = &resolved
-			maxResolvedAmount++
-			if maxResolvedAmount == 20 {
-				return *value, false
-			}
 		}
 		return *value, false
 	}
 }
 
 // isPath returns true if the value is a valid path
-func (r *Resolver) resolveYamlPath(v *yaml.Node, filePath string, resolveCount int) (yaml.Node, bool) {
+func (r *Resolver) resolveYamlPath(v *yaml.Node, filePath string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) (yaml.Node, bool) {
 	value := v.Value
 	if resolveCount > constants.MaxResolvedFiles {
 		return *v, false
@@ -161,54 +158,60 @@ func (r *Resolver) resolveYamlPath(v *yaml.Node, filePath string, resolveCount i
 		return *v, false
 	}
 
-	// open the file with the content to replace
-	file, err := os.Open(filepath.Clean(path))
-	if err != nil {
-		return *v, false
-	}
+	filename := filepath.Clean(path)
 
-	defer func(file *os.File) {
-		err = file.Close()
+	if _, ok := resolvedFilesCache[filename]; !ok {
+		// open the file with the content to replace
+		file, err := os.Open(filepath.Clean(path))
 		if err != nil {
-			log.Err(err).Msgf("failed to close resolved file: %s", path)
+			return *v, false
 		}
-	}(file)
 
-	// read the content
-	fileContent, err := io.ReadAll(file)
-	if err != nil {
-		return *v, false
-	}
+		defer func(file *os.File) {
+			err = file.Close()
+			if err != nil {
+				log.Err(err).Msgf("failed to close resolved file: %s", path)
+			}
+		}(file)
 
-	resolvedFile := r.Resolve(fileContent, path, resolveCount+1)
+		// read the content
+		fileContent, err := io.ReadAll(file)
+		if err != nil {
+			return *v, false
+		}
 
-	// parse the content
-	var obj yaml.Node
-	err = r.unmarshler(resolvedFile, &obj)
-	if err != nil {
-		return *v, false
-	}
+		resolvedFile := r.Resolve(fileContent, path, resolveCount+1, resolvedFilesCache)
 
-	if obj.Kind == 1 && len(obj.Content) == 1 {
-		obj = *obj.Content[0]
+		// parse the content
+		var obj yaml.Node
+		err = r.unmarshler(resolvedFile, &obj)
+		if err != nil {
+			return *v, false
+		}
+
+		if obj.Kind == 1 && len(obj.Content) == 1 {
+			obj = *obj.Content[0]
+		}
+
+		resolvedFilesCache[filename] = ResolvedFile{fileContent, obj}
 	}
 
 	r.ResolvedFiles[value] = model.ResolvedFile{
-		Content:      fileContent,
+		Content:      resolvedFilesCache[filename].fileContent,
 		Path:         path,
-		LinesContent: utils.SplitLines(string(fileContent)),
+		LinesContent: utils.SplitLines(string(resolvedFilesCache[filename].fileContent)),
 	}
 
 	// Cloudformation !Ref check
 	if strings.Contains(strings.ToLower(value), "!ref") {
-		return obj, false
+		return resolvedFilesCache[filename].resolvedFileObject.(yaml.Node), false
 	}
 
-	return obj, true
+	return resolvedFilesCache[filename].resolvedFileObject.(yaml.Node), true
 }
 
 // isPath returns true if the value is a valid path
-func (r *Resolver) resolvePath(value, filePath string, resolveCount int) (any, bool) {
+func (r *Resolver) resolvePath(value, filePath string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) {
 	if resolveCount > constants.MaxResolvedFiles {
 		return value, false
 	}
@@ -222,43 +225,49 @@ func (r *Resolver) resolvePath(value, filePath string, resolveCount int) (any, b
 		return value, false
 	}
 
-	// open the file with the content to replace
-	file, err := os.Open(filepath.Clean(path))
-	if err != nil {
-		return value, false
-	}
+	filename := filepath.Clean(path)
 
-	defer func(file *os.File) {
-		err = file.Close()
+	if _, ok := resolvedFilesCache[filename]; !ok {
+		// open the file with the content to replace
+		file, err := os.Open(filepath.Clean(path))
 		if err != nil {
-			log.Err(err).Msgf("failed to close resolved file: %s", path)
+			return value, false
 		}
-	}(file)
-	// read the content
-	fileContent, err := io.ReadAll(file)
-	if err != nil {
-		return value, false
-	}
 
-	resolvedFile := r.Resolve(fileContent, path, resolveCount+1)
+		defer func(file *os.File) {
+			err = file.Close()
+			if err != nil {
+				log.Err(err).Msgf("failed to close resolved file: %s", path)
+			}
+		}(file)
+		// read the content
+		fileContent, err := io.ReadAll(file)
+		if err != nil {
+			return value, false
+		}
 
-	// parse the content
-	var obj any
-	err = r.unmarshler(resolvedFile, &obj)
-	if err != nil {
-		return value, false
+		resolvedFile := r.Resolve(fileContent, path, resolveCount+1, resolvedFilesCache)
+
+		// parse the content
+		var obj any
+		err = r.unmarshler(resolvedFile, &obj)
+		if err != nil {
+			return value, false
+		}
+
+		resolvedFilesCache[filename] = ResolvedFile{fileContent, obj}
 	}
 
 	r.ResolvedFiles[value] = model.ResolvedFile{
-		Content:      fileContent,
+		Content:      resolvedFilesCache[filename].fileContent,
 		Path:         path,
-		LinesContent: utils.SplitLines(string(fileContent)),
+		LinesContent: utils.SplitLines(string(resolvedFilesCache[filename].fileContent)),
 	}
 	// Cloudformation !Ref check
 	if strings.Contains(strings.ToLower(value), "!ref") {
-		return obj, false
+		return resolvedFilesCache[filename].resolvedFileObject, false
 	}
-	return obj, true
+	return resolvedFilesCache[filename].resolvedFileObject, true
 }
 
 func contains(elem string, list []string) bool {
