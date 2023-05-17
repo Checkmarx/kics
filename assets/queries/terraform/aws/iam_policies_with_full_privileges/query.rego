@@ -4,7 +4,7 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-	resourceType := {"aws_iam_role_policy", "aws_iam_user_policy", "aws_iam_group_policy", "aws_iam_policy"}
+	resourceType := {"aws_iam_role_policy", "aws_iam_user_policy", "aws_iam_group_policy", "aws_iam_policy", "aws_ssoadmin_permission_set_inline_policy", "aws_ssoadmin_permission_set"}
 	resource := input.document[i].resource[resourceType[idx]][name]
 
 	policy := common_lib.json_unmarshal(resource.policy)
@@ -24,6 +24,31 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy.Statement.Action' shouldn't contain '*'",
 		"keyActualValue": "'policy.Statement.Action' contains '*'",
+		"searchLine": common_lib.build_search_line(["resource", resourceType[idx], name, "policy"], []),
+	}
+}
+
+CxPolicy[result] {
+	resourceType := {"aws_iam_role_policy", "aws_iam_user_policy", "aws_iam_group_policy", "aws_iam_policy", "aws_ssoadmin_permission_set_inline_policy", "aws_ssoadmin_permission_set"}
+	resource := input.document[i].resource[resourceType[idx]][name]
+
+	inline_policy := common_lib.json_unmarshal(resource.inline_policy)
+
+	st := common_lib.get_statement(inline_policy)
+	statement := st[_]
+
+	common_lib.is_allow_effect(statement)
+	common_lib.equalsOrInArray(statement.Resource, "*")
+	common_lib.equalsOrInArray(statement.Action, "*")
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": resourceType[idx],
+		"resourceName": tf_lib.get_resource_name(resource, name),
+		"searchKey": sprintf("%s[%s].inline_policy", [resourceType[idx], name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "'inline_policy.Statement.Action' shouldn't contain '*'",
+		"keyActualValue": "'inline_policy.Statement.Action' contains '*'",
 		"searchLine": common_lib.build_search_line(["resource", resourceType[idx], name, "policy"], []),
 	}
 }
