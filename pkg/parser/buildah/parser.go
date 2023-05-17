@@ -51,7 +51,7 @@ const (
 )
 
 // Resolve - replace or modifies in-memory content before parsing
-func (p *Parser) Resolve(fileContent []byte, _ string) ([]byte, error) {
+func (p *Parser) Resolve(fileContent []byte, _ string, _ map[string]model.ResolvedFileData) ([]byte, error) {
 	return fileContent, nil
 }
 
