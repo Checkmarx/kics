@@ -293,9 +293,3 @@ type ResolvedFile struct {
 	Content      []byte
 	LinesContent *[]string
 }
-
-// ResolvedFileData is a struct that contains the data resultant from resolving a file, the file content and the resolvedFileObject
-type ResolvedFileData struct {
-	FileContent        []byte
-	ResolvedFileObject any
-}

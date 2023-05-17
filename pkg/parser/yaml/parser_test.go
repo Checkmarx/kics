@@ -388,7 +388,7 @@ func Test_Resolve(t *testing.T) {
 	`
 	parser := &Parser{}
 
-	resolved, err := parser.Resolve([]byte(have), "test.yaml", make(map[string]model.ResolvedFileData))
+	resolved, err := parser.Resolve([]byte(have), "test.yaml")
 	require.NoError(t, err)
 	require.Equal(t, []byte(have), resolved)
 }

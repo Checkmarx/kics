@@ -15,6 +15,11 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+type ResolvedFile struct {
+	fileContent        []byte
+	resolvedFileObject any
+}
+
 // Resolver - replace or modifies in-memory content before parsing
 type Resolver struct {
 	unmarshler    func(fileContent []byte, v any) error
@@ -37,7 +42,7 @@ func NewResolver(
 }
 
 // Resolve - replace or modifies in-memory content before parsing
-func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, resolvedFilesCache map[string]model.ResolvedFileData) []byte {
+func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) []byte {
 	if utils.Contains(filepath.Ext(path), []string{".yml", ".yaml"}) {
 		return r.yamlResolve(fileContent, path, resolveCount, resolvedFilesCache)
 	}
@@ -58,7 +63,7 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, re
 	return b
 }
 
-func (r *Resolver) walk(value any, path string, resolveCount int, resolvedFilesCache map[string]model.ResolvedFileData) (any, bool) {
+func (r *Resolver) walk(value any, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) {
 	// go over the value and replace paths with the real content
 	switch typedValue := value.(type) {
 	case string:
@@ -78,7 +83,7 @@ func (r *Resolver) walk(value any, path string, resolveCount int, resolvedFilesC
 	}
 }
 
-func (r *Resolver) handleMap(value map[string]interface{}, path string, resolveCount int, resolvedFilesCache map[string]model.ResolvedFileData) (any, bool) {
+func (r *Resolver) handleMap(value map[string]interface{}, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) {
 	for k, v := range value {
 		val, res := r.walk(v, path, resolveCount, resolvedFilesCache)
 		// check if it is a ref than everything needs to be changed
@@ -90,7 +95,7 @@ func (r *Resolver) handleMap(value map[string]interface{}, path string, resolveC
 	return value, false
 }
 
-func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int, resolvedFilesCache map[string]model.ResolvedFileData) []byte {
+func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) []byte {
 	var obj yaml.Node
 	err := r.unmarshler(fileContent, &obj)
 	if err != nil {
@@ -112,7 +117,7 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int
 	return b
 }
 
-func (r *Resolver) yamlWalk(value *yaml.Node, path string, resolveCount int, resolvedFilesCache map[string]model.ResolvedFileData) (yaml.Node, bool) {
+func (r *Resolver) yamlWalk(value *yaml.Node, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) (yaml.Node, bool) {
 	// go over the value and replace paths with the real conten
 	switch value.Kind {
 	case yaml.ScalarNode:
@@ -135,7 +140,7 @@ func (r *Resolver) yamlWalk(value *yaml.Node, path string, resolveCount int, res
 }
 
 // isPath returns true if the value is a valid path
-func (r *Resolver) resolveYamlPath(v *yaml.Node, filePath string, resolveCount int, resolvedFilesCache map[string]model.ResolvedFileData) (yaml.Node, bool) {
+func (r *Resolver) resolveYamlPath(v *yaml.Node, filePath string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) (yaml.Node, bool) {
 	value := v.Value
 	if resolveCount > constants.MaxResolvedFiles {
 		return *v, false
@@ -188,25 +193,25 @@ func (r *Resolver) resolveYamlPath(v *yaml.Node, filePath string, resolveCount i
 			obj = *obj.Content[0]
 		}
 
-		resolvedFilesCache[filename] = model.ResolvedFileData{}
+		resolvedFilesCache[filename] = ResolvedFile{fileContent, obj}
 	}
 
 	r.ResolvedFiles[value] = model.ResolvedFile{
-		Content:      resolvedFilesCache[filename].FileContent,
+		Content:      resolvedFilesCache[filename].fileContent,
 		Path:         path,
-		LinesContent: utils.SplitLines(string(resolvedFilesCache[filename].FileContent)),
+		LinesContent: utils.SplitLines(string(resolvedFilesCache[filename].fileContent)),
 	}
 
 	// Cloudformation !Ref check
 	if strings.Contains(strings.ToLower(value), "!ref") {
-		return resolvedFilesCache[filename].ResolvedFileObject.(yaml.Node), false
+		return resolvedFilesCache[filename].resolvedFileObject.(yaml.Node), false
 	}
 
-	return resolvedFilesCache[filename].ResolvedFileObject.(yaml.Node), true
+	return resolvedFilesCache[filename].resolvedFileObject.(yaml.Node), true
 }
 
 // isPath returns true if the value is a valid path
-func (r *Resolver) resolvePath(value, filePath string, resolveCount int, resolvedFilesCache map[string]model.ResolvedFileData) (any, bool) {
+func (r *Resolver) resolvePath(value, filePath string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) {
 	if resolveCount > constants.MaxResolvedFiles {
 		return value, false
 	}
@@ -250,19 +255,19 @@ func (r *Resolver) resolvePath(value, filePath string, resolveCount int, resolve
 			return value, false
 		}
 
-		resolvedFilesCache[filename] = model.ResolvedFileData{FileContent: fileContent, ResolvedFileObject: obj}
+		resolvedFilesCache[filename] = ResolvedFile{fileContent, obj}
 	}
 
 	r.ResolvedFiles[value] = model.ResolvedFile{
-		Content:      resolvedFilesCache[filename].FileContent,
+		Content:      resolvedFilesCache[filename].fileContent,
 		Path:         path,
-		LinesContent: utils.SplitLines(string(resolvedFilesCache[filename].FileContent)),
+		LinesContent: utils.SplitLines(string(resolvedFilesCache[filename].fileContent)),
 	}
 	// Cloudformation !Ref check
 	if strings.Contains(strings.ToLower(value), "!ref") {
-		return resolvedFilesCache[filename].ResolvedFileObject, false
+		return resolvedFilesCache[filename].resolvedFileObject, false
 	}
-	return resolvedFilesCache[filename].ResolvedFileObject, true
+	return resolvedFilesCache[filename].resolvedFileObject, true
 }
 
 func contains(elem string, list []string) bool {

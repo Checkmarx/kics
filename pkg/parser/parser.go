@@ -17,7 +17,7 @@ type kindParser interface {
 	SupportedExtensions() []string
 	SupportedTypes() map[string]bool
 	Parse(filePath string, fileContent []byte) ([]model.Document, []int, error)
-	Resolve(fileContent []byte, filename string, resolvedFilesCache map[string]model.ResolvedFileData) ([]byte, error)
+	Resolve(fileContent []byte, filename string) ([]byte, error)
 	StringifyContent(content []byte) (string, error)
 	GetResolvedFiles() map[string]model.ResolvedFile
 }
@@ -121,7 +121,7 @@ func (c *Parser) Parse(filePath string, fileContent []byte) (ParsedDocument, err
 	fileContent = utils.DecryptAnsibleVault(fileContent, os.Getenv("ANSIBLE_VAULT_PASSWORD_FILE"))
 
 	if c.isValidExtension(filePath) {
-		resolved, err := c.parsers.Resolve(fileContent, filePath, make(map[string]model.ResolvedFileData))
+		resolved, err := c.parsers.Resolve(fileContent, filePath)
 		if err != nil {
 			return ParsedDocument{}, err
 		}

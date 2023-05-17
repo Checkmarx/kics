@@ -149,7 +149,7 @@ func Test_Resolve(t *testing.T) {
 		ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 		`
 
-	resolved, err := parser.Resolve([]byte(have), "Dockerfile", make(map[string]model.ResolvedFileData))
+	resolved, err := parser.Resolve([]byte(have), "Dockerfile")
 	require.NoError(t, err)
 	require.Equal(t, []byte(have), resolved)
 }

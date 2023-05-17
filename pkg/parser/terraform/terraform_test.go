@@ -131,7 +131,7 @@ func Test_Parentheses_Expr(t *testing.T) {
 func Test_Resolve(t *testing.T) {
 	parser := NewDefault()
 
-	resolved, err := parser.Resolve([]byte(have), "test.tf", make(map[string]model.ResolvedFileData))
+	resolved, err := parser.Resolve([]byte(have), "test.tf")
 	require.NoError(t, err)
 	require.Equal(t, []byte(have), resolved)
 }

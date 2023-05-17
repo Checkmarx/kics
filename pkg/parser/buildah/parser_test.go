@@ -2,10 +2,9 @@ package buildah
 
 import (
 	"encoding/json"
+	"github.com/Checkmarx/kics/pkg/model"
 	"reflect"
 	"testing"
-
-	"github.com/Checkmarx/kics/pkg/model"
 
 	"github.com/stretchr/testify/require"
 )
@@ -319,7 +318,7 @@ func TestParser_Resolve(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			p := &Parser{}
-			got, err := p.Resolve(tt.args.fileContent, tt.args.filename, make(map[string]model.ResolvedFileData))
+			got, err := p.Resolve(tt.args.fileContent, tt.args.filename)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Parser.Resolve() error = %v, wantErr %v", err, tt.wantErr)
 				return
