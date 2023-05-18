@@ -9,6 +9,6 @@
     "queryName": "Aurora With Disabled at Rest Encryption",
     "severity": "HIGH",
     "line": 5,
-    "filename": "positive1.tf"
+    "filename": "positive2.tf"
   }
 ]
