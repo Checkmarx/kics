@@ -14,10 +14,10 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
-		"searchKey": sprintf("Resources.%s.properties;", [key]),
+		"searchKey": sprintf("Resources.%s.Properties.SSESpecification.SSEEnabled", [key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources[%s].properties.SSESpecification.SSEEnabled should be 'true'", [key]),
-		"keyActualValue": sprintf("Resources[%s].properties.SSESpecification.SSEEnabled is 'false'", [key]),
+		"keyExpectedValue": sprintf("Resources[%s].Properties.SSESpecification.SSEEnabled should be 'true'", [key]),
+		"keyActualValue": sprintf("Resources[%s].Properties.SSESpecification.SSEEnabled is 'false'", [key]),
 	}
 }
 
@@ -33,9 +33,9 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
-		"searchKey": sprintf("Resources.%s.properties;", [key]),
+		"searchKey": sprintf("Resources.%s.Properties.SSESpecification", [key]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources[%s].properties.SSESpecification.SSEEnabled should be set and to 'true'", [key]),
-		"keyActualValue": sprintf("Resources[%s].properties.SSESpecification.SSEEnabled is not set", [key]),
+		"keyExpectedValue": sprintf("Resources[%s].Properties.SSESpecification.SSEEnabled should be set and to 'true'", [key]),
+		"keyActualValue": sprintf("Resources[%s].Properties.SSESpecification.SSEEnabled is not set", [key]),
 	}
 }

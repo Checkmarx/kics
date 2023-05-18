@@ -8,7 +8,7 @@
   {
     "queryName": "DynamoDB Table Not Encrypted",
     "severity": "MEDIUM",
-    "line": 4,
+    "line": 17,
     "filename": "positive2.yaml"
   }
 ]
