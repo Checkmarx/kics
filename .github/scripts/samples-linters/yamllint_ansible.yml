@@ -7,4 +7,4 @@ rules:
     indent-sequences: consistent
   comments-indentation: disable
 ignore: |
-  **/kms_key_with_vulnerable_policy/test/positive.yaml
+  **/kms_key_with_full_permissions/test/positive.yaml
