@@ -7,10 +7,10 @@
       instance_count: 2
       zone_awareness: false
       dedicated_master: false
+    domain_endpoint_options:
+      enforce_https: false
     ebs_options:
       ebs_enabled: true
       volume_type: "gp2"
       volume_size: 10
-    domain_endpoint_options:
-      enforce_https: false
     access_policies: "{{ lookup('file', 'policy.json') | from_json }}"
