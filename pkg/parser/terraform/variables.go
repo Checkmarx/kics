@@ -51,6 +51,34 @@ func setInputVariablesDefaultValues(filename string) (converter.VariableMap, err
 	return defaultValuesMap, nil
 }
 
+func setModuleVariablesValues(filepath string) (converter.VariableMap, error) {
+	parsedFile, err := parseFile(filepath, false)
+	if err != nil || parsedFile == nil {
+		return nil, err
+	}
+	content, _, _ := parsedFile.Body.PartialContent(&hcl.BodySchema{
+		Blocks: []hcl.BlockHeaderSchema{
+			{
+				Type:       "module",
+				LabelNames: []string{"name"},
+			},
+		},
+	})
+
+	defaultValuesMap := make(converter.VariableMap)
+	for _, block := range content.Blocks {
+		attr, _ := block.Body.JustAttributes()
+		if len(attr) == 0 {
+			continue
+		}
+		for _, attribute := range attr {
+			defaultVar, _ := attribute.Expr.Value(nil)
+			defaultValuesMap[attribute.Name] = defaultVar
+		}
+	}
+	return defaultValuesMap, nil
+}
+
 func checkTfvarsValid(f *hcl.File, filename string) error {
 	content, _, _ := f.Body.PartialContent(&hcl.BodySchema{
 		Blocks: []hcl.BlockHeaderSchema{
@@ -99,6 +127,13 @@ func getInputVariables(currentPath string) {
 			continue
 		}
 		mergeMaps(variablesMap, variables)
+		moduleVariables, errDefaultValues := setModuleVariablesValues(tfFile)
+		if errDefaultValues != nil {
+			log.Error().Msgf("Error getting module values from %s", tfFile)
+			log.Err(errDefaultValues)
+			continue
+		}
+		mergeMaps(variablesMap, moduleVariables)
 	}
 	tfVarsFiles, err := filepath.Glob(filepath.Join(currentPath, "*.auto.tfvars"))
 	if err != nil {

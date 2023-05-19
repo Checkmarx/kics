@@ -38,8 +38,10 @@ func NewDefault() *Parser {
 
 // Resolve - replace or modifies in-memory content before parsing
 func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) {
-	getInputVariables(filepath.Dir(filename))
-	getDataSourcePolicy(filepath.Dir(filename))
+	filepath := filepath.Dir(filename)
+	getInputVariables(filepath)
+	getLocals(filepath, inputVariableMap)
+	getDataSourcePolicy(filepath)
 	return fileContent, nil
 }
 
