@@ -17,8 +17,8 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.domain_endpoint_options.enforce_https", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'cache_subnet_group' should be set to true",
-		"keyActualValue": "'cache_subnet_group' is set to false",
+		"keyExpectedValue": sprintf("name={{%s}}.{{%s}}.domain_endpoint_options.enforce_https should be set to 'true'", [task.name, modules[m]]),
+		"keyActualValue": sprintf("name={{%s}}.{{%s}}.domain_endpoint_options.enforce_https is set to 'false'", [task.name, modules[m]]),
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m],"domain_endpoint_options","enforce_https"], []),
 	}
 }
