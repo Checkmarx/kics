@@ -19,7 +19,7 @@
         <link rel="next" href="../common-queries/">
       
       <link rel="icon" href="../../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.13">
     
     
       
@@ -2836,11 +2836,11 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>KMS Key With Vulnerable Policy<br/><sup><sub>7ebc9038-0bde-479a-acc4-6ed7b6758899</sub></sup></td>
+<td>KMS Key With Full Permissions<br/><sup><sub>7ebc9038-0bde-479a-acc4-6ed7b6758899</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
-<td>Checks if the policy is vulnerable and needs updating. (<a href="../terraform-queries/aws/7ebc9038-0bde-479a-acc4-6ed7b6758899" target="_blank">read more</a>)</td>
+<td>The KMS key has a policy that is too permissive, as it provides the AWS account owner with access to all AWS KMS operations, therefore violating the principle of least privilege. (<a href="../terraform-queries/aws/7ebc9038-0bde-479a-acc4-6ed7b6758899" target="_blank">read more</a>)</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -8924,11 +8924,11 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>KMS Key With Vulnerable Policy<br/><sup><sub>5b9d237a-57d5-4177-be0e-71434b0fef47</sub></sup></td>
+<td>KMS Key With Full Permissions<br/><sup><sub>5b9d237a-57d5-4177-be0e-71434b0fef47</sub></sup></td>
 <td>Ansible</td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
-<td>Checks if the policy is vulnerable and needs updating. (<a href="../ansible-queries/aws/5b9d237a-57d5-4177-be0e-71434b0fef47" target="_blank">read more</a>)</td>
+<td>The KMS key has a policy that is too permissive, as it provides the AWS account owner with access to all AWS KMS operations, therefore violating the principle of least privilege. (<a href="../ansible-queries/aws/5b9d237a-57d5-4177-be0e-71434b0fef47" target="_blank">read more</a>)</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/aws_kms_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -13204,11 +13204,11 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>KMS Key With Vulnerable Policy<br/><sup><sub>da905474-7454-43c0-b8d2-5756ab951aba</sub></sup></td>
+<td>KMS Key With Full Permissions<br/><sup><sub>da905474-7454-43c0-b8d2-5756ab951aba</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
-<td>Checks if the policy is vulnerable and needs updating. (<a href="../cloudformation-queries/aws/da905474-7454-43c0-b8d2-5756ab951aba" target="_blank">read more</a>)</td>
+<td>The KMS key has a policy that is too permissive, as it provides the AWS account owner with access to all AWS KMS operations, therefore violating the principle of least privilege. (<a href="../cloudformation-queries/aws/da905474-7454-43c0-b8d2-5756ab951aba" target="_blank">read more</a>)</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-keypolicy">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -15257,7 +15257,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.fac441b0.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b4d07000.min.js"></script>
       
         <script src="../../js/version-mike.js"></script>
       
