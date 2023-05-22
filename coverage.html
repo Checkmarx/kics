@@ -179,7 +179,7 @@
 				
 				<option value="file61">github.com/Checkmarx/kics/pkg/parser/json/json_line.go (89.5%)</option>
 				
-				<option value="file62">github.com/Checkmarx/kics/pkg/parser/json/parser.go (77.4%)</option>
+				<option value="file62">github.com/Checkmarx/kics/pkg/parser/json/parser.go (78.1%)</option>
 				
 				<option value="file63">github.com/Checkmarx/kics/pkg/parser/json/tfplan.go (84.6%)</option>
 				
@@ -197,7 +197,7 @@
 				
 				<option value="file70">github.com/Checkmarx/kics/pkg/parser/utils/certificate_utils.go (81.6%)</option>
 				
-				<option value="file71">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (82.4%)</option>
+				<option value="file71">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (82.6%)</option>
 				
 				<option value="file72">github.com/Checkmarx/kics/pkg/printer/options.go (85.7%)</option>
 				
@@ -207,7 +207,7 @@
 				
 				<option value="file75">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file76">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file76">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (95.5%)</option>
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -259,7 +259,7 @@
 				
 				<option value="file101">github.com/Checkmarx/kics/pkg/report/sonarqube.go (90.9%)</option>
 				
-				<option value="file102">github.com/Checkmarx/kics/pkg/resolver/file/file.go (81.0%)</option>
+				<option value="file102">github.com/Checkmarx/kics/pkg/resolver/file/file.go (82.0%)</option>
 				
 				<option value="file103">github.com/Checkmarx/kics/pkg/resolver/helm/helm.go (88.5%)</option>
 				
@@ -2219,7 +2219,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4889,7 +4889,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="9">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="13">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="12">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -11671,7 +11671,8 @@ type Parser struct {
 func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) <span class="cov1" title="1">{
         // Resolve files passed as arguments with file resolver (e.g. file://)
         res := file.NewResolver(json.Unmarshal, json.Marshal, p.SupportedExtensions())
-        resolved := res.Resolve(fileContent, filename, 0)
+        resolvedFilesCache := make(map[string]file.ResolvedFile)
+        resolved := res.Resolve(fileContent, filename, 0, resolvedFilesCache)
         p.resolvedFiles = res.ResolvedFiles
         if len(res.ResolvedFiles) == 0 </span><span class="cov1" title="1">{
                 return fileContent, nil
@@ -13436,7 +13437,8 @@ type Parser struct {
 func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) <span class="cov1" title="1">{
         // Resolve files passed as arguments with file resolver (e.g. file://)
         res := file.NewResolver(yaml.Unmarshal, yaml.Marshal, p.SupportedExtensions())
-        resolved := res.Resolve(fileContent, filename, 0)
+        resolvedFilesCache := make(map[string]file.ResolvedFile)
+        resolved := res.Resolve(fileContent, filename, 0, resolvedFilesCache)
         p.resolvedFiles = res.ResolvedFiles
         if len(res.ResolvedFiles) == 0 </span><span class="cov1" title="1">{
                 return fileContent, nil
@@ -14200,7 +14202,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov3" title="2">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -14209,26 +14211,26 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov3" title="2">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
                 }</span>
-                <span class="cov0" title="0">p.wg.Done()</span>
+                <span class="cov3" title="2">p.wg.Done()</span>
         }()
 
         <span class="cov3" title="2">for </span><span class="cov10" title="20">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov3" title="2">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov3" title="2">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file77" style="display: none">package progress
@@ -17349,6 +17351,12 @@ import (
         "github.com/rs/zerolog/log"
 )
 
+// ResolvedFile - used for caching the already resolved files
+type ResolvedFile struct {
+        fileContent        []byte
+        resolvedFileObject any
+}
+
 // Resolver - replace or modifies in-memory content before parsing
 type Resolver struct {
         unmarshler    func(fileContent []byte, v any) error
@@ -17371,9 +17379,9 @@ func NewResolver(
 }</span>
 
 // Resolve - replace or modifies in-memory content before parsing
-func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int) []byte <span class="cov5" title="9">{
+func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) []byte <span class="cov5" title="9">{
         if utils.Contains(filepath.Ext(path), []string{".yml", ".yaml"}) </span><span class="cov4" title="6">{
-                return r.yamlResolve(fileContent, path, resolveCount)
+                return r.yamlResolve(fileContent, path, resolveCount, resolvedFilesCache)
         }</span>
         <span class="cov3" title="3">var obj any
         err := r.unmarshler(fileContent, &amp;obj)
@@ -17382,7 +17390,7 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int) []
         }</span>
 
         // resolve the paths
-        <span class="cov3" title="3">obj, _ = r.walk(obj, path, resolveCount)
+        <span class="cov3" title="3">obj, _ = r.walk(obj, path, resolveCount, resolvedFilesCache)
 
         b, err := r.marshler(obj)
         if err != nil </span><span class="cov0" title="0">{
@@ -17392,29 +17400,30 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int) []
         <span class="cov3" title="3">return b</span>
 }
 
-func (r *Resolver) walk(value any, path string, resolveCount int) (any, bool) <span class="cov8" title="33">{
+func (r *Resolver) walk(value any, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) <span class="cov8" title="33">{
         // go over the value and replace paths with the real content
         switch typedValue := value.(type) </span>{
         case string:<span class="cov6" title="12">
                 if filepath.Base(path) != typedValue </span><span class="cov6" title="12">{
-                        return r.resolvePath(typedValue, path, resolveCount)
+                        return r.resolvePath(typedValue, path, resolveCount, resolvedFilesCache)
                 }</span>
                 <span class="cov0" title="0">return value, false</span>
         case []any:<span class="cov1" title="1">
                 for i, v := range typedValue </span><span class="cov1" title="1">{
-                        typedValue[i], _ = r.walk(v, path, resolveCount)
+                        typedValue[i], _ = r.walk(v, path, resolveCount, resolvedFilesCache)
                 }</span>
                 <span class="cov1" title="1">return typedValue, false</span>
         case map[string]any:<span class="cov7" title="20">
-                return r.handleMap(typedValue, path, resolveCount)</span>
+                return r.handleMap(typedValue, path, resolveCount, resolvedFilesCache)</span>
         default:<span class="cov0" title="0">
                 return value, false</span>
         }
 }
 
-func (r *Resolver) handleMap(value map[string]interface{}, path string, resolveCount int) (any, bool) <span class="cov7" title="20">{
+func (r *Resolver) handleMap(value map[string]interface{}, path string,
+        resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) <span class="cov7" title="20">{
         for k, v := range value </span><span class="cov8" title="29">{
-                val, res := r.walk(v, path, resolveCount)
+                val, res := r.walk(v, path, resolveCount, resolvedFilesCache)
                 // check if it is a ref than everything needs to be changed
                 if res &amp;&amp; strings.Contains(strings.ToLower(k), "ref") </span><span class="cov2" title="2">{
                         return val, false
@@ -17424,7 +17433,7 @@ func (r *Resolver) handleMap(value map[string]interface{}, path string, resolveC
         <span class="cov7" title="18">return value, false</span>
 }
 
-func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int) []byte <span class="cov4" title="6">{
+func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) []byte <span class="cov4" title="6">{
         var obj yaml.Node
         err := r.unmarshler(fileContent, &amp;obj)
         if err != nil </span><span class="cov0" title="0">{
@@ -17432,7 +17441,7 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int
         }</span>
 
         // resolve the paths
-        <span class="cov4" title="6">obj, _ = r.yamlWalk(&amp;obj, path, resolveCount)
+        <span class="cov4" title="6">obj, _ = r.yamlWalk(&amp;obj, path, resolveCount, resolvedFilesCache)
 
         if obj.Kind == 1 &amp;&amp; len(obj.Content) == 1 </span><span class="cov4" title="6">{
                 obj = *obj.Content[0]
@@ -17446,17 +17455,17 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int
         <span class="cov4" title="6">return b</span>
 }
 
-func (r *Resolver) yamlWalk(value *yaml.Node, path string, resolveCount int) (yaml.Node, bool) <span class="cov10" title="70">{
+func (r *Resolver) yamlWalk(value *yaml.Node, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) (yaml.Node, bool) <span class="cov10" title="70">{
         // go over the value and replace paths with the real conten
         switch value.Kind </span>{
         case yaml.ScalarNode:<span class="cov9" title="47">
                 if filepath.Base(path) != value.Value </span><span class="cov9" title="47">{
-                        return r.resolveYamlPath(value, path, resolveCount)
+                        return r.resolveYamlPath(value, path, resolveCount, resolvedFilesCache)
                 }</span>
                 <span class="cov0" title="0">return *value, false</span>
         default:<span class="cov7" title="23">
                 for i := range value.Content </span><span class="cov9" title="64">{
-                        resolved, ok := r.yamlWalk(value.Content[i], path, resolveCount)
+                        resolved, ok := r.yamlWalk(value.Content[i], path, resolveCount, resolvedFilesCache)
                         if ok &amp;&amp; i &gt;= 1 </span><span class="cov3" title="4">{
                                 if strings.Contains(value.Content[i-1].Value, "ref") </span><span class="cov3" title="3">{ // openapi
                                         return resolved, false
@@ -17469,7 +17478,8 @@ func (r *Resolver) yamlWalk(value *yaml.Node, path string, resolveCount int) (ya
 }
 
 // isPath returns true if the value is a valid path
-func (r *Resolver) resolveYamlPath(v *yaml.Node, filePath string, resolveCount int) (yaml.Node, bool) <span class="cov9" title="47">{
+func (r *Resolver) resolveYamlPath(v *yaml.Node, filePath string,
+        resolveCount int, resolvedFilesCache map[string]ResolvedFile) (yaml.Node, bool) <span class="cov9" title="47">{
         value := v.Value
         if resolveCount &gt; constants.MaxResolvedFiles </span><span class="cov0" title="0">{
                 return *v, false
@@ -17487,54 +17497,60 @@ func (r *Resolver) resolveYamlPath(v *yaml.Node, filePath string, resolveCount i
                 return *v, false
         }</span>
 
-        // open the file with the content to replace
-        <span class="cov3" title="4">file, err := os.Open(filepath.Clean(path))
-        if err != nil </span><span class="cov0" title="0">{
-                return *v, false
-        }</span>
+        <span class="cov3" title="4">filename := filepath.Clean(path)
 
-        <span class="cov3" title="4">defer func(file *os.File) </span><span class="cov3" title="4">{
-                err = file.Close()
+        if _, ok := resolvedFilesCache[filename]; !ok </span><span class="cov3" title="4">{
+                // open the file with the content to replace
+                file, err := os.Open(filepath.Clean(path))
                 if err != nil </span><span class="cov0" title="0">{
-                        log.Err(err).Msgf("failed to close resolved file: %s", path)
+                        return *v, false
                 }</span>
-        }(file)
 
-        // read the content
-        <span class="cov3" title="4">fileContent, err := io.ReadAll(file)
-        if err != nil </span><span class="cov0" title="0">{
-                return *v, false
-        }</span>
+                <span class="cov3" title="4">defer func(file *os.File) </span><span class="cov3" title="4">{
+                        err = file.Close()
+                        if err != nil </span><span class="cov0" title="0">{
+                                log.Err(err).Msgf("failed to close resolved file: %s", path)
+                        }</span>
+                }(file)
 
-        <span class="cov3" title="4">resolvedFile := r.Resolve(fileContent, path, resolveCount+1)
+                // read the content
+                <span class="cov3" title="4">fileContent, err := io.ReadAll(file)
+                if err != nil </span><span class="cov0" title="0">{
+                        return *v, false
+                }</span>
 
-        // parse the content
-        var obj yaml.Node
-        err = r.unmarshler(resolvedFile, &amp;obj)
-        if err != nil </span><span class="cov0" title="0">{
-                return *v, false
-        }</span>
+                <span class="cov3" title="4">resolvedFile := r.Resolve(fileContent, path, resolveCount+1, resolvedFilesCache)
 
-        <span class="cov3" title="4">if obj.Kind == 1 &amp;&amp; len(obj.Content) == 1 </span><span class="cov3" title="4">{
-                obj = *obj.Content[0]
-        }</span>
+                // parse the content
+                var obj yaml.Node
+                err = r.unmarshler(resolvedFile, &amp;obj)
+                if err != nil </span><span class="cov0" title="0">{
+                        return *v, false
+                }</span>
+
+                <span class="cov3" title="4">if obj.Kind == 1 &amp;&amp; len(obj.Content) == 1 </span><span class="cov3" title="4">{
+                        obj = *obj.Content[0]
+                }</span>
+
+                <span class="cov3" title="4">resolvedFilesCache[filename] = ResolvedFile{fileContent, obj}</span>
+        }
 
         <span class="cov3" title="4">r.ResolvedFiles[value] = model.ResolvedFile{
-                Content:      fileContent,
+                Content:      resolvedFilesCache[filename].fileContent,
                 Path:         path,
-                LinesContent: utils.SplitLines(string(fileContent)),
+                LinesContent: utils.SplitLines(string(resolvedFilesCache[filename].fileContent)),
         }
 
         // Cloudformation !Ref check
         if strings.Contains(strings.ToLower(value), "!ref") </span><span class="cov0" title="0">{
-                return obj, false
+                return resolvedFilesCache[filename].resolvedFileObject.(yaml.Node), false
         }</span>
 
-        <span class="cov3" title="4">return obj, true</span>
+        <span class="cov3" title="4">return resolvedFilesCache[filename].resolvedFileObject.(yaml.Node), true</span>
 }
 
 // isPath returns true if the value is a valid path
-func (r *Resolver) resolvePath(value, filePath string, resolveCount int) (any, bool) <span class="cov6" title="12">{
+func (r *Resolver) resolvePath(value, filePath string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) <span class="cov6" title="12">{
         if resolveCount &gt; constants.MaxResolvedFiles </span><span class="cov0" title="0">{
                 return value, false
         }</span>
@@ -17548,43 +17564,49 @@ func (r *Resolver) resolvePath(value, filePath string, resolveCount int) (any, b
                 return value, false
         }</span>
 
-        // open the file with the content to replace
-        <span class="cov2" title="2">file, err := os.Open(filepath.Clean(path))
-        if err != nil </span><span class="cov0" title="0">{
-                return value, false
-        }</span>
+        <span class="cov2" title="2">filename := filepath.Clean(path)
 
-        <span class="cov2" title="2">defer func(file *os.File) </span><span class="cov2" title="2">{
-                err = file.Close()
+        if _, ok := resolvedFilesCache[filename]; !ok </span><span class="cov2" title="2">{
+                // open the file with the content to replace
+                file, err := os.Open(filepath.Clean(path))
                 if err != nil </span><span class="cov0" title="0">{
-                        log.Err(err).Msgf("failed to close resolved file: %s", path)
+                        return value, false
                 }</span>
-        }(file)
-        // read the content
-        <span class="cov2" title="2">fileContent, err := io.ReadAll(file)
-        if err != nil </span><span class="cov0" title="0">{
-                return value, false
-        }</span>
 
-        <span class="cov2" title="2">resolvedFile := r.Resolve(fileContent, path, resolveCount+1)
+                <span class="cov2" title="2">defer func(file *os.File) </span><span class="cov2" title="2">{
+                        err = file.Close()
+                        if err != nil </span><span class="cov0" title="0">{
+                                log.Err(err).Msgf("failed to close resolved file: %s", path)
+                        }</span>
+                }(file)
+                // read the content
+                <span class="cov2" title="2">fileContent, err := io.ReadAll(file)
+                if err != nil </span><span class="cov0" title="0">{
+                        return value, false
+                }</span>
 
-        // parse the content
-        var obj any
-        err = r.unmarshler(resolvedFile, &amp;obj)
-        if err != nil </span><span class="cov0" title="0">{
-                return value, false
-        }</span>
+                <span class="cov2" title="2">resolvedFile := r.Resolve(fileContent, path, resolveCount+1, resolvedFilesCache)
+
+                // parse the content
+                var obj any
+                err = r.unmarshler(resolvedFile, &amp;obj)
+                if err != nil </span><span class="cov0" title="0">{
+                        return value, false
+                }</span>
+
+                <span class="cov2" title="2">resolvedFilesCache[filename] = ResolvedFile{fileContent, obj}</span>
+        }
 
         <span class="cov2" title="2">r.ResolvedFiles[value] = model.ResolvedFile{
-                Content:      fileContent,
+                Content:      resolvedFilesCache[filename].fileContent,
                 Path:         path,
-                LinesContent: utils.SplitLines(string(fileContent)),
+                LinesContent: utils.SplitLines(string(resolvedFilesCache[filename].fileContent)),
         }
         // Cloudformation !Ref check
         if strings.Contains(strings.ToLower(value), "!ref") </span><span class="cov0" title="0">{
-                return obj, false
+                return resolvedFilesCache[filename].resolvedFileObject, false
         }</span>
-        <span class="cov2" title="2">return obj, true</span>
+        <span class="cov2" title="2">return resolvedFilesCache[filename].resolvedFileObject, true</span>
 }
 
 func contains(elem string, list []string) bool <span class="cov4" title="6">{
