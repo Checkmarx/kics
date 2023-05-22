@@ -1,6 +1,7 @@
 package file
 
 import (
+	"errors"
 	"io"
 	"os"
 	"path/filepath"
@@ -48,39 +49,45 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int) []
 	}
 
 	// resolve the paths
-	obj, _ = r.walk(obj, path, resolveCount)
+	obj, _ = r.walk(obj, obj, path, resolveCount)
 
 	b, err := r.marshler(obj)
 	if err != nil {
 		return fileContent
 	}
 
+	r.ResolvedFiles[path] = model.ResolvedFile{
+		Content:      fileContent,
+		Path:         path,
+		LinesContent: utils.SplitLines(string(fileContent)),
+	}
+
 	return b
 }
 
-func (r *Resolver) walk(value any, path string, resolveCount int) (any, bool) {
+func (r *Resolver) walk(fullObject any, value any, path string, resolveCount int) (any, bool) {
 	// go over the value and replace paths with the real content
 	switch typedValue := value.(type) {
 	case string:
 		if filepath.Base(path) != typedValue {
-			return r.resolvePath(typedValue, path, resolveCount)
+			return r.resolvePath(fullObject, typedValue, path, resolveCount)
 		}
 		return value, false
 	case []any:
 		for i, v := range typedValue {
-			typedValue[i], _ = r.walk(v, path, resolveCount)
+			typedValue[i], _ = r.walk(fullObject, v, path, resolveCount)
 		}
 		return typedValue, false
 	case map[string]any:
-		return r.handleMap(typedValue, path, resolveCount)
+		return r.handleMap(fullObject, typedValue, path, resolveCount)
 	default:
 		return value, false
 	}
 }
 
-func (r *Resolver) handleMap(value map[string]interface{}, path string, resolveCount int) (any, bool) {
+func (r *Resolver) handleMap(fullObject any, value map[string]interface{}, path string, resolveCount int) (any, bool) {
 	for k, v := range value {
-		val, res := r.walk(v, path, resolveCount)
+		val, res := r.walk(fullObject, v, path, resolveCount)
 		// check if it is a ref than everything needs to be changed
 		if res && strings.Contains(strings.ToLower(k), "ref") {
 			return val, false
@@ -200,57 +207,88 @@ func (r *Resolver) resolveYamlPath(v *yaml.Node, filePath string, resolveCount i
 }
 
 // isPath returns true if the value is a valid path
-func (r *Resolver) resolvePath(value, filePath string, resolveCount int) (any, bool) {
+func (r *Resolver) resolvePath(fullObject any, value, filePath string, resolveCount int) (any, bool) {
 	if resolveCount > constants.MaxResolvedFiles {
 		return value, false
 	}
-	path := filepath.Join(filepath.Dir(filePath), value)
-	_, err := os.Stat(path)
-	if err != nil {
-		return value, false
-	}
-
-	if !contains(filepath.Ext(path), r.Extension) {
-		return value, false
-	}
-
-	// open the file with the content to replace
-	file, err := os.Open(filepath.Clean(path))
-	if err != nil {
-		return value, false
-	}
-
-	defer func(file *os.File) {
-		err = file.Close()
-		if err != nil {
-			log.Err(err).Msgf("failed to close resolved file: %s", path)
-		}
-	}(file)
-	// read the content
-	fileContent, err := io.ReadAll(file)
-	if err != nil {
-		return value, false
-	}
-
-	resolvedFile := r.Resolve(fileContent, path, resolveCount+1)
-
-	// parse the content
+	var splitPath []string
 	var obj any
-	err = r.unmarshler(resolvedFile, &obj)
-	if err != nil {
-		return value, false
+	if strings.HasPrefix(value, "#") {
+		path := filePath + value
+		splitPath = strings.Split(path, "#") // splitting by removing the section to look for in the file
+		obj = fullObject
+	} else {
+		path := filepath.Join(filepath.Dir(filePath), value)
+		splitPath := strings.Split(path, "#") // splitting by removing the section to look for in the file
+		onlyFilePath := splitPath[0]
+		_, err := os.Stat(onlyFilePath)
+		if err != nil {
+			return value, false
+		}
+
+		if !contains(filepath.Ext(onlyFilePath), r.Extension) {
+			return value, false
+		}
+
+		// open the file with the content to replace
+		file, err := os.Open(filepath.Clean(onlyFilePath))
+		if err != nil {
+			return value, false
+		}
+
+		defer func(file *os.File) {
+			err = file.Close()
+			if err != nil {
+				log.Err(err).Msgf("failed to close resolved file: %s", onlyFilePath)
+			}
+		}(file)
+		// read the content
+		fileContent, err := io.ReadAll(file)
+		if err != nil {
+			return value, false
+		}
+
+		resolvedFile := r.Resolve(fileContent, onlyFilePath, resolveCount+1)
+
+		// parse the content
+		err = r.unmarshler(resolvedFile, &obj)
+		if err != nil {
+			return value, false
+		}
+
+		r.ResolvedFiles[value] = model.ResolvedFile{
+			Content:      fileContent,
+			Path:         onlyFilePath,
+			LinesContent: utils.SplitLines(string(fileContent)),
+		}
 	}
 
-	r.ResolvedFiles[value] = model.ResolvedFile{
-		Content:      fileContent,
-		Path:         path,
-		LinesContent: utils.SplitLines(string(fileContent)),
-	}
 	// Cloudformation !Ref check
 	if strings.Contains(strings.ToLower(value), "!ref") {
 		return obj, false
 	}
+	if len(splitPath) > 1 {
+		section, err := findSection(obj, splitPath[1])
+		if err != nil {
+			return value, false
+		}
+		return section, false
+	}
 	return obj, true
+}
+
+func findSection(object interface{}, sectionsString string) (interface{}, error) {
+	sections := strings.Split(sectionsString[1:], "/")
+	for _, section := range sections {
+		if sectionObjectTemp, ok := object.(map[string]interface{}); ok {
+			if sectionObject, ok := sectionObjectTemp[section]; ok {
+				object = sectionObject
+			}
+		} else {
+			return object, errors.New("section not present in file")
+		}
+	}
+	return object, nil
 }
 
 func contains(elem string, list []string) bool {
