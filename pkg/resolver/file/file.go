@@ -84,7 +84,8 @@ func (r *Resolver) walk(value any, path string, resolveCount int, resolvedFilesC
 	}
 }
 
-func (r *Resolver) handleMap(value map[string]interface{}, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) {
+func (r *Resolver) handleMap(value map[string]interface{}, path string,
+	resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) {
 	for k, v := range value {
 		val, res := r.walk(v, path, resolveCount, resolvedFilesCache)
 		// check if it is a ref than everything needs to be changed
@@ -141,7 +142,8 @@ func (r *Resolver) yamlWalk(value *yaml.Node, path string, resolveCount int, res
 }
 
 // isPath returns true if the value is a valid path
-func (r *Resolver) resolveYamlPath(v *yaml.Node, filePath string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) (yaml.Node, bool) {
+func (r *Resolver) resolveYamlPath(v *yaml.Node, filePath string,
+	resolveCount int, resolvedFilesCache map[string]ResolvedFile) (yaml.Node, bool) {
 	value := v.Value
 	if resolveCount > constants.MaxResolvedFiles {
 		return *v, false
