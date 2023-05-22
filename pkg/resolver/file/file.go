@@ -15,6 +15,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+// ResolvedFile - used for caching the already resolved files
 type ResolvedFile struct {
 	fileContent        []byte
 	resolvedFileObject any
