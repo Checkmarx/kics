@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Aurora With Disabled at Rest Encryption",
+    "severity": "HIGH",
+    "line": 16,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Aurora With Disabled at Rest Encryption",
+    "severity": "HIGH",
+    "line": 5,
+    "filename": "positive2.tf"
+  }
+]
