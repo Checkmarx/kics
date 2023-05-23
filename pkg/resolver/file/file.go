@@ -219,7 +219,7 @@ func (r *Resolver) resolvePath(fullObject any, value, filePath string, resolveCo
 		obj = fullObject
 	} else {
 		path := filepath.Join(filepath.Dir(filePath), value)
-		splitPath := strings.Split(path, "#") // splitting by removing the section to look for in the file
+		splitPath = strings.Split(path, "#") // splitting by removing the section to look for in the file
 		onlyFilePath := splitPath[0]
 		_, err := os.Stat(onlyFilePath)
 		if err != nil {
