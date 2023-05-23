@@ -22,5 +22,11 @@
     "queryName": "RDS Storage Encryption Disabled",
     "severity": "MEDIUM",
     "line": 59
+  },
+  {
+    "fileName": "positive5.yaml",
+    "queryName": "RDS Storage Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 5
   }
 ]
