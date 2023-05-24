@@ -36,5 +36,13 @@ Resources:
           CloudWatchLogsLogGroupArn: >-
             arn:aws:logs:us-east-1:123456789012:log-group:/aws/aes/domains/es-index-slow-logs
           Enabled: "true"
+        ES_APPLICATION_LOGS:
+          CloudWatchLogsLogGroupArn: >-
+            arn:aws:logs:us-east-1:123456789012:log-group:/aws/aes/domains/es-application-logs
+          Enabled: "true"
+        AUDIT_LOGS:
+          CloudWatchLogsLogGroupArn: >-
+            arn:aws:logs:us-east-1:123456789012:log-group:/aws/aes/domains/es-audit-logs
+          Enabled: "true"
       AdvancedOptions:
         rest.action.multi.allow_explicit_index: "true"

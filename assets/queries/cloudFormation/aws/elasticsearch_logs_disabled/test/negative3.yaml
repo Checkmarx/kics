@@ -26,3 +26,6 @@ Resources:
         "ES_APPLICATION_LOGS":
           CloudWatchLogsLogGroupArn: !GetAtt ProductionElasticsearchApplicationLogs.Arn
           Enabled: true
+        "AUDIT_LOGS":
+          CloudWatchLogsLogGroupArn: !GetAtt ProductionElasticsearchAuditLogs.Arn
+          Enabled: true

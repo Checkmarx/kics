@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
-slowLogs := ["INDEX_SLOW_LOGS", "SEARCH_SLOW_LOGS"]
+LogTypes := ["INDEX_SLOW_LOGS", "SEARCH_SLOW_LOGS", "ES_APPLICATION_LOGS", "AUDIT_LOGS"]
 
 CxPolicy[result] {
 	docs := input.document[i]
@@ -11,7 +11,7 @@ CxPolicy[result] {
 	resource := Resources[name]
 	resource.Type == "AWS::Elasticsearch::Domain"
 	common_lib.valid_key(resource.Properties, "LogPublishingOptions")
-	logs := [logName | contains(slowLogs, logName); log := resource.Properties.LogPublishingOptions[logName]]
+	logs := [logName | contains(LogTypes, logName); log := resource.Properties.LogPublishingOptions[logName]]
 	count(logs) == 0
 
 	result := {
@@ -20,8 +20,8 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.LogPublishingOptions", [cf_lib.getPath(path),name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.LogPublishingOptions should declare slow logs", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.LogPublishingOptions does not declares slow logs", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.LogPublishingOptions should declare logs", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.LogPublishingOptions does not declares logs", [name]),
 		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "LogPublishingOptions"], []),
 	}
 }
@@ -32,7 +32,7 @@ CxPolicy[result] {
 	resource := Resources[name]
 	resource.Type == "AWS::Elasticsearch::Domain"
 	logs := resource.Properties.LogPublishingOptions[logName]
-	logName == slowLogs[j]
+	logName == LogTypes[j]
 	logs.Enabled == "false"
 
 	result := {
@@ -41,8 +41,8 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.LogPublishingOptions.%s.Enabled", [cf_lib.getPath(path),name, logName]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.LogPublishingOptions.%s should be enabled if is a slow log", [name, logName]),
-		"keyActualValue": sprintf("Resources.%s.Properties.LogPublishingOptions.%s is a slow log but isn't enabled", [name, logName]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.LogPublishingOptions.%s should be enabled if is a log", [name, logName]),
+		"keyActualValue": sprintf("Resources.%s.Properties.LogPublishingOptions.%s is a log but isn't enabled", [name, logName]),
 		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "LogPublishingOptions", logName, "Enabled"], []),
 	}
 }
