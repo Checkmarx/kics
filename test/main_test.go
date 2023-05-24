@@ -174,6 +174,7 @@ func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte)
 				Kind:              docs.Kind,
 				FilePath:          filePath,
 				LinesOriginalData: utils.SplitLines(docs.Content),
+				ResolvedFiles:     docs.ResolvedFiles,
 			})
 		}
 	}

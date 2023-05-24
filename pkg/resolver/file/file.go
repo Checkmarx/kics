@@ -49,45 +49,39 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int) []
 	}
 
 	// resolve the paths
-	obj, _ = r.walk(obj, obj, path, resolveCount)
+	obj, _ = r.walk(fileContent, obj, obj, path, resolveCount)
 
 	b, err := r.marshler(obj)
 	if err != nil {
 		return fileContent
 	}
 
-	r.ResolvedFiles[path] = model.ResolvedFile{
-		Content:      fileContent,
-		Path:         path,
-		LinesContent: utils.SplitLines(string(fileContent)),
-	}
-
 	return b
 }
 
-func (r *Resolver) walk(fullObject any, value any, path string, resolveCount int) (any, bool) {
+func (r *Resolver) walk(originalFileContent []byte, fullObject any, value any, path string, resolveCount int) (any, bool) {
 	// go over the value and replace paths with the real content
 	switch typedValue := value.(type) {
 	case string:
 		if filepath.Base(path) != typedValue {
-			return r.resolvePath(fullObject, typedValue, path, resolveCount)
+			return r.resolvePath(originalFileContent, fullObject, typedValue, path, resolveCount)
 		}
 		return value, false
 	case []any:
 		for i, v := range typedValue {
-			typedValue[i], _ = r.walk(fullObject, v, path, resolveCount)
+			typedValue[i], _ = r.walk(originalFileContent, fullObject, v, path, resolveCount)
 		}
 		return typedValue, false
 	case map[string]any:
-		return r.handleMap(fullObject, typedValue, path, resolveCount)
+		return r.handleMap(originalFileContent, fullObject, typedValue, path, resolveCount)
 	default:
 		return value, false
 	}
 }
 
-func (r *Resolver) handleMap(fullObject any, value map[string]interface{}, path string, resolveCount int) (any, bool) {
+func (r *Resolver) handleMap(originalFileContent []byte, fullObject any, value map[string]interface{}, path string, resolveCount int) (any, bool) {
 	for k, v := range value {
-		val, res := r.walk(fullObject, v, path, resolveCount)
+		val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount)
 		// check if it is a ref than everything needs to be changed
 		if res && strings.Contains(strings.ToLower(k), "ref") {
 			return val, false
@@ -207,13 +201,15 @@ func (r *Resolver) resolveYamlPath(v *yaml.Node, filePath string, resolveCount i
 }
 
 // isPath returns true if the value is a valid path
-func (r *Resolver) resolvePath(fullObject any, value, filePath string, resolveCount int) (any, bool) {
+func (r *Resolver) resolvePath(originalFileContent []byte, fullObject any, value, filePath string, resolveCount int) (any, bool) {
 	if resolveCount > constants.MaxResolvedFiles {
 		return value, false
 	}
 	var splitPath []string
 	var obj any
-	if strings.HasPrefix(value, "#") {
+	sameFileResolve := false
+	if strings.HasPrefix(value, "#") { // same file resolve
+		sameFileResolve = true
 		path := filePath + value
 		splitPath = strings.Split(path, "#") // splitting by removing the section to look for in the file
 		obj = fullObject
@@ -268,6 +264,13 @@ func (r *Resolver) resolvePath(fullObject any, value, filePath string, resolveCo
 		return obj, false
 	}
 	if len(splitPath) > 1 {
+		if sameFileResolve {
+			r.ResolvedFiles[filePath] = model.ResolvedFile{
+				Content:      originalFileContent,
+				Path:         filePath,
+				LinesContent: utils.SplitLines(string(originalFileContent)),
+			}
+		}
 		section, err := findSection(obj, splitPath[1])
 		if err != nil {
 			return value, false
