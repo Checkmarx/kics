@@ -4,5 +4,11 @@
       "severity": "HIGH",
       "line": 11,
       "fileName": "positive1.yaml"
+    },
+    {
+      "queryName": "Elasticsearch with HTTPS disabled",
+      "severity": "HIGH",
+      "line": 10,
+      "fileName": "positive2.yaml"
     }
 ]
