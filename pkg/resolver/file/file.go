@@ -65,7 +65,12 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, re
 	return b
 }
 
-func (r *Resolver) walk(originalFileContent []byte, fullObject any, value any, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) {
+func (r *Resolver) walk(
+	originalFileContent []byte,
+	fullObject, value any,
+	path string,
+	resolveCount int,
+	resolvedFilesCache map[string]ResolvedFile) (any, bool) {
 	// go over the value and replace paths with the real content
 	switch typedValue := value.(type) {
 	case string:
@@ -215,7 +220,12 @@ func (r *Resolver) resolveYamlPath(v *yaml.Node, filePath string,
 }
 
 // isPath returns true if the value is a valid path
-func (r *Resolver) resolvePath(originalFileContent []byte, fullObject any, value, filePath string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) {
+func (r *Resolver) resolvePath(
+	originalFileContent []byte,
+	fullObject any,
+	value, filePath string,
+	resolveCount int,
+	resolvedFilesCache map[string]ResolvedFile) (any, bool) {
 	if resolveCount > constants.MaxResolvedFiles {
 		return value, false
 	}
@@ -262,7 +272,6 @@ func (r *Resolver) resolvePath(originalFileContent []byte, fullObject any, value
 			resolvedFile := r.Resolve(fileContent, onlyFilePath, resolveCount+1, resolvedFilesCache)
 
 			// parse the content
-			var obj any
 			err = r.unmarshler(resolvedFile, &obj)
 			if err != nil {
 				return value, false
