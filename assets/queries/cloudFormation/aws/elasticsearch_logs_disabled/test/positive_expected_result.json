@@ -21,6 +21,6 @@
     "queryName": "Elasticsearch Logs Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive5.json"
+    "fileName": "positive4.json"
   }
 ]
