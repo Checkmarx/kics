@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/require"
@@ -28,7 +29,7 @@ var resultsExitCodeTests = []struct {
 				"info":   {},
 			},
 		},
-		expectedResult: 50,
+		expectedResult: constants.HighResultsExitCode,
 	},
 	{
 		caseTest: resultExitCode{
@@ -37,7 +38,7 @@ var resultsExitCodeTests = []struct {
 				"medium": {},
 			},
 		},
-		expectedResult: 0,
+		expectedResult: constants.NoErrors,
 	},
 	{
 		caseTest: resultExitCode{
@@ -46,7 +47,7 @@ var resultsExitCodeTests = []struct {
 				"medium": {},
 			},
 		},
-		expectedResult: 40,
+		expectedResult: constants.MediumResultsExitCode,
 	},
 	{
 		caseTest: resultExitCode{
@@ -58,7 +59,7 @@ var resultsExitCodeTests = []struct {
 				"info":   {},
 			},
 		},
-		expectedResult: 50,
+		expectedResult: constants.HighResultsExitCode,
 	},
 }
 
@@ -70,6 +71,20 @@ func TestExitHandler_ResultsExitCode(t *testing.T) {
 			require.Equal(t, testCase.expectedResult, result)
 		})
 	}
+}
+
+func TestExitHandler_NoFilesScanned_NoFilesExitCode(t *testing.T) {
+	t.Run("Test case No Files Scanned", func(t *testing.T) {
+		result := FilesExitCode(&test.NoFilesSummaryMock)
+		require.Equal(t, constants.NoFilesScannedExitCode, result)
+	})
+}
+
+func TestExitHandler2_FilesScanned_NoErrorsExitCode(t *testing.T) {
+	t.Run("Test case Files Scanned", func(t *testing.T) {
+		result := FilesExitCode(&test.SimpleSummaryMock)
+		require.Equal(t, constants.NoErrors, result)
+	})
 }
 
 type initIgnoreResult struct {
@@ -248,13 +263,13 @@ func TestExitHandler_ShowError(t *testing.T) {
 func Test_RemediateAll(t *testing.T) {
 	t.Run("RemediateAllExitCode", func(t *testing.T) {
 		statusCode := RemediateExitCode(11, 11)
-		require.Equal(t, statusCode, 0)
+		require.Equal(t, constants.NoErrors, statusCode)
 	})
 }
 
 func Test_RemediateNotAll(t *testing.T) {
 	t.Run("RemediateNotAllExitCode", func(t *testing.T) {
 		statusCode := RemediateExitCode(11, 6)
-		require.Equal(t, statusCode, 70)
+		require.Equal(t, constants.RemediationFailedExitCode, statusCode)
 	})
 }

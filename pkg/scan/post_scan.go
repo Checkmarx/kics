@@ -142,5 +142,10 @@ func (c *Client) postScan(scanResults *Results) error {
 		os.Exit(exitCode)
 	}
 
+	exitCode = consoleHelpers.FilesExitCode(&summary)
+	if consoleHelpers.ShowError("errors") && exitCode != 0 {
+		os.Exit(exitCode)
+	}
+
 	return nil
 }
