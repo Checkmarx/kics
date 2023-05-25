@@ -1,0 +1,25 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "MyStage": {
+      "Type": "AWS::ApiGatewayV2::Stage",
+      "Properties": {
+        "StageName": "Prod",
+        "Description": "Prod Stage",
+        "DeploymentId": {
+          "Ref": "MyDeployment"
+        },
+        "ApiId": {
+          "Ref": "CFNWebSocket"
+        },
+        "DefaultRouteSettings": {
+          "DetailedMetricsEnabled": true,
+          "LoggingLevel": "INFO",
+          "DataTraceEnabled": false,
+          "ThrottlingBurstLimit": 10,
+          "ThrottlingRateLimit": 10
+        }
+      }
+    }
+  }
+}
