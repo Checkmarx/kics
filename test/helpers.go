@@ -322,7 +322,7 @@ var SimpleSummaryMock = model.Summary{
 	},
 }
 
-// SimpleSummaryMock a summary with specific results to ASFF report tests
+// NoFilesSummaryMock a summary with no files scanned
 var NoFilesSummaryMock = model.Summary{
 	Counters: model.Counters{
 		ScannedFiles:           0,

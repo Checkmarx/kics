@@ -16,16 +16,16 @@ const (
 	//HighResultsExitCode - Exit Status code for a scan with High results
 	HighResultsExitCode = 50
 
-	//MediumResultsExitCode - Exit Status code for a scan with High results
+	//MediumResultsExitCode - Exit Status code for a scan with Medium results
 	MediumResultsExitCode = 40
 
-	//LowResultsExitCode - Exit Status code for a scan with High results
+	//LowResultsExitCode - Exit Status code for a scan with Low results
 	LowResultsExitCode = 30
 
-	//HighResuInfoResultsExitCodeltsExitCode - Exit Status code for a scan with High results
+	//InfoResultsExitCode - Exit Status code for a scan with Info results
 	InfoResultsExitCode = 20
 
-	//TraceResultsExitCode - Exit Status code for a scan with High results
+	//TraceResultsExitCode - Exit Status code for a scan with Trace results
 	TraceResultsExitCode = 0
 
 	//RemediationFailedExitCode - Exit Status code for calculate exit code base on the difference between remediation selected and done

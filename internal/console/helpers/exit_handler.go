@@ -11,7 +11,7 @@ import (
 var shouldIgnore string
 var shouldFail map[string]struct{}
 
-// ResultsExitCode calculate exit code base on severity of results, returns 0 if no results was reported
+// ResultsExitCode calculate exit code based on severity of results, returns 0 if no results was reported
 func ResultsExitCode(summary *model.Summary) int {
 	// severityArr is needed to make sure 'for' cycle is made in an ordered fashion
 	severityArr := []model.Severity{"HIGH", "MEDIUM", "LOW", "INFO", "TRACE"}
@@ -34,6 +34,7 @@ func ResultsExitCode(summary *model.Summary) int {
 	return constants.NoErrors
 }
 
+// FilesExitCode calculate exit code based on the number of scanned files
 func FilesExitCode(summary *model.Summary) int {
 	if summary.ScannedFiles == 0 {
 		return constants.NoFilesScannedExitCode
