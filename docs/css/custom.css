@@ -21,6 +21,10 @@
 }
 
 [data-md-color-scheme="slate"] {
+  --md-primary-fg-color:        #ffbc42;
+  --md-primary-fg-color--light: #ffbc42;
+  --md-primary-fg-color--dark:  #ffbc42;
+  --md-accent-fg-color:         #ffac22;
   --md-hue: 210; /* [0, 360] */
 }
 
