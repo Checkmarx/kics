@@ -22,7 +22,7 @@ theme:
     - navigation.tabs
     - navigation.tabs.sticky
   palette:
-    - scheme: kics
+    - scheme: default
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
