@@ -31,6 +31,27 @@ CxPolicy[result] {
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::Elasticsearch::Domain"
+	logs := resource.Properties.LogPublishingOptions[logName]
+	logName == LogTypes[j]
+	not common_lib.valid_key(logs, "Enabled")
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
+		"searchKey": sprintf("%s%s.Properties.LogPublishingOptions.%s", [cf_lib.getPath(path),name, logName]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.LogPublishingOptions.%s.Enabled should be defined and set to 'true'", [name, logName]),
+		"keyActualValue": sprintf("Resources.%s.Properties.LogPublishingOptions.%s.Enabled isn't defined", [name, logName]),
+		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "LogPublishingOptions", logName], []),
+	}
+}
+
+CxPolicy[result] {
+	docs := input.document[i]
+	[path, Resources] := walk(docs)
+	resource := Resources[name]
+	resource.Type == "AWS::Elasticsearch::Domain"
 	properties := resource.Properties
 	not common_lib.valid_key(properties, "LogPublishingOptions")
 
