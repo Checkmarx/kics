@@ -10,27 +10,6 @@ CxPolicy[result] {
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::Elasticsearch::Domain"
-	common_lib.valid_key(resource.Properties, "LogPublishingOptions")
-	logs := [logName | contains(LogTypes, logName); log := resource.Properties.LogPublishingOptions[logName]]
-	count(logs) == 0
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": resource.Type,
-		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s%s.Properties.LogPublishingOptions", [cf_lib.getPath(path),name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.LogPublishingOptions should declare logs", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.LogPublishingOptions does not declares logs", [name]),
-		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "LogPublishingOptions"], []),
-	}
-}
-
-CxPolicy[result] {
-	docs := input.document[i]
-	[path, Resources] := walk(docs)
-	resource := Resources[name]
-	resource.Type == "AWS::Elasticsearch::Domain"
 	logs := resource.Properties.LogPublishingOptions[logName]
 	logName == LogTypes[j]
 	logs.Enabled == "false"
