@@ -8,6 +8,12 @@
   {
     "queryName": "String Schema with Broad Pattern (v3)",
     "severity": "MEDIUM",
+    "line": 81,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "String Schema with Broad Pattern (v3)",
+    "severity": "MEDIUM",
     "line": 30,
     "filename": "positive2.json"
   },
@@ -15,6 +21,12 @@
     "queryName": "String Schema with Broad Pattern (v3)",
     "severity": "MEDIUM",
     "line": 37,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "String Schema with Broad Pattern (v3)",
+    "severity": "MEDIUM",
+    "line": 51,
     "filename": "positive3.yaml"
   },
   {

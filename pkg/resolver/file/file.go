@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"strconv"
 	"strings"
 
 	"github.com/Checkmarx/kics/internal/constants"
@@ -94,9 +95,15 @@ func (r *Resolver) handleMap(originalFileContent []byte, fullObject any, value m
 	resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) {
 	for k, v := range value {
 		val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache)
-		// check if it is a ref than everything needs to be changed
-		if res && strings.Contains(strings.ToLower(k), "ref") {
-			return val, false
+		// check if it is a ref then add new details
+		if valMap, ok := val.(map[string]interface{}); (ok || !res) && strings.Contains(strings.ToLower(k), "ref") {
+			if valMap == nil {
+				valMap = make(map[string]interface{})
+			}
+			valMap["RefMetadata"] = make(map[string]interface{})
+			valMap["RefMetadata"].(map[string]interface{})["$ref"] = v
+			valMap["RefMetadata"].(map[string]interface{})["alone"] = len(value) == 1
+			return valMap, false
 		}
 		value[k] = val
 	}
@@ -111,7 +118,7 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int
 	}
 
 	// resolve the paths
-	obj, _ = r.yamlWalk(&obj, path, resolveCount, resolvedFilesCache)
+	obj, _ = r.yamlWalk(fileContent, obj, &obj, path, resolveCount, resolvedFilesCache)
 
 	if obj.Kind == 1 && len(obj.Content) == 1 {
 		obj = *obj.Content[0]
@@ -125,21 +132,57 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int
 	return b
 }
 
-func (r *Resolver) yamlWalk(value *yaml.Node, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) (yaml.Node, bool) {
+func (r *Resolver) yamlWalk(
+	originalFileContent []byte,
+	fullObject yaml.Node,
+	value *yaml.Node,
+	path string,
+	resolveCount int,
+	resolvedFilesCache map[string]ResolvedFile) (yaml.Node, bool) {
 	// go over the value and replace paths with the real conten
 	switch value.Kind {
 	case yaml.ScalarNode:
 		if filepath.Base(path) != value.Value {
-			return r.resolveYamlPath(value, path, resolveCount, resolvedFilesCache)
+			return r.resolveYamlPath(originalFileContent, fullObject, value, path, resolveCount, resolvedFilesCache)
 		}
 		return *value, false
 	default:
 		for i := range value.Content {
-			resolved, ok := r.yamlWalk(value.Content[i], path, resolveCount, resolvedFilesCache)
-			if ok && i >= 1 {
-				if strings.Contains(value.Content[i-1].Value, "ref") { // openapi
-					return resolved, false
+			resolved, ok := r.yamlWalk(originalFileContent, fullObject, value.Content[i], path, resolveCount, resolvedFilesCache)
+			if i >= 1 && strings.Contains(value.Content[i-1].Value, "ref") && (resolved.Kind == yaml.MappingNode || !ok) {
+
+				if !ok {
+					resolved = yaml.Node{
+						Kind: yaml.MappingNode,
+					}
 				}
+				originalValueNode := &yaml.Node{
+					Kind:  yaml.ScalarNode,
+					Value: "$ref",
+				}
+				refAloneKeyNode := &yaml.Node{
+					Kind:  yaml.ScalarNode,
+					Value: "alone",
+				}
+				refAloneValueNode := &yaml.Node{
+					Kind:  yaml.ScalarNode,
+					Value: strconv.FormatBool(len(value.Content) == 2),
+				}
+				refMetadataKeyNode := &yaml.Node{
+					Kind:  yaml.ScalarNode,
+					Value: "RefMetadata",
+				}
+				refMetadataValueNode := &yaml.Node{
+					Kind: yaml.MappingNode,
+				}
+				refMetadataValueNode.Content = append(refMetadataValueNode.Content, originalValueNode)
+				refMetadataValueNode.Content = append(refMetadataValueNode.Content, value.Content[i])
+				refMetadataValueNode.Content = append(refMetadataValueNode.Content, refAloneKeyNode)
+				refMetadataValueNode.Content = append(refMetadataValueNode.Content, refAloneValueNode)
+				resolved.Content = append(resolved.Content, refMetadataKeyNode)
+				resolved.Content = append(resolved.Content, refMetadataValueNode)
+
+				return resolved, false
 			}
 			value.Content[i] = &resolved
 		}
@@ -148,75 +191,108 @@ func (r *Resolver) yamlWalk(value *yaml.Node, path string, resolveCount int, res
 }
 
 // isPath returns true if the value is a valid path
-func (r *Resolver) resolveYamlPath(v *yaml.Node, filePath string,
-	resolveCount int, resolvedFilesCache map[string]ResolvedFile) (yaml.Node, bool) {
+func (r *Resolver) resolveYamlPath(
+	originalFileContent []byte,
+	fullObject yaml.Node,
+	v *yaml.Node,
+	filePath string,
+	resolveCount int,
+	resolvedFilesCache map[string]ResolvedFile) (yaml.Node, bool) {
 	value := v.Value
 	if resolveCount > constants.MaxResolvedFiles {
 		return *v, false
 	}
+	var splitPath []string
+	var obj yaml.Node
+	sameFileResolve := false
+	if strings.HasPrefix(value, "#") { // same file resolve
+		sameFileResolve = true
+		path := filePath + value
+		splitPath = strings.Split(path, "#") // splitting by removing the section to look for in the file
+		obj = fullObject
+	} else { // external file resolve
+		value = checkServerlessFileReference(value)
 
-	value = checkServerlessFileReference(value)
-
-	path := filepath.Join(filepath.Dir(filePath), value)
-	_, err := os.Stat(path)
-	if err != nil {
-		return *v, false
-	}
-
-	if !contains(filepath.Ext(path), r.Extension) {
-		return *v, false
-	}
-
-	filename := filepath.Clean(path)
-
-	if _, ok := resolvedFilesCache[filename]; !ok {
-		// open the file with the content to replace
-		file, err := os.Open(filepath.Clean(path))
+		path := filepath.Join(filepath.Dir(filePath), value)
+		splitPath = strings.Split(path, "#") // splitting by removing the section to look for in the file
+		onlyFilePath := splitPath[0]
+		_, err := os.Stat(path)
 		if err != nil {
 			return *v, false
 		}
 
-		defer func(file *os.File) {
-			err = file.Close()
+		if !contains(filepath.Ext(path), r.Extension) {
+			return *v, false
+		}
+
+		filename := filepath.Clean(path)
+
+		if _, ok := resolvedFilesCache[filename]; !ok {
+			// open the file with the content to replace
+			file, err := os.Open(filepath.Clean(path))
 			if err != nil {
-				log.Err(err).Msgf("failed to close resolved file: %s", path)
+				return *v, false
 			}
-		}(file)
 
-		// read the content
-		fileContent, err := io.ReadAll(file)
-		if err != nil {
+			defer func(file *os.File) {
+				err = file.Close()
+				if err != nil {
+					log.Err(err).Msgf("failed to close resolved file: %s", path)
+				}
+			}(file)
+
+			// read the content
+			fileContent, err := io.ReadAll(file)
+			if err != nil {
+				return *v, false
+			}
+
+			resolvedFile := r.Resolve(fileContent, path, resolveCount+1, resolvedFilesCache)
+
+			// parse the content
+			var obj yaml.Node
+			err = r.unmarshler(resolvedFile, &obj)
+			if err != nil {
+				return *v, false
+			}
+
+			if obj.Kind == 1 && len(obj.Content) == 1 {
+				obj = *obj.Content[0]
+			}
+
+			resolvedFilesCache[filename] = ResolvedFile{fileContent, obj}
+		}
+
+		// Cloudformation !Ref check
+		if strings.Contains(strings.ToLower(value), "!ref") {
+			return resolvedFilesCache[filename].resolvedFileObject.(yaml.Node), false
+		}
+
+		r.ResolvedFiles[value] = model.ResolvedFile{
+			Content:      resolvedFilesCache[filename].fileContent,
+			Path:         path,
+			LinesContent: utils.SplitLines(string(resolvedFilesCache[filename].fileContent)),
+		}
+
+		obj = resolvedFilesCache[onlyFilePath].resolvedFileObject.(yaml.Node)
+	}
+
+	if len(splitPath) > 1 {
+		if sameFileResolve {
+			r.ResolvedFiles[filePath] = model.ResolvedFile{
+				Content:      originalFileContent,
+				Path:         filePath,
+				LinesContent: utils.SplitLines(string(originalFileContent)),
+			}
+		}
+		section, err := findSectionYaml(obj, splitPath[1])
+		if err != nil || checkIfCircularYaml(v.Value, section) {
 			return *v, false
 		}
 
-		resolvedFile := r.Resolve(fileContent, path, resolveCount+1, resolvedFilesCache)
-
-		// parse the content
-		var obj yaml.Node
-		err = r.unmarshler(resolvedFile, &obj)
-		if err != nil {
-			return *v, false
-		}
-
-		if obj.Kind == 1 && len(obj.Content) == 1 {
-			obj = *obj.Content[0]
-		}
-
-		resolvedFilesCache[filename] = ResolvedFile{fileContent, obj}
+		return section, true
 	}
-
-	r.ResolvedFiles[value] = model.ResolvedFile{
-		Content:      resolvedFilesCache[filename].fileContent,
-		Path:         path,
-		LinesContent: utils.SplitLines(string(resolvedFilesCache[filename].fileContent)),
-	}
-
-	// Cloudformation !Ref check
-	if strings.Contains(strings.ToLower(value), "!ref") {
-		return resolvedFilesCache[filename].resolvedFileObject.(yaml.Node), false
-	}
-
-	return resolvedFilesCache[filename].resolvedFileObject.(yaml.Node), true
+	return *v, false
 }
 
 // isPath returns true if the value is a valid path
@@ -302,12 +378,81 @@ func (r *Resolver) resolvePath(
 			}
 		}
 		section, err := findSection(obj, splitPath[1])
-		if err != nil {
+		if err != nil || checkIfCircular(value, section) {
 			return value, false
 		}
-		return section, false
+		if sectionMap, ok := section.(map[string]interface{}); ok {
+			newSectionMap := make(map[string]interface{})
+			for k, v := range sectionMap {
+				newSectionMap[k] = v
+			}
+			section = newSectionMap
+		}
+
+		return section, true
 	}
 	return value, false
+}
+
+func findSectionYaml(object yaml.Node, sectionsString string) (yaml.Node, error) {
+	object = *(object.Content[0])
+	sections := strings.Split(sectionsString[1:], "/")
+	for _, section := range sections {
+		found := false
+		for index, node := range object.Content {
+			if node.Value == section {
+				object = *(object.Content[index+1])
+				found = true
+				break
+			}
+		}
+		if !found {
+			return object, errors.New("section not present in file")
+		}
+	}
+	return object, nil
+}
+
+func checkIfCircularYaml(circularValue string, yamlSection yaml.Node) bool {
+	if len(yamlSection.Content) == 0 {
+		return false
+	}
+	for index := 0; index < len(yamlSection.Content)-1; index += 1 {
+		if yamlSection.Content[index].Value == "$ref" && yamlSection.Content[index+1].Value == circularValue {
+			return true
+		} else {
+			if checkIfCircularYaml(circularValue, *yamlSection.Content[index]) {
+				return true
+			}
+		}
+	}
+	return checkIfCircularYaml(circularValue, *yamlSection.Content[len(yamlSection.Content)-1])
+}
+
+func checkIfCircular(circularValue string, section interface{}) bool {
+	sectionAsMap, okMap := section.(map[string]interface{})
+	sectionAsList, okList := section.([]interface{})
+	if !okList && !okMap {
+		return false
+	}
+	if okMap {
+		for key, val := range sectionAsMap {
+			if key == "$ref" && val == circularValue {
+				return true
+			} else {
+				if checkIfCircular(circularValue, val) {
+					return true
+				}
+			}
+		}
+	} else {
+		for _, listSection := range sectionAsList {
+			if checkIfCircular(circularValue, listSection) {
+				return true
+			}
+		}
+	}
+	return false
 }
 
 func findSection(object interface{}, sectionsString string) (interface{}, error) {
@@ -316,9 +461,11 @@ func findSection(object interface{}, sectionsString string) (interface{}, error)
 		if sectionObjectTemp, ok := object.(map[string]interface{}); ok {
 			if sectionObject, ok := sectionObjectTemp[section]; ok {
 				object = sectionObject
+			} else {
+				return object, errors.New("section not present in file")
 			}
 		} else {
-			return object, errors.New("section not present in file")
+			return object, errors.New("section not of map type")
 		}
 	}
 	return object, nil
