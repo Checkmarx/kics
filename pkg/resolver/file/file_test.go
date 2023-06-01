@@ -95,7 +95,7 @@ func TestResolver_Resolve(t *testing.T) {
 				t.Fatal(err)
 			}
 
-			if got := r.Resolve(cont, tt.args.path, 0); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
+			if got := r.Resolve(cont, tt.args.path, 0, make(map[string]ResolvedFile)); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
 				t.Errorf("Resolve() = %v, want = %v", prepareString(string(got)), prepareString(string(tt.want)))
 			}
 		})
