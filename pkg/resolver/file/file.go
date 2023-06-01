@@ -154,7 +154,7 @@ func (r *Resolver) yamlWalk(
 				ref = strings.Contains(value.Content[i-1].Value, "ref")
 			}
 			resolved, ok := r.yamlWalk(originalFileContent, fullObject, value.Content[i], path, resolveCount, resolvedFilesCache, ref)
-			if i >= 1 && strings.Contains(value.Content[i-1].Value, "ref") && (resolved.Kind == yaml.MappingNode || !ok) {
+			if i >= 1 && ref && (resolved.Kind == yaml.MappingNode || !ok) {
 
 				if !ok {
 					resolved = yaml.Node{
