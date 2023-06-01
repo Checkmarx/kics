@@ -56,7 +56,7 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, re
 	}
 
 	// resolve the paths
-	obj, _ = r.walk(fileContent, obj, obj, path, resolveCount, resolvedFilesCache)
+	obj, _ = r.walk(fileContent, obj, obj, path, resolveCount, resolvedFilesCache, false)
 
 	b, err := r.marshler(obj)
 	if err != nil {
@@ -71,17 +71,18 @@ func (r *Resolver) walk(
 	fullObject, value any,
 	path string,
 	resolveCount int,
-	resolvedFilesCache map[string]ResolvedFile) (any, bool) {
+	resolvedFilesCache map[string]ResolvedFile,
+	ref bool) (any, bool) {
 	// go over the value and replace paths with the real content
 	switch typedValue := value.(type) {
 	case string:
-		if filepath.Base(path) != typedValue {
+		if filepath.Base(path) != typedValue && ref {
 			return r.resolvePath(originalFileContent, fullObject, typedValue, path, resolveCount, resolvedFilesCache)
 		}
 		return value, false
 	case []any:
 		for i, v := range typedValue {
-			typedValue[i], _ = r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache)
+			typedValue[i], _ = r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache, ref)
 		}
 		return typedValue, false
 	case map[string]any:
@@ -94,7 +95,7 @@ func (r *Resolver) walk(
 func (r *Resolver) handleMap(originalFileContent []byte, fullObject any, value map[string]interface{}, path string,
 	resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) {
 	for k, v := range value {
-		val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache)
+		val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache, strings.Contains(strings.ToLower(k), "ref"))
 		// check if it is a ref then add new details
 		if valMap, ok := val.(map[string]interface{}); (ok || !res) && strings.Contains(strings.ToLower(k), "ref") {
 			if valMap == nil {
@@ -118,7 +119,7 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int
 	}
 
 	// resolve the paths
-	obj, _ = r.yamlWalk(fileContent, obj, &obj, path, resolveCount, resolvedFilesCache)
+	obj, _ = r.yamlWalk(fileContent, obj, &obj, path, resolveCount, resolvedFilesCache, false)
 
 	if obj.Kind == 1 && len(obj.Content) == 1 {
 		obj = *obj.Content[0]
@@ -138,17 +139,21 @@ func (r *Resolver) yamlWalk(
 	value *yaml.Node,
 	path string,
 	resolveCount int,
-	resolvedFilesCache map[string]ResolvedFile) (yaml.Node, bool) {
+	resolvedFilesCache map[string]ResolvedFile,
+	ref bool) (yaml.Node, bool) {
 	// go over the value and replace paths with the real conten
 	switch value.Kind {
 	case yaml.ScalarNode:
-		if filepath.Base(path) != value.Value {
+		if filepath.Base(path) != value.Value && ref {
 			return r.resolveYamlPath(originalFileContent, fullObject, value, path, resolveCount, resolvedFilesCache)
 		}
 		return *value, false
 	default:
 		for i := range value.Content {
-			resolved, ok := r.yamlWalk(originalFileContent, fullObject, value.Content[i], path, resolveCount, resolvedFilesCache)
+			if i >= 1 {
+				ref = strings.Contains(value.Content[i-1].Value, "ref")
+			}
+			resolved, ok := r.yamlWalk(originalFileContent, fullObject, value.Content[i], path, resolveCount, resolvedFilesCache, ref)
 			if i >= 1 && strings.Contains(value.Content[i-1].Value, "ref") && (resolved.Kind == yaml.MappingNode || !ok) {
 
 				if !ok {
