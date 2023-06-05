@@ -180,29 +180,6 @@ func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.Qu
 	return platformLibraries
 }
 
-func containsVulnerability(vulnerabilities []model.Vulnerability, newVulnerability model.Vulnerability) bool {
-	for _, vulnerability := range vulnerabilities {
-		if (newVulnerability.Line == vulnerability.Line &&
-			newVulnerability.QueryID == vulnerability.QueryID &&
-			newVulnerability.SearchValue == "" &&
-			vulnerability.SearchValue == "" && vulnerability.FileName == newVulnerability.FileName) ||
-			newVulnerability.SimilarityID == vulnerability.SimilarityID {
-			return true
-		}
-	}
-	return false
-}
-
-func removeDuplicates(vulnerabilities []model.Vulnerability) []model.Vulnerability {
-	list := []model.Vulnerability{}
-	for _, vulnerability := range vulnerabilities {
-		if !containsVulnerability(list, vulnerability) {
-			list = append(list, vulnerability)
-		}
-	}
-	return list
-}
-
 // Inspect scan files and return the a list of vulnerabilities found on the process
 func (c *Inspector) Inspect(
 	ctx context.Context,
@@ -277,8 +254,6 @@ func (c *Inspector) Inspect(
 		}
 
 		log.Debug().Msgf("Finished to run query %s after %v", queryMeta.Query, time.Since(queryStartTime))
-
-		vuls = removeDuplicates(vuls)
 
 		vulnerabilities = append(vulnerabilities, vuls...)
 
