@@ -158,6 +158,58 @@ func NewInspector(
 	}, nil
 }
 
+func isWrongResult(doc interface{}, stringVulList []string) bool {
+	for index, vulSplit := range stringVulList {
+		if docAsMap, ok := doc.(map[string]interface{}); ok {
+			if strings.HasPrefix(vulSplit, "{{") && strings.HasSuffix(vulSplit, "}}") {
+				vulSplit = vulSplit[2 : len(vulSplit)-2]
+			}
+			if vulSplitEqual := strings.Split(vulSplit, "="); len(vulSplitEqual) != 1 {
+				vulSplit = vulSplitEqual[0]
+			}
+			if metadataRefDoc, ok := docAsMap["RefMetadata"]; strings.Contains(vulSplit, "ref") && ok {
+				return isWrongResult(metadataRefDoc, stringVulList[index:])
+			} else if newDoc, ok := docAsMap[vulSplit]; ok {
+				doc = newDoc
+			} else {
+				return true
+			}
+		} else if docAsList, ok := doc.([]interface{}); ok {
+			present := false
+			for _, listDoc := range docAsList {
+				if !isWrongResult(listDoc, stringVulList[index:]) {
+					present = true
+					doc = listDoc
+					break
+				}
+			}
+			if !present {
+				return true
+			}
+		} else {
+			if index != len(stringVulList)-1 {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+func removeWrongResults(files map[string]model.FileMetadata, vuls []model.Vulnerability) []model.Vulnerability {
+	presentVuls := []model.Vulnerability{}
+	var intDoc interface{}
+	for _, vul := range vuls {
+		file := files[vul.FileID]
+		intDoc = file.LineInfoDocument
+		vulsSplit := strings.Split(vul.SearchKey, ".")
+
+		if !isWrongResult(intDoc, vulsSplit) {
+			presentVuls = append(presentVuls, vul)
+		}
+	}
+	return presentVuls
+}
+
 func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.QueryMetadata) map[string]source.RegoLibraries {
 	supportedPlatforms := make(map[string]string)
 	for _, query := range queries {
@@ -254,6 +306,8 @@ func (c *Inspector) Inspect(
 		}
 
 		log.Debug().Msgf("Finished to run query %s after %v", queryMeta.Query, time.Since(queryStartTime))
+
+		vuls = removeWrongResults(queryContext.Files, vuls)
 
 		vulnerabilities = append(vulnerabilities, vuls...)
 
