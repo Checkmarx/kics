@@ -318,9 +318,17 @@ Gitlab SAST reports are sorted by severity (from high to info), following [Gitla
 
 ```json
 {
-    "schema": "https://gitlab.com/gitlab-org/security-products/security-report-schemas/-/raw/v14.1.0/dist/sast-report-format.json",
-    "version": "14.1.0",
+    "schema": "https://gitlab.com/gitlab-org/security-products/security-report-schemas/-/raw/v15.0.6/dist/sast-report-format.json",
+    "version": "15.0.6",
     "scan": {
+        "analyzer": {
+              "id": "keeping-infrastructure-as-code-secure",
+              "name": "Keeping Infrastructure as Code Secure",
+              "version": "1.2.0",
+              "vendor":{
+                "name": "Checkmarx"
+            }
+        },
         "start_time": "2021-05-26T17:22:13",
         "end_time": "2021-05-26T17:22:13",
         "status": "success",
@@ -338,15 +346,8 @@ Gitlab SAST reports are sorted by severity (from high to info), following [Gitla
     "vulnerabilities": [
         {
             "id": "32e763ac363dfee1ea972d951fb3de00f5f7a8d3f9f57b93e55e2d51957794a6",
-            "category": "sast",
             "severity": "High",
-            "cve": "32e763ac363dfee1ea972d951fb3de00f5f7a8d3f9f57b93e55e2d51957794a6",
-            "scanner": {
-                "id": "keeping_infrastructure_as_code_secure",
-                "name": "Keeping Infrastructure as Code Secure"
-            },
             "name": "Container Is Privileged",
-            "message": "Do not allow container to be privileged.",
             "links": [
                 {
                     "url": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#privileged"
@@ -368,15 +369,8 @@ Gitlab SAST reports are sorted by severity (from high to info), following [Gitla
         },
         {
             "id": "32e763ac363dfee1ea972d951fb3de00f5f7a8d3f9f57b93e55e2d51957794a6",
-            "category": "sast",
             "severity": "High",
-            "cve": "32e763ac363dfee1ea972d951fb3de00f5f7a8d3f9f57b93e55e2d51957794a6",
-            "scanner": {
-                "id": "keeping_infrastructure_as_code_secure",
-                "name": "Keeping Infrastructure as Code Secure"
-            },
             "name": "Container Is Privileged",
-            "message": "Do not allow container to be privileged.",
             "links": [
                 {
                     "url": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#privileged"
@@ -398,15 +392,8 @@ Gitlab SAST reports are sorted by severity (from high to info), following [Gitla
         },
         {
             "id": "3d4f14f3ac2ebc0d2cb1710eec4f61fae359fe78ab244cb716485cb6c90846f6",
-            "category": "sast",
             "severity": "High",
-            "cve": "3d4f14f3ac2ebc0d2cb1710eec4f61fae359fe78ab244cb716485cb6c90846f6",
-            "scanner": {
-                "id": "keeping_infrastructure_as_code_secure",
-                "name": "Keeping Infrastructure as Code Secure"
-            },
             "name": "Container Is Privileged",
-            "message": "Do not allow container to be privileged.",
             "links": [
                 {
                     "url": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#privileged"
