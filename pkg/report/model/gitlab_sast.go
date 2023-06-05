@@ -57,11 +57,6 @@ type gitlabSASTVulnerabilityLink struct {
 	URL string `json:"url"`
 }
 
-type gitlabSASTVulnerabilityScanner struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
-}
-
 type gitlabSASTVulnerabilityLocation struct {
 	File  string `json:"file"`
 	Start int    `json:"start_line"`
