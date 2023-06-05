@@ -170,18 +170,18 @@
     "defaultValue": "60",
     "usage": "number of seconds the query has to execute before being canceled"
   },
-  "type": {
+  "platform": {
     "flagType": "multiStr",
     "shorthandFlag": "t",
     "defaultValue": "",
-    "usage": "case insensitive list of platform types to scan\n(${supportedPlatforms})\ncannot be provided with type exclusion flags",
+    "usage": "case insensitive list of platform types to scan\n(${supportedPlatforms})\ncannot be provided with platform exclusion flags",
     "validation": "validateMultiStrEnum"
   },
-  "exclude-type": {
+  "exclude-platform": {
     "flagType": "multiStr",
     "shorthandFlag": "",
     "defaultValue": "",
-    "usage": "case insensitive list of platform types not to scan\n(${supportedPlatforms})\ncannot be provided with type inclusion flags",
+    "usage": "case insensitive list of platform types not to scan\n(${supportedPlatforms})\ncannot be provided with platform inclusion flags",
     "validation": "validateMultiStrEnum"
   },
   "exclude-gitignore": {
