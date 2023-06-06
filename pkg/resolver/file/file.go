@@ -56,7 +56,7 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, re
 	}
 
 	// resolve the paths
-	obj, _ = r.walk(fileContent, &obj, obj, path, resolveCount, resolvedFilesCache, false, false)
+	obj, _ = r.walk(fileContent, &obj, obj, path, resolveCount, resolvedFilesCache)
 
 	b, err := r.marshler(obj)
 	if err != nil {
@@ -72,19 +72,17 @@ func (r *Resolver) walk(
 	value any,
 	path string,
 	resolveCount int,
-	resolvedFilesCache map[string]ResolvedFile,
-	secRef bool,
-	fileRef bool) (any, bool) {
+	resolvedFilesCache map[string]ResolvedFile) (any, bool) {
 	// go over the value and replace paths with the real content
 	switch typedValue := value.(type) {
 	case string:
-		if filepath.Base(path) != typedValue && (secRef || fileRef) {
-			return r.resolvePath(originalFileContent, fullObject, typedValue, path, resolveCount, resolvedFilesCache, fileRef)
+		if filepath.Base(path) != typedValue {
+			return r.resolvePath(originalFileContent, fullObject, typedValue, path, resolveCount, resolvedFilesCache)
 		}
 		return value, false
 	case []any:
 		for i, v := range typedValue {
-			typedValue[i], _ = r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache, secRef, fileRef)
+			typedValue[i], _ = r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache)
 		}
 		return typedValue, false
 	case map[string]any:
@@ -97,9 +95,11 @@ func (r *Resolver) walk(
 func (r *Resolver) handleMap(originalFileContent []byte, fullObject *interface{}, value map[string]interface{}, path string,
 	resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) {
 	for k, v := range value {
-		val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache, strings.Contains(strings.ToLower(k), "ref"), strings.Contains(strings.ToLower(k), "file"))
+		keyContainsRef := strings.Contains(strings.ToLower(k), "$ref")
+		isRef := keyContainsRef
+		val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache)
 		// check if it is a ref then add new details
-		if valMap, ok := val.(map[string]interface{}); (ok || !res) && strings.Contains(strings.ToLower(k), "ref") {
+		if valMap, ok := val.(map[string]interface{}); (ok || !res) && isRef {
 			if valMap == nil {
 				valMap = make(map[string]interface{})
 			}
@@ -107,6 +107,9 @@ func (r *Resolver) handleMap(originalFileContent []byte, fullObject *interface{}
 			valMap["RefMetadata"].(map[string]interface{})["$ref"] = v
 			valMap["RefMetadata"].(map[string]interface{})["alone"] = len(value) == 1
 			return valMap, false
+		}
+		if isRef && res {
+			return val, false
 		}
 		value[k] = val
 	}
@@ -123,7 +126,7 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int
 	fullObjectCopy := obj
 
 	// resolve the paths
-	obj, _ = r.yamlWalk(fileContent, &fullObjectCopy, &obj, path, resolveCount, resolvedFilesCache, false, false)
+	obj, _ = r.yamlWalk(fileContent, &fullObjectCopy, &obj, path, resolveCount, resolvedFilesCache)
 
 	if obj.Kind == 1 && len(obj.Content) == 1 {
 		obj = *obj.Content[0]
@@ -143,24 +146,21 @@ func (r *Resolver) yamlWalk(
 	value *yaml.Node,
 	path string,
 	resolveCount int,
-	resolvedFilesCache map[string]ResolvedFile,
-	secRef bool,
-	fileRef bool) (yaml.Node, bool) {
+	resolvedFilesCache map[string]ResolvedFile) (yaml.Node, bool) {
 	// go over the value and replace paths with the real conten
 	switch value.Kind {
 	case yaml.ScalarNode:
-		if filepath.Base(path) != value.Value && (secRef || fileRef) {
-			return r.resolveYamlPath(originalFileContent, fullObject, value, path, resolveCount, resolvedFilesCache, fileRef)
+		if filepath.Base(path) != value.Value {
+			return r.resolveYamlPath(originalFileContent, fullObject, value, path, resolveCount, resolvedFilesCache)
 		}
 		return *value, false
 	default:
-		refBool, fileBool := false, false
+		refBool := false
 		for i := range value.Content {
 			if i >= 1 {
-				refBool = strings.Contains(value.Content[i-1].Value, "ref")
-				fileBool = strings.Contains(value.Content[i-1].Value, "file")
+				refBool = strings.Contains(value.Content[i-1].Value, "$ref")
 			}
-			resolved, ok := r.yamlWalk(originalFileContent, fullObject, value.Content[i], path, resolveCount, resolvedFilesCache, refBool, fileBool)
+			resolved, ok := r.yamlWalk(originalFileContent, fullObject, value.Content[i], path, resolveCount, resolvedFilesCache)
 			if i >= 1 && refBool && (resolved.Kind == yaml.MappingNode || !ok) {
 
 				if !ok {
@@ -205,8 +205,7 @@ func (r *Resolver) resolveYamlPath(
 	v *yaml.Node,
 	filePath string,
 	resolveCount int,
-	resolvedFilesCache map[string]ResolvedFile,
-	fileBool bool) (yaml.Node, bool) {
+	resolvedFilesCache map[string]ResolvedFile) (yaml.Node, bool) {
 	value := v.Value
 	if resolveCount > constants.MaxResolvedFiles {
 		return *v, false
@@ -234,7 +233,7 @@ func (r *Resolver) resolveYamlPath(
 			return *v, false
 		}
 
-		filename := filepath.Clean(path)
+		filename := filepath.Clean(onlyFilePath)
 
 		if _, ok := resolvedFilesCache[filename]; !ok {
 			// open the file with the content to replace
@@ -276,11 +275,12 @@ func (r *Resolver) resolveYamlPath(
 			LinesContent: utils.SplitLines(string(resolvedFilesCache[filename].fileContent)),
 		}
 
-		if strings.Contains(strings.ToLower(value), "!ref") || fileBool { // Cloudformation !Ref check
-			return resolvedFilesCache[filename].resolvedFileObject.(yaml.Node), false
+		obj = resolvedFilesCache[filename].resolvedFileObject.(yaml.Node)
+
+		if strings.Contains(strings.ToLower(value), "!ref") || len(splitPath) == 1 { // Cloudformation !Ref check
+			return obj, false
 		}
 
-		obj = resolvedFilesCache[onlyFilePath].resolvedFileObject.(yaml.Node)
 	}
 
 	if len(splitPath) > 1 {
@@ -305,8 +305,7 @@ func (r *Resolver) resolvePath(
 	fullObject *interface{},
 	value, filePath string,
 	resolveCount int,
-	resolvedFilesCache map[string]ResolvedFile,
-	fileRef bool) (any, bool) {
+	resolvedFilesCache map[string]ResolvedFile) (any, bool) {
 	if resolveCount > constants.MaxResolvedFiles {
 		return value, false
 	}
@@ -367,12 +366,12 @@ func (r *Resolver) resolvePath(
 			LinesContent: utils.SplitLines(string(resolvedFilesCache[onlyFilePath].fileContent)),
 		}
 
-		// Cloudformation !Ref check
-		if strings.Contains(strings.ToLower(value), "!ref") || fileRef {
-			return resolvedFilesCache[onlyFilePath].resolvedFileObject, false
-		}
-
 		obj = resolvedFilesCache[onlyFilePath].resolvedFileObject
+
+		// Cloudformation !Ref check
+		if strings.Contains(strings.ToLower(value), "!ref") || len(splitPath) == 1 {
+			return obj, false
+		}
 	}
 
 	if len(splitPath) > 1 {
