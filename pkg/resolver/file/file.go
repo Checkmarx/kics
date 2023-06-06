@@ -256,7 +256,6 @@ func (r *Resolver) resolveYamlPath(
 
 			resolvedFile := r.Resolve(fileContent, path, resolveCount+1, resolvedFilesCache)
 
-			var obj yaml.Node
 			err = r.unmarshler(resolvedFile, &obj) // parse the content
 			if err != nil {
 				return *v, false
