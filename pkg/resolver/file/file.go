@@ -237,7 +237,7 @@ func (r *Resolver) resolveYamlPath(
 
 		if _, ok := resolvedFilesCache[filename]; !ok {
 			// open the file with the content to replace
-			file, err := os.Open(filepath.Clean(path))
+			file, err := os.Open(filename)
 			if err != nil {
 				return *v, false
 			}
@@ -277,8 +277,11 @@ func (r *Resolver) resolveYamlPath(
 
 		obj = resolvedFilesCache[filename].resolvedFileObject.(yaml.Node)
 
-		if strings.Contains(strings.ToLower(value), "!ref") || len(splitPath) == 1 { // Cloudformation !Ref check
+		if strings.Contains(strings.ToLower(value), "!ref") { // Cloudformation !Ref check
 			return obj, false
+		}
+		if len(splitPath) == 1 {
+			return obj, true
 		}
 
 	}

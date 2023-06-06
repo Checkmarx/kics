@@ -10,7 +10,7 @@ import (
 	"testing"
 
 	"github.com/Checkmarx/kics/test"
-	"gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v3"
 )
 
 func TestResolver_Resolve(t *testing.T) {
@@ -39,23 +39,7 @@ func TestResolver_Resolve(t *testing.T) {
 				path: filepath.ToSlash("test/fixtures/unresolved_openapi/responses/_index.yaml"),
 			},
 			want: []byte(
-				`UnexpectedError:
-					description: unexpected error
-					content:
-					application/json:
-						schema:
-							type: object
-							required:
-							- code
-							- message
-							properties:
-							code:
-								type: integer
-								format: int32
-							message:
-								type: string
-		NullResponse:
-		    description: Null response`),
+				`UnexpectedError:description:unexpectederrorcontent:application/json:schema:type:objectrequired:-code-messageproperties:code:type:integerformat:int32message:type:stringRefMetadata:$ref:"../schemas/Error.yaml"alone:trueRefMetadata:$ref:"./UnexpectedError.yaml"alone:trueNullResponse:description:NullresponseRefMetadata:$ref:"./NullResponse.yaml"alone:true`),
 		},
 		{
 			name: "json test",
