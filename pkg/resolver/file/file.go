@@ -56,7 +56,7 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, re
 	}
 
 	// resolve the paths
-	obj, _ = r.walk(fileContent, obj, obj, path, resolveCount, resolvedFilesCache, false, false)
+	obj, _ = r.walk(fileContent, &obj, obj, path, resolveCount, resolvedFilesCache, false, false)
 
 	b, err := r.marshler(obj)
 	if err != nil {
@@ -68,7 +68,8 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, re
 
 func (r *Resolver) walk(
 	originalFileContent []byte,
-	fullObject, value any,
+	fullObject *interface{},
+	value any,
 	path string,
 	resolveCount int,
 	resolvedFilesCache map[string]ResolvedFile,
@@ -93,7 +94,7 @@ func (r *Resolver) walk(
 	}
 }
 
-func (r *Resolver) handleMap(originalFileContent []byte, fullObject any, value map[string]interface{}, path string,
+func (r *Resolver) handleMap(originalFileContent []byte, fullObject *interface{}, value map[string]interface{}, path string,
 	resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) {
 	for k, v := range value {
 		val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache, strings.Contains(strings.ToLower(k), "ref"), strings.Contains(strings.ToLower(k), "file"))
@@ -119,8 +120,10 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int
 		return fileContent
 	}
 
+	fullObjectCopy := obj
+
 	// resolve the paths
-	obj, _ = r.yamlWalk(fileContent, obj, &obj, path, resolveCount, resolvedFilesCache, false, false)
+	obj, _ = r.yamlWalk(fileContent, &fullObjectCopy, &obj, path, resolveCount, resolvedFilesCache, false, false)
 
 	if obj.Kind == 1 && len(obj.Content) == 1 {
 		obj = *obj.Content[0]
@@ -136,7 +139,7 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int
 
 func (r *Resolver) yamlWalk(
 	originalFileContent []byte,
-	fullObject yaml.Node,
+	fullObject *yaml.Node,
 	value *yaml.Node,
 	path string,
 	resolveCount int,
@@ -184,12 +187,8 @@ func (r *Resolver) yamlWalk(
 				refMetadataValueNode := &yaml.Node{
 					Kind: yaml.MappingNode,
 				}
-				refMetadataValueNode.Content = append(refMetadataValueNode.Content, originalValueNode)
-				refMetadataValueNode.Content = append(refMetadataValueNode.Content, value.Content[i])
-				refMetadataValueNode.Content = append(refMetadataValueNode.Content, refAloneKeyNode)
-				refMetadataValueNode.Content = append(refMetadataValueNode.Content, refAloneValueNode)
-				resolved.Content = append(resolved.Content, refMetadataKeyNode)
-				resolved.Content = append(resolved.Content, refMetadataValueNode)
+				refMetadataValueNode.Content = append(refMetadataValueNode.Content, originalValueNode, value.Content[i], refAloneKeyNode, refAloneValueNode)
+				resolved.Content = append(resolved.Content, refMetadataKeyNode, refMetadataValueNode)
 
 				return resolved, false
 			}
@@ -202,7 +201,7 @@ func (r *Resolver) yamlWalk(
 // isPath returns true if the value is a valid path
 func (r *Resolver) resolveYamlPath(
 	originalFileContent []byte,
-	fullObject yaml.Node,
+	fullObject *yaml.Node,
 	v *yaml.Node,
 	filePath string,
 	resolveCount int,
@@ -219,7 +218,7 @@ func (r *Resolver) resolveYamlPath(
 		sameFileResolve = true
 		path := filePath + value
 		splitPath = strings.Split(path, "#") // splitting by removing the section to look for in the file
-		obj = fullObject
+		obj = *fullObject
 	} else { // external file resolve
 		value = checkServerlessFileReference(value)
 
@@ -251,17 +250,15 @@ func (r *Resolver) resolveYamlPath(
 				}
 			}(file)
 
-			// read the content
-			fileContent, err := io.ReadAll(file)
+			fileContent, err := io.ReadAll(file) // read the content
 			if err != nil {
 				return *v, false
 			}
 
 			resolvedFile := r.Resolve(fileContent, path, resolveCount+1, resolvedFilesCache)
 
-			// parse the content
 			var obj yaml.Node
-			err = r.unmarshler(resolvedFile, &obj)
+			err = r.unmarshler(resolvedFile, &obj) // parse the content
 			if err != nil {
 				return *v, false
 			}
@@ -279,8 +276,7 @@ func (r *Resolver) resolveYamlPath(
 			LinesContent: utils.SplitLines(string(resolvedFilesCache[filename].fileContent)),
 		}
 
-		// Cloudformation !Ref check
-		if strings.Contains(strings.ToLower(value), "!ref") || fileBool {
+		if strings.Contains(strings.ToLower(value), "!ref") || fileBool { // Cloudformation !Ref check
 			return resolvedFilesCache[filename].resolvedFileObject.(yaml.Node), false
 		}
 
@@ -296,11 +292,9 @@ func (r *Resolver) resolveYamlPath(
 			}
 		}
 		section, err := findSectionYaml(obj, splitPath[1])
-		if err != nil || checkIfCircularYaml(v.Value, section) {
-			return *v, false
+		if err == nil && !checkIfCircularYaml(v.Value, section) {
+			return section, true
 		}
-
-		return section, true
 	}
 	return *v, false
 }
@@ -308,7 +302,7 @@ func (r *Resolver) resolveYamlPath(
 // isPath returns true if the value is a valid path
 func (r *Resolver) resolvePath(
 	originalFileContent []byte,
-	fullObject any,
+	fullObject *interface{},
 	value, filePath string,
 	resolveCount int,
 	resolvedFilesCache map[string]ResolvedFile,
@@ -323,7 +317,7 @@ func (r *Resolver) resolvePath(
 		sameFileResolve = true
 		path := filePath + value
 		splitPath = strings.Split(path, "#") // splitting by removing the section to look for in the file
-		obj = fullObject
+		obj = *fullObject
 	} else { // external file resolve
 		path := filepath.Join(filepath.Dir(filePath), value)
 		splitPath = strings.Split(path, "#") // splitting by removing the section to look for in the file
@@ -432,10 +426,8 @@ func checkIfCircularYaml(circularValue string, yamlSection yaml.Node) bool {
 	for index := 0; index < len(yamlSection.Content)-1; index += 1 {
 		if yamlSection.Content[index].Value == "$ref" && yamlSection.Content[index+1].Value == circularValue {
 			return true
-		} else {
-			if checkIfCircularYaml(circularValue, *yamlSection.Content[index]) {
-				return true
-			}
+		} else if checkIfCircularYaml(circularValue, *yamlSection.Content[index]) {
+			return true
 		}
 	}
 	return checkIfCircularYaml(circularValue, *yamlSection.Content[len(yamlSection.Content)-1])
@@ -451,10 +443,8 @@ func checkIfCircular(circularValue string, section interface{}) bool {
 		for key, val := range sectionAsMap {
 			if key == "$ref" && val == circularValue {
 				return true
-			} else {
-				if checkIfCircular(circularValue, val) {
-					return true
-				}
+			} else if checkIfCircular(circularValue, val) {
+				return true
 			}
 		}
 	} else {

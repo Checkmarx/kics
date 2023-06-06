@@ -20,6 +20,12 @@
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
+    "line": 79,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Pattern Undefined (v3)",
+    "severity": "MEDIUM",
     "line": 27,
     "filename": "positive2.json"
   },
@@ -39,6 +45,12 @@
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
     "line": 38,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Pattern Undefined (v3)",
+    "severity": "MEDIUM",
+    "line": 49,
     "filename": "positive3.yaml"
   },
   {
