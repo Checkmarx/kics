@@ -399,6 +399,7 @@ func (r *Resolver) resolvePath(
 
 func findSectionYaml(object *yaml.Node, sectionsString string) (yaml.Node, error) {
 	object = object.Content[0]
+	sectionsString = strings.ReplaceAll(sectionsString, "\\", "/")
 	sections := strings.Split(sectionsString[1:], "/")
 	for _, section := range sections {
 		found := false
