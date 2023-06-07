@@ -2,11 +2,13 @@
   {
     "queryName": "Role Definition Allows Custom Role Creation",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "Role Definition Allows Custom Role Creation",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "fileName": "positive2.tf"
   }
 ]
