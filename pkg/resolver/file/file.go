@@ -237,7 +237,7 @@ func (r *Resolver) resolveYamlPath(
 		filename := filepath.Clean(onlyFilePath)
 
 		if _, ok := resolvedFilesCache[filename]; !ok {
-			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache); isError {
+			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache, true); isError {
 				return ret.(yaml.Node), false
 			}
 		}
@@ -279,7 +279,8 @@ func (r *Resolver) resolveFile(
 	value string,
 	filePath string,
 	resolveCount int,
-	resolvedFilesCache map[string]ResolvedFile) (any, bool) {
+	resolvedFilesCache map[string]ResolvedFile,
+	yamlResolve bool) (any, bool) {
 	// open the file with the content to replace
 	file, err := os.Open(filepath.Clean(filePath))
 	if err != nil {
@@ -297,18 +298,28 @@ func (r *Resolver) resolveFile(
 
 	resolvedFile := r.Resolve(fileContent, filePath, resolveCount+1, resolvedFilesCache)
 
-	var obj any
-	// parse the content
-	err = r.unmarshler(resolvedFile, &obj)
-	if err != nil {
-		return value, true
-	}
+	if yamlResolve {
+		var obj yaml.Node
 
-	if yamlObj, ok := obj.(*yaml.Node); ok && yamlObj.Kind == 1 && len(yamlObj.Content) == 1 {
-		obj = yamlObj.Content[0]
-	}
+		err = r.unmarshler(resolvedFile, &obj) // parse the content
+		if err != nil {
+			return value, true
+		}
 
-	resolvedFilesCache[filePath] = ResolvedFile{fileContent, obj}
+		if obj.Kind == 1 && len(obj.Content) == 1 {
+			obj = *obj.Content[0]
+		}
+
+		resolvedFilesCache[filePath] = ResolvedFile{fileContent, obj}
+	} else {
+		var obj any
+		err = r.unmarshler(resolvedFile, &obj) // parse the content
+		if err != nil {
+			return value, true
+		}
+
+		resolvedFilesCache[filePath] = ResolvedFile{fileContent, obj}
+	}
 
 	return nil, false
 }
@@ -342,7 +353,7 @@ func (r *Resolver) resolvePath(
 		}
 
 		if _, ok := resolvedFilesCache[onlyFilePath]; !ok {
-			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache); isError {
+			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache, false); isError {
 				return ret, false
 			}
 		}
