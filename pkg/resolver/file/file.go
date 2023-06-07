@@ -455,6 +455,7 @@ func checkIfCircular(circularValue string, section interface{}) bool {
 }
 
 func findSection(object interface{}, sectionsString string) (interface{}, error) {
+	sectionsString = strings.ReplaceAll(sectionsString, "\\", "/")
 	sections := strings.Split(sectionsString[1:], "/")
 	for _, section := range sections {
 		if sectionObjectTemp, ok := object.(map[string]interface{}); ok {
