@@ -36,7 +36,7 @@
 			"description_id": "5f2b65f3",
 			"files": [
 				{
-					"file_name": "\\path\\e2e\\fixtures\\samples\\positive.yaml\\positive.yaml",
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml\\positive.yaml",
 					"similarity_id": "092b7af7916adbea86a8856ac4a1b879ab6fc0ae7cea57752b02d1d0dff3ede6",
 					"line": 35,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -49,7 +49,7 @@
 					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is not equal to Resources.EcsSecurityGroupALBports.Properties.ToPort"
 				},
 				{
-					"file_name": "\\path\\e2e\\fixtures\\samples\\positive.yaml\\positive.yaml",
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml\\positive.yaml",
 					"similarity_id": "9485f56abd2b0ed60a494a8e553300fc187692990313d78359456a4988454dbd",
 					"line": 19,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -62,7 +62,7 @@
 					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is not equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort"
 				},
 				{
-					"file_name": "\\path\\e2e\\fixtures\\samples\\positive.yaml\\positive.yaml",
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml\\positive.yaml",
 					"similarity_id": "eccd5525f81a3f29e866e1733212c9d94b062d1bb8463b1aba7085827ae410a3",
 					"line": 27,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
