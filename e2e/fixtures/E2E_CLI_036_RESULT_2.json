@@ -18,8 +18,8 @@
 	},
 	"total_counter": 3,
 	"total_bom_resources": 0,
-	"start": "2023-06-07T16:59:34.5098361+01:00",
-	"end": "2023-06-07T16:59:36.833481+01:00",
+	"start": "2023-06-10T14:21:28.3382569+01:00",
+	"end": "2023-06-10T14:21:30.1235832+01:00",
 	"paths": [
 		"path/e2e/fixtures/samples/positive.yaml"
 	],
@@ -36,8 +36,8 @@
 			"description_id": "5f2b65f3",
 			"files": [
 				{
-					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml\\positive.yaml",
-					"similarity_id": "092b7af7916adbea86a8856ac4a1b879ab6fc0ae7cea57752b02d1d0dff3ede6",
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
+					"similarity_id": "000056cd0b9697e13f2f4561f1963e34c58c042b921c4d0fad0f2fa5214374eb",
 					"line": 35,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
 					"resource_name": "EcsSecurityGroupALBports",
@@ -49,8 +49,8 @@
 					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is not equal to Resources.EcsSecurityGroupALBports.Properties.ToPort"
 				},
 				{
-					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml\\positive.yaml",
-					"similarity_id": "9485f56abd2b0ed60a494a8e553300fc187692990313d78359456a4988454dbd",
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
+					"similarity_id": "d60022e14f1b45c574f71c0f48b3fee882b471819597b770e3545988a8f5295a",
 					"line": 19,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
 					"resource_name": "EcsSecurityGroupHTTPinbound02",
@@ -62,8 +62,8 @@
 					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is not equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort"
 				},
 				{
-					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml\\positive.yaml",
-					"similarity_id": "eccd5525f81a3f29e866e1733212c9d94b062d1bb8463b1aba7085827ae410a3",
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
+					"similarity_id": "810487007189ac4de717dffc3204a05756e80e910b34f89ee08fd14f612328aa",
 					"line": 27,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
 					"resource_name": "EcsSecurityGroupSSHinbound",
