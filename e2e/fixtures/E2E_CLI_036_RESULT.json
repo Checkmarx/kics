@@ -21,7 +21,7 @@
 	"start": "2023-06-10T14:14:58.0283016+01:00",
 	"end": "2023-06-10T14:15:03.3543051+01:00",
 	"paths": [
-		"path/e2e/fixtures/samples/positive.yaml"
+		"/path/e2e/fixtures/samples/positive.yaml"
 	],
 	"queries": [
 		{
