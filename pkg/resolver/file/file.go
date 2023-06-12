@@ -388,7 +388,7 @@ func (r *Resolver) resolvePath(
 			}
 		}
 		section, err := findSection(obj, splitPath[1])
-		//Check if there was an error finding the section or if the reference is circular
+		// Check if there was an error finding the section or if the reference is circular
 		if err != nil || checkIfCircular(value, section) {
 			return value, false
 		}
@@ -430,7 +430,7 @@ func checkIfCircularYaml(circularValue string, yamlSection *yaml.Node) bool {
 		return false
 	}
 	for index := 0; index < len(yamlSection.Content)-1; index += 1 {
-		//if there is a reference to the same value that was resolved it is a circular definition
+		// if there is a reference to the same value that was resolved it is a circular definition
 		if yamlSection.Content[index].Value == "$ref" && yamlSection.Content[index+1].Value == circularValue {
 			return true
 		} else if checkIfCircularYaml(circularValue, yamlSection.Content[index]) {
@@ -465,7 +465,7 @@ func checkIfCircular(circularValue string, section interface{}) bool {
 	}
 	if okMap {
 		for key, val := range sectionAsMap {
-			//if there is a reference to the same value that was resolved it is a circular definition
+			// if there is a reference to the same value that was resolved it is a circular definition
 			if key == "$ref" && val == circularValue {
 				return true
 			} else if checkIfCircular(circularValue, val) {
