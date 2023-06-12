@@ -99,6 +99,7 @@ func (r *Resolver) handleMap(originalFileContent []byte, fullObject interface{},
 		val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache)
 		// check if it is a ref then add new details
 		if valMap, ok := val.(map[string]interface{}); (ok || !res) && isRef {
+			//Create RefMetadata and add it to the resolved value map
 			if valMap == nil {
 				valMap = make(map[string]interface{})
 			}
@@ -162,6 +163,7 @@ func (r *Resolver) yamlWalk(
 			resolved, ok := r.yamlWalk(originalFileContent, fullObject, value.Content[i], path, resolveCount, resolvedFilesCache)
 
 			if i >= 1 && refBool && (resolved.Kind == yaml.MappingNode || !ok) {
+				//Create RefMetadata and add it to yaml Node
 				if !ok {
 					resolved = yaml.Node{
 						Kind: yaml.MappingNode,
@@ -236,6 +238,7 @@ func (r *Resolver) resolveYamlPath(
 
 		filename := filepath.Clean(onlyFilePath)
 
+		// Check if file has already been resolved, if not resolve it and save it for future references
 		if _, ok := resolvedFilesCache[filename]; !ok {
 			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache, true); isError {
 				return ret.(yaml.Node), false
@@ -268,6 +271,7 @@ func (r *Resolver) resolveYamlPath(
 			}
 		}
 		section, err := findSectionYaml(obj, splitPath[1])
+		//Check if there was an error finding the section or if the reference is circular
 		if err == nil && !checkIfCircularYaml(v.Value, &section) {
 			return section, true
 		}
@@ -345,6 +349,8 @@ func (r *Resolver) resolvePath(
 	} else { // external file resolve
 		path := filepath.Join(filepath.Dir(filePath), value)
 		splitPath = strings.Split(path, "#") // splitting by removing the section to look for in the file
+
+		// index 0 contains the path of the file while the other indexes contain the sections (e.g. path = "./definitions.json#User/schema")
 		onlyFilePath := splitPath[0]
 		_, err := os.Stat(onlyFilePath)
 
@@ -352,6 +358,7 @@ func (r *Resolver) resolvePath(
 			return value, false
 		}
 
+		// Check if file has already been resolved, if not resolve it and save it for future references
 		if _, ok := resolvedFilesCache[onlyFilePath]; !ok {
 			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache, false); isError {
 				return ret, false
@@ -381,6 +388,7 @@ func (r *Resolver) resolvePath(
 			}
 		}
 		section, err := findSection(obj, splitPath[1])
+		//Check if there was an error finding the section or if the reference is circular
 		if err != nil || checkIfCircular(value, section) {
 			return value, false
 		}
@@ -422,6 +430,7 @@ func checkIfCircularYaml(circularValue string, yamlSection *yaml.Node) bool {
 		return false
 	}
 	for index := 0; index < len(yamlSection.Content)-1; index += 1 {
+		//if there is a reference to the same value that was resolved it is a circular definition
 		if yamlSection.Content[index].Value == "$ref" && yamlSection.Content[index+1].Value == circularValue {
 			return true
 		} else if checkIfCircularYaml(circularValue, yamlSection.Content[index]) {
@@ -429,30 +438,6 @@ func checkIfCircularYaml(circularValue string, yamlSection *yaml.Node) bool {
 		}
 	}
 	return checkIfCircularYaml(circularValue, yamlSection.Content[len(yamlSection.Content)-1])
-}
-
-func checkIfCircular(circularValue string, section interface{}) bool {
-	sectionAsMap, okMap := section.(map[string]interface{})
-	sectionAsList, okList := section.([]interface{})
-	if !okList && !okMap {
-		return false
-	}
-	if okMap {
-		for key, val := range sectionAsMap {
-			if key == "$ref" && val == circularValue {
-				return true
-			} else if checkIfCircular(circularValue, val) {
-				return true
-			}
-		}
-	} else {
-		for _, listSection := range sectionAsList {
-			if checkIfCircular(circularValue, listSection) {
-				return true
-			}
-		}
-	}
-	return false
 }
 
 func findSection(object interface{}, sectionsString string) (interface{}, error) {
@@ -470,6 +455,31 @@ func findSection(object interface{}, sectionsString string) (interface{}, error)
 		}
 	}
 	return object, nil
+}
+
+func checkIfCircular(circularValue string, section interface{}) bool {
+	sectionAsMap, okMap := section.(map[string]interface{})
+	sectionAsList, okList := section.([]interface{})
+	if !okList && !okMap {
+		return false
+	}
+	if okMap {
+		for key, val := range sectionAsMap {
+			//if there is a reference to the same value that was resolved it is a circular definition
+			if key == "$ref" && val == circularValue {
+				return true
+			} else if checkIfCircular(circularValue, val) {
+				return true
+			}
+		}
+	} else {
+		for _, listSection := range sectionAsList {
+			if checkIfCircular(circularValue, listSection) {
+				return true
+			}
+		}
+	}
+	return false
 }
 
 func contains(elem string, list []string) bool {
