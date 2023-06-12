@@ -95,8 +95,7 @@ func (r *Resolver) walk(
 func (r *Resolver) handleMap(originalFileContent []byte, fullObject interface{}, value map[string]interface{}, path string,
 	resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) {
 	for k, v := range value {
-		keyContainsRef := strings.Contains(strings.ToLower(k), "$ref")
-		isRef := keyContainsRef
+		isRef := strings.Contains(strings.ToLower(k), "$ref")
 		val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache)
 		// check if it is a ref then add new details
 		if valMap, ok := val.(map[string]interface{}); (ok || !res) && isRef {
@@ -224,6 +223,7 @@ func (r *Resolver) resolveYamlPath(
 
 		path := filepath.Join(filepath.Dir(filePath), value)
 		splitPath = strings.Split(path, "#") // splitting by removing the section to look for in the file
+		// index 0 contains the path of the file while the other indexes contain the sections (e.g. path = "./definitions.json#User/schema")
 		onlyFilePath := splitPath[0]
 		_, err := os.Stat(path)
 		if err != nil {
