@@ -99,7 +99,7 @@ func (r *Resolver) handleMap(originalFileContent []byte, fullObject interface{},
 		val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache)
 		// check if it is a ref then add new details
 		if valMap, ok := val.(map[string]interface{}); (ok || !res) && isRef {
-			//Create RefMetadata and add it to the resolved value map
+			// Create RefMetadata and add it to the resolved value map
 			if valMap == nil {
 				valMap = make(map[string]interface{})
 			}
@@ -163,7 +163,7 @@ func (r *Resolver) yamlWalk(
 			resolved, ok := r.yamlWalk(originalFileContent, fullObject, value.Content[i], path, resolveCount, resolvedFilesCache)
 
 			if i >= 1 && refBool && (resolved.Kind == yaml.MappingNode || !ok) {
-				//Create RefMetadata and add it to yaml Node
+				// Create RefMetadata and add it to yaml Node
 				if !ok {
 					resolved = yaml.Node{
 						Kind: yaml.MappingNode,
@@ -271,7 +271,7 @@ func (r *Resolver) resolveYamlPath(
 			}
 		}
 		section, err := findSectionYaml(obj, splitPath[1])
-		//Check if there was an error finding the section or if the reference is circular
+		// Check if there was an error finding the section or if the reference is circular
 		if err == nil && !checkIfCircularYaml(v.Value, &section) {
 			return section, true
 		}
