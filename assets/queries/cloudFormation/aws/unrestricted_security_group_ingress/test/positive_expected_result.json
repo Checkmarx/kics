@@ -2,7 +2,7 @@
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
-    "line": 8,
+    "line": 13,
     "fileName": "positive1.yaml"
   },
   {
@@ -20,7 +20,7 @@
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
-    "line": 53,
+    "line": 56,
     "fileName": "positive2.json"
   }
 ]
