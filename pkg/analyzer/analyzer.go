@@ -277,7 +277,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 
 			ext := utils.GetExtension(path)
 
-			if hasGitIgnoreFile && gitIgnore.MatchesPath(path) {
+			if (hasGitIgnoreFile && gitIgnore.MatchesPath(path)) || isDeadSymlink(path){
 				ignoreFiles = append(ignoreFiles, path)
 				a.Exc = append(a.Exc, path)
 			}
@@ -589,6 +589,11 @@ func isExcludedFile(path string, exc []string) bool {
 		}
 	}
 	return false
+}
+
+func isDeadSymlink(path string) bool{
+	fileInfo, _ := os.Stat(path)
+	return fileInfo == nil
 }
 
 func isConfigFile(path string, exc []string) bool {

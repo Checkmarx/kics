@@ -255,6 +255,22 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
 		},
+		{
+			name:      "analyze_test_ignore_dead_symlink",
+			paths:     []string{filepath.FromSlash("../../test/fixtures/analyzer_test")},
+			wantTypes: []string{"ansible", "azureresourcemanager", "cloudformation", "crossplane", "dockercompose", "dockerfile", "googledeploymentmanager", "knative", "kubernetes", "openapi", "pulumi", "serverlessfw", "terraform"},
+			wantExclude: []string{
+				filepath.FromSlash("../../test/fixtures/analyzer_test/pnpm-lock.yaml"),
+				filepath.FromSlash("../../test/fixtures/analyzer_test/not_openapi.json"),
+				filepath.FromSlash("../../test/fixtures/analyzer_test/dead_symlink")
+			},
+			typesFromFlag:        []string{""},
+			excludeTypesFromFlag: []string{""},
+			wantLOC:              563,
+			wantErr:              false,
+			gitIgnoreFileName:    "",
+			excludeGitIgnore:     false,
+		}
 	}
 
 	for _, tt := range tests {
