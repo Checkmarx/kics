@@ -262,7 +262,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			wantExclude: []string{
 				filepath.FromSlash("../../test/fixtures/analyzer_test/pnpm-lock.yaml"),
 				filepath.FromSlash("../../test/fixtures/analyzer_test/not_openapi.json"),
-				filepath.FromSlash("../../test/fixtures/analyzer_test/dead_symlink")
+				filepath.FromSlash("../../test/fixtures/analyzer_test/dead_symlink"),
 			},
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
