@@ -604,7 +604,7 @@ func isConfigFile(path string, exc []string) bool {
 		}
 		for j := range exclude {
 			fileInfo, _ := os.Stat(path)
-			if fileInfo.IsDir() {
+			if fileInfo != nil && fileInfo.IsDir() {
 				continue
 			}
 
