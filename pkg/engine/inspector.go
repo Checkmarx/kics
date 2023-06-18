@@ -361,7 +361,7 @@ func (c *Inspector) DecodeQueryResults(ctx *QueryContext, results rego.ResultSet
 	for _, queryResultItem := range queryResultItems {
 		vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector)
 		if err != nil && err.Error() == ErrNoResult.Error() {
-			//Ignoring bad results
+			// Ignoring bad results
 			continue
 		}
 		if err != nil {

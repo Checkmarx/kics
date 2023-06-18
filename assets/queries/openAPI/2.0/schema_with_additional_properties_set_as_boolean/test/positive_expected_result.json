@@ -14,7 +14,7 @@
   {
     "queryName": "Schema with 'additionalProperties' set as Boolean",
     "severity": "INFO",
-    "line": 28,
+    "line": 29,
     "filename": "positive3.json"
   },
   {
@@ -26,7 +26,7 @@
   {
     "queryName": "Schema with 'additionalProperties' set as Boolean",
     "severity": "INFO",
-    "line": 22,
+    "line": 23,
     "filename": "positive4.yaml"
   },
   {
