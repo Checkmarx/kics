@@ -188,7 +188,7 @@
     "flagType": "str",
     "shorthandFlag": "",
     "defaultValue": "",
-    "usage": "paths or directories where terraform variables are present"
+    "usage": "path where terraform variables are present"
   },
   "exclude-gitignore": {
     "flagType": "bool",
