@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"regexp"
 
 	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
 	"github.com/hashicorp/hcl/v2"
@@ -85,7 +86,7 @@ func getInputVariablesFromFile(filename string) (converter.VariableMap, error) {
 	return variables, nil
 }
 
-func getInputVariables(currentPath string) {
+func getInputVariables(currentPath, fileContent, terraformVarsPath string) {
 	variablesMap := make(converter.VariableMap)
 	tfFiles, err := filepath.Glob(filepath.Join(currentPath, "*.tf"))
 	if err != nil {
@@ -115,11 +116,34 @@ func getInputVariables(currentPath string) {
 	for _, tfVarsFile := range tfVarsFiles {
 		variables, errInputVariables := getInputVariablesFromFile(tfVarsFile)
 		if errInputVariables != nil {
-			log.Error().Msgf("Error getting values from %s", tfVarsFiles)
+			log.Error().Msgf("Error getting values from %s", tfVarsFile)
 			log.Err(errInputVariables)
 			continue
 		}
 		mergeMaps(variablesMap, variables)
+	}
+
+	if terraformVarsPath == "" {
+		terraformVarsPathRegex := regexp.MustCompile(`(?m)^\s*// kics_terraform_vars: ([\w/\\.:-]+)\n`)
+		terraformVarsPathMatch := terraformVarsPathRegex.FindStringSubmatch(fileContent)
+		if terraformVarsPathMatch != nil {
+			terraformVarsPath = terraformVarsPathMatch[1]
+		}
+	}
+
+	if terraformVarsPath != "" {
+		_, err = os.Stat(terraformVarsPath)
+		if err != nil {
+			log.Trace().Msgf("%s file not found", terraformVarsPath)
+		} else {
+			variables, errInputVariables := getInputVariablesFromFile(terraformVarsPath)
+			if errInputVariables != nil {
+				log.Error().Msgf("Error getting values from %s", terraformVarsPath)
+				log.Err(errInputVariables)
+			} else {
+				mergeMaps(variablesMap, variables)
+			}
+		}
 	}
 
 	inputVariableMap["var"] = cty.ObjectVal(variablesMap)

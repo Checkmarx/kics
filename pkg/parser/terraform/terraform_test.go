@@ -118,7 +118,7 @@ func Test_Count(t *testing.T) {
 // Test_Parentheses_Expr tests if parentheses expr is well parsed
 func Test_Parentheses_Expr(t *testing.T) {
 	parser := NewDefault()
-	getInputVariables(filepath.FromSlash("../../../test/fixtures/test-tf-parentheses"))
+	getInputVariables(filepath.FromSlash("../../../test/fixtures/test-tf-parentheses"), parentheses, "")
 	document, _, err := parser.Parse("parentheses.tf", []byte(parentheses))
 	require.NoError(t, err)
 	require.Len(t, document, 1)

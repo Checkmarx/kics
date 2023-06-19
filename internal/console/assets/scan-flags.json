@@ -184,6 +184,12 @@
     "usage": "case insensitive list of platform types not to scan\n(${supportedPlatforms})\ncannot be provided with type inclusion flags",
     "validation": "validateMultiStrEnum"
   },
+  "terraform-vars-path": {
+    "flagType": "str",
+    "shorthandFlag": "",
+    "defaultValue": "",
+    "usage": "paths or directories where terraform variables are present"
+  },
   "exclude-gitignore": {
     "flagType": "bool",
     "shorthandFlag": "",

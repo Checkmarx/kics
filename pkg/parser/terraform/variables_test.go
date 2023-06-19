@@ -170,6 +170,9 @@ func TestGetInputVariables(t *testing.T) {
 					"map2": cty.ObjectVal(map[string]cty.Value{
 						"map2Key1": cty.StringVal("nestedMap"),
 					}),
+					"map3": cty.ObjectVal(map[string]cty.Value{
+						"map3Key1": cty.StringVal("givenByVar"),
+					}),
 					"test_terraform":    cty.StringVal("terraform.tfvars"),
 					"default_var_file":  cty.StringVal("default_var_file"),
 					"local_default_var": cty.StringVal("local_default"),
@@ -181,7 +184,7 @@ func TestGetInputVariables(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			getInputVariables(tt.filename)
+			getInputVariables(tt.filename, "", "../../../test/fixtures/test_terraform_variables/varsToUse/varsToUse.tf")
 			require.Equal(t, tt.want, inputVariableMap)
 		})
 	}
