@@ -40,8 +40,8 @@ ENV TERM xterm-256color
 # Install additional components from Alpine
 Run apk update --no-cache \
     && apk add --no-cache \
-    gcompat \
-    git
+    gcompat~=1.1.0 \
+    git~=2.40
 
 # Install Terraform and Terraform plugins
 RUN wget https://releases.hashicorp.com/terraform/1.3.9/terraform_1.3.9_linux_amd64.zip \
