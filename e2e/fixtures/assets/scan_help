@@ -25,7 +25,7 @@ Flags:
       --exclude-severities strings    exclude results by providing the severity of a result
                                       can be provided multiple times or as a comma separated string
                                       example: 'info,low'
-      --exclude-type strings          case insensitive list of platform types not to scan
+      --exclude-platform strings      case insensitive list of platform types not to scan
                                       (Ansible, AzureResourceManager, Buildah, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerlessFW, Terraform)
                                       cannot be provided with type inclusion flags
       --fail-on strings               which kind of results should return an exit code different from 0
@@ -54,9 +54,9 @@ Flags:
       --report-formats strings        formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])
   -r, --secrets-regexes-path string   path to secrets regex rules configuration file
       --timeout int                   number of seconds the query has to execute before being canceled (default 60)
-  -t, --type strings                  case insensitive list of platform types to scan
+  -t, --platform strings              case insensitive list of platform types to scan
                                       (Ansible, AzureResourceManager, Buildah, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerlessFW, Terraform)
-                                      cannot be provided with type exclusion flags
+                                      cannot be provided with platform exclusion flags
 
 Global Flags:
       --ci                  display only log messages to CLI output (mutually exclusive with silent)

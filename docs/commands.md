@@ -93,12 +93,12 @@ Flags:
       --report-formats strings        formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])
   -r, --secrets-regexes-path string   path to secrets regex rules configuration file
       --timeout int                   number of seconds the query has to execute before being canceled (default 60)
-  -t, --type strings                  case insensitive list of platform types to scan
+  -t, --platform strings              case insensitive list of platform types to scan
                                       (Ansible, AzureResourceManager, Buildah, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
                                       cannot be provided with type exclusion flags
-      --exclude-type strings          case insensitive list of platform types not to scan
+      --exclude-platform strings      case insensitive list of platform types not to scan
                                       (Ansible, AzureResourceManager, Buildah, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
-                                      cannot be provided with type inclusion flags
+                                      cannot be provided with platform inclusion flags
 
 Global Flags:
       --ci                  display only log messages to CLI output (mutually exclusive with silent)
