@@ -8,7 +8,7 @@ CxPolicy[result] {
 	version != "undefined"
 
 	[path, value] := walk(doc)
-	schema_ref = value.schema["$ref"]
+	schema_ref = value.schema["RefMetadata"]["$ref"]
 	openapi_lib.undefined_field_in_json_object(doc, schema_ref, "properties", version)
 
 	result := {

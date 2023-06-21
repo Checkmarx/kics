@@ -34,5 +34,17 @@
     "severity": "INFO",
     "line": 32,
     "filename": "positive6.yaml"
+  },
+  {
+    "queryName": "Non-Array Schema With Items (v2)",
+    "severity": "INFO",
+    "line": 22,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Non-Array Schema With Items (v2)",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive6.yaml"
   }
 ]

@@ -39,23 +39,7 @@ func TestResolver_Resolve(t *testing.T) {
 				path: filepath.ToSlash("test/fixtures/unresolved_openapi/responses/_index.yaml"),
 			},
 			want: []byte(
-				`UnexpectedError:
-					description: unexpected error
-					content:
-					application/json:
-						schema:
-							type: object
-							required:
-							- code
-							- message
-							properties:
-							code:
-								type: integer
-								format: int32
-							message:
-								type: string		
-		NullResponse:
-            description: Null response`),
+				`UnexpectedError:description:unexpectederrorcontent:application/json:schema:type:objectrequired:-code-messageproperties:code:type:integerformat:int32message:type:stringRefMetadata:$ref:"../schemas/Error.yaml"alone:trueRefMetadata:$ref:"./UnexpectedError.yaml"alone:trueNullResponse:description:NullresponseRefMetadata:$ref:"./NullResponse.yaml"alone:true`),
 		},
 		{
 			name: "json test",
@@ -66,7 +50,7 @@ func TestResolver_Resolve(t *testing.T) {
 				path: filepath.ToSlash("test/fixtures/unresolved_openapi_json/openapi.json"),
 			},
 			want: []byte(
-				"{\"info\":{\"title\":\"Reference in reference example\",\"version\":\"1.0.0\"},\"openapi\":\"3.0.3\",\"paths\":{\"/api/test/ref/in/ref\":{\"post\":{\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"definition_reference\":{\"$ref\":\"definitions.json#/definitions/External\"}},\"required\":[\"definition_reference\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"id\":{\"format\":\"int32\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}}}}}}",
+				"{\"info\":{\"title\":\"Reference in reference example\",\"version\":\"1.0.0\"},\"openapi\":\"3.0.3\",\"paths\":{\"/api/test/ref/in/ref\":{\"post\":{\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"RefMetadata\":{\"$ref\":\"messages/request.json\",\"alone\":true},\"properties\":{\"definition_reference\":{\"RefMetadata\":{\"$ref\":\"definitions.json#/definitions/External\",\"alone\":true},\"type\":\"string\"}},\"required\":[\"definition_reference\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"RefMetadata\":{\"$ref\":\"messages/response.json\",\"alone\":true},\"properties\":{\"id\":{\"format\":\"int32\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}}}}}}",
 			),
 		},
 		{

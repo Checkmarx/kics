@@ -7,7 +7,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) == "2.0"
 
 	[path, value] := walk(doc)
-	ref := value.schema["$ref"]
+	ref := value.schema["RefMetadata"]["$ref"]
 	count(path) > 0
 	openapi_lib.incorrect_ref_swagger(ref, "schemas")
 
