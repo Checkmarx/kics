@@ -26,13 +26,25 @@
   {
     "queryName": "Schema Enum Invalid (v2)",
     "severity": "INFO",
-    "line": 52,
+    "line": 50,
     "filename": "positive5.json"
   },
   {
     "queryName": "Schema Enum Invalid (v2)",
     "severity": "INFO",
-    "line": 37,
+    "line": 35,
+    "filename": "positive6.yaml"
+  },
+  {
+    "queryName": "Schema Enum Invalid (v2)",
+    "severity": "INFO",
+    "line": 14,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Schema Enum Invalid (v2)",
+    "severity": "INFO",
+    "line": 12,
     "filename": "positive6.yaml"
   }
 ]

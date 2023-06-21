@@ -15,7 +15,7 @@ func init() { //nolint
 		WantStatus: []int{50},
 		Validation: func(outputText string) bool {
 			matchQueryPath1, _ := regexp.MatchString(`UnexpectedError.yaml`, outputText)
-			matchQueryPath2, _ := regexp.MatchString(`petId.yaml`, outputText)
+			matchQueryPath2, _ := regexp.MatchString(`openapi.yaml`, outputText)
 			return matchQueryPath1 && matchQueryPath2
 		},
 	}
