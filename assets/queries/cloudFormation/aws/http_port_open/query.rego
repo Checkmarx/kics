@@ -14,7 +14,6 @@ CxPolicy[result] {
 	entireNetwork(rule)
 	isTCP(rule.IpProtocol)
 	rule.FromPort <= 80
-	rule.ToPort >= 80
 
 	result := {
 		"documentId": input.document[i].id,
@@ -22,6 +21,31 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.SecurityGroupIngress", [cf_lib.getPath(path),name]),
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "SecurityGroupIngress", index, "FromPort"], []),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d] should not open the HTTP port (80)", [name, index]),
+		"keyActualValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d] opens the HTTP port (80)", [name, index]),
+	}
+}
+
+
+CxPolicy[result] {
+	docs := input.document[i]
+	[path, Resources] := walk(docs)
+	resource := Resources[name]
+	resource.Type == "AWS::EC2::SecurityGroup"
+
+	rule := resource.Properties.SecurityGroupIngress[index]
+
+	entireNetwork(rule)
+	isTCP(rule.IpProtocol)
+	rule.ToPort >= 80
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
+		"searchKey": sprintf("%s%s.Properties.SecurityGroupIngress", [cf_lib.getPath(path),name]),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "SecurityGroupIngress", index, "ToPort"], []),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d] should not open the HTTP port (80)", [name, index]),
 		"keyActualValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d] opens the HTTP port (80)", [name, index]),
