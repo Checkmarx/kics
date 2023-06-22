@@ -1,4 +1,4 @@
-// kics_terraform_vars: ..\\..\\..\\test\\fixtures\\test_terraform_variables\\varsToUse\\varsToUse.tf
+// kics_terraform_vars: varsToUse\\varsToUse.tf
 
 resource "test" "test1" {
   test_map        = var.map2

@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"strings"
 
 	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
 	"github.com/hashicorp/hcl/v2"
@@ -130,6 +131,10 @@ func getInputVariables(currentPath, fileContent, terraformVarsPath string) {
 		if terraformVarsPathMatch != nil {
 			// There is a path tp the variables file in the file so that will be the path to the variables tf file
 			terraformVarsPath = terraformVarsPathMatch[1]
+			// If the path contains ":" assume its a global path
+			if !strings.Contains(terraformVarsPath, ":") {
+				terraformVarsPath = filepath.Join(currentPath, terraformVarsPath)
+			}
 		}
 	}
 
