@@ -7,7 +7,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	[path, value] := walk(doc)
-	ref := value["$ref"]
+	ref := value["RefMetadata"]["$ref"]
 	checkComponents := openapi_lib.check_reference_unexisting(doc, ref, "requestBodies")
 
 	result := {

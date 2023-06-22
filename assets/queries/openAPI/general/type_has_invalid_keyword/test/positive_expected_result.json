@@ -2,8 +2,20 @@
   {
     "queryName": "Type Has Invalid Keyword (v3)",
     "severity": "INFO",
+    "line": 18,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
     "line": 52,
     "filename": "positive1.json"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
+    "line": 18,
+    "filename": "positive2.json"
   },
   {
     "queryName": "Type Has Invalid Keyword (v3)",
@@ -14,8 +26,20 @@
   {
     "queryName": "Type Has Invalid Keyword (v3)",
     "severity": "INFO",
+    "line": 18,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
     "line": 46,
     "filename": "positive3.json"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive4.yaml"
   },
   {
     "queryName": "Type Has Invalid Keyword (v3)",
@@ -26,8 +50,20 @@
   {
     "queryName": "Type Has Invalid Keyword (v3)",
     "severity": "INFO",
+    "line": 16,
+    "filename": "positive5.yaml"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
     "line": 29,
     "filename": "positive5.yaml"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive6.yaml"
   },
   {
     "queryName": "Type Has Invalid Keyword (v3)",
