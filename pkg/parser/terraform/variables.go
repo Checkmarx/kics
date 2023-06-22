@@ -123,14 +123,18 @@ func getInputVariables(currentPath, fileContent, terraformVarsPath string) {
 		mergeMaps(variablesMap, variables)
 	}
 
+	// If the flag is empty let's look for the value in the first written line of the file
 	if terraformVarsPath == "" {
-		terraformVarsPathRegex := regexp.MustCompile(`(?m)^\s*// kics_terraform_vars: ([\w/\\.:-]+)\n`)
+		terraformVarsPathRegex := regexp.MustCompile(`(?m)^\s*// kics_terraform_vars: ([\w/\\.:-]+)\r?\n`)
 		terraformVarsPathMatch := terraformVarsPathRegex.FindStringSubmatch(fileContent)
 		if terraformVarsPathMatch != nil {
+			// There is a path tp the variables file in the file so that will be the path to the variables tf file
 			terraformVarsPath = terraformVarsPathMatch[1]
 		}
 	}
 
+	// If the terraformVarsPath is empty, this means that it is not in the flag
+	// and it is not in the first written line of the file
 	if terraformVarsPath != "" {
 		_, err = os.Stat(terraformVarsPath)
 		if err != nil {
