@@ -2,7 +2,7 @@
 package testcases
 
 // E2E-CLI-062 - KICS  scan and get the variables using a variables path as a comment
-// should perform the scan successfully and return exit code 50
+// should perform the scan successfully and return exit code 0
 func init() { //nolint
 	testSample := TestCase{
 		Name: "should perform a valid scan and get the variables using a variables path as a comment [E2E-CLI-062]",
@@ -15,7 +15,7 @@ func init() { //nolint
 				"E2E_CLI_062_PAYLOAD.json",
 			},
 		},
-		WantStatus: []int{50},
+		WantStatus: []int{0},
 	}
 
 	Tests = append(Tests, testSample)
