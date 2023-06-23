@@ -133,6 +133,7 @@ func getInputVariables(currentPath, fileContent, terraformVarsPath string) {
 			terraformVarsPath = terraformVarsPathMatch[1]
 			// If the path contains ":" assume its a global path
 			if !strings.Contains(terraformVarsPath, ":") {
+				// If not then add the current folder path before so that the comment path can be relative
 				terraformVarsPath = filepath.Join(currentPath, terraformVarsPath)
 			}
 		}
