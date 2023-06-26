@@ -37,7 +37,6 @@ var (
 	k8sRegex                                        = regexp.MustCompile(`("apiVersion"|apiVersion)\s*:`)
 	k8sRegexKind                                    = regexp.MustCompile(`("kind"|kind)\s*:`)
 	tfPlanRegexPV                                   = regexp.MustCompile(`"planned_values"\s*:`)
-	tfPlanRegexRC                                   = regexp.MustCompile(`"resource_changes"\s*:`)
 	tfPlanRegexConf                                 = regexp.MustCompile(`"configuration"\s*:`)
 	tfPlanRegexTV                                   = regexp.MustCompile(`"terraform_version"\s*:`)
 	cdkTfRegexMetadata                              = regexp.MustCompile(`"metadata"\s*:`)
@@ -175,7 +174,6 @@ var types = map[string]regexSlice{
 		[]*regexp.Regexp{
 			tfPlanRegexConf,
 			tfPlanRegexPV,
-			tfPlanRegexRC,
 			tfPlanRegexTV,
 		},
 	},
