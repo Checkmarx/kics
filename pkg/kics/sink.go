@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"regexp"
 	"sort"
 
 	sentryReport "github.com/Checkmarx/kics/internal/sentry"
@@ -31,6 +32,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 
 	c, err := getContent(rc, data)
 
+	*c.Content = resolveCRLFFile(*c.Content)
 	content := c.Content
 
 	s.Tracker.TrackFileFoundCountLines(c.CountLines)
@@ -85,6 +87,12 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 	s.Tracker.TrackFileParseCountLines(documents.CountLines)
 
 	return errors.Wrap(err, "failed to save file content")
+}
+
+func resolveCRLFFile(fileContent []byte) []byte {
+	regex := regexp.MustCompile(`\r\n`)
+	contentSTR := regex.ReplaceAllString(string(fileContent), "\n")
+	return []byte(contentSTR)
 }
 
 func resolveJSONFilter(jsonFilter string) string {
