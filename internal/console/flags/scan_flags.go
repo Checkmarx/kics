@@ -27,6 +27,7 @@ const (
 	ReportFormatsFlag      = "report-formats"
 	TypeFlag               = "type"
 	ExcludeTypeFlag        = "exclude-type"
+	TerraformVarsPathFlag  = "terraform-vars-path"
 	QueryExecTimeoutFlag   = "timeout"
 	LineInfoPayloadFlag    = "payload-lines"
 	DisableSecretsFlag     = "disable-secrets"
