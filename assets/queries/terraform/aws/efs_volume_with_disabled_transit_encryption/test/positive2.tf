@@ -1,20 +1,18 @@
-provider "aws" {
-  region = "us-west-2"
-}
+resource "aws_ecs_task_definition" "service" {
+  family                = "service"
+  container_definitions = file("task-definitions/service.json")
 
-resource "aws_efs_file_system" "example" {
-  creation_token      = "example"
-  encrypted           = true
-  performance_mode    = "generalPurpose"
-  throughput_mode     = "bursting"
+  volume {
+    name = "service-storage"
 
-  tags = {
-    Name = "example-efs"
+    efs_volume_configuration {
+      file_system_id          = aws_efs_file_system.fs.id
+      root_directory          = "/opt/data"
+      transit_encryption_port = 2999
+      authorization_config {
+        access_point_id = aws_efs_access_point.test.id
+        iam             = "ENABLED"
+      }
+    }
   }
-}
-
-resource "aws_efs_mount_target" "example" {
-  file_system_id = aws_efs_file_system.example.id
-  subnet_id      = "subnet-0123456789abcdef0"
-  security_groups = ["sg-0123456789abcdef0"]
 }
