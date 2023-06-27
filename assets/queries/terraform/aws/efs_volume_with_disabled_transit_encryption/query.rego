@@ -24,7 +24,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_ecs_task_definition[name]
 	efs_volume := resource.volume.efs_volume_configuration
-	not efs_volume.transit_encryption
+	not common_lib.valid_key(efs_volume,"transit_encryption")
 
 	result := {
 		"documentId": input.document[i].id,
