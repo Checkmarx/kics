@@ -191,9 +191,9 @@
 				
 				<option value="file67">github.com/Checkmarx/kics/pkg/parser/terraform/data_source.go (76.8%)</option>
 				
-				<option value="file68">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (81.4%)</option>
+				<option value="file68">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (77.4%)</option>
 				
-				<option value="file69">github.com/Checkmarx/kics/pkg/parser/terraform/variables.go (91.5%)</option>
+				<option value="file69">github.com/Checkmarx/kics/pkg/parser/terraform/variables.go (85.3%)</option>
 				
 				<option value="file70">github.com/Checkmarx/kics/pkg/parser/utils/certificate_utils.go (81.6%)</option>
 				
@@ -207,7 +207,7 @@
 				
 				<option value="file75">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file76">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (95.5%)</option>
+				<option value="file76">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -1705,6 +1705,7 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
                 ReportFormats:               flags.GetMultiStrFlag(flags.ReportFormatsFlag),
                 Platform:                    flags.GetMultiStrFlag(flags.TypeFlag),
                 ExcludePlatform:             flags.GetMultiStrFlag(flags.ExcludeTypeFlag),
+                TerraformVarsPath:           flags.GetStrFlag(flags.TerraformVarsPathFlag),
                 QueryExecTimeout:            flags.GetIntFlag(flags.QueryExecTimeoutFlag),
                 LineInfoPayload:             flags.GetBoolFlag(flags.LineInfoPayloadFlag),
                 DisableSecrets:              flags.GetBoolFlag(flags.DisableSecretsFlag),
@@ -2188,13 +2189,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="32">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -4694,7 +4695,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -13109,8 +13110,9 @@ type Converter func(file *hcl.File, inputVariables converter.VariableMap) (model
 
 // Parser struct that contains the function to parse file and the number of retries if something goes wrong
 type Parser struct {
-        convertFunc  Converter
-        numOfRetries int
+        convertFunc       Converter
+        numOfRetries      int
+        terraformVarsPath string
 }
 
 // NewDefault initializes a parser with Parser default values
@@ -13121,9 +13123,16 @@ func NewDefault() *Parser <span class="cov4" title="4">{
         }
 }</span>
 
+// NewDefaultWithVarsPath initializes a parser with the default values using a variables path
+func NewDefaultWithVarsPath(terraformVarsPath string) *Parser <span class="cov0" title="0">{
+        parser := NewDefault()
+        parser.terraformVarsPath = terraformVarsPath
+        return parser
+}</span>
+
 // Resolve - replace or modifies in-memory content before parsing
 func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) <span class="cov1" title="1">{
-        getInputVariables(filepath.Dir(filename))
+        getInputVariables(filepath.Dir(filename), string(fileContent), p.terraformVarsPath)
         getDataSourcePolicy(filepath.Dir(filename))
         return fileContent, nil
 }</span>
@@ -13185,16 +13194,16 @@ func addExtraInfo(json []model.Document, path string) ([]model.Document, error) 
         <span class="cov4" title="3">return json, nil</span>
 }
 
-func parseFile(filename string, shouldReplaceDataSource bool) (*hcl.File, error) <span class="cov10" title="23">{
+func parseFile(filename string, shouldReplaceDataSource bool) (*hcl.File, error) <span class="cov10" title="26">{
         file, err := os.ReadFile(filename)
         if err != nil </span><span class="cov4" title="3">{
                 return nil, err
         }</span>
-        <span class="cov9" title="20">if shouldReplaceDataSource </span><span class="cov5" title="5">{
+        <span class="cov9" title="23">if shouldReplaceDataSource </span><span class="cov5" title="5">{
                 replaceDataIdentifiers := regexp.MustCompile(`(data\.[A-Za-z0-9._-]+)`)
                 file = []byte(replaceDataIdentifiers.ReplaceAllString(string(file), "\"$1\""))
         }</span>
-        <span class="cov9" title="20">parsedFile, _ := hclsyntax.ParseConfig(file, filename, hcl.Pos{Line: 1, Column: 1})
+        <span class="cov9" title="23">parsedFile, _ := hclsyntax.ParseConfig(file, filename, hcl.Pos{Line: 1, Column: 1})
 
         return parsedFile, nil</span>
 }
@@ -13260,6 +13269,8 @@ import (
         "fmt"
         "os"
         "path/filepath"
+        "regexp"
+        "strings"
 
         "github.com/Checkmarx/kics/pkg/parser/terraform/converter"
         "github.com/hashicorp/hcl/v2"
@@ -13270,18 +13281,18 @@ import (
 
 var inputVariableMap = make(converter.VariableMap)
 
-func mergeMaps(baseMap, newItems converter.VariableMap) <span class="cov9" title="8">{
-        for key, value := range newItems </span><span class="cov10" title="9">{
+func mergeMaps(baseMap, newItems converter.VariableMap) <span class="cov10" title="11">{
+        for key, value := range newItems </span><span class="cov10" title="11">{
                 baseMap[key] = value
         }</span>
 }
 
-func setInputVariablesDefaultValues(filename string) (converter.VariableMap, error) <span class="cov10" title="9">{
+func setInputVariablesDefaultValues(filename string) (converter.VariableMap, error) <span class="cov9" title="10">{
         parsedFile, err := parseFile(filename, false)
         if err != nil || parsedFile == nil </span><span class="cov1" title="1">{
                 return nil, err
         }</span>
-        <span class="cov9" title="8">content, _, _ := parsedFile.Body.PartialContent(&amp;hcl.BodySchema{
+        <span class="cov9" title="9">content, _, _ := parsedFile.Body.PartialContent(&amp;hcl.BodySchema{
                 Blocks: []hcl.BlockHeaderSchema{
                         {
                                 Type:       "variable",
@@ -13291,7 +13302,7 @@ func setInputVariablesDefaultValues(filename string) (converter.VariableMap, err
         })
 
         defaultValuesMap := make(converter.VariableMap)
-        for _, block := range content.Blocks </span><span class="cov10" title="9">{
+        for _, block := range content.Blocks </span><span class="cov9" title="9">{
                 if len(block.Labels) == 0 || block.Labels[0] == "" </span><span class="cov3" title="2">{
                         continue</span>
                 }
@@ -13304,10 +13315,10 @@ func setInputVariablesDefaultValues(filename string) (converter.VariableMap, err
                         defaultValuesMap[block.Labels[0]] = defaultVar
                 }</span>
         }
-        <span class="cov9" title="8">return defaultValuesMap, nil</span>
+        <span class="cov9" title="9">return defaultValuesMap, nil</span>
 }
 
-func checkTfvarsValid(f *hcl.File, filename string) error <span class="cov7" title="5">{
+func checkTfvarsValid(f *hcl.File, filename string) error <span class="cov8" title="7">{
         content, _, _ := f.Body.PartialContent(&amp;hcl.BodySchema{
                 Blocks: []hcl.BlockHeaderSchema{
                         {
@@ -13319,66 +13330,98 @@ func checkTfvarsValid(f *hcl.File, filename string) error <span class="cov7" tit
         if len(content.Blocks) &gt; 0 </span><span class="cov3" title="2">{
                 return fmt.Errorf("failed to get variables from %s, .tfvars file is used to assing values not to declare new variables", filename)
         }</span>
-        <span class="cov5" title="3">return nil</span>
+        <span class="cov7" title="5">return nil</span>
 }
 
-func getInputVariablesFromFile(filename string) (converter.VariableMap, error) <span class="cov8" title="6">{
+func getInputVariablesFromFile(filename string) (converter.VariableMap, error) <span class="cov8" title="8">{
         parsedFile, err := parseFile(filename, false)
         if err != nil || parsedFile == nil </span><span class="cov1" title="1">{
                 return nil, err
         }</span>
-        <span class="cov7" title="5">err = checkTfvarsValid(parsedFile, filename)
+        <span class="cov8" title="7">err = checkTfvarsValid(parsedFile, filename)
         if err != nil </span><span class="cov3" title="2">{
                 return nil, err
         }</span>
 
-        <span class="cov5" title="3">attrs := parsedFile.Body.(*hclsyntax.Body).Attributes
+        <span class="cov7" title="5">attrs := parsedFile.Body.(*hclsyntax.Body).Attributes
         variables := make(converter.VariableMap)
-        for name, attr := range attrs </span><span class="cov10" title="9">{
+        for name, attr := range attrs </span><span class="cov10" title="11">{
                 value, _ := attr.Expr.Value(&amp;hcl.EvalContext{})
                 variables[name] = value
         }</span>
-        <span class="cov5" title="3">return variables, nil</span>
+        <span class="cov7" title="5">return variables, nil</span>
 }
 
-func getInputVariables(currentPath string) <span class="cov5" title="3">{
+func getInputVariables(currentPath, fileContent, terraformVarsPath string) <span class="cov6" title="4">{
         variablesMap := make(converter.VariableMap)
         tfFiles, err := filepath.Glob(filepath.Join(currentPath, "*.tf"))
         if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msg("Error getting .tf files")
         }</span>
-        <span class="cov5" title="3">for _, tfFile := range tfFiles </span><span class="cov7" title="5">{
+        <span class="cov6" title="4">for _, tfFile := range tfFiles </span><span class="cov7" title="6">{
                 variables, errDefaultValues := setInputVariablesDefaultValues(tfFile)
                 if errDefaultValues != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("Error getting default values from %s", tfFile)
                         log.Err(errDefaultValues)
                         continue</span>
                 }
-                <span class="cov7" title="5">mergeMaps(variablesMap, variables)</span>
+                <span class="cov7" title="6">mergeMaps(variablesMap, variables)</span>
         }
-        <span class="cov5" title="3">tfVarsFiles, err := filepath.Glob(filepath.Join(currentPath, "*.auto.tfvars"))
+        <span class="cov6" title="4">tfVarsFiles, err := filepath.Glob(filepath.Join(currentPath, "*.auto.tfvars"))
         if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msg("Error getting .auto.tfvars files")
         }</span>
 
-        <span class="cov5" title="3">_, err = os.Stat(filepath.Join(currentPath, "terraform.tfvars"))
-        if err != nil </span><span class="cov3" title="2">{
+        <span class="cov6" title="4">_, err = os.Stat(filepath.Join(currentPath, "terraform.tfvars"))
+        if err != nil </span><span class="cov5" title="3">{
                 log.Trace().Msgf("terraform.tfvars not found on %s", currentPath)
         }</span> else<span class="cov1" title="1"> {
                 tfVarsFiles = append(tfVarsFiles, filepath.Join(currentPath, "terraform.tfvars"))
         }</span>
 
-        <span class="cov5" title="3">for _, tfVarsFile := range tfVarsFiles </span><span class="cov5" title="3">{
+        <span class="cov6" title="4">for _, tfVarsFile := range tfVarsFiles </span><span class="cov5" title="3">{
                 variables, errInputVariables := getInputVariablesFromFile(tfVarsFile)
                 if errInputVariables != nil </span><span class="cov1" title="1">{
-                        log.Error().Msgf("Error getting values from %s", tfVarsFiles)
+                        log.Error().Msgf("Error getting values from %s", tfVarsFile)
                         log.Err(errInputVariables)
                         continue</span>
                 }
                 <span class="cov3" title="2">mergeMaps(variablesMap, variables)</span>
         }
 
-        <span class="cov5" title="3">inputVariableMap["var"] = cty.ObjectVal(variablesMap)</span>
+        // If the flag is empty let's look for the value in the first written line of the file
+        <span class="cov6" title="4">if terraformVarsPath == "" </span><span class="cov3" title="2">{
+                terraformVarsPathRegex := regexp.MustCompile(`(?m)^\s*// kics_terraform_vars: ([\w/\\.:-]+)\r?\n`)
+                terraformVarsPathMatch := terraformVarsPathRegex.FindStringSubmatch(fileContent)
+                if terraformVarsPathMatch != nil </span><span class="cov0" title="0">{
+                        // There is a path tp the variables file in the file so that will be the path to the variables tf file
+                        terraformVarsPath = terraformVarsPathMatch[1]
+                        // If the path contains ":" assume its a global path
+                        if !strings.Contains(terraformVarsPath, ":") </span><span class="cov0" title="0">{
+                                // If not then add the current folder path before so that the comment path can be relative
+                                terraformVarsPath = filepath.Join(currentPath, terraformVarsPath)
+                        }</span>
+                }
+        }
+
+        // If the terraformVarsPath is empty, this means that it is not in the flag
+        // and it is not in the first written line of the file
+        <span class="cov6" title="4">if terraformVarsPath != "" </span><span class="cov3" title="2">{
+                _, err = os.Stat(terraformVarsPath)
+                if err != nil </span><span class="cov0" title="0">{
+                        log.Trace().Msgf("%s file not found", terraformVarsPath)
+                }</span> else<span class="cov3" title="2"> {
+                        variables, errInputVariables := getInputVariablesFromFile(terraformVarsPath)
+                        if errInputVariables != nil </span><span class="cov0" title="0">{
+                                log.Error().Msgf("Error getting values from %s", terraformVarsPath)
+                                log.Err(errInputVariables)
+                        }</span> else<span class="cov3" title="2"> {
+                                mergeMaps(variablesMap, variables)
+                        }</span>
+                }
+        }
+
+        <span class="cov6" title="4">inputVariableMap["var"] = cty.ObjectVal(variablesMap)</span>
 }
 </pre>
 		
@@ -14265,7 +14308,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov3" title="2">{
+                close: func() error </span><span class="cov0" title="0">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -14274,26 +14317,26 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov3" title="2">{
+        defer func() </span><span class="cov0" title="0">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
                 }</span>
-                <span class="cov3" title="2">p.wg.Done()</span>
+                <span class="cov0" title="0">p.wg.Done()</span>
         }()
 
         <span class="cov3" title="2">for </span><span class="cov10" title="20">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov3" title="2">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov3" title="2">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file77" style="display: none">package progress
@@ -18337,6 +18380,7 @@ type Parameters struct {
         ReportFormats               []string
         Platform                    []string
         ExcludePlatform             []string
+        TerraformVarsPath           string
         QueryExecTimeout            int
         LineInfoPayload             bool
         DisableSecrets              bool
@@ -18930,7 +18974,7 @@ func (c *Client) createService(
         <span class="cov0" title="0">combinedParser, err := parser.NewBuilder().
                 Add(&amp;jsonParser.Parser{}).
                 Add(&amp;yamlParser.Parser{}).
-                Add(terraformParser.NewDefault()).
+                Add(terraformParser.NewDefaultWithVarsPath(c.ScanParams.TerraformVarsPath)).
                 Add(&amp;dockerParser.Parser{}).
                 Add(&amp;protoParser.Parser{}).
                 Add(&amp;buildahParser.Parser{}).
