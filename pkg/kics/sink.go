@@ -33,8 +33,6 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 
 	content := c.Content
 
-	s.Tracker.TrackFileFoundCountLines(c.CountLines)
-
 	if err != nil {
 		return errors.Wrapf(err, "failed to get file content: %s", filename)
 	}
@@ -83,6 +81,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 	s.Tracker.TrackFileParse()
 	log.Debug().Msgf("Finished to process file %s", filename)
 	s.Tracker.TrackFileParseCountLines(documents.CountLines)
+	s.Tracker.TrackFileFoundCountLines(documents.CountLines - len(documents.IgnoreLines))
 
 	return errors.Wrap(err, "failed to save file content")
 }
