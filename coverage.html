@@ -145,7 +145,7 @@
 				
 				<option value="file44">github.com/Checkmarx/kics/pkg/kics/service.go (40.3%)</option>
 				
-				<option value="file45">github.com/Checkmarx/kics/pkg/kics/sink.go (40.0%)</option>
+				<option value="file45">github.com/Checkmarx/kics/pkg/kics/sink.go (42.9%)</option>
 				
 				<option value="file46">github.com/Checkmarx/kics/pkg/kuberneter/auth.go (100.0%)</option>
 				
@@ -2189,13 +2189,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="36">total += v
+                <span class="cov9" title="37">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2220,7 +2220,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="15">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4695,7 +4695,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -8227,6 +8227,7 @@ import (
         "encoding/json"
         "fmt"
         "io"
+        "regexp"
         "sort"
 
         sentryReport "github.com/Checkmarx/kics/internal/sentry"
@@ -8253,6 +8254,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 
         c, err := getContent(rc, data)
 
+        *c.Content = resolveCRLFFile(*c.Content)
         content := c.Content
 
         s.Tracker.TrackFileFoundCountLines(c.CountLines)
@@ -8308,6 +8310,12 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 
         return errors.Wrap(err, "failed to save file content")</span>
 }
+
+func resolveCRLFFile(fileContent []byte) []byte <span class="cov8" title="1">{
+        regex := regexp.MustCompile(`\r\n`)
+        contentSTR := regex.ReplaceAllString(string(fileContent), "\n")
+        return []byte(contentSTR)
+}</span>
 
 func resolveJSONFilter(jsonFilter string) string <span class="cov8" title="1">{
         is := antlr.NewInputStream(jsonFilter)
