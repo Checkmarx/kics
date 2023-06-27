@@ -8,7 +8,6 @@ CxPolicy[result] {
 	efs_volume := resource.volume.efs_volume_configuration
 	efs_volume.transit_encryption = "DISABLED"
 	
-
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_efs_file_system",
