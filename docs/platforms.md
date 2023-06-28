@@ -162,6 +162,24 @@ cdktf synth
 
 You can also run the command `cdktf synth --json` to display it in the terminal.
 
+### Terraform variables path
+
+When using vars in a terraform file there are 2 ways of passing the file in which a variable's value is present.
+
+If none of these options are used kics will only resolve variables coming from the `*.auto.tfvars` files and the default variable values.
+
+#### Option 1 - Comment on tf file
+By adding, as the first line in a TF file, a rule that follows the logic below:
+```
+// kics_terraform_vars: path/to/terraform/vars.tf
+```
+This line is a comment that Kics will look for when trying to decypher the variables used in that file.
+
+#### Option 2 - Flag when calling the scan
+By adding the flag `--terraform-vars-path` to the scan command it is possible to input the path of the variables fiel that will be used for all the files in the project.
+
+**_NOTE:_** when using both options the flag option will take precedence and therefore define the variables.
+
 ### Limitations
 
 #### Ansible
