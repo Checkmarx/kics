@@ -295,7 +295,7 @@ func checkLine(str1, str2 string, distances map[int]int, line string, i int) map
 func (d *DefaultDetectLineResponse) checkResolvedFile(line, str1, st2 string,
 	recurseCount int) (det *DefaultDetectLineResponse, l []string) {
 	for key, r := range d.ResolvedFiles {
-		if strings.Contains(line, key) {
+		if strings.Contains(line, key) && !strings.Contains(key, "#") {
 			if recurseCount > constants.MaxResolvedFiles {
 				break
 			}

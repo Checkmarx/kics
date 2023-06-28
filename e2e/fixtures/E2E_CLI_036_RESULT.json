@@ -3,7 +3,7 @@
 	"files_scanned": 1,
 	"lines_scanned": 289,
 	"files_parsed": 1,
-	"lines_parsed": 289,
+	"lines_parsed": 282,
 	"files_failed_to_scan": 0,
 	"queries_total": 13,
 	"queries_failed_to_execute": 0,
@@ -12,14 +12,14 @@
 	"severity_counters": {
 		"HIGH": 6,
 		"INFO": 3,
-		"LOW": 2,
+		"LOW": 1,
 		"MEDIUM": 9,
 		"TRACE": 0
 	},
-	"total_counter": 20,
+	"total_counter": 19,
 	"total_bom_resources": 0,
-	"start": "2022-10-18T14:56:55.859960017+01:00",
-	"end": "2022-10-18T14:56:56.399687664+01:00",
+	"start": "2023-06-10T14:14:58.0283016+01:00",
+	"end": "2023-06-10T14:15:03.3543051+01:00",
 	"paths": [
 		"/path/e2e/fixtures/samples/positive.yaml"
 	],
@@ -36,13 +36,13 @@
 			"description_id": "55f05412",
 			"files": [
 				{
-					"file_name": "fixtures\\samples\\positive.yaml",
-					"similarity_id": "7d59e0095d8eda260b02394f129910d70d01b55dffb356780166354f9360d848",
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
+					"similarity_id": "27c1aa11c215cb09ce1ad1e569a090d5bc80ca156c5bf81f3b52415dbd6608f0",
 					"line": 104,
 					"resource_type": "AWS::ElasticLoadBalancingV2::Listener",
 					"resource_name": "ALBListener",
 					"issue_type": "IncorrectValue",
-					"search_key": "Resources.ALBListener.Properties.Protocol",
+					"search_key": "Resources.ALBListener.Properties.Protocol=HTTP",
 					"search_line": 0,
 					"search_value": "",
 					"expected_value": "'Resources.ALBListener.Protocol' should not equal to 'HTTP'",
@@ -62,7 +62,7 @@
 			"description_id": "bded2e99",
 			"files": [
 				{
-					"file_name": "fixtures\\samples\\positive.yaml",
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
 					"similarity_id": "dd2585b378b43193cc748c9f68b4c226b6face1e271f07f84dcb9113ff6f7446",
 					"line": 48,
 					"resource_type": "AWS::ECS::TaskDefinition",
@@ -88,7 +88,7 @@
 			"description_id": "747f49ac",
 			"files": [
 				{
-					"file_name": "fixtures\\samples\\positive.yaml",
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
 					"similarity_id": "88653ab159ca0a15095afc685f98da24685fa547bb5f1ca7c95ef468f209387c",
 					"line": 24,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -101,7 +101,7 @@
 					"actual_value": "Resource name 'EcsSecurityGroupHTTPinbound02' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from CIDR 0.0.0.0/0 to all available ports"
 				},
 				{
-					"file_name": "fixtures\\samples\\positive.yaml",
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
 					"similarity_id": "5f39aa8e63613a7e8bfd7641ccfb931fa0225e95b3449bc1210b50329d65d713",
 					"line": 32,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -127,20 +127,7 @@
 			"description_id": "08256d31",
 			"files": [
 				{
-					"file_name": "fixtures\\samples\\positive.yaml",
-					"similarity_id": "f1f15967fd4bd2b39610dcbe3c2d641068dc1b409821142f41d179dbc360b3aa",
-					"line": 32,
-					"resource_type": "AWS::EC2::SecurityGroupIngress",
-					"resource_name": "EcsSecurityGroupSSHinbound",
-					"issue_type": "IncorrectValue",
-					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp",
-					"search_line": 0,
-					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp should not be open to the world (0.0.0.0/0)",
-					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp is open to the world (0.0.0.0/0)"
-				},
-				{
-					"file_name": "fixtures\\samples\\positive.yaml",
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
 					"similarity_id": "3c4976bcd6061315525a23a644cb6ed3bc4888794f21e8161a1cd38ea0495f30",
 					"line": 24,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -151,6 +138,19 @@
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp should not be open to the world (0.0.0.0/0)",
 					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is open to the world (0.0.0.0/0)"
+				},
+				{
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
+					"similarity_id": "f1f15967fd4bd2b39610dcbe3c2d641068dc1b409821142f41d179dbc360b3aa",
+					"line": 32,
+					"resource_type": "AWS::EC2::SecurityGroupIngress",
+					"resource_name": "EcsSecurityGroupSSHinbound",
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp should not be open to the world (0.0.0.0/0)",
+					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp is open to the world (0.0.0.0/0)"
 				}
 			]
 		},
@@ -166,7 +166,7 @@
 			"description_id": "2cad71a7",
 			"files": [
 				{
-					"file_name": "fixtures\\samples\\positive.yaml",
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
 					"similarity_id": "d542c20ac3e6177847cf5a565ff82704a5b63ec87332191ded7baca361b611e8",
 					"line": 86,
 					"resource_type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
@@ -192,7 +192,7 @@
 			"description_id": "99966f58",
 			"files": [
 				{
-					"file_name": "fixtures\\samples\\positive.yaml",
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
 					"similarity_id": "ef5069fb260b351100126334b0ba9b2776f480652d8d4f72c81f387d785d22d2",
 					"line": 131,
 					"resource_type": "AWS::AutoScaling::AutoScalingGroup",
@@ -218,7 +218,7 @@
 			"description_id": "cd242bdd",
 			"files": [
 				{
-					"file_name": "fixtures\\samples\\positive.yaml",
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
 					"similarity_id": "5022c0ba8f17197cb6ef6163bf16e6dd8e13290b1d91192c61742bca491ff4f7",
 					"line": 159,
 					"resource_type": "AWS::ECS::Service",
@@ -244,7 +244,7 @@
 			"description_id": "3ccdd7d2",
 			"files": [
 				{
-					"file_name": "fixtures\\samples\\positive.yaml",
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
 					"similarity_id": "d762780be8bebaa6b6bc6b6075a5dcee0edd37f639aa63061f29a13160eae116",
 					"line": 14,
 					"resource_type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
@@ -270,7 +270,7 @@
 			"description_id": "7b876844",
 			"files": [
 				{
-					"file_name": "fixtures\\samples\\positive.yaml",
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
 					"similarity_id": "ee0915eb8433ec18c3f357c5eb0d243ce5c3a077e63e222230c4c0d7bf049416",
 					"line": 14,
 					"resource_type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
@@ -296,7 +296,7 @@
 			"description_id": "b47b42b2",
 			"files": [
 				{
-					"file_name": "fixtures\\samples\\positive.yaml",
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
 					"similarity_id": "cea2579f8b8eccc6008dcddba492fb4bd8802d0926f4cc33ae95b8a5f758d0e3",
 					"line": 167,
 					"resource_type": "AWS::ECS::Service",
@@ -322,20 +322,7 @@
 			"description_id": "5f2b65f3",
 			"files": [
 				{
-					"file_name": "fixtures\\samples\\positive.yaml",
-					"similarity_id": "000056cd0b9697e13f2f4561f1963e34c58c042b921c4d0fad0f2fa5214374eb",
-					"line": 35,
-					"resource_type": "AWS::EC2::SecurityGroupIngress",
-					"resource_name": "EcsSecurityGroupALBports",
-					"issue_type": "IncorrectValue",
-					"search_key": "Resources.EcsSecurityGroupALBports.Properties",
-					"search_line": 0,
-					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort should equal to Resources.EcsSecurityGroupALBports.Properties.ToPort",
-					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is not equal to Resources.EcsSecurityGroupALBports.Properties.ToPort"
-				},
-				{
-					"file_name": "fixtures\\samples\\positive.yaml",
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
 					"similarity_id": "d60022e14f1b45c574f71c0f48b3fee882b471819597b770e3545988a8f5295a",
 					"line": 19,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -348,7 +335,20 @@
 					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is not equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort"
 				},
 				{
-					"file_name": "fixtures\\samples\\positive.yaml",
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
+					"similarity_id": "000056cd0b9697e13f2f4561f1963e34c58c042b921c4d0fad0f2fa5214374eb",
+					"line": 35,
+					"resource_type": "AWS::EC2::SecurityGroupIngress",
+					"resource_name": "EcsSecurityGroupALBports",
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.EcsSecurityGroupALBports.Properties",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort should equal to Resources.EcsSecurityGroupALBports.Properties.ToPort",
+					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is not equal to Resources.EcsSecurityGroupALBports.Properties.ToPort"
+				},
+				{
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
 					"similarity_id": "810487007189ac4de717dffc3204a05756e80e910b34f89ee08fd14f612328aa",
 					"line": 27,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -374,22 +374,9 @@
 			"description_id": "e2e3a50a",
 			"files": [
 				{
-					"file_name": "fixtures\\samples\\positive.yaml",
-					"similarity_id": "7d931711c3ba34527d9a6660c82f06f4a2174812dcfbd69bb271187edec91a06",
-					"line": 51,
-					"resource_type": "AWS::ECS::TaskDefinition",
-					"resource_name": "TaskDefinition",
-					"issue_type": "MissingAttribute",
-					"search_key": "Resources.TaskDefinition.Properties.ContainerDefinitions",
-					"search_line": 0,
-					"search_value": "",
-					"expected_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' should contain 'HealthCheck' property",
-					"actual_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property"
-				},
-				{
-					"file_name": "fixtures\\samples\\positive.yaml",
-					"similarity_id": "e08fb6aa0ab3e2ed98aa9d08d8813df89af2b0005acdbda809c86f4897715c78",
-					"line": 67,
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
+					"similarity_id": "81bc6465311aa1f359a617fa73beab5ce4fcea75a0e3a9eef35fc3aea109bcc9",
+					"line": 50,
 					"resource_type": "AWS::ECS::TaskDefinition",
 					"resource_name": "TaskDefinition",
 					"issue_type": "MissingAttribute",
@@ -413,7 +400,7 @@
 			"description_id": "f7c62b11",
 			"files": [
 				{
-					"file_name": "fixtures\\samples\\positive.yaml",
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
 					"similarity_id": "39fec612777f59fb4181dd2330ee465ec860c962acfebb07a4f1ee1f122d24e7",
 					"line": 35,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -426,20 +413,7 @@
 					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.Description is undefined"
 				},
 				{
-					"file_name": "fixtures\\samples\\positive.yaml",
-					"similarity_id": "e96cf20cc6e1e11dce2d40d9e2b37446a00f00c3f541aa7dd13861059f6fcce8",
-					"line": 19,
-					"resource_type": "AWS::EC2::SecurityGroupIngress",
-					"resource_name": "EcsSecurityGroupHTTPinbound02",
-					"issue_type": "MissingAttribute",
-					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
-					"search_line": 0,
-					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description should be set",
-					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description is undefined"
-				},
-				{
-					"file_name": "fixtures\\samples\\positive.yaml",
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
 					"similarity_id": "95883c9f983adb8f547c54e24837b6aa402978a00417be98441514959d4171d4",
 					"line": 27,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -450,6 +424,19 @@
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description should be set",
 					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is undefined"
+				},
+				{
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
+					"similarity_id": "e96cf20cc6e1e11dce2d40d9e2b37446a00f00c3f541aa7dd13861059f6fcce8",
+					"line": 19,
+					"resource_type": "AWS::EC2::SecurityGroupIngress",
+					"resource_name": "EcsSecurityGroupHTTPinbound02",
+					"issue_type": "MissingAttribute",
+					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description should be set",
+					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description is undefined"
 				}
 			]
 		}

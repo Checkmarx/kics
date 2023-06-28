@@ -34,7 +34,16 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 	}
 
 	lines := *file.LinesOriginalData
-	for _, key := range strings.Split(sanitizedSubstring, ".") {
+	splitSanitized := strings.Split(sanitizedSubstring, ".")
+	for index, split := range splitSanitized {
+		if strings.Contains(split, "$ref") {
+			splitSanitized[index] = strings.Join(splitSanitized[index:], ".")
+			splitSanitized = splitSanitized[:index+1]
+			break
+		}
+	}
+
+	for _, key := range splitSanitized {
 		substr1, substr2 := GenerateSubstrings(key, extractedString)
 
 		detector, lines = detector.DetectCurrentLine(substr1, substr2, 0, lines)
