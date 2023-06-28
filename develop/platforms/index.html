@@ -19,7 +19,7 @@
         <link rel="next" href="../utilities/">
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.16">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
     
     
       
@@ -1756,26 +1756,37 @@ Due to the possibility of the definition of the CloudFormation template,  inside
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>cdktf synth
 </code></pre></div>
 <p>You can also run the command <code>cdktf synth --json</code> to display it in the terminal.</p>
+<h3 id="terraform_variables_path">Terraform variables path<a class="headerlink" href="#terraform_variables_path" title="Permanent link">&para;</a></h3>
+<p>When using vars in a terraform file there are 2 ways of passing the file in which a variable's value is present.</p>
+<p>If none of these options are used kics will only resolve variables coming from the <code>*.auto.tfvars</code> files and the default variable values.</p>
+<h4 id="option_1_-_comment_on_tf_file">Option 1 - Comment on tf file<a class="headerlink" href="#option_1_-_comment_on_tf_file" title="Permanent link">&para;</a></h4>
+<p>By adding, as the first line in a TF file, a rule that follows the logic below:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>// kics_terraform_vars: path/to/terraform/vars.tf
+</code></pre></div>
+This line is a comment that Kics will look for when trying to decypher the variables used in that file.</p>
+<h4 id="option_2_-_flag_when_calling_the_scan">Option 2 - Flag when calling the scan<a class="headerlink" href="#option_2_-_flag_when_calling_the_scan" title="Permanent link">&para;</a></h4>
+<p>By adding the flag <code>--terraform-vars-path</code> to the scan command it is possible to input the path of the variables fiel that will be used for all the files in the project.</p>
+<p><strong><em>NOTE:</em></strong> when using both options the flag option will take precedence and therefore define the variables.</p>
 <h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
 <h4 id="ansible_1">Ansible<a class="headerlink" href="#ansible_1" title="Permanent link">&para;</a></h4>
 <p>At the moment, KICS does not support a robust approach to identifying Ansible samples. The identification of these samples is done through exclusion. When a YAML sample is not a CloudFormation, Google Deployment Manager, Helm, Kubernetes or OpenAPI sample, KICS recognize it as Ansible.</p>
 <p>Thus, KICS recognize other YAML samples (that are not Ansible) as Ansible, e.g. GitHub Actions samples. However, you can ignore these samples by writing <code>#kics-scan ignore</code> on the top of the file. For more details, please read this <a href="https://github.com/Checkmarx/kics/blob/25b6b703e924ed42067d9ab7772536864aee900b/docs/running-kics.md#using-commands-on-scanned-files-as-comments">documentation</a>.</p>
 <h4 id="terraform_1">Terraform<a class="headerlink" href="#terraform_1" title="Permanent link">&para;</a></h4>
 <p>Although KICS support variables and interpolations, KICS does not support functions and enviroment variables. In case of variables used as function parameters, it will parse as wrapped expression, so the following function call:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_launch_configuration&quot;</span><span class="w"> </span><span class="nv">&quot;example&quot;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="na">image_id</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_ami.ubuntu.id</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="na">instance_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${concat(list(&quot;${var.name}&quot;, &quot;${var.other_name}&quot;), var.node_tags)}&quot;</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="na">spot_price</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">var.price</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="na">user_data_base64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${var.data}==&quot;</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">}</span>
-</code></pre></div>
-<p>Considering <code>var.data = "a123B"</code> and <code>var.price = 1.023</code>, it would be parsed like the following example:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_launch_configuration&quot;</span><span class="w"> </span><span class="nv">&quot;example&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="na">image_id</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_ami.ubuntu.id</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="na">instance_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${concat(list(&quot;${var.name}&quot;, &quot;${var.other_name}&quot;), var.node_tags)}&quot;</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="na">spot_price</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">1.023</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="na">user_data_base64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;a123B==&quot;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="na">spot_price</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">var.price</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="na">user_data_base64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${var.data}==&quot;</span>
 <a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">}</span>
+</code></pre></div>
+<p>Considering <code>var.data = "a123B"</code> and <code>var.price = 1.023</code>, it would be parsed like the following example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_launch_configuration&quot;</span><span class="w"> </span><span class="nv">&quot;example&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="na">image_id</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_ami.ubuntu.id</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="na">instance_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${concat(list(&quot;${var.name}&quot;, &quot;${var.other_name}&quot;), var.node_tags)}&quot;</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span><span class="na">spot_price</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">1.023</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span><span class="na">user_data_base64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;a123B==&quot;</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="p">}</span>
 </code></pre></div>
 
 
@@ -1821,7 +1832,7 @@ Due to the possibility of the definition of the CloudFormation template,  inside
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.a51614de.min.js"></script>
+      <script src="../assets/javascripts/bundle.b425cdc4.min.js"></script>
       
         
           <script src="../js/version-mike.js"></script>
