@@ -37,7 +37,7 @@
 			"files": [
 				{
 					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
-					"similarity_id": "27c1aa11c215cb09ce1ad1e569a090d5bc80ca156c5bf81f3b52415dbd6608f0",
+					"similarity_id": "7d59e0095d8eda260b02394f129910d70d01b55dffb356780166354f9360d848",
 					"line": 104,
 					"resource_type": "AWS::ElasticLoadBalancingV2::Listener",
 					"resource_name": "ALBListener",
