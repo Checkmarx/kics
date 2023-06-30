@@ -2189,13 +2189,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="32">total += v
+                <span class="cov8" title="34">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2220,7 +2220,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="15">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -14330,7 +14330,7 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
                 }</span>
-                <span class="cov1" title="1">p.wg.Done()</span>
+                <span class="cov3" title="2">p.wg.Done()</span>
         }()
 
         <span class="cov3" title="2">for </span><span class="cov10" title="20">{
@@ -17575,7 +17575,7 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int
         <span class="cov4" title="6">fullObjectCopy := obj
 
         // resolve the paths
-        obj, _ = r.yamlWalk(fileContent, &amp;fullObjectCopy, &amp;obj, path, resolveCount, resolvedFilesCache)
+        obj, _ = r.yamlWalk(fileContent, &amp;fullObjectCopy, &amp;obj, path, resolveCount, resolvedFilesCache, false)
 
         if obj.Kind == 1 &amp;&amp; len(obj.Content) == 1 </span><span class="cov4" title="6">{
                 obj = *obj.Content[0]
@@ -17595,12 +17595,13 @@ func (r *Resolver) yamlWalk(
         value *yaml.Node,
         path string,
         resolveCount int,
-        resolvedFilesCache map[string]ResolvedFile) (yaml.Node, bool) <span class="cov10" title="70">{
+        resolvedFilesCache map[string]ResolvedFile,
+        refBool bool) (yaml.Node, bool) <span class="cov10" title="70">{
         // go over the value and replace paths with the real conten
         switch value.Kind </span>{
         case yaml.ScalarNode:<span class="cov9" title="47">
                 if filepath.Base(path) != value.Value </span><span class="cov9" title="47">{
-                        return r.resolveYamlPath(originalFileContent, fullObject, value, path, resolveCount, resolvedFilesCache)
+                        return r.resolveYamlPath(originalFileContent, fullObject, value, path, resolveCount, resolvedFilesCache, refBool)
                 }</span>
                 <span class="cov0" title="0">return *value, false</span>
         default:<span class="cov7" title="23">
@@ -17609,7 +17610,7 @@ func (r *Resolver) yamlWalk(
                         if i &gt;= 1 </span><span class="cov8" title="41">{
                                 refBool = strings.Contains(value.Content[i-1].Value, "$ref")
                         }</span>
-                        <span class="cov9" title="64">resolved, ok := r.yamlWalk(originalFileContent, fullObject, value.Content[i], path, resolveCount, resolvedFilesCache)
+                        <span class="cov9" title="64">resolved, ok := r.yamlWalk(originalFileContent, fullObject, value.Content[i], path, resolveCount, resolvedFilesCache, refBool)
 
                         if i &gt;= 1 &amp;&amp; refBool &amp;&amp; (resolved.Kind == yaml.MappingNode || !ok) </span><span class="cov3" title="3">{
                                 // Create RefMetadata and add it to yaml Node
@@ -17656,9 +17657,10 @@ func (r *Resolver) resolveYamlPath(
         v *yaml.Node,
         filePath string,
         resolveCount int,
-        resolvedFilesCache map[string]ResolvedFile) (yaml.Node, bool) <span class="cov9" title="47">{
+        resolvedFilesCache map[string]ResolvedFile,
+        refBool bool) (yaml.Node, bool) <span class="cov9" title="47">{
         value := v.Value
-        if resolveCount &gt; constants.MaxResolvedFiles </span><span class="cov0" title="0">{
+        if resolveCount &gt; constants.MaxResolvedFiles || (strings.HasPrefix(value, "#") &amp;&amp; !refBool) </span><span class="cov0" title="0">{
                 return *v, false
         }</span>
         <span class="cov9" title="47">var splitPath []string
