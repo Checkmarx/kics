@@ -126,7 +126,7 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int
 	fullObjectCopy := obj
 
 	// resolve the paths
-	obj, _ = r.yamlWalk(fileContent, &fullObjectCopy, &obj, path, resolveCount, resolvedFilesCache)
+	obj, _ = r.yamlWalk(fileContent, &fullObjectCopy, &obj, path, resolveCount, resolvedFilesCache, false)
 
 	if obj.Kind == 1 && len(obj.Content) == 1 {
 		obj = *obj.Content[0]
@@ -146,12 +146,13 @@ func (r *Resolver) yamlWalk(
 	value *yaml.Node,
 	path string,
 	resolveCount int,
-	resolvedFilesCache map[string]ResolvedFile) (yaml.Node, bool) {
+	resolvedFilesCache map[string]ResolvedFile,
+	refBool bool) (yaml.Node, bool) {
 	// go over the value and replace paths with the real conten
 	switch value.Kind {
 	case yaml.ScalarNode:
 		if filepath.Base(path) != value.Value {
-			return r.resolveYamlPath(originalFileContent, fullObject, value, path, resolveCount, resolvedFilesCache)
+			return r.resolveYamlPath(originalFileContent, fullObject, value, path, resolveCount, resolvedFilesCache, refBool)
 		}
 		return *value, false
 	default:
@@ -160,7 +161,7 @@ func (r *Resolver) yamlWalk(
 			if i >= 1 {
 				refBool = strings.Contains(value.Content[i-1].Value, "$ref")
 			}
-			resolved, ok := r.yamlWalk(originalFileContent, fullObject, value.Content[i], path, resolveCount, resolvedFilesCache)
+			resolved, ok := r.yamlWalk(originalFileContent, fullObject, value.Content[i], path, resolveCount, resolvedFilesCache, refBool)
 
 			if i >= 1 && refBool && (resolved.Kind == yaml.MappingNode || !ok) {
 				// Create RefMetadata and add it to yaml Node
@@ -207,9 +208,10 @@ func (r *Resolver) resolveYamlPath(
 	v *yaml.Node,
 	filePath string,
 	resolveCount int,
-	resolvedFilesCache map[string]ResolvedFile) (yaml.Node, bool) {
+	resolvedFilesCache map[string]ResolvedFile,
+	refBool bool) (yaml.Node, bool) {
 	value := v.Value
-	if resolveCount > constants.MaxResolvedFiles {
+	if resolveCount > constants.MaxResolvedFiles || (strings.HasPrefix(value, "#") && !refBool) {
 		return *v, false
 	}
 	var splitPath []string
