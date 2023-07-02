@@ -282,7 +282,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 				a.Exc = append(a.Exc, path)
 			}
 
-			if isConfigFile(path, defaultConfigFiles) {
+			if isConfigFile(path, defaultConfigFiles, &a.Exc) {
 				projectConfigFiles = append(projectConfigFiles, path)
 				a.Exc = append(a.Exc, path)
 			}
@@ -596,15 +596,22 @@ func isDeadSymlink(path string) bool {
 	return fileInfo == nil
 }
 
-func isConfigFile(path string, exc []string) bool {
+func isConfigFile(path string, exc []string, excludedPaths *[]string) bool {
 	for i := range exc {
 		exclude, err := provider.GetExcludePaths(exc[i])
 		if err != nil {
 			log.Err(err).Msg("failed to get exclude paths")
 		}
 		for j := range exclude {
-			fileInfo, _ := os.Stat(path)
-			if fileInfo != nil && fileInfo.IsDir() {
+			fileInfo, err := os.Stat(path)
+			// silently ignore errors and add the path to the excluded paths
+			if err != nil {
+				log.Warn().Msgf("Failed getting %s stats - %s ", path, err)
+				*excludedPaths = append(*excludedPaths, path)
+
+				return false
+			}
+			if fileInfo.IsDir() {
 				continue
 			}
 
