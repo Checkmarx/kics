@@ -145,7 +145,7 @@
 				
 				<option value="file44">github.com/Checkmarx/kics/pkg/kics/service.go (40.3%)</option>
 				
-				<option value="file45">github.com/Checkmarx/kics/pkg/kics/sink.go (42.9%)</option>
+				<option value="file45">github.com/Checkmarx/kics/pkg/kics/sink.go (42.0%)</option>
 				
 				<option value="file46">github.com/Checkmarx/kics/pkg/kuberneter/auth.go (100.0%)</option>
 				
@@ -201,7 +201,7 @@
 				
 				<option value="file72">github.com/Checkmarx/kics/pkg/printer/options.go (85.7%)</option>
 				
-				<option value="file73">github.com/Checkmarx/kics/pkg/printer/printer.go (82.3%)</option>
+				<option value="file73">github.com/Checkmarx/kics/pkg/printer/printer.go (82.5%)</option>
 				
 				<option value="file74">github.com/Checkmarx/kics/pkg/printer/utils.go (82.4%)</option>
 				
@@ -2189,13 +2189,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov8" title="32">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2220,7 +2220,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2348,6 +2348,7 @@ type CITracker struct {
         lines              int
         FoundCountLines    int
         ParsedCountLines   int
+        IgnoreCountLines   int
         Version            model.Version
 }
 
@@ -2428,6 +2429,11 @@ func (c *CITracker) TrackFileFoundCountLines(countLines int) <span class="cov1" 
 // TrackFileParseCountLines - information about the lines of the parsed files
 func (c *CITracker) TrackFileParseCountLines(countLines int) <span class="cov1" title="1">{
         c.ParsedCountLines += countLines
+}</span>
+
+// TrackFileIgnoreCountLines - information about the lines ignored of the parsed files
+func (c *CITracker) TrackFileIgnoreCountLines(countLines int) <span class="cov1" title="1">{
+        c.IgnoreCountLines += countLines
 }</span>
 </pre>
 		
@@ -7970,7 +7976,8 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
                         s.saveToFile(ctx, &amp;file)</span>
                 }
                 <span class="cov0" title="0">s.Tracker.TrackFileParse()
-                s.Tracker.TrackFileParseCountLines(documents.CountLines)</span>
+                s.Tracker.TrackFileParseCountLines(documents.CountLines - len(documents.IgnoreLines))
+                s.Tracker.TrackFileIgnoreCountLines(len(documents.IgnoreLines))</span>
         }
         <span class="cov0" title="0">return resFiles.Excluded, nil</span>
 }
@@ -8021,6 +8028,7 @@ type Tracker interface {
         TrackFileParse()
         TrackFileFoundCountLines(countLines int)
         TrackFileParseCountLines(countLines int)
+        TrackFileIgnoreCountLines(countLines int)
 }
 
 // Service is a struct that contains a SourceProvider to receive sources, a storage to save and retrieve scanning informations
@@ -8306,7 +8314,9 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
         }
         <span class="cov0" title="0">s.Tracker.TrackFileParse()
         log.Debug().Msgf("Finished to process file %s", filename)
-        s.Tracker.TrackFileParseCountLines(documents.CountLines)
+
+        s.Tracker.TrackFileParseCountLines(documents.CountLines - len(documents.IgnoreLines))
+        s.Tracker.TrackFileIgnoreCountLines(len(documents.IgnoreLines))
 
         return errors.Wrap(err, "failed to save file content")</span>
 }
@@ -9880,6 +9890,7 @@ type Counters struct {
         ScannedFilesLines      int `json:"lines_scanned"`
         ParsedFiles            int `json:"files_parsed"`
         ParsedFilesLines       int `json:"lines_parsed"`
+        IgnoredFilesLines      int `json:"lines_ignored"`
         FailedToScanFiles      int `json:"files_failed_to_scan"`
         TotalQueries           int `json:"queries_total"`
         FailedToExecuteQueries int `json:"queries_failed_to_execute"`
@@ -14027,10 +14038,11 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
         printSeverityCounter(model.SeverityInfo, summary.SeveritySummary.SeverityCounters[model.SeverityInfo], printer.Info)
         fmt.Printf("TOTAL: %d\n\n", summary.SeveritySummary.TotalCounter)
 
-        log.Info().Msgf("Files scanned: %d", summary.ScannedFiles)
-        log.Info().Msgf("Lines scanned: %d", summary.ScannedFilesLines)
-        log.Info().Msgf("Parsed files: %d", summary.ParsedFiles)
-        log.Info().Msgf("Lines parsed: %d", summary.ParsedFilesLines)
+        log.Info().Msgf("Scanned Files: %d", summary.ScannedFiles)
+        log.Info().Msgf("Parsed Files: %d", summary.ParsedFiles)
+        log.Info().Msgf("Scanned Lines: %d", summary.ScannedFilesLines)
+        log.Info().Msgf("Parsed Lines: %d", summary.ParsedFilesLines)
+        log.Info().Msgf("Ignored Lines: %d", summary.IgnoredFilesLines)
         log.Info().Msgf("Queries loaded: %d", summary.TotalQueries)
         log.Info().Msgf("Queries failed to execute: %d", summary.FailedToExecuteQueries)
         log.Info().Msg("Inspector stopped")
@@ -17597,7 +17609,7 @@ func (r *Resolver) yamlWalk(
         resolveCount int,
         resolvedFilesCache map[string]ResolvedFile,
         refBool bool) (yaml.Node, bool) <span class="cov10" title="70">{
-        // go over the value and replace paths with the real conten
+        // go over the value and replace paths with the real content
         switch value.Kind </span>{
         case yaml.ScalarNode:<span class="cov9" title="47">
                 if filepath.Base(path) != value.Value </span><span class="cov9" title="47">{
@@ -18484,6 +18496,7 @@ func (c *Client) getSummary(results []model.Vulnerability, end time.Time, pathPa
                 ScannedFilesLines:      c.Tracker.FoundCountLines,
                 ParsedFilesLines:       c.Tracker.ParsedCountLines,
                 ParsedFiles:            c.Tracker.ParsedFiles,
+                IgnoredFilesLines:      c.Tracker.IgnoreCountLines,
                 TotalQueries:           c.Tracker.LoadedQueries,
                 FailedToExecuteQueries: c.Tracker.ExecutingQueries - c.Tracker.ExecutedQueries,
                 FailedSimilarityID:     c.Tracker.FailedSimilarityID,
