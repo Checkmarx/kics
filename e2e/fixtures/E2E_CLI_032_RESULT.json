@@ -3,7 +3,7 @@
 	"files_scanned": 1,
 	"lines_scanned": 289,
 	"files_parsed": 1,
-	"lines_parsed": 282,
+	"lines_parsed": 289,
 	"files_failed_to_scan": 0,
 	"queries_total": 507,
 	"queries_failed_to_execute": 0,
@@ -12,14 +12,14 @@
 	"severity_counters": {
 		"HIGH": 8,
 		"INFO": 3,
-		"LOW": 2,
+		"LOW": 3,
 		"MEDIUM": 10,
 		"TRACE": 0
 	},
-	"total_counter": 23,
+	"total_counter": 24,
 	"total_bom_resources": 0,
-	"start": "2023-06-10T14:19:27.7542379+01:00",
-	"end": "2023-06-10T14:19:57.1698811+01:00",
+	"start": "2023-06-29T12:20:35.5786867+01:00",
+	"end": "2023-06-29T12:21:25.1837825+01:00",
 	"paths": [
 		"/path/e2e/fixtures/samples/positive.yaml"
 	],
@@ -37,7 +37,7 @@
 			"files": [
 				{
 					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
-					"similarity_id": "27c1aa11c215cb09ce1ad1e569a090d5bc80ca156c5bf81f3b52415dbd6608f0",
+					"similarity_id": "7d59e0095d8eda260b02394f129910d70d01b55dffb356780166354f9360d848",
 					"line": 104,
 					"resource_type": "AWS::ElasticLoadBalancingV2::Listener",
 					"resource_name": "ALBListener",
@@ -397,16 +397,16 @@
 			"files": [
 				{
 					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
-					"similarity_id": "d60022e14f1b45c574f71c0f48b3fee882b471819597b770e3545988a8f5295a",
-					"line": 19,
+					"similarity_id": "810487007189ac4de717dffc3204a05756e80e910b34f89ee08fd14f612328aa",
+					"line": 27,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
-					"resource_name": "EcsSecurityGroupHTTPinbound02",
+					"resource_name": "EcsSecurityGroupSSHinbound",
 					"issue_type": "IncorrectValue",
-					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
+					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort should equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort",
-					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is not equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort"
+					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort should equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort",
+					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is not equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort"
 				},
 				{
 					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
@@ -423,16 +423,16 @@
 				},
 				{
 					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
-					"similarity_id": "810487007189ac4de717dffc3204a05756e80e910b34f89ee08fd14f612328aa",
-					"line": 27,
+					"similarity_id": "d60022e14f1b45c574f71c0f48b3fee882b471819597b770e3545988a8f5295a",
+					"line": 19,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
-					"resource_name": "EcsSecurityGroupSSHinbound",
+					"resource_name": "EcsSecurityGroupHTTPinbound02",
 					"issue_type": "IncorrectValue",
-					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
+					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
 					"search_line": 0,
 					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort should equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort",
-					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is not equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort"
+					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort should equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort",
+					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is not equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort"
 				}
 			]
 		},
@@ -449,8 +449,21 @@
 			"files": [
 				{
 					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
-					"similarity_id": "81bc6465311aa1f359a617fa73beab5ce4fcea75a0e3a9eef35fc3aea109bcc9",
-					"line": 50,
+					"similarity_id": "7d931711c3ba34527d9a6660c82f06f4a2174812dcfbd69bb271187edec91a06",
+					"line": 51,
+					"resource_type": "AWS::ECS::TaskDefinition",
+					"resource_name": "TaskDefinition",
+					"issue_type": "MissingAttribute",
+					"search_key": "Resources.TaskDefinition.Properties.ContainerDefinitions",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' should contain 'HealthCheck' property",
+					"actual_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property"
+				},
+				{
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
+					"similarity_id": "e08fb6aa0ab3e2ed98aa9d08d8813df89af2b0005acdbda809c86f4897715c78",
+					"line": 67,
 					"resource_type": "AWS::ECS::TaskDefinition",
 					"resource_name": "TaskDefinition",
 					"issue_type": "MissingAttribute",
@@ -501,19 +514,6 @@
 			"files": [
 				{
 					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
-					"similarity_id": "39fec612777f59fb4181dd2330ee465ec860c962acfebb07a4f1ee1f122d24e7",
-					"line": 35,
-					"resource_type": "AWS::EC2::SecurityGroupIngress",
-					"resource_name": "EcsSecurityGroupALBports",
-					"issue_type": "MissingAttribute",
-					"search_key": "Resources.EcsSecurityGroupALBports.Properties",
-					"search_line": 0,
-					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.Description should be set",
-					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.Description is undefined"
-				},
-				{
-					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
 					"similarity_id": "95883c9f983adb8f547c54e24837b6aa402978a00417be98441514959d4171d4",
 					"line": 27,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -524,6 +524,19 @@
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description should be set",
 					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is undefined"
+				},
+				{
+					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
+					"similarity_id": "39fec612777f59fb4181dd2330ee465ec860c962acfebb07a4f1ee1f122d24e7",
+					"line": 35,
+					"resource_type": "AWS::EC2::SecurityGroupIngress",
+					"resource_name": "EcsSecurityGroupALBports",
+					"issue_type": "MissingAttribute",
+					"search_key": "Resources.EcsSecurityGroupALBports.Properties",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.Description should be set",
+					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.Description is undefined"
 				},
 				{
 					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
