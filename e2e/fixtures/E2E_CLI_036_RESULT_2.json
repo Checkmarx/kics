@@ -19,8 +19,8 @@
 	},
 	"total_counter": 3,
 	"total_bom_resources": 0,
-	"start": "2023-06-10T14:21:28.3382569+01:00",
-	"end": "2023-06-10T14:21:30.1235832+01:00",
+	"start": "2023-06-29T12:20:35.085794+01:00",
+	"end": "2023-06-29T12:20:40.0129014+01:00",
 	"paths": [
 		"/path/e2e/fixtures/samples/positive.yaml"
 	],
