@@ -470,6 +470,13 @@ func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount ch
 			return
 		}
 	}
+
+	kicsReloadedRegex := regexp.MustCompile(`(?m){\s*\"FileType\":\s*\"KICS-RELOADED\",`)
+
+	if kicsReloadedRegex.Find(content) != nil {
+		results <- returnType
+		locCount <- linesCount
+	}
 	// No type was determined (ignore on parser)
 	unwanted <- a.filePath
 }

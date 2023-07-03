@@ -3,7 +3,9 @@ package scan
 
 import (
 	"context"
+	"encoding/json"
 	"os"
+	"strings"
 
 	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/pkg/engine"
@@ -22,6 +24,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/Checkmarx/kics/pkg/resolver/helm"
 	"github.com/Checkmarx/kics/pkg/scanner"
+	"github.com/google/uuid"
 
 	"github.com/rs/zerolog/log"
 )
@@ -40,6 +43,23 @@ type executeScanParameters struct {
 	extractedPaths provider.ExtractedPath
 }
 
+type Document struct {
+	LineInfoDocument map[string]interface{}
+	DocumentContent  model.Document
+	FilePath         string
+}
+type Reloaded struct {
+	Documents []Document
+	Platforms []string
+	BasePaths []string
+}
+
+type ReloadedFileContent struct {
+	FileType string
+	Types    []string
+	Reloaded []Reloaded
+}
+
 func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 	progressBar := c.ProBarBuilder.BuildCircle("Preparing Scan Assets: ")
 	go progressBar.Start()
@@ -52,6 +72,24 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 
 	if len(extractedPaths.Path) == 0 {
 		return nil, nil
+	}
+
+	usingReloaded := strings.HasPrefix(c.ScanParams.Path[0], "kics-reloaded::")
+	reloaded := ReloadedFileContent{}
+
+	if usingReloaded {
+		kicsReloadedPath := strings.Split(c.ScanParams.Path[0], "kics-reloaded::")[1]
+		reloadedFileContent, err := os.ReadFile(kicsReloadedPath)
+		if err != nil {
+			log.Err(err)
+			return nil, err
+		}
+		err = json.Unmarshal(reloadedFileContent, &reloaded)
+		if err != nil {
+			log.Err(err)
+			return nil, err
+		}
+		c.ScanParams.Platform = reloaded.Types
 	}
 
 	querySource := source.NewFilesystemSource(
@@ -109,6 +147,13 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		log.Err(err)
 		return nil, err
 	}
+	if usingReloaded {
+		err = importReloaded(reloaded, c.ScanParams.ScanID, &services, c)
+		if err != nil {
+			log.Err(err)
+			return nil, err
+		}
+	}
 
 	if err := progressBar.Close(); err != nil {
 		log.Debug().Msgf("Failed to close progress bar: %s", err.Error())
@@ -119,6 +164,66 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		inspector:      inspector,
 		extractedPaths: extractedPaths,
 	}, nil
+}
+
+func saveReloadedFile(reloadedPath string, services []*kics.Service, types []string) error {
+	reloaded := ReloadedFileContent{}
+	reloaded.FileType = "KICS-RELOADED"
+	for _, service := range services {
+		reloadedService := getReloadedFromService(service)
+		reloaded.Reloaded = append(reloaded.Reloaded, reloadedService)
+	}
+	reloaded.Types = types
+
+	jsonReloaded, err := json.Marshal(reloaded)
+	if err != nil {
+		return err
+	}
+	file, err := os.Create(reloadedPath)
+	if err != nil {
+		return err
+	}
+	_, err = file.Write(jsonReloaded)
+	if err != nil {
+		return err
+	}
+	err = file.Close()
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func importReloaded(reloaded ReloadedFileContent, scanID string, services *[]*kics.Service, c *Client) error {
+	for index, reloadedService := range reloaded.Reloaded {
+		for _, doc := range reloadedService.Documents {
+			linesString := []string{}
+			lines, err := os.ReadFile(doc.FilePath)
+			if err != nil {
+				log.Err(err)
+			} else {
+				linesString = strings.Split(string(lines), "\n")
+			}
+			fileToSave := model.FileMetadata{ID: uuid.New().String(), ScanID: scanID, Document: doc.DocumentContent, LineInfoDocument: doc.LineInfoDocument, FilePath: doc.FilePath, LinesOriginalData: &linesString}
+			(*services)[index].SaveFile(fileToSave)
+		}
+		(*services)[index].SourceProvider.SetBasePaths(reloadedService.BasePaths)
+		(*services)[index].Parser.Platform = reloadedService.Platforms
+	}
+	return nil
+}
+
+func getReloadedFromService(service *kics.Service) Reloaded {
+	reloaded := Reloaded{}
+	reloaded.Documents = []Document{}
+	reloaded.Platforms = []string{}
+	for _, file := range service.GetFiles() {
+		document := Document{file.LineInfoDocument, file.Document, file.FilePath}
+		reloaded.Documents = append(reloaded.Documents, document)
+		reloaded.BasePaths = append(reloaded.BasePaths, service.SourceProvider.GetBasePaths()...)
+	}
+	reloaded.Platforms = service.Parser.Platform
+	return reloaded
 }
 
 func (c *Client) executeScan(ctx context.Context) (*Results, error) {
@@ -133,9 +238,28 @@ func (c *Client) executeScan(ctx context.Context) (*Results, error) {
 		return nil, nil
 	}
 
-	if err = scanner.PrepareAndScan(ctx, c.ScanParams.ScanID, *c.ProBarBuilder, executeScanParameters.services); err != nil {
-		log.Err(err)
-		return nil, err
+	filepath := c.ScanParams.Path[0]
+
+	isKicsReloaded := strings.HasPrefix(filepath, "kics-reloaded::")
+
+	if isKicsReloaded {
+		err = scanner.StartScan(ctx, c.ScanParams.ScanID, *c.ProBarBuilder, executeScanParameters.services)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		if err = scanner.PrepareAndScan(ctx, c.ScanParams.ScanID, *c.ProBarBuilder, executeScanParameters.services); err != nil {
+			log.Err(err)
+			return nil, err
+		}
+
+		if c.ScanParams.SaveReloadedPath != "" {
+			err = saveReloadedFile(c.ScanParams.SaveReloadedPath, executeScanParameters.services, c.ScanParams.Platform)
+			if err != nil {
+				log.Err(err)
+				return nil, err
+			}
+		}
 	}
 
 	failedQueries := executeScanParameters.inspector.GetFailedQueries()
@@ -154,6 +278,12 @@ func (c *Client) executeScan(ctx context.Context) (*Results, error) {
 	if err != nil {
 		log.Err(err)
 		return nil, err
+	}
+	if isKicsReloaded {
+		files = make(model.FileMetadatas, 0)
+		for _, service := range executeScanParameters.services {
+			files = append(files, service.GetFiles()...)
+		}
 	}
 
 	return &Results{

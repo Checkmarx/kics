@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/signal"
 	"path/filepath"
+	"strings"
 	"sync"
 
 	"github.com/alexmullins/zip"
@@ -104,6 +105,9 @@ func GetSources(source []string) (ExtractedPath, error) {
 		ExtractionMap: make(map[string]model.ExtractedPathObject),
 	}
 	for _, path := range source {
+		if strings.HasPrefix(path, "kics-reloaded::") {
+			path = strings.Split(path, "kics-reloaded::")[1]
+		}
 		destination := filepath.Join(os.TempDir(), "kics-extract-"+utils.NextRandom())
 
 		mode := getter.ClientModeAny
