@@ -148,7 +148,7 @@ func (r *Resolver) yamlWalk(
 	resolveCount int,
 	resolvedFilesCache map[string]ResolvedFile,
 	refBool bool) (yaml.Node, bool) {
-	// go over the value and replace paths with the real conten
+	// go over the value and replace paths with the real content
 	switch value.Kind {
 	case yaml.ScalarNode:
 		if filepath.Base(path) != value.Value {
