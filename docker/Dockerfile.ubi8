@@ -96,3 +96,4 @@ ENV PATH $PATH:/app/bin
 
 # Command to run the executable
 ENTRYPOINT ["/app/bin/kics"]
+
