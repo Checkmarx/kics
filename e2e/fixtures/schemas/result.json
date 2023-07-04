@@ -6,6 +6,7 @@
     "lines_scanned",
     "files_parsed",
     "lines_parsed",
+    "lines_ignored",
     "files_failed_to_scan",
     "queries_total",
     "queries_failed_to_execute",
@@ -35,6 +36,10 @@
       "minimum": 0
     },
     "lines_parsed": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "lines_ignored": {
       "type": "integer",
       "minimum": 0
     },
