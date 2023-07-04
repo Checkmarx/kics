@@ -19,7 +19,7 @@
         <link rel="next" href="../configuration-file/">
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.18">
     
     
       
@@ -1593,23 +1593,24 @@
 <a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>  -q, --queries-path strings          paths to directory with queries (default [./assets/queries])
 <a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>      --report-formats strings        formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])
 <a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>  -r, --secrets-regexes-path string   path to secrets regex rules configuration file
-<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>      --timeout int                   number of seconds the query has to execute before being canceled (default 60)
-<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>  -t, --type strings                  case insensitive list of platform types to scan
-<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
-<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>                                      cannot be provided with type exclusion flags
-<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>      --exclude-type strings          case insensitive list of platform types not to scan
-<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
-<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>                                      cannot be provided with type inclusion flags
-<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>
-<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>Global Flags:
-<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>      --ci                  display only log messages to CLI output (mutually exclusive with silent)
-<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>  -f, --log-format string   determines log format (pretty,json) (default &quot;pretty&quot;)
-<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>      --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default &quot;INFO&quot;)
-<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>      --log-path string     path to generate log file (info.log)
-<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>      --no-color            disable CLI color output
-<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>      --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
-<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>  -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
-<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>  -v, --verbose             write logs to stdout too (mutually exclusive with silent)
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>      --terraform-vars-path           string path where terraform variables are present
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>      --timeout int                   number of seconds the query has to execute before being canceled (default 60)
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>  -t, --type strings                  case insensitive list of platform types to scan
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>                                      cannot be provided with type exclusion flags
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>      --exclude-type strings          case insensitive list of platform types not to scan
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>                                      cannot be provided with type inclusion flags
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>Global Flags:
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>      --ci                  display only log messages to CLI output (mutually exclusive with silent)
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>  -f, --log-format string   determines log format (pretty,json) (default &quot;pretty&quot;)
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>      --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default &quot;INFO&quot;)
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>      --log-path string     path to generate log file (info.log)
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>      --no-color            disable CLI color output
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>      --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>  -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>  -v, --verbose             write logs to stdout too (mutually exclusive with silent)
 </code></pre></div>
 <h2 id="auto_remediate_command_options">Auto Remediate Command Options<a class="headerlink" href="#auto_remediate_command_options" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Auto remediates the project
@@ -1680,10 +1681,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.b425cdc4.min.js"></script>
+      <script src="../assets/javascripts/bundle.220ee61c.min.js"></script>
       
         
           <script src="../js/version-mike.js"></script>
