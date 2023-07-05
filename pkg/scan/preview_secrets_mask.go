@@ -118,7 +118,7 @@ func maskSecret(rule *secrets.RegexQuery, lines *[]model.CodeLine, idx int) {
 
 // repurposed isSecret from inspector
 func isSecret(line string, rule *secrets.RegexQuery, allowRules *[]secrets.AllowRule) (isSecretRet bool, groups [][]string) {
-	if secrets.IsAllowRule(line, *allowRules) {
+	if secrets.IsAllowRule(line, rule, *allowRules) {
 		return false, [][]string{}
 	}
 
