@@ -286,33 +286,3 @@ func checkLine(str1, str2 string, distances map[int]int, line string, i int) map
 
 	return distances
 }
-
-func (d *DefaultDetectLineResponse) checkResolvedFile(line, str1, st2 string,
-	recurseCount int) (det *DefaultDetectLineResponse, l []string) {
-	for key, r := range d.ResolvedFiles {
-		if strings.Contains(line, key) && !strings.Contains(key, "#") {
-			if recurseCount > constants.MaxResolvedFiles {
-				break
-			}
-			return d.restore(r.Path).DetectCurrentLine(str1, st2, recurseCount+1, r.Lines)
-		}
-	}
-
-	d.CurrentLine = 0
-	d.IsBreak = false
-	d.FoundAtLeastOne = false
-
-	return d, []string{}
-}
-
-func (d *DefaultDetectLineResponse) restore(file string) *DefaultDetectLineResponse {
-	restore := &DefaultDetectLineResponse{
-		CurrentLine:     0,
-		IsBreak:         d.IsBreak,
-		FoundAtLeastOne: false,
-		ResolvedFile:    file,
-		ResolvedFiles:   d.ResolvedFiles,
-	}
-
-	return restore
-}
