@@ -247,7 +247,7 @@ func (r *Resolver) resolveYamlPath(
 			}
 		}
 
-		r.ResolvedFiles[value] = model.ResolvedFile{
+		r.ResolvedFiles[filename] = model.ResolvedFile{
 			Content:      resolvedFilesCache[filename].fileContent,
 			Path:         path,
 			LinesContent: utils.SplitLines(string(resolvedFilesCache[filename].fileContent)),
@@ -367,7 +367,7 @@ func (r *Resolver) resolvePath(
 			}
 		}
 
-		r.ResolvedFiles[value] = model.ResolvedFile{
+		r.ResolvedFiles[onlyFilePath] = model.ResolvedFile{
 			Content:      resolvedFilesCache[onlyFilePath].fileContent,
 			Path:         path,
 			LinesContent: utils.SplitLines(string(resolvedFilesCache[onlyFilePath].fileContent)),

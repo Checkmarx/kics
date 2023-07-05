@@ -48,9 +48,8 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 	}
 
 	linesResolved := 0
-	resolvedFiles := make(map[string]bool)
 	for _, ref := range documents.ResolvedFiles {
-		if _, exists := resolvedFiles[ref.Path]; !exists && ref.Path != filename {
+		if ref.Path != filename {
 			linesResolved += len(*ref.LinesContent)
 		}
 	}
