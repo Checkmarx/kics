@@ -256,11 +256,6 @@ func (d *DefaultDetectLineResponse) DetectCurrentLine(str1, str2 string, recurse
 	distances := make(map[int]int)
 
 	for i := d.CurrentLine; i < len(lines); i++ {
-		if len(d.ResolvedFiles) > 0 {
-			if res, newLines := d.checkResolvedFile(lines[i], str1, str2, recurseCount); res.FoundAtLeastOne {
-				return res, newLines
-			}
-		}
 		distances = checkLine(str1, str2, distances, lines[i], i)
 	}
 
