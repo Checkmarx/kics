@@ -363,12 +363,12 @@
     "queryName": "Passwords And Secrets - Generic Token",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive43.tf"
+    "fileName": "positive43.yaml"
   },
   {
     "queryName": "Passwords And Secrets - Generic Secret",
     "severity": "HIGH",
     "line": 17,
-    "fileName": "positive44.tf"
+    "fileName": "positive44.yaml"
   }
 ]
