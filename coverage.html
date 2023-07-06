@@ -153,7 +153,7 @@
 				
 				<option value="file48">github.com/Checkmarx/kics/pkg/kuberneter/utils.go (70.0%)</option>
 				
-				<option value="file49">github.com/Checkmarx/kics/pkg/model/comment_yaml.go (75.0%)</option>
+				<option value="file49">github.com/Checkmarx/kics/pkg/model/comment_yaml.go (76.2%)</option>
 				
 				<option value="file50">github.com/Checkmarx/kics/pkg/model/comments.go (100.0%)</option>
 				
@@ -2189,13 +2189,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="26">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="32">total += v
+                <span class="cov8" title="26">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2220,7 +2220,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -8901,24 +8901,24 @@ var (
 )
 
 // build builds the ignore struct
-func (i *Ignore) build(lines []int) <span class="cov7" title="29">{
+func (i *Ignore) build(lines []int) <span class="cov7" title="30">{
         defer memoryMu.Unlock()
         memoryMu.Lock()
         i.Lines = append(i.Lines, lines...)
 }</span>
 
 // GetLines returns the lines to ignore
-func (i *Ignore) GetLines() []int <span class="cov4" title="6">{
+func (i *Ignore) GetLines() []int <span class="cov4" title="7">{
         return RemoveDuplicates(i.Lines)
 }</span>
 
 // Reset resets the ignore struct
-func (i *Ignore) Reset() <span class="cov4" title="6">{
+func (i *Ignore) Reset() <span class="cov4" title="7">{
         i.Lines = make([]int, 0)
 }</span>
 
 // ignoreCommentsYAML sets the lines to ignore for a yaml file
-func ignoreCommentsYAML(node *yaml.Node) <span class="cov7" title="29">{
+func ignoreCommentsYAML(node *yaml.Node) <span class="cov7" title="30">{
         linesIgnore := make([]int, 0)
         if node.HeadComment != "" </span><span class="cov1" title="1">{
                 // Squence Node - Head Comment comes in root node
@@ -8927,32 +8927,32 @@ func ignoreCommentsYAML(node *yaml.Node) <span class="cov7" title="29">{
                 return
         }</span>
         // check if comment is in the content
-        <span class="cov7" title="28">for i, content := range node.Content </span><span class="cov10" title="107">{
+        <span class="cov7" title="29">for i, content := range node.Content </span><span class="cov10" title="111">{
                 if content.FootComment != "" &amp;&amp; i+2 &lt; len(node.Content) </span><span class="cov0" title="0">{
                         linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&amp;content.FootComment), i+2, node, node.Kind, true)...)
                 }</span>
-                <span class="cov10" title="107">if content.HeadComment == "" </span><span class="cov9" title="102">{
+                <span class="cov10" title="111">if content.HeadComment == "" </span><span class="cov9" title="105">{
                         continue</span>
                 }
-                <span class="cov4" title="5">linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&amp;content.HeadComment), i, node, node.Kind, false)...)</span>
+                <span class="cov4" title="6">linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&amp;content.HeadComment), i, node, node.Kind, false)...)</span>
         }
 
-        <span class="cov7" title="28">NewIgnore.build(linesIgnore)</span>
+        <span class="cov7" title="29">NewIgnore.build(linesIgnore)</span>
 }
 
 // processCommentYAML returns the lines to ignore
-func processCommentYAML(comment *comment, position int, content *yaml.Node, kind yaml.Kind, isFooter bool) (linesIgnore []int) <span class="cov4" title="6">{
+func processCommentYAML(comment *comment, position int, content *yaml.Node, kind yaml.Kind, isFooter bool) (linesIgnore []int) <span class="cov4" title="7">{
         linesIgnore = make([]int, 0)
         switch com := (*comment).value(); com </span>{
         case IgnoreLine:<span class="cov2" title="2">
                 linesIgnore = append(linesIgnore, processLine(kind, content, position)...)</span>
         case IgnoreBlock:<span class="cov3" title="3">
                 linesIgnore = append(linesIgnore, processBlock(kind, content.Content, position)...)</span>
-        default:<span class="cov1" title="1">
+        default:<span class="cov2" title="2">
                 linesIgnore = append(linesIgnore, processRegularLine(string(*comment), content, position, isFooter)...)</span>
         }
 
-        <span class="cov4" title="6">return</span>
+        <span class="cov4" title="7">return</span>
 }
 
 func getSeqLastLine(content *yaml.Node) int <span class="cov0" title="0">{
@@ -8991,15 +8991,15 @@ func getFootComments(comment string, content *yaml.Node, position, commentsNumbe
         <span class="cov0" title="0">return</span>
 }
 
-func processRegularLine(comment string, content *yaml.Node, position int, isFooter bool) (linesIgnore []int) <span class="cov1" title="1">{
+func processRegularLine(comment string, content *yaml.Node, position int, isFooter bool) (linesIgnore []int) <span class="cov2" title="2">{
         linesIgnore = make([]int, 0)
 
         if len(content.Content) == 0 </span><span class="cov0" title="0">{
                 return linesIgnore
         }</span>
 
-        <span class="cov1" title="1">line := content.Content[position].Line
-        commentsNumber := strings.Count(comment, "#") // number of comments (coverage of nested comments)
+        <span class="cov2" title="2">line := content.Content[position].Line
+        commentsNumber := strings.Count(comment, "\n") + 1 // number of comments (coverage of nested comments)
 
         if isFooter </span><span class="cov0" title="0">{ // comment is a foot comment
                 return getFootComments(comment, content, position, commentsNumber)
@@ -9007,16 +9007,16 @@ func processRegularLine(comment string, content *yaml.Node, position int, isFoot
 
         // comment is not a foot comment
 
-        <span class="cov1" title="1">if KICSCommentRgxpYaml.MatchString(comment) </span><span class="cov0" title="0">{
+        <span class="cov2" title="2">if KICSCommentRgxpYaml.MatchString(comment) </span><span class="cov0" title="0">{
                 // has kics-scan ignore at the end of the comment
                 linesIgnore = append(linesIgnore, line)
         }</span>
 
-        <span class="cov1" title="1">for i := 1; i &lt;= commentsNumber; i++ </span><span class="cov1" title="1">{
+        <span class="cov2" title="2">for i := 1; i &lt;= commentsNumber; i++ </span><span class="cov3" title="4">{
                 linesIgnore = append(linesIgnore, line-i)
         }</span>
 
-        <span class="cov1" title="1">return linesIgnore</span>
+        <span class="cov2" title="2">return linesIgnore</span>
 }
 
 // processLine returns the lines to ignore for a line
@@ -9066,7 +9066,7 @@ func getNodeLastLine(node *yaml.Node) (lastLine int) <span class="cov7" title="3
 }
 
 // value returns the value of the comment
-func (c *comment) value() (value CommentCommand) <span class="cov4" title="6">{
+func (c *comment) value() (value CommentCommand) <span class="cov4" title="7">{
         comment := strings.ToLower(string(*c))
         // check if we are working with kics command
         if KICSCommentRgxp.MatchString(comment) </span><span class="cov4" title="6">{
@@ -9076,23 +9076,23 @@ func (c *comment) value() (value CommentCommand) <span class="cov4" title="6">{
                 value = ProcessCommands(commands)
                 return
         }</span>
-        <span class="cov0" title="0">return CommentCommand(comment)</span>
+        <span class="cov1" title="1">return CommentCommand(comment)</span>
 }
 </pre>
 		
 		<pre class="file" id="file50" style="display: none">package model
 
 // RemoveDuplicates removes duplicate lines from a slice of lines.
-func RemoveDuplicates(lines []int) []int <span class="cov5" title="7">{
+func RemoveDuplicates(lines []int) []int <span class="cov6" title="8">{
         seen := make(map[int]bool)
         var result []int
-        for _, line := range lines </span><span class="cov10" title="37">{
-                if !seen[line] </span><span class="cov9" title="35">{
+        for _, line := range lines </span><span class="cov10" title="40">{
+                if !seen[line] </span><span class="cov9" title="38">{
                         result = append(result, line)
                         seen[line] = true
                 }</span>
         }
-        <span class="cov5" title="7">return result</span>
+        <span class="cov6" title="8">return result</span>
 }
 
 // ProcessCommands processes a slice of commands.
@@ -9112,12 +9112,12 @@ func ProcessCommands(commands []string) CommentCommand <span class="cov6" title=
 }
 
 // Range returns a slice of lines between the start and end line numbers.
-func Range(start, end int) (lines []int) <span class="cov5" title="5">{
+func Range(start, end int) (lines []int) <span class="cov4" title="5">{
         lines = make([]int, end-start+1)
-        for i := range lines </span><span class="cov9" title="26">{
+        for i := range lines </span><span class="cov8" title="26">{
                 lines[i] = start + i
         }</span>
-        <span class="cov5" title="5">return</span>
+        <span class="cov4" title="5">return</span>
 }
 </pre>
 		
