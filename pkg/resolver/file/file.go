@@ -247,7 +247,7 @@ func (r *Resolver) resolveYamlPath(
 			}
 		}
 
-		r.ResolvedFiles[filename] = model.ResolvedFile{
+		r.ResolvedFiles[getPathFromString(value)] = model.ResolvedFile{
 			Content:      resolvedFilesCache[filename].fileContent,
 			Path:         path,
 			LinesContent: utils.SplitLines(string(resolvedFilesCache[filename].fileContent)),
@@ -330,6 +330,14 @@ func (r *Resolver) resolveFile(
 	return nil, false
 }
 
+func getPathFromString(path string) string {
+	lastIndex := strings.LastIndex(path, "#")
+	if lastIndex == -1 {
+		return path
+	}
+	return path[:lastIndex]
+}
+
 // isPath returns true if the value is a valid path
 func (r *Resolver) resolvePath(
 	originalFileContent []byte,
@@ -367,7 +375,7 @@ func (r *Resolver) resolvePath(
 			}
 		}
 
-		r.ResolvedFiles[onlyFilePath] = model.ResolvedFile{
+		r.ResolvedFiles[getPathFromString(value)] = model.ResolvedFile{
 			Content:      resolvedFilesCache[onlyFilePath].fileContent,
 			Path:         path,
 			LinesContent: utils.SplitLines(string(resolvedFilesCache[onlyFilePath].fileContent)),
