@@ -548,6 +548,92 @@ func Test_ignoreCommentsYAML(t *testing.T) {
 				},
 			},
 		},
+		{
+			name: "test_6: ignore_multiple_#",
+			want: []int{2, 3, 4},
+			args: args{
+				&yaml.Node{
+					Kind: yaml.MappingNode,
+					Content: []*yaml.Node{
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "key",
+							Line:  1,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "false",
+							Tag:   "!!bool",
+						},
+						{
+							Kind:        yaml.ScalarNode,
+							HeadComment: "################################\n#####      SomeTitle       #####\n################################",
+							Value:       "seq_object",
+							Line:        5,
+						},
+						{
+							Kind: yaml.SequenceNode,
+							Line: 6,
+							Content: []*yaml.Node{
+								{
+									Kind: yaml.MappingNode,
+									Line: 6,
+									Content: []*yaml.Node{
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "key_seq",
+											Line:  6,
+										},
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "key_val",
+											Tag:   " !!str",
+											Line:  6,
+										},
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "key_seq_2",
+											Line:  7,
+										},
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "key_val_2",
+											Tag:   " !!str",
+											Line:  7,
+										},
+									},
+								},
+								{
+									Kind: yaml.MappingNode,
+									Content: []*yaml.Node{
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "second_key",
+											Line:  8,
+										},
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "second_val",
+											Tag:   " !!str",
+										},
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "second_key_2",
+											Line:  9,
+										},
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "second_val_2",
+											Tag:   " !!str",
+										},
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
