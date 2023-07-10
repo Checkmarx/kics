@@ -109,7 +109,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s response should be set when security field is defined", [wantedResponses]),
 		"keyActualValue": sprintf("%s response is undefined when security field is defined", [wantedResponses]),
-		"searchValue": sprintf("%s", wantedResponses),
+		"searchValue": sprintf("%s", [wantedResponses]),
 		"overrideKey": version,
 		"searchValue": sprintf("%s response", [wantedResponses]),
 		"searchLine": common_lib.build_search_line(["paths", n, oper, "responses"],[]),
